@@ -26,6 +26,12 @@ To run the server-app on the local machine, with automatic restart on any file c
     node app.js
 Run the server locally
 
+## Continuous Deployment to Heroku:
+
+CircleCI automatically deploys this project to Heroku whenever all Tests pass on the CircleCI Server.
+Heroku uses:
+- "ci" environmont (see config.js) for the master branch.
+- "test" environment (see config.js) for the test branch.
 
 ## Examples
 _(Coming soon)_

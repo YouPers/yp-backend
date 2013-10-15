@@ -3,10 +3,9 @@
  *    these routes require authenticated users
  */
 
-var mongoose = require('mongoose')
-    , User = mongoose.model('User')
-    , ObjectId = mongoose.Types.ObjectId
-    , restify = require('restify');
+var mongoose = require('mongoose'),
+    User = mongoose.model('User');
+//    ObjectId = mongoose.Types.ObjectId;
 
 
 module.exports = function (app, config) {
@@ -21,7 +20,7 @@ module.exports = function (app, config) {
 
             }
         );
-    }
+    };
 
     var postUser = function (req, res, next) {
 
@@ -38,7 +37,7 @@ module.exports = function (app, config) {
             return next();
         });
 
-    }
+    };
 
     var deleteUser = function(req,res,next) {
         User.remove(function(err) {
@@ -47,7 +46,7 @@ module.exports = function (app, config) {
            }
             res.send(200);
         });
-    }
+    };
 
     /**
      * Get all users
@@ -74,4 +73,4 @@ module.exports = function (app, config) {
      */
     app.del('/api/v1/user', deleteUser);
 
-}
+};

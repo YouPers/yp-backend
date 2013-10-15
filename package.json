@@ -1,25 +1,31 @@
 {
-    "name": "yp-ewl-server"
-  , "description": "The YouPers Plattform Server using restify, mongoose and mongoDB"
-  , "version": "0.0.1"
-  , "private": false
-  , "author": "Reto Blunschi"
-  , "engines": {
-        "node": "0.10.20"
-      , "npm": "1.3.11"
-    }
-  , "dependencies": {
-      "restify": "latest"
-    , "mongoose": "latest"
-    , "mongo": "latest"
-    , "client-sessions": "latest"
-    , "nodemailer" : "latest"
-    , "mail-preview" : "latest"
-    , "se7ensky-restify-preflight": "latest"
-    , "toobusy": "latest"
-    , "range_check": "latest"
-    , "longjohn": "latest" 
-  }
+    "name": "yp-ewl-server", "description": "The YouPers Plattform Server using restify, mongoose and mongoDB",
+    "version": "0.0.1", "private": false, "author": "Reto Blunschi", "engines": {
+    "node": ">=0.10.20",
+    "npm": ">=1.3.11"
+}, "dependencies": {
+    "restify": "latest",
+    "mongoose": "latest",
+    "mongo": "latest",
+    "client-sessions": "latest",
+    "nodemailer": "latest",
+    "mail-preview": "latest",
+    "se7ensky-restify-preflight": "latest",
+    "toobusy": "latest",
+    "range_check": "latest",
+    "longjohn": "latest"
+
+}, "devDependencies": {
+    "grunt-contrib-jshint": "~0.6.4",
+    "grunt-contrib-nodeunit": "~0.2.0",
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt-jasmine-node": "*",
+    "grunt": "~0.4.1",
+    "frisby": "*"
+}, "scripts": {
+    "test": "grunt test"
+}
+
 }
 
 

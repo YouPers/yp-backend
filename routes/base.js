@@ -36,7 +36,6 @@ module.exports = function (app, config) {
      * @param response
      */
     app.get('/db', function (req, res) {
-        var result = '';
         mongoose.connection.db.executeDbCommand({'ping':'1'}, function(err, dbres) {
             if (err === null) {
                 res.send(dbres);
@@ -45,9 +44,4 @@ module.exports = function (app, config) {
             }
         });
     });
-
-
-
-}
-
-
+};

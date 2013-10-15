@@ -24,7 +24,7 @@ module.exports = {
             name: 'Nodejs Restify Mongoose Demo'
         }, openUserSignup: false
     }
-}
+};
 
 
 

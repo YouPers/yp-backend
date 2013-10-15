@@ -1,6 +1,7 @@
 'use strict';
 
 var frisby = require('frisby');
+require('../app.js');
 var port = process.env.PORT || 3000;
 var URL = 'http://localhost:'+ port +'/api/v1/';
 var URL_AUTH = 'http://username:password@localhost:'+port+'/';

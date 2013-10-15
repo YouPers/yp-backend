@@ -16,6 +16,10 @@ var restify = require("restify"),
 
 // Setup Database Connection
 var connectStr = config.db_prefix +'://'+config.host+':'+config.db_port+'/'+config.db_database;
+if (config.db_user && config.db_password) {
+    connectStr = config.db_user + ':' + config.db_password + connectStr;
+}
+
 console.log(connectStr);
 mongoose.connect(connectStr, {server:{auto_reconnect:true}});
 

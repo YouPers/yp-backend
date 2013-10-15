@@ -1,9 +1,9 @@
 'use strict';
 
 var frisby = require('frisby');
-
-var URL = 'http://localhost:3000/api/v1/';
-var URL_AUTH = 'http://username:password@localhost:3000/';
+var port = process.env.PORT || 3000;
+var URL = 'http://localhost:'+ port +'/api/v1/';
+var URL_AUTH = 'http://username:password@localhost:'+port+'/';
 
 frisby.globalSetup({ // globalSetup is for ALL requests
     request: {

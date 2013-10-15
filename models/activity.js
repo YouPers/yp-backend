@@ -10,8 +10,7 @@
  */
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
-    ObjectId = Schema.ObjectId,
-    fs = require('fs');
+    ObjectId = Schema.ObjectId;
 
 // enumerations used in activity object
 var source = "youpers community campaign".split(' ');

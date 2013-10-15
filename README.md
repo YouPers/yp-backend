@@ -1,17 +1,31 @@
-# temp [![Build Status](https://secure.travis-ci.org/retoblunschi/temp.png?branch=master)](http://travis-ci.org/retoblunschi/temp)
+![Build status](https://circleci.com/gh/youpers/yp-backend.png?circle-token=:circle-token)
 
 The best project ever.
 
 ## Getting Started
-Install the module with: `npm install temp`
+- clone the repositoy from github
+- install mongodb
+- change into the new directory and run:
 
-```javascript
-var temp = require('temp');
-temp.awesome(); // "awesome"
-```
+    npm install
+
 
 ## Documentation
-_(Coming soon)_
+### Build commands:
+
+    grunt
+tests, compiles and builds the distribution version of the whole project, is used by CI
+is executing "grunt jshint", "grunt test"
+
+    grunt watch
+for test driven development, watches all files and reexecutes all tests as soon as a file changes
+
+    supervisor app.js
+To run the server-app on the local machine, with automatic restart on any file change
+
+    node app.js
+Run the server locally
+
 
 ## Examples
 _(Coming soon)_

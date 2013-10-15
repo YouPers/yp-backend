@@ -21,18 +21,19 @@ module.exports = function(grunt) {
         tasks: ['jshint:gruntfile']
       },
       lib: {
-        files: '<%= jshint.lib.src %>',
-        tasks: ['jshint:lib', 'nodeunit']
+        files: '<%= jshint.code.src %>',
+        tasks: ['jshint:lib', 'jasmine_node']
       },
       test: {
-        files: '<%= jshint.test.src %>',
-        tasks: ['jshint:test', 'nodeunit']
+        files: 'spec/**/*spec.js',
+        tasks: [ 'jasmine_node']
       }
     },
       jasmine_node: {
           specNameMatcher: "spec", // load only specs containing specNameMatcher
           projectRoot: ".",
           requirejs: false,
+          autotest: true,
           forceExit: true,
           jUnit: {
               report: false,

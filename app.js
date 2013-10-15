@@ -15,10 +15,11 @@ var restify = require("restify"),
     fs = require("fs");
 
 // Setup Database Connection
-var connectStr = config.db_prefix +'://'+config.host+':'+config.db_port+'/'+config.db_database;
+var connectStr = config.db_prefix +'://';
 if (config.db_user && config.db_password) {
-    connectStr = config.db_user + ':' + config.db_password + connectStr;
+    connectStr += config.db_user + ':' + config.db_password + '@';
 }
+connectStr += config.db_host+':'+config.db_port+'/'+config.db_database;
 
 console.log(connectStr);
 mongoose.connect(connectStr, {server:{auto_reconnect:true}});

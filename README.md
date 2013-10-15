@@ -29,9 +29,10 @@ Run the server locally
 ## Continuous Deployment to Heroku:
 
 CircleCI automatically deploys this project to Heroku whenever all Tests pass on the CircleCI Server.
+
 Heroku uses:
-- "ci" environmont (see config.js) for the master branch.
-- "test" environment (see config.js) for the test branch.
+- "ci" environmont (see config.js) for the master branch, deploys to http://yp-backend-ci.herokuapp.com
+- "test" environment (see config.js) for the test branch, deploys to http://yp-backend-test.herokupp.com
 
 ## Examples
 _(Coming soon)_

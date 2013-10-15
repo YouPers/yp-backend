@@ -22,7 +22,7 @@ module.exports = function(grunt) {
       },
       lib: {
         files: '<%= jshint.code.src %>',
-        tasks: ['jshint:lib', 'jasmine_node']
+        tasks: ['jshint:code', 'jasmine_node']
       },
       test: {
         files: 'spec/**/*spec.js',

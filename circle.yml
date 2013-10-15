@@ -1,0 +1,11 @@
+deployment:
+  staging:
+    branch: production
+    heroku:
+      appname: yp-backend-test
+  devbuild:
+    branch: master
+    heroku:
+      appname: yp-backend-ci
+
+

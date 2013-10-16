@@ -1,0 +1,43 @@
+[
+    {
+        "activity": {
+            "number": "Act-17"
+        },
+        "planType": "once",
+        "privacy": "public",
+        "executionType": "group",
+        "onceDate": "",
+        "onceTime": "",
+        "status": "active"
+    },
+    {
+        "activity": {
+            "number": "Act-55"
+        },
+        "planType": "weekly",
+        "privacy": "public",
+        "executionType": "self",
+        "weeklyDayOfWeek": "MONDAY",
+        "status": "active"
+    },
+    {
+        "activity": {
+            "number": "Act-34"
+        },
+        "planType": "daily",
+        "privacy": "public",
+        "executionType": "group",
+        "dailyTime": "",
+        "status": "old"
+    },
+    {
+        "activity": {
+            "number": "Act-59"
+        },
+        "planType": "daily",
+        "privacy": "public",
+        "executionType": "group",
+        "dailyTime": "",
+        "status": "old"
+    }
+]

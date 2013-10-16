@@ -4,7 +4,6 @@ var frisby = require('frisby');
 require('../app.js');
 var port = process.env.PORT || 3000;
 var URL = 'http://localhost:'+ port +'/api/v1/';
-var URL_AUTH = 'http://username:password@localhost:'+port+'/';
 
 frisby.globalSetup({ // globalSetup is for ALL requests
     request: {
@@ -13,15 +12,12 @@ frisby.globalSetup({ // globalSetup is for ALL requests
 });
 
 frisby.create('POST new user')
-    .post(URL + 'user', {username: 'ivan', name:'Ivan Rigamonti', email: 'ivan@rigamonti.me', password:'nopass' })
+    .post(URL + 'users', {username: 'ivan', name:'Ivan Rigamonti', email: 'ivan@rigamonti.me', password:'nopass' })
     .expectStatus(201)
     .toss();
 
-
-
-
 frisby.create('GET all users')
-    .get(URL + 'user')
+    .get(URL + 'users')
     .expectStatus(200)
     .expectJSONLength(1)
     .expectJSON('*', {
@@ -36,7 +32,7 @@ frisby.create('GET all users')
     // 'afterJSON' automatically parses response body as JSON and passes it as an argument
     .afterJSON(function(user) {
         // You can use any normal jasmine-style assertions here
-        expect(1+1).toEqual(2);
+        //expect(1+1).toEqual(2);
 
         // Use data from previous result in next test
         //frisby.create('Update user')
@@ -47,6 +43,6 @@ frisby.create('GET all users')
     .toss();
 
 frisby.create('DELETE all users')
-    .delete(URL+ 'user')
+    .delete(URL+ 'users')
     .expectStatus(200)
     .toss();

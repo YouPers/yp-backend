@@ -15,14 +15,14 @@ var restify = require("restify"),
     fs = require("fs");
 
 // Setup Database Connection
-var connectStr = config.db_prefix +'://';
+var connectStr = config.db_prefix + '://';
 if (config.db_user && config.db_password) {
     connectStr += config.db_user + ':' + config.db_password + '@';
 }
-connectStr += config.db_host+':'+config.db_port+'/'+config.db_database;
+connectStr += config.db_host + ':' + config.db_port + '/' + config.db_database;
 
 console.log(connectStr);
-mongoose.connect(connectStr, {server:{auto_reconnect:true}});
+mongoose.connect(connectStr, {server: {auto_reconnect: true}});
 
 // Configure the server
 var server = restify.createServer({
@@ -50,16 +50,19 @@ preflightEnabler(server);
 
 // Bootstrap models
 fs.readdirSync('./models').forEach(function (file) {
-    console.log("Loading model " + file);
-    require('./models/'+file);
+    if (file.indexOf('_model.js') !== -1) {
+        console.log("Loading model " + file);
+        require('./models/' + file);
+    }
 });
 
 // setup our routes
 fs.readdirSync('./routes').forEach(function (file) {
-    console.log("Loading route: " + file);
-    require('./routes/'+file)(server, config);
+    if (file.indexOf('_route.js') !== -1) {
+        console.log("Loading route: " + file);
+        require('./routes/' + file)(server, config);
+    }
 });
-
 
 
 var port = process.env.PORT || config.port;

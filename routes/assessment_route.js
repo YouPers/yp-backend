@@ -4,17 +4,41 @@
  */
 
 var mongoose = require('mongoose'),
-    Model = mongoose.model('Assessment'),
+    Assessment = mongoose.model('Assessment'),
+    AssessmentResult = mongoose.model('AssessmentResult'),
     genericRoutes = require('./generic');
 
 
 module.exports = function (app, config) {
 
-    var baseUrl = '/api/v1/assessment';
+    var baseUrl = '/api/v1/assessments';
 
-    app.get(baseUrl, genericRoutes.getAllFn(baseUrl, Model));
-    app.get(baseUrl+'/:id', genericRoutes.getByIdFn(baseUrl, Model));
-    app.post(baseUrl, genericRoutes.postFn(baseUrl, Model));
-    app.del(baseUrl, genericRoutes.deleteAllFn(baseUrl, Model));
+    var getNewestResult = function (baseUrl, Model) {
+        return function (req, res, next) {
+            Model.find({assessment: req.params.assId})
+                .sort({timestamp: -1})
+                .limit(1)
+                .exec(function (err, result) {
+                    if (err) {
+                        return next(err);
+                    }
+                    res.send(result[0]);
+                    return next();
+                });
+        };
+    };
+
+    var resultsUrl = baseUrl + '/:assId/results';
+
+    app.post(resultsUrl, genericRoutes.postFn(resultsUrl, AssessmentResult));
+    app.get(resultsUrl+ '/newest', getNewestResult(resultsUrl, AssessmentResult));
+    app.get(resultsUrl, genericRoutes.getAllFn(resultsUrl, AssessmentResult));
+    app.del(resultsUrl, genericRoutes.deleteAllFn(resultsUrl, AssessmentResult));
+
+
+    app.get(baseUrl, genericRoutes.getAllFn(baseUrl, Assessment));
+    app.get(baseUrl + '/:id', genericRoutes.getByIdFn(baseUrl, Assessment));
+    app.post(baseUrl, genericRoutes.postFn(baseUrl, Assessment));
+    app.del(baseUrl, genericRoutes.deleteAllFn(baseUrl, Assessment));
 
 };

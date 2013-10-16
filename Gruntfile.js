@@ -55,7 +55,7 @@ module.exports = function (grunt) {
                 options: {
                     file: 'app.js',
                     nodeArgs: ['--debug'],
-                    ignoredFiles: ['README.md', 'node_modules/**', 'spec/**', '.idea/**'],
+                    ignoredFiles: ['README.md', 'node_modules/**', 'spec/**', '.idea/**', '.git/**'],
                     delayTime: 1,
                     env: {
                         PORT: '8000'

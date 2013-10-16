@@ -12,11 +12,13 @@ var mongoose = require('mongoose'),
  */
 var UserSchema = new Schema({
     id: ObjectId,
-    name: { type: String, trim: true, required: true },
+    firstname: { type: String, trim: true, required: true },
+    lastname: { type: String, trim: true, required: true },
+    fullname: { type: String, trim: true, required: true },
     email: { type: String, trim: true, lowercase: true, required: true, unique: true },
     emailValidatedFlag: { type: Boolean, default: false },
     username: { type: String, trim: true, lowercase: true, required: true, unique: true },
-    role: { type: String, enum: ['User', 'Subscriber', 'Admin'], default: 'User', required: true },
+    role: { type: String, enum: ['individual', 'healthpromoter', 'admin'], default: 'individual', required: true },
     hashed_password: { type: String, trim: true },
     tempPasswordFlag: { type: Boolean, default: false }
 });
@@ -26,7 +28,6 @@ var UserSchema = new Schema({
  */
 
 UserSchema.methods = {
-
 
     /**
      * Encrypt password
@@ -70,9 +71,6 @@ UserSchema
 UserSchema.pre('save', function (next) {
     if (!validatePresenceOf(this.username)) {
         next(new restify.MissingParameterError('Username cannot be blank'));
-    }
-    if (!validatePresenceOf(this.name)) {
-        next(new restify.MissingParameterError('Name cannot be blank'));
     }
     if (!validatePresenceOf(this.role)) {
         next(new restify.MissingParameterError('Role cannot be blank'));

@@ -1,9 +1,14 @@
 {
-    "name": "yp-ewl-server", "description": "The YouPers Plattform Server using restify, mongoose and mongoDB",
-    "version": "0.0.1", "private": false, "author": "Reto Blunschi", "engines": {
+  "name": "yp-ewl-server",
+  "description": "The YouPers Plattform Server using restify, mongoose and mongoDB",
+  "version": "0.0.1",
+  "private": false,
+  "author": "Reto Blunschi",
+  "engines": {
     "node": ">=0.10.20",
     "npm": ">=1.3.11"
-}, "dependencies": {
+  },
+  "dependencies": {
     "restify": "latest",
     "mongoose": "latest",
     "mongo": "latest",
@@ -14,19 +19,20 @@
     "toobusy": "latest",
     "range_check": "latest",
     "longjohn": "latest"
-
-}, "devDependencies": {
+  },
+  "devDependencies": {
     "grunt-contrib-jshint": "~0.6.4",
     "grunt-contrib-nodeunit": "~0.2.0",
     "grunt-contrib-watch": "~0.5.3",
     "grunt-jasmine-node": "*",
     "grunt": "~0.4.1",
-    "frisby": "*"
-}, "scripts": {
-    "test": "grunt test"
+    "frisby": "*",
+    "grunt-nodemon": "~0.1.1",
+    "grunt-concurrent": "~0.4.1",
+    "grunt-wait": "~0.1.0"
+  },
+  "scripts": {
+    "test": "grunt test",
+    "start": "node app.js"
+  }
 }
-
-}
-
-
-

@@ -17,11 +17,9 @@ The best project ever.
 tests, compiles and builds the distribution version of the whole project, is used by CI
 is executing "grunt jshint", "grunt test"
 
-    grunt watch
-for test driven development, watches all files and reexecutes all tests as soon as a file changes
-
-    supervisor app.js
-To run the server-app on the local machine, with automatic restart on any file change
+    grunt server
+for test driven development, watches all files, starts a server on localhost:8000 and restarts server when needed
+Also reexecutes all tests as soon as a file changes. Test are executed on temporary server on localhost:3000
 
     node app.js
 Run the server locally

@@ -49,7 +49,7 @@ module.exports = {
         return function (req, res, next) {
             Model.remove(function (err) {
                 if (err) {
-                    return  next(err);
+                    return next(err);
                 }
                 res.send(200);
             });

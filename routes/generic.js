@@ -29,7 +29,6 @@ module.exports = {
 
     postFn: function (baseUrl, Model) {
         return function (req, res, next) {
-            console.log(req.body);
             var newObj = new Model(req.body);
 
             newObj.save(function (err) {

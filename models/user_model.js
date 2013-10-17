@@ -3,7 +3,6 @@
  */
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
-    ObjectId = Schema.ObjectId,
     crypto = require('crypto'),
     restify = require('restify'),
     common = require('./common');

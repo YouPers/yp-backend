@@ -1,6 +1,10 @@
 /**
  * Environment dependent configuration properties
  */
+
+var Logger = require('bunyan'),
+    restify = require('restify');
+
 module.exports = {
     development: {
         root: require('path').normalize(__dirname + '/..'),
@@ -15,7 +19,24 @@ module.exports = {
         db_database: 'test_database',
         session_timeout: 1200000, // defaults to 20 minutes, in ms (20 * 60 * 1000)
         socket_loglevel: '2', // 0 - error, 1 - warn, 2 - info, 3 - debug
-        version: '0.1.0'
+        version: '0.1.0',
+        loggerOptions: {
+            name: 'Main',
+            streams: [
+                {
+                    stream: process.stdout,
+                    level: 'debug'
+                },
+                {
+                    path: 'logs/server.log',
+                    level: 'trace'
+                }
+            ],
+            serializers: {
+                req: Logger.stdSerializers.req,
+                res: Logger.stdSerializers.res
+            }
+        }
     }, ci: {
         root: require('path').normalize(__dirname + '/..'),
         app: {

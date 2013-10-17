@@ -12,7 +12,8 @@ var restify = require("restify"),
     mongoose = require('mongoose'),
     preflightEnabler = require('se7ensky-restify-preflight'),
     longjohn = require("longjohn"),
-    fs = require("fs");
+    fs = require("fs"),
+    Logger = require('bunyan');
 
 // Setup Database Connection
 var connectStr = config.db_prefix + '://';
@@ -29,7 +30,18 @@ var server = restify.createServer({
     //certificate: ...,
     //key: ...,
     name: 'YP Platform Server',
-    version: config.version
+    version: config.version,
+    log: new Logger(config.loggerOptions)
+});
+
+// setung logging of request and response
+server.pre(function (request, response, next) {
+    request.log.info({req: request}, 'start');        // (1)
+    return next();
+});
+
+server.on('after', function (req, res, route) {
+    req.log.info({res: res}, "finished");             // (3)
 });
 
 // setup better error stacktraces
@@ -51,7 +63,7 @@ preflightEnabler(server);
 // Bootstrap models
 fs.readdirSync('./models').forEach(function (file) {
     if (file.indexOf('_model.js') !== -1) {
-        console.log("Loading model " + file);
+        console.log("Loading model: " + file);
         require('./models/' + file);
     }
 });

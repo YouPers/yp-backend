@@ -26,7 +26,7 @@ module.exports = {
         questionType: "oneSided twoSided".split(' ')
     },
 
-    initializeDbFor : function InitializeDbFor(Model) {
+    initializeDbFor: function InitializeDbFor(Model) {
         console.log(Model.modelName + ": checking whether Database initialization is needed...");
         Model.find().exec(function (err, col) {
             if (err) {
@@ -38,12 +38,29 @@ module.exports = {
                 if (jsonFromFile) {
                     console.log(Model.modelName + ": initializing assessment Database from File: " + filename);
                     console.log(jsonFromFile);
-                    var newObj = new Model(jsonFromFile);
-                    console.log(newObj);
-                    newObj.save(function (err) {
-                        if (err) {
-                            console.log(err.message);
-                        }
+                    if (!Array.isArray(jsonFromFile)) {
+                        jsonFromFile = [jsonFromFile];
+                    }
+                    jsonFromFile.forEach(function (jsonObj) {
+
+                        var newObj = new Model(jsonObj);
+                        console.log(newObj);
+                        newObj.save(function (err) {
+                            if (err) {
+                                console.log(err.message);
+                                throw err;
+                            }
+                            // fix for User Password hashing of imported users that already have an id in the json...
+                            if (newObj.modelName = 'User' && !newObj.hashed_password) {
+                                newObj.password = jsonObj.password;
+                                newObj.save(function(err) {
+                                    if (err) {
+                                        console.log(err.message);
+                                        throw err;
+                                    }
+                                });
+                            }
+                        });
                     });
                 } else {
                     console.log(Model.modelName + ": no initialization, because no file found: " + filename);
@@ -54,4 +71,8 @@ module.exports = {
         });
 
     }
+};
+
+var _saveOneObj = function _saveOneObj(obj) {
+
 };

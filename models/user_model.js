@@ -5,13 +5,13 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
     ObjectId = Schema.ObjectId,
     crypto = require('crypto'),
-    restify = require('restify');
+    restify = require('restify'),
+    common = require('./common');
 
 /**
  * User Schema
  */
 var UserSchema = new Schema({
-    id: ObjectId,
     firstname: { type: String, trim: true, required: true },
     lastname: { type: String, trim: true, required: true },
     fullname: { type: String, trim: true, required: true },
@@ -37,7 +37,7 @@ UserSchema.methods = {
      * @api public
      */
     encryptPassword: function (password) {
-        if (!password) {
+        if (!password || !this._id) {
             return '';
         }
         return crypto.createHmac('sha1', this._id.toString()).update(password).digest('hex'); // using the ObjectId as the salt
@@ -94,3 +94,5 @@ UserSchema.pre('save', function (next) {
 
 
 mongoose.model('User', UserSchema);
+
+common.initializeDbFor(mongoose.model('User'));

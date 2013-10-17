@@ -13,11 +13,11 @@ frisby.globalSetup({ // globalSetup is for ALL requests
 
 frisby.create('POST new user')
     .post(URL + 'users', {
-        username: 'ivan',
-        fullname:'Ivan Rigamonti',
-        firstname: 'Ivan',
-        lastname: 'Rigamonti',
-        email: 'ivan@rigamonti.me',
+        username: 'unittest_user',
+        fullname:'Testing Unittest',
+        firstname: 'Testing',
+        lastname: 'Unittest',
+        email: 'yp-test-user@gmail.com',
         password:'nopass' })
     .expectStatus(201)
     .toss();
@@ -25,30 +25,37 @@ frisby.create('POST new user')
 frisby.create('GET all users')
     .get(URL + 'users')
     .expectStatus(200)
-    .expectJSONLength(1)
-    .expectJSON('*', {
+    .expectJSONLength(5)
+    .expectJSONTypes('*', {
         _id: String,
         username: String,
         email: String
-    })
-    .expectJSON('*', {
-        username: 'ivan',
-        email: String
-    })
-    // 'afterJSON' automatically parses response body as JSON and passes it as an argument
-    .afterJSON(function(user) {
-        // You can use any normal jasmine-style assertions here
-        //expect(1+1).toEqual(2);
+    }).afterJSON(function (userList) {
 
-        // Use data from previous result in next test
-        //frisby.create('Update user')
-        //    .put(URL_AUTH + '/users/' + user.id + '.json', {tags: ['jasmine', 'bdd']})
-        //    .expectStatus(200)
-        //    .toss();
+        var testuserid = '';
+        userList.forEach(function (user) {
+            if (user.username === 'unittest_user') {
+                testuserid = user._id;
+            }
+        });
+
+        frisby.create('GET just our testuser')
+            .get(URL + 'users/'+ testuserid)
+            .expectStatus(200)
+            // 'afterJSON' automatically parses response body as JSON and passes it as an argument
+            .afterJSON(function(user) {
+
+                console.log(user);
+                frisby.create('DELETE our testuser users')
+                    .delete(URL+ 'users/' + user._id)
+                    .expectStatus(200)
+                    .toss();
+            })
+            .toss();
+
+
     })
     .toss();
 
-frisby.create('DELETE all users')
-    .delete(URL+ 'users')
-    .expectStatus(200)
-    .toss();
+
+

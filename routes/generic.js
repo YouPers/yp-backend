@@ -2,23 +2,25 @@ module.exports = {
 
     getByIdFn: function (baseUrl, Model) {
         return function (req, res, next) {
-            Model.findOne({_id: req.params.id}).exec(function (err, obj) {
+            if (req.params.populate) {
+                Model.findOne({_id: req.params.id}).populate(req.params.populate).exec(function (err, obj) {
                     if (err) {
                         return next(err);
                     }
-                    if (req.params.populate) {
-                        obj.populate(req.params.populate, function (err) {
-                            if (err) {
-                                return next(err);
-                            }
-                            res.send(obj);
-                            return next();
-                        });
+                    res.send(obj);
+                    return next();
+                });
+            } else {
+                Model.findOne({_id: req.params.id}).exec(function (err, obj) {
+                    if (err) {
+                        return next(err);
                     }
-                }
-
-            );
+                    res.send(obj);
+                    return next();
+                });
+            }
         };
+
     },
 
     getAllFn: function (baseUrl, Model) {
@@ -65,6 +67,17 @@ module.exports = {
     deleteAllFn: function (baseUrl, Model) {
         return function (req, res, next) {
             Model.remove(function (err) {
+                if (err) {
+                    return next(err);
+                }
+                res.send(200);
+            });
+        };
+    },
+
+    deleteByIdFn: function (baseUrl, Model) {
+        return function (req, res, next) {
+            Model.remove({_id: req.params.id}, function (err) {
                 if (err) {
                     return next(err);
                 }

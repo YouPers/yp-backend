@@ -16,6 +16,7 @@ module.exports = function (app, config) {
     app.get(baseUrl + '/:id', genericRoutes.getByIdFn(baseUrl, User));
     app.get(baseUrl, genericRoutes.getAllFn(baseUrl, User));
     app.post(baseUrl, genericRoutes.postFn(baseUrl, User));
+    app.del(baseUrl + '/:id', genericRoutes.deleteByIdFn(baseUrl, User));
     app.del(baseUrl, genericRoutes.deleteAllFn(baseUrl, User));
 
 };

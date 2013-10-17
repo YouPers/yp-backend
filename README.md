@@ -42,5 +42,4 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 _(Nothing yet)_
 
 ## License
-Copyright (c) 2013 RBLU  
-Licensed under the MIT license.
+Copyright (c) 2013 YouPers AG

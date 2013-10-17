@@ -72,7 +72,3 @@ module.exports = {
 
     }
 };
-
-var _saveOneObj = function _saveOneObj(obj) {
-
-};

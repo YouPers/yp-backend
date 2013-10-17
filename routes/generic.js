@@ -6,8 +6,15 @@ module.exports = {
                     if (err) {
                         return next(err);
                     }
-                    res.send(obj);
-                    return next();
+                    if (req.params.populate) {
+                        obj.populate(req.params.populate, function (err) {
+                            if (err) {
+                                return next(err);
+                            }
+                            res.send(obj);
+                            return next();
+                        });
+                    }
                 }
 
             );
@@ -16,14 +23,25 @@ module.exports = {
 
     getAllFn: function (baseUrl, Model) {
         return function (req, res, next) {
-            Model.find().exec(function (err, objList) {
+            if (req.params.populate) {
+                console.log('getAllFn: Population with: ' + req.params.populate);
+                Model.find().populate(req.params.populate).exec(function (err, objList) {
                     if (err) {
                         return next(err);
                     }
                     res.send(objList);
                     return next();
-                }
-            );
+                });
+
+            } else {
+                Model.find().exec(function (err, objList) {
+                    if (err) {
+                        return next(err);
+                    }
+                    res.send(objList);
+                    return next();
+                });
+            }
         };
     },
 
@@ -55,4 +73,5 @@ module.exports = {
         };
     }
 
-};
+}
+;

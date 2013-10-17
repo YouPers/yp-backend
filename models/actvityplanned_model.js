@@ -7,18 +7,33 @@ var mongoose = require('mongoose'),
     common = require('./common');
 
 /**
+ * ActivityPlanEvent Schema
+ * @type {Schema}
+ */
+var ActivityPlanEvent = new Schema({
+    status: {type: String, enum: common.enums.activityPlanEventStats},
+    begin: {type: Date},
+    end: {type: Date},
+    doneTs: {type: Date},
+    feedback: {type: Number}
+});
+
+
+/**
  * ActivityPlanned Schema
  */
 var ActivityPlannedSchema = new Schema({
-    id: ObjectId,
-    activity: {type: ObjectId, ref: 'Activity'},
+    owner: {type: ObjectId, ref: 'User', required: true},
+    activity: {type: ObjectId, ref: 'Activity', required: true},
+    joiningUsers: [{type: ObjectId, ref: 'User'}],
     planType: {type: String, enum: common.enums.plantype},
     executionType: {type: String, enum: common.enums.executiontype},
     visibility: {type: String, enum: common.enums.visibility},
     onceDate: {type: Date},
     onceTime: {type: Date},
     dailyTime: {type: Date},
-    status: {type: String, enum: common.enums.activityPlannedStatus}
+    status: {type: String, enum: common.enums.activityPlannedStatus},
+    events: [ActivityPlanEvent]
 });
 
 

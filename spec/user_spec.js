@@ -12,7 +12,13 @@ frisby.globalSetup({ // globalSetup is for ALL requests
 });
 
 frisby.create('POST new user')
-    .post(URL + 'users', {username: 'ivan', fullname:'Ivan Rigamonti', firstname: 'Ivan', lastname: 'Rigamonti', email: 'ivan@rigamonti.me', password:'nopass' })
+    .post(URL + 'users', {
+        username: 'ivan',
+        fullname:'Ivan Rigamonti',
+        firstname: 'Ivan',
+        lastname: 'Rigamonti',
+        email: 'ivan@rigamonti.me',
+        password:'nopass' })
     .expectStatus(201)
     .toss();
 

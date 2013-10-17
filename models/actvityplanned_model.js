@@ -15,7 +15,8 @@ var ActivityPlanEvent = new Schema({
     begin: {type: Date},
     end: {type: Date},
     doneTs: {type: Date},
-    feedback: {type: Number}
+    feedback: {type: Number},
+    comments: [{type: ObjectId, ref: 'Comment'}]
 });
 
 
@@ -52,6 +53,8 @@ ActivityPlanned.find().exec(function (err, allActivityPlanned) {
         console.log("ActivityPlanned: initializing from File!");
         var plansFromFile = require('../dbdata/activityPlanned.json');
         plansFromFile.forEach(function(plan) {
+
+            // match ActivtiyPlans to Activity by Id, because they are by number before...
             Activity.findOne({number: plan.activity.number}, function(err, activity) {
                 if (err) {
                     console.log(err);

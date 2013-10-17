@@ -34,7 +34,12 @@ module.exports = {
             }
             if (col.length === 0) {
                 var filename = '../dbdata/' + Model.modelName + '.json';
-                var jsonFromFile = require(filename);
+                var jsonFromFile;
+                try {
+                    jsonFromFile = require(filename);
+                } catch (Error) {
+                    console.log("no file found: " + filename);
+                }
                 if (jsonFromFile) {
                     console.log(Model.modelName + ": initializing assessment Database from File: " + filename);
                     console.log(jsonFromFile);

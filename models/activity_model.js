@@ -24,21 +24,4 @@ var ActivitySchema = new Schema({
 
 mongoose.model('Activity', ActivitySchema);
 
-// initialize Activity DB if not initialized
-var Activity = mongoose.model('Activity');
-console.log("Activity: checking whether Database initialization is needed...");
-Activity.find().exec(function (err, activities) {
-    if (err) {
-        throw err;
-    }
-    if (activities.length === 0 ) {
-        console.log("initializing activity Database from File!");
-        var activitiesFromFile = require('../dbdata/activity.json');
-        activitiesFromFile.forEach(function(activity) {
-           var newAct = new Activity(activity);
-            newAct.save();
-        });
-    } else {
-        console.log("Activity: no initialization needed, as we already have activities (" + activities.length + ")");
-    }
-});
+common.initializeDbFor(mongoose.model('Activity'));

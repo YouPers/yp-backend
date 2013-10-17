@@ -2,8 +2,7 @@
  * Environment dependent configuration properties
  */
 
-var Logger = require('bunyan'),
-    restify = require('restify');
+var Logger = require('bunyan');
 
 module.exports = {
     development: {

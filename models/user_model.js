@@ -15,6 +15,7 @@ var UserSchema = common.newSchema({
     lastname: { type: String, trim: true, required: true },
     fullname: { type: String, trim: true, required: true },
     email: { type: String, trim: true, lowercase: true, required: true, unique: true },
+    avatar: {type: String},
     emailValidatedFlag: { type: Boolean, default: false },
     username: { type: String, trim: true, lowercase: true, required: true, unique: true },
     role: { type: String, enum: ['individual', 'healthpromoter', 'admin'], default: 'individual', required: true },

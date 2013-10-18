@@ -1,4 +1,5 @@
-var _ = require('lodash');
+var _ = require('lodash'),
+    restify = require('restify');
 
 ////////////////////////////////////
 // helper functions
@@ -138,9 +139,12 @@ module.exports = {
     getByIdFn: function (baseUrl, Model) {
         return function (req, res, next) {
             addQueryOptions(req, Model.findOne({_id: req.params.id}))
-                .exec(function (err, obj) {
+                .exec(function geByIdFnCallback(err, obj) {
                     if (err) {
                         return next(err);
+                    }
+                    if (!obj) {
+                        return next(new restify.NotFoundError('Object not Found: ' + Model.modelName + ' with ID: ' + req.params.id));
                     }
                     res.send(obj);
                     return next();

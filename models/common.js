@@ -62,7 +62,7 @@ module.exports = {
                 try {
                     jsonFromFile = require(filename);
                 } catch (Error) {
-                    console.log("no file found: " + filename);
+                    console.log(Error);
                 }
                 if (jsonFromFile) {
                     console.log(Model.modelName + ": initializing assessment Database from File: " + filename);

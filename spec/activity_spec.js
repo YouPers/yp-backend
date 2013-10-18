@@ -13,7 +13,7 @@ frisby.create('GET all activites')
     .get(URL + 'activities')
     .expectStatus(200)
     .expectJSON('*', {
-        _id: String,
+        id: String,
         number: String,
         title: String
     })
@@ -22,10 +22,10 @@ frisby.create('GET all activites')
 
         // Use data from previous result in next test
         frisby.create('Get single Activity')
-            .get(URL + '/activities/' + activities[0]._id)
+            .get(URL + '/activities/' + activities[0].id)
             .expectStatus(200)
             .expectJSON({
-                _id: String,
+                id: String,
                 number: String,
                 title: String
             })

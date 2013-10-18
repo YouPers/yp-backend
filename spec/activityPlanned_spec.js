@@ -13,7 +13,7 @@ frisby.create('GET all activitesPlans')
     .get(URL + 'activitiesPlanned')
     .expectStatus(200)
     .expectJSON('*', {
-        _id: String,
+        id: String,
         activity: String,
         planType: String
     })
@@ -22,10 +22,10 @@ frisby.create('GET all activitesPlans')
 
         // Use data from previous result in next test
         frisby.create('Get single ActivityPlanned')
-            .get(URL + 'activitiesPlanned/' + plans[0]._id)
+            .get(URL + 'activitiesPlanned/' + plans[0].id)
             .expectStatus(200)
             .expectJSON({
-                _id: String,
+                id: String,
                 activity: String,
                 planType: String
             })

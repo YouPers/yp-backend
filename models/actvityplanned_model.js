@@ -23,7 +23,7 @@ var ActivityPlanEvent = common.newSchema({
 /**
  * ActivityPlanned Schema
  */
-var ActivityPlannedSchema = new Schema({
+var ActivityPlannedSchema =  common.newSchema({
     owner: {type: ObjectId, ref: 'User', required: true},
     activity: {type: ObjectId, ref: 'Activity', required: true},
     joiningUsers: [{type: ObjectId, ref: 'User'}],

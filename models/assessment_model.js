@@ -2,7 +2,6 @@
  * Module dependencies.
  */
 var mongoose = require('mongoose'),
-    Schema = mongoose.Schema,
     common = require('./common');
 
 
@@ -21,7 +20,7 @@ var question = common.newSchema({
 });
 
 
-var AssessmentSchema = new Schema({
+var AssessmentSchema = common.newSchema({
     name: {type: String, trim: true, required: true},
     questionCats: [
         { category: String,

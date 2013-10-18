@@ -27,7 +27,7 @@ frisby.create('GET all users')
     .expectStatus(200)
     .expectJSONLength(5)
     .expectJSONTypes('*', {
-        _id: String,
+        id: String,
         username: String,
         email: String
     }).afterJSON(function (userList) {
@@ -35,7 +35,7 @@ frisby.create('GET all users')
         var testuserid = '';
         userList.forEach(function (user) {
             if (user.username === 'unittest_user') {
-                testuserid = user._id;
+                testuserid = user.id;
             }
         });
 
@@ -47,7 +47,7 @@ frisby.create('GET all users')
 
                 console.log(user);
                 frisby.create('DELETE our testuser users')
-                    .delete(URL+ 'users/' + user._id)
+                    .delete(URL+ 'users/' + user.id)
                     .expectStatus(200)
                     .toss();
             })

@@ -5,9 +5,33 @@
  * Time: 08:32
  * To change this template use File | Settings | File Templates.
  */
-
+var mongoose = require('mongoose'),
+    Schema = mongoose.Schema;
 
 module.exports = {
+
+    /**
+     * abstract the mongoDB / mongoose Attributes from the porduced JSON
+     * we do not want the clients to depend on our Database, so we
+     * use generic attributes.
+     *
+     * @param definition
+     * @param options
+     * @returns {Schema}
+     */
+    newSchema: function(definition, options) {
+        var mySchema = new Schema(definition, options);
+        mySchema.set('toJSON', {transform: function(doc, ret, options) {
+            ret.id = ret._id;
+            delete ret._id;
+
+            ret.version = ret.__v;
+            delete ret.__v;
+
+        }});
+
+        return mySchema;
+    },
 
     enums: {
         // Activity related enums

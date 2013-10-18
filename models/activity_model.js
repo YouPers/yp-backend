@@ -9,8 +9,7 @@ var mongoose = require('mongoose'),
 /**
  * Activity Schema
  */
-var ActivitySchema = new Schema({
-    id: ObjectId,
+var ActivitySchema = common.newSchema({
     number: {type: String, trim: true, required: true},
     title: { type: String, trim: true, required: true },
     source: { type: String, enum: common.enums.source},
@@ -19,7 +18,7 @@ var ActivitySchema = new Schema({
     defaultvisibility: {type: String, enum: common.enums.visibility},
     topic: [String],
     field: [String]
-});
+},{ id: false });
 
 
 mongoose.model('Activity', ActivitySchema);

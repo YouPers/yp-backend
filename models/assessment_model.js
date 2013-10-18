@@ -10,7 +10,7 @@ var mongoose = require('mongoose'),
  * Activity Schema
  */
 
-var question = new Schema({
+var question = common.newSchema({
     "category": String,
     "title": String,
     "type": {type: String, enum: common.enums.questionType},

@@ -10,7 +10,7 @@ var mongoose = require('mongoose'),
  * Comment Schema
  * @type {Schema}
  */
-var CommentSchema = new Schema({
+var CommentSchema = common.newSchema({
     author: {type: ObjectId, ref: 'User', required: true},
     refObj: {type: ObjectId},
     date: {type: Date, required: true},

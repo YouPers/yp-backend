@@ -10,7 +10,7 @@ var mongoose = require('mongoose'),
 /**
  * User Schema
  */
-var UserSchema = new Schema({
+var UserSchema = common.newSchema({
     firstname: { type: String, trim: true, required: true },
     lastname: { type: String, trim: true, required: true },
     fullname: { type: String, trim: true, required: true },

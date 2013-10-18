@@ -2,15 +2,10 @@
  * Module dependencies.
  */
 var mongoose = require('mongoose'),
-    Schema = mongoose.Schema;
+    Schema = mongoose.Schema,
+    common = require('./common');
 
-
-/**
- * Activity Schema
- */
-
-
-var AssessmentResultSchema = new Schema({
+var AssessmentResultSchema = common.newSchema({
     owner: {type: Schema.Types.ObjectId, ref: 'User', required: true},
     assessment: {type: Schema.Types.ObjectId, ref: 'Assessment', required: true},
     timestamp: {type: Date},

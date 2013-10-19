@@ -21,13 +21,16 @@ module.exports = {
      */
     newSchema: function(definition, options) {
         var mySchema = new Schema(definition, options);
-        mySchema.set('toJSON', {transform: function(doc, ret, options) {
+        mySchema.set('toJSON', {
+            transform: function(doc, ret, options) {
             ret.id = ret._id;
             delete ret._id;
 
             ret.version = ret.__v;
             delete ret.__v;
 
+            delete ret.hashed_password;
+            delete ret.tempPasswordFlag;
         }});
 
         return mySchema;

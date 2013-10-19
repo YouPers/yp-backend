@@ -51,7 +51,7 @@ ActivityPlanned.find().exec(function (err, allActivityPlanned) {
     }
     if (allActivityPlanned.length === 0 ) {
         console.log("ActivityPlanned: initializing from File!");
-        var plansFromFile = require('../dbdata/activityPlanned.json');
+        var plansFromFile = require('../dbdata/ActivityPlanned.json');
         plansFromFile.forEach(function(plan) {
 
             // match ActivtiyPlans to Activity by Id, because they are by number before...

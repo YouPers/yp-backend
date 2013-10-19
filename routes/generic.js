@@ -63,8 +63,8 @@ function _populate(schema, dbquery, paths) {
     for (var i = paths.length; i--;) {
         var p = paths[i];
         if (schema && schema.path) {
-            var ref = schema.path(p);
             // TODO: (RBLU) Disable this check because it breaks population of deep porperties like 'events.comments', Fix later
+            // var ref = schema.path(p);
             // if (ref && (ref.instance && ref.instance === 'ObjectID' || ref.caster && ref.caster.instance === 'ObjectID')) {
                 dbquery.populate(p);
             //}

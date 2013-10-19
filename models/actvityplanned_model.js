@@ -51,23 +51,32 @@ ActivityPlanned.find().exec(function (err, allActivityPlanned) {
     }
     if (allActivityPlanned.length === 0 ) {
         console.log("ActivityPlanned: initializing from File!");
-        var plansFromFile = require('../dbdata/ActivityPlanned.json');
-        plansFromFile.forEach(function(plan) {
 
-            // match ActivtiyPlans to Activity by Id, because they are by number before...
-            Activity.findOne({number: plan.activity.number}, function(err, activity) {
-                if (err) {
-                    console.log(err);
-                    throw err;
-                }
-                console.log(plan);
-                console.log(activity);
-                plan.activity = activity._id;
-                var newPlan = new ActivityPlanned(plan);
-                console.log(newPlan);
-                newPlan.save();
+        var filename = '../dbdata/ActivityPlanned.json';
+
+        try {
+            var plansFromFile = require(filename);
+            plansFromFile.forEach(function(plan) {
+
+                // match ActivtiyPlans to Activity by Id, because they are by number before...
+                Activity.findOne({number: plan.activity.number}, function(err, activity) {
+                    if (err) {
+                        console.log(err);
+                        throw err;
+                    }
+                    console.log(plan);
+                    console.log(activity);
+                    plan.activity = activity._id;
+                    var newPlan = new ActivityPlanned(plan);
+                    console.log(newPlan);
+                    newPlan.save();
+                });
             });
-        });
+
+        } catch (Error) {
+            console.log(Error);
+        }
+
     } else {
         console.log("ActivityPlanned: no initialization needed, as we already have instances (" + allActivityPlanned.length + ")");
     }

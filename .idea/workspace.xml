@@ -2,67 +2,89 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1e57dc53-f5a7-41f1-b696-63182b9bd234" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dbdata/activityPlanned.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spec/activityPlanned_spec.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spec/activity_spec.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/routes/activityplanned_route.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/models/actvityplanned_model.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dbdata/assessment.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/models/assessment_model.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/routes/assessment_route.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/models/common.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/routes/generic.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/models/activity.js" afterPath="$PROJECT_DIR$/models/activity_model.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/models/user.js" afterPath="$PROJECT_DIR$/models/user_model.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/routes/activity.js" afterPath="$PROJECT_DIR$/routes/activity_route.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/routes/base.js" afterPath="$PROJECT_DIR$/routes/base_route.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/routes/user.js" afterPath="$PROJECT_DIR$/routes/user_route.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/spec/temp_spec.js" afterPath="$PROJECT_DIR$/spec/user_spec.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app.js" afterPath="$PROJECT_DIR$/app.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/dbdata/Comment.json" afterPath="$PROJECT_DIR$/dbdata/Comment2.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/dbdata/activity.json" afterPath="$PROJECT_DIR$/dbdata/Activity2.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/dbdata/activityPlanned.json" afterPath="$PROJECT_DIR$/dbdata/ActivityPlanned2.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/dbdata/assessment.json" afterPath="$PROJECT_DIR$/dbdata/Assessment2.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/dbdata/user.json" afterPath="$PROJECT_DIR$/dbdata/User2.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="yp-ewl-server.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/user.js" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1381828314602" ignored="false" />
-    <file path="/Dummy.txt" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1381904724590" ignored="false" />
-    <file path="/app.js" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1381905193728" ignored="false" />
+    <file path="/Dummy.txt" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1382175918388" ignored="false" />
+    <file path="/app.js" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1382078693395" ignored="false" />
     <file path="/base.js" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1381821803188" ignored="false" />
-    <file path="/Gruntfile.js" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1381847244997" ignored="false" />
+    <file path="/Gruntfile.js" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1382174594122" ignored="false" />
     <file path="/.jshintrc" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1381834460932" ignored="false" />
-    <file path="/package.json" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1381837143608" ignored="false" />
+    <file path="/package.json" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1382107260605" ignored="false" />
     <file path="/temp_spec.js" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1381841959642" ignored="false" />
-    <file path="$PROJECT_DIR$/../yp-ewl-webclient/Gruntfile.js" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1381839821550" ignored="false" />
+    <file path="$PROJECT_DIR$/../yp-ewl-webclient/Gruntfile.js" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1382174807254" ignored="false" />
     <file path="/.gitignore" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1381840410465" ignored="false" />
     <file path="/circle.yml" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1381842354727" ignored="false" />
     <file path="/Procfile" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1381843107936" ignored="false" />
-    <file path="/config.js" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1381844249015" ignored="false" />
-    <file path="/README.md" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1381848367457" ignored="false" />
-    <file path="$PROJECT_DIR$/../yp-ewl-webclient/README.md" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1381847967138" ignored="false" />
+    <file path="/config.js" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1382045080424" ignored="false" />
+    <file path="/README.md" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1382108247145" ignored="false" />
+    <file path="$PROJECT_DIR$/../yp-ewl-webclient/README.md" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1382108248880" ignored="false" />
     <file path="/activity.js" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1381911468018" ignored="false" />
     <file path="$PROJECT_DIR$/../yp-ewl-webclient/app/js/healthpromoter.js" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1381867909217" ignored="false" />
-    <file path="$PROJECT_DIR$/../yp-ewl-webclient/app/js/mockdata/MockDataJson.js" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1381914035104" ignored="false" />
-    <file path="$PROJECT_DIR$/../yp-ewl-webclient/app/js/mockdata/backendMockApp.js" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1381867896655" ignored="false" />
-    <file path="$PROJECT_DIR$/../yp-ewl-webclient/app/index.html" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1381868273275" ignored="false" />
+    <file path="$PROJECT_DIR$/../yp-ewl-webclient/app/js/mockdata/MockDataJson.js" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1382138679821" ignored="false" />
+    <file path="$PROJECT_DIR$/../yp-ewl-webclient/app/js/mockdata/backendMockApp.js" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1382170928974" ignored="false" />
+    <file path="$PROJECT_DIR$/../yp-ewl-webclient/app/index.html" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1382174013536" ignored="false" />
     <file path="$PROJECT_DIR$/../yp-ewl-webclient/app/partials/campaign.new.html" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1381867909217" ignored="false" />
     <file path="$PROJECT_DIR$/../yp-ewl-webclient/app/lib/angular/angular.js" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1381867909217" ignored="false" />
-    <file path="$PROJECT_DIR$/../yp-ewl-webclient/app/partials/activity.list.html" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1381867909217" ignored="false" />
+    <file path="$PROJECT_DIR$/../yp-ewl-webclient/app/partials/activity.list.html" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1382102839062" ignored="false" />
     <file path="$PROJECT_DIR$/../yp-ewl-webclient/app/partials/healthpromoter.html" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1381867909217" ignored="false" />
     <file path="$PROJECT_DIR$/../yp-ewl-webclient/app/js/ewl-activitylog.js" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1381868013858" ignored="false" />
-    <file path="$PROJECT_DIR$/../yp-ewl-webclient/package.json" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1381904705907" ignored="false" />
-    <file path="/common.js" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1381913788734" ignored="false" />
-    <file path="/activity_model.js" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1381905660765" ignored="false" />
-    <file path="/actvityplanned_model.js" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1381912411414" ignored="false" />
-    <file path="/activityPlanned.json" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1381906492247" ignored="false" />
+    <file path="$PROJECT_DIR$/../yp-ewl-webclient/package.json" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1382107260605" ignored="false" />
+    <file path="/common.js" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1382085574366" ignored="false" />
+    <file path="/activity_model.js" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1382083877244" ignored="false" />
+    <file path="/actvityplanned_model.js" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1382020947570" ignored="false" />
+    <file path="/activityPlanned.json" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1382020983222" ignored="false" />
     <file path="/activityplanned.js" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1381907876552" ignored="false" />
     <file path="/activity_spec.js" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1381910639315" ignored="false" />
-    <file path="/generic.js" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1381912034963" ignored="false" />
-    <file path="/user_route.js" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1381915501078" ignored="false" />
+    <file path="/generic.js" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1382137983156" ignored="false" />
+    <file path="/user_route.js" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1382016770985" ignored="false" />
     <file path="/activityplanned_route.js" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1381912525731" ignored="false" />
     <file path="/activity_route.js" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1381911369446" ignored="false" />
     <file path="/activityPlanned_spec.js" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1381912602768" ignored="false" />
-    <file path="/assessment_model.js" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1381915216620" ignored="false" />
+    <file path="/assessment_model.js" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1382096982091" ignored="false" />
     <file path="/MockDataJson.js" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1381914032095" ignored="false" />
     <file path="/assessment_route.js" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1381914849508" ignored="false" />
+    <file path="$PROJECT_DIR$/../yp-ewl-webclient/app/js/ewl-sociallog.js" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1381992527846" ignored="false" />
+    <file path="/ewl-sociallog.js" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1381992525294" ignored="false" />
+    <file path="$PROJECT_DIR$/../yp-ewl-webclient/app/js/auth.js" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1382102839062" ignored="false" />
+    <file path="/user.json" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1382001398727" ignored="false" />
+    <file path="/a.dummy" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1382001523782" ignored="false" />
+    <file path="/user_model.js" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1382085218475" ignored="false" />
+    <file path="/User.json" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1382085268561" ignored="false" />
+    <file path="/user_spec.js" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1382017577289" ignored="false" />
+    <file path="/comments_model.js" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1382020666682" ignored="false" />
+    <file path="/Comment.json" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1382021012023" ignored="false" />
+    <file path="/comment_route.js" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1382020719862" ignored="false" />
+    <file path="$PROJECT_DIR$/../yp-ewl-webclient/app/js/ewl-app.js" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1382171024816" ignored="false" />
+    <file path="/ewl-app.js" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1382170862028" ignored="false" />
+    <file path="/auth.js" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1382024921520" ignored="false" />
+    <file path="/ewl-activtiy.js" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1382077115612" ignored="false" />
+    <file path="$PROJECT_DIR$/../yp-ewl-webclient/app/js/ewl-activtiy.js" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1382102839062" ignored="false" />
+    <file path="/response.js" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1382078172857" ignored="false" />
+    <file path="/assessmentResult_model.js" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1382083967655" ignored="false" />
+    <file path="/activity.list.html" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1382084164834" ignored="false" />
+    <file path="$PROJECT_DIR$/../yp-ewl-webclient/app/js/discussion.js" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1382102839062" ignored="false" />
+    <file path="/discussion.js" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1382102791283" ignored="false" />
+    <file path="$PROJECT_DIR$/../yp-ewl-webclient/app/partials/activity.detail.html" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1382102839062" ignored="false" />
+    <file path="/activity.detail.html" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1382085777640" ignored="false" />
+    <file path="/fragment.js" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1382137313967" ignored="false" />
+    <file path="/index.html" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1382174015541" ignored="false" />
+    <file path="$PROJECT_DIR$/../yp-ewl-webclient/.tmp/index.html" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1382174134835" ignored="false" />
+    <file path="$PROJECT_DIR$/../yp-ewl-webclient/dist/index.html" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1382174134835" ignored="false" />
+    <file path="$PROJECT_DIR$/../yp-ewl-webclient/dist/js/app.js" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1382171104822" ignored="false" />
+    <file path="$PROJECT_DIR$/../yp-ewl-webclient/dist/lib/angular/angular-mocks.js" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1382169573665" ignored="false" />
+    <file path="/backendMockApp.js" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1382170898505" ignored="false" />
+    <file path="/Assessment.json" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1382138527383" ignored="false" />
+    <file path="$PROJECT_DIR$/../yp-ewl-webclient/app/js/ewl-assessment.js" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1382139373281" ignored="false" />
+    <file path="/ewl-assessment.js" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1382139270979" ignored="false" />
+    <file path="$PROJECT_DIR$/../yp-ewl-webclient/dist/js/mockdata/MockDataJson.js" changelist="1e57dc53-f5a7-41f1-b696-63182b9bd234" time="1382169573665" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -123,19 +145,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="activity_route.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/activity_route.js">
+      <file leaf-file-name="package.json" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="707" vertical-scroll-proportion="0.0">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="activity_model.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/models/activity_model.js">
+      <file leaf-file-name="app.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="43" column="3" selection-start="716" selection-end="1429" vertical-scroll-proportion="0.0">
+            <state line="33" column="28" selection-start="960" selection-end="960" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -144,52 +166,36 @@
       <file leaf-file-name="activityplanned_route.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/activityplanned_route.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="22" selection-start="380" selection-end="380" vertical-scroll-proportion="0.0">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="user_route.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/user_route.js">
+      <file leaf-file-name="schema.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/node_modules/mongoose/lib/schema.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="0" selection-start="511" selection-end="511" vertical-scroll-proportion="0.0">
+            <state line="294" column="0" selection-start="7725" selection-end="7725" vertical-scroll-proportion="-23.76923">
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Assessment2.json" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dbdata/Assessment2.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="1" column="12" selection-start="14" selection-end="14" vertical-scroll-proportion="-0.625">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="user_spec.js" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/spec/user_spec.js">
+      <file leaf-file-name="config.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config/config.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="40" column="22" selection-start="1235" selection-end="1235" vertical-scroll-proportion="1.7733814">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="assessment_model.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/models/assessment_model.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="35" selection-start="428" selection-end="428" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="generic.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/generic.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="58" column="2" selection-start="1542" selection-end="1542" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="assessment.json" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dbdata/assessment.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="271" column="1" selection-start="12061" selection-end="12061" vertical-scroll-proportion="0.0">
+            <state line="53" column="43" selection-start="1587" selection-end="1587" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -198,7 +204,16 @@
       <file leaf-file-name="assessment_route.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/assessment_route.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="0" selection-start="539" selection-end="539" vertical-scroll-proportion="0.0">
+            <state line="26" column="19" selection-start="803" selection-end="803" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="User2.json" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/dbdata/User2.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -207,10 +222,17 @@
       <file leaf-file-name="common.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models/common.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="5" selection-start="636" selection-end="636" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="e#0#158#0" expanded="false" />
-              </folding>
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="longjohn.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/node_modules/longjohn/dist/longjohn.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="179" column="0" selection-start="5400" selection-end="5400" vertical-scroll-proportion="0.0">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -234,27 +256,26 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/routes/activity.js" />
+        <option value="$PROJECT_DIR$/models/assessmentResult_model.js" />
         <option value="$PROJECT_DIR$/app.js" />
-        <option value="$PROJECT_DIR$/spec/activity_spec.js" />
-        <option value="$PROJECT_DIR$/routes/activity_route.js" />
-        <option value="$PROJECT_DIR$/routes/generic.js" />
-        <option value="$PROJECT_DIR$/models/actvityplanned_model.js" />
-        <option value="$PROJECT_DIR$/spec/activityPlanned_spec.js" />
-        <option value="$PROJECT_DIR$/routes/activityplanned_route.js" />
-        <option value="$PROJECT_DIR$/models/assessment.js" />
         <option value="$PROJECT_DIR$/models/common.js" />
-        <option value="$PROJECT_DIR$/dbdata/assessment.json.js" />
-        <option value="$PROJECT_DIR$/dbdata/assessment.json" />
-        <option value="$PROJECT_DIR$/routes/assessment_route.js" />
-        <option value="$PROJECT_DIR$/models/assessment_model.js" />
-        <option value="$PROJECT_DIR$/routes/user_route.js" />
+        <option value="$PROJECT_DIR$/dbdata/User.json" />
+        <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/models/activity_model.js" />
+        <option value="$PROJECT_DIR$/models/user_model.js" />
+        <option value="$PROJECT_DIR$/spec/activity_spec.js" />
+        <option value="$PROJECT_DIR$/spec/assessment_spec.js" />
         <option value="$PROJECT_DIR$/spec/user_spec.js" />
+        <option value="$PROJECT_DIR$/models/assessment_model.js" />
+        <option value="$PROJECT_DIR$/spec/activityPlanned_spec.js" />
+        <option value="$PROJECT_DIR$/models/actvityplanned_model.js" />
+        <option value="$PROJECT_DIR$/dbdata/Assessment.json" />
+        <option value="$PROJECT_DIR$/routes/generic.js" />
+        <option value="$PROJECT_DIR$/config/config.js" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="32" />
     <option name="y" value="22" />
     <option name="width" value="1440" />
     <option name="height" value="874" />
@@ -364,6 +385,20 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="logs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="yp-ewl-server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="yp-backend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="dbdata" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -393,7 +428,7 @@
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="recentsLimit" value="5" />
     <property name="MemberChooser.sorted" value="false" />
-    <property name="options.lastSelected" value="Settings.JavaScript.Linters.JSHint" />
+    <property name="options.lastSelected" value="editing.templates" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="MemberChooser.copyJavadoc" value="false" />
@@ -479,7 +514,9 @@
     </configuration>
     <configuration default="false" name="app.js" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="/usr/local/bin/node" path-to-js-file="app.js" working-dir="$PROJECT_DIR$">
       <RunnerSettings RunnerId="NodeJS.debug" />
+      <RunnerSettings RunnerId="NodeJS.run" />
       <ConfigurationWrapper RunnerId="NodeJS.debug" />
+      <ConfigurationWrapper RunnerId="NodeJS.run" />
       <method />
     </configuration>
     <list size="1">
@@ -566,37 +603,153 @@
       <created>1381862054309</created>
       <updated>1381862054318</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="style">
+      <created>1381993258590</created>
+      <updated>1381993258590</updated>
+    </task>
+    <task id="LOCAL-00017" summary="corrected license">
+      <created>1381993268579</created>
+      <updated>1381993268579</updated>
+    </task>
+    <task id="LOCAL-00018" summary="refactored db initialization">
+      <created>1382002514421</created>
+      <updated>1382002514421</updated>
+    </task>
+    <task id="LOCAL-00019" summary="added db initialization of test users">
+      <created>1382013863404</created>
+      <updated>1382013863404</updated>
+    </task>
+    <task id="LOCAL-00020" summary="grunt-contrib-connect is not used">
+      <created>1382013902152</created>
+      <updated>1382013902152</updated>
+    </task>
+    <task id="LOCAL-00021" summary="fix dependencies, so we do not get unwanted surprises">
+      <created>1382013925896</created>
+      <updated>1382013925896</updated>
+    </task>
+    <task id="LOCAL-00022" summary="remove dead code">
+      <created>1382013994802</created>
+      <updated>1382013994802</updated>
+    </task>
+    <task id="LOCAL-00023" summary="added db initialization of test users">
+      <created>1382014022247</created>
+      <updated>1382014022247</updated>
+    </task>
+    <task id="LOCAL-00024" summary="style">
+      <created>1382014108619</created>
+      <updated>1382014108619</updated>
+    </task>
+    <task id="LOCAL-00025" summary="added activityPlanned with events and everything else needed for activityLog">
+      <created>1382016246760</created>
+      <updated>1382016246760</updated>
+    </task>
+    <task id="LOCAL-00026" summary="fixed tests">
+      <created>1382018157113</created>
+      <updated>1382018157113</updated>
+    </task>
+    <task id="LOCAL-00027" summary="refactor: use common functionality, less code">
+      <created>1382018475455</created>
+      <updated>1382018475455</updated>
+    </task>
+    <task id="LOCAL-00028" summary=" fix _id of test data, so we can use comments">
+      <created>1382018828417</created>
+      <updated>1382018828417</updated>
+    </task>
+    <task id="LOCAL-00029" summary="comments model and comments to activityPlanned connections">
+      <created>1382021392208</created>
+      <updated>1382021392208</updated>
+    </task>
+    <task id="LOCAL-00030" summary="added bunyan logging to server">
+      <created>1382045614621</created>
+      <updated>1382045614621</updated>
+    </task>
+    <task id="LOCAL-00031" summary="added bunyan logging to server">
+      <created>1382045788144</created>
+      <updated>1382045788144</updated>
+    </task>
+    <task id="LOCAL-00032" summary="removes/renames the mongoDB attributes in our API">
+      <created>1382084496611</created>
+      <updated>1382084496611</updated>
+    </task>
+    <task id="LOCAL-00033" summary="better Error Reporting">
+      <created>1382095608632</created>
+      <updated>1382095608632</updated>
+    </task>
+    <task id="LOCAL-00034" summary="replace whole object by object ID in case client POSTed whole object where we only store ref">
+      <created>1382095667204</created>
+      <updated>1382095667204</updated>
+    </task>
+    <task id="LOCAL-00035" summary="replace whole object by object ID in case client POSTed whole object where we only store ref">
+      <created>1382095686212</created>
+      <updated>1382095686212</updated>
+    </task>
+    <task id="LOCAL-00036" summary="added avatar to user object">
+      <created>1382095703546</created>
+      <updated>1382095703546</updated>
+    </task>
+    <task id="LOCAL-00037" summary="added avatar to user object">
+      <created>1382096137774</created>
+      <updated>1382096137774</updated>
+    </task>
+    <task id="LOCAL-00038" summary="fixed tests to expect id in place of _id">
+      <created>1382097200721</created>
+      <updated>1382097200721</updated>
+    </task>
+    <task id="LOCAL-00039" summary="added sorting, limit, skip and better populate">
+      <created>1382101539427</created>
+      <updated>1382101539427</updated>
+    </task>
+    <task id="LOCAL-00040" summary="better error handling in case nothing is found">
+      <created>1382102701051</created>
+      <updated>1382102701051</updated>
+    </task>
+    <task id="LOCAL-00041" summary="fix for population of deep properties">
+      <created>1382138431758</created>
+      <updated>1382138431758</updated>
+    </task>
+    <task id="LOCAL-00042" summary="fixed jshint issue">
+      <created>1382141112903</created>
+      <updated>1382141112903</updated>
+    </task>
+    <task id="LOCAL-00043" summary="added fixed id for assessment">
+      <created>1382141605968</created>
+      <updated>1382141605968</updated>
+    </task>
+    <task id="LOCAL-00044" summary="added config for ci environment">
+      <created>1382175920452</created>
+      <updated>1382175920452</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="32" y="22" width="1440" height="874" extended-state="0" />
+    <frame x="0" y="22" width="1440" height="874" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Changes" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.5636605" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32891247" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22944297" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24964131" sideWeight="0.77055705" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39920425" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.26657826" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4509284" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.26657826" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980132" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="CDI" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32891247" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="CDI" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17862266" sideWeight="0.43633953" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20946915" sideWeight="0.77055705" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32891247" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32891247" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -642,7 +795,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="added activity api endpoint" />
+    <option name="LAST_COMMIT_MESSAGE" value="added config for ci environment" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -656,14 +809,35 @@
     <option name="UPDATE_FILTER_BY_SCOPE" value="false" />
     <option name="SHOW_FILE_HISTORY_AS_TREE" value="false" />
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
-    <MESSAGE value="fixed missing build target" />
-    <MESSAGE value="documentation and local dev support" />
-    <MESSAGE value="more doku" />
     <MESSAGE value="added activity api endpoint" />
+    <MESSAGE value="corrected license" />
+    <MESSAGE value="refactored db initialization" />
+    <MESSAGE value="grunt-contrib-connect is not used" />
+    <MESSAGE value="fix dependencies, so we do not get unwanted surprises" />
+    <MESSAGE value="remove dead code" />
+    <MESSAGE value="added db initialization of test users" />
+    <MESSAGE value="style" />
+    <MESSAGE value="added activityPlanned with events and everything else needed for activityLog" />
+    <MESSAGE value="fixed tests" />
+    <MESSAGE value="refactor: use common functionality, less code" />
+    <MESSAGE value=" fix _id of test data, so we can use comments" />
+    <MESSAGE value="comments model and comments to activityPlanned connections" />
+    <MESSAGE value="added bunyan logging to server" />
+    <MESSAGE value="removes/renames the mongoDB attributes in our API" />
+    <MESSAGE value="better Error Reporting" />
+    <MESSAGE value="replace whole object by object ID in case client POSTed whole object where we only store ref" />
+    <MESSAGE value="added avatar to user object" />
+    <MESSAGE value="fixed tests to expect id in place of _id" />
+    <MESSAGE value="added sorting, limit, skip and better populate" />
+    <MESSAGE value="better error handling in case nothing is found" />
+    <MESSAGE value="fix for population of deep properties" />
+    <MESSAGE value="fixed jshint issue" />
+    <MESSAGE value="added fixed id for assessment" />
+    <MESSAGE value="added config for ci environment" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="3" />
+      <option name="time" value="26" />
     </breakpoint-manager>
   </component>
   <component name="antWorkspaceConfiguration">
@@ -671,116 +845,116 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app.js">
+    <entry file="file://$PROJECT_DIR$/routes/user_route.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="49" column="0" selection-start="1430" selection-end="1430" vertical-scroll-proportion="0.0">
+        <state line="17" column="39" selection-start="485" selection-end="485" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/base_route.js">
+    <entry file="file://$PROJECT_DIR$/node_modules/mongoose/lib/model.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="798" column="0" selection-start="20022" selection-end="20022" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/comment_model.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spec/activity_spec.js">
+    <entry file="file://$PROJECT_DIR$/routes/comment_route.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="971" vertical-scroll-proportion="0.0">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dbdata/activityPlanned.json">
+    <entry file="file://$PROJECT_DIR$/node_modules/restify/lib/errors/http_error.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="5" selection-start="912" selection-end="912" vertical-scroll-proportion="0.0">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/actvityplanned_model.js">
+    <entry file="file://$PROJECT_DIR$/node_modules/longjohn/dist/longjohn.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="11" selection-start="1757" selection-end="1757" vertical-scroll-proportion="0.0">
+        <state line="179" column="0" selection-start="5400" selection-end="5400" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spec/activityPlanned_spec.js">
+    <entry file="file://$PROJECT_DIR$/node_modules/mongoose/lib/schema.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="24" selection-start="755" selection-end="755" vertical-scroll-proportion="0.0">
+        <state line="294" column="0" selection-start="7725" selection-end="7725" vertical-scroll-proportion="-23.76923">
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dbdata/Assessment2.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="12" selection-start="14" selection-end="14" vertical-scroll-proportion="-0.625">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/activityplanned_route.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="22" selection-start="380" selection-end="380" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/common.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="5" selection-start="636" selection-end="636" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#0#158#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/activity_model.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="43" column="3" selection-start="716" selection-end="1429" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dbdata/assessment.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="271" column="1" selection-start="12061" selection-end="12061" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/activity_route.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="707" vertical-scroll-proportion="0.0">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/assessment_route.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="0" selection-start="539" selection-end="539" vertical-scroll-proportion="0.0">
+        <state line="26" column="19" selection-start="803" selection-end="803" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/generic.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="58" column="2" selection-start="1542" selection-end="1542" vertical-scroll-proportion="0.0">
+        <state line="66" column="40" selection-start="1933" selection-end="1933" vertical-scroll-proportion="1.8679246">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/assessment_model.js">
+    <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="35" selection-start="428" selection-end="428" vertical-scroll-proportion="0.0">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/user_route.js">
+    <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="0" selection-start="511" selection-end="511" vertical-scroll-proportion="0.0">
+        <state line="33" column="28" selection-start="960" selection-end="960" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spec/user_spec.js">
+    <entry file="file://$PROJECT_DIR$/config/config.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="22" selection-start="1235" selection-end="1235" vertical-scroll-proportion="1.7733814">
+        <state line="53" column="43" selection-start="1587" selection-end="1587" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/common.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dbdata/User2.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>

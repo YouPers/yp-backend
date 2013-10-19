@@ -239,8 +239,18 @@ module.exports = {
                     if (err) {
                         return next(err);
                     }
-                    res.send(objList);
-                    return next();
+                    if (req.query && req.query.populatedeep) {
+                        deepPopulate(objList,req.query.populatedeep,{}, function(err, result) {
+                            if (err) {
+                                return next(err);
+                            }
+                            res.send(result);
+                            return next();
+                        });
+                    } else {
+                        res.send(objList);
+                        return next();
+                    }
                 });
         };
     },

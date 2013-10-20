@@ -132,7 +132,15 @@ var addQueryOptions = function (req, dbquery) {
 
 };
 
-
+/**
+ * does population of properties for deep paths ("deep" meaning 3 or more Schemas involved)
+ * inspired from here: https://gist.github.com/joeytwiddle/6129676
+ *
+ * @param doc
+ * @param pathListString
+ * @param options
+ * @param callback
+ */
 function deepPopulate(doc, pathListString, options, callback) {
     var listOfPathsToPopulate = pathListString.split(" ");
     function doNext() {

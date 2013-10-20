@@ -20,7 +20,10 @@
     "range_check": "latest",
     "longjohn": "0.2.x",
     "bunyan": "0.22.x",
-      "lodash": "*"
+    "lodash": "2.2.x",
+    "passport": "0.1.x",
+    "passport-http": "0.2.x"
+
   },
   "devDependencies": {
     "grunt-contrib-jshint": "~0.6.x",

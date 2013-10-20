@@ -13,7 +13,9 @@ var restify = require("restify"),
     preflightEnabler = require('se7ensky-restify-preflight'),
     longjohn = require("longjohn"),
     fs = require("fs"),
-    Logger = require('bunyan');
+    Logger = require('bunyan'),
+    passport = require('passport'),
+    passportHttp = require('passport-http');
 
 // Setup Database Connection
 var connectStr = config.db_prefix + '://';
@@ -56,6 +58,7 @@ server.use(restify.queryParser());
 server.use(restify.jsonp());
 server.use(restify.gzipResponse());
 server.use(restify.bodyParser({ mapParams: false }));
+server.use(passport.initialize());
 
 // allows authenticated cross domain requests
 preflightEnabler(server);
@@ -75,6 +78,20 @@ fs.readdirSync('./routes').forEach(function (file) {
         require('./routes/' + file)(server, config);
     }
 });
+
+
+// setup authentication
+var User = mongoose.model('User');
+passport.use(new passportHttp.BasicStrategy(
+    function(username, password, done) {
+        User.findOne({ username: username }, function (err, user) {
+            if (err) { return done(err); }
+            if (!user) { return done(null, false); }
+            if (!user.validPassword(password)) { return done(null, false); }
+            return done(null, user);
+        });
+    }
+));
 
 
 var port = process.env.PORT || config.port;

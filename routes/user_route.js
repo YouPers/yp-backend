@@ -5,7 +5,8 @@
 
 var mongoose = require('mongoose'),
     User = mongoose.model('User'),
-    genericRoutes = require('./generic');
+    genericRoutes = require('./generic'),
+    passport = require('passport');
 //    ObjectId = mongoose.Types.ObjectId;
 
 
@@ -18,5 +19,8 @@ module.exports = function (app, config) {
     app.post(baseUrl, genericRoutes.postFn(baseUrl, User));
     app.del(baseUrl + '/:id', genericRoutes.deleteByIdFn(baseUrl, User));
     app.del(baseUrl, genericRoutes.deleteAllFn(baseUrl, User));
-
+    app.post('/api/v1/login', passport.authenticate('basic', { session: false }), function(req, res, next) {
+        res.send(req.user);
+        return next();
+    });
 };

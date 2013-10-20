@@ -40,6 +40,10 @@ UserSchema.methods = {
             return '';
         }
         return crypto.createHmac('sha1', this._id.toString()).update(password).digest('hex'); // using the ObjectId as the salt
+    },
+
+    validPassword: function (password) {
+        return crypto.createHmac('sha1', this._id.toString()).update(password).digest('hex') === this.hashed_password;
     }
 };
 

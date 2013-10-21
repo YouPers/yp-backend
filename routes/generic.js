@@ -225,6 +225,11 @@ module.exports = {
                         res.send(204, []);
                         return next();
                     }
+
+                    //check if the object has an owner and whether the current user owns the object
+                    if (obj.owner && (!req.user || (!obj.owner.equals(req.user.id) ))) {
+                        return next(new restify.NotAuthorizedError('Authenticated User does not own this object'));
+                    }
                     if (req.query && req.query.populatedeep) {
                         deepPopulate(obj,req.query.populatedeep,{}, function(err, result) {
                            if (err) {
@@ -243,6 +248,7 @@ module.exports = {
 
     getAllFn: function (baseUrl, Model) {
         return function (req, res, next) {
+
             // check if this is a "personal" object (i.e. has an "owner" property),
             // if yes only send the objects of the currently logged in user
             var finder = '';

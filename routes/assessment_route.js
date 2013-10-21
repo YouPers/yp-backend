@@ -6,7 +6,9 @@
 var mongoose = require('mongoose'),
     Assessment = mongoose.model('Assessment'),
     AssessmentResult = mongoose.model('AssessmentResult'),
-    genericRoutes = require('./generic');
+    genericRoutes = require('./generic'),
+    passport = require('passport'),
+    restify = require('restify');
 
 
 module.exports = function (app, config) {
@@ -22,6 +24,10 @@ module.exports = function (app, config) {
                     if (err) {
                         return next(err);
                     }
+                    if (!res || res.length === 0){
+                        res.send(204);
+                        return next();
+                    }
                     res.send(result[0]);
                     return next();
                 });
@@ -30,10 +36,10 @@ module.exports = function (app, config) {
 
     var resultsUrl = baseUrl + '/:assId/results';
 
-    app.post(resultsUrl, genericRoutes.postFn(resultsUrl, AssessmentResult));
-    app.get(resultsUrl+ '/newest', getNewestResult(resultsUrl, AssessmentResult));
-    app.get(resultsUrl, genericRoutes.getAllFn(resultsUrl, AssessmentResult));
-    app.del(resultsUrl, genericRoutes.deleteAllFn(resultsUrl, AssessmentResult));
+    app.post(resultsUrl, passport.authenticate('basic', { session: false }), genericRoutes.postFn(resultsUrl, AssessmentResult));
+    app.get(resultsUrl+ '/newest', passport.authenticate('basic', { session: false }), getNewestResult(resultsUrl, AssessmentResult));
+    app.get(resultsUrl, passport.authenticate('basic', { session: false }), genericRoutes.getAllFn(resultsUrl, AssessmentResult));
+    app.del(resultsUrl, passport.authenticate('basic', { session: false }), genericRoutes.deleteAllFn(resultsUrl, AssessmentResult));
 
 
     app.get(baseUrl, genericRoutes.getAllFn(baseUrl, Assessment));

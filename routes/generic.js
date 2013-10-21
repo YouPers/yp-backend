@@ -216,13 +216,14 @@ module.exports = {
 
     getByIdFn: function (baseUrl, Model) {
         return function (req, res, next) {
-            addQueryOptions(req, Model.findOne({_id: req.params.id}))
+            addQueryOptions(req, Model.findById(req.params.id))
                 .exec(function geByIdFnCallback(err, obj) {
                     if (err) {
                         return next(err);
                     }
                     if (!obj) {
-                        return next(new restify.NotFoundError('Object not Found: ' + Model.modelName + ' with ID: ' + req.params.id));
+                        res.send(204, []);
+                        return next();
                     }
                     if (req.query && req.query.populatedeep) {
                         deepPopulate(obj,req.query.populatedeep,{}, function(err, result) {
@@ -242,7 +243,15 @@ module.exports = {
 
     getAllFn: function (baseUrl, Model) {
         return function (req, res, next) {
-            addQueryOptions(req, Model.find())
+            // check if this is a "personal" object (i.e. has an "owner" property),
+            // if yes only send the objects of the currently logged in user
+            var finder = '';
+            if (Model.schema.paths['owner']) {
+                req.log.trace({ownerpath: Model.schema.paths['owner']}, 'we have an owner');
+                finder = {owner: req.user.id};
+            }
+
+            addQueryOptions(req, Model.find(finder))
                 .exec(function (err, objList) {
                     if (err) {
                         return next(err);
@@ -268,8 +277,9 @@ module.exports = {
             if (!req.body) {
                 return next(new Error('exptected JSON body in POST'));
             }
-            // replace objects by ObjectId in case client sent whole object instead of reference only
-            // do this check only for properties of typ ObjectID
+            req.log.trace({body: req.body}, 'parsed req body');
+            // ref properties: replace objects by ObjectId in case client sent whole object instead of reference only
+            // do this check only for properties of type ObjectID
             var schema = Model.schema;
             _.filter(schema.paths, function (path) {
                 return (path.instance === 'ObjectID');
@@ -280,9 +290,15 @@ module.exports = {
                     }
                 });
 
-
             var newObj = new Model(req.body);
 
+            // check whether owner is the authenticated user
+            if (req.body.owner &&   (req.user.id !== req.body.owner)) {
+
+                return next(restify.CONFLICT_ERROR('POST of object only allowed if owner == authenticated user'));
+            }
+            req.log.trace(newObj, 'PostFn: Saving new Object');
+            // try to save the new object
             newObj.save(function (err) {
                 if (err) {
                     console.log(err);
@@ -290,7 +306,7 @@ module.exports = {
                     return next(err);
                 }
                 res.header('location', baseUrl + '/' + newObj._id);
-                res.send(201);
+                res.send(201,newObj);
                 return next();
             });
         };
@@ -316,7 +332,15 @@ module.exports = {
                 res.send(200);
             });
         };
+    },
+
+    putFn: function (baseUrl, Model) {
+        return function (req, res, next) {
+            return next(500, 'function not implemented, please ask RBLU');
+        };
     }
+
+
 
 }
 ;

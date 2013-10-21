@@ -20,6 +20,7 @@ module.exports = function (app, config) {
     app.del(baseUrl + '/:id', genericRoutes.deleteByIdFn(baseUrl, User));
     app.del(baseUrl, genericRoutes.deleteAllFn(baseUrl, User));
     app.post('/api/v1/login', passport.authenticate('basic', { session: false }), function(req, res, next) {
+        req.log.trace({user: req.user},'/login: user authenticated');
         res.send(req.user);
         return next();
     });

@@ -7,8 +7,7 @@ var mongoose = require('mongoose'),
     Assessment = mongoose.model('Assessment'),
     AssessmentResult = mongoose.model('AssessmentResult'),
     genericRoutes = require('./generic'),
-    passport = require('passport'),
-    restify = require('restify');
+    passport = require('passport');
 
 
 module.exports = function (app, config) {
@@ -17,15 +16,16 @@ module.exports = function (app, config) {
 
     var getNewestResult = function (baseUrl, Model) {
         return function (req, res, next) {
-            Model.find({assessment: req.params.assId})
+            Model.find({assessment: req.params.assId, owner: req.user.id})
                 .sort({timestamp: -1})
                 .limit(1)
                 .exec(function (err, result) {
                     if (err) {
                         return next(err);
                     }
-                    if (!res || res.length === 0){
-                        res.send(204);
+                    req.log.trace({foundAssResults: result}, 'GET Newest Ass Results');
+                    if (!result || result.length === 0){
+                        res.send(204, []);
                         return next();
                     }
                     res.send(result[0]);

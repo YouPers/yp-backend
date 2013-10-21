@@ -256,6 +256,10 @@ module.exports = {
                     if (err) {
                         return next(err);
                     }
+                    if (!objList || objList.length === 0) {
+                        res.send(204, []);
+                        return next();
+                    }
                     if (req.query && req.query.populatedeep) {
                         deepPopulate(objList,req.query.populatedeep,{}, function(err, result) {
                             if (err) {
@@ -295,13 +299,13 @@ module.exports = {
             // check whether owner is the authenticated user
             if (req.body.owner &&   (req.user.id !== req.body.owner)) {
 
-                return next(restify.CONFLICT_ERROR('POST of object only allowed if owner == authenticated user'));
+                return next(new restify.ConflictError('POST of object only allowed if owner == authenticated user'));
             }
             req.log.trace(newObj, 'PostFn: Saving new Object');
             // try to save the new object
             newObj.save(function (err) {
                 if (err) {
-                    console.log(err);
+                    req.log.info({Error: err}, 'Error Saving in PostFn');
                     err.statusCode = 409;
                     return next(err);
                 }

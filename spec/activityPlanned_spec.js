@@ -5,11 +5,14 @@ var URL = 'http://localhost:'+ port +'/api/v1/';
 
 frisby.globalSetup({ // globalSetup is for ALL requests
     request: {
-        headers: { 'X-Auth-Token': 'fa8426a0-8eaf-4d22-8e13-7c1b16a9370c' }
+        headers: { 'X-Auth-Token': 'fa8426a0-8eaf-4d22-8e13-7c1b16a9370c',
+            Authorization: 'Basic cmV0bzpyZXRv'
+        }
+
     }
 });
 
-frisby.create('GET all activitesPlans')
+frisby.create('GET all activityPlans')
     .get(URL + 'activitiesPlanned')
     .expectStatus(200)
     .expectJSON('*', {

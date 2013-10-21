@@ -5,9 +5,13 @@ require('../app.js');
 var port = process.env.PORT || 3000;
 var URL = 'http://localhost:'+ port +'/api/v1/';
 
+
 frisby.globalSetup({ // globalSetup is for ALL requests
     request: {
-        headers: { 'X-Auth-Token': 'fa8426a0-8eaf-4d22-8e13-7c1b16a9370c' }
+        headers: { 'X-Auth-Token': 'fa8426a0-8eaf-4d22-8e13-7c1b16a9370c',
+            Authorization: 'Basic cmV0bzpyZXRv'
+        }
+
     }
 });
 
@@ -25,13 +29,12 @@ frisby.create('POST new user')
 frisby.create('GET all users')
     .get(URL + 'users')
     .expectStatus(200)
-    .expectJSONLength(5)
     .expectJSONTypes('*', {
         id: String,
         username: String,
         email: String
     }).afterJSON(function (userList) {
-
+        var nrOfUsers = userList.length;
         var testuserid = '';
         userList.forEach(function (user) {
             if (user.username === 'unittest_user') {
@@ -44,7 +47,8 @@ frisby.create('GET all users')
             .expectStatus(200)
             // 'afterJSON' automatically parses response body as JSON and passes it as an argument
             .afterJSON(function(user) {
-
+                expect(user.id).toEqual(testuserid);
+                expect(user.username).toEqual( 'unittest_user');
                 console.log(user);
                 frisby.create('DELETE our testuser users')
                     .delete(URL+ 'users/' + user.id)

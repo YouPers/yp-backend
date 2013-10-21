@@ -150,7 +150,14 @@ function deepPopulate(doc, pathListString, options, callback) {
         } else {
             var nextPath = listOfPathsToPopulate.shift();
             var pathBits = nextPath.split(".");
-            var listOfDocsToPopulate = resolveDocumentzAtPath(doc, pathBits.slice(0,-1));
+
+            // iterate over all documents and get Subdocuments to Populate, in case we get only a doc instead of array
+            // create a fake array
+            var listOfDocsToPopulate = [];
+            _.forEach(Array.isArray(doc)? doc : [doc], function (docEntry) {
+                var items = resolveDocumentzAtPath(docEntry, pathBits.slice(0, -1));
+                listOfDocsToPopulate = listOfDocsToPopulate.concat(items);
+            });
             if (listOfDocsToPopulate.length > 0) {
                 var lastPathBit = pathBits[pathBits.length-1];
 // There is an assumption here, that desendent documents which share the same path will all have the same model!
@@ -181,7 +188,7 @@ function resolveDocumentzAtPath(doc, pathBits) {
     if (pathBits.length === 0) {
         return [doc];
     }
-//console.log("Asked to resolve "+pathBits.join(".")+" of a "+doc.constructor.modelName);
+
     var resolvedSoFar = [];
     var firstPathBit = pathBits[0];
     var resolvedField = doc[firstPathBit];

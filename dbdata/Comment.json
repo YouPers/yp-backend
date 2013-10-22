@@ -3,36 +3,36 @@
         "_id": "525ff6143fceba0000000009",
         "author": "525fb247101e330000000007",
         "refObj": "525fb247101e330000000007",
-        "date": "2013-07-30T12:15:00.000Z",
-        "text": "Keine Zeit am Mittwoch"
+        "created": "2013-04-30T12:15:00.000Z",
+        "text": "Keine Zeit am Montag"
     },
     {
         "_id": "525ff6143fceba0000000010",
         "author": "525fb247101e330000000008",
         "refObj": "525fb247101e330000000007",
-        "date": "2013-07-30T12:15:00.000Z",
-        "text": "Keine Zeit am Mittwoch"
+        "created": "2013-05-30T12:15:00.000Z",
+        "text": "Keine Zeit am Dienstag"
     },
     {
         "_id": "525ff6143fceba0000000011",
         "author": "525fb247101e330000000006",
         "refObj": "525fb247101e330000000007",
-        "date": "2013-07-30T12:15:00.000Z",
+        "created": "2013-06-30T12:15:00.000Z",
         "text": "Keine Zeit am Mittwoch"
     },
     {
         "_id": "525ff6143fceba0000000012",
         "author": "525fb247101e330000000005",
         "refObj": "525fb247101e330000000007",
-        "date": "2013-07-30T12:15:00.000Z",
-        "text": "Keine Zeit am Mittwoch"
+        "created": "2013-07-30T12:15:00.000Z",
+        "text": "Keine Zeit am Donnerstag"
     },
     {
         "_id": "525ff6143fceba0000000013",
         "author": "525fb247101e330000000007",
         "refObj": "525fb247101e330000000007",
-        "date": "2013-07-30T12:15:00.000Z",
-        "text": "Keine Zeit am Mittwoch"
+        "created": "2013-08-30T12:15:00.000Z",
+        "text": "Keine Zeit am Freitag"
     }
 
 ]

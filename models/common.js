@@ -47,7 +47,7 @@ module.exports = {
         activityPlannedStatus: "active old".split(' '),
 
         // ActivityPlanEven enums
-        activityPlanEventStats: "open done".split(' '),
+        activityPlanEventStatus: "open done missed".split(' '),
 
         // Assessment related enums
         questionType: "oneSided twoSided".split(' ')

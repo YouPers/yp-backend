@@ -11,7 +11,7 @@ var mongoose = require('mongoose'),
  * @type {Schema}
  */
 var ActivityPlanEvent = common.newSchema({
-    status: {type: String, enum: common.enums.activityPlanEventStats},
+    status: {type: String, enum: common.enums.activityPlanEventStatus},
     begin: {type: Date},
     end: {type: Date},
     doneTs: {type: Date},

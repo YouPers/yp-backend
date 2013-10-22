@@ -13,7 +13,7 @@ var mongoose = require('mongoose'),
 var CommentSchema = common.newSchema({
     author: {type: ObjectId, ref: 'User', required: true},
     refObj: {type: ObjectId},
-    date: {type: Date, required: true},
+    created: {type: Date, required: true},
     text: {type: String, required: true}
 });
 

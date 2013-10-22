@@ -143,10 +143,11 @@ var addQueryOptions = function (req, dbquery) {
  */
 function deepPopulate(doc, pathListString, options, callback) {
     var listOfPathsToPopulate = pathListString.split(" ");
+
     function doNext() {
         if (listOfPathsToPopulate.length === 0) {
 // Now all the things underneath the original doc should be populated. Thanks mongoose!
-            callback(null,doc);
+            callback(null, doc);
         } else {
             var nextPath = listOfPathsToPopulate.shift();
             var pathBits = nextPath.split(".");
@@ -154,21 +155,23 @@ function deepPopulate(doc, pathListString, options, callback) {
             // iterate over all documents and get Subdocuments to Populate, in case we get only a doc instead of array
             // create a fake array
             var listOfDocsToPopulate = [];
-            _.forEach(Array.isArray(doc)? doc : [doc], function (docEntry) {
+            _.forEach(Array.isArray(doc) ? doc : [doc], function (docEntry) {
                 var items = resolveDocumentzAtPath(docEntry, pathBits.slice(0, -1));
                 listOfDocsToPopulate = listOfDocsToPopulate.concat(items);
             });
             if (listOfDocsToPopulate.length > 0) {
-                var lastPathBit = pathBits[pathBits.length-1];
+                var lastPathBit = pathBits[pathBits.length - 1];
 // There is an assumption here, that desendent documents which share the same path will all have the same model!
 // If not, we must make a separate populate request for each doc, which could be slow.
                 var model = listOfDocsToPopulate[0].constructor;
-                var pathRequest = [{
-                    path: lastPathBit,
-                    options: options
-                }];
-                console.log("Populating field '"+lastPathBit+"' of "+listOfDocsToPopulate.length+" "+model.modelName+"(s)");
-                model.populate(listOfDocsToPopulate, pathRequest, function(err,results){
+                var pathRequest = [
+                    {
+                        path: lastPathBit,
+                        options: options
+                    }
+                ];
+                console.log("Populating field '" + lastPathBit + "' of " + listOfDocsToPopulate.length + " " + model.modelName + "(s)");
+                model.populate(listOfDocsToPopulate, pathRequest, function (err, results) {
                     if (err) {
                         return callback(err);
                     }
@@ -181,6 +184,7 @@ function deepPopulate(doc, pathListString, options, callback) {
             }
         }
     }
+
     doNext();
 }
 
@@ -207,7 +211,7 @@ function resolveDocumentzAtPath(doc, pathBits) {
         return resolvedSoFar; // A redundant check given the check at the top, but more efficient.
     } else {
         var furtherResolved = [];
-        resolvedSoFar.forEach(function(subDoc){
+        resolvedSoFar.forEach(function (subDoc) {
             var deeperResults = resolveDocumentzAtPath(subDoc, remainingPathBits);
             furtherResolved = furtherResolved.concat(deeperResults);
         });
@@ -238,10 +242,10 @@ module.exports = {
                         return next(new restify.NotAuthorizedError('Authenticated User does not own this object'));
                     }
                     if (req.query && req.query.populatedeep) {
-                        deepPopulate(obj,req.query.populatedeep,{}, function(err, result) {
-                           if (err) {
-                               return next(err);
-                           }
+                        deepPopulate(obj, req.query.populatedeep, {}, function (err, result) {
+                            if (err) {
+                                return next(err);
+                            }
                             res.send(result);
                             return next();
                         });
@@ -274,7 +278,7 @@ module.exports = {
                         return next();
                     }
                     if (req.query && req.query.populatedeep) {
-                        deepPopulate(objList,req.query.populatedeep,{}, function(err, result) {
+                        deepPopulate(objList, req.query.populatedeep, {}, function (err, result) {
                             if (err) {
                                 return next(err);
                             }
@@ -310,7 +314,7 @@ module.exports = {
             var newObj = new Model(req.body);
 
             // check whether owner is the authenticated user
-            if (req.body.owner &&   (req.user.id !== req.body.owner)) {
+            if (req.body.owner && (req.user.id !== req.body.owner)) {
 
                 return next(new restify.ConflictError('POST of object only allowed if owner == authenticated user'));
             }
@@ -323,7 +327,7 @@ module.exports = {
                     return next(err);
                 }
                 res.header('location', baseUrl + '/' + newObj._id);
-                res.send(201,newObj);
+                res.send(201, newObj);
                 return next();
             });
         };
@@ -353,11 +357,18 @@ module.exports = {
 
     putFn: function (baseUrl, Model) {
         return function (req, res, next) {
-            return next(500, 'function not implemented, please ask RBLU');
+            return next(500, 'no generic put function implemented.');
         };
+    },
+
+    clean: function clean(restObj) {
+        var update = _.extend({}, restObj);
+        /**read only properties */
+        delete update._id;
+        delete update.created_at;
+        delete update.modified_at;
+        delete update.modified_by;
+        delete update.created_by;
+        return update;
     }
-
-
-
-}
-;
+};

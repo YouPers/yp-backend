@@ -56,6 +56,8 @@ function putActivityEvent(req, res, next) {
         if (!planFromDb) {
             return next(new restify.ResourceNotFoundError('no activityPlan found with Id: ' + req.params.planId));
         }
+
+        // TODO: (rblu) check whether new owner is same als old owner???
         if (!planFromDb.owner.equals(req.user.id)) {
             return next(new restify.NotAuthorizedError('authenticated user is not authorized to update this plan'));
         }

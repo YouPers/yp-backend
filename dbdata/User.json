@@ -8,7 +8,7 @@
         "email": "reto@blunschi.ch",
         "emailValidatedFlag": true,
         "username": "reto",
-        "role": "admin",
+        "role": "individual",
         "password": "reto"
     }, {
     "_id": "525fb247101e330000000006",
@@ -41,7 +41,7 @@
     "email": "stefan.mueller@romus.ch",
     "emailValidatedFlag": true,
     "username": "stefan",
-    "role": "individual",
+    "role": "admin",
     "password": "stefan"
 }
 ]

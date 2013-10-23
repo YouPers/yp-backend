@@ -44,7 +44,7 @@ module.exports = function (grunt) {
         },
         concurrent: {
             dev: {
-                tasks: ['nodemon', 'watch'],
+                tasks: ['nodemon'],
                 options: {
                     logConcurrentOutput: true
                 }
@@ -79,9 +79,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-wait');
 
     // Default task.
-
-
     grunt.registerTask('default', ['jshint', 'jasmine_node']);
     grunt.registerTask('test', ['jshint', 'jasmine_node']);
-    grunt.registerTask('server', ['jshint', 'jasmine_node','concurrent']);
+    grunt.registerTask('server', ['jshint','nodemon']);
 };

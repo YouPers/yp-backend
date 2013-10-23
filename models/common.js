@@ -39,7 +39,6 @@ module.exports = {
     enums: {
         // Activity related enums
         source: "youpers community campaign".split(' '),
-        plantype: "daily weekly once".split(' '),
         executiontype: "self group".split(' '),
         visibility: "private campaign public".split(' '),
         field: "AwarenessAbility Relaxation TimeManagement SocialInteraction WorkStructuring Breaks PhysicalActivity LeisureActivity Nutrition".split(' '),

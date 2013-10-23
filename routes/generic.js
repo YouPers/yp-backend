@@ -219,6 +219,30 @@ function resolveDocumentzAtPath(doc, pathBits) {
     }
 }
 
+function checkWritingReq(req, Model) {
+    if (!req.body) {
+        return new Error('exptected JSON body in POST');
+    }
+
+    // ref properties: replace objects by ObjectId in case client sent whole object instead of reference, only
+    // do this removal for properties of type ObjectID
+    var schema = Model.schema;
+    _.filter(schema.paths, function (path) {
+        return (path.instance === 'ObjectID');
+    })
+        .forEach(function (myPath) {
+            if ((myPath.path in req.body) && (!(typeof req.body[myPath.path] === 'string' || req.body[myPath.path] instanceof String))) {
+                req.body[myPath.path] = req.body[myPath.path].id;
+            }
+        });
+    // check whether owner is the authenticated user
+    if (req.body.owner && (req.user.id !== req.body.owner)) {
+
+        return new restify.ConflictError('POST of object only allowed if owner == authenticated user');
+    }
+
+    return null; // everything is fine, proceed with request
+}
 
 /////////////////////////////////////
 // the generic route handlers
@@ -295,29 +319,16 @@ module.exports = {
 
     postFn: function (baseUrl, Model) {
         return function (req, res, next) {
-            if (!req.body) {
-                return next(new Error('exptected JSON body in POST'));
+
+            var err = checkWritingReq(req, Model);
+
+            if (err) {
+                return next(err);
             }
-            req.log.trace({body: req.body}, 'parsed req body');
-            // ref properties: replace objects by ObjectId in case client sent whole object instead of reference only
-            // do this check only for properties of type ObjectID
-            var schema = Model.schema;
-            _.filter(schema.paths, function (path) {
-                return (path.instance === 'ObjectID');
-            })
-                .forEach(function (myPath) {
-                    if ((myPath.path in req.body) && (!(typeof req.body[myPath.path] === 'string' || req.body[myPath.path] instanceof String))) {
-                        req.body[myPath.path] = req.body[myPath.path].id;
-                    }
-                });
 
             var newObj = new Model(req.body);
 
-            // check whether owner is the authenticated user
-            if (req.body.owner && (req.user.id !== req.body.owner)) {
 
-                return next(new restify.ConflictError('POST of object only allowed if owner == authenticated user'));
-            }
             req.log.trace(newObj, 'PostFn: Saving new Object');
             // try to save the new object
             newObj.save(function (err) {
@@ -357,7 +368,37 @@ module.exports = {
 
     putFn: function (baseUrl, Model) {
         return function (req, res, next) {
-            return next(500, 'no generic put function implemented.');
+            var err = checkWritingReq(req, Model);
+
+            if (err) {
+                return next(err);
+            }
+
+            Model.findById(req.body.id).exec(function (err, objFromDb) {
+                if (err) {
+                    return next(err);
+                }
+                if (!objFromDb) {
+                    return next(new restify.ResourceNotFoundError('no obj found with Id: ' + req.params.id));
+                }
+
+                if (objFromDb.owner &&
+                    ((!objFromDb.owner.equals(req.user.id)) ||
+                    (!objFromDb.owner.equals(req.body.owner)))
+                    ) {
+                    return next(new restify.NotAuthorizedError('authenticated user is not authorized to update this plan'));
+                }
+
+                _.extend(objFromDb, req.body);
+
+                objFromDb.save(function (err, savedObj) {
+                    if (err) {
+                        return next(err);
+                    }
+                    res.send(200, savedObj);
+                });
+            });
+
         };
     },
 

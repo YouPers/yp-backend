@@ -12,9 +12,12 @@ var mongoose = require('mongoose'),
  */
 var CommentSchema = common.newSchema({
     author: {type: ObjectId, ref: 'User', required: true},
-    refObj: {type: ObjectId},
+    refDoc: {type: ObjectId},
+    refDocModel: {type: String},
+    refDocPath: {type: String},
     created: {type: Date, required: true},
-    text: {type: String, required: true}
+    text: {type: String, required: true},
+    subcomments: [{type: ObjectId, ref: 'Comment'}]
 });
 
 

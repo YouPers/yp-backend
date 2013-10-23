@@ -82,7 +82,9 @@ function putActivityEvent(req, res, next) {
 
         if (newComments && newComments.length > 0) {
             newComments.forEach(function (comment) {
-                comment.refObj = req.params.eventId;
+                comment.refDoc = req.params.planId;
+                comment.refDocModel = 'ActivityPlanned';
+                comment.refDocPath = 'events.' + req.params.eventId;
                 comment.author = req.user.id;
                 if (!comment.created) {
                     comment.created = new Date();

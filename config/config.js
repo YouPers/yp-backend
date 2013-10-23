@@ -11,7 +11,7 @@ module.exports = {
             name: 'Nodejs Restify Mongoose Demo'
         },
         host: 'localhost',
-        port: '3000',
+        port: '8000',
         db_prefix: 'mongodb',
         db_host: 'localhost',
         db_port: '27017',

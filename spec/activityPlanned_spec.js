@@ -1,6 +1,6 @@
 var frisby = require('frisby');
 require('../app.js');
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 8000;
 var URL = 'http://localhost:'+ port +'/api/v1/';
 
 frisby.globalSetup({ // globalSetup is for ALL requests
@@ -17,8 +17,7 @@ frisby.create('GET all activityPlans')
     .expectStatus(200)
     .expectJSON('*', {
         id: String,
-        activity: String,
-        planType: String
+        activity: String
     })
     // 'afterJSON' automatically parses response body as JSON and passes it as an argument
     .afterJSON(function(plans) {
@@ -29,8 +28,7 @@ frisby.create('GET all activityPlans')
             .expectStatus(200)
             .expectJSON({
                 id: String,
-                activity: String,
-                planType: String
+                activity: String
             })
             .toss();
 

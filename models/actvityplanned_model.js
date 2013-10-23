@@ -27,13 +27,25 @@ var ActivityPlannedSchema =  common.newSchema({
     owner: {type: ObjectId, ref: 'User', required: true},
     activity: {type: ObjectId, ref: 'Activity', required: true},
     joiningUsers: [{type: ObjectId, ref: 'User'}],
-    planType: {type: String, enum: common.enums.plantype},
     executionType: {type: String, enum: common.enums.executiontype},
     visibility: {type: String, enum: common.enums.visibility},
-    onceDate: {type: Date},
-    onceTime: {type: Date},
-    dailyTime: {type: Date},
     status: {type: String, enum: common.enums.activityPlannedStatus},
+    mainEvent: {
+        start: {type: Date},
+        end: {type: Date},
+        allDay: {type: Boolean},
+        frequency: {type: String, enum: common.enums.activityPlannedFrequency},
+        recurrence: {
+            'end-by': {
+                type: {type: String, enum: common.enums.activityRecurrenceEndByType},
+                on: {type: Date},
+                after: Number
+            },
+            every: {type: Number},
+            exceptions: [{type: Date}]
+        }
+
+    },
     events: [ActivityPlanEvent]
 });
 

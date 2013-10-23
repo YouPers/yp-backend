@@ -48,6 +48,8 @@ module.exports = {
 
         // ActivityPlanEven enums
         activityPlanEventStatus: "open done missed".split(' '),
+        activityRecurrenceEndByType: "after on never".split(' '),
+        activityPlannedFrequency: "once day week month year".split(' '),
 
         // Assessment related enums
         questionType: "oneSided twoSided".split(' ')

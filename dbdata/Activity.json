@@ -1,1426 +1,16 @@
 [
     {
-        "number": "Act-1",
-        "title": "Schätze täglich deinen aktuellen Stresslevel ein",
-        "source": "community",
-        "defaultfrequency": "day",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "AwarenessAbility"
-        ],
-        "aktivittsfeld1": "AwarenessAbility"
-    },
-    {
-        "number": "Act-2",
-        "title": "Reflektiere den Stresslevel in der vergangenen Woche",
-        "source": "community",
-        "defaultfrequency": "week",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "AwarenessAbility"
-        ],
-        "aktivittsfeld1": "AwarenessAbility"
-    },
-    {
-        "number": "Act-03",
-        "title": "Reflektiere den Stresslevel im abgelaufenen Monat",
-        "source": "community",
-        "defaultfrequency": "week",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "AwarenessAbility"
-        ],
-        "aktivittsfeld1": "AwarenessAbility"
-    },
-    {
-        "number": "Act-04",
-        "title": "Führe ein Stress Self Assessment durch, um deine Stressursachen zu eruieren ",
-        "source": "community",
-        "defaultfrequency": "once",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "AwarenessAbility"
-        ],
-        "aktivittsfeld1": "AwarenessAbility"
-    },
-    {
-        "number": "Act-05",
-        "title": "Führe ein Stress Self Assessment durch, um stressfördernde Haltungen zu erkennen",
-        "source": "community",
-        "defaultfrequency": "once",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "AwarenessAbility"
-        ],
-        "aktivittsfeld1": "AwarenessAbility"
-    },
-    {
-        "number": "Act-06",
-        "title": "Lese ein Buch zum Thema „positive Einstellung entwickeln“ oder erkundige dich im Internet",
-        "source": "community",
-        "defaultfrequency": "once",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "AwarenessAbility"
-        ],
-        "aktivittsfeld1": "AwarenessAbility"
-    },
-    {
-        "number": "Act-07",
-        "title": "Nehme an einem Seminar zum Thema „positive Einstellung entwickeln“ teil",
-        "source": "community",
-        "defaultfrequency": "once",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "AwarenessAbility"
-        ],
-        "aktivittsfeld1": "AwarenessAbility"
-    },
-    {
-        "number": "Act-08",
-        "title": "Führe ein Gespräch mit einem professionellen Stress Coach, um an deiner positiven Einstellung zu arbeiten",
-        "source": "community",
-        "defaultfrequency": "once",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "AwarenessAbility"
-        ],
-        "aktivittsfeld1": "AwarenessAbility"
-    },
-    {
-        "number": "Act-09",
-        "title": "Lese ein Buch zum Thema „Stressbewältigungsstrategien“ oder erkundige dich im Internet",
-        "source": "community",
-        "defaultfrequency": "once",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "AwarenessAbility"
-        ],
-        "aktivittsfeld1": "AwarenessAbility"
-    },
-    {
-        "number": "Act-10",
-        "title": "Nehme an einem Seminar zum Thema „Stressbewältigungsstrategien“ teil",
-        "source": "community",
-        "defaultfrequency": "once",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "AwarenessAbility"
-        ],
-        "aktivittsfeld1": "AwarenessAbility"
-    },
-    {
-        "number": "Act-11",
-        "title": "Führe einen Workshop/Brainstorming mit einem professionellen Coach durch, um eine für mich passende Stressbewältigungs-Strategie zu entwickeln",
-        "source": "community",
-        "defaultfrequency": "once",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "AwarenessAbility"
-        ],
-        "aktivittsfeld1": "AwarenessAbility"
-    },
-    {
-        "number": "Act-12",
-        "title": "Lese ein Buch zum Thema „Persönliche Ressourcen stärken“ oder erkundige dich im Internet",
-        "source": "community",
-        "defaultfrequency": "once",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "AwarenessAbility"
-        ],
-        "aktivittsfeld1": "AwarenessAbility"
-    },
-    {
-        "number": "Act-13",
-        "title": "Nehme an einem Seminar zum Thema „Persönliche Ressourcen stärken “ teil ",
-        "source": "community",
-        "defaultfrequency": "once",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "AwarenessAbility"
-        ],
-        "aktivittsfeld1": "AwarenessAbility"
-    },
-    {
-        "number": "Act-14",
-        "title": "Suche eine sinnvolle Weiterbildungsmöglichkeit, um deine berufliche Qualifikation zu verbessern",
-        "source": "community",
-        "defaultfrequency": "once",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "AwarenessAbility"
-        ],
-        "aktivittsfeld1": "AwarenessAbility"
-    },
-    {
-        "number": "Act-15",
-        "title": "Führe ein Gespräch mit deinem Vorgesetztem mit den Ziel, deinen persönlichen Handlungsspielraum bei der Arbeitsgestaltung zu erweitern",
-        "source": "community",
-        "defaultfrequency": "once",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "AwarenessAbility"
-        ],
-        "aktivittsfeld1": "AwarenessAbility"
-    },
-    {
-        "number": "Act-16",
-        "title": "Ziehe einen professionellen Stressberater zur Unterstützung bei der Stressbewältigung bei",
-        "source": "community",
-        "defaultfrequency": "once",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "AwarenessAbility"
-        ],
-        "aktivittsfeld1": "AwarenessAbility"
-    },
-    {
-        "number": "Act-17",
-        "title": "Führe ein Mentaltraining durch (positive Suggestionen, Gedankenstopp, Affirmationen, positive Formulierung von Sätzen) ",
-        "text": "http://www.rechance.eu/uploaded/Gelassen%20und%20sicher%20im%20Umgang%20mit%20Stress.pdf ",
-        "source": "youpers",
-        "defaultfrequency": "day",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "AwarenessAbility",
-            "Relaxation"
-        ],
-        "aktivittsfeld1": "AwarenessAbility",
-        "aktivittsfeld2": "Relaxation"
-    },
-    {
-        "number": "Act-18",
-        "title": "Nehme an Stressimmunisierungstraining, Stress-Management-Training SMT und Stress-Resistenz-Training teil",
-        "text": "(http://www.gesundheitsfoerderung.ch/pdf_doc_xls/d/betriebliche_gesundheitsfoerderung/grundlagen_wissen/PsychGesundheit_de.pdf.  S. 98, 101",
-        "source": "youpers",
-        "defaultfrequency": "once",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "AwarenessAbility"
-        ],
-        "aktivittsfeld1": "AwarenessAbility"
-    },
-    {
-        "number": "Act-19",
-        "title": "Lese ein Buch zum Thema „persönliches Zeitmanagement“ oder erkundige dich im Internet",
-        "source": "community",
-        "defaultfrequency": "once",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "TimeManagement"
-        ],
-        "aktivittsfeld1": "TimeManagement"
-    },
-    {
-        "number": "Act-20",
-        "title": "Nehme an Seminar zum Thema „persönliches Zeitmanagement“ teil ",
-        "source": "community",
-        "defaultfrequency": "once",
-        "defaultexecutiontype": "group",
-        "defaultvisibility": "campaign",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "TimeManagement"
-        ],
-        "aktivittsfeld1": "TimeManagement"
-    },
-    {
-        "number": "Act-21",
-        "title": "Nehme an online Forum zum Thema „persönliches Zeitmanagement“ teil ",
-        "source": "community",
-        "defaultfrequency": "once",
-        "defaultexecutiontype": "group",
-        "defaultvisibility": "public",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "TimeManagement",
-            "SocialInteraction"
-        ],
-        "aktivittsfeld1": "TimeManagement",
-        "aktivittsfeld2": "SocialInteraction"
-    },
-    {
-        "number": "Act-22",
-        "title": "Setze ein App/Tool für das persönliche Zeitmanagement ein ",
-        "source": "community",
-        "defaultfrequency": "day",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "TimeManagement"
-        ],
-        "aktivittsfeld1": "TimeManagement"
-    },
-    {
-        "number": "Act-23",
-        "title": "Führe einen Erfahrungsaustausch mit Arbeitskolleg/innen zum Thema \"persönlichen Zeitmanagement\" während der Mittagspause durch",
-        "source": "community",
-        "defaultfrequency": "once",
-        "defaultexecutiontype": "group",
-        "defaultvisibility": "campaign",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "TimeManagement",
-            "SocialInteraction"
-        ],
-        "aktivittsfeld1": "TimeManagement",
-        "aktivittsfeld2": "SocialInteraction"
-    },
-    {
-        "number": "Act-24",
-        "title": "Führe einen Workshop/ein Brainstorming mit einem professionellen Coach durch, um Ideen für die Verbesserung des persönlichen Zeitmanagements zu sammeln",
-        "source": "community",
-        "defaultfrequency": "once",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "TimeManagement"
-        ],
-        "aktivittsfeld1": "TimeManagement"
-    },
-    {
-        "number": "Act-25",
-        "title": "Mache eine bewusste Tagesplanung, Setze dir ein Tagesziel und gewinne Zeit durch Zeitplanung",
-        "text": "http://www.rechance.eu/uploaded/Gelassen%20und%20sicher%20im%20Umgang%20mit%20Stress.pdf (S. 11)",
-        "source": "youpers",
-        "defaultfrequency": "day",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "TimeManagement"
-        ],
-        "aktivittsfeld1": "TimeManagement"
-    },
-    {
-        "number": "Act-26",
-        "title": "Lege die Arbeit und Ruhepausen in passende Zeitintervalle",
-        "source": "community",
-        "defaultfrequency": "day",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "TimeManagement"
-        ],
-        "aktivittsfeld1": "TimeManagement"
-    },
-    {
-        "number": "Act-27",
-        "title": "Ziehe einen professionellen Stressberater zur Unterstützung beim Zeitmanagement bei",
-        "source": "community",
-        "defaultfrequency": "once",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "TimeManagement"
-        ],
-        "aktivittsfeld1": "TimeManagement"
-    },
-    {
-        "number": "Act-28",
-        "title": "Setze heute bewusst Prioritäten bei deiner Arbeitsplanung",
-        "source": "youpers",
-        "defaultfrequency": "day",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "TimeManagement",
-            "WorkStructuring"
-        ],
-        "aktivittsfeld1": "TimeManagement",
-        "aktivittsfeld2": "WorkStructuring"
-    },
-    {
-        "number": "Act-29",
-        "title": "Beachte deine Tagesleistungskurve bei deiner Tagesarbeitsplanung",
-        "source": "youpers",
-        "defaultfrequency": "day",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "TimeManagement",
-            "WorkStructuring"
-        ],
-        "aktivittsfeld1": "TimeManagement",
-        "aktivittsfeld2": "WorkStructuring"
-    },
-    {
-        "number": "Act-30",
-        "title": "Delegiere heute bewusst eine Aufgabe",
-        "source": "youpers",
-        "defaultfrequency": "day",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "TimeManagement",
-            "WorkStructuring"
-        ],
-        "aktivittsfeld1": "TimeManagement",
-        "aktivittsfeld2": "WorkStructuring"
-    },
-    {
-        "number": "Act-31",
-        "title": "Führe ein offenes Gespräch mit deinem/r Vorgesetzten über deine persönliche Arbeitssituation und –gestaltung",
-        "source": "community",
-        "defaultfrequency": "once",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "WorkStructuring"
-        ],
-        "aktivittsfeld1": "WorkStructuring"
-    },
-    {
-        "number": "Act-32",
-        "title": "Führe ein offenes Gespräch mit deinem/r Vorgesetzten mit den Ziel, den persönlichen Handlungsspielraum zu erweitern",
-        "source": "community",
-        "defaultfrequency": "once",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "WorkStructuring"
-        ],
-        "aktivittsfeld1": "WorkStructuring"
-    },
-    {
-        "number": "Act-33",
-        "title": "Probiere die Möglichkeiten der flexiblen Arbeitszeit aus",
-        "source": "community",
-        "defaultfrequency": "once",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "campaign",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "WorkStructuring"
-        ],
-        "aktivittsfeld1": "WorkStructuring"
-    },
-    {
-        "number": "Act-34",
-        "title": "Probiere die Möglichkeiten der Heimarbeit aus ",
-        "source": "community",
-        "defaultfrequency": "once",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "campaign",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "WorkStructuring"
-        ],
-        "aktivittsfeld1": "WorkStructuring"
-    },
-    {
-        "number": "Act-35",
-        "title": "Arbeite gemeinsam mit dem/r Vorgesetzten eine sinnvolle Arbeitsplanung aus",
-        "source": "community",
-        "defaultfrequency": "once",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "WorkStructuring"
-        ],
-        "aktivittsfeld1": "WorkStructuring"
-    },
-    {
-        "number": "Act-36",
-        "title": "Bespreche ungelösten Konflikt mit deinem/r Personalverantwortlichen",
-        "source": "community",
-        "defaultfrequency": "once",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "WorkStructuring"
-        ],
-        "aktivittsfeld1": "WorkStructuring"
-    },
-    {
-        "number": "Act-37",
-        "title": "Suche eine für dich sinnvolle Weiterbildung und führe sie durch ",
-        "source": "community",
-        "defaultfrequency": "once",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "WorkStructuring",
-            "AwarenessAbility"
-        ],
-        "aktivittsfeld1": "WorkStructuring",
-        "aktivittsfeld2": "AwarenessAbility"
-    },
-    {
-        "number": "Act-38",
-        "title": "Stelle deinen Stuhl und Tisch ergonomisch ein",
-        "source": "community",
-        "defaultfrequency": "once",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "campaign",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "WorkStructuring"
-        ],
-        "aktivittsfeld1": "WorkStructuring"
-    },
-    {
-        "number": "Act-39",
-        "title": "Stelle deinen Computer ergonomisch ein",
-        "source": "community",
-        "defaultfrequency": "once",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "campaign",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "WorkStructuring"
-        ],
-        "aktivittsfeld1": "WorkStructuring"
-    },
-    {
-        "number": "Act-40",
-        "title": "Stelle eine schöne Pflanze an deinen Arbeitsplatz",
-        "source": "community",
-        "defaultfrequency": "once",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "campaign",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "WorkStructuring"
-        ],
-        "aktivittsfeld1": "WorkStructuring"
-    },
-    {
-        "number": "Act-41",
-        "title": "Stelle ein persönliches/inspirierendes Bild an den Arbeitslatz",
-        "source": "community",
-        "defaultfrequency": "once",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "campaign",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "WorkStructuring"
-        ],
-        "aktivittsfeld1": "WorkStructuring"
-    },
-    {
-        "number": "Act-42",
-        "title": "Verändere deine Sitzposition alle 15 Minuten",
-        "source": "community",
-        "defaultfrequency": "day",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "campaign",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "WorkStructuring"
-        ],
-        "aktivittsfeld1": "WorkStructuring"
-    },
-    {
-        "number": "Act-43",
-        "title": "„Perfektionist\": Liefere deine Arbeit bewusst zeitgerecht und ohne perfektionsanspruch ab",
-        "source": "community",
-        "defaultfrequency": "once",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "AwarenessAbility"
-        ],
-        "aktivittsfeld1": "AwarenessAbility"
-    },
-    {
-        "number": "Act-44",
-        "title": "\"Kontrolltyp\": Frage bewusst heute einmal nicht nach ",
-        "source": "community",
-        "defaultfrequency": "once",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "AwarenessAbility"
-        ],
-        "aktivittsfeld1": "AwarenessAbility"
-    },
-    {
-        "number": "Act-45",
-        "title": "\"Pflichtmensch\": Streiche bewusst 1 Pendenz aus der Tagesplanung",
-        "source": "community",
-        "defaultfrequency": "once",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "AwarenessAbility"
-        ],
-        "aktivittsfeld1": "AwarenessAbility"
-    },
-    {
-        "number": "Act-46",
-        "title": "\"Pflichtmensch\": Delegiere bewusst eine Arbeit",
-        "source": "community",
-        "defaultfrequency": "once",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "AwarenessAbility"
-        ],
-        "aktivittsfeld1": "AwarenessAbility"
-    },
-    {
-        "number": "Act-47",
-        "title": "\"fehlendes Selbstvertrauen\": Nehme bewusst eine Herausforderung an, die du dir nicht zutraust",
-        "source": "community",
-        "defaultfrequency": "once",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "AwarenessAbility"
-        ],
-        "aktivittsfeld1": "AwarenessAbility"
-    },
-    {
-        "number": "Act-48",
-        "title": "\"fehlendes Selbstvertrauen\": Achte bewusst auf erhaltene Anerkennung",
-        "source": "community",
-        "defaultfrequency": "once",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "AwarenessAbility"
-        ],
-        "aktivittsfeld1": "AwarenessAbility"
-    },
-    {
-        "number": "Act-49",
-        "title": "\"Perfektionist\": Spreche heute bewusst jemandem Anerkennung für seine Arbeit aus ",
-        "source": "community",
-        "defaultfrequency": "once",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "AwarenessAbility"
-        ],
-        "aktivittsfeld1": "AwarenessAbility"
-    },
-    {
-        "number": "Act-50",
-        "title": "Spreche mit deinem/r Vorgesetzten/Personalverantwortlichen über Veränderung von Arbeitsabläufen / Aufgaben",
-        "text": "http://www.gesundheitsfoerderung.ch/pdf_doc_xls/d/betriebliche_gesundheitsfoerderung/grundlagen_wissen/Rahmenkonzept_Gesundheitskompetenz_de.pdf",
-        "source": "youpers",
-        "defaultfrequency": "once",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "WorkStructuring"
-        ],
-        "aktivittsfeld1": "WorkStructuring"
-    },
-    {
-        "number": "Act-51",
-        "title": "Spreche mit deinem/r Vorgesetzten/Personalverantwortlichen über Veränderung der Arbeitsumgebung",
-        "text": "http://www.gesundheitsfoerderung.ch/pdf_doc_xls/d/betriebliche_gesundheitsfoerderung/grundlagen_wissen/Rahmenkonzept_Gesundheitskompetenz_de.pdf",
-        "source": "youpers",
-        "defaultfrequency": "once",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "WorkStructuring"
-        ],
-        "aktivittsfeld1": "WorkStructuring"
-    },
-    {
-        "number": "Act-52",
-        "title": "Spreche mit deinem/r Vorgesetzten/Personalverantwortlichen über Einführung von flexiblen Arbeitszeiten",
-        "text": "http://www.gesundheitsfoerderung.ch/pdf_doc_xls/d/betriebliche_gesundheitsfoerderung/grundlagen_wissen/Rahmenkonzept_Gesundheitskompetenz_de.pdf",
-        "source": "youpers",
-        "defaultfrequency": "once",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "WorkStructuring"
-        ],
-        "aktivittsfeld1": "WorkStructuring"
-    },
-    {
-        "number": "Act-53",
-        "title": "Spreche mit deinem/r Vorgesetzten/Personalverantwortlichen über partizipative Managementstrukturen",
-        "text": "http://www.gesundheitsfoerderung.ch/pdf_doc_xls/d/betriebliche_gesundheitsfoerderung/grundlagen_wissen/Rahmenkonzept_Gesundheitskompetenz_de.pdf",
-        "source": "youpers",
-        "defaultfrequency": "once",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "WorkStructuring"
-        ],
-        "aktivittsfeld1": "WorkStructuring"
-    },
-    {
-        "number": "Act-54",
-        "title": "Spreche mit deinem/r Vorgesetzten/Personalverantwortlichen über deinen Einbezug in die Karriereplanung",
-        "text": "http://www.gesundheitsfoerderung.ch/pdf_doc_xls/d/betriebliche_gesundheitsfoerderung/grundlagen_wissen/Rahmenkonzept_Gesundheitskompetenz_de.pdf",
-        "source": "youpers",
-        "defaultfrequency": "once",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "WorkStructuring"
-        ],
-        "aktivittsfeld1": "WorkStructuring"
-    },
-    {
-        "number": "Act-55",
-        "title": "Überprüfe mit deinem/r Vorgesetzten Arbeitsrollen und Zielvereinbarungen",
-        "text": "http://www.gesundheitsfoerderung.ch/pdf_doc_xls/d/betriebliche_gesundheitsfoerderung/grundlagen_wissen/Rahmenkonzept_Gesundheitskompetenz_de.pdf",
-        "source": "youpers",
-        "defaultfrequency": "once",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "WorkStructuring"
-        ],
-        "aktivittsfeld1": "WorkStructuring"
-    },
-    {
-        "number": "Act-56",
-        "title": "Spreche mit deinem/r Vorgesetzten über Unterstützung und regelmässiges Feedback",
-        "text": "http://www.gesundheitsfoerderung.ch/pdf_doc_xls/d/betriebliche_gesundheitsfoerderung/grundlagen_wissen/Rahmenkonzept_Gesundheitskompetenz_de.pdf",
-        "source": "youpers",
-        "defaultfrequency": "once",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "WorkStructuring"
-        ],
-        "aktivittsfeld1": "WorkStructuring"
-    },
-    {
-        "number": "Act-57",
-        "title": "Spreche mit deinem/r Personalverantwortlichen über die Einführung einer fairen und familienfreundlichen Arbeitspolitik",
-        "text": "http://www.gesundheitsfoerderung.ch/pdf_doc_xls/d/betriebliche_gesundheitsfoerderung/grundlagen_wissen/Rahmenkonzept_Gesundheitskompetenz_de.pdf",
-        "source": "youpers",
-        "defaultfrequency": "once",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "WorkStructuring"
-        ],
-        "aktivittsfeld1": "WorkStructuring"
-    },
-    {
-        "number": "Act-58",
-        "title": "Spreche mit deinem/r Vorgesetzten/Personalverantwortlichen über die Möglichkeit einer Umsatzbeteiligung",
-        "text": "http://www.gesundheitsfoerderung.ch/pdf_doc_xls/d/betriebliche_gesundheitsfoerderung/grundlagen_wissen/Rahmenkonzept_Gesundheitskompetenz_de.pdf",
-        "source": "youpers",
-        "defaultfrequency": "once",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "WorkStructuring"
-        ],
-        "aktivittsfeld1": "WorkStructuring"
-    },
-    {
-        "number": "Act-59",
-        "title": "Stehe in regelmässigen Arbeitspausen auf, strecke dich und führe eine Entspannungsübung durch",
-        "text": "nationale Präventionsstrategie \"Australia\"",
-        "source": "youpers",
-        "defaultfrequency": "day",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "campaign",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "Breaks",
-            "Relaxation"
-        ],
-        "aktivittsfeld1": "Breaks",
-        "aktivittsfeld2": "Relaxation"
-    },
-    {
-        "number": "Act-60",
-        "title": "Gehe in der Arbeitspause nach draussen für einen kurzen Spaziergang",
-        "source": "community",
-        "defaultfrequency": "day",
-        "defaultexecutiontype": "group",
-        "defaultvisibility": "campaign",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "Breaks",
-            "PhysicalActivity"
-        ],
-        "aktivittsfeld1": "Breaks",
-        "aktivittsfeld2": "PhysicalActivity"
-    },
-    {
-        "number": "Act-61",
-        "title": "Führe in der Arbeitspause Dehnungsübungen für Schulter und Kopf durch",
-        "text": "http://www.gesundheit.lu.ch/index/gesundheitsfoerderung/flyer_vorlagen.htm ",
-        "source": "youpers",
-        "defaultfrequency": "day",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "campaign",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "Breaks",
-            "Relaxation"
-        ],
-        "aktivittsfeld1": "Breaks",
-        "aktivittsfeld2": "Relaxation"
-    },
-    {
-        "number": "Act-62",
-        "title": "Öffne in der Arbeitspause die Fenster für frische Luft",
-        "source": "community",
-        "defaultfrequency": "day",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "campaign",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "Breaks"
-        ],
-        "aktivittsfeld1": "Breaks"
-    },
-    {
-        "number": "Act-63",
-        "title": "Vereinbare eine gemeinsame Pause mit einer Person im Unternehmen, mit der ich nicht direkt zusammenarbeite und schon länger nicht mehr gesprochen habe ",
-        "source": "community",
-        "defaultfrequency": "day",
-        "defaultexecutiontype": "group",
-        "defaultvisibility": "campaign",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "Breaks",
-            "SocialInteraction"
-        ],
-        "aktivittsfeld1": "Breaks",
-        "aktivittsfeld2": "SocialInteraction"
-    },
-    {
-        "number": "Act-64",
-        "title": "Nutze die Pause um 10 Minuten Musik zu hören",
-        "text": "http://www.rechance.eu/uploaded/Gelassen%20und%20sicher%20im%20Umgang%20mit%20Stress.pdf S. 10",
-        "source": "youpers",
-        "defaultfrequency": "day",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "campaign",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "Breaks",
-            "Relaxation"
-        ],
-        "aktivittsfeld1": "Breaks",
-        "aktivittsfeld2": "Relaxation"
-    },
-    {
-        "number": "Act-65",
-        "title": "Mache einen Spaziergang während der Mittagspause",
-        "source": "community",
-        "defaultfrequency": "week",
-        "defaultexecutiontype": "group",
-        "defaultvisibility": "campaign",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "Breaks",
-            "PhysicalActivity"
-        ],
-        "aktivittsfeld1": "Breaks",
-        "aktivittsfeld2": "PhysicalActivity"
-    },
-    {
-        "number": "Act-66",
-        "title": "Gehe joggen mit Kollegen während der Mittagspause",
-        "text": "http://www.gesundheitsfoerderung.ch/pdf_doc_xls/f/gesundheitsfoerderung_promotion_staerken/Grundlagen_Wissen/entspannungsbericht_d.pdf ",
-        "source": "youpers",
-        "defaultfrequency": "week",
-        "defaultexecutiontype": "group",
-        "defaultvisibility": "campaign",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "Breaks",
-            "SocialInteraction"
-        ],
-        "aktivittsfeld1": "Breaks",
-        "aktivittsfeld2": "SocialInteraction"
-    },
-    {
-        "number": "Act-67",
-        "title": "Organisiere ein Ballspiel mit Kollegen für die Mittagspause ",
-        "source": "community",
-        "defaultfrequency": "week",
-        "defaultexecutiontype": "group",
-        "defaultvisibility": "campaign",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "Breaks",
-            "SocialInteraction"
-        ],
-        "aktivittsfeld1": "Breaks",
-        "aktivittsfeld2": "SocialInteraction"
-    },
-    {
-        "number": "Act-68",
-        "title": "Gehe mit einer Person ausserhalb des eigenen Betriebes in einem guten Restaurant Mittagessen",
-        "source": "community",
-        "defaultfrequency": "week",
-        "defaultexecutiontype": "group",
-        "defaultvisibility": "campaign",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "Breaks",
-            "SocialInteraction"
-        ],
-        "aktivittsfeld1": "Breaks",
-        "aktivittsfeld2": "SocialInteraction"
-    },
-    {
-        "number": "Act-69",
-        "title": "Esse heute über den Mittag woanders als sonst (auswärts, am See)",
-        "source": "community",
-        "defaultfrequency": "week",
-        "defaultexecutiontype": "group",
-        "defaultvisibility": "campaign",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "Breaks",
-            "Relaxation"
-        ],
-        "aktivittsfeld1": "Breaks",
-        "aktivittsfeld2": "Relaxation"
-    },
-    {
-        "number": "Act-70",
-        "title": "Wende in der Arbeitspause eine Imaginations-Technik an (Gute Laune Bilder, Ferienerinnerung, Phantasiereise)",
-        "text": "http://www.rechance.eu/uploaded/Gelassen%20und%20sicher%20im%20Umgang%20mit%20Stress.pdf S. 9",
-        "source": "youpers",
-        "defaultfrequency": "day",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "Breaks",
-            "Relaxation"
-        ],
-        "aktivittsfeld1": "Breaks",
-        "aktivittsfeld2": "Relaxation"
-    },
-    {
-        "number": "Act-71",
-        "title": "Stehe ohne Stress auf/Plane genügend Zeit ein am morgen vor dem Pendeln",
-        "source": "community",
-        "defaultfrequency": "day",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "Relaxation"
-        ],
-        "aktivittsfeld1": "Relaxation"
-    },
-    {
-        "number": "Act-72",
-        "title": "Reise ausserhalb der Stosszeiten ",
-        "source": "community",
-        "defaultfrequency": "day",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "Relaxation"
-        ],
-        "aktivittsfeld1": "Relaxation"
-    },
-    {
-        "number": "Act-73",
-        "title": "Gehe mit dem Velo zur Arbeit ",
-        "source": "community",
-        "defaultfrequency": "week",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "campaign",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "Relaxation",
-            "PhysicalActivity"
-        ],
-        "aktivittsfeld1": "Relaxation",
-        "aktivittsfeld2": "PhysicalActivity"
-    },
-    {
-        "number": "Act-74",
-        "title": "Schalte auf dem Arbeitsweg mit guter Musik ab",
-        "source": "community",
-        "defaultfrequency": "day",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "campaign",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "Relaxation"
-        ],
-        "aktivittsfeld1": "Relaxation"
-    },
-    {
-        "number": "Act-75",
-        "title": "Schalte auf dem Arbeitsweg mit einer unterhaltsamen Lektüre ab",
-        "source": "community",
-        "defaultfrequency": "day",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "campaign",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "Relaxation"
-        ],
-        "aktivittsfeld1": "Relaxation"
-    },
-    {
-        "number": "Act-76",
-        "title": "Steige eine Station vorher aus / später ein und gehe zu Fuss",
-        "source": "community",
-        "defaultfrequency": "day",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "campaign",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "Relaxation",
-            "PhysicalActivity"
-        ],
-        "aktivittsfeld1": "Relaxation",
-        "aktivittsfeld2": "PhysicalActivity"
-    },
-    {
-        "number": "Act-77",
-        "title": "Lasse am Feierabend zuhause entspannende Musik laufen z.B. zum kochen",
-        "source": "community",
-        "defaultfrequency": "day",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "Relaxation"
-        ],
-        "aktivittsfeld1": "Relaxation"
-    },
-    {
-        "number": "Act-78",
-        "title": "Nehme an einem Yoga/Meditationskurs teil",
-        "text": "http://www.gesundheitsfoerderung.ch/pdf_doc_xls/f/gesundheitsfoerderung_promotion_staerken/Grundlagen_Wissen/entspannungsbericht_d.pdf ",
-        "source": "youpers",
-        "defaultfrequency": "once",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "Relaxation"
-        ],
-        "aktivittsfeld1": "Relaxation"
-    },
-    {
-        "number": "Act-79",
-        "title": "Führe zur Entspannung Yoga Übungen durch",
-        "text": "http://www.gesundheitsfoerderung.ch/pdf_doc_xls/f/gesundheitsfoerderung_promotion_staerken/Grundlagen_Wissen/entspannungsbericht_d.pdf ",
-        "source": "youpers",
-        "defaultfrequency": "week",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "Relaxation"
-        ],
-        "aktivittsfeld1": "Relaxation"
-    },
-    {
-        "number": "Act-80",
-        "title": "Führe zur Entspannung Meditationsübungen durch",
-        "text": "http://www.gesundheitsfoerderung.ch/pdf_doc_xls/f/gesundheitsfoerderung_promotion_staerken/Grundlagen_Wissen/entspannungsbericht_d.pdf ",
-        "source": "youpers",
-        "defaultfrequency": "week",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "Relaxation"
-        ],
-        "aktivittsfeld1": "Relaxation"
-    },
-    {
-        "number": "Act-81",
-        "title": "Führe zur Entspannung autogenes Training durch ",
-        "text": "http://www.gesundheitsfoerderung.ch/pdf_doc_xls/f/gesundheitsfoerderung_promotion_staerken/Grundlagen_Wissen/entspannungsbericht_d.pdf ",
-        "source": "youpers",
-        "defaultfrequency": "week",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "Relaxation"
-        ],
-        "aktivittsfeld1": "Relaxation"
-    },
-    {
-        "number": "Act-82",
-        "title": "Geniesse am Feierabend eine Massage",
-        "source": "community",
-        "defaultfrequency": "once",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "Relaxation",
-            "LeisureActivity"
-        ],
-        "aktivittsfeld1": "Relaxation",
-        "aktivittsfeld2": "LeisureActivity"
-    },
-    {
-        "number": "Act-83",
-        "title": "Lerne bewusstes Atmen / Atemtechniken",
-        "source": "community",
-        "defaultfrequency": "once",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "Relaxation"
-        ],
-        "aktivittsfeld1": "Relaxation"
-    },
-    {
-        "number": "Act-84",
-        "title": "Jogge über Mittag mit Kollegen ",
-        "text": "http://www.wecarelife.at/fitness-sport/stress/stress-und-bewegung/ ",
-        "source": "youpers",
-        "defaultfrequency": "week",
-        "defaultexecutiontype": "group",
-        "defaultvisibility": "campaign",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "Relaxation",
-            "PhysicalActivity"
-        ],
-        "aktivittsfeld1": "Relaxation",
-        "aktivittsfeld2": "PhysicalActivity"
-    },
-    {
-        "number": "Act-85",
-        "title": "Organisiere einen After-Work-Apéro mit Kollegen",
-        "source": "community",
-        "defaultfrequency": "once",
-        "defaultexecutiontype": "group",
-        "defaultvisibility": "campaign",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "Relaxation"
-        ],
-        "aktivittsfeld1": "Relaxation"
-    },
-    {
-        "number": "Act-86",
-        "title": "Organisiere eine Kinderbetreuung und geniesse ein Wellness Weekend mit deinem/r Partner/in",
-        "source": "community",
-        "defaultfrequency": "once",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "Relaxation",
-            "LeisureActivity"
-        ],
-        "aktivittsfeld1": "Relaxation",
-        "aktivittsfeld2": "LeisureActivity"
-    },
-    {
-        "number": "Act-87",
-        "title": "Geniesse am Feierabend ein Entspannungsbad mit beruhigenden Badezusätzen (S. 19/3.0) ",
-        "text": "http://www.gesundheitsfoerderung.ch/pdf_doc_xls/f/gesundheitsfoerderung_promotion_staerken/Grundlagen_Wissen/entspannungsbericht_d.pdf ",
-        "source": "youpers",
-        "defaultfrequency": "week",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "Relaxation",
-            "LeisureActivity"
-        ],
-        "aktivittsfeld1": "Relaxation",
-        "aktivittsfeld2": "LeisureActivity"
-    },
-    {
-        "number": "Act-88",
-        "title": "Gehe zur Entspannung regelmässig in die Sauna ",
-        "source": "community",
-        "defaultfrequency": "week",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "Relaxation"
-        ],
-        "aktivittsfeld1": "Relaxation"
-    },
-    {
         "number": "Act-89",
-        "title": "Nehme am Feierabend ein entspannendes Bad im nahegelegenen See, Fluss, Hallenbad, etc. ",
+        "title": "Nehme am Feierabend ein entspannendes Bad im nahegelegenen See, Fluss, Hallenbad, etc.",
         "source": "community",
         "defaultfrequency": "once",
         "defaultexecutiontype": "self",
         "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "Relaxation",
-            "LeisureActivity"
-        ],
-        "aktivittsfeld1": "Relaxation",
-        "aktivittsfeld2": "LeisureActivity"
-    },
-    {
-        "number": "Act-90",
-        "title": "Entspanne dich vor dem ins Bett gehen mit Musik hören",
-        "source": "community",
-        "defaultfrequency": "day",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "Relaxation"
-        ],
-        "aktivittsfeld1": "Relaxation"
+        "recWeights": [],
+        "fields": ["Relaxation", "LeisureActivity"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae5000000005e",
+        "version": 0
     },
     {
         "number": "Act-91",
@@ -1429,30 +19,11 @@
         "defaultfrequency": "day",
         "defaultexecutiontype": "self",
         "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "Relaxation",
-            "AwarenessAbility"
-        ],
-        "aktivittsfeld1": "Relaxation",
-        "aktivittsfeld2": "AwarenessAbility"
-    },
-    {
-        "number": "Act-92",
-        "title": "Gehe heute bewusst früher ins Bett",
-        "source": "community",
-        "defaultfrequency": "once",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "Relaxation"
-        ],
-        "aktivittsfeld1": "Relaxation"
+        "recWeights": [],
+        "fields": ["Relaxation", "AwarenessAbility"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000060",
+        "version": 0
     },
     {
         "number": "Act-93",
@@ -1461,196 +32,24 @@
         "defaultfrequency": "once",
         "defaultexecutiontype": "self",
         "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "Relaxation"
-        ],
-        "aktivittsfeld1": "Relaxation"
-    },
-    {
-        "number": "Act-94",
-        "title": "Führe eine progressive Muskelrelaxation nach Jacobson durch",
-        "text": "http://www.gesundheitsfoerderung.ch/pdf_doc_xls/f/gesundheitsfoerderung_promotion_staerken/Grundlagen_Wissen/entspannungsbericht_d.pdf ",
-        "source": "youpers",
-        "defaultfrequency": "once",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "Relaxation"
-        ],
-        "aktivittsfeld1": "Relaxation"
-    },
-    {
-        "number": "Act-95",
-        "title": "Plane deine nächsten Kurzferien in max. 2 Monaten",
-        "source": "community",
-        "defaultfrequency": "once",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "LeisureActivity"
-        ],
-        "aktivittsfeld1": "LeisureActivity"
-    },
-    {
-        "number": "Act-96",
-        "title": "Mache eine Biofeedback-Sitzung ",
-        "text": "http://www.gesundheitsfoerderung.ch/pdf_doc_xls/f/gesundheitsfoerderung_promotion_staerken/Grundlagen_Wissen/entspannungsbericht_d.pdf ",
-        "source": "youpers",
-        "defaultfrequency": "once",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "Relaxation"
-        ],
-        "aktivittsfeld1": "Relaxation"
+        "recWeights": [],
+        "fields": ["Relaxation"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000062",
+        "version": 0
     },
     {
         "number": "Act-97",
         "title": "Lese ein Buch zu imaginativen Verfahren und wende eine Technik, die dir gefällt, an",
-        "text": "http://www.gesundheitsfoerderung.ch/pdf_doc_xls/f/gesundheitsfoerderung_promotion_staerken/Grundlagen_Wissen/entspannungsbericht_d.pdf ",
         "source": "youpers",
         "defaultfrequency": "once",
         "defaultexecutiontype": "self",
         "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "Relaxation"
-        ],
-        "aktivittsfeld1": "Relaxation"
-    },
-    {
-        "number": "Act-98",
-        "title": "Lese ein Buch zu kognitiv-verhaltenstherapeutische Verfahren und wende eine Technik, die dir gefällt, an (z.B. Gedankenstopp)",
-        "text": "http://www.gesundheitsfoerderung.ch/pdf_doc_xls/f/gesundheitsfoerderung_promotion_staerken/Grundlagen_Wissen/entspannungsbericht_d.pdf ",
-        "source": "youpers",
-        "defaultfrequency": "once",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "Relaxation",
-            "AwarenessAbility"
-        ],
-        "aktivittsfeld1": "Relaxation",
-        "aktivittsfeld2": "AwarenessAbility"
-    },
-    {
-        "number": "Act-99",
-        "title": "Besuche ein Lach-Seminar",
-        "source": "community",
-        "defaultfrequency": "once",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "Relaxation",
-            "LeisureActivity"
-        ],
-        "aktivittsfeld1": "Relaxation",
-        "aktivittsfeld2": "LeisureActivity"
-    },
-    {
-        "number": "Act-100",
-        "title": "Besuche ein Humorfestival",
-        "source": "community",
-        "defaultfrequency": "once",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "Relaxation",
-            "LeisureActivity"
-        ],
-        "aktivittsfeld1": "Relaxation",
-        "aktivittsfeld2": "LeisureActivity"
-    },
-    {
-        "number": "Act-101",
-        "title": "Schaue eine Komödie im TV/Kino",
-        "source": "community",
-        "defaultfrequency": "once",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "Relaxation",
-            "LeisureActivity"
-        ],
-        "aktivittsfeld1": "Relaxation",
-        "aktivittsfeld2": "LeisureActivity"
-    },
-    {
-        "number": "Act-102",
-        "title": "Besuche mit Freunden ein Musikkonzert",
-        "source": "community",
-        "defaultfrequency": "once",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "SocialInteraction",
-            "LeisureActivity"
-        ],
-        "aktivittsfeld1": "SocialInteraction",
-        "aktivittsfeld2": "LeisureActivity"
-    },
-    {
-        "number": "Act-103",
-        "title": "Nehme mit Freunden an einem Spasswettbewerb teil",
-        "source": "community",
-        "defaultfrequency": "once",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "SocialInteraction",
-            "LeisureActivity"
-        ],
-        "aktivittsfeld1": "SocialInteraction",
-        "aktivittsfeld2": "LeisureActivity"
-    },
-    {
-        "number": "Act-104",
-        "title": "Besuche mit Freunden einen Sportevent",
-        "source": "community",
-        "defaultfrequency": "once",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "SocialInteraction",
-            "LeisureActivity"
-        ],
-        "aktivittsfeld1": "SocialInteraction",
-        "aktivittsfeld2": "LeisureActivity"
+        "recWeights": [],
+        "fields": ["Relaxation"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000066",
+        "version": 0
     },
     {
         "number": "Act-105",
@@ -1659,15 +58,11 @@
         "defaultfrequency": "once",
         "defaultexecutiontype": "self",
         "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "SocialInteraction",
-            "LeisureActivity"
-        ],
-        "aktivittsfeld1": "SocialInteraction",
-        "aktivittsfeld2": "LeisureActivity"
+        "recWeights": [],
+        "fields": ["SocialInteraction", "LeisureActivity"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae5000000006e",
+        "version": 0
     },
     {
         "number": "Act-106",
@@ -1676,29 +71,11 @@
         "defaultfrequency": "once",
         "defaultexecutiontype": "group",
         "defaultvisibility": "campaign",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "SocialInteraction"
-        ],
-        "aktivittsfeld1": "SocialInteraction"
-    },
-    {
-        "number": "Act-107",
-        "title": "Frage KollegInnen um Unterstützung",
-        "text": "http://www.gesundheitsfoerderung.ch/pdf_doc_xls/d/betriebliche_gesundheitsfoerderung/grundlagen_wissen/Rahmenkonzept_Gesundheitskompetenz_de.pdf ",
-        "source": "youpers",
-        "defaultfrequency": "once",
-        "defaultexecutiontype": "group",
-        "defaultvisibility": "campaign",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "SocialInteraction"
-        ],
-        "aktivittsfeld1": "SocialInteraction"
+        "recWeights": [],
+        "fields": ["SocialInteraction"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae5000000006f",
+        "version": 0
     },
     {
         "number": "Act-108",
@@ -1707,15 +84,11 @@
         "defaultfrequency": "once",
         "defaultexecutiontype": "group",
         "defaultvisibility": "campaign",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "SocialInteraction",
-            "PhysicalActivity"
-        ],
-        "aktivittsfeld1": "SocialInteraction",
-        "aktivittsfeld2": "PhysicalActivity"
+        "recWeights": [],
+        "fields": ["SocialInteraction", "PhysicalActivity"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000071",
+        "version": 0
     },
     {
         "number": "Act-109",
@@ -1724,15 +97,11 @@
         "defaultfrequency": "once",
         "defaultexecutiontype": "group",
         "defaultvisibility": "campaign",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "SocialInteraction",
-            "LeisureActivity"
-        ],
-        "aktivittsfeld1": "SocialInteraction",
-        "aktivittsfeld2": "LeisureActivity"
+        "recWeights": [],
+        "fields": ["SocialInteraction", "LeisureActivity"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000072",
+        "version": 0
     },
     {
         "number": "Act-110",
@@ -1741,33 +110,11 @@
         "defaultfrequency": "once",
         "defaultexecutiontype": "group",
         "defaultvisibility": "campaign",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "SocialInteraction",
-            "LeisureActivity"
-        ],
-        "aktivittsfeld1": "SocialInteraction",
-        "aktivittsfeld2": "LeisureActivity"
-    },
-    {
-        "number": "Act-111",
-        "title": "Führe eine neue Freizeitaktivität in einem Verein durch (Sport- oder Turnverein, kirchliche Organisation, Musikverein/Chor)",
-        "text": "http://www.gesundheitsfoerderung.ch/pdf_doc_xls/d/betriebliche_gesundheitsfoerderung/grundlagen_wissen/PsychGesundheit_de.pdf S. 96",
-        "source": "youpers",
-        "defaultfrequency": "week",
-        "defaultexecutiontype": "group",
-        "defaultvisibility": "campaign",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "SocialInteraction",
-            "LeisureActivity"
-        ],
-        "aktivittsfeld1": "SocialInteraction",
-        "aktivittsfeld2": "LeisureActivity"
+        "recWeights": [],
+        "fields": ["SocialInteraction", "LeisureActivity"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000073",
+        "version": 0
     },
     {
         "number": "Act-112",
@@ -1776,13 +123,11 @@
         "defaultfrequency": "day",
         "defaultexecutiontype": "self",
         "defaultvisibility": "campaign",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "PhysicalActivity"
-        ],
-        "aktivittsfeld1": "PhysicalActivity"
+        "recWeights": [],
+        "fields": ["PhysicalActivity"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000075",
+        "version": 0
     },
     {
         "number": "Act-113",
@@ -1791,13 +136,11 @@
         "defaultfrequency": "day",
         "defaultexecutiontype": "self",
         "defaultvisibility": "campaign",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "PhysicalActivity"
-        ],
-        "aktivittsfeld1": "PhysicalActivity"
+        "recWeights": [],
+        "fields": ["PhysicalActivity"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000076",
+        "version": 0
     },
     {
         "number": "Act-114",
@@ -1806,13 +149,11 @@
         "defaultfrequency": "day",
         "defaultexecutiontype": "self",
         "defaultvisibility": "campaign",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "PhysicalActivity"
-        ],
-        "aktivittsfeld1": "PhysicalActivity"
+        "recWeights": [],
+        "fields": ["PhysicalActivity"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000077",
+        "version": 0
     },
     {
         "number": "Act-115",
@@ -1821,30 +162,11 @@
         "defaultfrequency": "day",
         "defaultexecutiontype": "self",
         "defaultvisibility": "campaign",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "PhysicalActivity",
-            "Nutrition"
-        ],
-        "aktivittsfeld1": "PhysicalActivity",
-        "aktivittsfeld2": "Nutrition"
-    },
-    {
-        "number": "Act-116",
-        "title": "Fahr mit dem Velo zur Arbeit",
-        "source": "youpers",
-        "defaultfrequency": "week",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "campaign",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "PhysicalActivity"
-        ],
-        "aktivittsfeld1": "PhysicalActivity"
+        "recWeights": [],
+        "fields": ["PhysicalActivity", "Nutrition"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000078",
+        "version": 0
     },
     {
         "number": "Act-117",
@@ -1853,13 +175,11 @@
         "defaultfrequency": "day",
         "defaultexecutiontype": "self",
         "defaultvisibility": "campaign",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "PhysicalActivity"
-        ],
-        "aktivittsfeld1": "PhysicalActivity"
+        "recWeights": [],
+        "fields": ["PhysicalActivity"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae5000000007a",
+        "version": 0
     },
     {
         "number": "Act-118",
@@ -1868,15 +188,11 @@
         "defaultfrequency": "week",
         "defaultexecutiontype": "self",
         "defaultvisibility": "campaign",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "PhysicalActivity",
-            "LeisureActivity"
-        ],
-        "aktivittsfeld1": "PhysicalActivity",
-        "aktivittsfeld2": "LeisureActivity"
+        "recWeights": [],
+        "fields": ["PhysicalActivity", "LeisureActivity"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae5000000007b",
+        "version": 0
     },
     {
         "number": "Act-119",
@@ -1885,15 +201,11 @@
         "defaultfrequency": "week",
         "defaultexecutiontype": "self",
         "defaultvisibility": "campaign",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "PhysicalActivity",
-            "LeisureActivity"
-        ],
-        "aktivittsfeld1": "PhysicalActivity",
-        "aktivittsfeld2": "LeisureActivity"
+        "recWeights": [],
+        "fields": ["PhysicalActivity", "LeisureActivity"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae5000000007c",
+        "version": 0
     },
     {
         "number": "Act-120",
@@ -1902,15 +214,11 @@
         "defaultfrequency": "week",
         "defaultexecutiontype": "self",
         "defaultvisibility": "campaign",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "PhysicalActivity",
-            "LeisureActivity"
-        ],
-        "aktivittsfeld1": "PhysicalActivity",
-        "aktivittsfeld2": "LeisureActivity"
+        "recWeights": [],
+        "fields": ["PhysicalActivity", "LeisureActivity"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae5000000007d",
+        "version": 0
     },
     {
         "number": "Act-121",
@@ -1919,15 +227,11 @@
         "defaultfrequency": "once",
         "defaultexecutiontype": "group",
         "defaultvisibility": "campaign",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "PhysicalActivity",
-            "LeisureActivity"
-        ],
-        "aktivittsfeld1": "PhysicalActivity",
-        "aktivittsfeld2": "LeisureActivity"
+        "recWeights": [],
+        "fields": ["PhysicalActivity", "LeisureActivity"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae5000000007e",
+        "version": 0
     },
     {
         "number": "Act-122",
@@ -1936,13 +240,11 @@
         "defaultfrequency": "day",
         "defaultexecutiontype": "self",
         "defaultvisibility": "campaign",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "PhysicalActivity"
-        ],
-        "aktivittsfeld1": "PhysicalActivity"
+        "recWeights": [],
+        "fields": ["PhysicalActivity"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae5000000007f",
+        "version": 0
     },
     {
         "number": "Act-123",
@@ -1951,45 +253,37 @@
         "defaultfrequency": "once",
         "defaultexecutiontype": "self",
         "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "PhysicalActivity"
-        ],
-        "aktivittsfeld1": "PhysicalActivity"
+        "recWeights": [],
+        "fields": ["PhysicalActivity"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000080",
+        "version": 0
     },
     {
         "number": "Act-124",
         "title": "Führe ein Fitnesstraining durch, dass dir Spass macht",
-        "text": "http://www.gesundheitsfoerderung.ch/pdf_doc_xls/d/betriebliche_gesundheitsfoerderung/grundlagen_wissen/PsychGesundheit_de.pdf S. 101",
         "source": "youpers",
         "defaultfrequency": "week",
         "defaultexecutiontype": "self",
         "defaultvisibility": "campaign",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "PhysicalActivity"
-        ],
-        "aktivittsfeld1": "PhysicalActivity"
+        "recWeights": [],
+        "fields": ["PhysicalActivity"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000081",
+        "version": 0
     },
     {
         "number": "Act-125",
         "title": "Stärke deinen Rücken mit Rückenschule Übungen",
-        "text": "http://www.gesundheitsfoerderung.ch/pdf_doc_xls/d/betriebliche_gesundheitsfoerderung/grundlagen_wissen/PsychGesundheit_de.pdf S. 98",
         "source": "youpers",
         "defaultfrequency": "week",
         "defaultexecutiontype": "self",
         "defaultvisibility": "campaign",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "PhysicalActivity"
-        ],
-        "aktivittsfeld1": "PhysicalActivity"
+        "recWeights": [],
+        "fields": ["PhysicalActivity"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000082",
+        "version": 0
     },
     {
         "number": "Act-126",
@@ -1998,29 +292,24 @@
         "defaultfrequency": "day",
         "defaultexecutiontype": "self",
         "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "Nutrition"
-        ],
-        "aktivittsfeld1": "Nutrition"
+        "recWeights": [],
+        "fields": ["Nutrition"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000083",
+        "version": 0
     },
     {
         "number": "Act-127",
-        "title": "Trinke reichlich Wasser z.B. 6-mal täglich 1 Glas oder eine Tasse (insgesamt 1 bis 2 Liter) ",
-        "text": "http://www.gesundheit.lu.ch/broschuere_was_essen_und_trinken._pdf.pdf;  ",
+        "title": "Trinke reichlich Wasser z.B. 6-mal täglich 1 Glas oder eine Tasse (insgesamt 1 bis 2 Liter)",
         "source": "youpers",
         "defaultfrequency": "day",
         "defaultexecutiontype": "self",
         "defaultvisibility": "campaign",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "Nutrition"
-        ],
-        "aktivittsfeld1": "Nutrition"
+        "recWeights": [],
+        "fields": ["Nutrition"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000084",
+        "version": 0
     },
     {
         "number": "Act-128",
@@ -2029,13 +318,11 @@
         "defaultfrequency": "week",
         "defaultexecutiontype": "self",
         "defaultvisibility": "campaign",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "Nutrition"
-        ],
-        "aktivittsfeld1": "Nutrition"
+        "recWeights": [],
+        "fields": ["Nutrition"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000085",
+        "version": 0
     },
     {
         "number": "Act-129",
@@ -2044,28 +331,24 @@
         "defaultfrequency": "week",
         "defaultexecutiontype": "self",
         "defaultvisibility": "campaign",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "Nutrition"
-        ],
-        "aktivittsfeld1": "Nutrition"
+        "recWeights": [],
+        "fields": ["Nutrition"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000086",
+        "version": 0
     },
     {
         "number": "Act-130",
-        "title": "Esse 2 Portionen Obst, Früchte oder Beeren pro Tag (z.B. eine Frucht zum Znüni und ein Fruchtdessert oder Fruchtsaft am Abend) ",
+        "title": "Esse 2 Portionen Obst, Früchte oder Beeren pro Tag (z.B. eine Frucht zum Znüni und ein Fruchtdessert oder Fruchtsaft am Abend)",
         "source": "youpers",
         "defaultfrequency": "day",
         "defaultexecutiontype": "self",
         "defaultvisibility": "campaign",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "Nutrition"
-        ],
-        "aktivittsfeld1": "Nutrition"
+        "recWeights": [],
+        "fields": ["Nutrition"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000087",
+        "version": 0
     },
     {
         "number": "Act-131",
@@ -2074,13 +357,11 @@
         "defaultfrequency": "day",
         "defaultexecutiontype": "self",
         "defaultvisibility": "campaign",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "Nutrition"
-        ],
-        "aktivittsfeld1": "Nutrition"
+        "recWeights": [],
+        "fields": ["Nutrition"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000088",
+        "version": 0
     },
     {
         "number": "Act-132",
@@ -2089,28 +370,24 @@
         "defaultfrequency": "day",
         "defaultexecutiontype": "self",
         "defaultvisibility": "campaign",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "Nutrition"
-        ],
-        "aktivittsfeld1": "Nutrition"
+        "recWeights": [],
+        "fields": ["Nutrition"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000089",
+        "version": 0
     },
     {
         "number": "Act-133",
-        "title": "Esse ein bis zweimal pro Woche Fisch ",
+        "title": "Esse ein bis zweimal pro Woche Fisch",
         "source": "youpers",
         "defaultfrequency": "week",
         "defaultexecutiontype": "self",
         "defaultvisibility": "campaign",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "Nutrition"
-        ],
-        "aktivittsfeld1": "Nutrition"
+        "recWeights": [],
+        "fields": ["Nutrition"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae5000000008a",
+        "version": 0
     },
     {
         "number": "Act-134",
@@ -2119,13 +396,11 @@
         "defaultfrequency": "once",
         "defaultexecutiontype": "self",
         "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "Nutrition"
-        ],
-        "aktivittsfeld1": "Nutrition"
+        "recWeights": [],
+        "fields": ["Nutrition"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae5000000008b",
+        "version": 0
     },
     {
         "number": "Act-135",
@@ -2134,45 +409,37 @@
         "defaultfrequency": "week",
         "defaultexecutiontype": "self",
         "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "PhysicalActivity",
-            "LeisureActivity"
-        ],
-        "aktivittsfeld1": "PhysicalActivity",
-        "aktivittsfeld2": "LeisureActivity"
+        "recWeights": [],
+        "fields": ["PhysicalActivity", "LeisureActivity"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae5000000008c",
+        "version": 0
     },
     {
         "number": "Act-136",
-        "title": "Koche diese Woche zu Hause bewusst einmal etwas Spezielles ",
+        "title": "Koche diese Woche zu Hause bewusst einmal etwas Spezielles",
         "source": "community",
         "defaultfrequency": "once",
         "defaultexecutiontype": "self",
         "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "LeisureActivity"
-        ],
-        "aktivittsfeld1": "LeisureActivity"
+        "recWeights": [],
+        "fields": ["LeisureActivity"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae5000000008d",
+        "version": 0
     },
     {
         "number": "Act-137",
-        "title": "Führe mit dem/r Partner/in ein offenes Gespräch über die Freizeitgestaltung und arbeitet gemeinsame Ziele aus ",
+        "title": "Führe mit dem/r Partner/in ein offenes Gespräch über die Freizeitgestaltung und arbeitet gemeinsame Ziele aus",
         "source": "community",
         "defaultfrequency": "once",
         "defaultexecutiontype": "self",
         "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "LeisureActivity"
-        ],
-        "aktivittsfeld1": "LeisureActivity"
+        "recWeights": [],
+        "fields": ["LeisureActivity"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae5000000008e",
+        "version": 0
     },
     {
         "number": "Act-138",
@@ -2181,13 +448,11 @@
         "defaultfrequency": "once",
         "defaultexecutiontype": "self",
         "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "LeisureActivity"
-        ],
-        "aktivittsfeld1": "LeisureActivity"
+        "recWeights": [],
+        "fields": ["LeisureActivity"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae5000000008f",
+        "version": 0
     },
     {
         "number": "Act-139",
@@ -2196,13 +461,11 @@
         "defaultfrequency": "once",
         "defaultexecutiontype": "self",
         "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "LeisureActivity"
-        ],
-        "aktivittsfeld1": "LeisureActivity"
+        "recWeights": [],
+        "fields": ["LeisureActivity"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000090",
+        "version": 0
     },
     {
         "number": "Act-140",
@@ -2211,13 +474,11 @@
         "defaultfrequency": "once",
         "defaultexecutiontype": "self",
         "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "LeisureActivity"
-        ],
-        "aktivittsfeld1": "LeisureActivity"
+        "recWeights": [],
+        "fields": ["LeisureActivity"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000091",
+        "version": 0
     },
     {
         "number": "Act-141",
@@ -2226,13 +487,11 @@
         "defaultfrequency": "once",
         "defaultexecutiontype": "self",
         "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "LeisureActivity"
-        ],
-        "aktivittsfeld1": "LeisureActivity"
+        "recWeights": [],
+        "fields": ["LeisureActivity"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000092",
+        "version": 0
     },
     {
         "number": "Act-142",
@@ -2241,15 +500,11 @@
         "defaultfrequency": "once",
         "defaultexecutiontype": "self",
         "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "LeisureActivity",
-            "PhysicalActivity"
-        ],
-        "aktivittsfeld1": "LeisureActivity",
-        "aktivittsfeld2": "PhysicalActivity"
+        "recWeights": [],
+        "fields": ["LeisureActivity", "PhysicalActivity"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000093",
+        "version": 0
     },
     {
         "number": "Act-143",
@@ -2258,31 +513,11 @@
         "defaultfrequency": "once",
         "defaultexecutiontype": "self",
         "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "LeisureActivity",
-            "Relaxation"
-        ],
-        "aktivittsfeld1": "LeisureActivity",
-        "aktivittsfeld2": "Relaxation"
-    },
-    {
-        "number": "Act-144",
-        "title": "Probiere ein neues Hobby aus (je nach Stressursache eine ruhige oder gesellschaftliche Freizeitbeschäftigung wie z.B. Chor, Singen, Turnen...) ",
-        "text": "⇒ Valentine E, Evans C (2001) The effects of solo singing, choral singing and swimming on mood and physiological indices. Psychology and Psychotherapy 74/1 115-120: Engaging in these activities (solo singing, choral singing and swimming) reduced tense arousal and increased energetic arousal, positive hedonic tone and heart rate\nhttp://archiv.ub.uni-marburg.de/diss/z2009/0801/pdf/djg.pd",
-        "source": "youpers",
-        "defaultfrequency": "once",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "LeisureActivity"
-        ],
-        "aktivittsfeld1": "LeisureActivity"
+        "recWeights": [],
+        "fields": ["LeisureActivity", "Relaxation"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000094",
+        "version": 0
     },
     {
         "number": "Act-145",
@@ -2291,28 +526,11 @@
         "defaultfrequency": "day",
         "defaultexecutiontype": "self",
         "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "Nutrition"
-        ],
-        "aktivittsfeld1": "Nutrition"
-    },
-    {
-        "number": "Act-146",
-        "title": "Esse zweimal täglich als Beilage zu Hauptmahlzeiten dunkles Brot, Vollkornreis, -teigwaren u.ä. oder Hülsenfrüchte",
-        "source": "youpers",
-        "defaultfrequency": "day",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "Nutrition"
-        ],
-        "aktivittsfeld1": "Nutrition"
+        "recWeights": [],
+        "fields": ["Nutrition"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000096",
+        "version": 0
     },
     {
         "number": "Act-147",
@@ -2321,13 +539,11 @@
         "defaultfrequency": "day",
         "defaultexecutiontype": "self",
         "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "Nutrition"
-        ],
-        "aktivittsfeld1": "Nutrition"
+        "recWeights": [],
+        "fields": ["Nutrition"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000098",
+        "version": 0
     },
     {
         "number": "Act-148",
@@ -2336,13 +552,11 @@
         "defaultfrequency": "day",
         "defaultexecutiontype": "self",
         "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "Nutrition"
-        ],
-        "aktivittsfeld1": "Nutrition"
+        "recWeights": [],
+        "fields": ["Nutrition"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000099",
+        "version": 0
     },
     {
         "number": "Act-149",
@@ -2351,13 +565,11 @@
         "defaultfrequency": "day",
         "defaultexecutiontype": "self",
         "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "Nutrition"
-        ],
-        "aktivittsfeld1": "Nutrition"
+        "recWeights": [],
+        "fields": ["Nutrition"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae5000000009a",
+        "version": 0
     },
     {
         "number": "Act-150",
@@ -2366,13 +578,11 @@
         "defaultfrequency": "day",
         "defaultexecutiontype": "self",
         "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "Relaxation"
-        ],
-        "aktivittsfeld1": "Relaxation"
+        "recWeights": [],
+        "fields": ["Relaxation"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae5000000009b",
+        "version": 0
     },
     {
         "number": "Act-151",
@@ -2381,13 +591,11 @@
         "defaultfrequency": "day",
         "defaultexecutiontype": "self",
         "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "Relaxation"
-        ],
-        "aktivittsfeld1": "Relaxation"
+        "recWeights": [],
+        "fields": ["Relaxation"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae5000000009c",
+        "version": 0
     },
     {
         "number": "Act-152",
@@ -2396,32 +604,11 @@
         "defaultfrequency": "day",
         "defaultexecutiontype": "self",
         "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "Nutrition",
-            "Relaxation"
-        ],
-        "aktivittsfeld1": "Nutrition",
-        "aktivittsfeld2": "Relaxation"
-    },
-    {
-        "number": "Act-153",
-        "title": "Beobachte dein Essverhalten indem du dir folgende Frage stellst: \"Wie, wo, warum und wie viel esse ich?\" und führe einige Tage ein Esstagebuch, um dir schlechten Essgewohnheiten bewusst zu werden ",
-        "source": "community",
-        "defaultfrequency": "once",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "Nutrition",
-            "AwarenessAbility"
-        ],
-        "aktivittsfeld1": "Nutrition",
-        "aktivittsfeld2": "AwarenessAbility"
+        "recWeights": [],
+        "fields": ["Nutrition", "Relaxation"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae5000000009d",
+        "version": 0
     },
     {
         "number": "Act-154",
@@ -2430,45 +617,11 @@
         "defaultfrequency": "day",
         "defaultexecutiontype": "self",
         "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "Nutrition"
-        ],
-        "aktivittsfeld1": "Nutrition"
-    },
-    {
-        "number": "Act-155",
-        "title": "Verzichte tagsüber bei Stress besser ganz auf das Essen und lege die grösseren Mahlzeiten auf die ruhigeren Abendstunden",
-        "source": "community",
-        "defaultfrequency": "day",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "Nutrition"
-        ],
-        "aktivittsfeld1": "Nutrition"
-    },
-    {
-        "number": "Act-156",
-        "title": "Trickse deinen Gluscht aus, indem du einen Moment in Ruhe abwartest oder zur Überbrückung ein Glas Wasser trinkst",
-        "source": "community",
-        "defaultfrequency": "day",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "Nutrition",
-            "AwarenessAbility"
-        ],
-        "aktivittsfeld1": "Nutrition",
-        "aktivittsfeld2": "AwarenessAbility"
+        "recWeights": [],
+        "fields": ["Nutrition"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae5000000009f",
+        "version": 0
     },
     {
         "number": "Act-157",
@@ -2477,128 +630,11 @@
         "defaultfrequency": "day",
         "defaultexecutiontype": "self",
         "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "Nutrition",
-            "Relaxation"
-        ],
-        "aktivittsfeld1": "Nutrition",
-        "aktivittsfeld2": "Relaxation"
-    },
-    {
-        "number": "Act-158",
-        "title": "Baue täglich eine halbe Stunde oder drei Mal zehn Minuten Bewegung in deinen Arbeitsalltag ein (gilt insb. für viel Beschäftigte und Bewegungsmuffel)",
-        "source": "community",
-        "defaultfrequency": "day",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "campaign",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "PhysicalActivity"
-        ],
-        "aktivittsfeld1": "PhysicalActivity"
-    },
-    {
-        "number": "Act-159",
-        "title": "Überlege Dir, welcher Sport und wie viel davon, sich für deinen persönlichen Ausgleich eignet (Beachte dabei, dass Walking oder Jogging das einfachste Ausdauertraining ist; Laufen kann man immer und überall)",
-        "source": "community",
-        "defaultfrequency": "once",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "PhysicalActivity",
-            "AwarenessAbility"
-        ],
-        "aktivittsfeld1": "PhysicalActivity",
-        "aktivittsfeld2": "AwarenessAbility"
-    },
-    {
-        "number": "Act-160",
-        "title": "Esse am Tag ein bis zwei Stunden vor einer körperlichen Aktivität ein Brot mit Käse, ein paar Nüsse oder Mandeln sowie frische oder getrocknete Früchte",
-        "source": "community",
-        "defaultfrequency": "day",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "PhysicalActivity",
-            "Nutrition"
-        ],
-        "aktivittsfeld1": "PhysicalActivity",
-        "aktivittsfeld2": "Nutrition"
-    },
-    {
-        "number": "Act-161",
-        "title": "Trinke am frühen Morgen ein Glas Wasser vor den Kraftübungen oder einer lockeren Jogging-Runde",
-        "source": "community",
-        "defaultfrequency": "day",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "PhysicalActivity",
-            "Nutrition"
-        ],
-        "aktivittsfeld1": "PhysicalActivity",
-        "aktivittsfeld2": "Nutrition"
-    },
-    {
-        "number": "Act-162",
-        "title": "Starte als Einsteiger/in sachte, locker und langsam dein Training und übertreibe nicht!",
-        "source": "community",
-        "defaultfrequency": "once",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "PhysicalActivity",
-            "AwarenessAbility"
-        ],
-        "aktivittsfeld1": "PhysicalActivity",
-        "aktivittsfeld2": "AwarenessAbility"
-    },
-    {
-        "number": "Act-163",
-        "title": "Bewege dich mind. zweieinhalb Stunden pro Woche (idealerweise auf mehrere Tage verteilt) in Form von Alltagsaktivitäten oder sportlicher Aktivität",
-        "source": "community",
-        "defaultfrequency": "week",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "campaign",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "PhysicalActivity"
-        ],
-        "aktivittsfeld1": "PhysicalActivity"
-    },
-    {
-        "number": "Act-164",
-        "title": "Generiere für deine Gesundheit, dein Wohlbefinden und deine Leistungsfähigkeit einen zusätzlichen Nutzen, indem du neben der empfohlenen Bewegung noch ein zusätzliches Training von Ausdauer, Kraft und Beweglichkeit absolvierst",
-        "source": "community",
-        "defaultfrequency": "week",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "campaign",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "PhysicalActivity"
-        ],
-        "aktivittsfeld1": "PhysicalActivity"
+        "recWeights": [],
+        "fields": ["Nutrition", "Relaxation"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae500000000a2",
+        "version": 0
     },
     {
         "number": "Act-165",
@@ -2607,32 +643,11 @@
         "defaultfrequency": "day",
         "defaultexecutiontype": "self",
         "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "PhysicalActivity",
-            "Relaxation"
-        ],
-        "aktivittsfeld1": "PhysicalActivity",
-        "aktivittsfeld2": "Relaxation"
-    },
-    {
-        "number": "Act-166",
-        "title": "Beachte folgende Reihenfolge beim Aufbautraining: 1. Steigere die Häufigkeit des Trainings, 2. Steigere die Dauer des Trainings, 3. Erhöhe die Intensität des Trainings",
-        "source": "community",
-        "defaultfrequency": "once",
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "PhysicalActivity",
-            "AwarenessAbility"
-        ],
-        "aktivittsfeld1": "PhysicalActivity",
-        "aktivittsfeld2": "AwarenessAbility"
+        "recWeights": [],
+        "fields": ["PhysicalActivity", "Relaxation"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae500000000aa",
+        "version": 0
     },
     {
         "number": "Act-167",
@@ -2641,13 +656,1519 @@
         "defaultfrequency": "week",
         "defaultexecutiontype": "self",
         "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "PhysicalActivity"
-        ],
-        "aktivittsfeld1": "PhysicalActivity"
+        "recWeights": [],
+        "fields": ["PhysicalActivity"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae500000000ac",
+        "version": 0
+    },
+    {
+        "number": "Act-1",
+        "title": "Schätze täglich deinen aktuellen Stresslevel ein",
+        "source": "community",
+        "defaultfrequency": "day",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["AwarenessAbility"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000006",
+        "version": 0
+    },
+    {
+        "number": "Act-2",
+        "title": "Reflektiere den Stresslevel in der vergangenen Woche",
+        "source": "community",
+        "defaultfrequency": "week",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["AwarenessAbility"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000007",
+        "version": 0
+    },
+    {
+        "number": "Act-03",
+        "title": "Reflektiere den Stresslevel im abgelaufenen Monat",
+        "source": "community",
+        "defaultfrequency": "week",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["AwarenessAbility"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000008",
+        "version": 0
+    },
+    {
+        "number": "Act-04",
+        "title": "Führe ein Stress Self Assessment durch, um deine Stressursachen zu eruieren",
+        "source": "community",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["AwarenessAbility"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000009",
+        "version": 0
+    },
+    {
+        "number": "Act-05",
+        "title": "Führe ein Stress Self Assessment durch, um stressfördernde Haltungen zu erkennen",
+        "source": "community",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["AwarenessAbility"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae5000000000a",
+        "version": 0
+    },
+    {
+        "number": "Act-06",
+        "title": "Lese ein Buch zum Thema „positive Einstellung entwickeln“ oder erkundige dich im Internet",
+        "source": "community",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["AwarenessAbility"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae5000000000b",
+        "version": 0
+    },
+    {
+        "number": "Act-07",
+        "title": "Nehme an einem Seminar zum Thema „positive Einstellung entwickeln“ teil",
+        "source": "community",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["AwarenessAbility"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae5000000000c",
+        "version": 0
+    },
+    {
+        "number": "Act-08",
+        "title": "Führe ein Gespräch mit einem professionellen Stress Coach, um an deiner positiven Einstellung zu arbeiten",
+        "source": "community",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["AwarenessAbility"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae5000000000d",
+        "version": 0
+    },
+    {
+        "number": "Act-09",
+        "title": "Lese ein Buch zum Thema „Stressbewältigungsstrategien“ oder erkundige dich im Internet",
+        "source": "community",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["AwarenessAbility"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae5000000000e",
+        "version": 0
+    },
+    {
+        "number": "Act-10",
+        "title": "Nehme an einem Seminar zum Thema „Stressbewältigungsstrategien“ teil",
+        "source": "community",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["AwarenessAbility"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae5000000000f",
+        "version": 0
+    },
+    {
+        "number": "Act-11",
+        "title": "Führe einen Workshop/Brainstorming mit einem professionellen Coach durch, um eine für mich passende Stressbewältigungs-Strategie zu entwickeln",
+        "source": "community",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["AwarenessAbility"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000010",
+        "version": 0
+    },
+    {
+        "number": "Act-12",
+        "title": "Lese ein Buch zum Thema „Persönliche Ressourcen stärken“ oder erkundige dich im Internet",
+        "source": "community",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["AwarenessAbility"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000011",
+        "version": 0
+    },
+    {
+        "number": "Act-13",
+        "title": "Nehme an einem Seminar zum Thema „Persönliche Ressourcen stärken “ teil",
+        "source": "community",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["AwarenessAbility"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000012",
+        "version": 0
+    },
+    {
+        "number": "Act-14",
+        "title": "Suche eine sinnvolle Weiterbildungsmöglichkeit, um deine berufliche Qualifikation zu verbessern",
+        "source": "community",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["AwarenessAbility"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000013",
+        "version": 0
+    },
+    {
+        "number": "Act-15",
+        "title": "Führe ein Gespräch mit deinem Vorgesetztem mit den Ziel, deinen persönlichen Handlungsspielraum bei der Arbeitsgestaltung zu erweitern",
+        "source": "community",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["AwarenessAbility"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000014",
+        "version": 0
+    },
+    {
+        "number": "Act-16",
+        "title": "Ziehe einen professionellen Stressberater zur Unterstützung bei der Stressbewältigung bei",
+        "source": "community",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["AwarenessAbility"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000015",
+        "version": 0
+    },
+    {
+        "number": "Act-17",
+        "title": "Führe ein Mentaltraining durch (positive Suggestionen, Gedankenstopp, Affirmationen, positive Formulierung von Sätzen)",
+        "source": "youpers",
+        "defaultfrequency": "day",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["AwarenessAbility", "Relaxation"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000016",
+        "version": 0
+    },
+    {
+        "number": "Act-18",
+        "title": "Nehme an Stressimmunisierungstraining, Stress-Management-Training SMT und Stress-Resistenz-Training teil",
+        "source": "youpers",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["AwarenessAbility"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000017",
+        "version": 0
+    },
+    {
+        "number": "Act-19",
+        "title": "Lese ein Buch zum Thema „persönliches Zeitmanagement“ oder erkundige dich im Internet",
+        "source": "community",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["TimeManagement"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000018",
+        "version": 0
+    },
+    {
+        "number": "Act-20",
+        "title": "Nehme an Seminar zum Thema „persönliches Zeitmanagement“ teil",
+        "source": "community",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "group",
+        "defaultvisibility": "campaign",
+        "recWeights": [],
+        "fields": ["TimeManagement"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000019",
+        "version": 0
+    },
+    {
+        "number": "Act-21",
+        "title": "Nehme an online Forum zum Thema „persönliches Zeitmanagement“ teil",
+        "source": "community",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "group",
+        "defaultvisibility": "public",
+        "recWeights": [],
+        "fields": ["TimeManagement", "SocialInteraction"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae5000000001a",
+        "version": 0
+    },
+    {
+        "number": "Act-22",
+        "title": "Setze ein App/Tool für das persönliche Zeitmanagement ein",
+        "source": "community",
+        "defaultfrequency": "day",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["TimeManagement"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae5000000001b",
+        "version": 0
+    },
+    {
+        "number": "Act-23",
+        "title": "Führe einen Erfahrungsaustausch mit Arbeitskolleg/innen zum Thema \"persönlichen Zeitmanagement\" während der Mittagspause durch",
+        "source": "community",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "group",
+        "defaultvisibility": "campaign",
+        "recWeights": [],
+        "fields": ["TimeManagement", "SocialInteraction"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae5000000001c",
+        "version": 0
+    },
+    {
+        "number": "Act-24",
+        "title": "Führe einen Workshop/ein Brainstorming mit einem professionellen Coach durch, um _ideen für die Verbesserung des persönlichen Zeitmanagements zu sammeln",
+        "source": "community",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["TimeManagement"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae5000000001d",
+        "version": 0
+    },
+    {
+        "number": "Act-25",
+        "title": "Mache eine bewusste Tagesplanung, Setze dir ein Tagesziel und gewinne Zeit durch Zeitplanung",
+        "source": "youpers",
+        "defaultfrequency": "day",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["TimeManagement"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae5000000001e",
+        "version": 0
+    },
+    {
+        "number": "Act-26",
+        "title": "Lege die Arbeit und Ruhepausen in passende Zeitintervalle",
+        "source": "community",
+        "defaultfrequency": "day",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["TimeManagement"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae5000000001f",
+        "version": 0
+    },
+    {
+        "number": "Act-27",
+        "title": "Ziehe einen professionellen Stressberater zur Unterstützung beim Zeitmanagement bei",
+        "source": "community",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["TimeManagement"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000020",
+        "version": 0
+    },
+    {
+        "number": "Act-28",
+        "title": "Setze heute bewusst Prioritäten bei deiner Arbeitsplanung",
+        "source": "youpers",
+        "defaultfrequency": "day",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["TimeManagement", "WorkStructuring"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000021",
+        "version": 0
+    },
+    {
+        "number": "Act-29",
+        "title": "Beachte deine Tagesleistungskurve bei deiner Tagesarbeitsplanung",
+        "source": "youpers",
+        "defaultfrequency": "day",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["TimeManagement", "WorkStructuring"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000022",
+        "version": 0
+    },
+    {
+        "number": "Act-30",
+        "title": "Delegiere heute bewusst eine Aufgabe",
+        "source": "youpers",
+        "defaultfrequency": "day",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["TimeManagement", "WorkStructuring"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000023",
+        "version": 0
+    },
+    {
+        "number": "Act-31",
+        "title": "Führe ein offenes Gespräch mit deinem/r Vorgesetzten über deine persönliche Arbeitssituation und –gestaltung",
+        "source": "community",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["WorkStructuring"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000024",
+        "version": 0
+    },
+    {
+        "number": "Act-32",
+        "title": "Führe ein offenes Gespräch mit deinem/r Vorgesetzten mit den Ziel, den persönlichen Handlungsspielraum zu erweitern",
+        "source": "community",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["WorkStructuring"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000025",
+        "version": 0
+    },
+    {
+        "number": "Act-33",
+        "title": "Probiere die Möglichkeiten der flexiblen Arbeitszeit aus",
+        "source": "community",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "recWeights": [],
+        "fields": ["WorkStructuring"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000026",
+        "version": 0
+    },
+    {
+        "number": "Act-34",
+        "title": "Probiere die Möglichkeiten der Heimarbeit aus",
+        "source": "community",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "recWeights": [],
+        "fields": ["WorkStructuring"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000027",
+        "version": 0
+    },
+    {
+        "number": "Act-35",
+        "title": "Arbeite gemeinsam mit dem/r Vorgesetzten eine sinnvolle Arbeitsplanung aus",
+        "source": "community",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["WorkStructuring"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000028",
+        "version": 0
+    },
+    {
+        "number": "Act-36",
+        "title": "Bespreche ungelösten Konflikt mit deinem/r Personalverantwortlichen",
+        "source": "community",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["WorkStructuring"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000029",
+        "version": 0
+    },
+    {
+        "number": "Act-37",
+        "title": "Suche eine für dich sinnvolle Weiterbildung und führe sie durch",
+        "source": "community",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["WorkStructuring", "AwarenessAbility"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae5000000002a",
+        "version": 0
+    },
+    {
+        "number": "Act-38",
+        "title": "Stelle deinen Stuhl und Tisch ergonomisch ein",
+        "source": "community",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "recWeights": [],
+        "fields": ["WorkStructuring"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae5000000002b",
+        "version": 0
+    },
+    {
+        "number": "Act-39",
+        "title": "Stelle deinen Computer ergonomisch ein",
+        "source": "community",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "recWeights": [],
+        "fields": ["WorkStructuring"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae5000000002c",
+        "version": 0
+    },
+    {
+        "number": "Act-40",
+        "title": "Stelle eine schöne Pflanze an deinen Arbeitsplatz",
+        "source": "community",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "recWeights": [],
+        "fields": ["WorkStructuring"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae5000000002d",
+        "version": 0
+    },
+    {
+        "number": "Act-41",
+        "title": "Stelle ein persönliches/inspirierendes Bild an den Arbeitslatz",
+        "source": "community",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "recWeights": [],
+        "fields": ["WorkStructuring"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae5000000002e",
+        "version": 0
+    },
+    {
+        "number": "Act-42",
+        "title": "Verändere deine Sitzposition alle 15 Minuten",
+        "source": "community",
+        "defaultfrequency": "day",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "recWeights": [],
+        "fields": ["WorkStructuring"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae5000000002f",
+        "version": 0
+    },
+    {
+        "number": "Act-43",
+        "title": "„Perfektionist\": Liefere deine Arbeit bewusst zeitgerecht und ohne perfektionsanspruch ab",
+        "source": "community",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["AwarenessAbility"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000030",
+        "version": 0
+    },
+    {
+        "number": "Act-44",
+        "title": "\"Kontrolltyp\": Frage bewusst heute einmal nicht nach",
+        "source": "community",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["AwarenessAbility"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000031",
+        "version": 0
+    },
+    {
+        "number": "Act-45",
+        "title": "\"Pflichtmensch\": Streiche bewusst 1 Pendenz aus der Tagesplanung",
+        "source": "community",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["AwarenessAbility"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000032",
+        "version": 0
+    },
+    {
+        "number": "Act-46",
+        "title": "\"Pflichtmensch\": Delegiere bewusst eine Arbeit",
+        "source": "community",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["AwarenessAbility"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000033",
+        "version": 0
+    },
+    {
+        "number": "Act-47",
+        "title": "\"fehlendes Selbstvertrauen\": Nehme bewusst eine Herausforderung an, die du dir nicht zutraust",
+        "source": "community",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["AwarenessAbility"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000034",
+        "version": 0
+    },
+    {
+        "number": "Act-48",
+        "title": "\"fehlendes Selbstvertrauen\": Achte bewusst auf erhaltene Anerkennung",
+        "source": "community",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["AwarenessAbility"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000035",
+        "version": 0
+    },
+    {
+        "number": "Act-49",
+        "title": "\"Perfektionist\": Spreche heute bewusst jemandem Anerkennung für seine Arbeit aus",
+        "source": "community",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["AwarenessAbility"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000036",
+        "version": 0
+    },
+    {
+        "number": "Act-50",
+        "title": "Spreche mit deinem/r Vorgesetzten/Personalverantwortlichen über Veränderung von Arbeitsabläufen / Aufgaben",
+        "source": "youpers",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["WorkStructuring"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000037",
+        "version": 0
+    },
+    {
+        "number": "Act-51",
+        "title": "Spreche mit deinem/r Vorgesetzten/Personalverantwortlichen über Veränderung der Arbeitsumgebung",
+        "source": "youpers",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["WorkStructuring"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000038",
+        "version": 0
+    },
+    {
+        "number": "Act-52",
+        "title": "Spreche mit deinem/r Vorgesetzten/Personalverantwortlichen über Einführung von flexiblen Arbeitszeiten",
+        "source": "youpers",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["WorkStructuring"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000039",
+        "version": 0
+    },
+    {
+        "number": "Act-53",
+        "title": "Spreche mit deinem/r Vorgesetzten/Personalverantwortlichen über partizipative Managementstrukturen",
+        "source": "youpers",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["WorkStructuring"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae5000000003a",
+        "version": 0
+    },
+    {
+        "number": "Act-54",
+        "title": "Spreche mit deinem/r Vorgesetzten/Personalverantwortlichen über deinen Einbezug in die Karriereplanung",
+        "source": "youpers",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["WorkStructuring"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae5000000003b",
+        "version": 0
+    },
+    {
+        "number": "Act-55",
+        "title": "Überprüfe mit deinem/r Vorgesetzten Arbeitsrollen und Zielvereinbarungen",
+        "source": "youpers",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["WorkStructuring"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae5000000003c",
+        "version": 0
+    },
+    {
+        "number": "Act-56",
+        "title": "Spreche mit deinem/r Vorgesetzten über Unterstützung und regelmässiges Feedback",
+        "source": "youpers",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["WorkStructuring"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae5000000003d",
+        "version": 0
+    },
+    {
+        "number": "Act-57",
+        "title": "Spreche mit deinem/r Personalverantwortlichen über die Einführung einer fairen und familienfreundlichen Arbeitspolitik",
+        "source": "youpers",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["WorkStructuring"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae5000000003e",
+        "version": 0
+    },
+    {
+        "number": "Act-58",
+        "title": "Spreche mit deinem/r Vorgesetzten/Personalverantwortlichen über die Möglichkeit einer Umsatzbeteiligung",
+        "source": "youpers",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["WorkStructuring"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae5000000003f",
+        "version": 0
+    },
+    {
+        "number": "Act-59",
+        "title": "Stehe in regelmässigen Arbeitspausen auf, strecke dich und führe eine Entspannungsübung durch",
+        "source": "youpers",
+        "defaultfrequency": "day",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "recWeights": [],
+        "fields": ["Breaks", "Relaxation"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000040",
+        "version": 0
+    },
+    {
+        "number": "Act-60",
+        "title": "Gehe in der Arbeitspause nach draussen für einen kurzen Spaziergang",
+        "source": "community",
+        "defaultfrequency": "day",
+        "defaultexecutiontype": "group",
+        "defaultvisibility": "campaign",
+        "recWeights": [],
+        "fields": ["Breaks", "PhysicalActivity"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000041",
+        "version": 0
+    },
+    {
+        "number": "Act-61",
+        "title": "Führe in der Arbeitspause Dehnungsübungen für Schulter und Kopf durch",
+        "source": "youpers",
+        "defaultfrequency": "day",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "recWeights": [],
+        "fields": ["Breaks", "Relaxation"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000042",
+        "version": 0
+    },
+    {
+        "number": "Act-62",
+        "title": "Öffne in der Arbeitspause die Fenster für frische Luft",
+        "source": "community",
+        "defaultfrequency": "day",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "recWeights": [],
+        "fields": ["Breaks"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000043",
+        "version": 0
+    },
+    {
+        "number": "Act-63",
+        "title": "Vereinbare eine gemeinsame Pause mit einer Person im Unternehmen, mit der ich nicht direkt zusammenarbeite und schon länger nicht mehr gesprochen habe",
+        "source": "community",
+        "defaultfrequency": "day",
+        "defaultexecutiontype": "group",
+        "defaultvisibility": "campaign",
+        "recWeights": [],
+        "fields": ["Breaks", "SocialInteraction"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000044",
+        "version": 0
+    },
+    {
+        "number": "Act-64",
+        "title": "Nutze die Pause um 10 Minuten Musik zu hören",
+        "source": "youpers",
+        "defaultfrequency": "day",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "recWeights": [],
+        "fields": ["Breaks", "Relaxation"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000045",
+        "version": 0
+    },
+    {
+        "number": "Act-65",
+        "title": "Mache einen Spaziergang während der Mittagspause",
+        "source": "community",
+        "defaultfrequency": "week",
+        "defaultexecutiontype": "group",
+        "defaultvisibility": "campaign",
+        "recWeights": [],
+        "fields": ["Breaks", "PhysicalActivity"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000046",
+        "version": 0
+    },
+    {
+        "number": "Act-66",
+        "title": "Gehe joggen mit Kollegen während der Mittagspause",
+        "source": "youpers",
+        "defaultfrequency": "week",
+        "defaultexecutiontype": "group",
+        "defaultvisibility": "campaign",
+        "recWeights": [],
+        "fields": ["Breaks", "SocialInteraction"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000047",
+        "version": 0
+    },
+    {
+        "number": "Act-67",
+        "title": "Organisiere ein Ballspiel mit Kollegen für die Mittagspause",
+        "source": "community",
+        "defaultfrequency": "week",
+        "defaultexecutiontype": "group",
+        "defaultvisibility": "campaign",
+        "recWeights": [],
+        "fields": ["Breaks", "SocialInteraction"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000048",
+        "version": 0
+    },
+    {
+        "number": "Act-68",
+        "title": "Gehe mit einer Person ausserhalb des eigenen Betriebes in einem guten Restaurant Mittagessen",
+        "source": "community",
+        "defaultfrequency": "week",
+        "defaultexecutiontype": "group",
+        "defaultvisibility": "campaign",
+        "recWeights": [],
+        "fields": ["Breaks", "SocialInteraction"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000049",
+        "version": 0
+    },
+    {
+        "number": "Act-69",
+        "title": "Esse heute über den Mittag woanders als sonst (auswärts, am See)",
+        "source": "community",
+        "defaultfrequency": "week",
+        "defaultexecutiontype": "group",
+        "defaultvisibility": "campaign",
+        "recWeights": [],
+        "fields": ["Breaks", "Relaxation"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae5000000004a",
+        "version": 0
+    },
+    {
+        "number": "Act-70",
+        "title": "Wende in der Arbeitspause eine Imaginations-Technik an (Gute Laune Bilder, Ferienerinnerung, Phantasiereise)",
+        "source": "youpers",
+        "defaultfrequency": "day",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["Breaks", "Relaxation"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae5000000004b",
+        "version": 0
+    },
+    {
+        "number": "Act-71",
+        "title": "Stehe ohne Stress auf/Plane genügend Zeit ein am morgen vor dem Pendeln",
+        "source": "community",
+        "defaultfrequency": "day",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["Relaxation"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae5000000004c",
+        "version": 0
+    },
+    {
+        "number": "Act-72",
+        "title": "Reise ausserhalb der Stosszeiten",
+        "source": "community",
+        "defaultfrequency": "day",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["Relaxation"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae5000000004d",
+        "version": 0
+    },
+    {
+        "number": "Act-73",
+        "title": "Gehe mit dem Velo zur Arbeit",
+        "source": "community",
+        "defaultfrequency": "week",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "recWeights": [],
+        "fields": ["Relaxation", "PhysicalActivity"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae5000000004e",
+        "version": 0
+    },
+    {
+        "number": "Act-74",
+        "title": "Schalte auf dem Arbeitsweg mit guter Musik ab",
+        "source": "community",
+        "defaultfrequency": "day",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "recWeights": [],
+        "fields": ["Relaxation"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae5000000004f",
+        "version": 0
+    },
+    {
+        "number": "Act-75",
+        "title": "Schalte auf dem Arbeitsweg mit einer unterhaltsamen Lektüre ab",
+        "source": "community",
+        "defaultfrequency": "day",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "recWeights": [],
+        "fields": ["Relaxation"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000050",
+        "version": 0
+    },
+    {
+        "number": "Act-76",
+        "title": "Steige eine Station vorher aus / später ein und gehe zu Fuss",
+        "source": "community",
+        "defaultfrequency": "day",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "recWeights": [],
+        "fields": ["Relaxation", "PhysicalActivity"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000051",
+        "version": 0
+    },
+    {
+        "number": "Act-77",
+        "title": "Lasse am Feierabend zuhause entspannende Musik laufen z.B. zum kochen",
+        "source": "community",
+        "defaultfrequency": "day",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["Relaxation"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000052",
+        "version": 0
+    },
+    {
+        "number": "Act-78",
+        "title": "Nehme an einem Yoga/Meditationskurs teil",
+        "source": "youpers",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["Relaxation"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000053",
+        "version": 0
+    },
+    {
+        "number": "Act-79",
+        "title": "Führe zur Entspannung Yoga Übungen durch",
+        "source": "youpers",
+        "defaultfrequency": "week",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["Relaxation"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000054",
+        "version": 0
+    },
+    {
+        "number": "Act-80",
+        "title": "Führe zur Entspannung Meditationsübungen durch",
+        "source": "youpers",
+        "defaultfrequency": "week",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["Relaxation"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000055",
+        "version": 0
+    },
+    {
+        "number": "Act-81",
+        "title": "Führe zur Entspannung autogenes Training durch",
+        "source": "youpers",
+        "defaultfrequency": "week",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["Relaxation"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000056",
+        "version": 0
+    },
+    {
+        "number": "Act-82",
+        "title": "Geniesse am Feierabend eine Massage",
+        "source": "community",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["Relaxation", "LeisureActivity"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000057",
+        "version": 0
+    },
+    {
+        "number": "Act-83",
+        "title": "Lerne bewusstes Atmen / Atemtechniken",
+        "source": "community",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["Relaxation"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000058",
+        "version": 0
+    },
+    {
+        "number": "Act-84",
+        "title": "Jogge über Mittag mit Kollegen",
+        "source": "youpers",
+        "defaultfrequency": "week",
+        "defaultexecutiontype": "group",
+        "defaultvisibility": "campaign",
+        "recWeights": [],
+        "fields": ["Relaxation", "PhysicalActivity"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000059",
+        "version": 0
+    },
+    {
+        "number": "Act-85",
+        "title": "Organisiere einen After-Work-Apéro mit Kollegen",
+        "source": "community",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "group",
+        "defaultvisibility": "campaign",
+        "recWeights": [],
+        "fields": ["Relaxation"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae5000000005a",
+        "version": 0
+    },
+    {
+        "number": "Act-86",
+        "title": "Organisiere eine Kinderbetreuung und geniesse ein Wellness Weekend mit deinem/r Partner/in",
+        "source": "community",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["Relaxation", "LeisureActivity"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae5000000005b",
+        "version": 0
+    },
+    {
+        "number": "Act-87",
+        "title": "Geniesse am Feierabend ein Entspannungsbad mit beruhigenden Badezusätzen (S. 19/3.0)",
+        "source": "youpers",
+        "defaultfrequency": "week",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["Relaxation", "LeisureActivity"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae5000000005c",
+        "version": 0
+    },
+    {
+        "number": "Act-88",
+        "title": "Gehe zur Entspannung regelmässig in die Sauna",
+        "source": "community",
+        "defaultfrequency": "week",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["Relaxation"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae5000000005d",
+        "version": 0
+    },
+    {
+        "number": "Act-90",
+        "title": "Entspanne dich vor dem ins Bett gehen mit Musik hören",
+        "source": "community",
+        "defaultfrequency": "day",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["Relaxation"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae5000000005f",
+        "version": 0
+    },
+    {
+        "number": "Act-92",
+        "title": "Gehe heute bewusst früher ins Bett",
+        "source": "community",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["Relaxation"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000061",
+        "version": 0
+    },
+    {
+        "number": "Act-94",
+        "title": "Führe eine progressive Muskelrelaxation nach Jacobson durch",
+        "source": "youpers",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["Relaxation"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000063",
+        "version": 0
+    },
+    {
+        "number": "Act-95",
+        "title": "Plane deine nächsten Kurzferien in max. 2 Monaten",
+        "source": "community",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["LeisureActivity"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000064",
+        "version": 0
+    },
+    {
+        "number": "Act-96",
+        "title": "Mache eine Biofeedback-Sitzung",
+        "source": "youpers",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["Relaxation"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000065",
+        "version": 0
+    },
+    {
+        "number": "Act-98",
+        "title": "Lese ein Buch zu kognitiv-verhaltenstherapeutische Verfahren und wende eine Technik, die dir gefällt, an (z.B. Gedankenstopp)",
+        "source": "youpers",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["Relaxation", "AwarenessAbility"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000067",
+        "version": 0
+    },
+    {
+        "number": "Act-99",
+        "title": "Besuche ein Lach-Seminar",
+        "source": "community",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["Relaxation", "LeisureActivity"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000068",
+        "version": 0
+    },
+    {
+        "number": "Act-100",
+        "title": "Besuche ein Humorfestival",
+        "source": "community",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["Relaxation", "LeisureActivity"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000069",
+        "version": 0
+    },
+    {
+        "number": "Act-101",
+        "title": "Schaue eine Komödie im TV/Kino",
+        "source": "community",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["Relaxation", "LeisureActivity"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae5000000006a",
+        "version": 0
+    },
+    {
+        "number": "Act-102",
+        "title": "Besuche mit Freunden ein Musikkonzert",
+        "source": "community",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["SocialInteraction", "LeisureActivity"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae5000000006b",
+        "version": 0
+    },
+    {
+        "number": "Act-103",
+        "title": "Nehme mit Freunden an einem Spasswettbewerb teil",
+        "source": "community",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["SocialInteraction", "LeisureActivity"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae5000000006c",
+        "version": 0
+    },
+    {
+        "number": "Act-104",
+        "title": "Besuche mit Freunden einen Sportevent",
+        "source": "community",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["SocialInteraction", "LeisureActivity"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae5000000006d",
+        "version": 0
+    },
+    {
+        "number": "Act-107",
+        "title": "Frage KollegInnen um Unterstützung",
+        "source": "youpers",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "group",
+        "defaultvisibility": "campaign",
+        "recWeights": [],
+        "fields": ["SocialInteraction"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000070",
+        "version": 0
+    },
+    {
+        "number": "Act-111",
+        "title": "Führe eine neue Freizeitaktivität in einem Verein durch (Sport- oder Turnverein, kirchliche Organisation, Musikverein/Chor)",
+        "source": "youpers",
+        "defaultfrequency": "week",
+        "defaultexecutiontype": "group",
+        "defaultvisibility": "campaign",
+        "recWeights": [],
+        "fields": ["SocialInteraction", "LeisureActivity"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000074",
+        "version": 0
+    },
+    {
+        "number": "Act-116",
+        "title": "Fahr mit dem Velo zur Arbeit",
+        "source": "youpers",
+        "defaultfrequency": "week",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "recWeights": [],
+        "fields": ["PhysicalActivity"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000079",
+        "version": 0
+    },
+    {
+        "number": "Act-144",
+        "title": "Probiere ein neues Hobby aus (je nach Stressursache eine ruhige oder gesellschaftliche Freizeitbeschäftigung wie z.B. Chor, Singen, Turnen...)",
+        "source": "youpers",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["LeisureActivity"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000095",
+        "version": 0
+    },
+    {
+        "number": "Act-146",
+        "title": "Esse zweimal täglich als Beilage zu Hauptmahlzeiten dunkles Brot, Vollkornreis, -teigwaren u.ä. oder Hülsenfrüchte",
+        "source": "youpers",
+        "defaultfrequency": "day",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["Nutrition"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae50000000097",
+        "version": 0
+    },
+    {
+        "number": "Act-153",
+        "title": "Beobachte dein Essverhalten indem du dir folgende Frage stellst: \"Wie, wo, warum und wie viel esse ich?\" und führe einige Tage ein Esstagebuch, um dir schlechten Essgewohnheiten bewusst zu werden",
+        "source": "community",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["Nutrition", "AwarenessAbility"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae5000000009e",
+        "version": 0
+    },
+    {
+        "number": "Act-155",
+        "title": "Verzichte tagsüber bei Stress besser ganz auf das Essen und lege die grösseren Mahlzeiten auf die ruhigeren Abendstunden",
+        "source": "community",
+        "defaultfrequency": "day",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["Nutrition"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae500000000a0",
+        "version": 0
+    },
+    {
+        "number": "Act-156",
+        "title": "Trickse deinen Gluscht aus, indem du einen Moment in Ruhe abwartest oder zur Überbrückung ein Glas Wasser trinkst",
+        "source": "community",
+        "defaultfrequency": "day",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["Nutrition", "AwarenessAbility"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae500000000a1",
+        "version": 0
+    },
+    {
+        "number": "Act-158",
+        "title": "Baue täglich eine halbe Stunde oder drei Mal zehn Minuten Bewegung in deinen Arbeitsalltag ein (gilt insb. für viel Beschäftigte und Bewegungsmuffel)",
+        "source": "community",
+        "defaultfrequency": "day",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "recWeights": [],
+        "fields": ["PhysicalActivity"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae500000000a3",
+        "version": 0
+    },
+    {
+        "number": "Act-159",
+        "title": "Überlege Dir, welcher Sport und wie viel davon, sich für deinen persönlichen Ausgleich eignet (Beachte dabei, dass Walking oder Jogging das einfachste Ausdauertraining ist; Laufen kann man immer und überall)",
+        "source": "community",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["PhysicalActivity", "AwarenessAbility"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae500000000a4",
+        "version": 0
+    },
+    {
+        "number": "Act-160",
+        "title": "Esse am Tag ein bis zwei Stunden vor einer körperlichen Aktivität ein Brot mit Käse, ein paar Nüsse oder Mandeln sowie frische oder getrocknete Früchte",
+        "source": "community",
+        "defaultfrequency": "day",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["PhysicalActivity", "Nutrition"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae500000000a5",
+        "version": 0
+    },
+    {
+        "number": "Act-161",
+        "title": "Trinke am frühen Morgen ein Glas Wasser vor den Kraftübungen oder einer lockeren Jogging-Runde",
+        "source": "community",
+        "defaultfrequency": "day",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["PhysicalActivity", "Nutrition"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae500000000a6",
+        "version": 0
+    },
+    {
+        "number": "Act-162",
+        "title": "Starte als Einsteiger/in sachte, locker und langsam dein Training und übertreibe nicht!",
+        "source": "community",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["PhysicalActivity", "AwarenessAbility"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae500000000a7",
+        "version": 0
+    },
+    {
+        "number": "Act-163",
+        "title": "Bewege dich mind. zweieinhalb Stunden pro Woche (_idealerweise auf mehrere Tage verteilt) in Form von Alltagsaktivitäten oder sportlicher Aktivität",
+        "source": "community",
+        "defaultfrequency": "week",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "recWeights": [],
+        "fields": ["PhysicalActivity"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae500000000a8",
+        "version": 0
+    },
+    {
+        "number": "Act-164",
+        "title": "Generiere für deine Gesundheit, dein Wohlbefinden und deine Leistungsfähigkeit einen zusätzlichen Nutzen, indem du neben der empfohlenen Bewegung noch ein zusätzliches Training von Ausdauer, Kraft und Beweglichkeit absolvierst",
+        "source": "community",
+        "defaultfrequency": "week",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "recWeights": [],
+        "fields": ["PhysicalActivity"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae500000000a9",
+        "version": 0
+    },
+    {
+        "number": "Act-166",
+        "title": "Beachte folgende Reihenfolge beim Aufbautraining: 1. Steigere die Häufigkeit des Trainings, 2. Steigere die Dauer des Trainings, 3. Erhöhe die Intensität des Trainings",
+        "source": "community",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["PhysicalActivity", "AwarenessAbility"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae500000000ab",
+        "version": 0
     },
     {
         "number": "Act-168",
@@ -2656,15 +2177,11 @@
         "defaultfrequency": "once",
         "defaultexecutiontype": "self",
         "defaultvisibility": "campaign",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "PhysicalActivity",
-            "Relaxation"
-        ],
-        "aktivittsfeld1": "PhysicalActivity",
-        "aktivittsfeld2": "Relaxation"
+        "recWeights": [],
+        "fields": ["PhysicalActivity", "Relaxation"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae500000000ad",
+        "version": 0
     },
     {
         "number": "Act-169",
@@ -2673,15 +2190,11 @@
         "defaultfrequency": "once",
         "defaultexecutiontype": "self",
         "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "PhysicalActivity",
-            "AwarenessAbility"
-        ],
-        "aktivittsfeld1": "PhysicalActivity",
-        "aktivittsfeld2": "AwarenessAbility"
+        "recWeights": [],
+        "fields": ["PhysicalActivity", "AwarenessAbility"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae500000000ae",
+        "version": 0
     },
     {
         "number": "Act-170",
@@ -2690,32 +2203,24 @@
         "defaultfrequency": "once",
         "defaultexecutiontype": "self",
         "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "Nutrition",
-            "AwarenessAbility"
-        ],
-        "aktivittsfeld1": "Nutrition",
-        "aktivittsfeld2": "AwarenessAbility"
+        "recWeights": [],
+        "fields": ["Nutrition", "AwarenessAbility"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae500000000af",
+        "version": 0
     },
     {
         "number": "Act-171",
-        "title": "Lerne Prioritäten zu setzen, statt unter der Doppel- und Dreifachbelastung eines modernen Menschen zu leiden",
+        "title": "Lerne Prioritäten zu setzen, statt unter der Doppel- und Dreifachbelastung eines modernen Menschen zu le_iden",
         "source": "community",
         "defaultfrequency": "once",
         "defaultexecutiontype": "self",
         "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "TimeManagement",
-            "AwarenessAbility"
-        ],
-        "aktivittsfeld1": "TimeManagement",
-        "aktivittsfeld2": "AwarenessAbility"
+        "recWeights": [],
+        "fields": ["TimeManagement", "AwarenessAbility"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae500000000b0",
+        "version": 0
     },
     {
         "number": "Act-172",
@@ -2724,15 +2229,11 @@
         "defaultfrequency": "day",
         "defaultexecutiontype": "self",
         "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "TimeManagement",
-            "Relaxation"
-        ],
-        "aktivittsfeld1": "TimeManagement",
-        "aktivittsfeld2": "Relaxation"
+        "recWeights": [],
+        "fields": ["TimeManagement", "Relaxation"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae500000000b1",
+        "version": 0
     },
     {
         "number": "Act-173",
@@ -2741,48 +2242,36 @@
         "defaultfrequency": "once",
         "defaultexecutiontype": "self",
         "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "TimeManagement",
-            "AwarenessAbility"
-        ],
-        "aktivittsfeld1": "TimeManagement",
-        "aktivittsfeld2": "AwarenessAbility"
+        "recWeights": [],
+        "fields": ["TimeManagement", "AwarenessAbility"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae500000000b2",
+        "version": 0
     },
     {
         "number": "Act-174",
-        "title": "Entscheide dich bewusst, wofür du deine Energie und Zeit aufwenden möchtest und wofür nicht",
+        "title": "Entsche_ide dich bewusst, wofür du deine Energie und Zeit aufwenden möchtest und wofür nicht",
         "source": "community",
         "defaultfrequency": "once",
         "defaultexecutiontype": "self",
         "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "TimeManagement",
-            "AwarenessAbility"
-        ],
-        "aktivittsfeld1": "TimeManagement",
-        "aktivittsfeld2": "AwarenessAbility"
+        "recWeights": [],
+        "fields": ["TimeManagement", "AwarenessAbility"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae500000000b3",
+        "version": 0
     },
     {
         "number": "Act-175",
-        "title": "Verschaffe dir mehr Freiheit bzw. konzentriere dich aufs Wesentliche für eine entspannte Lebensführung, indem du in der Vergangenheit getroffene Aktivitäts-Entscheidungen hinterfragst",
+        "title": "Verschaffe dir mehr Freiheit bzw. konzentriere dich aufs Wesentliche für eine entspannte Lebensführung, indem du in der Vergangenheit getroffene Aktivitäts-Entsche_idungen hinterfragst",
         "source": "community",
         "defaultfrequency": "once",
         "defaultexecutiontype": "self",
         "defaultvisibility": "private",
-        "topics": [
-            "workLifeBalance"
-        ],
-        "fields": [
-            "TimeManagement",
-            "AwarenessAbility"
-        ],
-        "aktivittsfeld1": "TimeManagement",
-        "aktivittsfeld2": "AwarenessAbility"
+        "recWeights": [],
+        "fields": ["TimeManagement", "AwarenessAbility"],
+        "topics": ["workLifeBalance"],
+        "_id": "5268e8bca8bae500000000b4",
+        "version": 0
     }
 ]

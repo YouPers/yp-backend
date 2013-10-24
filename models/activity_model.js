@@ -17,6 +17,7 @@ var ActivitySchema = common.newSchema({
     defaultvisibility: {type: String, enum: common.enums.visibility},
     topics: [String],
     fields: [String],
+    qualityFactor: Number,
     recWeights: [{question: {type: ObjectId},
                   negativeAnswerWeight: {type: Number},
                   positiveAnswerWeight: {type: Number}}]

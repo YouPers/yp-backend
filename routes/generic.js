@@ -290,7 +290,6 @@ module.exports = {
             // if yes only send the objects of the currently logged in user
             var finder = '';
             if (Model.schema.paths['owner']) {
-                req.log.trace({ownerpath: Model.schema.paths['owner']}, 'we have an owner');
                 finder = {owner: req.user.id};
             }
 

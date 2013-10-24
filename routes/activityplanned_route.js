@@ -13,9 +13,10 @@ var mongoose = require('mongoose'),
     caltools = require('calendar-tools');
 
 
-function populateEventsForPlan(plan) {
-    var seed = caltools.seed(plan.mainEvent, {start: new Date(), end: new Date(2015, 1, 1)}, {addNoRec: true});
-    var instances = seed.getInstances();
+function generateEventsForPlan(plan, log) {
+    var seed = caltools.seed(plan.mainEvent, {addNoRec: true});
+    log.trace({seed: seed}, 'generated seed');
+    var instances = seed.getInstances(new Date(), new Date(2015, 1, 1));
     plan.events = [];
     _.forEach(instances, function (instance) {
         plan.events.push({
@@ -40,7 +41,6 @@ function populateEventsForPlan(plan) {
  * @returns {*}
  */
 function putActivityEvent(req, res, next) {
-    req.log.trace({parsedReq: req}, 'put Plan Event');
 
     if (!req || !req.params || !req.params.planId) {
         return next(new restify.MissingParameterError('no planId found in PUT request'));
@@ -162,8 +162,8 @@ function postNewActivityPlan(req, res, next) {
         req.body.owner = req.user.id;
     }
 
-    req.log.trace({eventsBefore: sentPlan.events}, 'before generating events');
-    populateEventsForPlan(sentPlan);
+    req.log.trace({MainEvent: sentPlan.mainEvent}, 'before generating events');
+    generateEventsForPlan(sentPlan, req.log);
     req.log.trace({eventsAfter: sentPlan.events}, 'after generating events');
 
     var newActPlan = new Model(req.body);

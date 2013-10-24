@@ -2,7 +2,8 @@
  * Module dependencies.
  */
 var mongoose = require('mongoose'),
-    common = require('./common');
+    common = require('./common'),
+    ObjectId = mongoose.Schema.ObjectId;
 
 /**
  * Activity Schema
@@ -15,7 +16,11 @@ var ActivitySchema = common.newSchema({
     defaultexecutiontype: {type: String, enum: common.enums.executiontype},
     defaultvisibility: {type: String, enum: common.enums.visibility},
     topics: [String],
-    fields: [String]
+    fields: [String],
+    recWeights: [{question: {type: ObjectId},
+                  negativeAnswerWeight: {type: Number},
+                  positiveAnswerWeight: {type: Number}}]
+    //TODO: (Rblu) only deliver recWeights to client in case of role admin, otherwise hide on server!!!
 });
 
 

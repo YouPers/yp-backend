@@ -262,7 +262,9 @@ module.exports = {
                     }
 
                     //check if the object has an owner and whether the current user owns the object
-                    if (obj.owner && (!req.user || (!obj.owner.equals(req.user.id) ))) {
+                    if (obj.owner && (!req.user  ||
+                                     (obj.owner._id && (obj.owner._id +'' !== req.user.id)) || // case: owner is populated
+                                     (!obj.owner._id && !obj.owner.equals(req.user.id)))) {     // case: owner is not populated, is ObjectId
                         return next(new restify.NotAuthorizedError('Authenticated User does not own this object'));
                     }
                     if (req.query && req.query.populatedeep) {

@@ -7,7 +7,7 @@ var URL = 'http://localhost:'+ port +'/api/v1/assessments';
 frisby.globalSetup({ // globalSetup is for ALL requests
     request: {
         headers: { 'X-Auth-Token': 'fa8426a0-8eaf-4d22-8e13-7c1b16a9370c',
-            Authorization: 'Basic cmV0bzpyZXRv'
+            Authorization: 'Basic dW5pdHRlc3Q6dGVzdA=='
         }
 
     }
@@ -38,7 +38,7 @@ frisby.create('GET all assessments')
 
                 frisby.create('post a first answer for this assessment')
                     .post(URL + '/' + assessments[0].id + '/results',
-                        {owner: '525fb247101e330000000005',
+                        {owner: '525fb247101e330000001008',
                             assessment: assessments[0].id,
                             timestamp: new Date(),
                             answers:
@@ -66,7 +66,7 @@ frisby.create('GET all assessments')
 
                 frisby.create('post a second answer for this assessment')
                     .post(URL + '/' + assessments[0].id + '/results',
-                    {owner: '525fb247101e330000000005',
+                    {owner: '525fb247101e330000001008',
                         assessment: assessments[0].id,
                         timestamp: newDate,
                         answers:
@@ -94,7 +94,7 @@ frisby.create('GET all assessments')
                     .get(URL + '/' + assessments[0].id + '/results/newest')
                     .expectStatus(200)
                     .expectJSON({
-                            owner: '525fb247101e330000000005',
+                            owner: '525fb247101e330000001008',
                             timestamp: newDate.toJSON()
                         }
                     )

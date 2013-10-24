@@ -10,7 +10,7 @@
         "username": "reto",
         "role": "individual",
         "password": "reto"
-    }, {
+}, {
     "_id": "525fb247101e330000000006",
     "firstname": "Ivan",
     "lastname": "Rigamonti",
@@ -43,5 +43,16 @@
     "username": "stefan",
     "role": "admin",
     "password": "stefan"
+},{
+    "_id": "525fb247101e330000001008",
+    "firstname": "Unit",
+    "lastname": "Test",
+    "fullname": "Unit Test",
+    "avatar": "assets/img/SMUE.jpeg",
+    "email": "yp-unittest@gmail.com",
+    "emailValidatedFlag": true,
+    "username": "unittest",
+    "role": "individual",
+    "password": "test"
 }
 ]

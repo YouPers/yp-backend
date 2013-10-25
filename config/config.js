@@ -66,13 +66,12 @@ module.exports = {
         app: {
             name: 'YouPers Platform Server'
         },
+        host: 'localhost',
         port: '8000',
         db_prefix: 'mongodb',
-        db_host: 'ds051658.mongolab.com',
-        db_port: '51658',
-        db_database: 'heroku_app18686715',
-        db_user: 'yp-backend-db-user',
-        db_password: 'driveyourhealth',
+        db_host: 'localhost',
+        db_port: '27017',
+        db_database: 'test_database',
         loggerOptions: {
             name: 'Main',
             streams: [

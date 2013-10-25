@@ -66,6 +66,7 @@ module.exports = {
         app: {
             name: 'YouPers Platform Server'
         },
+        port: '8000',
         db_prefix: 'mongodb',
         db_host: 'ds051658.mongolab.com',
         db_port: '51658',

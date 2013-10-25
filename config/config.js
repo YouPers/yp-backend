@@ -36,7 +36,31 @@ module.exports = {
                 res: Logger.stdSerializers.res
             }
         }
-    }, ci: {
+    }, test: {   // used by CircleCI!!!
+        root: require('path').normalize(__dirname + '/..'),
+        app: {
+            name: 'YouPers Platform Server'
+        },
+        host: 'localhost',
+        port: '8000',
+        db_prefix: 'mongodb',
+        db_host: 'localhost',
+        db_port: '27017',
+        db_database: 'test_database',
+        loggerOptions: {
+            name: 'Main',
+            streams: [
+                {
+                    path: 'logs/server.log',
+                    level: 'info'
+                }
+            ],
+            serializers: {
+                req: Logger.stdSerializers.req,
+                res: Logger.stdSerializers.res
+            }
+        }
+    }, ci: {   // used by Heroku yp-backend-ci
         root: require('path').normalize(__dirname + '/..'),
         app: {
             name: 'YouPers Platform Server'
@@ -61,17 +85,18 @@ module.exports = {
                 res: Logger.stdSerializers.res
             }
         }
-    }, test: {
+    }, herokutest: {   // used by Heroku yp-backend-test
         root: require('path').normalize(__dirname + '/..'),
         app: {
             name: 'YouPers Platform Server'
         },
-        host: 'localhost',
         port: '8000',
         db_prefix: 'mongodb',
-        db_host: 'localhost',
-        db_port: '27017',
-        db_database: 'test_database',
+        db_host: 'ds051658.mongolab.com',
+        db_port: '51658',
+        db_database: 'heroku_app18686715',
+        db_user: 'yp-backend-db-user',
+        db_password: 'driveyourhealth',
         loggerOptions: {
             name: 'Main',
             streams: [

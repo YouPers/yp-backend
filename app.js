@@ -6,7 +6,7 @@
 var env = process.env.NODE_ENV || 'development',
     config = require('./config/config')[env];
 
-
+console.log("NODE_ENV:" + process.env.NODE_ENV);
 // Modules
 var restify = require("restify"),
     mongoose = require('mongoose'),

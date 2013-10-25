@@ -1,5 +1,5 @@
 deployment:
-  staging:
+  test:
     branch: test
     heroku:
       appname: yp-backend-test

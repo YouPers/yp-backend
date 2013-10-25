@@ -51,12 +51,8 @@ module.exports = {
             name: 'Main',
             streams: [
                 {
-                    stream: process.stdout,
-                    level: 'info'
-                },
-                {
                     path: 'logs/server.log',
-                    level: 'debug'
+                    level: 'info'
                 }
             ],
             serializers: {
@@ -79,12 +75,8 @@ module.exports = {
             name: 'Main',
             streams: [
                 {
-                    stream: process.stdout,
-                    level: 'info'
-                },
-                {
                     path: 'logs/server.log',
-                    level: 'debug'
+                    level: 'info'
                 }
             ],
             serializers: {

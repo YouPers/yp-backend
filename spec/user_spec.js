@@ -57,6 +57,11 @@ frisby.create('GET all users')
             })
             .toss();
 
+        frisby.create('DELETE our testuser')
+            .delete(URL + 'users/'+ testuserid)
+            .expectStatus(200)
+            // 'afterJSON' automatically parses response body as JSON and passes it as an argument
+            .toss();
 
     })
     .toss();

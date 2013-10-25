@@ -12,6 +12,11 @@ frisby.globalSetup({ // globalSetup is for ALL requests
     }
 });
 
+// just do a simple call, until the DB is ready
+frisby.create('GET all activites')
+    .get(URL + 'activities')
+    .toss();
+
 frisby.create('GET all activityPlans')
     .get(URL + 'activitiesPlanned')
     .expectStatus(200)

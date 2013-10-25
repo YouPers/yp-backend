@@ -10,6 +10,13 @@ var mongoose = require('mongoose'),
     AssessmentResult = mongoose.model('AssessmentResult'),
     _ = require('lodash');
 
+/**
+ * comments
+ * @param actList
+ * @param assResult
+ * @param log
+ * @returns {*}
+ */
 function generateRecommendations(actList, assResult, log) {
 
     log.trace({assResult: assResult}, 'calculating recs for assResult');

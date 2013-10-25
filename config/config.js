@@ -65,9 +65,33 @@ module.exports = {
             }
         }
     }, test: {
-        root: require('path').normalize(__dirname + '/..'), app: {
-            name: 'Nodejs Restify Mongoose Demo'
-        }, openUserSignup: false
+        root: require('path').normalize(__dirname + '/..'),
+        app: {
+            name: 'YouPers Platform Server'
+        },
+        db_prefix: 'mongodb',
+        db_host: 'ds051658.mongolab.com',
+        db_port: '51658',
+        db_database: 'heroku_app18686715',
+        db_user: 'yp-backend-db-user',
+        db_password: 'driveyourhealth',
+        loggerOptions: {
+            name: 'Main',
+            streams: [
+                {
+                    stream: process.stdout,
+                    level: 'info'
+                },
+                {
+                    path: 'logs/server.log',
+                    level: 'debug'
+                }
+            ],
+            serializers: {
+                req: Logger.stdSerializers.req,
+                res: Logger.stdSerializers.res
+            }
+        }
     }, production: {
         root: require('path').normalize(__dirname + '/..'), app: {
             name: 'Nodejs Restify Mongoose Demo'

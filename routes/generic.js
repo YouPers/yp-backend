@@ -1,5 +1,6 @@
 var _ = require('lodash'),
-    restify = require('restify');
+    restify = require('restify'),
+    ObjectId = require('mongoose').Schema.ObjectId;
 
 ////////////////////////////////////
 // helper functions
@@ -12,6 +13,63 @@ var isF = function (o) {
         }
     }
     return true;
+};
+
+var hasProp = function (o) {
+    var has = [];
+    for (var i = 1, l = arguments.length; i < l; i++) {
+        var v = arguments[i];
+        if (!_.isUndefined(o[v])) {
+            has.push(v);
+        }
+    }
+    return has.length && has;
+};
+
+function getsafe(obj, str) {
+    if (!obj) {
+        return null;
+    }
+    if (!Array.isArray(str)) {
+        return getsafe(obj, str.split('.'));
+    }
+
+    if (!str.length) {
+        return null;
+    }
+
+    var p = str.shift();
+    var n = (p in obj) ? obj[p] : null;
+    return str.length ? getsafe(n, str) : n;
+
+}
+
+var flatten = function (target, optsArg) {
+    var output = {},
+        opts = optsArg || {},
+        delimiter = opts.delimiter || '.';
+
+    function getkey(key, prev) {
+        return prev ? prev + delimiter + key : key;
+    }
+
+    function step(object, prev) {
+        Object.keys(object).forEach(function (key) {
+            var isarray = opts.safe && Array.isArray(object[key]),
+                type = Object.prototype.toString.call(object[key]),
+                isobject = (type === "[object Object]" || type === "[object Array]");
+
+            if (!isarray && isobject) {
+                return step(object[key], getkey(key, prev));
+            }
+
+            output[getkey(key, prev)] = object[key];
+        });
+    }
+
+    step(target);
+
+    return output;
 };
 
 function split(val, delim, ret) {
@@ -82,6 +140,48 @@ function flatJoin(v) {
     return ret;
 }
 
+function addOp(str, isString, type) {
+    var op, val;
+    if (str[0] === '<') {
+        if (str[1] === '<') {
+            op = '$lt';
+            val = str.substring(2);
+        } else {
+            op = '$lte';
+            val = str.substring(1);
+        }
+    } else if (str[0] === '>') {
+        if (str[1] === '>') {
+            op = '$gt';
+            val = str.substring(2);
+        } else {
+            op = '$gte';
+            val = str.substring(1);
+        }
+    } else if (str[0] === '!') {
+        if (isString) {
+            op = '$regex';
+            val = new RegExp('!(' + str.substring(1) + ')', 'i');
+        } else {
+            op = '$ne';
+            val = str.substring(1);
+
+        }
+    } else if (type === ObjectId) {
+        op = '$eq';
+        val = new ObjectId(str);
+    } else if (isString) {
+        op = '$regex';
+        val = new RegExp(str, 'i');
+    } else {
+        op = '$eq';
+        val = str;
+    }
+
+    var query = {};
+    query[op] = val;
+    return query;
+}
 
 var _addPagination = function (queryparams, dbquery) {
     // pagination
@@ -124,10 +224,56 @@ var _addSort = function (queryparams, dbquery) {
 };
 
 
-var addQueryOptions = function (req, dbquery) {
+var _addFilter = function (queryParams, dbquery, Model) {
+    var filters;
+    if (!(filters = hasProp(queryParams, 'filter', '-filter', '+filter')) && isF(dbquery, 'or', 'nor', 'and')) {
+        return dbquery;
+    }
+
+    var paths = getsafe(Model, 'options.display.list_fields');
+    if (!paths) {
+        paths = [];
+        Model.schema.eachPath(function (p, v) {
+            paths.push(p);
+        });
+    }
+
+    _.each(flatten(queryParams.filter), function (v, k) {
+        var ret = /^([+,-])?(.*)/.exec(k);
+        var p = Model.schema.path(ret[2]);
+        var type = p && p.options && p.options.type;
+        var method;
+        switch (ret[1]) {
+            case '+':
+                method = 'and';
+                break;
+            case '-':
+                method = 'nor';
+                break;
+            default:
+                method = 'where';
+        }
+
+        if (type === ObjectId) {
+            var qp = {};
+            qp[ret[2]] = v;
+            dbquery = dbquery.find(qp);
+        } else {
+
+            dbquery = dbquery[method](ret[2], addOp(v, String === type || 'String' === type, type));
+        }
+        // console.log(' v',v,' k',k,' ',obj);
+
+    });
+    return dbquery;
+};
+
+
+var addQueryOptions = function (req, dbquery, Model) {
     dbquery = _addPagination(req.query, dbquery);
     dbquery = _addPopulation(req.query, dbquery);
     dbquery = _addSort(req.query, dbquery);
+    dbquery = _addFilter(req.query, dbquery, Model);
     return dbquery;
 
 };
@@ -219,7 +365,7 @@ function resolveDocumentzAtPath(doc, pathBits) {
     }
 }
 
-function checkWritingReq(req, Model) {
+function checkWritingPreCond(req, Model) {
     if (!req.body) {
         return new Error('exptected JSON body in POST');
     }
@@ -251,7 +397,7 @@ module.exports = {
 
     getByIdFn: function (baseUrl, Model) {
         return function (req, res, next) {
-            addQueryOptions(req, Model.findById(req.params.id))
+            addQueryOptions(req, Model.findById(req.params.id), Model)
                 .exec(function geByIdFnCallback(err, obj) {
                     if (err) {
                         return next(err);
@@ -262,9 +408,9 @@ module.exports = {
                     }
 
                     //check if the object has an owner and whether the current user owns the object
-                    if (obj.owner && (!req.user  ||
-                                     (obj.owner._id && (obj.owner._id +'' !== req.user.id)) || // case: owner is populated
-                                     (!obj.owner._id && !obj.owner.equals(req.user.id)))) {     // case: owner is not populated, is ObjectId
+                    if (obj.owner && (!req.user ||
+                        (obj.owner._id && (obj.owner._id + '' !== req.user.id)) || // case: owner is populated
+                        (!obj.owner._id && !obj.owner.equals(req.user.id)))) {     // case: owner is not populated, is ObjectId
                         return next(new restify.NotAuthorizedError('Authenticated User does not own this object'));
                     }
                     if (req.query && req.query.populatedeep) {
@@ -293,7 +439,7 @@ module.exports = {
                 finder = {owner: req.user.id};
             }
 
-            addQueryOptions(req, Model.find(finder))
+            addQueryOptions(req, Model.find(finder), Model)
                 .exec(function (err, objList) {
                     if (err) {
                         return next(err);
@@ -321,7 +467,7 @@ module.exports = {
     postFn: function (baseUrl, Model) {
         return function (req, res, next) {
 
-            var err = checkWritingReq(req, Model);
+            var err = checkWritingPreCond(req, Model);
 
             if (err) {
                 return next(err);
@@ -369,7 +515,7 @@ module.exports = {
 
     putFn: function (baseUrl, Model) {
         return function (req, res, next) {
-            var err = checkWritingReq(req, Model);
+            var err = checkWritingPreCond(req, Model);
 
             if (err) {
                 return next(err);
@@ -385,7 +531,7 @@ module.exports = {
 
                 if (objFromDb.owner &&
                     ((!objFromDb.owner.equals(req.user.id)) ||
-                    (!objFromDb.owner.equals(req.body.owner)))
+                        (!objFromDb.owner.equals(req.body.owner)))
                     ) {
                     return next(new restify.NotAuthorizedError('authenticated user is not authorized to update this plan'));
                 }

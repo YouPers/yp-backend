@@ -15,6 +15,7 @@ var ActivitySchema = common.newSchema({
     defaultfrequency: {type: String, enum: common.enums.activityPlannedFrequency},
     defaultexecutiontype: {type: String, enum: common.enums.executiontype},
     defaultvisibility: {type: String, enum: common.enums.visibility},
+    defaultduration: {type: Number},
     topics: [String],
     fields: [String],
     qualityFactor: Number,

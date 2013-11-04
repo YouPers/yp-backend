@@ -110,7 +110,32 @@ module.exports = {
                 res: Logger.stdSerializers.res
             }
         }
-    }, production: {
+    }, uat: {   // used by Heroku yp-backend-test
+    root: require('path').normalize(__dirname + '/..'),
+        app: {
+        name: 'YouPers Platform Server'
+    },
+    port: '8000',
+        db_prefix: 'mongodb',
+        db_host: 'localhost',
+        db_port: '51111',
+        db_database: 'ypdb',
+        db_user: 'nodeDbAccess',
+        db_password: 'yp13%mongodb%uat',
+        loggerOptions: {
+        name: 'Main',
+            streams: [
+            {
+                path: '/var/log/yp-backend/server.log',
+                level: 'info'
+            }
+        ],
+            serializers: {
+            req: Logger.stdSerializers.req,
+                res: Logger.stdSerializers.res
+        }
+    }
+}, production: {
         root: require('path').normalize(__dirname + '/..'), app: {
             name: 'Nodejs Restify Mongoose Demo'
         }, openUserSignup: false

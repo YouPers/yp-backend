@@ -2,7 +2,7 @@
     {
         "_id": "525fde3797dd4e0000000005",
         "owner": "525fb247101e330000001008",
-        "activity": "5278ad80fa3e1c0000000006",
+        "activity": "5278b1cc9aed060000000006",
         "joiningUsers": [
             "525fb247101e330000000006",
             "525fb247101e330000000007"
@@ -80,7 +80,7 @@
     {
         "_id": "525fde3797dd4e0000000015",
         "owner": "525fb247101e330000001008",
-        "activity": "5278ad80fa3e1c0000000007",
+        "activity": "5278b1cc9aed060000000007",
         "joiningUsers": [],
         "privacy": "public",
         "executionType": "group",

@@ -9,7 +9,7 @@
         "recWeights": [],
         "fields": ["AwarenessAbility"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c0000000006",
+        "id": "5278b1cc9aed060000000006",
         "version": 0
     },
     {
@@ -22,7 +22,7 @@
         "recWeights": [],
         "fields": ["AwarenessAbility"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c0000000007",
+        "id": "5278b1cc9aed060000000007",
         "version": 0
     },
     {
@@ -35,7 +35,7 @@
         "recWeights": [],
         "fields": ["AwarenessAbility"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c0000000008",
+        "id": "5278b1cc9aed060000000008",
         "version": 0
     },
     {
@@ -48,7 +48,7 @@
         "recWeights": [],
         "fields": ["AwarenessAbility"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c0000000009",
+        "id": "5278b1cc9aed060000000009",
         "version": 0
     },
     {
@@ -61,7 +61,7 @@
         "recWeights": [],
         "fields": ["AwarenessAbility"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c000000000a",
+        "id": "5278b1cc9aed06000000000a",
         "version": 0
     },
     {
@@ -74,7 +74,7 @@
         "recWeights": [],
         "fields": ["AwarenessAbility"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c000000000b",
+        "id": "5278b1cc9aed06000000000b",
         "version": 0
     },
     {
@@ -87,7 +87,7 @@
         "recWeights": [],
         "fields": ["AwarenessAbility"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c000000000c",
+        "id": "5278b1cc9aed06000000000c",
         "version": 0
     },
     {
@@ -100,7 +100,7 @@
         "recWeights": [],
         "fields": ["AwarenessAbility"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c000000000d",
+        "id": "5278b1cc9aed06000000000d",
         "version": 0
     },
     {
@@ -113,7 +113,7 @@
         "recWeights": [],
         "fields": ["AwarenessAbility"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c000000000e",
+        "id": "5278b1cc9aed06000000000e",
         "version": 0
     },
     {
@@ -126,7 +126,7 @@
         "recWeights": [],
         "fields": ["AwarenessAbility"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c000000000f",
+        "id": "5278b1cc9aed06000000000f",
         "version": 0
     },
     {
@@ -139,7 +139,7 @@
         "recWeights": [],
         "fields": ["AwarenessAbility"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c0000000010",
+        "id": "5278b1cc9aed060000000010",
         "version": 0
     },
     {
@@ -152,7 +152,7 @@
         "recWeights": [],
         "fields": ["AwarenessAbility"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c0000000011",
+        "id": "5278b1cc9aed060000000011",
         "version": 0
     },
     {
@@ -165,7 +165,7 @@
         "recWeights": [],
         "fields": ["AwarenessAbility"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c0000000012",
+        "id": "5278b1cc9aed060000000012",
         "version": 0
     },
     {
@@ -178,7 +178,7 @@
         "recWeights": [],
         "fields": ["AwarenessAbility"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c0000000013",
+        "id": "5278b1cc9aed060000000013",
         "version": 0
     },
     {
@@ -191,7 +191,7 @@
         "recWeights": [],
         "fields": ["AwarenessAbility"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c0000000014",
+        "id": "5278b1cc9aed060000000014",
         "version": 0
     },
     {
@@ -204,12 +204,13 @@
         "recWeights": [],
         "fields": ["AwarenessAbility"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c0000000015",
+        "id": "5278b1cc9aed060000000015",
         "version": 0
     },
     {
         "number": "Act-17",
         "title": "Führe ein Mentaltraining durch (positive Suggestionen, Gedankenstopp, Affirmationen, positive Formulierung von Sätzen)",
+        "text": "Mentale Techniken sind hilfreiche Strategien um ausgeglichener zu sein. \nGedankenstopp: Keine selbst zerstörerischen Gedanken, wie: Das schaffe ich nie.\nAffirmationen: (Bejahungsübungen): Heute klappt es. \npositive Formulierung von Sätzen: Nicht: Ich werde heute bei der Besprechung nicht nervös sein. Sondern: Bei der Besprechung bin ich konzentriert. Ich habe mich gut vorbereitet.",
         "source": "youpers",
         "defaultduration": 30,
         "defaultexecutiontype": "self",
@@ -217,12 +218,13 @@
         "recWeights": [],
         "fields": ["AwarenessAbility", "Relaxation"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c0000000016",
+        "id": "5278b1cc9aed060000000016",
         "version": 0
     },
     {
         "number": "Act-18",
         "title": "Nehme an Stressimmunisierungstraining, Stress-Management-Training SMT und Stress-Resistenz-Training teil",
+        "text": "Reviews und Meta-Analysen belegen gut, dass Stress-Management-Trainings (SMT) einschliesslich\nStress-Resistenz-Trainings (stress inoculation trainings), Entspannungs- und Meditationsmethoden\nsowie soziale Kompetenz- und Fitness-Trainings bezüglich gesundheitlicher Effekte wirksam sind.",
         "source": "youpers",
         "defaultduration": 60,
         "defaultexecutiontype": "self",
@@ -230,7 +232,7 @@
         "recWeights": [],
         "fields": ["AwarenessAbility"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c0000000017",
+        "id": "5278b1cc9aed060000000017",
         "version": 0
     },
     {
@@ -243,7 +245,7 @@
         "recWeights": [],
         "fields": ["TimeManagement"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c0000000018",
+        "id": "5278b1cc9aed060000000018",
         "version": 0
     },
     {
@@ -256,7 +258,7 @@
         "recWeights": [],
         "fields": ["TimeManagement"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c0000000019",
+        "id": "5278b1cc9aed060000000019",
         "version": 0
     },
     {
@@ -269,7 +271,7 @@
         "recWeights": [],
         "fields": ["TimeManagement", "SocialInteraction"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c000000001a",
+        "id": "5278b1cc9aed06000000001a",
         "version": 0
     },
     {
@@ -282,59 +284,7 @@
         "recWeights": [],
         "fields": ["TimeManagement"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c000000001b",
-        "version": 0
-    },
-    {
-        "number": "Act-24",
-        "title": "Führe einen Workshop/ein Brainstorming mit einem professionellen Coach durch, um numbereen für die Verbesserung des persönlichen Zeitmanagements zu sammeln",
-        "source": "community",
-        "defaultduration": 60,
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "recWeights": [],
-        "fields": ["TimeManagement"],
-        "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c000000001d",
-        "version": 0
-    },
-    {
-        "number": "Act-27",
-        "title": "Ziehe einen professionellen Stressberater zur Unterstützung beim Zeitmanagement bei",
-        "source": "community",
-        "defaultduration": 60,
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "recWeights": [],
-        "fields": ["TimeManagement"],
-        "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c0000000020",
-        "version": 0
-    },
-    {
-        "number": "Act-25",
-        "title": "Mache eine bewusste Tagesplanung, setze dir ein Tagesziel und gewinne Zeit durch Zeitplanung",
-        "source": "youpers",
-        "defaultduration": 15,
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "recWeights": [],
-        "fields": ["TimeManagement"],
-        "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c000000001e",
-        "version": 0
-    },
-    {
-        "number": "Act-32",
-        "title": "Führe ein offenes Gespräch mit deinem/r Vorgesetzten mit den Ziel, den persönlichen Handlungsspielraum zu erweitern",
-        "source": "youpers",
-        "defaultduration": 30,
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "recWeights": [],
-        "fields": ["WorkStructuring"],
-        "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c0000000025",
+        "id": "5278b1cc9aed06000000001b",
         "version": 0
     },
     {
@@ -347,20 +297,34 @@
         "recWeights": [],
         "fields": ["TimeManagement", "SocialInteraction"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c000000001c",
+        "id": "5278b1cc9aed06000000001c",
         "version": 0
     },
     {
-        "number": "Act-29",
-        "title": "Beachte deine Tagesleistungskurve bei deiner Tagesarbeitsplanung",
+        "number": "Act-24",
+        "title": "Führe einen Workshop/ein Brainstorming mit einem professionellen Coach durch, um numbereen für die Verbesserung des persönlichen Zeitmanagements zu sammeln",
+        "source": "community",
+        "defaultduration": 60,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["TimeManagement"],
+        "topics": ["workLifeBalance"],
+        "id": "5278b1cc9aed06000000001d",
+        "version": 0
+    },
+    {
+        "number": "Act-25",
+        "title": "Mache eine bewusste Tagesplanung, setze dir ein Tagesziel und gewinne Zeit durch Zeitplanung",
+        "text": "Zeitmanagement kann weder den Tag verlängern, noch erforderliche Aufgaben durch irgendwelche Tricks verschwinden lassen. Jedem steht dieselbe Zeit zur Verfügung - 24 Stunden am Tag. Die Art wie man sich die Tätigkeiten im Tagesablauf organisiert und strukturiert, kann jedoch enorme Auswirkungen auf das indivnumberuelle Zeitempfinden haben und dem Entstehen von Stresssituationen entgegenwirken. Mithilfe persönlichen Zeitmanagements kann jeder zu einer optimaleren Ausnutzung seiner Lebenszeit und zu mehr Zufriedenheit beim Erreichen der Ziele gelangen.\nMeist bemerkt man erst, dass es am Zeitmanagement hapert, wenn es zu spät ist, wenn die Zeit knapp wird. Dann hilft nur ein Notfallplan, um sich Freiräume zu schaffen. \n1. Statt sofort loszuarbeiten, nehmen Sie sich ein paar Minuten Zeit für Ihre Zeitplanung. Je mehr Sie zu tun haben, desto wichtiger ist diese Maßnahme.\n2. Streichen oder verschieben Sie Routineaufgaben, die im Moment nicht so wichtig sind und später erledigt werden könnten.\n3. Schaffen Sie sich störungsfreie Zeiten.\n4. Bereiten Sie sich geistig auf den Tag vor.\n5. Lernen Sie \"Nein\" zu sagen, wenn Ihnen jemand Ihre Zeit und Energie stehlen will.\n6. Schieben Sie Unangenehmes nicht unnötig vor sich her. Die Aussicht auf unerfreuliche Aufgaben verursacht Stress, raubt Energie und beeinträchtigt alle Arbeiten, die in der Zwischenzeit zu machen sind.\n7. Nehmen Sie sich etwas Schönes für den Tagesabschluss vor. Die Freude auf etwas Angenehmes hilft, den Tagesstress besser zu bewältigen und energievoller mit den Tagesanforderungen umzugehen. \n\nIm Allgemeinen gilt, in allen Lebensbereichen ein Zeitmanagement einzuführen. Dieses sollte natürlich konsequent durchgezogen werden, um Erfolge sichtbar zu machen. \n\nPlanung\nDer wohl wichtigste Punkt des Zeitmanagements ist die Planung. Es ist wichtig, den Tag im Voraus zu planen - am besten den Abend zuvor. Dabei ist es nötig, auch die vorgesehene Zeit, die für die bestimmten Aufgaben und Tätigkeiten anfällt, zu veranschlagen. Außerdem kommen immer wieder Dinge dazwischen, die ungeplant passieren - Schnelle Lösung: Pufferzeiten in den Zeitplan integrieren, so kommen Sie nicht in Stress.\n\nKoordination\nKoordination ist die halbe Miete. Wichtige Termine, Arbeitsaufgaben usw. gut koordinieren, sodass diese nicht aneinander geraten.",
         "source": "youpers",
         "defaultduration": 15,
         "defaultexecutiontype": "self",
         "defaultvisibility": "private",
         "recWeights": [],
-        "fields": ["TimeManagement", "WorkStructuring"],
+        "fields": ["TimeManagement"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c0000000022",
+        "id": "5278b1cc9aed06000000001e",
         "version": 0
     },
     {
@@ -373,33 +337,20 @@
         "recWeights": [],
         "fields": ["TimeManagement"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c000000001f",
+        "id": "5278b1cc9aed06000000001f",
         "version": 0
     },
     {
-        "number": "Act-30",
-        "title": "Delegiere heute bewusst eine Aufgabe",
-        "source": "youpers",
-        "defaultduration": 15,
+        "number": "Act-27",
+        "title": "Ziehe einen professionellen Stressberater zur Unterstützung beim Zeitmanagement bei",
+        "source": "community",
+        "defaultduration": 60,
         "defaultexecutiontype": "self",
         "defaultvisibility": "private",
         "recWeights": [],
-        "fields": ["TimeManagement", "WorkStructuring"],
+        "fields": ["TimeManagement"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c0000000023",
-        "version": 0
-    },
-    {
-        "number": "Act-34",
-        "title": "Erledige einen Tag pro Woche deine Arbeiten von zuhause aus (Heimarbeit)",
-        "source": "youpers",
-        "defaultduration": 480,
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "campaign",
-        "recWeights": [],
-        "fields": ["WorkStructuring"],
-        "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c0000000027",
+        "id": "5278b1cc9aed060000000020",
         "version": 0
     },
     {
@@ -412,7 +363,35 @@
         "recWeights": [],
         "fields": ["TimeManagement", "WorkStructuring"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c0000000021",
+        "id": "5278b1cc9aed060000000021",
+        "version": 0
+    },
+    {
+        "number": "Act-29",
+        "title": "Beachte deine Tagesleistungskurve bei deiner Tagesarbeitsplanung",
+        "text": "Tageszeiten bei der Planung berücksichtigen: Morgens haben Sie mehr Energie als Abends, also sollten die energieaufwendigen Tätigkeiten zuerst abgearbeitet werden.",
+        "source": "youpers",
+        "defaultduration": 15,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["TimeManagement", "WorkStructuring"],
+        "topics": ["workLifeBalance"],
+        "id": "5278b1cc9aed060000000022",
+        "version": 0
+    },
+    {
+        "number": "Act-30",
+        "title": "Delegiere heute bewusst eine Aufgabe",
+        "text": "Übergeben Sie die eine oder andere Aufgabe an Mitarbeiter, auch wenn Sie glauben, selbst alles besser zu machen. Vielleicht müssen Sie anfangs viel erklären und verbessern, doch am Ende zahlt sich die Strategie aus. Sie gewinnen Freiraum, Zeit und vor allem Überblick für die wirklich wichtigen Dinge!",
+        "source": "youpers",
+        "defaultduration": 15,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["TimeManagement", "WorkStructuring"],
+        "topics": ["workLifeBalance"],
+        "id": "5278b1cc9aed060000000023",
         "version": 0
     },
     {
@@ -425,20 +404,34 @@
         "recWeights": [],
         "fields": ["WorkStructuring"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c0000000024",
+        "id": "5278b1cc9aed060000000024",
         "version": 0
     },
     {
-        "number": "Act-35",
-        "title": "Arbeite gemeinsam mit dem/r Vorgesetzten eine sinnvolle Arbeitsplanung aus",
-        "source": "community",
-        "defaultduration": 60,
+        "number": "Act-32",
+        "title": "Führe ein offenes Gespräch mit deinem/r Vorgesetzten mit den Ziel, den persönlichen Handlungsspielraum zu erweitern",
+        "text": "Ein offenes Gespräch mit dem Vorgesetzten kann helfen. Dem Chef ist häufig gar nicht bekannt, wie überlastet ein Mitarbeiter ist, weil sich selten jemand dort beklagt. Es zeugt von Verantwortungsbewusstsein, wenn  nicht mehr Aufgaben übernommen werden, als tatsächlich mit der nötigen Sorgfalt bewältigt werden können.",
+        "source": "youpers",
+        "defaultduration": 30,
         "defaultexecutiontype": "self",
         "defaultvisibility": "private",
         "recWeights": [],
         "fields": ["WorkStructuring"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c0000000028",
+        "id": "5278b1cc9aed060000000025",
+        "version": 0
+    },
+    {
+        "number": "Act-34",
+        "title": "Erledige einen Tag pro Woche deine Arbeiten von zuhause aus (Heimarbeit)",
+        "source": "youpers",
+        "defaultduration": 480,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "recWeights": [],
+        "fields": ["WorkStructuring"],
+        "topics": ["workLifeBalance"],
+        "id": "5278b1cc9aed060000000027",
         "version": 0
     },
     {
@@ -451,12 +444,26 @@
         "recWeights": [],
         "fields": ["WorkStructuring"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c0000000026",
+        "id": "5278b1cc9aed060000000026",
         "version": 0
     },
     {
-        "number": "Act-36",
-        "title": "Bespreche ungelösten Konflikt mit deinem/r Personalverantwortlichen",
+        "number": "Act-39",
+        "title": "Stelle deinen Computer ergonomisch ein",
+        "text": "Stellen Sie den Bildschirm gerade vor sich hin, damit Sie Ihren Kopf nicht seitlich abdrehen müssen. Die Höhe sollte so eingestellt sein, dass der obere Bildschirmrand eine Handbreite unter Ihrer Augenhöhe ist. Der Abstand zwischen Augen und Bildschirm sollte mindestens eine Armlänge betragen, bei grösseren Monitoren etwas mehr.\nSiehe auch www.ekas-box.ch",
+        "source": "youpers",
+        "defaultduration": 30,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "recWeights": [],
+        "fields": ["WorkStructuring"],
+        "topics": ["workLifeBalance"],
+        "id": "5278b1cc9aed06000000002c",
+        "version": 0
+    },
+    {
+        "number": "Act-35",
+        "title": "Arbeite gemeinsam mit dem/r Vorgesetzten eine sinnvolle Arbeitsplanung aus",
         "source": "community",
         "defaultduration": 60,
         "defaultexecutiontype": "self",
@@ -464,7 +471,7 @@
         "recWeights": [],
         "fields": ["WorkStructuring"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c0000000029",
+        "id": "5278b1cc9aed060000000028",
         "version": 0
     },
     {
@@ -477,38 +484,26 @@
         "recWeights": [],
         "fields": ["WorkStructuring", "AwarenessAbility"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c000000002a",
+        "id": "5278b1cc9aed06000000002a",
         "version": 0
     },
     {
-        "number": "Act-38",
-        "title": "Stelle deinen Stuhl und Tisch ergonomisch ein",
-        "source": "youpers",
-        "defaultduration": 30,
+        "number": "Act-36",
+        "title": "Bespreche ungelösten Konflikt mit deinem/r Personalverantwortlichen",
+        "source": "community",
+        "defaultduration": 60,
         "defaultexecutiontype": "self",
-        "defaultvisibility": "campaign",
+        "defaultvisibility": "private",
         "recWeights": [],
         "fields": ["WorkStructuring"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c000000002b",
-        "version": 0
-    },
-    {
-        "number": "Act-39",
-        "title": "Stelle deinen Computer ergonomisch ein",
-        "source": "youpers",
-        "defaultduration": 30,
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "campaign",
-        "recWeights": [],
-        "fields": ["WorkStructuring"],
-        "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c000000002c",
+        "id": "5278b1cc9aed060000000029",
         "version": 0
     },
     {
         "number": "Act-40",
         "title": "Stelle eine schöne Pflanze an deinen Arbeitsplatz",
+        "text": "Der numberealbereich für die Luftfeutigkeit in einem Büro liegt zwischen 40-60%. Um die relative Luftfeuchtigkeit zu erhöhen (speziell im Winter in geheizten Büros) können Pflazen eingesetzt werden.\nSiehe auch www.ekas-box.ch (6205, Seite 39)",
         "source": "youpers",
         "defaultduration": 30,
         "defaultexecutiontype": "self",
@@ -516,46 +511,7 @@
         "recWeights": [],
         "fields": ["WorkStructuring"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c000000002d",
-        "version": 0
-    },
-    {
-        "number": "Act-41",
-        "title": "Stelle ein persönliches/inspirierendes Bild an den Arbeitslatz",
-        "source": "youpers",
-        "defaultduration": 30,
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "campaign",
-        "recWeights": [],
-        "fields": ["WorkStructuring"],
-        "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c000000002e",
-        "version": 0
-    },
-    {
-        "number": "Act-42",
-        "title": "Verändere heute deine Sitzposition alle 15 Minuten",
-        "source": "community",
-        "defaultduration": 480,
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "campaign",
-        "recWeights": [],
-        "fields": ["WorkStructuring"],
-        "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c000000002f",
-        "version": 0
-    },
-    {
-        "number": "Act-43",
-        "title": "„Perfektionist\": Beende heute deine Arbeit bewusst zeitgerecht (z.B. 17 Uhr) und ohne perfektionsanspruch",
-        "source": "community",
-        "defaultduration": 15,
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "recWeights": [],
-        "fields": ["AwarenessAbility"],
-        "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c0000000030",
+        "id": "5278b1cc9aed06000000002d",
         "version": 0
     },
     {
@@ -568,7 +524,48 @@
         "recWeights": [],
         "fields": ["AwarenessAbility"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c0000000031",
+        "id": "5278b1cc9aed060000000031",
+        "version": 0
+    },
+    {
+        "number": "Act-42",
+        "title": "Verändere heute deine Sitzposition alle 15 Minuten",
+        "source": "community",
+        "defaultduration": 480,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "recWeights": [],
+        "fields": ["WorkStructuring"],
+        "topics": ["workLifeBalance"],
+        "id": "5278b1cc9aed06000000002f",
+        "version": 0
+    },
+    {
+        "number": "Act-38",
+        "title": "Stelle deinen Stuhl und Tisch ergonomisch ein",
+        "text": "Stellen Sie die Höhe Ihres Stuhls so ein, dass Ihre Füsse flach auf dem Boden stehen. Ober- und Unterschenkel sollten einen Winkel von mindestens 90 Grad bilden.\nWenn Sie aufrecht auf Ihrem Stuhl sitzen, sollte die Tischhöhe so eingestellt sein, dass Ihre Ellbogen locker auf dem Tisch aufliegen, ohne die Schultern anzuheben.\nSiehe auch www.ekas-box.ch",
+        "source": "youpers",
+        "defaultduration": 30,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "recWeights": [],
+        "fields": ["WorkStructuring"],
+        "topics": ["workLifeBalance"],
+        "id": "5278b1cc9aed06000000002b",
+        "version": 0
+    },
+    {
+        "number": "Act-41",
+        "title": "Stelle ein persönliches/inspirierendes Bild an den Arbeitslatz",
+        "text": "Stellen Sie ein persönliches und inspirierendes Bild an Ihren Arbeitsplatz. Wer sich geborgen und wohl fühlt, numberentifiziert sich stärker mit seiner Arbeit.",
+        "source": "youpers",
+        "defaultduration": 30,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "recWeights": [],
+        "fields": ["WorkStructuring"],
+        "topics": ["workLifeBalance"],
+        "id": "5278b1cc9aed06000000002e",
         "version": 0
     },
     {
@@ -581,7 +578,7 @@
         "recWeights": [],
         "fields": ["AwarenessAbility"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c0000000032",
+        "id": "5278b1cc9aed060000000032",
         "version": 0
     },
     {
@@ -594,12 +591,12 @@
         "recWeights": [],
         "fields": ["AwarenessAbility"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c0000000033",
+        "id": "5278b1cc9aed060000000033",
         "version": 0
     },
     {
-        "number": "Act-47",
-        "title": "\"fehlendes Selbstvertrauen\": Nehme heute bewusst eine Herausforderung an, die du dir nicht zutraust",
+        "number": "Act-43",
+        "title": "„Perfektionist\": Beende heute deine Arbeit bewusst zeitgerecht (z.B. 17 Uhr) und ohne perfektionsanspruch",
         "source": "community",
         "defaultduration": 15,
         "defaultexecutiontype": "self",
@@ -607,20 +604,21 @@
         "recWeights": [],
         "fields": ["AwarenessAbility"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c0000000034",
+        "id": "5278b1cc9aed060000000030",
         "version": 0
     },
     {
-        "number": "Act-48",
-        "title": "\"fehlendes Selbstvertrauen\": Achte heute bewusst auf erhaltene Anerkennung",
-        "source": "community",
-        "defaultduration": 480,
+        "number": "Act-51",
+        "title": "Spreche mit deinem/r Vorgesetzten/Personalverantwortlichen über Veränderung der Arbeitsumgebung",
+        "text": "http://www.gesundheitsfoerderung.ch/pdf_doc_xls/d/betriebliche_gesundheitsfoerderung/grundlagen_wissen/Rahmenkonzept_Gesundheitskompetenz_de.pdf",
+        "source": "youpers",
+        "defaultduration": 30,
         "defaultexecutiontype": "self",
         "defaultvisibility": "private",
         "recWeights": [],
-        "fields": ["AwarenessAbility"],
+        "fields": ["WorkStructuring"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c0000000035",
+        "id": "5278b1cc9aed060000000038",
         "version": 0
     },
     {
@@ -633,12 +631,13 @@
         "recWeights": [],
         "fields": ["AwarenessAbility"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c0000000036",
+        "id": "5278b1cc9aed060000000036",
         "version": 0
     },
     {
         "number": "Act-50",
         "title": "Spreche mit deinem/r Vorgesetzten/Personalverantwortlichen über Veränderung von Arbeitsabläufen / Aufgaben",
+        "text": "http://www.gesundheitsfoerderung.ch/pdf_doc_xls/d/betriebliche_gesundheitsfoerderung/grundlagen_wissen/Rahmenkonzept_Gesundheitskompetenz_de.pdf",
         "source": "youpers",
         "defaultduration": 30,
         "defaultexecutiontype": "self",
@@ -646,25 +645,39 @@
         "recWeights": [],
         "fields": ["WorkStructuring"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c0000000037",
+        "id": "5278b1cc9aed060000000037",
         "version": 0
     },
     {
-        "number": "Act-51",
-        "title": "Spreche mit deinem/r Vorgesetzten/Personalverantwortlichen über Veränderung der Arbeitsumgebung",
-        "source": "youpers",
-        "defaultduration": 30,
+        "number": "Act-47",
+        "title": "\"fehlendes Selbstvertrauen\": Nehme heute bewusst eine Herausforderung an, die du dir nicht zutraust",
+        "source": "community",
+        "defaultduration": 15,
         "defaultexecutiontype": "self",
         "defaultvisibility": "private",
         "recWeights": [],
-        "fields": ["WorkStructuring"],
+        "fields": ["AwarenessAbility"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c0000000038",
+        "id": "5278b1cc9aed060000000034",
+        "version": 0
+    },
+    {
+        "number": "Act-48",
+        "title": "\"fehlendes Selbstvertrauen\": Achte heute bewusst auf erhaltene Anerkennung",
+        "source": "community",
+        "defaultduration": 480,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["AwarenessAbility"],
+        "topics": ["workLifeBalance"],
+        "id": "5278b1cc9aed060000000035",
         "version": 0
     },
     {
         "number": "Act-52",
         "title": "Spreche mit deinem/r Vorgesetzten/Personalverantwortlichen über Einführung von flexiblen Arbeitszeiten",
+        "text": "http://www.gesundheitsfoerderung.ch/pdf_doc_xls/d/betriebliche_gesundheitsfoerderung/grundlagen_wissen/Rahmenkonzept_Gesundheitskompetenz_de.pdf",
         "source": "youpers",
         "defaultduration": 30,
         "defaultexecutiontype": "self",
@@ -672,12 +685,13 @@
         "recWeights": [],
         "fields": ["WorkStructuring"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c0000000039",
+        "id": "5278b1cc9aed060000000039",
         "version": 0
     },
     {
         "number": "Act-53",
         "title": "Spreche mit deinem/r Vorgesetzten/Personalverantwortlichen über partizipative Managementstrukturen",
+        "text": "http://www.gesundheitsfoerderung.ch/pdf_doc_xls/d/betriebliche_gesundheitsfoerderung/grundlagen_wissen/Rahmenkonzept_Gesundheitskompetenz_de.pdf",
         "source": "youpers",
         "defaultduration": 30,
         "defaultexecutiontype": "self",
@@ -685,12 +699,13 @@
         "recWeights": [],
         "fields": ["WorkStructuring"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c000000003a",
+        "id": "5278b1cc9aed06000000003a",
         "version": 0
     },
     {
         "number": "Act-54",
         "title": "Spreche mit deinem/r Vorgesetzten/Personalverantwortlichen über deinen Einbezug in die Karriereplanung",
+        "text": "http://www.gesundheitsfoerderung.ch/pdf_doc_xls/d/betriebliche_gesundheitsfoerderung/grundlagen_wissen/Rahmenkonzept_Gesundheitskompetenz_de.pdf",
         "source": "youpers",
         "defaultduration": 30,
         "defaultexecutiontype": "self",
@@ -698,12 +713,13 @@
         "recWeights": [],
         "fields": ["WorkStructuring"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c000000003b",
+        "id": "5278b1cc9aed06000000003b",
         "version": 0
     },
     {
         "number": "Act-55",
         "title": "Überprüfe mit deinem/r Vorgesetzten Arbeitsrollen und Zielvereinbarungen",
+        "text": "http://www.gesundheitsfoerderung.ch/pdf_doc_xls/d/betriebliche_gesundheitsfoerderung/grundlagen_wissen/Rahmenkonzept_Gesundheitskompetenz_de.pdf",
         "source": "youpers",
         "defaultduration": 60,
         "defaultexecutiontype": "self",
@@ -711,12 +727,13 @@
         "recWeights": [],
         "fields": ["WorkStructuring"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c000000003c",
+        "id": "5278b1cc9aed06000000003c",
         "version": 0
     },
     {
         "number": "Act-56",
         "title": "Spreche mit deinem/r Vorgesetzten über Unterstützung und regelmässiges Feedback",
+        "text": "http://www.gesundheitsfoerderung.ch/pdf_doc_xls/d/betriebliche_gesundheitsfoerderung/grundlagen_wissen/Rahmenkonzept_Gesundheitskompetenz_de.pdf",
         "source": "youpers",
         "defaultduration": 30,
         "defaultexecutiontype": "self",
@@ -724,12 +741,13 @@
         "recWeights": [],
         "fields": ["WorkStructuring"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c000000003d",
+        "id": "5278b1cc9aed06000000003d",
         "version": 0
     },
     {
         "number": "Act-57",
         "title": "Spreche mit deinem/r Personalverantwortlichen über die Einführung einer fairen und familienfreundlichen Arbeitspolitik",
+        "text": "http://www.gesundheitsfoerderung.ch/pdf_doc_xls/d/betriebliche_gesundheitsfoerderung/grundlagen_wissen/Rahmenkonzept_Gesundheitskompetenz_de.pdf",
         "source": "youpers",
         "defaultduration": 30,
         "defaultexecutiontype": "self",
@@ -737,12 +755,13 @@
         "recWeights": [],
         "fields": ["WorkStructuring"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c000000003e",
+        "id": "5278b1cc9aed06000000003e",
         "version": 0
     },
     {
         "number": "Act-58",
         "title": "Spreche mit deinem/r Vorgesetzten/Personalverantwortlichen über die Möglichkeit einer Umsatzbeteiligung",
+        "text": "http://www.gesundheitsfoerderung.ch/pdf_doc_xls/d/betriebliche_gesundheitsfoerderung/grundlagen_wissen/Rahmenkonzept_Gesundheitskompetenz_de.pdf",
         "source": "youpers",
         "defaultduration": 30,
         "defaultexecutiontype": "self",
@@ -750,12 +769,13 @@
         "recWeights": [],
         "fields": ["WorkStructuring"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c000000003f",
+        "id": "5278b1cc9aed06000000003f",
         "version": 0
     },
     {
         "number": "Act-59",
         "title": "Stehe heute bewusst in regelmässigen kurzen Arbeitspausen auf, strecke dich und führe eine Entspannungsübung durch",
+        "text": "Schon ein paar Sekunden können Wunder wirken: Öffnen Sie Ihr Bürofenster und atmen Sie dreimal tief durch. Das unterbricht die Stress-Spirale. Derartige „unproduktive“ Augenblicke sind nicht etwa vergeudete Zeit, sondern wichtig für die Regeneration. Und sind Ihnen gerade in diesen Momenten nicht auch schon die besten numbereen gekommen? \nSiehe auch http://www.burnoutwatchers.de/die-10-besten-tipps-gegen-beruflichen-stress.html",
         "source": "youpers",
         "defaultduration": 480,
         "defaultexecutiontype": "group",
@@ -763,7 +783,7 @@
         "recWeights": [],
         "fields": ["Breaks", "Relaxation", "SocialInteraction"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c0000000040",
+        "id": "5278b1cc9aed060000000040",
         "version": 0
     },
     {
@@ -776,12 +796,13 @@
         "recWeights": [],
         "fields": ["Breaks", "PhysicalActivity"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c0000000041",
+        "id": "5278b1cc9aed060000000041",
         "version": 0
     },
     {
         "number": "Act-61",
         "title": "Führe in der Arbeitspause Dehnungsübungen für Schulter und Kopf durch",
+        "text": "Langes Sitzen kann zu gesundheitlichen Problemen führen. Machen Sie regelmässig Pausen mit Dehnübungen für den Nacken, die Schultern und den Kopf.",
         "source": "youpers",
         "defaultduration": 15,
         "defaultexecutiontype": "self",
@@ -789,7 +810,7 @@
         "recWeights": [],
         "fields": ["Breaks", "Relaxation"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c0000000042",
+        "id": "5278b1cc9aed060000000042",
         "version": 0
     },
     {
@@ -802,7 +823,7 @@
         "recWeights": [],
         "fields": ["Breaks"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c0000000043",
+        "id": "5278b1cc9aed060000000043",
         "version": 0
     },
     {
@@ -815,12 +836,13 @@
         "recWeights": [],
         "fields": ["Breaks", "SocialInteraction"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c0000000044",
+        "id": "5278b1cc9aed060000000044",
         "version": 0
     },
     {
         "number": "Act-64",
         "title": "Nutze die Pause um 10 Minuten Musik zu hören, die dir gefällt",
+        "text": "Musik wirkt auf das Belohnungssystem im menschlichen Gehirn und lässt Stress verschwinden. Durch Musik, die man gerne mag, wird das Glückshormon Dopamin ausgeschüttet. Das heisst, man fühlt sich beim Hören wohl, entspannt und ohne Stress. Allerdings ist dieser Effekt nur dann da, wenn einem die Musik gefällt. Dies konnten Forscher unlängst nachweisen.",
         "source": "youpers",
         "defaultduration": 15,
         "defaultexecutiontype": "self",
@@ -828,12 +850,13 @@
         "recWeights": [],
         "fields": ["Breaks", "Relaxation"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c0000000045",
+        "id": "5278b1cc9aed060000000045",
         "version": 0
     },
     {
         "number": "Act-65",
         "title": "Mache einen Spaziergang während der Mittagspause",
+        "text": "Machen Sie in der Mittagspause einen Spaziergang. Halten Sie dabei Ihr Gesicht in die Sonne und machen die Unterarme frei. In geringer Menge ist das UV-Licht gesundheitlich förderlich. Durch Tageslicht kann Ihr Körper Vitamin D bilden. Daneben tut die Bewegung gut und hat einen gesundheitsförderlichen Effekt.",
         "source": "youpers",
         "defaultduration": 30,
         "defaultexecutiontype": "group",
@@ -841,12 +864,13 @@
         "recWeights": [],
         "fields": ["Breaks", "PhysicalActivity"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c0000000046",
+        "id": "5278b1cc9aed060000000046",
         "version": 0
     },
     {
         "number": "Act-66",
         "title": "Gehe joggen mit Kollegen während der Mittagspause",
+        "text": "Gehen Sie über Mittag mit Kollegen joggen. Planen Sie die Zeit fest in Ihrem Terminkalender ein und verabreden sich. So können Sie vom gesundheitlichen Nutzen der Bewegung profitieren und soziale Kontakte pflegen. Wer sich zum Sport mit anderen Personen verabredet führt diesen auch öfters durch, da eine andere Person auf Sie wartet. Zudem macht ein gemeinsames Sporttreiben oft mehr Spass als beim Joggen alleine zu sein.",
         "source": "youpers",
         "defaultduration": 30,
         "defaultexecutiontype": "group",
@@ -854,12 +878,13 @@
         "recWeights": [],
         "fields": ["Breaks", "SocialInteraction", "PhysicalActivity", "Relaxation"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c0000000047",
+        "id": "5278b1cc9aed060000000047",
         "version": 0
     },
     {
         "number": "Act-67",
         "title": "Organisiere ein Ballspiel mit Kollegen für die Mittagspause",
+        "text": "Spielen Sie über Mittag zusammen mit Kollegen Ballspiele. Planen Sie die Zeit fest in Ihrem Terminkalender ein und verabreden sich. So können Sie vom gesundheitlichen Nutzen der Bewegung profitieren und soziale Kontakte pflegen. Wer sich zum Sport mit anderen Personen verabredet führt diesen auch öfters durch, da eine andere Person auf Sie wartet. Zudem macht ein gemeinsames Sporttreiben Spass und fördert den Zusammenhalt.",
         "source": "youpers",
         "defaultduration": 60,
         "defaultexecutiontype": "group",
@@ -867,7 +892,7 @@
         "recWeights": [],
         "fields": ["Breaks", "SocialInteraction", "PhysicalActivity", "Relaxation"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c0000000048",
+        "id": "5278b1cc9aed060000000048",
         "version": 0
     },
     {
@@ -880,7 +905,7 @@
         "recWeights": [],
         "fields": ["Breaks", "SocialInteraction"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c0000000049",
+        "id": "5278b1cc9aed060000000049",
         "version": 0
     },
     {
@@ -893,12 +918,13 @@
         "recWeights": [],
         "fields": ["Breaks", "Relaxation"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c000000004a",
+        "id": "5278b1cc9aed06000000004a",
         "version": 0
     },
     {
         "number": "Act-70",
         "title": "Wende in der Arbeitspause eine Imaginations-Technik an (Gute Laune Bilder, Ferienerinnerung, Phantasiereise)",
+        "text": "Imagination ist eine Entspannungsübung, die Ihnen helfen kann, sich zu entspannen und Stress zu lösen\n•Stellen Sie sich ein friedliches, entspannendes Bild vor, das Ihnen hilft sich vom Stress zu lösen (z.B. imaginieren Sie sich ein Bild Ihres letzten Urlaubs, wenn es dort zu entspannenden Momenten gekommen ist).\n•Suchen Sie eine ruhige Stelle auf, wo Sie ohne Unterbrechungen oder Störungen entspannen können.\n•Begeben Sie sich in eine komfortable Position, entweder im Sitzen oder Liegen.\n•Schliessen Sie die Augen und atmen Sie einige Male tief und langsam durch.\n•Stellen Sie sich einen paradiesischen Ort vor, sei es einen Strand, einen ruhigen See, eine besonders schöne Landschaft oder ähnliches. Imaginieren Sie alle Sehenswürdigkeiten, Geräusche und Gerüche dieses Ortes.\n•Stellen Sie sich dieses paradiesisches Bild wiederholt vor, besonders wenn Sie sich gestresst fühlen.",
         "source": "youpers",
         "defaultduration": 15,
         "defaultexecutiontype": "self",
@@ -906,7 +932,7 @@
         "recWeights": [],
         "fields": ["Breaks", "Relaxation"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c000000004b",
+        "id": "5278b1cc9aed06000000004b",
         "version": 0
     },
     {
@@ -919,7 +945,7 @@
         "recWeights": [],
         "fields": ["Relaxation"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c000000004c",
+        "id": "5278b1cc9aed06000000004c",
         "version": 0
     },
     {
@@ -932,7 +958,7 @@
         "recWeights": [],
         "fields": ["Relaxation"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c000000004d",
+        "id": "5278b1cc9aed06000000004d",
         "version": 0
     },
     {
@@ -945,7 +971,7 @@
         "recWeights": [],
         "fields": ["Relaxation"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c000000004e",
+        "id": "5278b1cc9aed06000000004e",
         "version": 0
     },
     {
@@ -958,7 +984,7 @@
         "recWeights": [],
         "fields": ["Relaxation"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c000000004f",
+        "id": "5278b1cc9aed06000000004f",
         "version": 0
     },
     {
@@ -971,7 +997,7 @@
         "recWeights": [],
         "fields": ["Relaxation", "PhysicalActivity"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c0000000050",
+        "id": "5278b1cc9aed060000000050",
         "version": 0
     },
     {
@@ -984,7 +1010,7 @@
         "recWeights": [],
         "fields": ["Relaxation"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c0000000051",
+        "id": "5278b1cc9aed060000000051",
         "version": 0
     },
     {
@@ -997,12 +1023,13 @@
         "recWeights": [],
         "fields": ["Relaxation"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c0000000052",
+        "id": "5278b1cc9aed060000000052",
         "version": 0
     },
     {
         "number": "Act-79",
         "title": "Führe am Feierabend zur Entspannung Yoga Übungen durch",
+        "text": "Yoga ist eine althergebrachte Methode und stammt aus Indien. Ursprünglich diente Yoga der Erweiterung es Bewusstseins durch verschiedene Versenkungstechniken. Weiter beinhaltete es bestimmte philosophische Betrachtungen er Welt sowie eine damit verbundene Art der Lebensführung. Durch die regelmässige Ausführung der Körper- und Atemübungen kann eine nachhaltige Entspannung erreicht werden. In verschiedenen Forschungsarbeiten konnten positive Wirkung auf die Psyche (weniger Ängstlichkeit und Depressivität, Verbesserung Konzentration, Selbstkonzept) und auf den Körper (tieferer Blutdruck, Puls, Muskeltonus, bessere Durchblutung) nachgewiesen werden.",
         "source": "youpers",
         "defaultduration": 30,
         "defaultexecutiontype": "self",
@@ -1010,12 +1037,13 @@
         "recWeights": [],
         "fields": ["Relaxation"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c0000000053",
+        "id": "5278b1cc9aed060000000053",
         "version": 0
     },
     {
         "number": "Act-80",
         "title": "Führe am Feierabend zur Entspannung Meditationsübungen durch",
+        "text": "Meditative Verfahren haben ihren Ursprung in asiatischen Religionen wie Hinduismus und Buddhismus. Das Ziel der klassischen Meditation besteht denn auch in einer Förderung von spirituellem Wachstum, einer Erweiterung des Bewusstseins und einer Aneignung einer tiefen inneren Ruhe. Studien belegen die positive Auswirkungen von Meditation zur Stressbewältigung: so lindert sie Spannungszustände, verringert die Atemfrequenz, verbessert Konzentration und Aufmerksamkeit oder senkt den Blutdruck. \nBeispiel Mantra-Meditation: Zu Beginn der Übung setzen Sie sich aufrecht und bequem hin und schliessen die Augen. Indem Sie ein wertfreies \"Lautwort\" (das Mantra) innerlich ruhig und regelmässig vorsagen, treten nach und nach alle störenden Gedanken und Gefühle in den Hintergrund. Es bleibt ein angenehmes Gefühl der inneren Ruhe. Als Mantra könne Sie ein Wort wählen, das wohlklingend ist und für Sie keine Bedeutung hat (z.B. Simbra, Om)",
         "source": "youpers",
         "defaultduration": 30,
         "defaultexecutiontype": "self",
@@ -1023,12 +1051,13 @@
         "recWeights": [],
         "fields": ["Relaxation"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c0000000054",
+        "id": "5278b1cc9aed060000000054",
         "version": 0
     },
     {
         "number": "Act-81",
         "title": "Führe am Feierabend zur Entspannung ein autogenes Training durch",
+        "text": "Das Autogene Training (AT) zählt zu den bekanntesten Entspannungsverfahren. Das Training verfolgt das Ziel, über Selbstentspannung zu einer psychophysiologischen Umschaltung von einer aktivitätsgerichteten in eine der Erholung dienende  Reaktionslage zu kommen. Das Autogene Training hat einen sechsstufigen Übungsaufbau, bei dem die einzelnen Übungen in chronologischer Reihenfolge (1. Schwereübung, 2. Wärmeübung, 3. Herzübung, 4. Atemübung, 5. Sonnengeflechtübung, 6. Stirnkühleübung) im Abstand von je zwei Wochen über einen Zeitraum von drei Monaten gelernt werden. In Studien konnte eine deutliche Reduktion von Angst- und Stressreaktionen nachgewiesen werden.",
         "source": "youpers",
         "defaultduration": 30,
         "defaultexecutiontype": "self",
@@ -1036,7 +1065,7 @@
         "recWeights": [],
         "fields": ["Relaxation"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c0000000055",
+        "id": "5278b1cc9aed060000000055",
         "version": 0
     },
     {
@@ -1049,7 +1078,7 @@
         "recWeights": [],
         "fields": ["Relaxation", "LeisureActivity"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c0000000056",
+        "id": "5278b1cc9aed060000000056",
         "version": 0
     },
     {
@@ -1062,7 +1091,7 @@
         "recWeights": [],
         "fields": ["Relaxation"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c0000000057",
+        "id": "5278b1cc9aed060000000057",
         "version": 0
     },
     {
@@ -1075,7 +1104,7 @@
         "recWeights": [],
         "fields": ["Relaxation"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c0000000058",
+        "id": "5278b1cc9aed060000000058",
         "version": 0
     },
     {
@@ -1088,12 +1117,13 @@
         "recWeights": [],
         "fields": ["Relaxation", "LeisureActivity"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c0000000059",
+        "id": "5278b1cc9aed060000000059",
         "version": 0
     },
     {
         "number": "Act-87",
         "title": "Geniesse am Feierabend ein Entspannungsbad mit beruhigenden Badezusätzen (S. 19/3.0)",
+        "text": "http://www.gesundheitsfoerderung.ch/pdf_doc_xls/f/gesundheitsfoerderung_promotion_staerken/Grundlagen_Wissen/entspannungsbericht_d.pdf",
         "source": "youpers",
         "defaultduration": 60,
         "defaultexecutiontype": "self",
@@ -1101,7 +1131,7 @@
         "recWeights": [],
         "fields": ["Relaxation", "LeisureActivity"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c000000005a",
+        "id": "5278b1cc9aed06000000005a",
         "version": 0
     },
     {
@@ -1114,7 +1144,7 @@
         "recWeights": [],
         "fields": ["Relaxation"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c000000005b",
+        "id": "5278b1cc9aed06000000005b",
         "version": 0
     },
     {
@@ -1127,7 +1157,7 @@
         "recWeights": [],
         "fields": ["Relaxation", "LeisureActivity"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c000000005c",
+        "id": "5278b1cc9aed06000000005c",
         "version": 0
     },
     {
@@ -1140,7 +1170,7 @@
         "recWeights": [],
         "fields": ["Relaxation"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c000000005d",
+        "id": "5278b1cc9aed06000000005d",
         "version": 0
     },
     {
@@ -1153,7 +1183,7 @@
         "recWeights": [],
         "fields": ["Relaxation", "AwarenessAbility"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c000000005e",
+        "id": "5278b1cc9aed06000000005e",
         "version": 0
     },
     {
@@ -1166,7 +1196,7 @@
         "recWeights": [],
         "fields": ["Relaxation"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c000000005f",
+        "id": "5278b1cc9aed06000000005f",
         "version": 0
     },
     {
@@ -1179,12 +1209,13 @@
         "recWeights": [],
         "fields": ["Relaxation"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c0000000060",
+        "id": "5278b1cc9aed060000000060",
         "version": 0
     },
     {
         "number": "Act-94",
         "title": "Führe eine progressive Muskelrelaxation nach Jacobson durch",
+        "text": "Progressive Muskelrelaxation (PMR) ist ein sehr wirksames Mittel gegen Stress. Wenn Sie die Übungen beherrschen, können Sie sich in belastenden Situationen innerhalb weniger Sekunden entspannen. Es ist ein Verfahren, bei dem durch systematisches Anspannen und Entspannen verschiedener Muskelgruppen und durch die Wahrnehmung der dabei produzierten körperlichen Effekte allgemeine Entspannung induziert wird. Die Progressive Muskelentspannung können Sie recht einfach erlernen. Für die ersten Übungen begeben Sie sich am besten in eine liegende Position. Legen Sie sich mit geschlossenen Augen auf den Rücken und atmen Sie ruhig. Als Rechtshänder ballen Sie die rechte Faust und spannen die Muskeln möglichst kräftig an. Zählen Sie langsam bis sechs und entspannen Sie anschließend die Muskeln für 30 bis 40 Sekunden. Nehmen Sie sich nacheinander verschiedene Muskelpartien vor: Arm, Schultern, Bauch, Becken, Beine und Füße. Auch die Muskeln im Gesicht können Sie einbeziehen. Nehmen Sie sich auch hier die einzelnen Bereiche wie Stirn, Nase und Mund nacheinander vor. In der Entspannungsphase sollten Sie immer langsam ausatmen und spüren, wie die Muskeln weich und locker werden. Bleiben Sie am Ball und wiederholen Sie die Übungen regelmäßig, bis Sie sie verinnerlicht haben. Dann sind Sie irgendwann in der Lage, die Progressive Muskelentspannung nicht nur im Liegen, sondern auch im Sitzen und Stehen auszuführen. Sie brauchen dann nur noch wenige Sekunden, um selbst im größten Stress wieder zu mehr Ruhe zu finden.\nStudien zeigen, dass die PMR Stresssymptome abbaut, das Immunsystem stärkt und die Herzrate senkt.",
         "source": "youpers",
         "defaultduration": 15,
         "defaultexecutiontype": "self",
@@ -1192,7 +1223,7 @@
         "recWeights": [],
         "fields": ["Relaxation"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c0000000061",
+        "id": "5278b1cc9aed060000000061",
         "version": 0
     },
     {
@@ -1205,12 +1236,13 @@
         "recWeights": [],
         "fields": ["LeisureActivity"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c0000000062",
+        "id": "5278b1cc9aed060000000062",
         "version": 0
     },
     {
         "number": "Act-96",
         "title": "Mache eine Biofeedback-Sitzung",
+        "text": "Beim Biofeedback werden Körperprozesse, die der Wahrnehmung normalerweise unzugänglich sind, mittels elektronischer Messgeräte (z.B. EEG, EKG, EMG) in wahrnehmbare (akustische oder optische) Signale verwandelt. Damit wird dem Indivnumberuum die Möglichkeit eröffnet, die entsprechenden Prozesse willkürlich zu beeinflussen. Es handelt sich also um eine Rückkoppelung («Feedback») von «Bio»signalen. Werte wie Hauttemperatur, Pulsfrequenz, Muskelspannung, Atmung und Alphafrequenzen des\nGehirns liefern Hinweise auf den Spannungszustand (Stress usw.) des Körpers. Entsprechend wird ein persönliches Trainingsprogramm erstellt, bei dem gelernt wird, die ungünstig verlaufenden Prozesse willentlich zu beeinflussen. Die entsprechenden Erfolge können sogleich an den Geräten abgelesen werden. Durch ein «Lernen am Erfolg» (instrumentelle\nKonditionierung) sollen die erwünschten Reaktionen gefestigt werden. Verschiedene Untersuchungen könnene den Effekt von Biofeedback belegen.",
         "source": "youpers",
         "defaultduration": 60,
         "defaultexecutiontype": "self",
@@ -1218,12 +1250,13 @@
         "recWeights": [],
         "fields": ["Relaxation"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c0000000063",
+        "id": "5278b1cc9aed060000000063",
         "version": 0
     },
     {
         "number": "Act-97",
         "title": "Lese ein Buch zu imaginativen Verfahren und wende eine Technik, die dir gefällt, an",
+        "text": "Imagination ist eine Entspannungsübung, die Ihnen helfen kann, sich zu entspannen und Stress zu lösen\n• Stellen Sie sich ein friedliches, entspannendes Bild vor, das Ihnen hilft sich vom Stress zu lösen (z.B. imaginieren Sie sich ein Bild Ihres letzten Urlaubs, wenn es dort zu entspannenden Momenten gekommen ist).\n• Suchen Sie eine ruhige Stelle auf, wo Sie ohne Unterbrechungen oder Störungen entspannen können.\n• Begeben Sie sich in eine komfortable Position, entweder im Sitzen oder Liegen.\n• Schliessen Sie die Augen und atmen Sie einige Male tief und langsam durch.\n• Stellen Sie sich einen paradiesischen Ort vor, sei es einen Strand, einen ruhigen See, eine besonders schöne Landschaft oder ähnliches. Imaginieren Sie alle Sehenswürdigkeiten, Geräusche und Gerüche dieses Ortes.\n• Stellen Sie sich dieses paradiesisches Bild wiederholt vor, besonders wenn Sie sich gestresst fühlen",
         "source": "youpers",
         "defaultduration": 120,
         "defaultexecutiontype": "self",
@@ -1231,12 +1264,13 @@
         "recWeights": [],
         "fields": ["Relaxation"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c0000000064",
+        "id": "5278b1cc9aed060000000064",
         "version": 0
     },
     {
         "number": "Act-98",
         "title": "Lese ein Buch zu kognitiv-verhaltenstherapeutische Verfahren und wende eine Technik, die dir gefällt, an (z.B. Gedankenstopp)",
+        "text": "Wenn Sie einen negativen oder unerwünschten Gedanken haben, z. B. \"Ich wäre heute lieber gar nicht hier\" oder \"Das schaffe ich nie\", dann stellen Sie vor Ihrem geistigen Auge einfach ein großes rotes Stopp-Schild vor. Halten Sie dieses Bild ein paar Sekunden fest und lassen Sie es dann zusammen mit dem negativen Gedanken verschwinden. Wenn Sie wollen, können Sie hieran eine positive Selbst-Botschaft anschließen, wie beispielsweise \"Wenn ich mir Zwischenziele setze, schaffe ich das schon!\". Mit der Gedanken-Stopp Technik können Sie einen unerwünschten Gedanken blockieren, ehe es zur Eskalation  kommt. Diese Methode kann Ihnen helfen, die Aufmerksamkeit neu zu fokussieren und in Gedanken ganz bei der bevorstehenden Aufgabe zu sein.",
         "source": "youpers",
         "defaultduration": 120,
         "defaultexecutiontype": "self",
@@ -1244,7 +1278,7 @@
         "recWeights": [],
         "fields": ["Relaxation", "AwarenessAbility"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c0000000065",
+        "id": "5278b1cc9aed060000000065",
         "version": 0
     },
     {
@@ -1257,7 +1291,7 @@
         "recWeights": [],
         "fields": ["Relaxation", "LeisureActivity"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c0000000066",
+        "id": "5278b1cc9aed060000000066",
         "version": 0
     },
     {
@@ -1270,7 +1304,7 @@
         "recWeights": [],
         "fields": ["Relaxation", "LeisureActivity"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c0000000067",
+        "id": "5278b1cc9aed060000000067",
         "version": 0
     },
     {
@@ -1283,7 +1317,7 @@
         "recWeights": [],
         "fields": ["Relaxation", "LeisureActivity"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c0000000068",
+        "id": "5278b1cc9aed060000000068",
         "version": 0
     },
     {
@@ -1296,7 +1330,7 @@
         "recWeights": [],
         "fields": ["SocialInteraction", "LeisureActivity"],
         "topics": ["workLifeBalance"],
-        "id": "5278ad80fa3e1c0000000069",
+        "id": "5278b1cc9aed060000000069",
         "version": 0
     }
 ]

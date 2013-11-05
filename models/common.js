@@ -69,7 +69,7 @@ module.exports = {
                     console.log(Error);
                 }
                 if (jsonFromFile) {
-                    console.log(Model.modelName + ": initializing assessment Database from File: " + filename);
+                    console.log(Model.modelName + ": initializing Database from File: " + filename);
                     console.log(jsonFromFile);
                     if (!Array.isArray(jsonFromFile)) {
                         jsonFromFile = [jsonFromFile];

@@ -440,7 +440,11 @@ module.exports = {
             // if yes only send the objects of the currently logged in user
             var finder = '';
             if (Model.schema.paths['owner']) {
-                finder = {owner: req.user.id};
+                if (!req.user || !req.user.id) {
+                    return next(new restify.NotAuthorizedError('Authentication required for this object'));
+                } else {
+                    finder = {owner: req.user.id};
+                }
             }
             var dbQuery = Model.find(finder);
             if (req.user && req.user.role === 'admin' && Model.getAdminAttrsSelector) {

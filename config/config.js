@@ -110,7 +110,7 @@ module.exports = {
                 res: Logger.stdSerializers.res
             }
         }
-    }, uat: {   // used by Heroku yp-backend-test
+    }, uat: {
     root: require('path').normalize(__dirname + '/..'),
         app: {
         name: 'YouPers Platform Server'

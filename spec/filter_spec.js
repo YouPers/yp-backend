@@ -17,11 +17,11 @@ frisby.globalSetup({ // globalSetup is for ALL requests
 
 
 frisby.create('GET acitivities with one filter options returning exactly on result')
-    .get(URL + 'activities?filter[number]=Act-120')
+    .get(URL + 'activities?filter[number]=Act-110')
     .expectStatus(200)
     .expectJSONLength(1)
     .expectJSON('*', {
-        number: 'Act-120'
+        number: 'Act-110'
     })
     .toss();
 

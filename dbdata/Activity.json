@@ -9,7 +9,7 @@
         "recWeights": [],
         "fields": ["AwarenessAbility"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed060000000006",
+        "id": "5278c04ed24d2df20d000006",
         "version": 0
     },
     {
@@ -22,7 +22,7 @@
         "recWeights": [],
         "fields": ["AwarenessAbility"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed060000000007",
+        "id": "5278c04ed24d2df20d000007",
         "version": 0
     },
     {
@@ -35,7 +35,7 @@
         "recWeights": [],
         "fields": ["AwarenessAbility"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed060000000008",
+        "id": "5278c04ed24d2df20d000008",
         "version": 0
     },
     {
@@ -48,7 +48,7 @@
         "recWeights": [],
         "fields": ["AwarenessAbility"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed060000000009",
+        "id": "5278c04ed24d2df20d000009",
         "version": 0
     },
     {
@@ -61,7 +61,7 @@
         "recWeights": [],
         "fields": ["AwarenessAbility"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed06000000000a",
+        "id": "5278c04ed24d2df20d00000a",
         "version": 0
     },
     {
@@ -74,7 +74,7 @@
         "recWeights": [],
         "fields": ["AwarenessAbility"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed06000000000b",
+        "id": "5278c04ed24d2df20d00000b",
         "version": 0
     },
     {
@@ -87,7 +87,7 @@
         "recWeights": [],
         "fields": ["AwarenessAbility"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed06000000000c",
+        "id": "5278c04ed24d2df20d00000c",
         "version": 0
     },
     {
@@ -100,7 +100,7 @@
         "recWeights": [],
         "fields": ["AwarenessAbility"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed06000000000d",
+        "id": "5278c04ed24d2df20d00000d",
         "version": 0
     },
     {
@@ -113,7 +113,7 @@
         "recWeights": [],
         "fields": ["AwarenessAbility"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed06000000000e",
+        "id": "5278c04ed24d2df20d00000e",
         "version": 0
     },
     {
@@ -126,7 +126,7 @@
         "recWeights": [],
         "fields": ["AwarenessAbility"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed06000000000f",
+        "id": "5278c04ed24d2df20d00000f",
         "version": 0
     },
     {
@@ -139,7 +139,7 @@
         "recWeights": [],
         "fields": ["AwarenessAbility"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed060000000010",
+        "id": "5278c04ed24d2df20d000010",
         "version": 0
     },
     {
@@ -152,7 +152,7 @@
         "recWeights": [],
         "fields": ["AwarenessAbility"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed060000000011",
+        "id": "5278c04ed24d2df20d000011",
         "version": 0
     },
     {
@@ -165,7 +165,7 @@
         "recWeights": [],
         "fields": ["AwarenessAbility"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed060000000012",
+        "id": "5278c04ed24d2df20d000012",
         "version": 0
     },
     {
@@ -178,7 +178,7 @@
         "recWeights": [],
         "fields": ["AwarenessAbility"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed060000000013",
+        "id": "5278c04ed24d2df20d000013",
         "version": 0
     },
     {
@@ -191,7 +191,7 @@
         "recWeights": [],
         "fields": ["AwarenessAbility"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed060000000014",
+        "id": "5278c04ed24d2df20d000014",
         "version": 0
     },
     {
@@ -204,7 +204,7 @@
         "recWeights": [],
         "fields": ["AwarenessAbility"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed060000000015",
+        "id": "5278c04ed24d2df20d000015",
         "version": 0
     },
     {
@@ -218,7 +218,7 @@
         "recWeights": [],
         "fields": ["AwarenessAbility", "Relaxation"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed060000000016",
+        "id": "5278c04ed24d2df20d000016",
         "version": 0
     },
     {
@@ -232,7 +232,7 @@
         "recWeights": [],
         "fields": ["AwarenessAbility"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed060000000017",
+        "id": "5278c04ed24d2df20d000017",
         "version": 0
     },
     {
@@ -245,7 +245,7 @@
         "recWeights": [],
         "fields": ["TimeManagement"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed060000000018",
+        "id": "5278c04ed24d2df20d000018",
         "version": 0
     },
     {
@@ -258,7 +258,7 @@
         "recWeights": [],
         "fields": ["TimeManagement"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed060000000019",
+        "id": "5278c04ed24d2df20d000019",
         "version": 0
     },
     {
@@ -271,7 +271,7 @@
         "recWeights": [],
         "fields": ["TimeManagement", "SocialInteraction"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed06000000001a",
+        "id": "5278c04ed24d2df20d00001a",
         "version": 0
     },
     {
@@ -284,7 +284,7 @@
         "recWeights": [],
         "fields": ["TimeManagement"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed06000000001b",
+        "id": "5278c04ed24d2df20d00001b",
         "version": 0
     },
     {
@@ -297,12 +297,12 @@
         "recWeights": [],
         "fields": ["TimeManagement", "SocialInteraction"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed06000000001c",
+        "id": "5278c04ed24d2df20d00001c",
         "version": 0
     },
     {
         "number": "Act-24",
-        "title": "Führe einen Workshop/ein Brainstorming mit einem professionellen Coach durch, um numbereen für die Verbesserung des persönlichen Zeitmanagements zu sammeln",
+        "title": "Führe einen Workshop/ein Brainstorming mit einem professionellen Coach durch, um Ideen für die Verbesserung des persönlichen Zeitmanagements zu sammeln",
         "source": "community",
         "defaultduration": 60,
         "defaultexecutiontype": "self",
@@ -310,13 +310,13 @@
         "recWeights": [],
         "fields": ["TimeManagement"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed06000000001d",
+        "id": "5278c04ed24d2df20d00001d",
         "version": 0
     },
     {
         "number": "Act-25",
         "title": "Mache eine bewusste Tagesplanung, setze dir ein Tagesziel und gewinne Zeit durch Zeitplanung",
-        "text": "Zeitmanagement kann weder den Tag verlängern, noch erforderliche Aufgaben durch irgendwelche Tricks verschwinden lassen. Jedem steht dieselbe Zeit zur Verfügung - 24 Stunden am Tag. Die Art wie man sich die Tätigkeiten im Tagesablauf organisiert und strukturiert, kann jedoch enorme Auswirkungen auf das indivnumberuelle Zeitempfinden haben und dem Entstehen von Stresssituationen entgegenwirken. Mithilfe persönlichen Zeitmanagements kann jeder zu einer optimaleren Ausnutzung seiner Lebenszeit und zu mehr Zufriedenheit beim Erreichen der Ziele gelangen.\nMeist bemerkt man erst, dass es am Zeitmanagement hapert, wenn es zu spät ist, wenn die Zeit knapp wird. Dann hilft nur ein Notfallplan, um sich Freiräume zu schaffen. \n1. Statt sofort loszuarbeiten, nehmen Sie sich ein paar Minuten Zeit für Ihre Zeitplanung. Je mehr Sie zu tun haben, desto wichtiger ist diese Maßnahme.\n2. Streichen oder verschieben Sie Routineaufgaben, die im Moment nicht so wichtig sind und später erledigt werden könnten.\n3. Schaffen Sie sich störungsfreie Zeiten.\n4. Bereiten Sie sich geistig auf den Tag vor.\n5. Lernen Sie \"Nein\" zu sagen, wenn Ihnen jemand Ihre Zeit und Energie stehlen will.\n6. Schieben Sie Unangenehmes nicht unnötig vor sich her. Die Aussicht auf unerfreuliche Aufgaben verursacht Stress, raubt Energie und beeinträchtigt alle Arbeiten, die in der Zwischenzeit zu machen sind.\n7. Nehmen Sie sich etwas Schönes für den Tagesabschluss vor. Die Freude auf etwas Angenehmes hilft, den Tagesstress besser zu bewältigen und energievoller mit den Tagesanforderungen umzugehen. \n\nIm Allgemeinen gilt, in allen Lebensbereichen ein Zeitmanagement einzuführen. Dieses sollte natürlich konsequent durchgezogen werden, um Erfolge sichtbar zu machen. \n\nPlanung\nDer wohl wichtigste Punkt des Zeitmanagements ist die Planung. Es ist wichtig, den Tag im Voraus zu planen - am besten den Abend zuvor. Dabei ist es nötig, auch die vorgesehene Zeit, die für die bestimmten Aufgaben und Tätigkeiten anfällt, zu veranschlagen. Außerdem kommen immer wieder Dinge dazwischen, die ungeplant passieren - Schnelle Lösung: Pufferzeiten in den Zeitplan integrieren, so kommen Sie nicht in Stress.\n\nKoordination\nKoordination ist die halbe Miete. Wichtige Termine, Arbeitsaufgaben usw. gut koordinieren, sodass diese nicht aneinander geraten.",
+        "text": "Zeitmanagement kann weder den Tag verlängern, noch erforderliche Aufgaben durch irgendwelche Tricks verschwinden lassen. Jedem steht dieselbe Zeit zur Verfügung - 24 Stunden am Tag. Die Art wie man sich die Tätigkeiten im Tagesablauf organisiert und strukturiert, kann jedoch enorme Auswirkungen auf das individuelle Zeitempfinden haben und dem Entstehen von Stresssituationen entgegenwirken. Mithilfe persönlichen Zeitmanagements kann jeder zu einer optimaleren Ausnutzung seiner Lebenszeit und zu mehr Zufriedenheit beim Erreichen der Ziele gelangen.\nMeist bemerkt man erst, dass es am Zeitmanagement hapert, wenn es zu spät ist, wenn die Zeit knapp wird. Dann hilft nur ein Notfallplan, um sich Freiräume zu schaffen. \n1. Statt sofort loszuarbeiten, nehmen Sie sich ein paar Minuten Zeit für Ihre Zeitplanung. Je mehr Sie zu tun haben, desto wichtiger ist diese Maßnahme.\n2. Streichen oder verschieben Sie Routineaufgaben, die im Moment nicht so wichtig sind und später erledigt werden könnten.\n3. Schaffen Sie sich störungsfreie Zeiten.\n4. Bereiten Sie sich geistig auf den Tag vor.\n5. Lernen Sie \"Nein\" zu sagen, wenn Ihnen jemand Ihre Zeit und Energie stehlen will.\n6. Schieben Sie Unangenehmes nicht unnötig vor sich her. Die Aussicht auf unerfreuliche Aufgaben verursacht Stress, raubt Energie und beeinträchtigt alle Arbeiten, die in der Zwischenzeit zu machen sind.\n7. Nehmen Sie sich etwas Schönes für den Tagesabschluss vor. Die Freude auf etwas Angenehmes hilft, den Tagesstress besser zu bewältigen und energievoller mit den Tagesanforderungen umzugehen. \n\nIm Allgemeinen gilt, in allen Lebensbereichen ein Zeitmanagement einzuführen. Dieses sollte natürlich konsequent durchgezogen werden, um Erfolge sichtbar zu machen. \n\nPlanung\nDer wohl wichtigste Punkt des Zeitmanagements ist die Planung. Es ist wichtig, den Tag im Voraus zu planen - am besten den Abend zuvor. Dabei ist es nötig, auch die vorgesehene Zeit, die für die bestimmten Aufgaben und Tätigkeiten anfällt, zu veranschlagen. Außerdem kommen immer wieder Dinge dazwischen, die ungeplant passieren - Schnelle Lösung: Pufferzeiten in den Zeitplan integrieren, so kommen Sie nicht in Stress.\n\nKoordination\nKoordination ist die halbe Miete. Wichtige Termine, Arbeitsaufgaben usw. gut koordinieren, sodass diese nicht aneinander geraten.",
         "source": "youpers",
         "defaultduration": 15,
         "defaultexecutiontype": "self",
@@ -324,7 +324,7 @@
         "recWeights": [],
         "fields": ["TimeManagement"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed06000000001e",
+        "id": "5278c04ed24d2df20d00001e",
         "version": 0
     },
     {
@@ -337,7 +337,7 @@
         "recWeights": [],
         "fields": ["TimeManagement"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed06000000001f",
+        "id": "5278c04ed24d2df20d00001f",
         "version": 0
     },
     {
@@ -350,7 +350,7 @@
         "recWeights": [],
         "fields": ["TimeManagement"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed060000000020",
+        "id": "5278c04ed24d2df20d000020",
         "version": 0
     },
     {
@@ -363,7 +363,7 @@
         "recWeights": [],
         "fields": ["TimeManagement", "WorkStructuring"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed060000000021",
+        "id": "5278c04ed24d2df20d000021",
         "version": 0
     },
     {
@@ -377,7 +377,7 @@
         "recWeights": [],
         "fields": ["TimeManagement", "WorkStructuring"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed060000000022",
+        "id": "5278c04ed24d2df20d000022",
         "version": 0
     },
     {
@@ -391,7 +391,7 @@
         "recWeights": [],
         "fields": ["TimeManagement", "WorkStructuring"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed060000000023",
+        "id": "5278c04ed24d2df20d000023",
         "version": 0
     },
     {
@@ -404,7 +404,7 @@
         "recWeights": [],
         "fields": ["WorkStructuring"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed060000000024",
+        "id": "5278c04ed24d2df20d000024",
         "version": 0
     },
     {
@@ -418,20 +418,7 @@
         "recWeights": [],
         "fields": ["WorkStructuring"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed060000000025",
-        "version": 0
-    },
-    {
-        "number": "Act-34",
-        "title": "Erledige einen Tag pro Woche deine Arbeiten von zuhause aus (Heimarbeit)",
-        "source": "youpers",
-        "defaultduration": 480,
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "campaign",
-        "recWeights": [],
-        "fields": ["WorkStructuring"],
-        "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed060000000027",
+        "id": "5278c04ed24d2df20d000025",
         "version": 0
     },
     {
@@ -444,21 +431,20 @@
         "recWeights": [],
         "fields": ["WorkStructuring"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed060000000026",
+        "id": "5278c04ed24d2df20d000026",
         "version": 0
     },
     {
-        "number": "Act-39",
-        "title": "Stelle deinen Computer ergonomisch ein",
-        "text": "Stellen Sie den Bildschirm gerade vor sich hin, damit Sie Ihren Kopf nicht seitlich abdrehen müssen. Die Höhe sollte so eingestellt sein, dass der obere Bildschirmrand eine Handbreite unter Ihrer Augenhöhe ist. Der Abstand zwischen Augen und Bildschirm sollte mindestens eine Armlänge betragen, bei grösseren Monitoren etwas mehr.\nSiehe auch www.ekas-box.ch",
+        "number": "Act-34",
+        "title": "Erledige einen Tag pro Woche deine Arbeiten von zuhause aus (Heimarbeit)",
         "source": "youpers",
-        "defaultduration": 30,
+        "defaultduration": 480,
         "defaultexecutiontype": "self",
         "defaultvisibility": "campaign",
         "recWeights": [],
         "fields": ["WorkStructuring"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed06000000002c",
+        "id": "5278c04ed24d2df20d000027",
         "version": 0
     },
     {
@@ -471,20 +457,7 @@
         "recWeights": [],
         "fields": ["WorkStructuring"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed060000000028",
-        "version": 0
-    },
-    {
-        "number": "Act-37",
-        "title": "Suche eine für dich sinnvolle Weiterbildung und melde dich dafür an",
-        "source": "community",
-        "defaultduration": 60,
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "recWeights": [],
-        "fields": ["WorkStructuring", "AwarenessAbility"],
-        "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed06000000002a",
+        "id": "5278c04ed24d2df20d000028",
         "version": 0
     },
     {
@@ -497,47 +470,20 @@
         "recWeights": [],
         "fields": ["WorkStructuring"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed060000000029",
+        "id": "5278c04ed24d2df20d000029",
         "version": 0
     },
     {
-        "number": "Act-40",
-        "title": "Stelle eine schöne Pflanze an deinen Arbeitsplatz",
-        "text": "Der numberealbereich für die Luftfeutigkeit in einem Büro liegt zwischen 40-60%. Um die relative Luftfeuchtigkeit zu erhöhen (speziell im Winter in geheizten Büros) können Pflazen eingesetzt werden.\nSiehe auch www.ekas-box.ch (6205, Seite 39)",
-        "source": "youpers",
-        "defaultduration": 30,
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "campaign",
-        "recWeights": [],
-        "fields": ["WorkStructuring"],
-        "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed06000000002d",
-        "version": 0
-    },
-    {
-        "number": "Act-44",
-        "title": "\"Kontrolltyp\": Frage heute bewusst heute einmal nicht nach",
+        "number": "Act-37",
+        "title": "Suche eine für dich sinnvolle Weiterbildung und melde dich dafür an",
         "source": "community",
-        "defaultduration": 480,
+        "defaultduration": 60,
         "defaultexecutiontype": "self",
         "defaultvisibility": "private",
         "recWeights": [],
-        "fields": ["AwarenessAbility"],
+        "fields": ["WorkStructuring", "AwarenessAbility"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed060000000031",
-        "version": 0
-    },
-    {
-        "number": "Act-42",
-        "title": "Verändere heute deine Sitzposition alle 15 Minuten",
-        "source": "community",
-        "defaultduration": 480,
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "campaign",
-        "recWeights": [],
-        "fields": ["WorkStructuring"],
-        "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed06000000002f",
+        "id": "5278c04ed24d2df20d00002a",
         "version": 0
     },
     {
@@ -551,13 +497,13 @@
         "recWeights": [],
         "fields": ["WorkStructuring"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed06000000002b",
+        "id": "5278c04ed24d2df20d00002b",
         "version": 0
     },
     {
-        "number": "Act-41",
-        "title": "Stelle ein persönliches/inspirierendes Bild an den Arbeitslatz",
-        "text": "Stellen Sie ein persönliches und inspirierendes Bild an Ihren Arbeitsplatz. Wer sich geborgen und wohl fühlt, numberentifiziert sich stärker mit seiner Arbeit.",
+        "number": "Act-39",
+        "title": "Stelle deinen Computer ergonomisch ein",
+        "text": "Stellen Sie den Bildschirm gerade vor sich hin, damit Sie Ihren Kopf nicht seitlich abdrehen müssen. Die Höhe sollte so eingestellt sein, dass der obere Bildschirmrand eine Handbreite unter Ihrer Augenhöhe ist. Der Abstand zwischen Augen und Bildschirm sollte mindestens eine Armlänge betragen, bei grösseren Monitoren etwas mehr.\nSiehe auch www.ekas-box.ch",
         "source": "youpers",
         "defaultduration": 30,
         "defaultexecutiontype": "self",
@@ -565,33 +511,48 @@
         "recWeights": [],
         "fields": ["WorkStructuring"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed06000000002e",
+        "id": "5278c04ed24d2df20d00002c",
         "version": 0
     },
     {
-        "number": "Act-45",
-        "title": "\"Pflichtmensch\": Streiche heute bewusst 1 Pendenz aus der Tagesplanung",
-        "source": "community",
-        "defaultduration": 5,
+        "number": "Act-40",
+        "title": "Stelle eine schöne Pflanze an deinen Arbeitsplatz",
+        "text": "Der Idealbereich für die Luftfeutigkeit in einem Büro liegt zwischen 40-60%. Um die relative Luftfeuchtigkeit zu erhöhen (speziell im Winter in geheizten Büros) können Pflazen eingesetzt werden.\nSiehe auch www.ekas-box.ch (6205, Seite 39)",
+        "source": "youpers",
+        "defaultduration": 30,
         "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
+        "defaultvisibility": "campaign",
         "recWeights": [],
-        "fields": ["AwarenessAbility"],
+        "fields": ["WorkStructuring"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed060000000032",
+        "id": "5278c04ed24d2df20d00002d",
         "version": 0
     },
     {
-        "number": "Act-46",
-        "title": "\"Pflichtmensch\": Delegiere heute bewusst eine Arbeit",
-        "source": "community",
-        "defaultduration": 15,
+        "number": "Act-41",
+        "title": "Stelle ein persönliches/inspirierendes Bild an den Arbeitslatz",
+        "text": "Stellen Sie ein persönliches und inspirierendes Bild an Ihren Arbeitsplatz. Wer sich geborgen und wohl fühlt, identifiziert sich stärker mit seiner Arbeit.",
+        "source": "youpers",
+        "defaultduration": 30,
         "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
+        "defaultvisibility": "campaign",
         "recWeights": [],
-        "fields": ["AwarenessAbility"],
+        "fields": ["WorkStructuring"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed060000000033",
+        "id": "5278c04ed24d2df20d00002e",
+        "version": 0
+    },
+    {
+        "number": "Act-42",
+        "title": "Verändere heute deine Sitzposition alle 15 Minuten",
+        "source": "community",
+        "defaultduration": 480,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "recWeights": [],
+        "fields": ["WorkStructuring"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d00002f",
         "version": 0
     },
     {
@@ -604,21 +565,72 @@
         "recWeights": [],
         "fields": ["AwarenessAbility"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed060000000030",
+        "id": "5278c04ed24d2df20d000030",
         "version": 0
     },
     {
-        "number": "Act-51",
-        "title": "Spreche mit deinem/r Vorgesetzten/Personalverantwortlichen über Veränderung der Arbeitsumgebung",
-        "text": "http://www.gesundheitsfoerderung.ch/pdf_doc_xls/d/betriebliche_gesundheitsfoerderung/grundlagen_wissen/Rahmenkonzept_Gesundheitskompetenz_de.pdf",
-        "source": "youpers",
-        "defaultduration": 30,
+        "number": "Act-44",
+        "title": "\"Kontrolltyp\": Frage heute bewusst heute einmal nicht nach",
+        "source": "community",
+        "defaultduration": 480,
         "defaultexecutiontype": "self",
         "defaultvisibility": "private",
         "recWeights": [],
-        "fields": ["WorkStructuring"],
+        "fields": ["AwarenessAbility"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed060000000038",
+        "id": "5278c04ed24d2df20d000031",
+        "version": 0
+    },
+    {
+        "number": "Act-45",
+        "title": "\"Pflichtmensch\": Streiche heute bewusst 1 Pendenz aus der Tagesplanung",
+        "source": "community",
+        "defaultduration": 5,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["AwarenessAbility"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d000032",
+        "version": 0
+    },
+    {
+        "number": "Act-46",
+        "title": "\"Pflichtmensch\": Delegiere heute bewusst eine Arbeit",
+        "source": "community",
+        "defaultduration": 15,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["AwarenessAbility"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d000033",
+        "version": 0
+    },
+    {
+        "number": "Act-47",
+        "title": "\"fehlendes Selbstvertrauen\": Nehme heute bewusst eine Herausforderung an, die du dir nicht zutraust",
+        "source": "community",
+        "defaultduration": 15,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["AwarenessAbility"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d000034",
+        "version": 0
+    },
+    {
+        "number": "Act-48",
+        "title": "\"fehlendes Selbstvertrauen\": Achte heute bewusst auf erhaltene Anerkennung",
+        "source": "community",
+        "defaultduration": 480,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["AwarenessAbility"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d000035",
         "version": 0
     },
     {
@@ -631,7 +643,7 @@
         "recWeights": [],
         "fields": ["AwarenessAbility"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed060000000036",
+        "id": "5278c04ed24d2df20d000036",
         "version": 0
     },
     {
@@ -645,33 +657,21 @@
         "recWeights": [],
         "fields": ["WorkStructuring"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed060000000037",
+        "id": "5278c04ed24d2df20d000037",
         "version": 0
     },
     {
-        "number": "Act-47",
-        "title": "\"fehlendes Selbstvertrauen\": Nehme heute bewusst eine Herausforderung an, die du dir nicht zutraust",
-        "source": "community",
-        "defaultduration": 15,
+        "number": "Act-51",
+        "title": "Spreche mit deinem/r Vorgesetzten/Personalverantwortlichen über Veränderung der Arbeitsumgebung",
+        "text": "http://www.gesundheitsfoerderung.ch/pdf_doc_xls/d/betriebliche_gesundheitsfoerderung/grundlagen_wissen/Rahmenkonzept_Gesundheitskompetenz_de.pdf",
+        "source": "youpers",
+        "defaultduration": 30,
         "defaultexecutiontype": "self",
         "defaultvisibility": "private",
         "recWeights": [],
-        "fields": ["AwarenessAbility"],
+        "fields": ["WorkStructuring"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed060000000034",
-        "version": 0
-    },
-    {
-        "number": "Act-48",
-        "title": "\"fehlendes Selbstvertrauen\": Achte heute bewusst auf erhaltene Anerkennung",
-        "source": "community",
-        "defaultduration": 480,
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "recWeights": [],
-        "fields": ["AwarenessAbility"],
-        "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed060000000035",
+        "id": "5278c04ed24d2df20d000038",
         "version": 0
     },
     {
@@ -685,7 +685,7 @@
         "recWeights": [],
         "fields": ["WorkStructuring"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed060000000039",
+        "id": "5278c04ed24d2df20d000039",
         "version": 0
     },
     {
@@ -699,7 +699,7 @@
         "recWeights": [],
         "fields": ["WorkStructuring"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed06000000003a",
+        "id": "5278c04ed24d2df20d00003a",
         "version": 0
     },
     {
@@ -713,7 +713,7 @@
         "recWeights": [],
         "fields": ["WorkStructuring"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed06000000003b",
+        "id": "5278c04ed24d2df20d00003b",
         "version": 0
     },
     {
@@ -727,7 +727,7 @@
         "recWeights": [],
         "fields": ["WorkStructuring"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed06000000003c",
+        "id": "5278c04ed24d2df20d00003c",
         "version": 0
     },
     {
@@ -741,7 +741,7 @@
         "recWeights": [],
         "fields": ["WorkStructuring"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed06000000003d",
+        "id": "5278c04ed24d2df20d00003d",
         "version": 0
     },
     {
@@ -755,7 +755,7 @@
         "recWeights": [],
         "fields": ["WorkStructuring"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed06000000003e",
+        "id": "5278c04ed24d2df20d00003e",
         "version": 0
     },
     {
@@ -769,13 +769,13 @@
         "recWeights": [],
         "fields": ["WorkStructuring"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed06000000003f",
+        "id": "5278c04ed24d2df20d00003f",
         "version": 0
     },
     {
         "number": "Act-59",
         "title": "Stehe heute bewusst in regelmässigen kurzen Arbeitspausen auf, strecke dich und führe eine Entspannungsübung durch",
-        "text": "Schon ein paar Sekunden können Wunder wirken: Öffnen Sie Ihr Bürofenster und atmen Sie dreimal tief durch. Das unterbricht die Stress-Spirale. Derartige „unproduktive“ Augenblicke sind nicht etwa vergeudete Zeit, sondern wichtig für die Regeneration. Und sind Ihnen gerade in diesen Momenten nicht auch schon die besten numbereen gekommen? \nSiehe auch http://www.burnoutwatchers.de/die-10-besten-tipps-gegen-beruflichen-stress.html",
+        "text": "Schon ein paar Sekunden können Wunder wirken: Öffnen Sie Ihr Bürofenster und atmen Sie dreimal tief durch. Das unterbricht die Stress-Spirale. Derartige „unproduktive“ Augenblicke sind nicht etwa vergeudete Zeit, sondern wichtig für die Regeneration. Und sind Ihnen gerade in diesen Momenten nicht auch schon die besten Ideen gekommen? \nSiehe auch http://www.burnoutwatchers.de/die-10-besten-tipps-gegen-beruflichen-stress.html",
         "source": "youpers",
         "defaultduration": 480,
         "defaultexecutiontype": "group",
@@ -783,7 +783,7 @@
         "recWeights": [],
         "fields": ["Breaks", "Relaxation", "SocialInteraction"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed060000000040",
+        "id": "5278c04ed24d2df20d000040",
         "version": 0
     },
     {
@@ -796,7 +796,7 @@
         "recWeights": [],
         "fields": ["Breaks", "PhysicalActivity"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed060000000041",
+        "id": "5278c04ed24d2df20d000041",
         "version": 0
     },
     {
@@ -810,7 +810,7 @@
         "recWeights": [],
         "fields": ["Breaks", "Relaxation"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed060000000042",
+        "id": "5278c04ed24d2df20d000042",
         "version": 0
     },
     {
@@ -823,7 +823,7 @@
         "recWeights": [],
         "fields": ["Breaks"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed060000000043",
+        "id": "5278c04ed24d2df20d000043",
         "version": 0
     },
     {
@@ -836,7 +836,7 @@
         "recWeights": [],
         "fields": ["Breaks", "SocialInteraction"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed060000000044",
+        "id": "5278c04ed24d2df20d000044",
         "version": 0
     },
     {
@@ -850,7 +850,7 @@
         "recWeights": [],
         "fields": ["Breaks", "Relaxation"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed060000000045",
+        "id": "5278c04ed24d2df20d000045",
         "version": 0
     },
     {
@@ -864,7 +864,7 @@
         "recWeights": [],
         "fields": ["Breaks", "PhysicalActivity"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed060000000046",
+        "id": "5278c04ed24d2df20d000046",
         "version": 0
     },
     {
@@ -878,7 +878,7 @@
         "recWeights": [],
         "fields": ["Breaks", "SocialInteraction", "PhysicalActivity", "Relaxation"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed060000000047",
+        "id": "5278c04ed24d2df20d000047",
         "version": 0
     },
     {
@@ -892,7 +892,7 @@
         "recWeights": [],
         "fields": ["Breaks", "SocialInteraction", "PhysicalActivity", "Relaxation"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed060000000048",
+        "id": "5278c04ed24d2df20d000048",
         "version": 0
     },
     {
@@ -905,7 +905,7 @@
         "recWeights": [],
         "fields": ["Breaks", "SocialInteraction"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed060000000049",
+        "id": "5278c04ed24d2df20d000049",
         "version": 0
     },
     {
@@ -918,7 +918,7 @@
         "recWeights": [],
         "fields": ["Breaks", "Relaxation"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed06000000004a",
+        "id": "5278c04ed24d2df20d00004a",
         "version": 0
     },
     {
@@ -932,7 +932,7 @@
         "recWeights": [],
         "fields": ["Breaks", "Relaxation"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed06000000004b",
+        "id": "5278c04ed24d2df20d00004b",
         "version": 0
     },
     {
@@ -945,7 +945,7 @@
         "recWeights": [],
         "fields": ["Relaxation"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed06000000004c",
+        "id": "5278c04ed24d2df20d00004c",
         "version": 0
     },
     {
@@ -958,7 +958,7 @@
         "recWeights": [],
         "fields": ["Relaxation"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed06000000004d",
+        "id": "5278c04ed24d2df20d00004d",
         "version": 0
     },
     {
@@ -971,7 +971,7 @@
         "recWeights": [],
         "fields": ["Relaxation"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed06000000004e",
+        "id": "5278c04ed24d2df20d00004e",
         "version": 0
     },
     {
@@ -984,7 +984,7 @@
         "recWeights": [],
         "fields": ["Relaxation"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed06000000004f",
+        "id": "5278c04ed24d2df20d00004f",
         "version": 0
     },
     {
@@ -997,7 +997,7 @@
         "recWeights": [],
         "fields": ["Relaxation", "PhysicalActivity"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed060000000050",
+        "id": "5278c04ed24d2df20d000050",
         "version": 0
     },
     {
@@ -1010,7 +1010,7 @@
         "recWeights": [],
         "fields": ["Relaxation"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed060000000051",
+        "id": "5278c04ed24d2df20d000051",
         "version": 0
     },
     {
@@ -1023,7 +1023,7 @@
         "recWeights": [],
         "fields": ["Relaxation"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed060000000052",
+        "id": "5278c04ed24d2df20d000052",
         "version": 0
     },
     {
@@ -1037,7 +1037,7 @@
         "recWeights": [],
         "fields": ["Relaxation"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed060000000053",
+        "id": "5278c04ed24d2df20d000053",
         "version": 0
     },
     {
@@ -1051,7 +1051,7 @@
         "recWeights": [],
         "fields": ["Relaxation"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed060000000054",
+        "id": "5278c04ed24d2df20d000054",
         "version": 0
     },
     {
@@ -1065,7 +1065,7 @@
         "recWeights": [],
         "fields": ["Relaxation"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed060000000055",
+        "id": "5278c04ed24d2df20d000055",
         "version": 0
     },
     {
@@ -1078,7 +1078,7 @@
         "recWeights": [],
         "fields": ["Relaxation", "LeisureActivity"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed060000000056",
+        "id": "5278c04ed24d2df20d000056",
         "version": 0
     },
     {
@@ -1091,7 +1091,7 @@
         "recWeights": [],
         "fields": ["Relaxation"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed060000000057",
+        "id": "5278c04ed24d2df20d000057",
         "version": 0
     },
     {
@@ -1104,7 +1104,7 @@
         "recWeights": [],
         "fields": ["Relaxation"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed060000000058",
+        "id": "5278c04ed24d2df20d000058",
         "version": 0
     },
     {
@@ -1117,7 +1117,7 @@
         "recWeights": [],
         "fields": ["Relaxation", "LeisureActivity"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed060000000059",
+        "id": "5278c04ed24d2df20d000059",
         "version": 0
     },
     {
@@ -1131,7 +1131,7 @@
         "recWeights": [],
         "fields": ["Relaxation", "LeisureActivity"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed06000000005a",
+        "id": "5278c04ed24d2df20d00005a",
         "version": 0
     },
     {
@@ -1144,7 +1144,7 @@
         "recWeights": [],
         "fields": ["Relaxation"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed06000000005b",
+        "id": "5278c04ed24d2df20d00005b",
         "version": 0
     },
     {
@@ -1157,7 +1157,7 @@
         "recWeights": [],
         "fields": ["Relaxation", "LeisureActivity"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed06000000005c",
+        "id": "5278c04ed24d2df20d00005c",
         "version": 0
     },
     {
@@ -1170,7 +1170,7 @@
         "recWeights": [],
         "fields": ["Relaxation"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed06000000005d",
+        "id": "5278c04ed24d2df20d00005d",
         "version": 0
     },
     {
@@ -1183,7 +1183,7 @@
         "recWeights": [],
         "fields": ["Relaxation", "AwarenessAbility"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed06000000005e",
+        "id": "5278c04ed24d2df20d00005e",
         "version": 0
     },
     {
@@ -1196,7 +1196,7 @@
         "recWeights": [],
         "fields": ["Relaxation"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed06000000005f",
+        "id": "5278c04ed24d2df20d00005f",
         "version": 0
     },
     {
@@ -1209,7 +1209,7 @@
         "recWeights": [],
         "fields": ["Relaxation"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed060000000060",
+        "id": "5278c04ed24d2df20d000060",
         "version": 0
     },
     {
@@ -1223,7 +1223,7 @@
         "recWeights": [],
         "fields": ["Relaxation"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed060000000061",
+        "id": "5278c04ed24d2df20d000061",
         "version": 0
     },
     {
@@ -1236,13 +1236,13 @@
         "recWeights": [],
         "fields": ["LeisureActivity"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed060000000062",
+        "id": "5278c04ed24d2df20d000062",
         "version": 0
     },
     {
         "number": "Act-96",
         "title": "Mache eine Biofeedback-Sitzung",
-        "text": "Beim Biofeedback werden Körperprozesse, die der Wahrnehmung normalerweise unzugänglich sind, mittels elektronischer Messgeräte (z.B. EEG, EKG, EMG) in wahrnehmbare (akustische oder optische) Signale verwandelt. Damit wird dem Indivnumberuum die Möglichkeit eröffnet, die entsprechenden Prozesse willkürlich zu beeinflussen. Es handelt sich also um eine Rückkoppelung («Feedback») von «Bio»signalen. Werte wie Hauttemperatur, Pulsfrequenz, Muskelspannung, Atmung und Alphafrequenzen des\nGehirns liefern Hinweise auf den Spannungszustand (Stress usw.) des Körpers. Entsprechend wird ein persönliches Trainingsprogramm erstellt, bei dem gelernt wird, die ungünstig verlaufenden Prozesse willentlich zu beeinflussen. Die entsprechenden Erfolge können sogleich an den Geräten abgelesen werden. Durch ein «Lernen am Erfolg» (instrumentelle\nKonditionierung) sollen die erwünschten Reaktionen gefestigt werden. Verschiedene Untersuchungen könnene den Effekt von Biofeedback belegen.",
+        "text": "Beim Biofeedback werden Körperprozesse, die der Wahrnehmung normalerweise unzugänglich sind, mittels elektronischer Messgeräte (z.B. EEG, EKG, EMG) in wahrnehmbare (akustische oder optische) Signale verwandelt. Damit wird dem Individuum die Möglichkeit eröffnet, die entsprechenden Prozesse willkürlich zu beeinflussen. Es handelt sich also um eine Rückkoppelung («Feedback») von «Bio»signalen. Werte wie Hauttemperatur, Pulsfrequenz, Muskelspannung, Atmung und Alphafrequenzen des\nGehirns liefern Hinweise auf den Spannungszustand (Stress usw.) des Körpers. Entsprechend wird ein persönliches Trainingsprogramm erstellt, bei dem gelernt wird, die ungünstig verlaufenden Prozesse willentlich zu beeinflussen. Die entsprechenden Erfolge können sogleich an den Geräten abgelesen werden. Durch ein «Lernen am Erfolg» (instrumentelle\nKonditionierung) sollen die erwünschten Reaktionen gefestigt werden. Verschiedene Untersuchungen könnene den Effekt von Biofeedback belegen.",
         "source": "youpers",
         "defaultduration": 60,
         "defaultexecutiontype": "self",
@@ -1250,7 +1250,7 @@
         "recWeights": [],
         "fields": ["Relaxation"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed060000000063",
+        "id": "5278c04ed24d2df20d000063",
         "version": 0
     },
     {
@@ -1264,7 +1264,7 @@
         "recWeights": [],
         "fields": ["Relaxation"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed060000000064",
+        "id": "5278c04ed24d2df20d000064",
         "version": 0
     },
     {
@@ -1278,7 +1278,7 @@
         "recWeights": [],
         "fields": ["Relaxation", "AwarenessAbility"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed060000000065",
+        "id": "5278c04ed24d2df20d000065",
         "version": 0
     },
     {
@@ -1291,7 +1291,7 @@
         "recWeights": [],
         "fields": ["Relaxation", "LeisureActivity"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed060000000066",
+        "id": "5278c04ed24d2df20d000066",
         "version": 0
     },
     {
@@ -1304,7 +1304,7 @@
         "recWeights": [],
         "fields": ["Relaxation", "LeisureActivity"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed060000000067",
+        "id": "5278c04ed24d2df20d000067",
         "version": 0
     },
     {
@@ -1317,7 +1317,7 @@
         "recWeights": [],
         "fields": ["Relaxation", "LeisureActivity"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed060000000068",
+        "id": "5278c04ed24d2df20d000068",
         "version": 0
     },
     {
@@ -1330,7 +1330,1151 @@
         "recWeights": [],
         "fields": ["SocialInteraction", "LeisureActivity"],
         "topics": ["workLifeBalance"],
-        "id": "5278b1cc9aed060000000069",
+        "id": "5278c04ed24d2df20d000069",
+        "version": 0
+    },
+    {
+        "number": "Act-103",
+        "title": "Nehme mit Freunden an einem Spasswettbewerb teil",
+        "source": "community",
+        "defaultduration": 120,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["SocialInteraction", "LeisureActivity"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d00006a",
+        "version": 0
+    },
+    {
+        "number": "Act-104",
+        "title": "Besuche mit Freunden einen Sportevent",
+        "source": "community",
+        "defaultduration": 120,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["SocialInteraction", "LeisureActivity"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d00006b",
+        "version": 0
+    },
+    {
+        "number": "Act-105",
+        "title": "Gehe mit Freunden in den Ausgang zum Tanzen",
+        "source": "community",
+        "defaultduration": 180,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["SocialInteraction", "LeisureActivity"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d00006c",
+        "version": 0
+    },
+    {
+        "number": "Act-106",
+        "title": "Triff eine Person im Unternehmen in der Pause, mit der du nicht direkt zusammenarbeitest und schon länger nicht mehr gesprochen hast",
+        "source": "community",
+        "defaultduration": 15,
+        "defaultexecutiontype": "group",
+        "defaultvisibility": "campaign",
+        "recWeights": [],
+        "fields": ["SocialInteraction"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d00006d",
+        "version": 0
+    },
+    {
+        "number": "Act-108",
+        "title": "Gehe beim Arbeitskollegen vorbei anstelle anzurufen",
+        "text": "Anstatt die Kollegin oder den Kollegen anzurufen gehen Sie bei Ihr oder Ihm vorbei. Sport und Bewegung wirken sich positiv auf die Physis wie auch die Psyche aus. Die Basisempfehlung für gesundheitswirksame Bewegung liegt bei wöchentlich 2 1/2 Stunden Bewegung mit mittlerer Intensität. Dabei sollte die Bewegung sinnvollerweise über die ganze Woche verteilt werden. Durch das Treppensteigen decken Sie bereits einen kleinen Teil dieser empfohlenen Zeit ab.",
+        "source": "youpers",
+        "defaultduration": 15,
+        "defaultexecutiontype": "group",
+        "defaultvisibility": "campaign",
+        "recWeights": [],
+        "fields": ["SocialInteraction", "PhysicalActivity"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d00006f",
+        "version": 0
+    },
+    {
+        "number": "Act-109",
+        "title": "Gehe mit Deinem/r Partner/in und Kollegen am Wochenende in den Ausgang",
+        "source": "community",
+        "defaultduration": 180,
+        "defaultexecutiontype": "group",
+        "defaultvisibility": "campaign",
+        "recWeights": [],
+        "fields": ["SocialInteraction", "LeisureActivity"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d000070",
+        "version": 0
+    },
+    {
+        "number": "Act-113",
+        "title": "Nimm die Treppe statt den Lift auf dem Weg zum Sitzungszimmer",
+        "text": "Benützen Sie die Treppe statt des Liftes um zur nächsten Sitzung zu gelangen. Sport und Bewegung wirken sich positiv auf die Physis wie auch die Psyche aus. Die Basisempfehlung für gesundheitswirksame Bewegung liegt bei wöchentlich 2 1/2 Stunden Bewegung mit mittlerer Intensität. Dabei sollte die Bewegung sinnvollerweise über die ganze Woche verteilt werden. Durch das Treppensteigen decken Sie bereits einen kleinen Teil dieser empfohlenen Zeit ab.",
+        "source": "youpers",
+        "defaultduration": 5,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "recWeights": [],
+        "fields": ["PhysicalActivity"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d000074",
+        "version": 0
+    },
+    {
+        "number": "Act-107",
+        "title": "Frage KollegInnen um Unterstützung",
+        "text": "Fragen Sie Ihre Arbeitskolleginnen und -kollegen nach Informationen oder um Hilfe. Dadurch sinkt Ihre Arbeitslast und damit der durch den Zeitdruck verursachte Stress.",
+        "source": "youpers",
+        "defaultduration": 15,
+        "defaultexecutiontype": "group",
+        "defaultvisibility": "campaign",
+        "recWeights": [],
+        "fields": ["SocialInteraction"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d00006e",
+        "version": 0
+    },
+    {
+        "number": "Act-118",
+        "title": "Treibe eine halbe Stunde moderater Sport vor/nach der Arbeit (z.B. Jogging), der Spass macht",
+        "text": "An fünf Tagen pro Woche eine halbe Stunde Bewegung mit mittlerer Intensität genügt um einen positiven Effekt für Ihre Gesundheit zu generieren. Bewegen Sie sich eine halbe Stunde vor der Arbeit um richtig auf Touren zu kommen oder legen Sie die halbe Stunde Sport gleich in Anschluss an Ihren Arbeitsalltag.",
+        "source": "youpers",
+        "defaultduration": 30,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "recWeights": [],
+        "fields": ["PhysicalActivity", "LeisureActivity"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d000079",
+        "version": 0
+    },
+    {
+        "number": "Act-110",
+        "title": "Lade Kollegen am Wochenende zum Essen ein",
+        "source": "community",
+        "defaultduration": 180,
+        "defaultexecutiontype": "group",
+        "defaultvisibility": "campaign",
+        "recWeights": [],
+        "fields": ["SocialInteraction", "LeisureActivity"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d000071",
+        "version": 0
+    },
+    {
+        "number": "Act-123",
+        "title": "Ziehe einen externen Fitnessberater zur Unterstützung bei",
+        "text": "Sport und Bewegung wirken sich positiv auf die Physis wie auch die Psyche aus. Die Basisempfehlung für gesundheitswirksame Bewegung liegt bei wöchentlich 2 1/2 Stunden Bewegung mit mittlerer Intensität. Dabei sollte die Bewegung sinnvollerweise über die ganze Woche verteilt werden. Möchten Sie zielorientiert trainieren und ihre Leistung stetig steigern, dann kann es sinnvoll sein, einen externen Fitnessberater beizuziehen. Fachpersonen auf dem Gebiet Sport können Ihnen Ihren eigenen Trainingsplan zusammenstellen.",
+        "source": "youpers",
+        "defaultduration": 60,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["PhysicalActivity"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d00007e",
+        "version": 0
+    },
+    {
+        "number": "Act-111",
+        "title": "Führe eine neue Freizeitaktivität in einem Verein durch (Sport- oder Turnverein, kirchliche Organisation, Musikverein/Chor)",
+        "text": "Nehmen Sie in Ihrer Freizeit bei Aktivitäten eines Vereins Teil. Der soziale Austausch und die gemeinsamen Aktivitäten stärken die Psyche. Suchen Sie gemäss Ihren Interessen einen geeigneten Verein (z.B. Sport, Kirche, Musik, Kunst).",
+        "source": "youpers",
+        "defaultduration": 120,
+        "defaultexecutiontype": "group",
+        "defaultvisibility": "campaign",
+        "recWeights": [],
+        "fields": ["SocialInteraction", "LeisureActivity"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d000072",
+        "version": 0
+    },
+    {
+        "number": "Act-112",
+        "title": "Nehme am Morgen die Treppe statt den Lift zum Arbeitsplatz",
+        "text": "Beginnen Sie Ihren Arbeitstag mit etwas Bewegung, indem Sie die Treppe statt des Liftes nehmen. Sport und Bewegung wirken sich positiv auf die Physis wie auch die Psyche aus. Die Basisempfehlung für gesundheitswirksame Bewegung liegt bei wöchentlich 2 1/2 Stunden Bewegung mit mittlerer Intensität. Dabei sollte die Bewegung sinnvollerweise über die ganze Woche verteilt werden. Durch das Treppensteigen decken Sie bereits einen kleinen Teil dieser empfohlenen Zeit ab.",
+        "source": "youpers",
+        "defaultduration": 5,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "recWeights": [],
+        "fields": ["PhysicalActivity"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d000073",
+        "version": 0
+    },
+    {
+        "number": "Act-114",
+        "title": "Nehme am Mittag die Treppe statt den Lift zum Personalrestaurant",
+        "text": "Nehmen Sie trotz knurrendem Magen die Treppe an Stelle des Liftes um zum Personalrestaurant zu gelangen. Sport und Bewegung wirken sich positiv auf die Physis wie auch die Psyche aus. Die Basisempfehlung für gesundheitswirksame Bewegung liegt bei wöchentlich 2 1/2 Stunden Bewegung mit mittlerer Intensität. Dabei sollte die Bewegung sinnvollerweise über die ganze Woche verteilt werden. Durch das Treppensteigen decken Sie bereits einen kleinen Teil dieser empfohlenen Zeit ab.",
+        "source": "youpers",
+        "defaultduration": 5,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "recWeights": [],
+        "fields": ["PhysicalActivity"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d000075",
+        "version": 0
+    },
+    {
+        "number": "Act-115",
+        "title": "Hole mehrmals am Tag ein Glas Wasser",
+        "text": "Wasser ist der beste Durstlöscher. Süssgetränke enthalten oft sehr viel Zucker und können je nach Menge zu Übergewicht führen. Trinken Sie mehrmals täglich ein Glas Wasser. Hanenwasser ist fast kostenlos, überall erhältlich und hygienisch einwandfrei.",
+        "source": "youpers",
+        "defaultduration": 5,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "recWeights": [],
+        "fields": ["PhysicalActivity", "Nutrition"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d000076",
+        "version": 0
+    },
+    {
+        "number": "Act-128",
+        "title": "Esse 3 Portionen Gemüse oder Salat pro Tag (z.B. Salat zum Zmittag, Gemüse zum Znacht)",
+        "source": "youpers",
+        "defaultduration": 60,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "recWeights": [],
+        "fields": ["Nutrition"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d000083",
+        "version": 0
+    },
+    {
+        "number": "Act-116",
+        "title": "Fahr mit dem Velo zur Arbeit",
+        "text": "An fünf Tagen pro Woche eine halbe Stunde Bewegung mit mittlerer Intensität genügt um einen positiven Effekt für Ihre Gesundheit zu generieren. Kommen Sie mit dem Velo zur Arbeit und erfüllen Sie somit gleich die Basisempfehlung für gesundheitswirksamen Sport.",
+        "source": "youpers",
+        "defaultduration": 30,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "recWeights": [],
+        "fields": ["PhysicalActivity", "TimeManagement", "Relaxation"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d000077",
+        "version": 0
+    },
+    {
+        "number": "Act-117",
+        "title": "Steige eine Station vorher aus bzw. später ein und gehe zu Fuss",
+        "text": "Sie müssen nicht immer mit dem Bus oder dem Tram bis vors Geschäft fahren. Steigen Sie eine Station früher aus, legen Sie den Weg zu Fuss zurück und tun somit etwas für Ihre Gesundheit.",
+        "source": "youpers",
+        "defaultduration": 15,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "recWeights": [],
+        "fields": ["PhysicalActivity"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d000078",
+        "version": 0
+    },
+    {
+        "number": "Act-119",
+        "title": "Treibe eine Stunde moderater Sport am Wochenende (z.B. Vitaparcour), der Spass macht",
+        "text": "Pro Woche gelten 2 1/2 Stunden Bewegung mit mittlerer Intensität als gesundheitswirksame Basisempfehlung. Nehmen Sie sich am Wochenende Zeit und treiben eine Stunde moderaten Sport. Gehen Sie z.B. auf einen Vitaparcour fahren mit dem Velo in die Nachbardörfer oder joggen im Park.",
+        "source": "youpers",
+        "defaultduration": 60,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "recWeights": [],
+        "fields": ["PhysicalActivity", "LeisureActivity"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d00007a",
+        "version": 0
+    },
+    {
+        "number": "Act-122",
+        "title": "Setze ein App zur Messung deiner körperlichen Aktivität ein",
+        "source": "community",
+        "defaultduration": 15,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "recWeights": [],
+        "fields": ["PhysicalActivity"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d00007d",
+        "version": 0
+    },
+    {
+        "number": "Act-121",
+        "title": "Mache am Wochenende mit Freunden eine schöne Wanderung",
+        "text": "Nehmen Sie sich am Wochenende Zeit um eine Wanderung zu machen. Geniessen Sie die schöne Landschaft und bleiben dabei in Bewegung. Sport und Bewegung wirken sich positiv auf die Physis wie auch die Psyche aus. Die Basisempfehlung für gesundheitswirksame Bewegung liegt bei wöchentlich 2 1/2 Stunden Bewegung mit mittlerer Intensität. Dabei sollte die Bewegung sinnvollerweise über die ganze Woche verteilt werden.",
+        "source": "youpers",
+        "defaultduration": 240,
+        "defaultexecutiontype": "group",
+        "defaultvisibility": "campaign",
+        "recWeights": [],
+        "fields": ["PhysicalActivity", "LeisureActivity", "SocialInteraction"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d00007c",
+        "version": 0
+    },
+    {
+        "number": "Act-127",
+        "title": "Trinke reichlich Wasser z.B. 6-mal täglich 1 Glas oder eine Tasse (insgesamt 1 bis 2 Liter)",
+        "text": "Wasser ist der beste Durstlöscher. Süssgetränke enthalten oft sehr viel Zucker und können je nach Menge zu Übergewicht führen. Trinken Sie mehrmals täglich ein Glas Wasser. Hanenwasser ist fast kostenlos, überall erhältlich und hygienisch einwandfrei.http://www.gesundheit.lu.ch/broschuere_was_essen_und_trinken._pdf.pdf;",
+        "source": "youpers",
+        "defaultduration": 15,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "recWeights": [],
+        "fields": ["Nutrition"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d000082",
+        "version": 0
+    },
+    {
+        "number": "Act-124",
+        "title": "Führe ein Fitnesstraining durch, dass dir Spass macht",
+        "text": "Gehen Sie ins Fitnesstraining. Sport und Bewegung wirken sich positiv auf die Physis wie auch die Psyche aus. Die Basisempfehlung für gesundheitswirksame Bewegung liegt bei wöchentlich 2 1/2 Stunden Bewegung mit mittlerer Intensität. Dabei sollte die Bewegung sinnvollerweise über die ganze Woche verteilt werden. Durch das Fitnesstraining decken Sie bereits einen Teil dieser empfohlenen Zeit ab.",
+        "source": "youpers",
+        "defaultduration": 60,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "recWeights": [],
+        "fields": ["PhysicalActivity"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d00007f",
+        "version": 0
+    },
+    {
+        "number": "Act-132",
+        "title": "Esse täglich 3 Portionen Milch und Milchprodukte (Milchprodukte stärken die Nerven)",
+        "source": "youpers",
+        "defaultduration": 15,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "recWeights": [],
+        "fields": ["Nutrition"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d000087",
+        "version": 0
+    },
+    {
+        "number": "Act-126",
+        "title": "Fülle eine Flasche Wasser auf, stelle sie neben dir aufs Pult und trinke regelmässig",
+        "source": "community",
+        "defaultduration": 15,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["Nutrition"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d000081",
+        "version": 0
+    },
+    {
+        "number": "Act-120",
+        "title": "Verrichte eine moderate körperliche Arbeit am Wochenende, die Spass macht (z.B. Gartenarbeiten)",
+        "source": "youpers",
+        "defaultduration": 60,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "recWeights": [],
+        "fields": ["PhysicalActivity", "LeisureActivity"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d00007b",
+        "version": 0
+    },
+    {
+        "number": "Act-129",
+        "title": "Bestelle heute ein Vegimenu zum Zmittag",
+        "source": "community",
+        "defaultduration": 30,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "recWeights": [],
+        "fields": ["Nutrition"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d000084",
+        "version": 0
+    },
+    {
+        "number": "Act-131",
+        "title": "Esse täglich magnesiumreiche Ernährung zum Abbau von Stresshormonen (Gurke, Cashewnut, Banane, Schokolade)",
+        "source": "community",
+        "defaultduration": 15,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "recWeights": [],
+        "fields": ["Nutrition"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d000086",
+        "version": 0
+    },
+    {
+        "number": "Act-125",
+        "title": "Stärke deinen Rücken mit Rückenschulübungen",
+        "text": "http://www.gesundheitsfoerderung.ch/pdf_doc_xls/d/betriebliche_gesundheitsfoerderung/grundlagen_wissen/PsychGesundheit_de.pdf S. 98",
+        "source": "youpers",
+        "defaultduration": 60,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "recWeights": [],
+        "fields": ["PhysicalActivity"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d000080",
+        "version": 0
+    },
+    {
+        "number": "Act-130",
+        "title": "Esse 2 Portionen Obst, Früchte oder Beeren pro Tag (z.B. eine Frucht zum Znüni und ein Fruchtdessert oder Fruchtsaft am Abend)",
+        "text": "Essen Sie zum Znüni eine Frucht. Sie enthält Vitamine und Nährstoffe welche Ihr Körper braucht.",
+        "source": "youpers",
+        "defaultduration": 15,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "recWeights": [],
+        "fields": ["Nutrition"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d000085",
+        "version": 0
+    },
+    {
+        "number": "Act-133",
+        "title": "Esse ein bis zweimal pro Woche Fisch",
+        "source": "youpers",
+        "defaultduration": 60,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "recWeights": [],
+        "fields": ["Nutrition"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d000088",
+        "version": 0
+    },
+    {
+        "number": "Act-134",
+        "title": "Ziehe eine  externen Ernährungsberater zur Unterstützung bei",
+        "source": "community",
+        "defaultduration": 60,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["Nutrition"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d000089",
+        "version": 0
+    },
+    {
+        "number": "Act-135",
+        "title": "Mache einen Spaziergang im Wald nach der Arbeit",
+        "source": "community",
+        "defaultduration": 60,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["PhysicalActivity", "LeisureActivity"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d00008a",
+        "version": 0
+    },
+    {
+        "number": "Act-136",
+        "title": "Koche diese Woche zu Hause bewusst einmal etwas Spezielles",
+        "source": "community",
+        "defaultduration": 60,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["LeisureActivity"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d00008b",
+        "version": 0
+    },
+    {
+        "number": "Act-137",
+        "title": "Führe mit dem/r Partner/in ein offenes Gespräch über die Freizeitgestaltung und arbeitet gemeinsame Ziele aus",
+        "source": "community",
+        "defaultduration": 30,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["LeisureActivity"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d00008c",
+        "version": 0
+    },
+    {
+        "number": "Act-138",
+        "title": "Plane mit deinem/r Partner/in die anstehenden Freizeit-Arbeiten mit dem Ziel, ausreichende Auszeiten (Ruhepausen) zu haben",
+        "source": "community",
+        "defaultduration": 30,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["LeisureActivity"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d00008d",
+        "version": 0
+    },
+    {
+        "number": "Act-139",
+        "title": "Prüfe die Möglichkeit einer Arbeitsentlastung in der Freizeit (Kinderbetreueung, Haushaltsarbeit, ...)",
+        "source": "community",
+        "defaultduration": 30,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["LeisureActivity"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d00008e",
+        "version": 0
+    },
+    {
+        "number": "Act-140",
+        "title": "Führe mit dem/r Partner/in ein offenes Gespräch über familiäre Belastungen und Probleme",
+        "source": "community",
+        "defaultduration": 30,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["LeisureActivity"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d00008f",
+        "version": 0
+    },
+    {
+        "number": "Act-141",
+        "title": "Plane deine nächsten mehrwöchigen Ferien in max. 6 Monaten",
+        "source": "community",
+        "defaultduration": 60,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["LeisureActivity"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d000090",
+        "version": 0
+    },
+    {
+        "number": "Act-142",
+        "title": "Plane aktive Erholungsferien",
+        "source": "community",
+        "defaultduration": 60,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["LeisureActivity", "PhysicalActivity"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d000091",
+        "version": 0
+    },
+    {
+        "number": "Act-143",
+        "title": "Plane für das Wochenende bewusst Zeitfenster zur Entspannung ein",
+        "source": "community",
+        "defaultduration": 120,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["LeisureActivity", "Relaxation"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d000092",
+        "version": 0
+    },
+    {
+        "number": "Act-144",
+        "title": "Probiere ein neues Hobby aus (je nach Stressursache eine ruhige oder gesellschaftliche Freizeitbeschäftigung wie z.B. Chor, Singen, Turnen...)",
+        "source": "youpers",
+        "defaultduration": 120,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["LeisureActivity"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d000093",
+        "version": 0
+    },
+    {
+        "number": "Act-145",
+        "title": "Esse einmal täglich Fleisch, Eier, Tofu oder Quorn",
+        "source": "youpers",
+        "defaultduration": 30,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["Nutrition"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d000094",
+        "version": 0
+    },
+    {
+        "number": "Act-146",
+        "title": "Esse zweimal täglich als Beilage zu Hauptmahlzeiten dunkles Brot, Vollkornreis, -teigwaren u.ä. oder Hülsenfrüchte",
+        "source": "youpers",
+        "defaultduration": 30,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["Nutrition"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d000095",
+        "version": 0
+    },
+    {
+        "number": "Act-147",
+        "title": "Esse maximal eine Süssigkeit oder trinke maximal ein Süssgetränk pro Tag",
+        "source": "youpers",
+        "defaultduration": 30,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["Nutrition"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d000096",
+        "version": 0
+    },
+    {
+        "number": "Act-148",
+        "title": "Esse maximal eine Handvoll salzige Knabbereien (Chips und Co., Nüssli etc.) pro Tag",
+        "source": "youpers",
+        "defaultduration": 30,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["Nutrition"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d000097",
+        "version": 0
+    },
+    {
+        "number": "Act-149",
+        "title": "Trinke maximal ein Glas Wein oder ein Bier pro Tag",
+        "source": "community",
+        "defaultduration": 30,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["Nutrition"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d000098",
+        "version": 0
+    },
+    {
+        "number": "Act-150",
+        "title": "Male zur Entspannung ein Bild",
+        "source": "community",
+        "defaultduration": 120,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["Relaxation"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d000099",
+        "version": 0
+    },
+    {
+        "number": "Act-151",
+        "title": "Erstelle zur Entspannung ein Kunstwerk",
+        "source": "community",
+        "defaultduration": 120,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["Relaxation"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d00009a",
+        "version": 0
+    },
+    {
+        "number": "Act-152",
+        "title": "Esse deine Mahlzeiten langsam (mind. 20 Minuten), bewusst und mit Genuss",
+        "source": "community",
+        "defaultduration": 30,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["Nutrition", "Relaxation"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d00009b",
+        "version": 0
+    },
+    {
+        "number": "Act-153",
+        "title": "Führe für einige Tage ein Esstagebuch, indem du deine Beobachtungen zu dein Essverhalten aufschreibst, um dir schlechte Essgewohnheiten bewusst zu werden. Stelle dir dabei folgende Frage: \"Wie, wo, warum und wie viel esse ich?\"",
+        "source": "community",
+        "defaultduration": 15,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["Nutrition", "AwarenessAbility"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d00009c",
+        "version": 0
+    },
+    {
+        "number": "Act-154",
+        "title": "Esse nur, wenn du richtig Hunger hast (kein Gluscht) und höre damit auf, wenn du satt bist",
+        "source": "community",
+        "defaultduration": 30,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["Nutrition"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d00009d",
+        "version": 0
+    },
+    {
+        "number": "Act-155",
+        "title": "Verzichte tagsüber bei Stress besser ganz auf das Essen und lege die grösseren Mahlzeiten auf die ruhigeren Abendstunden",
+        "source": "community",
+        "defaultduration": 30,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["Nutrition"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d00009e",
+        "version": 0
+    },
+    {
+        "number": "Act-156",
+        "title": "Trickse deinen Gluscht aus, indem du einen Moment in Ruhe abwartest oder zur Überbrückung ein Glas Wasser trinkst",
+        "source": "community",
+        "defaultduration": 5,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["Nutrition", "AwarenessAbility"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d00009f",
+        "version": 0
+    },
+    {
+        "number": "Act-157",
+        "title": "Trinke nach einem stressreichen Arbeitstag am Abend einen Beruhigungstee",
+        "source": "community",
+        "defaultduration": 30,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["Nutrition", "Relaxation"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d0000a0",
+        "version": 0
+    },
+    {
+        "number": "Act-158",
+        "title": "Baue täglich eine halbe Stunde oder drei Mal zehn Minuten Bewegung in deinen Arbeitsalltag ein (gilt insb. für viel Beschäftigte und Bewegungsmuffel)",
+        "source": "community",
+        "defaultduration": 30,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "recWeights": [],
+        "fields": ["PhysicalActivity"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d0000a1",
+        "version": 0
+    },
+    {
+        "number": "Act-159",
+        "title": "Überlege dir, welcher Sport und wie viel davon, sich für deinen persönlichen Ausgleich eignet (Beachte dabei, dass Walking oder Jogging das einfachste Ausdauertraining ist; Laufen kann man immer und überall)",
+        "source": "community",
+        "defaultduration": 60,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["PhysicalActivity", "AwarenessAbility"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d0000a2",
+        "version": 0
+    },
+    {
+        "number": "Act-160",
+        "title": "Esse am Tag ein bis zwei Stunden vor einer körperlichen Aktivität ein Brot mit Käse, ein paar Nüsse oder Mandeln sowie frische oder getrocknete Früchte",
+        "source": "community",
+        "defaultduration": 15,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["PhysicalActivity", "Nutrition"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d0000a3",
+        "version": 0
+    },
+    {
+        "number": "Act-161",
+        "title": "Trinke am frühen Morgen ein Glas Wasser vor den Kraftübungen oder einer lockeren Jogging-Runde",
+        "source": "community",
+        "defaultduration": 15,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["PhysicalActivity", "Nutrition"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d0000a4",
+        "version": 0
+    },
+    {
+        "number": "Act-162",
+        "title": "Starte als Einsteiger/in sachte, locker und langsam dein Training und übertreibe nicht!",
+        "source": "community",
+        "defaultduration": 30,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["PhysicalActivity", "AwarenessAbility"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d0000a5",
+        "version": 0
+    },
+    {
+        "number": "Act-163",
+        "title": "Bewege dich mind. zweieinhalb Stunden pro Woche (idealerweise auf mehrere Tage verteilt) in Form von Alltagsaktivitäten oder sportlicher Aktivität",
+        "source": "community",
+        "defaultduration": 150,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "recWeights": [],
+        "fields": ["PhysicalActivity"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d0000a6",
+        "version": 0
+    },
+    {
+        "number": "Act-164",
+        "title": "Generiere für deine Gesundheit, dein Wohlbefinden und deine Leistungsfähigkeit einen zusätzlichen Nutzen, indem du neben der empfohlenen Bewegung noch ein zusätzliches Training von Ausdauer, Kraft und Beweglichkeit absolvierst",
+        "source": "community",
+        "defaultduration": 60,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "recWeights": [],
+        "fields": ["PhysicalActivity"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d0000a7",
+        "version": 0
+    },
+    {
+        "number": "Act-165",
+        "title": "Gönne dir neben dem körperlichen Training auch genügend Erholung und Schlaf",
+        "source": "community",
+        "defaultduration": 480,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["PhysicalActivity", "Relaxation"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d0000a8",
+        "version": 0
+    },
+    {
+        "number": "Act-166",
+        "title": "Beachte bei der Planung deines Aufbautrainings folgende Reihenfolge: 1. Steigere die Häufigkeit des Trainings, 2. Steigere die Dauer des Trainings, 3. Erhöhe die Intensität des Trainings",
+        "source": "community",
+        "defaultduration": 60,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["PhysicalActivity", "AwarenessAbility"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d0000a9",
+        "version": 0
+    },
+    {
+        "number": "Act-167",
+        "title": "Trainiere deine Ausdauer mit 2 bis 5 Walking- oder Jogging-Einheiten zu 20 bis 60 Minuten pro Woche",
+        "source": "community",
+        "defaultduration": 120,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["PhysicalActivity"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d0000aa",
+        "version": 0
+    },
+    {
+        "number": "Act-168",
+        "title": "Lass dich von einer gut ausgebildeten Lehrperson in Yoga (die Kraftquelle für Körper und Seele) instruieren",
+        "source": "community",
+        "defaultduration": 120,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "recWeights": [],
+        "fields": ["PhysicalActivity", "Relaxation"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d0000ab",
+        "version": 0
+    },
+    {
+        "number": "Act-169",
+        "title": "Setze dir ein konkretes Fitnessziel und stelle dich im Kopf positiv ein bzw. glaube daran, dass du schaffst, was du dir vorgenommen hast",
+        "source": "community",
+        "defaultduration": 30,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["PhysicalActivity", "AwarenessAbility"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d0000ac",
+        "version": 0
+    },
+    {
+        "number": "Act-170",
+        "title": "Setze dir ein konkretes Ernährungsziel und stelle dich im Kopf positiv ein bzw. glaube daran, dass du schaffst, was du dir vorgenommen hast",
+        "source": "community",
+        "defaultduration": 30,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["Nutrition", "AwarenessAbility"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d0000ad",
+        "version": 0
+    },
+    {
+        "number": "Act-171",
+        "title": "Setze dir für die kommende Woche klare Prioritäten, statt unter der Doppel- und Dreifachbelastung eines modernen Menschen zu leiden",
+        "source": "community",
+        "defaultduration": 30,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["TimeManagement", "AwarenessAbility"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d0000ae",
+        "version": 0
+    },
+    {
+        "number": "Act-172",
+        "title": "Verbringe am Feierabend eine halbe Stunde weniger mit Fernsehen, Internet, etc. und nutze die zusätzliche Zeit bewusst für Entspannung",
+        "source": "community",
+        "defaultduration": 30,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["TimeManagement", "Relaxation"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d0000af",
+        "version": 0
+    },
+    {
+        "number": "Act-173",
+        "title": "Führe für einige Tage ein Tagebuch, um dir klar zu werden, wie du deine Zeit verbringst, mit dem Ziel, Aktivitäten zu finden, die du reduzieren möchtest",
+        "source": "community",
+        "defaultduration": 15,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["TimeManagement", "AwarenessAbility"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d0000b0",
+        "version": 0
+    },
+    {
+        "number": "Act-174",
+        "title": "Plane und Entscheide für kommende Woche bewusst, wofür du deine Energie und Zeit aufwenden möchtest und wofür nicht",
+        "source": "community",
+        "defaultduration": 30,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["TimeManagement", "AwarenessAbility"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d0000b1",
+        "version": 0
+    },
+    {
+        "number": "Act-175",
+        "title": "Hinterfrage in einer Selbstreflektion in der Vergangenheit getroffene Aktivitäts-Entscheide mit dem Ziel, dir mehr Freiheit bzw. mehr Zeit für eine entspannte Lebensführung zu verschaffen",
+        "source": "community",
+        "defaultduration": 60,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["TimeManagement", "AwarenessAbility"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d0000b2",
+        "version": 0
+    },
+    {
+        "number": "Act-176",
+        "title": "Überwache deine tägliche Bewegung mit einem Schrittzähler und versuche pro Tag 10'000 Schritte zu gehen",
+        "source": "community",
+        "defaultduration": 15,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "recWeights": [],
+        "fields": ["PhysicalActivity"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d0000b3",
+        "version": 0
+    },
+    {
+        "number": "Act-177",
+        "title": "Erledige täglich einige Büroarbeiten im Stehen anstelle im Sitzen",
+        "source": "community",
+        "defaultduration": 30,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "recWeights": [],
+        "fields": ["PhysicalActivity"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d0000b4",
+        "version": 0
+    },
+    {
+        "number": "Act-178",
+        "title": "Führe Telefongespräche im Stehen oder beim Herumgehen",
+        "source": "community",
+        "defaultduration": 30,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "recWeights": [],
+        "fields": ["PhysicalActivity"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d0000b5",
+        "version": 0
+    },
+    {
+        "number": "Act-179",
+        "title": "Suche zündende Ideen bei ein paar Schritten durch das Quartier anstelle krampfhaft vor dem Bildschirm",
+        "source": "community",
+        "defaultduration": 15,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "recWeights": [],
+        "fields": ["PhysicalActivity", "WorkStructuring", "AwarenessAbility"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d0000b6",
+        "version": 0
+    },
+    {
+        "number": "Act-180",
+        "title": "Spreche dich bei persönlichen Problemen telefonisch mit einer Fachperson aus",
+        "text": "z.B. Firma ICAS Schweiz AG (Independent Counselling and Advisory Service)",
+        "source": "community",
+        "defaultduration": 30,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["AwarenessAbility"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d0000b7",
+        "version": 0
+    },
+    {
+        "number": "Act-181",
+        "title": "Spreche dich, wenn du dich im Arbeitsteam unwohl fühlst, telefonisch mit einer Fachperson aus",
+        "text": "z.B. Firma ICAS Schweiz AG (Independent Counselling and Advisory Service)",
+        "source": "community",
+        "defaultduration": 30,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["AwarenessAbility"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d0000b8",
+        "version": 0
+    },
+    {
+        "number": "Act-182",
+        "title": "Nehme bei persönlichen Problemen wenn nötig eine persönliche Kurzzeitberatung durch eine Fachperson in Anspruch",
+        "text": "z.B. Firma ICAS Schweiz AG (Independent Counselling and Advisory Service)",
+        "source": "community",
+        "defaultduration": 60,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["AwarenessAbility"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d0000b9",
+        "version": 0
+    },
+    {
+        "number": "Act-183",
+        "title": "Nehme bei Problemen im Arbeitsteam wenn nötig eine persönliche Kurzzeitberatung durch eine Fachperson in Anspruch",
+        "text": "z.B. Firma ICAS Schweiz AG (Independent Counselling and Advisory Service)",
+        "source": "community",
+        "defaultduration": 60,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["AwarenessAbility"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d0000ba",
+        "version": 0
+    },
+    {
+        "number": "Act-184",
+        "title": "Übe als Ausgleich zu deiner Sitz-Arbeit in der Freizeit zwei bis dreimal in der Woche einen leichten Sport aus",
+        "text": "Ob das Joggen, Schwimmen oder Reiten ist, kommt gar nicht so drauf an.",
+        "source": "community",
+        "defaultduration": 120,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["PhysicalActivity", "LeisureActivity"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d0000bb",
+        "version": 0
+    },
+    {
+        "number": "Act-185",
+        "title": "Sichere dir deine tägliche Ration Bewegung und frische Luft, indem du mit dem Velo zur Arbeit fährst oder einen Spaziergang über Mittag machst",
+        "text": "Regelmässige Bewegung im Alltag ist mindestens so wertvoll wie eine sportliche Betätigung.",
+        "source": "community",
+        "defaultduration": 30,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["PhysicalActivity"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d0000bc",
+        "version": 0
+    },
+    {
+        "number": "Act-186",
+        "title": "Regeneriere dich täglich 20 Minuten aktiv, indem du mit ruhigem und tiefen Atmen (tief einatmen und ruhig ausatmen) dein Parasympathikus (Anteil des autonomen Nervensystems, der für Regenaration steht) stimulierst",
+        "text": "Die Atmung spielt bei der Stressbewältigung eine zentrale Rolle. Um ruhiger zu werden, sollst du lernen, richtig zu atmen. Mit der Zeit gelingt es, den Herzrhythmus mit der Atmung zu koppeln. Ist die Atmung ruhig und regelmässig, ist auch der Herzryhthmus entsprechend, und die Balance des autonomen Nervensystemes stellt sich ein. Ob du dies durch Meditation, Autogenes Training, Yoga oder leichten Dauerlauf erreichtst, ist nicht so wichtig. Hauptsache ist, du tust es.",
+        "source": "community",
+        "defaultduration": 30,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["Breaks", "Relaxation", "AwarenessAbility"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d0000bd",
+        "version": 0
+    },
+    {
+        "number": "Act-187",
+        "title": "Wenn du dich dauerhaft gestresst fühlst, messe für einen Tag mit einem spezialisierten Arzt deinen Stresslevel",
+        "text": "Gemäss Tages-Anzeiger Interview mit Herr Dr. Jürg Kuoni (erschienen am 29.10.13) misst er mit seinem Team (Firma Heartcheck.ch) während 24 Stunden die Schwankungen des Pulses (bzw. die Herz-Rhythmus-Flexibilität) mittels zweier Elektroden, um möglichst viel über das Stressniveau des Patienten zu erfahren.",
+        "source": "community",
+        "defaultduration": 1440,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["AwarenessAbility"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d0000be",
+        "version": 0
+    },
+    {
+        "number": "Act-188",
+        "title": "Führe zur Entspannung und Beruhigung bei einem/r anerkannten Fachspezialist/in eine Hypnose durch.",
+        "text": "Durch Hypnose gelangt man in einen veränderten Bewusstseinszustand. Der freie Wille bleibt jedoch erhalten. Diese Methode trägt zur Entspannung und Beruhigung bei und hilft, sein Unterbewusstsein zu entdecken. Durch verschiedene Techniken, wie Wiederholung, Reizabschirmung oder Konzentration auf irgendeinen Inhalt oder auf den Hypnotiseur selber, wird ein eingeengter Bewusstseinszustand ähnlich einer Trance hergestellt. Neben einer Abnahme der Muskelspannung, EEG-Veränderungen gehören dazu auch Amnesie oder gesteigertes Erinnerungsvermögen, Verlust der (sensorischen) Empfindlichkeit gegenüber bestimmten Reizen sowie ein intensiver Kontakt mit dem Hypnotiseur. Alle Menschen kennen mehr oder weniger bewusst hypnoseähnliche Zustände als so genannte «Alltagstrancen». Es sind dies Momente, wenn man versunken in seiner Lieblingsbeschäftigung oder tief in Gedanken ist und dabei alles um sich herum vergisst. Wenn dieser Zustand intensiver Konzentration nach innen geübt und erweitert wird, können der Person Fähigkeiten zugänglich werden, die sie in normalem Wachbewusstsein nicht hat. Es gehören dazu gesteigerte Gedächtnisleistungen, Selbstvertrauen, Zuversicht, kreative Einfälle und Problemlösungen oder Kontrolle von Körperfunktionen (Schmerz) usw.",
+        "source": "youpers",
+        "defaultduration": 60,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "recWeights": [],
+        "fields": ["AwarenessAbility", "Relaxation"],
+        "topics": ["workLifeBalance"],
+        "id": "5278c04ed24d2df20d0000bf",
         "version": 0
     }
 ]

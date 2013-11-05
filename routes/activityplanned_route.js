@@ -183,13 +183,38 @@ function postNewActivityPlan(req, res, next) {
     });
 }
 
+
+
+
+function getIcalStringForPlan(req, res, next) {
+    Model.findById(req.params.id, {populate: 'activity'}).exec(function (err, plan) {
+        if (err) {
+            return next(err);
+        }
+        if (!plan) {
+            res.send(204, []);
+            return next();
+        }
+        var icalRecString = caltools.rfc2445.genRecurrenceString(plan.mainEvent);
+        res.contentType = "text/calendar";
+        res.setHeader('Content-Type', 'text/calendar');
+        res.setHeader('Content-Disposition','inline; filename=ical.ics');
+        res.send(icalRecString);
+        return next();
+    });
+}
+
 module.exports = function (app, config) {
 
     var baseUrl = '/api/v1/activitiesPlanned';
 
+
     app.get(baseUrl, passport.authenticate('basic', { session: false }), genericRoutes.getAllFn(baseUrl, Model));
+    app.get(baseUrl + '/:id/ical.ics', getIcalStringForPlan);
     app.get(baseUrl + '/:id', passport.authenticate('basic', { session: false }), genericRoutes.getByIdFn(baseUrl, Model));
+
     app.put(baseUrl + '/:id', passport.authenticate('basic', { session: false }), genericRoutes.putFn(baseUrl, Model));
+
     app.del(baseUrl + '/:id', genericRoutes.deleteByIdFn(baseUrl, Model));
     app.del(baseUrl, genericRoutes.deleteAllFn(baseUrl, Model));
 

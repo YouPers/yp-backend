@@ -19,13 +19,17 @@ var ActivitySchema = common.newSchema({
     defaultduration: {type: Number},
     topics: [String],
     fields: [String],
-    qualityFactor: Number,
-    recWeights: [{question: {type: ObjectId},
-                  negativeAnswerWeight: {type: Number},
-                  positiveAnswerWeight: {type: Number}}]
-    //TODO: (Rblu) only deliver recWeights to client in case of role admin, otherwise hide on server!!!
+    qualityFactor: {type: Number, select: false},
+    recWeights: {type: [
+        {question: {type: ObjectId},
+            negativeAnswerWeight: {type: Number},
+            positiveAnswerWeight: {type: Number}}
+    ], select: false}
 });
 
+ActivitySchema.statics.getAdminAttrsSelector =  function () {
+        return '+recWeights +qualityFactor';
+    };
 
 mongoose.model('Activity', ActivitySchema);
 

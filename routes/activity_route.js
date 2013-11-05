@@ -79,14 +79,35 @@ function getRecommendationsFn(req, res, next) {
 
 }
 
+// TODO: move to generic Auth module!
+function roleBasedAuth(reqRole) {
+    return function(req, res, next) {
+        passport.authenticate('basic', function(err, user, info) {
+            if (err) {
+                return next(err);
+            }
+
+            if (!user) {
+                if ('anonymous' === reqRole) {
+                    return next();
+                } else {
+                    return next(new Error("not authorized"));
+                }
+            }
+            // TODO: check for non anonymous Roles
+            req.user = user;
+            return next();
+        })(req, res, next);
+    };
+}
 
 module.exports = function (app, config) {
 
     var baseUrl = '/api/v1/activities';
 
-    app.get(baseUrl, genericRoutes.getAllFn(baseUrl, Activity));
+    app.get(baseUrl, roleBasedAuth('anonymous'), genericRoutes.getAllFn(baseUrl, Activity));
     app.get(baseUrl + '/recommendations', passport.authenticate('basic', { session: false }), getRecommendationsFn);
-    app.get(baseUrl + '/:id', genericRoutes.getByIdFn(baseUrl, Activity));
+    app.get(baseUrl + '/:id', roleBasedAuth('anonymous'), genericRoutes.getByIdFn(baseUrl, Activity, 'anonymous'));
     app.post(baseUrl, passport.authenticate('basic', { session: false }), genericRoutes.postFn(baseUrl, Activity));
     app.put(baseUrl + '/:id', passport.authenticate('basic', { session: false }), genericRoutes.putFn(baseUrl, Activity));
     app.del(baseUrl, genericRoutes.deleteAllFn(baseUrl, Activity));

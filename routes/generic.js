@@ -397,7 +397,11 @@ module.exports = {
 
     getByIdFn: function (baseUrl, Model) {
         return function (req, res, next) {
-            addQueryOptions(req, Model.findById(req.params.id), Model)
+            var dbQuery = Model.findById(req.params.id);
+            if (req.user && req.user.role === 'admin' && Model.getAdminAttrsSelector) {
+                dbQuery.select(Model.getAdminAttrsSelector());
+            }
+            addQueryOptions(req, dbQuery, Model)
                 .exec(function geByIdFnCallback(err, obj) {
                     if (err) {
                         return next(err);
@@ -438,8 +442,13 @@ module.exports = {
             if (Model.schema.paths['owner']) {
                 finder = {owner: req.user.id};
             }
+            var dbQuery = Model.find(finder);
+            if (req.user && req.user.role === 'admin' && Model.getAdminAttrsSelector) {
+                dbQuery.select(Model.getAdminAttrsSelector());
+            }
 
-            addQueryOptions(req, Model.find(finder), Model)
+
+            addQueryOptions(req,dbQuery , Model)
                 .exec(function (err, objList) {
                     if (err) {
                         return next(err);

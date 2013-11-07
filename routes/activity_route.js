@@ -43,7 +43,9 @@ function generateRecommendations(actList, assResult, log) {
     });
 
     log.trace({calculatedWeights: recWeights}, 'finished calculating weights');
-    return _.sortBy(recWeights, 'weight').slice(-5);
+    return _.sortBy(recWeights, function(recWeight) {
+        return -recWeight.weight;
+    });
 }
 
 function getRecommendationsFn(req, res, next) {
@@ -51,7 +53,7 @@ function getRecommendationsFn(req, res, next) {
         return next('no user found in request');
     }
 
-    Activity.find().exec(function (err, actList) {
+    Activity.find().select('+recWeights +qualityFactor').exec(function (err, actList) {
         if (err) {
             return next(err);
         }
@@ -71,8 +73,11 @@ function getRecommendationsFn(req, res, next) {
                     res.send([]);
                     return next();
                 }
-
-                res.send(generateRecommendations(actList, assResults[0], req.log));
+                var recs = generateRecommendations(actList, assResults[0], req.log);
+                if (req.user.role !== 'admin') {
+                    recs = recs.slice(0,5);
+                }
+                res.send(recs);
                 return next();
             });
     });

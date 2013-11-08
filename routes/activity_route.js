@@ -17,7 +17,7 @@ var mongoose = require('mongoose'),
  * @param log
  * @returns {*}
  */
-function generateRecommendations(actList, assResult, log) {
+function generateRecommendations(actList, assResult, fokusQuestion, log) {
 
     log.trace({assResult: assResult}, 'calculating recs for assResult');
     // calculate recWeight for each activity and store in object
@@ -30,7 +30,7 @@ function generateRecommendations(actList, assResult, log) {
                 return ans.question.equals(recWeight.question);
             });
 
-            if (!answerObj) {
+            if (!answerObj || (fokusQuestion && (answerObj.question.toString() !== fokusQuestion))) {
                 log.info('no answer found for question: ' + recWeight.question);
             } else {
                 weight += (answerObj.answer >= 0) ?
@@ -73,7 +73,9 @@ function getRecommendationsFn(req, res, next) {
                     res.send([]);
                     return next();
                 }
-                var recs = generateRecommendations(actList, assResults[0], req.log);
+                var fokusQuestion = req.params && req.params.fokus;
+
+                var recs = generateRecommendations(actList, assResults[0], fokusQuestion, req.log);
                 if (req.user.role !== 'admin') {
                     recs = recs.slice(0,5);
                 }

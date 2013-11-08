@@ -75,8 +75,11 @@ module.exports = {
                         jsonFromFile = [jsonFromFile];
                     }
                     jsonFromFile.forEach(function (jsonObj) {
-
+                        if (jsonObj.id) {
+                            jsonObj._id = jsonObj.id;
+                        }
                         var newObj = new Model(jsonObj);
+
                         console.log(newObj);
                         newObj.save(function (err) {
                             if (err) {

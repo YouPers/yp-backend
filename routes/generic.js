@@ -367,7 +367,7 @@ function resolveDocumentzAtPath(doc, pathBits) {
 
 function checkWritingPreCond(req, Model) {
     if (!req.body) {
-        return new Error('exptected JSON body in POST');
+        return new Error('exptected JSON body in POST/PUT, found nothing');
     }
 
     // ref properties: replace objects by ObjectId in case client sent whole object instead of reference, only
@@ -534,7 +534,7 @@ module.exports = {
                 return next(err);
             }
 
-            Model.findById(req.body.id).exec(function (err, objFromDb) {
+            Model.findById(req.params.id).exec(function (err, objFromDb) {
                 if (err) {
                     return next(err);
                 }

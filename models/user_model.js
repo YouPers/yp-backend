@@ -19,7 +19,8 @@ var UserSchema = common.newSchema({
     username: { type: String, trim: true, lowercase: true, required: true, unique: true },
     role: { type: String, enum: ['individual', 'healthpromoter', 'admin'], default: 'individual', required: true },
     hashed_password: { type: String, trim: true },
-    tempPasswordFlag: { type: Boolean, default: false }
+    tempPasswordFlag: { type: Boolean, default: false },
+    preferences: { type: mongoose.Schema.Types.Mixed}
 });
 
 /**

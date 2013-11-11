@@ -14,8 +14,13 @@ var question = common.newSchema({
     "title": String,
     "type": {type: String, enum: common.enums.questionType},
     "mintext": String,
+    "mintextexample": String,
+    "mintextresult": String,
     "midtext": String,
+    "midtextexample": String,
     "maxtext": String,
+    "maxtextexample": String,
+    "maxtextresult": String,
     "exptext": String
 });
 

@@ -1,19 +1,5 @@
 [
     {
-        "number": "Act-124",
-        "title": "Führe ein Fitnesstraining durch, dass dir Spass macht",
-        "text": "Gehen Sie ins Fitnesstraining. Sport und Bewegung wirken sich positiv auf die Physis wie auch die Psyche aus. Die Basisempfehlung für gesundheitswirksame Bewegung liegt bei wöchentlich 2 1/2 Stunden Bewegung mit mittlerer Intensität. Dabei sollte die Bewegung sinnvollerweise über die ganze Woche verteilt werden. Durch das Fitnesstraining decken Sie bereits einen Teil dieser empfohlenen Zeit ab.",
-        "source": "youpers",
-        "defaultduration": 60,
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "campaign",
-        "recWeights": [],
-        "fields": ["PhysicalActivity"],
-        "topics": ["workLifeBalance"],
-        "_id": "5278c6adcdeab69a25000080",
-        "version": 0
-    },
-    {
         "number": "Act-153",
         "title": "Führe für einige Tage ein Esstagebuch, indem du deine Beobachtungen zu dein Essverhalten aufschreibst, um dir schlechte Essgewohnheiten bewusst zu werden. Stelle dir dabei folgende Frage: \"Wie, wo, warum und wie viel esse ich?\"",
         "source": "community",
@@ -424,34 +410,6 @@
         "version": 0
     },
     {
-        "number": "Act-17",
-        "title": "Führe ein Mentaltraining durch (positive Suggestionen, Gedankenstopp, Affirmationen, positive Formulierung von Sätzen)",
-        "text": "Mentale Techniken sind hilfreiche Strategien um ausgeglichener zu sein. \nGedankenstopp: Keine selbst zerstörerischen Gedanken, wie: Das schaffe ich nie.\nAffirmationen: (Bejahungsübungen): Heute klappt es. \npositive Formulierung von Sätzen: Nicht: Ich werde heute bei der Besprechung nicht nervös sein. Sondern: Bei der Besprechung bin ich konzentriert. Ich habe mich gut vorbereitet.",
-        "source": "youpers",
-        "defaultduration": 30,
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "recWeights": [],
-        "fields": ["AwarenessAbility", "Relaxation"],
-        "topics": ["workLifeBalance"],
-        "_id": "5278c6adcdeab69a25000016",
-        "version": 0
-    },
-    {
-        "number": "Act-18",
-        "title": "Nehme an Stressimmunisierungstraining, Stress-Management-Training SMT und Stress-Resistenz-Training teil",
-        "text": "Reviews und Meta-Analysen belegen gut, dass Stress-Management-Trainings (SMT) einschliesslich\nStress-Resistenz-Trainings (stress inoculation trainings), Entspannungs- und Meditationsmethoden\nsowie soziale Kompetenz- und Fitness-Trainings bezüglich gesundheitlicher Effekte wirksam sind.",
-        "source": "youpers",
-        "defaultduration": 60,
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "recWeights": [],
-        "fields": ["AwarenessAbility"],
-        "topics": ["workLifeBalance"],
-        "_id": "5278c6adcdeab69a25000017",
-        "version": 0
-    },
-    {
         "number": "Act-19",
         "title": "Lese ein Buch zum Thema „persönliches Zeitmanagement“ oder erkundige dich im Internet",
         "source": "community",
@@ -556,47 +514,6 @@
         "version": 0
     },
     {
-        "number": "Act-28",
-        "title": "Setze heute bewusst Prioritäten bei deiner Arbeitsplanung",
-        "source": "youpers",
-        "defaultduration": 15,
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "recWeights": [],
-        "fields": ["TimeManagement", "WorkStructuring"],
-        "topics": ["workLifeBalance"],
-        "_id": "5278c6adcdeab69a25000021",
-        "version": 0
-    },
-    {
-        "number": "Act-29",
-        "title": "Beachte deine Tagesleistungskurve bei deiner Tagesarbeitsplanung",
-        "text": "Tageszeiten bei der Planung berücksichtigen: Morgens haben Sie mehr Energie als Abends, also sollten die energieaufwendigen Tätigkeiten zuerst abgearbeitet werden.",
-        "source": "youpers",
-        "defaultduration": 15,
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "recWeights": [],
-        "fields": ["TimeManagement", "WorkStructuring"],
-        "topics": ["workLifeBalance"],
-        "_id": "5278c6adcdeab69a25000022",
-        "version": 0
-    },
-    {
-        "number": "Act-30",
-        "title": "Delegiere heute bewusst eine Aufgabe",
-        "text": "Übergeben Sie die eine oder andere Aufgabe an Mitarbeiter, auch wenn Sie glauben, selbst alles besser zu machen. Vielleicht müssen Sie anfangs viel erklären und verbessern, doch am Ende zahlt sich die Strategie aus. Sie gewinnen Freiraum, Zeit und vor allem Überblick für die wirklich wichtigen Dinge!",
-        "source": "youpers",
-        "defaultduration": 15,
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "recWeights": [],
-        "fields": ["TimeManagement", "WorkStructuring"],
-        "topics": ["workLifeBalance"],
-        "_id": "5278c6adcdeab69a25000023",
-        "version": 0
-    },
-    {
         "number": "Act-31",
         "title": "Führe ein offenes Gespräch mit deinem/r Vorgesetzten über deine persönliche Arbeitssituation und –gestaltung",
         "source": "community",
@@ -607,46 +524,6 @@
         "fields": ["WorkStructuring"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a25000024",
-        "version": 0
-    },
-    {
-        "number": "Act-32",
-        "title": "Führe ein offenes Gespräch mit deinem/r Vorgesetzten mit den Ziel, den persönlichen Handlungsspielraum zu erweitern",
-        "text": "Ein offenes Gespräch mit dem Vorgesetzten kann helfen. Dem Chef ist häufig gar nicht bekannt, wie überlastet ein Mitarbeiter ist, weil sich selten jemand dort beklagt. Es zeugt von Verantwortungsbewusstsein, wenn  nicht mehr Aufgaben übernommen werden, als tatsächlich mit der nötigen Sorgfalt bewältigt werden können.",
-        "source": "youpers",
-        "defaultduration": 30,
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "recWeights": [],
-        "fields": ["WorkStructuring"],
-        "topics": ["workLifeBalance"],
-        "_id": "5278c6adcdeab69a25000025",
-        "version": 0
-    },
-    {
-        "number": "Act-33",
-        "title": "Plane für die kommende Woche für dich passende flexible Arbeitszeiten ein",
-        "source": "youpers",
-        "defaultduration": 30,
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "campaign",
-        "recWeights": [],
-        "fields": ["WorkStructuring"],
-        "topics": ["workLifeBalance"],
-        "_id": "5278c6adcdeab69a25000026",
-        "version": 0
-    },
-    {
-        "number": "Act-34",
-        "title": "Erledige einen Tag pro Woche deine Arbeiten von zuhause aus (Heimarbeit)",
-        "source": "youpers",
-        "defaultduration": 480,
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "campaign",
-        "recWeights": [],
-        "fields": ["WorkStructuring"],
-        "topics": ["workLifeBalance"],
-        "_id": "5278c6adcdeab69a25000027",
         "version": 0
     },
     {
@@ -686,62 +563,6 @@
         "fields": ["WorkStructuring", "AwarenessAbility"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a2500002a",
-        "version": 0
-    },
-    {
-        "number": "Act-38",
-        "title": "Stelle deinen Stuhl und Tisch ergonomisch ein",
-        "text": "Stellen Sie die Höhe Ihres Stuhls so ein, dass Ihre Füsse flach auf dem Boden stehen. Ober- und Unterschenkel sollten einen Winkel von mindestens 90 Grad bilden.\nWenn Sie aufrecht auf Ihrem Stuhl sitzen, sollte die Tischhöhe so eingestellt sein, dass Ihre Ellbogen locker auf dem Tisch aufliegen, ohne die Schultern anzuheben.\nSiehe auch www.ekas-box.ch",
-        "source": "youpers",
-        "defaultduration": 30,
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "campaign",
-        "recWeights": [],
-        "fields": ["WorkStructuring"],
-        "topics": ["workLifeBalance"],
-        "_id": "5278c6adcdeab69a2500002b",
-        "version": 0
-    },
-    {
-        "number": "Act-39",
-        "title": "Stelle deinen Computer ergonomisch ein",
-        "text": "Stellen Sie den Bildschirm gerade vor sich hin, damit Sie Ihren Kopf nicht seitlich abdrehen müssen. Die Höhe sollte so eingestellt sein, dass der obere Bildschirmrand eine Handbreite unter Ihrer Augenhöhe ist. Der Abstand zwischen Augen und Bildschirm sollte mindestens eine Armlänge betragen, bei grösseren Monitoren etwas mehr.\nSiehe auch www.ekas-box.ch",
-        "source": "youpers",
-        "defaultduration": 30,
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "campaign",
-        "recWeights": [],
-        "fields": ["WorkStructuring"],
-        "topics": ["workLifeBalance"],
-        "_id": "5278c6adcdeab69a2500002c",
-        "version": 0
-    },
-    {
-        "number": "Act-40",
-        "title": "Stelle eine schöne Pflanze an deinen Arbeitsplatz",
-        "text": "Der Idealbereich für die Luftfeutigkeit in einem Büro liegt zwischen 40-60%. Um die relative Luftfeuchtigkeit zu erhöhen (speziell im Winter in geheizten Büros) können Pflazen eingesetzt werden.\nSiehe auch www.ekas-box.ch (6205, Seite 39)",
-        "source": "youpers",
-        "defaultduration": 30,
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "campaign",
-        "recWeights": [],
-        "fields": ["WorkStructuring"],
-        "topics": ["workLifeBalance"],
-        "_id": "5278c6adcdeab69a2500002d",
-        "version": 0
-    },
-    {
-        "number": "Act-41",
-        "title": "Stelle ein persönliches/inspirierendes Bild an den Arbeitslatz",
-        "text": "Stellen Sie ein persönliches und inspirierendes Bild an Ihren Arbeitsplatz. Wer sich geborgen und wohl fühlt, identifiziert sich stärker mit seiner Arbeit.",
-        "source": "youpers",
-        "defaultduration": 30,
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "campaign",
-        "recWeights": [],
-        "fields": ["WorkStructuring"],
-        "topics": ["workLifeBalance"],
-        "_id": "5278c6adcdeab69a2500002e",
         "version": 0
     },
     {
@@ -846,20 +667,6 @@
         "fields": ["AwarenessAbility"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a25000036",
-        "version": 0
-    },
-    {
-        "number": "Act-50",
-        "title": "Spreche mit deinem/r Vorgesetzten/Personalverantwortlichen über Veränderung von Arbeitsabläufen / Aufgaben",
-        "text": "http://www.gesundheitsfoerderung.ch/pdf_doc_xls/d/betriebliche_gesundheitsfoerderung/grundlagen_wissen/Rahmenkonzept_Gesundheitskompetenz_de.pdf",
-        "source": "youpers",
-        "defaultduration": 30,
-        "defaultexecutiontype": "self",
-        "defaultvisibility": "private",
-        "recWeights": [],
-        "fields": ["WorkStructuring"],
-        "topics": ["workLifeBalance"],
-        "_id": "5278c6adcdeab69a25000037",
         "version": 0
     },
     {
@@ -2372,188 +2179,187 @@
         "defaultduration": 15,
         "defaultexecutiontype": "self",
         "defaultvisibility": "private",
+        "fields": ["TimeManagement"],
         "number": "Act-25",
-        "qualityFactor": 10,
-        "source": "youpers",
-        "text": "Zeitmanagement kann weder den Tag verlängern, noch erforderliche Aufgaben durch irgendwelche Tricks verschwinden lassen. Jedem steht dieselbe Zeit zur Verfügung - 24 Stunden am Tag. Die Art wie man sich die Tätigkeiten im Tagesablauf organisiert und strukturiert, kann jedoch enorme Auswirkungen auf das individuelle Zeitempfinden haben und dem Entstehen von Stresssituationen entgegenwirken. Mithilfe persönlichen Zeitmanagements kann jeder zu einer optimaleren Ausnutzung seiner Lebenszeit und zu mehr Zufriedenheit beim Erreichen der Ziele gelangen.\nMeist bemerkt man erst, dass es am Zeitmanagement hapert, wenn es zu spät ist, wenn die Zeit knapp wird. Dann hilft nur ein Notfallplan, um sich Freiräume zu schaffen. \n1. Statt sofort loszuarbeiten, nehmen Sie sich ein paar Minuten Zeit für Ihre Zeitplanung. Je mehr Sie zu tun haben, desto wichtiger ist diese Maßnahme.\n2. Streichen oder verschieben Sie Routineaufgaben, die im Moment nicht so wichtig sind und später erledigt werden könnten.\n3. Schaffen Sie sich störungsfreie Zeiten.\n4. Bereiten Sie sich geistig auf den Tag vor.\n5. Lernen Sie \"Nein\" zu sagen, wenn Ihnen jemand Ihre Zeit und Energie stehlen will.\n6. Schieben Sie Unangenehmes nicht unnötig vor sich her. Die Aussicht auf unerfreuliche Aufgaben verursacht Stress, raubt Energie und beeinträchtigt alle Arbeiten, die in der Zwischenzeit zu machen sind.\n7. Nehmen Sie sich etwas Schönes für den Tagesabschluss vor. Die Freude auf etwas Angenehmes hilft, den Tagesstress besser zu bewältigen und energievoller mit den Tagesanforderungen umzugehen. \n\nIm Allgemeinen gilt, in allen Lebensbereichen ein Zeitmanagement einzuführen. Dieses sollte natürlich konsequent durchgezogen werden, um Erfolge sichtbar zu machen. \n\nPlanung\nDer wohl wichtigste Punkt des Zeitmanagements ist die Planung. Es ist wichtig, den Tag im Voraus zu planen - am besten den Abend zuvor. Dabei ist es nötig, auch die vorgesehene Zeit, die für die bestimmten Aufgaben und Tätigkeiten anfällt, zu veranschlagen. Außerdem kommen immer wieder Dinge dazwischen, die ungeplant passieren - Schnelle Lösung: Pufferzeiten in den Zeitplan integrieren, so kommen Sie nicht in Stress.\n\nKoordination\nKoordination ist die halbe Miete. Wichtige Termine, Arbeitsaufgaben usw. gut koordinieren, sodass diese nicht aneinander geraten.",
-        "title": "Mache eine bewusste Tagesplanung, setze dir ein Tagesziel und gewinne Zeit durch Zeitplanung",
+        "qualityFactor": 8,
         "recWeights": [
             {
                 "question": "5278c51a6166f2de240000df",
                 "negativeAnswerWeight": 0,
                 "positiveAnswerWeight": 10,
-                "_id": "527a709e7237bc42270000ae"
+                "_id": "5280b4892875c6880800017f"
             },
             {
                 "question": "5278c51a6166f2de240000dd",
                 "negativeAnswerWeight": 0,
                 "positiveAnswerWeight": 8,
-                "_id": "527a709e7237bc42270000ad"
+                "_id": "5280b4892875c6880800017e"
             },
             {
                 "question": "5278c51a6166f2de240000dc",
                 "negativeAnswerWeight": 0,
                 "positiveAnswerWeight": 5,
-                "_id": "527a709e7237bc42270000ac"
+                "_id": "5280b4892875c6880800017d"
             },
             {
                 "question": "5278c51a6166f2de240000db",
                 "negativeAnswerWeight": 5,
                 "positiveAnswerWeight": 0,
-                "_id": "527a709e7237bc42270000ab"
+                "_id": "5280b4892875c6880800017c"
             },
             {
                 "question": "5278c51a6166f2de240000da",
                 "negativeAnswerWeight": 0,
                 "positiveAnswerWeight": 5,
-                "_id": "527a709e7237bc42270000aa"
+                "_id": "5280b4892875c6880800017b"
             },
             {
                 "question": "5278c51a6166f2de240000d9",
                 "negativeAnswerWeight": 0,
                 "positiveAnswerWeight": 0,
-                "_id": "527a709e7237bc42270000a9"
+                "_id": "5280b4892875c6880800017a"
             },
             {
                 "question": "5278c51a6166f2de240000d8",
                 "negativeAnswerWeight": 0,
                 "positiveAnswerWeight": 5,
-                "_id": "527a709e7237bc42270000a8"
+                "_id": "5280b4892875c68808000179"
             },
             {
                 "question": "5278c51a6166f2de240000d7",
                 "negativeAnswerWeight": 0,
                 "positiveAnswerWeight": 3,
-                "_id": "527a709e7237bc42270000a7"
+                "_id": "5280b4892875c68808000178"
             },
             {
                 "question": "5278c51a6166f2de240000d6",
                 "negativeAnswerWeight": 0,
                 "positiveAnswerWeight": 0,
-                "_id": "527a709e7237bc42270000a6"
+                "_id": "5280b4892875c68808000177"
             },
             {
                 "question": "5278c51a6166f2de240000d5",
                 "negativeAnswerWeight": 0,
                 "positiveAnswerWeight": 0,
-                "_id": "527a709e7237bc42270000a5"
+                "_id": "5280b4892875c68808000176"
             },
             {
                 "question": "5278c51a6166f2de240000d4",
                 "negativeAnswerWeight": 0,
                 "positiveAnswerWeight": 3,
-                "_id": "527a709e7237bc42270000a4"
+                "_id": "5280b4892875c68808000175"
             },
             {
                 "question": "5278c51a6166f2de240000d3",
                 "negativeAnswerWeight": 0,
                 "positiveAnswerWeight": 0,
-                "_id": "527a709e7237bc42270000a3"
+                "_id": "5280b4892875c68808000174"
             },
             {
                 "question": "5278c51a6166f2de240000d1",
                 "negativeAnswerWeight": 0,
                 "positiveAnswerWeight": 8,
-                "_id": "527a709e7237bc42270000a2"
+                "_id": "5280b4892875c68808000173"
             },
             {
                 "question": "5278c51a6166f2de240000d0",
                 "negativeAnswerWeight": 0,
                 "positiveAnswerWeight": 0,
-                "_id": "527a709e7237bc42270000a1"
+                "_id": "5280b4892875c68808000172"
             },
             {
                 "question": "5278c51a6166f2de240000cf",
                 "negativeAnswerWeight": 0,
                 "positiveAnswerWeight": 0,
-                "_id": "527a709e7237bc42270000a0"
+                "_id": "5280b4892875c68808000171"
             },
             {
                 "question": "5278c51a6166f2de240000ce",
                 "negativeAnswerWeight": 0,
                 "positiveAnswerWeight": 0,
-                "_id": "527a709e7237bc422700009f"
+                "_id": "5280b4892875c68808000170"
             },
             {
                 "question": "5278c51a6166f2de240000cc",
                 "negativeAnswerWeight": 0,
                 "positiveAnswerWeight": 5,
-                "_id": "527a709e7237bc422700009e"
+                "_id": "5280b4892875c6880800016f"
             },
             {
                 "question": "5278c51a6166f2de240000cb",
                 "negativeAnswerWeight": 0,
                 "positiveAnswerWeight": 5,
-                "_id": "527a709e7237bc422700009d"
+                "_id": "5280b4892875c6880800016e"
             },
             {
                 "question": "5278c51a6166f2de240000ca",
                 "negativeAnswerWeight": 0,
                 "positiveAnswerWeight": 8,
-                "_id": "527a709e7237bc422700009c"
+                "_id": "5280b4892875c6880800016d"
             },
             {
                 "question": "5278c51a6166f2de240000c9",
                 "negativeAnswerWeight": 0,
                 "positiveAnswerWeight": 5,
-                "_id": "527a709e7237bc422700009b"
+                "_id": "5280b4892875c6880800016c"
             },
             {
                 "question": "5278c51a6166f2de240000c8",
                 "negativeAnswerWeight": 3,
                 "positiveAnswerWeight": 0,
-                "_id": "527a709e7237bc422700009a"
+                "_id": "5280b4892875c6880800016b"
             },
             {
                 "question": "5278c51a6166f2de240000c6",
                 "negativeAnswerWeight": 8,
                 "positiveAnswerWeight": 0,
-                "_id": "527a709e7237bc4227000099"
+                "_id": "5280b4892875c6880800016a"
             },
             {
                 "question": "5278c51a6166f2de240000c5",
                 "negativeAnswerWeight": 8,
                 "positiveAnswerWeight": 0,
-                "_id": "527a709e7237bc4227000098"
+                "_id": "5280b4892875c68808000169"
             },
             {
                 "question": "5278c51a6166f2de240000c4",
                 "negativeAnswerWeight": 5,
                 "positiveAnswerWeight": 0,
-                "_id": "527a709e7237bc4227000097"
+                "_id": "5280b4892875c68808000168"
             },
             {
                 "question": "5278c51a6166f2de240000c3",
                 "negativeAnswerWeight": 5,
                 "positiveAnswerWeight": 0,
-                "_id": "527a709e7237bc4227000096"
+                "_id": "5280b4892875c68808000167"
             },
             {
                 "question": "5278c51a6166f2de240000c2",
                 "negativeAnswerWeight": 5,
                 "positiveAnswerWeight": 0,
-                "_id": "527a709e7237bc4227000095"
+                "_id": "5280b4892875c68808000166"
             },
             {
                 "question": "5278c51a6166f2de240000c1",
                 "negativeAnswerWeight": 0,
                 "positiveAnswerWeight": 0,
-                "_id": "527a709e7237bc4227000094"
+                "_id": "5280b4892875c68808000165"
             }
         ],
-        "fields": ["TimeManagement"],
+        "source": "youpers",
+        "text": "Zeitmanagement kann weder den Tag verlängern, noch erforderliche Aufgaben durch irgendwelche Tricks verschwinden lassen. Jedem steht dieselbe Zeit zur Verfügung - 24 Stunden am Tag. Die Art wie man sich die Tätigkeiten im Tagesablauf organisiert und strukturiert, kann jedoch enorme Auswirkungen auf das individuelle Zeitempfinden haben und dem Entstehen von Stresssituationen entgegenwirken. Mithilfe persönlichen Zeitmanagements kann jeder zu einer optimaleren Ausnutzung seiner Lebenszeit und zu mehr Zufriedenheit beim Erreichen der Ziele gelangen.\nMeist bemerkt man erst, dass es am Zeitmanagement hapert, wenn es zu spät ist, wenn die Zeit knapp wird. Dann hilft nur ein Notfallplan, um sich Freiräume zu schaffen. \n1. Statt sofort loszuarbeiten, nehmen Sie sich ein paar Minuten Zeit für Ihre Zeitplanung. Je mehr Sie zu tun haben, desto wichtiger ist diese Maßnahme.\n2. Streichen oder verschieben Sie Routineaufgaben, die im Moment nicht so wichtig sind und später erledigt werden könnten.\n3. Schaffen Sie sich störungsfreie Zeiten.\n4. Bereiten Sie sich geistig auf den Tag vor.\n5. Lernen Sie \"Nein\" zu sagen, wenn Ihnen jemand Ihre Zeit und Energie stehlen will.\n6. Schieben Sie Unangenehmes nicht unnötig vor sich her. Die Aussicht auf unerfreuliche Aufgaben verursacht Stress, raubt Energie und beeinträchtigt alle Arbeiten, die in der Zwischenzeit zu machen sind.\n7. Nehmen Sie sich etwas Schönes für den Tagesabschluss vor. Die Freude auf etwas Angenehmes hilft, den Tagesstress besser zu bewältigen und energievoller mit den Tagesanforderungen umzugehen. \n\nIm Allgemeinen gilt, in allen Lebensbereichen ein Zeitmanagement einzuführen. Dieses sollte natürlich konsequent durchgezogen werden, um Erfolge sichtbar zu machen. \n\nPlanung\nDer wohl wichtigste Punkt des Zeitmanagements ist die Planung. Es ist wichtig, den Tag im Voraus zu planen - am besten den Abend zuvor. Dabei ist es nötig, auch die vorgesehene Zeit, die für die bestimmten Aufgaben und Tätigkeiten anfällt, zu veranschlagen. Außerdem kommen immer wieder Dinge dazwischen, die ungeplant passieren - Schnelle Lösung: Pufferzeiten in den Zeitplan integrieren, so kommen Sie nicht in Stress.\n\nKoordination\nKoordination ist die halbe Miete. Wichtige Termine, Arbeitsaufgaben usw. gut koordinieren, sodass diese nicht aneinander geraten.",
+        "title": "Mache eine bewusste Tagesplanung, setze dir ein Tagesziel und gewinne Zeit durch Zeitplanung",
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a2500001e",
-        "version": 4
+        "version": 6
     },
     {
         "defaultduration": 15,
         "defaultexecutiontype": "self",
         "defaultvisibility": "campaign",
+        "fields": ["PhysicalActivity"],
         "number": "Act-176",
         "qualityFactor": 5,
-        "source": "community",
-        "title": "Überwache deine tägliche Bewegung mit einem Schrittzähler und versuche pro Tag 10'000 Schritte zu gehen",
         "recWeights": [
             {
                 "question": "5278c51a6166f2de240000df",
@@ -2718,7 +2524,8 @@
                 "_id": "527a72067237bc42270000af"
             }
         ],
-        "fields": ["PhysicalActivity"],
+        "source": "community",
+        "title": "Überwache deine tägliche Bewegung mit einem Schrittzähler und versuche pro Tag 10'000 Schritte zu gehen",
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a250000b3",
         "version": 1
@@ -2727,10 +2534,9 @@
         "defaultduration": 30,
         "defaultexecutiontype": "self",
         "defaultvisibility": "campaign",
+        "fields": ["PhysicalActivity"],
         "number": "Act-177",
         "qualityFactor": 3,
-        "source": "community",
-        "title": "Erledige täglich einige Büroarbeiten im Stehen anstelle im Sitzen",
         "recWeights": [
             {
                 "question": "5278c51a6166f2de240000df",
@@ -2895,7 +2701,8 @@
                 "_id": "527a72cd7237bc42270000ca"
             }
         ],
-        "fields": ["PhysicalActivity"],
+        "source": "community",
+        "title": "Erledige täglich einige Büroarbeiten im Stehen anstelle im Sitzen",
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a250000b4",
         "version": 1
@@ -2904,10 +2711,9 @@
         "defaultduration": 30,
         "defaultexecutiontype": "self",
         "defaultvisibility": "campaign",
+        "fields": ["PhysicalActivity"],
         "number": "Act-178",
         "qualityFactor": 3,
-        "source": "community",
-        "title": "Führe Telefongespräche im Stehen oder beim Herumgehen",
         "recWeights": [
             {
                 "question": "5278c51a6166f2de240000df",
@@ -3072,7 +2878,8 @@
                 "_id": "527a73657237bc42270000e5"
             }
         ],
-        "fields": ["PhysicalActivity"],
+        "source": "community",
+        "title": "Führe Telefongespräche im Stehen oder beim Herumgehen",
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a250000b5",
         "version": 1
@@ -3081,189 +2888,187 @@
         "defaultduration": 60,
         "defaultexecutiontype": "self",
         "defaultvisibility": "private",
+        "fields": ["AwarenessAbility"],
         "number": "Act-182",
         "qualityFactor": 5,
-        "source": "community",
-        "text": "z.B. Firma ICAS Schweiz AG (Independent Counselling and Advisory Service)",
-        "title": "Nehme bei persönlichen Problemen wenn nötig eine persönliche Kurzzeitberatung durch eine Fachperson in Anspruch",
         "recWeights": [
             {
                 "question": "5278c51a6166f2de240000df",
-                "negativeAnswerWeight": 2,
+                "negativeAnswerWeight": 0,
                 "positiveAnswerWeight": 2,
-                "_id": "527a74217237bc422700011a"
+                "_id": "5280b1932875c688080000dd"
             },
             {
                 "question": "5278c51a6166f2de240000dd",
                 "negativeAnswerWeight": 0,
-                "positiveAnswerWeight": 2,
-                "_id": "527a74217237bc4227000119"
+                "positiveAnswerWeight": 0,
+                "_id": "5280b1932875c688080000dc"
             },
             {
                 "question": "5278c51a6166f2de240000dc",
                 "negativeAnswerWeight": 0,
-                "positiveAnswerWeight": 2,
-                "_id": "527a74217237bc4227000118"
+                "positiveAnswerWeight": 0,
+                "_id": "5280b1932875c688080000db"
             },
             {
                 "question": "5278c51a6166f2de240000db",
-                "negativeAnswerWeight": 2,
+                "negativeAnswerWeight": 0,
                 "positiveAnswerWeight": 0,
-                "_id": "527a74217237bc4227000117"
+                "_id": "5280b1932875c688080000da"
             },
             {
                 "question": "5278c51a6166f2de240000da",
-                "negativeAnswerWeight": 2,
+                "negativeAnswerWeight": 0,
                 "positiveAnswerWeight": 0,
-                "_id": "527a74217237bc4227000116"
+                "_id": "5280b1932875c688080000d9"
             },
             {
                 "question": "5278c51a6166f2de240000d9",
-                "negativeAnswerWeight": 4,
+                "negativeAnswerWeight": 0,
                 "positiveAnswerWeight": 0,
-                "_id": "527a74217237bc4227000115"
+                "_id": "5280b1932875c688080000d8"
             },
             {
                 "question": "5278c51a6166f2de240000d8",
                 "negativeAnswerWeight": 0,
-                "positiveAnswerWeight": 2,
-                "_id": "527a74217237bc4227000114"
+                "positiveAnswerWeight": 0,
+                "_id": "5280b1932875c688080000d7"
             },
             {
                 "question": "5278c51a6166f2de240000d7",
-                "negativeAnswerWeight": 2,
+                "negativeAnswerWeight": 0,
                 "positiveAnswerWeight": 0,
-                "_id": "527a74217237bc4227000113"
+                "_id": "5280b1932875c688080000d6"
             },
             {
                 "question": "5278c51a6166f2de240000d6",
-                "negativeAnswerWeight": 2,
+                "negativeAnswerWeight": 0,
                 "positiveAnswerWeight": 0,
-                "_id": "527a74217237bc4227000112"
+                "_id": "5280b1932875c688080000d5"
             },
             {
                 "question": "5278c51a6166f2de240000d5",
-                "negativeAnswerWeight": 2,
+                "negativeAnswerWeight": 0,
                 "positiveAnswerWeight": 0,
-                "_id": "527a74217237bc4227000111"
+                "_id": "5280b1932875c688080000d4"
             },
             {
                 "question": "5278c51a6166f2de240000d4",
-                "negativeAnswerWeight": 5,
+                "negativeAnswerWeight": 0,
                 "positiveAnswerWeight": 0,
-                "_id": "527a74217237bc4227000110"
+                "_id": "5280b1932875c688080000d3"
             },
             {
                 "question": "5278c51a6166f2de240000d3",
-                "negativeAnswerWeight": 5,
+                "negativeAnswerWeight": 0,
                 "positiveAnswerWeight": 0,
-                "_id": "527a74217237bc422700010f"
+                "_id": "5280b1932875c688080000d2"
             },
             {
                 "question": "5278c51a6166f2de240000d1",
                 "negativeAnswerWeight": 2,
-                "positiveAnswerWeight": 2,
-                "_id": "527a74217237bc422700010e"
+                "positiveAnswerWeight": 4,
+                "_id": "5280b1932875c688080000d1"
             },
             {
                 "question": "5278c51a6166f2de240000d0",
                 "negativeAnswerWeight": 10,
                 "positiveAnswerWeight": 0,
-                "_id": "527a74217237bc422700010d"
+                "_id": "5280b1932875c688080000d0"
             },
             {
                 "question": "5278c51a6166f2de240000cf",
                 "negativeAnswerWeight": 10,
                 "positiveAnswerWeight": 0,
-                "_id": "527a74217237bc422700010c"
+                "_id": "5280b1932875c688080000cf"
             },
             {
                 "question": "5278c51a6166f2de240000ce",
                 "negativeAnswerWeight": 5,
                 "positiveAnswerWeight": 8,
-                "_id": "527a74217237bc422700010b"
+                "_id": "5280b1932875c688080000ce"
             },
             {
                 "question": "5278c51a6166f2de240000cc",
                 "negativeAnswerWeight": 0,
                 "positiveAnswerWeight": 0,
-                "_id": "527a74217237bc422700010a"
+                "_id": "5280b1932875c688080000cd"
             },
             {
                 "question": "5278c51a6166f2de240000cb",
                 "negativeAnswerWeight": 0,
                 "positiveAnswerWeight": 0,
-                "_id": "527a74217237bc4227000109"
+                "_id": "5280b1932875c688080000cc"
             },
             {
                 "question": "5278c51a6166f2de240000ca",
                 "negativeAnswerWeight": 0,
                 "positiveAnswerWeight": 0,
-                "_id": "527a74217237bc4227000108"
+                "_id": "5280b1932875c688080000cb"
             },
             {
                 "question": "5278c51a6166f2de240000c9",
                 "negativeAnswerWeight": 0,
                 "positiveAnswerWeight": 0,
-                "_id": "527a74217237bc4227000107"
+                "_id": "5280b1932875c688080000ca"
             },
             {
                 "question": "5278c51a6166f2de240000c8",
                 "negativeAnswerWeight": 0,
                 "positiveAnswerWeight": 0,
-                "_id": "527a74217237bc4227000106"
+                "_id": "5280b1932875c688080000c9"
             },
             {
                 "question": "5278c51a6166f2de240000c6",
                 "negativeAnswerWeight": 0,
                 "positiveAnswerWeight": 0,
-                "_id": "527a74217237bc4227000105"
+                "_id": "5280b1932875c688080000c8"
             },
             {
                 "question": "5278c51a6166f2de240000c5",
                 "negativeAnswerWeight": 0,
                 "positiveAnswerWeight": 0,
-                "_id": "527a74217237bc4227000104"
+                "_id": "5280b1932875c688080000c7"
             },
             {
                 "question": "5278c51a6166f2de240000c4",
                 "negativeAnswerWeight": 0,
                 "positiveAnswerWeight": 0,
-                "_id": "527a74217237bc4227000103"
+                "_id": "5280b1932875c688080000c6"
             },
             {
                 "question": "5278c51a6166f2de240000c3",
                 "negativeAnswerWeight": 0,
                 "positiveAnswerWeight": 0,
-                "_id": "527a74217237bc4227000102"
+                "_id": "5280b1932875c688080000c5"
             },
             {
                 "question": "5278c51a6166f2de240000c2",
                 "negativeAnswerWeight": 0,
                 "positiveAnswerWeight": 0,
-                "_id": "527a74217237bc4227000101"
+                "_id": "5280b1932875c688080000c4"
             },
             {
                 "question": "5278c51a6166f2de240000c1",
                 "negativeAnswerWeight": 0,
                 "positiveAnswerWeight": 0,
-                "_id": "527a74217237bc4227000100"
+                "_id": "5280b1932875c688080000c3"
             }
         ],
-        "fields": ["AwarenessAbility"],
+        "source": "community",
+        "text": "z.B. Firma ICAS Schweiz AG (Independent Counselling and Advisory Service)",
+        "title": "Nehme bei persönlichen Problemen wenn nötig eine persönliche Kurzzeitberatung durch eine Fachperson in Anspruch",
         "topics": ["workLifeBalance"],
         "_id": "5278c6aecdeab69a250000b9",
-        "version": 1
+        "version": 2
     },
     {
         "defaultduration": 15,
         "defaultexecutiontype": "self",
         "defaultvisibility": "campaign",
+        "fields": ["PhysicalActivity"],
         "number": "Act-117",
         "qualityFactor": 3,
-        "source": "youpers",
-        "text": "Sie müssen nicht immer mit dem Bus oder dem Tram bis vors Geschäft fahren. Steigen Sie eine Station früher aus, legen Sie den Weg zu Fuss zurück und tun somit etwas für Ihre Gesundheit.",
-        "title": "Steige eine Station vorher aus bzw. später ein und gehe zu Fuss",
         "recWeights": [
             {
                 "question": "5278c51a6166f2de240000df",
@@ -3428,7 +3233,9 @@
                 "_id": "527be2b67237bc4227000295"
             }
         ],
-        "fields": ["PhysicalActivity"],
+        "source": "youpers",
+        "text": "Sie müssen nicht immer mit dem Bus oder dem Tram bis vors Geschäft fahren. Steigen Sie eine Station früher aus, legen Sie den Weg zu Fuss zurück und tun somit etwas für Ihre Gesundheit.",
+        "title": "Steige eine Station vorher aus bzw. später ein und gehe zu Fuss",
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a2500007b",
         "version": 12
@@ -3437,11 +3244,9 @@
         "defaultduration": 15,
         "defaultexecutiontype": "self",
         "defaultvisibility": "campaign",
+        "fields": ["Nutrition"],
         "number": "Act-127",
         "qualityFactor": 2,
-        "source": "youpers",
-        "text": "Wasser ist der beste Durstlöscher. Süssgetränke enthalten oft sehr viel Zucker und können je nach Menge zu Übergewicht führen. Trinken Sie mehrmals täglich ein Glas Wasser. Hanenwasser ist fast kostenlos, überall erhältlich und hygienisch einwandfrei.http://www.gesundheit.lu.ch/broschuere_was_essen_und_trinken._pdf.pdf;",
-        "title": "Trinke reichlich Wasser z.B. 6-mal täglich 1 Glas oder eine Tasse (insgesamt 1 bis 2 Liter)",
         "recWeights": [
             {
                 "question": "5278c51a6166f2de240000df",
@@ -3606,7 +3411,9 @@
                 "_id": "527bb8d37237bc42270001a2"
             }
         ],
-        "fields": ["Nutrition"],
+        "source": "youpers",
+        "text": "Wasser ist der beste Durstlöscher. Süssgetränke enthalten oft sehr viel Zucker und können je nach Menge zu Übergewicht führen. Trinken Sie mehrmals täglich ein Glas Wasser. Hanenwasser ist fast kostenlos, überall erhältlich und hygienisch einwandfrei.http://www.gesundheit.lu.ch/broschuere_was_essen_und_trinken._pdf.pdf;",
+        "title": "Trinke reichlich Wasser z.B. 6-mal täglich 1 Glas oder eine Tasse (insgesamt 1 bis 2 Liter)",
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a2500007f",
         "version": 2
@@ -3615,11 +3422,9 @@
         "defaultduration": 60,
         "defaultexecutiontype": "self",
         "defaultvisibility": "private",
+        "fields": ["AwarenessAbility", "LeisureActivity", "Relaxation"],
         "number": "Act-188",
         "qualityFactor": 2,
-        "source": "youpers",
-        "text": "Durch Hypnose gelangt man in einen veränderten Bewusstseinszustand. Der freie Wille bleibt jedoch erhalten. Diese Methode trägt zur Entspannung und Beruhigung bei und hilft, sein Unterbewusstsein zu entdecken. Durch verschiedene Techniken, wie Wiederholung, Reizabschirmung oder Konzentration auf irgendeinen Inhalt oder auf den Hypnotiseur selber, wird ein eingeengter Bewusstseinszustand ähnlich einer Trance hergestellt. Neben einer Abnahme der Muskelspannung, EEG-Veränderungen gehören dazu auch Amnesie oder gesteigertes Erinnerungsvermögen, Verlust der (sensorischen) Empfindlichkeit gegenüber bestimmten Reizen sowie ein intensiver Kontakt mit dem Hypnotiseur. Alle Menschen kennen mehr oder weniger bewusst hypnoseähnliche Zustände als so genannte «Alltagstrancen». Es sind dies Momente, wenn man versunken in seiner Lieblingsbeschäftigung oder tief in Gedanken ist und dabei alles um sich herum vergisst. Wenn dieser Zustand intensiver Konzentration nach innen geübt und erweitert wird, können der Person Fähigkeiten zugänglich werden, die sie in normalem Wachbewusstsein nicht hat. Es gehören dazu gesteigerte Gedächtnisleistungen, Selbstvertrauen, Zuversicht, kreative Einfälle und Problemlösungen oder Kontrolle von Körperfunktionen (Schmerz) usw.",
-        "title": "Führe zur Entspannung und Beruhigung bei einem/r anerkannten Fachspezialist/in eine Hypnose durch.",
         "recWeights": [
             {
                 "question": "5278c51a6166f2de240000df",
@@ -3784,9 +3589,2500 @@
                 "_id": "527bbe617237bc4227000229"
             }
         ],
-        "fields": ["AwarenessAbility", "LeisureActivity", "Relaxation"],
+        "source": "youpers",
+        "text": "Durch Hypnose gelangt man in einen veränderten Bewusstseinszustand. Der freie Wille bleibt jedoch erhalten. Diese Methode trägt zur Entspannung und Beruhigung bei und hilft, sein Unterbewusstsein zu entdecken. Durch verschiedene Techniken, wie Wiederholung, Reizabschirmung oder Konzentration auf irgendeinen Inhalt oder auf den Hypnotiseur selber, wird ein eingeengter Bewusstseinszustand ähnlich einer Trance hergestellt. Neben einer Abnahme der Muskelspannung, EEG-Veränderungen gehören dazu auch Amnesie oder gesteigertes Erinnerungsvermögen, Verlust der (sensorischen) Empfindlichkeit gegenüber bestimmten Reizen sowie ein intensiver Kontakt mit dem Hypnotiseur. Alle Menschen kennen mehr oder weniger bewusst hypnoseähnliche Zustände als so genannte «Alltagstrancen». Es sind dies Momente, wenn man versunken in seiner Lieblingsbeschäftigung oder tief in Gedanken ist und dabei alles um sich herum vergisst. Wenn dieser Zustand intensiver Konzentration nach innen geübt und erweitert wird, können der Person Fähigkeiten zugänglich werden, die sie in normalem Wachbewusstsein nicht hat. Es gehören dazu gesteigerte Gedächtnisleistungen, Selbstvertrauen, Zuversicht, kreative Einfälle und Problemlösungen oder Kontrolle von Körperfunktionen (Schmerz) usw.",
+        "title": "Führe zur Entspannung und Beruhigung bei einem/r anerkannten Fachspezialist/in eine Hypnose durch.",
         "topics": ["workLifeBalance"],
         "_id": "5278c6aecdeab69a250000bf",
+        "version": 1
+    },
+    {
+        "defaultduration": 60,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "fields": ["PhysicalActivity"],
+        "number": "Act-124",
+        "qualityFactor": 4,
+        "recWeights": [
+            {
+                "question": "5278c51a6166f2de240000df",
+                "negativeAnswerWeight": 4,
+                "positiveAnswerWeight": 6,
+                "_id": "5280a7052875c68808000020"
+            },
+            {
+                "question": "5278c51a6166f2de240000dd",
+                "negativeAnswerWeight": 2,
+                "positiveAnswerWeight": 4,
+                "_id": "5280a7052875c6880800001f"
+            },
+            {
+                "question": "5278c51a6166f2de240000dc",
+                "negativeAnswerWeight": 2,
+                "positiveAnswerWeight": 4,
+                "_id": "5280a7052875c6880800001e"
+            },
+            {
+                "question": "5278c51a6166f2de240000db",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280a7052875c6880800001d"
+            },
+            {
+                "question": "5278c51a6166f2de240000da",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280a7052875c6880800001c"
+            },
+            {
+                "question": "5278c51a6166f2de240000d9",
+                "negativeAnswerWeight": 2,
+                "positiveAnswerWeight": 0,
+                "_id": "5280a7052875c6880800001b"
+            },
+            {
+                "question": "5278c51a6166f2de240000d8",
+                "negativeAnswerWeight": 2,
+                "positiveAnswerWeight": 4,
+                "_id": "5280a7052875c6880800001a"
+            },
+            {
+                "question": "5278c51a6166f2de240000d7",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280a7052875c68808000019"
+            },
+            {
+                "question": "5278c51a6166f2de240000d6",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280a7052875c68808000018"
+            },
+            {
+                "question": "5278c51a6166f2de240000d5",
+                "negativeAnswerWeight": 2,
+                "positiveAnswerWeight": 0,
+                "_id": "5280a7052875c68808000017"
+            },
+            {
+                "question": "5278c51a6166f2de240000d4",
+                "negativeAnswerWeight": 2,
+                "positiveAnswerWeight": 0,
+                "_id": "5280a7052875c68808000016"
+            },
+            {
+                "question": "5278c51a6166f2de240000d3",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280a7052875c68808000015"
+            },
+            {
+                "question": "5278c51a6166f2de240000d1",
+                "negativeAnswerWeight": 4,
+                "positiveAnswerWeight": 0,
+                "_id": "5280a7052875c68808000014"
+            },
+            {
+                "question": "5278c51a6166f2de240000d0",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280a7052875c68808000013"
+            },
+            {
+                "question": "5278c51a6166f2de240000cf",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280a7052875c68808000012"
+            },
+            {
+                "question": "5278c51a6166f2de240000ce",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280a7052875c68808000011"
+            },
+            {
+                "question": "5278c51a6166f2de240000cc",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280a7052875c68808000010"
+            },
+            {
+                "question": "5278c51a6166f2de240000cb",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280a7052875c6880800000f"
+            },
+            {
+                "question": "5278c51a6166f2de240000ca",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280a7052875c6880800000e"
+            },
+            {
+                "question": "5278c51a6166f2de240000c9",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280a7052875c6880800000d"
+            },
+            {
+                "question": "5278c51a6166f2de240000c8",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280a7052875c6880800000c"
+            },
+            {
+                "question": "5278c51a6166f2de240000c6",
+                "negativeAnswerWeight": 2,
+                "positiveAnswerWeight": 0,
+                "_id": "5280a7052875c6880800000b"
+            },
+            {
+                "question": "5278c51a6166f2de240000c5",
+                "negativeAnswerWeight": 2,
+                "positiveAnswerWeight": 0,
+                "_id": "5280a7052875c6880800000a"
+            },
+            {
+                "question": "5278c51a6166f2de240000c4",
+                "negativeAnswerWeight": 4,
+                "positiveAnswerWeight": 0,
+                "_id": "5280a7052875c68808000009"
+            },
+            {
+                "question": "5278c51a6166f2de240000c3",
+                "negativeAnswerWeight": 10,
+                "positiveAnswerWeight": 0,
+                "_id": "5280a7052875c68808000008"
+            },
+            {
+                "question": "5278c51a6166f2de240000c2",
+                "negativeAnswerWeight": 2,
+                "positiveAnswerWeight": 0,
+                "_id": "5280a7052875c68808000007"
+            },
+            {
+                "question": "5278c51a6166f2de240000c1",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280a7052875c68808000006"
+            }
+        ],
+        "source": "youpers",
+        "text": "Gehen Sie ins Fitnesstraining. Sport und Bewegung wirken sich positiv auf die Physis wie auch die Psyche aus. Die Basisempfehlung für gesundheitswirksame Bewegung liegt bei wöchentlich 2 1/2 Stunden Bewegung mit mittlerer Intensität. Dabei sollte die Bewegung sinnvollerweise über die ganze Woche verteilt werden. Durch das Fitnesstraining decken Sie bereits einen Teil dieser empfohlenen Zeit ab.",
+        "title": "Starte ein Fitnesstraining, dass dir Spass macht",
+        "topics": ["workLifeBalance"],
+        "_id": "5278c6adcdeab69a25000080",
+        "version": 1
+    },
+    {
+        "defaultduration": 30,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "fields": ["AwarenessAbility", "Relaxation"],
+        "number": "Act-17",
+        "qualityFactor": 5,
+        "recWeights": [
+            {
+                "question": "5278c51a6166f2de240000df",
+                "negativeAnswerWeight": 4,
+                "positiveAnswerWeight": 4,
+                "_id": "5280a93b2875c6880800003b"
+            },
+            {
+                "question": "5278c51a6166f2de240000dd",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 2,
+                "_id": "5280a93b2875c6880800003a"
+            },
+            {
+                "question": "5278c51a6166f2de240000dc",
+                "negativeAnswerWeight": 3,
+                "positiveAnswerWeight": 5,
+                "_id": "5280a93b2875c68808000039"
+            },
+            {
+                "question": "5278c51a6166f2de240000db",
+                "negativeAnswerWeight": 3,
+                "positiveAnswerWeight": 0,
+                "_id": "5280a93b2875c68808000038"
+            },
+            {
+                "question": "5278c51a6166f2de240000da",
+                "negativeAnswerWeight": 3,
+                "positiveAnswerWeight": 0,
+                "_id": "5280a93b2875c68808000037"
+            },
+            {
+                "question": "5278c51a6166f2de240000d9",
+                "negativeAnswerWeight": 3,
+                "positiveAnswerWeight": 0,
+                "_id": "5280a93b2875c68808000036"
+            },
+            {
+                "question": "5278c51a6166f2de240000d8",
+                "negativeAnswerWeight": 2,
+                "positiveAnswerWeight": 5,
+                "_id": "5280a93b2875c68808000035"
+            },
+            {
+                "question": "5278c51a6166f2de240000d7",
+                "negativeAnswerWeight": 3,
+                "positiveAnswerWeight": 0,
+                "_id": "5280a93b2875c68808000034"
+            },
+            {
+                "question": "5278c51a6166f2de240000d6",
+                "negativeAnswerWeight": 3,
+                "positiveAnswerWeight": 0,
+                "_id": "5280a93b2875c68808000033"
+            },
+            {
+                "question": "5278c51a6166f2de240000d5",
+                "negativeAnswerWeight": 3,
+                "positiveAnswerWeight": 0,
+                "_id": "5280a93b2875c68808000032"
+            },
+            {
+                "question": "5278c51a6166f2de240000d4",
+                "negativeAnswerWeight": 2,
+                "positiveAnswerWeight": 0,
+                "_id": "5280a93b2875c68808000031"
+            },
+            {
+                "question": "5278c51a6166f2de240000d3",
+                "negativeAnswerWeight": 2,
+                "positiveAnswerWeight": 0,
+                "_id": "5280a93b2875c68808000030"
+            },
+            {
+                "question": "5278c51a6166f2de240000d1",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 2,
+                "_id": "5280a93b2875c6880800002f"
+            },
+            {
+                "question": "5278c51a6166f2de240000d0",
+                "negativeAnswerWeight": 4,
+                "positiveAnswerWeight": 0,
+                "_id": "5280a93b2875c6880800002e"
+            },
+            {
+                "question": "5278c51a6166f2de240000cf",
+                "negativeAnswerWeight": 4,
+                "positiveAnswerWeight": 0,
+                "_id": "5280a93b2875c6880800002d"
+            },
+            {
+                "question": "5278c51a6166f2de240000ce",
+                "negativeAnswerWeight": 4,
+                "positiveAnswerWeight": 2,
+                "_id": "5280a93b2875c6880800002c"
+            },
+            {
+                "question": "5278c51a6166f2de240000cc",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 4,
+                "_id": "5280a93b2875c6880800002b"
+            },
+            {
+                "question": "5278c51a6166f2de240000cb",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280a93b2875c6880800002a"
+            },
+            {
+                "question": "5278c51a6166f2de240000ca",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 4,
+                "_id": "5280a93b2875c68808000029"
+            },
+            {
+                "question": "5278c51a6166f2de240000c9",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 4,
+                "_id": "5280a93b2875c68808000028"
+            },
+            {
+                "question": "5278c51a6166f2de240000c8",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280a93b2875c68808000027"
+            },
+            {
+                "question": "5278c51a6166f2de240000c6",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280a93b2875c68808000026"
+            },
+            {
+                "question": "5278c51a6166f2de240000c5",
+                "negativeAnswerWeight": 6,
+                "positiveAnswerWeight": 0,
+                "_id": "5280a93b2875c68808000025"
+            },
+            {
+                "question": "5278c51a6166f2de240000c4",
+                "negativeAnswerWeight": 6,
+                "positiveAnswerWeight": 0,
+                "_id": "5280a93b2875c68808000024"
+            },
+            {
+                "question": "5278c51a6166f2de240000c3",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280a93b2875c68808000023"
+            },
+            {
+                "question": "5278c51a6166f2de240000c2",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280a93b2875c68808000022"
+            },
+            {
+                "question": "5278c51a6166f2de240000c1",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280a93b2875c68808000021"
+            }
+        ],
+        "source": "youpers",
+        "text": "Mentale Techniken sind hilfreiche Strategien um ausgeglichener zu sein. \nGedankenstopp: Keine selbst zerstörerischen Gedanken, wie: Das schaffe ich nie.\nAffirmationen: (Bejahungsübungen): Heute klappt es. \npositive Formulierung von Sätzen: Nicht: Ich werde heute bei der Besprechung nicht nervös sein. Sondern: Bei der Besprechung bin ich konzentriert. Ich habe mich gut vorbereitet.",
+        "title": "Führe ein Mentaltraining durch (positive Suggestionen, Gedankenstopp, Affirmationen, positive Formulierung von Sätzen)",
+        "topics": ["workLifeBalance"],
+        "_id": "5278c6adcdeab69a25000016",
+        "version": 1
+    },
+    {
+        "defaultduration": 60,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "fields": ["AwarenessAbility"],
+        "number": "Act-18",
+        "qualityFactor": 6,
+        "recWeights": [
+            {
+                "question": "5278c51a6166f2de240000df",
+                "negativeAnswerWeight": 3,
+                "positiveAnswerWeight": 6,
+                "_id": "5280aa972875c68808000056"
+            },
+            {
+                "question": "5278c51a6166f2de240000dd",
+                "negativeAnswerWeight": 2,
+                "positiveAnswerWeight": 4,
+                "_id": "5280aa972875c68808000055"
+            },
+            {
+                "question": "5278c51a6166f2de240000dc",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 6,
+                "_id": "5280aa972875c68808000054"
+            },
+            {
+                "question": "5278c51a6166f2de240000db",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280aa972875c68808000053"
+            },
+            {
+                "question": "5278c51a6166f2de240000da",
+                "negativeAnswerWeight": 2,
+                "positiveAnswerWeight": 2,
+                "_id": "5280aa972875c68808000052"
+            },
+            {
+                "question": "5278c51a6166f2de240000d9",
+                "negativeAnswerWeight": 2,
+                "positiveAnswerWeight": 0,
+                "_id": "5280aa972875c68808000051"
+            },
+            {
+                "question": "5278c51a6166f2de240000d8",
+                "negativeAnswerWeight": 2,
+                "positiveAnswerWeight": 6,
+                "_id": "5280aa972875c68808000050"
+            },
+            {
+                "question": "5278c51a6166f2de240000d7",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 4,
+                "_id": "5280aa972875c6880800004f"
+            },
+            {
+                "question": "5278c51a6166f2de240000d6",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280aa972875c6880800004e"
+            },
+            {
+                "question": "5278c51a6166f2de240000d5",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280aa972875c6880800004d"
+            },
+            {
+                "question": "5278c51a6166f2de240000d4",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280aa972875c6880800004c"
+            },
+            {
+                "question": "5278c51a6166f2de240000d3",
+                "negativeAnswerWeight": 3,
+                "positiveAnswerWeight": 0,
+                "_id": "5280aa972875c6880800004b"
+            },
+            {
+                "question": "5278c51a6166f2de240000d1",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 5,
+                "_id": "5280aa972875c6880800004a"
+            },
+            {
+                "question": "5278c51a6166f2de240000d0",
+                "negativeAnswerWeight": 4,
+                "positiveAnswerWeight": 0,
+                "_id": "5280aa972875c68808000049"
+            },
+            {
+                "question": "5278c51a6166f2de240000cf",
+                "negativeAnswerWeight": 4,
+                "positiveAnswerWeight": 0,
+                "_id": "5280aa972875c68808000048"
+            },
+            {
+                "question": "5278c51a6166f2de240000ce",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280aa972875c68808000047"
+            },
+            {
+                "question": "5278c51a6166f2de240000cc",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 4,
+                "_id": "5280aa972875c68808000046"
+            },
+            {
+                "question": "5278c51a6166f2de240000cb",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 4,
+                "_id": "5280aa972875c68808000045"
+            },
+            {
+                "question": "5278c51a6166f2de240000ca",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 4,
+                "_id": "5280aa972875c68808000044"
+            },
+            {
+                "question": "5278c51a6166f2de240000c9",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 4,
+                "_id": "5280aa972875c68808000043"
+            },
+            {
+                "question": "5278c51a6166f2de240000c8",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280aa972875c68808000042"
+            },
+            {
+                "question": "5278c51a6166f2de240000c6",
+                "negativeAnswerWeight": 3,
+                "positiveAnswerWeight": 0,
+                "_id": "5280aa972875c68808000041"
+            },
+            {
+                "question": "5278c51a6166f2de240000c5",
+                "negativeAnswerWeight": 5,
+                "positiveAnswerWeight": 0,
+                "_id": "5280aa972875c68808000040"
+            },
+            {
+                "question": "5278c51a6166f2de240000c4",
+                "negativeAnswerWeight": 5,
+                "positiveAnswerWeight": 0,
+                "_id": "5280aa972875c6880800003f"
+            },
+            {
+                "question": "5278c51a6166f2de240000c3",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280aa972875c6880800003e"
+            },
+            {
+                "question": "5278c51a6166f2de240000c2",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280aa972875c6880800003d"
+            },
+            {
+                "question": "5278c51a6166f2de240000c1",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280aa972875c6880800003c"
+            }
+        ],
+        "source": "youpers",
+        "text": "Reviews und Meta-Analysen belegen gut, dass Stress-Management-Trainings (SMT) einschliesslich\nStress-Resistenz-Trainings (stress inoculation trainings), Entspannungs- und Meditationsmethoden\nsowie soziale Kompetenz- und Fitness-Trainings bezüglich gesundheitlicher Effekte wirksam sind.",
+        "title": "Nehme an Stressimmunisierungstraining, Stress-Management-Training SMT und Stress-Resistenz-Training teil",
+        "topics": ["workLifeBalance"],
+        "_id": "5278c6adcdeab69a25000017",
+        "version": 1
+    },
+    {
+        "defaultduration": 15,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "fields": ["TimeManagement", "WorkStructuring"],
+        "number": "Act-28",
+        "qualityFactor": 4,
+        "recWeights": [
+            {
+                "question": "5278c51a6166f2de240000df",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 3,
+                "_id": "5280ad3d2875c68808000071"
+            },
+            {
+                "question": "5278c51a6166f2de240000dd",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 5,
+                "_id": "5280ad3d2875c68808000070"
+            },
+            {
+                "question": "5278c51a6166f2de240000dc",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 3,
+                "_id": "5280ad3d2875c6880800006f"
+            },
+            {
+                "question": "5278c51a6166f2de240000db",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280ad3d2875c6880800006e"
+            },
+            {
+                "question": "5278c51a6166f2de240000da",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280ad3d2875c6880800006d"
+            },
+            {
+                "question": "5278c51a6166f2de240000d9",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280ad3d2875c6880800006c"
+            },
+            {
+                "question": "5278c51a6166f2de240000d8",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280ad3d2875c6880800006b"
+            },
+            {
+                "question": "5278c51a6166f2de240000d7",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 3,
+                "_id": "5280ad3d2875c6880800006a"
+            },
+            {
+                "question": "5278c51a6166f2de240000d6",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280ad3d2875c68808000069"
+            },
+            {
+                "question": "5278c51a6166f2de240000d5",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280ad3d2875c68808000068"
+            },
+            {
+                "question": "5278c51a6166f2de240000d4",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280ad3d2875c68808000067"
+            },
+            {
+                "question": "5278c51a6166f2de240000d3",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280ad3d2875c68808000066"
+            },
+            {
+                "question": "5278c51a6166f2de240000d1",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 3,
+                "_id": "5280ad3d2875c68808000065"
+            },
+            {
+                "question": "5278c51a6166f2de240000d0",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280ad3d2875c68808000064"
+            },
+            {
+                "question": "5278c51a6166f2de240000cf",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280ad3d2875c68808000063"
+            },
+            {
+                "question": "5278c51a6166f2de240000ce",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280ad3d2875c68808000062"
+            },
+            {
+                "question": "5278c51a6166f2de240000cc",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 5,
+                "_id": "5280ad3d2875c68808000061"
+            },
+            {
+                "question": "5278c51a6166f2de240000cb",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 3,
+                "_id": "5280ad3d2875c68808000060"
+            },
+            {
+                "question": "5278c51a6166f2de240000ca",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 5,
+                "_id": "5280ad3d2875c6880800005f"
+            },
+            {
+                "question": "5278c51a6166f2de240000c9",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 3,
+                "_id": "5280ad3d2875c6880800005e"
+            },
+            {
+                "question": "5278c51a6166f2de240000c8",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280ad3d2875c6880800005d"
+            },
+            {
+                "question": "5278c51a6166f2de240000c6",
+                "negativeAnswerWeight": 4,
+                "positiveAnswerWeight": 0,
+                "_id": "5280ad3d2875c6880800005c"
+            },
+            {
+                "question": "5278c51a6166f2de240000c5",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280ad3d2875c6880800005b"
+            },
+            {
+                "question": "5278c51a6166f2de240000c4",
+                "negativeAnswerWeight": 2,
+                "positiveAnswerWeight": 0,
+                "_id": "5280ad3d2875c6880800005a"
+            },
+            {
+                "question": "5278c51a6166f2de240000c3",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280ad3d2875c68808000059"
+            },
+            {
+                "question": "5278c51a6166f2de240000c2",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280ad3d2875c68808000058"
+            },
+            {
+                "question": "5278c51a6166f2de240000c1",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280ad3d2875c68808000057"
+            }
+        ],
+        "source": "youpers",
+        "title": "Setze heute bewusst Prioritäten bei deiner Arbeitsplanung",
+        "topics": ["workLifeBalance"],
+        "_id": "5278c6adcdeab69a25000021",
+        "version": 1
+    },
+    {
+        "defaultduration": 15,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "fields": ["TimeManagement", "WorkStructuring"],
+        "number": "Act-29",
+        "qualityFactor": 3,
+        "recWeights": [
+            {
+                "question": "5278c51a6166f2de240000df",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 2,
+                "_id": "5280ae142875c6880800008c"
+            },
+            {
+                "question": "5278c51a6166f2de240000dd",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 5,
+                "_id": "5280ae142875c6880800008b"
+            },
+            {
+                "question": "5278c51a6166f2de240000dc",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280ae142875c6880800008a"
+            },
+            {
+                "question": "5278c51a6166f2de240000db",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280ae142875c68808000089"
+            },
+            {
+                "question": "5278c51a6166f2de240000da",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280ae142875c68808000088"
+            },
+            {
+                "question": "5278c51a6166f2de240000d9",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280ae142875c68808000087"
+            },
+            {
+                "question": "5278c51a6166f2de240000d8",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 3,
+                "_id": "5280ae142875c68808000086"
+            },
+            {
+                "question": "5278c51a6166f2de240000d7",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280ae142875c68808000085"
+            },
+            {
+                "question": "5278c51a6166f2de240000d6",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280ae142875c68808000084"
+            },
+            {
+                "question": "5278c51a6166f2de240000d5",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280ae142875c68808000083"
+            },
+            {
+                "question": "5278c51a6166f2de240000d4",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280ae142875c68808000082"
+            },
+            {
+                "question": "5278c51a6166f2de240000d3",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280ae142875c68808000081"
+            },
+            {
+                "question": "5278c51a6166f2de240000d1",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 5,
+                "_id": "5280ae142875c68808000080"
+            },
+            {
+                "question": "5278c51a6166f2de240000d0",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280ae142875c6880800007f"
+            },
+            {
+                "question": "5278c51a6166f2de240000cf",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280ae142875c6880800007e"
+            },
+            {
+                "question": "5278c51a6166f2de240000ce",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280ae142875c6880800007d"
+            },
+            {
+                "question": "5278c51a6166f2de240000cc",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280ae142875c6880800007c"
+            },
+            {
+                "question": "5278c51a6166f2de240000cb",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280ae142875c6880800007b"
+            },
+            {
+                "question": "5278c51a6166f2de240000ca",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280ae142875c6880800007a"
+            },
+            {
+                "question": "5278c51a6166f2de240000c9",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280ae142875c68808000079"
+            },
+            {
+                "question": "5278c51a6166f2de240000c8",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280ae142875c68808000078"
+            },
+            {
+                "question": "5278c51a6166f2de240000c6",
+                "negativeAnswerWeight": 2,
+                "positiveAnswerWeight": 0,
+                "_id": "5280ae142875c68808000077"
+            },
+            {
+                "question": "5278c51a6166f2de240000c5",
+                "negativeAnswerWeight": 2,
+                "positiveAnswerWeight": 0,
+                "_id": "5280ae142875c68808000076"
+            },
+            {
+                "question": "5278c51a6166f2de240000c4",
+                "negativeAnswerWeight": 2,
+                "positiveAnswerWeight": 0,
+                "_id": "5280ae142875c68808000075"
+            },
+            {
+                "question": "5278c51a6166f2de240000c3",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280ae142875c68808000074"
+            },
+            {
+                "question": "5278c51a6166f2de240000c2",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280ae142875c68808000073"
+            },
+            {
+                "question": "5278c51a6166f2de240000c1",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280ae142875c68808000072"
+            }
+        ],
+        "source": "youpers",
+        "text": "Tageszeiten bei der Planung berücksichtigen: Morgens haben Sie mehr Energie als Abends, also sollten die energieaufwendigen Tätigkeiten zuerst abgearbeitet werden.",
+        "title": "Beachte deine Tagesleistungskurve bei deiner Tagesarbeitsplanung",
+        "topics": ["workLifeBalance"],
+        "_id": "5278c6adcdeab69a25000022",
+        "version": 1
+    },
+    {
+        "defaultduration": 15,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "fields": ["TimeManagement", "WorkStructuring"],
+        "number": "Act-30",
+        "qualityFactor": 3,
+        "recWeights": [
+            {
+                "question": "5278c51a6166f2de240000df",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 3,
+                "_id": "5280aedf2875c688080000a7"
+            },
+            {
+                "question": "5278c51a6166f2de240000dd",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 5,
+                "_id": "5280aedf2875c688080000a6"
+            },
+            {
+                "question": "5278c51a6166f2de240000dc",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280aedf2875c688080000a5"
+            },
+            {
+                "question": "5278c51a6166f2de240000db",
+                "negativeAnswerWeight": 3,
+                "positiveAnswerWeight": 0,
+                "_id": "5280aedf2875c688080000a4"
+            },
+            {
+                "question": "5278c51a6166f2de240000da",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280aedf2875c688080000a3"
+            },
+            {
+                "question": "5278c51a6166f2de240000d9",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280aedf2875c688080000a2"
+            },
+            {
+                "question": "5278c51a6166f2de240000d8",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280aedf2875c688080000a1"
+            },
+            {
+                "question": "5278c51a6166f2de240000d7",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280aedf2875c688080000a0"
+            },
+            {
+                "question": "5278c51a6166f2de240000d6",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280aedf2875c6880800009f"
+            },
+            {
+                "question": "5278c51a6166f2de240000d5",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280aedf2875c6880800009e"
+            },
+            {
+                "question": "5278c51a6166f2de240000d4",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280aedf2875c6880800009d"
+            },
+            {
+                "question": "5278c51a6166f2de240000d3",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280aedf2875c6880800009c"
+            },
+            {
+                "question": "5278c51a6166f2de240000d1",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 3,
+                "_id": "5280aedf2875c6880800009b"
+            },
+            {
+                "question": "5278c51a6166f2de240000d0",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280aedf2875c6880800009a"
+            },
+            {
+                "question": "5278c51a6166f2de240000cf",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280aedf2875c68808000099"
+            },
+            {
+                "question": "5278c51a6166f2de240000ce",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280aedf2875c68808000098"
+            },
+            {
+                "question": "5278c51a6166f2de240000cc",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 8,
+                "_id": "5280aedf2875c68808000097"
+            },
+            {
+                "question": "5278c51a6166f2de240000cb",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 8,
+                "_id": "5280aedf2875c68808000096"
+            },
+            {
+                "question": "5278c51a6166f2de240000ca",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 4,
+                "_id": "5280aedf2875c68808000095"
+            },
+            {
+                "question": "5278c51a6166f2de240000c9",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 4,
+                "_id": "5280aedf2875c68808000094"
+            },
+            {
+                "question": "5278c51a6166f2de240000c8",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280aedf2875c68808000093"
+            },
+            {
+                "question": "5278c51a6166f2de240000c6",
+                "negativeAnswerWeight": 3,
+                "positiveAnswerWeight": 0,
+                "_id": "5280aedf2875c68808000092"
+            },
+            {
+                "question": "5278c51a6166f2de240000c5",
+                "negativeAnswerWeight": 3,
+                "positiveAnswerWeight": 0,
+                "_id": "5280aedf2875c68808000091"
+            },
+            {
+                "question": "5278c51a6166f2de240000c4",
+                "negativeAnswerWeight": 3,
+                "positiveAnswerWeight": 0,
+                "_id": "5280aedf2875c68808000090"
+            },
+            {
+                "question": "5278c51a6166f2de240000c3",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280aedf2875c6880800008f"
+            },
+            {
+                "question": "5278c51a6166f2de240000c2",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280aedf2875c6880800008e"
+            },
+            {
+                "question": "5278c51a6166f2de240000c1",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280aedf2875c6880800008d"
+            }
+        ],
+        "source": "youpers",
+        "text": "Übergeben Sie die eine oder andere Aufgabe an Mitarbeiter, auch wenn Sie glauben, selbst alles besser zu machen. Vielleicht müssen Sie anfangs viel erklären und verbessern, doch am Ende zahlt sich die Strategie aus. Sie gewinnen Freiraum, Zeit und vor allem Überblick für die wirklich wichtigen Dinge!",
+        "title": "Delegiere heute bewusst eine Aufgabe",
+        "topics": ["workLifeBalance"],
+        "_id": "5278c6adcdeab69a25000023",
+        "version": 1
+    },
+    {
+        "defaultduration": 30,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "fields": ["WorkStructuring"],
+        "number": "Act-32",
+        "qualityFactor": 4,
+        "recWeights": [
+            {
+                "question": "5278c51a6166f2de240000df",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 5,
+                "_id": "5280b1132875c688080000c2"
+            },
+            {
+                "question": "5278c51a6166f2de240000dd",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 5,
+                "_id": "5280b1132875c688080000c1"
+            },
+            {
+                "question": "5278c51a6166f2de240000dc",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b1132875c688080000c0"
+            },
+            {
+                "question": "5278c51a6166f2de240000db",
+                "negativeAnswerWeight": 5,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b1132875c688080000bf"
+            },
+            {
+                "question": "5278c51a6166f2de240000da",
+                "negativeAnswerWeight": 5,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b1132875c688080000be"
+            },
+            {
+                "question": "5278c51a6166f2de240000d9",
+                "negativeAnswerWeight": 3,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b1132875c688080000bd"
+            },
+            {
+                "question": "5278c51a6166f2de240000d8",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 3,
+                "_id": "5280b1132875c688080000bc"
+            },
+            {
+                "question": "5278c51a6166f2de240000d7",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b1132875c688080000bb"
+            },
+            {
+                "question": "5278c51a6166f2de240000d6",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b1132875c688080000ba"
+            },
+            {
+                "question": "5278c51a6166f2de240000d5",
+                "negativeAnswerWeight": 3,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b1132875c688080000b9"
+            },
+            {
+                "question": "5278c51a6166f2de240000d4",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b1132875c688080000b8"
+            },
+            {
+                "question": "5278c51a6166f2de240000d3",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b1132875c688080000b7"
+            },
+            {
+                "question": "5278c51a6166f2de240000d1",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b1132875c688080000b6"
+            },
+            {
+                "question": "5278c51a6166f2de240000d0",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b1132875c688080000b5"
+            },
+            {
+                "question": "5278c51a6166f2de240000cf",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b1132875c688080000b4"
+            },
+            {
+                "question": "5278c51a6166f2de240000ce",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b1132875c688080000b3"
+            },
+            {
+                "question": "5278c51a6166f2de240000cc",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 4,
+                "_id": "5280b1132875c688080000b2"
+            },
+            {
+                "question": "5278c51a6166f2de240000cb",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 3,
+                "_id": "5280b1132875c688080000b1"
+            },
+            {
+                "question": "5278c51a6166f2de240000ca",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 4,
+                "_id": "5280b1132875c688080000b0"
+            },
+            {
+                "question": "5278c51a6166f2de240000c9",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 4,
+                "_id": "5280b1132875c688080000af"
+            },
+            {
+                "question": "5278c51a6166f2de240000c8",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b1132875c688080000ae"
+            },
+            {
+                "question": "5278c51a6166f2de240000c6",
+                "negativeAnswerWeight": 4,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b1132875c688080000ad"
+            },
+            {
+                "question": "5278c51a6166f2de240000c5",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b1132875c688080000ac"
+            },
+            {
+                "question": "5278c51a6166f2de240000c4",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b1132875c688080000ab"
+            },
+            {
+                "question": "5278c51a6166f2de240000c3",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b1132875c688080000aa"
+            },
+            {
+                "question": "5278c51a6166f2de240000c2",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b1132875c688080000a9"
+            },
+            {
+                "question": "5278c51a6166f2de240000c1",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b1132875c688080000a8"
+            }
+        ],
+        "source": "youpers",
+        "text": "Ein offenes Gespräch mit dem Vorgesetzten kann helfen. Dem Chef ist häufig gar nicht bekannt, wie überlastet ein Mitarbeiter ist, weil sich selten jemand dort beklagt. Es zeugt von Verantwortungsbewusstsein, wenn nicht mehr Aufgaben übernommen werden, als tatsächlich mit der nötigen Sorgfalt bewältigt werden können.",
+        "title": "Führe ein offenes Gespräch mit deinem/r Vorgesetzten mit den Ziel, den persönlichen Handlungsspielraum zu erweitern",
+        "topics": ["workLifeBalance"],
+        "_id": "5278c6adcdeab69a25000025",
+        "version": 1
+    },
+    {
+        "defaultduration": 30,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "fields": ["WorkStructuring"],
+        "number": "Act-33",
+        "qualityFactor": 3,
+        "recWeights": [
+            {
+                "question": "5278c51a6166f2de240000df",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 2,
+                "_id": "5280b3242875c68808000113"
+            },
+            {
+                "question": "5278c51a6166f2de240000dd",
+                "negativeAnswerWeight": 5,
+                "positiveAnswerWeight": 5,
+                "_id": "5280b3242875c68808000112"
+            },
+            {
+                "question": "5278c51a6166f2de240000dc",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b3242875c68808000111"
+            },
+            {
+                "question": "5278c51a6166f2de240000db",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b3242875c68808000110"
+            },
+            {
+                "question": "5278c51a6166f2de240000da",
+                "negativeAnswerWeight": 5,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b3242875c6880800010f"
+            },
+            {
+                "question": "5278c51a6166f2de240000d9",
+                "negativeAnswerWeight": 2,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b3242875c6880800010e"
+            },
+            {
+                "question": "5278c51a6166f2de240000d8",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b3242875c6880800010d"
+            },
+            {
+                "question": "5278c51a6166f2de240000d7",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b3242875c6880800010c"
+            },
+            {
+                "question": "5278c51a6166f2de240000d6",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b3242875c6880800010b"
+            },
+            {
+                "question": "5278c51a6166f2de240000d5",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b3242875c6880800010a"
+            },
+            {
+                "question": "5278c51a6166f2de240000d4",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b3242875c68808000109"
+            },
+            {
+                "question": "5278c51a6166f2de240000d3",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b3242875c68808000108"
+            },
+            {
+                "question": "5278c51a6166f2de240000d1",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 2,
+                "_id": "5280b3242875c68808000107"
+            },
+            {
+                "question": "5278c51a6166f2de240000d0",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b3242875c68808000106"
+            },
+            {
+                "question": "5278c51a6166f2de240000cf",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b3242875c68808000105"
+            },
+            {
+                "question": "5278c51a6166f2de240000ce",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b3242875c68808000104"
+            },
+            {
+                "question": "5278c51a6166f2de240000cc",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b3242875c68808000103"
+            },
+            {
+                "question": "5278c51a6166f2de240000cb",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b3242875c68808000102"
+            },
+            {
+                "question": "5278c51a6166f2de240000ca",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b3242875c68808000101"
+            },
+            {
+                "question": "5278c51a6166f2de240000c9",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b3242875c68808000100"
+            },
+            {
+                "question": "5278c51a6166f2de240000c8",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b3242875c688080000ff"
+            },
+            {
+                "question": "5278c51a6166f2de240000c6",
+                "negativeAnswerWeight": 2,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b3242875c688080000fe"
+            },
+            {
+                "question": "5278c51a6166f2de240000c5",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b3242875c688080000fd"
+            },
+            {
+                "question": "5278c51a6166f2de240000c4",
+                "negativeAnswerWeight": 2,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b3242875c688080000fc"
+            },
+            {
+                "question": "5278c51a6166f2de240000c3",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b3242875c688080000fb"
+            },
+            {
+                "question": "5278c51a6166f2de240000c2",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b3242875c688080000fa"
+            },
+            {
+                "question": "5278c51a6166f2de240000c1",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b3242875c688080000f9"
+            }
+        ],
+        "source": "youpers",
+        "title": "Plane für die kommende Woche für dich passende flexible Arbeitszeiten ein",
+        "topics": ["workLifeBalance"],
+        "_id": "5278c6adcdeab69a25000026",
+        "version": 2
+    },
+    {
+        "defaultduration": 480,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "fields": ["WorkStructuring"],
+        "number": "Act-34",
+        "qualityFactor": 3,
+        "recWeights": [
+            {
+                "question": "5278c51a6166f2de240000df",
+                "negativeAnswerWeight": 2,
+                "positiveAnswerWeight": 2,
+                "_id": "5280b3ee2875c68808000149"
+            },
+            {
+                "question": "5278c51a6166f2de240000dd",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b3ee2875c68808000148"
+            },
+            {
+                "question": "5278c51a6166f2de240000dc",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b3ee2875c68808000147"
+            },
+            {
+                "question": "5278c51a6166f2de240000db",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b3ee2875c68808000146"
+            },
+            {
+                "question": "5278c51a6166f2de240000da",
+                "negativeAnswerWeight": 4,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b3ee2875c68808000145"
+            },
+            {
+                "question": "5278c51a6166f2de240000d9",
+                "negativeAnswerWeight": 5,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b3ee2875c68808000144"
+            },
+            {
+                "question": "5278c51a6166f2de240000d8",
+                "negativeAnswerWeight": 2,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b3ee2875c68808000143"
+            },
+            {
+                "question": "5278c51a6166f2de240000d7",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b3ee2875c68808000142"
+            },
+            {
+                "question": "5278c51a6166f2de240000d6",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b3ee2875c68808000141"
+            },
+            {
+                "question": "5278c51a6166f2de240000d5",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b3ee2875c68808000140"
+            },
+            {
+                "question": "5278c51a6166f2de240000d4",
+                "negativeAnswerWeight": 4,
+                "positiveAnswerWeight": 4,
+                "_id": "5280b3ee2875c6880800013f"
+            },
+            {
+                "question": "5278c51a6166f2de240000d3",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b3ee2875c6880800013e"
+            },
+            {
+                "question": "5278c51a6166f2de240000d1",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b3ee2875c6880800013d"
+            },
+            {
+                "question": "5278c51a6166f2de240000d0",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b3ee2875c6880800013c"
+            },
+            {
+                "question": "5278c51a6166f2de240000cf",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b3ee2875c6880800013b"
+            },
+            {
+                "question": "5278c51a6166f2de240000ce",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b3ee2875c6880800013a"
+            },
+            {
+                "question": "5278c51a6166f2de240000cc",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b3ee2875c68808000139"
+            },
+            {
+                "question": "5278c51a6166f2de240000cb",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b3ee2875c68808000138"
+            },
+            {
+                "question": "5278c51a6166f2de240000ca",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b3ee2875c68808000137"
+            },
+            {
+                "question": "5278c51a6166f2de240000c9",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b3ee2875c68808000136"
+            },
+            {
+                "question": "5278c51a6166f2de240000c8",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b3ee2875c68808000135"
+            },
+            {
+                "question": "5278c51a6166f2de240000c6",
+                "negativeAnswerWeight": 2,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b3ee2875c68808000134"
+            },
+            {
+                "question": "5278c51a6166f2de240000c5",
+                "negativeAnswerWeight": 2,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b3ee2875c68808000133"
+            },
+            {
+                "question": "5278c51a6166f2de240000c4",
+                "negativeAnswerWeight": 4,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b3ee2875c68808000132"
+            },
+            {
+                "question": "5278c51a6166f2de240000c3",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b3ee2875c68808000131"
+            },
+            {
+                "question": "5278c51a6166f2de240000c2",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 2,
+                "_id": "5280b3ee2875c68808000130"
+            },
+            {
+                "question": "5278c51a6166f2de240000c1",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b3ee2875c6880800012f"
+            }
+        ],
+        "source": "youpers",
+        "title": "Erledige einen Tag pro Woche deine Arbeiten von zuhause aus (Heimarbeit)",
+        "topics": ["workLifeBalance"],
+        "_id": "5278c6adcdeab69a25000027",
+        "version": 2
+    },
+    {
+        "defaultduration": 30,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "fields": ["WorkStructuring"],
+        "number": "Act-38",
+        "qualityFactor": 5,
+        "recWeights": [
+            {
+                "question": "5278c51a6166f2de240000df",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b6b92875c688080001d0"
+            },
+            {
+                "question": "5278c51a6166f2de240000dd",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b6b92875c688080001cf"
+            },
+            {
+                "question": "5278c51a6166f2de240000dc",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b6b92875c688080001ce"
+            },
+            {
+                "question": "5278c51a6166f2de240000db",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b6b92875c688080001cd"
+            },
+            {
+                "question": "5278c51a6166f2de240000da",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b6b92875c688080001cc"
+            },
+            {
+                "question": "5278c51a6166f2de240000d9",
+                "negativeAnswerWeight": 6,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b6b92875c688080001cb"
+            },
+            {
+                "question": "5278c51a6166f2de240000d8",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b6b92875c688080001ca"
+            },
+            {
+                "question": "5278c51a6166f2de240000d7",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b6b92875c688080001c9"
+            },
+            {
+                "question": "5278c51a6166f2de240000d6",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b6b92875c688080001c8"
+            },
+            {
+                "question": "5278c51a6166f2de240000d5",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b6b92875c688080001c7"
+            },
+            {
+                "question": "5278c51a6166f2de240000d4",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b6b92875c688080001c6"
+            },
+            {
+                "question": "5278c51a6166f2de240000d3",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b6b92875c688080001c5"
+            },
+            {
+                "question": "5278c51a6166f2de240000d1",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b6b92875c688080001c4"
+            },
+            {
+                "question": "5278c51a6166f2de240000d0",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b6b92875c688080001c3"
+            },
+            {
+                "question": "5278c51a6166f2de240000cf",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b6b92875c688080001c2"
+            },
+            {
+                "question": "5278c51a6166f2de240000ce",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b6b92875c688080001c1"
+            },
+            {
+                "question": "5278c51a6166f2de240000cc",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b6b92875c688080001c0"
+            },
+            {
+                "question": "5278c51a6166f2de240000cb",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b6b92875c688080001bf"
+            },
+            {
+                "question": "5278c51a6166f2de240000ca",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b6b92875c688080001be"
+            },
+            {
+                "question": "5278c51a6166f2de240000c9",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b6b92875c688080001bd"
+            },
+            {
+                "question": "5278c51a6166f2de240000c8",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b6b92875c688080001bc"
+            },
+            {
+                "question": "5278c51a6166f2de240000c6",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b6b92875c688080001bb"
+            },
+            {
+                "question": "5278c51a6166f2de240000c5",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b6b92875c688080001ba"
+            },
+            {
+                "question": "5278c51a6166f2de240000c4",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b6b92875c688080001b9"
+            },
+            {
+                "question": "5278c51a6166f2de240000c3",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b6b92875c688080001b8"
+            },
+            {
+                "question": "5278c51a6166f2de240000c2",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b6b92875c688080001b7"
+            },
+            {
+                "question": "5278c51a6166f2de240000c1",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b6b92875c688080001b6"
+            }
+        ],
+        "source": "youpers",
+        "text": "Stellen Sie die Höhe Ihres Stuhls so ein, dass Ihre Füsse flach auf dem Boden stehen. Ober- und Unterschenkel sollten einen Winkel von mindestens 90 Grad bilden.\nWenn Sie aufrecht auf Ihrem Stuhl sitzen, sollte die Tischhöhe so eingestellt sein, dass Ihre Ellbogen locker auf dem Tisch aufliegen, ohne die Schultern anzuheben.\nSiehe auch www.ekas-box.ch",
+        "title": "Stelle deinen Stuhl und Tisch ergonomisch ein",
+        "topics": ["workLifeBalance"],
+        "_id": "5278c6adcdeab69a2500002b",
+        "version": 2
+    },
+    {
+        "defaultduration": 30,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "fields": ["WorkStructuring"],
+        "number": "Act-39",
+        "qualityFactor": 5,
+        "recWeights": [
+            {
+                "question": "5278c51a6166f2de240000df",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b69f2875c688080001b5"
+            },
+            {
+                "question": "5278c51a6166f2de240000dd",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b69f2875c688080001b4"
+            },
+            {
+                "question": "5278c51a6166f2de240000dc",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b69f2875c688080001b3"
+            },
+            {
+                "question": "5278c51a6166f2de240000db",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b69f2875c688080001b2"
+            },
+            {
+                "question": "5278c51a6166f2de240000da",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b69f2875c688080001b1"
+            },
+            {
+                "question": "5278c51a6166f2de240000d9",
+                "negativeAnswerWeight": 6,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b69f2875c688080001b0"
+            },
+            {
+                "question": "5278c51a6166f2de240000d8",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b69f2875c688080001af"
+            },
+            {
+                "question": "5278c51a6166f2de240000d7",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b69f2875c688080001ae"
+            },
+            {
+                "question": "5278c51a6166f2de240000d6",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b69f2875c688080001ad"
+            },
+            {
+                "question": "5278c51a6166f2de240000d5",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b69f2875c688080001ac"
+            },
+            {
+                "question": "5278c51a6166f2de240000d4",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b69f2875c688080001ab"
+            },
+            {
+                "question": "5278c51a6166f2de240000d3",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b69f2875c688080001aa"
+            },
+            {
+                "question": "5278c51a6166f2de240000d1",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b69f2875c688080001a9"
+            },
+            {
+                "question": "5278c51a6166f2de240000d0",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b69f2875c688080001a8"
+            },
+            {
+                "question": "5278c51a6166f2de240000cf",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b69f2875c688080001a7"
+            },
+            {
+                "question": "5278c51a6166f2de240000ce",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b69f2875c688080001a6"
+            },
+            {
+                "question": "5278c51a6166f2de240000cc",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b69f2875c688080001a5"
+            },
+            {
+                "question": "5278c51a6166f2de240000cb",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b69f2875c688080001a4"
+            },
+            {
+                "question": "5278c51a6166f2de240000ca",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b69f2875c688080001a3"
+            },
+            {
+                "question": "5278c51a6166f2de240000c9",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b69f2875c688080001a2"
+            },
+            {
+                "question": "5278c51a6166f2de240000c8",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b69f2875c688080001a1"
+            },
+            {
+                "question": "5278c51a6166f2de240000c6",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b69f2875c688080001a0"
+            },
+            {
+                "question": "5278c51a6166f2de240000c5",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b69f2875c6880800019f"
+            },
+            {
+                "question": "5278c51a6166f2de240000c4",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b69f2875c6880800019e"
+            },
+            {
+                "question": "5278c51a6166f2de240000c3",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b69f2875c6880800019d"
+            },
+            {
+                "question": "5278c51a6166f2de240000c2",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b69f2875c6880800019c"
+            },
+            {
+                "question": "5278c51a6166f2de240000c1",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280b69f2875c6880800019b"
+            }
+        ],
+        "source": "youpers",
+        "text": "Stellen Sie den Bildschirm gerade vor sich hin, damit Sie Ihren Kopf nicht seitlich abdrehen müssen. Die Höhe sollte so eingestellt sein, dass der obere Bildschirmrand eine Handbreite unter Ihrer Augenhöhe ist. Der Abstand zwischen Augen und Bildschirm sollte mindestens eine Armlänge betragen, bei grösseren Monitoren etwas mehr.\nSiehe auch www.ekas-box.ch",
+        "title": "Stelle deinen Computer ergonomisch ein",
+        "topics": ["workLifeBalance"],
+        "_id": "5278c6adcdeab69a2500002c",
+        "version": 1
+    },
+    {
+        "defaultduration": 30,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "fields": ["WorkStructuring"],
+        "number": "Act-40",
+        "qualityFactor": 3,
+        "recWeights": [
+            {
+                "question": "5278c51a6166f2de240000df",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280bb502875c688080001eb"
+            },
+            {
+                "question": "5278c51a6166f2de240000dd",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280bb502875c688080001ea"
+            },
+            {
+                "question": "5278c51a6166f2de240000dc",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 2,
+                "_id": "5280bb502875c688080001e9"
+            },
+            {
+                "question": "5278c51a6166f2de240000db",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280bb502875c688080001e8"
+            },
+            {
+                "question": "5278c51a6166f2de240000da",
+                "negativeAnswerWeight": 4,
+                "positiveAnswerWeight": 0,
+                "_id": "5280bb502875c688080001e7"
+            },
+            {
+                "question": "5278c51a6166f2de240000d9",
+                "negativeAnswerWeight": 6,
+                "positiveAnswerWeight": 0,
+                "_id": "5280bb502875c688080001e6"
+            },
+            {
+                "question": "5278c51a6166f2de240000d8",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280bb502875c688080001e5"
+            },
+            {
+                "question": "5278c51a6166f2de240000d7",
+                "negativeAnswerWeight": 2,
+                "positiveAnswerWeight": 0,
+                "_id": "5280bb502875c688080001e4"
+            },
+            {
+                "question": "5278c51a6166f2de240000d6",
+                "negativeAnswerWeight": 2,
+                "positiveAnswerWeight": 0,
+                "_id": "5280bb502875c688080001e3"
+            },
+            {
+                "question": "5278c51a6166f2de240000d5",
+                "negativeAnswerWeight": 2,
+                "positiveAnswerWeight": 0,
+                "_id": "5280bb502875c688080001e2"
+            },
+            {
+                "question": "5278c51a6166f2de240000d4",
+                "negativeAnswerWeight": 2,
+                "positiveAnswerWeight": 0,
+                "_id": "5280bb502875c688080001e1"
+            },
+            {
+                "question": "5278c51a6166f2de240000d3",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280bb502875c688080001e0"
+            },
+            {
+                "question": "5278c51a6166f2de240000d1",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280bb502875c688080001df"
+            },
+            {
+                "question": "5278c51a6166f2de240000d0",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280bb502875c688080001de"
+            },
+            {
+                "question": "5278c51a6166f2de240000cf",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280bb502875c688080001dd"
+            },
+            {
+                "question": "5278c51a6166f2de240000ce",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280bb502875c688080001dc"
+            },
+            {
+                "question": "5278c51a6166f2de240000cc",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280bb502875c688080001db"
+            },
+            {
+                "question": "5278c51a6166f2de240000cb",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280bb502875c688080001da"
+            },
+            {
+                "question": "5278c51a6166f2de240000ca",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280bb502875c688080001d9"
+            },
+            {
+                "question": "5278c51a6166f2de240000c9",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280bb502875c688080001d8"
+            },
+            {
+                "question": "5278c51a6166f2de240000c8",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280bb502875c688080001d7"
+            },
+            {
+                "question": "5278c51a6166f2de240000c6",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280bb502875c688080001d6"
+            },
+            {
+                "question": "5278c51a6166f2de240000c5",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280bb502875c688080001d5"
+            },
+            {
+                "question": "5278c51a6166f2de240000c4",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280bb502875c688080001d4"
+            },
+            {
+                "question": "5278c51a6166f2de240000c3",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280bb502875c688080001d3"
+            },
+            {
+                "question": "5278c51a6166f2de240000c2",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280bb502875c688080001d2"
+            },
+            {
+                "question": "5278c51a6166f2de240000c1",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280bb502875c688080001d1"
+            }
+        ],
+        "source": "youpers",
+        "text": "Der Idealbereich für die Luftfeutigkeit in einem Büro liegt zwischen 40-60%. Um die relative Luftfeuchtigkeit zu erhöhen (speziell im Winter in geheizten Büros) können Pflazen eingesetzt werden.\nSiehe auch www.ekas-box.ch (6205, Seite 39)",
+        "title": "Stelle eine schöne Pflanze an deinen Arbeitsplatz",
+        "topics": ["workLifeBalance"],
+        "_id": "5278c6adcdeab69a2500002d",
+        "version": 1
+    },
+    {
+        "defaultduration": 30,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "campaign",
+        "fields": ["WorkStructuring"],
+        "number": "Act-41",
+        "qualityFactor": 3,
+        "recWeights": [
+            {
+                "question": "5278c51a6166f2de240000df",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280bbd32875c68808000206"
+            },
+            {
+                "question": "5278c51a6166f2de240000dd",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280bbd32875c68808000205"
+            },
+            {
+                "question": "5278c51a6166f2de240000dc",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280bbd32875c68808000204"
+            },
+            {
+                "question": "5278c51a6166f2de240000db",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280bbd32875c68808000203"
+            },
+            {
+                "question": "5278c51a6166f2de240000da",
+                "negativeAnswerWeight": 2,
+                "positiveAnswerWeight": 0,
+                "_id": "5280bbd32875c68808000202"
+            },
+            {
+                "question": "5278c51a6166f2de240000d9",
+                "negativeAnswerWeight": 6,
+                "positiveAnswerWeight": 0,
+                "_id": "5280bbd32875c68808000201"
+            },
+            {
+                "question": "5278c51a6166f2de240000d8",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280bbd32875c68808000200"
+            },
+            {
+                "question": "5278c51a6166f2de240000d7",
+                "negativeAnswerWeight": 5,
+                "positiveAnswerWeight": 0,
+                "_id": "5280bbd32875c688080001ff"
+            },
+            {
+                "question": "5278c51a6166f2de240000d6",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280bbd32875c688080001fe"
+            },
+            {
+                "question": "5278c51a6166f2de240000d5",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280bbd32875c688080001fd"
+            },
+            {
+                "question": "5278c51a6166f2de240000d4",
+                "negativeAnswerWeight": 4,
+                "positiveAnswerWeight": 0,
+                "_id": "5280bbd32875c688080001fc"
+            },
+            {
+                "question": "5278c51a6166f2de240000d3",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280bbd32875c688080001fb"
+            },
+            {
+                "question": "5278c51a6166f2de240000d1",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280bbd32875c688080001fa"
+            },
+            {
+                "question": "5278c51a6166f2de240000d0",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280bbd32875c688080001f9"
+            },
+            {
+                "question": "5278c51a6166f2de240000cf",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280bbd32875c688080001f8"
+            },
+            {
+                "question": "5278c51a6166f2de240000ce",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280bbd32875c688080001f7"
+            },
+            {
+                "question": "5278c51a6166f2de240000cc",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280bbd32875c688080001f6"
+            },
+            {
+                "question": "5278c51a6166f2de240000cb",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280bbd32875c688080001f5"
+            },
+            {
+                "question": "5278c51a6166f2de240000ca",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280bbd32875c688080001f4"
+            },
+            {
+                "question": "5278c51a6166f2de240000c9",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280bbd32875c688080001f3"
+            },
+            {
+                "question": "5278c51a6166f2de240000c8",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280bbd32875c688080001f2"
+            },
+            {
+                "question": "5278c51a6166f2de240000c6",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280bbd32875c688080001f1"
+            },
+            {
+                "question": "5278c51a6166f2de240000c5",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280bbd32875c688080001f0"
+            },
+            {
+                "question": "5278c51a6166f2de240000c4",
+                "negativeAnswerWeight": 2,
+                "positiveAnswerWeight": 0,
+                "_id": "5280bbd32875c688080001ef"
+            },
+            {
+                "question": "5278c51a6166f2de240000c3",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280bbd32875c688080001ee"
+            },
+            {
+                "question": "5278c51a6166f2de240000c2",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280bbd32875c688080001ed"
+            },
+            {
+                "question": "5278c51a6166f2de240000c1",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280bbd32875c688080001ec"
+            }
+        ],
+        "source": "youpers",
+        "text": "Stellen Sie ein persönliches und inspirierendes Bild an Ihren Arbeitsplatz. Wer sich geborgen und wohl fühlt, identifiziert sich stärker mit seiner Arbeit.",
+        "title": "Stelle ein persönliches/inspirierendes Bild an den Arbeitslatz",
+        "topics": ["workLifeBalance"],
+        "_id": "5278c6adcdeab69a2500002e",
+        "version": 1
+    },
+    {
+        "defaultduration": 30,
+        "defaultexecutiontype": "self",
+        "defaultvisibility": "private",
+        "fields": ["WorkStructuring"],
+        "number": "Act-50",
+        "qualityFactor": 8,
+        "recWeights": [
+            {
+                "question": "5278c51a6166f2de240000df",
+                "negativeAnswerWeight": 5,
+                "positiveAnswerWeight": 5,
+                "_id": "5280bcf62875c68808000221"
+            },
+            {
+                "question": "5278c51a6166f2de240000dd",
+                "negativeAnswerWeight": 8,
+                "positiveAnswerWeight": 8,
+                "_id": "5280bcf62875c68808000220"
+            },
+            {
+                "question": "5278c51a6166f2de240000dc",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 5,
+                "_id": "5280bcf62875c6880800021f"
+            },
+            {
+                "question": "5278c51a6166f2de240000db",
+                "negativeAnswerWeight": 5,
+                "positiveAnswerWeight": 5,
+                "_id": "5280bcf62875c6880800021e"
+            },
+            {
+                "question": "5278c51a6166f2de240000da",
+                "negativeAnswerWeight": 5,
+                "positiveAnswerWeight": 5,
+                "_id": "5280bcf62875c6880800021d"
+            },
+            {
+                "question": "5278c51a6166f2de240000d9",
+                "negativeAnswerWeight": 5,
+                "positiveAnswerWeight": 0,
+                "_id": "5280bcf62875c6880800021c"
+            },
+            {
+                "question": "5278c51a6166f2de240000d8",
+                "negativeAnswerWeight": 8,
+                "positiveAnswerWeight": 8,
+                "_id": "5280bcf62875c6880800021b"
+            },
+            {
+                "question": "5278c51a6166f2de240000d7",
+                "negativeAnswerWeight": 5,
+                "positiveAnswerWeight": 0,
+                "_id": "5280bcf62875c6880800021a"
+            },
+            {
+                "question": "5278c51a6166f2de240000d6",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280bcf62875c68808000219"
+            },
+            {
+                "question": "5278c51a6166f2de240000d5",
+                "negativeAnswerWeight": 5,
+                "positiveAnswerWeight": 0,
+                "_id": "5280bcf62875c68808000218"
+            },
+            {
+                "question": "5278c51a6166f2de240000d4",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280bcf62875c68808000217"
+            },
+            {
+                "question": "5278c51a6166f2de240000d3",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280bcf62875c68808000216"
+            },
+            {
+                "question": "5278c51a6166f2de240000d1",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280bcf62875c68808000215"
+            },
+            {
+                "question": "5278c51a6166f2de240000d0",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280bcf62875c68808000214"
+            },
+            {
+                "question": "5278c51a6166f2de240000cf",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280bcf62875c68808000213"
+            },
+            {
+                "question": "5278c51a6166f2de240000ce",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280bcf62875c68808000212"
+            },
+            {
+                "question": "5278c51a6166f2de240000cc",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 3,
+                "_id": "5280bcf62875c68808000211"
+            },
+            {
+                "question": "5278c51a6166f2de240000cb",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 3,
+                "_id": "5280bcf62875c68808000210"
+            },
+            {
+                "question": "5278c51a6166f2de240000ca",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 5,
+                "_id": "5280bcf62875c6880800020f"
+            },
+            {
+                "question": "5278c51a6166f2de240000c9",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 3,
+                "_id": "5280bcf62875c6880800020e"
+            },
+            {
+                "question": "5278c51a6166f2de240000c8",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280bcf62875c6880800020d"
+            },
+            {
+                "question": "5278c51a6166f2de240000c6",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280bcf62875c6880800020c"
+            },
+            {
+                "question": "5278c51a6166f2de240000c5",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280bcf62875c6880800020b"
+            },
+            {
+                "question": "5278c51a6166f2de240000c4",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280bcf62875c6880800020a"
+            },
+            {
+                "question": "5278c51a6166f2de240000c3",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280bcf62875c68808000209"
+            },
+            {
+                "question": "5278c51a6166f2de240000c2",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280bcf62875c68808000208"
+            },
+            {
+                "question": "5278c51a6166f2de240000c1",
+                "negativeAnswerWeight": 0,
+                "positiveAnswerWeight": 0,
+                "_id": "5280bcf62875c68808000207"
+            }
+        ],
+        "source": "youpers",
+        "text": "http://www.gesundheitsfoerderung.ch/pdf_doc_xls/d/betriebliche_gesundheitsfoerderung/grundlagen_wissen/Rahmenkonzept_Gesundheitskompetenz_de.pdf",
+        "title": "Spreche mit deinem/r Vorgesetzten/Personalverantwortlichen über Veränderung von Arbeitsabläufen / Aufgaben",
+        "topics": ["workLifeBalance"],
+        "_id": "5278c6adcdeab69a25000037",
         "version": 1
     }
 ]

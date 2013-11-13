@@ -6,19 +6,19 @@
                 "category": "GENERAL_STRESSLEVEL",
                 "questions": [
                     {
-                        "_id": "5278c51a6166f2de240000df",
+                        "id": "5278c51a6166f2de240000df",
                         "category": "general",
                         "title": "Stresslevel",
                         "type": "twoSided",
                         "mintext": "Unterfordernd",
-                        "mintextexample": "Die beruflichen und privaten Aufgaben unterfordern mich, weshalb ich oft gelangweilt bin und mich dadurch anhaltend gestresst fühle ",
-                        "mintextresult": "Wenn du dich im Beruf und in der Freizeit unterfordert fühlst, solltest du zur Stressbewältigung zusätzliche aktivierende/inspirierende Aufgaben planen",
+                        "mintextexample": "Die beruflichen und privaten Aufgaben unterfordern mich, weshalb ich mich oft gelangweilt und dadurch anhaltend gestresst fühle.",
+                        "mintextresult": "Wenn du dich im Beruf und in der Freizeit unterfordert fühlst, solltest du zusätzliche fordernde bzw. inspirierende Aktivitäten suchen und wahrnehmen.",
                         "midtext": "Ausgewogen",
-                        "midtextexample": "Die beruflichen und privaten Aufgaben fordern mich, weshalb ich motiviert bin und mich im positiven Sinne gestresst fühle",
+                        "midtextexample": "Die beruflichen und privaten Aufgaben fordern mich, weshalb ich mich motiviert bzw. \"positiv gestresst\" fühle.",
                         "maxtext": "Überfordernd",
-                        "maxtextexample": "Die beruflichen und privaten Aufgaben überfordern mich, weshalb ich oft frustriert bin und mich dadurch anhaltend gestresst fühle",
-                        "maxtextresult": "Wenn du dich im Beruf und in der Freizeit überfordert fühlst, solltest du deine Arbeitsgestaltung und dein Zeitmanagement verbessern sowie entspannende Aktivitäten planen",
-                        "exptext": "Beim generellen Stresslevel soll das allgemeine Wohlbefinden bzw. die persönliche Stresssituation bewertet werden"
+                        "maxtextexample": "Die beruflichen und privaten Aufgaben überfordern mich, weshalb ich oft frustriert bin und mich dadurch anhaltend gestresst fühle.",
+                        "maxtextresult": "Wenn du dich im Beruf und in der Freizeit überfordert fühlst, solltest du deine Arbeitsgestaltung und dein Zeitmanagement verbessern sowie ausgleichende Aktivitäten planen.",
+                        "exptext": "Beim generellen Stresslevel soll das allgemeine Wohlbefinden bzw. die allgemeine Stresssituation bewertet werden."
                     }
                 ],
                 "_id": "5278c51a6166f2de240000de"
@@ -27,87 +27,125 @@
                 "category": "AT_WORK",
                 "questions": [
                     {
-                        "_id": "5278c51a6166f2de240000dd",
+                        "id": "5278c51a6166f2de240000dd",
                         "category": "work",
                         "title": "Arbeitsmenge",
                         "type": "twoSided",
-                        "mintext": "Ungenügend",
+                        "mintext": "Zu wenig",
+                        "mintextexample": "Am Arbeitsinplatz habe ich in der Regel zu wenig zu tun, weshalb ich mich oft gelangweilt und dardurch anhaltend gestresst fühle.",
+                        "mintextresult": "Wenn du dich bezüglich der Arbeitsmenge unterfordert fühlst, solltest du dies mit deinem Vorgesetzten besprechen sowie zusätzliche aktivierende bzw. inspirierende Aktivitäten ausserhalb der Arbeitszeit suchen und wahrnehmen.",
                         "midtext": "Gerade richtig",
-                        "maxtext": "Erdrückend",
-                        "exptext": "Zur Bewältigung meiner Arbeitsmenge muss ich lange arbeiten / Überzeit leisten / mit hohem Tempo arbeiten; Ich arbeite ständig unter einem grossen Leistungs- bzw. Zeitdruck, Für eine seriöse Planung und Organisation der Arbeit fehlt mir die Zeit, Mein privates Leben kommt verursacht durch die berufliche Beanspruchung zu kurz"
+                        "midtextexample": "Am Arbeitsinplatz habe ich gerade richtig viel zu tun, weshalb ich mich motiviert bzw. \"positiv gestresst\" fühle.",
+                        "maxtext": "Zu viel",
+                        "maxtextexample": "Am Arbeitsplatz habe ich in der Regel zu viel zu tun, weshalb ich oft lange arbeiten muss / Überzeit leisten muss / unter hohem Zeitdruck arbeiten muss. Für eine seriöse Planung und Organisation der Arbeit fehlt mir die Zeit. Mein privates Leben kommt verursacht durch die berufliche Beanspruchung zu kurz.",
+                        "maxtextresult": "Wenn du dich von deiner Arbeitsmenge überfordert fühlst, solltest du deine Arbeitsgestaltung und dein Zeitmanagement verbessern sowie entspannende Aktivitäten planen.",
+                        "exptext": "Bei diesem Kriterium soll der durch die Arbeitsmenge verursachte Stress bewertet werden."
                     },
                     {
-                        "_id": "5278c51a6166f2de240000dc",
+                        "id": "5278c51a6166f2de240000dc",
                         "category": "work",
                         "title": "Erfolgsdruck",
                         "type": "twoSided",
-                        "mintext": "Zu wenig",
+                        "mintext": "Zu tief",
+                        "mintextexample": "Die Erwartungen an meine Arbeitsergebnisse sind zu tief, weshalb ich mich zu wenig gefordert und motiviert fühle.",
+                        "mintextresult": "Wenn du dich bezüglich Erfolgsdruck unterfordert fühlst, solltest du dies mit deinem Vorgesetzten oder deinem Personalverantwortlichen besprechen sowie zusätzliche fordernde bzw. inspirierende Aktivitäten ausserhalb der Arbeitszeit suchen und wahrnehmen.",
                         "midtext": "Optimal",
-                        "maxtext": "Zu viel",
-                        "exptext": "Die Erwartungen an meine Arbeitsergebnisse/-qualität sind sehr hoch; Ich stehe unter hohem Erfolgsdruck"
+                        "midtextexample": "Der Erfolgsdruck fordert und motiviert mich im positiven Sinne.",
+                        "maxtext": "Zu hoch",
+                        "maxtextexample": "Ich stehe bei meiner Arbeit ständig unter einem grossen Erfolgssdruck.",
+                        "maxtextresult": "Wenn du dich bezüglich Erfolgsdruck überfordert fühlst, solltest du dies mit deinem Vorgesetzten oder deinem Personalverantwortlichen besprechen sowie ausgleichende Aktivitäten planen.",
+                        "exptext": "Bei diesem Kriterium soll der durch den Erfolgsdruck verursachte Stress bewertet werden."
                     },
                     {
-                        "_id": "5278c51a6166f2de240000db",
+                        "id": "5278c51a6166f2de240000db",
                         "category": "work",
                         "title": "Unterstützung",
                         "type": "twoSided",
                         "mintext": "Zu wenig",
+                        "mintextexample": "Ich erhalte zu wenig oder keine Unterstützung, wenn ich sie brauche.",
+                        "mintextresult": "Wenn du dich zu wenig unterstützt fühlst, solltest du dies mit deinem Vorgesetzten oder deinem Personalverantwortlichen besprechen.",
                         "midtext": "Gerade richtig",
+                        "midtextexample": "Ich erhalte die benötigte Unterstützung, wenn ich sie brauche.",
                         "maxtext": "Zu viel",
-                        "exptext": "Es gibt keine Unterstützung, wenn ich sie brauche, Ich werde von meinem Vorgesetzten \"überbetreut\""
+                        "maxtextexample": "Ich werde von meinem Vorgesetzten bzw. meinem Arbeitsumfeld \"überbetreut\".",
+                        "maxtextresult": "Wenn du dich von deinem Vorgesetzten oder deinem Arbeitsumfeld überbetreut fühlst, solltest du dies mit deinem Vorgesetzten oder deinem Personalverantwortlichen besprechen.",
+                        "exptext": "Bei diesem Kriterium soll der Unterstützungssituations-bedingte Stress bewertet werden."
                     },
                     {
-                        "_id": "5278c51a6166f2de240000da",
+                        "id": "5278c51a6166f2de240000da",
                         "category": "work",
                         "title": "Selbstbestimmung",
                         "type": "twoSided",
                         "mintext": "Zu wenig",
+                        "mintextexample": "Ich habe zu wenig oder keinen Einfluss auf die Planung und Gestaltung meiner Arbeit. Ich habe zu wenig Entscheidungsfreiheit. Meine Arbeitsgestaltung ist weitgehend fremdbestimmt.",
+                        "mintextresult": "Wenn du dich bei der Arbeit zu wenig selbstbestimmt fühlst, solltest du dies mit deinem Vorgesetzten oder deinem Personalverantwortlichen besprechen sowie zusätzliche selbstbestimmte Aktivitäten ausserhalb der Arbeitszeit suchen und wahrnehmen.",
                         "midtext": "Gerade richtig",
+                        "midtextexample": "Der Selbstbestimmungsgrad bei meiner Arbeit stimmt für mich.",
                         "maxtext": "Zu viel",
-                        "exptext": "Ich habe keinen Einfluss auf die Planung und Gestaltung meiner Arbeit, Ich habe zu wenig Entscheidungsfreiheit, Meine Arbeitsgestaltung ist weitgehend Fremdbestimmt"
+                        "maxtextexample": "Der Selbstbestimmungsgrad bei meiner Arbeit ist zu hoch. Ich fühle mich gestresst, da ich meine gesamte Arbeit selber planen und organisieren muss.",
+                        "maxtextresult": "Wenn du dich von deinem Selbstbestimmungsgrad überfordert fühlst, solltest du dies mit deinem Vorgesetzten oder deinem Personalverantwortlichen besprechen.",
+                        "exptext": "Bei diesem Kriterium soll der durch den Selbstbestimmungsgrad verursachte Stress bewertet werden."
                     },
                     {
-                        "_id": "5278c51a6166f2de240000d9",
+                        "id": "5278c51a6166f2de240000d9",
                         "category": "work",
                         "title": "Arbeitsbedingungen",
                         "type": "oneSided",
                         "mintext": "Schlecht",
+                        "mintextexample": "Ich fühle mich aufgrund der Arbeitsbedingungen (z.B. viele Störungen, viele Sitzungen, grosser administrativer Aufwand, Lärm, Enge, Grossraumbüro, schlechtes Raumklima/Temperatur, körperliche Belastung) oft gestresst",
+                        "mintextresult": "Wenn du dich aufgrund der äusseren Arbeitsbedingungen oft gestresst fühlst, solltest du dies mit deinem Vorgesetzten oder deinem Personalverantwortlichen besprechen.",
                         "midtext": "Optimal",
+                        "midtextexample": "Die äusseren Arbeitsbedinungen sind für mich optimal.",
                         "maxtext": "n/a",
-                        "exptext": "Viele Störungen, viele Sitzungen, grosser administrativer Aufwand, Lärm, Enge, Grossraumbüro, Raumklima/Temperatur, körperliche Belastung"
+                        "exptext": "Bei diesem Kriterium soll der durch die äusseren Arbeitsbedinungen verursachte Stress bewertet werden."
                     },
                     {
-                        "_id": "5278c51a6166f2de240000d8",
+                        "id": "5278c51a6166f2de240000d8",
                         "category": "work",
                         "title": "Arbeitsanforderungen",
                         "type": "twoSided",
                         "mintext": "Unterfordernd",
+                        "mintextexample": "Die Leistungsanforderungen fordern mich nicht genügend. Ich erlebe bei der Arbeit zu viel Routine. Es fehlt die Herausforderung. Ich empfinde meine Arbeit als langweilig. Ich kann mich deshalb nicht genügend für meine Arbeit motivieren und fühle mich deshalb oft gestresst.",
+                        "mintextresult": "Wenn du dich bezüglich der Arbeitsanforderungen unterfordert fühlst, solltest du dies mit deinem Vorgesetzten besprechen bzw.  zusätzliche aktivierende bzw. inspirierende Aufgaben einplanen.",
                         "midtext": "Ausgewogen",
+                        "midtextexample": "Die Arbeitsanforderungen fordern und motivieren mich im positiven Sinne.",
                         "maxtext": "Überfordernd",
-                        "exptext": "Die mir gestellten Ziele und Aufgaben überfordern mich, Ich erlebe zu viel Routine, Es fehlt die Herausforderung, Ich empfinde meine Arbeit als langweilig"
+                        "maxtextexample": "Ich kann die Erwartungen an meine Arbeitsergebnisse/-qualität nicht erfüllen und fühle mich deshalb oft gestresst.",
+                        "maxtextresult": "Wenn du dich bezüglich Arbeitsanforderungen überfordert fühlst, solltest du dies mit deinem Vorgesetzten oder deinem Personalverantwortlichen besprechen sowie eine entsprechende Weiterbildung in Betracht ziehen.",
+                        "exptext": "Bei diesem Kriterium soll der durch die Arbeitsanforderungen verursachte Stress bewertet werden."
                     },
                     {
-                        "_id": "5278c51a6166f2de240000d7",
+                        "id": "5278c51a6166f2de240000d7",
                         "category": "work",
                         "title": "Arbeitsidentifikation",
                         "type": "twoSided",
                         "mintext": "Zu gering",
+                        "mintextexample": "Ich kann mich mit meiner Arbeit überhaupt nicht oder nicht genügend gut identifizieren. Meine Arbeit entspricht überhaupt nicht meinen eigentlichen Interessen, Eignungen und Neigungen.",
+                        "mintextresult": "Wenn du dich mit deiner Arbeit nicht genügend identifizieren kannst, solltest du mit deinem Vorgesetzten oder deinem Personalverantwortlichen über eine Arbeitsveränderung sprechen sowie zusätzliche Aktivitäten ausserhalb der Arbeitszeit suchen und wahrnehmen, die deinen Interessen, Eignungen und Neigungen voll entsprechen.",
                         "midtext": "Ausgewogen",
+                        "midtextexample": "Ich kann mich optimal mit meiner Arbeit identifizieren.",
                         "maxtext": "Zu hoch",
-                        "exptext": "Meine Arbeit entspricht überhaupt nicht meinen eigentlichen Interessen und Neigungen"
+                        "maxtextexample": "Ich identifizieren mich voll und ganz mit meiner Arbeit, sodass mein Privatleben (Familie und private Verpflichtungen) sowie Job-externe Hobbies und Interessen zu kurz kommen. ",
+                        "maxtextresult": "Wenn aufgrund deiner vollen Arbeitidentifikation dein Privatleben sowie Job-externe Hobbies und Interessen zu kurz kommen, solltest du deine Prioritäten hinterfragen und neue setzen.",
+                        "exptext": "Bei diesem Kriterium soll der durch die Arbeitsidentifikation verursachte Stress bewertet werden."
                     },
                     {
-                        "_id": "5278c51a6166f2de240000d6",
+                        "id": "5278c51a6166f2de240000d6",
                         "category": "work",
                         "title": "Anerkennung",
                         "type": "twoSided",
                         "mintext": "Zu wenig",
+                        "mintextexample": "Ich bekomme keine Anerkennung für eine gute Arbeitsleistung. Ich bekomme kein echtes Feedback zu meiner Arbeit. Meine Vorschläge, Anregungen, Kritik werden nicht ernst genommen.",
+                        "mintextresult": "Wenn du dich aufgrund mangelnder Anerkennung oft gestresst fühlst, solltest du dies mit deinem Vorgesetzten oder deinem Personalverantwortlichen besprechen.",
                         "midtext": "Gut",
+                        "midtextexample": "Für gute Arbeitsleistungen erhalte ich die entsprechende Anerkennung.",
                         "maxtext": "Übertrieben",
-                        "exptext": "Ich bekomme kein echtes Feedback (fehlende Anerkennung und mangelnde konstruktive Kritik), Meine Vorschläge, Anregungen, Kritik werden nicht ernst genommen"
+                        "maxtextexample": "Ich fühle mich aufgrund indifferenter und übertriebender Anerkennung gestresst.",
+                        "maxtextresult": "Wenn du dich aufgrund indifferenter und übertriebener Anerkennung gestresst fühlst, solltest du dies mit deinem Vorgesetzten oder deinem Personalverantwortlichen besprechen.",
+                        "exptext": "Bei diesem Kriterium soll der durch mangelnde oder übertriebene Anerkennung verursachte Stress bewertet werden."
                     },
                     {
-                        "_id": "5278c51a6166f2de240000d5",
+                        "id": "5278c51a6166f2de240000d5",
                         "category": "work",
                         "title": "Entwicklungsmöglichkeiten",
                         "type": "twoSided",
@@ -116,7 +154,7 @@
                         "maxtext": "Zu viel"
                     },
                     {
-                        "_id": "5278c51a6166f2de240000d4",
+                        "id": "5278c51a6166f2de240000d4",
                         "category": "work",
                         "title": "Betriebsklima",
                         "type": "twoSided",
@@ -126,7 +164,7 @@
                         "exptext": "Ungelöste Konflikte belasten mich, Es herrscht ein schlechtes Betriebsklima in meinem Umfeld, Ich werde gemobbt, Ich werde diskriminiert"
                     },
                     {
-                        "_id": "5278c51a6166f2de240000d3",
+                        "id": "5278c51a6166f2de240000d3",
                         "category": "work",
                         "title": "Arbeitsplatzsicherheit",
                         "type": "oneSided",

@@ -6,7 +6,7 @@
                 "category": "GENERAL_STRESSLEVEL",
                 "questions": [
                     {
-                        "id": "5278c51a6166f2de240000df",
+                        "_id": "5278c51a6166f2de240000df",
                         "category": "general",
                         "title": "Stresslevel",
                         "type": "twoSided",
@@ -27,7 +27,7 @@
                 "category": "AT_WORK",
                 "questions": [
                     {
-                        "id": "5278c51a6166f2de240000dd",
+                        "_id": "5278c51a6166f2de240000dd",
                         "category": "work",
                         "title": "Arbeitsmenge",
                         "type": "twoSided",
@@ -42,7 +42,7 @@
                         "exptext": "Bei diesem Kriterium soll der durch die Arbeitsmenge verursachte Stress bewertet werden."
                     },
                     {
-                        "id": "5278c51a6166f2de240000dc",
+                        "_id": "5278c51a6166f2de240000dc",
                         "category": "work",
                         "title": "Erfolgsdruck",
                         "type": "twoSided",
@@ -57,7 +57,7 @@
                         "exptext": "Bei diesem Kriterium soll der durch den Erfolgsdruck verursachte Stress bewertet werden."
                     },
                     {
-                        "id": "5278c51a6166f2de240000db",
+                        "_id": "5278c51a6166f2de240000db",
                         "category": "work",
                         "title": "Unterstützung",
                         "type": "twoSided",
@@ -72,7 +72,7 @@
                         "exptext": "Bei diesem Kriterium soll der Unterstützungssituations-bedingte Stress bewertet werden."
                     },
                     {
-                        "id": "5278c51a6166f2de240000da",
+                        "_id": "5278c51a6166f2de240000da",
                         "category": "work",
                         "title": "Selbstbestimmung",
                         "type": "twoSided",
@@ -87,7 +87,7 @@
                         "exptext": "Bei diesem Kriterium soll der durch den Selbstbestimmungsgrad verursachte Stress bewertet werden."
                     },
                     {
-                        "id": "5278c51a6166f2de240000d9",
+                        "_id": "5278c51a6166f2de240000d9",
                         "category": "work",
                         "title": "Arbeitsbedingungen",
                         "type": "oneSided",
@@ -100,7 +100,7 @@
                         "exptext": "Bei diesem Kriterium soll der durch die äusseren Arbeitsbedinungen verursachte Stress bewertet werden."
                     },
                     {
-                        "id": "5278c51a6166f2de240000d8",
+                        "_id": "5278c51a6166f2de240000d8",
                         "category": "work",
                         "title": "Arbeitsanforderungen",
                         "type": "twoSided",
@@ -115,7 +115,7 @@
                         "exptext": "Bei diesem Kriterium soll der durch die Arbeitsanforderungen verursachte Stress bewertet werden."
                     },
                     {
-                        "id": "5278c51a6166f2de240000d7",
+                        "_id": "5278c51a6166f2de240000d7",
                         "category": "work",
                         "title": "Arbeitsidentifikation",
                         "type": "twoSided",
@@ -130,7 +130,7 @@
                         "exptext": "Bei diesem Kriterium soll der durch die Arbeitsidentifikation verursachte Stress bewertet werden."
                     },
                     {
-                        "id": "5278c51a6166f2de240000d6",
+                        "_id": "5278c51a6166f2de240000d6",
                         "category": "work",
                         "title": "Anerkennung",
                         "type": "twoSided",
@@ -145,7 +145,7 @@
                         "exptext": "Bei diesem Kriterium soll der durch mangelnde oder übertriebene Anerkennung verursachte Stress bewertet werden."
                     },
                     {
-                        "id": "5278c51a6166f2de240000d5",
+                        "_id": "5278c51a6166f2de240000d5",
                         "category": "work",
                         "title": "Entwicklungsmöglichkeiten",
                         "type": "twoSided",
@@ -154,7 +154,7 @@
                         "maxtext": "Zu viel"
                     },
                     {
-                        "id": "5278c51a6166f2de240000d4",
+                        "_id": "5278c51a6166f2de240000d4",
                         "category": "work",
                         "title": "Betriebsklima",
                         "type": "twoSided",
@@ -164,7 +164,7 @@
                         "exptext": "Ungelöste Konflikte belasten mich, Es herrscht ein schlechtes Betriebsklima in meinem Umfeld, Ich werde gemobbt, Ich werde diskriminiert"
                     },
                     {
-                        "id": "5278c51a6166f2de240000d3",
+                        "_id": "5278c51a6166f2de240000d3",
                         "category": "work",
                         "title": "Arbeitsplatzsicherheit",
                         "type": "oneSided",

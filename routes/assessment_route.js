@@ -36,8 +36,8 @@ module.exports = function (app, config) {
 
     var resultsUrl = baseUrl + '/:assId/results';
 
-    app.post(resultsUrl, passport.authenticate('basic', { session: false }), genericRoutes.postFn(resultsUrl, AssessmentResult));
-    app.get(resultsUrl+ '/newest', passport.authenticate('basic', { session: false }), getNewestResult(resultsUrl, AssessmentResult));
+    app.post({path: resultsUrl, name: 'post-assessmentResults'}, passport.authenticate('basic', { session: false }), genericRoutes.postFn(resultsUrl, AssessmentResult));
+    app.get({path: resultsUrl+ '/newest', name: 'get-assessmentResults-newest'}, passport.authenticate('basic', { session: false }), getNewestResult(resultsUrl, AssessmentResult));
     app.get(resultsUrl, passport.authenticate('basic', { session: false }), genericRoutes.getAllFn(resultsUrl, AssessmentResult));
     app.del(resultsUrl, passport.authenticate('basic', { session: false }), genericRoutes.deleteAllFn(resultsUrl, AssessmentResult));
 

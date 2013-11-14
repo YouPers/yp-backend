@@ -8,7 +8,9 @@ var mongoose = require('mongoose'),
     passport = require('passport'),
     genericRoutes = require('./generic'),
     AssessmentResult = mongoose.model('AssessmentResult'),
-    _ = require('lodash');
+    _ = require('lodash'),
+    cachedActList;
+
 
 /**
  * comments
@@ -49,11 +51,15 @@ function generateRecommendations(actList, assResult, fokusQuestion, log) {
 }
 
 function getRecommendationsFn(req, res, next) {
+
     if (!req.user) {
         return next('no user found in request');
     }
 
-    Activity.find().select('+recWeights +qualityFactor').exec(function (err, actList) {
+    function processActivities(err, actList) {
+        if (!cachedActList) {
+            cachedActList = actList;
+        }
         if (err) {
             return next(err);
         }
@@ -82,8 +88,13 @@ function getRecommendationsFn(req, res, next) {
                 res.send(recs);
                 return next();
             });
-    });
+    }
 
+    if (cachedActList) {
+        processActivities(null, cachedActList);
+    } else {
+        Activity.find().select('+recWeights +qualityFactor').exec(processActivities);
+    }
 }
 
 // TODO: move to generic Auth module!
@@ -112,10 +123,10 @@ module.exports = function (app, config) {
 
     var baseUrl = '/api/v1/activities';
 
-    app.get(baseUrl, roleBasedAuth('anonymous'), genericRoutes.getAllFn(baseUrl, Activity));
-    app.get(baseUrl + '/recommendations', passport.authenticate('basic', { session: false }), getRecommendationsFn);
-    app.get(baseUrl + '/:id', roleBasedAuth('anonymous'), genericRoutes.getByIdFn(baseUrl, Activity, 'anonymous'));
-    app.post(baseUrl, passport.authenticate('basic', { session: false }), genericRoutes.postFn(baseUrl, Activity));
+    app.get({path: baseUrl, name: 'get-activities'}, roleBasedAuth('anonymous'), genericRoutes.getAllFn(baseUrl, Activity));
+    app.get({path: baseUrl + '/recommendations', name: 'get-recommendations'}, passport.authenticate('basic', { session: false }), getRecommendationsFn);
+    app.get(baseUrl + '/:id', roleBasedAuth('anonymous'), genericRoutes.getByIdFn(baseUrl, Activity, 'anonymous'), function(req, res, next) {cachedActList = null;});
+    app.post(baseUrl, passport.authenticate('basic', { session: false }), genericRoutes.postFn(baseUrl, Activity), function(req, res, next) {cachedActList = null;});
     app.put(baseUrl + '/:id', passport.authenticate('basic', { session: false }), genericRoutes.putFn(baseUrl, Activity));
     app.del(baseUrl, genericRoutes.deleteAllFn(baseUrl, Activity));
 

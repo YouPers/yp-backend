@@ -10,7 +10,7 @@ console.log("NODE_ENV:" + process.env.NODE_ENV);
 // Modules
 var restify = require("restify"),
     mongoose = require('mongoose'),
-    preflightEnabler = require('se7ensky-restify-preflight'),
+    preflightEnabler = require('./util/corspreflight'),
     longjohn = require("longjohn"),
     fs = require("fs"),
     Logger = require('bunyan'),

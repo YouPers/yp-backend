@@ -54,7 +54,7 @@
                         "maxtext": "Zu hoch",
                         "maxtextexample": "Ich stehe bei meiner Arbeit ständig unter einem grossen Erfolgssdruck.",
                         "maxtextresult": "Wenn du dich bezüglich Erfolgsdruck überfordert fühlst, solltest du dies mit deinem Vorgesetzten oder deinem Personalverantwortlichen besprechen sowie ausgleichende Aktivitäten planen.",
-                        "exptext": "Bei diesem Kriterium soll der durch den Erfolgsdruck verursachte Stress bewertet werden."
+                        "exptext": "Fehlender oder zu hoher Erfolgsdruck kann Stress verursachen oder verstärken. Beurteile bei diesem Kriterium die Auswirkungen deinen Erfolgsdruck auf deine Stresssituation."
                     },
                     {
                         "_id": "5278c51a6166f2de240000db",
@@ -69,7 +69,7 @@
                         "maxtext": "Zu viel",
                         "maxtextexample": "Ich werde von meinem Vorgesetzten bzw. meinem Arbeitsumfeld \"überbetreut\".",
                         "maxtextresult": "Wenn du dich von deinem Vorgesetzten oder deinem Arbeitsumfeld überbetreut fühlst, solltest du dies mit deinem Vorgesetzten oder deinem Personalverantwortlichen besprechen.",
-                        "exptext": "Bei diesem Kriterium soll der Unterstützungssituations-bedingte Stress bewertet werden."
+                        "exptext": "Bitte bewerte bei diesem Kriterium deinen durch mangelhafte oder übertriebene Unterstützung verursachten Stress."
                     },
                     {
                         "_id": "5278c51a6166f2de240000da",
@@ -97,7 +97,7 @@
                         "midtext": "Optimal",
                         "midtextexample": "Die äusseren Arbeitsbedinungen sind für mich optimal.",
                         "maxtext": "n/a",
-                        "exptext": "Bei diesem Kriterium soll der durch die äusseren Arbeitsbedinungen verursachte Stress bewertet werden."
+                        "exptext": "Schlechte Arbeitsbedinungen können Stress verursachen oder verstärken. Beurteile bei diesem Kriterium die Auswirkungen deiner Arbeitsbedinungen auf deine Stresssituation."
                     },
                     {
                         "_id": "5278c51a6166f2de240000d8",
@@ -127,7 +127,7 @@
                         "maxtext": "Zu hoch",
                         "maxtextexample": "Ich identifizieren mich voll und ganz mit meiner Arbeit, sodass mein Privatleben (Familie und private Verpflichtungen) sowie Job-externe Hobbies und Interessen zu kurz kommen. ",
                         "maxtextresult": "Wenn aufgrund deiner vollen Arbeitidentifikation dein Privatleben sowie Job-externe Hobbies und Interessen zu kurz kommen, solltest du deine Prioritäten hinterfragen und neue setzen.",
-                        "exptext": "Bei diesem Kriterium soll der durch die Arbeitsidentifikation verursachte Stress bewertet werden."
+                        "exptext": "Bitte bewerte bei diesem Kriterium deinen durch mangelhafte oder übertriebene Arbeitsidentifikation verursachten Stress."
                     },
                     {
                         "_id": "5278c51a6166f2de240000d6",
@@ -150,8 +150,14 @@
                         "title": "Entwicklungsmöglichkeiten",
                         "type": "twoSided",
                         "mintext": "Zu wenig",
+                        "mintextexample": "Ich habe zu wenig Entwicklungsmöglichkeiten und fühle mich mit der täglichen Routine zunehmend gestresst. ",
+                        "mintextresult": "Wenn du dich aufgrund mangelnder Entwicklungsmöglichkeiten zunehmend gestresst fühlst, solltest du dies mit deinem Vorgesetzten oder deinem Personalverantwortlichen besprechen, geeignete Weiterbildungsmöglichkeiten suchen und Job-externe Entwicklungsmöglichkeiten prüfen.",
                         "midtext": "Optimal",
-                        "maxtext": "Zu viel"
+                        "midtextexample": "Ich kann mich beruflich stetig weiterentwickeln und bin deshalb sehr motiviert.",
+                        "maxtext": "Zu viel",
+                        "maxtextexample": "Die vielen Entwicklungsmöglichkeiten in meinem Job überfordern mich, weshalb ich mich oft gestresst fühle.",
+                        "maxtextresult": "Wenn du dich bezüglich deiner Entwicklungsmöglichkeiten überfordert fühlst, solltest du dies mit deinem Vorgesetzten oder deinem Personalverantwortlichen besprechen.",
+                        "exptext": "Zu wenige oder zu viele Entwicklungsmöglichkeiten können Stress verursachen oder verstärken. Beurteile bei diesem Kriterium die Auswirkungen deiner Entwicklungsmöglichkeiten auf deine Stresssituation."
                     },
                     {
                         "_id": "5278c51a6166f2de240000d4",
@@ -159,9 +165,14 @@
                         "title": "Betriebsklima",
                         "type": "twoSided",
                         "mintext": "Demotivierend",
+                        "mintextexample": "In meinem Arbeitsumfeld herrscht ein schlechtes Betriebsklima, weshalb ich mich oft gestresst fühle. Ungelöste Arbeitskonflikte belasten mich. Ich werde gemobbt. Ich werde diskriminiert.",
+                        "mintextresult": "Wenn du dich aufgrund eines schlechten Betriebsklimas demotiviert und gestresst fühlst, solltest du dies mit deinem Vorgesetzten oder deinem Personalverantwortlichen besprechen.",
                         "midtext": "Optimal",
+                        "midtextexample": "In meinem Arbeitsumfeld herrscht ein gutes, motivierendes Betriebsklima. Arbeitskonflikte werden kollegial gelöst. Niemand wird gemobbt oder diskriminiert.",
                         "maxtext": "Übermotivierend",
-                        "exptext": "Ungelöste Konflikte belasten mich, Es herrscht ein schlechtes Betriebsklima in meinem Umfeld, Ich werde gemobbt, Ich werde diskriminiert"
+                        "maxtextexample": "Das Betriebsklima wirkt auf mich dermassen motivierend, dass mein privates Leben zu kurz kommt.",
+                        "maxtextresult": "Wenn du dich von der betrieblichen Atmosphäre zu stark eingenommen fühlst, solltest du deine Prioritäten hinterfragen und anpassen.",
+                        "exptext": "Das Betriebsklima kann einen grossen Einfluss auf die Stresssituation haben. Beurteile bei diesem Kriterium deinen Betriebsklima-bedingten Stress."
                     },
                     {
                         "_id": "5278c51a6166f2de240000d3",
@@ -169,9 +180,12 @@
                         "title": "Arbeitsplatzsicherheit",
                         "type": "oneSided",
                         "mintext": "Zu gering",
+                        "mintextexample": "Ich fühle mich gestresst, da ich Angst vor einem Arbeitsplatzverlust habe.",
+                        "mintextresult": "Wenn du dich aus Angst vor Arbeitsplatzverlust gestresst fühlst, solltest du dies mit deinem Vorgesetzten oder deinem Personalverantwortlichen besprechen.",
                         "midtext": "hoch",
+                        "midtextexample": "Ich habe keinen Grund zur Annahme, dass mein Arbeitsplatz in nächster Zeit gefährdet sein könnte. ",
                         "maxtext": "n/a",
-                        "exptext": "Ich habe Angst vor einem Arbeitsplatzverlust"
+                        "exptext": "Bitte bewerte bei diesem Kriterium deinen durch Angst vor Arbeitsplatzverlust verursachten Stress."
                     }
                 ],
                 "_id": "5278c51a6166f2de240000d2"
@@ -185,9 +199,14 @@
                         "title": "Freizeitverpflichtungen",
                         "type": "twoSided",
                         "mintext": "Zu wenige",
+                        "mintextexample": "In der Freizeit fühle ich mich zu wenig ausgefüllt.",
+                        "mintextresult": "Wenn du dich in der Freizeit zu wenig ausgefüllt fühlst, solltest du dir überlegen, welche Freizeitbeschäftigungen bzw. Hobbies dich interessieren bzw. motivieren könnten. Probier diese am Besten doch gleich einmal aus.",
                         "midtext": "Gerade richtig",
+                        "midtextexample": "In der Freizeit fühle ich mich gerade richtig ausgefüllt.",
                         "maxtext": "Zu viele ",
-                        "exptext": "Kinderbetreuung, Krankenpflege, Haushaltsarbeiten, Gartenarbeiten, Vereinstätigkeiten, weitere  Verpflichtungen"
+                        "maxtextexample": "Ich habe zu viele Freizeitverpflichtungen (Kinderbetreuung, Krankenpflege, Haushaltsarbeiten, Gartenarbeiten, Vereinstätigkeiten, etc.), weshalb ich mich auch in der Freizeit oft gestresst fühle.",
+                        "maxtextresult": "Wenn du dich von deinen Freizeitverpflichtungen überfordert fühlst, solltest du dir mehr persönliche Erholungsräume schaffen bzw. deine Prioritäten hinterfragen. Bespreche die Situation auch mit deinem Partner/deiner Partnerin, um gemeinsam eine Stressbewältigungsstrategie zu entwickeln.",
+                        "exptext": "Genauso wie Arbeitsplatz-Verpflichtungen können auch Freizeit-Verpflichtungen Stress verursachen oder verstärken. Beurteile hier deine persönliche Situation."
                     },
                     {
                         "_id": "5278c51a6166f2de240000d0",
@@ -195,9 +214,12 @@
                         "title": "Familiäre Situation",
                         "type": "oneSided",
                         "mintext": "Belastend",
+                        "mintextexample": "Ich leide unter meiner belastenden familiären Situation (z.B. aufgrund von Beziehungsproblemen, Trennung, Schul-/Erziehungsproblemen, Nachbarschaftsproblemen, Krankheit von mir/Angehörigen, Verlust eines Angehörigen).",
+                        "mintextresult": "Wenn dich deine familiäre Situation belastet, solltest du die Probleme aktiv angehen, indem du selber oder mit Unterstützung durch deinen Partner/deine Partnerin oder einen Fachexperten (z.B. Psychologen) entsprechende Problemlösungsstrategien entwickelst und umsetzt.",
                         "midtext": "Entlastend",
+                        "midtextexample": "Ich empfinde meine familiäre Situation als ausgleichend zu meiner beruflichen Belastung.",
                         "maxtext": "n/a",
-                        "exptext": "Beziehungsprobleme, Trennung, Schul-/Erziehungsprobleme, Krankheit von mir/Angehörigen, Verlust eines Angehörigen"
+                        "exptext": "Eine belastende Familiensituation kann sehr viel Stress verursachen. Beurteile bei diesem Kriterium deine persönliche Situation. "
                     },
                     {
                         "_id": "5278c51a6166f2de240000cf",
@@ -205,9 +227,12 @@
                         "title": "Finanzielle Situation",
                         "type": "oneSided",
                         "mintext": "Belastend",
+                        "mintextexample": "Ich fühle mich aufgrund meiner permanenten Geldknappheit bzw. meiner Schulden oft gestresst.",
+                        "mintextresult": "Wenn dich deine finanzielle Situation belastet, solltest du eine für dich passende Budget- bzw. Schuldenabbau-Planung ausarbeiten und strickte einhalten. Bespreche die Situation und Planung auch mit deinem Partner/deiner Partnerin und bei Bedarf mit einem Fachexperten (z.B. dipl. Finanzberater).",
                         "midtext": "gut",
+                        "midtextexample": "Ich habe keine finanziellen Probleme oder Sorgen.",
                         "maxtext": "n/a",
-                        "exptext": "Permanente Geldknappheit, Schulden"
+                        "exptext": "Eine kritische finanzielle Situation kann sehr viel Stress verursachen. Beurteile bei diesem Kriterium deine persönliche Situation. "
                     },
                     {
                         "_id": "5278c51a6166f2de240000ce",
@@ -215,9 +240,14 @@
                         "title": "Soziales Umfeld",
                         "type": "twoSided",
                         "mintext": "Wenig unterstützend",
+                        "mintextexample": "Ich werde von meinen sozialen Umfeld zu wenig unterstützt bzw. getragen.",
+                        "mintextresult": "Wenn du gestresst bist, weil du dich von deinem sozialen Umfeld zu wenig unterstützt fühlst, solltest du dies offen mit deinem Partner/deiner Partnerin, einer Vertrauensperson oder bei Bedarf mit einem Fachexperten (z.B. Psychologen) ansprechen.",
                         "midtext": "Optimal",
+                        "midtextexample": "Mein soziales Umfeld unterstützt mich bei meiner Stressbewältigung optimal.",
                         "maxtext": "Einengend",
-                        "exptext": "Ich werde von meinen sozialen Umfeld zu wenig unterstützt und getragen\nNachbarschaftsprobleme"
+                        "maxtextexample": "Der soziale Druck von meinem Umfeld engt mich ein bzw. belastet mich und erhöht so meinen Stresslevel.",
+                        "maxtextresult": "Wenn du dich von deinem sozialen Umfeld eingeengt fühlst, solltest du dir mehr persönliche Freiräume schaffen bzw. deine Prioritäten stärker auf deine persönlichen Bedürfnisse ausrichten.",
+                        "exptext": "Das soziale Umfeld kann sich positiv oder negativ auf meine Stresssituation aufwirken. Beurteile hier deine persönliche Situation."
                     }
                 ],
                 "_id": "5278c51a6166f2de240000cd"
@@ -242,7 +272,7 @@
                         "mintext": "Zu wenig",
                         "midtext": "Ausgewogen",
                         "maxtext": "Zu viel",
-                        "exptext": "Zu viel: Zwanghaft"
+                        "maxtextexample": "Zwanghaft"
                     },
                     {
                         "_id": "5278c51a6166f2de240000ca",
@@ -250,9 +280,10 @@
                         "title": "Verantwortungsbewusstsein",
                         "type": "twoSided",
                         "mintext": "Zu wenig",
+                        "mintextexample": "Verantwortungslos, leichtsinnig, gleichgültig",
                         "midtext": "Ausgewogen",
                         "maxtext": "Zu viel",
-                        "exptext": "Zu wenig: Verantwortungslos, leichtsinnig, gleichgültig\nZu viel: Zu starkes Verantwortungsgefühl, zu starkes Pflichtgefühl"
+                        "maxtextexample": "Zu starkes Verantwortungsgefühl, zu starkes Pflichtgefühl"
                     },
                     {
                         "_id": "5278c51a6166f2de240000c9",
@@ -262,7 +293,7 @@
                         "mintext": "Zu wenig",
                         "midtext": "Ausgewogen",
                         "maxtext": "Zu viel",
-                        "exptext": "Zu viel: Überangepasst"
+                        "maxtextexample": "Überangepasst"
                     },
                     {
                         "_id": "5278c51a6166f2de240000c8",
@@ -285,9 +316,12 @@
                         "title": "Pausen",
                         "type": "oneSided",
                         "mintext": "Zu wenig",
+                        "mintextexample": "Ich mache während des Arbeitstages aufgrund des Zeit- und Erfolgsdrucks keine, zu wenige bzw. nur sehr kurze Pausen. Ich nutze die Mittagszeit zu wenig für eine grössere Arbeitspause. Die Erholungszeit am Feierabend/am Wochenende kommt bei mir zu kurz. Ich gönne mir keine oder nur sehr kurze Ferien zur Erholung.",
+                        "mintextresult": "Gönne dir trotz Zeit- und Erfolgsdruck immer wieder eine Pause. Auf Pausen zu verzichten bringt nichts. Plane dir gleich jetzt entsprechende Pausen während der Arbeits- und Mittagszeit, am Feierabend und am Wochenende ein und halte dich an deinen Plan. Gönne dir auch eine längere Pause in Form eines verlängerten Wochenendes oder noch besser in Form von Ferien.",
                         "midtext": "Optimal",
+                        "midtextexample": "Ich gönne mir während meines Arbeitstages zur Erholung mehrmals eine kurze Arbeitspause sowie über den Mittag, am Feierabend und am Wochenende eine längere Erholungszeit.",
                         "maxtext": "n/a",
-                        "exptext": "Keine/zu wenige/zu kurze Pausen während der Arbeit, \nZu wenig Erholungszeit am Mittag/Feierabend/Wochenende, Keine/zu wenig/zu kurze Ferien"
+                        "exptext": "Beurteile bei diesem Kriterium dein Pausen-Verhalten und wie sich dieses auf deine Stress-Situation auswirkt."
                     },
                     {
                         "_id": "5278c51a6166f2de240000c5",
@@ -295,9 +329,12 @@
                         "title": "Schlaf",
                         "type": "oneSided",
                         "mintext": "Zu wenig",
+                        "mintextexample": "Ich fühle mich am Abend oft gestresst und gehe deshalb oft erst spät ins Bett. Ich wache in der Nacht oft auf und kann anschliessend nicht mehr richtig einschlafen. Ich fühle mich am Morgen nach dem Schlaf nicht richtig erholt. Ich bin bei der Arbeit oft müde aufgrund eines ungenügenden Schlafes.",
+                        "mintextresult": "Wenn du dich mangels ausreichendem Schlaf gestresst fühlst, solltest du dein Zeitmanagement verbessern sowie entspannende/beruhigende Aktivitäten von dem ins Bett gehen einplanen.",
                         "midtext": "Optimal",
+                        "midtextexample": "Ich wache in der Nacht selten auf und fühle mich am Morgen nach dem Schlaf richtig erholt.",
                         "maxtext": "n/a",
-                        "exptext": "Ich fühle mich nach dem Schlaf nicht richtig erholt, \nIch bin bei der Arbeit oft müde aufgrund eines ungenügenden Schlafes"
+                        "exptext": "Ungenügender Schlaf wirkt sich negativ auf die Stress-Situation aus. Beurteile bei diesem Kriterium wie sich deine Schlaf-Situation auf deinen Stress-Level auswirkt."
                     },
                     {
                         "_id": "5278c51a6166f2de240000c4",
@@ -305,9 +342,12 @@
                         "title": "Entspannung",
                         "type": "oneSided",
                         "mintext": "Zu wenig",
+                        "mintextexample": "Zeit zur aktiven Entspannung und Erholung/Beruhigung fehlt mir. Ich führe keinerlei Entspannungsübungen durch. Erholende Freizeitaktivitäten kommen bei mir zu kurz.",
+                        "mintextresult": "Wenn du dich mangels Entspannung gestresst fühlst, solltest du dein Zeitmanagement verbessern und entspannende bzw. beruhigende Aktivitäten einplanen.",
                         "midtext": "Optimal",
+                        "midtextexample": "Ich führe in den Arbeitpausen regelmässig Entspannungsübungen durch. In der Freizeit kommen bei mir entspannende bzw. beruhigende Aktivitäten nicht zu kurz.",
                         "maxtext": "n/a",
-                        "exptext": "Ich führe keinerlei Entspannungsübungen durch, \nErholende Freizeitaktivitäten kommen bei mir zu kurz"
+                        "exptext": "Beurteile bei diesem Kriterium, ob deine entspannenden/beruhigenden Aktivitäten einen ausreichenden Ausgleich zum arbeitsbedingten Stress schaffen."
                     },
                     {
                         "_id": "5278c51a6166f2de240000c3",
@@ -315,9 +355,14 @@
                         "title": "Körperliche Aktivität",
                         "type": "twoSided",
                         "mintext": "Zu wenig",
+                        "mintextexample": "Ich bewege mich im Alltag (auf dem Arbeitsweg, während der Arbeit, in den Arbeitspausen, am Feierabend, am Wochenende) aufgrund meiner beruflichen Belastung zu wenig (weniger als 30 Minuten pro Tag) und fühle mich entsprechend auch nicht erholt. Zeit/Motivation für eine sportliche Betätigung am Feierabend/in der Freizeit fehlt mir. ",
+                        "mintextresult": "Wenn du dich im Alltag zu wenig bewegst und auch keinen zusätzlichen Sport treibst, solltest du dein Zeitmanagement verbessern, damit du mehr stressreduzierende Bewegungsaktivitäten einplanen und durchführen kannst.",
                         "midtext": "Ausgewogen",
+                        "midtextexample": "Ich bewege mich durchschnittlich ca. 30 bis 60 Minuten mit mässiger Intensität pro Tag. Ich spüre, dass ich mich dank der Bewegung immer wieder gut von meinen beruflichen Belastungen erholen kann.",
                         "maxtext": "Zu viel",
-                        "exptext": "Ich bewege mich im Alltag zu wenig, \nIch bin während der Arbeit oft müde vom intensiven Sporttraining"
+                        "maxtextexample": "Aufgrund der grossen zeitlichen Belastung für meine Sporttrainings, fühle ich mich oft gestresst. Ich fühle mich während der Arbeit oft müde vom intensiven Sporttraining, sodass mir die Bewältigung meiner Arbeit schwer fällt.",
+                        "maxtextresult": "Wenn sich deine Trainingsbelastung negativ auf deinen Stresslevel auswirkt, solltest du deine Trainingsintensität reduzieren und mehr entspannende Aktivitäten einplanen.",
+                        "exptext": "Jegliche Form von Bewegung wirkt sich grundsätzlich positiv auf die körperliche und geistige Erholung und somit den Stresslevel aus (ausser bei zu viel körperlicher Aktivität). Beurteile bei diesem Kriterium die stressreduzierende Wirkung deiner körperlichen Aktivitäten."
                     },
                     {
                         "_id": "5278c51a6166f2de240000c2",
@@ -325,8 +370,14 @@
                         "title": "Sozialer Austausch",
                         "type": "twoSided",
                         "mintext": "Zu wenig",
+                        "mintextexample": "Ich fühle mich psychisch gestresst, da ich zu wenig soziale Kontakte bzw. zu wenig sozialen Austausch habe. ",
+                        "mintextresult": "Wenn du zu wenig soziale Kontakte hast, solltest du dich im Arbeitsalltag vermehrt an sozialen Pausen-, Mittags- und Feierabend-Aktivitäten beteiligen sowie Freizeit- und Bewegungs-Aktivitäten mit sozialem Austausch suchen, die deinen Interessen entsprechen.",
                         "midtext": "Ausgewogen",
-                        "maxtext": "Zu viel"
+                        "midtextexample": "Ich empfinde meinen sozialen Austausch im Beruf und in der Freizeit als ausgewogen.",
+                        "maxtext": "Zu viel",
+                        "maxtextexample": "Ich fühle mich gestresst, da mir vor lauter sozialer Aktivitätenzu wenig Zeit bleibt für meine persönliche Entspannung/Ruhe.",
+                        "maxtextresult": "Wenn du dich aufgrund deiner vielen sozialen Aktivitäten gestresst fühlst, solltest du mehr  Aktivitäten für deine persönliche Entspannung einplanen.",
+                        "exptext": "Soziale Kontakte/sozialer Austausch wirken sich grundsätzlich positiv auf das Wohlbefinden/die geistige Erholung aus (ausser bei zu viel sozialer Aktivität). Beurteile bei diesem Kriterium die Wirkung deiner sozialen Aktivitäten auf dein Wohlbefinden."
                     },
                     {
                         "_id": "5278c51a6166f2de240000c1",
@@ -334,9 +385,12 @@
                         "title": "Ernährung",
                         "type": "oneSided",
                         "mintext": "Ungesund",
+                        "mintextexample": "Ich ernähre mich während des Arbeitstages aufgrund des Zeitdrucks oft nur mit Fast Food. Ich esse stressbedingt während des Arbeitstages unregelmässig, zu viel Süssigkeiten, zu wenig etc. Am Feierabend esse ich zur Stressbewältigung oft Snacks, o.ä. vor dem Fernseher. Zur Stressbewältiung trinke ich zu viel Alkohol (mehr als 1 Glas pro Tag) bzw. zu viel Kaffee (mehr als 3 Tassen pro Tag).",
+                        "mintextresult": "Wenn du dich stressbedingt ungesund ernährst, solltest du dein Bewusstsein und deine Fähigkeit sowie dein Zeitmanagement verbessern, um bewusst ausgewogen und gesund zu essen.",
                         "midtext": "Ausgewogen",
+                        "midtextexample": "Ich ernähre mich vor, während und nach der Arbeit bewusst ausgewogen und gesund.",
                         "maxtext": "n/a",
-                        "exptext": "Ich ernähre mich oft während der Arbeit nur mit Fast Food, \nIch esse stressbedingt unregelmässig/zu viel/zu wenig, Ich trinke stressbedingt zu viel Alkohol"
+                        "exptext": "Ungesunde Ernährung wirkt sich negativ auf das Wohlbefinden aus. Beurteile bei diesem Kriterium die Wirkung deiner Ernährung auf dein Wohlbefinden."
                     }
                 ],
                 "_id": "5278c51a6166f2de240000c0"

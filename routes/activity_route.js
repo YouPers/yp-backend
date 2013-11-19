@@ -135,108 +135,210 @@ module.exports = function (app, config) {
     // fake calls to support the current graphics, need to be replaced with real data soon!
     app.get("/api/v1/activitystats", function (req, res, next) {
 
-        if (req.params.range && (req.params.range==="weekly")) {
+        if (req.params.range && (req.params.range==="today")) {
             res.send({"cols": [
                 {"id": "actionCluster", "label": "Aktivitätsbereich", "type": "string"},
+                {"id": "open-id", "label": "offen", "type": "number"},
                 {"id": "done-id", "label": "durchgeführt", "type": "number"},
                 {"id": "missed-id", "label": "verpasst", "type": "number"}
             ], "rows": [
                 {"c": [
-                    {"v": "Allgemein"},
-                    {"v": 9, "f": "Alle geplanten Aktivitäten durchgeführt!"},
-                    {"v": 0}
+                    {"v": "AwarenessAbility"},
+                    {"v": 19, "f": "Alle geplanten Aktivitäten durchgeführt!"},
+                    {"v": 14, "f": "Alle geplanten Aktivitäten durchgeführt!"},
+                    {"v": 3}
                 ]},
                 {"c": [
-                    {"v": "Fitness"},
+                    {"v": "Breaks"},
                     {"v": 25, "f": "Vorbildiche Fitness!"},
+                    {"v": 12, "f": "Vorbildiche Fitness!"},
                     {"v": 5, "f": "Möglicherweise wolltest du zuviel?"}
                 ]},
                 {"c": [
-                    {"v": "Konsum"},
-                    {"v": 12, "f": "Weiter so!"},
-                    {"v": 12, "f": "Weniger ist oft mehr..."}
+                    {"v": "LeisureActivity"},
+                    {"v": 19, "f": "Weiter so!"},
+                    {"v": 10, "f": "Weiter so!"},
+                    {"v": 4, "f": "Weniger ist oft mehr..."}
 
                 ]},
                 {"c": [
-                    {"v": "Wohlbefinden"},
-                    {"v": 2},
-                    {"v": 8}
+                    {"v": "Nutrition"},
+                    {"v": 18},
+                    {"v": 14},
+                    {"v": 1}
 
                 ]},
                 {"c": [
-                    {"v": "Behandlungen"},
-                    {"v": 2},
-                    {"v": 0}
+                    {"v": "PhysicalActivity"},
+                    {"v": 12},
+                    {"v": 6},
+                    {"v": 2}
+
+                ]},
+                {"c": [
+                    {"v": "Relaxation"},
+                    {"v": 22},
+                    {"v": 6},
+                    {"v": 2}
+
+                ]},
+                {"c": [
+                    {"v": "SocialInteraction"},
+                    {"v": 8},
+                    {"v": 6},
+                    {"v": 2}
+
+                ]},
+                {"c": [
+                    {"v": "TimeManagement"},
+                    {"v": 12},
+                    {"v": 6},
+                    {"v": 2}
+
+                ]},
+                {"c": [
+                    {"v": "WorkStructuring"},
+                    {"v": 20},
+                    {"v": 16},
+                    {"v": 2}
 
                 ]}
             ]});
-        } else if (req.params.range && (req.params.range==="monthly")) {
+        } else if (req.params.range && (req.params.range==="thisWeek")) {
             res.send({"cols": [
                 {"id": "actionCluster", "label": "Aktivitätsbereich", "type": "string"},
+                {"id": "open-id", "label": "offen", "type": "number"},
                 {"id": "done-id", "label": "durchgeführt", "type": "number"},
                 {"id": "missed-id", "label": "verpasst", "type": "number"}
             ], "rows": [
                 {"c": [
-                    {"v": "Allgemein"},
-                    {"v": 18, "f": "Alle geplanten Aktivitäten durchgeführt!"},
-                    {"v": 0}
+                    {"v": "AwarenessAbility"},
+                    {"v": 38, "f": "Alle geplanten Aktivitäten durchgeführt!"},
+                    {"v": 29, "f": "Alle geplanten Aktivitäten durchgeführt!"},
+                    {"v": 4}
                 ]},
                 {"c": [
-                    {"v": "Fitness"},
+                    {"v": "Breaks"},
                     {"v": 50, "f": "Vorbildiche Fitness!"},
-                    {"v": 5, "f": "Möglicherweise wolltest du zuviel?"}
+                    {"v": 25, "f": "Vorbildiche Fitness!"},
+                    {"v": 7, "f": "Möglicherweise wolltest du zuviel?"}
                 ]},
                 {"c": [
-                    {"v": "Konsum"},
-                    {"v": 24, "f": "Weiter so!"},
-                    {"v": 12, "f": "Weniger ist oft mehr..."}
+                    {"v": "LeisureActivity"},
+                    {"v": 68, "f": "Weiter so!"},
+                    {"v": 22, "f": "Weiter so!"},
+                    {"v": 8, "f": "Weniger ist oft mehr..."}
 
                 ]},
                 {"c": [
-                    {"v": "Wohlbefinden"},
-                    {"v": 4},
-                    {"v": 8}
+                    {"v": "Nutrition"},
+                    {"v": 40},
+                    {"v": 58},
+                    {"v": 4}
 
                 ]},
                 {"c": [
-                    {"v": "Behandlungen"},
-                    {"v": 2},
-                    {"v": 0}
+                    {"v": "PhysicalActivity"},
+                    {"v": 25},
+                    {"v": 12},
+                    {"v": 4}
+
+                ]},
+                {"c": [
+                    {"v": "Relaxation"},
+                    {"v": 42},
+                    {"v": 9},
+                    {"v": 4}
+
+                ]},
+                {"c": [
+                    {"v": "SocialInteraction"},
+                    {"v": 16},
+                    {"v": 6},
+                    {"v": 2}
+
+                ]},
+                {"c": [
+                    {"v": "TimeManagement"},
+                    {"v": 27},
+                    {"v": 6},
+                    {"v": 2}
+
+                ]},
+                {"c": [
+                    {"v": "WorkStructuring"},
+                    {"v": 40},
+                    {"v": 6},
+                    {"v": 2}
 
                 ]}
             ]});
-        } else if (req.params.range && (req.params.range==="yearly")) {
+        } else if (req.params.range && (req.params.range==="campaign")) {
             res.send({"cols": [
                 {"id": "actionCluster", "label": "Aktivitätsbereich", "type": "string"},
+                {"id": "open-id", "label": "offen", "type": "number"},
                 {"id": "done-id", "label": "durchgeführt", "type": "number"},
                 {"id": "missed-id", "label": "verpasst", "type": "number"}
             ], "rows": [
                 {"c": [
-                    {"v": "Allgemein"},
+                    {"v": "AwarenessAbility"},
                     {"v": 182, "f": "Alle geplanten Aktivitäten durchgeführt!"},
+                    {"v": 91, "f": "Alle geplanten Aktivitäten durchgeführt!"},
                     {"v": 22}
                 ]},
                 {"c": [
-                    {"v": "Fitness"},
-                    {"v": 510, "f": "Vorbildiche Fitness!"},
+                    {"v": "Breaks"},
+                    {"v": 205, "f": "Vorbildiche Fitness!"},
+                    {"v": 102, "f": "Vorbildiche Fitness!"},
                     {"v": 51, "f": "Möglicherweise wolltest du zuviel?"}
                 ]},
                 {"c": [
-                    {"v": "Konsum"},
+                    {"v": "LeisureActivity"},
+                    {"v": 210, "f": "Weiter so!"},
                     {"v": 96, "f": "Weiter so!"},
                     {"v": 22, "f": "Weniger ist oft mehr..."}
 
                 ]},
                 {"c": [
-                    {"v": "Wohlbefinden"},
-                    {"v": 16},
+                    {"v": "Nutrition"},
+                    {"v": 190},
+                    {"v": 77},
                     {"v": 8}
 
                 ]},
                 {"c": [
-                    {"v": "Behandlungen"},
+                    {"v": "PhysicalActivity"},
+                    {"v": 88},
+                    {"v": 25},
+                    {"v": 6}
+
+                ]},
+                {"c": [
+                    {"v": "Relaxation"},
+                    {"v": 128},
                     {"v": 12},
-                    {"v": 2}
+                    {"v": 8}
+
+                ]},
+                {"c": [
+                    {"v": "SocialInteraction"},
+                    {"v": 64},
+                    {"v": 12},
+                    {"v": 8}
+
+                ]},
+                {"c": [
+                    {"v": "TimeManagement"},
+                    {"v": 97},
+                    {"v": 16},
+                    {"v": 12}
+
+                ]},
+                {"c": [
+                    {"v": "WorkStructuring"},
+                    {"v": 130},
+                    {"v": 12},
+                    {"v": 6}
 
                 ]}
             ]});

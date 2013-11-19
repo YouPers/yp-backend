@@ -55,6 +55,7 @@
     "role": "individual",
     "password": "test"
 },{
+    "_id": "528b227bf70daafada000006",
     "firstname": "Martin",
     "lastname": "Degen",
     "fullname": "Martin Degen",
@@ -65,6 +66,7 @@
     "role": "admin",
     "password": "martin"
 },{
+    "_id": "528b227bf70daafada000007",
     "firstname": "Bernadette",
     "lastname": "Würsch",
     "fullname": "Bernadette Würsch",

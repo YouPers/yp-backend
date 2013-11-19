@@ -54,5 +54,25 @@
     "username": "unittest",
     "role": "individual",
     "password": "test"
+},{
+    "firstname": "Martin",
+    "lastname": "Degen",
+    "fullname": "Martin Degen",
+    "avatar": "assets/img/KTLU.jpeg",
+    "email": "martin.degen@lu.ch",
+    "emailValidatedFlag": true,
+    "username": "martin",
+    "role": "admin",
+    "password": "martin"
+},{
+    "firstname": "Bernadette",
+    "lastname": "Würsch",
+    "fullname": "Bernadette Würsch",
+    "avatar": "assets/img/KTLU.jpeg",
+    "email": "bernadette.wuersch@lu.ch",
+    "emailValidatedFlag": true,
+    "username": "bernadette",
+    "role": "admin",
+    "password": "bernadette"
 }
 ]

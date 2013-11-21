@@ -14,7 +14,7 @@ var CommentSchema = common.newSchema({
     author: {type: ObjectId, ref: 'User', required: true},
     refDoc: {type: ObjectId},
     refDocModel: {type: String},
-    refDocPath: {type: String},   // subPath inside the doc, if the comment refers to a subPath inside the doc
+    refDocPath: {type: String},   // subPath inside the doc, if the comment refers to a subPath inside the doc, e.g. one specific event
     refDocTitle: {type: String},
     refDocLink: {type:String},
     created: {type: Date, required: true},

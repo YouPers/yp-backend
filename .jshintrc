@@ -10,5 +10,7 @@
   "unused": "vars",
   "boss": true,
   "eqnull": true,
-  "node": true
+  "node": true,
+  "proto": true
+
 }

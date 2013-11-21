@@ -10,7 +10,8 @@ var mongoose = require('mongoose'),
     passport = require('passport'),
     restify = require('restify'),
     _ = require('lodash'),
-    caltools = require('calendar-tools');
+    caltools = require('calendar-tools'),
+    statsUpdater = require('../logic/stats');
 
 
 function generateEventsForPlan(plan, log) {
@@ -30,7 +31,7 @@ function generateEventsForPlan(plan, log) {
 
 /**
  * handles a PUT request to /activityPlanned/:planId/event/:eventId.
- * Expects that the ActivityPlan and the event with the corresponding Id exisits. Only allows the owning user
+ * Expects that the ActivityPlan and the event with the corresponding Id exists. Only allows the owning user
  * of the ActivityPlan to update the ActivityEvent.
  * Handles one or more new comments in the ActivityEvent. A comment is considered "new" when there is no id.
  * Comment.author is overwritten by the currently logged in user.
@@ -47,7 +48,8 @@ function putActivityEvent(req, res, next) {
     }
 
 
-    var find = Model.findOne({_id: req.params.planId});
+    var find = Model.findById(req.params.planId).populate('activity');
+
     find.exec(function (err, planFromDb) {
         if (err) {
             return next(err);
@@ -58,8 +60,8 @@ function putActivityEvent(req, res, next) {
         }
 
         // TODO: (rblu) check whether new owner is same als old owner???
-        if (!planFromDb.owner.equals(req.user.id)) {
-            return next(new restify.NotAuthorizedError('authenticated user is not authorized to update this plan'));
+        if (!planFromDb.owner || !planFromDb.owner.equals(req.user.id)) {
+            return next(new restify.NotAuthorizedError('authenticated user is not authorized to update this plan: ' + planFromDb));
         }
 
         var eventFromDb = _.find(planFromDb.events, {'id': req.params.eventId});
@@ -82,6 +84,18 @@ function putActivityEvent(req, res, next) {
         delete eventToPut.comments;
         _.extend(eventFromDb, eventToPut);
 
+        var saveCallback = function (err, savedActivityPlan) {
+            if (err) {
+                req.log.error({error: err, stack: err.stack}, "error saving ");
+                return next(err);
+            }
+            var savedEvent = _.find(savedActivityPlan.events, {'id': req.params.eventId});
+            res.send(200, savedEvent);
+            statsUpdater.emit('updatedActivityEvent', savedEvent, eventFromDb, savedActivityPlan);
+            return next();
+        };
+
+
         if (newComments && newComments.length > 0) {
             newComments.forEach(function (comment) {
                 comment.refDoc = req.params.planId;
@@ -96,30 +110,16 @@ function putActivityEvent(req, res, next) {
                 if (err) {
                     return next(err);
                 }
+                // the callbackFn is called with an optional argument for each created comment
+                // we use this to set the ids of the created comments to the updated event
                 req.log.trace({arguments: arguments}, "Arguments of comments creation");
                 for (var i = 1; i < arguments.length; i++) {
                     eventFromDb.comments.push(arguments[i].id);
                 }
-                planFromDb.save(function (err, ret) {
-                    if (err) {
-                        req.log.error({error: err, stack: err.stack}, "error saving ");
-                        return next(err);
-
-                    }
-                    var event = _.find(ret.events, {'id': req.params.eventId});
-                    res.send(200, event);
-                });
+                planFromDb.save(saveCallback);
             });
         } else {
-            planFromDb.save(function (err, ret) {
-                if (err) {
-                    req.log.error({error: err, stack: err.stack}, "error saving ");
-                    return next(err);
-
-                }
-                var event = _.find(ret.events, {'id': req.params.eventId});
-                res.send(200, event);
-            });
+            planFromDb.save(saveCallback);
         }
     });
 }
@@ -141,8 +141,7 @@ function postNewActivityPlan(req, res, next) {
     req.log.trace({body: sentPlan}, 'parsed req body');
     // ref properties: replace objects by ObjectId in case client sent whole object instead of reference only
     // do this check only for properties of type ObjectID
-    var schema = Model.schema;
-    _.filter(schema.paths, function (path) {
+    _.filter(Model.schema.paths, function (path) {
         return (path.instance === 'ObjectID');
     })
         .forEach(function (myPath) {
@@ -163,6 +162,9 @@ function postNewActivityPlan(req, res, next) {
     }
 
     req.log.trace({MainEvent: sentPlan.mainEvent}, 'before generating events');
+    if (!sentPlan.mainEvent) {
+        return next(new restify.InvalidArgumentError('Need MainEvent in submitted ActivityPlan'));
+    }
     generateEventsForPlan(sentPlan, req.log);
     req.log.trace({eventsAfter: sentPlan.events}, 'after generating events');
 
@@ -179,6 +181,7 @@ function postNewActivityPlan(req, res, next) {
         }
         res.header('location', '/api/v1/activitiesPlanned' + '/' + newActPlan._id);
         res.send(201, newActPlan);
+        statsUpdater.emit('newActivityPlan', newActPlan);
         return next();
     });
 }
@@ -213,11 +216,11 @@ module.exports = function (app, config) {
     app.get(baseUrl + '/:id/ical.ics', getIcalStringForPlan);
     app.get(baseUrl + '/:id', passport.authenticate('basic', { session: false }), genericRoutes.getByIdFn(baseUrl, Model));
 
-    app.put(baseUrl + '/:id', passport.authenticate('basic', { session: false }), genericRoutes.putFn(baseUrl, Model));
-
     app.del(baseUrl + '/:id', genericRoutes.deleteByIdFn(baseUrl, Model));
     app.del(baseUrl, genericRoutes.deleteAllFn(baseUrl, Model));
 
     app.post(baseUrl, passport.authenticate('basic', { session: false }), postNewActivityPlan);
+
+    app.put(baseUrl + '/:id', passport.authenticate('basic', { session: false }), genericRoutes.putFn(baseUrl, Model));
     app.put(baseUrl + '/:planId/events/:eventId', passport.authenticate('basic', { session: false }), putActivityEvent);
 };

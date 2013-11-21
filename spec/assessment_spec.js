@@ -1,7 +1,7 @@
 var frisby = require('frisby');
-require('../app.js');
 var port = process.env.PORT || 8000;
 var URL = 'http://localhost:'+ port +'/api/v1/assessments';
+
 
 
 frisby.globalSetup({ // globalSetup is for ALL requests
@@ -12,6 +12,9 @@ frisby.globalSetup({ // globalSetup is for ALL requests
 
     }
 });
+
+
+
 frisby.create('GET all assessments')
     .get(URL)
     .expectStatus(200)
@@ -44,11 +47,11 @@ frisby.create('GET all assessments')
                             answers:
                                 [
                                     {assessment: assessments[0].id,
-                                    question: '525e5ae3ef9673a352000004',
+                                    question: '5278c51a6166f2de240000cc',
                                     answer: -23,
                                     answered: true},
                                     {assessment: assessments[0].id,
-                                    question: '525e5ae3ef9673a352000006',
+                                    question: '5278c51a6166f2de240000cb',
                                     answer: 23,
                                     answered: true}
                                 ]
@@ -72,11 +75,11 @@ frisby.create('GET all assessments')
                         answers:
                             [
                                 {assessment: assessments[0].id,
-                                    question: '525e5ae3ef9673a352000004',
+                                    question: '5278c51a6166f2de240000cc',
                                     answer: -100,
                                     answered: true},
                                 {assessment: assessments[0].id,
-                                    question: '525e5ae3ef9673a352000006',
+                                    question: '5278c51a6166f2de240000cb',
                                     answer: 23,
                                     answered: true}
                             ]

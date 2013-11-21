@@ -1,7 +1,6 @@
 'use strict';
 
 var frisby = require('frisby');
-require('../app.js');
 var port = process.env.PORT || 8000;
 var URL = 'http://localhost:'+ port +'/api/v1/';
 

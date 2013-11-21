@@ -1,11 +1,11 @@
 var frisby = require('frisby');
-require('../app.js');
 var port = process.env.PORT || 8000;
 var URL = 'http://localhost:'+ port +'/api/v1/';
 
 frisby.globalSetup({ // globalSetup is for ALL requests
     request: {
-        headers: { 'X-Auth-Token': 'fa8426a0-8eaf-4d22-8e13-7c1b16a9370c' }
+        headers: { 'X-Auth-Token': 'fa8426a0-8eaf-4d22-8e13-7c1b16a9370c',
+            Authorization: 'Basic dW5pdHRlc3Q6dGVzdA==' }
     }
 });
 
@@ -32,3 +32,5 @@ frisby.create('GET all activites')
             .toss();
     })
     .toss();
+
+

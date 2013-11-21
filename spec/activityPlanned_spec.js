@@ -1,14 +1,11 @@
 var frisby = require('frisby');
-require('../app.js');
 var port = process.env.PORT || 8000;
 var URL = 'http://localhost:' + port + '/api/v1/';
 
 frisby.globalSetup({ // globalSetup is for ALL requests
     request: {
         headers: { 'X-Auth-Token': 'fa8426a0-8eaf-4d22-8e13-7c1b16a9370c',
-            Authorization: 'Basic dW5pdHRlc3Q6dGVzdA=='
-        }
-
+            Authorization: 'Basic dW5pdHRlc3Q6dGVzdA==' }
     }
 });
 
@@ -28,7 +25,7 @@ frisby.create('GET all activityPlans')
     .afterJSON(function (plans) {
 
         // Use data from previous result in next test
-        frisby.create('Get single ActivityPlanned')
+        frisby.create('Get single ActivityPlanned: ' + plans[0].id)
             .get(URL + 'activitiesPlanned/' + plans[0].id)
             .expectStatus(200)
             .expectJSON({
@@ -41,7 +38,6 @@ frisby.create('GET all activityPlans')
         frisby.create('Update an Event without comment')
             .put(URL + 'activitiesPlanned/' + plans[0].id + '/events/' + plans[0].events[0].id, {feedback: 5}, {json: true})
             .expectStatus(200)
-            .expectJSON({feedback: 5})
             .afterJSON(function (updatedEvent) {
                 var nrOfComments = plans[0].events[0].comments.length;
                 frisby.create('Get plan again and check whether feedback is updated')

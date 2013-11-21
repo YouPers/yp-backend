@@ -19,7 +19,6 @@ var ActivityPlanEvent = common.newSchema({
     comments: [{type: ObjectId, ref: 'Comment'}]
 });
 
-
 /**
  * ActivityPlanned Schema
  */
@@ -30,6 +29,7 @@ var ActivityPlannedSchema =  common.newSchema({
     executionType: {type: String, enum: common.enums.executiontype},
     visibility: {type: String, enum: common.enums.visibility},
     status: {type: String, enum: common.enums.activityPlannedStatus},
+    campaign: {type: ObjectId, ref: 'Campaign'},
     mainEvent: {
         start: {type: Date},
         end: {type: Date},

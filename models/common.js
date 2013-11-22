@@ -55,7 +55,6 @@ module.exports = {
     },
 
     initializeDbFor: function InitializeDbFor(Model) {
-        console.log(Model.modelName + ": checking whether Database initialization is needed...");
         Model.find().exec(function (err, col) {
             if (err) {
                 throw err;
@@ -70,7 +69,6 @@ module.exports = {
                 }
                 if (jsonFromFile) {
                     console.log(Model.modelName + ": initializing Database from File: " + filename);
-                    console.log(jsonFromFile);
                     if (!Array.isArray(jsonFromFile)) {
                         jsonFromFile = [jsonFromFile];
                     }
@@ -80,7 +78,6 @@ module.exports = {
                         }
                         var newObj = new Model(jsonObj);
 
-                        console.log(newObj);
                         newObj.save(function (err) {
                             if (err) {
                                 console.log(err.message);

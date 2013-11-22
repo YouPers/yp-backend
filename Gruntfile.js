@@ -79,7 +79,7 @@ module.exports = function (grunt) {
                 options: {
                     script: './app.js',
                     delay: 5000,
-                    output: null
+                    output: null  // is needed, otherwise delay is ignored after any server output to System.out
 
                 }
             },

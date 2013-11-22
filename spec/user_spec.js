@@ -48,7 +48,6 @@ frisby.create('GET all users')
             .afterJSON(function(user) {
                 expect(user.id).toEqual(testuserid);
                 expect(user.username).toEqual( 'unittest_user');
-                console.log(user);
                 frisby.create('DELETE our testuser users')
                     .delete(URL+ 'users/' + user.id)
                     .expectStatus(200)

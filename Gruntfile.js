@@ -69,7 +69,7 @@ module.exports = function (grunt) {
         wait: {
             options: {
                 delay: 500
-            }
+                }
         },
         express: {
             options: {
@@ -78,7 +78,9 @@ module.exports = function (grunt) {
             dev: {
                 options: {
                     script: './app.js',
-                    delay: 5000
+                    delay: 5000,
+                    output: null
+
                 }
             },
             prod: {

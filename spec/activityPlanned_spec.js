@@ -68,7 +68,7 @@ frisby.create('GET all activityPlans')
 frisby.create('plan once activity and check whether event is generated')
     .post(URL + 'activitiesPlanned', {
         "owner": "525fb247101e330000001008",
-        "activity": "5268e8bca8bae50000000016",
+        "activity": "5278c6adcdeab69a2500001e",
         "privacy": "public",
         "executionType": "group",
         "mainEvent": {
@@ -95,7 +95,7 @@ frisby.create('plan once activity and check whether event is generated')
 frisby.create('plan weekly activity and check whether events are generated, with End-By: after 6')
     .post(URL + 'activitiesPlanned', {
         "owner": "525fb247101e330000001008",
-        "activity": "5268e8bca8bae50000000016",
+        "activity": "5278c6adcdeab69a2500001e",
         "privacy": "public",
         "executionType": "group",
         "mainEvent": {
@@ -130,7 +130,7 @@ frisby.create('plan weekly activity and check whether events are generated, with
 frisby.create('plan daily activity and check whether events are generated, with End-By: after 6')
     .post(URL + 'activitiesPlanned', {
         "owner": "525fb247101e330000001008",
-        "activity": "5268e8bca8bae50000000016",
+        "activity": "5278c6adcdeab69a2500001e",
         "privacy": "public",
         "executionType": "group",
         "mainEvent": {

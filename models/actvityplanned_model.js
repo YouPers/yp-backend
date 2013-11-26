@@ -30,6 +30,8 @@ var ActivityPlannedSchema =  common.newSchema({
     visibility: {type: String, enum: common.enums.visibility},
     status: {type: String, enum: common.enums.activityPlannedStatus},
     campaign: {type: ObjectId, ref: 'Campaign'},
+    topics: [String],
+    fields: [String],
     mainEvent: {
         start: {type: Date},
         end: {type: Date},

@@ -25,7 +25,7 @@ module.exports = function (grunt) {
                 tasks: [ 'jasmine_node']
             },
             express: {
-                files:  [ 'app.js', 'routes/**/*.js', 'models/**/*.js', 'config/**/*.js'],
+                files:  [ 'app.js', 'routes/**/*.js', 'models/**/*.js', 'config/**/*.js', 'logic/**/".js'],
                 tasks:  [ 'express:dev' ],
                 options: {
                     nospawn: true //Without this option specified express won't be reloaded
@@ -109,6 +109,7 @@ module.exports = function (grunt) {
     // Default task.
     grunt.registerTask('default', ['jshint', 'jasmine_node']);
     grunt.registerTask('test', ['jshint', 'express:dev', 'jasmine_node']);
+    grunt.registerTask('testdebug', ['jshint', 'jasmine_node']);
     grunt.registerTask('server', ['jshint','nodemon']);
     grunt.registerTask('servertest', ['express:dev', 'jasmine_node', 'watch']);
 };

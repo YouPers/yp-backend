@@ -11,7 +11,7 @@ var mongoose = require('mongoose'),
     restify = require('restify'),
     _ = require('lodash'),
     caltools = require('calendar-tools'),
-    statsUpdater = require('../logic/stats');
+    statsUpdater = require('../logic/stats').statsUpdater;
 
 
 function generateEventsForPlan(plan, log) {

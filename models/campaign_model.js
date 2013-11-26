@@ -3,8 +3,7 @@
  */
 var mongoose = require('mongoose'),
     common = require('./common'),
-    ObjectId = mongoose.Schema.ObjectId,
-    statsUpdater = require('../logic/stats');
+    ObjectId = mongoose.Schema.ObjectId;
 
 /**
  * Activity Schema
@@ -14,39 +13,12 @@ var CampaignSchema = common.newSchema({
     topic: {type: String, trim: true},
     healthPromoter: {type: ObjectId},
     start: {type: Date},
-    end: {type: Date},
-    stats:  {}
+    end: {type: Date}
 });
 
 mongoose.model('Campaign', CampaignSchema);
 
 var model = mongoose.model('Campaign');
-
-statsUpdater.on('newActivityPlan', function(newPlan) {
-    if (!newPlan.campaign) {
-        // nothing to do because this plan is not part of a campaign
-        return;
-    }
-
-    model.findById(newPlan.campaign, function updateCampaignStats (err, campaign) {
-        if (err || !campaign) {
-            throw new Error('Error on loading campaign: ' + newPlan.campaign + ' :' + err);
-        }
-    });
-});
-
-statsUpdater.on('updatedActivityEvent', function(oldEvent, newEvent, newPlan) {
-    if (!newPlan.campaign) {
-        // nothing to do because this plan is not part of a campaign
-        return;
-    }
-
-    model.findById(newPlan.campaign, function updateCampaignStats (err, campaign) {
-        if (err || !campaign) {
-            throw new Error('Error on loading campaign: ' + newPlan.campaign + ' :' + err);
-        }
-    });
-});
 
 
 

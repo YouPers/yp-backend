@@ -7,6 +7,7 @@ var mongoose = require('mongoose'),
 
 var AssessmentResultSchema = common.newSchema({
     owner: {type: Schema.Types.ObjectId, ref: 'User', required: true},
+    campaign: {type: Schema.Types.ObjectId, ref: 'Campaign'},
     assessment: {type: Schema.Types.ObjectId, ref: 'Assessment', required: true},
     timestamp: {type: Date},
     answers: [{assessment: {type: Schema.Types.ObjectId, ref: 'Assessment', required: true},

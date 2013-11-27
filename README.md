@@ -1,14 +1,18 @@
 ![Build status](https://circleci.com/gh/youpers/yp-backend.png?circle-token=:circle-token)
 
-The best project ever.
+# Youpers Backend Platform
+
+
+## Prerequisites
+
+Installed local mongoDb: http://www.mongodb.org/downloads
+Installed nodejs und npm: http://nodejs.org/
+Installed grunt cli: npm install -g grunt-cli`
 
 ## Getting Started
-- clone the repositoy from github
-- install mongodb
-- change into the new directory and run:
-
-    npm install
-
+    git clone https://github.com/YouPers/yp-backend.git
+    cd yp-backend
+    npm install   // installs all needed software for build system: defined in package.json)
 
 ## Documentation
 ### Build commands:
@@ -18,11 +22,19 @@ tests, compiles and builds the distribution version of the whole project, is use
 is executing "grunt jshint", "grunt test"
 
     grunt server
-for test driven development, watches all files, starts a server on localhost:8000 and restarts server when needed
-Also reexecutes all tests as soon as a file changes. Test are executed on temporary server on localhost:3000
+runs the server, watches all files, restarts a server on filechange on localhost:8000
 
-    node app.js
-Run the server locally
+    grunt test
+Starts a server, runs the testsuite once, and stops the server. Used by continuous integration.
+
+    grunt testdebug
+Only runs the testsuite once, expects a running server on port 8000, useful when running a server with a running debugger
+in the IDE
+
+    grunt servertest
+for TDD, starts a server and runs the testsuite, then watches all files an restarts server when needed and reruns
+testsuite whenever changes occur
+
 
 ## Continuous Deployment to Heroku:
 

@@ -1,5 +1,11 @@
 'use strict';
 
+/**
+ * this test is disabled because it is testing the approach to have persisted, constantly updated statistics.
+ * I currently think that is a case of http://c2.com/cgi/wiki?PrematureOptimization
+ *
+ * We currently go down another route (compute statistics on the fly) and optimize when needed.
+ */
 var frisby = require('frisby');
 var port = process.env.PORT || 8000;
 var URL = 'http://localhost:' + port + '/api/v1/';

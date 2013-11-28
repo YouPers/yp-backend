@@ -23,7 +23,8 @@
     "passport": "0.1.x",
     "passport-http": "0.2.x",
     "calendar-tools": "git+https://github.com/YouPers/calendar-tools.git",
-    "icalendar": "*"
+    "icalendar": "*",
+    "moment": "~2.4.x"
   },
   "devDependencies": {
     "grunt-contrib-jshint": "~0.6.x",
@@ -34,8 +35,7 @@
     "grunt-nodemon": "~0.1.x",
     "grunt-concurrent": "~0.4.x",
     "grunt-wait": "~0.1.x",
-    "grunt-express-server": "~0.4.x",
-    "moment": "~2.4.x"
+    "grunt-express-server": "~0.4.x"
   },
   "scripts": {
     "test": "grunt test",

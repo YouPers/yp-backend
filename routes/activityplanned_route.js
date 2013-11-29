@@ -10,9 +10,7 @@ var mongoose = require('mongoose'),
     passport = require('passport'),
     restify = require('restify'),
     _ = require('lodash'),
-    caltools = require('calendar-tools'),
-    statsUpdater = require('../logic/stats').statsUpdater;
-
+    caltools = require('calendar-tools');
 
 function generateEventsForPlan(plan, log) {
     var seed = caltools.seed(plan.mainEvent, {addNoRec: true});
@@ -89,17 +87,24 @@ function putActivityEvent(req, res, next) {
                 req.log.error({error: err, stack: err.stack}, "error saving ");
                 return next(err);
             }
-            var savedEvent = _.find(savedActivityPlan.events, {'id': req.params.eventId});
-            res.send(200, savedEvent);
-            statsUpdater.emit('updatedActivityEvent', savedEvent, eventFromDb, savedActivityPlan);
-            return next();
+
+            Model.findById(savedActivityPlan._id, function (err, reloadedPlan) {
+                if (err) {
+                    return next(err);
+                }
+                var savedEvent = _.find(reloadedPlan.events, {'id': req.params.eventId});
+                res.send(200, savedEvent);
+                return next();
+            });
         };
 
 
         if (newComments && newComments.length > 0) {
             newComments.forEach(function (comment) {
-                comment.refDoc = req.params.planId;
+                comment.refDoc = planFromDb.masterPlan || req.params.planId;
                 comment.refDocModel = 'ActivityPlanned';
+                // TODO: (RBLU) in case of slave documents, this might not be the correct path. Need to think about where the comment really belongs...,
+                // might have to point to the corresponding master event id
                 comment.refDocPath = 'events.' + req.params.eventId;
                 comment.author = req.user.id;
                 if (!comment.created) {
@@ -175,18 +180,20 @@ function postNewActivityPlan(req, res, next) {
     // try to save the new object
     newActPlan.save(function (err) {
         if (err) {
-            req.log.info({Error: err}, 'Error Saving in PostFn');
+            req.log.error({Error: err}, 'Error Saving in PostFn');
             err.statusCode = 409;
             return next(err);
         }
-        res.header('location', '/api/v1/activitiesPlanned' + '/' + newActPlan._id);
-        res.send(201, newActPlan);
-        statsUpdater.emit('newActivityPlan', newActPlan);
-        return next();
+        Model.findById(newActPlan._id, function (err, reloadedActPlan) {
+            if (err) {
+                return next(err);
+            }
+            res.header('location', '/api/v1/activitiesPlanned' + '/' + reloadedActPlan._id);
+            res.send(201, reloadedActPlan);
+            return next();
+        });
     });
 }
-
-
 
 
 function getIcalStringForPlan(req, res, next) {
@@ -201,7 +208,7 @@ function getIcalStringForPlan(req, res, next) {
         var icalRecString = caltools.rfc2445.genRecurrenceString(plan.mainEvent);
         res.contentType = "text/calendar";
         res.setHeader('Content-Type', 'text/calendar');
-        res.setHeader('Content-Disposition','inline; filename=ical.ics');
+        res.setHeader('Content-Disposition', 'inline; filename=ical.ics');
         res.send(icalRecString);
         return next();
     });

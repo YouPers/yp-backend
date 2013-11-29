@@ -56,7 +56,12 @@ var statsQueries = function (timeRange, scopeType, scopeId) {
                 _id: '$date',
                 updatesPerDay: {$sum: 1}
             }
-        }
+        },
+        {$project: {
+            date: '$date',
+            _id: 0,
+            updatesPerDay: 1
+        }}
     );
 
     /////////////////////////////////////////

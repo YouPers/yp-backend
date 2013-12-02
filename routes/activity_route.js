@@ -144,21 +144,21 @@ module.exports = function (app, config) {
             ], "rows": [
                 {"c": [
                     {"v": "AwarenessAbility"},
-                    {"v": 19, "f": "Alle geplanten Aktivitäten durchgeführt!"},
-                    {"v": 14, "f": "Alle geplanten Aktivitäten durchgeführt!"},
+                    {"v": 19},
+                    {"v": 14},
                     {"v": 3}
                 ]},
                 {"c": [
                     {"v": "Breaks"},
-                    {"v": 25, "f": "Vorbildiche Fitness!"},
-                    {"v": 12, "f": "Vorbildiche Fitness!"},
-                    {"v": 5, "f": "Möglicherweise wolltest du zuviel?"}
+                    {"v": 25},
+                    {"v": 12},
+                    {"v": 5}
                 ]},
                 {"c": [
                     {"v": "LeisureActivity"},
-                    {"v": 19, "f": "Weiter so!"},
-                    {"v": 10, "f": "Weiter so!"},
-                    {"v": 4, "f": "Weniger ist oft mehr..."}
+                    {"v": 19},
+                    {"v": 10},
+                    {"v": 4}
 
                 ]},
                 {"c": [
@@ -213,21 +213,21 @@ module.exports = function (app, config) {
             ], "rows": [
                 {"c": [
                     {"v": "AwarenessAbility"},
-                    {"v": 38, "f": "Alle geplanten Aktivitäten durchgeführt!"},
-                    {"v": 29, "f": "Alle geplanten Aktivitäten durchgeführt!"},
+                    {"v": 38},
+                    {"v": 29},
                     {"v": 4}
                 ]},
                 {"c": [
                     {"v": "Breaks"},
-                    {"v": 50, "f": "Vorbildiche Fitness!"},
-                    {"v": 25, "f": "Vorbildiche Fitness!"},
-                    {"v": 7, "f": "Möglicherweise wolltest du zuviel?"}
+                    {"v": 50},
+                    {"v": 25},
+                    {"v": 7}
                 ]},
                 {"c": [
                     {"v": "LeisureActivity"},
-                    {"v": 68, "f": "Weiter so!"},
-                    {"v": 22, "f": "Weiter so!"},
-                    {"v": 8, "f": "Weniger ist oft mehr..."}
+                    {"v": 68},
+                    {"v": 22},
+                    {"v": 8}
 
                 ]},
                 {"c": [
@@ -282,21 +282,21 @@ module.exports = function (app, config) {
             ], "rows": [
                 {"c": [
                     {"v": "AwarenessAbility"},
-                    {"v": 182, "f": "Alle geplanten Aktivitäten durchgeführt!"},
-                    {"v": 91, "f": "Alle geplanten Aktivitäten durchgeführt!"},
+                    {"v": 182},
+                    {"v": 91},
                     {"v": 22}
                 ]},
                 {"c": [
                     {"v": "Breaks"},
-                    {"v": 205, "f": "Vorbildiche Fitness!"},
-                    {"v": 102, "f": "Vorbildiche Fitness!"},
-                    {"v": 51, "f": "Möglicherweise wolltest du zuviel?"}
+                    {"v": 205},
+                    {"v": 102},
+                    {"v": 51}
                 ]},
                 {"c": [
                     {"v": "LeisureActivity"},
-                    {"v": 210, "f": "Weiter so!"},
-                    {"v": 96, "f": "Weiter so!"},
-                    {"v": 22, "f": "Weniger ist oft mehr..."}
+                    {"v": 210},
+                    {"v": 96},
+                    {"v": 22}
 
                 ]},
                 {"c": [

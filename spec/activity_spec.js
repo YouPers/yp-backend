@@ -1,6 +1,6 @@
 var frisby = require('frisby');
 var port = process.env.PORT || 8000;
-var URL = 'http://localhost:'+ port +'/api/v1/';
+var URL = 'http://localhost:'+ port;
 
 frisby.globalSetup({ // globalSetup is for ALL requests
     request: {
@@ -10,7 +10,7 @@ frisby.globalSetup({ // globalSetup is for ALL requests
 });
 
 frisby.create('GET all activites')
-    .get(URL + 'activities')
+    .get(URL + '/activities')
     .expectStatus(200)
     .expectJSON('*', {
         id: String,

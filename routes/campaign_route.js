@@ -39,7 +39,7 @@ var getCampaignStats = function (baseUrl, Model) {
 
 module.exports = function (app, config) {
 
-    var baseUrl = '/api/v1/campaigns';
+    var baseUrl = '/campaigns';
 
     app.get(baseUrl + '/:id', genericRoutes.getByIdFn(baseUrl, Model));
     app.get(baseUrl + '/:id/stats', getCampaignStats(baseUrl, Model));

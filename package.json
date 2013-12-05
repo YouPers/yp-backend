@@ -24,7 +24,8 @@
     "passport-http": "0.2.x",
     "calendar-tools": "git+https://github.com/YouPers/calendar-tools.git",
     "icalendar": "*",
-    "moment": "~2.4.x"
+    "moment": "~2.4.x",
+    "swagger-node-restify": "git+https://github.com/YouPers/swagger-node-restify.git"
   },
   "devDependencies": {
     "grunt-contrib-jshint": "~0.6.x",

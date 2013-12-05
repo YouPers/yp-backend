@@ -2,7 +2,7 @@
 
 var frisby = require('frisby');
 var port = process.env.PORT || 8000;
-var URL = 'http://localhost:'+ port +'/api/v1/';
+var URL = 'http://localhost:'+ port;
 
 
 frisby.globalSetup({ // globalSetup is for ALL requests
@@ -15,7 +15,7 @@ frisby.globalSetup({ // globalSetup is for ALL requests
 });
 
 frisby.create('POST new user')
-    .post(URL + 'users', {
+    .post(URL + '/users', {
         username: 'unittest_user',
         fullname:'Testing Unittest',
         firstname: 'Testing',
@@ -26,7 +26,7 @@ frisby.create('POST new user')
     .toss();
 
 frisby.create('GET all users')
-    .get(URL + 'users')
+    .get(URL + '/users')
     .expectStatus(200)
     .expectJSONTypes('*', {
         id: String,
@@ -42,21 +42,21 @@ frisby.create('GET all users')
         });
 
         frisby.create('GET just our testuser')
-            .get(URL + 'users/'+ testuserid)
+            .get(URL + '/users/'+ testuserid)
             .expectStatus(200)
             // 'afterJSON' automatically parses response body as JSON and passes it as an argument
             .afterJSON(function(user) {
                 expect(user.id).toEqual(testuserid);
                 expect(user.username).toEqual( 'unittest_user');
                 frisby.create('DELETE our testuser users')
-                    .delete(URL+ 'users/' + user.id)
+                    .delete(URL+ '/users/' + user.id)
                     .expectStatus(200)
                     .toss();
             })
             .toss();
 
         frisby.create('DELETE our testuser')
-            .delete(URL + 'users/'+ testuserid)
+            .delete(URL + '/users/'+ testuserid)
             .expectStatus(200)
             // 'afterJSON' automatically parses response body as JSON and passes it as an argument
             .toss();

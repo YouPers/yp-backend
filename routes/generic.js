@@ -433,13 +433,13 @@ module.exports = {
         };
     },
 
-    getAllFn: function (baseUrl, Model) {
+    getAllFn: function (baseUrl, Model, fromAllOwners) {
         return function (req, res, next) {
 
             // check if this is a "personal" object (i.e. has an "owner" property),
             // if yes only send the objects of the currently logged in user
             var finder = '';
-            if (Model.schema.paths['owner']) {
+            if (!fromAllOwners && Model.schema.paths['owner']) {
                 if (!req.user || !req.user.id) {
                     return next(new restify.NotAuthorizedError('Authentication required for this object'));
                 } else {

@@ -3,10 +3,11 @@
  */
 
 // Load configurations
+console.log("NODE_ENV:" + process.env.NODE_ENV);
+
 var env = process.env.NODE_ENV || 'development',
     config = require('./config/config')[env];
 
-console.log("NODE_ENV:" + process.env.NODE_ENV);
 // Modules
 var restify = require("restify"),
     mongoose = require('mongoose'),
@@ -15,7 +16,9 @@ var restify = require("restify"),
     fs = require("fs"),
     Logger = require('bunyan'),
     passport = require('passport'),
-    passportHttp = require('passport-http');
+    passportHttp = require('passport-http'),
+    swagger = require("swagger-node-restify");
+
 
 // Setup Database Connection
 var connectStr = config.db_prefix + '://';
@@ -71,13 +74,6 @@ fs.readdirSync('./models').forEach(function (file) {
     }
 });
 
-// setup our routes
-fs.readdirSync('./routes').forEach(function (file) {
-    if (file.indexOf('_route.js') !== -1) {
-        console.log("Loading route: " + file);
-        require('./routes/' + file)(server, config);
-    }
-});
 
 
 // setup authentication
@@ -92,6 +88,28 @@ passport.use(new passportHttp.BasicStrategy(
         });
     }
 ));
+
+swagger.setAppHandler(server);
+swagger.addModels(require('./routes/swaggerModels.js'));
+swagger.configureSwaggerPaths("", "/api-docs", "");
+
+// TODO: (RBLU) remove this when all routes have been properly documented
+// setup our (still undocumented) routes
+fs.readdirSync('./routes').forEach(function (file) {
+    if (file.indexOf('_route.js') !== -1) {
+        console.log("Loading route: " + file);
+        require('./routes/' + file)(server, config);
+    }
+});
+
+// setup our (properly documented) routes
+fs.readdirSync('./routes').forEach(function (file) {
+    if (file.indexOf('_routesw.js') !== -1) {
+        console.log("Loading route: " + file);
+        require('./routes/' + file)(swagger, config);
+    }
+});
+swagger.configure(config.backendUrl, "0.1");
 
 
 var port = process.env.PORT || config.port;

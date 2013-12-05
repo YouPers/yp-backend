@@ -1,6 +1,6 @@
 var frisby = require('frisby');
 var port = process.env.PORT || 8000;
-var URL = 'http://localhost:'+ port +'/api/v1/assessments';
+var URL = 'http://localhost:'+ port +'/assessments';
 
 
 

@@ -8,7 +8,7 @@
  */
 var frisby = require('frisby');
 var port = process.env.PORT || 8000;
-var URL = 'http://localhost:' + port + '/api/v1/';
+var URL = 'http://localhost:' + port;
 
 var newPlan = {
     "activity": {
@@ -29,7 +29,7 @@ var newPlan = {
 };
 
 frisby.create('check whether default campaign is available')
-    .get(URL + 'campaigns/527916a82079aa8704000006')
+    .get(URL + '/campaigns/527916a82079aa8704000006')
     .expectStatus(200)
     .expectJSON({
         id: '527916a82079aa8704000006'
@@ -37,11 +37,11 @@ frisby.create('check whether default campaign is available')
 
 
         frisby.create('POST new activity Plan for this campaign')
-            .post(URL + 'activitiesPlanned', newPlan)
+            .post(URL + '/activitiesPlanned', newPlan)
             .expectStatus(201)
             .afterJSON(function(savedPlan) {
                 frisby.create('loadCampaign again and see whether stats are updated correctly')
-                    .get(URL + 'campaigns/527916a82079aa8704000006')
+                    .get(URL + '/campaigns/527916a82079aa8704000006')
                     .expectStatus(200)
                     .afterJSON(function(updatedCampaign) {
                         expect(updatedCampaign.stats).toBeDefined();
@@ -55,11 +55,11 @@ frisby.create('check whether default campaign is available')
 
 
                         frisby.create('Update Activity Event in this Plan, Event Done')
-                            .put(URL + 'activitiesPlanned/' + savedPlan.id + '/events/' + savedPlan.events[0].id, updatedEvent)
+                            .put(URL + '/activitiesPlanned/' + savedPlan.id + '/events/' + savedPlan.events[0].id, updatedEvent)
                             .expectStatus(200)
                             .afterJSON(function(updatedEvent) {
                                 frisby.create('loadCampaign again and see whether stats are updated correctly')
-                                    .get(URL + 'campaigns/527916a82079aa8704000006')
+                                    .get(URL + '/campaigns/527916a82079aa8704000006')
                                     .expectStatus(200)
                                     .afterJSON(function(updatedCampaign) {
                                         expect(updatedCampaign.stats).toBeDefined();
@@ -70,11 +70,11 @@ frisby.create('check whether default campaign is available')
                                         updatedEvent.status = 'missed';
 
                                         frisby.create('Update Activity Event in this Plan, Event Done --> Event missed')
-                                            .put(URL + 'activitiesPlanned/' + savedPlan.id + '/events/' + savedPlan.events[0].id, updatedEvent)
+                                            .put(URL + '/activitiesPlanned/' + savedPlan.id + '/events/' + savedPlan.events[0].id, updatedEvent)
                                             .expectStatus(200)
                                             .afterJSON(function(updatedEvent) {
                                                 frisby.create('loadCampaign again and see whether stats are updated correctly')
-                                                    .get(URL + 'campaigns/527916a82079aa8704000006')
+                                                    .get(URL + '/campaigns/527916a82079aa8704000006')
                                                     .expectStatus(200)
                                                     .afterJSON(function(updatedCampaign) {
                                                         expect(updatedCampaign.stats).toBeDefined();

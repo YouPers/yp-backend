@@ -11,7 +11,7 @@ var mongoose = require('mongoose'),
 
 module.exports = function (app, config) {
 
-    var baseUrl = '/api/v1/goals';
+    var baseUrl = '/goals';
 
     app.get(baseUrl + '/:id', passport.authenticate('basic', { session: false }), genericRoutes.getByIdFn(baseUrl, Model));
     app.get(baseUrl, passport.authenticate('basic', { session: false }), genericRoutes.getAllFn(baseUrl, Model));

@@ -12,7 +12,7 @@ var mongoose = require('mongoose'),
 
 module.exports = function (app, config) {
 
-    var baseUrl = '/api/v1/assessments';
+    var baseUrl = '/assessments';
 
     var getNewestResult = function (baseUrl, Model) {
         return function (req, res, next) {

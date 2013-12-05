@@ -11,7 +11,7 @@ var mongoose = require('mongoose'),
 
 module.exports = function (app, config) {
 
-    var baseUrl = '/api/v1/comments';
+    var baseUrl = '/comments';
 
     app.get(baseUrl + '/:id', genericRoutes.getByIdFn(baseUrl, Model));
     app.get(baseUrl, genericRoutes.getAllFn(baseUrl, Model));

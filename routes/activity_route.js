@@ -121,7 +121,7 @@ function roleBasedAuth(reqRole) {
 
 module.exports = function (app, config) {
 
-    var baseUrl = '/api/v1/activities';
+    var baseUrl = '/activities';
 
     app.get({path: baseUrl, name: 'get-activities'}, roleBasedAuth('anonymous'), genericRoutes.getAllFn(baseUrl, Activity));
     app.get({path: baseUrl + '/recommendations', name: 'get-recommendations'}, passport.authenticate('basic', { session: false }), getRecommendationsFn);
@@ -133,7 +133,7 @@ module.exports = function (app, config) {
 
 
     // fake calls to support the current graphics, need to be replaced with real data soon!
-    app.get("/api/v1/activitystats", function (req, res, next) {
+    app.get("/activitystats", function (req, res, next) {
 
         if (req.params.range && (req.params.range==="today")) {
             res.send({"cols": [

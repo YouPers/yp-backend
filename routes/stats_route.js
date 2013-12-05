@@ -31,7 +31,7 @@ var getStats = function () {
 // TODO: enable authentication for stats, not every should be able to get stats.
 module.exports = function (app, config) {
 
-    var baseUrl = '/api/v1/stats';
+    var baseUrl = '/stats';
     app.get(baseUrl, getStats());
 
 };

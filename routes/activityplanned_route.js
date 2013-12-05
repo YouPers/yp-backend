@@ -216,10 +216,11 @@ function getIcalStringForPlan(req, res, next) {
 
 module.exports = function (app, config) {
 
-    var baseUrl = '/api/v1/activitiesPlanned';
+    var baseUrl = '/activitiesPlanned';
 
 
     app.get(baseUrl, passport.authenticate('basic', { session: false }), genericRoutes.getAllFn(baseUrl, Model));
+    app.get(baseUrl + '/joinOffers', passport.authenticate('basic', { session: false }), genericRoutes.getAllFn(baseUrl, Model, true));
     app.get(baseUrl + '/:id/ical.ics', getIcalStringForPlan);
     app.get(baseUrl + '/:id', passport.authenticate('basic', { session: false }), genericRoutes.getByIdFn(baseUrl, Model));
 

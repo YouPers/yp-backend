@@ -12,6 +12,7 @@ module.exports = {
         },
         host: 'localhost',
         port: '8000',
+        backendUrl: "http://localhost:8000",
         db_prefix: 'mongodb',
         db_host: 'localhost',
         db_port: '27017',
@@ -43,6 +44,7 @@ module.exports = {
         },
         host: 'localhost',
         port: '8000',
+        backendUrl: "http://localhost:8000",
         db_prefix: 'mongodb',
         db_host: 'localhost',
         db_port: '27017',
@@ -65,6 +67,8 @@ module.exports = {
         app: {
             name: 'YouPers Platform Server'
         },
+        backendUrl: "http://yp-backend-ci.herokuapp.com",
+        host: "yp-backend-ci.herokuapp.com",
         port: '8000',
         db_prefix: 'mongodb',
         db_host: 'ds047968.mongolab.com',
@@ -90,6 +94,7 @@ module.exports = {
         app: {
             name: 'YouPers Platform Server'
         },
+        backendUrl: "http://yp-backend-test.herokuapp.com",
         port: '8000',
         db_prefix: 'mongodb',
         db_host: 'ds051658.mongolab.com',
@@ -116,6 +121,7 @@ module.exports = {
         name: 'YouPers Platform Server'
     },
     port: '8000',
+        backendUrl: "https://uat.youpers.com",
         db_prefix: 'mongodb',
         db_host: 'localhost',
         db_port: '51111',

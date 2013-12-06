@@ -4,7 +4,7 @@
  */
 
 var mongoose = require('mongoose'),
-    Model = mongoose.model('ActivityPlanned'),
+    Model = mongoose.model('ActivityPlan'),
     CommentModel = mongoose.model('Comment'),
     genericHandlers = require('./../handlers/generic'),
     passport = require('passport'),
@@ -28,7 +28,7 @@ function generateEventsForPlan(plan, log) {
 }
 
 /**
- * handles a PUT request to /activityPlanned/:planId/event/:eventId.
+ * handles a PUT request to /ActivityPlan/:planId/event/:eventId.
  * Expects that the ActivityPlan and the event with the corresponding Id exists. Only allows the owning user
  * of the ActivityPlan to update the ActivityEvent.
  * Handles one or more new comments in the ActivityEvent. A comment is considered "new" when there is no id.
@@ -102,7 +102,7 @@ function putActivityEvent(req, res, next) {
         if (newComments && newComments.length > 0) {
             newComments.forEach(function (comment) {
                 comment.refDoc = planFromDb.masterPlan || req.params.planId;
-                comment.refDocModel = 'ActivityPlanned';
+                comment.refDocModel = 'ActivityPlan';
                 // TODO: (RBLU) in case of slave documents, this might not be the correct path. Need to think about where the comment really belongs...,
                 // might have to point to the corresponding master event id
                 comment.refDocPath = 'events.' + req.params.eventId;
@@ -130,7 +130,7 @@ function putActivityEvent(req, res, next) {
 }
 
 /**
- * handles a POST request to /activityPlanned
+ * handles a POST request to /ActivityPlan
  * generates all the ActivityEvents according to the planning options in the plan.
  *
  * @param req
@@ -216,7 +216,7 @@ function getIcalStringForPlan(req, res, next) {
 
 module.exports = function (app, config) {
 
-    var baseUrl = '/activitiesPlanned';
+    var baseUrl = '/activityplans';
 
 
     app.get(baseUrl, passport.authenticate('basic', { session: false }), genericHandlers.getAllFn(baseUrl, Model));

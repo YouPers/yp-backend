@@ -13,7 +13,7 @@ var ActivitySchema = common.newSchema({
     title: { type: String, trim: true, required: true },
     text: {type: String, trim: true},
     source: { type: String, enum: common.enums.source},
-    defaultfrequency: {type: String, enum: common.enums.activityPlannedFrequency},
+    defaultfrequency: {type: String, enum: common.enums.ActivityPlanFrequency},
     defaultexecutiontype: {type: String, enum: common.enums.executiontype},
     defaultvisibility: {type: String, enum: common.enums.visibility},
     defaultduration: {type: Number},

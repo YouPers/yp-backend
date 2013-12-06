@@ -136,7 +136,7 @@ var statsQueries = function (timeRange, scopeType, scopeId) {
 
     ///////////////////////////////////////////////////
     // activitiesPlanned
-    var actsPlannedQuery = mongoose.model('ActivityPlanned').aggregate();
+    var actsPlannedQuery = mongoose.model('ActivityPlan').aggregate();
     if (scopePipelineEntry) {
         actsPlannedQuery.append(scopePipelineEntry);
     }
@@ -154,7 +154,7 @@ var statsQueries = function (timeRange, scopeType, scopeId) {
 
     /////////////////////////////////////////////////////
     // ActivityEvents
-    var eventsQuery = mongoose.model('ActivityPlanned').aggregate();
+    var eventsQuery = mongoose.model('ActivityPlan').aggregate();
     if (scopePipelineEntry) {
         eventsQuery.append(scopePipelineEntry);
     }

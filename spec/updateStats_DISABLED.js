@@ -37,7 +37,7 @@ frisby.create('check whether default campaign is available')
 
 
         frisby.create('POST new activity Plan for this campaign')
-            .post(URL + '/activitiesPlanned', newPlan)
+            .post(URL + '/activityplans', newPlan)
             .expectStatus(201)
             .afterJSON(function(savedPlan) {
                 frisby.create('loadCampaign again and see whether stats are updated correctly')
@@ -55,7 +55,7 @@ frisby.create('check whether default campaign is available')
 
 
                         frisby.create('Update Activity Event in this Plan, Event Done')
-                            .put(URL + '/activitiesPlanned/' + savedPlan.id + '/events/' + savedPlan.events[0].id, updatedEvent)
+                            .put(URL + '/activityplans/' + savedPlan.id + '/events/' + savedPlan.events[0].id, updatedEvent)
                             .expectStatus(200)
                             .afterJSON(function(updatedEvent) {
                                 frisby.create('loadCampaign again and see whether stats are updated correctly')
@@ -70,7 +70,7 @@ frisby.create('check whether default campaign is available')
                                         updatedEvent.status = 'missed';
 
                                         frisby.create('Update Activity Event in this Plan, Event Done --> Event missed')
-                                            .put(URL + '/activitiesPlanned/' + savedPlan.id + '/events/' + savedPlan.events[0].id, updatedEvent)
+                                            .put(URL + '/activityplans/' + savedPlan.id + '/events/' + savedPlan.events[0].id, updatedEvent)
                                             .expectStatus(200)
                                             .afterJSON(function(updatedEvent) {
                                                 frisby.create('loadCampaign again and see whether stats are updated correctly')

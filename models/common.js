@@ -210,12 +210,12 @@ module.exports = {
         visibility: "private campaign public".split(' '),
         field: "AwarenessAbility Relaxation TimeManagement SocialInteraction WorkStructuring Breaks PhysicalActivity LeisureActivity Nutrition".split(' '),
         topic: "workLifeBalance",
-        activityPlannedStatus: "active old".split(' '),
+        ActivityPlanStatus: "active old".split(' '),
 
         // ActivityPlanEven enums
         activityPlanEventStatus: "open done missed".split(' '),
         activityRecurrenceEndByType: "after on never".split(' '),
-        activityPlannedFrequency: "once day week month year".split(' '),
+        ActivityPlanFrequency: "once day week month year".split(' '),
 
         // Assessment related enums
         questionType: "oneSided twoSided".split(' ')

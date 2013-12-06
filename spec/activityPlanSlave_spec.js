@@ -8,7 +8,7 @@
 
 var frisby = require('frisby');
 var port = process.env.PORT || 8000;
-var URL = 'http://localhost:' + port + '/activitiesPlanned';
+var URL = 'http://localhost:' + port + '/activityplans';
 var _ = require('lodash');
 
 frisby.globalSetup({ // globalSetup is for ALL requests

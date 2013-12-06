@@ -23,9 +23,9 @@ var ActivityPlanEvent = common.newSchema({
 });
 
 /**
- * ActivityPlanned Schema
+ * ActivityPlan Schema
  */
-var ActivityPlannedSchema = common.newSchema({
+var ActivityPlanSchema = common.newSchema({
     owner: {type: ObjectId, ref: 'User', required: true},
     activity: {type: ObjectId, ref: 'Activity', required: true},
     joiningUsers: [
@@ -33,16 +33,16 @@ var ActivityPlannedSchema = common.newSchema({
     ],
     executionType: {type: String, enum: common.enums.executiontype},
     visibility: {type: String, enum: common.enums.visibility},
-    status: {type: String, enum: common.enums.activityPlannedStatus},
+    status: {type: String, enum: common.enums.ActivityPlanStatus},
     campaign: {type: ObjectId, ref: 'Campaign'},
     topics: [String],
     fields: [String],
-    masterPlan: {type: ObjectId, ref: 'ActivityPlanned'},  // set to the joined ActivityPlan in case this is a "slave plan" of somebody joining another plan.
+    masterPlan: {type: ObjectId, ref: 'ActivityPlan'},  // set to the joined ActivityPlan in case this is a "slave plan" of somebody joining another plan.
     mainEvent: {
         start: {type: Date},
         end: {type: Date},
         allDay: {type: Boolean},
-        frequency: {type: String, enum: common.enums.activityPlannedFrequency},
+        frequency: {type: String, enum: common.enums.ActivityPlanFrequency},
         recurrence: {
             'end-by': {
                 type: {type: String, enum: common.enums.activityRecurrenceEndByType},
@@ -59,9 +59,9 @@ var ActivityPlannedSchema = common.newSchema({
     events: [ActivityPlanEvent]
 });
 
-ActivityPlannedSchema.pre('save', function (next) {
+ActivityPlanSchema.pre('save', function (next) {
     var self = this;
-    var model = mongoose.model('ActivityPlanned');
+    var model = mongoose.model('ActivityPlan');
 
     // if this is a slave Plan, we need to update the master plan
     if (self.masterPlan) {
@@ -117,8 +117,8 @@ ActivityPlannedSchema.pre('save', function (next) {
 });
 
 
-ActivityPlannedSchema.pre('init', function (next, data) {
-    var model = mongoose.model('ActivityPlanned');
+ActivityPlanSchema.pre('init', function (next, data) {
+    var model = mongoose.model('ActivityPlan');
 
     if (data.masterPlan) {
         // this is a slave plan, so we get the current data from its master
@@ -151,8 +151,8 @@ ActivityPlannedSchema.pre('init', function (next, data) {
     }
 });
 
-module.exports = mongoose.model('ActivityPlanned', ActivityPlannedSchema);
+module.exports = mongoose.model('ActivityPlan', ActivityPlanSchema);
 
 
 // initialize Activity DB if not initialized
-common.initializeDbFor(mongoose.model('ActivityPlanned'));
+common.initializeDbFor(mongoose.model('ActivityPlan'));

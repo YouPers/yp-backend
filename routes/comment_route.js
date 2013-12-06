@@ -5,7 +5,7 @@
 
 var mongoose = require('mongoose'),
     Model = mongoose.model('Comment'),
-    genericRoutes = require('./generic');
+    genericHandlers = require('./../handlers/generic');
 //    ObjectId = mongoose.Types.ObjectId;
 
 
@@ -13,10 +13,10 @@ module.exports = function (app, config) {
 
     var baseUrl = '/comments';
 
-    app.get(baseUrl + '/:id', genericRoutes.getByIdFn(baseUrl, Model));
-    app.get(baseUrl, genericRoutes.getAllFn(baseUrl, Model));
-    app.post(baseUrl, genericRoutes.postFn(baseUrl, Model));
-    app.del(baseUrl + '/:id', genericRoutes.deleteByIdFn(baseUrl, Model));
-    app.del(baseUrl, genericRoutes.deleteAllFn(baseUrl, Model));
+    app.get(baseUrl + '/:id', genericHandlers.getByIdFn(baseUrl, Model));
+    app.get(baseUrl, genericHandlers.getAllFn(baseUrl, Model));
+    app.post(baseUrl, genericHandlers.postFn(baseUrl, Model));
+    app.del(baseUrl + '/:id', genericHandlers.deleteByIdFn(baseUrl, Model));
+    app.del(baseUrl, genericHandlers.deleteAllFn(baseUrl, Model));
 
 };

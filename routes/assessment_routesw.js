@@ -6,7 +6,7 @@
 var mongoose = require('mongoose'),
     Assessment = mongoose.model('Assessment'),
     AssessmentResult = mongoose.model('AssessmentResult'),
-    genericRoutes = require('./generic'),
+    genericHandlers = require('../handlers/generic'),
     passport = require('passport'),
     handlers = require('../handlers/assessment_handlers.js');
 
@@ -44,7 +44,7 @@ module.exports = function (swagger, config) {
             "nickname": "postAssessmentResult",
             beforeCallbacks: [passport.authenticate('basic', { session: false })]
         },
-        action: genericRoutes.postFn(resultsUrl, AssessmentResult)
+        action: genericHandlers.postFn(resultsUrl, AssessmentResult)
     });
 
     swagger.addGet({
@@ -77,7 +77,7 @@ module.exports = function (swagger, config) {
                 "nickname": "getAssessmentResults",
                 beforeCallbacks: [passport.authenticate('basic', { session: false })]
             },
-            action: genericRoutes.getAllFn(resultsUrl, AssessmentResult)
+            action: genericHandlers.getAllFn(resultsUrl, AssessmentResult)
         }
     );
 
@@ -92,7 +92,7 @@ module.exports = function (swagger, config) {
                 "nickname": "deleteAssessmentResults",
                 beforeCallbacks: [passport.authenticate('basic', { session: false })]
             },
-            action: genericRoutes.deleteAllFn(resultsUrl, AssessmentResult)
+            action: genericHandlers.deleteAllFn(resultsUrl, AssessmentResult)
         }
     );
 
@@ -107,7 +107,7 @@ module.exports = function (swagger, config) {
             "responseClass": "Assessment",
             "nickname": "getAssessments"
         },
-        action: genericRoutes.getAllFn(baseUrl, Assessment)
+        action: genericHandlers.getAllFn(baseUrl, Assessment)
     });
 
     swagger.addGet({
@@ -122,7 +122,7 @@ module.exports = function (swagger, config) {
             "responseClass": "Assessment",
             "nickname": "getAssessment"
         },
-        action: genericRoutes.getByIdFn(baseUrl, Assessment)
+        action: genericHandlers.getByIdFn(baseUrl, Assessment)
 
     });
 
@@ -135,7 +135,7 @@ module.exports = function (swagger, config) {
             method: "DELETE",
             "nickname": "deleteAssessments"
         },
-        action: genericRoutes.deleteAllFn(baseUrl, Assessment)
+        action: genericHandlers.deleteAllFn(baseUrl, Assessment)
     });
 
 };

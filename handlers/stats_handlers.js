@@ -1,10 +1,5 @@
-/**
- * User Routes module
- *    these routes require authenticated users
- */
+var stats = require('../logic/stats');
 
-var // passport = require('passport'),
-    stats = require('../logic/stats');
 
 var getStats = function () {
     return function (req, res, next) {
@@ -27,11 +22,6 @@ var getStats = function () {
     };
 };
 
-
-// TODO: enable authentication for stats, not every should be able to get stats.
-module.exports = function (app, config) {
-
-    var baseUrl = '/stats';
-    app.get(baseUrl, getStats());
-
+module.exports = {
+    getStats: getStats
 };

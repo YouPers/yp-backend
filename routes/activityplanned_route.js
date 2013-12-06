@@ -6,7 +6,7 @@
 var mongoose = require('mongoose'),
     Model = mongoose.model('ActivityPlanned'),
     CommentModel = mongoose.model('Comment'),
-    genericRoutes = require('./generic'),
+    genericHandlers = require('./../handlers/generic'),
     passport = require('passport'),
     restify = require('restify'),
     _ = require('lodash'),
@@ -67,7 +67,7 @@ function putActivityEvent(req, res, next) {
             return next(new restify.ResourceNotFoundError('no event found with Id: ' + req.params.eventId + ' in plan: ' + req.params.planId));
         }
 
-        var eventToPut = genericRoutes.clean(req.body);
+        var eventToPut = genericHandlers.clean(req.body);
 
         // checkForNewComments, if there are any comments without id they need to be saved separatly to
         // the comments collection
@@ -219,16 +219,16 @@ module.exports = function (app, config) {
     var baseUrl = '/activitiesPlanned';
 
 
-    app.get(baseUrl, passport.authenticate('basic', { session: false }), genericRoutes.getAllFn(baseUrl, Model));
-    app.get(baseUrl + '/joinOffers', passport.authenticate('basic', { session: false }), genericRoutes.getAllFn(baseUrl, Model, true));
+    app.get(baseUrl, passport.authenticate('basic', { session: false }), genericHandlers.getAllFn(baseUrl, Model));
+    app.get(baseUrl + '/joinOffers', passport.authenticate('basic', { session: false }), genericHandlers.getAllFn(baseUrl, Model, true));
     app.get(baseUrl + '/:id/ical.ics', getIcalStringForPlan);
-    app.get(baseUrl + '/:id', passport.authenticate('basic', { session: false }), genericRoutes.getByIdFn(baseUrl, Model));
+    app.get(baseUrl + '/:id', passport.authenticate('basic', { session: false }), genericHandlers.getByIdFn(baseUrl, Model));
 
-    app.del(baseUrl + '/:id', genericRoutes.deleteByIdFn(baseUrl, Model));
-    app.del(baseUrl, genericRoutes.deleteAllFn(baseUrl, Model));
+    app.del(baseUrl + '/:id', genericHandlers.deleteByIdFn(baseUrl, Model));
+    app.del(baseUrl, genericHandlers.deleteAllFn(baseUrl, Model));
 
     app.post(baseUrl, passport.authenticate('basic', { session: false }), postNewActivityPlan);
 
-    app.put(baseUrl + '/:id', passport.authenticate('basic', { session: false }), genericRoutes.putFn(baseUrl, Model));
+    app.put(baseUrl + '/:id', passport.authenticate('basic', { session: false }), genericHandlers.putFn(baseUrl, Model));
     app.put(baseUrl + '/:planId/events/:eventId', passport.authenticate('basic', { session: false }), putActivityEvent);
 };

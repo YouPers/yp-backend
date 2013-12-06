@@ -5,7 +5,7 @@
 
 var mongoose = require('mongoose'),
     User = mongoose.model('User'),
-    genericRoutes = require('./generic'),
+    genericHandlers = require('./../handlers/generic'),
     passport = require('passport');
 //    ObjectId = mongoose.Types.ObjectId;
 
@@ -27,7 +27,7 @@ module.exports = function (swagger, config) {
             "errorResponses": [swagger.errors.invalid('id'), swagger.errors.notFound("user")],
             "nickname": "getUserById"
         },
-        action: genericRoutes.getByIdFn(baseUrl, User)
+        action: genericHandlers.getByIdFn(baseUrl, User)
     });
 
     swagger.addGet({
@@ -40,7 +40,7 @@ module.exports = function (swagger, config) {
             "responseClass": "User",
             "nickname": "getUsers"
         },
-        action: genericRoutes.getAllFn(baseUrl, User)
+        action: genericHandlers.getAllFn(baseUrl, User)
     });
 
 
@@ -56,7 +56,7 @@ module.exports = function (swagger, config) {
             "errorResponses": [swagger.errors.invalid('id'), swagger.errors.notFound("user")],
             "nickname": "putUserById"
         },
-        action: genericRoutes.putFn(baseUrl, User)
+        action: genericHandlers.putFn(baseUrl, User)
     });
 
     swagger.addPost({
@@ -71,7 +71,7 @@ module.exports = function (swagger, config) {
             "errorResponses": [],
             "nickname": "postUser"
         },
-        action: genericRoutes.postFn(baseUrl, User)
+        action: genericHandlers.postFn(baseUrl, User)
     });
 
     swagger.addDelete({
@@ -85,7 +85,7 @@ module.exports = function (swagger, config) {
             "errorResponses": [swagger.errors.invalid('id'), swagger.errors.notFound("user")],
             "nickname": "deleteUser"
         },
-        action: genericRoutes.deleteByIdFn(baseUrl, User)
+        action: genericHandlers.deleteByIdFn(baseUrl, User)
     });
     swagger.addDelete({
         spec: {
@@ -98,7 +98,7 @@ module.exports = function (swagger, config) {
             "errorResponses": [],
             "nickname": "deleteAllUsers"
         },
-        action: genericRoutes.deleteAllFn(baseUrl, User)
+        action: genericHandlers.deleteAllFn(baseUrl, User)
     });
 
     swagger.addPost({

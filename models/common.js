@@ -6,7 +6,8 @@
  * To change this template use File | Settings | File Templates.
  */
 var mongoose = require('mongoose'),
-    Schema = mongoose.Schema;
+    Schema = mongoose.Schema,
+    _ = require('lodash');
 
 module.exports = {
 
@@ -19,19 +20,185 @@ module.exports = {
      * @param options
      * @returns {Schema}
      */
-    newSchema: function(definition, options) {
+    newSchema: function (definition, options) {
         var mySchema = new Schema(definition, options);
         mySchema.set('toJSON', {
-            transform: function(doc, ret, options) {
-            ret.id = ret._id;
-            delete ret._id;
+            transform: function (doc, ret, options) {
+                ret.id = ret._id;
+                delete ret._id;
 
-            ret.version = ret.__v;
-            delete ret.__v;
+                ret.version = ret.__v;
+                delete ret.__v;
 
-            delete ret.hashed_password;
-            delete ret.tempPasswordFlag;
-        }});
+                if (doc.toJsonConfig && doc.toJsonConfig.hide) {
+                    _.forEach(doc.toJsonConfig.hide, function (propertyToHide) {
+                        delete ret[propertyToHide];
+                    });
+                }
+            }});
+
+        mySchema.statics.getSwaggerModel = function () {
+
+            var typeMap = {
+                'String': 'string',
+                'Date': 'date',
+                'ObjectId': 'ObjectId',
+                'Number': 'integer'
+            };
+
+            var swaggerModels = {};
+            var mainModel = {};
+            swaggerModels[this.modelName] = mainModel;
+            mainModel.id = this.modelName;
+            mainModel.required = [];
+            mainModel.properties = {};
+
+            var hiddenProps = this.toJsonConfig && this.toJsonConfig().hide || [];
+            hiddenProps = hiddenProps.concat(['__v', '_id']);
+            var fieldDescriptions = this.getFieldDescriptions && this.getFieldDescriptions() || {};
+
+
+            function addEmbeddedDocProps(parentType, targetModel) {
+                var subModelName;
+                _.forOwn(parentType, function (property, propertyName) {
+
+                        if (isReference(property.type)) {
+                            targetModel.properties[propertyName] = {type: property.type.type.name};
+                        } else if (isArray(property)) {
+                            addArrayProperty(propertyName, property, targetModel);
+                        } else if (isSubSchema(property.type)) {
+                            subModelName = handleSubSchemaProperty(propertyName, property.type, targetModel);
+                            targetModel.properties[propertyName].items['$ref'] = subModelName;
+                        } else if (isEmbeddedDoc(property.type)) {
+                            subModelName = handleEmbeddedDocProperty(propertyName, property.type, targetModel);
+                            targetModel.properties[propertyName].items['$ref'] = subModelName;
+                        } else if (property.type && property.type.name) {
+                            targetModel.properties[propertyName] = {type: typeMap[property.type.name] || property.type.name};
+                        } else if (property.name) {
+                            targetModel.properties[propertyName] = {type: typeMap[property.name] || property.name};
+                        }
+                        else {
+                            throw new Error('unknown type for: ' + propertyName + ' propType: ' + property);
+                        }
+                        var desc = fieldDescriptions[propertyName] || fieldDescriptions[targetModel.id + '.' + propertyName];
+                        if (desc) {
+                            targetModel.properties[propertyName].description = desc;
+                        }
+                    }
+                );
+            }
+
+            // iterate over schema.paths, add to swaggerModel
+            function addArrayProperty(propertyName, type, targetModel) {
+                targetModel.properties[propertyName] = {
+                    type: 'array',
+                    items: {}
+                };
+
+                //  type inside Array
+                var subModelName;
+
+                if (isReference(type)) {
+                    targetModel.properties[propertyName].items.type = typeMap[type.name] || type.name;
+                } else if (isArray(type)) {
+                    addArrayProperty(propertyName, type[0], targetModel);
+                } else if (isSubSchema(type)) {
+                    subModelName = handleSubSchemaProperty(propertyName, type, targetModel);
+                    targetModel.properties[propertyName].items['$ref'] = subModelName;
+                } else if (isEmbeddedDoc(type)) {
+                    subModelName = handleEmbeddedDocProperty(propertyName, type, targetModel);
+                    targetModel.properties[propertyName].items['$ref'] = subModelName;
+                } else if (type && type.name) {
+                    targetModel.properties[propertyName].items.type = typeMap[type.name] || type.name;
+                } else {
+                    throw new Error('type of arrayElement is not yet supported inside an Array: ' + propertyName);
+                }
+                var desc = fieldDescriptions[propertyName] || fieldDescriptions[targetModel.id + '.' + propertyName];
+                if (desc) {
+                    targetModel.properties[propertyName].description = desc;
+                }
+
+            }
+
+            function isReference(type) {
+                return type && type.type && type.type.name === 'ObjectId';
+            }
+
+            function isSubSchema(type) {
+                return type instanceof Schema;
+            }
+
+            function isEmbeddedDoc(type) {
+                return _.isPlainObject(type);
+            }
+
+            function isArray(type) {
+                return Array.isArray(type);
+            }
+
+            function createAndRegisterNewSwaggerModel(subModelName) {
+                var subModel = {
+                    id: subModelName,
+                    required: [],
+                    properties: {}
+                };
+                swaggerModels[subModelName] = subModel;
+                return subModel;
+            }
+
+            function handleSubSchemaProperty(propertyName, type, parentModel) {
+                var subModelName = type.modelName || (_.last(propertyName) === 's' ? propertyName.slice(0, -1) : propertyName);
+                if (!swaggerModels[subModelName]) {
+                    var subModel = createAndRegisterNewSwaggerModel(subModelName);
+                    addModelPaths(type.paths, subModel);
+                }
+                return subModelName;
+            }
+
+            function handleEmbeddedDocProperty(propertyName, type) {
+                var subModelName = _.last(propertyName) === 's' ? propertyName.slice(0, -1) : propertyName;
+                var swaggerSubModel = createAndRegisterNewSwaggerModel(subModelName);
+                addEmbeddedDocProps(type, swaggerSubModel);
+                return subModelName;
+            }
+
+            function addModelPaths(paths, targetModel) {
+                _.forEach(paths, function (path, propertyName) {
+                    if (_.indexOf(hiddenProps, propertyName) === -1) {
+                        var type = path.options.type;
+                        var subModelName;
+                        if (isArray(type)) {
+                            addArrayProperty(propertyName, path.options.type[0], targetModel);
+                        } else if (isSubSchema(type)) {
+                            subModelName = handleSubSchemaProperty(propertyName, type, targetModel);
+                            targetModel.properties[propertyName] = {type: subModelName};
+                        } else if (isEmbeddedDoc(type)) {
+                            subModelName = handleEmbeddedDocProperty(propertyName, type, targetModel);
+                            targetModel.properties[propertyName] = {type: subModelName};
+                        } else {
+                            targetModel.properties[propertyName] = {
+                                type: typeMap[path.options.type.name] || path.options.type.name
+                            };
+                        }
+                        var desc = fieldDescriptions[propertyName] || fieldDescriptions[targetModel.id + '.' + propertyName];
+                        if (desc) {
+                            targetModel.properties[propertyName].description = desc;
+                        }
+                        if (Array.isArray(path.enumValues) && path.enumValues.length > 0) {
+                            targetModel.properties[propertyName].enum = path.enumValues;
+                        }
+
+                        if (path.isRequired) {
+                            targetModel.required.push(propertyName);
+                        }
+                    }
+                });
+            }
+
+            addModelPaths(this.schema.paths, mainModel);
+
+            return swaggerModels;
+        };
 
         return mySchema;
     },
@@ -86,7 +253,7 @@ module.exports = {
                             // fix for User Password hashing of imported users that already have an id in the json...
                             if (newObj.modelName = 'User' && !newObj.hashed_password) {
                                 newObj.password = jsonObj.password;
-                                newObj.save(function(err) {
+                                newObj.save(function (err) {
                                     if (err) {
                                         console.log(err.message);
                                         throw err;
@@ -104,4 +271,5 @@ module.exports = {
         });
 
     }
-};
+}
+;

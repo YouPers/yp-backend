@@ -70,11 +70,12 @@ preflightEnabler(server);
 fs.readdirSync('./models').forEach(function (file) {
     if (file.indexOf('_model.js') !== -1) {
         console.log("Loading model: " + file);
-        require('./models/' + file);
+        var model = require('./models/' + file);
+        if (model.getSwaggerModel) {
+            swagger.addModels(model.getSwaggerModel());
+        }
     }
 });
-
-
 
 // setup authentication
 var User = mongoose.model('User');
@@ -90,7 +91,7 @@ passport.use(new passportHttp.BasicStrategy(
 ));
 
 swagger.setAppHandler(server);
-swagger.addModels(require('./routes/swaggerModels.js'));
+
 swagger.configureSwaggerPaths("", "/api-docs", "");
 
 // TODO: (RBLU) remove this when all routes have been properly documented

@@ -151,7 +151,7 @@ ActivityPlannedSchema.pre('init', function (next, data) {
     }
 });
 
-mongoose.model('ActivityPlanned', ActivityPlannedSchema);
+module.exports = mongoose.model('ActivityPlanned', ActivityPlannedSchema);
 
 
 // initialize Activity DB if not initialized

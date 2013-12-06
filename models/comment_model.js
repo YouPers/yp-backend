@@ -23,6 +23,6 @@ var CommentSchema = common.newSchema({
 });
 
 
-mongoose.model('Comment', CommentSchema);
+module.exports = mongoose.model('Comment', CommentSchema);
 
 common.initializeDbFor(mongoose.model('Comment'));

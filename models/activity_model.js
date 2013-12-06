@@ -31,6 +31,7 @@ ActivitySchema.statics.getAdminAttrsSelector =  function () {
         return '+recWeights +qualityFactor';
     };
 
-mongoose.model('Activity', ActivitySchema);
+
+module.exports = mongoose.model('Activity', ActivitySchema);
 
 common.initializeDbFor(mongoose.model('Activity'));

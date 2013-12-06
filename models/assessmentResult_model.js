@@ -18,4 +18,16 @@ var AssessmentResultSchema = common.newSchema({
 });
 
 
-mongoose.model('AssessmentResult', AssessmentResultSchema);
+AssessmentResultSchema.statics.getFieldDescriptions = function() {
+    return {
+        'answer.assessment': "reference to the assessment this answer belongs to",
+        'answer.question': "reference to the question this answer belongs to",
+        'answer.answer': "the actual answer to this question, minumum: -100, maximum: 100",
+        owner:  "reference to the user owning this Result",
+        campaign: "reference to the campaign this result was entered in, used for statistics",
+        assessment:  "reference to the assessment this result belongs to",
+        timestamp: "optional on POST, is filled by server when not submitted"
+    };
+};
+
+module.exports = mongoose.model('AssessmentResult', AssessmentResultSchema);

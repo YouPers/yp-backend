@@ -16,9 +16,9 @@ var CampaignSchema = common.newSchema({
     end: {type: Date}
 });
 
-mongoose.model('Campaign', CampaignSchema);
+var model = mongoose.model('Campaign', CampaignSchema);
 
-var model = mongoose.model('Campaign');
+module.exports = mongoose.model('Campaign');
 
 
 

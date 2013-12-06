@@ -123,12 +123,19 @@ module.exports = function (app, config) {
 
     var baseUrl = '/activities';
 
+    app.get(baseUrl+'/swagger', roleBasedAuth('anonymous'),function(req, res, next) {
+        res.send(Activity.getSwaggerModel());
+        return next();
+    } );
+
     app.get({path: baseUrl, name: 'get-activities'}, roleBasedAuth('anonymous'), genericRoutes.getAllFn(baseUrl, Activity));
     app.get({path: baseUrl + '/recommendations', name: 'get-recommendations'}, passport.authenticate('basic', { session: false }), getRecommendationsFn);
     app.get(baseUrl + '/:id', roleBasedAuth('anonymous'), genericRoutes.getByIdFn(baseUrl, Activity, 'anonymous'), function(req, res, next) {cachedActList = null;});
     app.post(baseUrl, passport.authenticate('basic', { session: false }), genericRoutes.postFn(baseUrl, Activity), function(req, res, next) {cachedActList = null;});
     app.put(baseUrl + '/:id', passport.authenticate('basic', { session: false }), genericRoutes.putFn(baseUrl, Activity));
     app.del(baseUrl, genericRoutes.deleteAllFn(baseUrl, Activity));
+
+
 
 
 

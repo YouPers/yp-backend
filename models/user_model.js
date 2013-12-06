@@ -69,6 +69,12 @@ UserSchema
         return this._password;
     });
 
+UserSchema.statics.toJsonConfig = function() {
+    return {
+        hide: ['hashed_password', 'tempPasswordFlag', 'emailValidatedFlag']
+    };
+};
+
 /**
  * Pre-save hook
  */
@@ -97,6 +103,6 @@ UserSchema.pre('save', function (next) {
 });
 
 
-mongoose.model('User', UserSchema);
+module.exports = mongoose.model('User', UserSchema);
 
 common.initializeDbFor(mongoose.model('User'));

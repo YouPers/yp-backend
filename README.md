@@ -26,14 +26,16 @@ In order to display the documentation from the locally running Backend during de
 - node web.js
 - open your preferred browser and go to localhost:5000 and enjoy the API documenation.
 
-#### Prerequisites:
+### Building and contributing:
+
+Prerequisites:
 - you have your local backend running at localhost:8000
 
 In order to see the API documentation of a deployed instance of the backend, you can either use your local swagger-ui (see
 above) and just enter the backend-URL in the input-box on top. Or you can use a public swagger site like:
 [swagger public](http://petstore.swagger.wordnik.com/) and enter the YouPers Backend-URL into the input box on top.
 
-### Build commands:
+#### Build commands:
 
     grunt
 tests, compiles and builds the distribution version of the whole project, is used by CI
@@ -54,7 +56,7 @@ for TDD, starts a server and runs the testsuite, then watches all files an resta
 testsuite whenever changes occur
 
 
-## Continuous Deployment to Heroku:
+#### Continuous Deployment to Heroku:
 
 CircleCI automatically deploys this project to Heroku whenever all Tests pass on the CircleCI Server.
 
@@ -62,11 +64,6 @@ Heroku uses:
 - "ci" environmont (see config.js) for the master branch, deploys to http://yp-backend-ci.herokuapp.com
 - "test" environment (see config.js) for the test branch, deploys to http://yp-backend-test.herokupp.com
 
-## Examples
-_(Coming soon)_
-
-## Contributing
-In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
 _(Nothing yet)_

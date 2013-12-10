@@ -18,6 +18,36 @@ module.exports = function (swagger, config) {
     swagger.addGet({
         spec: {
             description: "Operations about ActivityPlans",
+            path: baseUrl + '/joinOffers',
+            notes: "only returns public plans and is constrained by activity-Reference",
+            summary: "returns activityPlans other users have published to invite colleages to join",
+            params: [
+                {
+                    paramType: "query",
+                    name: "activity",
+                    description: "the activity for which joinOffers are fetched",
+                    dataType: "ObjectId",
+                    required: true
+                },
+                generic.params.sort,
+                generic.params.limit,
+                generic.params.filter,
+                generic.params.populate,
+                generic.params.populatedeep
+            ],
+            method: "GET",
+            "responseClass": "ActivityPlan",
+            "nickname": "getJoinOffers",
+            beforeCallbacks: [passport.authenticate('basic', { session: false })]
+        },
+        action: generic.getAllFn(baseUrl, Model, true)
+    });
+
+
+
+    swagger.addGet({
+        spec: {
+            description: "Operations about ActivityPlans",
             path: baseUrlWithId,
             notes: "Returns an activityPlan by Id, only returns the plan if the current user is the owner of the plan",
             summary: "Returns an activityPlan by Id",
@@ -59,33 +89,7 @@ module.exports = function (swagger, config) {
         action: generic.getAllFn(baseUrl, Model)
     });
 
-    swagger.addGet({
-        spec: {
-            description: "Operations about ActivityPlans",
-            path: baseUrl + '/joinOffers',
-            notes: "only returns public plans and is constrained by activity-Reference",
-            summary: "returns activityPlans other users have published to invite colleages to join",
-            params: [
-                {
-                    paramType: "query",
-                    name: "activity",
-                    description: "the activity for which joinOffers are fetched",
-                    dataType: "ObjectId",
-                    required: true
-                },
-                generic.params.sort,
-                generic.params.limit,
-                generic.params.filter,
-                generic.params.populate,
-                generic.params.populatedeep
-            ],
-            method: "GET",
-            "responseClass": "ActivityPlan",
-            "nickname": "getJoinOffers",
-            beforeCallbacks: [passport.authenticate('basic', { session: false })]
-        },
-        action: generic.getAllFn(baseUrl, Model)
-    });
+
 
     swagger.addGet({
         spec: {

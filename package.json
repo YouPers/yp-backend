@@ -14,7 +14,7 @@
     "mongo": "0.1.x",
     "client-sessions": "0.3.x",
     "nodemailer": "0.5.x",
-    "mail-preview": "latest",
+    "email-templates": "latest",
     "toobusy": "0.2.x",
     "range_check": "latest",
     "longjohn": "0.2.x",

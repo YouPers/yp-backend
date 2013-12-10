@@ -6,7 +6,8 @@
 var mongoose = require('mongoose'),
     User = mongoose.model('User'),
     generic = require('./../handlers/generic'),
-    passport = require('passport');
+    passport = require('passport'),
+    userRoutes = require('./../handlers/user_handlers.js');
 //    ObjectId = mongoose.Types.ObjectId;
 
 
@@ -78,7 +79,7 @@ module.exports = function (swagger, config) {
             "errorResponses": [],
             "nickname": "postUser"
         },
-        action: generic.postFn(baseUrl, User)
+        action: userRoutes.postFn(baseUrl, User)
     });
 
     swagger.addDelete({

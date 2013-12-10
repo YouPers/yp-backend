@@ -1,4 +1,4 @@
-var stats = require('../logic/stats');
+var stats = require('../util/stats');
 
 var getCampaignStats = function (baseUrl, Model) {
     return function (req, res, next) {

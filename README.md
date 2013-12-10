@@ -24,6 +24,10 @@ above) and just enter the backend-URL in the input-box on top. Or you can use a 
 [swagger public](http://petstore.swagger.wordnik.com/) and enter the YouPers Backend-URL into the input box on
 top e.g. https://uat.youpers.com/api-docs
 
+The Documentation site is always using the user: unittest and password: test when it calls the backend.
+
+## Developing and building
+
 ### Prerequisites
 
 Installed local mongoDb: http://www.mongodb.org/downloads

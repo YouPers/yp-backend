@@ -5,7 +5,7 @@
 
 var mongoose = require('mongoose'),
     Model = mongoose.model('ActivityPlan'),
-    genericHandlers = require('./../handlers/generic'),
+    generic = require('./../handlers/generic'),
     passport = require('passport'),
     handlers = require('../handlers/activityplan_handlers');
 
@@ -18,16 +18,45 @@ module.exports = function (swagger, config) {
     swagger.addGet({
         spec: {
             description: "Operations about ActivityPlans",
+            path: baseUrlWithId,
+            notes: "Returns an activityPlan by Id, only returns the plan if the current user is the owner of the plan",
+            summary: "Returns an activityPlan by Id",
+            params: [
+                {
+                    paramType: "path",
+                    name: "id",
+                    description: "the id of the activityPlan to fetch ",
+                    dataType: "ObjectId",
+                    required: true
+                },
+                generic.params.populate,
+                generic.params.populatedeep
+            ],
+            method: "GET",
+            "nickname": "getActivityPlan",
+            beforeCallbacks: [passport.authenticate('basic', { session: false })]
+        },
+        action: generic.getByIdFn(baseUrl, Model)
+    });
+
+    swagger.addGet({
+        spec: {
+            description: "Operations about ActivityPlans",
             path: baseUrl,
             notes: "only returns ActivityPlans of the current user, the API does not allow to retrieve" +
                 "plans owned by other users",
             summary: "returns all activityPlans of the currently logged in user",
             method: "GET",
+            params: [generic.params.sort,
+                generic.params.limit,
+                generic.params.filter,
+                generic.params.populate,
+                generic.params.populatedeep],
             "responseClass": "ActivityPlan",
             "nickname": "getActivityPlans",
             beforeCallbacks: [passport.authenticate('basic', { session: false })]
         },
-        action: genericHandlers.getAllFn(baseUrl, Model)
+        action: generic.getAllFn(baseUrl, Model)
     });
 
     swagger.addGet({
@@ -43,14 +72,19 @@ module.exports = function (swagger, config) {
                     description: "the activity for which joinOffers are fetched",
                     dataType: "ObjectId",
                     required: true
-                }
+                },
+                generic.params.sort,
+                generic.params.limit,
+                generic.params.filter,
+                generic.params.populate,
+                generic.params.populatedeep
             ],
             method: "GET",
             "responseClass": "ActivityPlan",
             "nickname": "getJoinOffers",
             beforeCallbacks: [passport.authenticate('basic', { session: false })]
         },
-        action: genericHandlers.getAllFn(baseUrl, Model)
+        action: generic.getAllFn(baseUrl, Model)
     });
 
     swagger.addGet({
@@ -75,27 +109,6 @@ module.exports = function (swagger, config) {
         action: handlers.getIcalStringForPlan
     });
 
-    swagger.addGet({
-        spec: {
-            description: "Operations about ActivityPlans",
-            path: baseUrlWithId,
-            notes: "Returns an activityPlan by Id, only returns the plan if the current user is the owner of the plan",
-            summary: "Returns an activityPlan by Id",
-            params: [
-                {
-                    paramType: "path",
-                    name: "id",
-                    description: "the id of the activityPlan to fetch ",
-                    dataType: "ObjectId",
-                    required: true
-                }
-            ],
-            method: "GET",
-            "nickname": "getActivityPlan",
-            beforeCallbacks: [passport.authenticate('basic', { session: false })]
-        },
-        action: genericHandlers.getByIdFn(baseUrl, Model)
-    });
 
     swagger.addDelete({
         spec: {
@@ -116,7 +129,7 @@ module.exports = function (swagger, config) {
             "nickname": "deleteActivityPlan",
             beforeCallbacks: [passport.authenticate('basic', { session: false })]
         },
-        action: genericHandlers.deleteByIdFn(baseUrl, Model)
+        action: generic.deleteByIdFn(baseUrl, Model)
     });
 
     swagger.addDelete({
@@ -129,7 +142,7 @@ module.exports = function (swagger, config) {
             "nickname": "deleteActivityPlans",
             beforeCallbacks: [passport.authenticate('basic', { session: false })]
         },
-        action: genericHandlers.deleteAllFn(baseUrl, Model)
+        action: generic.deleteAllFn(baseUrl, Model)
     });
 
     swagger.addPost({
@@ -183,7 +196,7 @@ module.exports = function (swagger, config) {
             "nickname": "putActivityPlan",
             beforeCallbacks: [passport.authenticate('basic', { session: false })]
         },
-        action: genericHandlers.putFn(baseUrl, Model)
+        action: generic.putFn(baseUrl, Model)
     });
 
     swagger.addPut({

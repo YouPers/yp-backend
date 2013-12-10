@@ -5,7 +5,7 @@
 
 var mongoose = require('mongoose'),
     User = mongoose.model('User'),
-    genericHandlers = require('./../handlers/generic'),
+    generic = require('./../handlers/generic'),
     passport = require('passport');
 //    ObjectId = mongoose.Types.ObjectId;
 
@@ -22,12 +22,14 @@ module.exports = function (swagger, config) {
             notes: "returns a user based on id",
             summary: "find user by id",
             method: "GET",
-            params: [swagger.pathParam("id", "ID of the user to be fetched", "string")],
+            params: [swagger.pathParam("id", "ID of the user to be fetched", "string"),
+                generic.params.populate,
+                generic.params.populatedeep],
             "responseClass": "User",
             "errorResponses": [swagger.errors.invalid('id'), swagger.errors.notFound("user")],
             "nickname": "getUserById"
         },
-        action: genericHandlers.getByIdFn(baseUrl, User)
+        action: generic.getByIdFn(baseUrl, User)
     });
 
     swagger.addGet({
@@ -36,11 +38,16 @@ module.exports = function (swagger, config) {
             path: baseUrl,
             notes: "returns all users",
             summary: "returns all users",
+            params: [generic.params.sort,
+                generic.params.limit,
+                generic.params.filter,
+                generic.params.populate,
+                generic.params.populatedeep],
             method: "GET",
             "responseClass": "User",
             "nickname": "getUsers"
         },
-        action: genericHandlers.getAllFn(baseUrl, User)
+        action: generic.getAllFn(baseUrl, User)
     });
 
 
@@ -56,7 +63,7 @@ module.exports = function (swagger, config) {
             "errorResponses": [swagger.errors.invalid('id'), swagger.errors.notFound("user")],
             "nickname": "putUserById"
         },
-        action: genericHandlers.putFn(baseUrl, User)
+        action: generic.putFn(baseUrl, User)
     });
 
     swagger.addPost({
@@ -71,7 +78,7 @@ module.exports = function (swagger, config) {
             "errorResponses": [],
             "nickname": "postUser"
         },
-        action: genericHandlers.postFn(baseUrl, User)
+        action: generic.postFn(baseUrl, User)
     });
 
     swagger.addDelete({
@@ -85,7 +92,7 @@ module.exports = function (swagger, config) {
             "errorResponses": [swagger.errors.invalid('id'), swagger.errors.notFound("user")],
             "nickname": "deleteUser"
         },
-        action: genericHandlers.deleteByIdFn(baseUrl, User)
+        action: generic.deleteByIdFn(baseUrl, User)
     });
     swagger.addDelete({
         spec: {
@@ -98,7 +105,7 @@ module.exports = function (swagger, config) {
             "errorResponses": [],
             "nickname": "deleteAllUsers"
         },
-        action: genericHandlers.deleteAllFn(baseUrl, User)
+        action: generic.deleteAllFn(baseUrl, User)
     });
 
     swagger.addPost({

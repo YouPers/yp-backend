@@ -6,7 +6,7 @@
 var mongoose = require('mongoose'),
     Assessment = mongoose.model('Assessment'),
     AssessmentResult = mongoose.model('AssessmentResult'),
-    genericHandlers = require('../handlers/generic'),
+    generic = require('../handlers/generic'),
     passport = require('passport'),
     handlers = require('../handlers/assessment_handlers.js');
 
@@ -44,7 +44,7 @@ module.exports = function (swagger, config) {
             "nickname": "postAssessmentResult",
             beforeCallbacks: [passport.authenticate('basic', { session: false })]
         },
-        action: genericHandlers.postFn(resultsUrl, AssessmentResult)
+        action: generic.postFn(resultsUrl, AssessmentResult)
     });
 
     swagger.addGet({
@@ -54,7 +54,9 @@ module.exports = function (swagger, config) {
                 notes: "always returns zero or one result, the newest result is the one with the newest timestamp",
                 summary: "returns a the newest assessmentResult for the current user and the assessment with id assId",
                 method: "GET",
-                params: [swagger.pathParam("assId", "ID of the assessment for which to store a result", "string")],
+                params: [swagger.pathParam("assId", "ID of the assessment for which to store a result", "string"),
+                    generic.params.populate,
+                    generic.params.populatedeep],
                 "responseClass": "AssessmentResult",
                 "errorResponses": [swagger.errors.invalid('assId'), swagger.errors.notFound("assessment")],
                 "nickname": "getNewestAssessmentResult",
@@ -77,7 +79,7 @@ module.exports = function (swagger, config) {
                 "nickname": "getAssessmentResults",
                 beforeCallbacks: [passport.authenticate('basic', { session: false })]
             },
-            action: genericHandlers.getAllFn(resultsUrl, AssessmentResult)
+            action: generic.getAllFn(resultsUrl, AssessmentResult)
         }
     );
 
@@ -92,7 +94,7 @@ module.exports = function (swagger, config) {
                 "nickname": "deleteAssessmentResults",
                 beforeCallbacks: [passport.authenticate('basic', { session: false })]
             },
-            action: genericHandlers.deleteAllFn(resultsUrl, AssessmentResult)
+            action: generic.deleteAllFn(resultsUrl, AssessmentResult)
         }
     );
 
@@ -107,7 +109,7 @@ module.exports = function (swagger, config) {
             "responseClass": "Assessment",
             "nickname": "getAssessments"
         },
-        action: genericHandlers.getAllFn(baseUrl, Assessment)
+        action: generic.getAllFn(baseUrl, Assessment)
     });
 
     swagger.addGet({
@@ -122,7 +124,7 @@ module.exports = function (swagger, config) {
             "responseClass": "Assessment",
             "nickname": "getAssessment"
         },
-        action: genericHandlers.getByIdFn(baseUrl, Assessment)
+        action: generic.getByIdFn(baseUrl, Assessment)
 
     });
 
@@ -135,7 +137,7 @@ module.exports = function (swagger, config) {
             method: "DELETE",
             "nickname": "deleteAssessments"
         },
-        action: genericHandlers.deleteAllFn(baseUrl, Assessment)
+        action: generic.deleteAllFn(baseUrl, Assessment)
     });
 
 };

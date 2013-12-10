@@ -44,7 +44,7 @@ module.exports = function (swagger, config) {
             "responseClass": "Comment",
             "nickname": "getCommentById"
         },
-        action: generic.getByIdFn(baseUrl, Model)
+        action: generic.getAllFn(baseUrl, Model)
     });
 
     swagger.addPost({

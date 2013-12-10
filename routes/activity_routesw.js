@@ -6,7 +6,7 @@
 var mongoose = require('mongoose'),
     Activity = mongoose.model('Activity'),
     passport = require('passport'),
-    genericHandlers = require('../handlers/generic'),
+    generic = require('../handlers/generic'),
     handlers = require('../handlers/activity_handlers');
 
 
@@ -30,9 +30,12 @@ module.exports = function (swagger, config) {
                 {
                     paramType: "query",
                     name: "focus",
-                    description: "the list of assessmentQuestions to be used as a focus when generating recommendations",
+                    description: "the list of assessmentQuestions ObjectIds to be used as a focus when generating recommendations",
                     dataType: "ObjectId"
-                }],
+                },
+                generic.params.limit,
+                generic.params.populate
+            ],
             beforeCallbacks: [passport.authenticate('basic', { session: false })]
         },
         action: handlers.getRecommendationsFn
@@ -46,13 +49,14 @@ module.exports = function (swagger, config) {
             notes: "returns only the public attributes in normal case. If the authenticated user has role 'admin', all " +
                 "attributes are returned (incl. all recWeights, ...)",
             summary: "returns an activity based on id",
-            params: [swagger.pathParam("id", "ID of the activity to be fetched", "ObjectId")],
+            params: [swagger.pathParam("id", "ID of the activity to be fetched", "ObjectId"),
+                generic.params.populate],
             method: "GET",
             "responseClass": "Activity",
             "nickname": "getActivity",
             beforeCallbacks: [handlers.roleBasedAuth('anonymous')]
         },
-        action: genericHandlers.getByIdFn(baseUrl, Activity)
+        action: generic.getByIdFn(baseUrl, Activity)
 
     });
 
@@ -63,12 +67,17 @@ module.exports = function (swagger, config) {
             notes: "returns only the public attributes in normal case. If the authenticated user has role 'admin', all " +
                 "attributes are returned (incl. all recWeights, ...)",
             summary: "returns all activities",
+            params: [generic.params.sort,
+                generic.params.limit,
+                generic.params.filter,
+                generic.params.populate,
+                generic.params.populatedeep],
             method: "GET",
             "responseClass": "Activity",
             "nickname": "getActivities",
             beforeCallbacks: [handlers.roleBasedAuth('anonymous')]
         },
-        action: genericHandlers.getAllFn(baseUrl, Activity)
+        action: generic.getAllFn(baseUrl, Activity)
 
     });
 
@@ -89,10 +98,11 @@ module.exports = function (swagger, config) {
                     name: "ActivityToStore",
                     description: "the activity to store",
                     dataType: "Activity"
-                }],
+                }
+            ],
             beforeCallbacks: [passport.authenticate('basic', { session: false }), handlers.invalidateActivityCache]
         },
-        action: genericHandlers.postFn(baseUrl, Activity)
+        action: generic.postFn(baseUrl, Activity)
     });
 
     swagger.addPut({
@@ -107,11 +117,11 @@ module.exports = function (swagger, config) {
             params: [swagger.pathParam("id", "ID of the activity to be updated", "ObjectId")],
             beforeCallbacks: [passport.authenticate('basic', { session: false }), handlers.invalidateActivityCache]
         },
-        action: genericHandlers.putFn(baseUrl, Activity)
+        action: generic.putFn(baseUrl, Activity)
     });
 
     swagger.addDelete({
-        spec:{
+        spec: {
             description: "Operations about Activities",
             path: baseUrl,
             notes: "deletes all activities",
@@ -120,7 +130,7 @@ module.exports = function (swagger, config) {
             "nickname": "deleteActivities",
             beforeCallbacks: [passport.authenticate('basic', { session: false }), handlers.invalidateActivityCache]
         },
-        action: genericHandlers.deleteAllFn(baseUrl, Activity)
+        action: generic.deleteAllFn(baseUrl, Activity)
     });
 
- };
+};

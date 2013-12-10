@@ -571,5 +571,56 @@ module.exports = {
         delete update.modified_by;
         delete update.created_by;
         return update;
+    },
+
+    params: {
+        filter: {
+            "name" : "filter",
+            "description" : 'filters the results by adding a where clause, to see  the supported language and format see ',
+            "dataType" : 'String of filter queries',
+            "required" : false,
+            "allowMultiple" : true,
+            "paramType" : "query"
+        },
+        sort: {
+            "name" : "sort",
+            "description" : 'sorts the results by the specified properties, add ":-1" to reverse sort: e.g. sort="created:-1"',
+            "dataType" : 'String of properties',
+            "required" : false,
+            "allowMultiple" : true,
+            "paramType" : "query"
+        },
+        populate: {
+            "name" : "populate",
+            "description" : 'populates specified reference properties of the retrieved ressource with the full object,' +
+                ' e.g. comments.author is of type ObjectId ref User, if you want the full user object instead of the ObjectId' +
+                'add this queryParam: "populate="author". Supports multiple space separated values, also allows to populate' +
+                'embedded subobject properties by using .-notation. Limitation: Only allows to populate over one DB-Collection, meaning' +
+                'you can populate the comments.author, but you cannot populate ActivityEvent.Comment.Author, use ' +
+                '"populatedeep" if you need this. \n' +
+                'Use with caution, it may impact performance! ',
+            "dataType" : 'String of properties',
+            "required" : false,
+            "allowMultiple" : true,
+            "paramType" : "query"
+        },
+        populatedeep: {
+            "name" : "populatedeep",
+            "description" : 'populates specified reference deep properties of the retrieved ressource with the full object,' +
+                'use this if you need to go over more than 1 collection, see documentation of "populate" \n' +
+                'Use with caution, it may impact performance! ',
+            "dataType" : 'String of properties',
+            "required" : false,
+            "allowMultiple" : true,
+            "paramType" : "query"
+        },
+        limit: {
+            "name" : "limit",
+            "description" : 'limit the amount of returned objects, default is 100, max is 1000',
+            "dataType" : 'integer',
+            "required" : false,
+            "allowMultiple" : false,
+            "paramType" : "query"
+        }
     }
 };

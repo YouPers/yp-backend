@@ -619,6 +619,7 @@ module.exports = {
             "description" : 'limit the amount of returned objects, default is 100, max is 1000',
             "dataType" : 'integer',
             "required" : false,
+            "default": 100,
             "allowMultiple" : false,
             "paramType" : "query"
         }

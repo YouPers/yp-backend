@@ -1,8 +1,7 @@
 var frisby = require('frisby');
 var port = process.env.PORT || 8000;
 var URL = 'http://localhost:'+ port +'/assessments';
-
-
+var consts = require('./testconsts');
 
 frisby.globalSetup({ // globalSetup is for ALL requests
     request: {
@@ -41,7 +40,7 @@ frisby.create('GET all assessments')
 
                 frisby.create('post a first answer for this assessment')
                     .post(URL + '/' + assessments[0].id + '/results',
-                        {owner: '525fb247101e330000001008',
+                        {owner: consts.users.unittest.id,
                             assessment: assessments[0].id,
                             timestamp: new Date(),
                             answers:
@@ -69,7 +68,7 @@ frisby.create('GET all assessments')
 
                 frisby.create('post a second answer for this assessment')
                     .post(URL + '/' + assessments[0].id + '/results',
-                    {owner: '525fb247101e330000001008',
+                    {owner: consts.users.unittest.id,
                         assessment: assessments[0].id,
                         timestamp: newDate,
                         answers:
@@ -97,7 +96,7 @@ frisby.create('GET all assessments')
                     .get(URL + '/' + assessments[0].id + '/results/newest')
                     .expectStatus(200)
                     .expectJSON({
-                            owner: '525fb247101e330000001008',
+                            owner: consts.users.unittest.id,
                             timestamp: newDate.toJSON()
                         }
                     )

@@ -1,6 +1,8 @@
 var frisby = require('frisby');
 var port = process.env.PORT || 8000;
 var URL = 'http://localhost:'+ port;
+var consts = require('./testconsts');
+
 
 frisby.globalSetup({ // globalSetup is for ALL requests
     request: {
@@ -17,7 +19,6 @@ frisby.create('GET all activites')
         number: String,
         title: String
     })
-    // 'afterJSON' automatically parses response body as JSON and passes it as an argument
     .afterJSON(function(activities) {
 
         // Use data from previous result in next test

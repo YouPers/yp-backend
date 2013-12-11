@@ -2,6 +2,8 @@ var frisby = require('frisby');
 var port = process.env.PORT || 8000;
 var URL = 'http://localhost:' + port;
 var _ = require('lodash');
+var consts = require('./testconsts');
+
 
 frisby.globalSetup({ // globalSetup is for ALL requests
     request: {
@@ -11,8 +13,8 @@ frisby.globalSetup({ // globalSetup is for ALL requests
 });
 
 var joinable = {
-    "owner": "525fb247101e330000001008",
-    "activity": "5278c6adcdeab69a2500001e",
+    "owner": consts.users.unittest.id,
+    "activity": consts.groupActivity.id,
     "visibility": "public",
     "executionType": "group",
     "mainEvent": {
@@ -26,8 +28,8 @@ var joinable = {
 
 frisby.create('plan once activity and check whether event is generated')
     .post(URL + '/activityplans', {
-        "owner": "525fb247101e330000001008",
-        "activity": "5278c6adcdeab69a2500001e",
+        "owner": consts.users.unittest.id,
+        "activity": consts.groupActivity.id,
         "visibility": "public",
         "executionType": "group",
         "mainEvent": {
@@ -46,7 +48,7 @@ frisby.create('plan once activity and check whether event is generated')
             .expectStatus(200)
             .expectJSON('?', {
                 id: joinablePlan.id,
-                activity: '5278c6adcdeab69a2500001e'
+                activity: consts.groupActivity.id
             })
             .afterJSON(function (joinablePlans) {
                 _.forEach(joinablePlans, function (joinablePlan) {
@@ -54,32 +56,32 @@ frisby.create('plan once activity and check whether event is generated')
                 });
 
                 joinable.masterPlan = joinablePlan.id;
-                joinable.owner = '525fb247101e330000000005';
+                joinable.owner = consts.users.reto.id;
 
                 frisby.create('join the first joinablePlan as a different user')
                     .auth('reto', 'reto')
                     .post(URL + '/activityplans', joinable)
                     .expectStatus(201)
                     .expectJSON({
-                        activity: '5278c6adcdeab69a2500001e',
+                        activity: consts.groupActivity.id,
                         masterPlan: joinablePlan.id,
-                        joiningUsers: ['525fb247101e330000001008']
+                        joiningUsers: [consts.users.unittest.id]
                     })
                     .afterJSON(function(slavePlan) {
 
                         frisby.create('get all the joinOffers again, and check whether the slave plan is not included in the list')
-                            .get(URL + '/activityplans/joinOffers?activity=5278c6adcdeab69a2500001e')
+                            .get(URL + '/activityplans/joinOffers?activity=' + consts.groupActivity.id)
                             .expectStatus(200)
                             .expectJSON('?', {
                                 id: joinablePlan.id,
-                                activity: '5278c6adcdeab69a2500001e'
+                                activity: consts.groupActivity.id
                             })
                             .afterJSON(function (newJoinableList) {
                                 _.forEach(newJoinableList, function(plan) {
                                     expect(plan.masterPlan).not.toBeDefined();
                                     expect(plan.id).not.toEqual(slavePlan.id);
                                     if (plan.id === joinablePlan.id) {
-                                        expect(plan.joiningUsers).toContain('525fb247101e330000000005');
+                                        expect(plan.joiningUsers).toContain(consts.users.reto.id);
                                     }
                                 });
                             }).toss();

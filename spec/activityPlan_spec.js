@@ -2,6 +2,7 @@ var frisby = require('frisby');
 var port = process.env.PORT || 8000;
 var URL = 'http://localhost:' + port;
 var _ = require('lodash');
+var consts = require('./testconsts');
 
 frisby.globalSetup({ // globalSetup is for ALL requests
     request: {
@@ -13,8 +14,8 @@ frisby.globalSetup({ // globalSetup is for ALL requests
 
 frisby.create('plan once activity and check whether event is generated')
     .post(URL + '/activityplans', {
-        "owner": "525fb247101e330000001008",
-        "activity": "5278c6adcdeab69a2500001e",
+        "owner": consts.users.unittest.id,
+        "activity": consts.groupActivity.id,
         "visibility": "public",
         "executionType": "group",
         "mainEvent": {
@@ -38,7 +39,7 @@ frisby.create('plan once activity and check whether event is generated')
             .expectStatus(200)
             .expectJSON({
                 id: newPlan.id,
-                activity: '5278c6adcdeab69a2500001e'
+                activity: consts.groupActivity.id
             })
             .toss();
 
@@ -90,7 +91,7 @@ frisby.create('plan once activity and check whether event is generated')
 
 frisby.create('plan weekly activity and check whether events are generated, with End-By: after 6')
     .post(URL + '/activityplans', {
-        "owner": "525fb247101e330000001008",
+        "owner": consts.users.unittest.id,
         "activity": "5278c6adcdeab69a2500001e",
         "visibility": "public",
         "executionType": "group",
@@ -163,8 +164,8 @@ frisby.create('plan weekly activity and check whether events are generated, with
 
 frisby.create('plan daily activity and check whether events are generated, with End-By: after 6')
     .post(URL + '/activityplans', {
-        "owner": "525fb247101e330000001008",
-        "activity": "5278c6adcdeab69a2500001e",
+        "owner": consts.users.unittest.id,
+        "activity": consts.groupActivity.id,
         "visibility": "public",
         "executionType": "group",
         "mainEvent": {
@@ -191,10 +192,10 @@ frisby.create('plan daily activity and check whether events are generated, with 
         expect(newPlan.events[5].end).toEqual('2014-10-22T13:00:00.000Z');
         frisby.create('let another user join this plan')
             .removeHeader('Authorization')
-            .auth('reto', 'reto')
+            .auth(consts.users.reto.username, consts.users.reto.password)
             .post(URL + '/activityplans', {
-                "owner": "525fb247101e330000000005",
-                "activity": "5278c6adcdeab69a2500001e",
+                "owner": consts.users.reto.id,
+                "activity": consts.groupActivity.id,
                 "visibility": "public",
                 "executionType": "group",
                 "mainEvent": {
@@ -221,7 +222,7 @@ frisby.create('plan daily activity and check whether events are generated, with 
 
 
                 frisby.create('reload masterPlan from server')
-                    .auth('unittest', 'test')
+                    .auth(consts.users.unittest.username, consts.users.unittest.password)
                     .get(URL + '/activityplans/' + newPlan.id)
                     .expectStatus(200)
                     .afterJSON(function (reloadedNewPlan) {

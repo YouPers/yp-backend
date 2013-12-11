@@ -10,6 +10,7 @@ var frisby = require('frisby');
 var port = process.env.PORT || 8000;
 var URL = 'http://localhost:' + port + '/activityplans';
 var _ = require('lodash');
+var consts = require('./testconsts');
 
 frisby.globalSetup({ // globalSetup is for ALL requests
     request: {
@@ -19,8 +20,8 @@ frisby.globalSetup({ // globalSetup is for ALL requests
 });
 
 var masterPlan = {
-    "owner": "525fb247101e330000001008",
-    "activity": "5278c6adcdeab69a2500001e",
+    "owner": consts.users.unittest.id,
+    "activity": consts.groupActivity.id,
     "visibility": "public",
     "executionType": "group",
     "mainEvent": {
@@ -56,9 +57,9 @@ frisby.create('plan weekly activity as a master for a joining test')
         delete slavePlan.id;
         delete slavePlan.events;
         delete slavePlan.joiningUsers;
-        slavePlan.owner = '525fb247101e330000000005';
+        slavePlan.owner = consts.users.reto.id;
         frisby.create('post a joining plan ')
-            .auth('reto', 'reto')
+            .auth(consts.users.reto.username, consts.users.reto.password)
             .post(URL, slavePlan)
             .expectStatus(201)
             .afterJSON(function (slavePlanPostAnswer) {
@@ -82,7 +83,7 @@ frisby.create('plan weekly activity as a master for a joining test')
 
                 frisby.create('reload slavePlan')
                     .get(URL + '/' + slavePlanPostAnswer.id)
-                    .auth('reto', 'reto')
+                    .auth(consts.users.reto.username, consts.users.reto.password)
                     .expectStatus(200)
                     .afterJSON(function (slavePlanReloaded) {
                         expect(slavePlanReloaded.masterPlan).toEqual(slavePlan.masterPlan);
@@ -104,7 +105,7 @@ frisby.create('plan weekly activity as a master for a joining test')
 
                                 frisby.create('reload slavePlan and check whether we have the comment')
                                     .get(URL + '/' + slavePlanPostAnswer.id + '?populate=events.comments')
-                                    .auth('reto', 'reto')
+                                    .auth(consts.users.reto.username, consts.users.reto.password)
                                     .expectStatus(200)
                                     .afterJSON(function (slavePlanReloadedAgain) {
                                         expect(slavePlanReloadedAgain.events[0].comments).toBeDefined();

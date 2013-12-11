@@ -269,14 +269,12 @@ var _addFilter = function (queryParams, dbquery, Model) {
     return dbquery;
 };
 
-
-var addQueryOptions = function (req, dbquery, Model) {
+var processStandardQueryOptions = function (req, dbquery, Model) {
     dbquery = _addPagination(req.query, dbquery);
     dbquery = _addPopulation(req.query, dbquery);
     dbquery = _addSort(req.query, dbquery);
     dbquery = _addFilter(req.query, dbquery, Model);
     return dbquery;
-
 };
 
 /**
@@ -373,13 +371,15 @@ function resolveDocumentzAtPath(doc, pathBits) {
 
 module.exports = {
 
+    addStandardQueryOptions: processStandardQueryOptions,
+
     getByIdFn: function (baseUrl, Model) {
         return function (req, res, next) {
             var dbQuery = Model.findById(req.params.id);
             if (req.user && req.user.role === 'admin' && Model.getAdminAttrsSelector) {
                 dbQuery.select(Model.getAdminAttrsSelector());
             }
-            addQueryOptions(req, dbQuery, Model)
+            processStandardQueryOptions(req, dbQuery, Model)
                 .exec(function geByIdFnCallback(err, obj) {
                     if (err) {
                         return next(err);
@@ -430,7 +430,7 @@ module.exports = {
             }
 
 
-            addQueryOptions(req,dbQuery , Model)
+            processStandardQueryOptions(req,dbQuery , Model)
                 .exec(function (err, objList) {
                     if (err) {
                         return next(err);

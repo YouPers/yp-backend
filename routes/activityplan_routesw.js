@@ -2,13 +2,11 @@
  * User Routes module
  *    these routes require authenticated users
  */
-
 var mongoose = require('mongoose'),
     Model = mongoose.model('ActivityPlan'),
     generic = require('./../handlers/generic'),
     passport = require('passport'),
     handlers = require('../handlers/activityplan_handlers');
-
 
 module.exports = function (swagger, config) {
 
@@ -40,10 +38,8 @@ module.exports = function (swagger, config) {
             "nickname": "getJoinOffers",
             beforeCallbacks: [passport.authenticate('basic', { session: false })]
         },
-        action: generic.getAllFn(baseUrl, Model, true)
+        action: handlers.getJoinOffers
     });
-
-
 
     swagger.addGet({
         spec: {

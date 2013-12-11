@@ -1,7 +1,7 @@
 var mongoose = require('mongoose'),
     Model = mongoose.model('ActivityPlan'),
     CommentModel = mongoose.model('Comment'),
-    genericHandlers = require('./generic'),
+    generic = require('./generic'),
     restify = require('restify'),
     _ = require('lodash'),
     caltools = require('calendar-tools');
@@ -61,7 +61,7 @@ function putActivityEvent(req, res, next) {
             return next(new restify.ResourceNotFoundError('no event found with Id: ' + req.params.eventId + ' in plan: ' + req.params.planId));
         }
 
-        var eventToPut = genericHandlers.clean(req.body);
+        var eventToPut = generic.clean(req.body);
 
         // checkForNewComments, if there are any comments without id they need to be saved separatly to
         // the comments collection
@@ -189,7 +189,6 @@ function postNewActivityPlan(req, res, next) {
     });
 }
 
-
 function getIcalStringForPlan(req, res, next) {
     Model.findById(req.params.id, {populate: 'activity'}).exec(function (err, plan) {
         if (err) {
@@ -208,8 +207,39 @@ function getIcalStringForPlan(req, res, next) {
     });
 }
 
+function getJoinOffers(req, res, next) {
+
+    // check whether the required param 'activity' is here and add it to the dbquery
+    if (!req.params.activity) {
+        return next(new restify.InvalidArgumentError("missing required queryParam 'activity'"));
+    }
+
+    var dbquery = Model.find(
+        {activity: req.params.activity,
+         executionType: 'group',
+         visibility: 'public',
+         masterPlan: null
+        });
+
+    generic.addStandardQueryOptions(req, dbquery, Model);
+    dbquery.exec(function (err, joinOffers) {
+        if (err) {
+            return next(err);
+        }
+        if (!joinOffers || joinOffers.length === 0) {
+            res.send(204, []);
+            return next();
+        }
+
+        res.send(200, joinOffers);
+        return next();
+    });
+
+}
+
 module.exports = {
     postNewActivityPlan: postNewActivityPlan,
     getIcalStringForPlan: getIcalStringForPlan,
-    putActivityEvent: putActivityEvent
+    putActivityEvent: putActivityEvent,
+    getJoinOffers: getJoinOffers
 };

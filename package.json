@@ -32,7 +32,7 @@
     "grunt-contrib-watch": "~0.5.x",
     "grunt-jasmine-node": "0.1.x",
     "grunt": "0.4.x",
-    "frisby": "0.6.x",
+    "frisby": "0.7.x",
     "grunt-nodemon": "~0.1.x",
     "grunt-concurrent": "~0.4.x",
     "grunt-wait": "~0.1.x",

@@ -24,7 +24,7 @@ module.exports = function (swagger, config) {
                 "attributes with all recommendations are returned (incl. all weights, ...)",
             summary: "returns the current top 5 recommendations for the authenticated user ",
             method: "GET",
-            "responseClass": "ArrayOfRecommendations",
+            "responseClass": "Recommendation",
             "nickname": "getRecommendations",
             params: [
                 {
@@ -39,6 +39,16 @@ module.exports = function (swagger, config) {
             beforeCallbacks: [passport.authenticate('basic', { session: false })]
         },
         action: handlers.getRecommendationsFn
+    });
+
+    swagger.addModels({
+       Recommendation: {
+           type: "object",
+           properties: {
+               activity: {$ref: "Activity"},
+               weight: {type: "number"}
+           }
+       }
     });
 
 

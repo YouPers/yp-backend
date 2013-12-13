@@ -43,7 +43,8 @@ module.exports = {
                 'String': 'string',
                 'Date': 'date',
                 'ObjectId': 'ObjectId',
-                'Number': 'integer'
+                'Number': 'integer',
+                'Boolean': 'boolean'
             };
 
             var swaggerModels = {};

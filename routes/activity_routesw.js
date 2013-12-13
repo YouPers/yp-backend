@@ -43,6 +43,7 @@ module.exports = function (swagger, config) {
 
     swagger.addModels({
        Recommendation: {
+           id: "Recommendation",
            type: "object",
            properties: {
                activity: {$ref: "Activity"},

@@ -58,6 +58,7 @@ module.exports = function (swagger, config) {
                 generic.params.populate,
                 generic.params.populatedeep
             ],
+            "responseClass": "ActivityPlan",
             method: "GET",
             "nickname": "getActivityPlan",
             beforeCallbacks: [passport.authenticate('basic', { session: false })]

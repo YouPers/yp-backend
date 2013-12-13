@@ -48,11 +48,12 @@ module.exports = {
             };
 
             var swaggerModels = {};
-            var mainModel = {};
+            var mainModel = {
+                id: this.modelName,
+                required: [],
+                properties: {}
+            };
             swaggerModels[this.modelName] = mainModel;
-            mainModel.id = this.modelName;
-            mainModel.required = [];
-            mainModel.properties = {};
 
             var hiddenProps = this.toJsonConfig && this.toJsonConfig().hide || [];
             hiddenProps = hiddenProps.concat(['__v', '_id']);
@@ -100,7 +101,7 @@ module.exports = {
                 var subModelName;
 
                 if (isReference(type)) {
-                    targetModel.properties[propertyName].items.type = typeMap[type.name] || type.name;
+                    targetModel.properties[propertyName].items['$ref'] = typeMap[type.ref] || type.ref;
                 } else if (isArray(type)) {
                     addArrayProperty(propertyName, type[0], targetModel);
                 } else if (isSubSchema(type)) {

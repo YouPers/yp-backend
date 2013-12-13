@@ -18,8 +18,7 @@ var CommentSchema = common.newSchema({
     refDocTitle: {type: String},
     refDocLink: {type:String},
     created: {type: Date, required: true},
-    text: {type: String, required: true},
-    subcomments: [{type: ObjectId, ref: 'Comment'}]
+    text: {type: String, required: true}
 });
 
 

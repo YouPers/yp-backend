@@ -32,8 +32,6 @@ mongoose.connect(connectStr, {server: {auto_reconnect: true}});
 
 // Configure the server
 var server = restify.createServer({
-    //certificate: ...,
-    //key: ...,
     name: 'YP Platform Server',
     version: config.version,
     log: new Logger(config.loggerOptions)

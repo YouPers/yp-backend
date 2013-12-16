@@ -4,7 +4,9 @@ var mongoose = require('mongoose'),
     generic = require('./generic'),
     restify = require('restify'),
     _ = require('lodash'),
-    caltools = require('calendar-tools');
+    caltools = require('calendar-tools'),
+    ical = require('icalendar'),
+    email = require('../util/email');
 
 function generateEventsForPlan(plan, log) {
     var seed = caltools.seed(plan.mainEvent, {addNoRec: true});
@@ -190,7 +192,10 @@ function postNewActivityPlan(req, res, next) {
 }
 
 function getIcalStringForPlan(req, res, next) {
-    Model.findById(req.params.id, {populate: 'activity'}).exec(function (err, plan) {
+    if (!req.params || !req.params.id) {
+        next(new new restify.InvalidArgumentError('id required for this call'));
+    }
+    Model.findById(req.params.id).populate('activity').populate('owner').exec(function (err, plan) {
         if (err) {
             return next(err);
         }
@@ -198,11 +203,15 @@ function getIcalStringForPlan(req, res, next) {
             res.send(204, []);
             return next();
         }
-        var icalRecString = caltools.rfc2445.genRecurrenceString(plan.mainEvent);
+        var myIcalString = plan.getIcalString();
+        if (req.params.email && plan.owner && plan.owner.email) {
+            email.sendCalInvite(plan.owner.email, 'YouPers Calendar Event', myIcalString);
+        }
+
         res.contentType = "text/calendar";
         res.setHeader('Content-Type', 'text/calendar');
         res.setHeader('Content-Disposition', 'inline; filename=ical.ics');
-        res.send(icalRecString);
+        res.send();
         return next();
     });
 }

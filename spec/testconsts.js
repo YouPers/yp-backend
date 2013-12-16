@@ -15,5 +15,8 @@ module.exports = {
     },
     groupActivity: {
         id: '5278c6adcdeab69a2500001e'
+    },
+    aloneActivity: {
+        id: "5278c6aecdeab69a250000b9"
     }
 };

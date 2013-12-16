@@ -49,18 +49,19 @@ module.exports = {
 
             var swaggerModels = {};
 
-            function createNewModel(modelName) {
-                return {
+            function createAndRegisterNewSwaggerModel(modelName) {
+                var newModel =  {
                     id: modelName,
                     required: ['id'],
                     properties: {
-                        id: {type: 'ObjectId'}
+                        id: {type: 'string'}
                     }
                 };
+                swaggerModels[modelName] = newModel;
+                return newModel;
             }
 
-            var mainModel = createNewModel.call(this.modelName);
-            swaggerModels[this.modelName] = mainModel;
+            var mainModel = createAndRegisterNewSwaggerModel(this.modelName);
 
             var hiddenProps = this.toJsonConfig && this.toJsonConfig().hide || [];
             hiddenProps = hiddenProps.concat(['__v', '_id']);
@@ -145,17 +146,12 @@ module.exports = {
                 return Array.isArray(type);
             }
 
-            function createAndRegisterNewSwaggerModel(subModelName) {
-                var subModel = createNewModel(subModelName);
-                swaggerModels[subModelName] = subModel;
-                return subModel;
-            }
 
             function handleSubSchemaProperty(propertyName, type, parentModel) {
                 var subModelName = type.modelName || (_.last(propertyName) === 's' ? propertyName.slice(0, -1) : propertyName);
                 if (!swaggerModels[subModelName]) {
                     var subModel = createAndRegisterNewSwaggerModel(subModelName);
-                    addModelPaths(type.paths, subModel);
+                    addModelPaths(type.paths, type.nested, subModel);
                 }
                 return subModelName;
             }
@@ -167,40 +163,66 @@ module.exports = {
                 return subModelName;
             }
 
-            function addModelPaths(paths, targetModel) {
+            function addModelPaths(paths, nestedPaths, targetModel) {
+                var nestedSwaggerModels = {};
+                // first we need to add nestedModels for each nestedPath
+                if (nestedPaths && _.size(nestedPaths) > 0) {
+                    _.forEach(nestedPaths, function (value, nestedPath) {
+                        var parts = nestedPath.split('.');
+                        var combinedPath = '';
+                        var parentModel = targetModel;
+                        for (var i= 0; i< parts.length; i++) {
+                            combinedPath = combinedPath ? combinedPath + '.' + parts[i] : parts[i];
+                            if (!nestedSwaggerModels[combinedPath]) {
+                                nestedSwaggerModels[combinedPath] = createAndRegisterNewSwaggerModel(parts[i]);
+                                parentModel.properties[parts[i]] = {type: parts[i]};
+                            }
+                            parentModel = nestedSwaggerModels[combinedPath];
+                        }
+                    });
+                }
+
                 _.forEach(paths, function (path, propertyName) {
                     if (_.indexOf(hiddenProps, propertyName) === -1) {
+                        var realTargetModel = targetModel;
+                        var realPropertyName = propertyName;
+                        if (propertyName.indexOf('.') !== -1) {
+                            realTargetModel = nestedSwaggerModels[propertyName.substring(0, _.lastIndexOf(propertyName,'.'))];
+                            realPropertyName = propertyName.substring(_.lastIndexOf(propertyName,'.')+1);
+                        }
                         var type = path.options.type;
                         var subModelName;
                         if (isArray(type)) {
-                            addArrayProperty(propertyName, path.options.type[0], targetModel);
+                            addArrayProperty(realPropertyName, path.options.type[0], realTargetModel);
                         } else if (isSubSchema(type)) {
-                            subModelName = handleSubSchemaProperty(propertyName, type, targetModel);
-                            targetModel.properties[propertyName] = {type: subModelName};
+                            subModelName = handleSubSchemaProperty(realPropertyName, type, realTargetModel);
+                            realTargetModel.properties[realPropertyName] = {type: subModelName};
                         } else if (isEmbeddedDoc(type)) {
-                            subModelName = handleEmbeddedDocProperty(propertyName, type, targetModel);
-                            targetModel.properties[propertyName] = {type: subModelName};
+                            subModelName = handleEmbeddedDocProperty(realPropertyName, type, realTargetModel);
+                            realTargetModel.properties[realPropertyName] = {type: subModelName};
                         } else {
-                            targetModel.properties[propertyName] = {
+                            realTargetModel.properties[realPropertyName] = {
                                 type: typeMap[path.options.type.name] || path.options.type.name
                             };
                         }
-                        var desc = fieldDescriptions[propertyName] || fieldDescriptions[targetModel.id + '.' + propertyName];
+
+
+                        var desc = fieldDescriptions[propertyName] || fieldDescriptions[realTargetModel.id + '.' + propertyName];
                         if (desc) {
-                            targetModel.properties[propertyName].description = desc;
+                            realTargetModel.properties[realPropertyName].description = desc;
                         }
                         if (Array.isArray(path.enumValues) && path.enumValues.length > 0) {
-                            targetModel.properties[propertyName].enum = path.enumValues;
+                            realTargetModel.properties[realPropertyName].enum = path.enumValues;
                         }
 
                         if (path.isRequired) {
-                            targetModel.required.push(propertyName);
+                            realTargetModel.required.push(realPropertyName);
                         }
                     }
                 });
             }
 
-            addModelPaths(this.schema.paths, mainModel);
+            addModelPaths(this.schema.paths, this.schema.nested, mainModel);
 
             return swaggerModels;
         };

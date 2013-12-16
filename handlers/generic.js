@@ -555,7 +555,7 @@ module.exports = {
         filter: {
             "name" : "filter",
             "description" : 'filters the results by adding a where clause, to see  the supported language and format see ',
-            "dataType" : 'String of filter queries',
+            "dataType" : 'string',
             "required" : false,
             "allowMultiple" : true,
             "paramType" : "query"
@@ -563,7 +563,7 @@ module.exports = {
         sort: {
             "name" : "sort",
             "description" : 'sorts the results by the specified properties, add ":-1" to reverse sort: e.g. sort="created:-1"',
-            "dataType" : 'String of properties',
+            "dataType" : 'string',
             "required" : false,
             "allowMultiple" : true,
             "paramType" : "query"
@@ -577,7 +577,7 @@ module.exports = {
                 'you can populate the comments.author, but you cannot populate ActivityEvent.Comment.Author, use ' +
                 '"populatedeep" if you need this. \n' +
                 'Use with caution, it may impact performance! ',
-            "dataType" : 'String of properties',
+            "dataType" : 'string',
             "required" : false,
             "allowMultiple" : true,
             "paramType" : "query"
@@ -587,7 +587,7 @@ module.exports = {
             "description" : 'populates specified reference deep properties of the retrieved ressource with the full object,' +
                 'use this if you need to go over more than 1 collection, see documentation of "populate" \n' +
                 'Use with caution, it may impact performance! ',
-            "dataType" : 'String of properties',
+            "dataType" : 'string',
             "required" : false,
             "allowMultiple" : true,
             "paramType" : "query"

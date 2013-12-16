@@ -10,6 +10,8 @@ var path           = require('path'),
     }
 });
 
+var fromDefault = "YouPers Digital Health <dontreply@youpers.com>";
+
 
 var sendEmail = function (from, to, subject, text, html) {
     emailTemplates(templatesDir, function (err, template) {
@@ -30,7 +32,7 @@ var sendEmail = function (from, to, subject, text, html) {
                         console.log(err);
                     } else {
                         var mail = {
-                            from: from, // sender address
+                            from: from || fromDefault, // sender address
                             to: to, // list of receivers
                             subject: subject, // Subject line
                             text: text, // plaintext body
@@ -53,8 +55,30 @@ var sendEmail = function (from, to, subject, text, html) {
     });
 };
 
+var sendCalInvite = function (to, subject, iCalString) {
+    var mail = {
+        from: fromDefault, // sender address
+        to: to, // list of receivers
+        subject: subject, // Subject line
+        text: "calendar invice from YouPers",
+        attachments: [
+            {
+                fileName: 'ical.ics',
+                contents: iCalString,
+                contentType: 'text/calendar'
+            }
+        ]};
 
+    smtpTransport.sendMail(mail, function(err, responseStatus) {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log(responseStatus.message);
+        }
+    });
+};
 
 module.exports = {
-    send: sendEmail
+    send: sendEmail,
+    sendCalInvite: sendCalInvite
 };

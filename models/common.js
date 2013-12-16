@@ -41,18 +41,25 @@ module.exports = {
 
             var typeMap = {
                 'String': 'string',
-                'Date': 'date',
+                'Date': 'Date',
                 'ObjectId': 'ObjectId',
                 'Number': 'integer',
                 'Boolean': 'boolean'
             };
 
             var swaggerModels = {};
-            var mainModel = {
-                id: this.modelName,
-                required: [],
-                properties: {}
-            };
+
+            function createNewModel(modelName) {
+                return {
+                    id: modelName,
+                    required: ['id'],
+                    properties: {
+                        id: {type: 'ObjectId'}
+                    }
+                };
+            }
+
+            var mainModel = createNewModel.call(this.modelName);
             swaggerModels[this.modelName] = mainModel;
 
             var hiddenProps = this.toJsonConfig && this.toJsonConfig().hide || [];
@@ -139,11 +146,7 @@ module.exports = {
             }
 
             function createAndRegisterNewSwaggerModel(subModelName) {
-                var subModel = {
-                    id: subModelName,
-                    required: [],
-                    properties: {}
-                };
+                var subModel = createNewModel(subModelName);
                 swaggerModels[subModelName] = subModel;
                 return subModel;
             }

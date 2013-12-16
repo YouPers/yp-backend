@@ -101,6 +101,12 @@ module.exports = function (swagger, config) {
                     description: "the id of the activityPlan for which to fetch the ical file",
                     dataType: "ObjectId",
                     required: true
+                },
+                {
+                    paramType: "query",
+                    name: "email",
+                    description: "send calendar event as email",
+                    dataType: "Boolean"
                 }
             ],
             method: "GET",

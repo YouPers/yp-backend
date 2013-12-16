@@ -9,7 +9,6 @@ var mongoose = require('mongoose'),
     generic = require('../handlers/generic'),
     handlers = require('../handlers/activity_handlers');
 
-
 module.exports = function (swagger, config) {
 
     var baseUrl = '/activities';
@@ -60,6 +59,17 @@ module.exports = function (swagger, config) {
        }
     });
 
+    swagger.addModels({
+        ObjectId: {
+            id: "ObjectId",
+            required: ['id'],
+            type: "object",
+            properties: {
+                id: {type: 'string'}
+            }
+        }
+    });
+
 
     swagger.addGet({
         spec: {
@@ -97,7 +107,6 @@ module.exports = function (swagger, config) {
             beforeCallbacks: [handlers.roleBasedAuth('anonymous')]
         },
         action: generic.getAllFn(baseUrl, Activity)
-
     });
 
 

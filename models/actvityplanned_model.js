@@ -5,7 +5,8 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
     ObjectId = Schema.ObjectId,
     common = require('./common'),
-    _ = require('lodash');
+    _ = require('lodash'),
+    ical = require('icalendar');
 
 /**
  * ActivityPlanEvent Schema
@@ -28,6 +29,7 @@ var ActivityPlanEvent = common.newSchema({
 var ActivityPlanSchema = common.newSchema({
     owner: {type: ObjectId, ref: 'User', required: true},
     activity: {type: ObjectId, ref: 'Activity', required: true},
+    title: {type: String},
     joiningUsers: [
         {type: ObjectId, ref: 'User'}
     ],
@@ -58,6 +60,22 @@ var ActivityPlanSchema = common.newSchema({
     },
     events: [ActivityPlanEvent]
 });
+
+ActivityPlanEvent.statics.getFieldDescriptions = function() {
+    return {
+        owner: 'The user who owns this ActivityPlanEvent'
+    };
+};
+
+ActivityPlanSchema.methods.getIcalString = function() {
+    var myCal = new ical.iCalendar();
+    var event = new ical.VEvent(this._id);
+    event.setSummary(this.title || this.activity && this.activity.title);
+    event.setDate(this.mainEvent.start, this.mainEvent.end);
+    myCal.addComponent(event);
+    return myCal.toString();
+};
+
 
 ActivityPlanSchema.pre('save', function (next) {
     var self = this;

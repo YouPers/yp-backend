@@ -17,7 +17,7 @@
             "allDay": false,
             "frequency": "week",
             "recurrence": {
-                "end-by": {
+                "endby": {
                     "type": "after",
                     "after": 6
                 },
@@ -95,7 +95,7 @@
             "allDay": false,
             "frequency": "week",
             "recurrence": {
-                "end-by": {
+                "endby": {
                     "type": "after",
                     "after": 6
                 },

@@ -89,7 +89,7 @@ frisby.create('plan once activity and check whether event is generated')
     .toss();
 
 
-frisby.create('plan weekly activity and check whether events are generated, with End-By: after 6')
+frisby.create('plan weekly activity and check whether events are generated, with EndBy: after 6')
     .post(URL + '/activityplans', {
         "owner": consts.users.unittest.id,
         "activity": "5278c6adcdeab69a2500001e",
@@ -101,7 +101,7 @@ frisby.create('plan weekly activity and check whether events are generated, with
             "allDay": false,
             "frequency": "week",
             "recurrence": {
-                "end-by": {
+                "endby": {
                     "type": "after",
                     "after": 6
                 },
@@ -162,7 +162,7 @@ frisby.create('plan weekly activity and check whether events are generated, with
             .toss();
     });
 
-frisby.create('plan daily activity and check whether events are generated, with End-By: after 6')
+frisby.create('plan daily activity and check whether events are generated, with EndBy: after 6')
     .post(URL + '/activityplans', {
         "owner": consts.users.unittest.id,
         "activity": consts.groupActivity.id,
@@ -174,7 +174,7 @@ frisby.create('plan daily activity and check whether events are generated, with 
             "allDay": false,
             "frequency": "day",
             "recurrence": {
-                "end-by": {
+                "endby": {
                     "type": "after",
                     "after": 6
                 },
@@ -204,7 +204,7 @@ frisby.create('plan daily activity and check whether events are generated, with 
                     "allDay": false,
                     "frequency": "day",
                     "recurrence": {
-                        "end-by": {
+                        "endby": {
                             "type": "after",
                             "after": 6
                         },

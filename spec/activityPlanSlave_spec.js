@@ -30,7 +30,7 @@ var masterPlan = {
         "allDay": false,
         "frequency": "week",
         "recurrence": {
-            "end-by": {
+            "endby": {
                 "type": "after",
                 "after": 6
             },
@@ -46,7 +46,7 @@ frisby.create('plan weekly activity as a master for a joining test')
     .expectStatus(201)
     .afterJSON(function (masterPlanPostAnswer) {
         expect(masterPlanPostAnswer.events).toBeDefined();
-        expect(masterPlanPostAnswer.events.length).toEqual(masterPlan.mainEvent.recurrence['end-by'].after);
+        expect(masterPlanPostAnswer.events.length).toEqual(masterPlan.mainEvent.recurrence['endby'].after);
         expect(masterPlanPostAnswer.events[0].begin).toEqual(masterPlan.mainEvent.start);
         expect(masterPlanPostAnswer.events[1].begin).toEqual('2014-10-23T12:00:00.000Z');
         expect(masterPlanPostAnswer.id).toBeDefined();

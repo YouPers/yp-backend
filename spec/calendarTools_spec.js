@@ -7,7 +7,7 @@ describe('calendar-tools Seed', function () {
         "allDay": false,
         "frequency": "week",
         "recurrence": {
-            "end-by": {
+            "endby": {
                 "type": "after",
                 "after": 6
             },

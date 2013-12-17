@@ -60,7 +60,7 @@ var sendCalInvite = function (to, subject, iCalString) {
         from: fromDefault, // sender address
         to: to, // list of receivers
         subject: subject, // Subject line
-        text: "calendar invice from YouPers",
+        text: "calendar invite from YouPers",
         attachments: [
             {
                 fileName: 'ical.ics',

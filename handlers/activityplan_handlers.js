@@ -203,15 +203,17 @@ function getIcalStringForPlan(req, res, next) {
             res.send(204, []);
             return next();
         }
-        var myIcalString = plan.getIcalString();
+        plan.owner.email = "reto.blunschi@youpers.com";
+        plan.owner.fullname = "Reto Blunschi";
         if (req.params.email && plan.owner && plan.owner.email) {
+            var myIcalString = plan.getIcalString(plan.owner.fullname, plan.owner.email);
             email.sendCalInvite(plan.owner.email, 'YouPers Calendar Event', myIcalString);
-        }
 
-        res.contentType = "text/calendar";
-        res.setHeader('Content-Type', 'text/calendar');
-        res.setHeader('Content-Disposition', 'inline; filename=ical.ics');
-        res.send();
+            res.contentType = "text/calendar";
+            res.setHeader('Content-Type', 'text/calendar');
+            res.setHeader('Content-Disposition', 'inline; filename=ical.ics');
+            res.send(myIcalString);
+        }
         return next();
     });
 }
@@ -225,9 +227,9 @@ function getJoinOffers(req, res, next) {
 
     var dbquery = Model.find(
         {activity: req.params.activity,
-         executionType: 'group',
-         visibility: 'public',
-         masterPlan: null
+            executionType: 'group',
+            visibility: 'public',
+            masterPlan: null
         });
 
     generic.addStandardQueryOptions(req, dbquery, Model);

@@ -148,7 +148,7 @@ module.exports = {
 
 
             function handleSubSchemaProperty(propertyName, type, parentModel) {
-                var subModelName = type.modelName || (_.last(propertyName) === 's' ? propertyName.slice(0, -1) : propertyName);
+                var subModelName = type.modelName || getModelNameFromPropertyName(propertyName);
                 if (!swaggerModels[subModelName]) {
                     var subModel = createAndRegisterNewSwaggerModel(subModelName);
                     addModelPaths(type.paths, type.nested, subModel);
@@ -156,8 +156,15 @@ module.exports = {
                 return subModelName;
             }
 
+            function getModelNameFromPropertyName(propertyName) {
+                return _.last(propertyName) === 's' ?
+                      propertyName.charAt(0).toUpperCase() + propertyName.slice(1, -1)
+                    : propertyName.charAt(0).toUpperCase() + propertyName.slice(1);
+            }
+
             function handleEmbeddedDocProperty(propertyName, type) {
-                var subModelName = _.last(propertyName) === 's' ? propertyName.slice(0, -1) : propertyName;
+                var subModelName = getModelNameFromPropertyName(propertyName);
+
                 var swaggerSubModel = createAndRegisterNewSwaggerModel(subModelName);
                 addEmbeddedDocProps(type, swaggerSubModel);
                 return subModelName;
@@ -174,8 +181,9 @@ module.exports = {
                         for (var i= 0; i< parts.length; i++) {
                             combinedPath = combinedPath ? combinedPath + '.' + parts[i] : parts[i];
                             if (!nestedSwaggerModels[combinedPath]) {
-                                nestedSwaggerModels[combinedPath] = createAndRegisterNewSwaggerModel(parts[i]);
-                                parentModel.properties[parts[i]] = {type: parts[i]};
+                                var modelName = getModelNameFromPropertyName(parts[i]);
+                                nestedSwaggerModels[combinedPath] = createAndRegisterNewSwaggerModel(modelName);
+                                parentModel.properties[parts[i]] = {type: modelName};
                             }
                             parentModel = nestedSwaggerModels[combinedPath];
                         }

@@ -46,7 +46,7 @@ var ActivityPlanSchema = common.newSchema({
         allDay: {type: Boolean},
         frequency: {type: String, enum: common.enums.ActivityPlanFrequency},
         recurrence: {
-            'end-by': {
+            'endby': {
                 type: {type: String, enum: common.enums.activityRecurrenceEndByType},
                 on: {type: Date},
                 after: Number
@@ -67,11 +67,26 @@ ActivityPlanEvent.statics.getFieldDescriptions = function() {
     };
 };
 
-ActivityPlanSchema.methods.getIcalString = function() {
+ActivityPlanSchema.methods.getIcalString = function(recipientFullName, recipientEmail) {
     var myCal = new ical.iCalendar();
+    myCal.addProperty("METHOD", "REQUEST");
     var event = new ical.VEvent(this._id);
+    event.addProperty("ORGANIZER", "MAILTO:dontreply@youpers.com", {CN: "YouPers Digital Health"});
+    event.addProperty("ATTENDEE",
+        "MAILTO:"+recipientEmail,
+        {ROLE: "REQ-PARTICIPANT", PARTSTAT: "NEEDS-ACTION", RSVP: "TRUE", CN: recipientFullName });
     event.setSummary(this.title || this.activity && this.activity.title);
     event.setDate(this.mainEvent.start, this.mainEvent.end);
+    event.addProperty("STATUS", "CONFIRMED");
+    event.addProperty("LOCATION", "just do it anywhere");
+    if (this.mainEvent.recurrence && this.mainEvent.frequency) {
+        //var rruleSpec = {
+        //    FREQ: this.mainEvent.frequency
+        //};
+        //if (this.mainEvent.recurrence['endby']) {}
+
+        //var rrule = new ical.RRule({FREQ: 'DAILY', COUNT: 4},new Date(2014,10,1,17,0,0));
+    }
     myCal.addComponent(event);
     return myCal.toString();
 };

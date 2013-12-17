@@ -12,8 +12,6 @@ var postFn = function (baseUrl, UserModel) {
 
         var newObj = new UserModel(req.body);
 
-        // send verificationEmail
-        email.send("YouPers Digital Health Plattform <dontreply@youpers.com>", newObj.email, "YouPers: Please verify your email address", "click here", "<b>and here</b>");
 
         req.log.trace(newObj, 'PostFn: Saving new Object');
         // try to save the new object
@@ -23,6 +21,9 @@ var postFn = function (baseUrl, UserModel) {
                 err.statusCode = 409;
                 return next(err);
             }
+            // send verificationEmail
+            email.send("YouPers Digital Health Plattform <dontreply@youpers.com>", newObj.email, "YouPers: Please verify your email address", "click here", "<b>and here</b>");
+
             res.header('location', baseUrl + '/' + newObj._id);
             res.send(201, newObj);
             return next();

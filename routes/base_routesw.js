@@ -44,7 +44,7 @@ module.exports = function (swagger, config) {
             notes: "returns some database information as json",
             summary: "checks basic availability of database, return code 200 if db is available.",
             method: "GET",
-            "nickname": "ping"
+            "nickname": "pingdb"
         },
         action: function (req, res, next) {
             mongoose.connection.db.executeDbCommand({'ping':'1'}, function(err, dbres) {

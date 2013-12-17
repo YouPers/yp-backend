@@ -54,7 +54,7 @@ module.exports = function (swagger, config) {
            type: "object",
            properties: {
                activity: {type: "Activity"},
-               weight: {type: "number"}
+               weight: {type: "double"}
            }
        }
     });

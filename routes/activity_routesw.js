@@ -53,7 +53,7 @@ module.exports = function (swagger, config) {
            required: ['activity'],
            type: "object",
            properties: {
-               activity: {$ref: "Activity"},
+               activity: {type: "Activity"},
                weight: {type: "number"}
            }
        }

@@ -44,7 +44,7 @@ module.exports = function (swagger, config) {
                     name: "scopeId",
                     description: "The id of the scope to constrain the stats to, has to be a reference to a object" +
                         "of the suplied scopeType (user or campaign)",
-                    dataType: "ObjectId"
+                    dataType: "string"
                 },
                 {
                     paramType: "query",

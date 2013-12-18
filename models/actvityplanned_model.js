@@ -79,13 +79,16 @@ ActivityPlanSchema.methods.getIcalString = function(recipientFullName, recipient
     event.setDate(this.mainEvent.start, this.mainEvent.end);
     event.addProperty("STATUS", "CONFIRMED");
     event.addProperty("LOCATION", "just do it anywhere");
-    if (this.mainEvent.recurrence && this.mainEvent.frequency) {
-        //var rruleSpec = {
-        //    FREQ: this.mainEvent.frequency
-        //};
-        //if (this.mainEvent.recurrence['endby']) {}
+    if (this.mainEvent.recurrence && this.mainEvent.frequency && this.mainEvent.frequency !== 'once') {
+        var rruleSpec = { FREQ: this.mainEvent.frequency};
+        if (this.mainEvent.recurrence['endby'].type === 'on') {
+            rruleSpec.UNTIL = this.mainEvent.recurrence.endby.on;
+        } else if (this.mainEvent.recurrence['after']) {
+            rruleSpec.COUNT = this.mainEvent.recurrence.endby.after;
+        }
 
-        //var rrule = new ical.RRule({FREQ: 'DAILY', COUNT: 4},new Date(2014,10,1,17,0,0));
+        var rrule = new ical.RRule(rruleSpec);
+        event.addProperty("RRULE", rrule);
     }
     myCal.addComponent(event);
     return myCal.toString();
@@ -160,9 +163,11 @@ ActivityPlanSchema.pre('init', function (next, data) {
                 return next(err || new Error('masterPlan: ' + data.masterPlan + ' not found for slave: ' + data._id));
             }
 
+            // deal with the fact that owner can be a ref of Type ObjectId or a populated Object
+            var ownerObjectId = data.owner._id || data.owner;
             // populate the joiningUsers from the masterPlan, because we do not save it on slaves
             _.forEach(masterPlan.joiningUsers, function(user) {
-                if (!user.equals(data.owner)){
+                if (!user.equals(ownerObjectId)){
                     data.joiningUsers.push(user);
                 }
             });

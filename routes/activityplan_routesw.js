@@ -217,7 +217,7 @@ module.exports = function (swagger, config) {
                     paramType: "body",
                     name: "activityPlanEvent",
                     description: "the activityPlanEvent to store",
-                    dataType: "event",
+                    dataType: "Event",
                     required: true
                 },
                 {

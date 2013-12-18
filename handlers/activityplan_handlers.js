@@ -205,15 +205,15 @@ function getIcalStringForPlan(req, res, next) {
         }
         plan.owner.email = "reto.blunschi@youpers.com";
         plan.owner.fullname = "Reto Blunschi";
+        var myIcalString = plan.getIcalString(plan.owner.fullname, plan.owner.email);
         if (req.params.email && plan.owner && plan.owner.email) {
-            var myIcalString = plan.getIcalString(plan.owner.fullname, plan.owner.email);
             email.sendCalInvite(plan.owner.email, 'YouPers Calendar Event', myIcalString);
 
-            res.contentType = "text/calendar";
-            res.setHeader('Content-Type', 'text/calendar');
-            res.setHeader('Content-Disposition', 'inline; filename=ical.ics');
-            res.send(myIcalString);
         }
+        res.contentType = "text/calendar";
+        res.setHeader('Content-Type', 'text/calendar');
+        res.setHeader('Content-Disposition', 'inline; filename=ical.ics');
+        res.send(200,myIcalString);
         return next();
     });
 }

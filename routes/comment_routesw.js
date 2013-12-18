@@ -19,7 +19,7 @@ module.exports = function (swagger, config) {
             notes: "returns a comment based on id",
             summary: "find comment by id",
             method: "GET",
-            params: [swagger.pathParam("id", "ID of the comment to be fetched", "ObjectId"),
+            params: [swagger.pathParam("id", "ID of the comment to be fetched", "string"),
                 generic.params.populate],
             "responseClass": "Comment",
             "errorResponses": [swagger.errors.invalid('id'), swagger.errors.notFound("user")],
@@ -70,7 +70,7 @@ module.exports = function (swagger, config) {
                 notes: "delete comment",
                 summary: "Deletes a comment by id",
                 method: "DELETE",
-                param: [swagger.pathParam("id", "ID of the comment to be fetched", "ObjectId")],
+                param: [swagger.pathParam("id", "ID of the comment to be fetched", "string")],
                 "nickname": "deleteComment"
             },
             action:  generic.deleteByIdFn(baseUrl, Model)

@@ -29,8 +29,8 @@ module.exports = function (swagger, config) {
                 {
                     paramType: "query",
                     name: "focus",
-                    description: "the list of assessmentQuestions ObjectIds to be used as a focus when generating recommendations",
-                    dataType: "ObjectId"
+                    description: "the list of assessmentQuestions strings to be used as a focus when generating recommendations",
+                    dataType: "string"
                 },
                 generic.params.limit,
                 generic.params.populate
@@ -59,16 +59,7 @@ module.exports = function (swagger, config) {
        }
     });
 
-    swagger.addModels({
-        ObjectId: {
-            id: "ObjectId",
-            required: ['id'],
-            type: "object",
-            properties: {
-                id: {type: 'string'}
-            }
-        }
-    });
+
 
 
     swagger.addGet({
@@ -78,7 +69,7 @@ module.exports = function (swagger, config) {
             notes: "returns only the public attributes in normal case. If the authenticated user has role 'admin', all " +
                 "attributes are returned (incl. all recWeights, ...)",
             summary: "returns an activity based on id",
-            params: [swagger.pathParam("id", "ID of the activity to be fetched", "ObjectId"),
+            params: [swagger.pathParam("id", "ID of the activity to be fetched", "string"),
                 generic.params.populate],
             method: "GET",
             "responseClass": "Activity",
@@ -142,7 +133,7 @@ module.exports = function (swagger, config) {
             method: "PUT",
             "responseClass": "Activity",
             "nickname": "putActivity",
-            params: [swagger.pathParam("id", "ID of the activity to be updated", "ObjectId")],
+            params: [swagger.pathParam("id", "ID of the activity to be updated", "string")],
             beforeCallbacks: [passport.authenticate('basic', { session: false }), handlers.invalidateActivityCache]
         },
         action: generic.putFn(baseUrl, Activity)

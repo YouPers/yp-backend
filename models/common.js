@@ -42,7 +42,7 @@ module.exports = {
             var typeMap = {
                 'String': 'string',
                 'Date': 'Date',
-                'ObjectId': 'ObjectId',
+                'ObjectId': 'string',
                 'Number': 'long',
                 'Boolean': 'boolean',
                 'integer': 'long'
@@ -102,7 +102,7 @@ module.exports = {
             // iterate over schema.paths, add to swaggerModel
             function addArrayProperty(propertyName, type, targetModel) {
                 targetModel.properties[propertyName] = {
-                    type: 'array',
+                    type: 'Array',
                     items: {}
                 };
 

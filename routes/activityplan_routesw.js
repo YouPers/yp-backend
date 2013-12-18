@@ -24,7 +24,7 @@ module.exports = function (swagger, config) {
                     paramType: "query",
                     name: "activity",
                     description: "the activity for which joinOffers are fetched",
-                    dataType: "ObjectId",
+                    dataType: "string",
                     required: true
                 },
                 generic.params.sort,
@@ -52,7 +52,7 @@ module.exports = function (swagger, config) {
                     paramType: "path",
                     name: "id",
                     description: "the id of the activityPlan to fetch ",
-                    dataType: "ObjectId",
+                    dataType: "string",
                     required: true
                 },
                 generic.params.populate,
@@ -99,14 +99,14 @@ module.exports = function (swagger, config) {
                     paramType: "path",
                     name: "id",
                     description: "the id of the activityPlan for which to fetch the ical file",
-                    dataType: "ObjectId",
+                    dataType: "string",
                     required: true
                 },
                 {
                     paramType: "query",
                     name: "email",
                     description: "send calendar event as email",
-                    dataType: "Boolean"
+                    dataType: "boolean"
                 }
             ],
             method: "GET",
@@ -128,7 +128,7 @@ module.exports = function (swagger, config) {
                     paramType: "path",
                     name: "id",
                     description: "the id of the activityPlan to fetch ",
-                    dataType: "ObjectId",
+                    dataType: "string",
                     required: true
                 }
             ],
@@ -156,7 +156,7 @@ module.exports = function (swagger, config) {
         spec: {
             description: "Operations about ActivityPlans",
             path: baseUrl,
-            notes: "Posts a new plan, when the attribute masterPlan is set to the ObjectId of another plan, " +
+            notes: "Posts a new plan, when the attribute masterPlan is set to the string of another plan, " +
                 "then the new plan is just a slave of " +
                 "this plan (the user is basically joining the masterPlan). When the attribute masterPlan is empty," +
                 "then this new plan can become a masterPlan, when other users post slavePlans later.",
@@ -195,7 +195,7 @@ module.exports = function (swagger, config) {
                     paramType: "path",
                     name: "id",
                     description: "the id of the activityPlan to update ",
-                    dataType: "ObjectId",
+                    dataType: "string",
                     required: true
                 }
             ],
@@ -224,14 +224,14 @@ module.exports = function (swagger, config) {
                     paramType: "path",
                     name: "planId",
                     description: "the id of activityPlan that contains the event to update ",
-                    dataType: "ObjectId",
+                    dataType: "string",
                     required: true
                 },
                 {
                     paramType: "path",
                     name: "eventId",
                     description: "the id of the event to update",
-                    dataType: "ObjectId",
+                    dataType: "string",
                     required: true
                 }
             ],

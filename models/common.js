@@ -45,7 +45,8 @@ module.exports = {
                 'ObjectId': 'string',
                 'Number': 'long',
                 'Boolean': 'boolean',
-                'integer': 'long'
+                'integer': 'long',
+                'Mixed': 'string'
             };
 
             var swaggerModels = {};

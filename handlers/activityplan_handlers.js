@@ -180,10 +180,19 @@ function postNewActivityPlan(req, res, next) {
             err.statusCode = 409;
             return next(err);
         }
-        Model.findById(newActPlan._id, function (err, reloadedActPlan) {
+        // we populate 'activity' so we can get create a nice calendar entry using strings on the
+        // activity
+        Model.findById(newActPlan._id).populate('activity').exec(function (err, reloadedActPlan) {
             if (err) {
                 return next(err);
             }
+            if (req.user && req.user.email) {
+                var myIcalString = reloadedActPlan.getIcalString(req.user);
+                email.sendCalInvite(req.user.email, 'Neuer YouPers Kalendar Eintrag', myIcalString);
+            }
+
+            // remove the populate activity because the client is not gonna expect it to be populated.
+            reloadedActPlan.activity = reloadedActPlan.activity._id;
             res.header('location', '/api/v1/activitiesPlanned' + '/' + reloadedActPlan._id);
             res.send(201, reloadedActPlan);
             return next();
@@ -203,8 +212,6 @@ function getIcalStringForPlan(req, res, next) {
             res.send(204, []);
             return next();
         }
-        plan.owner.email = "reto.blunschi@youpers.com";
-        plan.owner.fullname = "Reto Blunschi";
         var myIcalString = plan.getIcalString(plan.owner.fullname, plan.owner.email);
         if (req.params.email && plan.owner && plan.owner.email) {
             email.sendCalInvite(plan.owner.email, 'YouPers Calendar Event', myIcalString);

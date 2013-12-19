@@ -158,8 +158,8 @@ module.exports = {
                 return subModelName;
             }
 
-            function getModelNameFromPropertyName(propertyName) {
-                return _.last(propertyName) === 's' ?
+            function getModelNameFromPropertyName(propertyName, dontDepluralize) {
+                return _.last(propertyName) === 's' && !dontDepluralize ?
                       propertyName.charAt(0).toUpperCase() + propertyName.slice(1, -1)
                     : propertyName.charAt(0).toUpperCase() + propertyName.slice(1);
             }
@@ -183,7 +183,7 @@ module.exports = {
                         for (var i= 0; i< parts.length; i++) {
                             combinedPath = combinedPath ? combinedPath + '.' + parts[i] : parts[i];
                             if (!nestedSwaggerModels[combinedPath]) {
-                                var modelName = getModelNameFromPropertyName(parts[i]);
+                                var modelName = getModelNameFromPropertyName(parts[i], true);
                                 nestedSwaggerModels[combinedPath] = createAndRegisterNewSwaggerModel(modelName);
                                 parentModel.properties[parts[i]] = {type: modelName};
                             }

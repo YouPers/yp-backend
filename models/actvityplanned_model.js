@@ -67,23 +67,37 @@ ActivityPlanEvent.statics.getFieldDescriptions = function() {
     };
 };
 
-ActivityPlanSchema.methods.getIcalString = function(recipientFullName, recipientEmail) {
+ActivityPlanSchema.methods.getIcalString = function(recipientUser) {
     var myCal = new ical.iCalendar();
     myCal.addProperty("METHOD", "REQUEST");
     var event = new ical.VEvent(this._id);
     event.addProperty("ORGANIZER", "MAILTO:dontreply@youpers.com", {CN: "YouPers Digital Health"});
     event.addProperty("ATTENDEE",
-        "MAILTO:"+recipientEmail,
-        {ROLE: "REQ-PARTICIPANT", PARTSTAT: "NEEDS-ACTION", RSVP: "TRUE", CN: recipientFullName });
+        "MAILTO:"+recipientUser.email,
+        {ROLE: "REQ-PARTICIPANT", PARTSTAT: "NEEDS-ACTION", RSVP: "TRUE", CN: recipientUser.fullName });
     event.setSummary(this.title || this.activity && this.activity.title);
     event.setDate(this.mainEvent.start, this.mainEvent.end);
     event.addProperty("STATUS", "CONFIRMED");
     event.addProperty("LOCATION", "just do it anywhere");
     if (this.mainEvent.recurrence && this.mainEvent.frequency && this.mainEvent.frequency !== 'once') {
-        var rruleSpec = { FREQ: this.mainEvent.frequency};
-        if (this.mainEvent.recurrence['endby'].type === 'on') {
+        var frequencyMap = {
+            'day': 'DAILY',
+            'week': 'WEEKLY',
+            'month': 'MONTHLY'
+        };
+        if (!frequencyMap[this.mainEvent.frequency]) {
+            throw new Error("unknown recurrence frequency");
+        }
+
+        var rruleSpec = { FREQ: frequencyMap[this.mainEvent.frequency] };
+        if (rruleSpec.FREQ === 'DAILY') {
+            rruleSpec.BYDAY = "MO,TU,WE,TH,FR";
+        }
+
+
+        if (this.mainEvent.recurrence.endby.type === 'on') {
             rruleSpec.UNTIL = this.mainEvent.recurrence.endby.on;
-        } else if (this.mainEvent.recurrence['after']) {
+        } else if (this.mainEvent.recurrence.endby.type === 'after') {
             rruleSpec.COUNT = this.mainEvent.recurrence.endby.after;
         }
 

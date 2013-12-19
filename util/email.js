@@ -61,11 +61,20 @@ var sendCalInvite = function (to, subject, iCalString) {
         to: to, // list of receivers
         subject: subject, // Subject line
         text: "calendar invite from YouPers",
+        html: "<h1>Calendar invite from YouPers</h1>",
+        alternatives: [
+            {
+                contentType: 'text/calendar; charset="UTF-8"; method=REQUEST',
+                contentEncoding: '7bit',
+                contents: iCalString
+
+            }
+        ],
         attachments: [
             {
                 fileName: 'ical.ics',
                 contents: iCalString,
-                contentType: 'text/calendar'
+                contentType: 'application/ics"'
             }
         ]};
 

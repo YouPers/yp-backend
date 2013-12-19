@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "restify": "2.6.x",
-    "mongoose": "3.8.2",
+    "mongoose": "3.8.x",
     "mongo": "0.1.x",
     "client-sessions": "0.3.x",
     "nodemailer": "0.5.x",
@@ -32,7 +32,7 @@
     "grunt-contrib-watch": "~0.5.x",
     "grunt-jasmine-node": "0.1.x",
     "grunt": "0.4.x",
-    "frisby": "0.7.x",
+    "frisby": "git+https://github.com/YouPers/frisby.git",
     "grunt-nodemon": "~0.1.x",
     "grunt-concurrent": "~0.4.x",
     "grunt-wait": "~0.1.x",

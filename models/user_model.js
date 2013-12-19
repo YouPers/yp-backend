@@ -2,6 +2,8 @@
  * Module dependencies.
  */
 var mongoose = require('mongoose'),
+    Schema = mongoose.Schema,
+    ObjectId = Schema.ObjectId,
     crypto = require('crypto'),
     restify = require('restify'),
     common = require('./common');
@@ -20,7 +22,14 @@ var UserSchema = common.newSchema({
     role: { type: String, enum: ['individual', 'healthpromoter', 'admin'], default: 'individual', required: true },
     hashed_password: { type: String, trim: true },
     tempPasswordFlag: { type: Boolean, default: false },
-    preferences: { type: mongoose.Schema.Types.Mixed}
+    preferences: {
+        starredActivities: [
+            {type: ObjectId, ref: 'Activity'}
+        ],
+        workingDays: [
+            {type: String}
+        ]
+    }
 });
 
 /**
@@ -69,7 +78,7 @@ UserSchema
         return this._password;
     });
 
-UserSchema.statics.toJsonConfig = function() {
+UserSchema.statics.toJsonConfig = function () {
     return {
         hide: ['hashed_password', 'tempPasswordFlag', 'emailValidatedFlag']
     };

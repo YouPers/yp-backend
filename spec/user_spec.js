@@ -3,25 +3,28 @@
 var frisby = require('frisby');
 var port = process.env.PORT || 8000;
 var URL = 'http://localhost:'+ port;
-
+var consts = require('./testconsts');
 
 frisby.globalSetup({ // globalSetup is for ALL requests
     request: {
         headers: { 'X-Auth-Token': 'fa8426a0-8eaf-4d22-8e13-7c1b16a9370c',
             Authorization: 'Basic dW5pdHRlc3Q6dGVzdA=='
-        }
-
+        },
+        json:true
     }
 });
 
 frisby.create('POST new user')
     .post(URL + '/users', {
-        username: 'unittest_user',
+        username: 'new_unittest_user',
         fullname:'Testing Unittest',
         firstname: 'Testing',
         lastname: 'Unittest',
         email: 'yp-test-user@gmail.com',
-        password:'nopass' })
+        password:'nopass',
+        preferences: {
+            workingDays: ['MO', 'TU', 'WE', 'TH']
+        }})
     .expectStatus(201)
     .afterJSON(function(newUser) {
         frisby.create('GET all users')
@@ -35,7 +38,7 @@ frisby.create('POST new user')
                 var nrOfUsers = userList.length;
                 var testuserid = '';
                 userList.forEach(function (user) {
-                    if (user.username === 'unittest_user') {
+                    if (user.username === 'new_unittest_user') {
                         testuserid = user.id;
                     }
                 });
@@ -46,8 +49,24 @@ frisby.create('POST new user')
                     // 'afterJSON' automatically parses response body as JSON and passes it as an argument
                     .afterJSON(function(user) {
                         expect(user.id).toEqual(testuserid);
-                        expect(user.username).toEqual( 'unittest_user');
-                        frisby.create('DELETE our testuser users')
+                        expect(user.username).toEqual( 'new_unittest_user');
+                        expect(user.preferences.workingDays).toContain('MO');
+                        expect(user.preferences.workingDays).not.toContain('FR');
+
+                        expect(user.preferences.starredActivities.length).toEqual(0);
+
+                        user.preferences.starredActivities.push(consts.aloneActivity.id);
+
+                        frisby.create('PUT a new starred Activity')
+                            .put(URL+ '/users/' + testuserid, user)
+                            .expectStatus(200)
+                            .afterJSON(function(updatedUser) {
+                                expect(updatedUser.preferences.starredActivities).toContain(consts.aloneActivity.id);
+                            })
+                            .toss();
+
+
+                        frisby.create('DELETE our testuser')
                             .delete(URL+ '/users/' + user.id)
                             .expectStatus(200)
                             .toss();

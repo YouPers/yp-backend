@@ -3,11 +3,13 @@ var port = process.env.PORT || 8000;
 var URL = 'http://localhost:' + port;
 var _ = require('lodash');
 var consts = require('./testconsts');
+var moment = require('moment');
 
 frisby.globalSetup({ // globalSetup is for ALL requests
     request: {
         headers: { 'X-Auth-Token': 'fa8426a0-8eaf-4d22-8e13-7c1b16a9370c',
-            Authorization: 'Basic dW5pdHRlc3Q6dGVzdA==' }
+            Authorization: 'Basic dW5pdHRlc3Q6dGVzdA==' },
+        json: true
     }
 });
 
@@ -19,8 +21,8 @@ frisby.create('plan once activity and check whether event is generated')
         "visibility": "public",
         "executionType": "group",
         "mainEvent": {
-            "start": "2014-10-16T12:00:00.000Z",
-            "end": "2014-10-16T13:00:00.000Z",
+            "start": "2014-06-16T12:00:00.000Z",
+            "end": "2014-06-16T13:00:00.000Z",
             "allDay": false,
             "frequency": "once"
         },
@@ -30,7 +32,7 @@ frisby.create('plan once activity and check whether event is generated')
     .afterJSON(function (newPlan) {
         expect(newPlan.events).toBeDefined();
         expect(newPlan.events.length).toEqual(1);
-        expect(newPlan.events[0].begin).toEqual('2014-10-16T12:00:00.000Z');
+        expect(newPlan.events[0].begin).toEqual('2014-06-16T12:00:00.000Z');
         expect(newPlan.joiningUsers).toMatchOrBeEmpty();
         expect(newPlan.masterPlan).not.toBeDefined();
 
@@ -189,7 +191,7 @@ frisby.create('plan daily activity and check whether events are generated, with 
         expect(newPlan.events).toBeDefined();
         expect(newPlan.events.length).toEqual(6);
         expect(newPlan.events[0].end).toEqual('2014-10-16T13:00:00.000Z');
-        expect(newPlan.events[5].end).toEqual('2014-10-22T13:00:00.000Z');
+        expect(newPlan.events[5].end).toEqual('2014-10-23T13:00:00.000Z');  //skipping the two weekend-days
         frisby.create('let another user join this plan')
             .removeHeader('Authorization')
             .auth(consts.users.reto.username, consts.users.reto.password)
@@ -238,7 +240,68 @@ frisby.create('plan daily activity and check whether events are generated, with 
                             .expectStatus(200)
                             .toss();
 
+
+                        consts.users.unittest.preferences.workingDays = ['MO', 'TU', 'WE'];
+
+                        frisby.create('update user preferences to workdays only MO-WE and plan DAILY activity')
+                            .put(URL + '/users/' + consts.users.unittest.id, consts.users.unittest)
+                            .expectStatus(200)
+                            .afterJSON(function(updatedUser) {
+                                frisby.create('plan a daily activity for user only working MO, TU, WE')
+                                    .post(URL + '/activityplans', {
+                                        "owner": consts.users.unittest.id,
+                                        "activity": consts.groupActivity.id,
+                                        "visibility": "public",
+                                        "executionType": "group",
+                                        "mainEvent": {
+                                            "start": moment().add('hours',1).toISOString(),
+                                            "end": moment().add('hours', 2).toISOString(),
+                                            "allDay": false,
+                                            "frequency": "day",
+                                            "recurrence": {
+                                                "endby": {
+                                                    "type": "after",
+                                                    "after": 6
+                                                },
+                                                "every": 1,
+                                                "exceptions": []
+                                            }
+                                        },
+                                        "status": "active"
+                                    })
+                                    .expectStatus(201)
+                                    .afterJSON(function(newPlan) {
+                                        _.forEach(newPlan.events, function(event) {
+                                            expect(moment(event.begin).day()).not.toEqual(4);
+                                            expect(moment(event.begin).day()).not.toEqual(5);
+                                            expect(moment(event.begin).day()).not.toEqual(6);
+                                            expect(moment(event.begin).day()).not.toEqual(0);
+                                        });
+                                        console.log(newPlan);
+
+                                        consts.users.unittest.preferences.workingDays = [];
+
+                                        frisby.create('reset user')
+                                            .put(URL + '/users/' + consts.users.unittest.id, consts.users.unittest)
+                                            .expectStatus(200)
+                                            .toss();
+
+
+                                        frisby.create('delete plan 3')
+                                            .delete(URL + '/activityplans/' + newPlan.id)
+                                            .expectStatus(200)
+                                            .toss();
+
+                                    })
+                                    .toss();
+
+                            })
+                            .toss();
+
+
+
                     }).toss();
             }).toss();
     })
     .toss();
+

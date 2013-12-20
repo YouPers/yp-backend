@@ -4,22 +4,77 @@ var mongoose = require('mongoose'),
     generic = require('./generic'),
     restify = require('restify'),
     _ = require('lodash'),
-    caltools = require('calendar-tools'),
     ical = require('icalendar'),
-    email = require('../util/email');
+    email = require('../util/email'),
+    moment = require('moment');
 
-function generateEventsForPlan(plan, log) {
-    var seed = caltools.seed(plan.mainEvent, {addNoRec: true});
-    log.trace({seed: seed}, 'generated seed');
-    var instances = seed.getInstances(new Date(), new Date(2015, 1, 1));
+
+var getIcalObject = function(plan, recipientUser) {
+    var myCal = new ical.iCalendar();
+    myCal.addProperty("METHOD", "REQUEST");
+    var event = new ical.VEvent(plan._id);
+    event.addProperty("ORGANIZER", "MAILTO:dontreply@youpers.com", {CN: "YouPers Digital Health"});
+    event.addProperty("ATTENDEE",
+        "MAILTO:"+recipientUser.email,
+        {ROLE: "REQ-PARTICIPANT", PARTSTAT: "NEEDS-ACTION", RSVP: "TRUE", CN: recipientUser.fullName });
+    event.setSummary(plan.title || plan.activity && plan.activity.title);
+    event.setDate(moment(plan.mainEvent.start).toDate(), moment(plan.mainEvent.end).toDate());
+    event.addProperty("STATUS", "CONFIRMED");
+    event.addProperty("LOCATION", "just do it anywhere");
+    if (plan.mainEvent.recurrence && plan.mainEvent.frequency && plan.mainEvent.frequency !== 'once') {
+        var frequencyMap = {
+            'day': 'DAILY',
+            'week': 'WEEKLY',
+            'month': 'MONTHLY'
+        };
+        if (!frequencyMap[plan.mainEvent.frequency]) {
+            throw new Error("unknown recurrence frequency");
+        }
+
+        var rruleSpec = { FREQ: frequencyMap[plan.mainEvent.frequency] };
+        if (rruleSpec.FREQ === 'DAILY') {
+            rruleSpec.BYDAY = recipientUser.preferences && recipientUser.preferences.workingDays && recipientUser.preferences.workingDays.length > 0
+                ? recipientUser.preferences.workingDays.join(',')
+                : "MO,TU,WE,TH,FR";
+        }
+
+
+        if (plan.mainEvent.recurrence.endby.type === 'on') {
+            rruleSpec.UNTIL = plan.mainEvent.recurrence.endby.on;
+        } else if (plan.mainEvent.recurrence.endby.type === 'after') {
+            rruleSpec.COUNT = plan.mainEvent.recurrence.endby.after;
+        }
+
+        event.addProperty("RRULE", rruleSpec);
+    }
+    myCal.addComponent(event);
+    return myCal;
+};
+
+function generateEventsForPlan(plan, user) {
+    var myIcalObj = getIcalObject(plan, user);
+
+    var duration = moment(plan.mainEvent.end).diff(plan.mainEvent.start);
+    var rrule = myIcalObj.events()[0].rrule();
+
     plan.events = [];
-    _.forEach(instances, function (instance) {
+    if (rrule) {
+        delete rrule.end;
+        var occurrances = rrule.nextOccurences(moment(plan.mainEvent.start).subtract('day',1).toDate(), 100);
+        _.forEach(occurrances, function (instance) {
+            plan.events.push({
+                status: 'open',
+                begin: instance,
+                end: moment(instance).add('ms', duration)
+            });
+        });
+    } else {
         plan.events.push({
             status: 'open',
-            begin: instance.start,
-            end: instance.end
+            begin: plan.mainEvent.start,
+            end: plan.mainEvent.end
         });
-    });
+    }
     return plan;
 }
 
@@ -166,7 +221,7 @@ function postNewActivityPlan(req, res, next) {
     if (!sentPlan.mainEvent) {
         return next(new restify.InvalidArgumentError('Need MainEvent in submitted ActivityPlan'));
     }
-    generateEventsForPlan(sentPlan, req.log);
+    generateEventsForPlan(sentPlan, req.user);
     req.log.trace({eventsAfter: sentPlan.events}, 'after generating events');
 
     var newActPlan = new Model(req.body);
@@ -187,7 +242,7 @@ function postNewActivityPlan(req, res, next) {
                 return next(err);
             }
             if (req.user && req.user.email) {
-                var myIcalString = reloadedActPlan.getIcalString(req.user);
+                var myIcalString = getIcalObject(reloadedActPlan, req.user).toString();
                 email.sendCalInvite(req.user.email, 'Neuer YouPers Kalendar Eintrag', myIcalString);
             }
 
@@ -212,7 +267,7 @@ function getIcalStringForPlan(req, res, next) {
             res.send(204, []);
             return next();
         }
-        var myIcalString = plan.getIcalString(plan.owner.fullname, plan.owner.email);
+        var myIcalString = getIcalObject(plan, plan.owner).toString();
         if (req.params.email && plan.owner && plan.owner.email) {
             email.sendCalInvite(plan.owner.email, 'YouPers Calendar Event', myIcalString);
 

@@ -48,7 +48,7 @@ server.on('after', function (req, res, route) {
 });
 
 // setup better error stacktraces
-longjohn.async_trace_limit = 5;  // defaults to 10
+longjohn.async_trace_limit = 10;  // defaults to 10
 longjohn.empty_frame = 'ASYNC CALLBACK';
 
 // setup middlewares to be used by server

@@ -4,7 +4,8 @@ module.exports = {
             username: 'unittest',
             id: '525fb247101e330000001008',
             _id: '525fb247101e330000001008',
-            password: 'test'
+            password: 'test',
+            preferences: {}
         },
         reto: {
             username: 'reto',

@@ -221,6 +221,8 @@
         "role": "individual",
         "tempPasswordFlag": false,
         "username": "unittest",
-        "version": 0
+        "version": 0,
+        "preferences": {
+        }
     }
 ]

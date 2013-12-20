@@ -5,9 +5,7 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
     ObjectId = Schema.ObjectId,
     common = require('./common'),
-    _ = require('lodash'),
-    ical = require('icalendar');
-
+    _ = require('lodash');
 /**
  * ActivityPlanEvent Schema
  * @type {Schema}
@@ -65,47 +63,6 @@ ActivityPlanEvent.statics.getFieldDescriptions = function() {
     return {
         owner: 'The user who owns this ActivityPlanEvent'
     };
-};
-
-ActivityPlanSchema.methods.getIcalString = function(recipientUser) {
-    var myCal = new ical.iCalendar();
-    myCal.addProperty("METHOD", "REQUEST");
-    var event = new ical.VEvent(this._id);
-    event.addProperty("ORGANIZER", "MAILTO:dontreply@youpers.com", {CN: "YouPers Digital Health"});
-    event.addProperty("ATTENDEE",
-        "MAILTO:"+recipientUser.email,
-        {ROLE: "REQ-PARTICIPANT", PARTSTAT: "NEEDS-ACTION", RSVP: "TRUE", CN: recipientUser.fullName });
-    event.setSummary(this.title || this.activity && this.activity.title);
-    event.setDate(this.mainEvent.start, this.mainEvent.end);
-    event.addProperty("STATUS", "CONFIRMED");
-    event.addProperty("LOCATION", "just do it anywhere");
-    if (this.mainEvent.recurrence && this.mainEvent.frequency && this.mainEvent.frequency !== 'once') {
-        var frequencyMap = {
-            'day': 'DAILY',
-            'week': 'WEEKLY',
-            'month': 'MONTHLY'
-        };
-        if (!frequencyMap[this.mainEvent.frequency]) {
-            throw new Error("unknown recurrence frequency");
-        }
-
-        var rruleSpec = { FREQ: frequencyMap[this.mainEvent.frequency] };
-        if (rruleSpec.FREQ === 'DAILY') {
-            rruleSpec.BYDAY = "MO,TU,WE,TH,FR";
-        }
-
-
-        if (this.mainEvent.recurrence.endby.type === 'on') {
-            rruleSpec.UNTIL = this.mainEvent.recurrence.endby.on;
-        } else if (this.mainEvent.recurrence.endby.type === 'after') {
-            rruleSpec.COUNT = this.mainEvent.recurrence.endby.after;
-        }
-
-        var rrule = new ical.RRule(rruleSpec);
-        event.addProperty("RRULE", rrule);
-    }
-    myCal.addComponent(event);
-    return myCal.toString();
 };
 
 

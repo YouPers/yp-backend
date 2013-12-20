@@ -25,8 +25,8 @@ var masterPlan = {
     "visibility": "public",
     "executionType": "group",
     "mainEvent": {
-        "start": "2014-10-16T12:00:00.000Z",
-        "end": "2014-10-16T13:00:00.000Z",
+        "start": "2014-06-16T12:00:00.000Z",
+        "end": "2014-06-16T13:00:00.000Z",
         "allDay": false,
         "frequency": "week",
         "recurrence": {
@@ -48,7 +48,7 @@ frisby.create('plan weekly activity as a master for a joining test')
         expect(masterPlanPostAnswer.events).toBeDefined();
         expect(masterPlanPostAnswer.events.length).toEqual(masterPlan.mainEvent.recurrence['endby'].after);
         expect(masterPlanPostAnswer.events[0].begin).toEqual(masterPlan.mainEvent.start);
-        expect(masterPlanPostAnswer.events[1].begin).toEqual('2014-10-23T12:00:00.000Z');
+        expect(masterPlanPostAnswer.events[1].begin).toEqual('2014-06-23T12:00:00.000Z');
         expect(masterPlanPostAnswer.id).toBeDefined();
 
         // create a slave Plan for this masterPlan

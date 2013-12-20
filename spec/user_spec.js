@@ -62,14 +62,29 @@ frisby.create('POST new user')
                             .expectStatus(200)
                             .afterJSON(function(updatedUser) {
                                 expect(updatedUser.preferences.starredActivities).toContain(consts.aloneActivity.id);
+
+                                updatedUser.preferences.starredActivities = [];
+
+                                frisby.create('remove a starred Activity and check whether it is gone')
+                                    .put(URL+ '/users/' + testuserid, updatedUser)
+                                    .expectStatus(200)
+                                    .afterJSON(function(nextUpdatedUser) {
+                                        expect(nextUpdatedUser.preferences.starredActivities).not.toContain(consts.aloneActivity.id);
+
+
+                                        frisby.create('DELETE our testuser')
+                                            .delete(URL+ '/users/' + user.id)
+                                            .expectStatus(200)
+                                            .toss();
+
+                                    })
+                                    .toss();
+
                             })
                             .toss();
 
 
-                        frisby.create('DELETE our testuser')
-                            .delete(URL+ '/users/' + user.id)
-                            .expectStatus(200)
-                            .toss();
+
                     })
                     .toss();
             })

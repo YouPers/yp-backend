@@ -19,6 +19,7 @@ module.exports = function (swagger, config) {
             summary: "returns statistics depending on parameters passed to the API",
             method: "GET",
             nickname: "getStats",
+            accessLevel: 'al_individual',
             params: [
                 {
                     paramType: "query",

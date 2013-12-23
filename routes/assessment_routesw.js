@@ -7,7 +7,6 @@ var mongoose = require('mongoose'),
     Assessment = mongoose.model('Assessment'),
     AssessmentResult = mongoose.model('AssessmentResult'),
     generic = require('../handlers/generic'),
-    passport = require('passport'),
     handlers = require('../handlers/assessment_handlers.js');
 
 
@@ -42,7 +41,8 @@ module.exports = function (swagger, config) {
                 }
             ],
             "nickname": "postAssessmentResult",
-            beforeCallbacks: [passport.authenticate('basic', { session: false })]
+            accessLevel: 'al_individual',
+            beforeCallbacks: []
         },
         action: generic.postFn(resultsUrl, AssessmentResult)
     });
@@ -60,7 +60,8 @@ module.exports = function (swagger, config) {
                 "responseClass": "AssessmentResult",
                 "errorResponses": [swagger.errors.invalid('assId'), swagger.errors.notFound("assessment")],
                 "nickname": "getNewestAssessmentResult",
-                beforeCallbacks: [passport.authenticate('basic', { session: false })]
+                accessLevel: 'al_individual',
+                beforeCallbacks: []
             },
             action: handlers.getNewestResult(resultsUrl, AssessmentResult)
         }
@@ -77,7 +78,8 @@ module.exports = function (swagger, config) {
                 "responseClass": "AssessmentResult",
                 "errorResponses": [swagger.errors.invalid('assId'), swagger.errors.notFound("assessment")],
                 "nickname": "getAssessmentResults",
-                beforeCallbacks: [passport.authenticate('basic', { session: false })]
+                accessLevel: 'al_individual',
+                beforeCallbacks: []
             },
             action: generic.getAllFn(resultsUrl, AssessmentResult)
         }
@@ -92,9 +94,27 @@ module.exports = function (swagger, config) {
                 method: "DELETE",
                 params: [swagger.pathParam("assId", "ID of the assessment for which to store a result", "string")],
                 "nickname": "deleteAssessmentResults",
-                beforeCallbacks: [passport.authenticate('basic', { session: false })]
+                accessLevel: 'al_user',
+                beforeCallbacks: []
             },
             action: generic.deleteAllFn(resultsUrl, AssessmentResult)
+        }
+    );
+
+    swagger.addDelete({
+            spec: {
+                description: "Operations about assessments and assessmentResults",
+                path: resultsUrl + "/{id}",
+                notes: "can only delete the results for one specific assessement",
+                summary: "deletes one specifv assessmentResult for the current user and the assessment with id assId",
+                method: "DELETE",
+                params: [swagger.pathParam("assId", "ID of the assessment for which to store a result", "string"),
+                    swagger.pathParam("id", "ID of the result to delete", "string")],
+                "nickname": "deleteAssessmentResult",
+                accessLevel: 'al_user',
+                beforeCallbacks: []
+            },
+            action: generic.deleteByIdFn(resultsUrl, AssessmentResult)
         }
     );
 
@@ -107,7 +127,8 @@ module.exports = function (swagger, config) {
             summary: "returns all assessments in the system",
             method: "GET",
             "responseClass": "Assessment",
-            "nickname": "getAssessments"
+            "nickname": "getAssessments",
+            accessLevel: 'al_all'
         },
         action: generic.getAllFn(baseUrl, Assessment)
     });
@@ -122,7 +143,8 @@ module.exports = function (swagger, config) {
             "errorResponses": [swagger.errors.invalid('id'), swagger.errors.notFound("assessment")],
             method: "GET",
             "responseClass": "Assessment",
-            "nickname": "getAssessment"
+            "nickname": "getAssessment",
+            accessLevel: 'al_all'
         },
         action: generic.getByIdFn(baseUrl, Assessment)
 
@@ -135,7 +157,8 @@ module.exports = function (swagger, config) {
             notes: "Admin only! do not use if you don't know exactly what this does!",
             summary: "deletes all assessments in the system",
             method: "DELETE",
-            "nickname": "deleteAssessments"
+            "nickname": "deleteAssessments",
+            accessLevel: 'al_admin'
         },
         action: generic.deleteAllFn(baseUrl, Assessment)
     });

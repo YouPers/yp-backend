@@ -8,7 +8,7 @@
         "password": "2000",
         "_id": "52a97f1650fca98c29000006",
         "lastname": "User 1",
-        "role": "individual",
+        "roles": ["individual"],
         "tempPasswordFlag": false,
         "username": "test1",
         "version": 0
@@ -22,7 +22,7 @@
         "password": "1945",
         "_id": "52a97f1650fca98c29000007",
         "lastname": "User 2",
-        "role": "individual",
+        "roles": ["individual"],
         "tempPasswordFlag": false,
         "username": "test2",
         "version": 0
@@ -36,7 +36,7 @@
         "password": "1848",
         "_id": "52a97f1650fca98c29000008",
         "lastname": "User 3",
-        "role": "individual",
+        "roles": ["individual"],
         "tempPasswordFlag": false,
         "username": "test3",
         "version": 0
@@ -50,7 +50,7 @@
         "password": "1789",
         "_id": "52a97f1650fca98c29000009",
         "lastname": "User 4",
-        "role": "individual",
+        "roles": ["individual"],
         "tempPasswordFlag": false,
         "username": "test4",
         "version": 0
@@ -64,7 +64,7 @@
         "password": "1315",
         "_id": "52a97f1650fca98c2900000a",
         "lastname": "User 5",
-        "role": "individual",
+        "roles": ["individual"],
         "tempPasswordFlag": false,
         "username": "test5",
         "version": 0
@@ -78,7 +78,7 @@
         "password": "1969",
         "_id": "52a97f1650fca98c2900000b",
         "lastname": "User 6",
-        "role": "individual",
+        "roles": ["individual"],
         "tempPasswordFlag": false,
         "username": "test6",
         "version": 0
@@ -92,7 +92,7 @@
         "password": "2013",
         "_id": "52a97f1650fca98c2900000c",
         "lastname": "User 7",
-        "role": "individual",
+        "roles": ["individual"],
         "tempPasswordFlag": false,
         "username": "test7",
         "version": 0
@@ -106,7 +106,7 @@
         "password": "1900",
         "_id": "52a97f1650fca98c2900000d",
         "lastname": "User 8",
-        "role": "individual",
+        "roles": ["individual"],
         "tempPasswordFlag": false,
         "username": "test8",
         "version": 0
@@ -120,7 +120,7 @@
         "password": "martin",
         "_id": "528b227bf70daafada000006",
         "lastname": "Degen",
-        "role": "admin",
+        "roles": ["productadmin"],
         "tempPasswordFlag": false,
         "username": "martin",
         "version": 0
@@ -134,7 +134,7 @@
         "password": "1386",
         "_id": "52a97f1650fca98c2900000e",
         "lastname": "User 9",
-        "role": "individual",
+        "roles": ["individual"],
         "tempPasswordFlag": false,
         "username": "test9",
         "version": 0
@@ -148,7 +148,7 @@
         "password": "reto",
         "_id": "525fb247101e330000000005",
         "lastname": "Blunschi",
-        "role": "individual",
+        "roles": ["individual"],
         "tempPasswordFlag": false,
         "username": "reto",
         "version": 0
@@ -162,7 +162,7 @@
         "password": "ivan",
         "_id": "525fb247101e330000000006",
         "lastname": "Rigamonti",
-        "role": "admin",
+        "roles": ["individual"],
         "tempPasswordFlag": false,
         "username": "ivan",
         "version": 0
@@ -176,7 +176,7 @@
         "password": "bernadette",
         "_id": "528b227bf70daafada000007",
         "lastname": "Würsch",
-        "role": "admin",
+        "roles": ["individual"],
         "tempPasswordFlag": false,
         "username": "bernadette",
         "version": 0
@@ -190,7 +190,7 @@
         "password": "urs",
         "_id": "525fb247101e330000000007",
         "lastname": "Baumeler",
-        "role": "healthpromoter",
+        "roles": ["healthpromoter"],
         "tempPasswordFlag": false,
         "username": "urs",
         "version": 0
@@ -204,13 +204,13 @@
         "password": "stefan",
         "_id": "525fb247101e330000000008",
         "lastname": "Müller",
-        "role": "admin",
+        "roles": ["productadmin"],
         "tempPasswordFlag": false,
         "username": "stefan",
         "version": 0
     },
     {
-        "avatar": "assets/img/SMUE.jpeg",
+        "avatar": "assets/img/KTLU.jpeg",
         "email": "ypunittest1@gmail.com",
         "emailValidatedFlag": true,
         "firstname": "Unit",
@@ -218,9 +218,25 @@
         "password": "test",
         "_id": "525fb247101e330000001008",
         "lastname": "Test",
-        "role": "individual",
+        "roles": ["individual"],
         "tempPasswordFlag": false,
         "username": "unittest",
+        "version": 0,
+        "preferences": {
+        }
+    },
+    {
+        "avatar": "assets/img/KTLU.jpeg",
+        "email": "webmasterªyoupers.com",
+        "emailValidatedFlag": true,
+        "firstname": "System",
+        "fullname": "System Administrator",
+        "password": "backtothefuture",
+        "_id": "525fb247101e3300000010ee",
+        "lastname": "Administrator",
+        "roles": ["systemadmin"],
+        "tempPasswordFlag": false,
+        "username": "sysadm",
         "version": 0,
         "preferences": {
         }

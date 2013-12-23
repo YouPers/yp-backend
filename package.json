@@ -22,7 +22,7 @@
     "lodash": "2.4.x",
     "passport": "0.1.x",
     "passport-http": "0.2.x",
-    "icalendar": "*",
+    "icalendar": "git+https://github.com/YouPers/node-icalendar.git",
     "moment": "~2.4.x",
     "swagger-node-restify": "git+https://github.com/YouPers/swagger-node-restify.git"
   },
@@ -35,7 +35,8 @@
     "grunt-nodemon": "~0.1.x",
     "grunt-concurrent": "~0.4.x",
     "grunt-wait": "~0.1.x",
-    "grunt-express-server": "0.4.9"
+    "grunt-express-server": "0.4.9",
+    "grunt-curl": "latest"
   },
   "scripts": {
     "test": "grunt test",

@@ -29,6 +29,7 @@ frisby.create('POST new user')
     .afterJSON(function(newUser) {
         frisby.create('GET all users')
             .get(URL + '/users')
+            .auth('sysadm', 'backtothefuture')
             .expectStatus(200)
             .expectJSONTypes('*', {
                 id: String,
@@ -73,6 +74,7 @@ frisby.create('POST new user')
 
 
                                         frisby.create('DELETE our testuser')
+                                            .auth('sysadm', 'backtothefuture')
                                             .delete(URL+ '/users/' + user.id)
                                             .expectStatus(200)
                                             .toss();

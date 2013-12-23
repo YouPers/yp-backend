@@ -5,7 +5,6 @@
 var mongoose = require('mongoose'),
     Model = mongoose.model('ActivityPlan'),
     generic = require('./../handlers/generic'),
-    passport = require('passport'),
     handlers = require('../handlers/activityplan_handlers');
 
 module.exports = function (swagger, config) {
@@ -36,7 +35,8 @@ module.exports = function (swagger, config) {
             method: "GET",
             "responseClass": "ActivityPlan",
             "nickname": "getJoinOffers",
-            beforeCallbacks: [passport.authenticate('basic', { session: false })]
+            accessLevel: 'al_individual',
+            beforeCallbacks: []
         },
         action: handlers.getJoinOffers
     });
@@ -61,7 +61,8 @@ module.exports = function (swagger, config) {
             "responseClass": "ActivityPlan",
             method: "GET",
             "nickname": "getActivityPlan",
-            beforeCallbacks: [passport.authenticate('basic', { session: false })]
+            accessLevel: 'al_individual',
+            beforeCallbacks: []
         },
         action: generic.getByIdFn(baseUrl, Model)
     });
@@ -81,7 +82,8 @@ module.exports = function (swagger, config) {
                 generic.params.populatedeep],
             "responseClass": "ActivityPlan",
             "nickname": "getActivityPlans",
-            beforeCallbacks: [passport.authenticate('basic', { session: false })]
+            accessLevel: 'al_individual',
+            beforeCallbacks: []
         },
         action: generic.getAllFn(baseUrl, Model)
     });
@@ -111,7 +113,8 @@ module.exports = function (swagger, config) {
             ],
             method: "GET",
             "nickname": "getActivityPlanICal",
-            beforeCallbacks: [passport.authenticate('basic', { session: false })]
+            accessLevel: 'al_individual',
+            beforeCallbacks: []
         },
         action: handlers.getIcalStringForPlan
     });
@@ -134,7 +137,8 @@ module.exports = function (swagger, config) {
             ],
             method: "DELETE",
             "nickname": "deleteActivityPlan",
-            beforeCallbacks: [passport.authenticate('basic', { session: false })]
+            accessLevel: 'al_individual',
+            beforeCallbacks: []
         },
         action: generic.deleteByIdFn(baseUrl, Model)
     });
@@ -147,7 +151,8 @@ module.exports = function (swagger, config) {
             summary: "Deletes all activityPlans",
             method: "DELETE",
             "nickname": "deleteActivityPlans",
-            beforeCallbacks: [passport.authenticate('basic', { session: false })]
+            accessLevel: 'al_admin',
+            beforeCallbacks: []
         },
         action: generic.deleteAllFn(baseUrl, Model)
     });
@@ -172,7 +177,8 @@ module.exports = function (swagger, config) {
             ],
             method: "POST",
             "nickname": "postActivityPlan",
-            beforeCallbacks: [passport.authenticate('basic', { session: false })]
+            accessLevel: 'al_individual',
+            beforeCallbacks: []
         },
         action: handlers.postNewActivityPlan
     });
@@ -201,7 +207,8 @@ module.exports = function (swagger, config) {
             ],
             method: "PUT",
             "nickname": "putActivityPlan",
-            beforeCallbacks: [passport.authenticate('basic', { session: false })]
+            accessLevel: 'al_individual',
+            beforeCallbacks: []
         },
         action: generic.putFn(baseUrl, Model)
     });
@@ -237,7 +244,8 @@ module.exports = function (swagger, config) {
             ],
             method: "PUT",
             "nickname": "putActivityPlanEvent",
-            beforeCallbacks: [passport.authenticate('basic', { session: false })]
+            accessLevel: 'al_individual',
+            beforeCallbacks: []
         },
         action: handlers.putActivityEvent
     });

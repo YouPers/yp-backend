@@ -1,7 +1,8 @@
 var _ = require('lodash'),
     restify = require('restify'),
     ObjectId = require('mongoose').Schema.ObjectId,
-    handlerUtils = require('./handlerUtils');
+    handlerUtils = require('./handlerUtils'),
+    auth = require('../util/auth');
 
 ////////////////////////////////////
 // helper functions
@@ -376,7 +377,7 @@ module.exports = {
     getByIdFn: function (baseUrl, Model) {
         return function (req, res, next) {
             var dbQuery = Model.findById(req.params.id);
-            if (req.user && req.user.role === 'admin' && Model.getAdminAttrsSelector) {
+            if (req.user && auth.isAdmin(req.user) && Model.getAdminAttrsSelector) {
                 dbQuery.select(Model.getAdminAttrsSelector());
             }
             processStandardQueryOptions(req, dbQuery, Model)
@@ -425,7 +426,7 @@ module.exports = {
                 }
             }
             var dbQuery = Model.find(finder);
-            if (req.user && req.user.role === 'admin' && Model.getAdminAttrsSelector) {
+            if (req.user && auth.isAdmin(req.user) && Model.getAdminAttrsSelector) {
                 dbQuery.select(Model.getAdminAttrsSelector());
             }
 
@@ -512,6 +513,13 @@ module.exports = {
                 return next(err);
             }
 
+            // check whether this is an update for roles and check required privileges
+            if (req.body.roles) {
+                if (!auth.canAssign(req.user, req.body.roles)) {
+                    return next(new restify.NotAuthorizedError('authenticated user has not enough privileges to assign these roles: ' + req.body.roles));
+                }
+            }
+
             Model.findById(req.params.id).exec(function (err, objFromDb) {
                 if (err) {
                     return next(err);
@@ -524,8 +532,9 @@ module.exports = {
                     ((!objFromDb.owner.equals(req.user.id)) ||
                         (!objFromDb.owner.equals(req.body.owner)))
                     ) {
-                    return next(new restify.NotAuthorizedError('authenticated user is not authorized to update this plan'));
+                    return next(new restify.NotAuthorizedError('authenticated user is not authorized to update this ressource because he is not owner of the stored ressource'));
                 }
+
 
                 _.extend(objFromDb, req.body);
 

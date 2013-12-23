@@ -7,7 +7,6 @@ var mongoose = require('mongoose'),
     crypto = require('crypto'),
     restify = require('restify'),
     common = require('./common');
-
 /**
  * User Schema
  */
@@ -19,7 +18,7 @@ var UserSchema = common.newSchema({
     avatar: {type: String},
     emailValidatedFlag: { type: Boolean, default: false },
     username: { type: String, trim: true, lowercase: true, required: true, unique: true },
-    role: { type: String, enum: ['individual', 'healthpromoter', 'admin'], default: 'individual', required: true },
+    roles: [{ type: String}],
     hashed_password: { type: String, trim: true },
     tempPasswordFlag: { type: Boolean, default: false },
     preferences: {
@@ -89,13 +88,13 @@ UserSchema.statics.toJsonConfig = function () {
  */
 UserSchema.pre('save', function (next) {
     if (!validatePresenceOf(this.username)) {
-        next(new restify.MissingParameterError('Username cannot be blank'));
+        next(new restify.MissingParameterError('username cannot be blank'));
     }
-    if (!validatePresenceOf(this.role)) {
-        next(new restify.MissingParameterError('Role cannot be blank'));
+    if (!validatePresenceOf(this.roles)) {
+        next(new restify.MissingParameterError('roles cannot be blank'));
     }
     if (!validatePresenceOf(this.email)) {
-        next(new restify.MissingParameterError('Email cannot be blank'));
+        next(new restify.MissingParameterError('email cannot be blank'));
     }
     if (this.email.indexOf('@') <= 0) {
 //    next(new restify.MissingParameterError('Email address must be valid'));

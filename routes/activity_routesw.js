@@ -5,7 +5,6 @@
 
 var mongoose = require('mongoose'),
     Activity = mongoose.model('Activity'),
-    passport = require('passport'),
     generic = require('../handlers/generic'),
     handlers = require('../handlers/activity_handlers');
 
@@ -19,7 +18,7 @@ module.exports = function (swagger, config) {
             description: "Operations about Activities",
             path: baseUrl + '/recommendations',
             notes: "returns only the top 5 recommendations with their public attributes in normal case, ordered by recommendation weight. " +
-                "If the authenticated user has role 'admin', all " +
+                "If the authenticated user has is an administrator, all " +
                 "attributes with all recommendations are returned (incl. all weights, ...)",
             summary: "returns the current top 5 recommendations for the authenticated user ",
             method: "GET",
@@ -35,7 +34,8 @@ module.exports = function (swagger, config) {
                 generic.params.limit,
                 generic.params.populate
             ],
-            beforeCallbacks: [passport.authenticate('basic', { session: false })]
+            accessLevel: 'al_individual',
+            beforeCallbacks: []
         },
         action: handlers.getRecommendationsFn
     });
@@ -74,7 +74,8 @@ module.exports = function (swagger, config) {
             method: "GET",
             "responseClass": "Activity",
             "nickname": "getActivity",
-            beforeCallbacks: [handlers.roleBasedAuth('anonymous')]
+            accessLevel: 'al_all',
+            beforeCallbacks: []
         },
         action: generic.getByIdFn(baseUrl, Activity)
 
@@ -95,7 +96,8 @@ module.exports = function (swagger, config) {
             method: "GET",
             "responseClass": "Activity",
             "nickname": "getActivities",
-            beforeCallbacks: [handlers.roleBasedAuth('anonymous')]
+            accessLevel: 'al_all',
+            beforeCallbacks: []
         },
         action: generic.getAllFn(baseUrl, Activity)
     });
@@ -119,7 +121,8 @@ module.exports = function (swagger, config) {
                     dataType: "Activity"
                 }
             ],
-            beforeCallbacks: [passport.authenticate('basic', { session: false }), handlers.invalidateActivityCache]
+            accessLevel: 'al_admin',
+            beforeCallbacks: [handlers.invalidateActivityCache]
         },
         action: generic.postFn(baseUrl, Activity)
     });
@@ -134,7 +137,8 @@ module.exports = function (swagger, config) {
             "responseClass": "Activity",
             "nickname": "putActivity",
             params: [swagger.pathParam("id", "ID of the activity to be updated", "string")],
-            beforeCallbacks: [passport.authenticate('basic', { session: false }), handlers.invalidateActivityCache]
+            accessLevel: 'al_admin',
+            beforeCallbacks: [handlers.invalidateActivityCache]
         },
         action: generic.putFn(baseUrl, Activity)
     });
@@ -147,7 +151,8 @@ module.exports = function (swagger, config) {
             summary: "Deletes all Activities",
             method: "DELETE",
             "nickname": "deleteActivities",
-            beforeCallbacks: [passport.authenticate('basic', { session: false }), handlers.invalidateActivityCache]
+            accessLevel: 'al_admin',
+            beforeCallbacks: [handlers.invalidateActivityCache]
         },
         action: generic.deleteAllFn(baseUrl, Activity)
     });

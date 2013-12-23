@@ -4,6 +4,7 @@ var mongoose = require('mongoose'),
     passport = require('passport'),
     AssessmentResult = mongoose.model('AssessmentResult'),
     _ = require('lodash'),
+    auth = require('../util/auth'),
     cachedActList;
 
 
@@ -77,7 +78,7 @@ function getRecommendationsFn(req, res, next) {
                 var fokusQuestion = req.params && req.params.fokus;
 
                 var recs = generateRecommendations(actList, assResults[0], fokusQuestion, req.log);
-                if (req.user.role !== 'admin') {
+                if (!auth.isAdmin(req.user)) {
                     recs = recs.slice(0,5);
                 }
                 res.send(recs);
@@ -92,34 +93,11 @@ function getRecommendationsFn(req, res, next) {
     }
 }
 
-// TODO: move to generic Auth module!
-function roleBasedAuth(reqRole) {
-    return function(req, res, next) {
-        passport.authenticate('basic', function(err, user, info) {
-            if (err) {
-                return next(err);
-            }
-
-            if (!user) {
-                if ('anonymous' === reqRole) {
-                    return next();
-                } else {
-                    return next(new Error("not authorized"));
-                }
-            }
-            // TODO: check for non anonymous Roles
-            req.user = user;
-            return next();
-        })(req, res, next);
-    };
-}
-
 function invalidateActivityCache(req, res, next) {
     cachedActList = null;
 }
 
 module.exports = {
     getRecommendationsFn: getRecommendationsFn,
-    roleBasedAuth: roleBasedAuth,
     invalidateActivityCache: invalidateActivityCache
 };

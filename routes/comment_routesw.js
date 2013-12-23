@@ -23,7 +23,8 @@ module.exports = function (swagger, config) {
                 generic.params.populate],
             "responseClass": "Comment",
             "errorResponses": [swagger.errors.invalid('id'), swagger.errors.notFound("user")],
-            "nickname": "getCommentById"
+            "nickname": "getCommentById",
+            accessLevel: 'al_individual'
         },
         action: generic.getByIdFn(baseUrl, Model)
     });
@@ -42,7 +43,8 @@ module.exports = function (swagger, config) {
                 generic.params.populate,
                 generic.params.populatedeep],
             "responseClass": "Comment",
-            "nickname": "getCommentById"
+            "nickname": "getCommentById",
+            accessLevel: 'al_individual'
         },
         action: generic.getAllFn(baseUrl, Model)
     });
@@ -57,7 +59,8 @@ module.exports = function (swagger, config) {
             method: "POST",
             param: [swagger.bodyParam("Comment", "new Comment object", "Comment")],
             "responseClass": "Comment",
-            "nickname": "postComments"
+            "nickname": "postComments",
+            accessLevel: 'al_individual'
         },
         action:  generic.postFn(baseUrl, Model)
         }
@@ -71,7 +74,8 @@ module.exports = function (swagger, config) {
                 summary: "Deletes a comment by id",
                 method: "DELETE",
                 param: [swagger.pathParam("id", "ID of the comment to be fetched", "string")],
-                "nickname": "deleteComment"
+                "nickname": "deleteComment",
+                accessLevel: 'al_user'
             },
             action:  generic.deleteByIdFn(baseUrl, Model)
         }
@@ -84,7 +88,8 @@ module.exports = function (swagger, config) {
                 notes: "delete all comments",
                 summary: "Deletes comments",
                 method: "DELETE",
-                "nickname": "deleteComments"
+                "nickname": "deleteComments",
+                accessLevel: 'al_admin'
             },
             action:  generic.deleteAllFn(baseUrl, Model)
         }

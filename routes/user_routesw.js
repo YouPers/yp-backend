@@ -28,7 +28,8 @@ module.exports = function (swagger, config) {
                 generic.params.populatedeep],
             "responseClass": "User",
             "errorResponses": [swagger.errors.invalid('id'), swagger.errors.notFound("user")],
-            "nickname": "getUserById"
+            "nickname": "getUserById",
+            accessLevel: 'al_all'
         },
         action: generic.getByIdFn(baseUrl, User)
     });
@@ -46,7 +47,8 @@ module.exports = function (swagger, config) {
                 generic.params.populatedeep],
             method: "GET",
             "responseClass": "User",
-            "nickname": "getUsers"
+            "nickname": "getUsers",
+            accessLevel: 'al_admin'
         },
         action: generic.getAllFn(baseUrl, User)
     });
@@ -62,7 +64,8 @@ module.exports = function (swagger, config) {
             params: [swagger.pathParam("id", "ID of the user to be updated", "string"), swagger.bodyParam("user", "updated user object", "User")],
             "responseClass": "User",
             "errorResponses": [swagger.errors.invalid('id'), swagger.errors.notFound("user")],
-            "nickname": "putUserById"
+            "nickname": "putUserById",
+            accessLevel: 'al_user'
         },
         action: generic.putFn(baseUrl, User)
     });
@@ -77,7 +80,8 @@ module.exports = function (swagger, config) {
             params: [swagger.bodyParam("user", "updated user object", "User")],
             "responseClass": "User",
             "errorResponses": [],
-            "nickname": "postUser"
+            "nickname": "postUser",
+            accessLevel: 'al_all'
         },
         action: userRoutes.postFn(baseUrl, User)
     });
@@ -91,7 +95,9 @@ module.exports = function (swagger, config) {
             method: "DELETE",
             params: [swagger.pathParam("id", "ID of the user to be deleted", "string")],
             "errorResponses": [swagger.errors.invalid('id'), swagger.errors.notFound("user")],
-            "nickname": "deleteUser"
+            "nickname": "deleteUser",
+            accessLevel: 'al_systemadmin'
+
         },
         action: generic.deleteByIdFn(baseUrl, User)
     });
@@ -104,7 +110,8 @@ module.exports = function (swagger, config) {
             method: "DELETE",
             params: [],
             "errorResponses": [],
-            "nickname": "deleteAllUsers"
+            "nickname": "deleteAllUsers",
+            accessLevel: 'al_systemadmin'
         },
         action: generic.deleteAllFn(baseUrl, User)
     });
@@ -120,7 +127,8 @@ module.exports = function (swagger, config) {
             responseClass: "User",
             "errorResponses": [],
             "beforeCallbacks": [ passport.authenticate('basic', { session: false })],
-            "nickname": "login"
+            "nickname": "login",
+            accessLevel: 'al_all'
         },
         action: function(req, res, next) {
             req.log.trace({user: req.user},'/login: user authenticated');

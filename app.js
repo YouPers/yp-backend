@@ -17,7 +17,8 @@ var restify = require("restify"),
     Logger = require('bunyan'),
     passport = require('passport'),
     passportHttp = require('passport-http'),
-    swagger = require("swagger-node-restify");
+    swagger = require("swagger-node-restify"),
+    auth = require('./util/auth');
 
 
 // Setup Database Connection
@@ -89,7 +90,7 @@ passport.use(new passportHttp.BasicStrategy(
 ));
 
 swagger.setAppHandler(server);
-
+swagger.setAuthorizationMiddleWare(auth.roleBasedAuth);
 swagger.configureSwaggerPaths("", "/api-docs", "");
 
 // TODO: (RBLU) remove this when all routes have been properly documented

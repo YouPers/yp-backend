@@ -20,7 +20,8 @@ module.exports = function (swagger, config) {
             notes: "returns {message: Success} as json",
             summary: "checks basic availability of api, return code 200 if api is available.",
             method: "GET",
-            "nickname": "ping"
+            "nickname": "ping",
+            accessLevel: 'al_all'
         },
         action: function (req, res, next) {
             res.send({'message':'Success'});
@@ -44,7 +45,8 @@ module.exports = function (swagger, config) {
             notes: "returns some database information as json",
             summary: "checks basic availability of database, return code 200 if db is available.",
             method: "GET",
-            "nickname": "pingdb"
+            "nickname": "pingdb",
+            accessLevel: 'al_all'
         },
         action: function (req, res, next) {
             mongoose.connection.db.executeDbCommand({'ping':'1'}, function(err, dbres) {

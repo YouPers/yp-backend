@@ -59,7 +59,6 @@ function generateEventsForPlan(plan, user) {
 
     plan.events = [];
     if (rrule) {
-        delete rrule.end;
         var occurrances = rrule.nextOccurences(moment(plan.mainEvent.start).subtract('day',1).toDate(), 100);
         _.forEach(occurrances, function (instance) {
             plan.events.push({

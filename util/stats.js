@@ -58,7 +58,7 @@ var statsQueries = function (timeRange, scopeType, scopeId) {
             }
         },
         {$project: {
-            date: '$date',
+            date: '$_id',
             _id: 0,
             updatesPerDay: 1
         }}

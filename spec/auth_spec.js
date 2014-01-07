@@ -25,7 +25,10 @@ describe('Authentication Module', function () {
     });
 
     it('should perform role based authorization by allowing / disallowing access', function() {
-       auth.checkAccess('individual', auth.accesslevels.al_all, function(err) {
+        auth.checkAccess('anonymous', auth.accesslevels.al_all, function(err) {
+            expect(err).toBeUndefined();
+        });
+        auth.checkAccess('individual', auth.accesslevels.al_all, function(err) {
            expect(err).toBeUndefined();
        });
         auth.checkAccess('individual', auth.accesslevels.al_systemadmin, function(err) {

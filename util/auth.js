@@ -86,6 +86,8 @@ function getRolesFromUser(user) {
         userRoles = user;
     } else if (_.isString(user)) {
         userRoles = [user];
+    } else if (!user) {
+        userRoles = [roles.anonymous];
     }
     return userRoles;
 }

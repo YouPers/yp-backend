@@ -32,7 +32,7 @@ var postFn = function (baseUrl, UserModel) {
                 return next(err);
             }
             // send verificationEmail
-            email.send("YouPers Digital Health Plattform <dontreply@youpers.com>", newObj.email, "YouPers: Please verify your email address", "click here", "<b>and here</b>");
+            email.sendEmailVerification(newObj);
 
             res.header('location', baseUrl + '/' + newObj._id);
             res.send(201, newObj);
@@ -41,7 +41,18 @@ var postFn = function (baseUrl, UserModel) {
     };
 };
 
+var emailVerificationPostFn = function(baseUrl) {
+    return function(req, res, next) {
+
+
+        res.send(202, req._body);
+
+        next();
+    };
+}
+
 
 module.exports = {
-    postFn: postFn
+    postFn: postFn,
+    emailVerificationPostFn: emailVerificationPostFn
 };

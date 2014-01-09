@@ -12,6 +12,7 @@ module.exports = {
         },
         host: 'localhost',
         port: '8000',
+        webclientUrl: "http://localhost:9000",
         backendUrl: "http://localhost:8000",
         db_prefix: 'mongodb',
         db_host: 'localhost',
@@ -36,14 +37,20 @@ module.exports = {
                 req: Logger.stdSerializers.req,
                 res: Logger.stdSerializers.res
             }
+        },
+        emailVerification : {
+            key: "50126a4a500219238cd678a383cdab197ed5fe42",
+            algorithm: "aes256"
         }
-    }, test: {   // used by CircleCI!!!
+    },
+    test: {   // used by CircleCI!!!
         root: require('path').normalize(__dirname + '/..'),
         app: {
             name: 'YouPers Platform Server'
         },
         host: 'localhost',
         port: '8000',
+        webclientUrl: "http://localhost:9000",
         backendUrl: "http://localhost:8000",
         db_prefix: 'mongodb',
         db_host: 'localhost',
@@ -61,12 +68,18 @@ module.exports = {
                 req: Logger.stdSerializers.req,
                 res: Logger.stdSerializers.res
             }
+        },
+        emailVerification : {
+            key: "50126a4a500219238cd678a383cdab197ed5fe42",
+            algorithm: "aes256"
         }
-    }, ci: {   // used by Heroku yp-backend-ci
+    },
+    ci: {   // used by Heroku yp-backend-ci
         root: require('path').normalize(__dirname + '/..'),
         app: {
             name: 'YouPers Platform Server'
         },
+        webclientUrl: "http://yp-ewl-webclient-ci.herokuapp.com",
         backendUrl: "http://yp-backend-ci.herokuapp.com",
         host: "yp-backend-ci.herokuapp.com",
         port: '8000',
@@ -88,12 +101,18 @@ module.exports = {
                 req: Logger.stdSerializers.req,
                 res: Logger.stdSerializers.res
             }
+        },
+        emailVerification : {
+            key: "50126a4a500219238cd678a383cdab197ed5fe42",
+            algorithm: "aes256"
         }
-    }, herokutest: {   // used by Heroku yp-backend-test
+    },
+    herokutest: {   // used by Heroku yp-backend-test
         root: require('path').normalize(__dirname + '/..'),
         app: {
             name: 'YouPers Platform Server'
         },
+        webclientUrl: "http://yp-ewl-backend-test.herokuapp.com",
         backendUrl: "http://yp-backend-test.herokuapp.com",
         port: '8000',
         db_prefix: 'mongodb',
@@ -114,13 +133,19 @@ module.exports = {
                 req: Logger.stdSerializers.req,
                 res: Logger.stdSerializers.res
             }
+        },
+        emailVerification : {
+            key: "50126a4a500219238cd678a383cdab197ed5fe42",
+            algorithm: "aes256"
         }
-    }, uat: {
-    root: require('path').normalize(__dirname + '/..'),
-        app: {
-        name: 'YouPers Platform Server'
     },
-    port: '8000',
+    uat: {
+        root: require('path').normalize(__dirname + '/..'),
+        app: {
+            name: 'YouPers Platform Server'
+        },
+        port: '8000',
+        webclientUrl: "https://uat.youpers.com",
         backendUrl: "https://uat.youpers.com",
         db_prefix: 'mongodb',
         db_host: 'localhost',
@@ -129,19 +154,24 @@ module.exports = {
         db_user: 'nodeDbAccess',
         db_password: 'yp13%mongodb%uat',
         loggerOptions: {
-        name: 'Main',
+            name: 'Main',
             streams: [
-            {
-                path: '/var/log/yp-backend/server.log',
-                level: 'info'
-            }
-        ],
+                {
+                    path: '/var/log/yp-backend/server.log',
+                    level: 'info'
+                }
+            ],
             serializers: {
-            req: Logger.stdSerializers.req,
-                res: Logger.stdSerializers.res
+                req: Logger.stdSerializers.req,
+                    res: Logger.stdSerializers.res
+            }
+        },
+        emailVerification : {
+            key: "50126a4a500219238cd678a383cdab197ed5fe42",
+            algorithm: "aes256"
         }
-    }
-}, production: {
+    },
+    production: {
         root: require('path').normalize(__dirname + '/..'), app: {
             name: 'Nodejs Restify Mongoose Demo'
         }, openUserSignup: false

@@ -77,7 +77,7 @@ fs.readdirSync('./models').forEach(function (file) {
 });
 
 // setup authentication, currently only HTTP Basic auth over HTTPS is supported
-passport.use(new passportHttp.BasicStrategy(auth.checkLocalUsernamePassword));
+passport.use(new passportHttp.BasicStrategy(auth.validateLocalUsernamePassword));
 
 // setup swagger documentation
 swagger.setAppHandler(server);

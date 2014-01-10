@@ -62,7 +62,7 @@ function checkAccess(user, accessLevel, callback) {
             (_.contains(accessLevel, roles.anonymous ))) {
             return callback();
         } else {
-            return callback(new restify.NotAuthorizedError("Authentication required for this route"));
+            return callback(user ? new restify.NotAuthorizedError("User not authorized for this ressource"): new restify.UnauthorizedError('Authentication failed'));
         }
     }
 

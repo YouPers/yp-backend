@@ -76,19 +76,10 @@ fs.readdirSync('./models').forEach(function (file) {
     }
 });
 
-// setup authentication
-var User = mongoose.model('User');
-passport.use(new passportHttp.BasicStrategy(
-    function(username, password, done) {
-        User.findOne({ username: username }, function (err, user) {
-            if (err) { return done(err); }
-            if (!user) { return done(null, false); }
-            if (!user.validPassword(password)) { return done(null, false); }
-            return done(null, user);
-        });
-    }
-));
+// setup authentication, currently only HTTP Basic auth over HTTPS is supported
+passport.use(new passportHttp.BasicStrategy(auth.checkLocalUsernamePassword));
 
+// setup swagger documentation
 swagger.setAppHandler(server);
 swagger.setAuthorizationMiddleWare(auth.roleBasedAuth);
 swagger.configureSwaggerPaths("", "/api-docs", "");

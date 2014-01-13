@@ -23,6 +23,10 @@ var encryptEmail = function(email) {
     return encrypted;
 }
 
+var getVerificationLink = function(user) {
+
+};
+
 var sendEmailVerification = function (user) {
 
     var from = fromDefault;
@@ -30,7 +34,6 @@ var sendEmailVerification = function (user) {
     var subject = "YouPers: Please verify your email address";
 
     var encryptedEmail = encryptEmail(to);
-
     var verificationLink = config.webclientUrl + "/#/email_verification/" + encryptedEmail;
 
     var locals = {
@@ -118,6 +121,7 @@ var sendCalInvite = function (to, subject, iCalString) {
 };
 
 module.exports = {
+    encryptEmail: encryptEmail,
     sendEmail: sendEmail,
     sendEmailVerification: sendEmailVerification,
     sendCalInvite: sendCalInvite

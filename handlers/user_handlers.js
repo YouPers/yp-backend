@@ -1,18 +1,21 @@
 var handlerUtils = require('./handlerUtils'),
+    generic = require('./../handlers/generic'),
     email = require('../util/email'),
     auth = require('../util/auth'),
-    restify = require('restify');
+    restify = require('restify'),
+    mongoose = require('mongoose'),
+    User = mongoose.model('User');
 
-var postFn = function (baseUrl, UserModel) {
+var postFn = function (baseUrl) {
     return function (req, res, next) {
 
-        var err = handlerUtils.checkWritingPreCond(req, UserModel);
+        var err = handlerUtils.checkWritingPreCond(req, User);
 
         if (err) {
             return next(err);
         }
 
-        var newObj = new UserModel(req.body);
+        var newObj = new User(req.body);
 
         // assign default role§
         if (newObj.roles.length === 0) {
@@ -45,9 +48,25 @@ var emailVerificationPostFn = function(baseUrl) {
     return function(req, res, next) {
 
 
-        res.send(202, req._body);
+        User.findById(req.params.id, function(err, user) {
+            if(err) {
+                return next(new restify.InternalError(err));
+            }
+            if(!user) {
+                return next(new restify.InvalidArgumentError('Invalid User ID'));
+            }
 
-        next();
+            if(req.body.token === email.encryptEmail(user.email)) {
+
+                res.send(200, {});
+                return next();
+            } else {
+                return next(new restify.InvalidArgumentError('Invalid Token'));
+            }
+
+
+        });
+
     };
 }
 

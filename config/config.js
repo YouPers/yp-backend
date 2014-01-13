@@ -2,7 +2,7 @@
  * Environment dependent configuration properties
  */
 
-var Logger = require('bunyan');
+var bunyan = require('bunyan');
 
 module.exports = {
     development: {
@@ -25,17 +25,14 @@ module.exports = {
             streams: [
                 {
                     stream: process.stdout,
-                    level: 'debug'
+                    level: 'info'
                 },
                 {
                     path: 'logs/server.log',
-                    level: 'trace'
+                    level: 'debug'
                 }
             ],
-            serializers: {
-                req: Logger.stdSerializers.req,
-                res: Logger.stdSerializers.res
-            }
+            serializers: bunyan.stdSerializers
         }
     }, test: {   // used by CircleCI!!!
         root: require('path').normalize(__dirname + '/..'),
@@ -57,10 +54,7 @@ module.exports = {
                     level: 'info'
                 }
             ],
-            serializers: {
-                req: Logger.stdSerializers.req,
-                res: Logger.stdSerializers.res
-            }
+            serializers: bunyan.stdSerializers
         }
     }, ci: {   // used by Heroku yp-backend-ci
         root: require('path').normalize(__dirname + '/..'),
@@ -84,10 +78,7 @@ module.exports = {
                     level: 'info'
                 }
             ],
-            serializers: {
-                req: Logger.stdSerializers.req,
-                res: Logger.stdSerializers.res
-            }
+            serializers: bunyan.stdSerializers
         }
     }, herokutest: {   // used by Heroku yp-backend-test
         root: require('path').normalize(__dirname + '/..'),
@@ -110,10 +101,7 @@ module.exports = {
                     level: 'info'
                 }
             ],
-            serializers: {
-                req: Logger.stdSerializers.req,
-                res: Logger.stdSerializers.res
-            }
+            serializers: bunyan.stdSerializers
         }
     }, uat: {
     root: require('path').normalize(__dirname + '/..'),
@@ -136,10 +124,7 @@ module.exports = {
                 level: 'info'
             }
         ],
-            serializers: {
-            req: Logger.stdSerializers.req,
-                res: Logger.stdSerializers.res
-        }
+            serializers: bunyan.stdSerializers
     }
 }, production: {
         root: require('path').normalize(__dirname + '/..'), app: {

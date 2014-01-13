@@ -47,7 +47,11 @@ var postFn = function (baseUrl) {
 var emailVerificationPostFn = function(baseUrl) {
     return function(req, res, next) {
 
+        if(req.params.id !== req.user.id) {
+            return next(new restify.ConflictError('User ID in request parameters does not match authenticated user'));
+        }
 
+        // TODO: assert params id with session user id ( req.user.id
         User.findById(req.params.id, function(err, user) {
             if(err) {
                 return next(new restify.InternalError(err));
@@ -63,7 +67,6 @@ var emailVerificationPostFn = function(baseUrl) {
             } else {
                 return next(new restify.InvalidArgumentError('Invalid Token'));
             }
-
 
         });
 

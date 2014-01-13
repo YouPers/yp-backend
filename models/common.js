@@ -255,7 +255,17 @@ module.exports = {
         ActivityPlanFrequency: "once day week month year".split(' '),
 
         // Assessment related enums
-        questionType: "oneSided twoSided".split(' ')
+        questionType: "oneSided twoSided".split(' '),
+
+        // Profile related enums
+        gender: "undefined female male".split(' ')                         ,
+        maritalStatus: "undefined single unmarried married separated divorced widowed".split(' '),
+
+        // Preference related enums
+        firstDayOfWeek: "Monday, Sunday",
+        defaultUserWeekForScheduling: "Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday",
+        languageUI: "German, English",
+
     },
 
     initializeDbFor: function InitializeDbFor(Model) {

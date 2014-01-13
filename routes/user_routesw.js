@@ -101,7 +101,7 @@ module.exports = function (swagger, config) {
             "nickname": "postUser",
             accessLevel: 'al_all'
         },
-        action: userRoutes.postFn(baseUrl, User)
+        action: userHandlers.postFn(baseUrl)
     });
 
     swagger.addDelete({

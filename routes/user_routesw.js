@@ -6,7 +6,6 @@
 var mongoose = require('mongoose'),
     User = mongoose.model('User'),
     generic = require('./../handlers/generic'),
-    passport = require('passport'),
     userHandlers = require('./../handlers/user_handlers.js');
 //    ObjectId = mongoose.Types.ObjectId;
 
@@ -102,7 +101,7 @@ module.exports = function (swagger, config) {
             "nickname": "postUser",
             accessLevel: 'al_all'
         },
-        action: userHandlers.postFn(baseUrl)
+        action: userRoutes.postFn(baseUrl, User)
     });
 
     swagger.addDelete({
@@ -145,9 +144,9 @@ module.exports = function (swagger, config) {
             params: [swagger.headerParam("Authentication", "HTTP Basic Auth credentials", "string", true)],
             responseClass: "User",
             "errorResponses": [],
-            "beforeCallbacks": [ passport.authenticate('basic', { session: false })],
+            "beforeCallbacks": [],
             "nickname": "login",
-            accessLevel: 'al_all'
+            accessLevel: 'al_user'
         },
         action: function(req, res, next) {
             req.log.trace({user: req.user},'/login: user authenticated');
@@ -155,5 +154,4 @@ module.exports = function (swagger, config) {
             return next();
         }
     });
-
 };

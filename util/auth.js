@@ -62,7 +62,7 @@ function checkAccess(user, accessLevel, callback) {
             (_.contains(accessLevel, roles.anonymous ))) {
             return callback();
         } else {
-            return callback(new restify.NotAuthorizedError("Authentication required for this route"));
+            return callback(user ? new restify.NotAuthorizedError("User not authorized for this ressource"): new restify.UnauthorizedError('Authentication failed'));
         }
     }
 
@@ -109,11 +109,32 @@ var canAssign = function (loggedInUser, requestedRoles) {
     return canEdit;
 };
 
+/**
+ * checkes whether the supplied credentials are belonging to a valid user in the local database.
+ * The parameter username may also be used with the user's email address.
+ * Calls done(error, user) at the end.
+ *
+ * @param username the user's username or email address
+ * @param password the user's password
+ * @param done callback to be called with the result, takes to arguments error and user. user is passedwhen
+ * authenication is successful, otherwise it will pass false.
+ */
+var validateLocalUsernamePassword =  function( username, password, done) {
+    require('mongoose').model('User').findOne().or([{ username: username }, {email: username}]).exec(function (err, user) {
+        if (err) { return done(err); }
+        if (!user) {
+            return done(null, false); }
+        if (!user.validPassword(password)) { return done(null, false); }
+        return done(null, user);
+    });
+}
+
 module.exports = {
     roleBasedAuth: roleBasedAuth,
     isAdmin: isAdmin,
     roles: roles,
     accesslevels: accessLevels,
     canAssign: canAssign,
-    checkAccess: checkAccess
+    checkAccess: checkAccess,
+    validateLocalUsernamePassword: validateLocalUsernamePassword
 };

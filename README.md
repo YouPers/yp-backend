@@ -34,14 +34,12 @@ Installed local mongoDb: http://www.mongodb.org/downloads
 Installed nodejs und npm: http://nodejs.org/
 Installed grunt cli: `npm install -g grunt-cli`
 Install bunyan logger support:  `npm install -g bunyan`
+Install httpie (https://github.com/jkbr/httpie): `easy_install httpie`
 
 ### Getting Started
     git clone https://github.com/YouPers/yp-backend.git
     cd yp-backend
     npm install   // installs all needed software for build system: defined in package.json)
-
-
-
 
 ### Build commands:
 
@@ -63,6 +61,15 @@ in the IDE
 for TDD, starts a server and runs the testsuite, then watches all files an restarts server when needed and reruns
 testsuite whenever changes occur
 
+
+### executing backend calls
+
+use httpie as your development tool on the command line. This tool allows you to see easily what is going on with the backend.
+It is very easy to test your new API calls, to pass JSON or to pass parameters!
+Detailed doc: https://github.com/jkbr/httpie
+
+    http -v GET localhost:8000/activities
+    http -a username:password -v POST localhost:8000/users username=newusername password=newpassword fullname=Reto Blunschi
 
 ### Continuous Deployment to Heroku:
 

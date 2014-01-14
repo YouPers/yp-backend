@@ -2,7 +2,7 @@
  * Environment dependent configuration properties
  */
 
-var Logger = require('bunyan');
+var bunyan = require('bunyan');
 
 module.exports = {
     development: {

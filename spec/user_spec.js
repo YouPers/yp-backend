@@ -62,12 +62,21 @@ frisby.create('POST new user')
                         frisby.create('POST verify email address SUCCESS')
                             .post(URL + '/users/' + testuserid + '/email_verification', { token: email.encryptEmail(user.email) })
                             .expectStatus(200)
+                            .auth('new_unittest_user', 'nopass')
                             .afterJSON(function() {
 
                             })
                             .toss();
 
-                        frisby.create('POST verify email address FAIL')
+                        frisby.create('POST verify email address FAIL invalid token')
+                            .post(URL + '/users/' + testuserid + '/email_verification', { token: "invalid token" })
+                            .expectStatus(409)
+                            .auth('new_unittest_user', 'nopass')
+                            .afterJSON(function() {
+
+                            })
+                            .toss();
+                        frisby.create('POST verify email address FAIL authorization')
                             .post(URL + '/users/' + testuserid + '/email_verification', { token: "invalid token" })
                             .expectStatus(409)
                             .afterJSON(function() {

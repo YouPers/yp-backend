@@ -227,7 +227,7 @@
     },
     {
         "avatar": "assets/img/KTLU.jpeg",
-        "email": "webmasterªyoupers.com",
+        "email": "webmaster@youpers.com",
         "emailValidatedFlag": true,
         "firstname": "System",
         "fullname": "System Administrator",
@@ -240,5 +240,19 @@
         "version": 0,
         "preferences": {
         }
+    },
+    {
+        "firstname": "Helmut",
+        "username": "helmut",
+        "lastname": "Kneer",
+        "email": "helmut.kneer@youpers.com",
+        "password": "helmut",
+        "fullname": "Helmut Kneer",
+        "_id": "52d4f515fac246174c000006",
+        "preferences" : { "workingDays" : [ ], "starredActivities" : [ ] },
+        "tempPasswordFlag" : false,
+        "roles" : [  "productadmin" ],
+        "emailValidatedFlag" : true
     }
+
 ]

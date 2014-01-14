@@ -1,6 +1,7 @@
 'use strict';
 
 var frisby = require('frisby');
+var email = require('../util/email')
 var port = process.env.PORT || 8000;
 var URL = 'http://localhost:'+ port;
 var consts = require('./testconsts');
@@ -58,6 +59,31 @@ frisby.create('POST new user')
 
                         user.preferences.starredActivities.push(consts.aloneActivity.id);
 
+                        frisby.create('POST verify email address SUCCESS')
+                            .post(URL + '/users/' + testuserid + '/email_verification', { token: email.encryptEmailAddress(user.email) })
+                            .expectStatus(200)
+                            .auth('new_unittest_user', 'nopass')
+                            .afterJSON(function() {
+
+                            })
+                            .toss();
+
+                        frisby.create('POST verify email address FAIL invalid token')
+                            .post(URL + '/users/' + testuserid + '/email_verification', { token: "invalid token" })
+                            .expectStatus(409)
+                            .auth('new_unittest_user', 'nopass')
+                            .afterJSON(function() {
+
+                            })
+                            .toss();
+                        frisby.create('POST verify email address FAIL authorization')
+                            .post(URL + '/users/' + testuserid + '/email_verification', { token: "invalid token" })
+                            .expectStatus(409)
+                            .afterJSON(function() {
+
+                            })
+                            .toss();
+
                         frisby.create('PUT a new starred Activity')
                             .put(URL+ '/users/' + testuserid, user)
                             .expectStatus(200)
@@ -84,7 +110,6 @@ frisby.create('POST new user')
 
                             })
                             .toss();
-
 
 
                     })

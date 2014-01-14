@@ -264,7 +264,7 @@ module.exports = {
         // Preference related enums
         firstDayOfWeek: "Monday, Sunday",
         defaultUserWeekForScheduling: "Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday",
-        languageUI: "German, English",
+        languageUI: "German, English"
 
     },
 

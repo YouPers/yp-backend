@@ -4,7 +4,7 @@
 
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
-    restify = require('restify'),
+//    restify = require('restify'),
     common = require('./common');
 
 /**
@@ -29,15 +29,15 @@ var ProfileSchema = common.newSchema( {
         country: { type: String, trim: true }
     },
     maritalStatus: { type: String, enum: common.enums.maritalStatus, default: "undefined" },
-    preferences: {
+    userPreferences: {
         defaultUserWeekForScheduling: {
-            monday: { consider: {type: Boolean, default: true} },
-            tuesday: { consider: {type: Boolean, default: true} },
-            wednesday: { consider: {type: Boolean, default: true} },
-            thursday: { consider: {type: Boolean, default: true} },
-            friday: { consider: {type: Boolean, default: true} },
-            saturday: { consider: {type: Boolean, default: false} },
-            sunday: { consider: {type: Boolean, default: false } }
+            monday: { type: Boolean, default: true },
+            tuesday: { type: Boolean, default: true },
+            wednesday: { type: Boolean, default: true },
+            thursday: { type: Boolean, default: true },
+            friday: { type: Boolean, default: true },
+            saturday: { type: Boolean, default: false },
+            sunday: { type: Boolean, default: false  }
         },
         firstDayOfWeek: { type: String, enum: common.enums.firstDayOfWeek },
         languageUI: { type: String, enum: common.enums.languageUI },
@@ -45,4 +45,8 @@ var ProfileSchema = common.newSchema( {
         }
     }
 
-})
+});
+
+module.exports = mongoose.model('Profile', ProfileSchema);
+
+common.initializeDbFor(mongoose.model('Profile'));

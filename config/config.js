@@ -33,10 +33,7 @@ module.exports = {
                     level: 'trace'
                 }
             ],
-            serializers: {
-                req: Logger.stdSerializers.req,
-                res: Logger.stdSerializers.res
-            }
+            serializers: bunyan.stdSerializers
         },
         emailVerification : {
             key: "50126a4a500219238cd678a383cdab197ed5fe42",
@@ -64,10 +61,7 @@ module.exports = {
                     level: 'info'
                 }
             ],
-            serializers: {
-                req: Logger.stdSerializers.req,
-                res: Logger.stdSerializers.res
-            }
+            serializers: bunyan.stdSerializers
         },
         emailVerification : {
             key: "50126a4a500219238cd678a383cdab197ed5fe42",
@@ -97,10 +91,7 @@ module.exports = {
                     level: 'info'
                 }
             ],
-            serializers: {
-                req: Logger.stdSerializers.req,
-                res: Logger.stdSerializers.res
-            }
+            serializers: bunyan.stdSerializers
         },
         emailVerification : {
             key: "50126a4a500219238cd678a383cdab197ed5fe42",
@@ -129,10 +120,7 @@ module.exports = {
                     level: 'info'
                 }
             ],
-            serializers: {
-                req: Logger.stdSerializers.req,
-                res: Logger.stdSerializers.res
-            }
+            serializers: bunyan.stdSerializers
         },
         emailVerification : {
             key: "50126a4a500219238cd678a383cdab197ed5fe42",
@@ -161,10 +149,7 @@ module.exports = {
                     level: 'info'
                 }
             ],
-            serializers: {
-                req: Logger.stdSerializers.req,
-                    res: Logger.stdSerializers.res
-            }
+            serializers: bunyan.stdSerializers
         },
         emailVerification : {
             key: "50126a4a500219238cd678a383cdab197ed5fe42",

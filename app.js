@@ -40,12 +40,19 @@ var server = restify.createServer({
 
 // setung logging of request and response
 server.pre(function (request, response, next) {
-    request.log.info({req: request}, 'start');        // (1)
+    request.log.debug({req: request}, 'start processing request');
     return next();
 });
 
-server.on('after', function (req, res, route) {
-    req.log.info({res: res}, "finished");             // (3)
+server.on('after', function (req, res, route, err) {
+    req.log.debug({res: res}, "finished processing request");
+    if (err) {
+        req.log.info({req: req});
+        if (req.body) {
+            req.log.info({requestbody: req.body});
+        }
+        req.log.info({err:err});
+    }
 });
 
 // setup better error stacktraces
@@ -53,14 +60,15 @@ longjohn.async_trace_limit = 10;  // defaults to 10
 longjohn.empty_frame = 'ASYNC CALLBACK';
 
 // setup middlewares to be used by server
+server.use(restify.requestLogger());
 server.use(restify.acceptParser(server.acceptable));
 server.use(restify.authorizationParser());
 server.use(restify.dateParser());
 server.use(restify.queryParser());
-server.use(restify.jsonp());
 server.use(restify.gzipResponse());
 server.use(restify.bodyParser({ mapParams: false }));
 server.use(passport.initialize());
+server.use(restify.fullResponse());
 
 // allows authenticated cross domain requests
 preflightEnabler(server);

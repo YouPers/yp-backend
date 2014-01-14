@@ -32,14 +32,14 @@ The Documentation site is always using the user: unittest and password: test whe
 
 Installed local mongoDb: http://www.mongodb.org/downloads
 Installed nodejs und npm: http://nodejs.org/
-Installed grunt cli: npm install -g grunt-cli`
+Installed grunt cli: `npm install -g grunt-cli`
+Install bunyan logger support:  `npm install -g bunyan`
+Install httpie (https://github.com/jkbr/httpie): `easy_install httpie`
 
 ### Getting Started
     git clone https://github.com/YouPers/yp-backend.git
     cd yp-backend
     npm install   // installs all needed software for build system: defined in package.json)
-
-
 
 ### Build commands:
 
@@ -47,7 +47,7 @@ Installed grunt cli: npm install -g grunt-cli`
 tests, compiles and builds the distribution version of the whole project, is used by CI
 is executing "grunt jshint", "grunt test"
 
-    grunt server
+    grunt server | bunyan
 runs the server, watches all files, restarts a server on filechange on localhost:8000
 
     grunt test
@@ -62,13 +62,43 @@ for TDD, starts a server and runs the testsuite, then watches all files an resta
 testsuite whenever changes occur
 
 
+### executing backend calls
+
+use httpie as your development tool on the command line. This tool allows you to see easily what is going on with the backend.
+It is very easy to test your new API calls, to pass JSON or to pass parameters!
+Detailed doc: https://github.com/jkbr/httpie
+
+    http -v GET localhost:8000/activities
+    http -a username:password -v POST localhost:8000/users username=newusername password=newpassword fullname=Reto Blunschi
+
 ### Continuous Deployment to Heroku:
 
 CircleCI automatically deploys this project to Heroku whenever all Tests pass on the CircleCI Server.
 
 Heroku uses:
+
 - "ci" environmont (see config.js) for the master branch, deploys to http://yp-backend-ci.herokuapp.com
 - "test" environment (see config.js) for the test branch, deploys to http://yp-backend-test.herokupp.com
+
+## Logging and Debugging
+
+The backend server uses the restify/bunyan integration for logging. These logs provide information that
+helps debugging backend problems. For more detailled info see: https://github.com/trentm/node-bunyan
+
+Logging options are configured in config/config.js. Default for the development environment is:
+
+- log info level to console
+- log debug level to logs/server.log
+
+use the following commands:
+Running log in a terminal window showing all requests and responses
+
+    tail -f logs/server.log | bunyan
+
+The backend adds a special header request-id to every respond it sends to the client. With this response-id you
+can search for all related log messages in the server.log, so you easily find detailled error logs for your request.
+
+    cat logs/server.log | bunyan -c 'this.req_id == "66ad5bb0-7c97-11e3-aa24-d347df5b222e"'
 
 
 ## Release History

@@ -62,6 +62,10 @@ var emailVerificationPostFn = function(baseUrl) {
 
             if(req.body.token === email.encryptEmail(user.email)) {
 
+                user.emailValidatedFlag = true;
+                user.save();
+
+
                 res.send(200, {});
                 return next();
             } else {

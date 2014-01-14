@@ -3,7 +3,7 @@ var restify = require('restify'),
 
 function checkWritingPreCond(req, Model) {
     if (!req.body) {
-        return new restify.InvalidArgumentError('exptected JSON body in POST/PUT not found');
+        return new restify.InvalidArgumentError('expected JSON body in POST/PUT not found');
     }
 
     // ref properties: replace objects by ObjectId in case client sent whole object instead of reference, only

@@ -77,10 +77,8 @@ UserSchema
         return this._password;
     });
 
-UserSchema.methods.toJsonConfig = function () {
-    return {
+UserSchema.methods.toJsonConfig = {
         hide: ['hashed_password', 'tempPasswordFlag']
-    };
 };
 
 /**

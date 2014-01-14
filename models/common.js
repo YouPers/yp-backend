@@ -30,7 +30,7 @@ module.exports = {
                 ret.version = ret.__v;
                 delete ret.__v;
 
-                if (doc.toJsonConfig && doc.toJsonConfig.hide) {
+                if (doc.toJsonConfig  && doc.toJsonConfig.hide) {
                     _.forEach(doc.toJsonConfig.hide, function (propertyToHide) {
                         delete ret[propertyToHide];
                     });
@@ -65,7 +65,7 @@ module.exports = {
 
             var mainModel = createAndRegisterNewSwaggerModel(this.modelName);
 
-            var hiddenProps = this.toJsonConfig && this.toJsonConfig().hide || [];
+            var hiddenProps = this.toJsonConfig && this.toJsonConfig.hide || [];
             hiddenProps = hiddenProps.concat(['__v', '_id']);
             var fieldDescriptions = this.getFieldDescriptions && this.getFieldDescriptions() || {};
 

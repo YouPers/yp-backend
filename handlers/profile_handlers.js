@@ -35,6 +35,7 @@ var postFn = function (baseUrl, ProfileModel) {
 
 var getActualProfile = function (baseUrl, Model) {
     return function (req, res, next) {
+
         Model.find({owner: req.user.id})
             .sort({timestamp: -1})
             .limit(1)
@@ -53,8 +54,21 @@ var getActualProfile = function (baseUrl, Model) {
     };
 };
 
+var deleteAllFn = function (baseUrl, Model) {
+    return function (req, res, next) {
+        Model.remove({owner: req.user.id}, function (err) {
+            if (err) {
+                return next(err);
+            }
+            res.send(200);
+        });
+    };
+};
+
+
 
 module.exports = {
     postFn: postFn,
-    getActualProfile: getActualProfile
+    getActualProfile: getActualProfile,
+    deleteAllFn: deleteAllFn
 };

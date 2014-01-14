@@ -130,9 +130,10 @@ module.exports = function (swagger, config) {
             params: [],
             "errorResponses": [],
             "nickname": "deleteAllProfilesOfUser",
-            accessLevel: 'al_individual'
+            accessLevel: 'al_individual',
+            beforeCallbacks: []
         },
-        action: generic.deleteAllFn(baseUrl, Profile)
+        action: handlers.deleteAllFn(baseUrl, Profile)
     });
 
     swagger.addPost({

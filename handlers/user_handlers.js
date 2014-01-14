@@ -17,7 +17,7 @@ var postFn = function (baseUrl) {
 
         var newObj = new User(req.body);
 
-        // assign default role§
+        // assign default roles
         if (newObj.roles.length === 0) {
             newObj.roles = ['individual'];
         }

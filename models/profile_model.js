@@ -18,14 +18,14 @@ var ProfileSchema = common.newSchema( {
     homeAddress: {
         street: { type: String, trim: true },
         houseNumber: { type: String, trim: true },
-        zipcode: { type: Number },
+        zipCode: { type: Number },
         city: { type: String, trim: true },
         country: { type: String, enum: common.enums.country }
     },
     workAddress: {
         street: { type: String, trim: true },
         houseNumber: { type: String, trim: true },
-        zipcode: { type: Number },
+        zipCode: { type: Number },
         city: { type: String, trim: true },
         country: { type: String, trim: true }
     },

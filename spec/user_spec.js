@@ -60,7 +60,7 @@ frisby.create('POST new user')
                         user.preferences.starredActivities.push(consts.aloneActivity.id);
 
                         frisby.create('POST verify email address SUCCESS')
-                            .post(URL + '/users/' + testuserid + '/email_verification', { token: email.encryptEmail(user.email) })
+                            .post(URL + '/users/' + testuserid + '/email_verification', { token: email.encryptEmailAddress(user.email) })
                             .expectStatus(200)
                             .auth('new_unittest_user', 'nopass')
                             .afterJSON(function() {

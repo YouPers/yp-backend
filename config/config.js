@@ -26,11 +26,11 @@ module.exports = {
             streams: [
                 {
                     stream: process.stdout,
-                    level: 'debug'
+                    level: 'info'
                 },
                 {
                     path: 'logs/server.log',
-                    level: 'trace'
+                    level: 'debug'
                 }
             ],
             serializers: bunyan.stdSerializers

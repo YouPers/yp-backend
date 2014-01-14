@@ -51,7 +51,6 @@ var emailVerificationPostFn = function(baseUrl) {
             return next(new restify.ConflictError('User ID in request parameters does not match authenticated user'));
         }
 
-        // TODO: assert params id with session user id ( req.user.id
         User.findById(req.params.id, function(err, user) {
             if(err) {
                 return next(new restify.InternalError(err));
@@ -60,7 +59,7 @@ var emailVerificationPostFn = function(baseUrl) {
                 return next(new restify.InvalidArgumentError('Invalid User ID'));
             }
 
-            if(req.body.token === email.encryptEmail(user.email)) {
+            if(req.body.token === email.encryptEmailAddress(user.email)) {
 
                 user.emailValidatedFlag = true;
                 user.save();

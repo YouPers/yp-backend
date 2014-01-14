@@ -6,7 +6,7 @@
 var mongoose = require('mongoose'),
     User = mongoose.model('User'),
     generic = require('./../handlers/generic'),
-    userRoutes = require('./../handlers/user_handlers.js');
+    userHandlers = require('./../handlers/user_handlers.js');
 //    ObjectId = mongoose.Types.ObjectId;
 
 
@@ -14,6 +14,25 @@ module.exports = function (swagger, config) {
 
     var baseUrl = '/users',
         baseUrlWithId = baseUrl + "/{id}";
+
+
+    swagger.addPost({
+        spec: {
+            description: "email verification description",
+            path: baseUrlWithId + "/email_verification",
+            notes: "email verification notes",
+            summary: "email verification",
+            method: "POST",
+            params: [swagger.bodyParam("token", "the token a user's email address is verified with", "string"),
+                generic.params.populate,
+                generic.params.populatedeep],
+//            "responseClass": "User",
+            "errorResponses": [swagger.errors.invalid('token')],
+            "nickname": "verifyEmailToken",
+            accessLevel: 'al_user'
+        },
+        action: userHandlers.emailVerificationPostFn(baseUrl)
+    });
 
     swagger.addGet({
         spec: {
@@ -82,7 +101,7 @@ module.exports = function (swagger, config) {
             "nickname": "postUser",
             accessLevel: 'al_all'
         },
-        action: userRoutes.postFn(baseUrl, User)
+        action: userHandlers.postFn(baseUrl)
     });
 
     swagger.addDelete({

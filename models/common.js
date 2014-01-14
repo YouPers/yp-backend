@@ -30,7 +30,7 @@ module.exports = {
                 ret.version = ret.__v;
                 delete ret.__v;
 
-                if (doc.toJsonConfig() && doc.toJsonConfig().hide) {
+                if (doc.toJsonConfig && doc.toJsonConfig() && doc.toJsonConfig().hide) {
                     _.forEach(doc.toJsonConfig().hide, function (propertyToHide) {
                         delete ret[propertyToHide];
                     });

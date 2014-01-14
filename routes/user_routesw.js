@@ -29,7 +29,7 @@ module.exports = function (swagger, config) {
 //            "responseClass": "User",
             "errorResponses": [swagger.errors.invalid('token')],
             "nickname": "verifyEmailToken",
-            accessLevel: 'al_all'
+            accessLevel: 'al_user'
         },
         action: userHandlers.emailVerificationPostFn(baseUrl)
     });

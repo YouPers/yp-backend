@@ -23,15 +23,43 @@ module.exports = function (swagger, config) {
             notes: "email verification notes",
             summary: "email verification",
             method: "POST",
-            params: [swagger.bodyParam("token", "the token a user's email address is verified with", "string"),
-                generic.params.populate,
-                generic.params.populatedeep],
-//            "responseClass": "User",
+            params: [swagger.bodyParam("token", "the token a user's email address is verified with", "string")],
             "errorResponses": [swagger.errors.invalid('token')],
             "nickname": "verifyEmailToken",
             accessLevel: 'al_user'
         },
         action: userHandlers.emailVerificationPostFn(baseUrl)
+    });
+
+    swagger.addPost({
+        spec: {
+            description: "password reset",
+            path: baseUrl + "/password_reset",
+            notes: "resets a user's password to a new password with a temporary token as credentials",
+            summary: "password reset",
+            method: "POST",
+            params: [swagger.bodyParam("token", "a JSON object with two attributes 'token' and 'password'", "string")],
+            "errorResponses": [swagger.errors.invalid('token'), swagger.errors.invalid('password')],
+            "nickname": "resetpassword",
+            accessLevel: 'al_anonymousonly'
+        },
+        action: userHandlers.passwordResetPostFn(baseUrl)
+    });
+
+    swagger.addPost({
+        spec: {
+            description: "request password reset",
+            path: baseUrl + "/request_password_reset",
+            notes: "requests a password reset for the supplied username or email. An email will be sent to the user" +
+                " with a link that allows him to reset his password",
+            summary: "requests a password reset for the supplied username or email.",
+            method: "POST",
+            params: [swagger.bodyParam("username", "a JSON object with one attribute 'usernameOrEmail'", "string")],
+            "errorResponses": [swagger.errors.invalid('usernameOrEmail')],
+            "nickname": "requestPasswordReset",
+            accessLevel: 'al_anonymousonly'
+        },
+        action: userHandlers.requestPasswordResetPostFn(baseUrl)
     });
 
     swagger.addGet({

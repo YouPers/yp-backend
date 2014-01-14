@@ -12,6 +12,7 @@ var mongoose = require('mongoose'),
  */
 var ProfileSchema = common.newSchema( {
     owner: { type: Schema.Types.ObjectId, ref: 'User', required: true },
+    timestamp: {type: Date},
     gender: { type: String, enum: common.enums.gender, default: "undefined" },
     birthDate: { type: Date },
     homeAddress: {

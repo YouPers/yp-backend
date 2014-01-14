@@ -6,25 +6,27 @@
 
 var mongoose = require('mongoose'),
     Profile = mongoose.model('Profile'),
-    generic = require('./../handlers/generic');
+    generic = require('./../handlers/generic'),
+    handlers = require('../handlers/profile_handlers.js');
 
 module.exports = function (swagger, config) {
 
     var baseUrl = '/profiles',
-        baseUrlWithId = baseUrl + "/{id}";
+        baseUrlWithId = baseUrl + "/{id}",
+        baseUrlActual = baseUrl + "actual";
 
     swagger.addGet({
         spec: {
             description: "Operations about user profiles",
             path: baseUrlWithId,
-            notes: "returns a profile based on user id",
-            summary: "find profile by user id",
+            notes: "returns a profile with id id",
+            summary: "find profile by id",
             method: "GET",
-            params: [swagger.pathParam("id", "ID of the user to be fetched", "string"),
+            params: [swagger.pathParam("id", "ID of profile to be fetched", "string"),
                 generic.params.populate,
                 generic.params.populatedeep],
             "responseClass": "Profile",
-            "errorResponses": [swagger.errors.invalid('id'), swagger.errors.notFound("profile")],
+            "errorResponses": [swagger.errors.invalid('id'), swagger.errors.notFound("profile"), swagger.errors.forbidden()],
             "nickname": "getProfileByUserId",
             accessLevel: 'al_all'
         },
@@ -33,10 +35,10 @@ module.exports = function (swagger, config) {
 
     swagger.addGet({
         spec: {
-            description: "Operations about profiles",
+            description: "Operations about user profiles",
             path: baseUrl,
-            notes: "returns all user profiles",
-            summary: "returns all user profiles",
+            notes: "returns all profiles of the current user",
+            summary: "returns all profiles of the current user, i.e. the complete profile history",
             params: [generic.params.sort,
                 generic.params.limit,
                 generic.params.filter,
@@ -45,27 +47,47 @@ module.exports = function (swagger, config) {
             method: "GET",
             "responseClass": "Profile",
             "nickname": "getUserProfiles",
-            accessLevel: 'al_admin'
+            accessLevel: 'al_individual'
         },
         action: generic.getAllFn(baseUrl, Profile)
     });
 
-
-    swagger.addPut({
+    swagger.addGet({
         spec: {
-            description: "Operations about profiles",
-            path: baseUrlWithId,
-            notes: "updates the profile with user id id",
-            summary: "updates the profile",
-            method: "PUT",
-            params: [swagger.pathParam("id", "ID of the user to be updated", "string"), swagger.bodyParam("profile", "updated profile object", "Profile")],
+            description: "Operations about user profiles",
+            path: baseUrlActual,
+            notes: "the most recently created profile in the current user's profile history is the actual profile",
+            summary: "returns the actual of the current user, i.e. the complete profile history",
+            params: [generic.params.sort,
+                generic.params.limit,
+                generic.params.filter,
+                generic.params.populate,
+                generic.params.populatedeep],
+            method: "GET",
             "responseClass": "Profile",
-            "errorResponses": [swagger.errors.invalid('id'), swagger.errors.notFound("profile")],
-            "nickname": "putProfileByUserId",
-            accessLevel: 'al_user'
+            "nickname": "getActualUserProfile",
+            accessLevel: 'al_individual',
+            beforeCallbacks: []
         },
-        action: generic.putFn(baseUrl, Profile)
+        action: handlers.getActualProfile(baseUrl, Profile)
     });
+
+
+//    swagger.addPut({
+//        spec: {
+//            description: "Operations about profiles",
+//            path: baseUrlWithId,
+//            notes: "updates the profile with user id id",
+//            summary: "updates the profile",
+//            method: "PUT",
+//            params: [swagger.pathParam("id", "ID of the user to be updated", "string"), swagger.bodyParam("profile", "updated profile object", "Profile")],
+//            "responseClass": "Profile",
+//            "errorResponses": [swagger.errors.invalid('id'), swagger.errors.notFound("profile")],
+//            "nickname": "putProfileByUserId",
+//            accessLevel: 'al_user'
+//        },
+//        action: generic.putFn(baseUrl, Profile)
+//    });
 
     swagger.addPost({
         spec: {
@@ -78,23 +100,23 @@ module.exports = function (swagger, config) {
             "responseClass": "Profile",
             "errorResponses": [],
             "nickname": "postUserProfile",
-            accessLevel: 'al_all'
+            accessLevel: 'al_individual',
+            beforeCallbacks: []
         },
-        action: generic.postFn(baseUrl, Profile)
+        action: handlers.postFn(baseUrl, Profile)
     });
 
     swagger.addDelete({
         spec: {
             description: "Operations about profiles",
             path: baseUrlWithId,
-            notes: "deletes a user profile by user ID",
-            summary: "deletes the user profile with passed id",
+            notes: "can be used to delete a specific profile version of the current user ",
+            summary: "deletes the user profile with the specific id for the current user ",
             method: "DELETE",
             params: [swagger.pathParam("id", "user ID of the profile to be deleted", "string")],
             "errorResponses": [swagger.errors.invalid('id'), swagger.errors.notFound("profile")],
-            "nickname": "deleteProfile",
-            accessLevel: 'al_systemadmin'
-
+            "nickname": "deleteSpecificProfile",
+            accessLevel: 'al_individual'
         },
         action: generic.deleteByIdFn(baseUrl, Profile)
     });
@@ -102,13 +124,13 @@ module.exports = function (swagger, config) {
         spec: {
             description: "Operations about profiles",
             path: baseUrl,
-            notes: "deletes all user profiles",
-            summary: "deletes all user profiles",
+            notes: "deletes profile including complete profile history of current user",
+            summary: "deletes profile including complete profile history of current user",
             method: "DELETE",
             params: [],
             "errorResponses": [],
-            "nickname": "deleteAllUserProfiles",
-            accessLevel: 'al_systemadmin'
+            "nickname": "deleteAllProfilesOfUser",
+            accessLevel: 'al_individual'
         },
         action: generic.deleteAllFn(baseUrl, Profile)
     });

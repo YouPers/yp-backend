@@ -14,14 +14,21 @@ var env = process.env.NODE_ENV || 'development',
         }
     });
 
-var fromDefault = "YouPers Digital Health <dontreply@youpers.com>";
+var fromDefault = "YouPers Digital Health <dontreply@youpers.com>",
+    linkTokenSeparator = '|';
 
-var encryptEmailAddress = function(emailAddress) {
+var encryptLinkToken = function(linkToken) {
 
-    var cipher = crypto.createCipher(config.emailVerification.algorithm, config.emailVerification.key);
-    var encrypted = cipher.update(emailAddress, 'utf8', 'hex') + cipher.final('hex');
+    var cipher = crypto.createCipher(config.linkTokenEncryption.algorithm, config.linkTokenEncryption.key);
+    var encrypted = cipher.update(linkToken, 'utf8', 'hex') + cipher.final('hex');
     return encrypted;
-}
+};
+
+var decryptLinkToken = function(token) {
+    var decipher = crypto.createDecipher(config.linkTokenEncryption.algorithm, config.linkTokenEncryption.key);
+    var decrypted = decipher.update(token, 'hex', 'utf8') + decipher.final('utf8');
+    return decrypted;
+};
 
 var sendEmailVerification = function (user) {
 
@@ -29,7 +36,7 @@ var sendEmailVerification = function (user) {
     var to = user.email;
     var subject = "YouPers: Please verify your email address";
 
-    var encryptedEmailAddress = encryptEmailAddress(to);
+    var encryptedEmailAddress = encryptLinkToken(to);
     var verificationLink = config.webclientUrl + "/#/email_verification/" + encryptedEmailAddress;
 
     var locals = {
@@ -43,6 +50,28 @@ var sendEmailVerification = function (user) {
     sendEmail(from, to, subject, 'emailVerification', locals);
 
 };
+
+var sendPasswordResetMail = function(user) {
+    var from = fromDefault;
+    var to = user.email;
+    var subject = "YouPers: reset password";
+
+    var tokenToEncrypt = user.id + linkTokenSeparator + new Date().getMilliseconds();
+    var encryptedToken = encryptLinkToken(tokenToEncrypt);
+    var passwordResetLink = config.webclientUrl + "/#/password_reset/" + encryptedToken;
+
+    var locals = {
+        username: user.username,
+        firstname: user.firstname,
+        lastname: user.lastname,
+        fullname: user.fullname,
+        passwordResetLink: passwordResetLink
+    };
+
+    sendEmail(from, to, subject, 'passwordReset', locals);
+
+};
+
 var sendEmail = function (from, to, subject, templateName, locals) {
     emailTemplates(templatesDir, function (err, template) {
         if (err) {
@@ -117,8 +146,10 @@ var sendCalInvite = function (to, subject, iCalString) {
 };
 
 module.exports = {
-    encryptEmailAddress: encryptEmailAddress,
+    encryptLinkToken: encryptLinkToken,
+    decryptLinkToken: decryptLinkToken,
     sendEmail: sendEmail,
     sendEmailVerification: sendEmailVerification,
-    sendCalInvite: sendCalInvite
+    sendCalInvite: sendCalInvite,
+    sendPasswordResetMail: sendPasswordResetMail
 };

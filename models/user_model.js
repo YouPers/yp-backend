@@ -85,10 +85,8 @@ UserSchema
         return this._password;
     });
 
-UserSchema.statics.toJsonConfig = function () {
-    return {
-        hide: ['hashed_password', 'tempPasswordFlag', 'emailValidatedFlag']
-    };
+UserSchema.methods.toJsonConfig = {
+        hide: ['hashed_password', 'tempPasswordFlag']
 };
 
 /**

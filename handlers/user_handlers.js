@@ -2,6 +2,7 @@ var handlerUtils = require('./handlerUtils'),
     generic = require('./../handlers/generic'),
     email = require('../util/email'),
     auth = require('../util/auth'),
+    config = require('../config/config')[process.env.NODE_ENV || 'development'],
     restify = require('restify'),
     mongoose = require('mongoose'),
     User = mongoose.model('User');
@@ -17,7 +18,7 @@ var postFn = function (baseUrl) {
 
         var newObj = new User(req.body);
 
-        // assign default role§
+        // assign default roles
         if (newObj.roles.length === 0) {
             newObj.roles = ['individual'];
         }
@@ -59,7 +60,7 @@ var emailVerificationPostFn = function(baseUrl) {
                 return next(new restify.InvalidArgumentError('Invalid User ID'));
             }
 
-            if(req.body.token === email.encryptEmailAddress(user.email)) {
+            if(req.body.token === email.encryptLinkToken(user.email)) {
 
                 user.emailValidatedFlag = true;
                 user.save();
@@ -74,10 +75,82 @@ var emailVerificationPostFn = function(baseUrl) {
         });
 
     };
-}
+};
+
+
+var requestPasswordResetPostFn = function(baseUrl) {
+    return function(req, res, next) {
+
+        // check payload
+        if (!req.body || !req.body.usernameOrEmail ) {
+            return next(new restify.InvalidArgumentError('usernameOrEmail required in POST body'));
+        }
+
+
+        User.findOne().or([{username: req.body.usernameOrEmail}, {email: req.body.usernameOrEmail}]).exec(function(err, user) {
+            if(err) {
+                return next(new restify.InternalError(err));
+            }
+            if(!user) {
+                return next(new restify.InvalidArgumentError('unknown username or email'));
+            }
+
+            email.sendPasswordResetMail(user);
+
+            res.send(200, {});
+            return next();
+
+        });
+
+    };
+
+};
+
+var passwordResetPostFn = function(baseUrl) {
+    return function(req, res, next) {
+
+        // check payload
+        if (!req.body || !req.body.token || !req.body.password) {
+            return next(new restify.InvalidArgumentError('Token and Password required in POST body'));
+        }
+
+        var decryptedToken;
+
+        try {
+             decryptedToken = email.decryptLinkToken(req.body.token);
+        } catch (err) {
+            return next(new restify.InvalidArgumentError('Invalid Token'));
+        }
+
+        var userId = decryptedToken.split('|')[0];
+        var tokentimestamp = decryptedToken.split('|')[1];
+
+        if (new Date().getMilliseconds() - tokentimestamp > config.linkTokenEncryption.maxTokenLifetime) {
+            return next(new restify.InvalidArgumentError('Password Reset Link is expired, please click again on password reset'));
+        }
+
+        User.findById(userId, function(err, user) {
+            if(err) {
+                return next(new restify.InternalError(err));
+            }
+            if(!user) {
+                return next(new restify.InvalidArgumentError('Unknown User'));
+            }
+
+             user.password = req.body.password;
+             user.save();
+
+             res.send(200, {});
+             return next();
+        });
+
+    };
+};
 
 
 module.exports = {
     postFn: postFn,
-    emailVerificationPostFn: emailVerificationPostFn
+    emailVerificationPostFn: emailVerificationPostFn,
+    requestPasswordResetPostFn: requestPasswordResetPostFn,
+    passwordResetPostFn: passwordResetPostFn
 };

@@ -1,7 +1,7 @@
 'use strict';
 
 var frisby = require('frisby');
-var email = require('../util/email')
+var email = require('../util/email');
 var port = process.env.PORT || 8000;
 var URL = 'http://localhost:'+ port;
 var consts = require('./testconsts');
@@ -59,69 +59,69 @@ frisby.create('POST new user')
 
                         user.preferences.starredActivities.push(consts.aloneActivity.id);
 
-//                        frisby.create('POST verify email address SUCCESS')
-//                            .post(URL + '/users/' + testuserid + '/email_verification', { token: email.encryptLinkToken(user.email) })
-//                            .expectStatus(200)
-//                            .auth('new_unittest_user', 'nopass')
-//                            .toss();
-//
-//                        frisby.create('POST verify email address FAIL invalid token')
-//                            .post(URL + '/users/' + testuserid + '/email_verification', { token: "invalid token" })
-//                            .expectStatus(409)
-//                            .auth('new_unittest_user', 'nopass')
-//                            .toss();
-//                        frisby.create('POST verify email address FAIL authorization')
-//                            .post(URL + '/users/' + testuserid + '/email_verification', { token: "invalid token" })
-//                            .expectStatus(409)
-//                            .toss();
-//
-//                        frisby.create('POST request password reset without username FAIL invalid')
-//                            .auth()
-//                            .post(URL + '/users/request_password_reset', { balbla: "blaba" })
-//                            .expectStatus(409)
-//                            .toss();
-//
-//                        frisby.create('POST request password reset unknown username FAIL invalid')
-//                            .auth()
-//                            .post(URL + '/users/request_password_reset', { usernameOrEmail: "blaba" })
-//                            .expectStatus(409)
-//                            .toss();
-//
-//                        frisby.create('POST request password reset known username SUCCESS')
-//                            .auth()
-//                            .post(URL + '/users/request_password_reset', { usernameOrEmail: "new_unittest_user" })
-//                            .expectStatus(200)
-//                            .toss();
-//
-//                        frisby.create('POST request password reset known email SUCCESS')
-//                            .auth()
-//                            .post(URL + '/users/request_password_reset', { usernameOrEmail: "yp-test-user@gmail.com" })
-//                            .expectStatus(200)
-//                            .toss();
-//
-//                        frisby.create('POST password reset no token, no password FAIL')
-//                            .auth()
-//                            .post(URL + '/users/password_reset', { bal: "bla" })
-//                            .expectStatus(409)
-//                            .toss();
-//
-//                        frisby.create('POST password reset invalid token, no password FAIL')
-//                            .auth()
-//                            .post(URL + '/users/password_reset', { token: "IAmAnInvalidToken" })
-//                            .expectStatus(409)
-//                            .toss();
-//
-//                        frisby.create('POST password reset invalid token with password FAIL')
-//                            .auth()
-//                            .post(URL + '/users/password_reset', { token: "IAmAnInvalidToken", password: "myNewPassword" })
-//                            .expectStatus(409)
-//                            .toss();
-//
-//                        frisby.create('POST password reset invalid token with password FAIL')
-//                            .auth()
-//                            .post(URL + '/users/password_reset', { token: "IAmAnInvalidToken", password: "myNewPassword" })
-//                            .expectStatus(409)
-//                            .toss();
+                        frisby.create('POST verify email address SUCCESS')
+                            .post(URL + '/users/' + testuserid + '/email_verification', { token: email.encryptLinkToken(user.email) })
+                            .expectStatus(200)
+                            .auth('new_unittest_user', 'nopass')
+                            .toss();
+
+                        frisby.create('POST verify email address FAIL invalid token')
+                            .post(URL + '/users/' + testuserid + '/email_verification', { token: "invalid token" })
+                            .expectStatus(409)
+                            .auth('new_unittest_user', 'nopass')
+                            .toss();
+                        frisby.create('POST verify email address FAIL authorization')
+                            .post(URL + '/users/' + testuserid + '/email_verification', { token: "invalid token" })
+                            .expectStatus(409)
+                            .toss();
+
+                        frisby.create('POST request password reset without username FAIL invalid')
+                            .auth()
+                            .post(URL + '/users/request_password_reset', { balbla: "blaba" })
+                            .expectStatus(409)
+                            .toss();
+
+                        frisby.create('POST request password reset unknown username FAIL invalid')
+                            .auth()
+                            .post(URL + '/users/request_password_reset', { usernameOrEmail: "blaba" })
+                            .expectStatus(409)
+                            .toss();
+
+                        frisby.create('POST request password reset known username SUCCESS')
+                            .auth()
+                            .post(URL + '/users/request_password_reset', { usernameOrEmail: "new_unittest_user" })
+                            .expectStatus(200)
+                            .toss();
+
+                        frisby.create('POST request password reset known email SUCCESS')
+                            .auth()
+                            .post(URL + '/users/request_password_reset', { usernameOrEmail: "yp-test-user@gmail.com" })
+                            .expectStatus(200)
+                            .toss();
+
+                        frisby.create('POST password reset no token, no password FAIL')
+                            .auth()
+                            .post(URL + '/users/password_reset', { bal: "bla" })
+                            .expectStatus(409)
+                            .toss();
+
+                        frisby.create('POST password reset invalid token, no password FAIL')
+                            .auth()
+                            .post(URL + '/users/password_reset', { token: "IAmAnInvalidToken" })
+                            .expectStatus(409)
+                            .toss();
+
+                        frisby.create('POST password reset invalid token with password FAIL')
+                            .auth()
+                            .post(URL + '/users/password_reset', { token: "IAmAnInvalidToken", password: "myNewPassword" })
+                            .expectStatus(409)
+                            .toss();
+
+                        frisby.create('POST password reset invalid token with password FAIL')
+                            .auth()
+                            .post(URL + '/users/password_reset', { token: "IAmAnInvalidToken", password: "myNewPassword" })
+                            .expectStatus(409)
+                            .toss();
 
                         var expiredToken = email.encryptLinkToken(newUser.id + '|' + (new Date().getMilliseconds()- (11 * 60 *1000)));
                         var validToken = email.encryptLinkToken(newUser.id + '|' + (new Date().getMilliseconds()));

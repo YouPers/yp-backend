@@ -35,9 +35,10 @@ module.exports = {
             ],
             serializers: bunyan.stdSerializers
         },
-        emailVerification : {
+        linkTokenEncryption : {
             key: "50126a4a500219238cd678a383cdab197ed5fe42",
-            algorithm: "aes256"
+            algorithm: "aes256",
+            maxTokenLifetime: 10 * 60 * 1000
         }
     },
     test: {   // used by CircleCI!!!
@@ -63,9 +64,10 @@ module.exports = {
             ],
             serializers: bunyan.stdSerializers
         },
-        emailVerification : {
+        linkTokenEncryption : {
             key: "50126a4a500219238cd678a383cdab197ed5fe42",
-            algorithm: "aes256"
+            algorithm: "aes256",
+            maxTokenLifetime: 10 * 60 * 1000
         }
     },
     ci: {   // used by Heroku yp-backend-ci
@@ -93,9 +95,10 @@ module.exports = {
             ],
             serializers: bunyan.stdSerializers
         },
-        emailVerification : {
+        linkTokenEncryption : {
             key: "50126a4a500219238cd678a383cdab197ed5fe42",
-            algorithm: "aes256"
+            algorithm: "aes256",
+            maxTokenLifetime: 10 * 60 * 1000
         }
     },
     herokutest: {   // used by Heroku yp-backend-test
@@ -122,9 +125,10 @@ module.exports = {
             ],
             serializers: bunyan.stdSerializers
         },
-        emailVerification : {
+        linkTokenEncryption : {
             key: "50126a4a500219238cd678a383cdab197ed5fe42",
-            algorithm: "aes256"
+            algorithm: "aes256",
+            maxTokenLifetime: 10 * 60 * 1000
         }
     },
     uat: {
@@ -151,9 +155,10 @@ module.exports = {
             ],
             serializers: bunyan.stdSerializers
         },
-        emailVerification : {
+        linkTokenEncryption : {
             key: "50126a4a500219238cd678a383cdab197ed5fe42",
-            algorithm: "aes256"
+            algorithm: "aes256",
+            maxTokenLifetime: 10 * 60 * 1000
         }
     },
     production: {

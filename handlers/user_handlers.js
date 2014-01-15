@@ -137,11 +137,15 @@ var passwordResetPostFn = function(baseUrl) {
                 return next(new restify.InvalidArgumentError('Unknown User'));
             }
 
+            //
+             user.hashed_password = undefined;
              user.password = req.body.password;
-             user.save();
+             user.save(function(err, saveduser) {
 
-             res.send(200, {});
-             return next();
+                 res.send(200, {});
+                 return next();
+             });
+
         });
 
     };

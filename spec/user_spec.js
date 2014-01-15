@@ -69,9 +69,9 @@ frisby.create('POST new user')
                             .toss();
 
                         frisby.create('POST verify email address FAIL invalid token')
+                            .auth('new_unittest_user', 'nopass')
                             .post(URL + '/users/' + testuserid + '/email_verification', { token: "invalid token" })
                             .expectStatus(409)
-                            .auth('new_unittest_user', 'nopass')
                             .afterJSON(function() {
 
                             })
@@ -99,6 +99,33 @@ frisby.create('POST new user')
                                         expect(nextUpdatedUser.preferences.starredActivities).not.toContain(consts.aloneActivity.id);
 
 
+
+
+                                        user.password_old = 'nopass';
+                                        user.password = "newpass";
+
+                                        frisby.create('PUT change password')
+                                            .put(URL + '/users/' + testuserid, user)
+                                            .expectStatus(200)
+                                            .afterJSON(function() {
+
+                                                frisby.create('PUT change password / GET test invalid credentials')
+                                                    .auth(user.username, user.password + "really?")
+                                                    .get(URL + '/activityplans')
+                                                    .expectStatus(401)
+                                                    .toss();
+
+                                                frisby.create('PUT change password / GET test new credentials')
+                                                    .auth(user.username, user.password)
+                                                    .get(URL + '/activityplans')
+                                                    .expectStatus(200)
+                                                    .toss();
+
+                                            })
+                                            .toss();
+
+
+
                                         frisby.create('DELETE our testuser')
                                             .auth('sysadm', 'backtothefuture')
                                             .delete(URL+ '/users/' + user.id)
@@ -110,6 +137,7 @@ frisby.create('POST new user')
 
                             })
                             .toss();
+
 
 
                     })

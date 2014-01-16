@@ -1,3 +1,4 @@
 node_modules
 .idea
-dist/api-docs/*.json
+dist/api-docs
+atlassian-ide-plugin.xml

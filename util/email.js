@@ -58,7 +58,7 @@ var sendPasswordResetMail = function(user) {
 
     var tokenToEncrypt = user.id + linkTokenSeparator + new Date().getMilliseconds();
     var encryptedToken = encryptLinkToken(tokenToEncrypt);
-    var passwordResetLink = config.webclientUrl + "/#/password_reset/" + encryptedToken;
+    var passwordResetLink = config.webclientUrl + "/#/password_reset/" + encryptedToken + "?firstname=" + user.firstname+ "&lastname=" + user.lastname;
 
     var locals = {
         username: user.username,

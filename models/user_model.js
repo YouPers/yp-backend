@@ -69,11 +69,19 @@ var validatePresenceOf = function (value) {
 /**
  * Virtuals
  */
+
+UserSchema.virtual('password_old')
+    .set(function (password_old) {
+        this._password_old = password_old;
+    })
+    .get(function() {
+        return this._password_old;
+    });
+
 UserSchema
     .virtual('password')
     .set(function (password) {
         this._password = password;
-        this.hashed_password = this.encryptPassword(password);
     })
     .get(function () {
         return this._password;
@@ -99,6 +107,14 @@ UserSchema.pre('save', function (next) {
     if (this.email.indexOf('@') <= 0) {
 //    next(new restify.MissingParameterError('Email address must be valid'));
     }
+
+
+    if(!this.hashed_password || (this.password_old && this.hashed_password === this.encryptPassword(this.password_old))) {
+        this.hashed_password = this.encryptPassword(this.password);
+    } else if(this.password_old) {
+        next(new restify.InvalidArgumentError('Invalid password'));
+    }
+
 
     // password not blank when creating, otherwise skip
     if (!this.isNew) {

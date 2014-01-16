@@ -528,13 +528,23 @@ module.exports = {
                     return next(new restify.ResourceNotFoundError('no obj found with Id: ' + req.params.id));
                 }
 
-                if (objFromDb.owner &&
-                    ((!objFromDb.owner.equals(req.user.id)) ||
-                        (!objFromDb.owner.equals(req.body.owner)))
-                    ) {
-                    return next(new restify.NotAuthorizedError('authenticated user is not authorized to update this ressource because he is not owner of the stored ressource'));
-                }
+                // if this is an "owned" object
+                if (objFromDb.owner) {
 
+                    // only the authenticated same owner is allowed to edit
+                    if (!objFromDb.owner.equals(req.user.id)) {
+                        return next(new restify.NotAuthorizedError('authenticated user is not authorized ' +
+                            'to update this ressource because he is not owner of the stored ressource'));
+                    }
+
+                    // he is not allowed to change the owner of the object
+                    if (req.body.owner) {
+                        if (!objFromDb.owner.equals(req.body.owner)) {
+                            return next(new restify.NotAuthorizedError('authenticated user is not authorized ' +
+                                'to change the owner of this object'));
+                        }
+                    }
+                }
 
                 _.extend(objFromDb, req.body);
 

@@ -41,9 +41,7 @@ var ProfileSchema = common.newSchema( {
             sunday: { type: Boolean, default: false  }
         },
         firstDayOfWeek: { type: String, enum: common.enums.firstDayOfWeek },
-//        firstDayOfWeek: { type: String },
         languageUI: { type: String, enum: common.enums.languageUI },
-//        languageUI: { type: String },
         timezone: { type: String, trim: true }
     }
 

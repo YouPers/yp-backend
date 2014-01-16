@@ -92,8 +92,8 @@ module.exports = function (swagger, config) {
         spec: {
             description: "Operations about users",
             path: baseUrl,
-            notes: "creates a new user",
-            summary: "creates the user from the object passed in the body and returns the new user",
+            notes: "creates the user and an associated empty user profile from the object passed in the body and returns the new use",
+            summary: "creates a new user and an empty user profile",
             method: "POST",
             params: [swagger.bodyParam("user", "updated user object", "User")],
             "responseClass": "User",
@@ -108,8 +108,8 @@ module.exports = function (swagger, config) {
         spec: {
             description: "Operations about users",
             path: baseUrlWithId,
-            notes: "deletes a user by ID",
-            summary: "deletes the user with passed id",
+            notes: "deletes the user and associated profile with passed id",
+            summary: "deletes the user and associated profile with passed id",
             method: "DELETE",
             params: [swagger.pathParam("id", "ID of the user to be deleted", "string")],
             "errorResponses": [swagger.errors.invalid('id'), swagger.errors.notFound("user")],

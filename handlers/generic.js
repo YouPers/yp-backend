@@ -496,11 +496,18 @@ module.exports = {
 
     deleteByIdFn: function (baseUrl, Model) {
         return function (req, res, next) {
-            Model.remove({_id: req.params.id}, function (err) {
+            // findOne with subsequent obj.remove is needed in order to trigger
+            // - schema.pre('remove', ... or
+            // - schema.pre('remove', ...
+            // see user_model.js for an example
+            Model.findOne({_id: req.params.id}, function (err, obj) {
                 if (err) {
                     return next(err);
                 }
-                res.send(200);
+                obj.remove(function (err) {
+                    res.send(200);
+                })
+
             });
         };
     },

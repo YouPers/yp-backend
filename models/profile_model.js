@@ -4,6 +4,7 @@
 
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
+    ObjectId = Schema.ObjectId,
 //    restify = require('restify'),
     common = require('./common');
 

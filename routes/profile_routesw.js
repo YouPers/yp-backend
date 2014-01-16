@@ -37,7 +37,7 @@ module.exports = function (swagger, config) {
             notes: "updates the user profile with id id",
             summary: "updates the user profile",
             method: "PUT",
-            params: [swagger.pathParam("id", "ID of the user profile to be updated", "string"), swagger.bodyParam("profile", "updated user profile object", "Profile")],
+            params: [swagger.pathParam("id", "ID of the user profile to be updated", "string"), swagger.bodyParam("profile", "user profile object to be updated", "Profile")],
             "responseClass": "Profile",
             "errorResponses": [swagger.errors.invalid('id'), swagger.errors.notFound("profile")],
             "nickname": "putUserProfileById",

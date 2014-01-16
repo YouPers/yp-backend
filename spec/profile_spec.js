@@ -17,10 +17,8 @@ frisby.globalSetup({ // globalSetup is for ALL requests
     }
 });
 
-var userProfile1ID = "";
-
-var userProfile1 = {
-    "owner": consts.users.unittest.id,
+var userProfile = {
+//    "owner": consts.users.unittest.id,
     "gender": "female",
     "birthDate": "1984-04-10T06:12:19.600Z",
     "homeAddress": {
@@ -54,141 +52,55 @@ var userProfile1 = {
     }
 }
 
-var userProfile2 = {
-    "owner": consts.users.unittest.id,
-    "gender": "female",
-    "birthDate": "1984-04-10T06:12:19.600Z",
-    "homeAddress": {
-        "street": "Wilshire Blvd.",
-        "houseNumber": "9601",
-        "zipCode": 90210,
-        "city": "Beverly Hills",
-        "country": "USA"
-    },
-    "workAddress": {
-        "street": "Hollywood Blvd.",
-        "houseNumber": "7060",
-        "zipCode": 90028,
-        "city": "Los Angeles",
-        "country": "USA"
-    },
-    "maritalStatus": "single",
-    "userPreferences": {
-        "defaultUserWeekForScheduling": {
-            "monday": false,
-            "tuesday": true,
-            "wednesday": false,
-            "thursday": false,
-            "friday": true,
-            "saturday": true,
-            "sunday": false
-        },
-        "firstDayOfWeek": "Sunday",
-        "languageUI": "English",
-        "timezone": "Pacific Standard Time"
-    }
-}
-
-frisby.create('delete first all profile of current user')
-    .delete(URL + '/profiles')
-    .expectStatus(200)
-    .toss();
-
-frisby.create('create user profile for current user')
-    .post(URL + '/profiles', userProfile1)
+frisby.create('POST new user')
+    .post(URL + '/users', {
+        username: 'zzz_profile_unittest_user',
+        fullname:'Profile Unittest',
+        firstname: 'Testing',
+        lastname: 'zzzProfileUnittest',
+        email: 'yp-test-user7@gmail.com',
+        password:'nopass'})
     .expectStatus(201)
-    .expectJSONTypes({
-        id: String,
-        timestamp: String,
-        birthDate: String,
-        maritalStatus: String
-    })
-    .expectJSON(userProfile1)
-    .afterJSON(function () {
-
-        frisby.create('check number of profiles to be 1')
+    .afterJSON(function(newUser) {
+        var owner = newUser.id;
+        var profileId = newUser.profile;
+        console.log("owner: " + owner);
+        console.log("profileId: " + profileId);
+        frisby.create('retrieve user profile by using its id')
             .get(URL + '/profiles')
+            .auth('zzz_profile_unittest_user', 'nopass')
             .expectStatus(200)
-            .afterJSON(function (profileList) {
-                console.log(profileList.length);
-                expect(profileList.length).toBe(1);
-
-                frisby.create('update user profile for current user, by posting a new version')
-                    .post(URL + '/profiles', userProfile2)
-                    .expectStatus(201)
+            .afterJSON(function (profileArray) {
+                var profile = profileArray[0];
+                profile.gender = userProfile.gender;
+                profile.birthDate = userProfile.birthDate;
+                profile.homeAddress = userProfile.homeAddress;
+                profile.workAddress = userProfile.workAddress;
+                profile.maritalStatus = userProfile.maritalStatus;
+                profile.userPreferences = userProfile.userPreferences;
+                var url = URL + '/profiles/' + profile.id;
+                frisby.create('update user profile using its id')
+                    .put(url, profile)
+                    .auth('zzz_profile_unittest_user', 'nopass')
+                    .expectStatus(200)
                     .expectJSONTypes({
                         id: String,
                         timestamp: String,
                         birthDate: String,
                         maritalStatus: String
                     })
-                    .expectJSON(userProfile2)
-                    .afterJSON(function (profileList) {
-                        frisby.create('check number of profiles to be 2')
-                            .get(URL + '/profiles')
-                            .expectStatus(200)
-                            .afterJSON(function (profileList) {
-                                console.log(profileList.length);
-                                expect(profileList.length).toBe(2);
-
-
-                                frisby.create('check number of profiles to be 2')
-                                    .get(URL + '/profiles')
-                                    .expectStatus(200)
-                                    .afterJSON(function (profileList) {
-                                        console.log(profileList.length);
-                                        console.log(profileList[0].id);
-                                        userProfile1ID = profileList[0].id;
-                                        console.log(userProfile1ID);
-                                        expect(profileList.length).toBe(2);
-
-
-                                        frisby.create('retrieve actual profile of current user')
-                                            .get(URL + '/profilesactual')
-                                            .expectStatus(200)
-                                            .expectJSONTypes({
-                                                id: String,
-                                                timestamp: String,
-                                                birthDate: String,
-                                                maritalStatus: String
-                                            })
-                                            .expectJSON(userProfile2)
-
-                                            .afterJSON(function (profileList) {
-                                                console.log(userProfile1ID);
-                                                var xy = URL + '/profiles' + '/' + userProfile1ID;
-                                                console.log(xy);
-
-                                                frisby.create('retrieve first user profile, i.e. old version by using its id')
-                                                    .get(URL + '/profiles' + '/' + userProfile1ID)
-                                                    .expectStatus(200)
-                                                    .expectJSONTypes({
-                                                        id: String,
-                                                        timestamp: String,
-                                                        birthDate: String,
-                                                        maritalStatus: String
-                                                    })
-                                                    .expectJSON(userProfile1)
-                                                    .toss();
-                                            })
-                                            .toss();
-                                    })
-                                    .toss();
-                            })
-                            .toss();
+                    .expectJSON({
+                        userPreferences: userProfile.userPreferences
                     })
-
                     .toss();
+                frisby.create('DELETE our testuser')
+                    .auth('sysadm', 'backtothefuture')
+                    .delete(URL+ '/users/' + owner)
+                    .expectStatus(200)
+                    .toss();
+
             })
             .toss();
     })
     .toss();
-
-
-
-
-
-
-
-
 

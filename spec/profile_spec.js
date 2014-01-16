@@ -18,7 +18,6 @@ frisby.globalSetup({ // globalSetup is for ALL requests
 });
 
 var userProfile = {
-//    "owner": consts.users.unittest.id,
     "gender": "female",
     "birthDate": "1984-04-10T06:12:19.600Z",
     "homeAddress": {
@@ -63,24 +62,14 @@ frisby.create('POST new user')
     .expectStatus(201)
     .afterJSON(function(newUser) {
         var owner = newUser.id;
-        var profileId = newUser.profile;
-        console.log("owner: " + owner);
-        console.log("profileId: " + profileId);
         frisby.create('retrieve user profile by using its id')
             .get(URL + '/profiles')
             .auth('zzz_profile_unittest_user', 'nopass')
             .expectStatus(200)
             .afterJSON(function (profileArray) {
-                var profile = profileArray[0];
-                profile.gender = userProfile.gender;
-                profile.birthDate = userProfile.birthDate;
-                profile.homeAddress = userProfile.homeAddress;
-                profile.workAddress = userProfile.workAddress;
-                profile.maritalStatus = userProfile.maritalStatus;
-                profile.userPreferences = userProfile.userPreferences;
-                var url = URL + '/profiles/' + profile.id;
+                var url = URL + '/profiles/' + profileArray[0].id;
                 frisby.create('update user profile using its id')
-                    .put(url, profile)
+                    .put(url, userProfile)
                     .auth('zzz_profile_unittest_user', 'nopass')
                     .expectStatus(200)
                     .expectJSONTypes({
@@ -89,9 +78,7 @@ frisby.create('POST new user')
                         birthDate: String,
                         maritalStatus: String
                     })
-                    .expectJSON({
-                        userPreferences: userProfile.userPreferences
-                    })
+                    .expectJSON(userProfile)
                     .toss();
                 frisby.create('DELETE our testuser')
                     .auth('sysadm', 'backtothefuture')

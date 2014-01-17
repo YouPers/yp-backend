@@ -4,7 +4,6 @@
 
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
-//    restify = require('restify'),
     common = require('./common');
 
 /**

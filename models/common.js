@@ -263,7 +263,6 @@ module.exports = {
 
         // Preference related enums
         firstDayOfWeek: "Monday Sunday".split(' '),
-        defaultUserWeekForScheduling: "Monday Tuesday Wednesday Thursday Friday Saturday Sunday".split(' '),
         languageUI: "German English Italian".split(' ')
 
     },

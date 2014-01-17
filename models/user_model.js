@@ -6,7 +6,8 @@ var mongoose = require('mongoose'),
     ObjectId = Schema.ObjectId,
     crypto = require('crypto'),
     restify = require('restify'),
-    common = require('./common');
+    common = require('./common'),
+    Profile = mongoose.model('Profile');
 /**
  * User Schema
  */
@@ -21,6 +22,7 @@ var UserSchema = common.newSchema({
     roles: [{ type: String}],
     hashed_password: { type: String, trim: true },
     tempPasswordFlag: { type: Boolean, default: false },
+    profile: {type: ObjectId, ref: 'Profile'},
     preferences: {
         starredActivities: [
             {type: ObjectId, ref: 'Activity'}
@@ -117,10 +119,39 @@ UserSchema.pre('save', function (next) {
     // password not blank when creating, otherwise skip
     if (!this.isNew) {
         return next();
+    } else {
+        // generate and store new profile id into new user object
+        var newProfileId = mongoose.Types.ObjectId();
+        this.profile = newProfileId;
+
+        var newProfile = new Profile( { _id: newProfileId, owner: this.id, timestamp: new Date() } );
+
+        newProfile.save(function (err) {
+            if (err) {
+                err.statusCode = 409;
+                return next(err);
+            }
+        });
+
     }
     if (!validatePresenceOf(this.password)) {
         next(new restify.MissingParameterError('Invalid password'));
     }
+    next();
+});
+
+UserSchema.pre('remove', function (next) {
+
+        var profileId = this.profile;
+
+    var profile = Profile.find( { _id: profileId } );
+
+    profile.remove(function (err) {
+        if (err) {
+            return next(err);
+        }
+    });
+
     next();
 });
 

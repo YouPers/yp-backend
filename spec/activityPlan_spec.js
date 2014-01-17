@@ -230,15 +230,19 @@ frisby.create('plan daily activity and check whether events are generated, with 
                     .afterJSON(function (reloadedNewPlan) {
                         expect(_.indexOf(reloadedNewPlan.joiningUsers, joiningPlan.owner)).not.toEqual(-1);
 
-                        frisby.create('delete plan 1')
-                            .delete(URL + '/activityplans/' + newPlan.id)
-                            .expectStatus(200)
-                            .toss();
 
                         frisby.create('delete plan 2')
                             .delete(URL + '/activityplans/' + joiningPlan.id)
                             .expectStatus(200)
+                            .after(function() {
+                                frisby.create('delete plan 1')
+                                    .delete(URL + '/activityplans/' + newPlan.id)
+                                    .expectStatus(200)
+                                    .toss();
+                            })
                             .toss();
+
+
 
 
                         consts.users.unittest.preferences.workingDays = ['MO', 'TU', 'WE'];

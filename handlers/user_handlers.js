@@ -16,30 +16,32 @@ var postFn = function (baseUrl) {
             return next(err);
         }
 
-        var newObj = new User(req.body);
+        var newUser = new User(req.body);
 
         // assign default roles
-        if (newObj.roles.length === 0) {
-            newObj.roles = ['individual'];
+        if (newUser.roles.length === 0) {
+            newUser.roles = ['individual'];
         }
 
-        if (!auth.canAssign(req.user, newObj.roles)) {
-            return next(new restify.NotAuthorizedError("current user has not enough privileges to create a new user with roles " + newObj.roles));
+        if (!auth.canAssign(req.user, newUser.roles)) {
+            return next(new restify.NotAuthorizedError("current user has not enough privileges to create a new user with roles " + newUser.roles));
         }
 
-        req.log.trace(newObj, 'PostFn: Saving new Object');
-        // try to save the new object
-        newObj.save(function (err) {
+        req.log.trace(newUser, 'PostFn: Saving new user and profile objects');
+
+        // try to save the new user and profile objects
+        newUser.save(function (err) {
             if (err) {
-                req.log.info({Error: err}, 'Error Saving in PostFn');
+                req.log.info({Error: err}, 'Error Saving in PostFn (User Account');
                 err.statusCode = 409;
                 return next(err);
             }
-            // send verificationEmail
-            email.sendEmailVerification(newObj);
 
-            res.header('location', baseUrl + '/' + newObj._id);
-            res.send(201, newObj);
+            // send verificationEmail
+            email.sendEmailVerification(newUser);
+
+            res.header('location', baseUrl + '/' + newUser._id);
+            res.send(201, newUser);
             return next();
         });
     };

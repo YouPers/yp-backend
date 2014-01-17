@@ -485,10 +485,18 @@ module.exports = {
 
     deleteAllFn: function (baseUrl, Model) {
         return function (req, res, next) {
-            Model.remove(function (err) {
+            // instead of using Model.remove directly, findOne in combination with obj.remove
+            // is used in order to trigger
+            // - schema.pre('remove', ... or
+            // - schema.pre('remove', ...
+            // see user_model.js for an example
+            Model.find(function (err, objects) {
                 if (err) {
                     return next(err);
                 }
+                _.forEach(objects,function (obj) {
+                    obj.remove();
+                })
                 res.send(200);
             });
         };
@@ -496,11 +504,19 @@ module.exports = {
 
     deleteByIdFn: function (baseUrl, Model) {
         return function (req, res, next) {
-            Model.remove({_id: req.params.id}, function (err) {
+            // instead of using Model.remove directly, findOne in combination with obj.remove
+            // is used in order to trigger
+            // - schema.pre('remove', ... or
+            // - schema.pre('remove', ...
+            // see user_model.js for an example
+            Model.findOne({_id: req.params.id}, function (err, obj) {
                 if (err) {
                     return next(err);
                 }
-                res.send(200);
+                obj.remove(function (err) {
+                    res.send(200);
+                })
+
             });
         };
     },

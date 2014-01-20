@@ -133,7 +133,7 @@ module.exports = {
     roleBasedAuth: roleBasedAuth,
     isAdmin: isAdmin,
     roles: roles,
-    accesslevels: accessLevels,
+    accessLevels: accessLevels,
     canAssign: canAssign,
     checkAccess: checkAccess,
     validateLocalUsernamePassword: validateLocalUsernamePassword

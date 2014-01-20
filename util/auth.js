@@ -120,14 +120,14 @@ var canAssign = function (loggedInUser, requestedRoles) {
  * authenication is successful, otherwise it will pass false.
  */
 var validateLocalUsernamePassword =  function( username, password, done) {
-    require('mongoose').model('User').findOne().or([{ username: username }, {email: username}]).exec(function (err, user) {
+    require('mongoose').model('User').findOne().or([{ username: username }, {email: username}]).populate('profile').exec(function (err, user) {
         if (err) { return done(err); }
         if (!user) {
             return done(null, false); }
         if (!user.validPassword(password)) { return done(null, false); }
         return done(null, user);
     });
-}
+};
 
 module.exports = {
     roleBasedAuth: roleBasedAuth,

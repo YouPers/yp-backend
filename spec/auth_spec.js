@@ -25,28 +25,28 @@ describe('Authentication Module', function () {
     });
 
     it('should perform role based authorization by allowing / disallowing access', function() {
-        auth.checkAccess('anonymous', auth.accesslevels.al_all, function(err) {
+        auth.checkAccess('anonymous', auth.accessLevels.al_all, function(err) {
             expect(err).toBeUndefined();
         });
-        auth.checkAccess('individual', auth.accesslevels.al_all, function(err) {
+        auth.checkAccess('individual', auth.accessLevels.al_all, function(err) {
            expect(err).toBeUndefined();
        });
-        auth.checkAccess('individual', auth.accesslevels.al_systemadmin, function(err) {
+        auth.checkAccess('individual', auth.accessLevels.al_systemadmin, function(err) {
             expect(err).toBeDefined();
         });
-        auth.checkAccess('systemadmin', auth.accesslevels.al_systemadmin, function(err) {
+        auth.checkAccess('systemadmin', auth.accessLevels.al_systemadmin, function(err) {
             expect(err).toBeUndefined();
         });
-        auth.checkAccess('individual', auth.accesslevels.al_anonymousonly, function(err) {
+        auth.checkAccess('individual', auth.accessLevels.al_anonymousonly, function(err) {
             expect(err).toBeDefined();
         });
-        auth.checkAccess(undefined, auth.accesslevels.al_admin, function(err) {
+        auth.checkAccess(undefined, auth.accessLevels.al_admin, function(err) {
             expect(err).toBeDefined();
         });
-        auth.checkAccess(undefined, auth.accesslevels.al_all, function(err) {
+        auth.checkAccess(undefined, auth.accessLevels.al_all, function(err) {
             expect(err).toBeUndefined();
         });
-        auth.checkAccess(undefined, auth.accesslevels.al_anonymousonly, function(err) {
+        auth.checkAccess(undefined, auth.accessLevels.al_anonymousonly, function(err) {
             expect(err).toBeUndefined();
         });
 

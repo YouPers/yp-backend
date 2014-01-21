@@ -65,6 +65,52 @@ ActivityPlanEvent.statics.getFieldDescriptions = function() {
     };
 };
 
+/**
+ * Methods
+ */
+
+ActivityPlanSchema.methods = {
+    // evaluate the delete Status
+    evaluateDeleteStatus: function () {
+        if (!this._id) {
+            return "";
+        }
+        // activity plan cannot be deleted if there are joining users
+        if (this.joiningUsers.length > 0) {
+            return "ACTIVITYPLAN_DELETE_NO";
+        }
+
+        // check if there are any events in the past
+        var eventsInThePastExist = false;
+        var now = new Date();
+        _.forEach(this.events, function(event) {
+            if (event.begin < now || event.end < now){
+                eventsInThePastExist = true;
+            }
+        });
+        if (eventsInThePastExist === true) {
+            // only future events are allowed to be deleted
+            return "ACTIVITYPLAN_DELETE_ONLYFUTUREEVENTS";
+        }
+
+        // no joining users and no past events, thus the complete activity plan can be deleted
+        return "ACTIVITYPLAN_DELETE_YES";
+    }
+};
+
+/**
+ * Virtuals
+ */
+
+ActivityPlanSchema.set('toObject', { virtuals: true});
+ActivityPlanSchema.set('toJSON', { virtuals: true});
+
+ActivityPlanSchema.virtual('deleteStatus')
+    .get(function getDeleteStatus () {
+        return this.evaluateDeleteStatus();
+    });
+
+
 
 ActivityPlanSchema.pre('save', function (next) {
     var self = this;
@@ -123,7 +169,6 @@ ActivityPlanSchema.pre('save', function (next) {
     return next();
 });
 
-
 ActivityPlanSchema.pre('init', function (next, data) {
     var model = mongoose.model('ActivityPlan');
 
@@ -156,8 +201,14 @@ ActivityPlanSchema.pre('init', function (next, data) {
             return next();
         });
     } else {
+        console.log(this.deleteStatus);
         return next();
     }
+});
+
+ActivityPlanSchema.pre('init', function checkDeleteStatus (next, data) {
+    var model = mongoose.model('ActivityPlan');
+    return next();
 });
 
 module.exports = mongoose.model('ActivityPlan', ActivityPlanSchema);

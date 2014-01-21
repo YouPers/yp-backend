@@ -201,15 +201,15 @@ ActivityPlanSchema.pre('init', function (next, data) {
             return next();
         });
     } else {
-        console.log(this.deleteStatus);
+//        console.log(this.deleteStatus);
         return next();
     }
 });
 
-ActivityPlanSchema.pre('init', function checkDeleteStatus (next, data) {
-    var model = mongoose.model('ActivityPlan');
-    return next();
-});
+//ActivityPlanSchema.pre('init', function checkDeleteStatus (next, data) {
+//    var model = mongoose.model('ActivityPlan');
+//    return next();
+//});
 
 module.exports = mongoose.model('ActivityPlan', ActivityPlanSchema);
 

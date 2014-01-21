@@ -60,7 +60,7 @@ var ActivityPlanSchema = common.newSchema({
     events: [ActivityPlanEvent]
 });
 
-ActivityPlanEvent.statics.getFieldDescriptions = function() {
+ActivityPlanEvent.statics.getFieldDescriptions = function () {
     return {
         owner: 'The user who owns this ActivityPlanEvent'
     };
@@ -125,37 +125,41 @@ ActivityPlanSchema.pre('save', function (next) {
 });
 
 
-ActivityPlanSchema.pre('init', function (next, data) {
+ActivityPlanSchema.pre('init', function populateSlavePlans (next, data) {
     var model = mongoose.model('ActivityPlan');
 
     if (data.masterPlan) {
         // this is a slave plan, so we get the current data from its master
-        model.findById(data.masterPlan, function (err, masterPlan) {
-            if (err || !masterPlan) {
-                return next(err || new Error('masterPlan: ' + data.masterPlan + ' not found for slave: ' + data._id));
-            }
-
-            // deal with the fact that owner can be a ref of Type ObjectId or a populated Object
-            var ownerObjectId = data.owner._id || data.owner;
-            // populate the joiningUsers from the masterPlan, because we do not save it on slaves
-            _.forEach(masterPlan.joiningUsers, function(user) {
-                if (!user.equals(ownerObjectId)){
-                    data.joiningUsers.push(user);
+        model.findById(data.masterPlan)
+            .populate('owner')
+            .populate('joiningUsers')
+            .exec(function (err, masterPlan) {
+                if (err || !masterPlan) {
+                    return next(err || new Error('masterPlan: ' + data.masterPlan + ' not found for slave: ' + data._id));
                 }
-            });
-            // add the owner of the master
-            data.joiningUsers.push(masterPlan.owner);
 
-            // populate the comments from the masterPlan, because we do not save the event comments on the slave plan
-            _.forEach(masterPlan.events, function (masterEvent) {
-                _.find(data.events, function (slaveEvent) {
-                    if (slaveEvent.begin === masterEvent.begin) {
-                        slaveEvent.comments = masterEvent.comments;
+                // deal with the fact that owner can be a ref of Type ObjectId or a populated Object
+                var ownerObjectId = data.owner._id || data.owner;
+
+                // populate the joiningUsers from the masterPlan, because we do not save it on slaves
+                _.forEach(masterPlan.joiningUsers, function (user) {
+                    if (!user._id.equals(ownerObjectId)) {
+                        data.joiningUsers.push(user);
                     }
                 });
+                // add the owner of the master
+                data.joiningUsers.push(masterPlan.owner);
+
+                // populate the comments from the masterPlan, because we do not save the event comments on the slave plan
+                _.forEach(masterPlan.events, function (masterEvent) {
+                    _.find(data.events, function (slaveEvent) {
+                        if (slaveEvent.begin === masterEvent.begin) {
+                            slaveEvent.comments = masterEvent.comments;
+                        }
+                    });
+                });
+                return next();
             });
-            return next();
-        });
     } else {
         return next();
     }

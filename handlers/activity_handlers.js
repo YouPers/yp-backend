@@ -95,6 +95,7 @@ function getRecommendationsFn(req, res, next) {
 
 function invalidateActivityCache(req, res, next) {
     cachedActList = null;
+    return next();
 }
 
 module.exports = {

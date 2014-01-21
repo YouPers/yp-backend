@@ -31,6 +31,15 @@ frisby.create('GET all activites')
                 number: String,
                 title: String
             })
+            .afterJSON(function(activity) {
+                activity.defaultexecutiontype = 'group';
+                // Use data from previous result in next test
+                frisby.create('Put an Update to single Activity')
+                    .put(URL + '/activities/' +activity.id, activity)
+                    .auth('stefan','stefan')
+                    .expectStatus(200)
+                    .toss();
+            })
             .toss();
     })
     .toss();

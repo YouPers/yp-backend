@@ -124,11 +124,16 @@ ActivityPlanSchema.pre('save', function (next) {
     return next();
 });
 
-
+/**
+ * When we load an activityPlan we need to enrich it with data, that we do not store redundatly but is always needed
+ * when displaying the ActivityPlan. The joiningUsers Array is maintained on the masterPlan and is copied to
+ * the slavePlan on demand whenever we load a slave plan.
+ */
 ActivityPlanSchema.pre('init', function populateSlavePlans (next, data) {
-    var model = mongoose.model('ActivityPlan');
 
     if (data.masterPlan) {
+        var model = mongoose.model('ActivityPlan');
+
         // this is a slave plan, so we get the current data from its master
         model.findById(data.masterPlan)
             .populate('owner')

@@ -64,11 +64,10 @@ frisby.create('plan once activity and check whether event is generated')
                     .expectStatus(201)
                     .expectJSON({
                         activity: consts.groupActivity.id,
-                        masterPlan: joinablePlan.id,
-                        joiningUsers: [consts.users.unittest.id]
+                        masterPlan: joinablePlan.id
                     })
                     .afterJSON(function(slavePlan) {
-
+                        expect(slavePlan.joiningUsers[0].id).toEqual(consts.users.unittest.id);
                         frisby.create('get all the joinOffers again, and check whether the slave plan is not included in the list')
                             .get(URL + '/activityplans/joinOffers?activity=' + consts.groupActivity.id)
                             .expectStatus(200)

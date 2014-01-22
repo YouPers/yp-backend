@@ -1,8 +1,3 @@
-/**
- * User Routes module
- *    these routes require authenticated users
- */
-
 var mongoose = require('mongoose'),
     Model = mongoose.model('Comment'),
     generic = require('./../handlers/generic');

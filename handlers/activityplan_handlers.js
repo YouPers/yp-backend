@@ -289,7 +289,6 @@ function getJoinOffers(req, res, next) {
     var dbquery = Model.find(
         {activity: req.params.activity,
             executionType: 'group',
-            visibility: 'public',
             masterPlan: null
         });
 

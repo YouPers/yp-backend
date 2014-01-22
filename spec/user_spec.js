@@ -34,13 +34,14 @@ frisby.create('POST new user')
             .expectStatus(200)
             .expectJSONTypes('*', {
                 id: String,
-                username: String,
-                email: String
+                lastname: String
             }).afterJSON(function (userList) {
-                var nrOfUsers = userList.length;
+                expect(userList[0].email).toBeUndefined();
+                expect(userList[0].username).toBeUndefined();
+
                 var testuserid = '';
                 userList.forEach(function (user) {
-                    if (user.username === 'new_unittest_user') {
+                    if (user.fullname === 'Testing Unittest') {
                         testuserid = user.id;
                     }
                 });
@@ -50,8 +51,10 @@ frisby.create('POST new user')
                     .expectStatus(200)
                     // 'afterJSON' automatically parses response body as JSON and passes it as an argument
                     .afterJSON(function(user) {
+
+                        // add the username becuase the backend is not returning it as a default.
+                        user.username = 'new_unittest_user';
                         expect(user.id).toEqual(testuserid);
-                        expect(user.username).toEqual( 'new_unittest_user');
                         expect(user.preferences.workingDays).toContain('MO');
                         expect(user.preferences.workingDays).not.toContain('FR');
 
@@ -60,7 +63,7 @@ frisby.create('POST new user')
                         user.preferences.starredActivities.push(consts.aloneActivity.id);
 
                         frisby.create('POST verify email address SUCCESS')
-                            .post(URL + '/users/' + testuserid + '/email_verification', { token: email.encryptLinkToken(user.email) })
+                            .post(URL + '/users/' + testuserid + '/email_verification', { token: email.encryptLinkToken('yp-test-user@gmail.com') })
                             .expectStatus(200)
                             .auth('new_unittest_user', 'nopass')
                             .toss();

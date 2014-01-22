@@ -366,7 +366,6 @@ function resolveDocumentzAtPath(doc, pathBits) {
 }
 
 
-
 /////////////////////////////////////
 // the generic route handlers
 
@@ -431,7 +430,7 @@ module.exports = {
             }
 
 
-            processStandardQueryOptions(req,dbQuery , Model)
+            processStandardQueryOptions(req, dbQuery, Model)
                 .exec(function (err, objList) {
                     if (err) {
                         return next(err);
@@ -494,7 +493,7 @@ module.exports = {
                 if (err) {
                     return next(err);
                 }
-                _.forEach(objects,function (obj) {
+                _.forEach(objects, function (obj) {
                     obj.remove();
                 })
                 res.send(200);
@@ -536,7 +535,13 @@ module.exports = {
                 }
             }
 
-            Model.findById(req.params.id).exec(function (err, objFromDb) {
+            var q = Model.findById(req.params.id);
+            // if this Model has privateProperties, include them in the select, so we get the whole object
+            // because we need to save it later!
+            if (Model.privatePropertiesSelector) {
+                q.select(Model.privatePropertiesSelector);
+            }
+            q.exec(function (err, objFromDb) {
                 if (err) {
                     return next(err);
                 }
@@ -588,53 +593,53 @@ module.exports = {
 
     params: {
         filter: {
-            "name" : "filter",
-            "description" : 'filters the results by adding a where clause, to see  the supported language and format see ',
-            "dataType" : 'string',
-            "required" : false,
-            "allowMultiple" : true,
-            "paramType" : "query"
+            "name": "filter",
+            "description": 'filters the results by adding a where clause, to see  the supported language and format see ',
+            "dataType": 'string',
+            "required": false,
+            "allowMultiple": true,
+            "paramType": "query"
         },
         sort: {
-            "name" : "sort",
-            "description" : 'sorts the results by the specified properties, add ":-1" to reverse sort: e.g. sort="created:-1"',
-            "dataType" : 'string',
-            "required" : false,
-            "allowMultiple" : true,
-            "paramType" : "query"
+            "name": "sort",
+            "description": 'sorts the results by the specified properties, add ":-1" to reverse sort: e.g. sort="created:-1"',
+            "dataType": 'string',
+            "required": false,
+            "allowMultiple": true,
+            "paramType": "query"
         },
         populate: {
-            "name" : "populate",
-            "description" : 'populates specified reference properties of the retrieved ressource with the full object,' +
+            "name": "populate",
+            "description": 'populates specified reference properties of the retrieved ressource with the full object,' +
                 ' e.g. comments.author is of type ObjectId ref User, if you want the full user object instead of the ObjectId' +
                 'add this queryParam: "populate="author". Supports multiple space separated values, also allows to populate' +
                 'embedded subobject properties by using .-notation. Limitation: Only allows to populate over one DB-Collection, meaning' +
                 'you can populate the comments.author, but you cannot populate ActivityEvent.Comment.Author, use ' +
                 '"populatedeep" if you need this. \n' +
                 'Use with caution, it may impact performance! ',
-            "dataType" : 'string',
-            "required" : false,
-            "allowMultiple" : true,
-            "paramType" : "query"
+            "dataType": 'string',
+            "required": false,
+            "allowMultiple": true,
+            "paramType": "query"
         },
         populatedeep: {
-            "name" : "populatedeep",
-            "description" : 'populates specified reference deep properties of the retrieved ressource with the full object,' +
+            "name": "populatedeep",
+            "description": 'populates specified reference deep properties of the retrieved ressource with the full object,' +
                 'use this if you need to go over more than 1 collection, see documentation of "populate" \n' +
                 'Use with caution, it may impact performance! ',
-            "dataType" : 'string',
-            "required" : false,
-            "allowMultiple" : true,
-            "paramType" : "query"
+            "dataType": 'string',
+            "required": false,
+            "allowMultiple": true,
+            "paramType": "query"
         },
         limit: {
-            "name" : "limit",
-            "description" : 'limit the amount of returned objects, default is 100, max is 1000',
-            "dataType" : 'integer',
-            "required" : false,
+            "name": "limit",
+            "description": 'limit the amount of returned objects, default is 100, max is 1000',
+            "dataType": 'integer',
+            "required": false,
             "default": 100,
-            "allowMultiple" : false,
-            "paramType" : "query"
+            "allowMultiple": false,
+            "paramType": "query"
         }
     }
 };

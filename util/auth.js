@@ -59,10 +59,10 @@ function checkAccess(user, accessLevel, callback) {
         if (accessLevel === 'al_all' || accessLevel === 'al_anonymousonly') {
             return callback();
         } else if (Array.isArray(accessLevel) &&
-            (_.contains(accessLevel, roles.anonymous ))) {
+            (_.contains(accessLevel, roles.anonymous))) {
             return callback();
         } else {
-            return callback(user ? new restify.NotAuthorizedError("User not authorized for this ressource"): new restify.UnauthorizedError('Authentication failed'));
+            return callback(user ? new restify.NotAuthorizedError("User not authorized for this ressource") : new restify.UnauthorizedError('Authentication failed'));
         }
     }
 
@@ -119,14 +119,29 @@ var canAssign = function (loggedInUser, requestedRoles) {
  * @param done callback to be called with the result, takes to arguments error and user. user is passedwhen
  * authenication is successful, otherwise it will pass false.
  */
-var validateLocalUsernamePassword =  function( username, password, done) {
-    require('mongoose').model('User').findOne().or([{ username: username }, {email: username}]).populate('profile').exec(function (err, user) {
-        if (err) { return done(err); }
-        if (!user) {
-            return done(null, false); }
-        if (!user.validPassword(password)) { return done(null, false); }
-        return done(null, user);
-    });
+var validateLocalUsernamePassword = function (username, password, done) {
+    var UserModel = require('mongoose').model('User');
+    UserModel
+        .findOne()
+        .or([
+            { username: username },
+            {email: username}
+        ])
+        // select the 'private' attributes from the user that are hidden if another user loads the user object
+        .select(UserModel.privatePropertiesSelector)
+        .populate('profile')
+        .exec(function (err, user) {
+            if (err) {
+                return done(err);
+            }
+            if (!user) {
+                return done(null, false);
+            }
+            if (!user.validPassword(password)) {
+                return done(null, false);
+            }
+            return done(null, user);
+        });
 };
 
 module.exports = {

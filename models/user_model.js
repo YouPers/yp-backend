@@ -15,14 +15,14 @@ var UserSchema = common.newSchema({
     firstname: { type: String, trim: true, required: true },
     lastname: { type: String, trim: true, required: true },
     fullname: { type: String, trim: true, required: true },
-    email: { type: String, trim: true, lowercase: true, required: true, unique: true },
+    email: { type: String, trim: true, lowercase: true, required: true, unique: true, select: false},
     avatar: {type: String},
-    emailValidatedFlag: { type: Boolean, default: false },
-    username: { type: String, trim: true, lowercase: true, required: true, unique: true },
-    roles: [{ type: String}],
-    hashed_password: { type: String, trim: true },
-    tempPasswordFlag: { type: Boolean, default: false },
-    profile: {type: ObjectId, ref: 'Profile'},
+    emailValidatedFlag: { type: Boolean, default: false, select: false },
+    username: { type: String, trim: true, lowercase: true, required: true, unique: true, select:false },
+    roles: {type: [{ type: String}], select: false},
+    hashed_password: { type: String, trim: true, select: false },
+    tempPasswordFlag: { type: Boolean, default: false, select: false },
+    profile: {type: ObjectId, ref: 'Profile', select: false},
     preferences: {
         starredActivities: [
             {type: ObjectId, ref: 'Activity'}
@@ -55,10 +55,13 @@ UserSchema.methods = {
 
     validPassword: function (password) {
         return crypto.createHmac('sha1', this._id.toString()).update(password).digest('hex') === this.hashed_password;
+    },
+    toJsonConfig: {
+        hide: ['hashed_password', 'tempPasswordFlag']
     }
 };
 
-
+UserSchema.statics.privatePropertiesSelector = '+email +roles +emailValidatedFlag +hashed_password +tempPasswordFlag +profile +username';
 /**
  * helper functions
  */
@@ -86,10 +89,6 @@ UserSchema
     .get(function () {
         return this._password;
     });
-
-UserSchema.methods.toJsonConfig = {
-        hide: ['hashed_password', 'tempPasswordFlag']
-};
 
 /**
  * Pre-save hook

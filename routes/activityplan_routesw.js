@@ -160,6 +160,30 @@ module.exports = function (swagger, config) {
     swagger.addPost({
         spec: {
             description: "Operations about ActivityPlans",
+            path: baseUrlWithId + "/inviteEmail",
+            notes: "Posts an invitation for an email",
+            summary: "Request an invitation for joining this plan to be sent by the backend to the supplied email address",
+            params: [
+                {
+                    paramType: "body",
+                    name: "email",
+                    description: "object with one property: 'email'",
+                    dataType: "Object",
+                    required: true
+                }
+            ],
+            method: "POST",
+            "nickname": "postActivityPlanInvite",
+            accessLevel: 'al_individual',
+            beforeCallbacks: []
+        },
+        action: handlers.postActivityPlanInvite
+    });
+
+
+    swagger.addPost({
+        spec: {
+            description: "Operations about ActivityPlans",
             path: baseUrl,
             notes: "Posts a new plan, when the attribute masterPlan is set to the string of another plan, " +
                 "then the new plan is just a slave of " +

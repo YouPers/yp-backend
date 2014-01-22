@@ -1,21 +1,22 @@
 var mongoose = require('mongoose'),
-    Model = mongoose.model('ActivityPlan'),
+    ActivityPlanModel = mongoose.model('ActivityPlan'),
     CommentModel = mongoose.model('Comment'),
     generic = require('./generic'),
     restify = require('restify'),
     _ = require('lodash'),
     ical = require('icalendar'),
     email = require('../util/email'),
-    moment = require('moment');
+    moment = require('moment'),
+    async = require('async');
 
 
-var getIcalObject = function(plan, recipientUser) {
+var getIcalObject = function (plan, recipientUser) {
     var myCal = new ical.iCalendar();
     myCal.addProperty("METHOD", "REQUEST");
     var event = new ical.VEvent(plan._id);
     event.addProperty("ORGANIZER", "MAILTO:dontreply@youpers.com", {CN: "YouPers Digital Health"});
     event.addProperty("ATTENDEE",
-        "MAILTO:"+recipientUser.email,
+        "MAILTO:" + recipientUser.email,
         {ROLE: "REQ-PARTICIPANT", PARTSTAT: "NEEDS-ACTION", RSVP: "TRUE", CN: recipientUser.fullName });
     event.setSummary(plan.title || plan.activity && plan.activity.title);
     event.setDate(moment(plan.mainEvent.start).toDate(), moment(plan.mainEvent.end).toDate());
@@ -59,7 +60,7 @@ function generateEventsForPlan(plan, user) {
 
     plan.events = [];
     if (rrule) {
-        var occurrances = rrule.nextOccurences(moment(plan.mainEvent.start).subtract('day',1).toDate(), 100);
+        var occurrances = rrule.nextOccurences(moment(plan.mainEvent.start).subtract('day', 1).toDate(), 100);
         _.forEach(occurrances, function (instance) {
             plan.events.push({
                 status: 'open',
@@ -138,7 +139,7 @@ function putActivityEvent(req, res, next) {
                 return next(err);
             }
 
-            Model.findById(savedActivityPlan._id, function (err, reloadedPlan) {
+            ActivityPlanModel.findById(savedActivityPlan._id, function (err, reloadedPlan) {
                 if (err) {
                     return next(err);
                 }
@@ -196,7 +197,7 @@ function postNewActivityPlan(req, res, next) {
     req.log.trace({body: sentPlan}, 'parsed req body');
     // ref properties: replace objects by ObjectId in case client sent whole object instead of reference only
     // do this check only for properties of type ObjectID
-    _.filter(Model.schema.paths, function (path) {
+    _.filter(ActivityPlanModel.schema.paths, function (path) {
         return (path.instance === 'ObjectID');
     })
         .forEach(function (myPath) {
@@ -223,7 +224,7 @@ function postNewActivityPlan(req, res, next) {
     generateEventsForPlan(sentPlan, req.user);
     req.log.trace({eventsAfter: sentPlan.events}, 'after generating events');
 
-    var newActPlan = new Model(req.body);
+    var newActPlan = new ActivityPlanModel(req.body);
 
 
     req.log.trace(newActPlan, 'PostFn: Saving new Object');
@@ -236,7 +237,7 @@ function postNewActivityPlan(req, res, next) {
         }
         // we populate 'activity' so we can get create a nice calendar entry using strings on the
         // activity
-        Model.findById(newActPlan._id).populate('activity').exec(function (err, reloadedActPlan) {
+        ActivityPlanModel.findById(newActPlan._id).populate('activity').exec(function (err, reloadedActPlan) {
             if (err) {
                 return next(err);
             }
@@ -256,9 +257,9 @@ function postNewActivityPlan(req, res, next) {
 
 function getIcalStringForPlan(req, res, next) {
     if (!req.params || !req.params.id) {
-        next(new new restify.InvalidArgumentError('id required for this call'));
+        next(new restify.InvalidArgumentError('id required for this call'));
     }
-    Model.findById(req.params.id).populate('activity').populate('owner').exec(function (err, plan) {
+    ActivityPlanModel.findById(req.params.id).populate('activity').populate('owner').exec(function (err, plan) {
         if (err) {
             return next(err);
         }
@@ -274,7 +275,7 @@ function getIcalStringForPlan(req, res, next) {
         res.contentType = "text/calendar";
         res.setHeader('Content-Type', 'text/calendar');
         res.setHeader('Content-Disposition', 'inline; filename=ical.ics');
-        res.send(200,myIcalString);
+        res.send(200, myIcalString);
         return next();
     });
 }
@@ -286,13 +287,13 @@ function getJoinOffers(req, res, next) {
         return next(new restify.InvalidArgumentError("missing required queryParam 'activity'"));
     }
 
-    var dbquery = Model.find(
+    var dbquery = ActivityPlanModel.find(
         {activity: req.params.activity,
             executionType: 'group',
             masterPlan: null
         });
 
-    generic.addStandardQueryOptions(req, dbquery, Model);
+    generic.addStandardQueryOptions(req, dbquery, ActivityPlanModel);
     dbquery.exec(function (err, joinOffers) {
         if (err) {
             return next(err);
@@ -308,9 +309,62 @@ function getJoinOffers(req, res, next) {
 
 }
 
+function postActivityPlanInvite(req, res, next) {
+    if (!req.params || !req.params.id) {
+        return next(new restify.InvalidArgumentError('missing required ActivityId in URL'));
+    }
+    if (!req.body || !req.body.email) {
+        return next(new restify.InvalidArgumentError('missing required email attribute in body'));
+    }
+
+    var locals = {};
+    async.parallel([
+        // load ActivityPlan
+        function (done) {
+            ActivityPlanModel.findById(req.params.id)
+                .populate('activity')
+                .populate('owner')
+                .exec(function (err, plan) {
+                    if (err) {
+                        return done(err);
+                    }
+                    if (!plan) {
+                        return done(new restify.InvalidArgumentError('ActivityPlan: ' + req.params.id + ' not found.'));
+                    }
+                    locals.plan = plan;
+                    return done();
+                });
+        },
+        // check whether we have already a user with this email and load the corresponding user
+        // used to personalize the invitataion Email
+        function (done) {
+            mongoose.model('User')
+                .find({email: req.body.email})
+                .exec(function(err, user) {
+                    if (err) {
+                        return done(err);
+                    }
+                    if (user) {
+                        locals.invitedUser = user;
+                    } // else is expected case, an emailaddress of an unknown user
+                    return done();
+                });
+        }
+    ], function (err) {
+        if (err) {
+            return next(err);
+        }
+
+        email.sendActivityPlanInvite(req.body.email, req.user, locals.plan, locals.invitedUser);
+        res.send(200);
+        return next();
+    });
+}
+
 module.exports = {
     postNewActivityPlan: postNewActivityPlan,
     getIcalStringForPlan: getIcalStringForPlan,
     putActivityEvent: putActivityEvent,
-    getJoinOffers: getJoinOffers
+    getJoinOffers: getJoinOffers,
+    postActivityPlanInvite: postActivityPlanInvite
 };

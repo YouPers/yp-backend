@@ -110,11 +110,6 @@ fs.readdirSync('./routes').forEach(function (file) {
 });
 swagger.configure(config.backendUrl, "0.1");
 
-//var userHandlers = require('./handlers/user_handlers');
-//server.post('/users/:id/avatar', function (req, res, next) {
-//    userHandlers.avatarImagePostFn()(req, res, next);
-//});
-
 
 var port = process.env.PORT || config.port;
 server.listen(port);

@@ -8,7 +8,7 @@ var handlerUtils = require('./handlerUtils'),
     User = mongoose.model('User'),
     Profile = mongoose.model('Profile'),
     fs = require('fs'),
-    im = require('imagemagick');
+    gm = require('gm');
 
 var postFn = function (baseUrl) {
     return function (req, res, next) {
@@ -168,63 +168,47 @@ var avatarImagePostFn = function(baseUrl) {
     return function(req, res, next) {
 
 
-        var image = req.files.file.path;
-        var imageResized = image + "_resized";
+        var sizeA = 100;
+        var sizeB = 100;
+        var path = req.files.file.path;
+        var pathResized = path + "_resized";
 
-        im.resize({
-            srcPath: image,
-            dstPath: imageResized,
-            width:   200
-        }, function(err){
-            if (err) {
-                return next(new restify.InternalError(err));
-            }
-
-            fs.readFile(imageResized, function (err, data) {
+        req.log.debug('avatar: resize to \n'+sizeA+'x'+sizeB+path);
 
 
-                var avatar = new Buffer(data).toString('base64');
+        // resize on fs using GraphicMagick
+        gm(path)
+            .define('jpeg:size='+sizeA+'x'+sizeB) // workspace
+            .thumbnail(sizeA, sizeB + '^') // shortest side sizeB
+            .gravity('center') // center next operation
+            .extent(sizeA, sizeB) // canvas size
+            .noProfile() // remove meta
+            .write(pathResized, function(err){
+                if (err) {
+                    return next(new restify.InternalError(err));
+                }
+                req.log.debug('avatar: resize complete\n' + pathResized);
 
-                var profile = new Profile(req.user.profile);
-                profile.avatarImage = avatar;
-                profile.save();
+                // read resized image from fs and store in db
+
+                fs.readFile(pathResized, function (err, data) {
+
+                    var avatar = new Buffer(data).toString('base64');
+
+                    var profile = req.user.profile;
+                    profile.avatarImage = avatar;
+                    profile.save(function(err, savedProfile, b) {
+
+                        if (err) {
+                            return next(new restify.InternalError(err));
+                        }
+
+                        res.send({avatarImage: savedProfile.avatarImage});
+                        return next();
+                    });
+
+                });
             });
-        });
-
-
-
-
-
-//        Profile.findById(req.user.profile.id, function(err, profile) {
-//            if(err) {
-//                return next(new restify.InternalError(err));
-//            }
-//            if(!profile) {
-//                return next(new restify.InvalidArgumentError('Unknown Profile'));
-//            }
-//
-//            profile.avatarImage = avatar;
-//            profile.save();
-//        });
-
-
-
-    };
-};
-
-var avatarImageGetFn = function(baseUrl) {
-    return function(req, res, next) {
-
-        getUser(req, res, next, function(user) {
-
-            if(user.profile.avatarImage) {
-                res.send(user.profile.avatarImage);
-                return next();
-            } else {
-                return next(new restify.ResourceNotFoundError('avatar'));
-            }
-
-        });
 
     };
 };
@@ -234,6 +218,5 @@ module.exports = {
     emailVerificationPostFn: emailVerificationPostFn,
     requestPasswordResetPostFn: requestPasswordResetPostFn,
     passwordResetPostFn: passwordResetPostFn,
-    avatarImagePostFn: avatarImagePostFn,
-    avatarImageGetFn: avatarImageGetFn
+    avatarImagePostFn: avatarImagePostFn
 };

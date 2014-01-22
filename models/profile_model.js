@@ -43,7 +43,7 @@ var ProfileSchema = common.newSchema( {
         languageUI: { type: String, enum: common.enums.languageUI },
         timezone: { type: String, trim: true }
     },
-    avatarImage: { type: Buffer }
+    avatarImage: { type: String }
 
 });
 

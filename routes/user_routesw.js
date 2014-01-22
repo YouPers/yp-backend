@@ -28,21 +28,6 @@ module.exports = function (swagger, config) {
         action: userHandlers.avatarImagePostFn(baseUrl)
     });
 
-    swagger.addGet({
-        spec: {
-            description: "avatar image download",
-            path: baseUrlWithId + "/avatar",
-            notes: "email verification notes",
-            summary: "avatar image download",
-            method: "GET",
-            params: [],
-            "errorResponses": [],
-            "nickname": "avatarImageGet",
-            accessLevel: 'al_all'
-        },
-        action: userHandlers.avatarImageGetFn(baseUrl)
-    });
-
     swagger.addPost({
         spec: {
             description: "email verification description",

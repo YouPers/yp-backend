@@ -42,7 +42,8 @@ var ProfileSchema = common.newSchema( {
         firstDayOfWeek: { type: String, enum: common.enums.firstDayOfWeek },
         languageUI: { type: String, enum: common.enums.languageUI },
         timezone: { type: String, trim: true }
-    }
+    },
+    avatarImage: { type: Buffer }
 
 });
 

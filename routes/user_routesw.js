@@ -18,6 +18,33 @@ module.exports = function (swagger, config) {
 
     swagger.addPost({
         spec: {
+            description: "avatar image upload",
+            path: baseUrlWithId + "/avatar",
+            summary: "avatar image upload",
+            method: "POST",
+            "nickname": "avatarImagePost",
+            accessLevel: 'al_user'
+        },
+        action: userHandlers.avatarImagePostFn(baseUrl)
+    });
+
+    swagger.addGet({
+        spec: {
+            description: "avatar image download",
+            path: baseUrlWithId + "/avatar",
+            notes: "email verification notes",
+            summary: "avatar image download",
+            method: "GET",
+            params: [],
+            "errorResponses": [],
+            "nickname": "avatarImageGet",
+            accessLevel: 'al_all'
+        },
+        action: userHandlers.avatarImageGetFn(baseUrl)
+    });
+
+    swagger.addPost({
+        spec: {
             description: "email verification description",
             path: baseUrlWithId + "/email_verification",
             notes: "email verification notes",

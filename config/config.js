@@ -30,7 +30,7 @@ module.exports = {
                 },
                 {
                     path: 'logs/server.log',
-                    level: 'debug'
+                    level: 'trace'
                 }
             ],
             serializers: bunyan.stdSerializers

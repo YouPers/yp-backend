@@ -5,7 +5,10 @@ var handlerUtils = require('./handlerUtils'),
     config = require('../config/config')[process.env.NODE_ENV || 'development'],
     restify = require('restify'),
     mongoose = require('mongoose'),
-    User = mongoose.model('User');
+    User = mongoose.model('User'),
+    Profile = mongoose.model('Profile'),
+    fs = require('fs'),
+    im = require('imagemagick');
 
 var postFn = function (baseUrl) {
     return function (req, res, next) {
@@ -47,20 +50,29 @@ var postFn = function (baseUrl) {
     };
 };
 
+var getUser = function(req, res, next, callback) {
+
+
+    if(req.params.id !== req.user.id) {
+        return next(new restify.ConflictError('User ID in request parameters does not match authenticated user'));
+    }
+
+    User.findById(req.params.id, function(err, user) {
+        if(err) {
+            return next(new restify.InternalError(err));
+        }
+        if(!user) {
+            return next(new restify.InvalidArgumentError('Invalid User ID'));
+        }
+
+        callback(user);
+    });
+};
+
 var emailVerificationPostFn = function(baseUrl) {
     return function(req, res, next) {
 
-        if(req.params.id !== req.user.id) {
-            return next(new restify.ConflictError('User ID in request parameters does not match authenticated user'));
-        }
-
-        User.findById(req.params.id, function(err, user) {
-            if(err) {
-                return next(new restify.InternalError(err));
-            }
-            if(!user) {
-                return next(new restify.InvalidArgumentError('Invalid User ID'));
-            }
+        getUser(req, res, next, function(user) {
 
             if(req.body.token === email.encryptLinkToken(user.email)) {
 
@@ -152,10 +164,76 @@ var passwordResetPostFn = function(baseUrl) {
     };
 };
 
+var avatarImagePostFn = function(baseUrl) {
+    return function(req, res, next) {
+
+
+        var image = req.files.file.path;
+        var imageResized = image + "_resized";
+
+        im.resize({
+            srcPath: image,
+            dstPath: imageResized,
+            width:   200
+        }, function(err){
+            if (err) {
+                return next(new restify.InternalError(err));
+            }
+
+            fs.readFile(imageResized, function (err, data) {
+
+
+                var avatar = new Buffer(data).toString('base64');
+
+                var profile = new Profile(req.user.profile);
+                profile.avatarImage = avatar;
+                profile.save();
+            });
+        });
+
+
+
+
+
+//        Profile.findById(req.user.profile.id, function(err, profile) {
+//            if(err) {
+//                return next(new restify.InternalError(err));
+//            }
+//            if(!profile) {
+//                return next(new restify.InvalidArgumentError('Unknown Profile'));
+//            }
+//
+//            profile.avatarImage = avatar;
+//            profile.save();
+//        });
+
+
+
+    };
+};
+
+var avatarImageGetFn = function(baseUrl) {
+    return function(req, res, next) {
+
+        getUser(req, res, next, function(user) {
+
+            if(user.profile.avatarImage) {
+                res.send(user.profile.avatarImage);
+                return next();
+            } else {
+                return next(new restify.ResourceNotFoundError('avatar'));
+            }
+
+        });
+
+    };
+};
 
 module.exports = {
     postFn: postFn,
     emailVerificationPostFn: emailVerificationPostFn,
     requestPasswordResetPostFn: requestPasswordResetPostFn,
-    passwordResetPostFn: passwordResetPostFn
+    passwordResetPostFn: passwordResetPostFn,
+    avatarImagePostFn: avatarImagePostFn,
+    avatarImageGetFn: avatarImageGetFn
 };

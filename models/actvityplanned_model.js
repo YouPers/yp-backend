@@ -91,6 +91,10 @@ ActivityPlanSchema.pre('save', function (next) {
                 modifiedMaster = true;
             }
 
+            // the joiningUsers collection of the slavePlan is not saved, it should always remain empty because
+            // it will be populated by the pre'init' function when loading the slavePlan
+            self.joiningUsers = [];
+
             // if there exists eventComment in this plan, it must be moved to the master
             _.forEach(self.events, function (event) {
                 _.forEach(event.comments, function (comment) {

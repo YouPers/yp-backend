@@ -193,19 +193,22 @@ var avatarImagePostFn = function(baseUrl) {
 
                 fs.readFile(pathResized, function (err, data) {
 
-                    var avatar = new Buffer(data).toString('base64');
+                    var user = req.user;
+                    user.avatar = 'data:image/jpg;base64,' + new Buffer(data).toString('base64');
 
-                    var profile = req.user.profile;
-                    profile.avatarImage = avatar;
-                    profile.save(function(err, savedProfile, b) {
 
+                    user.save(function(err, savedUser) {
                         if (err) {
                             return next(new restify.InternalError(err));
                         }
-
-                        res.send({avatarImage: savedProfile.avatarImage});
-                        return next();
                     });
+
+                    fs.unlink(path);
+                    fs.unlink(pathResized);
+
+                    // send response
+                    res.send({avatar: user.avatar});
+                    return next();
 
                 });
             });

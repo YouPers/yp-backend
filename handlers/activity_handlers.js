@@ -1,7 +1,6 @@
 
 var mongoose = require('mongoose'),
     Activity = mongoose.model('Activity'),
-    passport = require('passport'),
     AssessmentResult = mongoose.model('AssessmentResult'),
     _ = require('lodash'),
     auth = require('../util/auth'),

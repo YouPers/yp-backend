@@ -31,6 +31,7 @@ var ActivityPlanSchema = common.newSchema({
     joiningUsers: [
         {type: ObjectId, ref: 'User'}
     ],
+    location: {type: String},
     executionType: {type: String, enum: common.enums.executiontype},
     visibility: {type: String, enum: common.enums.visibility},
     status: {type: String, enum: common.enums.ActivityPlanStatus},
@@ -136,6 +137,10 @@ ActivityPlanSchema.pre('save', function (next) {
                 modifiedMaster = true;
             }
 
+            // the joiningUsers collection of the slavePlan is not saved, it should always remain empty because
+            // it will be populated by the pre'init' function when loading the slavePlan
+            self.joiningUsers = [];
+
             // if there exists eventComment in this plan, it must be moved to the master
             _.forEach(self.events, function (event) {
                 _.forEach(event.comments, function (comment) {
@@ -169,47 +174,51 @@ ActivityPlanSchema.pre('save', function (next) {
     return next();
 });
 
-ActivityPlanSchema.pre('init', function (next, data) {
-    var model = mongoose.model('ActivityPlan');
+/**
+ * When we load an activityPlan we need to enrich it with data, that we do not store redundatly but is always needed
+ * when displaying the ActivityPlan. The joiningUsers Array is maintained on the masterPlan and is copied to
+ * the slavePlan on demand whenever we load a slave plan.
+ */
+ActivityPlanSchema.pre('init', function populateSlavePlans (next, data) {
 
     if (data.masterPlan) {
+        var model = mongoose.model('ActivityPlan');
+
         // this is a slave plan, so we get the current data from its master
-        model.findById(data.masterPlan, function (err, masterPlan) {
-            if (err || !masterPlan) {
-                return next(err || new Error('masterPlan: ' + data.masterPlan + ' not found for slave: ' + data._id));
-            }
-
-            // deal with the fact that owner can be a ref of Type ObjectId or a populated Object
-            var ownerObjectId = data.owner._id || data.owner;
-            // populate the joiningUsers from the masterPlan, because we do not save it on slaves
-            _.forEach(masterPlan.joiningUsers, function(user) {
-                if (!user.equals(ownerObjectId)){
-                    data.joiningUsers.push(user);
+        model.findById(data.masterPlan)
+            .populate('owner')
+            .populate('joiningUsers')
+            .exec(function (err, masterPlan) {
+                if (err || !masterPlan) {
+                    return next(err || new Error('masterPlan: ' + data.masterPlan + ' not found for slave: ' + data._id));
                 }
-            });
-            // add the owner of the master
-            data.joiningUsers.push(masterPlan.owner);
 
-            // populate the comments from the masterPlan, because we do not save the event comments on the slave plan
-            _.forEach(masterPlan.events, function (masterEvent) {
-                _.find(data.events, function (slaveEvent) {
-                    if (slaveEvent.begin === masterEvent.begin) {
-                        slaveEvent.comments = masterEvent.comments;
+                // deal with the fact that owner can be a ref of Type ObjectId or a populated Object
+                var ownerObjectId = data.owner._id || data.owner;
+
+                // populate the joiningUsers from the masterPlan, because we do not save it on slaves
+                _.forEach(masterPlan.joiningUsers, function (user) {
+                    if (!user._id.equals(ownerObjectId)) {
+                        data.joiningUsers.push(user);
                     }
                 });
+                // add the owner of the master
+                data.joiningUsers.push(masterPlan.owner);
+
+                // populate the comments from the masterPlan, because we do not save the event comments on the slave plan
+                _.forEach(masterPlan.events, function (masterEvent) {
+                    _.find(data.events, function (slaveEvent) {
+                        if (slaveEvent.begin === masterEvent.begin) {
+                            slaveEvent.comments = masterEvent.comments;
+                        }
+                    });
+                });
+                return next();
             });
-            return next();
-        });
     } else {
-//        console.log(this.deleteStatus);
         return next();
     }
 });
-
-//ActivityPlanSchema.pre('init', function checkDeleteStatus (next, data) {
-//    var model = mongoose.model('ActivityPlan');
-//    return next();
-//});
 
 module.exports = mongoose.model('ActivityPlan', ActivityPlanSchema);
 

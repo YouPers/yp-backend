@@ -60,12 +60,12 @@ frisby.create('plan weekly activity as a master for a joining test')
         slavePlan.owner = consts.users.reto.id;
         frisby.create('post a joining plan ')
             .auth(consts.users.reto.username, consts.users.reto.password)
-            .post(URL, slavePlan)
+            .post(URL + '?populate=joiningUsers', slavePlan)
             .expectStatus(201)
             .afterJSON(function (slavePlanPostAnswer) {
                 expect(slavePlanPostAnswer.masterPlan).toEqual(slavePlan.masterPlan);
-                expect(slavePlanPostAnswer.joiningUsers).toContain(masterPlan.owner);
-                expect(slavePlanPostAnswer.joiningUsers).not.toContain(slavePlanPostAnswer.owner);
+                expect(slavePlanPostAnswer.joiningUsers[0].id).toEqual(masterPlan.owner);
+                expect(slavePlanPostAnswer.joiningUsers.length).toEqual(1); // user selbst ist nicht im Array
 
 
                 // update an event on the master with a new comment and check whether it is visible on the slave
@@ -87,7 +87,7 @@ frisby.create('plan weekly activity as a master for a joining test')
                     .expectStatus(200)
                     .afterJSON(function (slavePlanReloaded) {
                         expect(slavePlanReloaded.masterPlan).toEqual(slavePlan.masterPlan);
-                        expect(slavePlanReloaded.joiningUsers).toContain(masterPlan.owner);
+                        expect(slavePlanReloaded.joiningUsers[0].id).toEqual(masterPlan.owner);
                         expect(slavePlanReloaded.joiningUsers).not.toContain(slavePlanPostAnswer.owner);
 
                         frisby.create('update Event on Slave, add comment')

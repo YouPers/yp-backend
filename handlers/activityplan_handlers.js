@@ -317,9 +317,24 @@ function postActivityPlanInvite(req, res, next) {
         return next(new restify.InvalidArgumentError('missing required email attribute in body'));
     }
 
-    var locals = {};
-    async.parallel([
-        // load ActivityPlan
+    // split up the email field, in case we got more than one mail
+    var emails;
+    if (_.isArray(req.body.email)) {
+        emails = req.body.email;
+    } else if (req.body.email.indexOf(' ') !== -1) {
+        emails = req.body.email.split(' ');
+    } else if (req.body.email.indexOf(';') !== -1) {
+        emails = req.body.email.split(';');
+    } else if (req.body.email.indexOf(',') !== -1) {
+        emails = req.body.email.split(',');
+    } else {
+        emails = [req.body.email];
+    }
+
+    var locals = {
+    };
+    async.series([
+        // first load ActivityPlan
         function (done) {
             ActivityPlanModel.findById(req.params.id)
                 .populate('activity')
@@ -335,27 +350,30 @@ function postActivityPlanInvite(req, res, next) {
                     return done();
                 });
         },
-        // check whether we have already a user with this email and load the corresponding user
-        // used to personalize the invitataion Email
+        // for each email try whether we have a user in the Db with this email address and, if yes, load the user
+        // to personalize the email
+        // then send the invitation mails
         function (done) {
-            mongoose.model('User')
-                .find({email: req.body.email})
-                .exec(function(err, user) {
-                    if (err) {
-                        return done(err);
-                    }
-                    if (user) {
-                        locals.invitedUser = user;
-                    } // else is expected case, an emailaddress of an unknown user
-                    return done();
+            async.forEach(emails,
+                function (emailaddress, done) {
+                    mongoose.model('User')
+                        .find({email: emailaddress})
+                        .exec(function (err, invitedUser) {
+                            if (err) {
+                                return done(err);
+                            }
+                            email.sendActivityPlanInvite(emailaddress, req.user, locals.plan, invitedUser && invitedUser[0]);
+                            return done();
+                        });
+                },
+                function (err) {
+                    done();
                 });
         }
     ], function (err) {
         if (err) {
             return next(err);
         }
-
-        email.sendActivityPlanInvite(req.body.email, req.user, locals.plan, locals.invitedUser);
         res.send(200);
         return next();
     });

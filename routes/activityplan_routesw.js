@@ -161,13 +161,13 @@ module.exports = function (swagger, config) {
         spec: {
             description: "Operations about ActivityPlans",
             path: baseUrlWithId + "/inviteEmail",
-            notes: "Posts an invitation for an email",
-            summary: "Request an invitation for joining this plan to be sent by the backend to the supplied email address",
+            notes: "Posts an invitation for one or more email-addresses",
+            summary: "Request an invitation for joining this plan to be sent by the backend to the supplied email address(es)",
             params: [
                 {
                     paramType: "body",
                     name: "email",
-                    description: "object with one property: 'email'",
+                    description: "object with one property: 'email', an email address, or an array of adresses, or a separated String of emails (by ';, ')",
                     dataType: "Object",
                     required: true
                 }

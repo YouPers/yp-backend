@@ -155,10 +155,11 @@ var sendActivityPlanInvite = function sendActivityPlanInvite(email, invitingUser
     var locals = {
         link: config.webclientUrl + "/#/activities/" + plan.activity._id,
         invitingUser: invitingUser,
-        plan: plan
+        plan: plan,
+        invitedUser: invitedUser || {}
     };
     if (invitedUser) {
-        locals.invitedUser = invitedUser;
+
     }
     sendEmail(from, to, subject, 'ActivityPlanInvitation', locals);
 };

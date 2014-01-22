@@ -1,6 +1,16 @@
 var restify = require('restify'),
     _ = require('lodash');
 
+/**
+ * this function checks common preconditions to allow a writing access
+ * - the req.body contains the object to write
+ * - the owner of the object to write has to be the authenticated user
+ * - populated properties that are refs in the model are replaced by the ObjectId.
+ *
+ * @param req
+ * @param Model
+ * @returns {*}
+ */
 function checkWritingPreCond(req, Model) {
     if (!req.body) {
         return new restify.InvalidArgumentError('expected JSON body in POST/PUT not found');

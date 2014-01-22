@@ -54,7 +54,9 @@ var emailVerificationPostFn = function(baseUrl) {
             return next(new restify.ConflictError('User ID in request parameters does not match authenticated user'));
         }
 
-        User.findById(req.params.id, function(err, user) {
+        User.findById(req.params.id)
+            .select(User.privatePropertiesSelector)
+            .exec(function(err, user) {
             if(err) {
                 return next(new restify.InternalError(err));
             }
@@ -89,7 +91,10 @@ var requestPasswordResetPostFn = function(baseUrl) {
         }
 
 
-        User.findOne().or([{username: req.body.usernameOrEmail}, {email: req.body.usernameOrEmail}]).exec(function(err, user) {
+        User.findOne()
+            .or([{username: req.body.usernameOrEmail}, {email: req.body.usernameOrEmail}])
+            .select('+email')
+            .exec(function(err, user) {
             if(err) {
                 return next(new restify.InternalError(err));
             }
@@ -131,7 +136,9 @@ var passwordResetPostFn = function(baseUrl) {
             return next(new restify.InvalidArgumentError('Password Reset Link is expired, please click again on password reset'));
         }
 
-        User.findById(userId, function(err, user) {
+        User.findById(userId)
+            .select(User.privatePropertiesSelector)
+            .exec(function(err, user) {
             if(err) {
                 return next(new restify.InternalError(err));
             }

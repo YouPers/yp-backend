@@ -82,10 +82,7 @@ var sendEmailVerification = function (user) {
     var verificationLink = config.webclientUrl + "/#/email_verification/" + encryptedEmailAddress;
 
     var locals = {
-        username: user.username,
-        firstname: user.firstname,
-        lastname: user.lastname,
-        fullname: user.fullname,
+        user: user,
         verificationLink: verificationLink
     };
 
@@ -103,10 +100,7 @@ var sendPasswordResetMail = function (user) {
     var passwordResetLink = config.webclientUrl + "/#/password_reset/" + encryptedToken + "?firstname=" + user.firstname + "&lastname=" + user.lastname;
 
     var locals = {
-        username: user.username,
-        firstname: user.firstname,
-        lastname: user.lastname,
-        fullname: user.fullname,
+        user: user,
         passwordResetLink: passwordResetLink
     };
 

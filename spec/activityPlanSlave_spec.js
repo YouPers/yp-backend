@@ -119,13 +119,15 @@ frisby.create('plan weekly activity as a master for a joining test')
                                     })
                                     .toss();
 
-                                frisby.create('reload masterPlan and check whether we see the comment that was made on a slave')
+                                frisby.create('reload masterPlan and check whether we see the comment that was made on a slave and whether the joiningUsers Array is still correct')
                                     .get(URL + '/' + slavePlanReloaded.masterPlan + '?populate=events.comments')
                                     .expectStatus(200)
                                     .afterJSON(function (masterPlanReloadedAgain) {
                                         expect(masterPlanReloadedAgain.events[0].comments).toBeDefined();
                                         expect(masterPlanReloadedAgain.events[0].comments.length).toEqual(1);
                                         expect(masterPlanReloadedAgain.events[0].comments[0].text).toEqual("new Text from UnitTest");
+                                        expect(masterPlanReloadedAgain.joiningUsers.length).toEqual(1);
+
 
                                         frisby.create('delete master')
                                             .delete(URL + '/' + slavePlan.masterPlan)

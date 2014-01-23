@@ -58,6 +58,12 @@ frisby.create('plan once activity and check whether event is generated')
                 joinable.masterPlan = joinablePlan.id;
                 joinable.owner = consts.users.reto.id;
 
+                frisby.create('send an invitation to reto to join the plan')
+                    .post(URL + '/activityplans/'+ joinablePlan.id + "/inviteEmail", {email: 'ypunittest1@gmail.com'})
+                    .expectStatus(200)
+                    .toss();
+
+
                 frisby.create('join the first joinablePlan as a different user')
                     .auth('reto', 'reto')
                     .post(URL + '/activityplans', joinable)

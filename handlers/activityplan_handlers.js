@@ -97,7 +97,7 @@ function putActivityEvent(req, res, next) {
     }
 
 
-    var find = Model.findById(req.params.planId).populate('activity');
+    var find = ActivityPlanModel.findById(req.params.planId).populate('activity');
 
     find.exec(function (err, planFromDb) {
         if (err) {

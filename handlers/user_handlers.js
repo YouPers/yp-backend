@@ -7,6 +7,7 @@ var handlerUtils = require('./handlerUtils'),
     mongoose = require('mongoose'),
     User = mongoose.model('User'),
     Profile = mongoose.model('Profile'),
+    _ = require('lodash'),
     fs = require('fs'),
     gm = require('gm');
 
@@ -46,6 +47,30 @@ var postFn = function (baseUrl) {
             res.header('location', baseUrl + '/' + newUser._id);
             res.send(201, newUser);
             return next();
+        });
+    };
+};
+
+var validateUserPostFn = function(baseUrl) {
+    return function (req, res, next) {
+        var fields = 'username email'.split(' ');
+
+        _.each(fields, function (field) {
+            if(req.body[field]) {
+                var query = {};
+                query[field] = req.body[field];
+                User.findOne(query).select(field).exec( function(err, value) {
+                    if(err) {
+                        return next(err);
+                    }
+                    if(value) {
+                        return next(new restify.ConflictError({field: field, value: value}));
+                    } else {
+                        res.send(200);
+                        return next();
+                    }
+                });
+            }
         });
     };
 };
@@ -225,6 +250,7 @@ var avatarImagePostFn = function(baseUrl) {
 
 module.exports = {
     postFn: postFn,
+    validateUserPostFn: validateUserPostFn,
     emailVerificationPostFn: emailVerificationPostFn,
     requestPasswordResetPostFn: requestPasswordResetPostFn,
     passwordResetPostFn: passwordResetPostFn,

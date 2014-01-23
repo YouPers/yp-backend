@@ -25,7 +25,8 @@
     "icalendar": "git+https://github.com/YouPers/node-icalendar.git",
     "moment": "~2.4.x",
     "swagger-node-restify": "git+https://github.com/YouPers/swagger-node-restify.git",
-      "async": "~0.2.9"
+    "gm": "~1.14.2",
+     "async": "~0.2.9"
   },
   "devDependencies": {
     "grunt-contrib-jshint": "~0.6.x",

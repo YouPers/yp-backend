@@ -18,6 +18,22 @@ module.exports = function (swagger, config) {
 
     swagger.addPost({
         spec: {
+            description: "validate user",
+            path: "/users/validate",
+            summary: "validate user",
+            method: "POST",
+            params: [
+                swagger.bodyParam("username", "check if username is unique", "string"),
+                swagger.bodyParam("email", "check if email is unique", "string")
+            ],
+            "nickname": "validateUser",
+            accessLevel: 'al_all'
+        },
+        action: userHandlers.validateUserPostFn(baseUrl)
+    });
+
+    swagger.addPost({
+        spec: {
             description: "avatar image upload",
             path: baseUrlWithId + "/avatar",
             summary: "avatar image upload",

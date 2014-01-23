@@ -3,7 +3,7 @@ var env = process.env.NODE_ENV || 'development',
     path = require('path'),
     crypto = require('crypto'),
     _ = require('lodash'),
-    templatesDir   = path.join(__dirname, 'emailtemplates'),
+    templatesDir = path.join(__dirname, 'emailtemplates'),
     nodemailer = require('nodemailer'),
     emailTemplates = require('email-templates'),
     smtpTransport = nodemailer.createTransport("SMTP", {
@@ -17,59 +17,17 @@ var env = process.env.NODE_ENV || 'development',
 var fromDefault = "YouPers Digital Health <dontreply@youpers.com>",
     linkTokenSeparator = '|';
 
-var encryptLinkToken = function(linkToken) {
+var encryptLinkToken = function (linkToken) {
 
     var cipher = crypto.createCipher(config.linkTokenEncryption.algorithm, config.linkTokenEncryption.key);
     var encrypted = cipher.update(linkToken, 'utf8', 'hex') + cipher.final('hex');
     return encrypted;
 };
 
-var decryptLinkToken = function(token) {
+var decryptLinkToken = function (token) {
     var decipher = crypto.createDecipher(config.linkTokenEncryption.algorithm, config.linkTokenEncryption.key);
     var decrypted = decipher.update(token, 'hex', 'utf8') + decipher.final('utf8');
     return decrypted;
-};
-
-var sendEmailVerification = function (user) {
-
-    var from = fromDefault;
-    var to = user.email;
-    var subject = "YouPers: Please verify your email address";
-
-    var encryptedEmailAddress = encryptLinkToken(to);
-    var verificationLink = config.webclientUrl + "/#/email_verification/" + encryptedEmailAddress;
-
-    var locals = {
-        username: user.username,
-        firstname: user.firstname,
-        lastname: user.lastname,
-        fullname: user.fullname,
-        verificationLink: verificationLink
-    };
-
-    sendEmail(from, to, subject, 'emailVerification', locals);
-
-};
-
-var sendPasswordResetMail = function(user) {
-    var from = fromDefault;
-    var to = user.email;
-    var subject = "YouPers: reset password";
-
-    var tokenToEncrypt = user.id + linkTokenSeparator + new Date().getMilliseconds();
-    var encryptedToken = encryptLinkToken(tokenToEncrypt);
-    var passwordResetLink = config.webclientUrl + "/#/password_reset/" + encryptedToken + "?firstname=" + user.firstname+ "&lastname=" + user.lastname;
-
-    var locals = {
-        username: user.username,
-        firstname: user.firstname,
-        lastname: user.lastname,
-        fullname: user.fullname,
-        passwordResetLink: passwordResetLink
-    };
-
-    sendEmail(from, to, subject, 'passwordReset', locals);
-
 };
 
 var sendEmail = function (from, to, subject, templateName, locals) {
@@ -113,6 +71,44 @@ var sendEmail = function (from, to, subject, templateName, locals) {
     });
 };
 
+
+var sendEmailVerification = function (user) {
+
+    var from = fromDefault;
+    var to = user.email;
+    var subject = "YouPers: Please verify your email address";
+
+    var encryptedEmailAddress = encryptLinkToken(to);
+    var verificationLink = config.webclientUrl + "/#/email_verification/" + encryptedEmailAddress;
+
+    var locals = {
+        user: user,
+        verificationLink: verificationLink
+    };
+
+    sendEmail(from, to, subject, 'emailVerification', locals);
+
+};
+
+var sendPasswordResetMail = function (user) {
+    var from = fromDefault;
+    var to = user.email;
+    var subject = "YouPers: reset password";
+
+    var tokenToEncrypt = user.id + linkTokenSeparator + new Date().getMilliseconds();
+    var encryptedToken = encryptLinkToken(tokenToEncrypt);
+    var passwordResetLink = config.webclientUrl + "/#/password_reset/" + encryptedToken + "?firstname=" + user.firstname + "&lastname=" + user.lastname;
+
+    var locals = {
+        user: user,
+        passwordResetLink: passwordResetLink
+    };
+
+    sendEmail(from, to, subject, 'passwordReset', locals);
+
+};
+
+
 var sendCalInvite = function (to, subject, iCalString) {
     var mail = {
         from: fromDefault, // sender address
@@ -136,7 +132,7 @@ var sendCalInvite = function (to, subject, iCalString) {
             }
         ]};
 
-    smtpTransport.sendMail(mail, function(err, responseStatus) {
+    smtpTransport.sendMail(mail, function (err, responseStatus) {
         if (err) {
             console.log(err);
         } else {
@@ -145,11 +141,29 @@ var sendCalInvite = function (to, subject, iCalString) {
     });
 };
 
+var sendActivityPlanInvite = function sendActivityPlanInvite(email, invitingUser, plan, invitedUser) {
+
+    var from = fromDefault;
+    var to = email;
+    var subject = "Einladung von " + invitingUser.fullname;
+    var locals = {
+        link: config.webclientUrl + "/#/activities/" + plan.activity._id + '/invitation?invitingUserId='+invitingUser._id,
+        invitingUser: invitingUser,
+        plan: plan,
+        invitedUser: invitedUser || {}
+    };
+    if (invitedUser) {
+
+    }
+    sendEmail(from, to, subject, 'ActivityPlanInvitation', locals);
+};
+
 module.exports = {
     encryptLinkToken: encryptLinkToken,
     decryptLinkToken: decryptLinkToken,
     sendEmail: sendEmail,
     sendEmailVerification: sendEmailVerification,
     sendCalInvite: sendCalInvite,
-    sendPasswordResetMail: sendPasswordResetMail
+    sendPasswordResetMail: sendPasswordResetMail,
+    sendActivityPlanInvite: sendActivityPlanInvite
 };

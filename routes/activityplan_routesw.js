@@ -126,15 +126,17 @@ module.exports = function (swagger, config) {
             path: baseUrlWithId,
             notes: "Deletes a specific activityPlan",
             summary: "Deletes a specific activityPlan",
-            params: [
-                {
-                    paramType: "path",
-                    name: "id",
-                    description: "the id of the activityPlan to fetch ",
-                    dataType: "string",
-                    required: true
-                }
-            ],
+//            params: [
+//                {
+//                    paramType: "path",
+//                    name: "id",
+//                    description: "the id of the activityPlan to fetch ",
+//                    dataType: "string",
+//                    required: true
+//                }
+//            ],
+            params: [swagger.pathParam("id", "the id of the activityPlan to fetch", "string")],
+
             method: "DELETE",
             "nickname": "deleteActivityPlan",
             accessLevel: 'al_individual',

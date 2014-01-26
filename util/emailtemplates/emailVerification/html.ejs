@@ -1,9 +1,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
     <body>
-        Hallo <%= firstname %>,
+        Hallo <%= user.firstname %>,
 
-        Wir wollen sichergehen, dass du wirklich <%= username %> bist. Öffne den folgenden Link, um weiterzumachen:
+        Wir wollen sichergehen, dass du wirklich <%= user.username %> bist. Öffne den folgenden Link, um weiterzumachen:
 
         <a href="<%= verificationLink %>"><%= verificationLink %></a>
     </body>

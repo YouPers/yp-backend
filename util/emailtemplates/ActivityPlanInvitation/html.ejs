@@ -1,0 +1,15 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+    <body>
+        <h3>Hallo <%= invitedUser.firstname || ''%></h3>
+        <p><%= invitingUser.fullname  %> hat Dich eingeladen an einer gemeinsamen Aktivität in der YouPers Kampagne teilzunehmen.</p>
+
+        <h4><%= plan.activity.title%></h4>
+
+        <p>Um mehr zu erfahren, klicke auf den folgenden Link:</p>
+        <br>
+        <a href="<%= link %>"><%= link %></a>
+        <br>
+        <p>Youpers - Drive Your Health</p>
+    </body>
+</html>

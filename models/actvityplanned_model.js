@@ -132,7 +132,9 @@ ActivityPlanSchema.pre('save', function (next) {
             }
 
             // we check whether we need to update the joiningUsers collection of the masterPlan
-            if (_.indexOf(masterPlan.joiningUsers, self.owner) === -1) {
+            if (!_.find(masterPlan.joiningUsers, function(joiningUser) {
+                return joiningUser.equals(self.owner);
+            })) {
                 masterPlan.joiningUsers.push(self.owner.toJSON());
                 modifiedMaster = true;
             }

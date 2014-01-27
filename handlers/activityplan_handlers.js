@@ -9,18 +9,34 @@ var mongoose = require('mongoose'),
     moment = require('moment'),
     async = require('async');
 
+var calendarInvite = "INVITE";
+var calendarCancel = "CANCEL";
 
-var getIcalObject = function (plan, recipientUser) {
+var getIcalObject = function (plan, recipientUser, status) {
     var myCal = new ical.iCalendar();
-    myCal.addProperty("METHOD", "REQUEST");
+    myCal.addProperty("CALSCALE", "GREGORIAN");
+    if (status === calendarInvite) {
+        myCal.addProperty("METHOD", "REQUEST");
+    }  else if (status === calendarCancel) {
+        myCal.addProperty("METHOD", "CANCEL");
+    }
     var event = new ical.VEvent(plan._id);
     event.addProperty("ORGANIZER", "MAILTO:dontreply@youpers.com", {CN: "YouPers Digital Health"});
-    event.addProperty("ATTENDEE",
-        "MAILTO:" + recipientUser.email,
-        {ROLE: "REQ-PARTICIPANT", PARTSTAT: "NEEDS-ACTION", RSVP: "TRUE", CN: recipientUser.fullName });
+    if (status === calendarInvite) {
+        event.addProperty("ATTENDEE",
+            "MAILTO:" + recipientUser.email,
+            {CUTYPE: "INDIVIDUAL", ROLE: "REQ-PARTICIPANT", PARTSTAT: "NEEDS-ACTION", RSVP: "TRUE", CN: recipientUser.fullname, "X-NUM-GUESTS": 0 });
+        event.addProperty("STATUS", "CONFIRMED");
+        event.addProperty("SEQUENCE", 0)
+    } else if (status === calendarCancel) {
+        event.addProperty("ATTENDEE",
+            "MAILTO:" + recipientUser.email,
+            {CUTYPE: "INDIVIDUAL", ROLE: "REQ-PARTICIPANT", PARTSTAT: "NEEDS-ACTION", CN: recipientUser.fullname, "X-NUM-GUESTS": 0 });
+        event.addProperty("STATUS", "CANCELLED");
+        event.addProperty("SEQUENCE", 1)
+    }
     event.setSummary(plan.title || plan.activity && plan.activity.title);
     event.setDate(moment(plan.mainEvent.start).toDate(), moment(plan.mainEvent.end).toDate());
-    event.addProperty("STATUS", "CONFIRMED");
     event.addProperty("LOCATION", "just do it anywhere");
     if (plan.mainEvent.recurrence && plan.mainEvent.frequency && plan.mainEvent.frequency !== 'once') {
         var frequencyMap = {
@@ -48,12 +64,13 @@ var getIcalObject = function (plan, recipientUser) {
 
         event.addProperty("RRULE", rruleSpec);
     }
+    event.addProperty("TRANSP", "OPAQUE");
     myCal.addComponent(event);
     return myCal;
 };
 
 function generateEventsForPlan(plan, user) {
-    var myIcalObj = getIcalObject(plan, user);
+    var myIcalObj = getIcalObject(plan, user, calendarInvite);
 
     var duration = moment(plan.mainEvent.end).diff(plan.mainEvent.start);
     var rrule = myIcalObj.events()[0].rrule();
@@ -242,8 +259,8 @@ function postNewActivityPlan(req, res, next) {
                 return next(err);
             }
             if (req.user && req.user.email) {
-                var myIcalString = getIcalObject(reloadedActPlan, req.user).toString();
-                email.sendCalInvite(req.user.email, 'Neuer YouPers Kalendar Eintrag', myIcalString);
+                var myIcalString = getIcalObject(reloadedActPlan, req.user, calendarInvite).toString();
+                email.sendCalInvite(req.user.email, 'Einladung: YouPers Kalendar Eintrag', myIcalString);
             }
 
             // remove the populate activity because the client is not gonna expect it to be populated.
@@ -267,9 +284,9 @@ function getIcalStringForPlan(req, res, next) {
             res.send(204, []);
             return next();
         }
-        var myIcalString = getIcalObject(plan, plan.owner).toString();
+        var myIcalString = getIcalObject(plan, plan.owner, calendarInvite).toString();
         if (req.params.email && plan.owner && plan.owner.email) {
-            email.sendCalInvite(plan.owner.email, 'YouPers Calendar Event', myIcalString);
+            email.sendCalInvite(plan.owner.email, 'Einladung: YouPers Kalendar Eintrag', myIcalString);
 
         }
         res.contentType = "text/calendar";
@@ -379,10 +396,63 @@ function postActivityPlanInvite(req, res, next) {
     });
 }
 
+function deleteOrUpdateActivityPlan(req, res, next) {
+    var myUser = req.user;
+    var myUserEmail = req.user.email;
+//    ActivityPlanModel.findById(req.params.id).populate('activity').populate('owner').exec(function (err, activityPlan) {
+    ActivityPlanModel.findById(req.params.id).populate('activity').exec(function (err, activityPlan) {
+        if (err) {
+            return next(err);
+        }
+        if (activityPlan.deleteStatus === ActivityPlanModel.activityPlanCompletelyDeletable) {
+            var myIcalString = getIcalObject(activityPlan, myUser, calendarCancel).toString();
+            // delete activityPlan and all events and send cancellations
+            activityPlan.remove(function (err) {
+                res.contentType = "text/calendar";
+                res.setHeader('Content-Type', 'text/calendar');
+                res.setHeader('Content-Disposition', 'inline; filename=ical.ics');
+                res.send(200, myIcalString);
+//                res.send(200);
+                email.sendCalInvite(myUserEmail, 'Termin gestrichen: YouPers Kalendar Eintrag', myIcalString);
+            })
+        }
+
+        if (activityPlan.deleteStatus === ActivityPlanModel.activityPlanOnlyFutureEventsDeletable) {
+            // delete  all future events, set activityPlan to "Done", send cancellations for deleted events
+            var now = new Date();
+            var tempEvents = activityPlan.events.slice();
+
+            var myIcalString = getIcalObject(activityPlan, myUser, calendarCancel).toString();
+            email.sendCalInvite(myUserEmail, 'Termin gestrichen: YouPers Kalendar Eintrag', myIcalString);
+
+            tempEvents.forEach(function(event) {
+                if (event.begin > now && event.end > now) {
+                    // start and end date in the future, so delete event and send cancellation
+                    activityPlan.events.id(event.id).remove();
+                }
+            });
+            activityPlan.save(function (err) {
+                if (err) {
+                    return next(err);
+                }
+                res.contentType = "text/calendar";
+                res.setHeader('Content-Type', 'text/calendar');
+                res.setHeader('Content-Disposition', 'inline; filename=ical.ics');
+                res.send(200, myIcalString);
+//                res.send(200);
+            });
+        }
+
+    });
+};
+
+
+
 module.exports = {
     postNewActivityPlan: postNewActivityPlan,
     getIcalStringForPlan: getIcalStringForPlan,
     putActivityEvent: putActivityEvent,
     getJoinOffers: getJoinOffers,
-    postActivityPlanInvite: postActivityPlanInvite
+    postActivityPlanInvite: postActivityPlanInvite,
+    deleteOrUpdateActivityPlan: deleteOrUpdateActivityPlan
 };

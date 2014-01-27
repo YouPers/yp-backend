@@ -142,7 +142,7 @@ module.exports = function (swagger, config) {
             accessLevel: 'al_individual',
             beforeCallbacks: []
         },
-        action: generic.deleteByIdFn(baseUrl, Model)
+        action: handlers.deleteOrUpdateActivityPlan
     });
 
     swagger.addDelete({

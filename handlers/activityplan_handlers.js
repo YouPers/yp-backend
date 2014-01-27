@@ -431,6 +431,7 @@ function deleteOrUpdateActivityPlan(req, res, next) {
                     activityPlan.events.id(event.id).remove();
                 }
             });
+            activityPlan.status = "old";
             activityPlan.save(function (err) {
                 if (err) {
                     return next(err);

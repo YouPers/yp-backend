@@ -469,7 +469,7 @@ module.exports = {
 
             req.log.trace(newObj, 'PostFn: Saving new Object');
             // try to save the new object
-            newObj.save(function (err) {
+            newObj.save(req, function (err) {
                 if (err) {
                     req.log.info({Error: err}, 'Error Saving in PostFn');
                     err.statusCode = 409;
@@ -569,7 +569,7 @@ module.exports = {
 
                 _.extend(objFromDb, req.body);
 
-                objFromDb.save(function (err, savedObj) {
+                objFromDb.save(req, function (err, savedObj) {
                     if (err) {
                         return next(err);
                     }

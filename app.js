@@ -18,7 +18,9 @@ var restify = require("restify"),
     passport = require('passport'),
     passportHttp = require('passport-http'),
     swagger = require("swagger-node-restify"),
-    auth = require('./util/auth');
+    auth = require('./util/auth'),
+    i18n = require('i18next'),
+    _ = require('lodash');
 
 
 // Setup Database Connection
@@ -35,7 +37,44 @@ mongoose.connect(connectStr, {server: {auto_reconnect: true}});
 var server = restify.createServer({
     name: 'YP Platform Server',
     version: config.version,
-    log: new Logger(config.loggerOptions)
+    log: new Logger(config.loggerOptions),
+    formatters: {
+        'application/json': function formatJSON(req, res, body) {
+            if (body instanceof Error) {
+                // snoop for RestError or HttpError, but don't rely on
+                // instanceof
+                res.statusCode = body.statusCode || 500;
+
+                if (body.body) {
+                    body = body.body;
+                } else {
+                    body = {
+                        message: body.message
+                    };
+                }
+            } else if (Buffer.isBuffer(body)) {
+                body = body.toString('base64');
+            }
+
+            if (body.i18nAttrs) {
+                    _.forEach(body.i18nAttrs, function(attr) {
+                        var i18nKey = body.constructor.modelName +'.'+ body._id + "." +  attr;
+                        var valueObj = {
+                            key: i18nKey,
+                            displayString: res.req.i18n.t(i18nKey)
+                        };
+                        body[attr] =  res.req.i18n.t(i18nKey);
+
+                    });
+            }
+
+            var data = JSON.stringify(body);
+            res.setHeader('Content-Length', Buffer.byteLength(data));
+
+            return (data);
+        }
+
+    }
 });
 
 // setung logging of request and response
@@ -51,13 +90,21 @@ server.on('after', function (req, res, route, err) {
         if (req.body) {
             req.log.info({requestbody: req.body});
         }
-        req.log.info({err:err});
+        req.log.info({err: err});
     }
 });
 
 // setup better error stacktraces
 longjohn.async_trace_limit = 10;  // defaults to 10
 longjohn.empty_frame = 'ASYNC CALLBACK';
+
+// initialize i18n
+i18n.init({
+    fallbackLng: 'de-CH',
+    resGetPath: './locales/__ns__.__lng__.json',
+    resSetPath: './locales/__ns__.__lng__.json',
+    saveMissing: false,
+    debug: true});
 
 // setup middlewares to be used by server
 server.use(restify.requestLogger());
@@ -67,6 +114,7 @@ server.use(restify.dateParser());
 server.use(restify.queryParser());
 server.use(restify.gzipResponse());
 server.use(restify.bodyParser({ mapParams: false }));
+server.use(i18n.handle);
 server.use(passport.initialize());
 server.use(restify.fullResponse());
 

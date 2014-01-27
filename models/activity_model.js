@@ -27,10 +27,11 @@ var ActivitySchema = common.newSchema({
     ], select: false}
 });
 
-ActivitySchema.statics.getAdminAttrsSelector =  function () {
-        return '+recWeights +qualityFactor';
-    };
+ActivitySchema.statics.getAdminAttrsSelector = function () {
+    return '+recWeights +qualityFactor';
+};
 
+ActivitySchema.methods.i18nAttrs = ['title', 'text'];
 
 module.exports = mongoose.model('Activity', ActivitySchema);
 

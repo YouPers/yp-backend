@@ -7,7 +7,8 @@ var mongoose = require('mongoose'),
     ical = require('icalendar'),
     email = require('../util/email'),
     moment = require('moment'),
-    async = require('async');
+    async = require('async'),
+    auth = require('../util/auth');
 
 var calendarInvite = "INVITE";
 var calendarCancel = "CANCEL";
@@ -399,35 +400,36 @@ function postActivityPlanInvite(req, res, next) {
 function deleteOrUpdateActivityPlan(req, res, next) {
     var myUser = req.user;
     var myUserEmail = req.user.email;
-//    ActivityPlanModel.findById(req.params.id).populate('activity').populate('owner').exec(function (err, activityPlan) {
-    ActivityPlanModel.findOne({_id: req.params.id}).exec(function (err, activityPlan) {
+
+
+
+    ActivityPlanModel.findById(req.params.id).exec(function (err, activityPlan) {
+
+        // private functions
+        var _removeCallback = function (err) {
+            if (err) {
+                return next(err);
+            }
+            var myIcalString = getIcalObject(activityPlan, myUser, calendarCancel).toString();
+            email.sendCalInvite(myUserEmail, 'Termin gestrichen: YouPers Kalendar Eintrag', myIcalString);
+            res.send(200);
+            return next();
+        };
+
         if (err) {
             return next(err);
         }
-        if (activityPlan.deleteStatus === ActivityPlanModel.activityPlanCompletelyDeletable) {
-            var myIcalString = getIcalObject(activityPlan, myUser, calendarCancel).toString();
-            // delete activityPlan and all events and send cancellations
-            activityPlan.remove(function (err) {
-                if (err) {
-                    return next(err);
-                }
-//                res.contentType = "text/calendar";
-//                res.setHeader('Content-Type', 'text/calendar');
-//                res.setHeader('Content-Disposition', 'inline; filename=ical.ics');
-//                res.send(200, myIcalString);
-                res.send(200);
-//                email.sendCalInvite(myUserEmail, 'Termin gestrichen: YouPers Kalendar Eintrag', myIcalString);
-            })
+        if (!activityPlan) {
+            return next(new restify.InvalidArgumentError('No ActivityPlan found for id' + req.params.id));
         }
-
-        if (activityPlan.deleteStatus === ActivityPlanModel.activityPlanOnlyFutureEventsDeletable) {
+        if (auth.checkAccess(req.user, auth.accessLevels.al_systemadmin)) {
+            activityPlan.remove(_removeCallback);
+        } else if (activityPlan.deleteStatus === ActivityPlanModel.activityPlanCompletelyDeletable) {
+            activityPlan.remove(_removeCallback);
+        } else if (activityPlan.deleteStatus === ActivityPlanModel.activityPlanOnlyFutureEventsDeletable) {
             // delete  all future events, set activityPlan to "Done", send cancellations for deleted events
             var now = new Date();
             var tempEvents = activityPlan.events.slice();
-
-            var myIcalString = getIcalObject(activityPlan, myUser, calendarCancel).toString();
-            email.sendCalInvite(myUserEmail, 'Termin gestrichen: YouPers Kalendar Eintrag', myIcalString);
-
             tempEvents.forEach(function(event) {
                 if (event.begin > now && event.end > now) {
                     // start and end date in the future, so delete event and send cancellation
@@ -435,20 +437,13 @@ function deleteOrUpdateActivityPlan(req, res, next) {
                 }
             });
             activityPlan.status = "old";
-            activityPlan.save(function (err) {
-                if (err) {
-                    return next(err);
-                }
-                res.contentType = "text/calendar";
-                res.setHeader('Content-Type', 'text/calendar');
-                res.setHeader('Content-Disposition', 'inline; filename=ical.ics');
-                res.send(200, myIcalString);
-//                res.send(200);
-            });
+            activityPlan.save(_removeCallback);
+        } else {
+            return next(new restify.ConflictError('This plan cannot be deleted'));
         }
 
     });
-};
+}
 
 
 

@@ -240,10 +240,12 @@ frisby.create('Activity Plan: plan daily activity and check whether events are g
                         frisby.create('Activity Plan: delete plan 2')
                             .delete(URL + '/activityplans/' + joiningPlan.id)
                             .expectStatus(200)
+                            .auth('sysadm', 'backtothefuture')
                             .after(function() {
                                 console.log('Delete Status Plan 1: ' + newPlan.deleteStatus);
                                 frisby.create('Activity Plan: delete plan 1')
                                     .delete(URL + '/activityplans/' + newPlan.id)
+                                    .auth('sysadm', 'backtothefuture')
                                     .expectStatus(200)
                                     .toss();
                             })

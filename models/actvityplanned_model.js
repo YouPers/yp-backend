@@ -115,8 +115,6 @@ ActivityPlanSchema.methods = {
  * Virtuals
  */
 
-ActivityPlanSchema.set('toObject', { virtuals: true});
-ActivityPlanSchema.set('toJSON', { virtuals: true});
 
 ActivityPlanSchema.virtual('deleteStatus')
     .get(function getDeleteStatus () {

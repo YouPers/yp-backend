@@ -116,6 +116,7 @@ frisby.create('Activity Plan Slave: plan weekly activity as a master for a joini
 
                                         frisby.create('Activity Plan Slave: delete slave')
                                             .delete(URL + '/' + slavePlanReloaded.id)
+                                            .auth('sysadm','backtothefuture')
                                             .expectStatus(200)
                                             .toss();
                                     })
@@ -133,6 +134,7 @@ frisby.create('Activity Plan Slave: plan weekly activity as a master for a joini
 
                                         frisby.create('Activity Plan Slave: delete master')
                                             .delete(URL + '/' + slavePlan.masterPlan)
+                                            .auth('sysadm','backtothefuture')
                                             .expectStatus(200)
                                             .toss();
                                     })

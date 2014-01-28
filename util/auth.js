@@ -72,9 +72,17 @@ function checkAccess(user, accessLevel, callback) {
     }
 
     if (_.intersection(accessLevel, suppliedRoles).length > 0) {
+        if (callback) {
         return callback();
+        } else {
+            return true;
+        }
     } else {
+        if (callback) {
         return callback(new restify.NotAuthorizedError("User is not authorized for this ressource."));
+        } else {
+            return false;
+        }
     }
 }
 

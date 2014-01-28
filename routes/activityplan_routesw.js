@@ -142,7 +142,6 @@ module.exports = function (swagger, config) {
             beforeCallbacks: []
         },
         action: handlers.deleteActivityPlan
-//        action: generic.deleteByIdFn(baseUrl, Model)
     });
 
     swagger.addDelete({

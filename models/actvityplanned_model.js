@@ -79,9 +79,6 @@ ActivityPlanSchema.statics.activityPlanNotDeletableNoFutureEvents = "ACTIVITYPLA
 ActivityPlanSchema.methods = {
     // evaluate the delete Status
     evaluateDeleteStatus: function () {
-        if (!this._id) {
-            return "";
-        }
         // a joined activity plan cannot be deleted
         if (this.masterPlan && this.masterPlan.toString().length > 0) {
             return ActivityPlanSchema.statics.activityPlanNotDeletableJoinedPlan;
@@ -103,7 +100,7 @@ ActivityPlanSchema.methods = {
                 nOfEventsInTheFuture++;
             }
         });
-        if (eventsInThePastExist === true) {
+        if (eventsInThePastExist) {
             if (nOfEventsInTheFuture > 0) {
                 // only future events are allowed to be deleted
                 return ActivityPlanSchema.statics.activityPlanOnlyFutureEventsDeletable;

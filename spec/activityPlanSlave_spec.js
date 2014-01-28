@@ -51,7 +51,6 @@ frisby.create('Activity Plan Slave: plan weekly activity as a master for a joini
         expect(masterPlanPostAnswer.events[1].begin).toEqual('2014-06-23T12:00:00.000Z');
         expect(masterPlanPostAnswer.id).toBeDefined();
 
-        console.log ('Master Plan id: ' + masterPlanPostAnswer.id);
         // create a slave Plan for this masterPlan
         var slavePlan = masterPlanPostAnswer;
         slavePlan.masterPlan = masterPlanPostAnswer.id;
@@ -59,7 +58,7 @@ frisby.create('Activity Plan Slave: plan weekly activity as a master for a joini
         delete slavePlan.events;
         delete slavePlan.joiningUsers;
         slavePlan.owner = consts.users.reto.id;
-        console.log ('Slave Plan id: ' + slavePlan.id);
+
         frisby.create('Activity Plan Slave: post a joining plan ')
             .auth(consts.users.reto.username, consts.users.reto.password)
             .post(URL + '?populate=joiningUsers', slavePlan)

@@ -397,11 +397,9 @@ function postActivityPlanInvite(req, res, next) {
     });
 }
 
-function deleteOrUpdateActivityPlan(req, res, next) {
+function deleteActivityPlan(req, res, next) {
     var myUser = req.user;
     var myUserEmail = req.user.email;
-
-
 
     ActivityPlanModel.findById(req.params.id).exec(function (err, activityPlan) {
 
@@ -453,5 +451,5 @@ module.exports = {
     putActivityEvent: putActivityEvent,
     getJoinOffers: getJoinOffers,
     postActivityPlanInvite: postActivityPlanInvite,
-    deleteOrUpdateActivityPlan: deleteOrUpdateActivityPlan
+    deleteActivityPlan: deleteActivityPlan
 };

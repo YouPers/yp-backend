@@ -29,12 +29,18 @@ frisby.create('iCal: plan once activity and check whether event is generated')
     .expectStatus(201)
     .afterJSON(function (newPlan) {
 
-
         frisby.create('get Ical String for this plan')
             .get(URL + '/activityplans/' + newPlan.id + '/ical.ics?email=true')
             .expectStatus(200)
             .after(function(err, res, body) {
                 console.log(body);
+
+                frisby.create('Activity Plan Slave: delete slave')
+                    .delete(URL + '/activityplans/' + newPlan.id)
+                    .auth('sysadm','backtothefuture')
+                    .expectStatus(200)
+                    .toss();
+
             })
             .toss();
 

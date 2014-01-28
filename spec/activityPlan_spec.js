@@ -19,7 +19,7 @@ frisby.create('Activity Plan: plan once activity and check whether event is gene
     .auth(consts.users.unittest.username, consts.users.unittest.password)
     .post(URL + '/activityplans', {
         "owner": consts.users.unittest.id,
-        "activity": consts.groupActivity2.id,
+        "activity": consts.groupActivity.id,
         "visibility": "public",
         "executionType": "group",
         "mainEvent": {
@@ -43,7 +43,7 @@ frisby.create('Activity Plan: plan once activity and check whether event is gene
             .expectStatus(200)
             .expectJSON({
                 id: newPlan.id,
-                activity: consts.groupActivity2.id
+                activity: consts.groupActivity.id
             })
             .toss();
 
@@ -169,7 +169,7 @@ frisby.create('Activity Plan: plan weekly activity and check whether events are 
 frisby.create('Activity Plan: plan daily activity and check whether events are generated, with EndBy: after 6')
     .post(URL + '/activityplans', {
         "owner": consts.users.unittest.id,
-        "activity": consts.groupActivity3.id,
+        "activity": consts.groupActivity.id,
         "visibility": "public",
         "executionType": "group",
         "mainEvent": {
@@ -200,7 +200,7 @@ frisby.create('Activity Plan: plan daily activity and check whether events are g
             .auth(consts.users.reto.username, consts.users.reto.password)
             .post(URL + '/activityplans', {
                 "owner": consts.users.reto.id,
-                "activity": consts.groupActivity3.id,
+                "activity": consts.groupActivity.id,
                 "visibility": "public",
                 "executionType": "group",
                 "mainEvent": {
@@ -208,7 +208,6 @@ frisby.create('Activity Plan: plan daily activity and check whether events are g
                     "end": "2014-10-16T13:00:00.000Z",
                     "allDay": false,
                     "frequency": "day",
-                    "deleteStatus": "",
                     "recurrence": {
                         "endby": {
                             "type": "after",
@@ -232,17 +231,13 @@ frisby.create('Activity Plan: plan daily activity and check whether events are g
                     .expectStatus(200)
                     .afterJSON(function (reloadedNewPlan) {
                         expect(_.indexOf(reloadedNewPlan.joiningUsers, joiningPlan.owner)).not.toEqual(-1);
-                        expect(reloadedNewPlan.deleteStatus).toEqual("ACTIVITYPLAN_DELETE_NO");
+                        expect(reloadedNewPlan.deleteStatus).toEqual("ACTIVITYPLAN_NOT_DELETABLE_JOINED_USERS");
 
-                        console.log('Server Time: ' + new Date());
-                        console.log('Delete Status Reloaded Plan: ' + reloadedNewPlan.deleteStatus + ' -> ID: ' + reloadedNewPlan.id);
-                        console.log('Delete Status Plan 2: ' + joiningPlan.deleteStatus + ' -> ID: ' + joiningPlan.id);
                         frisby.create('Activity Plan: delete plan 2')
                             .delete(URL + '/activityplans/' + joiningPlan.id)
                             .expectStatus(200)
                             .auth('sysadm', 'backtothefuture')
                             .after(function() {
-                                console.log('Delete Status Plan 1: ' + newPlan.deleteStatus);
                                 frisby.create('Activity Plan: delete plan 1')
                                     .delete(URL + '/activityplans/' + newPlan.id)
                                     .auth('sysadm', 'backtothefuture')
@@ -260,7 +255,7 @@ frisby.create('Activity Plan: plan daily activity and check whether events are g
                                 frisby.create('Activity Plan: plan a daily activity for user only working MO, TU, WE')
                                     .post(URL + '/activityplans', {
                                         "owner": consts.users.unittest.id,
-                                        "activity": consts.groupActivity3.id,
+                                        "activity": consts.groupActivity.id,
                                         "visibility": "public",
                                         "executionType": "group",
                                         "mainEvent": {

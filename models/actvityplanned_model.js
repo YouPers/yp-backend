@@ -66,9 +66,11 @@ ActivityPlanEvent.statics.getFieldDescriptions = function() {
     };
 };
 
-ActivityPlanSchema.statics.activityPlanCompletelyDeletable = "ACTIVITYPLAN_DELETE_YES";
-ActivityPlanSchema.statics.activityPlanOnlyFutureEventsDeletable = "ACTIVITYPLAN_DELETE_ONLYFUTUREEVENTS";
-ActivityPlanSchema.statics.activityPlanNotDeletable = "ACTIVITYPLAN_DELETE_NO";
+ActivityPlanSchema.statics.activityPlanCompletelyDeletable = "ACTIVITYPLAN_DELETABLE";
+ActivityPlanSchema.statics.activityPlanOnlyFutureEventsDeletable = "ACTIVITYPLAN_DELETABLE_ONLY_FUTURE_EVENTS";
+ActivityPlanSchema.statics.activityPlanNotDeletableJoinedUser = "ACTIVITYPLAN_NOT_DELETABLE_JOINED_USERS";
+ActivityPlanSchema.statics.activityPlanNotDeletableJoinedPlan = "ACTIVITYPLAN_NOT_DELETABLE_JOINED_PLAN";
+ActivityPlanSchema.statics.activityPlanNotDeletableNoFutureEvents = "ACTIVITYPLAN_NOT_DELETABLE_NO_FUTURE_EVENTS";
 
 /**
  * Methods
@@ -80,9 +82,14 @@ ActivityPlanSchema.methods = {
         if (!this._id) {
             return "";
         }
+        // a joined activity plan cannot be deleted
+        if (this.masterPlan && this.masterPlan.toString().length > 0) {
+            return ActivityPlanSchema.statics.activityPlanNotDeletableJoinedPlan;
+        }
+
         // activity plan cannot be deleted if there are joining users
         if (this.joiningUsers.length > 0) {
-            return ActivityPlanSchema.statics.activityPlanNotDeletable;
+            return ActivityPlanSchema.statics.activityPlanNotDeletableJoinedUser;
         }
 
         // check if there are any events in the past
@@ -102,7 +109,7 @@ ActivityPlanSchema.methods = {
                 return ActivityPlanSchema.statics.activityPlanOnlyFutureEventsDeletable;
             } else {
                 // no future events exist to be deleted
-                return ActivityPlanSchema.statics.activityPlanNotDeletable;
+                return ActivityPlanSchema.statics.activityPlanNotDeletableNoFutureEvents;
             }
         }
 

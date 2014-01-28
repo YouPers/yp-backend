@@ -20,7 +20,7 @@ var restify = require("restify"),
     swagger = require("swagger-node-restify"),
     auth = require('./util/auth'),
     i18n = require('i18next'),
-    _ = require('lodash');
+    ypi18n = require('./util/ypi18n');
 
 
 // Setup Database Connection
@@ -39,39 +39,7 @@ var server = restify.createServer({
     version: config.version,
     log: new Logger(config.loggerOptions),
     formatters: {
-        'application/json': function formatJSON(req, res, body) {
-            if (body instanceof Error) {
-                // snoop for RestError or HttpError, but don't rely on
-                // instanceof
-                res.statusCode = body.statusCode || 500;
-
-                if (body.body) {
-                    body = body.body;
-                } else {
-                    body = {
-                        message: body.message
-                    };
-                }
-            } else if (Buffer.isBuffer(body)) {
-                body = body.toString('base64');
-            }
-
-            if (body.i18nAttrs) {
-                body.translateI18nAttrs(req.i18n);
-            } else if (Array.isArray(body)) {
-                _.forEach(body, function(objInArray) {
-                    if (objInArray.i18nAttrs) {
-                        objInArray.translateI18nAttrs(req.i18n);
-                    }
-                });
-            }
-
-            var data = JSON.stringify(body);
-            res.setHeader('Content-Length', Buffer.byteLength(data));
-
-            return (data);
-        }
-
+        'application/json': ypi18n.i18nJsonFormatter
     }
 });
 
@@ -103,7 +71,7 @@ i18n.init({
     resGetPath: './locales/__ns__.__lng__.json',
     resSetPath: './localesNew/__ns__.__lng__.json',
     saveMissing: true,
-    debug: true});
+    debug: false});
 
 // setup middlewares to be used by server
 server.use(restify.requestLogger());
@@ -113,6 +81,7 @@ server.use(restify.dateParser());
 server.use(restify.queryParser());
 server.use(restify.gzipResponse());
 server.use(restify.bodyParser({ mapParams: false }));
+server.use(ypi18n.angularTranslateI18nextAdapter);
 server.use(i18n.handle);
 server.use(passport.initialize());
 server.use(restify.fullResponse());

@@ -400,7 +400,7 @@ function deleteOrUpdateActivityPlan(req, res, next) {
     var myUser = req.user;
     var myUserEmail = req.user.email;
 //    ActivityPlanModel.findById(req.params.id).populate('activity').populate('owner').exec(function (err, activityPlan) {
-    ActivityPlanModel.findById(req.params.id).populate('activity').exec(function (err, activityPlan) {
+    ActivityPlanModel.findOne({_id: req.params.id}).exec(function (err, activityPlan) {
         if (err) {
             return next(err);
         }
@@ -408,12 +408,15 @@ function deleteOrUpdateActivityPlan(req, res, next) {
             var myIcalString = getIcalObject(activityPlan, myUser, calendarCancel).toString();
             // delete activityPlan and all events and send cancellations
             activityPlan.remove(function (err) {
-                res.contentType = "text/calendar";
-                res.setHeader('Content-Type', 'text/calendar');
-                res.setHeader('Content-Disposition', 'inline; filename=ical.ics');
-                res.send(200, myIcalString);
-//                res.send(200);
-                email.sendCalInvite(myUserEmail, 'Termin gestrichen: YouPers Kalendar Eintrag', myIcalString);
+                if (err) {
+                    return next(err);
+                }
+//                res.contentType = "text/calendar";
+//                res.setHeader('Content-Type', 'text/calendar');
+//                res.setHeader('Content-Disposition', 'inline; filename=ical.ics');
+//                res.send(200, myIcalString);
+                res.send(200);
+//                email.sendCalInvite(myUserEmail, 'Termin gestrichen: YouPers Kalendar Eintrag', myIcalString);
             })
         }
 

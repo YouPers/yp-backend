@@ -126,16 +126,15 @@ module.exports = function (swagger, config) {
             path: baseUrlWithId,
             notes: "Deletes a specific activityPlan",
             summary: "Deletes a specific activityPlan",
-//            params: [
-//                {
-//                    paramType: "path",
-//                    name: "id",
-//                    description: "the id of the activityPlan to fetch ",
-//                    dataType: "string",
-//                    required: true
-//                }
-//            ],
-            params: [swagger.pathParam("id", "the id of the activityPlan to fetch", "string")],
+            params: [
+                {
+                    paramType: "path",
+                    name: "id",
+                    description: "the id of the activityPlan to fetch ",
+                    dataType: "string",
+                    required: true
+                }
+            ],
 
             method: "DELETE",
             "nickname": "deleteActivityPlan",
@@ -143,6 +142,7 @@ module.exports = function (swagger, config) {
             beforeCallbacks: []
         },
         action: handlers.deleteOrUpdateActivityPlan
+//        action: generic.deleteByIdFn(baseUrl, Model)
     });
 
     swagger.addDelete({

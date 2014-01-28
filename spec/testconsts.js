@@ -17,6 +17,12 @@ module.exports = {
     groupActivity: {
         id: '5278c6adcdeab69a2500001e'
     },
+    groupActivity2: {
+        id: '5278c6accdeab69a25000006'
+    },
+    groupActivity3: {
+        id: '5278c6accdeab69a25000007'
+    },
     aloneActivity: {
         id: "5278c6aecdeab69a250000b9"
     }

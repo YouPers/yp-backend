@@ -26,7 +26,7 @@ var joinable = {
 }
 
 
-frisby.create('plan once activity and check whether event is generated')
+frisby.create('Activity Join Offers: plan once activity and check whether event is generated')
     .post(URL + '/activityplans', {
         "owner": consts.users.unittest.id,
         "activity": consts.groupActivity.id,

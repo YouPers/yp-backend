@@ -12,7 +12,7 @@ frisby.globalSetup({ // globalSetup is for ALL requests
 });
 
 
-frisby.create('plan once activity and check whether event is generated')
+frisby.create('iCal: plan once activity and check whether event is generated')
     .post(URL + '/activityplans', {
         "owner": consts.users.unittest.id,
         "activity": consts.aloneActivity.id,

@@ -135,12 +135,13 @@ module.exports = function (swagger, config) {
                     required: true
                 }
             ],
+
             method: "DELETE",
             "nickname": "deleteActivityPlan",
             accessLevel: 'al_individual',
             beforeCallbacks: []
         },
-        action: generic.deleteByIdFn(baseUrl, Model)
+        action: handlers.deleteActivityPlan
     });
 
     swagger.addDelete({

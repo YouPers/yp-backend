@@ -60,11 +60,71 @@ var ActivityPlanSchema = common.newSchema({
     events: [ActivityPlanEvent]
 });
 
-ActivityPlanEvent.statics.getFieldDescriptions = function () {
+ActivityPlanEvent.statics.getFieldDescriptions = function() {
     return {
         owner: 'The user who owns this ActivityPlanEvent'
     };
 };
+
+ActivityPlanSchema.statics.activityPlanCompletelyDeletable = "ACTIVITYPLAN_DELETABLE";
+ActivityPlanSchema.statics.activityPlanOnlyFutureEventsDeletable = "ACTIVITYPLAN_DELETABLE_ONLY_FUTURE_EVENTS";
+ActivityPlanSchema.statics.activityPlanNotDeletableJoinedUser = "ACTIVITYPLAN_NOT_DELETABLE_JOINED_USERS";
+ActivityPlanSchema.statics.activityPlanNotDeletableJoinedPlan = "ACTIVITYPLAN_NOT_DELETABLE_JOINED_PLAN";
+ActivityPlanSchema.statics.activityPlanNotDeletableNoFutureEvents = "ACTIVITYPLAN_NOT_DELETABLE_NO_FUTURE_EVENTS";
+
+/**
+ * Methods
+ */
+
+ActivityPlanSchema.methods = {
+    // evaluate the delete Status
+    evaluateDeleteStatus: function () {
+        // a joined activity plan cannot be deleted
+        if (this.masterPlan && this.masterPlan.toString().length > 0) {
+            return ActivityPlanSchema.statics.activityPlanNotDeletableJoinedPlan;
+        }
+
+        // activity plan cannot be deleted if there are joining users
+        if (this.joiningUsers.length > 0) {
+            return ActivityPlanSchema.statics.activityPlanNotDeletableJoinedUser;
+        }
+
+        // check if there are any events in the past
+        var eventsInThePastExist = false;
+        var nOfEventsInTheFuture = 0;
+        var now = new Date();
+        _.forEach(this.events, function(event) {
+            if (event.begin < now || event.end < now){
+                eventsInThePastExist = true;
+            } else {
+                nOfEventsInTheFuture++;
+            }
+        });
+        if (eventsInThePastExist) {
+            if (nOfEventsInTheFuture > 0) {
+                // only future events are allowed to be deleted
+                return ActivityPlanSchema.statics.activityPlanOnlyFutureEventsDeletable;
+            } else {
+                // no future events exist to be deleted
+                return ActivityPlanSchema.statics.activityPlanNotDeletableNoFutureEvents;
+            }
+        }
+
+        // no joining users and no past events, thus the complete activity plan can be deleted
+        return ActivityPlanSchema.statics.activityPlanCompletelyDeletable;
+    }
+};
+
+/**
+ * Virtuals
+ */
+
+
+ActivityPlanSchema.virtual('deleteStatus')
+    .get(function getDeleteStatus () {
+        return this.evaluateDeleteStatus();
+    });
+
 
 
 ActivityPlanSchema.pre('save', function (next) {

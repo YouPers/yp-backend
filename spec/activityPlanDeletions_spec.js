@@ -104,7 +104,7 @@ frisby.create('Activity Plan Deletions: create a master plan for an activity pla
                         pastDateEnd.setHours(pastDateEnd.getHours()+1);
                         masterPlan.mainEvent.start = pastDateStart;
                         masterPlan.mainEvent.end = pastDateEnd;
-                        masterPlan.mainEvent.frequency = "day";
+                        masterPlan.mainEvent.frequency = "week";
 
                         frisby.create('Activity Plan Deletions: create activity plan with one event in the past')
                             .post(URL, masterPlan)

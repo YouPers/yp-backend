@@ -57,15 +57,13 @@ var server = restify.createServer({
             }
 
             if (body.i18nAttrs) {
-                    _.forEach(body.i18nAttrs, function(attr) {
-                        var i18nKey = body.constructor.modelName +'.'+ body._id + "." +  attr;
-                        var valueObj = {
-                            key: i18nKey,
-                            displayString: res.req.i18n.t(i18nKey)
-                        };
-                        body[attr] =  res.req.i18n.t(i18nKey);
-
-                    });
+                body.translateI18nAttrs(req.i18n);
+            } else if (Array.isArray(body)) {
+                _.forEach(body, function(objInArray) {
+                    if (objInArray.i18nAttrs) {
+                        objInArray.translateI18nAttrs(req.i18n);
+                    }
+                });
             }
 
             var data = JSON.stringify(body);
@@ -100,10 +98,11 @@ longjohn.empty_frame = 'ASYNC CALLBACK';
 
 // initialize i18n
 i18n.init({
-    fallbackLng: 'de-CH',
+    fallbackLng: 'de',
+    supportedLngs: ['de','en'],
     resGetPath: './locales/__ns__.__lng__.json',
-    resSetPath: './locales/__ns__.__lng__.json',
-    saveMissing: false,
+    resSetPath: './localesNew/__ns__.__lng__.json',
+    saveMissing: true,
     debug: true});
 
 // setup middlewares to be used by server

@@ -266,7 +266,12 @@ module.exports = {
 
                 ret.version = ret.__v;
                 delete ret.__v;
-
+                
+                // store manually the virtual doc.deleteStatus to the return value
+                if (doc.deleteStatus) {
+                    ret.deleteStatus = doc.deleteStatus;
+                }
+                
                 if (doc.toJsonConfig && doc.toJsonConfig.hide) {
                     _.forEach(doc.toJsonConfig.hide, function (propertyToHide) {
                         delete ret[propertyToHide];

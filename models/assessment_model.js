@@ -27,12 +27,14 @@ var question = common.newSchema({
 question.methods.i18nAttrs = ['title', 'mintext', 'mintextexample', 'mintextresult', 'midtext',
     'midtextexample', 'maxtext', 'maxtextexample', 'maxtextresult', 'exptext'];
 
+var questionCatsSchema = common.newSchema({ category: {type: String, required: true},
+    questions: [question]});
+
+    questionCatsSchema.methods.i18nAttrs = ['questions'];
+
 var AssessmentSchema = common.newSchema({
     name: {type: String, trim: true},
-    questionCats: [
-        common.newSchema({ category: {type: String, required: true},
-            questions: [question]})
-    ]
+    questionCats: [questionCatsSchema]
 });
 
 AssessmentSchema.statics.getFieldDescriptions = function() {
@@ -46,7 +48,7 @@ AssessmentSchema.statics.getFieldDescriptions = function() {
     };
 };
 
-AssessmentSchema.methods.i18nAttrs = ['name'];
+AssessmentSchema.methods.i18nAttrs = ['name', 'questionCats'];
 
 mongoose.model('AssessmentQuestion', question);
 

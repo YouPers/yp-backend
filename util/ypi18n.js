@@ -23,14 +23,16 @@ var formatJSON = function formatJSON(req, res, body) {
     //////////////
     // added this part to translate all i18n attrs on the model
     if (body.i18nAttrs) {
-        body.translateI18nAttrs(req.i18n);
+        body.initI18n(req.i18n);
     } else if (Array.isArray(body)) {
         _.forEach(body, function(objInArray) {
             if (objInArray.i18nAttrs) {
-                objInArray.translateI18nAttrs(req.i18n);
+                objInArray.initI18n(req.i18n);
             }
         });
     }
+
+    res.setHeader('yp-language', req.locale);
 
     // end adding
     ////////////////

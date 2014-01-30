@@ -235,25 +235,22 @@ module.exports = {
             return modelName + '.' + uid + '.' + attrName;
         };
 
-        mySchema.methods.translateI18nAttrs = function (i18n, mainModelName) {
+        mySchema.methods.initI18n = function (i18n, mainModelName) {
             var self = this;
 
             // if 'self' is a Mongoose Document with i18nAttrs process all those attrs
             _.forEach(self.i18nAttrs, function (attr) {
-                var i18nKey = (self.constructor.modelName || mainModelName) + '.' + self._id + "." + attr;
-                self[attr] = i18n.t(i18nKey, {defaultValue: self[attr]});
-            });
-
-            // recursively find subdocuments and translate those as well
-            _.forEach(_.keys(self._doc), function (key) {
-                if (Array.isArray(self[key])) {
-                    _.forEach(self[key], function (objInArray) {
-                        if (objInArray.translateI18nAttrs) {
-                            objInArray.translateI18nAttrs(i18n, self.constructor.modelName || mainModelName);
+                if (_.isUndefined(self[attr])) {
+                    var i18nKey = (self.constructor.modelName || mainModelName) + '.' + self._id + "." + attr;
+                    self[attr] = i18n.t(i18nKey, {defaultValue: self[attr]});
+                } else if (_.isObject(self[attr]) && _.isFunction(self[attr].initI18n)) {
+                    self[attr].initI18n(i18n, self.constructor.modelName || mainModelName);
+                } else if (_.isArray(self[attr])) {
+                    _.forEach(self[attr], function(obj) {
+                        if (obj.i18nAttrs) {
+                            obj.initI18n(i18n, self.constructor.modelName || mainModelName);
                         }
                     });
-                } else if (self[key] && self[key].translateI18nAttrs) {
-                    self[key].translateI18nAttrs(i18n, self.constructor.modelName || mainModelName);
                 }
             });
         };
@@ -266,12 +263,12 @@ module.exports = {
 
                 ret.version = ret.__v;
                 delete ret.__v;
-                
+
                 // store manually the virtual doc.deleteStatus to the return value
                 if (doc.deleteStatus) {
                     ret.deleteStatus = doc.deleteStatus;
                 }
-                
+
                 if (doc.toJsonConfig && doc.toJsonConfig.hide) {
                     _.forEach(doc.toJsonConfig.hide, function (propertyToHide) {
                         delete ret[propertyToHide];
@@ -281,6 +278,18 @@ module.exports = {
 
             }});
 
+//        mySchema.pre('init', function (next, doc) {
+//
+//            console.log('in pre Init for model: ' + this.constructor.modelName + ' id: ' + doc._id);
+//            next();
+//            return doc;
+//        });
+//
+//        mySchema.post('init', function (doc) {
+//
+//            console.log('in Post Init for model: ' + this.constructor.modelName + ' id: ' + doc._id);
+//            return doc;
+//        });
 
         mySchema.pre('save', function handleI18nOnSave(next, req, callback) {
             var self = this;
@@ -290,7 +299,7 @@ module.exports = {
 
             _.forEach(self.i18nAttrs, function (attr) {
                 var value = self[attr];
-                if (value) {
+                if (_.isString(value)) {
                     var i18nKey = _getI18nKey(self.constructor.modelName ||
                         self.__parent.constructor.modelName ||
                         self.__parent.__parent.constructor.modelName, self._id, attr);
@@ -299,8 +308,10 @@ module.exports = {
                     } else {
                         i18next.sync.postChange(req.locale, 'translation', i18nKey, value);
                     }
+                    self[attr] = undefined;
+
                 }
-                self[attr] = undefined;
+
             });
 
             return next(callback);

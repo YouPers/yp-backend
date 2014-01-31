@@ -499,8 +499,7 @@ function putActivityPlan(req, res, next) {
                 return next(err);
             }
 
-            // we populate 'activity' so we can get create a nice calendar entry using strings on the
-            // activity
+            // we read 'activity' so we can get create a nice calendar entry using using the activity title
 
             ActivityModel.findById(reloadedActPlan.activity).exec(function (err, foundActivity) {
                 if (err) {

@@ -1,5 +1,6 @@
 var mongoose = require('mongoose'),
     ActivityPlanModel = mongoose.model('ActivityPlan'),
+    ActivityModel = mongoose.model('Activity'),
     handlerUtils = require('./handlerUtils'),
     CommentModel = mongoose.model('Comment'),
     generic = require('./generic'),
@@ -72,6 +73,9 @@ var getIcalObject = function (plan, recipientUser, status) {
 };
 
 function generateEventsForPlan(plan, user) {
+
+    // ToDo: has to be enhanced with functionality to generate only future events for a puts (additional from date as parameter)
+
     var myIcalObj = getIcalObject(plan, user, calendarInvite);
 
     var duration = moment(plan.mainEvent.end).diff(plan.mainEvent.start);
@@ -454,13 +458,6 @@ function putActivityPlan(req, res, next) {
     var sentPlan = req.body;
     req.log.trace({body: sentPlan}, 'parsed req body');
 
-    // check to see if received plan is editable
-    if (sentPlan.editStatus !== "ACTIVITYPLAN_EDITABLE") {
-        var notEditableError = new Error('Error updating in Activity Plan PutFn: Not allowed to update this activity plan with id: ' + sentPlan.id)
-        notEditableError.statusCode = 409;
-        return next(notEditableError);
-    }
-
     // ref properties: replace objects by ObjectId in case client sent whole object instead of reference only
     // do this check only for properties of type ObjectID
     _.filter(ActivityPlanModel.schema.paths, function (path) {
@@ -472,12 +469,7 @@ function putActivityPlan(req, res, next) {
             }
         });
 
-    req.log.trace({MainEvent: sentPlan.mainEvent}, 'before generating events');
-    if (!sentPlan.mainEvent) {
-        return next(new restify.InvalidArgumentError('Need MainEvent in submitted ActivityPlan'));
-    }
-
-    ActivityPlanModel.findById(sentPlan.id).exec(function (err, reloadedActPlan) {
+    ActivityPlanModel.findById(req.params.id).exec(function (err, reloadedActPlan) {
         if (err) {
             return next(err);
         }
@@ -485,29 +477,18 @@ function putActivityPlan(req, res, next) {
             return next(new restify.ResourceNotFoundError('No activity plan found with Id: ' + sentPlan.id));
         }
 
-        // if this is an "owned" object
-        if (reloadedActPlan.owner) {
-
-            // only the authenticated same owner is allowed to edit
-            if (!reloadedActPlan.owner.equals(req.user.id)) {
-                return next(new restify.NotAuthorizedError('authenticated user is not authorized ' +
-                    'to update this activity plan because he is not owner of it'));
-            }
-
-            // he is not allowed to change the owner of the object
-            if (req.body.owner) {
-                if (!reloadedActPlan.owner.equals(req.body.owner)) {
-                    return next(new restify.NotAuthorizedError('authenticated user is not authorized ' +
-                        'to change the owner of this activity plan'));
-                }
-            }
+        // check to see if received plan is editable
+        if (reloadedActPlan.editStatus !== "ACTIVITYPLAN_EDITABLE") {
+            var notEditableError = new Error('Error updating in Activity Plan PutFn: Not allowed to update this activity plan with id: ' + sentPlan.id)
+            notEditableError.statusCode = 409;
+            return next(notEditableError);
         }
 
-        generateEventsForPlan(req.body, req.user);
+        if (req.body.mainEvent && !_.isEqual(req.body.mainEvent, reloadedActPlan.mainEvent)) {
+            generateEventsForPlan(req.body, req.user);
+        }
 
         _.extend(reloadedActPlan, req.body);
-
-        req.log.trace({eventsAfter: reloadedActPlan.events}, 'after generating events');
 
         req.log.trace(reloadedActPlan, 'PutFn: Updating existing Object');
 
@@ -521,11 +502,12 @@ function putActivityPlan(req, res, next) {
             // we populate 'activity' so we can get create a nice calendar entry using strings on the
             // activity
 
-            ActivityPlanModel.findById(reloadedActPlan._id).populate('activity').exec(function (err, reloadedActPlan) {
+            ActivityModel.findById(reloadedActPlan.activity).exec(function (err, foundActivity) {
                 if (err) {
                     return next(err);
                 }
                 if (req.user && req.user.email) {
+                    reloadedActPlan.activity.title = foundActivity.title;
                     var myIcalString = getIcalObject(reloadedActPlan, req.user, calendarInvite).toString();
                     email.sendCalInvite(req.user.email, 'Termin Update: YouPers Kalendar Eintrag', myIcalString);
                 }

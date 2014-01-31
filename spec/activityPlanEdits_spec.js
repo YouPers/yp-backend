@@ -42,6 +42,7 @@ var activityPlan = {
     "status": "active"
 };
 
+
 // test single activity plan with single event in the future
 var testLocation = "Lachen";
 var testVisibility = "private";
@@ -83,7 +84,10 @@ frisby.create('Activity Plan Edits: create a single activity plan with a single 
         editedPlan.visibility = testVisibility;
 
         frisby.create('Activity Plan Edits: update plan with modified location and visibily, id: ' + activityPlanPostAnswer.id)
-            .put(URL + '/' + activityPlanPostAnswer.id, editedPlan)
+            .put(URL + '/' + activityPlanPostAnswer.id, {
+                "location": testLocation,
+                "visibility": testVisibility
+            })
             .expectStatus(201)
             .afterJSON(function (activityPlanPutAnswer) {
                 expect(activityPlanPutAnswer.editStatus).toEqual('ACTIVITYPLAN_EDITABLE');
@@ -95,6 +99,9 @@ frisby.create('Activity Plan Edits: create a single activity plan with a single 
 
                 // now modify it to have more than one event
                 editedPlan.mainEvent.frequency = "week";
+
+                console.log (editedPlan.mainEvent.start);
+                console.log (editedPlan.mainEvent.end);
 
                 frisby.create('Activity Plan Edits: update plan with more than one event, id: ' + activityPlanPutAnswer.id)
                     .put(URL + '/' + activityPlanPutAnswer.id, editedPlan)
@@ -201,7 +208,7 @@ frisby.create('Activity Plan Edits: create a single activity plan with a single 
                                                         slavePlan.mainEvent.frequency = "week";
 
                                                         frisby.create('Activity Plan Edits: try to update joined plan, id: ' + slavePlanPostAnswer.id)
-                                                            .put(URL + '/' + activityPlanPostAnswer.id, slavePlan)
+                                                            .put(URL + '/' + slavePlanPostAnswer.id, slavePlan)
                                                             .expectStatus(409)
                                                             .afterJSON(function (activityPlanPutAnswer) {
 

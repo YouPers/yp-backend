@@ -506,7 +506,7 @@ function putActivityPlan(req, res, next) {
                     return next(err);
                 }
                 if (req.user && req.user.email) {
-                    reloadedActPlan.activity.title = foundActivity.title;
+                    reloadedActPlan.activity = foundActivity;
                     var myIcalString = getIcalObject(reloadedActPlan, req.user, calendarInvite).toString();
                     email.sendCalInvite(req.user.email, 'Termin Update: YouPers Kalendar Eintrag', myIcalString);
                 }

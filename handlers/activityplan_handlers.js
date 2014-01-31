@@ -1,5 +1,7 @@
 var mongoose = require('mongoose'),
     ActivityPlanModel = mongoose.model('ActivityPlan'),
+    ActivityModel = mongoose.model('Activity'),
+    handlerUtils = require('./handlerUtils'),
     CommentModel = mongoose.model('Comment'),
     generic = require('./generic'),
     restify = require('restify'),
@@ -38,7 +40,7 @@ var getIcalObject = function (plan, recipientUser, status) {
     }
     event.setSummary(plan.title || plan.activity && plan.activity.title);
     event.setDate(moment(plan.mainEvent.start).toDate(), moment(plan.mainEvent.end).toDate());
-    event.addProperty("LOCATION", "just do it anywhere");
+    event.addProperty("LOCATION", plan.location);
     if (plan.mainEvent.recurrence && plan.mainEvent.frequency && plan.mainEvent.frequency !== 'once') {
         var frequencyMap = {
             'day': 'DAILY',
@@ -71,6 +73,9 @@ var getIcalObject = function (plan, recipientUser, status) {
 };
 
 function generateEventsForPlan(plan, user) {
+
+    // ToDo: has to be enhanced with functionality to generate only future events for a puts (additional from date as parameter)
+
     var myIcalObj = getIcalObject(plan, user, calendarInvite);
 
     var duration = moment(plan.mainEvent.end).diff(plan.mainEvent.start);
@@ -113,7 +118,6 @@ function putActivityEvent(req, res, next) {
     if (!req || !req.params || !req.params.planId) {
         return next(new restify.MissingParameterError('no planId found in PUT request'));
     }
-
 
     var find = ActivityPlanModel.findById(req.params.planId).populate('activity');
 
@@ -264,7 +268,7 @@ function postNewActivityPlan(req, res, next) {
                 email.sendCalInvite(req.user.email, 'Einladung: YouPers Kalendar Eintrag', myIcalString);
             }
 
-            // remove the populate activity because the client is not gonna expect it to be populated.
+            // remove the populated activity because the client is not gonna expect it to be populated.
             reloadedActPlan.activity = reloadedActPlan.activity._id;
             res.header('location', '/api/v1/activitiesPlanned' + '/' + reloadedActPlan._id);
             res.send(201, reloadedActPlan);
@@ -401,7 +405,7 @@ function deleteActivityPlan(req, res, next) {
     var myUser = req.user;
     var myUserEmail = req.user.email;
 
-    ActivityPlanModel.findById(req.params.id).exec(function (err, activityPlan) {
+    ActivityPlanModel.findById(req.params.id).populate('activity').exec(function (err, activityPlan) {
 
         // private functions
         var _removeCallback = function (err) {
@@ -418,7 +422,7 @@ function deleteActivityPlan(req, res, next) {
             return next(err);
         }
         if (!activityPlan) {
-            return next(new restify.InvalidArgumentError('No ActivityPlan found for id' + req.params.id));
+            return next(new restify.InvalidArgumentError('No ActivityPlan found for id: ' + req.params.id));
         }
         if (auth.checkAccess(req.user, auth.accessLevels.al_systemadmin)) {
             activityPlan.remove(_removeCallback);
@@ -443,7 +447,79 @@ function deleteActivityPlan(req, res, next) {
     });
 }
 
+function putActivityPlan(req, res, next) {
 
+    req.log.trace({parsedReq: req}, 'Put updated ActivityPlan');
+
+    if (!req.body) {
+        return next(new restify.InvalidContentError('exptected JSON body in POST'));
+    }
+
+    var sentPlan = req.body;
+    req.log.trace({body: sentPlan}, 'parsed req body');
+
+    // ref properties: replace objects by ObjectId in case client sent whole object instead of reference only
+    // do this check only for properties of type ObjectID
+    _.filter(ActivityPlanModel.schema.paths, function (path) {
+        return (path.instance === 'ObjectID');
+    })
+        .forEach(function (myPath) {
+            if ((myPath.path in sentPlan) && (!(typeof sentPlan[myPath.path] === 'string' || req.body[myPath.path] instanceof String))) {
+                sentPlan[myPath.path] = sentPlan[myPath.path].id;
+            }
+        });
+
+    ActivityPlanModel.findById(req.params.id).exec(function (err, reloadedActPlan) {
+        if (err) {
+            return next(err);
+        }
+        if (!reloadedActPlan) {
+            return next(new restify.ResourceNotFoundError('No activity plan found with Id: ' + sentPlan.id));
+        }
+
+        // check to see if received plan is editable
+        if (reloadedActPlan.editStatus !== "ACTIVITYPLAN_EDITABLE") {
+            var notEditableError = new Error('Error updating in Activity Plan PutFn: Not allowed to update this activity plan with id: ' + sentPlan.id)
+            notEditableError.statusCode = 409;
+            return next(notEditableError);
+        }
+
+        if (req.body.mainEvent && !_.isEqual(req.body.mainEvent, reloadedActPlan.mainEvent)) {
+            generateEventsForPlan(req.body, req.user);
+        }
+
+        _.extend(reloadedActPlan, req.body);
+
+        req.log.trace(reloadedActPlan, 'PutFn: Updating existing Object');
+
+        reloadedActPlan.save(function (err) {
+            if (err) {
+                req.log.error({Error: err}, 'Error updating in PutFn');
+                err.statusCode = 409;
+                return next(err);
+            }
+
+            // we read 'activity' so we can get create a nice calendar entry using using the activity title
+
+            ActivityModel.findById(reloadedActPlan.activity).exec(function (err, foundActivity) {
+                if (err) {
+                    return next(err);
+                }
+                if (req.user && req.user.email) {
+                    reloadedActPlan.activity = foundActivity;
+                    var myIcalString = getIcalObject(reloadedActPlan, req.user, calendarInvite).toString();
+                    email.sendCalInvite(req.user.email, 'Termin Update: YouPers Kalendar Eintrag', myIcalString);
+                }
+
+                // remove the populated activity because the client is not gonna expect it to be populated.
+                reloadedActPlan.activity = reloadedActPlan.activity._id;
+                res.header('location', '/api/v1/activitiesPlanned' + '/' + reloadedActPlan._id);
+                res.send(201, reloadedActPlan);
+                return next();
+            });
+        });
+    });
+}
 
 module.exports = {
     postNewActivityPlan: postNewActivityPlan,
@@ -451,5 +527,6 @@ module.exports = {
     putActivityEvent: putActivityEvent,
     getJoinOffers: getJoinOffers,
     postActivityPlanInvite: postActivityPlanInvite,
-    deleteActivityPlan: deleteActivityPlan
+    deleteActivityPlan: deleteActivityPlan,
+    putActivityPlan: putActivityPlan
 };

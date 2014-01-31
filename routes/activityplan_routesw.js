@@ -212,30 +212,16 @@ module.exports = function (swagger, config) {
         spec: {
             description: "Operations about ActivityPlans",
             path: baseUrlWithId,
-            notes: "Updates an existing Plan. EXPERIMENTAL - NOT CURRENTLY SUPPORTED!",
+            notes: "Updates an existing plan.",
             summary: "Updates an existing activityPlan",
-            params: [
-                {
-                    paramType: "body",
-                    name: "activityPlan",
-                    description: "the activityPlan to store",
-                    dataType: "ActivityPlan",
-                    required: true
-                },
-                {
-                    paramType: "path",
-                    name: "id",
-                    description: "the id of the activityPlan to update ",
-                    dataType: "string",
-                    required: true
-                }
-            ],
             method: "PUT",
+            params: [swagger.pathParam("id", "the id of the activityPlan to update", "string"), swagger.bodyParam("activityPlan", "activityPlan to be updated", "ActivityPlan")],
+            "responseClass": "ActivityPlan",
+            "errorResponses": [swagger.errors.invalid('id'), swagger.errors.notFound("activityPlan")],
             "nickname": "putActivityPlan",
-            accessLevel: 'al_individual',
-            beforeCallbacks: []
+            accessLevel: 'al_individual'
         },
-        action: generic.putFn(baseUrl, Model)
+        action: handlers.putActivityPlan
     });
 
     swagger.addPut({

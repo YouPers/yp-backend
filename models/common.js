@@ -35,6 +35,11 @@ module.exports = {
                     ret.deleteStatus = doc.deleteStatus;
                 }
 
+                // store manually the virtual doc.editStatus to the return value
+                if (doc.editStatus) {
+                    ret.editStatus = doc.editStatus;
+                }
+
                 if (doc.toJsonConfig  && doc.toJsonConfig.hide) {
                     _.forEach(doc.toJsonConfig.hide, function (propertyToHide) {
                         delete ret[propertyToHide];

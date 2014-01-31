@@ -72,6 +72,12 @@ ActivityPlanSchema.statics.activityPlanNotDeletableJoinedUser = "ACTIVITYPLAN_NO
 ActivityPlanSchema.statics.activityPlanNotDeletableJoinedPlan = "ACTIVITYPLAN_NOT_DELETABLE_JOINED_PLAN";
 ActivityPlanSchema.statics.activityPlanNotDeletableNoFutureEvents = "ACTIVITYPLAN_NOT_DELETABLE_NO_FUTURE_EVENTS";
 
+ActivityPlanSchema.statics.activityPlanEditable = "ACTIVITYPLAN_EDITABLE";
+ActivityPlanSchema.statics.activityPlanNotEditableJoinedPlan = "ACTIVITYPLAN_NOT_EDITABLE_JOINED_PLAN";
+ActivityPlanSchema.statics.activityPlanNotEditableJoinedUser = "ACTIVITYPLAN_NOT_EDITABLE_JOINED_USERS";
+ActivityPlanSchema.statics.activityPlanNotEditableNotSingleEvent = "ACTIVITYPLAN_NOT_EDITABLE_NOT_SINGLE_EVENT";
+ActivityPlanSchema.statics.activityPlanNotEditableEventsInThePast = "ACTIVITYPLAN_NOT_EDITABLE_PAST_EVENT";
+
 /**
  * Methods
  */
@@ -112,6 +118,35 @@ ActivityPlanSchema.methods = {
 
         // no joining users and no past events, thus the complete activity plan can be deleted
         return ActivityPlanSchema.statics.activityPlanCompletelyDeletable;
+    },
+    evaluateEditStatus: function () {
+
+        // currently, only single activity plans (no master and/or joined plans)
+        // with a single and not yet past event are editable
+
+        // a joined activity plan cannot be edited
+        if (this.masterPlan && this.masterPlan.toString().length > 0) {
+            return ActivityPlanSchema.statics.activityPlanNotEditableJoinedPlan;
+        }
+
+        // activity plan cannot be edited if there are joining users
+        if (this.joiningUsers.length > 0) {
+            return ActivityPlanSchema.statics.activityPlanNotEditableJoinedUser;
+        }
+
+        // activity plan cannot be edited if there are more than one event
+        if (this.events.length > 1) {
+            return ActivityPlanSchema.statics.activityPlanNotEditableNotSingleEvent;
+        }
+
+        // activity plan cannot be edited if the single event is not in the future
+        var now = new Date();
+        if (this.events[0].begin < now || this.events[0].end < now) {
+            return ActivityPlanSchema.statics.activityPlanNotEditableEventsInThePast;
+        }
+
+        // passed editable tests
+        return ActivityPlanSchema.statics.activityPlanEditable;
     }
 };
 
@@ -123,6 +158,11 @@ ActivityPlanSchema.methods = {
 ActivityPlanSchema.virtual('deleteStatus')
     .get(function getDeleteStatus () {
         return this.evaluateDeleteStatus();
+    });
+
+ActivityPlanSchema.virtual('editStatus')
+    .get(function getEditStatus () {
+        return this.evaluateEditStatus();
     });
 
 

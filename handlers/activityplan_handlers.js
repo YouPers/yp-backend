@@ -454,6 +454,13 @@ function putActivityPlan(req, res, next) {
     var sentPlan = req.body;
     req.log.trace({body: sentPlan}, 'parsed req body');
 
+    // check to see if received plan is editable
+    if (sentPlan.editStatus !== "ACTIVITYPLAN_EDITABLE") {
+        var notEditableError = new Error('Error updating in Activity Plan PutFn: Not allowed to update this activity plan with id: ' + sentPlan.id)
+        notEditableError.statusCode = 409;
+        return next(notEditableError);
+    }
+
     // ref properties: replace objects by ObjectId in case client sent whole object instead of reference only
     // do this check only for properties of type ObjectID
     _.filter(ActivityPlanModel.schema.paths, function (path) {

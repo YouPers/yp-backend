@@ -48,7 +48,21 @@ var getListFn = function getSocialEventsListFn(baseUrl, Model) {
             function (done) {
                 var q = ActivityPlanModel.find().sort('-mainEvent.start').populate('activity').populate('owner');
 
+                // only show Plans that are for groups
+                q.where('executionType').equals('group');
+                // only if visibility is not private
+                q.where('visibility').ne('private');
+                // do not show my own plans
+                q.where('owner').ne(req.user.id);
+
+                // only show masterPlans
+                q.where('masterPlan').equals(null);
+
+                // TODO: filter for campaign
+
+
                 q.limit(req.params.limit || 10);
+
 
                 q.exec(function (err, actPlans) {
                     if (err) {

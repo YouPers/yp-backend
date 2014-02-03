@@ -5,23 +5,23 @@
 var roles = {
         anonymous: 'anonymous',
         individual: 'individual',
-        healthpromoter: 'healthpromoter',
+        orgadmin: 'orgadmin',
+        campaignlead: 'campaignlead',
         productadmin: 'productadmin',
         systemadmin: 'systemadmin'
     },
     canAssignRole = { // defines what roles (value) are allowed to assign a give role (key) to a new/updated user
-        anonymous: [roles.anonymous, roles.individual, roles.healthpromoter, roles.productadmin, roles.systemadmin],
         individual: [roles.anonymous, roles.individual, roles.productadmin, roles.systemadmin],
-        healthpromoter: [roles.anonymous, roles.productadmin, roles.systemadmin],
+        orgadmin: [roles.individual, roles.productadmin, roles.systemadmin],
         productadmin: [ roles.productadmin, roles.systemadmin],
         systemadmin: [ roles.systemadmin]
     },
     accessLevels = {
-        al_all: [roles.anonymous, roles.individual, roles.healthpromoter, roles.productadmin, roles.systemadmin],
+        al_all: [roles.anonymous, roles.individual, roles.orgadmin, roles.campaignlead, roles.productadmin, roles.systemadmin],
         al_anonymousonly: [roles.anonymous],
-        al_user: [roles.individual, roles.healthpromoter, roles.productadmin, roles.systemadmin ],
+        al_user: [roles.individual, roles.orgadmin, roles.campaignlead, roles.productadmin, roles.systemadmin ],
         al_individual: [roles.individual, roles.productadmin, roles.systemadmin ],
-        al_healthpromoter: [roles.individual, roles.healthpromoter, roles.systemadmin ],
+        al_orgadmin: [roles.orgadmin, roles.systemadmin ],
         al_admin: [roles.productadmin, roles.systemadmin],
         al_productadmin: [ roles.productadmin, roles.systemadmin ],
         al_systemadmin: [roles.systemadmin ]

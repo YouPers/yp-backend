@@ -40,7 +40,7 @@ module.exports = {
                     ret.editStatus = doc.editStatus;
                 }
 
-                if (doc.toJsonConfig  && doc.toJsonConfig.hide) {
+                if (doc.toJsonConfig && doc.toJsonConfig.hide) {
                     _.forEach(doc.toJsonConfig.hide, function (propertyToHide) {
                         delete ret[propertyToHide];
                     });
@@ -62,7 +62,7 @@ module.exports = {
             var swaggerModels = {};
 
             function createAndRegisterNewSwaggerModel(modelName) {
-                var newModel =  {
+                var newModel = {
                     id: modelName,
                     required: ['id'],
                     properties: {
@@ -170,7 +170,7 @@ module.exports = {
 
             function getModelNameFromPropertyName(propertyName, dontDepluralize) {
                 return _.last(propertyName) === 's' && !dontDepluralize ?
-                      propertyName.charAt(0).toUpperCase() + propertyName.slice(1, -1)
+                    propertyName.charAt(0).toUpperCase() + propertyName.slice(1, -1)
                     : propertyName.charAt(0).toUpperCase() + propertyName.slice(1);
             }
 
@@ -190,7 +190,7 @@ module.exports = {
                         var parts = nestedPath.split('.');
                         var combinedPath = '';
                         var parentModel = targetModel;
-                        for (var i= 0; i< parts.length; i++) {
+                        for (var i = 0; i < parts.length; i++) {
                             combinedPath = combinedPath ? combinedPath + '.' + parts[i] : parts[i];
                             if (!nestedSwaggerModels[combinedPath]) {
                                 var modelName = getModelNameFromPropertyName(parts[i], true);
@@ -207,8 +207,8 @@ module.exports = {
                         var realTargetModel = targetModel;
                         var realPropertyName = propertyName;
                         if (propertyName.indexOf('.') !== -1) {
-                            realTargetModel = nestedSwaggerModels[propertyName.substring(0, _.lastIndexOf(propertyName,'.'))];
-                            realPropertyName = propertyName.substring(_.lastIndexOf(propertyName,'.')+1);
+                            realTargetModel = nestedSwaggerModels[propertyName.substring(0, _.lastIndexOf(propertyName, '.'))];
+                            realPropertyName = propertyName.substring(_.lastIndexOf(propertyName, '.') + 1);
                         }
                         var type = path.options.type;
                         var subModelName;
@@ -268,7 +268,7 @@ module.exports = {
         questionType: "oneSided twoSided".split(' '),
 
         // Profile related enums
-        gender: "undefined female male".split(' ')                         ,
+        gender: "undefined female male".split(' '),
         maritalStatus: "undefined single unmarried married separated divorced widowed".split(' '),
 
         // Preference related enums
@@ -278,20 +278,21 @@ module.exports = {
     },
 
     initializeDbFor: function InitializeDbFor(Model) {
-        Model.find().exec(function (err, col) {
+        // load all existing objects
+        Model.count().exec(function (err, count) {
             if (err) {
                 throw err;
             }
-            if (col.length === 0) {
-                var filename = '../dbdata/' + Model.modelName + '.json';
-                var jsonFromFile;
-                try {
-                    jsonFromFile = require(filename);
-                } catch (Error) {
-                    // silent fail, because if we did not find the file, there is nothing to load. This is expected
-                    // for some objects.
-                }
-                if (jsonFromFile) {
+            var filename = '../dbdata/' + Model.modelName + '.json';
+            var jsonFromFile;
+            try {
+                jsonFromFile = require(filename);
+            } catch (Error) {
+                // silent fail, because if we did not find the file, there is nothing to load. This is expected
+                // for some objects.
+            }
+            if (jsonFromFile) {
+                if (jsonFromFile.length !== count) {
                     console.log(Model.modelName + ": initializing Database from File: " + filename);
                     if (!Array.isArray(jsonFromFile)) {
                         jsonFromFile = [jsonFromFile];
@@ -320,13 +321,12 @@ module.exports = {
                         });
                     });
                 } else {
-                    console.log(Model.modelName + ": no initialization, because no load file exists for this Model");
+                    console.log(Model.modelName + ": no initialization, correct number of instances already in Database");
                 }
             } else {
-                console.log(Model.modelName + ": no initialization needed, as we already have entities (" + col.length + ")");
+                console.log(Model.modelName + ": no initialization, because no load file exists for this Model");
             }
         });
 
     }
-}
-;
+};

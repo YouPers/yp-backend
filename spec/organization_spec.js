@@ -22,12 +22,12 @@ var testOrganization = {
     avatar: 'assets/img/YouPersAvatar.png'
 };
 
-frisby.create('POST new organization')
+frisby.create('organization: POST new organization')
     .post(URL + '/organizations', testOrganization)
     .expectStatus(201)
     .afterJSON(function (newOrganization) {
 
-        frisby.create('GET just our testuser')
+        frisby.create('organization: GET just our test organization')
             .get(URL + '/organizations/' + newOrganization.id)
             .expectStatus(200)
             .afterJSON(function (organization) {
@@ -36,7 +36,7 @@ frisby.create('POST new organization')
                 expect(organization.administrators).toBeDefined();
                 expect(organization.administrators.length).toEqual(1);
 
-                frisby.create('DELETE our testuser')
+                frisby.create('organization: DELETE our test organization')
                     .auth('sysadm', 'backtothefuture')
                     .delete(URL+ '/organizations/' + organization.id)
                     .expectStatus(200)

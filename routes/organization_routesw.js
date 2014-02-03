@@ -25,7 +25,7 @@ module.exports = function (swagger, config) {
             "responseClass": "Organization",
             "errorResponses": [],
             "nickname": "postOrganization",
-            accessLevel: 'al_all'
+            accessLevel: 'al_user'
         },
         action: organizationHandlers.postFn(baseUrl)
     });
@@ -43,7 +43,7 @@ module.exports = function (swagger, config) {
             "responseClass": "Organization",
             "errorResponses": [swagger.errors.invalid('id'), swagger.errors.notFound("organization")],
             "nickname": "getOrganizationById",
-            accessLevel: 'al_all'
+            accessLevel: 'al_user'
         },
         action: generic.getByIdFn(baseUrl, Organization)
     });

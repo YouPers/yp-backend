@@ -288,7 +288,8 @@ module.exports = {
                 try {
                     jsonFromFile = require(filename);
                 } catch (Error) {
-                    console.log(Error);
+                    // silent fail, because if we did not find the file, there is nothing to load. This is expected
+                    // for some objects.
                 }
                 if (jsonFromFile) {
                     console.log(Model.modelName + ": initializing Database from File: " + filename);
@@ -319,7 +320,7 @@ module.exports = {
                         });
                     });
                 } else {
-                    console.log(Model.modelName + ": no initialization, because no file found: " + filename);
+                    console.log(Model.modelName + ": no initialization, because no load file exists for this Model");
                 }
             } else {
                 console.log(Model.modelName + ": no initialization needed, as we already have entities (" + col.length + ")");

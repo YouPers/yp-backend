@@ -7,7 +7,9 @@
  */
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
-    _ = require('lodash');
+    _ = require('lodash'),
+    env = process.env.NODE_ENV || 'development',
+    config = require('../config/config')[env];
 
 module.exports = {
 
@@ -278,55 +280,59 @@ module.exports = {
     },
 
     initializeDbFor: function InitializeDbFor(Model) {
-        // load all existing objects
-        Model.count().exec(function (err, count) {
-            if (err) {
-                throw err;
-            }
-            var filename = '../dbdata/' + Model.modelName + '.json';
-            var jsonFromFile;
-            try {
-                jsonFromFile = require(filename);
-            } catch (Error) {
-                // silent fail, because if we did not find the file, there is nothing to load. This is expected
-                // for some objects.
-            }
-            if (jsonFromFile) {
-                if (jsonFromFile.length !== count) {
-                    console.log(Model.modelName + ": initializing Database from File: " + filename);
-                    if (!Array.isArray(jsonFromFile)) {
-                        jsonFromFile = [jsonFromFile];
-                    }
-                    jsonFromFile.forEach(function (jsonObj) {
-                        if (jsonObj.id) {
-                            jsonObj._id = jsonObj.id;
-                        }
-                        var newObj = new Model(jsonObj);
-
-                        newObj.save(function (err) {
-                            if (err) {
-                                console.log(err.message);
-                                throw err;
-                            }
-                            // fix for User Password hashing of imported users that already have an id in the json...
-                            if (newObj.modelName = 'User' && !newObj.hashed_password) {
-                                newObj.password = jsonObj.password;
-                                newObj.save(function (err) {
-                                    if (err) {
-                                        console.log(err.message);
-                                        throw err;
-                                    }
-                                });
-                            }
-                        });
-                    });
-                } else {
-                    console.log(Model.modelName + ": no initialization, correct number of instances already in Database");
+        if (config.loadTestData) {
+            // load all existing objects
+            Model.count().exec(function (err, count) {
+                if (err) {
+                    throw err;
                 }
-            } else {
-                console.log(Model.modelName + ": no initialization, because no load file exists for this Model");
-            }
-        });
+                var filename = '../dbdata/' + Model.modelName + '.json';
+                var jsonFromFile;
+                try {
+                    jsonFromFile = require(filename);
+                } catch (Error) {
+                    // silent fail, because if we did not find the file, there is nothing to load. This is expected
+                    // for some objects.
+                }
+                if (jsonFromFile) {
+                    if (jsonFromFile.length !== count) {
+                        console.log(Model.modelName + ": initializing Database from File: " + filename);
+                        if (!Array.isArray(jsonFromFile)) {
+                            jsonFromFile = [jsonFromFile];
+                        }
+                        jsonFromFile.forEach(function (jsonObj) {
+                            if (jsonObj.id) {
+                                jsonObj._id = jsonObj.id;
+                            }
+                            var newObj = new Model(jsonObj);
 
+                            newObj.save(function (err) {
+                                if (err) {
+                                    console.log(err.message);
+                                    throw err;
+                                }
+                                // fix for User Password hashing of imported users that already have an id in the json...
+                                if (newObj.modelName = 'User' && !newObj.hashed_password) {
+                                    newObj.password = jsonObj.password;
+                                    newObj.save(function (err) {
+                                        if (err) {
+                                            console.log(err.message);
+                                            throw err;
+                                        }
+                                    });
+                                }
+                            });
+                        });
+                    } else {
+                        console.log(Model.modelName + ": no initialization, correct number of instances already in Database");
+                    }
+                } else {
+                    console.log(Model.modelName + ": no initialization, because no load file exists for this Model");
+                }
+            });
+        } else {
+            console.log("no DB initialization because it is disabled for this enviroment");
+        }
     }
+
 };

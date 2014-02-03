@@ -7,18 +7,16 @@ var moment = require('moment');
 
 frisby.globalSetup({ // globalSetup is for ALL requests
     request: {
-        headers: { 'X-Auth-Token': 'fa8426a0-8eaf-4d22-8e13-7c1b16a9370c',
-            Authorization: 'Basic dW5pdHRlc3Q6dGVzdA==' },
-        json: true
+        json:true,
+        headers: {}
     }
 });
 
-
 frisby.create('Activity Plan: plan once activity and check whether event is generated')
     .removeHeader('Authorization')
-    .auth(consts.users.unittest.username, consts.users.unittest.password)
+    .auth('test_ind1', 'yp')
     .post(URL + '/activityplans', {
-        "owner": consts.users.unittest.id,
+        "owner": consts.users.test_ind1.id,
         "activity": consts.groupActivity.id,
         "visibility": "public",
         "executionType": "group",
@@ -40,6 +38,7 @@ frisby.create('Activity Plan: plan once activity and check whether event is gene
 
         frisby.create('Activity Plan: GET this activity plan by Id und check whether it is there')
             .get(URL + '/activityplans/' + newPlan.id)
+            .auth('test_ind1', 'yp')
             .expectStatus(200)
             .expectJSON({
                 id: newPlan.id,
@@ -49,6 +48,7 @@ frisby.create('Activity Plan: plan once activity and check whether event is gene
 
         frisby.create('Activity Plan: GET all activityplans and check whether the created one is in the returned list')
             .get(URL + '/activityplans')
+            .auth('test_ind1', 'yp')
             .expectStatus(200)
             .expectJSON('*', {
                 id: String,
@@ -62,17 +62,20 @@ frisby.create('Activity Plan: plan once activity and check whether event is gene
 
                 frisby.create('Activity Plan: delete the created activityPlan again')
                     .delete(URL + '/activityplans/' + newPlan.id)
+                    .auth('test_ind1', 'yp')
                     .expectStatus(200)
                     .after(function () {
 
                         frisby.create('Activity Plan: GET this activity plan by Id again und check whether it is not there anymore')
                             .get(URL + '/activityplans/' + newPlan.id)
+                            .auth('test_ind1', 'yp')
                             .expectStatus(204)
                             .toss();
 
 
                         frisby.create('Activity Plan: GET all activityplans again and check whether the plan has really been deleted')
                             .get(URL + '/activityplans')
+                            .auth('test_ind1', 'yp')
                             .expectStatus(200)
                             .expectJSON('*', {
                                 id: String,
@@ -95,7 +98,7 @@ frisby.create('Activity Plan: plan once activity and check whether event is gene
 
 frisby.create('Activity Plan: plan weekly activity and check whether events are generated, with EndBy: after 6')
     .post(URL + '/activityplans', {
-        "owner": consts.users.unittest.id,
+        "owner": consts.users.test_ind1.id,
         "activity": "5278c6adcdeab69a2500001e",
         "visibility": "public",
         "executionType": "group",
@@ -115,6 +118,7 @@ frisby.create('Activity Plan: plan weekly activity and check whether events are 
         },
         "status": "active"
     })
+    .auth('test_ind2', 'yp')
     .expectStatus(201)
     .afterJSON(function (newPlan) {
         expect(newPlan.events).toBeDefined();
@@ -129,6 +133,7 @@ frisby.create('Activity Plan: plan weekly activity and check whether events are 
 
         frisby.create('Activity Plan: Update an Event without comment')
             .put(URL + '/activityplans/' + newPlan[0].id + '/events/' + newPlan[0].events[0].id, {feedback: 5, status: 'done'}, {json: true})
+            .auth('test_ind2', 'yp')
             .expectStatus(200)
             .afterJSON(function (updatedEvent) {
                 var nrOfComments = plans[0].events[0].comments.length;
@@ -137,6 +142,7 @@ frisby.create('Activity Plan: plan weekly activity and check whether events are 
 
                 frisby.create('Activity Plan: Get plan again and check whether feedback is updated')
                     .get(URL + '/activityplans/' + newPlan[0].id)
+                    .auth('test_ind2', 'yp')
                     .expectStatus(200)
                     .afterJSON(function (reloadedPlan) {
                         expect(reloadedPlan.events[0].feedback).toEqual(5);
@@ -146,12 +152,14 @@ frisby.create('Activity Plan: plan weekly activity and check whether events are 
                             {"feedback": "2", "comments": [
                                 {"text": "new Text from UnitTest"}
                             ]}, {json: true})
+                            .auth('test_ind2', 'yp')
                             .expectStatus(200)
                             .afterJSON(function (newUpdatedEvent) {
                                 expect(newUpdatedEvent.comments.length).toEqual(nrOfComments + 1);
                                 expect(newUpdatedEvent.feedback).toEqual(2);
                                 frisby.create('Activity Plan: delete again')
                                     .delete(URL + '/activityplans/' + newPlan.id)
+                                    .auth('test_ind2', 'yp')
                                     .expectStatus(200)
                                     .toss();
                             })
@@ -167,8 +175,9 @@ frisby.create('Activity Plan: plan weekly activity and check whether events are 
     });
 
 frisby.create('Activity Plan: plan daily activity and check whether events are generated, with EndBy: after 6')
+    .auth('test_ind3', 'yp')
     .post(URL + '/activityplans', {
-        "owner": consts.users.unittest.id,
+        "owner": consts.users.test_ind3.id,
         "activity": consts.groupActivity.id,
         "visibility": "public",
         "executionType": "group",
@@ -197,9 +206,9 @@ frisby.create('Activity Plan: plan daily activity and check whether events are g
 
         frisby.create('Activity Plan: let another user join this plan')
             .removeHeader('Authorization')
-            .auth(consts.users.reto.username, consts.users.reto.password)
+            .auth('test_ind2', 'yp')
             .post(URL + '/activityplans', {
-                "owner": consts.users.reto.id,
+                "owner": consts.users.test_ind2.id,
                 "activity": consts.groupActivity.id,
                 "visibility": "public",
                 "executionType": "group",
@@ -226,7 +235,7 @@ frisby.create('Activity Plan: plan daily activity and check whether events are g
                 expect(joiningPlan.masterPlan).toEqual(newPlan.id);
 
                 frisby.create('Activity Plan: reload masterPlan from server')
-                    .auth(consts.users.unittest.username, consts.users.unittest.password)
+                    .auth('test_ind3', 'yp')
                     .get(URL + '/activityplans/' + newPlan.id)
                     .expectStatus(200)
                     .afterJSON(function (reloadedNewPlan) {
@@ -246,15 +255,17 @@ frisby.create('Activity Plan: plan daily activity and check whether events are g
                             })
                             .toss();
 
-                        consts.users.unittest.preferences.workingDays = ['MO', 'TU', 'WE'];
+                        consts.users.test_ind1.preferences.workingDays = ['MO', 'TU', 'WE'];
 
                         frisby.create('Activity Plan: update user preferences to workdays only MO-WE and plan DAILY activity')
-                            .put(URL + '/users/' + consts.users.unittest.id, consts.users.unittest)
+                            .put(URL + '/users/' + consts.users.test_ind1.id, consts.users.test_ind1)
+                            .auth('test_ind1', 'yp')
                             .expectStatus(200)
                             .afterJSON(function(updatedUser) {
                                 frisby.create('Activity Plan: plan a daily activity for user only working MO, TU, WE')
+                                    .auth('test_ind1', 'yp')
                                     .post(URL + '/activityplans', {
-                                        "owner": consts.users.unittest.id,
+                                        "owner": consts.users.test_ind1.id,
                                         "activity": consts.groupActivity.id,
                                         "visibility": "public",
                                         "executionType": "group",
@@ -284,16 +295,18 @@ frisby.create('Activity Plan: plan daily activity and check whether events are g
                                         });
                                         console.log(newPlan);
 
-                                        consts.users.unittest.preferences.workingDays = [];
+                                        consts.users.test_ind1.preferences.workingDays = [];
 
                                         frisby.create('Activity Plan: reset user')
-                                            .put(URL + '/users/' + consts.users.unittest.id, consts.users.unittest)
+                                            .auth('test_ind1', 'yp')
+                                            .put(URL + '/users/' + consts.users.test_ind1.id, consts.users.test_ind1)
                                             .expectStatus(200)
                                             .toss();
 
 
                                         frisby.create('Activity Plan: delete plan 3')
                                             .delete(URL + '/activityplans/' + newPlan.id)
+                                            .auth('test_ind1', 'yp')
                                             .expectStatus(200)
                                             .toss();
 

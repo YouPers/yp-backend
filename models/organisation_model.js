@@ -13,7 +13,7 @@ var OrganizationSchema = common.newSchema({
     address: {type: String, trim: true},
     sector: {type: String, trim: true},
     nrOfEmployees: {type: String, trim: true},
-    administrators: {type: [{ type: ObjectId}]},
+    administrators: {type: [{ type: ObjectId, ref: 'User'}]},
     avatar: {type: String}
 });
 

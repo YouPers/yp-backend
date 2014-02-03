@@ -5,7 +5,8 @@
 var roles = {
         anonymous: 'anonymous',
         individual: 'individual',
-        healthpromoter: 'healthpromoter',
+        orgadmin: 'orgadmin',
+        campaignlead: 'campaignlead',
         productadmin: 'productadmin',
         systemadmin: 'systemadmin'
     },

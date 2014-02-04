@@ -171,6 +171,10 @@ function putActivityEvent(req, res, next) {
             });
         };
 
+        // set plan status to 'old' if no more events are 'open'
+        if(planFromDb.status === 'active' && !_.any(planFromDb.events, {status: 'open'})) {
+            planFromDb.status = 'old';
+        }
 
         if (newComments && newComments.length > 0) {
             newComments.forEach(function (comment) {

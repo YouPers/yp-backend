@@ -18,7 +18,7 @@ var testUser = {
     fullname: 'Testing Unittest',
     firstname: 'Testing',
     lastname: 'Unittest',
-    email: 'yp-test-user@gmail.com',
+    email: 'ypunittest1+newtestuser@gmail.com',
     password: 'nopass',
     preferences: {
         workingDays: ['MO', 'TU', 'WE', 'TH']

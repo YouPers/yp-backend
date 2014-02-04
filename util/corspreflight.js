@@ -19,7 +19,7 @@ module.exports = function (server) {
             res.header('Access-Control-Allow-Methods', req.headers['access-control-request-method']);
             res.header('Access-Control-Max-Age', '3000');
             if (req.log) {
-                req.log.info({
+                req.log.debug({
                     url: req.url,
                     method: req.headers['access-control-request-method']
                 }, "Preflight");

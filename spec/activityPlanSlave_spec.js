@@ -14,13 +14,13 @@ var consts = require('./testconsts');
 
 frisby.globalSetup({ // globalSetup is for ALL requests
     request: {
-        headers: { 'X-Auth-Token': 'fa8426a0-8eaf-4d22-8e13-7c1b16a9370c',
-            Authorization: 'Basic dW5pdHRlc3Q6dGVzdA==' }
+        json:true,
+        headers: {}
     }
 });
 
 var masterPlan = {
-    "owner": consts.users.unittest.id,
+    "owner": consts.users.test_ind1.id,
     "activity": consts.groupActivity.id,
     "visibility": "public",
     "executionType": "group",
@@ -42,6 +42,7 @@ var masterPlan = {
 };
 
 frisby.create('Activity Plan Slave: plan weekly activity as a master for a joining test')
+    .auth('test_ind1', 'yp')
     .post(URL, masterPlan)
     .expectStatus(201)
     .afterJSON(function (masterPlanPostAnswer) {
@@ -57,10 +58,10 @@ frisby.create('Activity Plan Slave: plan weekly activity as a master for a joini
         delete slavePlan.id;
         delete slavePlan.events;
         delete slavePlan.joiningUsers;
-        slavePlan.owner = consts.users.reto.id;
+        slavePlan.owner = consts.users.test_ind2.id;
 
         frisby.create('Activity Plan Slave: post a joining plan ')
-            .auth(consts.users.reto.username, consts.users.reto.password)
+            .auth('test_ind2', 'yp')
             .post(URL + '?populate=joiningUsers', slavePlan)
             .expectStatus(201)
             .afterJSON(function (slavePlanPostAnswer) {
@@ -74,6 +75,7 @@ frisby.create('Activity Plan Slave: plan weekly activity as a master for a joini
                 //    .put(URL + )
 
                 frisby.create('Activity Plan Slave: reload masterPlan')
+                    .auth('test_ind1', 'yp')
                     .get(URL + '/' + slavePlan.masterPlan)
                     .expectStatus(200)
                     .afterJSON(function (masterPlanReloaded) {
@@ -84,7 +86,7 @@ frisby.create('Activity Plan Slave: plan weekly activity as a master for a joini
 
                 frisby.create('Activity Plan Slave: reload slavePlan')
                     .get(URL + '/' + slavePlanPostAnswer.id)
-                    .auth(consts.users.reto.username, consts.users.reto.password)
+                    .auth('test_ind2', 'yp')
                     .expectStatus(200)
                     .afterJSON(function (slavePlanReloaded) {
                         expect(slavePlanReloaded.masterPlan).toEqual(slavePlan.masterPlan);
@@ -92,7 +94,7 @@ frisby.create('Activity Plan Slave: plan weekly activity as a master for a joini
                         expect(slavePlanReloaded.joiningUsers).not.toContain(slavePlanPostAnswer.owner);
 
                         frisby.create('Activity Plan Slave: update Event on Slave, add comment')
-                            .auth('reto','reto')
+                            .auth('test_ind2', 'yp')
                             .put(URL + '/' + slavePlanReloaded.id + '/events/' + slavePlanReloaded.events[0].id,
                             {"feedback": "2", "comments": [
                                 {"text": "new Text from UnitTest"}
@@ -106,7 +108,7 @@ frisby.create('Activity Plan Slave: plan weekly activity as a master for a joini
 
                                 frisby.create('Activity Plan Slave: reload slavePlan and check whether we have the comment')
                                     .get(URL + '/' + slavePlanPostAnswer.id + '?populate=events.comments')
-                                    .auth(consts.users.reto.username, consts.users.reto.password)
+                                    .auth('test_ind2', 'yp')
                                     .expectStatus(200)
                                     .afterJSON(function (slavePlanReloadedAgain) {
                                         expect(slavePlanReloadedAgain.events[0].comments).toBeDefined();
@@ -123,6 +125,7 @@ frisby.create('Activity Plan Slave: plan weekly activity as a master for a joini
 
                                 frisby.create('Activity Plan Slave: reload masterPlan and check whether we see the comment that was made on a slave and whether the joiningUsers Array is still correct')
                                     .get(URL + '/' + slavePlanReloaded.masterPlan + '?populate=events.comments')
+                                    .auth('test_ind1', 'yp')
                                     .expectStatus(200)
                                     .afterJSON(function (masterPlanReloadedAgain) {
                                         expect(masterPlanReloadedAgain.events[0].comments).toBeDefined();

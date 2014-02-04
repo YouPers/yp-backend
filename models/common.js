@@ -7,7 +7,9 @@
  */
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
-    _ = require('lodash');
+    _ = require('lodash'),
+    env = process.env.NODE_ENV || 'development',
+    config = require('../config/config')[env];
 
 module.exports = {
 
@@ -40,7 +42,7 @@ module.exports = {
                     ret.editStatus = doc.editStatus;
                 }
 
-                if (doc.toJsonConfig  && doc.toJsonConfig.hide) {
+                if (doc.toJsonConfig && doc.toJsonConfig.hide) {
                     _.forEach(doc.toJsonConfig.hide, function (propertyToHide) {
                         delete ret[propertyToHide];
                     });
@@ -62,7 +64,7 @@ module.exports = {
             var swaggerModels = {};
 
             function createAndRegisterNewSwaggerModel(modelName) {
-                var newModel =  {
+                var newModel = {
                     id: modelName,
                     required: ['id'],
                     properties: {
@@ -170,7 +172,7 @@ module.exports = {
 
             function getModelNameFromPropertyName(propertyName, dontDepluralize) {
                 return _.last(propertyName) === 's' && !dontDepluralize ?
-                      propertyName.charAt(0).toUpperCase() + propertyName.slice(1, -1)
+                    propertyName.charAt(0).toUpperCase() + propertyName.slice(1, -1)
                     : propertyName.charAt(0).toUpperCase() + propertyName.slice(1);
             }
 
@@ -190,7 +192,7 @@ module.exports = {
                         var parts = nestedPath.split('.');
                         var combinedPath = '';
                         var parentModel = targetModel;
-                        for (var i= 0; i< parts.length; i++) {
+                        for (var i = 0; i < parts.length; i++) {
                             combinedPath = combinedPath ? combinedPath + '.' + parts[i] : parts[i];
                             if (!nestedSwaggerModels[combinedPath]) {
                                 var modelName = getModelNameFromPropertyName(parts[i], true);
@@ -207,8 +209,8 @@ module.exports = {
                         var realTargetModel = targetModel;
                         var realPropertyName = propertyName;
                         if (propertyName.indexOf('.') !== -1) {
-                            realTargetModel = nestedSwaggerModels[propertyName.substring(0, _.lastIndexOf(propertyName,'.'))];
-                            realPropertyName = propertyName.substring(_.lastIndexOf(propertyName,'.')+1);
+                            realTargetModel = nestedSwaggerModels[propertyName.substring(0, _.lastIndexOf(propertyName, '.'))];
+                            realPropertyName = propertyName.substring(_.lastIndexOf(propertyName, '.') + 1);
                         }
                         var type = path.options.type;
                         var subModelName;
@@ -268,7 +270,7 @@ module.exports = {
         questionType: "oneSided twoSided".split(' '),
 
         // Profile related enums
-        gender: "undefined female male".split(' ')                         ,
+        gender: "undefined female male".split(' '),
         maritalStatus: "undefined single unmarried married separated divorced widowed".split(' '),
 
         // Preference related enums
@@ -278,54 +280,59 @@ module.exports = {
     },
 
     initializeDbFor: function InitializeDbFor(Model) {
-        Model.find().exec(function (err, col) {
-            if (err) {
-                throw err;
-            }
-            if (col.length === 0) {
+        if (config.loadTestData) {
+            // load all existing objects
+            Model.count().exec(function (err, count) {
+                if (err) {
+                    throw err;
+                }
                 var filename = '../dbdata/' + Model.modelName + '.json';
                 var jsonFromFile;
                 try {
                     jsonFromFile = require(filename);
                 } catch (Error) {
-                    console.log(Error);
+                    // silent fail, because if we did not find the file, there is nothing to load. This is expected
+                    // for some objects.
                 }
                 if (jsonFromFile) {
-                    console.log(Model.modelName + ": initializing Database from File: " + filename);
-                    if (!Array.isArray(jsonFromFile)) {
-                        jsonFromFile = [jsonFromFile];
-                    }
-                    jsonFromFile.forEach(function (jsonObj) {
-                        if (jsonObj.id) {
-                            jsonObj._id = jsonObj.id;
+                    if (jsonFromFile.length !== count) {
+                        console.log(Model.modelName + ": initializing Database from File: " + filename);
+                        if (!Array.isArray(jsonFromFile)) {
+                            jsonFromFile = [jsonFromFile];
                         }
-                        var newObj = new Model(jsonObj);
+                        jsonFromFile.forEach(function (jsonObj) {
+                            if (jsonObj.id) {
+                                jsonObj._id = jsonObj.id;
+                            }
+                            var newObj = new Model(jsonObj);
 
-                        newObj.save(function (err) {
-                            if (err) {
-                                console.log(err.message);
-                                throw err;
-                            }
-                            // fix for User Password hashing of imported users that already have an id in the json...
-                            if (newObj.modelName = 'User' && !newObj.hashed_password) {
-                                newObj.password = jsonObj.password;
-                                newObj.save(function (err) {
-                                    if (err) {
-                                        console.log(err.message);
-                                        throw err;
-                                    }
-                                });
-                            }
+                            newObj.save(function (err) {
+                                if (err) {
+                                    console.log(err.message);
+                                    throw err;
+                                }
+                                // fix for User Password hashing of imported users that already have an id in the json...
+                                if (newObj.modelName = 'User' && !newObj.hashed_password) {
+                                    newObj.password = jsonObj.password;
+                                    newObj.save(function (err) {
+                                        if (err) {
+                                            console.log(err.message);
+                                            throw err;
+                                        }
+                                    });
+                                }
+                            });
                         });
-                    });
+                    } else {
+                        console.log(Model.modelName + ": no initialization, correct number of instances already in Database");
+                    }
                 } else {
-                    console.log(Model.modelName + ": no initialization, because no file found: " + filename);
+                    console.log(Model.modelName + ": no initialization, because no load file exists for this Model");
                 }
-            } else {
-                console.log(Model.modelName + ": no initialization needed, as we already have entities (" + col.length + ")");
-            }
-        });
-
+            });
+        } else {
+            console.log("no DB initialization because it is disabled for this enviroment");
+        }
     }
-}
-;
+
+};

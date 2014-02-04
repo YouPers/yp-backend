@@ -48,6 +48,25 @@ module.exports = function (swagger, config) {
         action: generic.getByIdFn(baseUrl, Organization)
     });
 
+    swagger.addGet({
+        spec: {
+            description: "Return all organizations administrated by the authenticated user",
+            path: baseUrl,
+            notes: "returns all organizations for the authenticated user",
+            summary: "returns all organizations for the authenticated user",
+            params: [generic.params.sort,
+                generic.params.limit,
+                generic.params.filter,
+                generic.params.populate,
+                generic.params.populatedeep],
+            method: "GET",
+            "responseClass": "Organization",
+            "nickname": "getOrganizations",
+            accessLevel: 'al_individual' // orgadmin's about to be need this check too
+        },
+        action: organizationHandlers.getAllForUserFn(baseUrl, Organization)
+    });
+
     swagger.addDelete({
         spec: {
             description: "Delete organization",

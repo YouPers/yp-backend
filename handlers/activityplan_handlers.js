@@ -402,48 +402,68 @@ function postActivityPlanInvite(req, res, next) {
 }
 
 function deleteActivityPlan(req, res, next) {
-    var myUser = req.user;
-    var myUserEmail = req.user.email;
 
     ActivityPlanModel.findById(req.params.id).populate('activity').exec(function (err, activityPlan) {
-
-        // private functions
-        var _removeCallback = function (err) {
-            if (err) {
-                return next(err);
-            }
-            var myIcalString = getIcalObject(activityPlan, myUser, calendarCancel).toString();
-            email.sendCalInvite(myUserEmail, 'Termin gestrichen: YouPers Kalendar Eintrag', myIcalString);
-            res.send(200);
-            return next();
-        };
-
         if (err) {
             return next(err);
         }
         if (!activityPlan) {
             return next(new restify.InvalidArgumentError('No ActivityPlan found for id: ' + req.params.id));
         }
-        if (auth.checkAccess(req.user, auth.accessLevels.al_systemadmin)) {
-            activityPlan.remove(_removeCallback);
-        } else if (activityPlan.deleteStatus === ActivityPlanModel.activityPlanCompletelyDeletable) {
-            activityPlan.remove(_removeCallback);
-        } else if (activityPlan.deleteStatus === ActivityPlanModel.activityPlanOnlyFutureEventsDeletable) {
-            // delete  all future events, set activityPlan to "Done", send cancellations for deleted events
-            var now = new Date();
-            var tempEvents = activityPlan.events.slice();
-            tempEvents.forEach(function(event) {
-                if (event.begin > now && event.end > now) {
-                    // start and end date in the future, so delete event and send cancellation
-                    activityPlan.events.id(event.id).remove();
-                }
-            });
-            activityPlan.status = "old";
-            activityPlan.save(_removeCallback);
-        } else {
-            return next(new restify.ConflictError('This plan cannot be deleted'));
-        }
 
+
+        // we need the owner of the plan to send him a cancellation to his email address
+        mongoose.model('User').findById(activityPlan.owner).select('+email').exec(function(err, owner) {
+            if (err) {
+                return next(err);
+            }
+
+            if (!owner) {
+                return next(new restify.InvalidArgumentError('Plan Owner not found'));
+            }
+
+            ////////////////////
+            // private functions
+            var _removeCallback = function (err) {
+                if (err) {
+                    return next(err);
+                }
+                var myIcalString = getIcalObject(activityPlan, owner, calendarCancel).toString();
+                email.sendCalInvite(owner.email, 'Termin gestrichen: YouPers Kalendar Eintrag', myIcalString);
+                res.send(200);
+                return next();
+            };
+            ///////////////////
+
+
+            // plan can be deleted if user is systemadmin or if it is his own plan
+            if (auth.checkAccess(req.user, auth.accessLevels.al_systemadmin)) {
+                activityPlan.remove(_removeCallback);
+            } else if (owner._id.equals(req.user._id)) {
+
+                // check deleteStatus
+                if (activityPlan.deleteStatus === ActivityPlanModel.activityPlanCompletelyDeletable) {
+                    activityPlan.remove(_removeCallback);
+                } else if (activityPlan.deleteStatus === ActivityPlanModel.activityPlanOnlyFutureEventsDeletable) {
+                    // delete  all future events, set activityPlan to "Done", send cancellations for deleted events
+                    var now = new Date();
+                    var tempEvents = activityPlan.events.slice();
+                    tempEvents.forEach(function(event) {
+                        if (event.begin > now && event.end > now) {
+                            // start and end date in the future, so delete event and send cancellation
+                            activityPlan.events.id(event.id).remove();
+                        }
+                    });
+                    activityPlan.status = "old";
+                    activityPlan.save(_removeCallback);
+                } else {
+                    return next(new restify.ConflictError('This plan cannot be deleted'));
+                }
+
+            } else {
+                return next(new restify.NotAuthorizedError('User not authorized to delete this plan'));
+            }
+        });
     });
 }
 

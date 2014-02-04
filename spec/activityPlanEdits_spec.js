@@ -14,13 +14,13 @@ var consts = require('./testconsts');
 
 frisby.globalSetup({ // globalSetup is for ALL requests
     request: {
-        headers: { 'X-Auth-Token': 'fa8426a0-8eaf-4d22-8e13-7c1b16a9370c',
-            Authorization: 'Basic dW5pdHRlc3Q6dGVzdA==' }
+        json:true,
+        headers: {}
     }
 });
 
 var activityPlan = {
-    "owner": consts.users.unittest.id,
+    "owner": consts.users.test_ind1.id,
     "activity": consts.groupActivity.id,
     "location": "",         // set afterward within the specific test cases
     "visibility": "",       // set afterward within the specific test cases
@@ -62,6 +62,7 @@ activityPlan.mainEvent.end = dateEnd;
 activityPlan.mainEvent.frequency = "once";
 
 frisby.create('Activity Plan Edits: create a single activity plan with a single event')
+    .auth('test_ind1', 'yp')
     .post(URL, activityPlan)
     .expectStatus(201)
     .afterJSON(function (activityPlanPostAnswer) {
@@ -84,6 +85,7 @@ frisby.create('Activity Plan Edits: create a single activity plan with a single 
         editedPlan.visibility = testVisibility;
 
         frisby.create('Activity Plan Edits: update plan with modified location and visibily, id: ' + activityPlanPostAnswer.id)
+            .auth('test_ind1', 'yp')
             .put(URL + '/' + activityPlanPostAnswer.id, {
                 "location": testLocation,
                 "visibility": testVisibility
@@ -104,6 +106,7 @@ frisby.create('Activity Plan Edits: create a single activity plan with a single 
                 console.log (editedPlan.mainEvent.end);
 
                 frisby.create('Activity Plan Edits: update plan with more than one event, id: ' + activityPlanPutAnswer.id)
+                    .auth('test_ind1', 'yp')
                     .put(URL + '/' + activityPlanPutAnswer.id, editedPlan)
                     .expectStatus(201)
                     .afterJSON(function (activityPlanPutAnswer2) {
@@ -113,6 +116,7 @@ frisby.create('Activity Plan Edits: create a single activity plan with a single 
 
                         // delete activity plan
                         frisby.create('Activity Plan Edits: delete activity plan')
+                            .auth('test_ind1', 'yp')
                             .delete(URL + '/' + activityPlanPutAnswer2.id)
                             .expectStatus(200)
                             .toss();
@@ -135,6 +139,7 @@ frisby.create('Activity Plan Edits: create a single activity plan with a single 
                         activityPlan.mainEvent.end = dateEnd;
                         activityPlan.mainEvent.frequency = "once";
                         frisby.create('Activity Plan Edits: create a single activity plan with a single event')
+                            .auth('test_ind1', 'yp')
                             .post(URL, activityPlan)
                             .expectStatus(201)
                             .afterJSON(function (activityPlanPostAnswer) {
@@ -150,6 +155,7 @@ frisby.create('Activity Plan Edits: create a single activity plan with a single 
 
                                 frisby.create('Activity Plan Edits: try to update plan with more than one event, id: ' + activityPlanPostAnswer.id)
                                     .put(URL + '/' + activityPlanPostAnswer.id, editedPlan)
+                                    .auth('test_ind1', 'yp')
                                     .expectStatus(409)
                                     .afterJSON(function (activityPlanPutAnswer) {
 
@@ -179,6 +185,7 @@ frisby.create('Activity Plan Edits: create a single activity plan with a single 
                                         activityPlan.mainEvent.frequency = "once";
                                         frisby.create('Activity Plan Edits: create a single activity plan with a single event to be used as master plan')
                                             .post(URL, activityPlan)
+                                            .auth('test_ind1', 'yp')
                                             .expectStatus(201)
                                             .afterJSON(function (activityPlanPostAnswer) {
 
@@ -191,10 +198,10 @@ frisby.create('Activity Plan Edits: create a single activity plan with a single 
                                                 delete slavePlan.id;
                                                 delete slavePlan.events;
                                                 delete slavePlan.joiningUsers;
-                                                slavePlan.owner = consts.users.reto.id;
+                                                slavePlan.owner = consts.users.test_ind2.id;
 
                                                 frisby.create('Activity Plan Edits: post a joining plan ')
-                                                    .auth(consts.users.reto.username, consts.users.reto.password)
+                                                    .auth('test_ind2', 'yp')
                                                     .post(URL + '?populate=joiningUsers', slavePlan)
                                                     .expectStatus(201)
                                                     .afterJSON(function (slavePlanPostAnswer) {
@@ -208,6 +215,7 @@ frisby.create('Activity Plan Edits: create a single activity plan with a single 
                                                         slavePlan.mainEvent.frequency = "week";
 
                                                         frisby.create('Activity Plan Edits: try to update joined plan, id: ' + slavePlanPostAnswer.id)
+                                                            .auth('test_ind2', 'yp')
                                                             .put(URL + '/' + slavePlanPostAnswer.id, slavePlan)
                                                             .expectStatus(409)
                                                             .afterJSON(function (activityPlanPutAnswer) {
@@ -215,6 +223,7 @@ frisby.create('Activity Plan Edits: create a single activity plan with a single 
                                                                 // now try to modify something even though it is not allowed to update this master plan
 
                                                                 frisby.create('Activity Plan Edits: reload masterPlan')
+                                                                    .auth('test_ind1', 'yp')
                                                                     .get(URL + '/' + masterPlanId)
                                                                     .expectStatus(200)
                                                                     .afterJSON(function (masterPlanReloaded) {
@@ -223,6 +232,7 @@ frisby.create('Activity Plan Edits: create a single activity plan with a single 
                                                                         masterPlanReloaded.mainEvent.frequency = "week";
 
                                                                         frisby.create('Activity Plan Edits: try to update master plan, id: ' + masterPlanReloaded.id)
+                                                                            .auth('test_ind1', 'yp')
                                                                             .put(URL + '/' + masterPlanReloaded.id, masterPlanReloaded)
                                                                             .expectStatus(409)
                                                                             .afterJSON(function (activityPlanPutAnswer) {

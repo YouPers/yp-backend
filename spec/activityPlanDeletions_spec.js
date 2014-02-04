@@ -14,13 +14,14 @@ var consts = require('./testconsts');
 
 frisby.globalSetup({ // globalSetup is for ALL requests
     request: {
-        headers: { 'X-Auth-Token': 'fa8426a0-8eaf-4d22-8e13-7c1b16a9370c',
-            Authorization: 'Basic dW5pdHRlc3Q6dGVzdA==' }
+        json:true,
+        headers: {}
     }
 });
 
+
 var masterPlan = {
-    "owner": consts.users.unittest.id,
+    "owner": consts.users.test_ind1.id,
     "activity": consts.groupActivity.id,
     "visibility": "public",
     "executionType": "group",
@@ -43,6 +44,7 @@ var masterPlan = {
 
 frisby.create('Activity Plan Deletions: create a master plan for an activity plan deletion test')
     .post(URL, masterPlan)
+    .auth('test_ind1', 'yp')
     .expectStatus(201)
     .afterJSON(function (masterPlanPostAnswer) {
 
@@ -56,16 +58,17 @@ frisby.create('Activity Plan Deletions: create a master plan for an activity pla
         delete slavePlan.id;
         delete slavePlan.events;
         delete slavePlan.joiningUsers;
-        slavePlan.owner = consts.users.reto.id;
+        slavePlan.owner = consts.users.test_ind2.id;
 
         frisby.create('Activity Plan Deletions: post a joining plan ')
-            .auth(consts.users.reto.username, consts.users.reto.password)
+            .auth('test_ind2', 'yp')
             .post(URL + '?populate=joiningUsers', slavePlan)
             .expectStatus(201)
             .afterJSON(function (slavePlanPostAnswer) {
                 expect(slavePlanPostAnswer.deleteStatus).toEqual('ACTIVITYPLAN_NOT_DELETABLE_JOINED_PLAN');
 
                 frisby.create('Activity Plan Deletions: reload masterPlan')
+                    .auth('test_ind1', 'yp')
                     .get(URL + '/' + masterPlanId)
                     .expectStatus(200)
                     .afterJSON(function (masterPlanReloaded) {
@@ -73,6 +76,7 @@ frisby.create('Activity Plan Deletions: create a master plan for an activity pla
 
                         // try to delete "undeletable" slave plan
                         frisby.create('Activity Plan Deletions: try delete slave')
+                            .auth('test_ind2', 'yp')
                             .delete(URL + '/' + slavePlanPostAnswer.id)
                             .expectStatus(409)
                             .toss();
@@ -80,6 +84,7 @@ frisby.create('Activity Plan Deletions: create a master plan for an activity pla
                         // try to delete "undeletable" master plan
                         frisby.create('Activity Plan Deletions: try delete master')
                             .delete(URL + '/' + masterPlanReloaded.id)
+                            .auth('test_ind1', 'yp')
                             .expectStatus(409)
                             .toss();
 
@@ -108,6 +113,7 @@ frisby.create('Activity Plan Deletions: create a master plan for an activity pla
 
                         frisby.create('Activity Plan Deletions: create activity plan with one event in the past')
                             .post(URL, masterPlan)
+                            .auth('test_ind1', 'yp')
                             .expectStatus(201)
                             .afterJSON(function (masterPlanPostAnswer){
 
@@ -116,10 +122,12 @@ frisby.create('Activity Plan Deletions: create a master plan for an activity pla
                                 // delete by removing future events
                                 frisby.create('Activity Plan Deletions: delete future events')
                                     .delete(URL + '/' + masterPlanPostAnswer.id)
+                                    .auth('test_ind1', 'yp')
                                     .expectStatus(200)
                                     .toss();
 
                                 frisby.create('Activity Plan Deletions: reload masterPlan')
+                                    .auth('test_ind1', 'yp')
                                     .get(URL + '/' + masterPlanPostAnswer.id)
                                     .expectStatus(200)
                                     .afterJSON(function (masterPlanReloaded) {
@@ -130,7 +138,7 @@ frisby.create('Activity Plan Deletions: create a master plan for an activity pla
                                             .delete(URL + '/' + masterPlanPostAnswer.id)
                                             .auth('sysadm','backtothefuture')
                                             .expectStatus(200)
-                                            .toss()
+                                            .toss();
 
                                         pastDateStart = new Date();
                                         pastDateStart.setDate(pastDateStart.getDate()-30);
@@ -143,6 +151,7 @@ frisby.create('Activity Plan Deletions: create a master plan for an activity pla
 
                                         frisby.create('Activity Plan Deletions: create activity plan with all events in the past')
                                             .post(URL, masterPlan)
+                                            .auth('test_ind1', 'yp')
                                             .expectStatus(201)
                                             .afterJSON(function (masterPlanPostAnswer){
 
@@ -151,6 +160,7 @@ frisby.create('Activity Plan Deletions: create a master plan for an activity pla
                                                 // try deleting undeletable activity plan
                                                 frisby.create('Activity Plan Deletions: delete future events')
                                                     .delete(URL + '/' + masterPlanPostAnswer.id)
+                                                    .auth('test_ind1', 'yp')
                                                     .expectStatus(409)
                                                     .toss();
 

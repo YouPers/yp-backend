@@ -7,10 +7,8 @@ var consts = require('./testconsts');
 
 frisby.globalSetup({ // globalSetup is for ALL requests
     request: {
-        headers: { 'X-Auth-Token': 'fa8426a0-8eaf-4d22-8e13-7c1b16a9370c',
-            Authorization: 'Basic dW5pdHRlc3Q6dGVzdA=='
-        },
-        json:true
+        json:true,
+        headers: {}
     }
 });
 
@@ -24,11 +22,13 @@ var testOrganization = {
 
 frisby.create('organization: POST new organization')
     .post(URL + '/organizations', testOrganization)
+    .auth('test_ind1', 'yp')
     .expectStatus(201)
     .afterJSON(function (newOrganization) {
 
         frisby.create('organization: GET just our test organization')
             .get(URL + '/organizations/' + newOrganization.id)
+            .auth('test_ind1', 'yp')
             .expectStatus(200)
             .afterJSON(function (organization) {
 

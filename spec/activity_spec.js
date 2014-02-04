@@ -6,9 +6,8 @@ var consts = require('./testconsts');
 
 frisby.globalSetup({ // globalSetup is for ALL requests
     request: {
-        headers: { 'X-Auth-Token': 'fa8426a0-8eaf-4d22-8e13-7c1b16a9370c',
-            Authorization: 'Basic dW5pdHRlc3Q6dGVzdA==' },
-        json:true
+        json:true,
+        headers: {}
     }
 });
 
@@ -36,7 +35,7 @@ frisby.create('GET all activites')
                 // Use data from previous result in next test
                 frisby.create('Put an Update to single Activity')
                     .put(URL + '/activities/' +activity.id, activity)
-                    .auth('stefan','stefan')
+                    .auth('test_prodadm','yp')
                     .expectStatus(200)
                     .toss();
             })

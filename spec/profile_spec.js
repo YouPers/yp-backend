@@ -12,8 +12,8 @@ var consts = require('./testconsts');
 
 frisby.globalSetup({ // globalSetup is for ALL requests
     request: {
-        headers: { 'X-Auth-Token': 'fa8426a0-8eaf-4d22-8e13-7c1b16a9370c',
-            Authorization: 'Basic dW5pdHRlc3Q6dGVzdA==' }
+        json:true,
+        headers: {}
     }
 });
 
@@ -57,7 +57,7 @@ frisby.create('POST new user')
         fullname:'Profile Unittest',
         firstname: 'Testing',
         lastname: 'zzzProfileUnittest',
-        email: 'yp-test-user7@gmail.com',
+        email: 'ypunittest1+zzzprofileuser@gmail.com',
         password:'nopass'})
     .expectStatus(201)
     .afterJSON(function(newUser) {

@@ -36,11 +36,11 @@ frisby.create('organization: POST new organization')
                 expect(organization.administrators).toBeDefined();
                 expect(organization.administrators.length).toEqual(1);
 
-                frisby.create('organization: DELETE our test organization')
-                    .auth('sysadm', 'backtothefuture')
-                    .delete(URL+ '/organizations/' + organization.id)
-                    .expectStatus(200)
-                    .toss();
+//                frisby.create('organization: DELETE our test organization')
+//                    .auth('sysadm', 'backtothefuture')
+//                    .delete(URL+ '/organizations/' + organization.id)
+//                    .expectStatus(200)
+//                    .toss();
 
             })
             .toss();

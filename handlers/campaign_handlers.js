@@ -1,4 +1,10 @@
-var stats = require('../util/stats');
+var stats = require('../util/stats'),
+    handlerUtils = require('./handlerUtils'),
+    auth = require('../util/auth'),
+    _ = require('lodash'),
+    restify = require('restify'),
+    mongoose = require('mongoose'),
+    Campaign = mongoose.model('Campaign');
 
 var getCampaignStats = function (baseUrl, Model) {
     return function (req, res, next) {
@@ -25,6 +31,55 @@ var getCampaignStats = function (baseUrl, Model) {
     };
 };
 
+var postFn = function (baseUrl) {
+    return function (req, res, next) {
+
+        var err = handlerUtils.checkWritingPreCond(req, Campaign);
+
+        if (err) {
+            return next(err);
+        }
+
+        if(!req.body) {
+            return next(new restify.InvalidArgumentError('no body found'));
+        }
+        var obj = new Campaign(req.body);
+
+
+        // TODO: update user roles
+
+        obj.campaignLeads = [req.user.id];
+
+        if(!_.contains(req.user.roles, auth.roles.campaignlead)) {
+            req.user.roles.push(auth.roles.campaignlead);
+        }
+
+        req.user.save(function(err) {
+            if(err) {
+                return next(err);
+            }
+        });
+
+
+        req.log.trace(obj, 'PostFn: Saving new Campaign object');
+
+        // try to save the new campaign object
+        obj.save(function (err) {
+            if (err) {
+                req.log.info({Error: err}, 'Error Saving in PostFn (Campaign)');
+                err.statusCode = 409;
+                return next(err);
+            }
+
+            res.header('location', baseUrl + '/' + obj._id);
+            res.send(201, obj);
+            return next();
+        });
+
+    };
+};
+
 module.exports = {
-    getCampaignStats: getCampaignStats
+    getCampaignStats: getCampaignStats,
+    postFn: postFn
 };

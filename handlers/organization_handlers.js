@@ -42,7 +42,7 @@ var postFn = function (baseUrl) {
 
         req.log.trace(obj, 'PostFn: Saving new organization object');
 
-        // try to save the new user and profile objects
+        // try to save the new organization object
         obj.save(function (err) {
             if (err) {
                 req.log.info({Error: err}, 'Error Saving in PostFn (Organization)');

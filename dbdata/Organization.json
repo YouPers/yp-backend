@@ -1,16 +1,16 @@
 [
     {
         "name": "Test Organization 1",
-        "address": "test address",
+        "location": "test address",
         "sector": "test sector",
         "nrOfEmployees": "10",
-        "avatar": "assets/img/YouPersAvatar.png"
+        "logo": "assets/img/YouPersAvatar.png"
     },
     {
         "name": "YouPers Test Org",
-        "address": "test address",
+        "location": "test address",
         "sector": "test sector",
         "nrOfEmployees": "100",
-        "avatar": "assets/img/logo.png"
+        "logo": "assets/img/logo.png"
     }
 ]

@@ -14,10 +14,10 @@ frisby.globalSetup({ // globalSetup is for ALL requests
 
 var testOrganization = {
     name: 'testOrganization',
-    address: 'test address',
+    location: 'test address',
     sector: 'test sector',
     nrOfEmployees: '10',
-    avatar: 'assets/img/YouPersAvatar.png'
+    logo: 'assets/img/YouPersAvatar.png'
 };
 
 frisby.create('organization: POST new organization')

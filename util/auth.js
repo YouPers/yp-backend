@@ -21,6 +21,7 @@ var roles = {
         al_anonymousonly: [roles.anonymous],
         al_user: [roles.individual, roles.orgadmin, roles.campaignlead, roles.productadmin, roles.systemadmin ],
         al_individual: [roles.individual, roles.productadmin, roles.systemadmin ],
+        al_campaignlead: [roles.orgadmin, roles.campaignlead, roles.systemadmin ],
         al_orgadmin: [roles.orgadmin, roles.systemadmin ],
         al_admin: [roles.productadmin, roles.systemadmin],
         al_productadmin: [ roles.productadmin, roles.systemadmin ],

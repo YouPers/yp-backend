@@ -1,5 +1,6 @@
 [
     {
+        "_id": "52f0c64e53d523235b07d8d8",
         "name": "Test Organization 1",
         "location": "test address",
         "sector": "test sector",
@@ -7,6 +8,7 @@
         "logo": "assets/img/YouPersAvatar.png"
     },
     {
+        "_id": "52f0c64e53d523235b07d8d9",
         "name": "YouPers Test Org",
         "location": "test address",
         "sector": "test sector",

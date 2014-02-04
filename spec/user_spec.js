@@ -116,7 +116,7 @@ frisby.create('POST validate new user')
 
                                 frisby.create('POST request password reset known email SUCCESS')
                                     .auth()
-                                    .post(URL + '/users/request_password_reset', { usernameOrEmail: "yp-test-user@gmail.com" })
+                                    .post(URL + '/users/request_password_reset', { usernameOrEmail: "ypunittest1+newtestuser@gmail.com" })
                                     .expectStatus(200)
                                     .toss();
 

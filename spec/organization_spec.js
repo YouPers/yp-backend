@@ -26,24 +26,37 @@ frisby.create('organization: POST new organization')
     .expectStatus(201)
     .afterJSON(function (newOrganization) {
 
-        frisby.create('organization: GET just our test organization')
-            .get(URL + '/organizations/' + newOrganization.id)
+
+        frisby.create('organization: GET all organizations for user')
+            .get(URL + '/organizations')
             .auth('test_ind1', 'yp')
             .expectStatus(200)
-            .afterJSON(function (organization) {
+            .afterJSON(function (organizations) {
 
-                expect(organization.name).toEqual(testOrganization.name);
-                expect(organization.administrators).toBeDefined();
-                expect(organization.administrators.length).toEqual(1);
+                expect(organizations.length).toEqual(1);
 
-                frisby.create('organization: DELETE our test organization')
-                    .auth('sysadm', 'backtothefuture')
-                    .delete(URL+ '/organizations/' + organization.id)
+                frisby.create('organization: GET just our test organization')
+                    .get(URL + '/organizations/' + organizations[0].id)
+                    .auth('test_ind1', 'yp')
                     .expectStatus(200)
-                    .toss();
+                    .afterJSON(function (organization) {
 
+                        expect(organization.name).toEqual(testOrganization.name);
+                        expect(organization.administrators).toBeDefined();
+                        expect(organization.administrators.length).toEqual(1);
+
+                        frisby.create('organization: DELETE our test organization')
+                            .auth('sysadm', 'backtothefuture')
+                            .delete(URL+ '/organizations/' + organization.id)
+                            .expectStatus(200)
+                            .toss();
+
+                    })
+                    .toss();
             })
             .toss();
+
+
 
     })
     .toss();

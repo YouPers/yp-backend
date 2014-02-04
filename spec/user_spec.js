@@ -78,7 +78,7 @@ frisby.create('POST validate new user')
                                 expect(user.preferences.starredActivities.length).toEqual(0);
 
                                 frisby.create('POST verify email address SUCCESS')
-                                    .post(URL + '/users/' + testuserid + '/email_verification', { token: email.encryptLinkToken('yp-test-user@gmail.com') })
+                                    .post(URL + '/users/' + testuserid + '/email_verification', { token: email.encryptLinkToken('ypunittest1+newtestuser@gmail.com') })
                                     .auth('test_ind1', 'yp')
                                     .expectStatus(200)
                                     .auth('new_unittest_user', 'nopass')

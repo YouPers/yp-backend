@@ -1,20 +1,28 @@
 [
     {
         "title": "YouPers AG Test Kampagne 1 für WorkLife-Balance",
-        "topic": "workLifeBalance",
-        "healthPromoter": "525fb247101e330000000005",
-        "start": "2013-11-10T12:15:00.000Z",
-        "end": "2013-12-25T12:15:00.000Z",
-        "_id": "527916a82079aa8704000006",
-        "version": 0
+        "start": "2014-02-03T08:00:00.000Z",
+        "end": "2014-03-14T17:00:00.000Z",
+        "relatedService": "YP-Balance",
+        "organization": "52f0c64e53d523235b07d8d8",
+        "location": "Zug",
+        "slogan": "Nie zu spät, um den eigenen Stress in den Griff zu kriegen!",
+        "paymentStatus": "paid",
+        "productType": "CampaignProductType1",
+        "campaignLeads": ["52a97f1650fca98c2900000a", "52a97f1650fca98c2900000b"],
+        "_id": "527916a82079aa8704000006"
     },
     {
         "title": "YouPers AG Test Kampagne 2 für WorkLife-Balance",
-        "topic": "workLifeBalance",
-        "healthPromoter": "525fb247101e330000000005",
-        "start": "2013-12-10T12:15:00.000Z",
-        "end": "2014-01-25T12:15:00.000Z",
-        "_id": "527916a82079aa8704000007",
-        "version": 0
+        "start": "2014-02-17T08:00:00.000Z",
+        "end": "2014-03-28T17:00:00.000Z",
+        "relatedService": "YP-Balance",
+        "organization": "52f0c64e53d523235b07d8d8",
+        "location": "Zürich",
+        "slogan": "No (positive) stress, no fun!",
+        "paymentStatus": "open",
+        "productType": "CampaignProductType1",
+        "campaignLeads": ["52a97f1650fca98c2900000a"],
+        "_id": "527916a82079aa8704000007"
     }
 ]

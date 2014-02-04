@@ -14,7 +14,6 @@ module.exports = function (swagger, config) {
     var baseUrl = '/campaigns',
         baseUrlWithId = baseUrl + "/{id}";
 
-//    swagger.get(baseUrl + '/:id', genericHandlers.getByIdFn(baseUrl, Campaign));
     swagger.addGet({
         spec: {
             description: "Operations about campaigns",
@@ -33,7 +32,6 @@ module.exports = function (swagger, config) {
         action: genericHandlers.getByIdFn(baseUrl, Campaign)
     });
 
-//    swagger.get(baseUrl + '/:id/stats', campaignHandlers.getCampaignStats(baseUrl, Campaign));
     swagger.addGet({
         spec: {
             description: "Operations about campaigns",
@@ -49,7 +47,7 @@ module.exports = function (swagger, config) {
         },
         action: campaignHandlers.getCampaignStats(baseUrl, Campaign)
     });
-//    swagger.get(baseUrl, genericHandlers.getAllFn(baseUrl, Campaign));
+
     swagger.addGet({
         spec: {
             description: "Operations about campaigns",
@@ -69,7 +67,6 @@ module.exports = function (swagger, config) {
         action: genericHandlers.getAllFn(baseUrl, Campaign)
     });
 
-//    swagger.post(baseUrl, genericHandlers.postFn(baseUrl, Campaign));
     swagger.addPost({
         spec: {
             description: "Operations about campaigns",
@@ -84,10 +81,8 @@ module.exports = function (swagger, config) {
             accessLevel: 'al_user'
         },
         action: campaignHandlers.postFn(baseUrl)
-//        action: genericHandlers.postFn(baseUrl, Campaign)
     });
 
-//    swagger.del(baseUrl + '/:id', genericHandlers.deleteByIdFn(baseUrl, Campaign));
     swagger.addDelete({
         spec: {
             description: "Operations about campaigns",
@@ -104,7 +99,6 @@ module.exports = function (swagger, config) {
         action: genericHandlers.deleteByIdFn(baseUrl, Campaign)
     });
 
-//    swagger.del(baseUrl, genericHandlers.deleteAllFn(baseUrl, Campaign));
     swagger.addDelete({
         spec: {
             description: "Operations about campaigns",

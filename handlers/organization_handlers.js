@@ -58,6 +58,31 @@ var postFn = function (baseUrl) {
     };
 };
 
+
+var getAllForUserFn = function (baseUrl) {
+    return function (req, res, next) {
+
+        var userId = req.user.id;
+
+        Organization.find({administrators: userId})
+            .exec(function(err, organizations) {
+
+                if (err) {
+                    return next(err);
+                }
+
+                if (!organizations) {
+                    res.send(204, []);
+                    return next();
+                }
+
+                res.send(200, organizations);
+                return next();
+            });
+    };
+};
+
 module.exports = {
-    postFn: postFn
+    postFn: postFn,
+    getAllForUserFn: getAllForUserFn
 };

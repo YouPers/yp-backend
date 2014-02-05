@@ -2,7 +2,7 @@
     {
         "_id": "52f0c64e53d523235b07d8d8",
         "name": "Test Organization 1",
-        "address": "test address",
+        "location": "test address",
         "sector": "test sector",
         "nrOfEmployees": "10",
         "avatar": "assets/img/YouPersAvatar.png"
@@ -10,7 +10,7 @@
     {
         "_id": "52f0c64e53d523235b07d8d9",
         "name": "YouPers Test Org",
-        "address": "test address",
+        "location": "test address",
         "sector": "test sector",
         "nrOfEmployees": "100",
         "avatar": "assets/img/logo.png"

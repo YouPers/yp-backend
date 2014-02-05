@@ -10,7 +10,7 @@ var mongoose = require('mongoose'),
  */
 var OrganizationSchema = common.newSchema({
     name: { type: String, trim: true, required: true },
-    address: {type: String, trim: true},
+    location: {type: String, trim: true},
     sector: {type: String, trim: true},
     nrOfEmployees: {type: String, trim: true},
     administrators: {type: [{ type: ObjectId, ref: 'User'}]},

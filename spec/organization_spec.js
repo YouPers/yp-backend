@@ -17,7 +17,7 @@ var testOrganization = {
     location: 'test address',
     sector: 'test sector',
     nrOfEmployees: '10',
-    logo: 'assets/img/YouPersAvatar.png'
+    avatar: 'assets/img/YouPersAvatar.png'
 };
 
 frisby.create('organization: POST new organization')

@@ -14,7 +14,7 @@ var OrganizationSchema = common.newSchema({
     sector: {type: String, trim: true},
     nrOfEmployees: {type: String, trim: true},
     administrators: {type: [{ type: ObjectId, ref: 'User'}]},
-    logo: {type: String}
+    avatar: {type: String}
 });
 
 var model = mongoose.model('Organization', OrganizationSchema);

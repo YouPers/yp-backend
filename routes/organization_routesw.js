@@ -16,6 +16,18 @@ module.exports = function (swagger, config) {
 
     swagger.addPost({
         spec: {
+            description: "avatar image upload",
+            path: baseUrlWithId + "/avatar",
+            summary: "avatar image upload",
+            method: "POST",
+            "nickname": "avatarImagePost",
+            accessLevel: 'al_orgadmin'
+        },
+        action: organizationHandlers.avatarImagePostFn(baseUrl)
+    });
+
+    swagger.addPost({
+        spec: {
             description: "Create organization",
             path: baseUrl,
             notes: "creates an organization and assigns the authenticated user as administrator",

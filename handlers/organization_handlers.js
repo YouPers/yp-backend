@@ -1,6 +1,7 @@
 var handlerUtils = require('./handlerUtils'),
     generic = require('./../handlers/generic'),
     auth = require('../util/auth'),
+    image = require('../util/image'),
     config = require('../config/config')[process.env.NODE_ENV || 'development'],
     restify = require('restify'),
     mongoose = require('mongoose'),
@@ -9,6 +10,21 @@ var handlerUtils = require('./handlerUtils'),
     fs = require('fs'),
     gm = require('gm');
 
+
+var getOrganization = function(req, res, next, callback) {
+
+    Organization.findById(req.params.id)
+        .exec(function(err, org) {
+            if(err) {
+                return next(new restify.InternalError(err));
+            }
+            if(!org) {
+                return next(new restify.InvalidArgumentError('Invalid Organization ID'));
+            }
+
+            callback(org);
+        });
+};
 
 var postFn = function (baseUrl) {
     return function (req, res, next) {
@@ -82,7 +98,31 @@ var getAllForUserFn = function (baseUrl) {
     };
 };
 
+var avatarImagePostFn = function(baseUrl) {
+    return function(req, res, next) {
+
+        image.resizeImage(req, req.files.file.path, function (image) {
+
+            getOrganization(req, res, next, function (org) {
+
+                org.avatar = image;
+                org.save(function(err, savedOrg) {
+                    if (err) {
+                        return next(new restify.InternalError(err));
+                    }
+                });
+
+                // send response
+                res.send({avatar: org.avatar});
+                return next();
+            });
+
+        });
+    };
+};
+
 module.exports = {
     postFn: postFn,
-    getAllForUserFn: getAllForUserFn
+    getAllForUserFn: getAllForUserFn,
+    avatarImagePostFn: avatarImagePostFn
 };

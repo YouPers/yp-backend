@@ -1,15 +1,14 @@
 var handlerUtils = require('./handlerUtils'),
     generic = require('./../handlers/generic'),
     email = require('../util/email'),
+    image = require('../util/image'),
     auth = require('../util/auth'),
     config = require('../config/config')[process.env.NODE_ENV || 'development'],
     restify = require('restify'),
     mongoose = require('mongoose'),
     User = mongoose.model('User'),
     Profile = mongoose.model('Profile'),
-    _ = require('lodash'),
-    fs = require('fs'),
-    gm = require('gm');
+    _ = require('lodash');
 
 var postFn = function (baseUrl) {
     return function (req, res, next) {
@@ -202,51 +201,20 @@ var passwordResetPostFn = function(baseUrl) {
 var avatarImagePostFn = function(baseUrl) {
     return function(req, res, next) {
 
+        image.resizeImage(req, req.files.file.path, function (image) {
 
-        var sizeA = 100;
-        var sizeB = 100;
-        var path = req.files.file.path;
-        var pathResized = path + "_resized";
-
-        req.log.debug('avatar: resize to \n'+sizeA+'x'+sizeB+path);
-
-
-        // resize on fs using GraphicMagick
-        gm(path)
-            .define('jpeg:size='+sizeA+'x'+sizeB) // workspace
-            .thumbnail(sizeA, sizeB + '^') // shortest side sizeB
-            .gravity('center') // center next operation
-            .extent(sizeA, sizeB) // canvas size
-            .noProfile() // remove meta
-            .write(pathResized, function(err){
+            var user = req.user;
+            user.avatar = image;
+            user.save(function(err, savedUser) {
                 if (err) {
                     return next(new restify.InternalError(err));
                 }
-                req.log.debug('avatar: resize complete\n' + pathResized);
-
-                // read resized image from fs and store in db
-
-                fs.readFile(pathResized, function (err, data) {
-
-                    var user = req.user;
-                    user.avatar = 'data:image/jpg;base64,' + new Buffer(data).toString('base64');
-
-
-                    user.save(function(err, savedUser) {
-                        if (err) {
-                            return next(new restify.InternalError(err));
-                        }
-                    });
-
-                    fs.unlink(path);
-                    fs.unlink(pathResized);
-
-                    // send response
-                    res.send({avatar: user.avatar});
-                    return next();
-
-                });
             });
+
+            // send response
+            res.send({avatar: user.avatar});
+            return next();
+        });
 
     };
 };

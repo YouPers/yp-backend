@@ -79,7 +79,31 @@ var postFn = function (baseUrl) {
     };
 };
 
+var getAllForUserFn = function (baseUrl) {
+    return function (req, res, next) {
+
+        var userId = req.user.id;
+
+        Campaign.find({campaignLeads: userId})
+            .exec(function(err, campaigns) {
+
+                if (err) {
+                    return next(err);
+                }
+
+                if (!campaigns) {
+                    res.send(204, []);
+                    return next();
+                }
+
+                res.send(200, campaigns);
+                return next();
+            });
+    };
+};
+
 module.exports = {
     getCampaignStats: getCampaignStats,
-    postFn: postFn
+    postFn: postFn,
+    getAllForUserFn: getAllForUserFn
 };

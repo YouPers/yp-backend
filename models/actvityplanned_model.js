@@ -27,7 +27,6 @@ var ActivityPlanEvent = common.newSchema({
 var ActivityPlanSchema = common.newSchema({
     owner: {type: ObjectId, ref: 'User', required: true},
     activity: {type: ObjectId, ref: 'Activity', required: true},
-    title: {type: String},
     joiningUsers: [
         {type: ObjectId, ref: 'User'}
     ],
@@ -36,8 +35,6 @@ var ActivityPlanSchema = common.newSchema({
     visibility: {type: String, enum: common.enums.visibility},
     status: {type: String, enum: common.enums.ActivityPlanStatus},
     campaign: {type: ObjectId, ref: 'Campaign'},
-    topics: [String],
-    fields: [String],
     masterPlan: {type: ObjectId, ref: 'ActivityPlan'},  // set to the joined ActivityPlan in case this is a "slave plan" of somebody joining another plan.
     mainEvent: {
         start: {type: Date},

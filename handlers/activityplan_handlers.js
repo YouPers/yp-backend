@@ -38,7 +38,7 @@ var getIcalObject = function (plan, recipientUser, status) {
         event.addProperty("STATUS", "CANCELLED");
         event.addProperty("SEQUENCE", 1)
     }
-    event.setSummary(plan.title || plan.activity && plan.activity.title);
+    event.setSummary(plan.activity && plan.activity.title);
     event.setDate(moment(plan.mainEvent.start).toDate(), moment(plan.mainEvent.end).toDate());
     event.addProperty("LOCATION", plan.location);
     if (plan.mainEvent.recurrence && plan.mainEvent.frequency && plan.mainEvent.frequency !== 'once') {

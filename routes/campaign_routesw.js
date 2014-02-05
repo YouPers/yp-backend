@@ -52,8 +52,8 @@ module.exports = function (swagger, config) {
         spec: {
             description: "Operations about campaigns",
             path: baseUrl,
-            notes: "returns all campaigns",
-            summary: "returns all campaigns",
+            notes: "returns all campaigns for the authenticated user",
+            summary: "returns all campaigns for the authenticated user",
             params: [genericHandlers.params.sort,
                 genericHandlers.params.limit,
                 genericHandlers.params.filter,
@@ -62,9 +62,9 @@ module.exports = function (swagger, config) {
             method: "GET",
             "responseClass": "Campaign",
             "nickname": "getCampaigns",
-            accessLevel: 'al_admin'
+            accessLevel: 'al_individual'
         },
-        action: genericHandlers.getAllFn(baseUrl, Campaign)
+        action: campaignHandlers.getAllForUserFn(baseUrl, Campaign)
     });
 
     swagger.addPost({

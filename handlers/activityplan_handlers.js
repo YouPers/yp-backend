@@ -10,7 +10,9 @@ var mongoose = require('mongoose'),
     email = require('../util/email'),
     moment = require('moment'),
     async = require('async'),
-    auth = require('../util/auth');
+    auth = require('../util/auth'),
+    socket = require('../util/socket'),
+    socialLogHandler = require('../handlers/social_handlers');
 
 var calendarInvite = "INVITE";
 var calendarCancel = "CANCEL";
@@ -276,10 +278,27 @@ function postNewActivityPlan(req, res, next) {
             reloadedActPlan.activity = reloadedActPlan.activity._id;
             res.header('location', '/api/v1/activitiesPlanned' + '/' + reloadedActPlan._id);
             res.send(201, reloadedActPlan);
+
+            emitActivityPlanUpdate(reloadedActPlan);
+
             return next();
         });
     });
 }
+
+/**
+ * filter, map and broadcast activity plans
+ *
+ * @param actPlan
+ */
+var emitActivityPlanUpdate = function(actPlan) {
+    if(actPlan.executionType === 'group' && actPlan.visibility !== 'private' && !actPlan.masterPlan) {
+
+//        var namespace = actPlan.campaign ? 'campaign:' + actPlan.campaign.id : 'default';
+
+        socket.send('social', socialLogHandler.mapActivityPlanFn(actPlan));
+    }
+};
 
 function getIcalStringForPlan(req, res, next) {
     if (!req.params || !req.params.id) {

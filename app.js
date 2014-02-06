@@ -18,7 +18,8 @@ var restify = require("restify"),
     passport = require('passport'),
     passportHttp = require('passport-http'),
     swagger = require("swagger-node-restify"),
-    auth = require('./util/auth');
+    auth = require('./util/auth'),
+    socket = require('./util/socket');
 
 
 // Setup Database Connection
@@ -37,6 +38,8 @@ var server = restify.createServer({
     version: config.version,
     log: new Logger(config.loggerOptions)
 });
+
+socket.socketServer(server);
 
 // setung logging of request and response
 server.pre(function (request, response, next) {

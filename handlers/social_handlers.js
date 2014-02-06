@@ -69,17 +69,8 @@ var getListFn = function getSocialEventsListFn(baseUrl, Model) {
                         return done(err);
                     }
 
-                    locals.actPlans = _.map(actPlans, function(actPlan) {
-                        return {
-                            author: actPlan.owner,
-                            created: actPlan.mainEvent.start,
-                            refDoc: actPlan._id,
-                            refDocModel: 'ActivityPlan',
-                            refDocTitle: actPlan.activity.number + ": " + actPlan.activity.title,
-                            refDocLink: "/activities/" + actPlan.activity._id,
-                            text: "Mache mit bei unserer Gruppen-Aktivität"
-                        };
-                    });
+
+                    locals.actPlans = _.map(actPlans, mapActivityPlanFn);
 
                     return done();
                 });
@@ -102,7 +93,19 @@ var getListFn = function getSocialEventsListFn(baseUrl, Model) {
     };
 };
 
+var mapActivityPlanFn = function (actPlan) {
+    return {
+        author: actPlan.owner,
+        created: actPlan.mainEvent.start,
+        refDoc: actPlan._id,
+        refDocModel: 'ActivityPlan',
+        refDocTitle: actPlan.activity.number + ": " + actPlan.activity.title,
+        refDocLink: "/activities/" + actPlan.activity._id,
+        text: "Mache mit bei unserer Gruppen-Aktivität"
+    };
+};
 
 module.exports = {
-    getListFn: getListFn
+    getListFn: getListFn,
+    mapActivityPlanFn: mapActivityPlanFn
 };

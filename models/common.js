@@ -23,7 +23,60 @@ module.exports = {
      * @returns {Schema}
      */
     newSchema: function (definition, options) {
+        var multilingualValues = [];
+
+        var supportedLanguages = ['de', 'en', 'fr', 'it'];
+        var defaultLanguage = 'en';
+
+        _.forEach(definition, function (value, key) {
+            value = definition[key];
+            if ('i18n' in value && value['i18n'] === true) {
+                delete value['i18n'];
+
+                multilingualValues.push(key);
+
+                var struct = {};
+                _.forEach(supportedLanguages, function (lang) {
+                    struct[lang] = value;
+                    if ((lang !== defaultLanguage) && 'required' in value && value['required'] === true) {
+                        delete struct[lang]['required'];
+                    }
+                });
+                definition[key + 'I18n'] = struct;
+                delete definition[key];
+            }
+        });
+
         var mySchema = new Schema(definition, options);
+
+        _.forEach(multilingualValues, function (key) {
+            mySchema.virtual(key)
+                .get(function () {
+                    var myValue = this[key + 'I18n'];
+                    if (_.keys(myValue.toObject()).length === 1) {
+                        return myValue[_.keys(myValue.toObject())[0]];
+                    } else {
+                        return  myValue;
+                    }
+                });
+        });
+
+        if (multilingualValues.length > 0) {
+            mySchema.statics.getI18nPropertySelector = function (locale) {
+                var selectObj = {};
+                _.forEach(multilingualValues, function (prop) {
+                    _.forEach(supportedLanguages, function (lng) {
+                        if (lng !== locale) {
+                            selectObj[prop + 'I18n.' + lng] = 0;
+                        }
+                    });
+
+                });
+                return selectObj;
+            };
+        }
+
+
         mySchema.set('toJSON', {
             transform: function (doc, ret, options) {
                 ret.id = ret._id;
@@ -42,6 +95,23 @@ module.exports = {
                     ret.editStatus = doc.editStatus;
                 }
 
+                _.forEach(multilingualValues, function (prop) {
+
+                    var numberOfLocalesLoaded = _.keys(doc[prop+'I18n'].toObject()).length;
+
+                    // if we have only one language key in the keyI18n, then the client requested a specific locale
+                    // so we deliver only this locale
+                    if (numberOfLocalesLoaded === 1 ) {
+                        ret[prop] = doc[prop];
+                    } else if (numberOfLocalesLoaded === 0) {
+                        ret[prop] = "translation missing";
+                    } else {
+                        // many locales loaded, --> the client wants many locales
+                        ret[prop] = doc[prop+'I18n'];
+                    }
+                    delete ret[prop + 'I18n'];
+                });
+
                 if (doc.toJsonConfig && doc.toJsonConfig.hide) {
                     _.forEach(doc.toJsonConfig.hide, function (propertyToHide) {
                         delete ret[propertyToHide];
@@ -49,6 +119,12 @@ module.exports = {
                 }
             }});
 
+        /**
+         * This function takes a mongoose Schema description and outputs the same schema as a swagger model to be
+         * consumed by Swagger.
+         *
+         * @returns {{}}
+         */
         mySchema.statics.getSwaggerModel = function () {
 
             var typeMap = {

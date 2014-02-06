@@ -429,6 +429,9 @@ module.exports = {
                 dbQuery.select(Model.getAdminAttrsSelector());
             }
 
+            if (Model.getI18nPropertySelector) {
+                dbQuery.select(Model.getI18nPropertySelector('en'));
+            }
 
             processStandardQueryOptions(req, dbQuery, Model)
                 .exec(function (err, objList) {

@@ -1,0 +1,1109 @@
+{
+    "Assessment": {
+        "5278c51a6166f2de240000df": {
+            "title": "Stresslevel",
+            "mintext": "Unterfordernd",
+            "mintextexample": "Die beruflichen und privaten Aufgaben unterfordern mich, weshalb ich mich oft gelangweilt und dadurch anhaltend gestresst fühle.",
+            "mintextresult": "Wenn du dich im Beruf und in der Freizeit unterfordert fühlst, hilft es dir, zusätzliche fordernde bzw. inspirierende Aktivitäten zu suchen und wahrzunehmen.",
+            "midtext": "Ausgewogen",
+            "midtextexample": "Die beruflichen und privaten Aufgaben fordern mich, weshalb ich mich motiviert bzw. \"positiv gestresst\" fühle.",
+            "maxtext": "Überfordernd",
+            "maxtextexample": "Die beruflichen und privaten Aufgaben überfordern mich, weshalb ich oft frustriert bin und mich dadurch anhaltend gestresst fühle.",
+            "maxtextresult": "Wenn du dich im Beruf und in der Freizeit überfordert fühlst, versuche deine Arbeitsgestaltung und dein Zeitmanagement zu verbessern und plane ausgleichende Aktivitäten ein.",
+            "exptext": "Der generelle Stresslevel zeigt das allgemeine Wohlbefinden bzw. die allgemeine Stresssituation."
+        },
+        "5278c51a6166f2de240000dd": {
+            "title": "Arbeitsmenge",
+            "mintext": "Zu wenig",
+            "mintextexample": "Am Arbeitsplatz habe ich in der Regel zu wenig zu tun, weshalb ich mich oft gelangweilt fühle.",
+            "mintextresult": "Wenn du dich bezüglich der Arbeitsmenge unterfordert fühlst, empfiehlt sich, dies mit deinem/deiner Vorgesetzten zu besprechen sowie zusätzliche aktivierende bzw. inspirierende Aktivitäten ausserhalb der Arbeitszeit zu suchen und wahrzunehmen.",
+            "midtext": "Gerade richtig",
+            "midtextexample": "Die Arbeitsmenge ist gerade ideal, weshalb ich mich motiviert bzw. \"positiv gestresst\" fühle.",
+            "maxtext": "Zu viel",
+            "maxtextexample": "Am Arbeitsplatz habe ich in der Regel zu viel zu tun, weshalb ich oft lange arbeite / Überzeit leiste/ unter hohem Zeitdruck arbeite. Für eine seriöse Planung und Organisation der Arbeit fehlt mir die Zeit. Mein privates Leben kommt zu kurz.",
+            "maxtextresult": "Wenn du dich von deiner Arbeitsmenge überfordert fühlst, hilft es dir, deine Arbeitsgestaltung und dein Zeitmanagement zu verbessern sowie entspannende Aktivitäten zu planen. Besprich dies ausserdem mit deinem Vorgesetzten oder dem Personalverantwortlichen.",
+            "exptext": "Dieses Kriterium zeigt den durch die Arbeitsmenge verursachten Stress."
+        },
+        "5278c51a6166f2de240000dc": {
+            "title": "Erfolgsdruck",
+            "mintext": "Zu tief",
+            "mintextexample": "Die Erwartungen an meine Arbeitsergebnisse sind zu tief, weshalb ich mich zu wenig gefordert und motiviert fühle.",
+            "mintextresult": "Wenn du dich bezüglich Erfolgsdruck unterfordert fühlst, besprich dies mit deinem/deiner Vorgesetzten oder dem/der Personalverantwortlichen und suche dir zusätzliche fordernde bzw. inspirierende Aktivitäten ausserhalb der Arbeitszeit.",
+            "midtext": "Optimal",
+            "midtextexample": "Der Erfolgsdruck fordert und motiviert mich im positiven Sinne.",
+            "maxtext": "Zu hoch",
+            "maxtextexample": "Ich stehe bei meiner Arbeit ständig unter einem grossen Erfolgssdruck und fühle mich dadurch überfordert.",
+            "maxtextresult": "Wenn du dich bezüglich Erfolgsdruck überfordert fühlst, besprich dies mit deinem/deiner Vorgesetzten oder dem/der Personalverantwortlichen und plane ausgleichende Aktivitäten ein.",
+            "exptext": "Fehlender oder zu hoher Erfolgsdruck kann Stress verursachen oder verstärken. Beurteile bei diesem Kriterium die Auswirkungen des Erfolgsdrucks auf deine Stresssituation."
+        },
+        "5278c51a6166f2de240000db": {
+            "title": "Unterstützung",
+            "mintext": "Zu wenig",
+            "mintextexample": "Ich erhalte zu wenig oder keine Unterstützung, wenn ich sie brauche.",
+            "mintextresult": "Wenn du dich zu wenig unterstützt fühlst, besprich dies mit deinem/deiner Vorgesetzten oder deinem/deiner Personalverantwortlichen.",
+            "midtext": "Gerade richtig",
+            "midtextexample": "Ich erhalte die benötigte Unterstützung, wenn ich sie brauche.",
+            "maxtext": "Zu viel",
+            "maxtextexample": "Ich werde von meinem Vorgesetzten bzw. meinem Arbeitsumfeld \"überbetreut\".",
+            "maxtextresult": "Wenn du dich von deinem/deiner Vorgesetzten oder deinem Arbeitsumfeld überbetreut fühlst, besprich dies mit deinem/deiner Vorgesetzten oder deinem/deiner Personalverantwortlichen.",
+            "exptext": "Beurteile bei diesem Kriterium, ob du dich durch zu wenig oder zu viel Unterstützung gestresst fühlst."
+        },
+        "5278c51a6166f2de240000da": {
+            "title": "Selbstbestimmung",
+            "mintext": "Zu wenig",
+            "mintextexample": "Ich habe zu wenig oder keinen Einfluss auf die Planung und Gestaltung meiner Arbeit. Ich habe zu wenig Entscheidungsfreiheit. Meine Arbeitsgestaltung ist weitgehend fremdbestimmt.",
+            "mintextresult": "Wenn der Selbstbestimmungsgrad bei deiner Arbeit zu gering ist, besprich dies mit deinem/deiner Vorgesetzten oder deinem/deiner Personalverantwortlichen und suche dir zusätzliche selbstbestimmte Aktivitäten ausserhalb der Arbeitszeit.",
+            "midtext": "Gerade richtig",
+            "midtextexample": "Der Selbstbestimmungsgrad bei meiner Arbeit stimmt für mich.",
+            "maxtext": "Zu viel",
+            "maxtextexample": "Der Selbstbestimmungsgrad bei meiner Arbeit ist zu hoch. Ich fühle mich gestresst, da ich meine gesamte Arbeit selber planen und organisieren muss.",
+            "maxtextresult": "Wenn du dich von deinem Selbstbestimmungsgrad überfordert fühlst, besprich dies mit deinem/deiner Vorgesetzten oder deinem/deiner Personalverantwortlichen.",
+            "exptext": "Dieses Kriterium bewertet den durch den Selbstbestimmungsgrad verursachten Stress."
+        },
+        "5278c51a6166f2de240000d9": {
+            "title": "Arbeitsbedingungen",
+            "mintext": "Schlecht",
+            "mintextexample": "Ich fühle mich aufgrund der Arbeitsbedingungen (z.B. viele Störungen, viele Sitzungen, grosser administrativer Aufwand, Lärm, Enge, Grossraumbüro, schlechtes Raumklima/Temperatur, körperliche Belastung) oft gestresst.",
+            "mintextresult": "Wenn du dich aufgrund der äusseren Arbeitsbedingungen oft gestresst fühlst, besprich dies mit deinem/deiner Vorgesetzten oder deinem/deiner Personalverantwortlichen.",
+            "midtext": "Optimal",
+            "midtextexample": "Die äusseren Arbeitsbedinungen sind für mich optimal.",
+            "maxtext": "n/a",
+            "maxtextexample": "Assessment.5278c51a6166f2de240000d9.maxtextexample",
+            "maxtextresult": "Assessment.5278c51a6166f2de240000d9.maxtextresult",
+            "exptext": "Schlechte Arbeitsbedinungen können Stress verursachen oder verstärken. Beurteile bei diesem Kriterium die Auswirkungen deiner Arbeitsbedinungen auf deine Stresssituation."
+        },
+        "5278c51a6166f2de240000d8": {
+            "title": "Arbeitsanforderungen",
+            "mintext": "Unterfordernd",
+            "mintextexample": "Die Leistungsanforderungen fordern mich nicht genügend. Ich erlebe bei der Arbeit zu viel Routine. Es fehlt die Herausforderung. Ich empfinde meine Arbeit als langweilig. Ich kann mich deshalb nicht genügend für meine Arbeit motivieren und fühle mich deshalb oft gestresst.",
+            "mintextresult": "Wenn du dich unterfordert fühlst, besprich dies mit deinem/deiner Vorgesetzten oder deinem/deiner Personalverantwortlichen und plane wenn möglich zusätzliche aktivierende oder inspirierende Aufgaben ein.",
+            "midtext": "Ausgewogen",
+            "midtextexample": "Die Arbeitsanforderungen fordern und motivieren mich im positiven Sinne.",
+            "maxtext": "Überfordernd",
+            "maxtextexample": "Ich kann die Erwartungen an meine Arbeitsergebnisse/-qualität nicht erfüllen und fühle mich deshalb oft gestresst.",
+            "maxtextresult": "Wenn du dich bezüglich Arbeitsanforderungen überfordert fühlst, besprich dies mit deinem/deiner Vorgesetzten oder deinem/deiner Personalverantwortlichen und ziehe eine entsprechende Weiterbildung in Betracht .",
+            "exptext": "Bei diesem Kriterium bewertest du den durch die Arbeitsanforderungen verursachten Stress."
+        },
+        "5278c51a6166f2de240000d7": {
+            "title": "Arbeitsidentifikation",
+            "mintext": "Zu gering",
+            "mintextexample": "Ich kann mich nicht mit meiner Arbeit identifizieren. Meine Arbeit entspricht überhaupt nicht meinen eigentlichen Interessen, Eignungen und Neigungen.",
+            "mintextresult": "Wenn du dich mit deiner Arbeit nicht genügend identifizieren kannst, sprich mit deinem/deiner Vorgesetzten oder deinem/deiner Personalverantwortlichen über eine Arbeitsveränderung und suche zusätzliche Aktivitäten ausserhalb der Arbeitszeit, die deinen Interessen, Eignungen und Neigungen voll entsprechen.",
+            "midtext": "Ausgewogen",
+            "midtextexample": "Ich kann mich optimal mit meiner Arbeit identifizieren.",
+            "maxtext": "Zu hoch",
+            "maxtextexample": "Ich identifiziere mich so sehr mit meiner Arbeit, dass mein Privatleben (Familie und private Verpflichtungen) sowie Job-externe Hobbies und Interessen zu kurz kommen.",
+            "maxtextresult": "Wenn aufgrund deiner zu starken Identifikation mit der Arbeit dein Privatleben sowie Job-externe Hobbies und Interessen zu kurz kommen, empfiehlt sich, deine Prioritäten zu hinterfragen und Neue zu setzen.",
+            "exptext": "Bitte bewerte bei diesem Kriterium deinen durch mangelhafte oder übertriebene Arbeitsidentifikation verursachten Stress."
+        },
+        "5278c51a6166f2de240000d6": {
+            "title": "Anerkennung",
+            "mintext": "Zu wenig",
+            "mintextexample": "Ich bekomme keine Anerkennung für eine gute Arbeitsleistung. Ich bekomme kein echtes Feedback zu meiner Arbeit. Meine Vorschläge, Anregungen, Kritikpunkte werden nicht ernst genommen.",
+            "mintextresult": "Wenn du dich aufgrund mangelnder Anerkennung oft gestresst fühlst, besprich dies mit deinem/deiner Vorgesetzten oder deinem/deiner Personalverantwortlichen.",
+            "midtext": "Gut",
+            "midtextexample": "Für gute Arbeitsleistungen erhalte ich die entsprechende Anerkennung.",
+            "maxtext": "Übertrieben",
+            "maxtextexample": "Ich fühle mich aufgrund indifferenter und übertriebender Anerkennung gestresst.",
+            "maxtextresult": "Wenn du dich aufgrund indifferenter und übertriebener Anerkennung gestresst fühlst, besprich dies mit deinem/deiner Vorgesetzten oder deinem/deiner Personalverantwortlichen.",
+            "exptext": "Bei diesem Kriterium bewertest du, ob dich mangelnde oder übertriebene Anerkennung stresst."
+        },
+        "5278c51a6166f2de240000d5": {
+            "title": "Entwicklungsmöglichkeiten",
+            "mintext": "Zu wenig",
+            "mintextexample": "Ich habe zu wenig Entwicklungsmöglichkeiten, was mich sehr beschäftigt.",
+            "mintextresult": "Wenn du dich aufgrund mangelnder Entwicklungsmöglichkeiten zunehmend gestresst fühlst, besprich dies mit deinem/deiner Vorgesetzten oder deinem/deiner Personalverantwortlichen, suche geeignete Weiterbildungsmöglichkeiten oder prüfe Job-externe Entwicklungsmöglichkeiten.",
+            "midtext": "Optimal",
+            "midtextexample": "Ich kann mich beruflich stetig weiterentwickeln und bin deshalb sehr motiviert.",
+            "maxtext": "Zu viel",
+            "maxtextexample": "Die vielen Entwicklungsmöglichkeiten in meinem Job überfordern mich, weshalb ich mich oft gestresst fühle.",
+            "maxtextresult": "Wenn du dich bezüglich deinen Entwicklungsmöglichkeiten überfordert fühlst, besprich dies mit deinem/deiner Vorgesetzten oder deinem/deiner Personalverantwortlichen.",
+            "exptext": "Zu wenige oder zu viele Entwicklungsmöglichkeiten können Stress verursachen oder verstärken. Beurteile bei diesem Kriterium die Auswirkungen deiner Entwicklungsmöglichkeiten auf deine Stresssituation."
+        },
+        "5278c51a6166f2de240000d4": {
+            "title": "Betriebsklima",
+            "mintext": "Demotivierend",
+            "mintextexample": "In meinem Arbeitsumfeld herrscht ein schlechtes Betriebsklima, weshalb ich mich oft gestresst fühle. Ungelöste Arbeitskonflikte belasten mich. Ich werde gemobbt. Ich werde diskriminiert.",
+            "mintextresult": "Wenn du dich aufgrund eines schlechten Betriebsklimas demotiviert und gestresst fühlst, empfiehlt sich, dies mit deinem/deiner Vorgesetzten oder deinem/deiner Personalverantwortlichen zu besprechen.",
+            "midtext": "Optimal",
+            "midtextexample": "In meinem Arbeitsumfeld herrscht ein gutes, motivierendes Betriebsklima. Arbeitskonflikte werden kollegial gelöst. Niemand wird gemobbt oder diskriminiert.",
+            "maxtext": "Übermotivierend",
+            "maxtextexample": "Das Betriebsklima wirkt auf mich dermassen motivierend, dass mein privates Leben zu kurz kommt.",
+            "maxtextresult": "Wenn du dich von der betrieblichen Atmosphäre zu stark eingenommen fühlst, empfiehlt sich, deine Prioritäten zu hinterfragen und anzupassen.",
+            "exptext": "Das Betriebsklima kann einen grossen Einfluss auf die Stresssituation haben. Beurteile bei diesem Kriterium deinen Betriebsklima-bedingten Stress."
+        },
+        "5278c51a6166f2de240000d3": {
+            "title": "Arbeitsplatzsicherheit",
+            "mintext": "Zu gering",
+            "mintextexample": "Ich fühle mich gestresst, da ich Angst vor einem Arbeitsplatzverlust habe.",
+            "mintextresult": "Wenn du dich aus Angst vor Arbeitsplatzverlust gestresst fühlst, besprich dies mit deinem/deiner Vorgesetzten oder deinem/deiner Personalverantwortlichen.",
+            "midtext": "hoch",
+            "midtextexample": "Ich habe keinen Grund zur Annahme, dass mein Arbeitsplatz in nächster Zeit gefährdet sein könnte.",
+            "maxtext": "n/a",
+            "maxtextexample": "Assessment.5278c51a6166f2de240000d3.maxtextexample",
+            "maxtextresult": "Assessment.5278c51a6166f2de240000d3.maxtextresult",
+            "exptext": "Bitte bewerte bei diesem Kriterium deinen durch Angst vor Arbeitsplatzverlust verursachten Stress."
+        },
+        "5278c51a6166f2de240000d1": {
+            "title": "Freizeitverpflichtungen",
+            "mintext": "Zu wenige",
+            "mintextexample": "In der Freizeit fühle ich mich zu wenig ausgefüllt.",
+            "mintextresult": "Bist du in der Freizeit zu wenig ausgefüllt, überlege dir, welche Freizeitbeschäftigungen, Hobbies dich interessieren oder motivieren könnten. Probier diese aus.",
+            "midtext": "Gerade richtig",
+            "midtextexample": "In der Freizeit fühle ich mich gerade richtig ausgefüllt.",
+            "maxtext": "Zu viele",
+            "maxtextexample": "Ich habe zu viele Freizeitverpflichtungen (Kinderbetreuung, Krankenpflege, Haushaltsarbeiten, Gartenarbeiten, Vereinstätigkeiten, etc.), weshalb ich mich auch in der Freizeit oft gestresst fühle.",
+            "maxtextresult": "Wenn du dich von deinen Freizeitverpflichtungen überfordert fühlst, schaffe dir mehr persönliche Erholungsräume und hinterfrage deine Prioritäten. Bespreche die Situation auch mit deinem /deiner Partner/in, um gemeinsam eine Stressbewältigungsstrategie zu entwickeln.",
+            "exptext": "Genauso wie Arbeitsplatz-Verpflichtungen können auch Freizeit-Verpflichtungen Stress verursachen oder verstärken. Beurteile hier deine persönliche Situation."
+        },
+        "5278c51a6166f2de240000d0": {
+            "title": "Familiäre Situation",
+            "mintext": "Belastend",
+            "mintextexample": "Ich leide unter meiner belastenden familiären Situation (z.B. aufgrund von Beziehungsproblemen, Trennung, Schul-/Erziehungsproblemen, Nachbarschaftsproblemen, Krankheit von mir/Angehörigen, Verlust eines Angehörigen).",
+            "mintextresult": "Wenn dich deine familiäre Situation belastet, versuche selber oder mit Unterstützung durch deinen/deine Partner/in oder einen/eine Fachexperten/in (z.B. Psychologen/in) entsprechende Problemlösungsstrategien zu entwickeln und umzusetzen.",
+            "midtext": "Entlastend",
+            "midtextexample": "Ich empfinde meine familiäre Situation als ausgleichend zu meiner beruflichen Belastung.",
+            "maxtext": "n/a",
+            "maxtextexample": "Assessment.5278c51a6166f2de240000d0.maxtextexample",
+            "maxtextresult": "Assessment.5278c51a6166f2de240000d0.maxtextresult",
+            "exptext": "Eine belastende Familiensituation kann sehr viel Stress verursachen. Beurteile bei diesem Kriterium deine persönliche Situation."
+        },
+        "5278c51a6166f2de240000cf": {
+            "title": "Finanzielle Situation",
+            "mintext": "Belastend",
+            "mintextexample": "Ich fühle mich aufgrund meiner permanenten Geldknappheit bzw. meiner Schulden oft gestresst.",
+            "mintextresult": "Wenn dich deine finanzielle Situation belastet, empfiehlt sich, eine für dich passende Budget- bzw. Schuldenabbau-Planung auszuarbeiten und strikte einzuhalten. Bespreche die Situation und Planung auch mit deinem/deiner Partner/in und bei Bedarf mit einem/einer Fachexperten/in (z.B. dipl. Finanzberater/in).",
+            "midtext": "gut",
+            "midtextexample": "Ich habe keine finanziellen Probleme oder Sorgen.",
+            "maxtext": "n/a",
+            "maxtextexample": "Assessment.5278c51a6166f2de240000cf.maxtextexample",
+            "maxtextresult": "Assessment.5278c51a6166f2de240000cf.maxtextresult",
+            "exptext": "Eine kritische finanzielle Situation kann sehr viel Stress verursachen. Beurteile bei diesem Kriterium deine persönliche Situation."
+        },
+        "5278c51a6166f2de240000ce": {
+            "title": "Soziales Umfeld",
+            "mintext": "Wenig unterstützend",
+            "mintextexample": "Ich werde von meinen sozialen Umfeld zu wenig unterstützt bzw. getragen.",
+            "mintextresult": "Wenn du gestresst bist, weil du dich von deinem sozialen Umfeld zu wenig unterstützt fühlst, empfiehlt sich, dies offen mit deinem/deiner Partner/in, einer Vertrauensperson oder bei Bedarf mit einem/einer Fachexperten/in (z.B. Psychologen/in) zu besprechen.",
+            "midtext": "Optimal",
+            "midtextexample": "Mein soziales Umfeld unterstützt mich bei meiner Stressbewältigung optimal.",
+            "maxtext": "Einengend",
+            "maxtextexample": "Der soziale Druck von meinem Umfeld engt mich ein bzw. belastet mich und erhöht so meinen Stresslevel.",
+            "maxtextresult": "Wenn du dich von deinem sozialen Umfeld eingeengt fühlst, schaffe dir mehr persönliche Freiräume und richte deine Prioritäten stärker auf deine persönlichen Bedürfnisse aus.",
+            "exptext": "Das soziale Umfeld kann sich positiv oder negativ auf die Stresssituation auswirken. Beurteile hier deine persönliche Situation."
+        },
+        "5278c51a6166f2de240000cc": {
+            "title": "Selbstanforderung",
+            "mintext": "Zu tief",
+            "mintextexample": "Ich habe keine hohen Ansprüche an mich selbst und andere. Ich gerate deshalb immer wieder in Anspruchs-Diskussionen mit meinen Vorgesetzten/meiner Vorgesetztin, meinem Partner/meiner Partnerin oder meinen Arbeitskolleg/-innen. Ich fühle mich gestresst, weil ich die Anforderungen meines Vorgesetzten/meiner Vorgesetztin bzw. meines Umfeldes nicht erfülle. Andere und ich selber schätzen mich als minimalistisch ein.",
+            "mintextresult": "Wenn du gestresst bist, weil du von dir selber weniger forderst, als dein Umfeld erwartet, frage dich, ob du deine Ziele/Ansprüche realistisch gesetzt hast oder ob du mehr erreichen könntest/möchtest.",
+            "midtext": "Ausgewogen",
+            "midtextexample": "Ich habe realistische Ansprüche an mich selbst und andere. Ich gerate nur sehr selten in Anspruchs-Diskussionen mit meinen Vorgesetzten/meiner Vorgesetztin, meinem Partner/meiner Partnerin oder meinen Arbeitskollegen. Andere und ich selber schätzen mich weder als minimalistisch noch als perfektionistisch ein.",
+            "maxtext": "Zu hoch",
+            "maxtextexample": "Ich habe sehr hohe Ansprüche an mich selbst und andere. Ich gerate deshalb immer wieder in Anspruchs-Diskussionen mit meinem Vorgesetzten/meiner Vorgesetztin, meinen Mitarbeitern oder meinen Arbeitskollegen. Meine hohen Selbstanforderungen erhöhen meinen Stress. Andere und ich selber schätzen mich als perfektionistisch ein.",
+            "maxtextresult": "Wenn du gestresst bist, weil du höhere Anforderungen an deine Arbeitsergebnisse hast als dein Vorgesetzter bzw. deine Vorgesetzte oder dein Umfeld, frage dich, welches realistische Ziele sind.",
+            "exptext": "Zu hohe/zu tiefe Selbstanforderungen können den Stress verstärken. Beurteile hier deine persönlichen Selbstanforderungen."
+        },
+        "5278c51a6166f2de240000cb": {
+            "title": "Kontrollbedürfnis",
+            "mintext": "Zu tief",
+            "mintextexample": "Ich habe keine grossen Kontrollbedürfnisse. Ich gerate deshalb immer wieder in Diskussionen mit anderen (Vorgesetzte/r, Partner/in, Arbeitskollege/-in), welche deutlich höhere Kontrollbedürfnisse (z.B. bezüglich der eigenen Kinder) haben als ich selber und mein Kontrollbedürfnis deshalb als nachlässig bezeichnen.",
+            "mintextresult": "Wenn du gestresst bis, weil die meisten Personen in deinem Umfeld deutlich höhere Kontrollansprüche haben als du selber, sprich darüber, damit ihr einen Kompromiss finden könnt.",
+            "midtext": "Ausgewogen",
+            "midtextexample": "Ich habe sehr ähnliche Kontrollbedürfnisse wie die meisten Personen in meinem Umfeld, weshalb ich bezüglich Kontrollansprüche nur sehr selten in Diskussionen mit anderen gerate.",
+            "maxtext": "Zu hoch",
+            "maxtextexample": "Ich habe ein sehr hohes Kontrollbedürfnis. Ich gerate deshalb immer wieder in Diskussionen mit anderen (Vorgesetzte/r, Partner/in, Arbeitskollege/-in), welche deutlich niedrigere Kontrollbedürfnisse (z.B. bezüglich der eigenen Kinder, der Arbeit der Kollegen) haben als ich selber und mein Kontrollbedürfnis deshalb als zwangshaft bezeichnen.",
+            "maxtextresult": "Wenn du gestresst bis, weil die meisten Personen in deinem Umfeld deutlich niedrigere Kontrollbedürfnisse haben als du selber, besprich dies mit einem/einer Kollegen/in, dem/der Partner/in oder einer Fachperson.",
+            "exptext": "Ein zu hohes/zu tiefes Kontrollbedürfnis kann Stressverstärken. Beurteile hier dein persönliches Kontrollbedürfnis."
+        },
+        "5278c51a6166f2de240000ca": {
+            "title": "Verantwortungsbewusstsein",
+            "mintext": "Zu tief",
+            "mintextexample": "Mein Verantwortungsbewusstsein ist vergleichsweise gering. Ich gerate deshalb immer wieder in Diskussionen mit Personen aus meinem Umfeld (Vorgesetzte/r, Partner/in, Arbeitskollege/-in), welche mein Verhalten auch schon als leichtsinnig, gleichgültig oder sogar verantwortungslos bezeichnet haben.",
+            "mintextresult": "Wenn du gestresst bist, weil du von Personen aus deinem Umfeld oft für dein geringes Verantwortungsgefühl kritisiert wirst, sprich darüber und suche nach Kompromissen.",
+            "midtext": "Ausgewogen",
+            "midtextexample": "Ich habe ein sehr ähnliches Verantwortungsbewusstsein wie die meisten Personen in meinem Umfeld, weshalb ich bezüglich Verantwortungsbewusstsein nur sehr selten in Diskussionen mit anderen gerate.",
+            "maxtext": "Zu hoch",
+            "maxtextexample": "Ich habe ein sehr hohes Verantwortungsbewusstsein. Ich gerate wegen meinem sehr starken Verantwortungs- bzw. Pflichtgefühl immer wieder in Diskussionen mit Personen in meinem Umfeld (Vorgesetzte/r, Partner/in, Arbeitskollege/-in), welche ein deutlich kleineres Verantwortungsbewusstsein haben als ich selber.",
+            "maxtextresult": "Wenn du dich aufgrund deines sehr starken Verantwortungsgefühls gestresst fühlst, sprich darüber und hole dir wenn nötig Hilfe bei einer Fachperson.",
+            "exptext": "Zu hohes/zu tiefes Verantwortungsbewusstsein kann Stress verstärken. Beurteile hier dein persönliches Verantwortungsbewusstsein."
+        },
+        "5278c51a6166f2de240000c9": {
+            "title": "Harmoniebedürfnis",
+            "mintext": "Zu tief",
+            "mintextexample": "Ich habe kein grosses Harmoniebedürfnis. Da ich mein Verhalten nicht gerne an andere anpasse, werde ich hierfür oft von Personen in meinem Umfeld kritisiert.",
+            "mintextresult": "Wenn du gestresst bist, weil du von Personen aus deinem Umfeld oft für dein geringes Harmoniebedürfnis kritisiert wirst, hilft es dir, wenn du den Konflikten nicht aus dem Weg gehst und offen darüber sprichst.",
+            "midtext": "Ausgewogen",
+            "midtextexample": "Ich habe ein sehr ähnliches Harmoniebedürfnis wie die meisten Personen in meinem Umfeld, weshalb ich bezüglich Verhaltensanpassung nur sehr selten in Diskussionen mit anderen gerate.",
+            "maxtext": "Zu hoch",
+            "maxtextexample": "Ich habe ein sehr hohes Harmoniebedürfnis und passe mich deshalb oft zu stark an. Ich gerate wegen meiner Überangepasstheit bzw. meinem sehr starken Harmoniebedürnis immer wieder in Diskussionen mit Personen in meinem Umfeld (Vorgesetzte/r, Partner/in, Arbeitskollege/-in), welche ein deutlich kleineres Harmoniebedürfnis haben als ich selber.",
+            "maxtextresult": "Wenn du dich aufgrund deines sehr starken Harmoniebedürfnisses gestresst fühlst, sprich darüber und hole dir wenn nötig Hilfe bei einer Fachperson.",
+            "exptext": "Zu hohes/zu tiefes Harmoniebedürfnis kann Stress verstärken. Beurteile hier dein persönliches Harmoniebedürfnis."
+        },
+        "5278c51a6166f2de240000c8": {
+            "title": "Geltungsbedürfnis",
+            "mintext": "Zu tief",
+            "mintextexample": "Mein Geltungsbedürnis ist im Vergleich mit meinen Kontakten eher gering. Ich gerate deshalb immer wieder in Diskussionen mit Personen aus meinem Umfeld (Vorgesetzte/r, Partner/in, Arbeitskollege/-in), welche mein Verhalten als zu unterordnend bezeichnen.",
+            "mintextresult": "Wenn du gestresst bist, weil du dich selber ärgerst oder von Personen aus deinem Umfeld oft kritisiert wirst, dass du dich zu stark unterordnest, versuche dich nicht unter deinem Wert zu verkaufen. Auch deine Leistungen sind wichtig.",
+            "midtext": "Ausgewogen",
+            "midtextexample": "Ich habe ein sehr ähnliches Geltungsbedürfnis wie die meisten Personen in meinem Umfeld, weshalb ich bezüglich meinem Geltungsbedürnis nur sehr selten in Diskussionen mit anderen gerate.",
+            "maxtext": "Zu hoch",
+            "maxtextexample": "Ich habe ein sehr hohes Geltungsbedürfnis. Für mein Geltungsbedürfnis bzw. mein dominierendes Verhalten werde ich von meinem Umfeld oft kritisiert.",
+            "maxtextresult": "Wenn du dich aufgrund deines sehr starken Geltungsbedürfnisses gestresst fühlst, hilft es dir, dein Selbstwertgefühl zu stärken, damit du dich nicht immer beweisen musst.",
+            "exptext": "Zu hohes/zu tiefes Geltungsbedürfnis kann Stress verstärken. Beurteile hier dein persönliches Geltungsbedürfnis."
+        },
+        "5278c51a6166f2de240000c6": {
+            "title": "Pausen",
+            "mintext": "Zu wenig",
+            "mintextexample": "Ich mache während des Arbeitstages aufgrund des Zeit- und Erfolgsdrucks keine, zu wenige bzw. nur sehr kurze Pausen. Ich nutze die Mittagszeit zu wenig für eine grössere Arbeitspause. Die Erholungszeit am Feierabend/am Wochenende kommt bei mir zu kurz. Ich gönne mir keine oder nur sehr kurze Ferien zur Erholung.",
+            "mintextresult": "Gönne dir trotz Zeit- und Erfolgsdruck immer wieder eine Pause. Auf Pausen zu verzichten bringt nichts. Plane dir gleich jetzt entsprechende Pausen während der Arbeits- und Mittagszeit, am Feierabend und am Wochenende ein und halte dich an deinen Plan. Gönne dir auch eine längere Pause in Form eines verlängerten Wochenendes oder noch besser in Form von Ferien.",
+            "midtext": "Optimal",
+            "midtextexample": "Ich gönne mir während meines Arbeitstages zur Erholung mehrmals eine kurze Arbeitspause sowie über den Mittag, am Feierabend und am Wochenende eine längere Erholungszeit.",
+            "maxtext": "n/a",
+            "maxtextexample": "Assessment.5278c51a6166f2de240000c6.maxtextexample",
+            "maxtextresult": "Assessment.5278c51a6166f2de240000c6.maxtextresult",
+            "exptext": "Beurteile bei diesem Kriterium dein Pausen-Verhalten und wie sich dieses auf deine Stress-Situation auswirkt."
+        },
+        "5278c51a6166f2de240000c5": {
+            "title": "Schlaf",
+            "mintext": "Zu wenig",
+            "mintextexample": "Ich fühle mich am Abend oft gestresst und gehe deshalb oft erst spät ins Bett. Ich wache in der Nacht oft auf und kann anschliessend nicht mehr richtig einschlafen. Ich fühle mich am Morgen nach dem Schlaf nicht richtig erholt. Ich bin bei der Arbeit oft müde aufgrund eines ungenügenden oder nicht erholsamen Schlafes.",
+            "mintextresult": "Wenn du dich mangels ausreichendem Schlaf gestresst fühlst, kann es dir helfen, wenn du dein Zeitmanagement verbesserst, du entspannende/beruhigende Aktivitäten vor dem ins Bett gehen einplanst und auf deine Schlafhygiene achtest.",
+            "midtext": "Optimal",
+            "midtextexample": "Ich wache in der Nacht selten auf und fühle mich am Morgen nach dem Schlaf richtig erholt.",
+            "maxtext": "n/a",
+            "maxtextexample": "Assessment.5278c51a6166f2de240000c5.maxtextexample",
+            "maxtextresult": "Assessment.5278c51a6166f2de240000c5.maxtextresult",
+            "exptext": "Ungenügender Schlaf wirkt sich negativ auf die Stress-Situation aus. Beurteile bei diesem Kriterium wie sich deine Schlaf-Situation auf deinen Stress-Level auswirkt."
+        },
+        "5278c51a6166f2de240000c4": {
+            "title": "Entspannung",
+            "mintext": "Zu wenig",
+            "mintextexample": "Zeit zur aktiven Entspannung und Erholung/Beruhigung fehlt mir. Ich führe keinerlei Entspannungsübungen durch. Erholende Freizeitaktivitäten kommen bei mir zu kurz.",
+            "mintextresult": "Wenn du dich mangels Entspannung gestresst fühlst, versuche, dein Zeitmanagement zu verbessern und entspannende bzw. beruhigende Aktivitäten einzuplanen.",
+            "midtext": "Optimal",
+            "midtextexample": "Ich führe in den Arbeitpausen regelmässig Entspannungsübungen durch. In der Freizeit kommen bei mir entspannende bzw. beruhigende Aktivitäten nicht zu kurz.",
+            "maxtext": "n/a",
+            "maxtextexample": "Assessment.5278c51a6166f2de240000c4.maxtextexample",
+            "maxtextresult": "Assessment.5278c51a6166f2de240000c4.maxtextresult",
+            "exptext": "Beurteile bei diesem Kriterium, ob deine entspannenden/beruhigenden Aktivitäten einen ausreichenden Ausgleich zum arbeitsbedingten Stress schaffen."
+        },
+        "5278c51a6166f2de240000c3": {
+            "title": "Körperliche Aktivität",
+            "mintext": "Zu wenig",
+            "mintextexample": "Ich bewege mich im Alltag zu wenig (auf dem Arbeitsweg, während der Arbeit, in den Arbeitspausen, am Feierabend, am Wochenende weniger als 30 Minuten pro Tag). Deshalb fühle mich nicht wohl. Zeit/Motivation für eine sportliche Betätigung am Feierabend/in der Freizeit fehlt mir.",
+            "mintextresult": "Wenn du dich im Alltag zu wenig bewegst und auch keinen zusätzlichen Sport treibst, versuche, dein Zeitmanagement zu verbessern, um aktiv mehr stressreduzierende Bewegungsaktivitäten einzuplanen und durchzuführen.",
+            "midtext": "Ausgewogen",
+            "midtextexample": "Ich bewege mich durchschnittlich ca. 30 bis 60 Minuten mit mässiger Intensität pro Tag. Ich spüre, dass ich mich dank der Bewegung immer wieder gut von meinen beruflichen Belastungen erholen kann.",
+            "maxtext": "Zu viel",
+            "maxtextexample": "Aufgrund der grossen zeitlichen Belastung für meine Sporttrainings, fühle ich mich oft gestresst. Ich fühle mich während der Arbeit oft müde vom intensiven Sporttraining, sodass mir die Bewältigung meiner Arbeit schwer fällt.",
+            "maxtextresult": "Wenn sich deine Trainingsbelastung negativ auf deinen Stresslevel auswirkt, empfiehlt sich, die Trainingsintensität zu reduzieren und mehr entspannende Aktivitäten einzuplanen.",
+            "exptext": "Jegliche Form von Bewegung wirkt sich grundsätzlich positiv auf die körperliche und geistige Erholung und somit auch auf den Stresslevel aus (ausser bei zu viel körperlicher Aktivität). Beurteile bei diesem Kriterium die stressreduzierende Wirkung deiner körperlichen Aktivitäten."
+        },
+        "5278c51a6166f2de240000c2": {
+            "title": "Sozialer Austausch",
+            "mintext": "Zu wenig",
+            "mintextexample": "Ich fühle mich psychisch gestresst, da ich zu wenig soziale Kontakte bzw. zu wenig sozialen Austausch habe.",
+            "mintextresult": "Wenn du zu wenig soziale Kontakte hast, kann es dir helfen, im Arbeitsalltag dich vermehrt an sozialen Pausen-, Mittags- und Feierabend-Aktivitäten zu beteiligen sowie Freizeit- und Bewegungs-Aktivitäten mit sozialem Austausch zu suchen, die deinen Interessen entsprechen.",
+            "midtext": "Ausgewogen",
+            "midtextexample": "Ich empfinde meinen sozialen Austausch im Beruf und in der Freizeit als ausgewogen.",
+            "maxtext": "Zu viel",
+            "maxtextexample": "Ich fühle mich gestresst, da mir vor lauter sozialer Aktivitäten zu wenig Zeit bleibt für meine persönliche Entspannung/Ruhe.",
+            "maxtextresult": "Wenn du dich aufgrund deiner vielen sozialen Aktivitäten gestresst fühlst, hilft es dir, wenn du mehr Aktivitäten für deine persönliche Entspannung einplanst.",
+            "exptext": "Soziale Kontakte/sozialer Austausch wirken sich grundsätzlich positiv auf das Wohlbefinden/die geistige Erholung aus (ausser bei zu viel sozialer Aktivität). Beurteile bei diesem Kriterium die Wirkung deiner sozialen Aktivitäten auf dein Wohlbefinden."
+        },
+        "5278c51a6166f2de240000c1": {
+            "title": "Ernährung",
+            "mintext": "Ungesund",
+            "mintextexample": "Ich ernähre mich während des Arbeitstages aufgrund des Zeitdrucks oft nur mit Fast Food. Ich esse stressbedingt während des Arbeitstages unregelmässig, zu viel Süssigkeiten, zu wenig etc. Am Feierabend esse ich zur Stressbewältigung oft Snacks, o.ä. vor dem Fernseher. Zur Stressbewältiung trinke ich zu viel Alkohol (mehr als 1 Glas pro Tag) bzw. zu viel Kaffee (mehr als 5 Tassen pro Tag).",
+            "mintextresult": "Wenn du dich stressbedingt ungesund ernährst, versuche dein Essverhalten so zu ändern, dass du dich ausgewogen ernährst.",
+            "midtext": "Ausgewogen",
+            "midtextexample": "Ich ernähre mich vor, während und nach der Arbeit bewusst ausgewogen und gesund.",
+            "maxtext": "n/a",
+            "maxtextexample": "Assessment.5278c51a6166f2de240000c1.maxtextexample",
+            "maxtextresult": "Assessment.5278c51a6166f2de240000c1.maxtextresult",
+            "exptext": "Ungesunde Ernährung wirkt sich negativ auf das Wohlbefinden aus. Beurteile bei diesem Kriterium die Wirkung deiner Ernährung auf dein Wohlbefinden."
+        },
+        "525faf0ac558d40000000005": {
+            "name": "Beurteile deine persönliche Stresssituation!"
+        }
+    },
+    "Activity": {
+        "5278c6aecdeab69a250000b9": {
+            "title": "Nehme bei persönlichen Problemen wenn nötig eine persönliche Kurzzeitberatung durch eine Fachperson in Anspruch",
+            "text": "z.B. Firma ICAS Schweiz AG (Independent Counselling and Advisory Service)"
+        },
+        "5278c6adcdeab69a25000023": {
+            "title": "Delegiere heute bewusst eine Aufgabe",
+            "text": "Übergebe heute die eine oder andere Aufgabe an Mitarbeiter, auch wenn du glaubst, selbst alles besser zu machen. \n\nVielleicht musst du anfangs viel erklären und verbessern, doch am Ende zahlt sich die Strategie aus. Du gewinnst Freiraum, Zeit und vor allem Überblick für die wirklich wichtigen Dinge!\n\nWeitere Informationen zum Thema findest du unter [Die 10 besten Tipps gegen beruflichen Stress](http://www.burnoutwatchers.de/die-10-besten-tipps-gegen-beruflichen-stress.html)"
+        },
+        "5278c6adcdeab69a25000026": {
+            "title": "Plane für die kommende Woche für dich passende flexible Arbeitszeiten ein",
+            "text": "Activity.5278c6adcdeab69a25000026.text"
+        },
+        "5278c6adcdeab69a25000027": {
+            "title": "Erledige einen Tag pro Woche deine Arbeiten von zuhause aus (Heimarbeit)",
+            "text": "Activity.5278c6adcdeab69a25000027.text"
+        },
+        "5278c6adcdeab69a2500002b": {
+            "title": "Stelle deinen Stuhl und Tisch ergonomisch ein",
+            "text": "Stelle die Höhe deines Stuhles so ein, dass deine Füsse flach auf dem Boden stehen. \n\nOber- und Unterschenkel sollten einen Winkel von mindestens 90 Grad bilden.\n\nWenn du aufrecht auf deinem Stuhl sitzt, sollte die Tischhöhe so eingestellt sein, dass deine Ellbogen locker auf dem Tisch aufliegen, ohne die Schultern anzuheben.\n\nWeitere Informationen zum Thema findest du unter [www.ekas-box.ch](http://www.ekas-box.ch)"
+        },
+        "5278c6adcdeab69a2500002c": {
+            "title": "Stelle deinen Computer ergonomisch ein",
+            "text": "Stelle den Bildschirm gerade vor dich hin, damit du deinen Kopf nicht seitlich abdrehen musst. \n\nDie Höhe sollte so eingestellt sein, dass der obere Bildschirmrand eine Handbreite unter deiner Augenhöhe ist. \n\nDer Abstand zwischen Augen und Bildschirm sollte mindestens eine Armlänge betragen, bei grösseren Monitoren etwas mehr.\n\nWeitere Informationen zum Thema findest du unter [ekas box](www.ekas-box.ch)"
+        },
+        "5278c6adcdeab69a2500003c": {
+            "title": "Überprüfe mit deinem/deiner Vorgesetzten Arbeitsrollen und Zielvereinbarungen",
+            "text": "siehe aus [Rahmenkonzept Gesundheitskompetenz](http://www.gesundheitsfoerderung.ch/pdf_doc_xls/d/betriebliche_gesundheitsfoerderung/grundlagen_wissen/Rahmenkonzept_Gesundheitskompetenz_de.pdf)"
+        },
+        "5278c6adcdeab69a2500003d": {
+            "title": "Spreche mit deinem/deiner Vorgesetzten über Unterstützung und regelmässiges Feedback",
+            "text": "siehe auch [Rahmenkonzept Gesundheitskompetenz](http://www.gesundheitsfoerderung.ch/pdf_doc_xls/d/betriebliche_gesundheitsfoerderung/grundlagen_wissen/Rahmenkonzept_Gesundheitskompetenz_de.pdf)"
+        },
+        "5278c6adcdeab69a25000040": {
+            "title": "Stehe heute bewusst in regelmässigen Arbeitspausen kurz auf, strecke dich und führe eine Entspannungsübung durch",
+            "text": "Schon ein paar Sekunden können Wunder wirken: Öffne dein Bürofenster und atme dreimal tief durch. Das unterbricht die Stress-Spirale. \n\nDerartige „unproduktive“ Augenblicke sind nicht etwa vergeudete Zeit, sondern wichtig für die Regeneration. \n\nUnd sind dir gerade in diesen Momenten nicht auch schon die besten Ideen gekommen?"
+        },
+        "5278c6adcdeab69a25000042": {
+            "title": "Führe in der Arbeitspause Dehnungsübungen für Schulter und Kopf durch",
+            "text": "Langes Sitzen kann zu gesundheitlichen Problemen führen. \n\nMache regelmässig Pausen mit Dehnübungen für den Nacken, die Schultern und den Kopf."
+        },
+        "5278c6adcdeab69a25000045": {
+            "title": "Nutze die Pause um 10 Minuten Musik zu hören, die dir gefällt",
+            "text": "Musik wirkt auf das Belohnungssystem im menschlichen Gehirn und lässt Stress verschwinden. \n\nDurch Musik, die man gerne mag, wird das Glückshormon Dopamin ausgeschüttet. Das heisst, man fühlt sich beim Hören wohl, entspannt und ohne Stress. \n\nAllerdings ist dieser Effekt nur dann da, wenn einem die Musik gefällt. Dies konnten Forscher unlängst nachweisen.\n\nWeitere Informationen zum Thema findest Du unter [Wirkung von Musik](http://www.nature.com/neuro/journal/v14/n2/abs/nn.2726.html)"
+        },
+        "5278c6adcdeab69a2500004b": {
+            "title": "Wende in der Arbeitspause eine Imaginations-Technik an (Gute Laune Bilder, Ferienerinnerung, Phantasiereise)",
+            "text": "Imagination ist eine Entspannungsübung, die dir helfen kann, dich zu entspannen und Stress zu lösen\n\n* Stelle dir ein friedliches, entspannendes Bild vor, das dir hilft, dich vom Stress zu lösen (z.B. imaginiere dir ein Bild deines letzten Urlaubs, wenn es dort zu entspannenden Momenten gekommen ist).\n* Suche dir eine ruhige Stelle auf, wo du ohne Unterbrechungen oder Störungen entspannen kannst.\n* Begebe dich in eine komfortable Position, entweder im Sitzen oder Liegen.\n* Schliesse deine Augen und atme einige Male tief und langsam durch.\n* Stelle dir einen paradiesischen Ort vor, sei es einen Strand, einen ruhigen See, eine besonders schöne Landschaft oder ähnliches. Imaginiere alle Sehenswürdigkeiten, Geräusche und Gerüche dieses Ortes.\n* Stellen dir dieses paradiesische Bild wiederholt vor, besonders wenn du dich gestresst fühlst.\n\nWeitere Informationen zum Thema findest du unter [gelenkte Imagination](http://psylex.de/psychische-probleme/stress/gelenkte-imagination.html)"
+        },
+        "5278c6adcdeab69a25000052": {
+            "title": "Nehme an einem Yoga/Meditationskurs teil",
+            "text": "Activity.5278c6adcdeab69a25000052.text"
+        },
+        "5278c6adcdeab69a25000053": {
+            "title": "Führe am Feierabend zur Entspannung Yoga Übungen durch",
+            "text": "Yoga ist eine althergebrachte Methode und stammt aus Indien. \n\nUrsprünglich diente Yoga der Erweiterung es Bewusstseins durch verschiedene Versenkungstechniken. Weiter beinhaltete es bestimmte philosophische Betrachtungen der Welt sowie eine damit verbundene Art der Lebensführung. \n\nDurch die regelmässige Ausführung der Körper- und Atemübungen kann eine nachhaltige Entspannung erreicht werden. \n\nIn verschiedenen Forschungsarbeiten konnte eine positive Wirkung auf die Psyche (weniger Ängstlichkeit und Depressivität, Verbesserung Konzentration, Selbstkonzept) und auf den Körper (tieferer Blutdruck, Puls, Muskeltonus, bessere Durchblutung) nachgewiesen werden.\n\nWeitere Informationen findest du unter [Grundlagenpapier Entspannung](http://www.gesundheitsfoerderung.ch/pdf_doc_xls/f/gesundheitsfoerderung_promotion_staerken/Grundlagen_Wissen/entspannungsbericht_d.pdf)"
+        },
+        "5278c6adcdeab69a25000054": {
+            "title": "Führe am Feierabend zur Entspannung Meditationsübungen durch",
+            "text": "Meditative Verfahren haben ihren Ursprung in asiatischen Religionen wie Hinduismus und Buddhismus. \n\nDas Ziel der klassischen Meditation besteht denn auch in einer Förderung von spirituellem Wachstum, einer Erweiterung des Bewusstseins und einer Aneignung einer tiefen inneren Ruhe. \n\nStudien belegen die positive Auswirkungen von Meditation zur Stressbewältigung: so lindert sie Spannungszustände, verringert die Atemfrequenz, verbessert Konzentration und Aufmerksamkeit oder senkt den Blutdruck. \n\n**Beispiel Mantra-Meditation:** Zu Beginn der Übung setzen Sie sich aufrecht und bequem hin und schliessen die Augen. Indem Sie ein wertfreies \"Lautwort\" (das Mantra) innerlich ruhig und regelmässig vorsagen, treten nach und nach alle störenden Gedanken und Gefühle in den Hintergrund. Es bleibt ein angenehmes Gefühl der inneren Ruhe. Als Mantra könne Sie ein Wort wählen, das wohlklingend ist und für Sie keine Bedeutung hat (z.B. Simbra, Om)\n\nWeitere Informationen zum Thema findest du unter:\n\n[Grundlagenbericht Entspannung](http://www.gesundheitsfoerderung.ch/pdf_doc_xls/f/gesundheitsfoerderung_promotion_staerken/Grundlagen_Wissen/entspannungsbericht_d.pdf)\n\n[Meditation reduziert Stress](http://wiki.yoga-vidya.de/Wissenschaftliche_Studien_Meditation#Meditation_reduziert_Stress)\n\n[Meditative Verfahren](http://www1.uni-hamburg.de/psych-3/seminar/toennies/medit.pdf)"
+        },
+        "5278c6adcdeab69a25000055": {
+            "title": "Führe am Feierabend zur Entspannung ein autogenes Training durch",
+            "text": "Das Autogene Training (AT) zählt zu den bekanntesten Entspannungsverfahren. \n\nDas Training verfolgt das Ziel, über Selbstentspannung zu einer psychophysiologischen Umschaltung von einer aktivitätsgerichteten in eine der Erholung dienende  Reaktionslage zu kommen. \n\nDas Autogene Training hat einen sechsstufigen Übungsaufbau, bei dem die einzelnen Übungen in chronologischer Reihenfolge im Abstand von je zwei Wochen über einen Zeitraum von drei Monaten gelernt werden:\n\n1. Schwereübung\n2. Wärmeübung\n3. Herzübung\n4. Atemübung\n5. Sonnengeflechtübung\n6. Stirnkühleübung\n\nIn Studien konnte eine deutliche Reduktion von Angst- und Stressreaktionen nachgewiesen werden.\n\nWeitere Informationen zum Thema findest du unter [Grundlagenbericht Entspannung](http://www.gesundheitsfoerderung.ch/pdf_doc_xls/f/gesundheitsfoerderung_promotion_staerken/Grundlagen_Wissen/entspannungsbericht_d.pdf)"
+        },
+        "5278c6adcdeab69a250000ab": {
+            "title": "Lass dich von einer gut ausgebildeten Lehrperson in Yoga instruieren",
+            "text": "Informationen zu Yogaübungen findest du unter folgendem Link:\n\n[Yogaübungen](http://www.mobilesport.ch/?tdv=1568&jp=1&lang=de)"
+        },
+        "5278c6adcdeab69a2500005a": {
+            "title": "Geniesse am Feierabend ein Entspannungsbad mit beruhigenden Badezusätzen",
+            "text": "siehe auch [entspannungsbericht](http://www.gesundheitsfoerderung.ch/pdf_doc_xls/f/gesundheitsfoerderung_promotion_staerken/Grundlagen_Wissen/entspannungsbericht_d.pdf) Kapitel III / Seite 19"
+        },
+        "5278c6adcdeab69a2500007e": {
+            "title": "Mache am Wochenende mit Freunden eine schöne Wanderung",
+            "text": "Nehme dir am Wochenende Zeit um eine Wanderung zu machen. Geniesse die schöne Landschaft und bleibe dabei in Bewegung. \n\nSport und Bewegung wirken sich positiv auf die Physis wie auch die Psyche aus. \n\nDie Basisempfehlung für gesundheitswirksame Bewegung liegt bei wöchentlich 2 1/2 Stunden Bewegung mit mittlerer Intensität. Dabei sollte die Bewegung sinnvollerweise über die ganze Woche verteilt werden.\n\nWeitere Informationen zum Thema Bewegung findest du [hier](http://www.hepa.ch/internet/hepa/de/home/dokumentation/grundlagendokumente.parsys.70058.downloadList.12250.DownloadFile.tmp/screendhepagrundlagendokument2013.pdf)"
+        },
+        "5278c6adcdeab69a25000081": {
+            "title": "Esse täglich 3 Portionen Milch und Milchprodukte (Milchprodukte stärken die Nerven)",
+            "text": "Activity.5278c6adcdeab69a25000081.text"
+        },
+        "5278c6adcdeab69a25000087": {
+            "title": "Esse 2 Portionen Obst, Früchte oder Beeren pro Tag (z.B. eine Frucht zum Znüni und ein Fruchtdessert oder Fruchtsaft am Abend)",
+            "text": "Esse zum Znüni eine Frucht. \n\nSie enthält Vitamine und Nährstoffe, welche dein Körper braucht."
+        },
+        "5278c6adcdeab69a25000086": {
+            "title": "Stärke deinen Rücken mit täglichen Rückenschulübungen",
+            "text": "siehe auch [Grundlagenwissen Gesundheit](http://www.gesundheitsfoerderung.ch/pdf_doc_xls/d/betriebliche_gesundheitsfoerderung/grundlagen_wissen/PsychGesundheit_de.pdf S. 98)"
+        },
+        "5278c6adcdeab69a25000093": {
+            "title": "Probiere ein neues Hobby aus (je nach Stressursache eine ruhige oder gesellschaftliche Freizeitbeschäftigung wie z.B. Chor, Singen, Turnen...)",
+            "text": "Activity.5278c6adcdeab69a25000093.text"
+        },
+        "5278c6adcdeab69a25000061": {
+            "title": "Führe eine progressive Muskelrelaxation nach Jacobson durch",
+            "text": "Progressive Muskelrelaxation (PMR) ist ein sehr wirksames Mittel gegen Stress. \n\nWenn du die Übungen beherrschst, kannst du dich in belastenden Situationen innerhalb weniger Sekunden entspannen. \n\nEs ist ein Verfahren, bei dem durch systematisches Anspannen und Entspannen verschiedener Muskelgruppen und durch die Wahrnehmung der dabei produzierten körperlichen Effekte allgemeine Entspannung induziert wird. Die progressive Muskelentspannung kannst du recht einfach erlernen. \n\nFür die ersten Übungen begibst du dich am besten in eine liegende Position. Lege dich mit geschlossenen Augen auf den Rücken und atme ruhig. Als Rechtshänder ballst du die rechte Faust und spannst die Muskeln möglichst kräftig an. Zähle langsam bis sechs und entspanne anschließend die Muskeln für 30 bis 40 Sekunden. \n\nNehme nacheinander verschiedene Muskelpartien vor: Arm, Schultern, Bauch, Becken, Beine und Füße. \n\nAuch die Muskeln im Gesicht kannst du einbeziehen. Nehme dir auch hier die einzelnen Bereiche wie Stirn, Nase und Mund nacheinander vor. \n\nIn der Entspannungsphase solltest du immer langsam ausatmen und spüren, wie die Muskeln weich und locker werden. \n\nBleibe am Ball und wiederhole die Übungen regelmäßig, bis du sie verinnerlicht hast. Dann bist du irgendwann in der Lage, die progressive Muskelentspannung nicht nur im Liegen, sondern auch im Sitzen und Stehen auszuführen. Du brauchst dann nur noch wenige Sekunden, um selbst im größten Stress wieder zu mehr Ruhe zu finden.\n\nStudien zeigen, dass die PMR Stresssymptome abbaut, das Immunsystem stärkt und die Herzrate senkt.\n\nWeiter Informationen zum Thema findest du unter [progressive Muskelentspannung gegen Stress](http://www.t-online.de/ratgeber/gesundheit/beschwerden/id_55848252/progressive-muskelentspannung-gegen-stress.html)"
+        },
+        "5278c6adcdeab69a25000063": {
+            "title": "Mache eine Biofeedback-Sitzung",
+            "text": "Beim Biofeedback werden Körperprozesse, die der Wahrnehmung normalerweise unzugänglich sind, mittels elektronischer Messgeräte (z.B. EEG, EKG, EMG) in wahrnehmbare (akustische oder optische) Signale verwandelt. \n\nDamit wird dem Individuum die Möglichkeit eröffnet, die entsprechenden Prozesse willkürlich zu beeinflussen. Es handelt sich also um eine Rückkoppelung («Feedback») von «Bio»signalen. \n\nWerte wie Hauttemperatur, Pulsfrequenz, Muskelspannung, Atmung und Alphafrequenzen des Gehirns liefern Hinweise auf den Spannungszustand (Stress usw.) des Körpers. \n\nEntsprechend wird ein persönliches Trainingsprogramm erstellt, bei dem gelernt wird, die ungünstig verlaufenden Prozesse willentlich zu beeinflussen. Die entsprechenden Erfolge können sogleich an den Geräten abgelesen werden. \n\nDurch ein «Lernen am Erfolg» (instrumentelle Konditionierung) sollen die erwünschten Reaktionen gefestigt werden. Verschiedene Untersuchungen können den Effekt von Biofeedback belegen.\n\nWeitere Informationen zum Thema findest du unter [Grundlagenbericht Entspannung](http://www.gesundheitsfoerderung.ch/pdf_doc_xls/f/gesundheitsfoerderung_promotion_staerken/Grundlagen_Wissen/entspannungsbericht_d.pdf)"
+        },
+        "5278c6adcdeab69a25000064": {
+            "title": "Lese ein Buch zu imaginativen Verfahren und wende eine Technik, die dir gefällt, an",
+            "text": "Imagination ist eine Entspannungsübung, die dir helfen kann, dich zu entspannen und Stress zu lösen\n\n* Stelle dir ein friedliches, entspannendes Bild vor, das dir hilft, dich vom Stress zu lösen (z.B. imaginiere dir ein Bild deines letzten Urlaubs, wenn es dort zu entspannenden Momenten gekommen ist).\n* Suche dir eine ruhige Stelle auf, wo du ohne Unterbrechungen oder Störungen entspannen kannst.\n* Begebe dich in eine komfortable Position, entweder im Sitzen oder Liegen.\n* Schliesse deine Augen und atme einige Male tief und langsam durch.\n* Stelle dir einen paradiesischen Ort vor, sei es einen Strand, einen ruhigen See, eine besonders schöne Landschaft oder ähnliches. Imaginiere alle Sehenswürdigkeiten, Geräusche und Gerüche dieses Ortes.\n* Stellen dir dieses paradiesische Bild wiederholt vor, besonders wenn du dich gestresst fühlst.\n\nWeitere Informationen zum Thema findest du unter [gelenkte Imagination](http://psylex.de/psychische-probleme/stress/gelenkte-imagination.html)"
+        },
+        "5278c6adcdeab69a25000065": {
+            "title": "Lese ein Buch zu kognitiv-verhaltenstherapeutischen Verfahren und wende anschliessend eine Technik an, die dir gefällt (z.B. Gedankenstopp)",
+            "text": "Wenn du einen negativen oder unerwünschten Gedanken hast, z. B. \"Ich wäre heute lieber gar nicht hier\" oder \"Das schaffe ich nie\", dann stelle dir vor deinem geistigen Auge einfach ein großes rotes Stopp-Schild vor. Halte dieses Bild ein paar Sekunden fest und lasse es dann zusammen mit dem negativen Gedanken verschwinden. \n\nWenn du willst, kannst du hieran eine positive Selbst-Botschaft anschließen, wie beispielsweise \"Wenn ich mir Zwischenziele setze, schaffe ich das schon!\". \n\nMit der Gedanken-Stopp Technik kannst du einen unerwünschten Gedanken blockieren, ehe es zur Eskalation kommt. \n\nDiese Methode kann dir helfen, die Aufmerksamkeit neu zu fokussieren und in Gedanken ganz bei der bevorstehenden Aufgabe zu sein."
+        },
+        "5278c6adcdeab69a2500006e": {
+            "title": "Gehe heute beim Arbeitskollegen vorbei anstelle anzurufen",
+            "text": "Anstatt die Kollegin oder den Kollegen anzurufen gehe bei ihr oder ihm vorbei. \n\nSport und Bewegung wirken sich positiv auf die Physis wie auch die Psyche aus. \n\nDie Basisempfehlung für gesundheitswirksame Bewegung liegt bei wöchentlich 2 1/2 Stunden Bewegung mit mittlerer Intensität. Dabei sollte die Bewegung sinnvollerweise über die ganze Woche verteilt werden. \n\nDurch die vorgeschlagene Bewegung entspannst du dich und deckst bereits einen kleinen Teil dieser empfohlenen Zeit ab.\n\nWeitere Informationen zum Thema Bewegung findest du [hier](http://www.hepa.ch/internet/hepa/de/home/dokumentation/grundlagendokumente.parsys.70058.downloadList.12250.DownloadFile.tmp/screendhepagrundlagendokument2013.pdf)"
+        },
+        "5278c6adcdeab69a25000070": {
+            "title": "Nimm heute die Treppe statt den Lift auf dem Weg zum Sitzungszimmer",
+            "text": "Benütze die Treppe statt des Liftes um zur nächsten Sitzung zu gelangen. \n\nSport und Bewegung wirken sich positiv auf die Physis wie auch die Psyche aus. \n\nDie Basisempfehlung für gesundheitswirksame Bewegung liegt bei wöchentlich 2 1/2 Stunden Bewegung mit mittlerer Intensität. Dabei sollte die Bewegung sinnvollerweise über die ganze Woche verteilt werden. \n\nDurch das Treppensteigen deckst du bereits einen kleinen Teil dieser empfohlenen Zeit ab.\n\nWeitere Informationen zum Thema Bewegung findest du [hier](http://www.hepa.ch/internet/hepa/de/home/dokumentation/grundlagendokumente.parsys.70058.downloadList.12250.DownloadFile.tmp/screendhepagrundlagendokument2013.pdf)"
+        },
+        "5278c6adcdeab69a25000071": {
+            "title": "Frage bei Überforderung einen Arbeitskollegen oder eine Arbeitskollegin um Unterstützung",
+            "text": "Frage deine Arbeitskolleginnen und -kollegen nach Informationen oder um Hilfe. \n\nDadurch sinkt deine Arbeitslast und damit der durch den Zeitdruck verursachte Stress."
+        },
+        "5278c6adcdeab69a25000075": {
+            "title": "Führe eine neue Freizeitaktivität in einem Verein durch (Sport- oder Turnverein, kirchliche Organisation, Musikverein/Chor)",
+            "text": "Nehme in deiner Freizeit bei Aktivitäten eines Vereins Teil. \n\nDer soziale Austausch und die gemeinsamen Aktivitäten stärken die Psyche. \n\nSuche gemäss deinen Interessen einen geeigneten Verein (z.B. Sport, Kirche, Musik, Kunst)."
+        },
+        "5278c6adcdeab69a25000076": {
+            "title": "Nehme am Morgen die Treppe statt den Lift zum Arbeitsplatz",
+            "text": "Beginne deinen Arbeitstag mit etwas Bewegung, indem du die Treppe statt des Liftes nimmst. \n\nSport und Bewegung wirken sich positiv auf die Physis wie auch die Psyche aus. \n\nDie Basisempfehlung für gesundheitswirksame Bewegung liegt bei wöchentlich 2 1/2 Stunden Bewegung mit mittlerer Intensität. Dabei sollte die Bewegung sinnvollerweise über die ganze Woche verteilt werden. \n\nDurch das Treppensteigen deckst du bereits einen kleinen Teil dieser empfohlenen Zeit ab.\n\nWeitere Informationen zum Thema Bewegung findest du [hier](http://www.hepa.ch/internet/hepa/de/home/dokumentation/grundlagendokumente.parsys.70058.downloadList.12250.DownloadFile.tmp/screendhepagrundlagendokument2013.pdf)"
+        },
+        "5278c6adcdeab69a25000077": {
+            "title": "Nehme am Mittag die Treppe statt den Lift zum Personalrestaurant",
+            "text": "Nehme trotz knurrendem Magen die Treppe an Stelle des Liftes, um zum Personalrestaurant zu gelangen. \n\nSport und Bewegung wirken sich positiv auf die Physis wie auch die Psyche aus. \n\nDie Basisempfehlung für gesundheitswirksame Bewegung liegt bei wöchentlich 2 1/2 Stunden Bewegung mit mittlerer Intensität. Dabei sollte die Bewegung sinnvollerweise über die ganze Woche verteilt werden. \n\nDurch das Treppensteigen deckst du bereits einen kleinen Teil dieser empfohlenen Zeit ab.\n\nWeitere Informationen zum Thema Bewegung findest du [hier](http://www.hepa.ch/internet/hepa/de/home/dokumentation/grundlagendokumente.parsys.70058.downloadList.12250.DownloadFile.tmp/screendhepagrundlagendokument2013.pdf)"
+        },
+        "5278c6adcdeab69a25000079": {
+            "title": "Esse 3 Portionen Gemüse oder Salat pro Tag (z.B. Salat zum Zmittag, Gemüse zum Znacht)",
+            "text": "Activity.5278c6adcdeab69a25000079.text"
+        },
+        "5278c6aecdeab69a250000bf": {
+            "title": "Führe zur Entspannung und Beruhigung eine Hypnose-Übung durch",
+            "text": "Durch Hypnose gelangt man in einen veränderten Bewusstseinszustand. Der freie Wille bleibt jedoch erhalten. \n\nDiese Methode trägt zur Entspannung und Beruhigung bei und hilft, sein Unterbewusstsein zu entdecken. \n\nDurch verschiedene Techniken, wie Wiederholung, Reizabschirmung oder Konzentration auf irgendeinen Inhalt wird ein eingeengter Bewusstseinszustand ähnlich einer Trance hergestellt. \n\nNeben einer Abnahme der Muskelspannung, EEG-Veränderungen gehören dazu auch Amnesie oder gesteigertes Erinnerungsvermögen sowie Verlust der (sensorischen) Empfindlichkeit gegenüber bestimmten Reizen. \n\nAlle Menschen kennen mehr oder weniger bewusst hypnose-ähnliche Zustände als so genannte «Alltagstrancen». Es sind dies Momente, wenn man versunken in seiner Lieblingsbeschäftigung oder tief in Gedanken ist und dabei alles um sich herum vergisst. \n\nWenn dieser Zustand intensiver Konzentration nach innen geübt und erweitert wird, können der Person Fähigkeiten zugänglich werden, die sie in normalem Wachbewusstsein nicht hat. Es gehören dazu gesteigerte Gedächtnisleistungen, Selbstvertrauen, Zuversicht, kreative Einfälle und Problemlösungen oder Kontrolle von Körperfunktionen (Schmerz), usw.\n\nHypnotherapien (Fremd-Hypnose durch Fachperson) sind wirksame Mittel um Stress abzubauen und das Selbstwertgefühl zu steigern. Auch die Selbsthypnose hilft gut, benötigt aber einige Übung.\n\nWeitere Informationen zum Thema findest du unter [Grundlagenbericht Entspannung](http://www.gesundheitsfoerderung.ch/pdf_doc_xls/f/gesundheitsfoerderung_promotion_staerken/Grundlagen_Wissen/entspannungsbericht_d.pdf)"
+        },
+        "5278c6adcdeab69a25000014": {
+            "title": "Führe ein Gespräch mit deinem Vorgesetztem mit den Ziel, deinen persönlichen Handlungsspielraum bei der Arbeitsgestaltung zu erweitern",
+            "text": "Ein offenes Gespräch mit dem Vorgesetzten kann helfen. Dem/der Chef/in ist häufig gar nicht bekannt, wie überlastet ein Mitarbeiter ist, weil sich selten jemand dort beklagt. \n\nEs zeugt von Verantwortungsbewusstsein, wenn nicht mehr Aufgaben übernommen werden, als tatsächlich mit der nötigen Sorgfalt bewältigt werden können.\n\nWeitere Informationen findest du unter \n\n[Psychische Gesundheit](http://psyga.info/fileadmin/user_upload/PDFs/psyGA_eLearningTool_Booklet.pdf)\n\n[Stressumgang](http://www.medizinfo.de/kopfundseele/stress/stressumgang.htm)"
+        },
+        "5278c6adcdeab69a2500002d": {
+            "title": "Stelle eine schöne Pflanze an deinen Arbeitsplatz",
+            "text": "Der Idealbereich für die Luftfeuchtigkeit in einem Büro liegt zwischen 40-60%. \n\nUm die relative Luftfeuchtigkeit zu erhöhen (speziell im Winter in geheizten Büros) können Pflanzen eingesetzt werden.\n\nWeitere Informationen zum Thema findest du unter [ekas box](www.ekas-box.ch) Seite 39, 6205"
+        },
+        "5278c6adcdeab69a25000072": {
+            "title": "Treibe eine halbe Stunde moderater Sport vor oder nach der Arbeit (z.B. Jogging), der Spass macht",
+            "text": "An fünf Tagen pro Woche eine halbe Stunde Bewegung mit mittlerer Intensität genügt um einen positiven Effekt für deine Gesundheit zu generieren. \n\nBewege dich eine halbe Stunde vor der Arbeit um richtig auf Touren zu kommen oder lege die halbe Stunde Sport gleich in Anschluss an deinen Arbeitsalltag.\n\nWeitere Informationen zum Thema Bewegung findest du [hier](http://www.hepa.ch/internet/hepa/de/home/dokumentation/grundlagendokumente.parsys.70058.downloadList.12250.DownloadFile.tmp/screendhepagrundlagendokument2013.pdf)"
+        },
+        "529f23b3e6d37b8808000973": {
+            "title": "Löse die unangenehmsten Aufgaben gleich am Anfang deiner täglichen Arbeit – und belohne dich dafür! Zum Beispiel mit einer bewussten Pause!",
+            "text": "Gib dem „Aufschieberitis“ keine Chance: \n\nBringe gerade unangenehme Aufgaben oder Gespräche schnell hinter dich. \n\nSonst wächst der Unmut über das eigene Verhalten mit jeder Stunde an."
+        },
+        "529f27d5e6d37b88080009e0": {
+            "title": "Arbeite deine täglichen Aufgaben alle so ab, als wären sie Perlen an einer Kette und richte deine Konzentration jeweils ausschließlich auf die aktuelle „Perle“. So kommst du mit deiner Arbeit schneller voran und der Stress nimmt ab.",
+            "text": "Gestresst fühlt man sich, wenn die Gedanken immer um das kreisen, was noch alles zu erledigen ist. Bleibe deshalb mit deinen Gedanken bei der Aufgabe, die du JETZT gerade bearbeitest."
+        },
+        "5278c6adcdeab69a25000021": {
+            "title": "Setze heute bewusst Prioritäten bei deiner Arbeitsplanung",
+            "text": "Priorisiere und teile deine Aufgaben in essenzielle, wichtige und triviale ein. \n\nUnd lerne, auch mal nein zu sagen, sowohl zu anderen als auch zu sich selbst – werfe die trivialen Aufgaben in die Ablage „P“. \n\nAndernfalls wirst du auch weiterhin mit Arbeit überhäuft – und deine Probleme nicht los."
+        },
+        "529f2ab8e6d37b8808000a17": {
+            "title": "Räume deine Pendenzen regelmässig auf, indem du z.B. nach dem Urlaub sämtliche E-Mails löschst statt sie zu lesen und zu beantworten.",
+            "text": "Activity.529f2ab8e6d37b8808000a17.text"
+        },
+        "529f2ce6e6d37b8808000a33": {
+            "title": "Schalte nach der Arbeit um, indem du zum Beispiel beim Verlassen der Arbeitsstelle eine virtuelle Linie überschreitest.",
+            "text": "Versuche es dir zur Gewohnheit zu machen, umzuschalten: Sobald du die virtuelle Linie passiert hast, ist die Arbeit und alle Gedanken daran abgehakt – bis du Linie das nächste Mal passierst. So lässt du das „alte“ Feld hinter dir, wenn du in eine andere Umgebung wechselst."
+        },
+        "529f2e8ee6d37b8808000a4f": {
+            "title": "Rede über deine Sorgen",
+            "text": "Gedanken verändern ihre Qualität, wenn Sie ausgesprochen werden. \n\nVermeintlich Wichtiges entpuppt sich als trivial, vieles verliert seinen Schrecken und manches wird dir im Nachhinein sogar lächerlich erscheinen. \n\nDafür benötigst du manchmal nicht einmal einen Gesprächspartner: Ein LAUTES Selbstgespräch etwa im Auto während der Heimfahrt wirkt Wunder – probiere es aus!"
+        },
+        "529f3068e6d37b8808000a6b": {
+            "title": "Arbeite weniger und widme dich anstelle dessen deiner Beziehung!",
+            "text": "Eine Untersuchung der Universität Göttingen hat gezeigt, dass sich etwa jeder dritte Mann mit einem unbefriedigenden Liebesleben in die Arbeit stürzt. \n\nDas lässt zwar den Sexfrust vergessen, erzeugt aber seinerseits selbst eine Menge Stress, der sich wiederum negativ auf die Partnerschaft auswirkt."
+        },
+        "5278c6adcdeab69a25000037": {
+            "title": "Spreche mit deinem/deiner Vorgesetzten bzw. deinem/deiner Personalverantwortlichen über Veränderung von Arbeitsabläufen und Aufgaben",
+            "text": "siehe auch: [Rahmenkonzept_Gesundheitskompetenz_de.pdf](http://www.gesundheitsfoerderung.ch/pdf_doc_xls/d/betriebliche_gesundheitsfoerderung/grundlagen_wissen/Rahmenkonzept_Gesundheitskompetenz_de.pdf)"
+        },
+        "5278c6adcdeab69a2500003b": {
+            "title": "Spreche mit deinem/deiner Vorgesetzten bzw. deinem/deiner Personalverantwortlichen über deinen Einbezug in die Karriereplanung",
+            "text": "siehe auch [Rahmenkonzept Gesundheitskompetenz](http://www.gesundheitsfoerderung.ch/pdf_doc_xls/d/betriebliche_gesundheitsfoerderung/grundlagen_wissen/Rahmenkonzept_Gesundheitskompetenz_de.pdf)"
+        },
+        "5278c6adcdeab69a25000038": {
+            "title": "Spreche mit deinem/deiner Vorgesetzten bzw. deinem/deiner Personalverantwortlichen über Veränderung der Arbeitsumgebung",
+            "text": "siehe auch [Rahmenkonzept Gesundheitskompetenz](http://www.gesundheitsfoerderung.ch/pdf_doc_xls/d/betriebliche_gesundheitsfoerderung/grundlagen_wissen/Rahmenkonzept_Gesundheitskompetenz_de.pdf)"
+        },
+        "5278c6adcdeab69a2500003a": {
+            "title": "Spreche mit deinem/deiner Vorgesetzten bzw. deinem/deiner Personalverantwortlichen über partizipative Managementstrukturen",
+            "text": "siehe auch [Rahmenkonzept Gesundheitskompetenz](http://www.gesundheitsfoerderung.ch/pdf_doc_xls/d/betriebliche_gesundheitsfoerderung/grundlagen_wissen/Rahmenkonzept_Gesundheitskompetenz_de.pdf)"
+        },
+        "5278c6adcdeab69a2500007a": {
+            "title": "Fahr mit dem Velo zur Arbeit",
+            "text": "An fünf Tagen pro Woche eine halbe Stunde Bewegung mit mittlerer Intensität genügt um einen positiven Effekt für deine Gesundheit zu generieren. \n\nKomm mit dem Velo zur Arbeit und erfülle somit gleich die Basisempfehlung für gesundheitswirksamen Sport.\n\nWeitere Informationen zum Thema Bewegung findest du [hier](http://www.hepa.ch/internet/hepa/de/home/dokumentation/grundlagendokumente.parsys.70058.downloadList.12250.DownloadFile.tmp/screendhepagrundlagendokument2013.pdf)"
+        },
+        "5278c6adcdeab69a25000088": {
+            "title": "Esse ein bis zweimal pro Woche Fisch",
+            "text": "Activity.5278c6adcdeab69a25000088.text"
+        },
+        "5278c6adcdeab69a25000094": {
+            "title": "Esse einmal täglich Fleisch, Eier, Tofu oder Quorn",
+            "text": "Activity.5278c6adcdeab69a25000094.text"
+        },
+        "5278c6adcdeab69a25000095": {
+            "title": "Esse zweimal täglich als Beilage zu Hauptmahlzeiten dunkles Brot, Vollkornreis, -teigwaren u.ä. oder Hülsenfrüchte",
+            "text": "Activity.5278c6adcdeab69a25000095.text"
+        },
+        "5278c6adcdeab69a25000096": {
+            "title": "Esse maximal eine Süssigkeit oder trinke maximal ein Süssgetränk pro Tag",
+            "text": "Activity.5278c6adcdeab69a25000096.text"
+        },
+        "5278c6adcdeab69a25000097": {
+            "title": "Esse maximal eine Handvoll salzige Knabbereien (Chips und Co., Nüssli etc.) pro Tag",
+            "text": "Activity.5278c6adcdeab69a25000097.text"
+        },
+        "5278c6adcdeab69a2500009c": {
+            "title": "Führe für einige Tage ein Esstagebuch, indem du deine Beobachtungen zu deinem Essverhalten aufschreibst, um dir schlechte Essgewohnheiten bewusst zu werden. Stelle dir dabei folgende Frage: \"Wie, wo, warum und wie viel esse ich?\"",
+            "text": "Activity.5278c6adcdeab69a2500009c.text"
+        },
+        "5278c6adcdeab69a250000a5": {
+            "title": "Starte dein Fitnesstraining als Einsteiger/in sachte, locker und langsam mit einer Trainingseinheit von 30 Minuten und übertreibe nicht!",
+            "text": "Activity.5278c6adcdeab69a250000a5.text"
+        },
+        "5278c6adcdeab69a250000af": {
+            "title": "Verbringe am Feierabend eine halbe Stunde weniger mit Fernsehen, Internet, etc. und nutze die zusätzliche Zeit bewusst für aktive Entspannung",
+            "text": "Activity.5278c6adcdeab69a250000af.text"
+        },
+        "5278c6adcdeab69a250000b0": {
+            "title": "Führe für einige Tage ein Tagebuch, um dir klar zu werden, wie du deine Zeit verbringst, mit dem Ziel, Aktivitäten zu finden, die du reduzieren möchtest",
+            "text": "Activity.5278c6adcdeab69a250000b0.text"
+        },
+        "5278c6adcdeab69a250000b1": {
+            "title": "Plane und Entscheide für kommende Woche bewusst, wofür du deine Energie und Zeit aufwenden möchtest und wofür nicht",
+            "text": "Activity.5278c6adcdeab69a250000b1.text"
+        },
+        "5278c6adcdeab69a250000b2": {
+            "title": "Hinterfrage in einer Selbstreflektion in der Vergangenheit getroffene Aktivitäts-Entscheide mit dem Ziel, dir mehr Freiheit bzw. mehr Zeit für eine entspannte Lebensführung zu verschaffen",
+            "text": "Activity.5278c6adcdeab69a250000b2.text"
+        },
+        "5278c6adcdeab69a250000b6": {
+            "title": "Suche zündende Ideen bei ein paar Schritten durch das Quartier anstelle krampfhaft vor dem Bildschirm",
+            "text": "Activity.5278c6adcdeab69a250000b6.text"
+        },
+        "5278c6adcdeab69a250000b7": {
+            "title": "Spreche dich bei persönlichen Problemen telefonisch mit einer Fachperson aus",
+            "text": "z.B. Firma ICAS Schweiz AG (Independent Counselling and Advisory Service)"
+        },
+        "5278c6adcdeab69a250000b8": {
+            "title": "Spreche dich, wenn du dich im Arbeitsteam unwohl fühlst, telefonisch mit einer Fachperson aus",
+            "text": "z.B. Firma ICAS Schweiz AG (Independent Counselling and Advisory Service)"
+        },
+        "5278c6aecdeab69a250000ba": {
+            "title": "Nehme bei Problemen im Arbeitsteam wenn nötig eine persönliche Kurzzeitberatung durch eine Fachperson in Anspruch",
+            "text": "z.B. Firma ICAS Schweiz AG (Independent Counselling and Advisory Service)"
+        },
+        "5278c6aecdeab69a250000bb": {
+            "title": "Übe als Ausgleich zu deiner Sitz-Arbeit in der Freizeit zwei bis dreimal in der Woche einen leichten Sport aus",
+            "text": "Ob das Joggen, Schwimmen oder Reiten ist, kommt gar nicht so drauf an."
+        },
+        "5278c6aecdeab69a250000bc": {
+            "title": "Mache am Freitagnachmittag bewusst etwas früher Feierabend und unternehme als Übergang ins Wochenende etwas entspannendes mit deinen Arbeitskollegen bzw. Arbeitskolleginnen",
+            "text": ""
+        },
+        "5278c6aecdeab69a250000bd": {
+            "title": "Regeneriere dich täglich 20 Minuten aktiv, indem du mit ruhigem und tiefem Atmen (tief einatmen und ruhig ausatmen) dein Parasympathikus (Anteil des autonomen Nervensystems, der für Regenaration steht) stimulierst",
+            "text": "Die Atmung spielt bei der Stressbewältigung eine zentrale Rolle. Um ruhiger zu werden, sollst du lernen, richtig zu atmen. Mit der Zeit gelingt es, den Herzrhythmus mit der Atmung zu koppeln. Ist die Atmung ruhig und regelmässig, ist auch der Herzryhthmus entsprechend, und die Balance des autonomen Nervensystemes stellt sich ein. Ob du dies durch Meditation, Autogenes Training, Yoga oder leichten Dauerlauf erreichtst, ist nicht so wichtig. Hauptsache ist, du tust es."
+        },
+        "5278c6aecdeab69a250000be": {
+            "title": "Wenn du dich dauerhaft gestresst fühlst, messe für einen Tag mit einem spezialisierten Arzt deinen Stresslevel",
+            "text": "Gemäss Tages-Anzeiger Interview mit Herr Dr. Jürg Kuoni (erschienen am 29.10.13) misst er mit seinem Team (Firma Heartcheck.ch) während 24 Stunden die Schwankungen des Pulses (bzw. die Herz-Rhythmus-Flexibilität) mittels zweier Elektroden, um möglichst viel über das Stressniveau des Patienten zu erfahren."
+        },
+        "5278c6accdeab69a25000006": {
+            "title": "Schätze für ein paar Wochen täglich deinen aktuellen Stresslevel ein und überlege dir, was deinen hohen Stresslevel ausgelöst oder verstärkt hat und was du morgen verändern kannst",
+            "text": "Activity.5278c6accdeab69a25000006.text"
+        },
+        "5278c6accdeab69a25000007": {
+            "title": "Reflektiere deinen Stresslevel in der vergangenen Woche  und überlege dir, was deinen hohen Stresslevel ausgelöst oder verstärkt hat und was du nächste Woche verändern kannst",
+            "text": "Activity.5278c6accdeab69a25000007.text"
+        },
+        "5278c6accdeab69a25000008": {
+            "title": "Reflektiere deinen Stresslevel im abgelaufenen Monat  und überlege dir, was deinen hohen Stresslevel ausgelöst oder verstärkt hat und was du nächsten Monat verändern kannst",
+            "text": "Activity.5278c6accdeab69a25000008.text"
+        },
+        "5278c6accdeab69a25000009": {
+            "title": "Führe heute ein Stress Self Assessment durch, um deine Stressursachen zu eruieren",
+            "text": "Activity.5278c6accdeab69a25000009.text"
+        },
+        "5278c6accdeab69a2500000a": {
+            "title": "Führe heute ein Stress Self Assessment durch, um stressfördernde Haltungen zu erkennen",
+            "text": "Activity.5278c6accdeab69a2500000a.text"
+        },
+        "5278c6accdeab69a2500000b": {
+            "title": "Lese ein Buch zum Thema „positive Einstellung entwickeln“ oder erkundige dich im Internet",
+            "text": "Activity.5278c6accdeab69a2500000b.text"
+        },
+        "5278c6accdeab69a2500000c": {
+            "title": "Nehme an einem Abendseminar zum Thema „positive Einstellung entwickeln“ teil",
+            "text": "Activity.5278c6accdeab69a2500000c.text"
+        },
+        "5278c6accdeab69a2500000d": {
+            "title": "Führe ein Gespräch mit einem/einer professionellen Stress Coach/in, um an deiner positiven Einstellung zu arbeiten",
+            "text": "Activity.5278c6accdeab69a2500000d.text"
+        },
+        "5278c6accdeab69a2500000e": {
+            "title": "Lese ein Buch zum Thema „Stressbewältigungsstrategien“ oder erkundige dich im Internet",
+            "text": "Activity.5278c6accdeab69a2500000e.text"
+        },
+        "5278c6accdeab69a2500000f": {
+            "title": "Nehme an einem Abendseminar zum Thema „Stressbewältigungsstrategien“ teil",
+            "text": "Activity.5278c6accdeab69a2500000f.text"
+        },
+        "5278c6accdeab69a25000010": {
+            "title": "Führe einen Workshop/Brainstorming mit einem professionellen Coach durch, um eine für dich passende Stressbewältigungs-Strategie zu entwickeln",
+            "text": "Activity.5278c6accdeab69a25000010.text"
+        },
+        "5278c6adcdeab69a25000011": {
+            "title": "Lese ein Buch zum Thema „Persönliche Ressourcen stärken“ oder erkundige dich im Internet",
+            "text": "Activity.5278c6adcdeab69a25000011.text"
+        },
+        "5278c6adcdeab69a25000012": {
+            "title": "Nehme an einem Abendseminar zum Thema „Persönliche Ressourcen stärken “ teil",
+            "text": "Activity.5278c6adcdeab69a25000012.text"
+        },
+        "5278c6adcdeab69a25000013": {
+            "title": "Suche eine sinnvolle Weiterbildungsmöglichkeit, um deine berufliche Qualifikation zu verbessern",
+            "text": "Activity.5278c6adcdeab69a25000013.text"
+        },
+        "5278c6adcdeab69a25000015": {
+            "title": "Ziehe einen professionellen Stressberater zur Unterstützung bei der Stressbewältigung bei",
+            "text": "Activity.5278c6adcdeab69a25000015.text"
+        },
+        "5278c6adcdeab69a25000056": {
+            "title": "Geniesse einmal pro Woche am Feierabend eine Massage",
+            "text": "Activity.5278c6adcdeab69a25000056.text"
+        },
+        "5278c6adcdeab69a25000035": {
+            "title": "\"fehlendes Selbstvertrauen\": Achte heute bewusst auf erhaltene Anerkennung",
+            "text": "Activity.5278c6adcdeab69a25000035.text"
+        },
+        "5278c6adcdeab69a25000018": {
+            "title": "Lese ein Buch zum Thema „persönliches Zeitmanagement“ oder erkundige dich im Internet",
+            "text": "Activity.5278c6adcdeab69a25000018.text"
+        },
+        "5278c6adcdeab69a25000019": {
+            "title": "Nehme an einem Abendseminar zum Thema „persönliches Zeitmanagement“ teil",
+            "text": "Activity.5278c6adcdeab69a25000019.text"
+        },
+        "5278c6adcdeab69a25000043": {
+            "title": "Öffne in der Arbeitspause die Fenster für frische Luft",
+            "text": "Activity.5278c6adcdeab69a25000043.text"
+        },
+        "5278c6adcdeab69a2500001a": {
+            "title": "Nehme an online Forum zum Thema „persönliches Zeitmanagement“ teil",
+            "text": "Activity.5278c6adcdeab69a2500001a.text"
+        },
+        "5278c6adcdeab69a2500001b": {
+            "title": "Setze ein App/Tool für das persönliche Zeitmanagement ein",
+            "text": "Activity.5278c6adcdeab69a2500001b.text"
+        },
+        "5278c6adcdeab69a2500001c": {
+            "title": "Führe einen Erfahrungsaustausch mit Arbeitskollegen bzw. Arbeitskolleginnen zum Thema \"persönliches Zeitmanagement\" während der Mittagspause durch",
+            "text": "Activity.5278c6adcdeab69a2500001c.text"
+        },
+        "5278c6adcdeab69a2500001d": {
+            "title": "Führe einen Workshop/ein Brainstorming mit einem professionellen Coach durch, um Ideen für die Verbesserung des persönlichen Zeitmanagements zu sammeln",
+            "text": "Activity.5278c6adcdeab69a2500001d.text"
+        },
+        "5278c6adcdeab69a2500001f": {
+            "title": "Lege die Arbeit und Ruhepausen in passende Zeitintervalle",
+            "text": "Activity.5278c6adcdeab69a2500001f.text"
+        },
+        "5278c6adcdeab69a25000020": {
+            "title": "Ziehe für ein paar Wochen einen professionellen Stressberater zur Unterstützung beim Zeitmanagement bei",
+            "text": "Activity.5278c6adcdeab69a25000020.text"
+        },
+        "5278c6adcdeab69a25000024": {
+            "title": "Führe ein offenes Gespräch mit deinem/deiner Vorgesetzten über deine persönliche Arbeitssituation und –gestaltung",
+            "text": "Activity.5278c6adcdeab69a25000024.text"
+        },
+        "5278c6adcdeab69a25000028": {
+            "title": "Arbeite gemeinsam mit dem/der Vorgesetzten für nächste Woche / nächsten Monat eine sinnvolle Arbeitsplanung aus",
+            "text": "Activity.5278c6adcdeab69a25000028.text"
+        },
+        "5278c6adcdeab69a25000029": {
+            "title": "Bespreche einen ungelösten Konflikt mit deinem/deiner Personalverantwortlichen",
+            "text": "Activity.5278c6adcdeab69a25000029.text"
+        },
+        "5278c6adcdeab69a25000069": {
+            "title": "Besuche mit deinen Freunden/innen am Wochenende ein Musikkonzert",
+            "text": "Activity.5278c6adcdeab69a25000069.text"
+        },
+        "5278c6adcdeab69a2500006a": {
+            "title": "Nehme mit Freunden an einem Fun-Wettbewerb teil",
+            "text": "Activity.5278c6adcdeab69a2500006a.text"
+        },
+        "5278c6adcdeab69a2500002a": {
+            "title": "Suche eine für dich sinnvolle Weiterbildung und melde dich gleich dafür an",
+            "text": "Activity.5278c6adcdeab69a2500002a.text"
+        },
+        "5278c6adcdeab69a2500002f": {
+            "title": "Verändere heute deine Sitzposition alle 15 Minuten",
+            "text": "Activity.5278c6adcdeab69a2500002f.text"
+        },
+        "5278c6adcdeab69a25000030": {
+            "title": "„Perfektionist\": Beende heute deine Arbeit bewusst zeitgerecht (z.B. 17 Uhr) und ohne Perfektionsanspruch",
+            "text": "Activity.5278c6adcdeab69a25000030.text"
+        },
+        "5278c6adcdeab69a25000031": {
+            "title": "\"Kontrolltyp\": Frage heute bewusst einmal nicht nach",
+            "text": "Activity.5278c6adcdeab69a25000031.text"
+        },
+        "5278c6adcdeab69a2500005c": {
+            "title": "Nehme einmal pro Woche am Feierabend ein entspannendes Bad im nahegelegenen See, Fluss, Hallenbad, etc.",
+            "text": "Activity.5278c6adcdeab69a2500005c.text"
+        },
+        "5278c6adcdeab69a25000032": {
+            "title": "\"Pflichtmensch\": Streiche heute bewusst eine Pendenz aus der Tagesplanung",
+            "text": "Activity.5278c6adcdeab69a25000032.text"
+        },
+        "5278c6adcdeab69a2500008d": {
+            "title": "Plane mit deinem/deiner Partner/in die anstehenden Freizeit-Arbeiten der nächsten Woche mit dem Ziel, ausreichende Auszeiten (Ruhepausen) zu haben",
+            "text": "Activity.5278c6adcdeab69a2500008d.text"
+        },
+        "5278c6adcdeab69a25000033": {
+            "title": "Entspanne dich am Feierabend beim spielen mit deinen Kindern oder Haustieren",
+            "text": "Activity.5278c6adcdeab69a25000033.text"
+        },
+        "5278c6adcdeab69a2500008f": {
+            "title": "Führe mit deinem/deiner Partner/in ein offenes Gespräch über familiäre Belastungen und Probleme mit dem Ziel, eine gemeinsame Stressbewältigungs-Strategie zu entwicklen",
+            "text": "Activity.5278c6adcdeab69a2500008f.text"
+        },
+        "5278c6adcdeab69a25000034": {
+            "title": "\"fehlendes Selbstvertrauen\": Nehme heute bewusst eine Herausforderung an, die du dir nicht zutraust",
+            "text": "Activity.5278c6adcdeab69a25000034.text"
+        },
+        "5278c6adcdeab69a25000036": {
+            "title": "\"Perfektionist\": Spreche heute bewusst jemandem Anerkennung für seine Arbeit aus",
+            "text": "Activity.5278c6adcdeab69a25000036.text"
+        },
+        "5278c6adcdeab69a25000041": {
+            "title": "Gehe in der Arbeitspause nach draussen für einen kurzen Spaziergang",
+            "text": "Activity.5278c6adcdeab69a25000041.text"
+        },
+        "5278c6adcdeab69a25000044": {
+            "title": "Vereinbare eine gemeinsame Pause mit einer Person im Unternehmen, mit der du nicht direkt zusammenarbeitest und schon länger nicht mehr gesprochen hast",
+            "text": "Activity.5278c6adcdeab69a25000044.text"
+        },
+        "5278c6adcdeab69a25000049": {
+            "title": "Gehe mit einem/einer Freund/in ausserhalb des eigenen Betriebes in einem guten Restaurant Mittagessen",
+            "text": "Activity.5278c6adcdeab69a25000049.text"
+        },
+        "5278c6adcdeab69a2500004a": {
+            "title": "Esse heute über den Mittag woanders als sonst (auswärts, am See)",
+            "text": "Activity.5278c6adcdeab69a2500004a.text"
+        },
+        "5278c6adcdeab69a2500004c": {
+            "title": "Stehe ohne Stress auf/Plane genügend Zeit ein am morgen vor dem Pendeln",
+            "text": "Activity.5278c6adcdeab69a2500004c.text"
+        },
+        "5278c6adcdeab69a2500004d": {
+            "title": "Reise heute ausserhalb der Stosszeiten",
+            "text": "Activity.5278c6adcdeab69a2500004d.text"
+        },
+        "5278c6adcdeab69a2500004e": {
+            "title": "Schalte auf dem Arbeitsweg mit guter Musik ab",
+            "text": "Activity.5278c6adcdeab69a2500004e.text"
+        },
+        "5278c6adcdeab69a2500009f": {
+            "title": "Trickse deinen Gluscht aus, indem du einen Moment in Ruhe abwartest oder zur Überbrückung ein Glas Wasser trinkst",
+            "text": "Activity.5278c6adcdeab69a2500009f.text"
+        },
+        "5278c6adcdeab69a250000a0": {
+            "title": "Trinke nach einem stressreichen Arbeitstag am Abend einen Beruhigungstee",
+            "text": "Activity.5278c6adcdeab69a250000a0.text"
+        },
+        "5278c6adcdeab69a2500004f": {
+            "title": "Schalte auf dem Arbeitsweg mit einer unterhaltsamen Lektüre ab",
+            "text": "Activity.5278c6adcdeab69a2500004f.text"
+        },
+        "5278c6adcdeab69a2500005f": {
+            "title": "Gehe einmal pro Woche bewusst früher ins Bett",
+            "text": "Activity.5278c6adcdeab69a2500005f.text"
+        },
+        "5278c6adcdeab69a25000099": {
+            "title": "Male zur Entspannung ein Bild",
+            "text": "Activity.5278c6adcdeab69a25000099.text"
+        },
+        "5278c6adcdeab69a2500009a": {
+            "title": "Erstelle zur Entspannung ein Kunstwerk",
+            "text": "Activity.5278c6adcdeab69a2500009a.text"
+        },
+        "52e7c5324e972b42ed000006": {
+            "title": "Activity.52e7c5324e972b42ed000006.title",
+            "text": "Activity.52e7c5324e972b42ed000006.text"
+        },
+        "5278c6adcdeab69a250000a2": {
+            "title": "Überlege dir, welcher Sport und wie viel davon, sich für deinen persönlichen Ausgleich eignet und starte gleich heute mit dem ersten Training (Beachte dabei, dass Walking oder Jogging das einfachste Ausdauertraining ist; Laufen kann man immer und überall)",
+            "text": "Activity.5278c6adcdeab69a250000a2.text"
+        },
+        "5278c6adcdeab69a25000050": {
+            "title": "Organisiere einmal pro Woche ein geselliges Spiel mit Freunden oder der Familie bzw. beteilige dich an einem geselligen Spiel",
+            "text": "Activity.5278c6adcdeab69a25000050.text"
+        },
+        "5278c6adcdeab69a25000051": {
+            "title": "Lasse am Feierabend zuhause entspannende Musik laufen z.B. beim Kochen",
+            "text": "Activity.5278c6adcdeab69a25000051.text"
+        },
+        "5278c6adcdeab69a25000057": {
+            "title": "Lerne in einem Abendseminar bewusstes Atmen / Atemtechniken",
+            "text": "Activity.5278c6adcdeab69a25000057.text"
+        },
+        "5288a4e54f6d560d0e001107": {
+            "title": "Stricke zu Entspannung etwas schönes für dich",
+            "text": "Activity.5288a4e54f6d560d0e001107.text"
+        },
+        "5278c6adcdeab69a25000058": {
+            "title": "Gehe mindestens einmal pro Monat mit Kollegen nach der Arbeit etwas trinken",
+            "text": "Activity.5278c6adcdeab69a25000058.text"
+        },
+        "5278c6adcdeab69a25000059": {
+            "title": "Organisiere einmal im Monat eine Kinderbetreuung und geniesse ein freien Abend oder ein Wellness Weekend mit deinem/deiner Partner/in",
+            "text": "Activity.5278c6adcdeab69a25000059.text"
+        },
+        "5278c6adcdeab69a2500005b": {
+            "title": "Gehe einmal pro Woche am Feierabend zur Entspannung in die Sauna",
+            "text": "Activity.5278c6adcdeab69a2500005b.text"
+        },
+        "5278c6adcdeab69a2500005d": {
+            "title": "Entspanne dich vor dem ins Bett gehen mit Musik hören",
+            "text": "Activity.5278c6adcdeab69a2500005d.text"
+        },
+        "5278c6adcdeab69a2500005e": {
+            "title": "Führe vor dem Einschlafen ein 3 minütiges Mentaltraining durch (z.B. positiv Denken)",
+            "text": "Activity.5278c6adcdeab69a2500005e.text"
+        },
+        "5278c6adcdeab69a25000060": {
+            "title": "Lenke dich von einem konkreten Problem mit einer positiv inspirierenden Entspannungsaktivität ab",
+            "text": "Activity.5278c6adcdeab69a25000060.text"
+        },
+        "5278c6adcdeab69a25000062": {
+            "title": "Plane deine nächsten Kurzferien in max. 2 Monaten",
+            "text": "Activity.5278c6adcdeab69a25000062.text"
+        },
+        "5278c6adcdeab69a25000066": {
+            "title": "Besuche ein Lach-Seminar am Feierabend",
+            "text": "Intensives Lachen verbessert die Blutzirkulation – und natürlich auch die Laune. \n\nZu diesem Ergebnis kommt ein US-Experiment der Universität von Maryland, bei dem sich die Probanden eine Komödie ansahen. Der positive Effekt hielt bis zu 45 Minuten an."
+        },
+        "5278c6adcdeab69a25000067": {
+            "title": "Besuche mit deinem/deiner Partner/in oder mit einem/einer Kollegen/in ein Humorfestival",
+            "text": "Intensives Lachen verbessert die Blutzirkulation – und natürlich auch die Laune. \n\nZu diesem Ergebnis kommt ein US-Experiment der Universität von Maryland, bei dem sich die Probanden eine Komödie ansahen. Der positive Effekt hielt bis zu 45 Minuten an."
+        },
+        "5278c6adcdeab69a25000068": {
+            "title": "Gehe mit deinem Partner/deiner Partnerin/Freunden ins Kino und schaue eine Komödie",
+            "text": "Intensives Lachen verbessert die Blutzirkulation – und natürlich auch die Laune. \n\nZu diesem Ergebnis kommt ein US-Experiment der Universität von Maryland, bei dem sich die Probanden eine Komödie ansahen. Der positive Effekt hielt bis zu 45 Minuten an."
+        },
+        "5278c6adcdeab69a2500006b": {
+            "title": "Besuche am Wochenende mit Freunden/innen einen Sportevent",
+            "text": "Activity.5278c6adcdeab69a2500006b.text"
+        },
+        "5278c6adcdeab69a2500006c": {
+            "title": "Gehe mit Freunden in den Ausgang zum Tanzen",
+            "text": "Activity.5278c6adcdeab69a2500006c.text"
+        },
+        "5278c6adcdeab69a2500006d": {
+            "title": "Triff einen/eine Arbeitkollegen/in im Unternehmen in der Pause, mit der du nicht direkt zusammenarbeitest und schon länger nicht mehr gesprochen hast",
+            "text": "Activity.5278c6adcdeab69a2500006d.text"
+        },
+        "5278c6adcdeab69a2500006f": {
+            "title": "Gehe mit deinem/deiner Partner/in bzw. deinen Kollegen/innen am Wochenende in den Ausgang",
+            "text": "Activity.5278c6adcdeab69a2500006f.text"
+        },
+        "5278c6adcdeab69a25000073": {
+            "title": "Lade Freunde/innen bzw. Kollegen/innen am Wochenende zum Essen ein und koche etwas Spezielles, das gesund ist",
+            "text": "Activity.5278c6adcdeab69a25000073.text"
+        },
+        "5278c6adcdeab69a250000a4": {
+            "title": "Trinke am frühen Morgen ein Glas Wasser und mache anschliessend ein paar Kraftübungen oder gehe auf eine lockere Jogging-Runde",
+            "text": "Beschreibungen zu möglichen Kraftübungen für den Morgen findest du unter folgendem Link:\n\n[Kraftübungen](http://www.mobilesport.ch/?tdv=757&jp=1&lang=de)"
+        },
+        "5278c6adcdeab69a2500007d": {
+            "title": "Setze ein App zur Überwachung deiner körperlichen Aktivität ein, setze dir ein empfohlenes / realistisches Tagesziel und versuche dieses Bewegungs-Ziel jeden Tag zu erreichen",
+            "text": "Activity.5278c6adcdeab69a2500007d.text"
+        },
+        "5278c6adcdeab69a250000a7": {
+            "title": "Generiere für deine Gesundheit, dein Wohlbefinden und deine Leistungsfähigkeit einen zusätzlichen Nutzen, indem du neben der empfohlenen Bewegung noch ein zusätzliches Training von Ausdauer, Kraft und Beweglichkeit absolvierst",
+            "text": "Informationen zu Ausdauerübungen findest du unter folgendem Link:\n\n[Ausdauerübungen](http://www.mobilesport.ch/?tdv=763&jp=1&lang=de)\n\nInformationen zu Kraftübungen findest du unter folgendem Link:\n\n[Kraftübungen](http://www.mobilesport.ch/?tdv=757&jp=1&lang=de)\n\nInformationen zu Beweglichkeitsübungen findest du unter folgendem Link:\n\n[Beweglichkeitsübungen](http://www.mobilesport.ch/?tdv=766&jp=1&lang=de)"
+        },
+        "5278c6adcdeab69a25000082": {
+            "title": "Fülle eine Flasche Wasser auf, stelle sie neben dich aufs Pult und trinke regelmässig (jedoch nur, wenn du auch Durst hast)",
+            "text": "Activity.5278c6adcdeab69a25000082.text"
+        },
+        "5278c6adcdeab69a25000084": {
+            "title": "Esse heute ein gut verdauliches und gesundes Vegimenu zum Zmittag",
+            "text": "Activity.5278c6adcdeab69a25000084.text"
+        },
+        "5278c6adcdeab69a25000090": {
+            "title": "Plane deine nächsten mehrwöchigen Ferien in max. 6 Monaten",
+            "text": "Activity.5278c6adcdeab69a25000090.text"
+        },
+        "5278c6adcdeab69a25000085": {
+            "title": "Esse täglich magnesiumreiche Ernährung zum Abbau von Stresshormonen (Gurke, Cashew-Nüsse, Banane, Schokolade)",
+            "text": "Activity.5278c6adcdeab69a25000085.text"
+        },
+        "5278c6adcdeab69a25000089": {
+            "title": "Ziehe bei Bedarf einen/eine Ernährungsberater/in bei, um gemeinsam einen für  dich passenden Ernährungsplan zu erstellen",
+            "text": "Activity.5278c6adcdeab69a25000089.text"
+        },
+        "5278c6adcdeab69a2500008a": {
+            "title": "Mache nach der Arbeit einen Spaziergang im Wald",
+            "text": "Activity.5278c6adcdeab69a2500008a.text"
+        },
+        "5278c6adcdeab69a2500008b": {
+            "title": "Koche einmal pro Woche am Feierabend zu Hause bewusst etwas Spezielles, das dir schmeckt und gesund ist und höre dazu gute Musik",
+            "text": "Activity.5278c6adcdeab69a2500008b.text"
+        },
+        "5278c6adcdeab69a2500008c": {
+            "title": "Führe mit deinem/deiner Partner/in ein offenes Gespräch über die Freizeitgestaltung und arbeitet gemeinsame Ziele aus",
+            "text": "Activity.5278c6adcdeab69a2500008c.text"
+        },
+        "5278c6adcdeab69a2500008e": {
+            "title": "Prüfe die Möglichkeit einer Arbeitsentlastung in der Freizeit (Kinderbetreueung, Haushaltsarbeit, ...)",
+            "text": "Activity.5278c6adcdeab69a2500008e.text"
+        },
+        "5278c6adcdeab69a25000091": {
+            "title": "Plane aktive Erholungsferien",
+            "text": "Activity.5278c6adcdeab69a25000091.text"
+        },
+        "5278c6adcdeab69a25000092": {
+            "title": "Plane für das Wochenende bewusst Zeitfenster zur Entspannung ein",
+            "text": "Activity.5278c6adcdeab69a25000092.text"
+        },
+        "5278c6adcdeab69a25000098": {
+            "title": "Trinke zur Entspannung maximal ein Glas Wein, Bier oder sonstige alkoholische Getränke pro Tag",
+            "text": "Alkoholkonsum zur Stress-/Frustrationsbewältigung ist nicht der richtige Weg. \n\nZur Stressbewältigung, Entspannung und zum Ausgleich stehen dir eine Vielzahl von besseren Optionen zur Verfügung."
+        },
+        "5278c6adcdeab69a2500009b": {
+            "title": "Esse dein Mittagessen langsam (mind. 20 Minuten), bewusst und mit Genuss",
+            "text": "Activity.5278c6adcdeab69a2500009b.text"
+        },
+        "5278c6adcdeab69a2500009d": {
+            "title": "Esse während der Arbeitszeit und in den Pausen nur, wenn du richtig Hunger hast (kein Gluscht) und höre damit auf, wenn du satt bist",
+            "text": "Versuche \"Essen zwecks Stress- bzw. Frustrationsbewältigung\" wenn immer möglich zu vermeiden"
+        },
+        "5278c6adcdeab69a2500009e": {
+            "title": "Verzichte tagsüber bei Stress besser ganz auf das Essen und lege die grösseren Mahlzeiten auf die ruhigeren Abendstunden",
+            "text": "Activity.5278c6adcdeab69a2500009e.text"
+        },
+        "5278c6adcdeab69a250000a1": {
+            "title": "Baue täglich eine halbe Stunde oder drei Mal zehn Minuten Bewegung in deinen Arbeitsalltag ein (gilt insb. für viel Beschäftigte und Bewegungsmuffel)",
+            "text": "Activity.5278c6adcdeab69a250000a1.text"
+        },
+        "5278c6adcdeab69a250000a3": {
+            "title": "Esse am Tag ein bis zwei Stunden vor einer körperlichen Aktivität ein Brot mit Käse, ein paar Nüsse oder Mandeln sowie frische oder getrocknete Früchte",
+            "text": "Activity.5278c6adcdeab69a250000a3.text"
+        },
+        "5278c6adcdeab69a250000a6": {
+            "title": "Bewege dich mind. zweieinhalb Stunden pro Woche (idealerweise auf mehrere Tage verteilt) in Form von Alltagsaktivitäten oder sportlicher Aktivität",
+            "text": "Activity.5278c6adcdeab69a250000a6.text"
+        },
+        "5278c6adcdeab69a250000a8": {
+            "title": "Gönne dir neben dem körperlichen Training am Feierabend auch genügend Erholung und Schlaf",
+            "text": "Activity.5278c6adcdeab69a250000a8.text"
+        },
+        "5278c6adcdeab69a250000aa": {
+            "title": "Trainiere deine Ausdauer mit 2 bis 5 Walking- oder Jogging-Einheiten zu 20 bis 60 Minuten pro Woche",
+            "text": "Activity.5278c6adcdeab69a250000aa.text"
+        },
+        "5278c6adcdeab69a250000a9": {
+            "title": "Plane dein Aufbautraining gemäss den Empfehlungen von Fachspezialisten",
+            "text": "Beachte bei der Planung deines Aufbautrainings folgende Reihenfolge: \n\n1. Steigere die Häufigkeit des Trainings\n2. Steigere die Dauer des Trainings\n3. Erhöhe die Intensität des Trainings"
+        },
+        "5278c6adcdeab69a250000ad": {
+            "title": "Setze dir ein konkretes Ernährungsziel und stelle dich im Kopf positiv ein bzw. glaube daran, dass du schaffst, was du dir vorgenommen hast",
+            "text": "Activity.5278c6adcdeab69a250000ad.text"
+        },
+        "5278c6adcdeab69a250000ac": {
+            "title": "Setze dir ein konkretes Fitnessziel und stelle dich im Kopf positiv ein bzw. glaube daran, dass du schaffst, was du dir vorgenommen hast",
+            "text": "Activity.5278c6adcdeab69a250000ac.text"
+        },
+        "5278c6adcdeab69a250000b4": {
+            "title": "Erledige täglich einige Büroarbeiten im Stehen anstelle im Sitzen",
+            "text": "Activity.5278c6adcdeab69a250000b4.text"
+        },
+        "5278c6adcdeab69a250000b5": {
+            "title": "Führe deine Telefongespräche heute im Stehen oder beim Herumgehen",
+            "text": "Activity.5278c6adcdeab69a250000b5.text"
+        },
+        "5278c6adcdeab69a2500003e": {
+            "title": "Spreche mit deinem/deiner Personalverantwortlichen über die Einführung einer fairen und familienfreundlichen Arbeitspolitik",
+            "text": "siehe auch [Rahmenkonzept Gesundheitskompetenz](http://www.gesundheitsfoerderung.ch/pdf_doc_xls/d/betriebliche_gesundheitsfoerderung/grundlagen_wissen/Rahmenkonzept_Gesundheitskompetenz_de.pdf)"
+        },
+        "5278c6adcdeab69a25000039": {
+            "title": "Spreche mit deinem/deiner Vorgesetzten bzw. deinem/deiner Personalverantwortlichen über die Einführung von flexiblen Arbeitszeiten",
+            "text": "siehe auch [Rahmenkonzept Gesundheitskompetenz](http://www.gesundheitsfoerderung.ch/pdf_doc_xls/d/betriebliche_gesundheitsfoerderung/grundlagen_wissen/Rahmenkonzept_Gesundheitskompetenz_de.pdf)"
+        },
+        "5278c6adcdeab69a250000b3": {
+            "title": "Überwache für ein paar Wochen deine tägliche Bewegung mit einem Schrittzähler und versuche pro Tag 10'000 Schritte zu gehen",
+            "text": "Untersuchungen zeigen, dass wer sich regelmässig bewegt, ein geringeres Risiko für Unfälle, weit verbreitete Krankheiten und Stress hat. \n\nBereits 10 000 Schritte täglich bringen gesundheitlichen und unfallpräventiven Nutzen. \n\nEin Schrittzähler eignet sich dazu die tägliche Bewegung zu messen."
+        },
+        "5278c6adcdeab69a250000ae": {
+            "title": "Setze dir für die kommende Woche klare Prioritäten, statt unter der Doppel- und Dreifachbelastung eines modernen Menschen zu leiden",
+            "text": "Prioritäten zu setzen klingt vernünftig und ganz einfach. \n\nEin Missverständnis, denn Prioritäten setzen heißt nicht: das eine zu tun und das andere aufzuschieben. Prioritäten setzen heißt „Nein“ sagen zu lernen und Entscheidungen zu treffen, auch wenn eine Entscheidung für etwas eine Entscheidung gegen etwas anderes beinhaltet. \n\nPrioritäten setzen kann schmerzen, im Nachhinein erweisen sich (schwere) Entscheidungen häufig aber auch als erleichternd. \n\nWelche Prioritäten? Auch wenn es da keine Patentantwort geben kann – die Ergebnisse der Glücksforschung können zumindest ein paar Anregungen geben. Danach sollten wir gerade von dem am hartnäckigsten verfolgten Ziel, nämlich der Einkommenssteigerung, nur wenig erwarten – Einkommenssteigerungen über ein durchschnittliches, die Existenz sicherndes Niveau hinaus erhöhen die persönliche Zufriedenheit praktisch nicht. \n\nDagegen tragen die oft vernachlässigten, „weichen“ Ziele weitaus mehr zu unserer Zufriedenheit bei: eine funktionierende Partnerschaft, soziale Vernetzung, aber auch Fairness und Entscheidungsspielraum am Arbeitsplatz. \n\nDaraus leitet sich der Rat ab, den beruflichen Aufstieg mit einem kritischen Blick zu betrachten: Bringt der Aufstieg auch wirklich ein Mehr an Entscheidungsfreiheit oder entpuppt er sich als „Falle“? Und wie steht es mit der Vereinbarkeit von Familie und Beruf – auch für Männer?\n\nWeitere Informationen zum Thema findest du unter [Die Ursachen von Stress beseitigen](http://www.gesundheit-heute.de/index.php/Die_Ursachen_von_Stress_beseitigen)"
+        },
+        "5278c6adcdeab69a25000022": {
+            "title": "Beachte deine Tagesleistungskurve bei deiner Tagesarbeitsplanung",
+            "text": "Tageszeiten bei der Planung berücksichtigen: \n\nMorgens hast du mehr Energie als Abends, also sollten die energieaufwendigen Tätigkeiten zuerst abgearbeitet werden.\n\nWeitere Informationen zum Thema findest Du unter [Zeitmanagement gegen Stress](http://typischich.at/home/gesundheit/psyche/1268713/Zeitmanagement_Gegen-Stress?gal=1268713&index=1&direct=&_vl_backlink=&popup=#frame)"
+        },
+        "5278c6adcdeab69a25000016": {
+            "title": "Führe ein Mentaltraining durch (positive Suggestionen, Gedankenstopp, Affirmationen, positive Formulierung von Sätzen)",
+            "text": "Mentale Techniken sind hilfreiche Strategien um ausgeglichener zu sein. \n\n**Gedankenstopp:** \nKeine selbst zerstörerischen Gedanken, wie: Das schaffe ich nie.\n\n**Affirmationen (Bejahungsübungen):** \nHeute klappt es. \n\n**positive Formulierung von Sätzen:**\n\n* Nicht: Ich werde heute bei der Besprechung nicht nervös sein. \n\n* Sondern: Bei der Besprechung bin ich konzentriert. Ich habe mich gut vorbereitet.\n\nWeitere Informationen findest du unter [Umgang mit Stress](http://www.rechance.eu/uploaded/Gelassen%20und%20sicher%20im%20Umgang%20mit%20Stress.pdf)"
+        },
+        "5278c6adcdeab69a25000017": {
+            "title": "Nehme an einem Stressimmunisierungstraining, Stress-Management-Training SMT bzw. Stress-Resistenz-Training teil",
+            "text": "Reviews und Meta-Analysen belegen gut, dass Stress-Management-Trainings (SMT) einschliesslich Stress-Resistenz-Trainings (stress inoculation trainings), Entspannungs- und Meditationsmethoden sowie soziale Kompetenz- und Fitness-Trainings bezüglich gesundheitlicher Effekte wirksam sind.\n\nWeitere Informationen zum Thema findest du hier auf Seite 101: \n[Psychische Gesundheit](http://www.gesundheitsfoerderung.ch/pdf_doc_xls/d/betriebliche_gesundheitsfoerderung/grundlagen_wissen/PsychGesundheit_de.pdf)"
+        },
+        "5278c6adcdeab69a2500001e": {
+            "title": "Mache eine bewusste Tagesplanung, setze dir ein Tagesziel und gewinne Zeit durch Zeitplanung",
+            "text": "Zeitmanagement kann weder den Tag verlängern, noch erforderliche Aufgaben durch irgendwelche Tricks verschwinden lassen. Jedem steht dieselbe Zeit zur Verfügung - 24 Stunden am Tag. \n\nDie Art wie man sich die Tätigkeiten im Tagesablauf organisiert und strukturiert, kann jedoch enorme Auswirkungen auf das individuelle Zeitempfinden haben und dem Entstehen von Stresssituationen entgegenwirken. \n\nMithilfe persönlichen Zeitmanagements kann jeder zu einer besseren Ausnutzung seiner Lebenszeit und zu mehr Zufriedenheit beim Erreichen der Ziele gelangen.\nMeist bemerkt man erst, dass es am Zeitmanagement hapert, wenn es zu spät ist, wenn die Zeit knapp wird. Dann hilft nur ein Notfallplan, um sich Freiräume zu schaffen. \n\n1. Statt sofort loszuarbeiten, nimm dir ein paar Minuten Zeit für deine Zeitplanung. Je mehr du zu tun hast, desto wichtiger ist diese Massnahme.\n2. Streiche oder verschiebe Routineaufgaben, die im Moment nicht so wichtig sind und später erledigt werden könnten.\n3. Schaffe dir störungsfreie Zeiten.\n4. Bereite dich geistig auf den Tag vor.\n5. Lerne \"Nein\" zu sagen, wenn dir jemand deine Zeit und Energie stehlen will.\n6. Schiebe Unangenehmes nicht unnötig vor dich her. Die Aussicht auf unerfreuliche Aufgaben verursacht Stress, raubt Energie und beeinträchtigt alle Arbeiten, die in der Zwischenzeit zu machen sind.\n7. Nimm dir etwas Schönes für den Tagesabschluss vor. Die Freude auf etwas Angenehmes hilft, den Tagesstress besser zu bewältigen und energievoller mit den Tagesanforderungen umzugehen. \n\nIm Allgemeinen gilt, in allen Lebensbereichen ein Zeitmanagement einzuführen. Dieses sollte natürlich konsequent durchgezogen werden, um Erfolge sichtbar zu machen. \n\n**Planung**\n\nDer wohl wichtigste Punkt des Zeitmanagements ist die Planung. Es ist wichtig, den Tag im Voraus zu planen - am besten den Abend zuvor. Dabei ist es nötig, auch die vorgesehene Zeit, die für die bestimmten Aufgaben und Tätigkeiten anfällt, zu veranschlagen. Außerdem kommen immer wieder Dinge dazwischen, die ungeplant passieren - Schnelle Lösung: Pufferzeiten in den Zeitplan integrieren, so kommst du nicht in Stress.\n\n**Koordination**\n\nKoordination ist die halbe Miete. Wichtige Termine, Arbeitsaufgaben usw. gut koordinieren, sodass diese nicht aneinander geraten.\n\nWeitere Informationen zum Thema findest Du unter [Zeitmanagement gegen Stress](http://typischich.at/home/gesundheit/psyche/1268713/Zeitmanagement_Gegen-Stress?gal=1268713&index=1&direct=&_vl_backlink=&popup=#frame)"
+        },
+        "5278c6adcdeab69a25000025": {
+            "title": "Führe ein offenes Gespräch mit deinem/deiner Vorgesetzten mit den Ziel, den persönlichen Handlungsspielraum zu erweitern",
+            "text": "Ein offenes Gespräch mit dem/der Vorgesetzten kann helfen. Dem/der Vorgesetzten ist häufig gar nicht bekannt, wie überlastet ein Mitarbeiter ist, weil sich selten jemand dort beklagt. \n\nEs zeugt von Verantwortungsbewusstsein, wenn nicht mehr Aufgaben übernommen werden, als tatsächlich mit der nötigen Sorgfalt bewältigt werden können.\n\nWeitere Informationen findest du unter \n\n[Psychische Gesundheit](http://psyga.info/fileadmin/user_upload/PDFs/psyGA_eLearningTool_Booklet.pdf)\n\n[Stressumgang](http://www.medizinfo.de/kopfundseele/stress/stressumgang.htm)"
+        },
+        "5278c6adcdeab69a2500002e": {
+            "title": "Stelle ein persönliches und inspirierendes Bild an deinen Arbeitslatz",
+            "text": "Wer sich geborgen und wohl fühlt, identifiziert sich stärker mit seiner Arbeit.\n\nWeitere Informationen zum Thema findest du unter [your place or mine](http://www.examiner.com/article/your-place-or-mine-personalizing-your-work-environment-affects-the-bottom-line)"
+        },
+        "5278c6adcdeab69a2500007f": {
+            "title": "Trinke reichlich Wasser z.B. 6-mal täglich 1 Glas oder eine Tasse (insgesamt 1 bis 2 Liter)",
+            "text": "Wasser ist der beste Durstlöscher. \n\nSüssgetränke enthalten oft sehr viel Zucker und können je nach Menge zu Übergewicht führen. \n\nTrinke mehrmals täglich ein Glas Wasser. Hanenwasser ist fast kostenlos, überall erhältlich und hygienisch einwandfrei. \n\nWeitere Informationen zum Thema findest du unter \n\n[Wasser trinken](http://www.gesundheitsfoerderung.ch/pages/Gesundes_Koerpergewicht/Allgemeines/wassertrinken.php)\n\n[broschuere was essen und trinken](http://www.gesundheit.lu.ch/broschuere_was_essen_und_trinken._pdf.pdf)"
+        },
+        "5278c6adcdeab69a25000078": {
+            "title": "Hole mehrmals am Tag ein Glas Wasser",
+            "text": "Wasser ist der beste Durstlöscher. \n\nSüssgetränke enthalten oft sehr viel Zucker und können je nach Menge zu Übergewicht führen. \n\nTrinke mehrmals täglich ein Glas Wasser. Hanenwasser ist fast kostenlos, überall erhältlich und hygienisch einwandfrei.\n\nWeitere Informationen zum Thema findest du unter \n\n[Wasser trinken](http://www.gesundheitsfoerderung.ch/pages/Gesundes_Koerpergewicht/Allgemeines/wassertrinken.php)\n\n[broschuere was essen und trinken](http://www.gesundheit.lu.ch/broschuere_was_essen_und_trinken._pdf.pdf)"
+        },
+        "5278c6adcdeab69a2500007b": {
+            "title": "Steige heute eine Station vor deinem Arbeitsort aus und gehe zu Fuss und umgekehrt",
+            "text": "Du musst nicht immer mit dem Bus oder dem Tram bis vors Geschäft fahren. \n\nSteige eine Station früher aus, lege den Weg zu Fuss zurück und tue somit etwas für deine Gesundheit.\n\nWeitere Informationen zum Thema Bewegung findest du [hier](http://www.hepa.ch/internet/hepa/de/home/dokumentation/grundlagendokumente.parsys.70058.downloadList.12250.DownloadFile.tmp/screendhepagrundlagendokument2013.pdf)"
+        },
+        "5278c6adcdeab69a25000046": {
+            "title": "Mache einen Spaziergang während der Mittagspause",
+            "text": "Mache in der Mittagspause einen Spaziergang. \n\nSpeziell im Herbst und Winter: Halte beim Spaziergang dein Gesicht in die Sonne und mache die Unterarme frei. In geringer Menge ist das UV-Licht gesundheitlich förderlich. Durch Tageslicht kann dein Körper Vitamin D bilden. \n\nDaneben tut die Bewegung gut und hat einen gesundheitsförderlichen Effekt.\n\nWeitere Informationen zum Thema Bewegung findest du [hier](http://www.hepa.ch/internet/hepa/de/home/dokumentation/grundlagendokumente.parsys.70058.downloadList.12250.DownloadFile.tmp/screendhepagrundlagendokument2013.pdf)"
+        },
+        "5278c6adcdeab69a25000047": {
+            "title": "Gehe einmal pro Woche während der Mittagspause  joggen mit Kollegen",
+            "text": "Gehe über Mittag mit Kollegen joggen. Plane die Zeit fest in deinem Terminkalender ein und verabrede dich. So kannst du vom gesundheitlichen Nutzen der Bewegung profitieren und soziale Kontakte pflegen. \n\nWer sich mit anderen Personen zum Sport verabredet, führt diesen auch öfters durch, da eine andere Person auf dich wartet. Zudem macht ein gemeinsames Sporttreiben oft mehr Spass als beim Joggen alleine zu sein.\n\nWeitere Informationen zum Thema Bewegung findest du [hier](http://www.hepa.ch/internet/hepa/de/home/dokumentation/grundlagendokumente.parsys.70058.downloadList.12250.DownloadFile.tmp/screendhepagrundlagendokument2013.pdf)"
+        },
+        "5278c6adcdeab69a25000048": {
+            "title": "Organisiere ein Ballspiel mit Kollegen für die Mittagspause oder beteilige dich daran",
+            "text": "Spiele über Mittag zusammen mit Kollegen Ballspiele. \n\nPlane dir die Zeit fest in deinem Terminkalender ein und verabrede dich. So kannst du vom gesundheitlichen Nutzen der Bewegung profitieren und soziale Kontakte pflegen. \n\nWenn du dich zum Sport mit anderen Personen verabredest, führst du diese Aktivität auch öfters durch, da die anderen Personen auf dich warten. \n\nZudem macht ein gemeinsames Sporttreiben Spass und fördert den Zusammenhalt.\n\nMehr Informationen zu Ballspielen findest du unter folgendem Link:\n\n[kleine Ballspiele grenzenlose Möglichkeiten](http://www.mobilesport.ch/2011/03/30/kleine-ballspiele-grenzenlose-moeglichkeiten/)\n\nWeitere Informationen zum Thema Bewegung findest du [hier](http://www.hepa.ch/internet/hepa/de/home/dokumentation/grundlagendokumente.parsys.70058.downloadList.12250.DownloadFile.tmp/screendhepagrundlagendokument2013.pdf)"
+        },
+        "5278c6adcdeab69a2500007c": {
+            "title": "Treibe eine Stunde moderater Sport am Wochenende (z.B. Vitaparcour), der Spass macht",
+            "text": "Pro Woche gelten 2 1/2 Stunden Bewegung mit mittlerer Intensität als gesundheitswirksame Basisempfehlung. \n\nNehmen dir am Wochenende Zeit und treibe eine Stunde moderaten Sport. \n\nGehe z.B. auf einen Vitaparcour, fahre mit dem Velo in die Nachbardörfer oder jogge im Park.\n\nWeitere Informationen zum Thema Bewegung findest du [hier](http://www.hepa.ch/internet/hepa/de/home/dokumentation/grundlagendokumente.parsys.70058.downloadList.12250.DownloadFile.tmp/screendhepagrundlagendokument2013.pdf)"
+        },
+        "5278c6adcdeab69a25000083": {
+            "title": "Verrichte eine ausgleichende körperliche Arbeit am Wochenende, die Spass macht (z.B. Gartenarbeiten)",
+            "text": "Pro Woche gelten 2 1/2 Stunden Bewegung mit mittlerer Intensität als gesundheitswirksame Basisempfehlung. \n\nEs muss jedoch nicht immer Sport sein. Auch andere körperliche Aktivitäten haben ihren Nutzen. \n\nNehme dir am Wochenende Zeit und verrichte eine Stunde körperliche Arbeit. Gartenarbeiten anerbieten sich zum Beispiel. Wichtig ist, dass dir die Arbeit Spass macht.\n\nWeitere Informationen zum Thema Bewegung findest du [hier](http://www.hepa.ch/internet/hepa/de/home/dokumentation/grundlagendokumente.parsys.70058.downloadList.12250.DownloadFile.tmp/screendhepagrundlagendokument2013.pdf)"
+        },
+        "5278c6adcdeab69a25000074": {
+            "title": "Ziehe für ein paar Wochen einen/eine Fitnessberater/in zur Unterstützung bei",
+            "text": "Sport und Bewegung wirken sich positiv auf die Physis wie auch die Psyche aus. \n\nDie Basisempfehlung für gesundheitswirksame Bewegung liegt bei wöchentlich 2 1/2 Stunden Bewegung mit mittlerer Intensität. \n\nDabei sollte die Bewegung sinnvollerweise über die ganze Woche verteilt werden. \n\nMöchtest du zielorientiert trainieren und deine Leistung stetig steigern, dann kann es sinnvoll sein, einen externen Fitnessberater beizuziehen. Fachpersonen auf dem Gebiet Sport können dir deinen eigenen Trainingsplan zusammenstellen.\n\nWeitere Informationen zum Thema Bewegung findest du [hier](http://www.hepa.ch/internet/hepa/de/home/dokumentation/grundlagendokumente.parsys.70058.downloadList.12250.DownloadFile.tmp/screendhepagrundlagendokument2013.pdf)"
+        },
+        "5278c6adcdeab69a25000080": {
+            "title": "Starte noch heute ein Fitnesstraining, dass dir Spass macht",
+            "text": "Gehe ins Fitnesstraining. Sport und Bewegung wirken sich positiv auf die Physis wie auch die Psyche aus. \n\nDie Basisempfehlung für gesundheitswirksame Bewegung liegt bei wöchentlich 2 1/2 Stunden Bewegung mit mittlerer Intensität. Dabei sollte die Bewegung sinnvollerweise über die ganze Woche verteilt werden. \n\nDurch das Fitnesstraining deckst du bereits einen Teil dieser empfohlenen Zeit ab.\n\nWeitere Informationen zum Thema Bewegung findest du [hier](http://www.hepa.ch/internet/hepa/de/home/dokumentation/grundlagendokumente.parsys.70058.downloadList.12250.DownloadFile.tmp/screendhepagrundlagendokument2013.pdf)"
+        },
+        "5278c6adcdeab69a2500003f": {
+            "title": "Spreche mit deinem/deiner Vorgesetzten bzw. deinem/deiner Personalverantwortlichen über die Möglichkeit einer Umsatzbeteiligung",
+            "text": "siehe auch [Rahmenkonzept Gesundheitskompetenz](http://www.gesundheitsfoerderung.ch/pdf_doc_xls/d/betriebliche_gesundheitsfoerderung/grundlagen_wissen/Rahmenkonzept_Gesundheitskompetenz_de.pdf)"
+        }
+    }
+}

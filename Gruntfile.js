@@ -58,7 +58,8 @@ module.exports = function (grunt) {
                 options: {
                     file: 'app.js',
                     nodeArgs: ['--debug'],
-                    ignoredFiles: ['README.md', 'node_modules/**', 'spec/**', '.idea/**', '.git/**', 'logs/**', 'atlassian-ide-plugin.xml'],
+                    ignoredFiles: ['README.md', 'node_modules/**', 'spec/**', '.idea/**', '.git/**',
+                        'logs/**', 'atlassian-ide-plugin.xml', 'locales*/**'],
                     delayTime: 1,
                     env: {
                         PORT: '8000'

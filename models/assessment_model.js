@@ -11,7 +11,7 @@ var mongoose = require('mongoose'),
 
 var question = common.newSchema({
     "category": String,
-    "title": {type: String, required: true},
+    "title": {type: String},
     "type": {type: String, enum: common.enums.questionType},
     "mintext": String,
     "mintextexample": String,
@@ -24,13 +24,17 @@ var question = common.newSchema({
     "exptext": String
 });
 
+question.methods.i18nAttrs = ['title', 'mintext', 'mintextexample', 'mintextresult', 'midtext',
+    'midtextexample', 'maxtext', 'maxtextexample', 'maxtextresult', 'exptext'];
+
+var questionCatsSchema = common.newSchema({ category: {type: String, required: true},
+    questions: [question]});
+
+    questionCatsSchema.methods.i18nAttrs = ['questions'];
 
 var AssessmentSchema = common.newSchema({
-    name: {type: String, trim: true, required: true},
-    questionCats: [
-        { category: {type: String, required: true},
-            questions: [question]}
-    ]
+    name: {type: String, trim: true},
+    questionCats: [questionCatsSchema]
 });
 
 AssessmentSchema.statics.getFieldDescriptions = function() {
@@ -44,6 +48,12 @@ AssessmentSchema.statics.getFieldDescriptions = function() {
     };
 };
 
+AssessmentSchema.methods.i18nAttrs = ['name', 'questionCats'];
+
+mongoose.model('AssessmentQuestion', question);
+
 module.exports = mongoose.model('Assessment', AssessmentSchema);
+
+
 
 common.initializeDbFor(mongoose.model('Assessment'));

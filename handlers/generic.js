@@ -472,7 +472,7 @@ module.exports = {
 
             req.log.trace(newObj, 'PostFn: Saving new Object');
             // try to save the new object
-            newObj.save(function (err) {
+            newObj.save(req, function (err) {
                 if (err) {
                     req.log.info({Error: err}, 'Error Saving in PostFn');
                     err.statusCode = 409;
@@ -498,7 +498,7 @@ module.exports = {
                 }
                 _.forEach(objects, function (obj) {
                     obj.remove();
-                })
+                });
                 res.send(200);
             });
         };
@@ -511,7 +511,7 @@ module.exports = {
             // - schema.pre('remove', ... or
             // - schema.pre('remove', ...
             // see user_model.js for an example
-            Model.findOne({_id: req.params.id}, function (err, obj) {
+            Model.findOne({_id: req.params.id}).populate('judihui').exec(function (err, obj) {
                 if (err) {
                     return next(err);
                 }
@@ -572,7 +572,7 @@ module.exports = {
 
                 _.extend(objFromDb, req.body);
 
-                objFromDb.save(function (err, savedObj) {
+                objFromDb.save(req, function (err, savedObj) {
                     if (err) {
                         return next(err);
                     }

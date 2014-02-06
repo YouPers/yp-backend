@@ -1,6 +1,9 @@
 [
     {
-        "name": "ASSESS_YOUR_STRESS_LEVEL",
+        "nameI18n": {
+            "en": "Assess your personal Stress Factors",
+            "de": "Beurteile Deinen Stresslevel"
+        },
         "questionCats": [
             {
                 "category": "GENERAL_STRESSLEVEL",

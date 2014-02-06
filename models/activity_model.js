@@ -10,8 +10,8 @@ var mongoose = require('mongoose'),
  */
 var ActivitySchema = common.newSchema({
     number: {type: String, trim: true, required: true},
-    title: { type: String, trim: true, required: true },
-    text: {type: String, trim: true},
+    title: { type: String, trim: true, required: true, i18n: true },
+    text: {type: String, trim: true, i18n: true},
     source: { type: String, enum: common.enums.source},
     defaultfrequency: {type: String, enum: common.enums.ActivityPlanFrequency},
     defaultexecutiontype: {type: String, enum: common.enums.executiontype},

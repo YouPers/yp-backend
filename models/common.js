@@ -1,10 +1,3 @@
-/**
- * Created with IntelliJ IDEA.
- * User: retoblunschi
- * Date: 16.10.13
- * Time: 08:32
- * To change this template use File | Settings | File Templates.
- */
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
     _ = require('lodash'),
@@ -14,16 +7,113 @@ var mongoose = require('mongoose'),
 module.exports = {
 
     /**
-     * abstract the mongoDB / mongoose Attributes from the porduced JSON
-     * we do not want the clients to depend on our Database, so we
-     * use generic attributes.
+     * general additions that all our Schemas can use.
      *
      * @param definition
      * @param options
      * @returns {Schema}
      */
     newSchema: function (definition, options) {
+
+        // we keep track of all i18n strings on this schema
+        var multilingualValues = [];
+
+        // TODO: Move to some global config
+        var supportedLanguages = ['de', 'en', 'fr', 'it'];
+        var defaultLanguage = 'de';
+
+        // go through all properties defined for this model
+        // for every prop check whether it has the attribute i18n with value true
+        // for every such i18n property replace the simple String model by a struct: {de: String, fr: String, ....}
+        // so, in the database we store an object with a key for each language instead of just a String.
+        // we change the key from 'keyname' to 'keynameI18n'
+        _.forEach(definition, function (value, key) {
+            value = definition[key];
+            if ('i18n' in value && value['i18n'] === true) {
+                delete value['i18n'];
+
+                multilingualValues.push(key);
+
+                var struct = {};
+                _.forEach(supportedLanguages, function (lang) {
+                    struct[lang] = value;
+                    if ((lang !== defaultLanguage) && 'required' in value && value['required'] === true) {
+                        delete struct[lang]['required'];
+                    }
+                });
+                definition[key + 'I18n'] = struct;
+                delete definition[key];
+            }
+        });
+
         var mySchema = new Schema(definition, options);
+
+        // To make it easy for clients/handlers/controllers to access the i18n properties we add virtual
+        // getters and setters
+        _.forEach(multilingualValues, function (key) {
+            mySchema.virtual(key)
+                // the getter check whether one or multiple languages have been loaded from the Database in the
+                // property 'keynameI18n'. If only one was loaded, it returns the unwrapped value, because the
+                // client has asked for only one locale and we queried the Database to only return this locale
+                // if more than one locale was loaded we return the full struct and expects the client to handle it.
+                .get(function () {
+                    var myValue = this[key + 'I18n'];
+                    var nrOfLocalesLoaded = _.keys(myValue.toObject()).length;
+                    if (nrOfLocalesLoaded === 1) {
+                        return myValue[_.keys(myValue.toObject())[0]];
+                    } else if (nrOfLocalesLoaded === 0) {
+                        // TODO: find a way to deliver a reasonable Fallback in this case, needs adjusting of the querySelector!!!
+                        return "MISSING TRANSLATION";
+                    } else {
+                        // many locales loaded, --> the client wants all locales, we give him the full object.
+                        return  myValue;
+                    }
+                })
+                .set(function (value) {
+                    this[key + 'I18n'] = {};
+                    this[key + 'I18n'][defaultLanguage] = value;
+                });
+        });
+
+        /**
+         * This Method returns an Object that can be given to any mongoose Database query with a
+         * .select() statement. When you use this selector, the query will return only the passed in locale
+         * for any i18n=true properties. And the JSON Formatter of this schema will then unwrap the i18n objects
+         * into normal localized String.
+         *
+         * @param locale the locale to be loaded.
+         * @param basePath used for recursive calls, do not pass any value when you call this Fn in a controller.
+         * @returns {} that can be given to mongoose.query.select()
+         */
+        mySchema.statics.getI18nPropertySelector = function (locale, basePath) {
+
+            var selectObj = {};
+            basePath = basePath ? basePath + '.' : '';
+
+            // add the multilingual Values of this Model
+            _.forEach(multilingualValues, function (prop) {
+                _.forEach(supportedLanguages, function (lng) {
+                    if (lng !== locale) {
+                        selectObj[basePath + prop + 'I18n.' + lng] = 0;
+                    }
+                });
+            });
+
+            // recursivly call for all subSchemas and merge the results together
+            _.forEach(definition, function (value, key) {
+                var propertyType = Array.isArray(value) ? value[0] : value;
+                if (propertyType instanceof mongoose.Schema) {
+                    _.merge(selectObj, propertyType.statics.getI18nPropertySelector(locale, basePath ? basePath + key : key));
+                }
+            });
+            return selectObj;
+        };
+
+        /**
+         * overwrite the way we generally render objects to JSON.
+         *
+         * This is called automatically for every subschema, so we do not have to do recursion ourselves.
+         */
         mySchema.set('toJSON', {
             transform: function (doc, ret, options) {
                 ret.id = ret._id;
@@ -42,6 +132,15 @@ module.exports = {
                     ret.editStatus = doc.editStatus;
                 }
 
+                _.forEach(multilingualValues, function (prop) {
+
+                    // enable the virtual
+                    ret[prop] = doc[prop];
+
+                    // the real stored db value is hidden from the client.
+                    delete ret[prop + 'I18n'];
+                });
+
                 if (doc.toJsonConfig && doc.toJsonConfig.hide) {
                     _.forEach(doc.toJsonConfig.hide, function (propertyToHide) {
                         delete ret[propertyToHide];
@@ -49,6 +148,12 @@ module.exports = {
                 }
             }});
 
+        /**
+         * This function takes a mongoose Schema description and outputs the same schema as a swagger model to be
+         * consumed by Swagger.
+         *
+         * @returns {{}}
+         */
         mySchema.statics.getSwaggerModel = function () {
 
             var typeMap = {
@@ -333,7 +438,7 @@ module.exports = {
                             });
                         });
                     } else {
-                        console.log(Model.modelName + ": no initialization, more or same number of instances already in Database ("+count+") than in JSON-File ("+jsonFromFile.length+")" );
+                        console.log(Model.modelName + ": no initialization, more or same number of instances already in Database (" + count + ") than in JSON-File (" + jsonFromFile.length + ")");
                     }
                 } else {
                     console.log(Model.modelName + ": no initialization, because no load file exists for this Model");
@@ -344,4 +449,5 @@ module.exports = {
         }
     }
 
-};
+}
+;

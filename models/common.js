@@ -26,7 +26,7 @@ module.exports = {
         var multilingualValues = [];
 
         var supportedLanguages = ['de', 'en', 'fr', 'it'];
-        var defaultLanguage = 'en';
+        var defaultLanguage = 'de';
 
         _.forEach(definition, function (value, key) {
             value = definition[key];
@@ -58,23 +58,36 @@ module.exports = {
                     } else {
                         return  myValue;
                     }
+                })
+                .set(function (value) {
+                    this[key + 'I18n'] = {};
+                    this[key + 'I18n'][defaultLanguage] = value;
                 });
         });
 
-        if (multilingualValues.length > 0) {
-            mySchema.statics.getI18nPropertySelector = function (locale) {
+            mySchema.statics.getI18nPropertySelector = function (locale, basePath) {
+
                 var selectObj = {};
+                basePath = basePath ? basePath + '.' : '';
+
+                // add the multilingual Values of this Model
                 _.forEach(multilingualValues, function (prop) {
                     _.forEach(supportedLanguages, function (lng) {
                         if (lng !== locale) {
-                            selectObj[prop + 'I18n.' + lng] = 0;
+                            selectObj[basePath + prop + 'I18n.' + lng] = 0;
                         }
                     });
+                });
 
+                // recursivly call for all subSchemas
+                _.forEach(definition, function (value, key) {
+                    var propertyType = Array.isArray(value) ? value[0] : value;
+                    if (propertyType instanceof mongoose.Schema) {
+                        _.merge(selectObj, propertyType.statics.getI18nPropertySelector(locale, basePath ? basePath + key : key));
+                    }
                 });
                 return selectObj;
             };
-        }
 
 
         mySchema.set('toJSON', {
@@ -97,17 +110,17 @@ module.exports = {
 
                 _.forEach(multilingualValues, function (prop) {
 
-                    var numberOfLocalesLoaded = _.keys(doc[prop+'I18n'].toObject()).length;
+                    var numberOfLocalesLoaded = _.keys(doc[prop + 'I18n'].toObject()).length;
 
                     // if we have only one language key in the keyI18n, then the client requested a specific locale
                     // so we deliver only this locale
-                    if (numberOfLocalesLoaded === 1 ) {
+                    if (numberOfLocalesLoaded === 1) {
                         ret[prop] = doc[prop];
                     } else if (numberOfLocalesLoaded === 0) {
-                        ret[prop] = "translation missing";
+                        ret[prop] = "";
                     } else {
                         // many locales loaded, --> the client wants many locales
-                        ret[prop] = doc[prop+'I18n'];
+                        ret[prop] = doc[prop + 'I18n'];
                     }
                     delete ret[prop + 'I18n'];
                 });
@@ -409,7 +422,7 @@ module.exports = {
                             });
                         });
                     } else {
-                        console.log(Model.modelName + ": no initialization, more or same number of instances already in Database ("+count+") than in JSON-File ("+jsonFromFile.length+")" );
+                        console.log(Model.modelName + ": no initialization, more or same number of instances already in Database (" + count + ") than in JSON-File (" + jsonFromFile.length + ")");
                     }
                 } else {
                     console.log(Model.modelName + ": no initialization, because no load file exists for this Model");
@@ -420,4 +433,5 @@ module.exports = {
         }
     }
 
-};
+}
+;

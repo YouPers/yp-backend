@@ -11,29 +11,24 @@ var mongoose = require('mongoose'),
 
 var question = common.newSchema({
     "category": String,
-    "title": {type: String},
+    "title": {type: String, i18n: true},
     "type": {type: String, enum: common.enums.questionType},
-    "mintext": String,
-    "mintextexample": String,
-    "mintextresult": String,
-    "midtext": String,
-    "midtextexample": String,
-    "maxtext": String,
-    "maxtextexample": String,
-    "maxtextresult": String,
-    "exptext": String
+    "mintext": {type: String, i18n: true},
+    "mintextexample": {type: String, i18n: true},
+    "mintextresult": {type: String, i18n: true},
+    "midtext": {type: String, i18n: true},
+    "midtextexample": {type: String, i18n: true},
+    "maxtext": {type: String, i18n: true},
+    "maxtextexample": {type: String, i18n: true},
+    "maxtextresult": {type: String, i18n: true},
+    "exptext": {type: String, i18n: true}
 });
-
-question.methods.i18nAttrs = ['title', 'mintext', 'mintextexample', 'mintextresult', 'midtext',
-    'midtextexample', 'maxtext', 'maxtextexample', 'maxtextresult', 'exptext'];
 
 var questionCatsSchema = common.newSchema({ category: {type: String, required: true},
     questions: [question]});
 
-    questionCatsSchema.methods.i18nAttrs = ['questions'];
-
 var AssessmentSchema = common.newSchema({
-    name: {type: String, trim: true},
+    name: {type: String, trim: true, i18n: true},
     questionCats: [questionCatsSchema]
 });
 
@@ -47,8 +42,6 @@ AssessmentSchema.statics.getFieldDescriptions = function() {
         'question.category': 'The category title this question belongs to'
     };
 };
-
-AssessmentSchema.methods.i18nAttrs = ['name', 'questionCats'];
 
 mongoose.model('AssessmentQuestion', question);
 

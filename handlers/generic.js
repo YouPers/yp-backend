@@ -379,6 +379,9 @@ module.exports = {
             if (req.user && auth.isAdmin(req.user) && Model.getAdminAttrsSelector) {
                 dbQuery.select(Model.getAdminAttrsSelector());
             }
+            if (Model.getI18nPropertySelector && !req.params.i18n) {
+                dbQuery.select(Model.getI18nPropertySelector(req.locale || 'de'));
+            }
             processStandardQueryOptions(req, dbQuery, Model)
                 .exec(function geByIdFnCallback(err, obj) {
                     if (err) {
@@ -429,8 +432,8 @@ module.exports = {
                 dbQuery.select(Model.getAdminAttrsSelector());
             }
 
-            if (Model.getI18nPropertySelector) {
-                dbQuery.select(Model.getI18nPropertySelector('en'));
+            if (Model.getI18nPropertySelector && !req.params.i18n) {
+                dbQuery.select(Model.getI18nPropertySelector(req.locale || 'de'));
             }
 
             processStandardQueryOptions(req, dbQuery, Model)

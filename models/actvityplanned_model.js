@@ -57,8 +57,6 @@ var ActivityPlanSchema = common.newSchema({
     events: [ActivityPlanEvent]
 });
 
-ActivityPlanSchema.methods.i18nAttrs = ['activity'];
-
 ActivityPlanEvent.statics.getFieldDescriptions = function() {
     return {
         owner: 'The user who owns this ActivityPlanEvent'

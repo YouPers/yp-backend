@@ -37,10 +37,7 @@ mongoose.connect(connectStr, {server: {auto_reconnect: true}});
 var server = restify.createServer({
     name: 'YP Platform Server',
     version: config.version,
-    log: new Logger(config.loggerOptions),
-    formatters: {
-        'application/json': ypi18n.i18nJsonFormatter
-    }
+    log: new Logger(config.loggerOptions)
 });
 
 // setung logging of request and response
@@ -67,10 +64,9 @@ longjohn.empty_frame = 'ASYNC CALLBACK';
 // initialize i18n
 i18n.init({
     fallbackLng: 'de',
-    supportedLngs: ['de','en'],
+    supportedLngs: ['de','en', 'fr', 'it'],
     resGetPath: './locales/__ns__.__lng__.json',
-    resSetPath: './localesNew/__ns__.__lng__.json',
-    saveMissing: true,
+    saveMissing: false,
     debug: false});
 
 // setup middlewares to be used by server

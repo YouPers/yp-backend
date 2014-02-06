@@ -8,14 +8,19 @@
  * @param next
  * @returns {*}
  */
-var angularTranslateI18nextAdapter = function(req,res,next) {
+var angularTranslateI18nextAdapterPre = function(req,res,next) {
     if (req.headers['yp-language']) {
         req.headers['cookie'] = 'i18next='+ req.headers['yp-language'];
-        res.setHeader('yp-language', req.locale);
     }
     return next();
 };
 
+var angularTranslateI18nextAdapterPost = function(req,res,next) {
+    res.setHeader('yp-language', req.locale);
+    return next();
+};
+
 module.exports = {
-    angularTranslateI18nextAdapter: angularTranslateI18nextAdapter
+    angularTranslateI18nextAdapterPre: angularTranslateI18nextAdapterPre,
+    angularTranslateI18nextAdapterPost: angularTranslateI18nextAdapterPost
 };

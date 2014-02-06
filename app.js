@@ -77,8 +77,9 @@ server.use(restify.dateParser());
 server.use(restify.queryParser());
 server.use(restify.gzipResponse());
 server.use(restify.bodyParser({ mapParams: false }));
-server.use(ypi18n.angularTranslateI18nextAdapter);
+server.use(ypi18n.angularTranslateI18nextAdapterPre);
 server.use(i18n.handle);
+server.use(ypi18n.angularTranslateI18nextAdapterPost);
 server.use(passport.initialize());
 server.use(restify.fullResponse());
 

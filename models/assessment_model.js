@@ -11,7 +11,7 @@ var mongoose = require('mongoose'),
 
 var question = common.newSchema({
     "category": String,
-    "title": {type: String, i18n: true},
+    "title": {type: String, required: true, i18n: true},
     "type": {type: String, enum: common.enums.questionType},
     "mintext": {type: String, i18n: true},
     "mintextexample": {type: String, i18n: true},

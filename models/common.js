@@ -376,7 +376,7 @@ module.exports = {
                     // for some objects.
                 }
                 if (jsonFromFile) {
-                    if (jsonFromFile.length !== count) {
+                    if (jsonFromFile.length > count) {
                         console.log(Model.modelName + ": initializing Database from File: " + filename);
                         if (!Array.isArray(jsonFromFile)) {
                             jsonFromFile = [jsonFromFile];
@@ -389,11 +389,15 @@ module.exports = {
 
                             newObj.save(function (err) {
                                 if (err) {
-                                    console.log(err.message);
-                                    throw err;
+                                    if (err.code === 11000) {
+                                        console.log(Model.modelName + ": not saving Obj: " + jsonObj._id + " because it is already in the database");
+                                    } else {
+                                        console.log(err.message);
+                                        throw err;
+                                    }
                                 }
                                 // fix for User Password hashing of imported users that already have an id in the json...
-                                if (newObj.modelName = 'User' && !newObj.hashed_password) {
+                                if (newObj.modelName === 'User' && !newObj.hashed_password) {
                                     newObj.password = jsonObj.password;
                                     newObj.save(function (err) {
                                         if (err) {
@@ -405,7 +409,7 @@ module.exports = {
                             });
                         });
                     } else {
-                        console.log(Model.modelName + ": no initialization, correct number of instances already in Database");
+                        console.log(Model.modelName + ": no initialization, more or same number of instances already in Database ("+count+") than in JSON-File ("+jsonFromFile.length+")" );
                     }
                 } else {
                     console.log(Model.modelName + ": no initialization, because no load file exists for this Model");

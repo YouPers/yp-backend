@@ -514,7 +514,7 @@ module.exports = {
             // - schema.pre('remove', ... or
             // - schema.pre('remove', ...
             // see user_model.js for an example
-            Model.findOne({_id: req.params.id}).populate('judihui').exec(function (err, obj) {
+            Model.findOne({_id: req.params.id}).exec(function (err, obj) {
                 if (err) {
                     return next(err);
                 }

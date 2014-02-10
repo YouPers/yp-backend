@@ -274,12 +274,13 @@ function postNewActivityPlan(req, res, next) {
                 email.sendCalInvite(req.user.email, 'Einladung: YouPers Kalendar Eintrag', myIcalString);
             }
 
+            emitActivityPlanUpdate(reloadedActPlan);
+
             // remove the populated activity because the client is not gonna expect it to be populated.
             reloadedActPlan.activity = reloadedActPlan.activity._id;
             res.header('location', '/api/v1/activitiesPlanned' + '/' + reloadedActPlan._id);
             res.send(201, reloadedActPlan);
 
-            emitActivityPlanUpdate(reloadedActPlan);
 
             return next();
         });

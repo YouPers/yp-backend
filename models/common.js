@@ -370,6 +370,8 @@ module.exports = {
         activityPlanEventStatus: "open done missed".split(' '),
         activityRecurrenceEndByType: "after on never".split(' '),
         ActivityPlanFrequency: "once day week month year".split(' '),
+        activityPlanDeletable: "deletable deletableOnlyFutureEvents notDeletableJoinedUsers notDeletableJoinedPlans notDeletableNoFutureEvents".split(' '),
+        activityPlanEditable: "editable notEditableJoinedPlans notEditableJoinedUsers notEditableNotSingleEvent notEditablePastEvent".split(' '),
 
         // Assessment related enums
         questionType: "oneSided twoSided".split(' '),

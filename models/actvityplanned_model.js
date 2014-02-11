@@ -63,17 +63,17 @@ ActivityPlanEvent.statics.getFieldDescriptions = function() {
     };
 };
 
-ActivityPlanSchema.statics.activityPlanCompletelyDeletable = "ACTIVITYPLAN_DELETABLE";
-ActivityPlanSchema.statics.activityPlanOnlyFutureEventsDeletable = "ACTIVITYPLAN_DELETABLE_ONLY_FUTURE_EVENTS";
-ActivityPlanSchema.statics.activityPlanNotDeletableJoinedUser = "ACTIVITYPLAN_NOT_DELETABLE_JOINED_USERS";
-ActivityPlanSchema.statics.activityPlanNotDeletableJoinedPlan = "ACTIVITYPLAN_NOT_DELETABLE_JOINED_PLAN";
-ActivityPlanSchema.statics.activityPlanNotDeletableNoFutureEvents = "ACTIVITYPLAN_NOT_DELETABLE_NO_FUTURE_EVENTS";
+ActivityPlanSchema.statics.activityPlanCompletelyDeletable = "deletable";
+ActivityPlanSchema.statics.activityPlanOnlyFutureEventsDeletable = "deletableOnlyFutureEvents";
+ActivityPlanSchema.statics.activityPlanNotDeletableJoinedUser = "notDeletableJoinedUsers";
+ActivityPlanSchema.statics.activityPlanNotDeletableJoinedPlan = "notDeletableJoinedPlans";
+ActivityPlanSchema.statics.activityPlanNotDeletableNoFutureEvents = "notDeletableNoFutureEvents";
 
-ActivityPlanSchema.statics.activityPlanEditable = "ACTIVITYPLAN_EDITABLE";
-ActivityPlanSchema.statics.activityPlanNotEditableJoinedPlan = "ACTIVITYPLAN_NOT_EDITABLE_JOINED_PLAN";
-ActivityPlanSchema.statics.activityPlanNotEditableJoinedUser = "ACTIVITYPLAN_NOT_EDITABLE_JOINED_USERS";
-ActivityPlanSchema.statics.activityPlanNotEditableNotSingleEvent = "ACTIVITYPLAN_NOT_EDITABLE_NOT_SINGLE_EVENT";
-ActivityPlanSchema.statics.activityPlanNotEditableEventsInThePast = "ACTIVITYPLAN_NOT_EDITABLE_PAST_EVENT";
+ActivityPlanSchema.statics.activityPlanEditable = "editable";
+ActivityPlanSchema.statics.activityPlanNotEditableJoinedPlan = "notEditableJoinedPlans";
+ActivityPlanSchema.statics.activityPlanNotEditableJoinedUser = "notEditableJoinedUsers";
+ActivityPlanSchema.statics.activityPlanNotEditableNotSingleEvent = "notEditableNotSingleEvent";
+ActivityPlanSchema.statics.activityPlanNotEditableEventsInThePast = "notEditablePastEvent";
 
 /**
  * Methods

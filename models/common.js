@@ -373,6 +373,7 @@ module.exports = {
 
         // Assessment related enums
         questionType: "oneSided twoSided".split(' '),
+        questionCategory: "generalStresslevel atWork leisureTime stressType stressMeasures".split(' '),
 
         // Profile related enums
         gender: "undefined female male".split(' '),

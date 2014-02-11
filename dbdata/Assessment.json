@@ -6,7 +6,7 @@
         },
         "questionCats": [
             {
-                "category": "GENERAL_STRESSLEVEL",
+                "category": "generalStresslevel",
                 "questions": [
                     {
                         "_id": "5278c51a6166f2de240000df",
@@ -27,7 +27,7 @@
                 "_id": "5278c51a6166f2de240000de"
             },
             {
-                "category": "AT_WORK",
+                "category": "atWork",
                 "questions": [
                     {
                         "_id": "5278c51a6166f2de240000dd",
@@ -194,7 +194,7 @@
                 "_id": "5278c51a6166f2de240000d2"
             },
             {
-                "category": "LEISURE_TIME",
+                "category": "leisureTime",
                 "questions": [
                     {
                         "_id": "5278c51a6166f2de240000d1",
@@ -256,7 +256,7 @@
                 "_id": "5278c51a6166f2de240000cd"
             },
             {
-                "category": "STRESS_TYP",
+                "category": "stressType",
                 "questions": [
                     {
                         "_id": "5278c51a6166f2de240000cc",
@@ -337,7 +337,7 @@
                 "_id": "5278c51a6166f2de240000c7"
             },
             {
-                "category": "STRESS_MEASURES",
+                "category": "stressMeasures",
                 "questions": [
                     {
                         "_id": "5278c51a6166f2de240000c6",

@@ -19,6 +19,8 @@ var restify = require("restify"),
     passportHttp = require('passport-http'),
     swagger = require("swagger-node-restify"),
     auth = require('./util/auth'),
+    i18n = require('i18next'),
+    ypi18n = require('./util/ypi18n')
     socket = require('./util/socket');
 
 
@@ -54,13 +56,21 @@ server.on('after', function (req, res, route, err) {
         if (req.body) {
             req.log.info({requestbody: req.body});
         }
-        req.log.info({err:err});
+        req.log.info({err: err});
     }
 });
 
 // setup better error stacktraces
 longjohn.async_trace_limit = 10;  // defaults to 10
 longjohn.empty_frame = 'ASYNC CALLBACK';
+
+// initialize i18n
+i18n.init({
+    fallbackLng: 'de',
+    supportedLngs: ['de','en', 'fr', 'it'],
+    resGetPath: './locales/__ns__.__lng__.json',
+    saveMissing: false,
+    debug: false});
 
 // setup middlewares to be used by server
 server.use(restify.requestLogger());
@@ -70,6 +80,9 @@ server.use(restify.dateParser());
 server.use(restify.queryParser());
 server.use(restify.gzipResponse());
 server.use(restify.bodyParser({ mapParams: false }));
+server.use(ypi18n.angularTranslateI18nextAdapterPre);
+server.use(i18n.handle);
+server.use(ypi18n.angularTranslateI18nextAdapterPost);
 server.use(passport.initialize());
 server.use(restify.fullResponse());
 

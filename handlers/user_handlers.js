@@ -132,7 +132,7 @@ var requestPasswordResetPostFn = function(baseUrl) {
 
         User.findOne()
             .or([{username: req.body.usernameOrEmail}, {email: req.body.usernameOrEmail}])
-            .select('+email')
+            .select('+email +username')
             .exec(function(err, user) {
             if(err) {
                 return next(new restify.InternalError(err));

@@ -26,8 +26,9 @@
     "moment": "~2.4.x",
     "swagger-node-restify": "git+https://github.com/YouPers/swagger-node-restify.git",
     "gm": "~1.14.2",
-    "async": "~0.2.9",
-    "socket.io": "~0.9.16"
+     "async": "~0.2.9",
+      "i18next": "~1.7.1",
+      "socket.io": "~0.9.16"
   },
   "devDependencies": {
     "grunt-contrib-jshint": "~0.6.x",

@@ -11,26 +11,25 @@ var mongoose = require('mongoose'),
 
 var question = common.newSchema({
     "category": String,
-    "title": {type: String, required: true},
+    "title": {type: String, required: true, i18n: true},
     "type": {type: String, enum: common.enums.questionType},
-    "mintext": String,
-    "mintextexample": String,
-    "mintextresult": String,
-    "midtext": String,
-    "midtextexample": String,
-    "maxtext": String,
-    "maxtextexample": String,
-    "maxtextresult": String,
-    "exptext": String
+    "mintext": {type: String, i18n: true},
+    "mintextexample": {type: String, i18n: true},
+    "mintextresult": {type: String, i18n: true},
+    "midtext": {type: String, i18n: true},
+    "midtextexample": {type: String, i18n: true},
+    "maxtext": {type: String, i18n: true},
+    "maxtextexample": {type: String, i18n: true},
+    "maxtextresult": {type: String, i18n: true},
+    "exptext": {type: String, i18n: true}
 });
 
+var questionCatsSchema = common.newSchema({ category: {type: String, required: true},
+    questions: [question]});
 
 var AssessmentSchema = common.newSchema({
-    name: {type: String, trim: true, required: true},
-    questionCats: [
-        { category: {type: String, required: true},
-            questions: [question]}
-    ]
+    name: {type: String, trim: true, i18n: true},
+    questionCats: [questionCatsSchema]
 });
 
 AssessmentSchema.statics.getFieldDescriptions = function() {
@@ -44,6 +43,10 @@ AssessmentSchema.statics.getFieldDescriptions = function() {
     };
 };
 
+mongoose.model('AssessmentQuestion', question);
+
 module.exports = mongoose.model('Assessment', AssessmentSchema);
+
+
 
 common.initializeDbFor(mongoose.model('Assessment'));

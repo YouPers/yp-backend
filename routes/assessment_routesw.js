@@ -16,6 +16,37 @@ module.exports = function (swagger, config) {
         baseUrlWithId = baseUrl + "/{id}";
     var resultsUrl = baseUrl + '/{assId}/results';
 
+    swagger.addPut({
+        spec: {
+            description: "Operations about assessments and assessmentResults",
+            path: baseUrlWithId,
+            notes: "updates an existing assessment",
+            summary: "stores an update for the assessment with id assId",
+            method: "PUT",
+            params: [swagger.pathParam("id", "ID of the assessment", "string"),
+                swagger.bodyParam("assessment", "The assessment to store, or only some keys of it", "AssessmentResult")],
+            "responseMessages": [
+                {
+                    "code": 200,
+                    "message": "Updated",
+                    "responseModel": "Assessment"
+                },
+                {
+                    "code": 401,
+                    "message": "Unauthorized: client or user not authorized to call this method"
+                },
+                {
+                    "code": 204,
+                    "message": "assessment with this id not found"
+                }
+            ],
+            "nickname": "putAssessment",
+            accessLevel: 'al_productadmin',
+            beforeCallbacks: []
+        },
+        action: generic.putFn(baseUrl, Assessment)
+    });
+
     swagger.addPost({
         spec: {
             description: "Operations about assessments and assessmentResults",

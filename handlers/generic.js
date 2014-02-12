@@ -271,6 +271,14 @@ var _addFilter = function (queryParams, dbquery, Model) {
 };
 
 var processStandardQueryOptions = function (req, dbquery, Model) {
+    if (req.user && auth.isAdmin(req.user) && Model.getAdminAttrsSelector) {
+        dbquery.select(Model.getAdminAttrsSelector());
+    }
+
+    if (Model.getI18nPropertySelector && !req.params.i18n) {
+        dbquery.select(Model.getI18nPropertySelector(req.locale || 'de'));
+    }
+
     dbquery = _addPagination(req.query, dbquery);
     dbquery = _addPopulation(req.query, dbquery);
     dbquery = _addSort(req.query, dbquery);
@@ -376,9 +384,7 @@ module.exports = {
     getByIdFn: function (baseUrl, Model) {
         return function (req, res, next) {
             var dbQuery = Model.findById(req.params.id);
-            if (req.user && auth.isAdmin(req.user) && Model.getAdminAttrsSelector) {
-                dbQuery.select(Model.getAdminAttrsSelector());
-            }
+
             processStandardQueryOptions(req, dbQuery, Model)
                 .exec(function geByIdFnCallback(err, obj) {
                     if (err) {
@@ -425,10 +431,6 @@ module.exports = {
                 }
             }
             var dbQuery = Model.find(finder);
-            if (req.user && auth.isAdmin(req.user) && Model.getAdminAttrsSelector) {
-                dbQuery.select(Model.getAdminAttrsSelector());
-            }
-
 
             processStandardQueryOptions(req, dbQuery, Model)
                 .exec(function (err, objList) {
@@ -495,7 +497,7 @@ module.exports = {
                 }
                 _.forEach(objects, function (obj) {
                     obj.remove();
-                })
+                });
                 res.send(200);
             });
         };
@@ -508,7 +510,7 @@ module.exports = {
             // - schema.pre('remove', ... or
             // - schema.pre('remove', ...
             // see user_model.js for an example
-            Model.findOne({_id: req.params.id}, function (err, obj) {
+            Model.findOne({_id: req.params.id}).exec(function (err, obj) {
                 if (err) {
                     return next(err);
                 }

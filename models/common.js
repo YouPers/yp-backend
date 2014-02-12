@@ -369,7 +369,7 @@ module.exports = {
         // ActivityPlanEven enums
         activityPlanEventStatus: "open done missed".split(' '),
         activityRecurrenceEndByType: "after on never".split(' '),
-        ActivityPlanFrequency: "once day week month year".split(' '),
+        activityPlanFrequency: "once day week month year".split(' '),
         activityPlanDeletable: "deletable deletableOnlyFutureEvents notDeletableJoinedUsers notDeletableJoinedPlans notDeletableNoFutureEvents".split(' '),
         activityPlanEditable: "editable notEditableJoinedPlans notEditableJoinedUsers notEditableNotSingleEvent notEditablePastEvent".split(' '),
 

@@ -265,7 +265,7 @@ function postNewActivityPlan(req, res, next) {
         }
         // we populate 'activity' so we can get create a nice calendar entry using strings on the
         // activity
-        ActivityPlanModel.findById(newActPlan._id).populate('activity').exec(function (err, reloadedActPlan) {
+        ActivityPlanModel.findById(newActPlan._id).populate('activity owner').exec(function (err, reloadedActPlan) {
             if (err) {
                 return next(err);
             }

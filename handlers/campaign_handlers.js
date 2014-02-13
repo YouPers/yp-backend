@@ -5,7 +5,6 @@ var stats = require('../util/stats'),
     restify = require('restify'),
     mongoose = require('mongoose'),
     Organization = mongoose.model('Organization'),
-    User = mongoose.model('User'),
     Campaign = mongoose.model('Campaign');
 
 var getCampaignStats = function (baseUrl, Model) {

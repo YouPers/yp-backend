@@ -27,7 +27,7 @@ module.exports = function (swagger, config) {
             "responseClass": "Campaign",
             "errorResponses": [swagger.errors.invalid('id'), swagger.errors.notFound("campaign")],
             "nickname": "getCampaignById",
-            accessLevel: 'al_user'
+            accessLevel: 'al_campaignlead'
         },
         action: genericHandlers.getByIdFn(baseUrl, Campaign)
     });
@@ -43,7 +43,7 @@ module.exports = function (swagger, config) {
             "responseClass": "Campaign",
             "errorResponses": [swagger.errors.invalid('id'), swagger.errors.notFound("campaign")],
             "nickname": "getCampaignStatsById",
-            accessLevel: 'al_user'
+            accessLevel: 'al_campaignlead'
         },
         action: campaignHandlers.getCampaignStats(baseUrl, Campaign)
     });
@@ -62,7 +62,7 @@ module.exports = function (swagger, config) {
             method: "GET",
             "responseClass": "Campaign",
             "nickname": "getCampaigns",
-            accessLevel: 'al_individual'
+            accessLevel: 'al_campaignlead'
         },
         action: campaignHandlers.getAllForUserFn(baseUrl, Campaign)
     });
@@ -78,9 +78,9 @@ module.exports = function (swagger, config) {
             "responseClass": "Campaign",
             "errorResponses": [],
             "nickname": "postCampaign",
-            accessLevel: 'al_user'
+            accessLevel: 'al_orgadmin'
         },
-        action: campaignHandlers.postFn(baseUrl)
+        action: campaignHandlers.postCampaign(baseUrl)
     });
 
     swagger.addDelete({
@@ -113,4 +113,22 @@ module.exports = function (swagger, config) {
         },
         action: genericHandlers.deleteAllFn(baseUrl, Campaign)
     });
+
+
+    swagger.addPut({
+        spec: {
+            description: "Operations about campaigns",
+            path: baseUrlWithId,
+            notes: "updates the campaign with id id",
+            summary: "updates the campaign",
+            method: "PUT",
+            params: [swagger.pathParam("id", "ID of the campaign to be updated", "string"), swagger.bodyParam("campaign", "campaign object to be updated", "Campaign")],
+            "responseClass": "Campaign",
+            "errorResponses": [swagger.errors.invalid('id'), swagger.errors.notFound("campaign")],
+            "nickname": "putCampaignById",
+            accessLevel: 'al_campaignlead'
+        },
+        action: campaignHandlers.putCampaign
+    });
+
 };

@@ -10,8 +10,8 @@ var mongoose = require('mongoose'),
  */
 var CampaignSchema = common.newSchema({
     title: { type: String, trim: true, required: true },
-    start: {type: Date},
-    end: {type: Date},
+    start: {type: Date, required: true },
+    end: {type: Date, required: true },
     relatedService: {type: String, trim: true, enum: common.enums.relatedService, default: "YP-Balance"},
     organization:  { type: ObjectId, ref: 'Organization', required: true },
     location: { type: String, trim: true, required: true },

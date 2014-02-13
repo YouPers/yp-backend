@@ -5,7 +5,8 @@
         "location": "test address",
         "sector": "test sector",
         "nrOfEmployees": "10",
-        "avatar": "assets/img/YouPersAvatar.png"
+        "avatar": "assets/img/YouPersAvatar.png",
+        "administrators": ["52a97f1650fca98c2900000a"]
     },
     {
         "_id": "52f0c64e53d523235b07d8d9",
@@ -13,6 +14,7 @@
         "location": "test address",
         "sector": "test sector",
         "nrOfEmployees": "100",
-        "avatar": "assets/img/logo.png"
+        "avatar": "assets/img/logo.png",
+        "administrators": ["52a97f1650fca98c2900000a"]
     }
 ]

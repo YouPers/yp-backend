@@ -168,8 +168,8 @@ var passwordResetPostFn = function(baseUrl) {
             return next(new restify.InvalidArgumentError('Invalid Token'));
         }
 
-        var userId = decryptedToken.split('|')[0];
-        var tokentimestamp = decryptedToken.split('|')[1];
+        var userId = decryptedToken.split(email.linkTokenSeparator)[0];
+        var tokentimestamp = decryptedToken.split(email.linkTokenSeparator)[1];
 
         if (new Date().getMilliseconds() - tokentimestamp > config.linkTokenEncryption.maxTokenLifetime) {
             return next(new restify.InvalidArgumentError('Password Reset Link is expired, please click again on password reset'));

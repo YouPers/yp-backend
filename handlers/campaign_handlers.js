@@ -152,6 +152,7 @@ var postCampaignLeadInviteFn = function postCampaignLeadInviteFn(req, res, next)
         },
         // for each email try whether we have a user in the Db with this email address and, if yes, load the user
         // to personalize the email then send the invitation mail
+        // if we do not find a user for this email we send the same email but without personalization.
         function (done) {
             async.forEach(emails,
                 function (emailaddress, done) {

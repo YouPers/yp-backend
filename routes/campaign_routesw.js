@@ -100,7 +100,7 @@ module.exports = function (swagger, config) {
             ],
             method: "POST",
             "nickname": "postCampaignLeadPlanInvite",
-            accessLevel: 'al_orgadmin',
+            accessLevel: 'al_campaignlead',
             beforeCallbacks: []
         },
         action: campaignHandlers.postCampaignLeadInvite

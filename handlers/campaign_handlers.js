@@ -183,13 +183,19 @@ var assignCampaignLeadFn = function assignCampaignLeadFn(req, res, next) {
         return next(new restify.InvalidArgumentError('missing required CampaignId in URL'));
     }
     if (!req.params.token) {
-        return next(new restify.InvalidArgumentError('missing required token request parameter'));
+        return next(new restify.InvalidArgumentError('missing required token query parameter'));
     }
     if (!req.user) {
         return next(new restify.InvalidArgumentError('missing authenticated user'));
     }
 
-    var tokenElements = email.decryptLinkToken(req.params.token).split(email.linkTokenSeparator);
+    var tokenElements;
+
+    try {
+        tokenElements = email.decryptLinkToken(req.params.token).split(email.linkTokenSeparator);
+    } catch (err) {
+        return next(new restify.InvalidArgumentError('Invalid Token'));
+    }
 
     // tokenElements[0] must be the campaignId
     if (tokenElements[0] !== req.params.id) {

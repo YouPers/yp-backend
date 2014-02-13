@@ -52,6 +52,17 @@ frisby.create('CampaignsInviteLead: POST new campaign to existing organization')
                     .expectStatus(403)
                     .toss();
 
+                frisby.create('CampaignsInviteLead: invite a user as a campaignlead of another campaign FAIL')
+                    .post(URL + '/campaigns/' + newCampaign.id + '/inviteCampaignLeadEmail', {email: "ypunittest1+individual2@gmail.com"})
+                    .auth('test_campaignlead', 'yp')
+                    .expectStatus(403)
+                    .toss();
+
+                frisby.create('CampaignsInviteLead: invite a new user')
+                    .post(URL + '/campaigns/' + newCampaign.id + '/inviteCampaignLeadEmail', {email: "ypunittest1+mynewuser@gmail.com"})
+                    .auth('test_orgadm', 'yp')
+                    .expectStatus(200)
+                    .toss();
 
                 frisby.create('CampaignsInviteLead: invite the existing user test_ind2')
                     .post(URL + '/campaigns/' + newCampaign.id + '/inviteCampaignLeadEmail', {email: "ypunittest1+individual2@gmail.com"})
@@ -65,27 +76,57 @@ frisby.create('CampaignsInviteLead: POST new campaign to existing organization')
                             email.linkTokenSeparator +
                             test_ind2Id
                         );
-                        frisby.create('CampaignsInviteLead: submit the assign new campaign Lead')
-                            .post(URL + '/campaigns/' + newCampaign.id + '/assignCampaignLead?token=' + token)
+
+                        frisby.create('CampaignsInviteLead: submit the assign new campaign Lead without token FAIL')
+                            .post(URL + '/campaigns/' + newCampaign.id + '/assignCampaignLead')
                             .auth('test_ind2', 'yp')
-                            .expectStatus(200)
-                            .afterJSON(function (campaign) {
-                                expect(campaign.campaignLeads.length).toEqual(2);
-                                expect(campaign.campaignLeads).toContain(test_ind2Id);
+                            .expectStatus(409)
+                            .after(function () {
 
-                                frisby.create('CampaignsInviteLead: DELETE the campaign')
-                                    .auth('sysadm', 'backtothefuture')
-                                    .delete(URL + '/campaigns/' + newCampaign.id)
-                                    .expectStatus(200)
-                                    .toss();
+                                frisby.create('CampaignsInviteLead: submit the assign new campaign Lead with invalid token')
+                                    .post(URL + '/campaigns/' + newCampaign.id + '/assignCampaignLead?token=MYHACKTOKEN')
+                                    .auth('test_ind2', 'yp')
+                                    .expectStatus(409)
+                                    .after(function () {
 
-                                frisby.create('CampaignsInviteLead: reset roles of individual2')
-                                    .put(URL + '/users/' + test_ind2Id, {roles: 'individual'})
-                                    .auth('sysadm', 'backtothefuture')
-                                    .expectStatus(200)
+                                        frisby.create('CampaignsInviteLead: submit the assign new campaign Lead')
+                                            .post(URL + '/campaigns/' + newCampaign.id + '/assignCampaignLead?token=' + token)
+                                            .auth('test_ind2', 'yp')
+                                            .expectStatus(200)
+                                            .afterJSON(function (campaign) {
+                                                expect(campaign.campaignLeads.length).toEqual(2);
+                                                expect(campaign.campaignLeads).toContain(test_ind2Id);
+
+
+                                                frisby.create('CampaignsInviteLead: submit the assign new campaign Lead again, check whether idempoptent')
+                                                    .post(URL + '/campaigns/' + newCampaign.id + '/assignCampaignLead?token=' + token)
+                                                    .auth('test_ind2', 'yp')
+                                                    .expectStatus(200)
+                                                    .afterJSON(function (campaign) {
+                                                        expect(campaign.campaignLeads.length).toEqual(2);
+                                                        expect(campaign.campaignLeads).toContain(test_ind2Id);
+
+                                                        frisby.create('CampaignsInviteLead: DELETE the campaign')
+                                                            .auth('sysadm', 'backtothefuture')
+                                                            .delete(URL + '/campaigns/' + newCampaign.id)
+                                                            .expectStatus(200)
+                                                            .toss();
+
+                                                        frisby.create('CampaignsInviteLead: reset roles of individual2')
+                                                            .put(URL + '/users/' + test_ind2Id, {roles: 'individual'})
+                                                            .auth('sysadm', 'backtothefuture')
+                                                            .expectStatus(200)
+                                                            .toss();
+
+                                                    })
+                                                    .toss();
+                                            })
+                                            .toss();
+                                    })
                                     .toss();
                             })
                             .toss();
+
 
                     })
                     .toss();

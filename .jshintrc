@@ -11,6 +11,11 @@
   "boss": true,
   "eqnull": true,
   "node": true,
-  "proto": true
-
+  "proto": true,
+    "globals": {
+        "describe": false,
+        "it": false,
+        "expect": false,
+        "process": false
+    }
 }

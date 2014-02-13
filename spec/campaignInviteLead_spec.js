@@ -4,7 +4,7 @@ var frisby = require('frisby');
 var port = process.env.PORT || 8000;
 var URL = 'http://localhost:' + port;
 var moment = require('moment');
-var email = require('../util/email');
+var email = require('../src/util/email');
 
 frisby.globalSetup({ // globalSetup is for ALL requests
     request: {

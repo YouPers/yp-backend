@@ -516,7 +516,7 @@ module.exports = {
                 }
                 obj.remove(function (err) {
                     res.send(200);
-                })
+                });
 
             });
         };

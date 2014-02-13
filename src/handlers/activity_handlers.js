@@ -13,6 +13,7 @@ var mongoose = require('mongoose'),
  * @param assResult
  * @param log
  * @returns {*}
+ * @param fokusQuestion
  */
 function generateRecommendations(actList, assResult, fokusQuestion, log) {
 

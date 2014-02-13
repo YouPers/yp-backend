@@ -1,5 +1,6 @@
 var fs = require('fs'),
-    gm = require('gm');
+    gm = require('gm'),
+    restify = require('restify');
 
 
 var resizeImage = function(req, filePath, callback) {
@@ -21,7 +22,7 @@ var resizeImage = function(req, filePath, callback) {
         .noProfile() // remove meta
         .write(pathResized, function(err){
             if (err) {
-                return next(new restify.InternalError(err));
+                return callback(new restify.InternalError(err));
             }
             req.log.debug('avatar: resize complete\n' + pathResized);
 
@@ -32,7 +33,7 @@ var resizeImage = function(req, filePath, callback) {
 
                 var image = 'data:image/jpg;base64,' + new Buffer(data).toString('base64');
 
-                callback(image);
+                callback(undefined, image);
 
                 fs.unlink(path);
                 fs.unlink(pathResized);

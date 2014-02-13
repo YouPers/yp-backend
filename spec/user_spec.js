@@ -1,7 +1,7 @@
 'use strict';
 
 var frisby = require('frisby');
-var email = require('../util/email');
+var email = require('../src/util/email');
 var port = process.env.PORT || 8000;
 var URL = 'http://localhost:' + port;
 var consts = require('./testconsts');

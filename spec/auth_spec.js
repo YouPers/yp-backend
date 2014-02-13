@@ -1,4 +1,4 @@
-var auth = require('../util/auth');
+var auth = require('../src/util/auth');
 
 
 describe('Authentication Module', function () {

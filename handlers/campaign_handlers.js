@@ -32,6 +32,54 @@ var getCampaignStats = function (baseUrl, Model) {
     };
 };
 
+function validateCampaign(campaign, userId, type, next) {
+    // check if posting user is an org admin of the organization this new campaign belongs to
+    Organization.findById(campaign.organization).exec(function(err, org) {
+        if(err) {
+            return next(new restify.InternalError(err));
+        }
+        if(!org) {
+            return next(new restify.InvalidArgumentError('Invalid Organization ID'));
+        }
+
+        var orgAdmin = _.contains(org.administrators.toString(), userId);
+
+        if (type === "PUT") {
+
+            var campaignLead = _.contains(campaign.campaignLeads.toString(), userId);
+
+            if (!orgAdmin && !campaignLead) {
+                var wrongOrgAdminError = new Error('Error in PostFn: Not allowed to create a campaign, as this user is neither org admin of this org nor a campaign lead of this campaign.')
+                wrongOrgAdminError.statusCode = 403;
+                return next(wrongOrgAdminError);
+            }
+
+        } else {
+
+            if (!orgAdmin) {
+                var wrongOrgAdminError = new Error('Error in PostFn: Not allowed to create a campaign, as this org admin does not belong to this organization.')
+                wrongOrgAdminError.statusCode = 403;
+                return next(wrongOrgAdminError);
+            }
+
+        }
+
+        // check if campaing start/end timespan is between 1 week and a half year, might have to be adapted later on
+
+        if (campaign.start && campaign.end &&
+            (moment(campaign.end).diff(moment(campaign.start), 'weeks') < 1 ||
+                moment(campaign.end).diff(moment(campaign.start), 'weeks') > 26)) {
+            var wrongTimeSpanError = new Error('Error in PostFn: Not allowed to create a campaign which does not last between 1 and 26 weeks.')
+            wrongTimeSpanError.statusCode = 409;
+            return next(wrongTimeSpanError);
+        }
+
+        return next();
+
+    });
+
+};
+
 var postCampaign = function (baseUrl) {
     return function (req, res, next) {
 
@@ -47,31 +95,9 @@ var postCampaign = function (baseUrl) {
 
         var sentCampaign = new Campaign(req.body);
 
-        // check if posting user is an org admin of the organization this new campaign belongs to
-        Organization.findById(sentCampaign.organization).exec(function(err, org) {
-            if(err) {
-                return next(new restify.InternalError(err));
-            }
-            if(!org) {
-                return next(new restify.InvalidArgumentError('Invalid Organization ID'));
-            }
-
-            var orgAdmin = _.contains(org.administrators.toString(), req.user.id);
-
-            if (!orgAdmin) {
-                var wrongOrgAdminError = new Error('Error in PostFn: Not allowed to create a campaign, as this org admin does not belong to this organization.')
-                wrongOrgAdminError.statusCode = 403;
-                return next(wrongOrgAdminError);
-            }
-
-            // check if campaing start/end timespan is between 1 week and a half year, might have to be adapted later on
-
-            if (sentCampaign.start && sentCampaign.end &&
-                (moment(sentCampaign.end).diff(moment(sentCampaign.start), 'weeks') < 1 ||
-                    moment(sentCampaign.end).diff(moment(sentCampaign.start), 'weeks') > 26)) {
-                var wrongTimeSpanError = new Error('Error in PostFn: Not allowed to create a campaign which does not last between 1 and 26 weeks.')
-                wrongTimeSpanError.statusCode = 409;
-                return next(wrongTimeSpanError);
+        validateCampaign(sentCampaign, req.user.id, "POST", function (err) {
+            if (err) {
+                return next(err);
             }
 
             // TODO: update user roles
@@ -133,30 +159,9 @@ function putCampaign(req, res, next) {
 
         _.extend(reloadedCampaign, req.body);
 
-        // check if posting user is an org admin of the organization this new campaign belongs to
-        Organization.findById(reloadedCampaign.organization).exec(function(err, org) {
-            if(err) {
-                return next(new restify.InternalError(err));
-            }
-            if(!org) {
-                return next(new restify.InvalidArgumentError('Invalid Organization ID'));
-            }
-
-            var orgAdmin = _.contains(org.administrators.toString(), req.user.id);
-
-            var campaignLead = _.contains(reloadedCampaign.campaignLeads.toString(), req.user.id);
-
-            if (!orgAdmin && !campaignLead) {
-                var wrongOrgAdminError = new Error('Error in PostFn: Not allowed to create a campaign, as this user is neither org admin of this org nor a campaign lead of this campaign.')
-                wrongOrgAdminError.statusCode = 403;
-                return next(wrongOrgAdminError);
-            }
-
-            if (moment(reloadedCampaign.end).diff(moment(reloadedCampaign.start), 'weeks') < 1 ||
-                moment(reloadedCampaign.end).diff(moment(reloadedCampaign.start), 'weeks') > 26) {
-                var wrongTimeSpanError = new Error('Error in PutFn: Not allowed to update a campaign which does not last between 1 and 26 weeks.')
-                wrongTimeSpanError.statusCode = 409;
-                return next(wrongTimeSpanError);
+        validateCampaign(reloadedCampaign, req.user.id, "PUT", function (err) {
+            if (err) {
+                return next(err);
             }
 
             req.log.trace(reloadedCampaign, 'PutFn: Updating existing Object');
@@ -172,10 +177,9 @@ function putCampaign(req, res, next) {
                 res.send(201, reloadedCampaign);
                 return next();
             });
+
         });
-
     });
-
 
 };
 

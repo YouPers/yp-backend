@@ -98,6 +98,20 @@
         "version": 0
     },
     {
+        "avatar": "",
+        "email": "ypunittest1+campaignlead2@gmail.com",
+        "emailValidatedFlag": true,
+        "firstname": "Test",
+        "fullname": "Test CampaignLead 2",
+        "password": "yp",
+        "_id": "52a97f1650fca98c2900000c",
+        "lastname": "CampaignLead 2",
+        "roles": ["campaignlead"],
+        "tempPasswordFlag": false,
+        "username": "test_campaignlead2",
+        "version": 0
+    },
+    {
         "avatar": "assets/img/KTLU.jpeg",
         "email": "martin.degen@lu.ch",
         "emailValidatedFlag": true,

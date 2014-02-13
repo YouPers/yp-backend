@@ -240,7 +240,7 @@ frisby.create('Activity Plan: plan daily activity and check whether events are g
                     .expectStatus(200)
                     .afterJSON(function (reloadedNewPlan) {
                         expect(_.indexOf(reloadedNewPlan.joiningUsers, joiningPlan.owner)).not.toEqual(-1);
-                        expect(reloadedNewPlan.deleteStatus).toEqual("ACTIVITYPLAN_NOT_DELETABLE_JOINED_USERS");
+                        expect(reloadedNewPlan.deleteStatus).toEqual("notDeletableJoinedUsers");
 
                         frisby.create('Activity Plan: delete plan 2')
                             .delete(URL + '/activityplans/' + joiningPlan.id)

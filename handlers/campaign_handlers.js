@@ -244,7 +244,7 @@ var postCampaignLeadInviteFn = function postCampaignLeadInviteFn(req, res, next)
                     }
 
                     // check whether the posting user is a campaignLead of the campaign
-                    if (!_.find(campaign.campaignLeads, function(lead) {return lead.equals(req.user.id);})) {
+                    if (!_.contains(campaign.campaignLeads.toString(), req.user.id)) {
                         return done(new restify.NotAuthorizedError('You are not authorized to invite someone for this campaign.'));
                     }
                     locals.campaign = campaign;
@@ -324,9 +324,7 @@ var assignCampaignLeadFn = function assignCampaignLeadFn(req, res, next) {
             }
 
             // we check whether we need to update the campaignLeads collection of the campaign
-            if (!_.find(campaign.campaignLeads, function(lead) {
-                return lead.equals(req.user.id);
-            })) {
+            if (!_.contains(campaign.campaignLeads.toString(),req.user.id)) {
                 campaign.campaignLeads.push(req.user._id);
                 campaign.save(function(err) {
                     if (err) {

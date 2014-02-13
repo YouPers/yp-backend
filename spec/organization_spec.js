@@ -29,7 +29,7 @@ frisby.create('organization: POST new organization')
 
         frisby.create('organization: GET all organizations for user')
             .get(URL + '/organizations')
-            .auth('test_ind1', 'yp')
+            .auth('test_ind3', 'yp')
             .expectStatus(200)
             .afterJSON(function (organizations) {
 
@@ -37,7 +37,7 @@ frisby.create('organization: POST new organization')
 
                 frisby.create('organization: GET just our test organization')
                     .get(URL + '/organizations/' + organizations[0].id)
-                    .auth('test_ind1', 'yp')
+                    .auth('test_ind3', 'yp')
                     .expectStatus(200)
                     .afterJSON(function (organization) {
 

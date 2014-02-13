@@ -6,7 +6,7 @@
         "sector": "test sector",
         "nrOfEmployees": "10",
         "avatar": "assets/img/YouPersAvatar.png",
-        "administrators": ["52a97f1650fca98c2900000a", "52d4f515fac246174c000006"]
+        "administrators": ["52a97f1650fca98c2900000a"]
     },
     {
         "_id": "52f0c64e53d523235b07d8d9",

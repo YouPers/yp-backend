@@ -56,9 +56,7 @@ var postCampaign = function (baseUrl) {
                 return next(new restify.InvalidArgumentError('Invalid Organization ID'));
             }
 
-            var orgAdmin = _.find(org.administrators, function (administrator) {
-                return administrator.toString() === req.user.id;
-            })
+            var orgAdmin = _.contains(org.administrators.toString(), req.user.id);
 
             if (!orgAdmin) {
                 var wrongOrgAdminError = new Error('Error in PostFn: Not allowed to create a campaign, as this org admin does not belong to this organization.')
@@ -144,13 +142,9 @@ function putCampaign(req, res, next) {
                 return next(new restify.InvalidArgumentError('Invalid Organization ID'));
             }
 
-            var orgAdmin = _.find(org.administrators, function (administrator) {
-                return administrator.toString() === req.user.id;
-            })
+            var orgAdmin = _.contains(org.administrators.toString(), req.user.id);
 
-            var campaignLead = _.find(reloadedCampaign.campaignLeads, function (campaignLead) {
-                return campaignLead.toString() === req.user.id;
-            })
+            var campaignLead = _.contains(reloadedCampaign.campaignLeads.toString(), req.user.id);
 
             if (!orgAdmin && !campaignLead) {
                 var wrongOrgAdminError = new Error('Error in PostFn: Not allowed to create a campaign, as this user is neither org admin of this org nor a campaign lead of this campaign.')

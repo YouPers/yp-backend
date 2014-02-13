@@ -69,7 +69,7 @@ frisby.create('Activity Plan Edits: create a single activity plan with a single 
 
         var activityPlanId = activityPlanPostAnswer.id;
 
-        expect(activityPlanPostAnswer.editStatus).toEqual('ACTIVITYPLAN_EDITABLE');
+        expect(activityPlanPostAnswer.editStatus).toEqual('editable');
         expect(activityPlanPostAnswer.location).toEqual(testLocation);
         expect(activityPlanPostAnswer.visibility).toEqual(testVisibility);
         expect(activityPlanPostAnswer.executionType).toEqual(testExecutionType);
@@ -92,7 +92,7 @@ frisby.create('Activity Plan Edits: create a single activity plan with a single 
             })
             .expectStatus(201)
             .afterJSON(function (activityPlanPutAnswer) {
-                expect(activityPlanPutAnswer.editStatus).toEqual('ACTIVITYPLAN_EDITABLE');
+                expect(activityPlanPutAnswer.editStatus).toEqual('editable');
                 expect(activityPlanPutAnswer.location).toEqual(testLocation);
                 expect(activityPlanPutAnswer.visibility).toEqual(testVisibility);
                 expect(activityPlanPutAnswer.events.length).toEqual(1);
@@ -110,8 +110,8 @@ frisby.create('Activity Plan Edits: create a single activity plan with a single 
                     .put(URL + '/' + activityPlanPutAnswer.id, editedPlan)
                     .expectStatus(201)
                     .afterJSON(function (activityPlanPutAnswer2) {
-                        expect(activityPlanPutAnswer2.editStatus).toEqual('ACTIVITYPLAN_NOT_EDITABLE_NOT_SINGLE_EVENT');
-                        expect(activityPlanPutAnswer2.deleteStatus).toEqual('ACTIVITYPLAN_DELETABLE');
+                        expect(activityPlanPutAnswer2.editStatus).toEqual('notEditableNotSingleEvent');
+                        expect(activityPlanPutAnswer2.deleteStatus).toEqual('deletable');
                         expect(activityPlanPutAnswer2.events.length).toEqual(6);
 
                         // delete activity plan
@@ -146,7 +146,7 @@ frisby.create('Activity Plan Edits: create a single activity plan with a single 
 
                                 var activityPlanId = activityPlanPostAnswer.id;
 
-                                expect(activityPlanPostAnswer.editStatus).toEqual('ACTIVITYPLAN_NOT_EDITABLE_PAST_EVENT');
+                                expect(activityPlanPostAnswer.editStatus).toEqual('notEditablePastEvent');
 
                                 editedPlan = activityPlanPostAnswer;
 
@@ -205,7 +205,7 @@ frisby.create('Activity Plan Edits: create a single activity plan with a single 
                                                     .post(URL + '?populate=joiningUsers', slavePlan)
                                                     .expectStatus(201)
                                                     .afterJSON(function (slavePlanPostAnswer) {
-                                                        expect(slavePlanPostAnswer.editStatus).toEqual('ACTIVITYPLAN_NOT_EDITABLE_JOINED_PLAN');
+                                                        expect(slavePlanPostAnswer.editStatus).toEqual('notEditableJoinedPlans');
 
                                                         // save joined plan id for later
                                                         var joinedPlanId = slavePlanPostAnswer.id;
@@ -227,7 +227,7 @@ frisby.create('Activity Plan Edits: create a single activity plan with a single 
                                                                     .get(URL + '/' + masterPlanId)
                                                                     .expectStatus(200)
                                                                     .afterJSON(function (masterPlanReloaded) {
-                                                                        expect(masterPlanReloaded.editStatus).toEqual('ACTIVITYPLAN_NOT_EDITABLE_JOINED_USERS');
+                                                                        expect(masterPlanReloaded.editStatus).toEqual('notEditableJoinedUsers');
 
                                                                         masterPlanReloaded.mainEvent.frequency = "week";
 

@@ -522,7 +522,7 @@ function putActivityPlan(req, res, next) {
         }
 
         // check to see if received plan is editable
-        if (reloadedActPlan.editStatus !== "ACTIVITYPLAN_EDITABLE") {
+        if (reloadedActPlan.editStatus !== "editable") {
             var notEditableError = new Error('Error updating in Activity Plan PutFn: Not allowed to update this activity plan with id: ' + sentPlan.id)
             notEditableError.statusCode = 409;
             return next(notEditableError);

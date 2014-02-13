@@ -20,7 +20,7 @@ var restify = require("restify"),
     swagger = require("swagger-node-restify"),
     auth = require('./util/auth'),
     i18n = require('i18next'),
-    ypi18n = require('./util/ypi18n')
+    ypi18n = require('./util/ypi18n'),
     socket = require('./util/socket');
 
 

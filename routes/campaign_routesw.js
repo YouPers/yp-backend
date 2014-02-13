@@ -83,6 +83,53 @@ module.exports = function (swagger, config) {
         action: campaignHandlers.postCampaign(baseUrl)
     });
 
+    swagger.addPost({
+        spec: {
+            description: "Operations about campaigns",
+            path: baseUrlWithId + "/inviteCampaignLeadEmail",
+            notes: "Posts a request for an invitation for one or more email-addresses",
+            summary: "Request an invitation for to become campaign lead to be sent by the backend to the supplied email address(es)",
+            params: [
+                {
+                    paramType: "body",
+                    name: "email",
+                    description: "object with one property: 'email', an email address, or an array of adresses, or a separated String of emails (by ';, ')",
+                    dataType: "Object",
+                    required: true
+                }
+            ],
+            method: "POST",
+            "nickname": "postCampaignLeadPlanInvite",
+            accessLevel: 'al_campaignlead',
+            beforeCallbacks: []
+        },
+        action: campaignHandlers.postCampaignLeadInvite
+    });
+
+    swagger.addPost({
+        spec: {
+            description: "Operations about campaigns",
+            path: baseUrlWithId + "/assignCampaignLead",
+            notes: "Posts a request to add the current user as campaignLead to this campaign: special endpoint that can be called without al_campaignLead but needs a token instead for auth",
+            summary: "With this endpoint a non-privileged user can assign himself to become campaign lead when he has an invitation token.",
+            params: [
+                {
+                    paramType: "query",
+                    name: "token",
+                    description: "the authtoken the user has gotten with his invitation email",
+                    dataType: "String",
+                    required: true
+                }
+            ],
+            method: "POST",
+            "nickname": "assignCampaignLead",
+            accessLevel: 'al_user',
+            beforeCallbacks: []
+        },
+        action: campaignHandlers.assignCampaignLead
+    });
+
+
     swagger.addDelete({
         spec: {
             description: "Operations about campaigns",

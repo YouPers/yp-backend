@@ -152,18 +152,34 @@ var sendActivityPlanInvite = function sendActivityPlanInvite(email, invitingUser
         plan: plan,
         invitedUser: invitedUser || {}
     };
-    if (invitedUser) {
-
-    }
     sendEmail(from, to, subject, 'ActivityPlanInvitation', locals);
 };
+
+var sendCampaignLeadInvite = function sendCampaignLeadInvite(email, invitingUser, campaign, invitedUser) {
+
+    var from = fromDefault;
+    var to = email;
+    var subject = "Einladung von " + invitingUser.fullname + ": YouPers Kampagnenleiter";
+
+    var token = encryptLinkToken(campaign._id +linkTokenSeparator + email +  (invitedUser ? linkTokenSeparator + invitedUser._id : ''));
+    var locals = {
+        link: config.webclientUrl + "/#/campaigns/" + campaign._id + '/becomeCampaignLead?invitingUserId='+invitingUser._id+'&token='+token,
+        invitingUser: invitingUser,
+        campaign: campaign,
+        invitedUser: invitedUser || {}
+    };
+    sendEmail(from, to, subject, 'CampaignLeadInvitation', locals);
+};
+
 
 module.exports = {
     encryptLinkToken: encryptLinkToken,
     decryptLinkToken: decryptLinkToken,
+    linkTokenSeparator: linkTokenSeparator,
     sendEmail: sendEmail,
     sendEmailVerification: sendEmailVerification,
     sendCalInvite: sendCalInvite,
     sendPasswordResetMail: sendPasswordResetMail,
-    sendActivityPlanInvite: sendActivityPlanInvite
+    sendActivityPlanInvite: sendActivityPlanInvite,
+    sendCampaignLeadInvite: sendCampaignLeadInvite
 };

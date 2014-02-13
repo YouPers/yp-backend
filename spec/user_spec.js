@@ -144,8 +144,8 @@ frisby.create('POST validate new user')
                                     .expectStatus(409)
                                     .toss();
 
-                                var expiredToken = email.encryptLinkToken(newUser.id + '|' + (new Date().getMilliseconds() - (11 * 60 * 1000)));
-                                var validToken = email.encryptLinkToken(newUser.id + '|' + (new Date().getMilliseconds()));
+                                var expiredToken = email.encryptLinkToken(newUser.id + email.linkTokenSeparator + (new Date().getMilliseconds() - (11 * 60 * 1000)));
+                                var validToken = email.encryptLinkToken(newUser.id + email.linkTokenSeparator + (new Date().getMilliseconds()));
 
                                 frisby.create('POST password reset valid OLD token with password FAIL because of expired token')
                                     .auth()

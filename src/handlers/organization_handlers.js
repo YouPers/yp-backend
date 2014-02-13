@@ -1,14 +1,10 @@
 var handlerUtils = require('./handlerUtils'),
-    generic = require('./../handlers/generic'),
     auth = require('../util/auth'),
     image = require('../util/image'),
-    config = require('../config/config')[process.env.NODE_ENV || 'development'],
     restify = require('restify'),
     mongoose = require('mongoose'),
     Organization = mongoose.model('Organization'),
-    _ = require('lodash'),
-    fs = require('fs'),
-    gm = require('gm');
+    _ = require('lodash');
 
 
 var getOrganization = function(req, res, next, callback) {
@@ -40,21 +36,16 @@ var postFn = function (baseUrl) {
         }
         var obj = new Organization(req.body);
 
-
-        // TODO: update user roles
-
         obj.administrators = [req.user.id];
 
         if(!_.contains(req.user.roles, auth.roles.orgadmin)) {
             req.user.roles.push(auth.roles.orgadmin);
+            req.user.save(function(err) {
+                if(err) {
+                    return next(err);
+                }
+            });
         }
-
-        req.user.save(function(err) {
-            if(err) {
-                return next(err);
-            }
-        });
-
 
         req.log.trace(obj, 'PostFn: Saving new organization object');
 
@@ -101,7 +92,10 @@ var getAllForUserFn = function (baseUrl) {
 var avatarImagePostFn = function(baseUrl) {
     return function(req, res, next) {
 
-        image.resizeImage(req, req.files.file.path, function (image) {
+        image.resizeImage(req, req.files.file.path, function (err, image) {
+            if (err) {
+                return next(err);
+            }
 
             getOrganization(req, res, next, function (org) {
 

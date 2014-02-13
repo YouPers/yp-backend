@@ -1,7 +1,6 @@
 var mongoose = require('mongoose'),
     ActivityPlanModel = mongoose.model('ActivityPlan'),
     ActivityModel = mongoose.model('Activity'),
-    handlerUtils = require('./handlerUtils'),
     CommentModel = mongoose.model('Comment'),
     generic = require('./generic'),
     restify = require('restify'),
@@ -30,13 +29,13 @@ var getIcalObject = function (plan, recipientUser, status) {
             "MAILTO:" + recipientUser.email,
             {CUTYPE: "INDIVIDUAL", ROLE: "REQ-PARTICIPANT", PARTSTAT: "NEEDS-ACTION", RSVP: "TRUE", CN: recipientUser.fullname, "X-NUM-GUESTS": 0 });
         event.addProperty("STATUS", "CONFIRMED");
-        event.addProperty("SEQUENCE", 0)
+        event.addProperty("SEQUENCE", 0);
     } else if (status === calendarCancel) {
         event.addProperty("ATTENDEE",
             "MAILTO:" + recipientUser.email,
             {CUTYPE: "INDIVIDUAL", ROLE: "REQ-PARTICIPANT", PARTSTAT: "NEEDS-ACTION", CN: recipientUser.fullname, "X-NUM-GUESTS": 0 });
         event.addProperty("STATUS", "CANCELLED");
-        event.addProperty("SEQUENCE", 1)
+        event.addProperty("SEQUENCE", 1);
     }
     event.setSummary(plan.activity && plan.activity.title);
     event.setDate(moment(plan.mainEvent.start).toDate(), moment(plan.mainEvent.end).toDate());
@@ -53,8 +52,8 @@ var getIcalObject = function (plan, recipientUser, status) {
 
         var rruleSpec = { FREQ: frequencyMap[plan.mainEvent.frequency] };
         if (rruleSpec.FREQ === 'DAILY') {
-            rruleSpec.BYDAY = recipientUser.preferences && recipientUser.preferences.workingDays && recipientUser.preferences.workingDays.length > 0
-                ? recipientUser.preferences.workingDays.join(',')
+            rruleSpec.BYDAY = recipientUser.preferences && recipientUser.preferences.workingDays && recipientUser.preferences.workingDays.length > 0 ?
+                recipientUser.preferences.workingDays.join(',')
                 : "MO,TU,WE,TH,FR";
         }
 
@@ -503,7 +502,7 @@ function putActivityPlan(req, res, next) {
 
         // check to see if received plan is editable
         if (reloadedActPlan.editStatus !== "editable") {
-            var notEditableError = new Error('Error updating in Activity Plan PutFn: Not allowed to update this activity plan with id: ' + sentPlan.id)
+            var notEditableError = new Error('Error updating in Activity Plan PutFn: Not allowed to update this activity plan with id: ' + sentPlan.id);
             notEditableError.statusCode = 409;
             return next(notEditableError);
         }

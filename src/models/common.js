@@ -399,7 +399,7 @@ module.exports = {
                 if (err) {
                     throw err;
                 }
-                var filename = '../dbdata/' + Model.modelName + '.json';
+                var filename = '../../dbdata/' + Model.modelName + '.json';
                 var jsonFromFile;
                 try {
                     jsonFromFile = require(filename);

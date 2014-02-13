@@ -3,10 +3,7 @@ var async = require('async'),
     mongoose = require('mongoose'),
     CommentModel = mongoose.model('Comment'),
     ActivityPlanModel = mongoose.model('ActivityPlan'),
-    _ = require('lodash'),
-    env = process.env.NODE_ENV || 'development',
-    config = require('../config/config')[env];
-
+    _ = require('lodash');
 
 /**
  * sends a list of currently relevant social events for the authenticated user.

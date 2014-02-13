@@ -1,5 +1,4 @@
 var handlerUtils = require('./handlerUtils'),
-    generic = require('./../handlers/generic'),
     email = require('../util/email'),
     image = require('../util/image'),
     auth = require('../util/auth'),
@@ -7,7 +6,6 @@ var handlerUtils = require('./handlerUtils'),
     restify = require('restify'),
     mongoose = require('mongoose'),
     User = mongoose.model('User'),
-    Profile = mongoose.model('Profile'),
     _ = require('lodash');
 
 var postFn = function (baseUrl) {
@@ -201,7 +199,11 @@ var passwordResetPostFn = function(baseUrl) {
 var avatarImagePostFn = function(baseUrl) {
     return function(req, res, next) {
 
-        image.resizeImage(req, req.files.file.path, function (image) {
+        image.resizeImage(req, req.files.file.path, function (err, image) {
+
+            if (err) {
+                return next(err);
+            }
 
             var user = req.user;
             user.avatar = image;

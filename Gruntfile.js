@@ -12,7 +12,7 @@ module.exports = function (grunt) {
                 src: ['Gruntfile.js']
             },
             code: {
-                src: ['app.js', 'config/**/*.js', 'models/**/*.js', 'routes/**/*.js']
+                src: ['src/**/*.js']
             }
         },
         watch: {
@@ -25,7 +25,7 @@ module.exports = function (grunt) {
                 tasks: [ 'jasmine_node']
             },
             express: {
-                files: [ 'app.js', 'routes/**/*.js', 'models/**/*.js', 'config/**/*.js', 'logic/**/".js'],
+                files: [ 'src/**/*.js'],
                 tasks: [ 'express:dev' ],
                 options: {
                     nospawn: true //Without this option specified express won't be reloaded
@@ -56,7 +56,7 @@ module.exports = function (grunt) {
         nodemon: {
             dev: {
                 options: {
-                    file: 'app.js',
+                    file: 'src/app.js',
                     nodeArgs: ['--debug'],
                     ignoredFiles: ['README.md', 'node_modules/**', 'spec/**', '.idea/**', '.git/**',
                         'logs/**', 'atlassian-ide-plugin.xml', 'locales*/**'],
@@ -79,7 +79,7 @@ module.exports = function (grunt) {
             dev: {
                 options: {
                     port: 8000,
-                    script: './app.js',
+                    script: './src/app.js',
                     delay: 5000,
                     output: null  // is needed, otherwise delay is ignored after any server output to System.out
 

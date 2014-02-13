@@ -87,7 +87,7 @@ server.use(restify.fullResponse());
 preflightEnabler(server);
 
 // Bootstrap models
-fs.readdirSync('./models').forEach(function (file) {
+fs.readdirSync('./src/models').forEach(function (file) {
     if (file.indexOf('_model.js') !== -1) {
         console.log("Loading model: " + file);
         var model = require('./models/' + file);
@@ -107,7 +107,7 @@ swagger.configureSwaggerPaths("", "/api-docs", "");
 
 // TODO: (RBLU) remove this when all routes have been properly documented
 // setup our (still undocumented) routes
-fs.readdirSync('./routes').forEach(function (file) {
+fs.readdirSync('./src/routes').forEach(function (file) {
     if (file.indexOf('_route.js') !== -1) {
         console.log("Loading route: " + file);
         require('./routes/' + file)(server, config);
@@ -115,7 +115,7 @@ fs.readdirSync('./routes').forEach(function (file) {
 });
 
 // setup our (properly documented) routes
-fs.readdirSync('./routes').forEach(function (file) {
+fs.readdirSync('./src/routes').forEach(function (file) {
     if (file.indexOf('_routesw.js') !== -1) {
         console.log("Loading route: " + file);
         require('./routes/' + file)(swagger, config);

@@ -1,6 +1,5 @@
 var events = require('events'),
     mongoose = require('mongoose'),
-    util = require('util'),
     moment = require('moment'),
     ObjectId = mongoose.Types.ObjectId;
 

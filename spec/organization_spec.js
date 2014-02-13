@@ -22,7 +22,7 @@ var testOrganization = {
 
 frisby.create('organization: POST new organization')
     .post(URL + '/organizations', testOrganization)
-    .auth('test_ind1', 'yp')
+    .auth('test_ind3', 'yp')
     .expectStatus(201)
     .afterJSON(function (newOrganization) {
 

@@ -23,7 +23,7 @@ var statsQueries = function (timeRange, scopeType, scopeId) {
 
     if ((scopeType === 'owner') || (scopeType === 'campaign')) {
         if (!scopeId) {
-            throw new Error("Illegal Arguments, when ScopeType == campaign or owner, a id has to be passed");
+            throw new Error("Illegal Arguments, when ScopeType == campaign or owner, an id has to be passed");
         }
         scopePipelineEntry = { $match: {}};
         scopePipelineEntry.$match[scopeType] = scopeId;

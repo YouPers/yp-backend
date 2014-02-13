@@ -39,7 +39,25 @@ module.exports = function (swagger, config) {
             notes: "returns a campaign statistics of campaign based on id",
             summary: "get campaign statis of campaign with id",
             method: "GET",
-            params: [swagger.pathParam("id", "ID of the campaign to be fetched", "string")],
+            params: [
+                swagger.pathParam("id", "ID of the campaign to be fetched", "string"),
+                {
+                    paramType: "query",
+                    name: "type",
+                    description: "the type of statistics to fetch",
+                    dataType: "string",
+                    enum: ['assUpdatesPerDay','assTotals','topStressors','activitiesPlanned','activityEvents'],
+                    required: true
+                },
+                {
+                    paramType: "query",
+                    name: "range",
+                    description: "The timerange to constrain the stats to",
+                    dataType: "string",
+                    enum: ['day','week','month','year','all'],
+                    default: 'all'
+                }
+            ],
             "responseClass": "Campaign",
             "errorResponses": [swagger.errors.invalid('id'), swagger.errors.notFound("campaign")],
             "nickname": "getCampaignStatsById",

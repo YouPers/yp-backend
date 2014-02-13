@@ -49,17 +49,15 @@ function validateCampaign(campaign, userId, type, next) {
             var campaignLead = _.contains(campaign.campaignLeads.toString(), userId);
 
             if (!orgAdmin && !campaignLead) {
-                var wrongOrgAdminError = new Error('Error in PostFn: Not allowed to create a campaign, as this user is neither org admin of this org nor a campaign lead of this campaign.')
-                wrongOrgAdminError.statusCode = 403;
-                return next(wrongOrgAdminError);
+                return next(new restify.NotAuthorizedError('Error in PostFn: Not allowed to create a campaign, as this user is neither org admin of this org nor a campaign lead of this campaign.'));
+
             }
 
         } else {
 
             if (!orgAdmin) {
-                var wrongOrgAdminError = new Error('Error in PostFn: Not allowed to create a campaign, as this org admin does not belong to this organization.')
-                wrongOrgAdminError.statusCode = 403;
-                return next(wrongOrgAdminError);
+                return next(new restify.NotAuthorizedError('Error in PostFn: Not allowed to create a campaign, as this org admin does not belong to this organization.'));
+
             }
 
         }
@@ -69,9 +67,7 @@ function validateCampaign(campaign, userId, type, next) {
         if (campaign.start && campaign.end &&
             (moment(campaign.end).diff(moment(campaign.start), 'weeks') < 1 ||
                 moment(campaign.end).diff(moment(campaign.start), 'weeks') > 26)) {
-            var wrongTimeSpanError = new Error('Error in PostFn: Not allowed to create a campaign which does not last between 1 and 26 weeks.')
-            wrongTimeSpanError.statusCode = 409;
-            return next(wrongTimeSpanError);
+            return next(new restify.InvalidArgumentError('Error in PostFn: Not allowed to create a campaign which does not last between 1 and 26 weeks.'));
         }
 
         return next();

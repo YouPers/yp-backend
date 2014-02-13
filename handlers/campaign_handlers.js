@@ -99,8 +99,6 @@ var postCampaign = function (baseUrl) {
                 return next(err);
             }
 
-            // TODO: update user roles
-
             sentCampaign.campaignLeads = [req.user.id];
 
             if(!_.contains(req.user.roles, auth.roles.campaignlead)) {

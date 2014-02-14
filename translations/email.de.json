@@ -8,7 +8,7 @@
     "CampaignLeadInvite": {
         "subject": "YouPers: Einladung zum Kampagnen-Leiter von __inviting.fullname__",
         "salutation": "Hallo __invited.firstname__",
-        "text": "__inviting.fullname__ hat Dich eingeladen Kampagnen-Leiter zu werden der YouPers Kampagne <b>__campaign.title__</b> von <b>__campaign.organization.name</b>.<br><br>Um diese Einladung anzunehmen, klicke auf den folgenden Link:<br>",
+        "text": "__inviting.fullname__ hat Dich eingeladen Kampagnen-Leiter zu werden der YouPers Kampagne <b>__campaign.title__</b> von <b>__campaign.organization.name__</b>.<br><br>Um diese Einladung anzunehmen, klicke auf den folgenden Link:<br>",
         "footer": "YouPers - Drive Your Health"
     },
     "passwordReset": {

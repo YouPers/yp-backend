@@ -9,7 +9,7 @@
     "CampaignLeadInvite": {
         "subject": "YouPers: Invitation to become Campaign Lead from __inviting.fullname__",
         "salutation": "Hallo __invited.firstname__",
-        "text": "__inviting.fullname__ has invited you to become campaign lead for the campaign <b>__campaign.title__</b> of  <b>__campaign.organization.name</b>.<br><br>To accept this invitation please click on this link:<br>",
+        "text": "__inviting.fullname__ has invited you to become campaign lead for the campaign <b>__campaign.title__</b> of  <b>__campaign.organization.name__</b>.<br><br>To accept this invitation please click on this link:<br>",
         "footer": "YouPers - Drive Your Health"
     },
     "passwordReset": {

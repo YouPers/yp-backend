@@ -1,0 +1,17 @@
+{
+    "new": {
+        "summary": "YouPers: __plan.activity.title__",
+        "description": "YouPers Aktivität: __plan.activity.title__, \n\n__link__",
+        "htmldescription": "YouPers Aktivität: __plan.activity.title__, <br><br><a href='__link__'>__link__</a>"
+    },
+    "update": {
+        "summary": "YouPers: __plan.activity.title__",
+        "description": "YouPers Aktivität: __plan.activity.title__, \n\n__link__",
+        "htmldescription": "YouPers Aktivität: __plan.activity.title__, <br><br><a href='__link__'>__link__</a>"
+    },
+    "cancel": {
+        "summary": "YouPers: __plan.activity.title__",
+        "description": "YouPers Aktivität: __plan.activity.title__, \n\n__link__",
+        "htmldescription": "YouPers Aktivität: __plan.activity.title__, <br><br><a href='__link__'>__link__</a>"
+    }
+}

@@ -1,0 +1,28 @@
+{
+
+    "ActivityPlanInvitation": {
+        "subject": "YouPers: Invitation to join activity from __inviting.fullname__",
+        "salutation": "Hello __invited.firstname__",
+        "text": "__inviting.fullname__ has invited you the participate in the following activity: <br><br><h3>__actPlan.activity.title__</h3><br><p>To join click on the following link:</p>",
+        "footer": "YouPers - Drive Your Health"
+    },
+    "CampaignLeadInvite": {
+        "subject": "YouPers: Invitation to become Campaign Lead from __inviting.fullname__",
+        "salutation": "Hallo __invited.firstname__",
+        "text": "__inviting.fullname__ has invited you to become campaign lead for the campaign <b>__campaign.title__</b> of  <b>__campaign.organization.name</b>.<br><br>To accept this invitation please click on this link:<br>",
+        "footer": "YouPers - Drive Your Health"
+    },
+    "passwordReset": {
+        "subject": "YouPers: Password reset requested",
+        "salutation": "Hallo __user.firstname__",
+        "text": "Somebody asked to reset the password for  <b>__user.username__ (__user.email__)</b> on the Youpers.com website.<br><br>To reset the password click on the following link:",
+        "footer": "If you do not want to reset your password or you have not requested the this reset yourself, you may savely ignore this email. Your password has not been changed."
+    },
+    "emailVerification": {
+        "subject": "YouPers: Please verify your email address",
+        "salutation": "Hallo __user.firstname__",
+        "text": "Wir wollen sichergehen, dass du wirklich __user.username__ mit email '__user.email__' bist. <br><br>Öffne den folgenden Link, um weiterzumachen:",
+        "footer": "YouPers - Drive Your Health"
+    }
+
+}

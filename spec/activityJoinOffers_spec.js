@@ -48,7 +48,7 @@ frisby.create('Activity Join Offers: plan once activity and check whether event 
         var joinablePlanID = joinablePlan.id;
         var slavePlanID;
 
-        frisby.create(' get all joinoffers for this activity and see whether this plan is in the list')
+        frisby.create('ActivityJoinOffers: get all joinoffers for this activity and see whether this plan is in the list')
             .get(URL + '/activityplans/joinOffers?activity=5278c6adcdeab69a2500001e')
             .auth('test_ind1', 'yp')
             .expectStatus(200)
@@ -64,14 +64,21 @@ frisby.create('Activity Join Offers: plan once activity and check whether event 
                 joinable.masterPlan = joinablePlan.id;
                 joinable.owner = consts.users.test_ind2.id;
 
-                frisby.create('send an invitation to test user "individual2" to join the plan')
+                frisby.create('ActivityJoinOffers: send an invitation to test user "individual2" to join the plan')
                     .post(URL + '/activityplans/'+ joinablePlan.id + "/inviteEmail", {email: 'ypunittest1+individual2@gmail.com'})
                     .auth('test_ind1', 'yp')
                     .expectStatus(200)
                     .toss();
 
+                frisby.create('ActivityJoinOffers: send an invitation to test user "individual2" to join the plan, in English')
+                    .post(URL + '/activityplans/'+ joinablePlan.id + "/inviteEmail", {email: 'ypunittest1+individual2@gmail.com'})
+                    .addHeader('yp-language', 'en')
+                    .auth('test_ind1', 'yp')
+                    .expectStatus(200)
+                    .toss();
 
-                frisby.create('join the first joinablePlan as a different user')
+
+                frisby.create('ActivityJoinOffers: join the first joinablePlan as a different user')
                     .auth('test_ind2', 'yp')
                     .post(URL + '/activityplans', joinable)
                     .expectStatus(201)
@@ -84,7 +91,7 @@ frisby.create('Activity Join Offers: plan once activity and check whether event 
                         slavePlanID = slavePlan.id;
 
                         expect(slavePlan.joiningUsers[0].id).toEqual(consts.users.test_ind1.id);
-                        frisby.create('get all the joinOffers again, and check whether the slave plan is not included in the list')
+                        frisby.create('ActivityJoinOffers: get all the joinOffers again, and check whether the slave plan is not included in the list')
                             .get(URL + '/activityplans/joinOffers?activity=' + consts.groupActivity.id)
                             .auth('test_ind1', 'yp')
                             .expectStatus(200)
@@ -101,13 +108,13 @@ frisby.create('Activity Join Offers: plan once activity and check whether event 
                                     }
                                 });
 
-                                frisby.create('Activity Plan Slave: delete slave')
+                                frisby.create('ActivityJoinOffers: Activity Plan Slave: delete slave')
                                     .delete(URL + '/activityplans/' + slavePlanID)
                                     .auth('test_sysadm','yp')
                                     .expectStatus(200)
                                     .toss();
 
-                                frisby.create('Activity Plan Slave: delete master')
+                                frisby.create('ActivityJoinOffers: Activity Plan Slave: delete master')
                                     .delete(URL + '/activityplans/' + joinablePlanID)
                                     .auth('test_sysadm','yp')
                                     .expectStatus(200)

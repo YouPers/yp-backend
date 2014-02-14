@@ -1,4 +1,6 @@
-var mongoose = require('mongoose'),
+var env = process.env.NODE_ENV || 'development',
+    config = require('../config/config')[env],
+    mongoose = require('mongoose'),
     ActivityPlanModel = mongoose.model('ActivityPlan'),
     ActivityModel = mongoose.model('Activity'),
     CommentModel = mongoose.model('Comment'),
@@ -11,35 +13,43 @@ var mongoose = require('mongoose'),
     async = require('async'),
     auth = require('../util/auth');
 
-var calendarInvite = "INVITE";
-var calendarCancel = "CANCEL";
-
-var getIcalObject = function (plan, recipientUser, status) {
+var getIcalObject = function (plan, recipientUser, iCalType, i18n) {
     var myCal = new ical.iCalendar();
-    myCal.addProperty("CALSCALE", "GREGORIAN");
-    if (status === calendarInvite) {
-        myCal.addProperty("METHOD", "REQUEST");
-    }  else if (status === calendarCancel) {
-        myCal.addProperty("METHOD", "CANCEL");
-    }
     var event = new ical.VEvent(plan._id);
     event.addProperty("ORGANIZER", "MAILTO:dontreply@youpers.com", {CN: "YouPers Digital Health"});
-    if (status === calendarInvite) {
-        event.addProperty("ATTENDEE",
-            "MAILTO:" + recipientUser.email,
-            {CUTYPE: "INDIVIDUAL", ROLE: "REQ-PARTICIPANT", PARTSTAT: "NEEDS-ACTION", RSVP: "TRUE", CN: recipientUser.fullname, "X-NUM-GUESTS": 0 });
+    myCal.addProperty("CALSCALE", "GREGORIAN");
+    event.addProperty("ATTENDEE",
+        "MAILTO:" + recipientUser.email,
+        {CUTYPE: "INDIVIDUAL", ROLE: "REQ-PARTICIPANT", PARTSTAT: "NEEDS-ACTION", CN: recipientUser.fullname, "X-NUM-GUESTS": 0 });
+
+    if (iCalType === 'new' || iCalType === 'update') {
+        myCal.addProperty("METHOD", "REQUEST");
         event.addProperty("STATUS", "CONFIRMED");
         event.addProperty("SEQUENCE", 0);
-    } else if (status === calendarCancel) {
-        event.addProperty("ATTENDEE",
-            "MAILTO:" + recipientUser.email,
-            {CUTYPE: "INDIVIDUAL", ROLE: "REQ-PARTICIPANT", PARTSTAT: "NEEDS-ACTION", CN: recipientUser.fullname, "X-NUM-GUESTS": 0 });
+    } else if (iCalType === 'cancel') {
+        myCal.addProperty("METHOD", "CANCEL");
         event.addProperty("STATUS", "CANCELLED");
         event.addProperty("SEQUENCE", 1);
+    } else if (iCalType === 'eventsGenerationOnly') {
+        // do nothing here, we do not these properties if we only need the object for eventsGeneration
     }
-    event.setSummary(plan.activity && plan.activity.title);
+    else {
+        throw new Error('unknown iCal ObjectType: ' + iCalType);
+    }
+
+    if (iCalType !== 'eventsGenerationOnly') {
+        // these properties are not needed for events-generation, so we don't set them
+        var link = config.webclientUrl + "/#/activities/" + plan.activity._id;
+
+        event.setSummary(i18n.t('ical:' + iCalType + ".summary", {plan: plan.toJSON ? plan.toJSON() : plan, recipient: recipientUser.toJSON()}));
+        event.setDescription(i18n.t('ical:' + iCalType + ".description", {plan: plan.toJSON ? plan.toJSON() : plan, recipient: recipientUser.toJSON(), link: link}));
+        event.addProperty("X-ALT-DESC", i18n.t('ical:' + iCalType + ".htmlDescription", {plan: plan.toJSON ? plan.toJSON() : plan, recipient: recipientUser.toJSON(), link: link}));
+        event.addProperty("LOCATION", plan.location);
+    }
+
     event.setDate(moment(plan.mainEvent.start).toDate(), moment(plan.mainEvent.end).toDate());
-    event.addProperty("LOCATION", plan.location);
+
+
     if (plan.mainEvent.recurrence && plan.mainEvent.frequency && plan.mainEvent.frequency !== 'once') {
         var frequencyMap = {
             'day': 'DAILY',
@@ -71,11 +81,11 @@ var getIcalObject = function (plan, recipientUser, status) {
     return myCal;
 };
 
-function generateEventsForPlan(plan, user) {
+function generateEventsForPlan(plan, user, i18n) {
 
     // ToDo: has to be enhanced with functionality to generate only future events for a puts (additional from date as parameter)
 
-    var myIcalObj = getIcalObject(plan, user, calendarInvite);
+    var myIcalObj = getIcalObject(plan, user, 'eventsGenerationOnly', i18n);
 
     var duration = moment(plan.mainEvent.end).diff(plan.mainEvent.start);
     var rrule = myIcalObj.events()[0].rrule();
@@ -171,7 +181,7 @@ function putActivityEvent(req, res, next) {
         };
 
         // set plan status to 'old' if no more events are 'open'
-        if(planFromDb.status === 'active' && !_.any(planFromDb.events, {status: 'open'})) {
+        if (planFromDb.status === 'active' && !_.any(planFromDb.events, {status: 'open'})) {
             planFromDb.status = 'old';
         }
 
@@ -246,7 +256,7 @@ function postNewActivityPlan(req, res, next) {
     if (!sentPlan.mainEvent) {
         return next(new restify.InvalidArgumentError('Need MainEvent in submitted ActivityPlan'));
     }
-    generateEventsForPlan(sentPlan, req.user);
+    generateEventsForPlan(sentPlan, req.user, req.i18n);
     req.log.trace({eventsAfter: sentPlan.events}, 'after generating events');
 
     var newActPlan = new ActivityPlanModel(req.body);
@@ -267,8 +277,8 @@ function postNewActivityPlan(req, res, next) {
                 return next(err);
             }
             if (req.user && req.user.email) {
-                var myIcalString = getIcalObject(reloadedActPlan, req.user, calendarInvite).toString();
-                email.sendCalInvite(req.user.email, 'Einladung: YouPers Kalendar Eintrag', myIcalString);
+                var myIcalString = getIcalObject(reloadedActPlan, req.user, 'new', req.i18n).toString();
+                email.sendCalInvite(req.user.email, 'new', myIcalString, req.i18n);
             }
 
             // remove the populated activity because the client is not gonna expect it to be populated.
@@ -292,9 +302,9 @@ function getIcalStringForPlan(req, res, next) {
             res.send(204, []);
             return next();
         }
-        var myIcalString = getIcalObject(plan, plan.owner, calendarInvite).toString();
+        var myIcalString = getIcalObject(plan, plan.owner, 'new', req.i18n).toString();
         if (req.params.email && plan.owner && plan.owner.email) {
-            email.sendCalInvite(plan.owner.email, 'Einladung: YouPers Kalendar Eintrag', myIcalString);
+            email.sendCalInvite(plan.owner.email, 'new', myIcalString, req.i18n);
 
         }
         res.contentType = "text/calendar";
@@ -387,7 +397,7 @@ function postActivityPlanInvite(req, res, next) {
                             if (err) {
                                 return done(err);
                             }
-                            email.sendActivityPlanInvite(emailaddress, req.user, locals.plan, invitedUser && invitedUser[0]);
+                            email.sendActivityPlanInvite(emailaddress, req.user, locals.plan, invitedUser && invitedUser[0], req.i18n);
                             return done();
                         });
                 },
@@ -416,7 +426,7 @@ function deleteActivityPlan(req, res, next) {
 
 
         // we need the owner of the plan to send him a cancellation to his email address
-        mongoose.model('User').findById(activityPlan.owner).select('+email').exec(function(err, owner) {
+        mongoose.model('User').findById(activityPlan.owner).select('+email').exec(function (err, owner) {
             if (err) {
                 return next(err);
             }
@@ -431,8 +441,8 @@ function deleteActivityPlan(req, res, next) {
                 if (err) {
                     return next(err);
                 }
-                var myIcalString = getIcalObject(activityPlan, owner, calendarCancel).toString();
-                email.sendCalInvite(owner.email, 'Termin gestrichen: YouPers Kalendar Eintrag', myIcalString);
+                var myIcalString = getIcalObject(activityPlan, owner, 'cancel', req.i18n).toString();
+                email.sendCalInvite(owner.email, 'cancel', myIcalString, req.i18n);
                 res.send(200);
                 return next();
             };
@@ -451,7 +461,7 @@ function deleteActivityPlan(req, res, next) {
                     // delete  all future events, set activityPlan to "Done", send cancellations for deleted events
                     var now = new Date();
                     var tempEvents = activityPlan.events.slice();
-                    tempEvents.forEach(function(event) {
+                    tempEvents.forEach(function (event) {
                         if (event.begin > now && event.end > now) {
                             // start and end date in the future, so delete event and send cancellation
                             activityPlan.events.id(event.id).remove();
@@ -508,7 +518,7 @@ function putActivityPlan(req, res, next) {
         }
 
         if (req.body.mainEvent && !_.isEqual(req.body.mainEvent, reloadedActPlan.mainEvent)) {
-            generateEventsForPlan(req.body, req.user);
+            generateEventsForPlan(req.body, req.user, req.i18n);
         }
 
         _.extend(reloadedActPlan, req.body);
@@ -530,8 +540,8 @@ function putActivityPlan(req, res, next) {
                 }
                 if (req.user && req.user.email) {
                     reloadedActPlan.activity = foundActivity;
-                    var myIcalString = getIcalObject(reloadedActPlan, req.user, calendarInvite).toString();
-                    email.sendCalInvite(req.user.email, 'Termin Update: YouPers Kalendar Eintrag', myIcalString);
+                    var myIcalString = getIcalObject(reloadedActPlan, req.user, 'update', req.i18n).toString();
+                    email.sendCalInvite(req.user.email, 'update', myIcalString, req.i18n);
                 }
 
                 // remove the populated activity because the client is not gonna expect it to be populated.

@@ -39,7 +39,7 @@ var postFn = function (baseUrl) {
             }
 
             // send verificationEmail
-            email.sendEmailVerification(newUser);
+            email.sendEmailVerification(newUser, req.i18n);
 
             res.header('location', baseUrl + '/' + newUser._id);
             res.send(201, newUser);
@@ -139,7 +139,7 @@ var requestPasswordResetPostFn = function(baseUrl) {
                 return next(new restify.InvalidArgumentError('unknown username or email'));
             }
 
-            email.sendPasswordResetMail(user);
+            email.sendPasswordResetMail(user, req.i18n);
 
             res.send(200, {});
             return next();

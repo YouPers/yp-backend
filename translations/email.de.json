@@ -1,0 +1,43 @@
+{
+    "ActivityPlanInvitation": {
+        "subject": "YouPers: Einladung für eine Gruppen-Aktivität vom __inviting.fullname__",
+        "salutation": "Hallo __invited.firstname__",
+        "text": "__inviting.fullname__ hat dich eingeladen an folgender Aktivität teilzunehmen.<br><br><h3>__plan.activity.title__</h3><br><br>Um teilzunehmen, klicke auf den folgenden Link",
+        "footer": "YouPers - Drive Your Health"
+    },
+    "CampaignLeadInvite": {
+        "subject": "YouPers: Einladung zum Kampagnen-Leiter von __inviting.fullname__",
+        "salutation": "Hallo __invited.firstname__",
+        "text": "__inviting.fullname__ hat Dich eingeladen Kampagnen-Leiter zu werden der YouPers Kampagne <b>__campaign.title__</b> von <b>__campaign.organization.name</b>.<br><br>Um diese Einladung anzunehmen, klicke auf den folgenden Link:<br>",
+        "footer": "YouPers - Drive Your Health"
+    },
+    "passwordReset": {
+        "subject": "YouPers: Zurücksetzen des Passworts",
+        "salutation": "Hallo __user.firstname__",
+        "text": "Jemand hat vor kurzem verlangt, dass das Youpers Digital Health Passwort für <b>__user.username__ (__user.email__)</b> zurückgesetzt wird.<br><br>Um es zurückzusetzen klicke auf diesen Link:",
+        "footer": "Wenn Du das Passwort nicht zurücksetzen möchtest oder wenn nicht Du selber diese Anfrage ausgelöst hast, kannst du dieses Email igenorieren. Dein Passwort wird dann nicht geändert.<br><br>YouPers - Drive Your Health"
+    },
+    "emailVerification": {
+        "subject": "YouPers: Bitte validiere deine E-Mail-Adresse",
+        "salutation": "Hallo __user.firstname__",
+        "text": "Wir wollen sichergehen, dass du wirklich __user.username__ mit email '__user.email__' bist. <br><br>Öffne den folgenden Link, um weiterzumachen:",
+        "footer": "YouPers - Drive Your Health"
+    },
+    "iCalMail": {
+        "new": {
+            "subject": "YouPers: Neuer Kalender-Eintrag",
+            "text": "",
+            "html": ""
+        },
+        "update": {
+            "subject": "YouPers: Angepasster Kalender-Eintrag",
+            "text": "",
+            "html": ""
+        },
+        "cancel": {
+            "subject": "YouPers: Gelöschter Kalender-Eintrag",
+            "text": "",
+            "html": ""
+        }
+    }
+}

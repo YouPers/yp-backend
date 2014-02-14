@@ -23,6 +23,23 @@
         "salutation": "Hallo __user.firstname__",
         "text": "Wir wollen sichergehen, dass du wirklich __user.username__ mit email '__user.email__' bist. <br><br>Öffne den folgenden Link, um weiterzumachen:",
         "footer": "YouPers - Drive Your Health"
+    },
+    "iCalMail": {
+        "new": {
+            "subject": "YouPers: New Calendar-Entry",
+            "text": "",
+            "html": ""
+        },
+        "update": {
+            "subject": "YouPers: Updated Calendar-Entry",
+            "text": "",
+            "html": ""
+        },
+        "cancel": {
+            "subject": "YouPers: Cancelled Calendar-Entry",
+            "text": "",
+            "html": ""
+        }
     }
 
 }

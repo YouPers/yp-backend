@@ -70,7 +70,7 @@ i18n.init({
     },
     resGetPath: 'translations/__ns__.__lng__.json',
     saveMissing: false,
-    debug: true});
+    debug: false});
 
 // setup middlewares to be used by server
 server.use(restify.requestLogger());

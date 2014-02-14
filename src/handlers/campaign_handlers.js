@@ -261,7 +261,7 @@ var postCampaignLeadInviteFn = function postCampaignLeadInviteFn(req, res, next)
                             if (err) {
                                 return done(err);
                             }
-                            email.sendCampaignLeadInvite(emailaddress, req.user, locals.campaign, invitedUser && invitedUser[0]);
+                            email.sendCampaignLeadInvite(emailaddress, req.user, locals.campaign, invitedUser && invitedUser[0], req.i18n);
                             return done();
                         });
                 },

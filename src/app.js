@@ -65,7 +65,10 @@ longjohn.empty_frame = 'ASYNC CALLBACK';
 i18n.init({
     fallbackLng: 'de',
     supportedLngs: ['de','en', 'fr', 'it'],
-    resGetPath: './locales/__ns__.__lng__.json',
+    ns: {
+        namespaces: ['email', 'ical']
+    },
+    resGetPath: 'translations/__ns__.__lng__.json',
     saveMissing: false,
     debug: false});
 
@@ -82,6 +85,7 @@ server.use(i18n.handle);
 server.use(ypi18n.angularTranslateI18nextAdapterPost);
 server.use(passport.initialize());
 server.use(restify.fullResponse());
+
 
 // allows authenticated cross domain requests
 preflightEnabler(server);

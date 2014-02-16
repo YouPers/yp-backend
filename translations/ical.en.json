@@ -2,16 +2,16 @@
     "new": {
         "summary": "YouPers: __plan.activity.title__",
         "description": "YouPers Activity: __plan.activity.title__, \n\n__link__",
-        "htmldescription": "YouPers Aktivität: __plan.activity.title__, <br><br><a href='__link__'>__link__</a>"
+        "htmlDescription": "<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 3.2//EN'>\n<HTML><head></head><body>YouPers Aktivität: __plan.activity.title__, <br><br><a href='__link__'>__link__</a></body></HTML>"
     },
     "update": {
         "summary": "YouPers: __plan.activity.title__",
         "description": "YouPers Activity: __plan.activity.title__, \n\n__link__",
-        "htmldescription": "YouPers Aktivität: __plan.activity.title__, <br><br><a href='__link__'>__link__</a>"
+        "htmlDescription": "<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 3.2//EN'>\n<HTML><head></head><body>YouPers Aktivität: __plan.activity.title__, <br><br><a href='__link__'>__link__</a></body></HTML>"
     },
     "cancel": {
         "summary": "YouPers: __plan.activity.title__",
         "description": "YouPers Activityt: __plan.activity.title__, \n\n__link__",
-        "htmldescription": "YouPers Aktivität: __plan.activity.title__, <br><br><a href='__link__'>__link__</a>"
+        "htmlDescription": "<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 3.2//EN'>\n<HTML><head></head><body>YouPers Aktivität: __plan.activity.title__, <br><br><a href='__link__'>__link__</a></body></HTML>"
     }
 }

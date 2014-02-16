@@ -43,7 +43,11 @@ var getIcalObject = function (plan, recipientUser, iCalType, i18n) {
 
         event.setSummary(i18n.t('ical:' + iCalType + ".summary", {plan: plan.toJSON ? plan.toJSON() : plan, recipient: recipientUser.toJSON()}));
         event.setDescription(i18n.t('ical:' + iCalType + ".description", {plan: plan.toJSON ? plan.toJSON() : plan, recipient: recipientUser.toJSON(), link: link}));
-        event.addProperty("X-ALT-DESC", i18n.t('ical:' + iCalType + ".htmlDescription", {plan: plan.toJSON ? plan.toJSON() : plan, recipient: recipientUser.toJSON(), link: link}));
+        // HTML in description: see here: http://www.limilabs.com/blog/html-formatted-content-in-the-description-field-of-an-icalendar
+        event.addProperty("X-ALT-DESC",
+            i18n.t('ical:' + iCalType + ".htmlDescription",
+                {plan: plan.toJSON ? plan.toJSON() : plan, recipient: recipientUser.toJSON(), link: link}),
+            {'FMTTYPE': 'text/html'});
         event.addProperty("LOCATION", plan.location);
     }
 

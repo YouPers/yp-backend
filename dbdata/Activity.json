@@ -173,7 +173,7 @@
                 "_id": "529dfa0ae6d37b880800040d"
             }
         ],
-        "fields": ["AwarenessAbility", "LeisureActivity", "Relaxation"],
+        "fields": ["awarenessAbility", "leisureActivity", "relaxation"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a25000054",
         "version": 0
@@ -352,7 +352,7 @@
                 "_id": "529dfe07e6d37b8808000494"
             }
         ],
-        "fields": ["Relaxation"],
+        "fields": ["relaxation"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a25000063",
         "version": 0
@@ -531,7 +531,7 @@
                 "_id": "529dff81e6d37b88080004ca"
             }
         ],
-        "fields": ["Relaxation"],
+        "fields": ["relaxation"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a25000064",
         "version": 0
@@ -710,7 +710,7 @@
                 "_id": "529dfd89e6d37b8808000479"
             }
         ],
-        "fields": ["AwarenessAbility", "LeisureActivity", "Relaxation"],
+        "fields": ["awarenessAbility", "leisureActivity", "relaxation"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6aecdeab69a250000bf",
         "version": 0
@@ -889,7 +889,7 @@
                 "_id": "529e0357e6d37b880800051b"
             }
         ],
-        "fields": ["AwarenessAbility", "WorkStructuring"],
+        "fields": ["awarenessAbility", "workStructuring"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a25000014",
         "version": 0
@@ -1067,7 +1067,7 @@
                 "_id": "5295a7e3e6d37b8808000074"
             }
         ],
-        "fields": ["Nutrition"],
+        "fields": ["nutrition"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a25000085",
         "version": 0
@@ -1245,7 +1245,7 @@
                 "_id": "529f3b3ce6d37b8808000d2a"
             }
         ],
-        "fields": ["Nutrition"],
+        "fields": ["nutrition"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a25000089",
         "version": 0
@@ -1423,7 +1423,7 @@
                 "_id": "5295aedfe6d37b88080000e0"
             }
         ],
-        "fields": ["PhysicalActivity", "LeisureActivity", "Relaxation"],
+        "fields": ["physicalActivity", "leisureActivity", "relaxation"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a2500008a",
         "version": 0
@@ -1601,7 +1601,7 @@
                 "_id": "528a250b8fed070a2f0004c5"
             }
         ],
-        "fields": ["LeisureActivity", "Relaxation"],
+        "fields": ["leisureActivity", "relaxation"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a2500008b",
         "version": 0
@@ -1779,7 +1779,7 @@
                 "_id": "529f3a49e6d37b8808000ca3"
             }
         ],
-        "fields": ["AwarenessAbility", "LeisureActivity", "Relaxation"],
+        "fields": ["awarenessAbility", "leisureActivity", "relaxation"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a2500008c",
         "version": 0
@@ -1957,7 +1957,7 @@
                 "_id": "528a3a5f8fed070a2f000a41"
             }
         ],
-        "fields": ["LeisureActivity"],
+        "fields": ["leisureActivity"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a2500008e",
         "version": 0
@@ -2135,7 +2135,7 @@
                 "_id": "528a231b292f0d062f000114"
             }
         ],
-        "fields": ["PhysicalActivity", "LeisureActivity", "Relaxation"],
+        "fields": ["physicalActivity", "leisureActivity", "relaxation"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a25000091",
         "version": 0
@@ -2313,7 +2313,7 @@
                 "_id": "528a24748fed070a2f000408"
             }
         ],
-        "fields": ["LeisureActivity", "Relaxation"],
+        "fields": ["leisureActivity", "relaxation"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a25000092",
         "version": 0
@@ -2492,7 +2492,7 @@
                 "_id": "52936c2ce3f82f0f500009fb"
             }
         ],
-        "fields": ["AwarenessAbility", "Nutrition"],
+        "fields": ["awarenessAbility", "nutrition"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a25000098",
         "version": 0
@@ -2670,7 +2670,7 @@
                 "_id": "528a253b8fed070a2f0004fb"
             }
         ],
-        "fields": ["LeisureActivity", "Relaxation"],
+        "fields": ["leisureActivity", "relaxation"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a25000099",
         "version": 0
@@ -2848,7 +2848,7 @@
                 "_id": "528a24bd8fed070a2f000474"
             }
         ],
-        "fields": ["LeisureActivity", "Relaxation"],
+        "fields": ["leisureActivity", "relaxation"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a2500009a",
         "version": 0
@@ -3026,7 +3026,7 @@
                 "_id": "528a3d008fed070a2f000dd7"
             }
         ],
-        "fields": ["Nutrition", "Breaks", "Relaxation"],
+        "fields": ["nutrition", "breaks", "relaxation"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a2500009b",
         "version": 0
@@ -3204,7 +3204,7 @@
                 "_id": "528a23a68fed070a2f00034b"
             }
         ],
-        "fields": ["PhysicalActivity", "Breaks", "Relaxation"],
+        "fields": ["physicalActivity", "breaks", "relaxation"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a250000a1",
         "version": 0
@@ -3382,7 +3382,7 @@
                 "_id": "528a3dd48fed070a2f000eca"
             }
         ],
-        "fields": ["PhysicalActivity", "Nutrition"],
+        "fields": ["physicalActivity", "nutrition"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a250000a3",
         "version": 0
@@ -3560,7 +3560,7 @@
                 "_id": "528a22f88fed070a2f00028e"
             }
         ],
-        "fields": ["AwarenessAbility", "PhysicalActivity", "Relaxation"],
+        "fields": ["awarenessAbility", "physicalActivity", "relaxation"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a250000a6",
         "version": 0
@@ -3738,7 +3738,7 @@
                 "_id": "528a34ea292f0d062f000258"
             }
         ],
-        "fields": ["AwarenessAbility", "PhysicalActivity", "Relaxation"],
+        "fields": ["awarenessAbility", "physicalActivity", "relaxation"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a250000a8",
         "version": 0
@@ -3916,7 +3916,7 @@
                 "_id": "528a35308fed070a2f000732"
             }
         ],
-        "fields": ["PhysicalActivity", "LeisureActivity", "Relaxation"],
+        "fields": ["physicalActivity", "leisureActivity", "relaxation"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a250000aa",
         "version": 0
@@ -4095,7 +4095,7 @@
                 "_id": "529f3ddfe6d37b8808000e38"
             }
         ],
-        "fields": ["AwarenessAbility", "PhysicalActivity"],
+        "fields": ["awarenessAbility", "physicalActivity"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a250000a9",
         "version": 0
@@ -4273,7 +4273,7 @@
                 "_id": "528a3f418fed070a2f001101"
             }
         ],
-        "fields": ["AwarenessAbility", "Nutrition"],
+        "fields": ["awarenessAbility", "nutrition"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a250000ad",
         "version": 0
@@ -4451,7 +4451,7 @@
                 "_id": "528a3f51292f0d062f0002fa"
             }
         ],
-        "fields": ["AwarenessAbility", "PhysicalActivity"],
+        "fields": ["awarenessAbility", "physicalActivity"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a250000ac",
         "version": 0
@@ -4629,7 +4629,7 @@
                 "_id": "528a3326292f0d062f00023d"
             }
         ],
-        "fields": ["PhysicalActivity"],
+        "fields": ["physicalActivity"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a250000b4",
         "version": 0
@@ -4807,7 +4807,7 @@
                 "_id": "528a38bc8fed070a2f0008ac"
             }
         ],
-        "fields": ["PhysicalActivity"],
+        "fields": ["physicalActivity"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a250000b5",
         "version": 0
@@ -4986,7 +4986,7 @@
                 "_id": "529f3caee6d37b8808000db1"
             }
         ],
-        "fields": ["WorkStructuring"],
+        "fields": ["workStructuring"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a2500003e",
         "version": 0
@@ -5165,7 +5165,7 @@
                 "_id": "529f39e6e6d37b8808000c6d"
             }
         ],
-        "fields": ["TimeManagement", "WorkStructuring"],
+        "fields": ["timeManagement", "workStructuring"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a25000039",
         "version": 0
@@ -5344,7 +5344,7 @@
                 "_id": "529deb50e6d37b8808000224"
             }
         ],
-        "fields": ["PhysicalActivity"],
+        "fields": ["physicalActivity"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a250000b3",
         "version": 0
@@ -5523,7 +5523,7 @@
                 "_id": "529df261e6d37b88080002c6"
             }
         ],
-        "fields": ["TimeManagement", "WorkStructuring"],
+        "fields": ["timeManagement", "workStructuring"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a25000022",
         "version": 0
@@ -5702,7 +5702,7 @@
                 "_id": "529df3a4e6d37b88080002e1"
             }
         ],
-        "fields": ["AwarenessAbility", "Relaxation"],
+        "fields": ["awarenessAbility", "relaxation"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a25000016",
         "version": 0
@@ -5881,7 +5881,7 @@
                 "_id": "529df51ae6d37b8808000317"
             }
         ],
-        "fields": ["AwarenessAbility", "Relaxation"],
+        "fields": ["awarenessAbility", "relaxation"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a25000017",
         "version": 0
@@ -6060,7 +6060,7 @@
                 "_id": "529f390ae6d37b8808000be6"
             }
         ],
-        "fields": ["WorkStructuring"],
+        "fields": ["workStructuring"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a25000025",
         "version": 0
@@ -6239,7 +6239,7 @@
                 "_id": "529e06bde6d37b88080005a2"
             }
         ],
-        "fields": ["WorkStructuring"],
+        "fields": ["workStructuring"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a2500002e",
         "version": 0
@@ -6418,7 +6418,7 @@
                 "_id": "529efaffe6d37b880800067a"
             }
         ],
-        "fields": ["Nutrition"],
+        "fields": ["nutrition"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a2500007f",
         "version": 0
@@ -6597,7 +6597,7 @@
                 "_id": "529efb23e6d37b8808000695"
             }
         ],
-        "fields": ["PhysicalActivity", "Nutrition", "Breaks"],
+        "fields": ["physicalActivity", "nutrition", "breaks"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a25000078",
         "version": 0
@@ -6776,7 +6776,7 @@
                 "_id": "529f01fde6d37b880800076d"
             }
         ],
-        "fields": ["PhysicalActivity", "Relaxation"],
+        "fields": ["physicalActivity", "relaxation"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a2500007b",
         "version": 0
@@ -6955,7 +6955,7 @@
                 "_id": "529f02cae6d37b8808000788"
             }
         ],
-        "fields": ["PhysicalActivity", "Breaks"],
+        "fields": ["physicalActivity", "breaks"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a25000046",
         "version": 0
@@ -7134,7 +7134,7 @@
                 "_id": "529f0390e6d37b88080007be"
             }
         ],
-        "fields": ["PhysicalActivity", "Breaks", "Relaxation", "SocialInteraction"],
+        "fields": ["physicalActivity", "breaks", "relaxation", "SocialInteraction"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a25000047",
         "version": 0
@@ -7313,7 +7313,7 @@
                 "_id": "529f3d28e6d37b8808000e02"
             }
         ],
-        "fields": ["WorkStructuring"],
+        "fields": ["workStructuring"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a2500003f",
         "version": 0
@@ -7492,7 +7492,7 @@
                 "_id": "528a252c8fed070a2f0004e0"
             }
         ],
-        "fields": ["AwarenessAbility"],
+        "fields": ["awarenessAbility"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6aecdeab69a250000b9",
         "version": 0
@@ -7671,7 +7671,7 @@
                 "_id": "529df8fee6d37b88080003d7"
             }
         ],
-        "fields": ["AwarenessAbility", "TimeManagement", "WorkStructuring"],
+        "fields": ["awarenessAbility", "timeManagement", "workStructuring"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a25000023",
         "version": 0
@@ -7849,7 +7849,7 @@
                 "_id": "529361c9e3f82f0f50000815"
             }
         ],
-        "fields": ["TimeManagement", "WorkStructuring"],
+        "fields": ["timeManagement", "workStructuring"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a25000026",
         "version": 0
@@ -8027,7 +8027,7 @@
                 "_id": "5293624ee3f82f0f50000830"
             }
         ],
-        "fields": ["WorkStructuring"],
+        "fields": ["workStructuring"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a25000027",
         "version": 0
@@ -8206,7 +8206,7 @@
                 "_id": "529e0495e6d37b8808000551"
             }
         ],
-        "fields": ["WorkStructuring"],
+        "fields": ["workStructuring"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a2500002b",
         "version": 0
@@ -8385,7 +8385,7 @@
                 "_id": "529e04f5e6d37b880800056c"
             }
         ],
-        "fields": ["WorkStructuring"],
+        "fields": ["workStructuring"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a2500002c",
         "version": 0
@@ -8564,7 +8564,7 @@
                 "_id": "529f3752e6d37b8808000b0e"
             }
         ],
-        "fields": ["WorkStructuring"],
+        "fields": ["workStructuring"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a2500003c",
         "version": 0
@@ -8743,7 +8743,7 @@
                 "_id": "529f36eee6d37b8808000ad8"
             }
         ],
-        "fields": ["WorkStructuring"],
+        "fields": ["workStructuring"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a2500003d",
         "version": 0
@@ -8922,7 +8922,7 @@
                 "_id": "529ef828e6d37b88080005d8"
             }
         ],
-        "fields": ["Breaks", "Relaxation"],
+        "fields": ["breaks", "relaxation"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a25000040",
         "version": 0
@@ -9101,7 +9101,7 @@
                 "_id": "529ef8aae6d37b88080005f3"
             }
         ],
-        "fields": ["Breaks", "Relaxation"],
+        "fields": ["breaks", "relaxation"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a25000042",
         "version": 0
@@ -9280,7 +9280,7 @@
                 "_id": "529ef976e6d37b8808000629"
             }
         ],
-        "fields": ["Breaks", "Relaxation"],
+        "fields": ["breaks", "relaxation"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a25000045",
         "version": 0
@@ -9459,7 +9459,7 @@
                 "_id": "529dff1ee6d37b88080004af"
             }
         ],
-        "fields": ["Breaks", "Relaxation"],
+        "fields": ["breaks", "relaxation"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a2500004b",
         "version": 0
@@ -9637,7 +9637,7 @@
                 "_id": "528e24f242b6fe095000008d"
             }
         ],
-        "fields": ["AwarenessAbility", "LeisureActivity", "Relaxation", "SocialInteraction"],
+        "fields": ["awarenessAbility", "leisureActivity", "relaxation", "SocialInteraction"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a25000052",
         "version": 0
@@ -9816,7 +9816,7 @@
                 "_id": "529df838e6d37b88080003bc"
             }
         ],
-        "fields": ["AwarenessAbility", "LeisureActivity", "Relaxation"],
+        "fields": ["awarenessAbility", "leisureActivity", "relaxation"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a25000053",
         "version": 0
@@ -9995,7 +9995,7 @@
                 "_id": "529dfa8ce6d37b8808000428"
             }
         ],
-        "fields": ["AwarenessAbility", "LeisureActivity", "Relaxation"],
+        "fields": ["awarenessAbility", "leisureActivity", "relaxation"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a25000055",
         "version": 0
@@ -10174,7 +10174,7 @@
                 "_id": "529ca80be6d37b88080001ee"
             }
         ],
-        "fields": ["AwarenessAbility", "PhysicalActivity", "LeisureActivity", "Relaxation"],
+        "fields": ["awarenessAbility", "physicalActivity", "leisureActivity", "relaxation"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a250000ab",
         "version": 0
@@ -10353,7 +10353,7 @@
                 "_id": "528e181fe3f82f0f5000045a"
             }
         ],
-        "fields": ["LeisureActivity", "Relaxation"],
+        "fields": ["leisureActivity", "relaxation"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a2500005a",
         "version": 0
@@ -10532,7 +10532,7 @@
                 "_id": "529f0692e6d37b88080008d1"
             }
         ],
-        "fields": ["PhysicalActivity", "LeisureActivity", "Relaxation", "SocialInteraction"],
+        "fields": ["physicalActivity", "leisureActivity", "relaxation", "SocialInteraction"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a2500007e",
         "version": 0
@@ -10710,7 +10710,7 @@
                 "_id": "528f722042b6fe09500000a8"
             }
         ],
-        "fields": ["Nutrition"],
+        "fields": ["nutrition"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a25000081",
         "version": 0
@@ -10889,7 +10889,7 @@
                 "_id": "529efb78e6d37b88080006b0"
             }
         ],
-        "fields": ["Nutrition", "Breaks"],
+        "fields": ["nutrition", "breaks"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a25000087",
         "version": 0
@@ -11068,7 +11068,7 @@
                 "_id": "528f7214e3f82f0f500006ff"
             }
         ],
-        "fields": ["PhysicalActivity"],
+        "fields": ["physicalActivity"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a25000086",
         "version": 0
@@ -11246,7 +11246,7 @@
                 "_id": "528e23a7e3f82f0f5000059e"
             }
         ],
-        "fields": ["LeisureActivity"],
+        "fields": ["leisureActivity"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a25000093",
         "version": 0
@@ -11425,7 +11425,7 @@
                 "_id": "529dfcf1e6d37b880800045e"
             }
         ],
-        "fields": ["AwarenessAbility", "PhysicalActivity", "LeisureActivity", "Breaks", "Relaxation"],
+        "fields": ["awarenessAbility", "physicalActivity", "leisureActivity", "breaks", "relaxation"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a25000061",
         "version": 0
@@ -11604,7 +11604,7 @@
                 "_id": "529e0108e6d37b88080004e5"
             }
         ],
-        "fields": ["AwarenessAbility", "Relaxation"],
+        "fields": ["awarenessAbility", "relaxation"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a25000065",
         "version": 0
@@ -11783,7 +11783,7 @@
                 "_id": "529f0092e6d37b880800071c"
             }
         ],
-        "fields": ["PhysicalActivity", "SocialInteraction"],
+        "fields": ["physicalActivity", "SocialInteraction"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a2500006e",
         "version": 0
@@ -11962,7 +11962,7 @@
                 "_id": "529f0012e6d37b8808000701"
             }
         ],
-        "fields": ["PhysicalActivity"],
+        "fields": ["physicalActivity"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a25000070",
         "version": 0
@@ -12141,7 +12141,7 @@
                 "_id": "529f31fde6d37b8808000aa2"
             }
         ],
-        "fields": ["AwarenessAbility", "WorkStructuring", "SocialInteraction"],
+        "fields": ["awarenessAbility", "workStructuring", "SocialInteraction"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a25000071",
         "version": 0
@@ -12320,7 +12320,7 @@
                 "_id": "529e01d1e6d37b8808000500"
             }
         ],
-        "fields": ["LeisureActivity", "SocialInteraction"],
+        "fields": ["leisureActivity", "SocialInteraction"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a25000075",
         "version": 0
@@ -12499,7 +12499,7 @@
                 "_id": "529eff92e6d37b88080006cb"
             }
         ],
-        "fields": ["PhysicalActivity"],
+        "fields": ["physicalActivity"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a25000076",
         "version": 0
@@ -12678,7 +12678,7 @@
                 "_id": "529effe7e6d37b88080006e6"
             }
         ],
-        "fields": ["PhysicalActivity"],
+        "fields": ["physicalActivity"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a25000077",
         "version": 0
@@ -12856,7 +12856,7 @@
                 "_id": "52936854e3f82f0f50000974"
             }
         ],
-        "fields": ["Nutrition"],
+        "fields": ["nutrition"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a25000079",
         "version": 0
@@ -13035,7 +13035,7 @@
                 "_id": "529e0538e6d37b8808000587"
             }
         ],
-        "fields": ["WorkStructuring"],
+        "fields": ["workStructuring"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a2500002d",
         "version": 0
@@ -13214,7 +13214,7 @@
                 "_id": "529f0436e6d37b8808000810"
             }
         ],
-        "fields": ["PhysicalActivity", "LeisureActivity"],
+        "fields": ["physicalActivity", "leisureActivity"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a25000072",
         "version": 0
@@ -13391,7 +13391,7 @@
                 "_id": "529f23b3e6d37b8808000974"
             }
         ],
-        "fields": ["AwarenessAbility", "TimeManagement", "WorkStructuring", "Breaks"],
+        "fields": ["awarenessAbility", "timeManagement", "workStructuring", "breaks"],
         "topics": ["workLifeBalance"],
         "_id": "529f23b3e6d37b8808000973",
         "version": 0
@@ -13568,7 +13568,7 @@
                 "_id": "529f27d5e6d37b88080009e1"
             }
         ],
-        "fields": ["AwarenessAbility", "WorkStructuring"],
+        "fields": ["awarenessAbility", "workStructuring"],
         "topics": ["workLifeBalance"],
         "_id": "529f27d5e6d37b88080009e0",
         "version": 0
@@ -13747,7 +13747,7 @@
                 "_id": "529f2997e6d37b88080009fc"
             }
         ],
-        "fields": ["TimeManagement", "WorkStructuring"],
+        "fields": ["timeManagement", "workStructuring"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a25000021",
         "version": 0
@@ -13923,7 +13923,7 @@
                 "_id": "529f2ab8e6d37b8808000a18"
             }
         ],
-        "fields": ["AwarenessAbility", "WorkStructuring"],
+        "fields": ["awarenessAbility", "workStructuring"],
         "topics": ["workLifeBalance"],
         "_id": "529f2ab8e6d37b8808000a17",
         "version": 0
@@ -14101,7 +14101,7 @@
                 "_id": "529f2ce6e6d37b8808000a34"
             }
         ],
-        "fields": ["AwarenessAbility"],
+        "fields": ["awarenessAbility"],
         "topics": ["workLifeBalance"],
         "_id": "529f2ce6e6d37b8808000a33",
         "version": 0
@@ -14279,7 +14279,7 @@
                 "_id": "529f2e8ee6d37b8808000a50"
             }
         ],
-        "fields": ["AwarenessAbility"],
+        "fields": ["awarenessAbility"],
         "topics": ["workLifeBalance"],
         "_id": "529f2e8ee6d37b8808000a4f",
         "version": 0
@@ -14457,7 +14457,7 @@
                 "_id": "529f3068e6d37b8808000a6c"
             }
         ],
-        "fields": ["AwarenessAbility", "WorkStructuring", "LeisureActivity"],
+        "fields": ["awarenessAbility", "workStructuring", "leisureActivity"],
         "topics": ["workLifeBalance"],
         "_id": "529f3068e6d37b8808000a6b",
         "version": 0
@@ -14636,7 +14636,7 @@
                 "_id": "529f3788e6d37b8808000b44"
             }
         ],
-        "fields": ["WorkStructuring"],
+        "fields": ["workStructuring"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a25000037",
         "version": 0
@@ -14815,7 +14815,7 @@
                 "_id": "529f3938e6d37b8808000c01"
             }
         ],
-        "fields": ["WorkStructuring"],
+        "fields": ["workStructuring"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a2500003b",
         "version": 0
@@ -14994,7 +14994,7 @@
                 "_id": "529f3b0ae6d37b8808000d0f"
             }
         ],
-        "fields": ["WorkStructuring"],
+        "fields": ["workStructuring"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a25000038",
         "version": 0
@@ -15173,7 +15173,7 @@
                 "_id": "529f3cfce6d37b8808000de7"
             }
         ],
-        "fields": ["WorkStructuring"],
+        "fields": ["workStructuring"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a2500003a",
         "version": 0
@@ -15352,7 +15352,7 @@
                 "_id": "529f011de6d37b8808000752"
             }
         ],
-        "fields": ["PhysicalActivity", "Relaxation"],
+        "fields": ["physicalActivity", "relaxation"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a2500007a",
         "version": 0
@@ -15530,7 +15530,7 @@
                 "_id": "52936aeee3f82f0f500009c5"
             }
         ],
-        "fields": ["Nutrition"],
+        "fields": ["nutrition"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a25000088",
         "version": 0
@@ -15708,7 +15708,7 @@
                 "_id": "52936c5de3f82f0f50000a16"
             }
         ],
-        "fields": ["Nutrition"],
+        "fields": ["nutrition"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a25000094",
         "version": 0
@@ -15886,7 +15886,7 @@
                 "_id": "529367ede3f82f0f5000093e"
             }
         ],
-        "fields": ["Nutrition"],
+        "fields": ["nutrition"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a25000095",
         "version": 0
@@ -16064,7 +16064,7 @@
                 "_id": "5293681ae3f82f0f50000959"
             }
         ],
-        "fields": ["Nutrition"],
+        "fields": ["nutrition"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a25000096",
         "version": 0
@@ -16242,7 +16242,7 @@
                 "_id": "52936bb9e3f82f0f500009e0"
             }
         ],
-        "fields": ["Nutrition"],
+        "fields": ["nutrition"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a25000097",
         "version": 0
@@ -16420,7 +16420,7 @@
                 "_id": "5295a8c0e6d37b88080000aa"
             }
         ],
-        "fields": ["AwarenessAbility", "Nutrition"],
+        "fields": ["awarenessAbility", "nutrition"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a2500009c",
         "version": 0
@@ -16598,7 +16598,7 @@
                 "_id": "528a3fae8fed070a2f00116d"
             }
         ],
-        "fields": ["AwarenessAbility", "PhysicalActivity"],
+        "fields": ["awarenessAbility", "physicalActivity"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a250000a5",
         "version": 0
@@ -16776,7 +16776,7 @@
                 "_id": "528a3bcf8fed070a2f000c78"
             }
         ],
-        "fields": ["AwarenessAbility", "TimeManagement", "Relaxation"],
+        "fields": ["awarenessAbility", "timeManagement", "relaxation"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a250000af",
         "version": 0
@@ -16954,7 +16954,7 @@
                 "_id": "528e04d0e3f82f0f50000073"
             }
         ],
-        "fields": ["AwarenessAbility", "TimeManagement"],
+        "fields": ["awarenessAbility", "timeManagement"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a250000b0",
         "version": 0
@@ -17132,7 +17132,7 @@
                 "_id": "528a37df8fed070a2f000825"
             }
         ],
-        "fields": ["AwarenessAbility", "TimeManagement"],
+        "fields": ["awarenessAbility", "timeManagement"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a250000b1",
         "version": 0
@@ -17310,7 +17310,7 @@
                 "_id": "528a380c8fed070a2f00085b"
             }
         ],
-        "fields": ["AwarenessAbility", "TimeManagement"],
+        "fields": ["awarenessAbility", "timeManagement"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a250000b2",
         "version": 0
@@ -17488,7 +17488,7 @@
                 "_id": "528a25a28fed070a2f00059d"
             }
         ],
-        "fields": ["AwarenessAbility", "WorkStructuring", "PhysicalActivity"],
+        "fields": ["awarenessAbility", "workStructuring", "physicalActivity"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a250000b6",
         "version": 0
@@ -17667,7 +17667,7 @@
                 "_id": "528a3d568fed070a2f000e5e"
             }
         ],
-        "fields": ["AwarenessAbility"],
+        "fields": ["awarenessAbility"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a250000b7",
         "version": 0
@@ -17846,7 +17846,7 @@
                 "_id": "528a40118fed070a2f0011be"
             }
         ],
-        "fields": ["AwarenessAbility"],
+        "fields": ["awarenessAbility"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a250000b8",
         "version": 0
@@ -18025,7 +18025,7 @@
                 "_id": "528a40338fed070a2f0011d9"
             }
         ],
-        "fields": ["AwarenessAbility"],
+        "fields": ["awarenessAbility"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6aecdeab69a250000ba",
         "version": 0
@@ -18204,7 +18204,7 @@
                 "_id": "528a20bc8fed070a2f0000a8"
             }
         ],
-        "fields": ["PhysicalActivity", "LeisureActivity"],
+        "fields": ["physicalActivity", "leisureActivity"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6aecdeab69a250000bb",
         "version": 0
@@ -18383,7 +18383,7 @@
                 "_id": "529f37b2e6d37b8808000b5f"
             }
         ],
-        "fields": ["LeisureActivity", "Relaxation", "SocialInteraction"],
+        "fields": ["leisureActivity", "relaxation", "SocialInteraction"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6aecdeab69a250000bc",
         "version": 0
@@ -18562,7 +18562,7 @@
                 "_id": "5295a703e6d37b880800003e"
             }
         ],
-        "fields": ["AwarenessAbility", "Breaks", "Relaxation"],
+        "fields": ["awarenessAbility", "breaks", "relaxation"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6aecdeab69a250000bd",
         "version": 0
@@ -18741,7 +18741,7 @@
                 "_id": "528a22788fed070a2f0001ec"
             }
         ],
-        "fields": ["AwarenessAbility"],
+        "fields": ["awarenessAbility"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6aecdeab69a250000be",
         "version": 0
@@ -18751,7 +18751,7 @@
         "defaultexecutiontype": "self",
         "defaultfrequency": "day",
         "defaultvisibility": "private",
-        "fields": ["AwarenessAbility"],
+        "fields": ["awarenessAbility"],
         "number": "Act-01",
         "qualityFactor": 5,
         "recWeights": [
@@ -18930,7 +18930,7 @@
         "defaultexecutiontype": "self",
         "defaultfrequency": "week",
         "defaultvisibility": "private",
-        "fields": ["AwarenessAbility"],
+        "fields": ["awarenessAbility"],
         "number": "Act-02",
         "qualityFactor": 5,
         "recWeights": [
@@ -19108,7 +19108,7 @@
         "defaultexecutiontype": "self",
         "defaultfrequency": "month",
         "defaultvisibility": "private",
-        "fields": ["AwarenessAbility"],
+        "fields": ["awarenessAbility"],
         "number": "Act-03",
         "qualityFactor": 5,
         "recWeights": [
@@ -19286,7 +19286,7 @@
         "defaultexecutiontype": "self",
         "defaultfrequency": "month",
         "defaultvisibility": "private",
-        "fields": ["AwarenessAbility"],
+        "fields": ["awarenessAbility"],
         "number": "Act-04",
         "qualityFactor": 5,
         "recWeights": [
@@ -19464,7 +19464,7 @@
         "defaultexecutiontype": "self",
         "defaultfrequency": "once",
         "defaultvisibility": "private",
-        "fields": ["AwarenessAbility"],
+        "fields": ["awarenessAbility"],
         "number": "Act-05",
         "qualityFactor": 5,
         "recWeights": [
@@ -19642,7 +19642,7 @@
         "defaultexecutiontype": "self",
         "defaultfrequency": "once",
         "defaultvisibility": "private",
-        "fields": ["AwarenessAbility"],
+        "fields": ["awarenessAbility"],
         "number": "Act-06",
         "qualityFactor": 4,
         "recWeights": [
@@ -19820,7 +19820,7 @@
         "defaultexecutiontype": "self",
         "defaultfrequency": "once",
         "defaultvisibility": "private",
-        "fields": ["AwarenessAbility", "SocialInteraction"],
+        "fields": ["awarenessAbility", "SocialInteraction"],
         "number": "Act-07",
         "qualityFactor": 4,
         "recWeights": [
@@ -19998,7 +19998,7 @@
         "defaultexecutiontype": "self",
         "defaultfrequency": "once",
         "defaultvisibility": "private",
-        "fields": ["AwarenessAbility", "SocialInteraction"],
+        "fields": ["awarenessAbility", "SocialInteraction"],
         "number": "Act-08",
         "qualityFactor": 3,
         "recWeights": [
@@ -20176,7 +20176,7 @@
         "defaultexecutiontype": "self",
         "defaultfrequency": "once",
         "defaultvisibility": "private",
-        "fields": ["AwarenessAbility"],
+        "fields": ["awarenessAbility"],
         "number": "Act-09",
         "qualityFactor": 4,
         "recWeights": [
@@ -20354,7 +20354,7 @@
         "defaultexecutiontype": "self",
         "defaultfrequency": "once",
         "defaultvisibility": "private",
-        "fields": ["AwarenessAbility", "SocialInteraction"],
+        "fields": ["awarenessAbility", "SocialInteraction"],
         "number": "Act-10",
         "qualityFactor": 4,
         "recWeights": [
@@ -20532,7 +20532,7 @@
         "defaultexecutiontype": "self",
         "defaultfrequency": "once",
         "defaultvisibility": "private",
-        "fields": ["AwarenessAbility", "SocialInteraction"],
+        "fields": ["awarenessAbility", "SocialInteraction"],
         "number": "Act-11",
         "qualityFactor": 4,
         "recWeights": [
@@ -20710,7 +20710,7 @@
         "defaultexecutiontype": "self",
         "defaultfrequency": "once",
         "defaultvisibility": "private",
-        "fields": ["AwarenessAbility"],
+        "fields": ["awarenessAbility"],
         "number": "Act-14",
         "qualityFactor": 4,
         "recWeights": [
@@ -20888,7 +20888,7 @@
         "defaultexecutiontype": "self",
         "defaultfrequency": "once",
         "defaultvisibility": "private",
-        "fields": ["AwarenessAbility", "SocialInteraction"],
+        "fields": ["awarenessAbility", "SocialInteraction"],
         "number": "Act-16",
         "qualityFactor": 4,
         "recWeights": [
@@ -21234,7 +21234,7 @@
                 "_id": "528a3eac8fed070a2f00100e"
             }
         ],
-        "fields": ["LeisureActivity", "Relaxation"],
+        "fields": ["leisureActivity", "relaxation"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a25000056",
         "version": 0
@@ -21244,7 +21244,7 @@
         "defaultexecutiontype": "self",
         "defaultfrequency": "day",
         "defaultvisibility": "private",
-        "fields": ["AwarenessAbility"],
+        "fields": ["awarenessAbility"],
         "number": "Act-48",
         "qualityFactor": 4,
         "recWeights": [
@@ -21422,7 +21422,7 @@
         "defaultexecutiontype": "self",
         "defaultfrequency": "once",
         "defaultvisibility": "private",
-        "fields": ["TimeManagement"],
+        "fields": ["timeManagement"],
         "number": "Act-19",
         "qualityFactor": 5,
         "recWeights": [
@@ -21600,7 +21600,7 @@
         "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "defaultvisibility": "private",
-        "fields": ["TimeManagement", "SocialInteraction"],
+        "fields": ["timeManagement", "SocialInteraction"],
         "number": "Act-20",
         "qualityFactor": 5,
         "recWeights": [
@@ -21946,7 +21946,7 @@
                 "_id": "528a3d268fed070a2f000e0d"
             }
         ],
-        "fields": ["Breaks"],
+        "fields": ["breaks"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a25000043",
         "version": 0
@@ -21956,7 +21956,7 @@
         "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "defaultvisibility": "public",
-        "fields": ["TimeManagement", "SocialInteraction"],
+        "fields": ["timeManagement", "SocialInteraction"],
         "number": "Act-21",
         "qualityFactor": 4,
         "recWeights": [
@@ -22134,7 +22134,7 @@
         "defaultexecutiontype": "self",
         "defaultfrequency": "day",
         "defaultvisibility": "private",
-        "fields": ["TimeManagement"],
+        "fields": ["timeManagement"],
         "number": "Act-22",
         "qualityFactor": 5,
         "recWeights": [
@@ -22312,7 +22312,7 @@
         "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "defaultvisibility": "campaign",
-        "fields": ["TimeManagement", "SocialInteraction"],
+        "fields": ["timeManagement", "SocialInteraction"],
         "number": "Act-23",
         "qualityFactor": 6,
         "recWeights": [
@@ -22490,7 +22490,7 @@
         "defaultexecutiontype": "self",
         "defaultfrequency": "once",
         "defaultvisibility": "private",
-        "fields": ["TimeManagement", "SocialInteraction"],
+        "fields": ["timeManagement", "SocialInteraction"],
         "number": "Act-24",
         "qualityFactor": 4,
         "recWeights": [
@@ -22668,7 +22668,7 @@
         "defaultexecutiontype": "self",
         "defaultfrequency": "day",
         "defaultvisibility": "private",
-        "fields": ["TimeManagement"],
+        "fields": ["timeManagement"],
         "number": "Act-26",
         "qualityFactor": 3,
         "recWeights": [
@@ -22846,7 +22846,7 @@
         "defaultexecutiontype": "self",
         "defaultfrequency": "once",
         "defaultvisibility": "private",
-        "fields": ["TimeManagement", "SocialInteraction"],
+        "fields": ["timeManagement", "SocialInteraction"],
         "number": "Act-27",
         "qualityFactor": 4,
         "recWeights": [
@@ -23024,7 +23024,7 @@
         "defaultexecutiontype": "self",
         "defaultfrequency": "once",
         "defaultvisibility": "private",
-        "fields": ["WorkStructuring", "SocialInteraction"],
+        "fields": ["workStructuring", "SocialInteraction"],
         "number": "Act-31",
         "qualityFactor": 5,
         "recWeights": [
@@ -23202,7 +23202,7 @@
         "defaultexecutiontype": "self",
         "defaultfrequency": "month",
         "defaultvisibility": "private",
-        "fields": ["WorkStructuring", "SocialInteraction"],
+        "fields": ["workStructuring", "SocialInteraction"],
         "number": "Act-35",
         "qualityFactor": 4,
         "recWeights": [
@@ -23380,7 +23380,7 @@
         "defaultexecutiontype": "self",
         "defaultfrequency": "once",
         "defaultvisibility": "private",
-        "fields": ["WorkStructuring", "SocialInteraction"],
+        "fields": ["workStructuring", "SocialInteraction"],
         "number": "Act-36",
         "qualityFactor": 4,
         "recWeights": [
@@ -23558,7 +23558,7 @@
         "defaultexecutiontype": "self",
         "defaultfrequency": "month",
         "defaultvisibility": "private",
-        "fields": ["LeisureActivity", "SocialInteraction"],
+        "fields": ["leisureActivity", "SocialInteraction"],
         "number": "Act-102",
         "qualityFactor": 3,
         "recWeights": [
@@ -23736,7 +23736,7 @@
         "defaultexecutiontype": "self",
         "defaultfrequency": "once",
         "defaultvisibility": "private",
-        "fields": ["LeisureActivity", "SocialInteraction"],
+        "fields": ["leisureActivity", "SocialInteraction"],
         "number": "Act-103",
         "qualityFactor": 4,
         "recWeights": [
@@ -23914,7 +23914,7 @@
         "defaultexecutiontype": "self",
         "defaultfrequency": "once",
         "defaultvisibility": "private",
-        "fields": ["AwarenessAbility", "SocialInteraction"],
+        "fields": ["awarenessAbility", "SocialInteraction"],
         "number": "Act-37",
         "qualityFactor": 4,
         "recWeights": [
@@ -24260,7 +24260,7 @@
                 "_id": "528a3de38fed070a2f000ee5"
             }
         ],
-        "fields": ["WorkStructuring"],
+        "fields": ["workStructuring"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a2500002f",
         "version": 0
@@ -24270,7 +24270,7 @@
         "defaultexecutiontype": "self",
         "defaultfrequency": "week",
         "defaultvisibility": "private",
-        "fields": ["AwarenessAbility", "WorkStructuring"],
+        "fields": ["awarenessAbility", "workStructuring"],
         "number": "Act-43",
         "qualityFactor": 4,
         "recWeights": [
@@ -24616,7 +24616,7 @@
                 "_id": "52fc83944b56a692080004a5"
             }
         ],
-        "fields": ["AwarenessAbility", "WorkStructuring"],
+        "fields": ["awarenessAbility", "workStructuring"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a25000031",
         "version": 1
@@ -24626,7 +24626,7 @@
         "defaultexecutiontype": "self",
         "defaultfrequency": "week",
         "defaultvisibility": "private",
-        "fields": ["PhysicalActivity", "LeisureActivity", "Relaxation"],
+        "fields": ["physicalActivity", "leisureActivity", "relaxation"],
         "number": "Act-89",
         "qualityFactor": 3,
         "recWeights": [
@@ -24804,7 +24804,7 @@
         "defaultexecutiontype": "self",
         "defaultfrequency": "day",
         "defaultvisibility": "private",
-        "fields": ["AwarenessAbility", "TimeManagement", "WorkStructuring"],
+        "fields": ["awarenessAbility", "timeManagement", "workStructuring"],
         "number": "Act-45",
         "qualityFactor": 4,
         "recWeights": [
@@ -24982,7 +24982,7 @@
         "defaultexecutiontype": "self",
         "defaultfrequency": "week",
         "defaultvisibility": "private",
-        "fields": ["TimeManagement", "WorkStructuring", "SocialInteraction"],
+        "fields": ["timeManagement", "workStructuring", "SocialInteraction"],
         "number": "Act-138",
         "qualityFactor": 5,
         "recWeights": [
@@ -25160,7 +25160,7 @@
         "defaultexecutiontype": "self",
         "defaultfrequency": "day",
         "defaultvisibility": "private",
-        "fields": ["LeisureActivity", "Relaxation", "SocialInteraction"],
+        "fields": ["leisureActivity", "relaxation", "SocialInteraction"],
         "number": "Act-46",
         "qualityFactor": 4,
         "recWeights": [
@@ -25338,7 +25338,7 @@
         "defaultexecutiontype": "self",
         "defaultfrequency": "once",
         "defaultvisibility": "private",
-        "fields": ["AwarenessAbility", "LeisureActivity", "SocialInteraction"],
+        "fields": ["awarenessAbility", "leisureActivity", "SocialInteraction"],
         "number": "Act-140",
         "qualityFactor": 4,
         "recWeights": [
@@ -25684,7 +25684,7 @@
                 "_id": "528a3ca88fed070a2f000d6b"
             }
         ],
-        "fields": ["AwarenessAbility"],
+        "fields": ["awarenessAbility"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a25000034",
         "version": 0
@@ -25694,7 +25694,7 @@
         "defaultexecutiontype": "self",
         "defaultfrequency": "day",
         "defaultvisibility": "private",
-        "fields": ["AwarenessAbility"],
+        "fields": ["awarenessAbility"],
         "number": "Act-49",
         "qualityFactor": 3,
         "recWeights": [
@@ -26040,7 +26040,7 @@
                 "_id": "528a3e688fed070a2f000fa2"
             }
         ],
-        "fields": ["PhysicalActivity", "Breaks"],
+        "fields": ["physicalActivity", "breaks"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a25000041",
         "version": 0
@@ -26050,7 +26050,7 @@
         "defaultexecutiontype": "self",
         "defaultfrequency": "day",
         "defaultvisibility": "private",
-        "fields": ["LeisureActivity", "Relaxation"],
+        "fields": ["leisureActivity", "relaxation"],
         "number": "Act-63",
         "qualityFactor": 5,
         "recWeights": [
@@ -26396,7 +26396,7 @@
                 "_id": "529f3bdee6d37b8808000d7b"
             }
         ],
-        "fields": ["Nutrition", "Breaks", "SocialInteraction"],
+        "fields": ["nutrition", "breaks", "SocialInteraction"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a25000049",
         "version": 0
@@ -26406,7 +26406,7 @@
         "defaultexecutiontype": "group",
         "defaultfrequency": "week",
         "defaultvisibility": "campaign",
-        "fields": ["Nutrition", "Breaks", "Relaxation"],
+        "fields": ["nutrition", "breaks", "relaxation"],
         "number": "Act-69",
         "qualityFactor": 3,
         "recWeights": [
@@ -26584,7 +26584,7 @@
         "defaultexecutiontype": "self",
         "defaultfrequency": "day",
         "defaultvisibility": "private",
-        "fields": ["TimeManagement", "Relaxation"],
+        "fields": ["timeManagement", "relaxation"],
         "number": "Act-71",
         "qualityFactor": 4,
         "recWeights": [
@@ -26762,7 +26762,7 @@
         "defaultexecutiontype": "self",
         "defaultfrequency": "day",
         "defaultvisibility": "campaign",
-        "fields": ["Relaxation"],
+        "fields": ["relaxation"],
         "number": "Act-74",
         "qualityFactor": 3,
         "recWeights": [
@@ -26940,7 +26940,7 @@
         "defaultexecutiontype": "self",
         "defaultfrequency": "day",
         "defaultvisibility": "private",
-        "fields": ["AwarenessAbility", "Nutrition", "Breaks"],
+        "fields": ["awarenessAbility", "nutrition", "breaks"],
         "number": "Act-156",
         "qualityFactor": 2,
         "recWeights": [
@@ -27118,7 +27118,7 @@
         "defaultexecutiontype": "self",
         "defaultfrequency": "week",
         "defaultvisibility": "private",
-        "fields": ["Nutrition", "LeisureActivity", "Relaxation"],
+        "fields": ["nutrition", "leisureActivity", "relaxation"],
         "number": "Act-157",
         "qualityFactor": 3,
         "recWeights": [
@@ -27296,7 +27296,7 @@
         "defaultexecutiontype": "self",
         "defaultfrequency": "day",
         "defaultvisibility": "campaign",
-        "fields": ["Relaxation"],
+        "fields": ["relaxation"],
         "number": "Act-75",
         "qualityFactor": 3,
         "recWeights": [
@@ -27474,7 +27474,7 @@
         "defaultexecutiontype": "self",
         "defaultfrequency": "week",
         "defaultvisibility": "campaign",
-        "fields": ["LeisureActivity", "Relaxation", "SocialInteraction"],
+        "fields": ["leisureActivity", "relaxation", "SocialInteraction"],
         "number": "Act-76",
         "qualityFactor": 4,
         "recWeights": [
@@ -27652,7 +27652,7 @@
         "defaultexecutiontype": "self",
         "defaultfrequency": "day",
         "defaultvisibility": "private",
-        "fields": ["LeisureActivity", "Relaxation"],
+        "fields": ["leisureActivity", "relaxation"],
         "number": "Act-77",
         "qualityFactor": 4,
         "recWeights": [
@@ -27830,7 +27830,7 @@
         "defaultexecutiontype": "self",
         "defaultfrequency": "once",
         "defaultvisibility": "private",
-        "fields": ["AwarenessAbility", "LeisureActivity", "SocialInteraction"],
+        "fields": ["awarenessAbility", "leisureActivity", "SocialInteraction"],
         "number": "Act-83",
         "qualityFactor": 5,
         "recWeights": [
@@ -28008,7 +28008,7 @@
         "defaultexecutiontype": "self",
         "defaultfrequency": "once",
         "defaultvisibility": "private",
-        "fields": ["LeisureActivity", "Relaxation"],
+        "fields": ["leisureActivity", "relaxation"],
         "number": "Act-189",
         "qualityFactor": 4,
         "recWeights": [
@@ -28354,7 +28354,7 @@
                 "_id": "528a23ca292f0d062f000180"
             }
         ],
-        "fields": ["LeisureActivity", "Relaxation", "SocialInteraction"],
+        "fields": ["leisureActivity", "relaxation", "SocialInteraction"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a25000058",
         "version": 0
@@ -28532,7 +28532,7 @@
                 "_id": "529f37f8e6d37b8808000b7a"
             }
         ],
-        "fields": ["LeisureActivity", "Relaxation", "SocialInteraction"],
+        "fields": ["leisureActivity", "relaxation", "SocialInteraction"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a25000059",
         "version": 0
@@ -28710,7 +28710,7 @@
                 "_id": "528a37f58fed070a2f000840"
             }
         ],
-        "fields": ["LeisureActivity", "Relaxation"],
+        "fields": ["leisureActivity", "relaxation"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a2500005b",
         "version": 0
@@ -28888,7 +28888,7 @@
                 "_id": "528a24118fed070a2f00039c"
             }
         ],
-        "fields": ["LeisureActivity", "Relaxation"],
+        "fields": ["leisureActivity", "relaxation"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a2500005d",
         "version": 0
@@ -29066,7 +29066,7 @@
                 "_id": "528a22878fed070a2f000207"
             }
         ],
-        "fields": ["AwarenessAbility", "Relaxation"],
+        "fields": ["awarenessAbility", "relaxation"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a2500005e",
         "version": 0
@@ -29244,7 +29244,7 @@
                 "_id": "528a39a38fed070a2f000933"
             }
         ],
-        "fields": ["Relaxation"],
+        "fields": ["relaxation"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a2500005f",
         "version": 0
@@ -29422,7 +29422,7 @@
                 "_id": "528a32ad292f0d062f0001ec"
             }
         ],
-        "fields": ["Relaxation"],
+        "fields": ["relaxation"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a25000060",
         "version": 0
@@ -29600,7 +29600,7 @@
                 "_id": "528a329a292f0d062f0001d1"
             }
         ],
-        "fields": ["LeisureActivity", "Relaxation"],
+        "fields": ["leisureActivity", "relaxation"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a25000062",
         "version": 0
@@ -29779,7 +29779,7 @@
                 "_id": "529f25a2e6d37b88080009c5"
             }
         ],
-        "fields": ["LeisureActivity", "Relaxation", "SocialInteraction"],
+        "fields": ["leisureActivity", "relaxation", "SocialInteraction"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a25000066",
         "version": 0
@@ -29958,7 +29958,7 @@
                 "_id": "529f389de6d37b8808000bb0"
             }
         ],
-        "fields": ["LeisureActivity", "Relaxation", "SocialInteraction"],
+        "fields": ["leisureActivity", "relaxation", "SocialInteraction"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a25000067",
         "version": 0
@@ -30137,7 +30137,7 @@
                 "_id": "529f2589e6d37b88080009aa"
             }
         ],
-        "fields": ["LeisureActivity", "Relaxation", "SocialInteraction"],
+        "fields": ["leisureActivity", "relaxation", "SocialInteraction"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a25000068",
         "version": 0
@@ -30315,7 +30315,7 @@
                 "_id": "529f3a9de6d37b8808000cd9"
             }
         ],
-        "fields": ["LeisureActivity", "SocialInteraction"],
+        "fields": ["leisureActivity", "SocialInteraction"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a2500006b",
         "version": 0
@@ -30493,7 +30493,7 @@
                 "_id": "528a22ea292f0d062f0000f9"
             }
         ],
-        "fields": ["PhysicalActivity", "LeisureActivity", "SocialInteraction"],
+        "fields": ["physicalActivity", "leisureActivity", "SocialInteraction"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a2500006c",
         "version": 0
@@ -30671,7 +30671,7 @@
                 "_id": "529f3bb0e6d37b8808000d60"
             }
         ],
-        "fields": ["Breaks", "SocialInteraction"],
+        "fields": ["breaks", "SocialInteraction"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a2500006d",
         "version": 0
@@ -30849,7 +30849,7 @@
                 "_id": "529f3c89e6d37b8808000d96"
             }
         ],
-        "fields": ["LeisureActivity", "SocialInteraction"],
+        "fields": ["leisureActivity", "SocialInteraction"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a2500006f",
         "version": 0
@@ -31027,7 +31027,7 @@
                 "_id": "529f3a26e6d37b8808000c88"
             }
         ],
-        "fields": ["Nutrition", "LeisureActivity", "SocialInteraction"],
+        "fields": ["nutrition", "leisureActivity", "SocialInteraction"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a25000073",
         "version": 0
@@ -31206,7 +31206,7 @@
                 "_id": "529ca74de6d37b88080001d3"
             }
         ],
-        "fields": ["PhysicalActivity", "Nutrition", "Relaxation"],
+        "fields": ["physicalActivity", "nutrition", "relaxation"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a250000a4",
         "version": 0
@@ -31384,7 +31384,7 @@
                 "_id": "528a229c8fed070a2f000222"
             }
         ],
-        "fields": ["AwarenessAbility", "PhysicalActivity", "Relaxation"],
+        "fields": ["awarenessAbility", "physicalActivity", "relaxation"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a2500007d",
         "version": 0
@@ -31563,7 +31563,7 @@
                 "_id": "529ca9b2e6d37b8808000209"
             }
         ],
-        "fields": ["PhysicalActivity", "LeisureActivity"],
+        "fields": ["physicalActivity", "leisureActivity"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a250000a7",
         "version": 0
@@ -31741,7 +31741,7 @@
                 "_id": "528a3b5f8fed070a2f000bd6"
             }
         ],
-        "fields": ["Nutrition", "Breaks"],
+        "fields": ["nutrition", "breaks"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a25000082",
         "version": 0
@@ -31919,7 +31919,7 @@
                 "_id": "528a3a4d8fed070a2f000a26"
             }
         ],
-        "fields": ["Nutrition", "Breaks"],
+        "fields": ["nutrition", "breaks"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a25000084",
         "version": 0
@@ -32097,7 +32097,7 @@
                 "_id": "528a39cf8fed070a2f000984"
             }
         ],
-        "fields": ["LeisureActivity", "Relaxation"],
+        "fields": ["leisureActivity", "relaxation"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a25000090",
         "version": 0
@@ -32276,7 +32276,7 @@
                 "_id": "528a24b28fed070a2f000459"
             }
         ],
-        "fields": ["AwarenessAbility", "Nutrition"],
+        "fields": ["awarenessAbility", "nutrition"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a2500009d",
         "version": 0
@@ -32454,7 +32454,7 @@
                 "_id": "528a37558fed070a2f0007d4"
             }
         ],
-        "fields": ["AwarenessAbility", "Nutrition"],
+        "fields": ["awarenessAbility", "nutrition"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a2500009e",
         "version": 0
@@ -32633,7 +32633,7 @@
                 "_id": "529df13fe6d37b88080002ab"
             }
         ],
-        "fields": ["AwarenessAbility", "TimeManagement"],
+        "fields": ["awarenessAbility", "timeManagement"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a250000ae",
         "version": 0
@@ -32812,7 +32812,7 @@
                 "_id": "529df603e6d37b880800036a"
             }
         ],
-        "fields": ["AwarenessAbility", "TimeManagement", "WorkStructuring"],
+        "fields": ["awarenessAbility", "timeManagement", "workStructuring"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a2500001e",
         "version": 0
@@ -32991,7 +32991,7 @@
                 "_id": "529f03cce6d37b88080007d9"
             }
         ],
-        "fields": ["PhysicalActivity", "Breaks", "Relaxation", "SocialInteraction"],
+        "fields": ["physicalActivity", "breaks", "relaxation", "SocialInteraction"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a25000048",
         "version": 0
@@ -33170,7 +33170,7 @@
                 "_id": "529f04898b384b8a0800003d"
             }
         ],
-        "fields": ["PhysicalActivity", "LeisureActivity", "Relaxation"],
+        "fields": ["physicalActivity", "leisureActivity", "relaxation"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a2500007c",
         "version": 0
@@ -33349,7 +33349,7 @@
                 "_id": "529f055fe6d37b88080008b6"
             }
         ],
-        "fields": ["PhysicalActivity", "LeisureActivity", "Relaxation"],
+        "fields": ["physicalActivity", "leisureActivity", "relaxation"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a25000083",
         "version": 0
@@ -33528,7 +33528,7 @@
                 "_id": "529f3b60e6d37b8808000d45"
             }
         ],
-        "fields": ["PhysicalActivity"],
+        "fields": ["physicalActivity"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a25000074",
         "version": 0
@@ -33707,7 +33707,7 @@
                 "_id": "529f0789e6d37b8808000907"
             }
         ],
-        "fields": ["PhysicalActivity"],
+        "fields": ["physicalActivity"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a25000080",
         "version": 0
@@ -33717,7 +33717,7 @@
         "defaultexecutiontype": "self",
         "defaultfrequency": "once",
         "defaultvisibility": "private",
-        "fields": ["AwarenessAbility"],
+        "fields": ["awarenessAbility"],
         "number": "Act-12",
         "qualityFactor": 4,
         "recWeights": [
@@ -33896,7 +33896,7 @@
         "defaultexecutiontype": "self",
         "defaultfrequency": "once",
         "defaultvisibility": "private",
-        "fields": ["AwarenessAbility", "SocialInteraction"],
+        "fields": ["awarenessAbility", "SocialInteraction"],
         "number": "Act-13",
         "qualityFactor": 4,
         "recWeights": [
@@ -34075,7 +34075,7 @@
         "defaultexecutiontype": "self",
         "defaultfrequency": "day",
         "defaultvisibility": "private",
-        "fields": ["TimeManagement", "Relaxation"],
+        "fields": ["timeManagement", "relaxation"],
         "number": "Act-72",
         "qualityFactor": 3,
         "recWeights": [
@@ -34253,7 +34253,7 @@
         "defaultexecutiontype": "self",
         "defaultfrequency": "once",
         "defaultvisibility": "private",
-        "fields": ["PhysicalActivity", "LeisureActivity"],
+        "fields": ["physicalActivity", "leisureActivity"],
         "number": "Act-159",
         "qualityFactor": 4,
         "recWeights": [

@@ -13,61 +13,61 @@ module.exports = function (app, config) {
                 {"id": "missed-id", "label": "verpasst", "type": "number"}
             ], "rows": [
                 {"c": [
-                    {"v": "AwarenessAbility"},
+                    {"v": "awarenessAbility"},
                     {"v": 19},
                     {"v": 14},
                     {"v": 3}
                 ]},
                 {"c": [
-                    {"v": "Breaks"},
+                    {"v": "breaks"},
                     {"v": 25},
                     {"v": 12},
                     {"v": 5}
                 ]},
                 {"c": [
-                    {"v": "LeisureActivity"},
+                    {"v": "leisureActivity"},
                     {"v": 19},
                     {"v": 10},
                     {"v": 4}
 
                 ]},
                 {"c": [
-                    {"v": "Nutrition"},
+                    {"v": "nutrition"},
                     {"v": 18},
                     {"v": 14},
                     {"v": 1}
 
                 ]},
                 {"c": [
-                    {"v": "PhysicalActivity"},
+                    {"v": "physicalActivity"},
                     {"v": 12},
                     {"v": 6},
                     {"v": 2}
 
                 ]},
                 {"c": [
-                    {"v": "Relaxation"},
+                    {"v": "relaxation"},
                     {"v": 22},
                     {"v": 6},
                     {"v": 2}
 
                 ]},
                 {"c": [
-                    {"v": "SocialInteraction"},
+                    {"v": "socialInteraction"},
                     {"v": 8},
                     {"v": 6},
                     {"v": 2}
 
                 ]},
                 {"c": [
-                    {"v": "TimeManagement"},
+                    {"v": "timeManagement"},
                     {"v": 12},
                     {"v": 6},
                     {"v": 2}
 
                 ]},
                 {"c": [
-                    {"v": "WorkStructuring"},
+                    {"v": "workStructuring"},
                     {"v": 20},
                     {"v": 16},
                     {"v": 2}
@@ -82,61 +82,61 @@ module.exports = function (app, config) {
                 {"id": "missed-id", "label": "verpasst", "type": "number"}
             ], "rows": [
                 {"c": [
-                    {"v": "AwarenessAbility"},
+                    {"v": "awarenessAbility"},
                     {"v": 38},
                     {"v": 29},
                     {"v": 4}
                 ]},
                 {"c": [
-                    {"v": "Breaks"},
+                    {"v": "breaks"},
                     {"v": 50},
                     {"v": 25},
                     {"v": 7}
                 ]},
                 {"c": [
-                    {"v": "LeisureActivity"},
+                    {"v": "leisureActivity"},
                     {"v": 68},
                     {"v": 22},
                     {"v": 8}
 
                 ]},
                 {"c": [
-                    {"v": "Nutrition"},
+                    {"v": "nutrition"},
                     {"v": 40},
                     {"v": 58},
                     {"v": 4}
 
                 ]},
                 {"c": [
-                    {"v": "PhysicalActivity"},
+                    {"v": "physicalActivity"},
                     {"v": 25},
                     {"v": 12},
                     {"v": 4}
 
                 ]},
                 {"c": [
-                    {"v": "Relaxation"},
+                    {"v": "relaxation"},
                     {"v": 42},
                     {"v": 9},
                     {"v": 4}
 
                 ]},
                 {"c": [
-                    {"v": "SocialInteraction"},
+                    {"v": "socialInteraction"},
                     {"v": 16},
                     {"v": 6},
                     {"v": 2}
 
                 ]},
                 {"c": [
-                    {"v": "TimeManagement"},
+                    {"v": "timeManagement"},
                     {"v": 27},
                     {"v": 6},
                     {"v": 2}
 
                 ]},
                 {"c": [
-                    {"v": "WorkStructuring"},
+                    {"v": "workStructuring"},
                     {"v": 40},
                     {"v": 6},
                     {"v": 2}
@@ -151,61 +151,61 @@ module.exports = function (app, config) {
                 {"id": "missed-id", "label": "verpasst", "type": "number"}
             ], "rows": [
                 {"c": [
-                    {"v": "AwarenessAbility"},
+                    {"v": "awarenessAbility"},
                     {"v": 182},
                     {"v": 91},
                     {"v": 22}
                 ]},
                 {"c": [
-                    {"v": "Breaks"},
+                    {"v": "breaks"},
                     {"v": 205},
                     {"v": 102},
                     {"v": 51}
                 ]},
                 {"c": [
-                    {"v": "LeisureActivity"},
+                    {"v": "leisureActivity"},
                     {"v": 210},
                     {"v": 96},
                     {"v": 22}
 
                 ]},
                 {"c": [
-                    {"v": "Nutrition"},
+                    {"v": "nutrition"},
                     {"v": 190},
                     {"v": 77},
                     {"v": 8}
 
                 ]},
                 {"c": [
-                    {"v": "PhysicalActivity"},
+                    {"v": "physicalActivity"},
                     {"v": 88},
                     {"v": 25},
                     {"v": 6}
 
                 ]},
                 {"c": [
-                    {"v": "Relaxation"},
+                    {"v": "relaxation"},
                     {"v": 128},
                     {"v": 12},
                     {"v": 8}
 
                 ]},
                 {"c": [
-                    {"v": "SocialInteraction"},
+                    {"v": "socialInteraction"},
                     {"v": 64},
                     {"v": 12},
                     {"v": 8}
 
                 ]},
                 {"c": [
-                    {"v": "TimeManagement"},
+                    {"v": "timeManagement"},
                     {"v": 97},
                     {"v": 16},
                     {"v": 12}
 
                 ]},
                 {"c": [
-                    {"v": "WorkStructuring"},
+                    {"v": "workStructuring"},
                     {"v": 130},
                     {"v": 12},
                     {"v": 6}

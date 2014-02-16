@@ -7134,7 +7134,7 @@
                 "_id": "529f0390e6d37b88080007be"
             }
         ],
-        "fields": ["physicalActivity", "breaks", "relaxation", "SocialInteraction"],
+        "fields": ["physicalActivity", "breaks", "relaxation", "socialInteraction"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a25000047",
         "version": 0
@@ -9637,7 +9637,7 @@
                 "_id": "528e24f242b6fe095000008d"
             }
         ],
-        "fields": ["awarenessAbility", "leisureActivity", "relaxation", "SocialInteraction"],
+        "fields": ["awarenessAbility", "leisureActivity", "relaxation", "socialInteraction"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a25000052",
         "version": 0
@@ -10532,7 +10532,7 @@
                 "_id": "529f0692e6d37b88080008d1"
             }
         ],
-        "fields": ["physicalActivity", "leisureActivity", "relaxation", "SocialInteraction"],
+        "fields": ["physicalActivity", "leisureActivity", "relaxation", "socialInteraction"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a2500007e",
         "version": 0
@@ -11783,7 +11783,7 @@
                 "_id": "529f0092e6d37b880800071c"
             }
         ],
-        "fields": ["physicalActivity", "SocialInteraction"],
+        "fields": ["physicalActivity", "socialInteraction"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a2500006e",
         "version": 0
@@ -12141,7 +12141,7 @@
                 "_id": "529f31fde6d37b8808000aa2"
             }
         ],
-        "fields": ["awarenessAbility", "workStructuring", "SocialInteraction"],
+        "fields": ["awarenessAbility", "workStructuring", "socialInteraction"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a25000071",
         "version": 0
@@ -12320,7 +12320,7 @@
                 "_id": "529e01d1e6d37b8808000500"
             }
         ],
-        "fields": ["leisureActivity", "SocialInteraction"],
+        "fields": ["leisureActivity", "socialInteraction"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a25000075",
         "version": 0
@@ -18383,7 +18383,7 @@
                 "_id": "529f37b2e6d37b8808000b5f"
             }
         ],
-        "fields": ["leisureActivity", "relaxation", "SocialInteraction"],
+        "fields": ["leisureActivity", "relaxation", "socialInteraction"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6aecdeab69a250000bc",
         "version": 0
@@ -19820,7 +19820,7 @@
         "defaultexecutiontype": "self",
         "defaultfrequency": "once",
         "defaultvisibility": "private",
-        "fields": ["awarenessAbility", "SocialInteraction"],
+        "fields": ["awarenessAbility", "socialInteraction"],
         "number": "Act-07",
         "qualityFactor": 4,
         "recWeights": [
@@ -19998,7 +19998,7 @@
         "defaultexecutiontype": "self",
         "defaultfrequency": "once",
         "defaultvisibility": "private",
-        "fields": ["awarenessAbility", "SocialInteraction"],
+        "fields": ["awarenessAbility", "socialInteraction"],
         "number": "Act-08",
         "qualityFactor": 3,
         "recWeights": [
@@ -20354,7 +20354,7 @@
         "defaultexecutiontype": "self",
         "defaultfrequency": "once",
         "defaultvisibility": "private",
-        "fields": ["awarenessAbility", "SocialInteraction"],
+        "fields": ["awarenessAbility", "socialInteraction"],
         "number": "Act-10",
         "qualityFactor": 4,
         "recWeights": [
@@ -20532,7 +20532,7 @@
         "defaultexecutiontype": "self",
         "defaultfrequency": "once",
         "defaultvisibility": "private",
-        "fields": ["awarenessAbility", "SocialInteraction"],
+        "fields": ["awarenessAbility", "socialInteraction"],
         "number": "Act-11",
         "qualityFactor": 4,
         "recWeights": [
@@ -20888,7 +20888,7 @@
         "defaultexecutiontype": "self",
         "defaultfrequency": "once",
         "defaultvisibility": "private",
-        "fields": ["awarenessAbility", "SocialInteraction"],
+        "fields": ["awarenessAbility", "socialInteraction"],
         "number": "Act-16",
         "qualityFactor": 4,
         "recWeights": [
@@ -21600,7 +21600,7 @@
         "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "defaultvisibility": "private",
-        "fields": ["timeManagement", "SocialInteraction"],
+        "fields": ["timeManagement", "socialInteraction"],
         "number": "Act-20",
         "qualityFactor": 5,
         "recWeights": [
@@ -21956,7 +21956,7 @@
         "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "defaultvisibility": "public",
-        "fields": ["timeManagement", "SocialInteraction"],
+        "fields": ["timeManagement", "socialInteraction"],
         "number": "Act-21",
         "qualityFactor": 4,
         "recWeights": [
@@ -22312,7 +22312,7 @@
         "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "defaultvisibility": "campaign",
-        "fields": ["timeManagement", "SocialInteraction"],
+        "fields": ["timeManagement", "socialInteraction"],
         "number": "Act-23",
         "qualityFactor": 6,
         "recWeights": [
@@ -22490,7 +22490,7 @@
         "defaultexecutiontype": "self",
         "defaultfrequency": "once",
         "defaultvisibility": "private",
-        "fields": ["timeManagement", "SocialInteraction"],
+        "fields": ["timeManagement", "socialInteraction"],
         "number": "Act-24",
         "qualityFactor": 4,
         "recWeights": [
@@ -22846,7 +22846,7 @@
         "defaultexecutiontype": "self",
         "defaultfrequency": "once",
         "defaultvisibility": "private",
-        "fields": ["timeManagement", "SocialInteraction"],
+        "fields": ["timeManagement", "socialInteraction"],
         "number": "Act-27",
         "qualityFactor": 4,
         "recWeights": [
@@ -23024,7 +23024,7 @@
         "defaultexecutiontype": "self",
         "defaultfrequency": "once",
         "defaultvisibility": "private",
-        "fields": ["workStructuring", "SocialInteraction"],
+        "fields": ["workStructuring", "socialInteraction"],
         "number": "Act-31",
         "qualityFactor": 5,
         "recWeights": [
@@ -23202,7 +23202,7 @@
         "defaultexecutiontype": "self",
         "defaultfrequency": "month",
         "defaultvisibility": "private",
-        "fields": ["workStructuring", "SocialInteraction"],
+        "fields": ["workStructuring", "socialInteraction"],
         "number": "Act-35",
         "qualityFactor": 4,
         "recWeights": [
@@ -23380,7 +23380,7 @@
         "defaultexecutiontype": "self",
         "defaultfrequency": "once",
         "defaultvisibility": "private",
-        "fields": ["workStructuring", "SocialInteraction"],
+        "fields": ["workStructuring", "socialInteraction"],
         "number": "Act-36",
         "qualityFactor": 4,
         "recWeights": [
@@ -23558,7 +23558,7 @@
         "defaultexecutiontype": "self",
         "defaultfrequency": "month",
         "defaultvisibility": "private",
-        "fields": ["leisureActivity", "SocialInteraction"],
+        "fields": ["leisureActivity", "socialInteraction"],
         "number": "Act-102",
         "qualityFactor": 3,
         "recWeights": [
@@ -23736,7 +23736,7 @@
         "defaultexecutiontype": "self",
         "defaultfrequency": "once",
         "defaultvisibility": "private",
-        "fields": ["leisureActivity", "SocialInteraction"],
+        "fields": ["leisureActivity", "socialInteraction"],
         "number": "Act-103",
         "qualityFactor": 4,
         "recWeights": [
@@ -23914,7 +23914,7 @@
         "defaultexecutiontype": "self",
         "defaultfrequency": "once",
         "defaultvisibility": "private",
-        "fields": ["awarenessAbility", "SocialInteraction"],
+        "fields": ["awarenessAbility", "socialInteraction"],
         "number": "Act-37",
         "qualityFactor": 4,
         "recWeights": [
@@ -24982,7 +24982,7 @@
         "defaultexecutiontype": "self",
         "defaultfrequency": "week",
         "defaultvisibility": "private",
-        "fields": ["timeManagement", "workStructuring", "SocialInteraction"],
+        "fields": ["timeManagement", "workStructuring", "socialInteraction"],
         "number": "Act-138",
         "qualityFactor": 5,
         "recWeights": [
@@ -25160,7 +25160,7 @@
         "defaultexecutiontype": "self",
         "defaultfrequency": "day",
         "defaultvisibility": "private",
-        "fields": ["leisureActivity", "relaxation", "SocialInteraction"],
+        "fields": ["leisureActivity", "relaxation", "socialInteraction"],
         "number": "Act-46",
         "qualityFactor": 4,
         "recWeights": [
@@ -25338,7 +25338,7 @@
         "defaultexecutiontype": "self",
         "defaultfrequency": "once",
         "defaultvisibility": "private",
-        "fields": ["awarenessAbility", "leisureActivity", "SocialInteraction"],
+        "fields": ["awarenessAbility", "leisureActivity", "socialInteraction"],
         "number": "Act-140",
         "qualityFactor": 4,
         "recWeights": [
@@ -26396,7 +26396,7 @@
                 "_id": "529f3bdee6d37b8808000d7b"
             }
         ],
-        "fields": ["nutrition", "breaks", "SocialInteraction"],
+        "fields": ["nutrition", "breaks", "socialInteraction"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a25000049",
         "version": 0
@@ -27474,7 +27474,7 @@
         "defaultexecutiontype": "self",
         "defaultfrequency": "week",
         "defaultvisibility": "campaign",
-        "fields": ["leisureActivity", "relaxation", "SocialInteraction"],
+        "fields": ["leisureActivity", "relaxation", "socialInteraction"],
         "number": "Act-76",
         "qualityFactor": 4,
         "recWeights": [
@@ -27830,7 +27830,7 @@
         "defaultexecutiontype": "self",
         "defaultfrequency": "once",
         "defaultvisibility": "private",
-        "fields": ["awarenessAbility", "leisureActivity", "SocialInteraction"],
+        "fields": ["awarenessAbility", "leisureActivity", "socialInteraction"],
         "number": "Act-83",
         "qualityFactor": 5,
         "recWeights": [
@@ -28354,7 +28354,7 @@
                 "_id": "528a23ca292f0d062f000180"
             }
         ],
-        "fields": ["leisureActivity", "relaxation", "SocialInteraction"],
+        "fields": ["leisureActivity", "relaxation", "socialInteraction"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a25000058",
         "version": 0
@@ -28532,7 +28532,7 @@
                 "_id": "529f37f8e6d37b8808000b7a"
             }
         ],
-        "fields": ["leisureActivity", "relaxation", "SocialInteraction"],
+        "fields": ["leisureActivity", "relaxation", "socialInteraction"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a25000059",
         "version": 0
@@ -29779,7 +29779,7 @@
                 "_id": "529f25a2e6d37b88080009c5"
             }
         ],
-        "fields": ["leisureActivity", "relaxation", "SocialInteraction"],
+        "fields": ["leisureActivity", "relaxation", "socialInteraction"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a25000066",
         "version": 0
@@ -29958,7 +29958,7 @@
                 "_id": "529f389de6d37b8808000bb0"
             }
         ],
-        "fields": ["leisureActivity", "relaxation", "SocialInteraction"],
+        "fields": ["leisureActivity", "relaxation", "socialInteraction"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a25000067",
         "version": 0
@@ -30137,7 +30137,7 @@
                 "_id": "529f2589e6d37b88080009aa"
             }
         ],
-        "fields": ["leisureActivity", "relaxation", "SocialInteraction"],
+        "fields": ["leisureActivity", "relaxation", "socialInteraction"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a25000068",
         "version": 0
@@ -30315,7 +30315,7 @@
                 "_id": "529f3a9de6d37b8808000cd9"
             }
         ],
-        "fields": ["leisureActivity", "SocialInteraction"],
+        "fields": ["leisureActivity", "socialInteraction"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a2500006b",
         "version": 0
@@ -30493,7 +30493,7 @@
                 "_id": "528a22ea292f0d062f0000f9"
             }
         ],
-        "fields": ["physicalActivity", "leisureActivity", "SocialInteraction"],
+        "fields": ["physicalActivity", "leisureActivity", "socialInteraction"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a2500006c",
         "version": 0
@@ -30671,7 +30671,7 @@
                 "_id": "529f3bb0e6d37b8808000d60"
             }
         ],
-        "fields": ["breaks", "SocialInteraction"],
+        "fields": ["breaks", "socialInteraction"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a2500006d",
         "version": 0
@@ -30849,7 +30849,7 @@
                 "_id": "529f3c89e6d37b8808000d96"
             }
         ],
-        "fields": ["leisureActivity", "SocialInteraction"],
+        "fields": ["leisureActivity", "socialInteraction"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a2500006f",
         "version": 0
@@ -31027,7 +31027,7 @@
                 "_id": "529f3a26e6d37b8808000c88"
             }
         ],
-        "fields": ["nutrition", "leisureActivity", "SocialInteraction"],
+        "fields": ["nutrition", "leisureActivity", "socialInteraction"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a25000073",
         "version": 0
@@ -32991,7 +32991,7 @@
                 "_id": "529f03cce6d37b88080007d9"
             }
         ],
-        "fields": ["physicalActivity", "breaks", "relaxation", "SocialInteraction"],
+        "fields": ["physicalActivity", "breaks", "relaxation", "socialInteraction"],
         "topics": ["workLifeBalance"],
         "_id": "5278c6adcdeab69a25000048",
         "version": 0
@@ -33896,7 +33896,7 @@
         "defaultexecutiontype": "self",
         "defaultfrequency": "once",
         "defaultvisibility": "private",
-        "fields": ["awarenessAbility", "SocialInteraction"],
+        "fields": ["awarenessAbility", "socialInteraction"],
         "number": "Act-13",
         "qualityFactor": 4,
         "recWeights": [

@@ -32,7 +32,7 @@ username            password        role            email
 
 test_ind1           yp              individual      ypunittest1+individual1@gmail.com
 test_ind2           yp              individual      ypunittest1+individual2@gmail.com
-test_ind1           yp              individual      ypunittest1+individual3@gmail.com
+test_ind3           yp              individual      ypunittest1+individual3@gmail.com
 test_orgadm         yp              orgadmin        ypunittest1+orgadmin@gmail.com
 test_prodadm        yp              productadmin    ypunittest1+productadmin@gmail.com
 test_campaignlead   yp              campaignlead    ypunittest1+campaignlead@gmail.com

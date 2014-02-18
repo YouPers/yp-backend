@@ -159,10 +159,8 @@ function putCampaign(req, res, next) {
 
     // if client sends whole campaignLead objects, replace them by their respective ObjectId
 
-    var sentCampaignLeads = sentCampaign.campaignLeads;
     _.each(sentCampaign.campaignLeads,function (element, index, list) {
-        req.log.trace('element: ', element);
-        if ((!(typeof element === 'string' ))) {
+        if (typeof element !== 'string' ) {
             if (element.id) {
                 list[index] = element.id;
             }

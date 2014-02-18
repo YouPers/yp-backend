@@ -1,4 +1,5 @@
-var handlerUtils = require('./handlerUtils'),
+var error = require('../util/error'),
+    handlerUtils = require('./handlerUtils'),
     email = require('../util/email'),
     image = require('../util/image'),
     auth = require('../util/auth'),
@@ -25,7 +26,10 @@ var postFn = function (baseUrl) {
         }
 
         if (!auth.canAssign(req.user, newUser.roles)) {
-            return next(new restify.NotAuthorizedError("current user has not enough privileges to create a new user with roles " + newUser.roles));
+            return next(new error.NotAuthorizedError({
+                message: 'The user is not authorized to assign these roles.',
+                body: {roles: newUser.roles}
+            }));
         }
 
         req.log.trace(newUser, 'PostFn: Saving new user and profile objects');
@@ -65,7 +69,7 @@ var validateUserPostFn = function(baseUrl) {
                     return next(err);
                 }
                 if(value) {
-                    return next(new restify.ConflictError({field: field, value: value}));
+                    return next(new error.ConflictError({message: field + ' is already in use', body: {value: query[field]}}));
                 } else {
                     res.send(200);
                     return next();

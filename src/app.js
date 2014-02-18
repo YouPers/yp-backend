@@ -20,7 +20,9 @@ var restify = require("restify"),
     swagger = require("swagger-node-restify"),
     auth = require('./util/auth'),
     i18n = require('i18next'),
-    ypi18n = require('./util/ypi18n');
+    ypi18n = require('./util/ypi18n'),
+    error = require('./util/error');
+
 
 
 // Setup Database Connection
@@ -46,6 +48,12 @@ server.pre(function (request, response, next) {
     return next();
 });
 
+// log unexpected errors
+server.on('uncaughtException', function (req, res, route, err) {
+    req.log.error(err);
+    res.send(new error.InternalError(err, err.message || 'unexpected error'));
+    return (true);
+});
 server.on('after', function (req, res, route, err) {
     req.log.debug({res: res}, "finished processing request");
     if (err) {

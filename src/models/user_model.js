@@ -22,6 +22,7 @@ var UserSchema = common.newSchema({
     roles: {type: [{ type: String}], select: false},
     hashed_password: { type: String, trim: true, select: false },
     tempPasswordFlag: { type: Boolean, default: false, select: false },
+    campaign: {type: ObjectId, rew: 'Campaign', select: false},
     profile: {type: ObjectId, ref: 'Profile', select: false},
     preferences: {
         starredActivities: [
@@ -61,7 +62,7 @@ UserSchema.methods = {
     }
 };
 
-UserSchema.statics.privatePropertiesSelector = '+email +roles +emailValidatedFlag +hashed_password +tempPasswordFlag +profile +username';
+UserSchema.statics.privatePropertiesSelector = '+email +roles +emailValidatedFlag +hashed_password +tempPasswordFlag +profile +username +campaign';
 /**
  * helper functions
  */

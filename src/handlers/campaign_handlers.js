@@ -214,11 +214,6 @@ var getAllForUserFn = function (baseUrl) {
                     return next(err);
                 }
 
-                if (!campaigns) {
-                    res.send(204, []);
-                    return next();
-                }
-
                 res.send(200, campaigns);
                 return next();
             });

@@ -139,6 +139,7 @@ var validateLocalUsernamePassword = function (username, password, done) {
         // select the 'private' attributes from the user that are hidden if another user loads the user object
         .select(UserModel.privatePropertiesSelector)
         .populate('profile')
+        .populate('campaign')
         .exec(function (err, user) {
             if (err) {
                 return done(err);

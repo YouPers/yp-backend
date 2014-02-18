@@ -14,7 +14,6 @@ var env = process.env.NODE_ENV || 'development',
     auth = require('../util/auth');
 
 var getIcalObject = function (plan, recipientUser, iCalType, i18n) {
-
     var myCal = new ical.iCalendar();
     var event = new ical.VEvent(plan._id);
     event.addProperty("ORGANIZER", "MAILTO:dontreply@youpers.com", {CN: "YouPers Digital Health"});
@@ -320,10 +319,15 @@ function getJoinOffers(req, res, next) {
             masterPlan: null
         });
 
+    dbquery.where('visibility').ne('private');
+
     if (req.user.campaign) {
-        dbquery.where('campaign').equals(req.user.campaign.id || req.user.campaign);
+        dbquery.or([
+            {campaign: req.user.campaign.id || req.user.campaign},
+            {campaign: null, visibility: 'public'}
+        ]);
     } else {
-        dbquery.where('campaign').equals(null);
+        dbquery.and([{'campaign':null},{'visibility': 'public'}]);
     }
 
     generic.addStandardQueryOptions(req, dbquery, ActivityPlanModel);

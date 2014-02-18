@@ -2,7 +2,8 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
     _ = require('lodash'),
     env = process.env.NODE_ENV || 'development',
-    config = require('../config/config')[env];
+    config = require('../config/config')[env],
+    auth = require('../util/auth');
 
 module.exports = {
 
@@ -108,6 +109,8 @@ module.exports = {
             });
             return selectObj;
         };
+
+        mySchema.statics.adminRoles = [auth.roles.systemadmin];
 
         /**
          * overwrite the way we generally render objects to JSON.

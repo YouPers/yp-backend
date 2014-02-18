@@ -2,8 +2,8 @@
  * Module dependencies.
  */
 var mongoose = require('mongoose'),
-    common = require('./common');
-
+    common = require('./common'),
+    auth = require('../util/auth');
 
 /**
  * Activity Schema
@@ -31,6 +31,8 @@ var AssessmentSchema = common.newSchema({
     name: {type: String, trim: true, i18n: true},
     questionCats: [questionCatsSchema]
 });
+
+AssessmentSchema.statics.adminRoles = [auth.roles.systemadmin, auth.roles.productadmin];
 
 AssessmentSchema.statics.getFieldDescriptions = function() {
     return {

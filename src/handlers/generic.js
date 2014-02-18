@@ -271,8 +271,8 @@ var _addFilter = function (queryParams, dbquery, Model) {
 };
 
 var processStandardQueryOptions = function (req, dbquery, Model) {
-    if (req.user && auth.isAdmin(req.user) && Model.getAdminAttrsSelector) {
-        dbquery.select(Model.getAdminAttrsSelector());
+    if (req.user && auth.isAdminForModel(req.user, Model) && Model.adminAttrsSelector) {
+        dbquery.select(Model.adminAttrsSelector);
     }
 
     if (Model.getI18nPropertySelector && !req.params.i18n) {
@@ -538,10 +538,14 @@ module.exports = {
             }
 
             var q = Model.findById(req.params.id);
+
             // if this Model has privateProperties, include them in the select, so we get the whole object
             // because we need to save it later!
             if (Model.privatePropertiesSelector) {
                 q.select(Model.privatePropertiesSelector);
+            }
+            if (Model.adminAttrsSelector) {
+                q.select(Model.adminAttrsSelector);
             }
             q.exec(function (err, objFromDb) {
                 if (err) {

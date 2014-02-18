@@ -3,15 +3,15 @@ var auth = require('../src/util/auth');
 
 describe('Authentication Module', function () {
     it('should correctly check whether a role is an admin role', function () {
-        expect(auth.isAdmin('individual')).toBe(false);
-        expect(auth.isAdmin('healthpromoter')).toBe(false);
-        expect(auth.isAdmin('productadmin')).toBe(true);
-        expect(auth.isAdmin('systemadmin')).toBe(true);
-        expect(auth.isAdmin(['systemadmin'])).toBe(true);
-        expect(auth.isAdmin(['systemadmin', 'individual'])).toBe(true);
-        expect(auth.isAdmin(['anonymous', 'individual'])).toBe(false);
-        expect(auth.isAdmin([])).toBe(false);
-        expect(auth.isAdmin(null)).toBe(false);
+        expect(auth.isAdminForModel('individual', ['systemadmin'])).toBe(false);
+        expect(auth.isAdminForModel('orgadmin',['systemadmin'])).toBe(false);
+        expect(auth.isAdminForModel('productadmin',['systemadmin', 'productadmin'])).toBe(true);
+        expect(auth.isAdminForModel('systemadmin',['systemadmin', 'productadmin'])).toBe(true);
+        expect(auth.isAdminForModel(['systemadmin'],['systemadmin', 'productadmin'])).toBe(true);
+        expect(auth.isAdminForModel(['systemadmin', 'individual'],['systemadmin', 'productadmin'])).toBe(true);
+        expect(auth.isAdminForModel(['anonymous', 'individual'],['systemadmin', 'productadmin'])).toBe(false);
+        expect(auth.isAdminForModel([],['systemadmin', 'productadmin'])).toBe(false);
+        expect(auth.isAdminForModel(null,['systemadmin', 'productadmin'])).toBe(false);
 
     });
 

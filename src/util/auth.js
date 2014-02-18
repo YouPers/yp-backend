@@ -100,9 +100,15 @@ function getRolesFromUser(user) {
     }
     return userRoles;
 }
-var isAdmin = function (user) {
+var isAdminForModel = function isAdminForModel(user, Model) {
+    var validAdminRolesForThisModel = [];
+    if (Array.isArray(Model)) {
+        validAdminRolesForThisModel = Model;
+    } else if (Model.adminRoles && Array.isArray(Model.adminRoles)) {
+        validAdminRolesForThisModel = Model.adminRoles;
+    }
     var userRoles = getRolesFromUser(user);
-    return _.contains(userRoles, roles.productadmin) || _.contains(userRoles, roles.systemadmin);
+    return (_.intersection(userRoles, validAdminRolesForThisModel).length > 0);
 };
 
 var canAssign = function (loggedInUser, requestedRoles) {
@@ -156,7 +162,7 @@ var validateLocalUsernamePassword = function (username, password, done) {
 
 module.exports = {
     roleBasedAuth: roleBasedAuth,
-    isAdmin: isAdmin,
+    isAdminForModel: isAdminForModel,
     roles: roles,
     accessLevels: accessLevels,
     canAssign: canAssign,

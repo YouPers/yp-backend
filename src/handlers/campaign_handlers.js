@@ -157,8 +157,17 @@ function putCampaign(req, res, next) {
             }
         });
 
-    // campaignleads is not going to be updated by this function
-    delete sentCampaign.campaignLeads;
+    // if client sends whole campaignLead objects, replace them by their respective ObjectId
+
+    var sentCampaignLeads = sentCampaign.campaignLeads;
+    _.each(sentCampaign.campaignLeads,function (element, index, list) {
+        req.log.trace('element: ', element);
+        if ((!(typeof element === 'string' ))) {
+            if (element.id) {
+                list[index] = element.id;
+            }
+        }
+    });
 
     Campaign.findById(req.params.id).exec(function (err, reloadedCampaign) {
         if (err) {

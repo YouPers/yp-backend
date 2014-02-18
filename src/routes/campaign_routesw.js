@@ -27,7 +27,7 @@ module.exports = function (swagger, config) {
             "responseClass": "Campaign",
             "errorResponses": [swagger.errors.invalid('id'), swagger.errors.notFound("campaign")],
             "nickname": "getCampaignById",
-            accessLevel: 'al_campaignlead'
+            accessLevel: 'al_all'
         },
         action: genericHandlers.getByIdFn(baseUrl, Campaign)
     });

@@ -3,7 +3,8 @@
  */
 var mongoose = require('mongoose'),
     common = require('./common'),
-    ObjectId = mongoose.Schema.ObjectId;
+    ObjectId = mongoose.Schema.ObjectId,
+    auth = require('../util/auth');
 
 /**
  * Activity Schema
@@ -27,10 +28,9 @@ var ActivitySchema = common.newSchema({
     ], select: false}
 });
 
-ActivitySchema.statics.getAdminAttrsSelector =  function () {
-        return '+recWeights +qualityFactor';
-    };
+ActivitySchema.statics.adminAttrsSelector =  '+recWeights +qualityFactor';
 
+ActivitySchema.statics.adminRoles = [auth.roles.systemadmin, auth.roles.productadmin];
 
 module.exports = mongoose.model('Activity', ActivitySchema);
 

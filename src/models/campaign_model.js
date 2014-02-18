@@ -3,7 +3,8 @@
  */
 var mongoose = require('mongoose'),
     common = require('./common'),
-    ObjectId = mongoose.Schema.ObjectId;
+    ObjectId = mongoose.Schema.ObjectId,
+    auth = require('../util/auth');
 
 /**
  * Activity Schema
@@ -16,12 +17,16 @@ var CampaignSchema = common.newSchema({
     organization:  { type: ObjectId, ref: 'Organization', required: true },
     location: { type: String, trim: true, required: true },
     slogan: { type: String, trim: true },
-    paymentStatus: { type: String, trim: true, required: true, enum: common.enums.paymentStatus, default: "open" },
-    productType: { type: String, trim: true, required: true, enum: common.enums.campaignProductType, default: "CampaignProductType1" },
+    paymentStatus: { type: String, trim: true, required: true, enum: common.enums.paymentStatus, default: "open", select: false },
+    productType: { type: String, trim: true, required: true, enum: common.enums.campaignProductType, default: "CampaignProductType1", select: false },
     campaignLeads: [
         {type: ObjectId, ref: 'User'}
     ]
 });
+
+CampaignSchema.statics.adminRoles =  [auth.roles.systemadmin, auth.roles.productadmin, auth.roles.campaignlead, auth.roles.orgadmin];
+
+CampaignSchema.statics.adminAttrsSelector = '+productType +paymentStatus';
 
 var model = mongoose.model('Campaign', CampaignSchema);
 

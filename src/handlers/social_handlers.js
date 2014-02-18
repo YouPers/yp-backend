@@ -32,6 +32,11 @@ var getListFn = function getSocialEventsListFn(baseUrl, Model) {
                     .sort('-created')
                     .populate('author')
                     .limit(req.params.limit || 10);
+                if (req.user.campaign) {
+                    q.where('campaign').equals(req.user.campaign.id || req.user.campaign);
+                } else {
+                    q.where('campaign').equals(undefined);
+                }
 
                 q.exec(function (err, comments) {
                     if (err) {
@@ -51,12 +56,11 @@ var getListFn = function getSocialEventsListFn(baseUrl, Model) {
                 q.where('visibility').ne('private');
                 // do not show my own plans
                 q.where('owner').ne(req.user.id);
+                // only show plans that are from the same campaign as I am currently participating in
+                q.where('campaign').equals(req.user.campaign);
 
                 // only show masterPlans
                 q.where('masterPlan').equals(null);
-
-                // TODO: filter for campaign
-
 
                 q.limit(req.params.limit || 10);
 

@@ -48,6 +48,15 @@ frisby.create('Activity Join Offers: plan once activity and check whether event 
         var joinablePlanID = joinablePlan.id;
         var slavePlanID;
 
+        frisby.create('ActivityJoinOffers: get all joinoffers for this activity as user from different campaign and see whether this plan is in the list')
+            .get(URL + '/activityplans/joinOffers?activity=5278c6adcdeab69a2500001e')
+            .auth('test_ind3', 'yp')
+            .expectStatus(200)
+            .afterJSON(function(joinOffers) {
+                expect(_.any(joinOffers, {id: joinablePlan.id})).toBeFalsy();
+            })
+            .toss();
+
         frisby.create('ActivityJoinOffers: get all joinoffers for this activity and see whether this plan is in the list')
             .get(URL + '/activityplans/joinOffers?activity=5278c6adcdeab69a2500001e')
             .auth('test_ind1', 'yp')
@@ -60,6 +69,7 @@ frisby.create('Activity Join Offers: plan once activity and check whether event 
                 _.forEach(joinablePlans, function (joinablePlan) {
                     expect(joinablePlan.masterPlan).not.toBeDefined();
                 });
+                expect(_.any(joinablePlans, {id: joinablePlan.id})).toBeTruthy();
 
                 joinable.masterPlan = joinablePlan.id;
                 joinable.owner = consts.users.test_ind2.id;

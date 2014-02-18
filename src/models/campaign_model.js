@@ -16,8 +16,8 @@ var CampaignSchema = common.newSchema({
     organization:  { type: ObjectId, ref: 'Organization', required: true },
     location: { type: String, trim: true, required: true },
     slogan: { type: String, trim: true },
-    paymentStatus: { type: String, trim: true, required: true, enum: common.enums.paymentStatus, default: "open" },
-    productType: { type: String, trim: true, required: true, enum: common.enums.campaignProductType, default: "CampaignProductType1" },
+    paymentStatus: { type: String, trim: true, required: true, enum: common.enums.paymentStatus, default: "open", select: "false" },
+    productType: { type: String, trim: true, required: true, enum: common.enums.campaignProductType, default: "CampaignProductType1", select: false },
     campaignLeads: [
         {type: ObjectId, ref: 'User'}
     ]

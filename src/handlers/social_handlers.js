@@ -35,7 +35,7 @@ var getListFn = function getSocialEventsListFn(baseUrl, Model) {
                 if (req.user.campaign) {
                     q.where('campaign').equals(req.user.campaign.id || req.user.campaign);
                 } else {
-                    q.where('campaign').equals(undefined);
+                    q.where('campaign').equals(null);
                 }
 
                 q.exec(function (err, comments) {
@@ -57,7 +57,14 @@ var getListFn = function getSocialEventsListFn(baseUrl, Model) {
                 // do not show my own plans
                 q.where('owner').ne(req.user.id);
                 // only show plans that are from the same campaign as I am currently participating in
-                q.where('campaign').equals(req.user.campaign);
+                if (req.user.campaign) {
+                    q.or([
+                        {'campaign': req.user.campaign.id || req.user.campaign},
+                        {'campaign': null, visibility: 'public'}
+                    ]);
+                } else {
+                    q.and([{'campaign': null},{visibility: 'public'}]);
+                }
 
                 // only show masterPlans
                 q.where('masterPlan').equals(null);
@@ -70,7 +77,7 @@ var getListFn = function getSocialEventsListFn(baseUrl, Model) {
                         return done(err);
                     }
 
-                    locals.actPlans = _.map(actPlans, function(actPlan) {
+                    locals.actPlans = _.map(actPlans, function (actPlan) {
                         return {
                             author: actPlan.owner,
                             created: actPlan.mainEvent.start,
@@ -92,7 +99,7 @@ var getListFn = function getSocialEventsListFn(baseUrl, Model) {
                     return next(err);
                 }
 
-                var events = _.sortBy(locals.comments.concat(locals.actPlans), function(obj) {
+                var events = _.sortBy(locals.comments.concat(locals.actPlans), function (obj) {
                     return -obj.created;
                 });
 

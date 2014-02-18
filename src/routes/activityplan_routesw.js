@@ -16,8 +16,9 @@ module.exports = function (swagger, config) {
         spec: {
             description: "Operations about ActivityPlans",
             path: baseUrl + '/joinOffers',
-            notes: "only returns public plans and is constrained by activity-Reference",
-            summary: "returns activityPlans other users have published to invite colleages to join",
+            notes: "Only returns public plans and plans in the same campaign as the user is currently participating in. " +
+                "Is is constrained by the activity-Reference, that has to be passed in.",
+            summary: "returns activityPlans other users have published to invite colleages to join where the current user has access to.",
             params: [
                 {
                     paramType: "query",

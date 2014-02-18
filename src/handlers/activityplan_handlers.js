@@ -324,6 +324,19 @@ function getIcalStringForPlan(req, res, next) {
     });
 }
 
+/**
+ * returns available JoinOffers for the activity, that must be specified as a parameter, which are available
+ * to the current user.
+ * Available are all ActivityPlans that are "visible" to this user:
+ * - in the same campaign
+ * - executionType must be group
+ * - it must be a masterPlan
+ *
+ * @param req
+ * @param res
+ * @param next
+ * @returns {*}
+ */
 function getJoinOffers(req, res, next) {
 
     // check whether the required param 'activity' is here and add it to the dbquery
@@ -337,10 +350,15 @@ function getJoinOffers(req, res, next) {
             masterPlan: null
         });
 
+    dbquery.where('visibility').ne('private');
+
     if (req.user.campaign) {
-        dbquery.where('campaign').equals(req.user.campaign.id || req.user.campaign);
+        dbquery.or([
+            {campaign: req.user.campaign.id || req.user.campaign},
+            {campaign: null, visibility: 'public'}
+        ]);
     } else {
-        dbquery.where('campaign').equals(null);
+        dbquery.and([{'campaign':null},{'visibility': 'public'}]);
     }
 
     generic.addStandardQueryOptions(req, dbquery, ActivityPlanModel);

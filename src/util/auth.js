@@ -10,8 +10,9 @@ var roles = {
         productadmin: 'productadmin',
         systemadmin: 'systemadmin'
     },
-    canAssignRole = { // defines what roles (value) are allowed to assign a give role (key) to a new/updated user
+    canAssignRole = { // defines what roles (value) are allowed to assign a given role (key) to a new/updated user
         individual: [roles.anonymous, roles.individual, roles.productadmin, roles.systemadmin],
+        campaignlead: [roles.individual],
         orgadmin: [roles.individual, roles.productadmin, roles.systemadmin],
         productadmin: [ roles.productadmin, roles.systemadmin],
         systemadmin: [ roles.systemadmin]

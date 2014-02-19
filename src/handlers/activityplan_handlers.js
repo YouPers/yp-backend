@@ -265,31 +265,38 @@ function postNewActivityPlan(req, res, next) {
 
     var newActPlan = new ActivityPlanModel(req.body);
 
-
-    req.log.trace(newActPlan, 'PostFn: Saving new Object');
-    // try to save the new object
-    newActPlan.save(function (err) {
+    // add fields of activity to the activity plan
+    ActivityModel.findById(newActPlan.activity).exec(function (err, foundActivity) {
         if (err) {
-            req.log.error({Error: err}, 'Error Saving in PostFn');
-            err.statusCode = 409;
             return next(err);
         }
-        // we populate 'activity' so we can get create a nice calendar entry using strings on the
-        // activity
-        ActivityPlanModel.findById(newActPlan._id).populate('activity').exec(function (err, reloadedActPlan) {
+        newActPlan.fields = foundActivity.fields;
+
+        req.log.trace(newActPlan, 'PostFn: Saving new Object');
+        // try to save the new object
+        newActPlan.save(function (err) {
             if (err) {
+                req.log.error({Error: err}, 'Error Saving in PostFn');
+                err.statusCode = 409;
                 return next(err);
             }
-            if (req.user && req.user.email) {
-                var myIcalString = getIcalObject(reloadedActPlan, req.user, 'new', req.i18n).toString();
-                email.sendCalInvite(req.user.email, 'new', myIcalString, req.i18n);
-            }
+            // we populate 'activity' so we can get create a nice calendar entry using strings on the
+            // activity
+            ActivityPlanModel.findById(newActPlan._id).populate('activity').exec(function (err, reloadedActPlan) {
+                if (err) {
+                    return next(err);
+                }
+                if (req.user && req.user.email) {
+                    var myIcalString = getIcalObject(reloadedActPlan, req.user, 'new', req.i18n).toString();
+                    email.sendCalInvite(req.user.email, 'new', myIcalString, req.i18n);
+                }
 
-            // remove the populated activity because the client is not gonna expect it to be populated.
-            reloadedActPlan.activity = reloadedActPlan.activity._id;
-            res.header('location', '/api/v1/activitiesPlanned' + '/' + reloadedActPlan._id);
-            res.send(201, reloadedActPlan);
-            return next();
+                // remove the populated activity because the client is not gonna expect it to be populated.
+                reloadedActPlan.activity = reloadedActPlan.activity._id;
+                res.header('location', '/api/v1/activitiesPlanned' + '/' + reloadedActPlan._id);
+                res.send(201, reloadedActPlan);
+                return next();
+            });
         });
     });
 }

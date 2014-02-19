@@ -26,7 +26,7 @@ var statsQueries = function (timeRange, scopeType, scopeId) {
             throw new Error("Illegal Arguments, when ScopeType == campaign or owner, an id has to be passed");
         }
         scopePipelineEntry = { $match: {}};
-        scopePipelineEntry.$match[scopeType] = scopeId;
+        scopePipelineEntry.$match[scopeType] = new ObjectId(scopeId);
     }
 
     var timeRangePipelineEntry = null;
@@ -63,8 +63,27 @@ var statsQueries = function (timeRange, scopeType, scopeId) {
         }}
     );
 
+    ///////////////////////////////////////
+    // AssessmentUpdates Total
+    var assUpdatesTotalQuery = mongoose.model('AssessmentResult').aggregate();
+    if (scopePipelineEntry) {
+        assUpdatesTotalQuery.append(scopePipelineEntry);
+    }
+    assUpdatesTotalQuery.append(
+        {
+            $group: {
+                _id: 'Total',
+                updatesTotal: {$sum: 1}
+            }
+        },
+        {$project: {
+            _id: 0,
+            updatesTotal: 1
+        }}
+    );
+
     /////////////////////////////////////////
-    // AssessmentTotals
+    // Assessment Totals per Day
     var assessmentTotalsQuery = mongoose.model('AssessmentResult').aggregate();
     if (scopePipelineEntry) {
         assessmentTotalsQuery.append(scopePipelineEntry);
@@ -132,7 +151,6 @@ var statsQueries = function (timeRange, scopeType, scopeId) {
         {$sort: {sumAvg: -1}},
         {$limit: 3});
 
-
     ///////////////////////////////////////////////////
     // activitiesPlanned
     var actsPlannedQuery = mongoose.model('ActivityPlan').aggregate();
@@ -149,6 +167,22 @@ var statsQueries = function (timeRange, scopeType, scopeId) {
             activity: '$_id',
             _id: 0,
             count: 1
+        }});
+
+    ///////////////////////////////////////////////////
+    // activitiesPlanned Total
+    var actsPlannedTotalQuery = mongoose.model('ActivityPlan').aggregate();
+    if (scopePipelineEntry) {
+        actsPlannedTotalQuery.append(scopePipelineEntry);
+    }
+    actsPlannedTotalQuery.append(
+        {$group: {
+            _id: 'Total',
+            activitiesPlannedTotal: {$sum: 1}
+        }},
+        {$project: {
+            _id: 0,
+            activitiesPlannedTotal: 1
         }});
 
     /////////////////////////////////////////////////////
@@ -181,12 +215,65 @@ var statsQueries = function (timeRange, scopeType, scopeId) {
         }}
     );
 
+    /////////////////////////////////////////////////////
+    // ActivityEvents Total
+    var eventsTotalQuery = mongoose.model('ActivityPlan').aggregate();
+    if (scopePipelineEntry) {
+        eventsTotalQuery.append(scopePipelineEntry);
+    }
+    eventsTotalQuery.append(
+        {$unwind: '$events'}
+    );
+    if (timeRangePipelineEntry) {
+        eventsTotalQuery.append(timeRangePipelineEntry);
+    }
+    eventsTotalQuery.append(
+        {$project: {
+            events: 1
+        }},
+        {$group: {
+            _id: 'Total',
+            eventsTotal: {$sum: 1}
+        }},
+        {$project: {
+            eventsTotal: 1,
+            _id: 0
+        }}
+    );
+
+    /////////////////////////////////////////////////////
+    // Users Total
+    var usersTotalQuery = mongoose.model('User').aggregate();
+    if (scopePipelineEntry) {
+        usersTotalQuery.append(scopePipelineEntry);
+    }
+    if (timeRangePipelineEntry) {
+        usersTotalQuery.append(timeRangePipelineEntry);
+    }
+    usersTotalQuery.append(
+        {$project: {
+            campaign: 1
+        }},
+        {$group: {
+            _id: 'Total',
+            usersTotal: {$sum: 1}
+        }},
+        {$project: {
+            usersTotal: 1,
+            _id: 0
+        }}
+    );
+
     return {
         assUpdatesPerDay: assUpdatesPerDayQuery,
+        assUpdatesTotal: assUpdatesTotalQuery,
         assTotals: assessmentTotalsQuery,
         topStressors: topStressorsQuery,
         activitiesPlanned: actsPlannedQuery,
-        activityEvents: eventsQuery
+        activitiesPlannedTotal: actsPlannedTotalQuery,
+        activityEvents: eventsQuery,
+        activityEventsTotal: eventsTotalQuery,
+        usersTotal: usersTotalQuery
         };
 };
 

@@ -26,7 +26,7 @@ module.exports = function (swagger, config) {
                     name: "type",
                     description: "the type of statistics to fetch",
                     dataType: "string",
-                    enum: ['assUpdatesPerDay','assTotals','topStressors','activitiesPlanned','activityEvents'],
+                    enum: ['assUpdatesPerDay','assUpdateTotal','assTotals','topStressors','activitiesPlanned','activitiesPlannedTotal','activityEvents','activityEventsTotal','usersTotal'],
                     required: true
                 },
                 {

@@ -89,38 +89,6 @@ module.exports = function (swagger, config) {
         action: generic.getAllFn(baseUrl, Model)
     });
 
-
-
-    swagger.addGet({
-        spec: {
-            description: "Operations about ActivityPlans",
-            path: baseUrlWithId + '/ical.ics',
-            notes: "Returns a file that can be imported into Outlook",
-            summary: "fetch a calendar ics file for the activityPlan by id",
-            params: [
-                {
-                    paramType: "path",
-                    name: "id",
-                    description: "the id of the activityPlan for which to fetch the ical file",
-                    dataType: "string",
-                    required: true
-                },
-                {
-                    paramType: "query",
-                    name: "email",
-                    description: "send calendar event as email",
-                    dataType: "boolean"
-                }
-            ],
-            method: "GET",
-            "nickname": "getActivityPlanICal",
-            accessLevel: 'al_individual',
-            beforeCallbacks: []
-        },
-        action: handlers.getIcalStringForPlan
-    });
-
-
     swagger.addDelete({
         spec: {
             description: "Operations about ActivityPlans",

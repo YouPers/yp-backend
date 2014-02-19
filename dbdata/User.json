@@ -12,7 +12,8 @@
         "tempPasswordFlag": false,
         "username": "test_ind1",
         "version": 0,
-        "campaign": "527916a82079aa8704000006"
+        "campaign": "527916a82079aa8704000006",
+        "profile": "5303721a4dba580000000016"
     },
     {
         "avatar": "",
@@ -26,7 +27,7 @@
         "roles": ["individual"],
         "tempPasswordFlag": false,
         "username": "test_ind2",
-        "version": 0
+        "profile": "5303721a4dba580000000017"
     },
     {
         "avatar": "",
@@ -40,7 +41,7 @@
         "roles": ["individual"],
         "tempPasswordFlag": false,
         "username": "test_ind3",
-        "version": 0
+        "profile": "5303721a4dba580000000018"
     },
     {
         "avatar": "",
@@ -54,7 +55,7 @@
         "roles": ["productadmin"],
         "tempPasswordFlag": false,
         "username": "test_prodadm",
-        "version": 0
+        "profile": "5303721a4dba580000000019"
     },
     {
         "avatar": "",
@@ -68,7 +69,7 @@
         "roles": ["systemadmin"],
         "tempPasswordFlag": false,
         "username": "test_sysadm",
-        "version": 0
+        "profile": "5303721a4dba580000000020"
     },
     {
         "avatar": "",
@@ -82,7 +83,7 @@
         "roles": ["orgadmin"],
         "tempPasswordFlag": false,
         "username": "test_orgadm",
-        "version": 0
+        "profile": "5303721a4dba580000000021"
     },
     {
         "avatar": "",
@@ -96,7 +97,7 @@
         "roles": ["campaignlead"],
         "tempPasswordFlag": false,
         "username": "test_campaignlead",
-        "version": 0
+        "profile": "5303721a4dba580000000022"
     },
     {
         "avatar": "",
@@ -110,7 +111,7 @@
         "roles": ["campaignlead"],
         "tempPasswordFlag": false,
         "username": "test_campaignlead2",
-        "version": 0
+        "profile": "5303721a4dba580000000023"
     },
     {
         "avatar": "assets/img/KTLU.jpeg",
@@ -124,7 +125,7 @@
         "roles": ["productadmin"],
         "tempPasswordFlag": false,
         "username": "martin",
-        "version": 0
+        "profile": "5303721a4dba580000000024"
     },
     {
         "avatar": "assets/img/RBLU.jpeg",
@@ -138,7 +139,7 @@
         "roles": ["individual"],
         "tempPasswordFlag": false,
         "username": "reto",
-        "version": 0
+        "profile": "5303721a4dba580000000025"
     },
     {
         "avatar": "assets/img/IRIG.jpeg",
@@ -152,7 +153,7 @@
         "roles": ["individual"],
         "tempPasswordFlag": false,
         "username": "ivan777",
-        "version": 0
+        "profile": "5303721a4dba580000000026"
     },
     {
         "avatar": "assets/img/KTLU.jpeg",
@@ -166,7 +167,7 @@
         "roles": ["individual"],
         "tempPasswordFlag": false,
         "username": "bernadette",
-        "version": 0
+        "profile": "5303721a4dba580000000027"
     },
     {
         "avatar": "assets/img/UBAU.jpeg",
@@ -180,7 +181,7 @@
         "roles": ["individual"],
         "tempPasswordFlag": false,
         "username": "urs",
-        "version": 0
+        "profile": "5303721a4dba580000000028"
     },
     {
         "avatar": "assets/img/SMUE.jpeg",
@@ -194,7 +195,7 @@
         "roles": ["productadmin"],
         "tempPasswordFlag": false,
         "username": "stefan",
-        "version": 0
+        "profile": "5303721a4dba580000000029"
     },
     {
         "avatar": "assets/img/KTLU.jpeg",
@@ -223,7 +224,8 @@
         "preferences" : { "workingDays" : [ ], "starredActivities" : [ ] },
         "tempPasswordFlag" : false,
         "roles" : [  "productadmin" ],
-        "emailValidatedFlag" : true
+        "emailValidatedFlag" : true,
+        "profile": "5303721a4dba580000000030"
     }
 
 ]

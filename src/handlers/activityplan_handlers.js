@@ -49,6 +49,13 @@ var getIcalObject = function (plan, recipientUser, iCalType, i18n) {
                 {plan: plan.toJSON ? plan.toJSON() : plan, recipient: recipientUser.toJSON(), link: link}),
             {'FMTTYPE': 'text/html'});
         event.addProperty("LOCATION", plan.location);
+        var notifPref = recipientUser.profile.userPreferences.calendarNotification;
+        if (notifPref !== 'none') {
+            var alarm = event.addComponent('VALARM');
+            alarm.addProperty("ACTION", "DISPLAY");
+            alarm.addProperty("TRIGGER", "-PT" + notifPref);
+            alarm.addProperty("DESCRIPTION", i18n.t('ical:' + iCalType + ".summary", {plan: plan.toJSON ? plan.toJSON() : plan, recipient: recipientUser.toJSON()}));
+        }
     }
 
     event.setDate(moment(plan.mainEvent.start).toDate(), moment(plan.mainEvent.end).toDate());
@@ -285,7 +292,7 @@ function postNewActivityPlan(req, res, next) {
             if (err) {
                 return next(err);
             }
-            if (req.user && req.user.email) {
+            if (req.user && req.user.email && req.user.profile.userPreferences.email.iCalInvites) {
                 var myIcalString = getIcalObject(reloadedActPlan, req.user, 'new', req.i18n).toString();
                 email.sendCalInvite(req.user.email, 'new', myIcalString, req.i18n);
             }
@@ -299,44 +306,6 @@ function postNewActivityPlan(req, res, next) {
     });
 }
 
-function getIcalStringForPlan(req, res, next) {
-    if (!req.params || !req.params.id) {
-        next(new restify.InvalidArgumentError('id required for this call'));
-    }
-    ActivityPlanModel.findById(req.params.id).populate('activity').populate('owner').exec(function (err, plan) {
-        if (err) {
-            return next(err);
-        }
-        if (!plan) {
-            res.send(204, []);
-            return next();
-        }
-        var myIcalString = getIcalObject(plan, plan.owner, 'new', req.i18n).toString();
-        if (req.params.email && plan.owner && plan.owner.email) {
-            email.sendCalInvite(plan.owner.email, 'new', myIcalString, req.i18n);
-
-        }
-        res.contentType = "text/calendar";
-        res.setHeader('Content-Type', 'text/calendar');
-        res.setHeader('Content-Disposition', 'inline; filename=ical.ics');
-        res.send(200, myIcalString);
-        return next();
-    });
-}
-
-/**
- * returns available JoinOffers for the activity, that must be specified as a parameter, which are available
- * to the current user.
- * Available are all ActivityPlans that are "visible" to this user:
- * - in the same campaign
- * - executionType must be group
- * - it must be a masterPlan
- *
- * @param req
- * @param res
- * @param next
- * @returns {*}
- */
 function getJoinOffers(req, res, next) {
 
     // check whether the required param 'activity' is here and add it to the dbquery
@@ -459,7 +428,7 @@ function deleteActivityPlan(req, res, next) {
 
 
         // we need the owner of the plan to send him a cancellation to his email address
-        mongoose.model('User').findById(activityPlan.owner).select('+email').exec(function (err, owner) {
+        mongoose.model('User').findById(activityPlan.owner).populate('profile').select('+email +profile').exec(function (err, owner) {
             if (err) {
                 return next(err);
             }
@@ -474,8 +443,10 @@ function deleteActivityPlan(req, res, next) {
                 if (err) {
                     return next(err);
                 }
-                var myIcalString = getIcalObject(activityPlan, owner, 'cancel', req.i18n).toString();
-                email.sendCalInvite(owner.email, 'cancel', myIcalString, req.i18n);
+                if (owner.profile.userPreferences.email.iCalInvites) {
+                    var myIcalString = getIcalObject(activityPlan, owner, 'cancel', req.i18n).toString();
+                    email.sendCalInvite(owner.email, 'cancel', myIcalString, req.i18n);
+                }
                 res.send(200);
                 return next();
             };
@@ -571,7 +542,7 @@ function putActivityPlan(req, res, next) {
                 if (err) {
                     return next(err);
                 }
-                if (req.user && req.user.email) {
+                if (req.user && req.user.email && req.user.profile.userPreferences.email.iCalInvites) {
                     reloadedActPlan.activity = foundActivity;
                     var myIcalString = getIcalObject(reloadedActPlan, req.user, 'update', req.i18n).toString();
                     email.sendCalInvite(req.user.email, 'update', myIcalString, req.i18n);
@@ -589,7 +560,6 @@ function putActivityPlan(req, res, next) {
 
 module.exports = {
     postNewActivityPlan: postNewActivityPlan,
-    getIcalStringForPlan: getIcalStringForPlan,
     putActivityEvent: putActivityEvent,
     getJoinOffers: getJoinOffers,
     postActivityPlanInvite: postActivityPlanInvite,

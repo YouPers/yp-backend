@@ -4,7 +4,8 @@
  */
 
 var // passport = require('passport'),
-    handlers = require('../handlers/stats_handlers');
+    handlers = require('../handlers/stats_handlers'),
+    common = require('./common');
 
 // TODO: enable authentication for stats, not everyone should be able to get stats.
 module.exports = function (swagger, config) {
@@ -26,7 +27,7 @@ module.exports = function (swagger, config) {
                     name: "type",
                     description: "the type of statistics to fetch",
                     dataType: "string",
-                    enum: ['assUpdatesPerDay','assUpdateTotal','assTotals','topStressors','activitiesPlanned','activitiesPlannedTotal','activityEvents','activityEventsTotal','usersTotal'],
+                    enum: common.enums.statsType,
                     required: true
                 },
                 {

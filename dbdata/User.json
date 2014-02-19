@@ -11,7 +11,8 @@
         "roles": ["individual"],
         "tempPasswordFlag": false,
         "username": "test_ind1",
-        "version": 0
+        "version": 0,
+        "campaign": "527916a82079aa8704000006"
     },
     {
         "avatar": "",

@@ -48,9 +48,8 @@ module.exports = function (swagger, config) {
         spec: {
             description: "Operations about comments",
             path: baseUrl,
-            notes: "returns all comments, but limits to 100 entries by default, is not owner-constrained, e.g. it returns comments" +
-                "from several users. Use query params sort:'created:-1' and limit to retrieve the newest comments",
-            summary: "find comment by id",
+            notes: "POSTs a new comment",
+            summary: "POSTs a new comment",
             method: "POST",
             param: [swagger.bodyParam("Comment", "new Comment object", "Comment")],
             "responseClass": "Comment",

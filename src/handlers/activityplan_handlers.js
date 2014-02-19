@@ -240,20 +240,25 @@ function postNewActivityPlan(req, res, next) {
         return (path.instance === 'ObjectID');
     })
         .forEach(function (myPath) {
-            if ((myPath.path in req.body) && (!(typeof req.body[myPath.path] === 'string' || req.body[myPath.path] instanceof String))) {
-                req.body[myPath.path] = req.body[myPath.path].id;
+            if ((myPath.path in sentPlan) && (!(typeof sentPlan[myPath.path] === 'string' || sentPlan[myPath.path] instanceof String))) {
+                sentPlan[myPath.path] = sentPlan[myPath.path].id;
             }
         });
 
 
     // check whether delivered owner is the authenticated user
-    if (req.body.owner && (req.user.id !== req.body.owner)) {
+    if (sentPlan.owner && (req.user.id !== sentPlan.owner)) {
         return next(new restify.NotAuthorizedError('POST of object only allowed if owner == authenticated user'));
     }
 
     // if no owner delivered set to authenticated user
-    if (!req.body.owner) {
-        req.body.owner = req.user.id;
+    if (!sentPlan.owner) {
+        sentPlan.owner = req.user.id;
+    }
+
+    // set the campaign that this Plan is part of
+    if (req.user.campaign) {
+        sentPlan.campaign = req.user.campaign.id || req.user.campaign; // allow populated and unpopulated campaign
     }
 
     req.log.trace({MainEvent: sentPlan.mainEvent}, 'before generating events');
@@ -263,7 +268,7 @@ function postNewActivityPlan(req, res, next) {
     generateEventsForPlan(sentPlan, req.user, req.i18n);
     req.log.trace({eventsAfter: sentPlan.events}, 'after generating events');
 
-    var newActPlan = new ActivityPlanModel(req.body);
+    var newActPlan = new ActivityPlanModel(sentPlan);
 
 
     req.log.trace(newActPlan, 'PostFn: Saving new Object');
@@ -319,6 +324,19 @@ function getIcalStringForPlan(req, res, next) {
     });
 }
 
+/**
+ * returns available JoinOffers for the activity, that must be specified as a parameter, which are available
+ * to the current user.
+ * Available are all ActivityPlans that are "visible" to this user:
+ * - in the same campaign
+ * - executionType must be group
+ * - it must be a masterPlan
+ *
+ * @param req
+ * @param res
+ * @param next
+ * @returns {*}
+ */
 function getJoinOffers(req, res, next) {
 
     // check whether the required param 'activity' is here and add it to the dbquery
@@ -332,13 +350,24 @@ function getJoinOffers(req, res, next) {
             masterPlan: null
         });
 
+    dbquery.where('visibility').ne('private');
+
+    if (req.user.campaign) {
+        dbquery.or([
+            {campaign: req.user.campaign.id || req.user.campaign},
+            {campaign: null, visibility: 'public'}
+        ]);
+    } else {
+        dbquery.and([{'campaign':null},{'visibility': 'public'}]);
+    }
+
     generic.addStandardQueryOptions(req, dbquery, ActivityPlanModel);
     dbquery.exec(function (err, joinOffers) {
         if (err) {
             return next(err);
         }
         if (!joinOffers || joinOffers.length === 0) {
-            res.send(204, []);
+            res.send(200, []);
             return next();
         }
 

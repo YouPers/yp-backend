@@ -13,6 +13,7 @@
 
 var util = require('util');
 var restify = require('restify');
+var mongoose = require('mongoose');
 
 
 var CODES = {
@@ -40,6 +41,10 @@ var CODES = {
     MissingParameter: {
         statusCode: 409,
         message: 'A parameter is required, but missing to access this resource.'
+    },
+    Validation: {
+        statusCode: 409,
+        message: 'Validation failed'
     },
 
     BadRequest: {
@@ -85,8 +90,25 @@ var CODES = {
     }
 };
 
+/**
+ * handle default errors, raise internal error if no match is found
+ *
+ * @param err
+ * @param next
+ * @returns {*}
+ */
+var handleError = function(err, next) {
+    if(err instanceof mongoose.Error.ValidationError) {
+        return next(new module.exports.ValidationError(err));
+    } else {
+        return next(new module.exports.InternalError(err));
+    }
+}
 
-module.exports = {};
+
+module.exports = {
+    handleError: handleError
+};
 
 var slice = Function.prototype.call.bind(Array.prototype.slice);
 
@@ -101,14 +123,15 @@ Object.keys(CODES).forEach(function (k) {
         var opts = {
             restCode: k + 'Error',
             statusCode: CODES[k].statusCode,
-            message: CODES[k].message // default message
+            message: CODES[k].message, // default message
+            body: {}
         };
 
         if (cause && cause instanceof Error) {
             opts.cause = cause;
+            opts.body.errors = cause.errors;
         } else if (typeof (cause) === 'object') {
-            opts.body = cause.body;
-            opts.cause = cause.cause;
+
             opts.statusCode = cause.statusCode || CODES[k].statusCode;
 
             // if a message is provided, override default message
@@ -118,18 +141,20 @@ Object.keys(CODES).forEach(function (k) {
                 opts.message = message;
             }
 
-            // send error message in client response
-            if(!cause.body) {
-                cause.body = {};
+            if(cause.body) {
+                opts.body = cause.body;
             }
-            cause.body.message = opts.message;
-            cause.body.code = opts.restCode;
+
         } else { // no cause is provided
             if(cause) {
                 opts.message = cause;
             }
             index = 0;
         }
+
+        // send error message in client response
+        opts.body.message = opts.message;
+        opts.body.code = opts.restCode;
 
         var args = slice(arguments, index);
         args.unshift(opts);

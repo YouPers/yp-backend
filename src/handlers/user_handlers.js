@@ -36,11 +36,7 @@ var postFn = function (baseUrl) {
 
         // try to save the new user and profile objects
         newUser.save(function (err) {
-            if (err) {
-                req.log.info({Error: err}, 'Error Saving in PostFn (User Account');
-                err.statusCode = 409;
-                return next(err);
-            }
+            if (err) { return error.handleError(err, next); }
 
             // send verificationEmail
             email.sendEmailVerification(newUser, req.i18n);
@@ -65,9 +61,7 @@ var validateUserPostFn = function(baseUrl) {
             query[field] = req.body[field];
 
             User.findOne(query).select(field).exec(function(err, value) {
-                if(err) {
-                    return next(err);
-                }
+                if(err) { return error.handleError(err, next); }
                 if(value) {
                     return next(new error.ConflictError({message: field + ' is already in use', body: {value: query[field]}}));
                 } else {
@@ -75,6 +69,8 @@ var validateUserPostFn = function(baseUrl) {
                     return next();
                 }
             });
+        } else {
+            return next(new error.MissingParameterError({message: 'no field to validate was provided', body: {expectedFields: fields}}));
         }
     };
 };
@@ -83,17 +79,15 @@ var getUser = function(req, res, next, callback) {
 
 
     if(req.params.id !== req.user.id) {
-        return next(new restify.ConflictError('User ID in request parameters does not match authenticated user'));
+        return next(new error.ConflictError('User ID in request parameters does not match authenticated user'));
     }
 
     User.findById(req.params.id)
         .select(User.privatePropertiesSelector)
         .exec(function(err, user) {
-        if(err) {
-            return next(new restify.InternalError(err));
-        }
+        if(err) { return error.handleError(err, next); }
         if(!user) {
-            return next(new restify.InvalidArgumentError('Invalid User ID'));
+            return next(new error.ResourceNotFound('Invalid User ID'));
         }
 
         callback(user);

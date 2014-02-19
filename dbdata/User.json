@@ -52,7 +52,7 @@
         "password": "yp",
         "_id": "52a97f1650fca98c29000008",
         "lastname": "ProductAdmin",
-        "roles": ["productadmin"],
+        "roles": ["individual","productadmin"],
         "tempPasswordFlag": false,
         "username": "test_prodadm",
         "profile": "5303721a4dba580000000019"

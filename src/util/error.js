@@ -103,7 +103,7 @@ var handleError = function(err, next) {
     } else {
         return next(new module.exports.InternalError(err));
     }
-}
+};
 
 
 module.exports = {

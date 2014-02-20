@@ -22,7 +22,7 @@ var resizeImage = function(req, filePath, callback) {
         .noProfile() // remove meta
         .write(pathResized, function(err){
             if (err) {
-                return callback(new restify.InternalError(err));
+                return callback(err);
             }
             req.log.debug('avatar: resize complete\n' + pathResized);
 

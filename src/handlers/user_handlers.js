@@ -90,7 +90,7 @@ var getUser = function(req, res, next, callback) {
         .exec(function(err, user) {
         if(err) { return error.handleError(err, next); }
         if(!user) {
-            return next(new error.ResourceNotFoundError('Invalid User ID', { userId: req.params.id }));
+            return next(new error.ResourceNotFoundError('User not found', { id: req.params.id }));
         }
 
         callback(user);
@@ -179,7 +179,7 @@ var passwordResetPostFn = function(baseUrl) {
             .exec(function(err, user) {
             if(err) { return error.handleError(err, next); }
             if(!user) {
-                return next(new error.ResourceNotFoundError('User not found', { userId: userId }));
+                return next(new error.ResourceNotFoundError('User not found', { id: userId }));
             }
 
              user.hashed_password = undefined;

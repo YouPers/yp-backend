@@ -4,6 +4,7 @@ var mongoose = require('mongoose'),
     AssessmentResult = mongoose.model('AssessmentResult'),
     _ = require('lodash'),
     auth = require('../util/auth'),
+    error = require('../util/error'),
     cachedActList;
 
 
@@ -49,25 +50,26 @@ function generateRecommendations(actList, assResult, fokusQuestion, log) {
 function getRecommendationsFn(req, res, next) {
 
     if (!req.user) {
-        return next('no user found in request');
+        return next(new error.NotAuthorizedError());
     }
 
     function processActivities(err, actList) {
+        if(err) {
+            return error.handleError(err, next);
+        }
         if (!cachedActList) {
             cachedActList = actList;
         }
-        if (err) {
-            return next(err);
-        }
+
         if (!actList || actList.length === 0) {
-            return next('no activities found');
+            return next(new error.ResourceNotFoundError('No activities found.'));
         }
         AssessmentResult.find({owner: req.user.id})
             .sort({timestamp: -1})
             .limit(1)
             .exec(function (err, assResults) {
-                if (err) {
-                    return next(err);
+                if(err) {
+                    return error.handleError(err, next);
                 }
                 if (!assResults || assResults.length === 0) {
                     // no assessmentResults for this user, return empty recommendation array

@@ -55,12 +55,11 @@ module.exports = function (grunt) {
         },
         nodemon: {
             dev: {
+                script: 'src/app.js',
                 options: {
-                    file: 'src/app.js',
                     nodeArgs: ['--debug'],
-                    ignoredFiles: ['README.md', 'node_modules/**', 'spec/**', '.idea/**', '.git/**',
-                        'logs/**', 'atlassian-ide-plugin.xml', 'locales*/**'],
-                    delayTime: 1,
+                    watch: ['src'],
+                    delay: 1,
                     env: {
                         PORT: '8000'
                     }

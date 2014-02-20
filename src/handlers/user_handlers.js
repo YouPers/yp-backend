@@ -4,7 +4,6 @@ var error = require('../util/error'),
     image = require('../util/image'),
     auth = require('../util/auth'),
     config = require('../config/config')[process.env.NODE_ENV || 'development'],
-    restify = require('restify'),
     mongoose = require('mongoose'),
     User = mongoose.model('User'),
     _ = require('lodash');

@@ -1,7 +1,7 @@
-var handlerUtils = require('./handlerUtils'),
+var error = require('../util/error'),
+    handlerUtils = require('./handlerUtils'),
     auth = require('../util/auth'),
     image = require('../util/image'),
-    restify = require('restify'),
     mongoose = require('mongoose'),
     Organization = mongoose.model('Organization'),
     Campaign = mongoose.model('Campaign'),
@@ -13,10 +13,10 @@ var getOrganization = function(req, res, next, callback) {
     Organization.findById(req.params.id)
         .exec(function(err, org) {
             if(err) {
-                return next(new restify.InternalError(err));
+                return error.handleError(err, next);
             }
             if(!org) {
-                return next(new restify.InvalidArgumentError('Invalid Organization ID'));
+                return next(new error.ResourceNotFoundError('Organization not found', { id: req.params.id }));
             }
 
             callback(org);
@@ -29,11 +29,11 @@ var postFn = function (baseUrl) {
         var err = handlerUtils.checkWritingPreCond(req, Organization);
 
         if (err) {
-            return next(err);
+            return error.handleError(err, next);
         }
 
         if(!req.body) {
-            return next(new restify.InvalidArgumentError('no body found'));
+            return next(new error.MissingParameterError({ required: 'organization object' }));
         }
         var obj = new Organization(req.body);
 
@@ -41,22 +41,14 @@ var postFn = function (baseUrl) {
 
         if(!_.contains(req.user.roles, auth.roles.orgadmin)) {
             req.user.roles.push(auth.roles.orgadmin);
-            req.user.save(function(err) {
-                if(err) {
-                    return next(err);
-                }
-            });
+            req.user.save(function(err) { if(err) { return error.handleError(err, next); } });
         }
 
         req.log.trace(obj, 'PostFn: Saving new organization object');
 
         // try to save the new organization object
         obj.save(function (err) {
-            if (err) {
-                req.log.info({Error: err}, 'Error Saving in PostFn (Organization)');
-                err.statusCode = 409;
-                return next(err);
-            }
+            if(err) { return error.handleError(err, next); }
 
             res.header('location', baseUrl + '/' + obj._id);
             res.send(201, obj);
@@ -84,9 +76,7 @@ var getAllForUserFn = function (baseUrl) {
             Organization.find().or([{administrators: userId}, {_id: {$in: orgs}}])
                 .exec(function(err, organizations) {
 
-                    if (err) {
-                        return next(err);
-                    }
+                    if(err) { return error.handleError(err, next); }
 
                     res.send(200, organizations);
                     return next();
@@ -103,18 +93,12 @@ var avatarImagePostFn = function(baseUrl) {
     return function(req, res, next) {
 
         image.resizeImage(req, req.files.file.path, function (err, image) {
-            if (err) {
-                return next(err);
-            }
+            if(err) { return error.handleError(err, next); }
 
             getOrganization(req, res, next, function (org) {
 
                 org.avatar = image;
-                org.save(function(err, savedOrg) {
-                    if (err) {
-                        return next(new restify.InternalError(err));
-                    }
-                });
+                org.save(function(err, savedOrg) { if(err) { return error.handleError(err, next); } });
 
                 // send response
                 res.send({avatar: org.avatar});

@@ -1,5 +1,5 @@
-var _ = require('lodash'),
-    restify = require('restify'),
+var error = require('../util/error'),
+    _ = require('lodash'),
     ObjectId = require('mongoose').Schema.ObjectId,
     handlerUtils = require('./handlerUtils'),
     auth = require('../util/auth');
@@ -387,23 +387,23 @@ module.exports = {
 
             processStandardQueryOptions(req, dbQuery, Model)
                 .exec(function geByIdFnCallback(err, obj) {
-                    if (err) {
-                        return next(err);
+                    if(err) {
+                        return error.handleError(err, next);
                     }
                     if (!obj) {
-                        return next(new restify.ResourceNotFoundError());
+                        return next(new error.ResourceNotFoundError());
                     }
 
                     //check if the object has an owner and whether the current user owns the object
                     if (obj.owner && (!req.user ||
                         (obj.owner._id && (obj.owner._id + '' !== req.user.id)) || // case: owner is populated
                         (!obj.owner._id && !obj.owner.equals(req.user.id)))) {     // case: owner is not populated, is ObjectId
-                        return next(new restify.NotAuthorizedError('Authenticated User does not own this object'));
+                        return next(new error.NotAuthorizedError('Authenticated User does not own this object'));
                     }
                     if (req.query && req.query.populatedeep) {
                         deepPopulate(obj, req.query.populatedeep, {}, function (err, result) {
-                            if (err) {
-                                return next(err);
+                            if(err) {
+                                return error.handleError(err, next);
                             }
                             res.send(result);
                             return next();
@@ -424,7 +424,7 @@ module.exports = {
             var finder = '';
             if (!fromAllOwners && Model.schema.paths['owner']) {
                 if (!req.user || !req.user.id) {
-                    return next(new restify.NotAuthorizedError('Authentication required for this object'));
+                    return next(new error.NotAuthorizedError('Authentication required for this object'));
                 } else {
                     finder = {owner: req.user.id};
                 }
@@ -433,8 +433,8 @@ module.exports = {
 
             processStandardQueryOptions(req, dbQuery, Model)
                 .exec(function (err, objList) {
-                    if (err) {
-                        return next(err);
+                    if(err) {
+                        return error.handleError(err, next);
                     }
                     if (!objList || objList.length === 0) {
                         res.send([]);
@@ -442,8 +442,8 @@ module.exports = {
                     }
                     if (req.query && req.query.populatedeep) {
                         deepPopulate(objList, req.query.populatedeep, {}, function (err, result) {
-                            if (err) {
-                                return next(err);
+                            if(err) {
+                                return error.handleError(err, next);
                             }
                             res.send(result);
                             return next();
@@ -477,10 +477,8 @@ module.exports = {
             req.log.trace(newObj, 'PostFn: Saving new Object');
             // try to save the new object
             newObj.save(function (err) {
-                if (err) {
-                    req.log.info({Error: err}, 'Error Saving in PostFn');
-                    err.statusCode = 409;
-                    return next(err);
+                if(err) {
+                    return error.handleError(err, next);
                 }
                 res.header('location', baseUrl + '/' + newObj._id);
                 res.send(201, newObj);
@@ -497,8 +495,8 @@ module.exports = {
             // - schema.pre('remove', ...
             // see user_model.js for an example
             Model.find(function (err, objects) {
-                if (err) {
-                    return next(err);
+                if(err) {
+                    return error.handleError(err, next);
                 }
                 _.forEach(objects, function (obj) {
                     obj.remove();
@@ -516,8 +514,8 @@ module.exports = {
             // - schema.pre('remove', ...
             // see user_model.js for an example
             Model.findOne({_id: req.params.id}).exec(function (err, obj) {
-                if (err) {
-                    return next(err);
+                if(err) {
+                    return error.handleError(err, next);
                 }
                 obj.remove(function (err) {
                     res.send(200);
@@ -531,14 +529,16 @@ module.exports = {
         return function (req, res, next) {
             var err = handlerUtils.checkWritingPreCond(req, Model);
 
-            if (err) {
-                return next(err);
+            if(err) {
+                return error.handleError(err, next);
             }
 
             // check whether this is an update for roles and check required privileges
             if (req.body.roles) {
                 if (!auth.canAssign(req.user, req.body.roles)) {
-                    return next(new restify.NotAuthorizedError('authenticated user has not enough privileges to assign these roles: ' + req.body.roles));
+                    return next(new error.NotAuthorizedError('authenticated user has not enough privileges to assign the specified roles', {
+                        roles: req.body.roles
+                    }));
                 }
             }
 
@@ -553,11 +553,13 @@ module.exports = {
                 q.select(Model.adminAttrsSelector);
             }
             q.exec(function (err, objFromDb) {
-                if (err) {
-                    return next(err);
+                if(err) {
+                    return error.handleError(err, next);
                 }
                 if (!objFromDb) {
-                    return next(new restify.ResourceNotFoundError('no obj found with Id: ' + req.params.id));
+                    return next(new error.ResourceNotFoundError('no object found with the specified id', {
+                        id: req.params.id
+                    }));
                 }
 
                 // if this is an "owned" object
@@ -565,15 +567,21 @@ module.exports = {
 
                     // only the authenticated same owner is allowed to edit
                     if (!objFromDb.owner.equals(req.user.id)) {
-                        return next(new restify.NotAuthorizedError('authenticated user is not authorized ' +
-                            'to update this ressource because he is not owner of the stored ressource'));
+                        return next(new error.NotAuthorizedError('authenticated user is not authorized ' +
+                            'to update this ressource because he is not owner of the stored ressource', {
+                            user: req.user.id,
+                            owner: objFromDb.owner
+                        }));
                     }
 
                     // he is not allowed to change the owner of the object
                     if (req.body.owner) {
                         if (!objFromDb.owner.equals(req.body.owner)) {
-                            return next(new restify.NotAuthorizedError('authenticated user is not authorized ' +
-                                'to change the owner of this object'));
+                            return next(new error.NotAuthorizedError('authenticated user is not authorized ' +
+                                'to change the owner of this object', {
+                                currentOwner: objFromDb.owner,
+                                requestedOwner: req.body.owner
+                            }));
                         }
                     }
                 }
@@ -581,8 +589,8 @@ module.exports = {
                 _.extend(objFromDb, req.body);
 
                 objFromDb.save(function (err, savedObj) {
-                    if (err) {
-                        return next(err);
+                    if(err) {
+                        return error.handleError(err, next);
                     }
                     res.send(200, savedObj);
                 });

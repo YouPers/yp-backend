@@ -10,7 +10,6 @@ var env = process.env.NODE_ENV || 'development',
 
 // Modules
 var restify = require("restify"),
-    mongoose = require('mongoose'),
     preflightEnabler = require('./util/corspreflight'),
     longjohn = require("longjohn"),
     fs = require("fs"),
@@ -20,18 +19,8 @@ var restify = require("restify"),
     swagger = require("swagger-node-restify"),
     auth = require('./util/auth'),
     i18n = require('i18next'),
-    ypi18n = require('./util/ypi18n');
-
-
-// Setup Database Connection
-var connectStr = config.db_prefix + '://';
-if (config.db_user && config.db_password) {
-    connectStr += config.db_user + ':' + config.db_password + '@';
-}
-connectStr += config.db_host + ':' + config.db_port + '/' + config.db_database;
-
-console.log(connectStr);
-mongoose.connect(connectStr, {server: {auto_reconnect: true}});
+    ypi18n = require('./util/ypi18n'),
+    db = require('./util/database');
 
 // Configure the server
 var server = restify.createServer({
@@ -40,7 +29,12 @@ var server = restify.createServer({
     log: new Logger(config.loggerOptions)
 });
 
-// setung logging of request and response
+// initialize Database
+db.initialize(swagger);
+
+// setting logging of request and response
+// setup better error stacktraces
+
 server.pre(function (request, response, next) {
     request.log.debug({req: request}, 'start processing request');
     return next();
@@ -57,7 +51,6 @@ server.on('after', function (req, res, route, err) {
     }
 });
 
-// setup better error stacktraces
 longjohn.async_trace_limit = 10;  // defaults to 10
 longjohn.empty_frame = 'ASYNC CALLBACK';
 
@@ -86,20 +79,8 @@ server.use(ypi18n.angularTranslateI18nextAdapterPost);
 server.use(passport.initialize());
 server.use(restify.fullResponse());
 
-
 // allows authenticated cross domain requests
 preflightEnabler(server);
-
-// Bootstrap models
-fs.readdirSync('./src/models').forEach(function (file) {
-    if (file.indexOf('_model.js') !== -1) {
-        console.log("Loading model: " + file);
-        var model = require('./models/' + file);
-        if (model.getSwaggerModel) {
-            swagger.addModels(model.getSwaggerModel());
-        }
-    }
-});
 
 // setup authentication, currently only HTTP Basic auth over HTTPS is supported
 passport.use(new passportHttp.BasicStrategy(auth.validateLocalUsernamePassword));

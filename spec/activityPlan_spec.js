@@ -69,7 +69,7 @@ frisby.create('Activity Plan: plan once activity and check whether event is gene
                         frisby.create('Activity Plan: GET this activity plan by Id again und check whether it is not there anymore')
                             .get(URL + '/activityplans/' + newPlan.id)
                             .auth('test_ind1', 'yp')
-                            .expectStatus(204)
+                            .expectStatus(404)
                             .toss();
 
 

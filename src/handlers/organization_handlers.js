@@ -78,11 +78,6 @@ var getAllForUserFn = function (baseUrl) {
                     return next(err);
                 }
 
-                if (!organizations) {
-                    res.send(204, []);
-                    return next();
-                }
-
                 res.send(200, organizations);
                 return next();
             });

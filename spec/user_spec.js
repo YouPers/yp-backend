@@ -202,10 +202,11 @@ frisby.create('POST validate new user')
                                                                                     .expectStatus(401)
                                                                                     .toss();
 
-                                                                                frisby.create('PUT change password / GET test new credentials, 204 no content for activityplans')
+                                                                                frisby.create('PUT change password / GET test new credentials, 200 no content for activityplans')
                                                                                     .auth(user.username, user.password)
                                                                                     .get(URL + '/activityplans')
-                                                                                    .expectStatus(204)// new user, no content yet
+                                                                                    .expectStatus(200)// new user, no content yet
+                                                                                    .expectJSONLength(0)
                                                                                     .after(function () {
                                                                                         frisby.create('DELETE our testuser')
                                                                                             .auth('sysadm', 'backtothefuture')

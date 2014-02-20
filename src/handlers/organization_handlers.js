@@ -1,4 +1,5 @@
-var handlerUtils = require('./handlerUtils'),
+var error = require('../util/error'),
+    handlerUtils = require('./handlerUtils'),
     auth = require('../util/auth'),
     image = require('../util/image'),
     mongoose = require('mongoose'),

@@ -1,4 +1,4 @@
-var error = require('error'),
+var error = require('../util/error'),
     _ = require('lodash');
 
 /**

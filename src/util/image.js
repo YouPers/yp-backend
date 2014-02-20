@@ -1,6 +1,5 @@
 var fs = require('fs'),
-    gm = require('gm'),
-    restify = require('restify');
+    gm = require('gm');
 
 
 var resizeImage = function(req, filePath, callback) {

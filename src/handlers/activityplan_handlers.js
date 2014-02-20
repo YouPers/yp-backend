@@ -49,6 +49,13 @@ var getIcalObject = function (plan, recipientUser, iCalType, i18n) {
                 {plan: plan.toJSON ? plan.toJSON() : plan, recipient: recipientUser.toJSON(), link: link}),
             {'FMTTYPE': 'text/html'});
         event.addProperty("LOCATION", plan.location);
+        var notifPref = recipientUser.profile.userPreferences.calendarNotification;
+        if (notifPref !== 'none') {
+            var alarm = event.addComponent('VALARM');
+            alarm.addProperty("ACTION", "DISPLAY");
+            alarm.addProperty("TRIGGER", "-PT" + notifPref);
+            alarm.addProperty("DESCRIPTION", i18n.t('ical:' + iCalType + ".summary", {plan: plan.toJSON ? plan.toJSON() : plan, recipient: recipientUser.toJSON()}));
+        }
     }
 
     event.setDate(moment(plan.mainEvent.start).toDate(), moment(plan.mainEvent.end).toDate());
@@ -240,20 +247,25 @@ function postNewActivityPlan(req, res, next) {
         return (path.instance === 'ObjectID');
     })
         .forEach(function (myPath) {
-            if ((myPath.path in req.body) && (!(typeof req.body[myPath.path] === 'string' || req.body[myPath.path] instanceof String))) {
-                req.body[myPath.path] = req.body[myPath.path].id;
+            if ((myPath.path in sentPlan) && (!(typeof sentPlan[myPath.path] === 'string' || sentPlan[myPath.path] instanceof String))) {
+                sentPlan[myPath.path] = sentPlan[myPath.path].id;
             }
         });
 
 
     // check whether delivered owner is the authenticated user
-    if (req.body.owner && (req.user.id !== req.body.owner)) {
+    if (sentPlan.owner && (req.user.id !== sentPlan.owner)) {
         return next(new restify.NotAuthorizedError('POST of object only allowed if owner == authenticated user'));
     }
 
     // if no owner delivered set to authenticated user
-    if (!req.body.owner) {
-        req.body.owner = req.user.id;
+    if (!sentPlan.owner) {
+        sentPlan.owner = req.user.id;
+    }
+
+    // set the campaign that this Plan is part of
+    if (req.user.campaign) {
+        sentPlan.campaign = req.user.campaign.id || req.user.campaign; // allow populated and unpopulated campaign
     }
 
     req.log.trace({MainEvent: sentPlan.mainEvent}, 'before generating events');
@@ -263,7 +275,7 @@ function postNewActivityPlan(req, res, next) {
     generateEventsForPlan(sentPlan, req.user, req.i18n);
     req.log.trace({eventsAfter: sentPlan.events}, 'after generating events');
 
-    var newActPlan = new ActivityPlanModel(req.body);
+    var newActPlan = new ActivityPlanModel(sentPlan);
 
 
     req.log.trace(newActPlan, 'PostFn: Saving new Object');
@@ -280,7 +292,7 @@ function postNewActivityPlan(req, res, next) {
             if (err) {
                 return next(err);
             }
-            if (req.user && req.user.email) {
+            if (req.user && req.user.email && req.user.profile.userPreferences.email.iCalInvites) {
                 var myIcalString = getIcalObject(reloadedActPlan, req.user, 'new', req.i18n).toString();
                 email.sendCalInvite(req.user.email, 'new', myIcalString, req.i18n);
             }
@@ -291,31 +303,6 @@ function postNewActivityPlan(req, res, next) {
             res.send(201, reloadedActPlan);
             return next();
         });
-    });
-}
-
-function getIcalStringForPlan(req, res, next) {
-    if (!req.params || !req.params.id) {
-        next(new restify.InvalidArgumentError('id required for this call'));
-    }
-    ActivityPlanModel.findById(req.params.id).populate('activity').populate('owner').exec(function (err, plan) {
-        if (err) {
-            return next(err);
-        }
-        if (!plan) {
-            res.send(204, []);
-            return next();
-        }
-        var myIcalString = getIcalObject(plan, plan.owner, 'new', req.i18n).toString();
-        if (req.params.email && plan.owner && plan.owner.email) {
-            email.sendCalInvite(plan.owner.email, 'new', myIcalString, req.i18n);
-
-        }
-        res.contentType = "text/calendar";
-        res.setHeader('Content-Type', 'text/calendar');
-        res.setHeader('Content-Disposition', 'inline; filename=ical.ics');
-        res.send(200, myIcalString);
-        return next();
     });
 }
 
@@ -332,13 +319,24 @@ function getJoinOffers(req, res, next) {
             masterPlan: null
         });
 
+    dbquery.where('visibility').ne('private');
+
+    if (req.user.campaign) {
+        dbquery.or([
+            {campaign: req.user.campaign.id || req.user.campaign},
+            {campaign: null, visibility: 'public'}
+        ]);
+    } else {
+        dbquery.and([{'campaign':null},{'visibility': 'public'}]);
+    }
+
     generic.addStandardQueryOptions(req, dbquery, ActivityPlanModel);
     dbquery.exec(function (err, joinOffers) {
         if (err) {
             return next(err);
         }
         if (!joinOffers || joinOffers.length === 0) {
-            res.send(204, []);
+            res.send(200, []);
             return next();
         }
 
@@ -430,7 +428,7 @@ function deleteActivityPlan(req, res, next) {
 
 
         // we need the owner of the plan to send him a cancellation to his email address
-        mongoose.model('User').findById(activityPlan.owner).select('+email').exec(function (err, owner) {
+        mongoose.model('User').findById(activityPlan.owner).populate('profile').select('+email +profile').exec(function (err, owner) {
             if (err) {
                 return next(err);
             }
@@ -445,8 +443,10 @@ function deleteActivityPlan(req, res, next) {
                 if (err) {
                     return next(err);
                 }
-                var myIcalString = getIcalObject(activityPlan, owner, 'cancel', req.i18n).toString();
-                email.sendCalInvite(owner.email, 'cancel', myIcalString, req.i18n);
+                if (owner.profile.userPreferences.email.iCalInvites) {
+                    var myIcalString = getIcalObject(activityPlan, owner, 'cancel', req.i18n).toString();
+                    email.sendCalInvite(owner.email, 'cancel', myIcalString, req.i18n);
+                }
                 res.send(200);
                 return next();
             };
@@ -542,7 +542,7 @@ function putActivityPlan(req, res, next) {
                 if (err) {
                     return next(err);
                 }
-                if (req.user && req.user.email) {
+                if (req.user && req.user.email && req.user.profile.userPreferences.email.iCalInvites) {
                     reloadedActPlan.activity = foundActivity;
                     var myIcalString = getIcalObject(reloadedActPlan, req.user, 'update', req.i18n).toString();
                     email.sendCalInvite(req.user.email, 'update', myIcalString, req.i18n);
@@ -560,7 +560,6 @@ function putActivityPlan(req, res, next) {
 
 module.exports = {
     postNewActivityPlan: postNewActivityPlan,
-    getIcalStringForPlan: getIcalStringForPlan,
     putActivityEvent: putActivityEvent,
     getJoinOffers: getJoinOffers,
     postActivityPlanInvite: postActivityPlanInvite,

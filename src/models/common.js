@@ -391,8 +391,8 @@ module.exports = {
         // Campaign related enums
         relatedService: "YP-Balance".split(' '),
         paymentStatus: "open paid".split(' '),
-        campaignProductType: "CampaignProductType1 CampaignProductType2 CampaignProductType3".split(' ')
-
+        campaignProductType: "CampaignProductType1 CampaignProductType2 CampaignProductType3".split(' '),
+        calendarNotifications: "none 0M 5M 10M 15M 30M 1H 2H 1D 2D".split(' ')
     },
 
     initializeDbFor: function InitializeDbFor(Model) {

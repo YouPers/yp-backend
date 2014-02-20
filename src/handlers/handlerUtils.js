@@ -16,6 +16,10 @@ function checkWritingPreCond(req, Model) {
         return new restify.InvalidArgumentError('expected JSON body in POST/PUT not found');
     }
 
+    if (Model.modelName !== 'User' && !req.user) {
+        return new restify.NotAuthorizedError('Needs to be Authenticated and authorized to POST objects');
+    }
+
     // ref properties: replace objects by ObjectId in case client sent whole object instead of reference, only
     // do this removal for properties of type ObjectID
     var schema = Model.schema;

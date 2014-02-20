@@ -11,7 +11,7 @@ frisby.globalSetup({ // globalSetup is for ALL requests
 });
 
 
-frisby.create('GET all assessments')
+frisby.create('Assessment: GET all assessments')
     .get(URL)
     .auth('test_ind1', 'yp')
     .expectStatus(200)
@@ -23,7 +23,7 @@ frisby.create('GET all assessments')
     // 'afterJSON' automatically parses response body as JSON and passes it as an argument
     .afterJSON(function (assessments) {
         // Use data from previous result in next test
-        frisby.create('Get first Assessment by Id')
+        frisby.create('Assessment: Get first Assessment by Id')
             .get(URL + '/' + assessments[0].id)
             .auth('test_ind1', 'yp')
             .expectStatus(200)
@@ -34,7 +34,7 @@ frisby.create('GET all assessments')
             afterJSON(function (assessment) {
 
 
-                frisby.create('post a first answer for this assessment')
+                frisby.create('Assessment: post a first answer for this assessment')
                     .post(URL + '/' + assessments[0].id + '/results',
                     {owner: consts.users.test_ind1.id,
                         assessment: assessments[0].id,
@@ -53,7 +53,7 @@ frisby.create('GET all assessments')
                     .auth('test_ind1', 'yp')
                     .expectStatus(201)
                     .afterJSON(function (newAnswer) {
-                        frisby.create('get answers for this assessment 2nd time')
+                        frisby.create('Assessment: get answers for this assessment 2nd time')
                             .get(URL + '/' + assessments[0].id + '/results')
                             .auth('test_ind1', 'yp')
                             .expectStatus(200)
@@ -61,7 +61,7 @@ frisby.create('GET all assessments')
 
                                 var newDate = new Date();
 
-                                frisby.create('post a second answer for this assessment')
+                                frisby.create('Assessment: post a second answer for this assessment')
                                     .post(URL + '/' + assessments[0].id + '/results',
                                     {owner: consts.users.test_ind1.id,
                                         assessment: assessments[0].id,
@@ -81,13 +81,13 @@ frisby.create('GET all assessments')
                                     .expectStatus(201)
                                     .afterJSON(function (newerAnswer) {
 
-                                        frisby.create('get answers for this assessment 3rd time')
+                                        frisby.create('Assessment: get answers for this assessment 3rd time')
                                             .get(URL + '/' + assessments[0].id + '/results')
                                             .auth('test_ind1', 'yp')
                                             .expectStatus(200)
                                             .expectJSONLength(answerList.length + 1)
                                             .afterJSON(function (newestAnswerList) {
-                                                frisby.create('get newest answers for this assessment')
+                                                frisby.create('Assessment: get newest answers for this assessment')
                                                     .get(URL + '/' + assessments[0].id + '/results/newest')
                                                     .auth('test_ind1', 'yp')
                                                     .expectStatus(200)
@@ -98,13 +98,13 @@ frisby.create('GET all assessments')
                                                 )
                                                     .afterJSON(function () {
 
-                                                        frisby.create('delete first answers for this assessment')
+                                                        frisby.create('Assessment: delete first answers for this assessment')
                                                             .auth('test_ind1', 'yp')
                                                             .delete(URL + '/' + assessments[0].id + '/results/' + newAnswer.id)
                                                             .expectStatus(200)
                                                             .toss();
 
-                                                        frisby.create('delete second answers for this assessment')
+                                                        frisby.create('Assessment: delete second answers for this assessment')
                                                             .auth('test_ind1', 'yp')
                                                             .delete(URL + '/' + assessments[0].id + '/results/' + newerAnswer.id)
                                                             .expectStatus(200)

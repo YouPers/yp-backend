@@ -34,10 +34,6 @@ module.exports = function (swagger, config) {
                 {
                     "code": 401,
                     "message": "Unauthorized: client or user not authorized to call this method"
-                },
-                {
-                    "code": 204,
-                    "message": "assessment with this id not found"
                 }
             ],
             "nickname": "putAssessment",
@@ -65,10 +61,6 @@ module.exports = function (swagger, config) {
                 {
                     "code": 401,
                     "message": "Unauthorized: client or user not authorized to call this method"
-                },
-                {
-                    "code": 204,
-                    "message": "assessment with this id not found"
                 }
             ],
             "nickname": "postAssessmentResult",

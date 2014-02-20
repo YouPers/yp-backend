@@ -115,9 +115,7 @@ UserSchema.pre('save', function (next) {
         next(new restify.InvalidArgumentError('Invalid password'));
     }
 
-
-    // password not blank when creating, otherwise skip
-    if (!this.isNew) {
+    if (!this.isNew || this.profile) {
         return next();
     } else {
         // generate and store new profile id into new user object

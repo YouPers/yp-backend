@@ -391,8 +391,7 @@ module.exports = {
                         return next(err);
                     }
                     if (!obj) {
-                        res.send(204, []);
-                        return next();
+                        return next(new restify.ResourceNotFoundError());
                     }
 
                     //check if the object has an owner and whether the current user owns the object
@@ -438,7 +437,7 @@ module.exports = {
                         return next(err);
                     }
                     if (!objList || objList.length === 0) {
-                        res.send(204, []);
+                        res.send([]);
                         return next();
                     }
                     if (req.query && req.query.populatedeep) {
@@ -457,7 +456,7 @@ module.exports = {
         };
     },
 
-    postFn: function (baseUrl, Model) {
+    postFn: function genericPostFn (baseUrl, Model) {
         return function (req, res, next) {
 
             var err = handlerUtils.checkWritingPreCond(req, Model);
@@ -466,8 +465,14 @@ module.exports = {
                 return next(err);
             }
 
-            var newObj = new Model(req.body);
+            // if this Model has a campaign Attribute and the user is currently part of a campaign,
+            // we set the campaign on this object --> by default new objects are part of a campaign
+            if (req.user && req.user.campaign && Model.schema.paths['campaign']) {
+                req.body.campaign = req.user.campaign.id || req.user.campaign; // handle populated and unpopulated case
+            }
 
+
+            var newObj = new Model(req.body);
 
             req.log.trace(newObj, 'PostFn: Saving new Object');
             // try to save the new object

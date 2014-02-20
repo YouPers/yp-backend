@@ -69,7 +69,7 @@ frisby.create('Activity Plan: plan once activity and check whether event is gene
                         frisby.create('Activity Plan: GET this activity plan by Id again und check whether it is not there anymore')
                             .get(URL + '/activityplans/' + newPlan.id)
                             .auth('test_ind1', 'yp')
-                            .expectStatus(204)
+                            .expectStatus(404)
                             .toss();
 
 
@@ -293,7 +293,6 @@ frisby.create('Activity Plan: plan daily activity and check whether events are g
                                             expect(moment(event.begin).day()).not.toEqual(6);
                                             expect(moment(event.begin).day()).not.toEqual(0);
                                         });
-                                        console.log(newPlan);
 
                                         consts.users.test_ind1.preferences.workingDays = [];
 

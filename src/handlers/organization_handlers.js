@@ -1,7 +1,6 @@
 var handlerUtils = require('./handlerUtils'),
     auth = require('../util/auth'),
     image = require('../util/image'),
-    restify = require('restify'),
     mongoose = require('mongoose'),
     Organization = mongoose.model('Organization'),
     Campaign = mongoose.model('Campaign'),

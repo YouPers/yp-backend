@@ -156,7 +156,7 @@ frisby.create('Activity Plan Edits: create a single activity plan with a single 
                                 frisby.create('Activity Plan Edits: try to update plan with more than one event, id: ' + activityPlanPostAnswer.id)
                                     .put(URL + '/' + activityPlanPostAnswer.id, editedPlan)
                                     .auth('test_ind1', 'yp')
-                                    .expectStatus(409)
+                                    .expectStatus(405)
                                     .afterJSON(function (activityPlanPutAnswer) {
 
                                         // cleanup uneditable and undeletable activity plan
@@ -217,7 +217,7 @@ frisby.create('Activity Plan Edits: create a single activity plan with a single 
                                                         frisby.create('Activity Plan Edits: try to update joined plan, id: ' + slavePlanPostAnswer.id)
                                                             .auth('test_ind2', 'yp')
                                                             .put(URL + '/' + slavePlanPostAnswer.id, slavePlan)
-                                                            .expectStatus(409)
+                                                            .expectStatus(405)
                                                             .afterJSON(function (activityPlanPutAnswer) {
 
                                                                 // now try to modify something even though it is not allowed to update this master plan
@@ -234,7 +234,7 @@ frisby.create('Activity Plan Edits: create a single activity plan with a single 
                                                                         frisby.create('Activity Plan Edits: try to update master plan, id: ' + masterPlanReloaded.id)
                                                                             .auth('test_ind1', 'yp')
                                                                             .put(URL + '/' + masterPlanReloaded.id, masterPlanReloaded)
-                                                                            .expectStatus(409)
+                                                                            .expectStatus(405)
                                                                             .afterJSON(function (activityPlanPutAnswer) {
 
                                                                                 // cleanup uneditable joined activity plan

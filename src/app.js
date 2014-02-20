@@ -18,6 +18,9 @@ var restify = require("restify"),
     passportHttp = require('passport-http'),
     swagger = require("swagger-node-restify"),
     auth = require('./util/auth'),
+    i18n = require('i18next'),
+    ypi18n = require('./util/ypi18n'),
+    error = require('./util/error');
     ypi18n = require('./util/ypi18n'),
     db = require('./util/database');
 
@@ -39,6 +42,12 @@ server.pre(function (request, response, next) {
     return next();
 });
 
+// log unexpected errors
+server.on('uncaughtException', function (req, res, route, err) {
+    req.log.error(err);
+    res.send(new error.InternalError(err, err.message || 'unexpected error'));
+    return (true);
+});
 server.on('after', function (req, res, route, err) {
     req.log.debug({res: res}, "finished processing request");
     if (err) {
@@ -50,6 +59,7 @@ server.on('after', function (req, res, route, err) {
     }
 });
 
+// setup better error stacktraces
 longjohn.async_trace_limit = 10;  // defaults to 10
 longjohn.empty_frame = 'ASYNC CALLBACK';
 

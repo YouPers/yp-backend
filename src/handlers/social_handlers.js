@@ -1,5 +1,5 @@
-var async = require('async'),
-    restify = require('restify'),
+var error = require('../util/error'),
+    async = require('async'),
     mongoose = require('mongoose'),
     CommentModel = mongoose.model('Comment'),
     ActivityPlanModel = mongoose.model('ActivityPlan'),
@@ -22,7 +22,7 @@ var getListFn = function getSocialEventsListFn(baseUrl, Model) {
         var locals = {};
 
         if (!req.user) {
-            return next(new restify.InvalidArgumentError('No User provided'));
+            return next(new error.MissingParameterError({ required: 'user' }));
         }
 
         async.parallel([
@@ -96,7 +96,7 @@ var getListFn = function getSocialEventsListFn(baseUrl, Model) {
             // executed when both DB calls are done and data is ready
             function (err) {
                 if (err) {
-                    return next(err);
+                    return error.handleError(err, next);
                 }
 
                 var events = _.sortBy(locals.comments.concat(locals.actPlans), function (obj) {

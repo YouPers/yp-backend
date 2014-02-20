@@ -1,4 +1,4 @@
-var restify = require('restify'),
+var error = require('../util/error'),
     _ = require('lodash');
 
 /**
@@ -13,11 +13,11 @@ var restify = require('restify'),
  */
 function checkWritingPreCond(req, Model) {
     if (!req.body) {
-        return new restify.InvalidArgumentError('expected JSON body in POST/PUT not found');
+        return new error.MissingParameterError('expected JSON body in POST/PUT not found');
     }
 
     if (Model.modelName !== 'User' && !req.user) {
-        return new restify.NotAuthorizedError('Needs to be Authenticated and authorized to POST objects');
+        return new error.NotAuthorizedError('Needs to be Authenticated and authorized to POST objects');
     }
 
     // ref properties: replace objects by ObjectId in case client sent whole object instead of reference, only
@@ -33,7 +33,10 @@ function checkWritingPreCond(req, Model) {
         });
     // check whether owner is the authenticated user
     if (req.body.owner && (req.user.id !== req.body.owner)) {
-        return new restify.ConflictError('POST/PUT of object only allowed if owner of new object equals authenticated user');
+        return new error.NotAuthorizedError('POST/PUT of object only allowed if owner of new object equals authenticated user', {
+            user: req.user.id,
+            owner: req.body.owner
+        });
     }
 
     return null; // everything is fine, proceed with request

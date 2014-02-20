@@ -2,7 +2,7 @@ var stats = require('../util/stats'),
     handlerUtils = require('./handlerUtils'),
     auth = require('../util/auth'),
     _ = require('lodash'),
-    restify = require('restify'),
+    error = require('../util/error'),
     mongoose = require('mongoose'),
     Organization = mongoose.model('Organization'),
     Campaign = mongoose.model('Campaign'),
@@ -14,17 +14,21 @@ var getCampaignStats = function (baseUrl, Model) {
     return function (req, res, next) {
         // calculate Assessment stats for this Campaign
         if (!req.params || !req.params.id) {
-            return next(new restify.InvalidArgumentError('campaignId is required'));
+            return next(new error.MissingParameterError({
+                required: 'id'
+            }));
         }
         var type = req.params.type;
         if (!type) {
-            return next(new restify.InvalidArgumentError('type param required for this URI'));
+            return next(new error.MissingParameterError({
+                required: 'type'
+            }));
         }
         var query = stats.queries(req.params.range,'campaign', req.params.id)[type];
 
         query.exec(function (err, result) {
-            if (err) {
-                return next(err);
+            if(err) {
+                return error.handleError(err, next);
             }
             res.send(result);
             return next();
@@ -38,10 +42,12 @@ var validateCampaign = function validateCampaign(campaign, userId, type, next) {
     // check if posting user is an org admin of the organization this new campaign belongs to
     Organization.findById(campaign.organization).exec(function(err, org) {
         if(err) {
-            return next(new restify.InternalError(err));
+            return error.handleError(err, next);
         }
         if(!org) {
-            return next(new restify.InvalidArgumentError('Invalid Organization ID'));
+            return next(new error.ResourceNotFoundError({
+                id: campaign.organization
+            }));
         }
 
         var orgAdmin = _.contains(org.administrators.toString(), userId);
@@ -51,17 +57,21 @@ var validateCampaign = function validateCampaign(campaign, userId, type, next) {
             var campaignLead = _.contains(campaign.campaignLeads.toString(), userId);
 
             if (!orgAdmin && !campaignLead) {
-                return next(new restify.NotAuthorizedError('Error in PostFn: Not allowed to create a campaign, as this user is neither org admin of this org nor a campaign lead of this campaign.'));
-
+                return next(new error.NotAuthorizedError('Not authorized to create a campaign, the user is neither ' +
+                    'orgadmin of the organization nor a campaignlead of the campaign.', {
+                    campaignId: campaign.id,
+                    organizationId: org.id,
+                    userId: userId
+                }));
             }
-
         } else {
 
             if (!orgAdmin) {
-                return next(new restify.NotAuthorizedError('Error in PostFn: Not allowed to create a campaign, as this org admin does not belong to this organization.'));
-
+                return next(new error.NotAuthorizedError('Not authorized to create a campaign, this orgadmin does not belong to this organization.', {
+                    organizationId: org.id,
+                    userId: userId
+                }));
             }
-
         }
 
         // check if campaing start/end timespan is between 1 week and a half year, might have to be adapted later on
@@ -69,11 +79,11 @@ var validateCampaign = function validateCampaign(campaign, userId, type, next) {
         if (campaign.start && campaign.end &&
             (moment(campaign.end).diff(moment(campaign.start), 'weeks') < 1 ||
                 moment(campaign.end).diff(moment(campaign.start), 'weeks') > 26)) {
-            return next(new restify.InvalidArgumentError('Error in PostFn: Not allowed to create a campaign which does not last between 1 and 26 weeks.'));
+            return next(new error.InvalidArgumentError('Campaign duration must be between 1 and 26 weeks.', {
+                invalid: ['start', 'end']
+            }));
         }
-
         return next();
-
     });
 
 };
@@ -83,19 +93,19 @@ var postCampaign = function (baseUrl) {
 
         var err = handlerUtils.checkWritingPreCond(req, Campaign);
 
-        if (err) {
-            return next(err);
+        if(err) {
+            return error.handleError(err, next);
         }
 
         if(!req.body) {
-            return next(new restify.InvalidArgumentError('no body found'));
+            return next(new error.MissingParameterError({ required: 'campaign object' }));
         }
 
         var sentCampaign = new Campaign(req.body);
 
         validateCampaign(sentCampaign, req.user.id, "POST", function (err) {
-            if (err) {
-                return next(err);
+            if(err) {
+                return error.handleError(err, next);
             }
 
             sentCampaign.campaignLeads = [req.user.id];
@@ -108,7 +118,7 @@ var postCampaign = function (baseUrl) {
 
             req.user.save(function(err) {
                 if(err) {
-                    return next(err);
+                    return error.handleError(err, next);
                 }
             });
 
@@ -117,10 +127,8 @@ var postCampaign = function (baseUrl) {
 
             // try to save the new campaign object
             sentCampaign.save(function (err) {
-                if (err) {
-                    req.log.info({Error: err}, 'Error Saving in PostFn (Campaign)');
-                    err.statusCode = 409;
-                    return next(err);
+                if(err) {
+                    return error.handleError(err, next);
                 }
 
                 res.header('location', baseUrl + '/' + sentCampaign._id);
@@ -138,7 +146,7 @@ function putCampaign(req, res, next) {
     req.log.trace({parsedReq: req}, 'Put updated Campaign');
 
     if (!req.body) {
-        return next(new restify.InvalidContentError('exptected JSON body in POST'));
+        return next(new error.MissingParameterError({ required: 'campaign object' }));
     }
 
     var sentCampaign = req.body;
@@ -167,27 +175,25 @@ function putCampaign(req, res, next) {
     });
 
     Campaign.findById(req.params.id).exec(function (err, reloadedCampaign) {
-        if (err) {
-            return next(err);
+        if(err) {
+            return error.handleError(err, next);
         }
         if (!reloadedCampaign) {
-            return next(new restify.ResourceNotFoundError('No campaign found with Id: ' + sentCampaign.id));
+            return next(new error.ResourceNotFoundError({ id: sentCampaign.id}));
         }
 
         _.extend(reloadedCampaign, sentCampaign);
 
         validateCampaign(reloadedCampaign, req.user.id, "PUT", function (err) {
-            if (err) {
-                return next(err);
+            if(err) {
+                return error.handleError(err, next);
             }
 
             req.log.trace(reloadedCampaign, 'PutFn: Updating existing Object');
 
             reloadedCampaign.save(function (err) {
-                if (err) {
-                    req.log.error({Error: err}, 'Error updating in PutFn');
-                    err.statusCode = 409;
-                    return next(err);
+                if(err) {
+                    return error.handleError(err, next);
                 }
 
                 res.header('location', '/api/v1/campaigns' + '/' + reloadedCampaign._id);
@@ -209,8 +215,8 @@ var getAllForUserFn = function (baseUrl) {
         Campaign.find({campaignLeads: userId})
             .exec(function(err, campaigns) {
 
-                if (err) {
-                    return next(err);
+                if(err) {
+                    return error.handleError(err, next);
                 }
 
                 res.send(200, campaigns);
@@ -221,10 +227,10 @@ var getAllForUserFn = function (baseUrl) {
 
 var postCampaignLeadInviteFn = function postCampaignLeadInviteFn(req, res, next) {
     if (!req.params || !req.params.id) {
-        return next(new restify.InvalidArgumentError('missing required CampaignId in URL'));
+        return next(new error.MissingParameterError({ required: 'id' }));
     }
     if (!req.body || !req.body.email) {
-        return next(new restify.InvalidArgumentError('missing required email attribute in body'));
+        return next(new error.MissingParameterError({ required: 'email'}));
     }
 
     // split up the email field, in case we got more than one mail
@@ -253,12 +259,15 @@ var postCampaignLeadInviteFn = function postCampaignLeadInviteFn(req, res, next)
                         return done(err);
                     }
                     if (!campaign) {
-                        return done(new restify.InvalidArgumentError('Campaign: ' + req.params.id + ' not found.'));
+                        return done(new error.ResourceNotFoundError({ campaignId: req.params.id }));
                     }
 
                     // check whether the posting user is a campaignLead of the campaign
                     if (!_.contains(campaign.campaignLeads.toString(), req.user.id)) {
-                        return done(new restify.NotAuthorizedError('You are not authorized to invite someone for this campaign.'));
+                        return done(new error.NotAuthorizedError('The user is not a campaignlead of this campaign.', {
+                            userId: req.user.id,
+                            campaignId: campaign.id
+                        }));
                     }
                     locals.campaign = campaign;
                     return done();
@@ -285,8 +294,8 @@ var postCampaignLeadInviteFn = function postCampaignLeadInviteFn(req, res, next)
                 });
         }
     ], function (err) {
-        if (err) {
-            return next(err);
+        if(err) {
+            return error.handleError(err, next);
         }
         res.send(200);
         return next();
@@ -295,13 +304,13 @@ var postCampaignLeadInviteFn = function postCampaignLeadInviteFn(req, res, next)
 
 var assignCampaignLeadFn = function assignCampaignLeadFn(req, res, next) {
     if (!req.params || !req.params.id) {
-        return next(new restify.InvalidArgumentError('missing required CampaignId in URL'));
+        return next(new error.MissingParameterError({ required: 'id' }));
     }
     if (!req.params.token) {
-        return next(new restify.InvalidArgumentError('missing required token query parameter'));
+        return next(new error.MissingParameterError({ required: 'token' }));
     }
     if (!req.user) {
-        return next(new restify.InvalidArgumentError('missing authenticated user'));
+        return next(new error.NotAuthorizedError());
     }
 
     var tokenElements;
@@ -309,39 +318,50 @@ var assignCampaignLeadFn = function assignCampaignLeadFn(req, res, next) {
     try {
         tokenElements = email.decryptLinkToken(req.params.token).split(email.linkTokenSeparator);
     } catch (err) {
-        return next(new restify.InvalidArgumentError('Invalid Token'));
+        return next(new error.InvalidArgumentError('Invalid token', {
+            token: req.params.token
+        }));
     }
 
     // tokenElements[0] must be the campaignId
     if (tokenElements[0] !== req.params.id) {
-        return next(new restify.InvalidArgumentError('InvalidToken: campaignId not correct'));
+        return next(new error.InvalidArgumentError('Invalid token / campaignId', {
+            token: req.params.token,
+            campaignId: req.params.id
+        }));
     }
 
     // tokenElements[1] should be the email-address that was invited
     if (tokenElements[1] !== req.user.email) {
-        return next(new restify.InvalidArgumentError('InvalidToken: emailaddress not correct'));
+        return next(new error.InvalidArgumentError('Invalid token / email', {
+            token: req.params.token,
+            email: req.user.email
+        }));
     }
 
     // tokenElements[2], if it is defined should be the user id of the invited user
     if (tokenElements[2] && (tokenElements[2] !== req.user.id)) {
-        return next(new restify.InvalidArgumentError('InvalidToken: user id  not correct'));
+        return next(new error.InvalidArgumentError('Invalid token / userId', {
+            token: req.params.token,
+            userId: req.user.id
+        }));
     }
 
     Campaign.findById(req.params.id)
         .exec(function (err, campaign) {
-            if (err) {
-                return next(err);
+            if(err) {
+                return error.handleError(err, next);
             }
             if (!campaign) {
-                return next(new restify.InvalidArgumentError('Campaign: ' + req.params.id + ' not found.'));
+                return next(new error.ResourceNotFoundError('Campaign not found', { id: req.params.id }));
             }
 
             // we check whether we need to update the campaignLeads collection of the campaign
             if (!_.contains(campaign.campaignLeads.toString(),req.user.id)) {
                 campaign.campaignLeads.push(req.user._id);
                 campaign.save(function(err) {
-                    if (err) {
-                        return next(err);
+                    if(err) {
+                        return error.handleError(err, next);
                     }
                 });
             }
@@ -350,8 +370,8 @@ var assignCampaignLeadFn = function assignCampaignLeadFn(req, res, next) {
             if (!_.contains(req.user.roles, auth.roles.campaignlead)) {
                 req.user.roles.push(auth.roles.campaignlead);
                 req.user.save(function(err) {
-                    if (err) {
-                        return next(err);
+                    if(err) {
+                        return error.handleError(err, next);
                     }
                 });
             }

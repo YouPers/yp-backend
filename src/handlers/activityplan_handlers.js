@@ -292,18 +292,27 @@ function postNewActivityPlan(req, res, next) {
                 err.statusCode = 409;
                 return next(err);
             }
-            newActPlan.activity = foundActivity;
 
-            if (req.user && req.user.email && req.user.profile.userPreferences.email.iCalInvites) {
-                var myIcalString = getIcalObject(newActPlan, req.user, 'new', req.i18n).toString();
-                email.sendCalInvite(req.user.email, 'new', myIcalString, req.i18n);
-            }
+            // we reload ActivityPlan for two reasons:
+            // - populate 'activity' so we can get create a nice calendar entry
+            // - we need to reload so we get the changes that have been done pre('save') and pre('init')
+            //   like updating the joiningUsers Collection
+            ActivityPlanModel.findById(newActPlan._id).populate('activity').exec(function (err, reloadedActPlan) {
+                if (err) {
+                    return next(err);
+                }
 
-            // remove the populated activity because the client is not gonna expect it to be populated.
-            newActPlan.activity = newActPlan.activity._id;
-            res.header('location', '/api/v1/activitiesPlanned' + '/' + newActPlan._id);
-            res.send(201, newActPlan);
-            return next();
+                if (req.user && req.user.email && req.user.profile.userPreferences.email.iCalInvites) {
+                    var myIcalString = getIcalObject(reloadedActPlan, req.user, 'new', req.i18n).toString();
+                    email.sendCalInvite(req.user.email, 'new', myIcalString, req.i18n);
+                }
+
+                // remove the populated activity because the client is not gonna expect it to be populated.
+                reloadedActPlan.activity = reloadedActPlan.activity._id;
+                res.header('location', '/api/v1/activitiesPlanned' + '/' + reloadedActPlan._id);
+                res.send(201, reloadedActPlan);
+                return next();
+            });
 
         });
     });
@@ -330,7 +339,10 @@ function getJoinOffers(req, res, next) {
             {campaign: null, visibility: 'public'}
         ]);
     } else {
-        dbquery.and([{'campaign':null},{'visibility': 'public'}]);
+        dbquery.and([
+            {'campaign': null},
+            {'visibility': 'public'}
+        ]);
     }
 
     generic.addStandardQueryOptions(req, dbquery, ActivityPlanModel);

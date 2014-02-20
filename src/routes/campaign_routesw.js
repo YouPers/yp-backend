@@ -6,7 +6,8 @@
 var mongoose = require('mongoose'),
     Campaign = mongoose.model('Campaign'),
     genericHandlers = require('./../handlers/generic'),
-    campaignHandlers = require('./../handlers/campaign_handlers');
+    campaignHandlers = require('./../handlers/campaign_handlers'),
+    common = require('./common');
 
 
 module.exports = function (swagger, config) {
@@ -46,7 +47,7 @@ module.exports = function (swagger, config) {
                     name: "type",
                     description: "the type of statistics to fetch",
                     dataType: "string",
-                    enum: ['assUpdatesPerDay','assTotals','topStressors','activitiesPlanned','activityEvents'],
+                    enum: common.enums.statsType,
                     required: true
                 },
                 {

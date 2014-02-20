@@ -144,6 +144,27 @@ function putCampaign(req, res, next) {
     var sentCampaign = req.body;
     req.log.trace({body: sentCampaign}, 'parsed req body');
 
+    // ref properties: replace objects by ObjectId in case client sent whole object instead of reference only
+    // do this check only for properties of type ObjectID
+    // needed e.g. to "clean up" organization
+    _.filter(Campaign.schema.paths, function (path) {
+        return (path.instance === 'ObjectID');
+    })
+        .forEach(function (myPath) {
+            if ((myPath.path in sentCampaign) && (!(typeof sentCampaign[myPath.path] === 'string' || req.body[myPath.path] instanceof String))) {
+                sentCampaign[myPath.path] = sentCampaign[myPath.path].id;
+            }
+        });
+
+    // if client sends whole campaignLead objects, replace them by their respective ObjectId
+
+    _.each(sentCampaign.campaignLeads,function (element, index, list) {
+        if (typeof element !== 'string' ) {
+            if (element.id) {
+                list[index] = element.id;
+            }
+        }
+    });
 
     Campaign.findById(req.params.id).exec(function (err, reloadedCampaign) {
         if (err) {
@@ -153,7 +174,7 @@ function putCampaign(req, res, next) {
             return next(new restify.ResourceNotFoundError('No campaign found with Id: ' + sentCampaign.id));
         }
 
-        _.extend(reloadedCampaign, req.body);
+        _.extend(reloadedCampaign, sentCampaign);
 
         validateCampaign(reloadedCampaign, req.user.id, "PUT", function (err) {
             if (err) {
@@ -169,7 +190,7 @@ function putCampaign(req, res, next) {
                     return next(err);
                 }
 
-                res.header('location', '/api/v1/activitiesPlanned' + '/' + reloadedCampaign._id);
+                res.header('location', '/api/v1/campaigns' + '/' + reloadedCampaign._id);
                 res.send(201, reloadedCampaign);
                 return next();
             });

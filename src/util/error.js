@@ -53,7 +53,7 @@ var CODES = {
     },
     BadMethod: {
         statusCode: 405,
-        message: ''
+        message: 'The method specified is not allowed for this resource.'
     },
 
     InvalidContent: {

@@ -16,8 +16,9 @@ module.exports = function (swagger, config) {
         spec: {
             description: "Operations about ActivityPlans",
             path: baseUrl + '/joinOffers',
-            notes: "only returns public plans and is constrained by activity-Reference",
-            summary: "returns activityPlans other users have published to invite colleages to join",
+            notes: "Only returns public plans and plans in the same campaign as the user is currently participating in. " +
+                "Is is constrained by the activity-Reference, that has to be passed in.",
+            summary: "returns activityPlans other users have published to invite colleages to join where the current user has access to.",
             params: [
                 {
                     paramType: "query",
@@ -87,38 +88,6 @@ module.exports = function (swagger, config) {
         },
         action: generic.getAllFn(baseUrl, Model)
     });
-
-
-
-    swagger.addGet({
-        spec: {
-            description: "Operations about ActivityPlans",
-            path: baseUrlWithId + '/ical.ics',
-            notes: "Returns a file that can be imported into Outlook",
-            summary: "fetch a calendar ics file for the activityPlan by id",
-            params: [
-                {
-                    paramType: "path",
-                    name: "id",
-                    description: "the id of the activityPlan for which to fetch the ical file",
-                    dataType: "string",
-                    required: true
-                },
-                {
-                    paramType: "query",
-                    name: "email",
-                    description: "send calendar event as email",
-                    dataType: "boolean"
-                }
-            ],
-            method: "GET",
-            "nickname": "getActivityPlanICal",
-            accessLevel: 'al_individual',
-            beforeCallbacks: []
-        },
-        action: handlers.getIcalStringForPlan
-    });
-
 
     swagger.addDelete({
         spec: {

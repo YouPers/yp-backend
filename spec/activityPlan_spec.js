@@ -293,7 +293,6 @@ frisby.create('Activity Plan: plan daily activity and check whether events are g
                                             expect(moment(event.begin).day()).not.toEqual(6);
                                             expect(moment(event.begin).day()).not.toEqual(0);
                                         });
-                                        console.log(newPlan);
 
                                         consts.users.test_ind1.preferences.workingDays = [];
 

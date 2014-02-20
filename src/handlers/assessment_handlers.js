@@ -12,7 +12,7 @@ var getNewestResult = function (baseUrl, Model) {
                 }
                 req.log.trace({foundAssResults: result}, 'GET Newest Ass Results');
                 if (!result || result.length === 0){
-                    res.send([]);
+                    res.send(204);
                     return next();
                 }
                 res.send(result[0]);

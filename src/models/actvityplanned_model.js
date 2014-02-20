@@ -5,6 +5,7 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
     ObjectId = Schema.ObjectId,
     common = require('./common'),
+    error = require('../util/error'),
     _ = require('lodash');
 /**
  * ActivityPlanEvent Schema
@@ -176,11 +177,14 @@ ActivityPlanSchema.pre('save', function (next) {
             var modifiedMaster = false;
 
             if (!masterPlan) {
-                return next(new Error('Cannot join ActivityPlan, plan not found: ' + self.masterPlan));
+                return next(new error.ResourceNotFoundError('MasterPlan not found.', { id: self.masterPlan }));
             }
 
             if (masterPlan.owner === self.owner) {
-                return next(new Error('user cannot join his own ActivityPlan'));
+                return next(new error.NotAuthorizedError('A user cannot join his own activityPlan.', {
+                    owner: self.owner,
+                    activityPlanId: self.masterPlan
+                }));
             }
 
             // we check whether we need to update the joiningUsers collection of the masterPlan
@@ -202,7 +206,10 @@ ActivityPlanSchema.pre('save', function (next) {
                         return (masterEventCand.begin.toJSON() === event.begin.toJSON());
                     });
                     if (!masterEvent) {
-                        return next(new Error('masterEvent not found for event: ' + event.id + ' in Plan ' + masterPlan.id));
+                        return next(new error.ResourceNotFoundError('MasterEvent not found for this event.', {
+                            activityPlanId: masterPlan.id,
+                            eventId: event.id
+                        }));
                     }
                     masterEvent.comments.push(comment);
                     modifiedMaster = true;
@@ -212,8 +219,8 @@ ActivityPlanSchema.pre('save', function (next) {
 
             if (modifiedMaster) {
                 masterPlan.save(function (err) {
-                    if (err) {
-                        return next(err);
+                    if(err) {
+                        return error.handleError(err, next);
                     } else {
                         return next();
                     }
@@ -244,7 +251,10 @@ ActivityPlanSchema.pre('init', function populateSlavePlans (next, data) {
             .populate('joiningUsers')
             .exec(function (err, masterPlan) {
                 if (err || !masterPlan) {
-                    return next(err || new Error('masterPlan: ' + data.masterPlan + ' not found for slave: ' + data._id));
+                    return next(error.handleError(err, next) || new error.ResourceNotFoundError('MasterPlan not found for SlavePlan.', {
+                        masterPlanId: data.masterPlan,
+                        slavePlanId: data._id
+                    }));
                 }
 
                 // deal with the fact that owner can be a ref of Type ObjectId or a populated Object

@@ -5,7 +5,7 @@ var env = process.env.NODE_ENV || 'development',
     ActivityModel = mongoose.model('Activity'),
     CommentModel = mongoose.model('Comment'),
     generic = require('./generic'),
-    restify = require('restify'),
+    error = require('../util/error'),
     _ = require('lodash'),
     ical = require('icalendar'),
     email = require('../util/email'),
@@ -136,28 +136,35 @@ function generateEventsForPlan(plan, user, i18n) {
 function putActivityEvent(req, res, next) {
 
     if (!req || !req.params || !req.params.planId) {
-        return next(new restify.MissingParameterError('no planId found in PUT request'));
+        return next(new error.MissingParameterError({ required: 'planId' }));
     }
 
     var find = ActivityPlanModel.findById(req.params.planId).populate('activity');
 
     find.exec(function (err, planFromDb) {
-        if (err) {
-            return next(err);
+        if(err) {
+            return error.handleError(err, next);
         }
 
         if (!planFromDb) {
-            return next(new restify.ResourceNotFoundError('no activityPlan found with Id: ' + req.params.planId));
+            return next(new error.ResourceNotFoundError('ActivityPlan not found', { id: req.params.planId }));
         }
 
         // TODO: (rblu) check whether new owner is same als old owner???
         if (!planFromDb.owner || !planFromDb.owner.equals(req.user.id)) {
-            return next(new restify.NotAuthorizedError('authenticated user is not authorized to update this plan: ' + planFromDb));
+            return next(new error.NotAuthorizedError('The user is not authorized to update this plan.', {
+                userId: req.user.id,
+                activityPlanId: planFromDb.id,
+                owner: planFromDb.owner
+            }));
         }
 
         var eventFromDb = _.find(planFromDb.events, {'id': req.params.eventId});
         if (!eventFromDb) {
-            return next(new restify.ResourceNotFoundError('no event found with Id: ' + req.params.eventId + ' in plan: ' + req.params.planId));
+            return next(new error.ResourceNotFoundError('Event not found in ActivityPlan', {
+                eventId: req.params.eventId,
+                activityPlanId: req.params.planId
+            }));
         }
 
         var eventToPut = generic.clean(req.body);
@@ -176,14 +183,13 @@ function putActivityEvent(req, res, next) {
         _.extend(eventFromDb, eventToPut);
 
         var saveCallback = function (err, savedActivityPlan) {
-            if (err) {
-                req.log.error({error: err, stack: err.stack}, "error saving ");
-                return next(err);
+            if(err) {
+                return error.handleError(err, next);
             }
 
             ActivityPlanModel.findById(savedActivityPlan._id, function (err, reloadedPlan) {
-                if (err) {
-                    return next(err);
+                if(err) {
+                    return error.handleError(err, next);
                 }
                 var savedEvent = _.find(reloadedPlan.events, {'id': req.params.eventId});
                 res.send(200, savedEvent);
@@ -209,8 +215,8 @@ function putActivityEvent(req, res, next) {
                 }
             });
             CommentModel.create(newComments, function (err) {
-                if (err) {
-                    return next(err);
+                if(err) {
+                    return error.handleError(err, next);
                 }
                 // the callbackFn is called with an optional argument for each created comment
                 // we use this to set the ids of the created comments to the updated event
@@ -237,7 +243,7 @@ function putActivityEvent(req, res, next) {
 function postNewActivityPlan(req, res, next) {
     req.log.trace({parsedReq: req}, 'Post new ActivityPlan');
     if (!req.body) {
-        return next(new restify.InvalidContentError('exptected JSON body in POST'));
+        return next(new error.MissingParameterError('activityPlan object'));
     }
     var sentPlan = req.body;
     req.log.trace({body: sentPlan}, 'parsed req body');
@@ -255,7 +261,10 @@ function postNewActivityPlan(req, res, next) {
 
     // check whether delivered owner is the authenticated user
     if (sentPlan.owner && (req.user.id !== sentPlan.owner)) {
-        return next(new restify.NotAuthorizedError('POST of object only allowed if owner == authenticated user'));
+        return next(new error.NotAuthorizedError({
+            userId: req.user.id,
+            owner: sentPlan.owner
+        }));
     }
 
     // if no owner delivered set to authenticated user
@@ -270,7 +279,7 @@ function postNewActivityPlan(req, res, next) {
 
     req.log.trace({MainEvent: sentPlan.mainEvent}, 'before generating events');
     if (!sentPlan.mainEvent) {
-        return next(new restify.InvalidArgumentError('Need MainEvent in submitted ActivityPlan'));
+        return next(new error.MissingParameterError({ required: 'mainEvent' }));
     }
     generateEventsForPlan(sentPlan, req.user, req.i18n);
     req.log.trace({eventsAfter: sentPlan.events}, 'after generating events');
@@ -279,18 +288,16 @@ function postNewActivityPlan(req, res, next) {
 
     // add fields of activity to the activity plan
     ActivityModel.findById(newActPlan.activity).exec(function (err, foundActivity) {
-        if (err) {
-            return next(err);
+        if(err) {
+            return error.handleError(err, next);
         }
         newActPlan.fields = foundActivity.fields;
 
         req.log.trace(newActPlan, 'PostFn: Saving new Object');
         // try to save the new object
         newActPlan.save(function (err) {
-            if (err) {
-                req.log.error({Error: err}, 'Error Saving in PostFn');
-                err.statusCode = 409;
-                return next(err);
+            if(err) {
+                return error.handleError(err, next);
             }
 
             // we reload ActivityPlan for two reasons:
@@ -298,8 +305,8 @@ function postNewActivityPlan(req, res, next) {
             // - we need to reload so we get the changes that have been done pre('save') and pre('init')
             //   like updating the joiningUsers Collection
             ActivityPlanModel.findById(newActPlan._id).populate('activity').exec(function (err, reloadedActPlan) {
-                if (err) {
-                    return next(err);
+                if(err) {
+                    return error.handleError(err, next);
                 }
 
                 if (req.user && req.user.email && req.user.profile.userPreferences.email.iCalInvites) {
@@ -322,7 +329,7 @@ function getJoinOffers(req, res, next) {
 
     // check whether the required param 'activity' is here and add it to the dbquery
     if (!req.params.activity) {
-        return next(new restify.InvalidArgumentError("missing required queryParam 'activity'"));
+        return next(new error.MissingParameterError({ required: 'activity' }));
     }
 
     var dbquery = ActivityPlanModel.find(
@@ -347,8 +354,8 @@ function getJoinOffers(req, res, next) {
 
     generic.addStandardQueryOptions(req, dbquery, ActivityPlanModel);
     dbquery.exec(function (err, joinOffers) {
-        if (err) {
-            return next(err);
+        if(err) {
+            return error.handleError(err, next);
         }
         if (!joinOffers || joinOffers.length === 0) {
             res.send(200, []);
@@ -363,10 +370,10 @@ function getJoinOffers(req, res, next) {
 
 function postActivityPlanInvite(req, res, next) {
     if (!req.params || !req.params.id) {
-        return next(new restify.InvalidArgumentError('missing required ActivityId in URL'));
+        return next(new error.MissingParameterError({ required: 'id' }));
     }
     if (!req.body || !req.body.email) {
-        return next(new restify.InvalidArgumentError('missing required email attribute in body'));
+        return next(new error.MissingParameterError({ required: 'email' }));
     }
 
     // split up the email field, in case we got more than one mail
@@ -396,7 +403,9 @@ function postActivityPlanInvite(req, res, next) {
                         return done(err);
                     }
                     if (!plan) {
-                        return done(new restify.InvalidArgumentError('ActivityPlan: ' + req.params.id + ' not found.'));
+                        return done(new error.ResourceNotFoundError('ActivityPlan not found.', {
+                            id: req.params.id
+                        }));
                     }
                     locals.plan = plan;
                     return done();
@@ -423,8 +432,8 @@ function postActivityPlanInvite(req, res, next) {
                 });
         }
     ], function (err) {
-        if (err) {
-            return next(err);
+        if(err) {
+            return error.handleError(err, next);
         }
         res.send(200);
         return next();
@@ -434,29 +443,34 @@ function postActivityPlanInvite(req, res, next) {
 function deleteActivityPlan(req, res, next) {
 
     ActivityPlanModel.findById(req.params.id).populate('activity').exec(function (err, activityPlan) {
-        if (err) {
-            return next(err);
+        if(err) {
+            return error.handleError(err, next);
         }
         if (!activityPlan) {
-            return next(new restify.InvalidArgumentError('No ActivityPlan found for id: ' + req.params.id));
+            return next(new error.ResourceNotFoundError('ActivityPlan not found.', {
+                id: req.params.id
+            }));
         }
 
 
         // we need the owner of the plan to send him a cancellation to his email address
         mongoose.model('User').findById(activityPlan.owner).populate('profile').select('+email +profile').exec(function (err, owner) {
-            if (err) {
-                return next(err);
+            if(err) {
+                return error.handleError(err, next);
             }
 
             if (!owner) {
-                return next(new restify.InvalidArgumentError('Plan Owner not found'));
+                return next(new error.ResourceNotFoundError('ActivityPlan owner not found.', {
+                    activityPlanId: activityPlan.id,
+                    owner: activityPlan.owner
+                }));
             }
 
             ////////////////////
             // private functions
             var _removeCallback = function (err) {
-                if (err) {
-                    return next(err);
+                if(err) {
+                    return error.handleError(err, next);
                 }
                 if (owner.profile.userPreferences.email.iCalInvites) {
                     var myIcalString = getIcalObject(activityPlan, owner, 'cancel', req.i18n).toString();
@@ -489,11 +503,14 @@ function deleteActivityPlan(req, res, next) {
                     activityPlan.status = "old";
                     activityPlan.save(_removeCallback);
                 } else {
-                    return next(new restify.ConflictError('This plan cannot be deleted'));
+                    return next(new error.BadMethodError('This activityPlan cannot be deleted.', {
+                        activityPlanId: activityPlan.id,
+                        deleteStatus: activityPlan.deleteStatus
+                    }));
                 }
 
             } else {
-                return next(new restify.NotAuthorizedError('User not authorized to delete this plan'));
+                return next(new error.NotAuthorizedError('The user is not authorized to delete this plan.'));
             }
         });
     });
@@ -504,7 +521,7 @@ function putActivityPlan(req, res, next) {
     req.log.trace({parsedReq: req}, 'Put updated ActivityPlan');
 
     if (!req.body) {
-        return next(new restify.InvalidContentError('exptected JSON body in POST'));
+        return next(new error.ResourceNotFoundError('activityPlan object'));
     }
 
     var sentPlan = req.body;
@@ -522,18 +539,21 @@ function putActivityPlan(req, res, next) {
         });
 
     ActivityPlanModel.findById(req.params.id).exec(function (err, loadedActPlan) {
-        if (err) {
-            return next(err);
+        if(err) {
+            return error.handleError(err, next);
         }
         if (!loadedActPlan) {
-            return next(new restify.ResourceNotFoundError('No activity plan found with Id: ' + sentPlan.id));
+            return next(new error.ResourceNotFoundError('ActivityPlan not found.', { id: sentPlan.id }));
         }
 
         // check to see if received plan is editable
         if (loadedActPlan.editStatus !== "editable") {
-            var notEditableError = new Error('Error updating in Activity Plan PutFn: Not allowed to update this activity plan with id: ' + sentPlan.id);
+            var notEditableError = new Error('Error updating in Activity Plan PutFn: Not allowed to update this activity plan with id: ' );
             notEditableError.statusCode = 409;
-            return next(notEditableError);
+            return next(new error.BadMethodError('This activityPlan cannot be edited.', {
+                activityPlanId: sentPlan.id,
+                editStatus: loadedActPlan.editStatus
+            }));
         }
 
         if (req.body.mainEvent && !_.isEqual(req.body.mainEvent, loadedActPlan.mainEvent)) {
@@ -545,10 +565,8 @@ function putActivityPlan(req, res, next) {
         req.log.trace(loadedActPlan, 'PutFn: Updating existing Object');
 
         loadedActPlan.save(function (err) {
-            if (err) {
-                req.log.error({Error: err}, 'Error updating in PutFn');
-                err.statusCode = 409;
-                return next(err);
+            if(err) {
+                return error.handleError(err, next);
             }
 
             // we reload ActivityPlan for two reasons:
@@ -557,8 +575,8 @@ function putActivityPlan(req, res, next) {
             //   like updating the joiningUsers Collection
             ActivityPlanModel.findById(loadedActPlan._id).populate('activity').exec(function (err, reloadedActPlan) {
             // we read 'activity' so we can get create a nice calendar entry using using the activity title
-                if (err) {
-                    return next(err);
+                if(err) {
+                    return error.handleError(err, next);
                 }
                 if (req.user && req.user.email && req.user.profile.userPreferences.email.iCalInvites) {
                     var myIcalString = getIcalObject(reloadedActPlan, req.user, 'update', req.i18n).toString();

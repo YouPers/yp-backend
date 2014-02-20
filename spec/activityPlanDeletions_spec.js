@@ -78,14 +78,14 @@ frisby.create('Activity Plan Deletions: create a master plan for an activity pla
                         frisby.create('Activity Plan Deletions: try delete slave')
                             .auth('test_ind2', 'yp')
                             .delete(URL + '/' + slavePlanPostAnswer.id)
-                            .expectStatus(409)
+                            .expectStatus(405)
                             .toss();
 
                         // try to delete "undeletable" master plan
                         frisby.create('Activity Plan Deletions: try delete master')
                             .delete(URL + '/' + masterPlanReloaded.id)
                             .auth('test_ind1', 'yp')
-                            .expectStatus(409)
+                            .expectStatus(405)
                             .toss();
 
                         // clean up database by removing the slave plan
@@ -161,7 +161,7 @@ frisby.create('Activity Plan Deletions: create a master plan for an activity pla
                                                 frisby.create('Activity Plan Deletions: delete future events')
                                                     .delete(URL + '/' + masterPlanPostAnswer.id)
                                                     .auth('test_ind1', 'yp')
-                                                    .expectStatus(409)
+                                                    .expectStatus(405)
                                                     .toss();
 
                                                 // clean up database by removing the plan

@@ -26,6 +26,10 @@ var CODES = {
         statusCode: 403,
         message: 'The user is not authorized to access this resource.'
     },
+    Unauthorized: {
+        statusCode: 401,
+        message: 'The request requires user authentication.'
+    },
     ResourceNotFound: {
         statusCode: 404,
         message: 'The specified resource was not found.'
@@ -53,7 +57,7 @@ var CODES = {
     },
     BadMethod: {
         statusCode: 405,
-        message: ''
+        message: 'The method specified is not allowed for this resource.'
     },
 
     InvalidContent: {

@@ -29,7 +29,7 @@ var roles = {
         al_systemadmin: [roles.systemadmin ]
     },
     passport = require('passport'),
-    restify = require('restify'),
+    error = require('../util/error'),
     _ = require('lodash');
 
 
@@ -40,11 +40,11 @@ function roleBasedAuth(accessLevel) {
     return function (req, res, next) {
         passport.authenticate('basic', function (err, user, info) {
             if (err) {
-                return next(err);
+                return error.handleError(err, next);
             }
             checkAccess(user, accessLevel, function (err) {
                 if (err) {
-                    return next(err);
+                    return error.handleError(err, next);
                 } else {
                     req.user = user;
                     return next();
@@ -64,7 +64,7 @@ function checkAccess(user, accessLevel, callback) {
             (_.contains(accessLevel, roles.anonymous))) {
             return callback();
         } else {
-            return callback(user ? new restify.NotAuthorizedError("User not authorized for this ressource") : new restify.UnauthorizedError('Authentication failed'));
+            return callback(user ? new error.NotAuthorizedError() : new error.UnauthorizedError());
         }
     }
 
@@ -81,7 +81,7 @@ function checkAccess(user, accessLevel, callback) {
         }
     } else {
         if (callback) {
-        return callback(new restify.NotAuthorizedError("User is not authorized for this ressource."));
+        return callback(new error.NotAuthorizedError());
         } else {
             return false;
         }

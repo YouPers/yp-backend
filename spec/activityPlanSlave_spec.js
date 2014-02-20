@@ -66,6 +66,7 @@ frisby.create('Activity Plan Slave: plan weekly activity as a master for a joini
             .expectStatus(201)
             .afterJSON(function (slavePlanPostAnswer) {
                 expect(slavePlanPostAnswer.masterPlan).toEqual(slavePlan.masterPlan);
+                expect(slavePlanPostAnswer.joiningUsers.length).toBeGreaterThan(0);
                 expect(slavePlanPostAnswer.joiningUsers[0].id).toEqual(masterPlan.owner);
                 expect(slavePlanPostAnswer.joiningUsers.length).toEqual(1); // user selbst ist nicht im Array
 
@@ -90,6 +91,7 @@ frisby.create('Activity Plan Slave: plan weekly activity as a master for a joini
                     .expectStatus(200)
                     .afterJSON(function (slavePlanReloaded) {
                         expect(slavePlanReloaded.masterPlan).toEqual(slavePlan.masterPlan);
+                        expect(slavePlanReloaded.joiningUsers.length).toBeGreaterThan(0);
                         expect(slavePlanReloaded.joiningUsers[0].id).toEqual(masterPlan.owner);
                         expect(slavePlanReloaded.joiningUsers).not.toContain(slavePlanPostAnswer.owner);
 
@@ -101,7 +103,6 @@ frisby.create('Activity Plan Slave: plan weekly activity as a master for a joini
                             ]}, {json: true})
                             .expectStatus(200)
                             .afterJSON(function (newUpdatedEvent) {
-                                console.log(newUpdatedEvent);
                                 expect(newUpdatedEvent.comments.length).toEqual(1);
                                 expect(newUpdatedEvent.feedback).toEqual(2);
 

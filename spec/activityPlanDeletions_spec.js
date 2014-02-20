@@ -169,7 +169,7 @@ frisby.create('Activity Plan Deletions: create a master plan for an activity pla
                                                     .delete(URL + '/' + masterPlanPostAnswer.id)
                                                     .auth('sysadm','backtothefuture')
                                                     .expectStatus(200)
-                                                    .toss()
+                                                    .toss();
 
                                             }).toss();
 

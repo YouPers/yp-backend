@@ -277,31 +277,43 @@ function postNewActivityPlan(req, res, next) {
 
     var newActPlan = new ActivityPlanModel(sentPlan);
 
-
-    req.log.trace(newActPlan, 'PostFn: Saving new Object');
-    // try to save the new object
-    newActPlan.save(function (err) {
+    // add fields of activity to the activity plan
+    ActivityModel.findById(newActPlan.activity).exec(function (err, foundActivity) {
         if (err) {
-            req.log.error({Error: err}, 'Error Saving in PostFn');
-            err.statusCode = 409;
             return next(err);
         }
-        // we populate 'activity' so we can get create a nice calendar entry using strings on the
-        // activity
-        ActivityPlanModel.findById(newActPlan._id).populate('activity').exec(function (err, reloadedActPlan) {
+        newActPlan.fields = foundActivity.fields;
+
+        req.log.trace(newActPlan, 'PostFn: Saving new Object');
+        // try to save the new object
+        newActPlan.save(function (err) {
             if (err) {
+                req.log.error({Error: err}, 'Error Saving in PostFn');
+                err.statusCode = 409;
                 return next(err);
             }
-            if (req.user && req.user.email && req.user.profile.userPreferences.email.iCalInvites) {
-                var myIcalString = getIcalObject(reloadedActPlan, req.user, 'new', req.i18n).toString();
-                email.sendCalInvite(req.user.email, 'new', myIcalString, req.i18n);
-            }
 
-            // remove the populated activity because the client is not gonna expect it to be populated.
-            reloadedActPlan.activity = reloadedActPlan.activity._id;
-            res.header('location', '/api/v1/activitiesPlanned' + '/' + reloadedActPlan._id);
-            res.send(201, reloadedActPlan);
-            return next();
+            // we reload ActivityPlan for two reasons:
+            // - populate 'activity' so we can get create a nice calendar entry
+            // - we need to reload so we get the changes that have been done pre('save') and pre('init')
+            //   like updating the joiningUsers Collection
+            ActivityPlanModel.findById(newActPlan._id).populate('activity').exec(function (err, reloadedActPlan) {
+                if (err) {
+                    return next(err);
+                }
+
+                if (req.user && req.user.email && req.user.profile.userPreferences.email.iCalInvites) {
+                    var myIcalString = getIcalObject(reloadedActPlan, req.user, 'new', req.i18n).toString();
+                    email.sendCalInvite(req.user.email, 'new', myIcalString, req.i18n);
+                }
+
+                // remove the populated activity because the client is not gonna expect it to be populated.
+                reloadedActPlan.activity = reloadedActPlan.activity._id;
+                res.header('location', '/api/v1/activitiesPlanned' + '/' + reloadedActPlan._id);
+                res.send(201, reloadedActPlan);
+                return next();
+            });
+
         });
     });
 }
@@ -327,7 +339,10 @@ function getJoinOffers(req, res, next) {
             {campaign: null, visibility: 'public'}
         ]);
     } else {
-        dbquery.and([{'campaign':null},{'visibility': 'public'}]);
+        dbquery.and([
+            {'campaign': null},
+            {'visibility': 'public'}
+        ]);
     }
 
     generic.addStandardQueryOptions(req, dbquery, ActivityPlanModel);
@@ -506,44 +521,46 @@ function putActivityPlan(req, res, next) {
             }
         });
 
-    ActivityPlanModel.findById(req.params.id).exec(function (err, reloadedActPlan) {
+    ActivityPlanModel.findById(req.params.id).exec(function (err, loadedActPlan) {
         if (err) {
             return next(err);
         }
-        if (!reloadedActPlan) {
+        if (!loadedActPlan) {
             return next(new restify.ResourceNotFoundError('No activity plan found with Id: ' + sentPlan.id));
         }
 
         // check to see if received plan is editable
-        if (reloadedActPlan.editStatus !== "editable") {
+        if (loadedActPlan.editStatus !== "editable") {
             var notEditableError = new Error('Error updating in Activity Plan PutFn: Not allowed to update this activity plan with id: ' + sentPlan.id);
             notEditableError.statusCode = 409;
             return next(notEditableError);
         }
 
-        if (req.body.mainEvent && !_.isEqual(req.body.mainEvent, reloadedActPlan.mainEvent)) {
+        if (req.body.mainEvent && !_.isEqual(req.body.mainEvent, loadedActPlan.mainEvent)) {
             generateEventsForPlan(req.body, req.user, req.i18n);
         }
 
-        _.extend(reloadedActPlan, req.body);
+        _.extend(loadedActPlan, req.body);
 
-        req.log.trace(reloadedActPlan, 'PutFn: Updating existing Object');
+        req.log.trace(loadedActPlan, 'PutFn: Updating existing Object');
 
-        reloadedActPlan.save(function (err) {
+        loadedActPlan.save(function (err) {
             if (err) {
                 req.log.error({Error: err}, 'Error updating in PutFn');
                 err.statusCode = 409;
                 return next(err);
             }
 
+            // we reload ActivityPlan for two reasons:
+            // - populate 'activity' so we can get create a nice calendar entry
+            // - we need to reload so we get the changes that have been done pre('save') and pre('init')
+            //   like updating the joiningUsers Collection
+            ActivityPlanModel.findById(loadedActPlan._id).populate('activity').exec(function (err, reloadedActPlan) {
             // we read 'activity' so we can get create a nice calendar entry using using the activity title
-
-            ActivityModel.findById(reloadedActPlan.activity).exec(function (err, foundActivity) {
                 if (err) {
                     return next(err);
                 }
                 if (req.user && req.user.email && req.user.profile.userPreferences.email.iCalInvites) {
-                    reloadedActPlan.activity = foundActivity;
                     var myIcalString = getIcalObject(reloadedActPlan, req.user, 'update', req.i18n).toString();
                     email.sendCalInvite(req.user.email, 'update', myIcalString, req.i18n);
                 }

@@ -74,7 +74,7 @@ module.exports = function (swagger, config) {
             method: "GET",
             "responseClass": "Organization",
             "nickname": "getOrganizations",
-            accessLevel: 'al_individual' // orgadmin's about to be need this check too
+            accessLevel: 'al_user' // orgadmin's about to be need this check too
         },
         action: organizationHandlers.getAllForUserFn(baseUrl, Organization)
     });

@@ -14,12 +14,11 @@ var getCampaignStats = function (baseUrl, Model) {
     return function (req, res, next) {
         // calculate Assessment stats for this Campaign
         if (!req.params || !req.params.id) {
-            res.send(204);
-            return next();
+            return next(new restify.InvalidArgumentError('campaignId is required'));
         }
         var type = req.params.type;
         if (!type) {
-            return next('type param required for this URI');
+            return next(new restify.InvalidArgumentError('type param required for this URI'));
         }
         var query = stats.queries(req.params.range,'campaign', req.params.id)[type];
 
@@ -212,11 +211,6 @@ var getAllForUserFn = function (baseUrl) {
 
                 if (err) {
                     return next(err);
-                }
-
-                if (!campaigns) {
-                    res.send(204, []);
-                    return next();
                 }
 
                 res.send(200, campaigns);

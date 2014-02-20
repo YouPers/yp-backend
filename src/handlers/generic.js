@@ -391,8 +391,7 @@ module.exports = {
                         return next(err);
                     }
                     if (!obj) {
-                        res.send(204, []);
-                        return next();
+                        return next(new restify.ResourceNotFoundError());
                     }
 
                     //check if the object has an owner and whether the current user owns the object
@@ -438,7 +437,7 @@ module.exports = {
                         return next(err);
                     }
                     if (!objList || objList.length === 0) {
-                        res.send(204, []);
+                        res.send([]);
                         return next();
                     }
                     if (req.query && req.query.populatedeep) {

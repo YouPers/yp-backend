@@ -5,8 +5,8 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
     ObjectId = Schema.ObjectId,
     crypto = require('crypto'),
-    restify = require('restify'),
     common = require('./common'),
+    error = require('../util/error'),
     Profile = mongoose.model('Profile');
 /**
  * User Schema
@@ -96,13 +96,13 @@ UserSchema
  */
 UserSchema.pre('save', function (next) {
     if (!validatePresenceOf(this.username)) {
-        next(new restify.MissingParameterError('username cannot be blank'));
+        next(new error.MissingParameterError({ required: 'username' }));
     }
     if (!validatePresenceOf(this.roles)) {
-        next(new restify.MissingParameterError('roles cannot be blank'));
+        next(new error.MissingParameterError({ required: 'roles' }));
     }
     if (!validatePresenceOf(this.email)) {
-        next(new restify.MissingParameterError('email cannot be blank'));
+        next(new error.MissingParameterError({ required: 'email' }));
     }
     if (this.email.indexOf('@') <= 0) {
 //    next(new restify.MissingParameterError('Email address must be valid'));
@@ -112,7 +112,7 @@ UserSchema.pre('save', function (next) {
     if(!this.hashed_password || (this.password_old && this.hashed_password === this.encryptPassword(this.password_old))) {
         this.hashed_password = this.encryptPassword(this.password);
     } else if(this.password_old) {
-        next(new restify.InvalidArgumentError('Invalid password'));
+        next(new error.InvalidArgumentError('Invalid password.'));
     }
 
     if (!this.isNew || this.profile) {
@@ -126,27 +126,26 @@ UserSchema.pre('save', function (next) {
 
         newProfile.save(function (err) {
             if (err) {
-                err.statusCode = 409;
-                return next(err);
+                return error.handleError(err, next);
             }
         });
 
     }
     if (!validatePresenceOf(this.password)) {
-        next(new restify.MissingParameterError('Invalid password'));
+        next(new error.MissingParameterError({ required: 'password' }));
     }
     next();
 });
 
 UserSchema.pre('remove', function (next) {
 
-        var profileId = this.profile;
+    var profileId = this.profile;
 
     var profile = Profile.find( { _id: profileId } );
 
     profile.remove(function (err) {
         if (err) {
-            return next(err);
+            return error.handleError(err, next);
         }
     });
 

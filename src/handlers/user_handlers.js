@@ -80,7 +80,10 @@ var getUser = function(req, res, next, callback) {
 
 
     if(req.params.id !== req.user.id) {
-        return next(new error.ConflictError('User ID in request parameters does not match authenticated user'));
+        return next(new error.ConflictError('User ID in request parameters does not match authenticated user', {
+            requestUserId: req.params.id,
+            authenticatedUserId: req.user.id
+        }));
     }
 
     User.findById(req.params.id)
@@ -88,7 +91,7 @@ var getUser = function(req, res, next, callback) {
         .exec(function(err, user) {
         if(err) { return error.handleError(err, next); }
         if(!user) {
-            return next(new error.ResourceNotFound('Invalid User ID'));
+            return next(new error.ResourceNotFoundError('Invalid User ID', { userId: req.params.id }));
         }
 
         callback(user);
@@ -100,7 +103,7 @@ var emailVerificationPostFn = function(baseUrl) {
 
         getUser(req, res, next, function(user) {
 
-            if(req.body.token === email.encryptLinkToken(user.email)) {
+            if(req.body && req.body.token === email.encryptLinkToken(user.email)) {
 
                 user.emailValidatedFlag = true;
                 user.save();
@@ -108,8 +111,10 @@ var emailVerificationPostFn = function(baseUrl) {
 
                 res.send(200, {});
                 return next();
+            } else if(!req.body || !req.body.token) {
+                return next(new error.MissingParameterError({ required: 'token' }));
             } else {
-                return next(new restify.InvalidArgumentError('Invalid Token'));
+                return next(new error.InvalidArgumentError('Invalid Token', { token: req.body.token }));
             }
 
         });
@@ -123,7 +128,7 @@ var requestPasswordResetPostFn = function(baseUrl) {
 
         // check payload
         if (!req.body || !req.body.usernameOrEmail ) {
-            return next(new restify.InvalidArgumentError('usernameOrEmail required in POST body'));
+            return next(new error.MissingParameterError({ required: 'usernameOrEmail'}));
         }
 
 
@@ -131,11 +136,9 @@ var requestPasswordResetPostFn = function(baseUrl) {
             .or([{username: req.body.usernameOrEmail}, {email: req.body.usernameOrEmail}])
             .select('+email +username')
             .exec(function(err, user) {
-            if(err) {
-                return next(new restify.InternalError(err));
-            }
+            if(err) { error.handleError(err, next); }
             if(!user) {
-                return next(new restify.InvalidArgumentError('unknown username or email'));
+                return next(new error.InvalidArgumentError('unknown username or email', { usernameOrEmail: req.body.usernameOrEmail }));
             }
 
             email.sendPasswordResetMail(user, req.i18n);
@@ -154,7 +157,7 @@ var passwordResetPostFn = function(baseUrl) {
 
         // check payload
         if (!req.body || !req.body.token || !req.body.password) {
-            return next(new restify.InvalidArgumentError('Token and Password required in POST body'));
+            return next(new error.MissingParameterError({ required: ['token', 'password']}));
         }
 
         var decryptedToken;
@@ -162,24 +165,22 @@ var passwordResetPostFn = function(baseUrl) {
         try {
              decryptedToken = email.decryptLinkToken(req.body.token);
         } catch (err) {
-            return next(new restify.InvalidArgumentError('Invalid Token'));
+            return next(new error.InvalidArgumentError('Invalid Token', { token: req.body.token }));
         }
 
         var userId = decryptedToken.split(email.linkTokenSeparator)[0];
         var tokentimestamp = decryptedToken.split(email.linkTokenSeparator)[1];
 
         if (new Date().getMilliseconds() - tokentimestamp > config.linkTokenEncryption.maxTokenLifetime) {
-            return next(new restify.InvalidArgumentError('Password Reset Link is expired, please click again on password reset'));
+            return next(new error.InvalidArgumentError('Token is expired', { token: req.body.token }));
         }
 
         User.findById(userId)
             .select(User.privatePropertiesSelector)
             .exec(function(err, user) {
-            if(err) {
-                return next(new restify.InternalError(err));
-            }
+            if(err) { return error.handleError(err, next); }
             if(!user) {
-                return next(new restify.InvalidArgumentError('Unknown User'));
+                return next(new error.ResourceNotFoundError('User not found', { userId: userId }));
             }
 
              user.hashed_password = undefined;
@@ -207,9 +208,7 @@ var avatarImagePostFn = function(baseUrl) {
             var user = req.user;
             user.avatar = image;
             user.save(function(err, savedUser) {
-                if (err) {
-                    return next(new restify.InternalError(err));
-                }
+                if (err) { return error.handleError(err, next); }
             });
 
             // send response

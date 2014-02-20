@@ -4,6 +4,7 @@ var handlerUtils = require('./handlerUtils'),
     restify = require('restify'),
     mongoose = require('mongoose'),
     Organization = mongoose.model('Organization'),
+    Campaign = mongoose.model('Campaign'),
     _ = require('lodash');
 
 

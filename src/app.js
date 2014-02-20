@@ -20,7 +20,7 @@ var restify = require("restify"),
     auth = require('./util/auth'),
     i18n = require('i18next'),
     ypi18n = require('./util/ypi18n'),
-    error = require('./util/error');
+    error = require('./util/error'),
     ypi18n = require('./util/ypi18n'),
     db = require('./util/database');
 

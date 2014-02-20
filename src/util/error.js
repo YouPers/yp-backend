@@ -98,6 +98,9 @@ var CODES = {
  * @returns {*}
  */
 var handleError = function(err, next) {
+    if(err instanceof restify.RestError) {
+        return next(err);
+    }
     if(err instanceof mongoose.Error.ValidationError) {
         return next(new module.exports.ValidationError(err));
     } else {

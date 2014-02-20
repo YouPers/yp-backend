@@ -110,7 +110,7 @@ module.exports = {
     handleError: handleError
 };
 
-var slice = Function.prototype.call.bind(Array.prototype.slice);
+//var slice = Function.prototype.call.bind(Array.prototype.slice);
 
 Object.keys(CODES).forEach(function (k) {
     var name = k;
@@ -118,37 +118,30 @@ Object.keys(CODES).forEach(function (k) {
         name += 'Error';
     }
 
-    module.exports[name] = function (cause, message) {
+    module.exports[name] = function (message, cause) {
         var index = 1;
         var opts = {
             restCode: k + 'Error',
             statusCode: CODES[k].statusCode,
             message: CODES[k].message, // default message
-            body: {}
+            body: {
+
+            }
         };
+
+        if(!cause && message && typeof message !== 'string') {
+            cause = message;
+        } else if(message && typeof message === 'string') {
+            opts.message = message;
+        }
 
         if (cause && cause instanceof Error) {
             opts.cause = cause;
-            opts.body.errors = cause.errors;
+            opts.body.data = opts.body.data || {};
+            opts.body.data.errors = cause.errors;
         } else if (typeof (cause) === 'object') {
-
-            opts.statusCode = cause.statusCode || CODES[k].statusCode;
-
-            // if a message is provided, override default message
-            if(cause.message) {
-                opts.message = cause.message;
-            } else if(message) {
-                opts.message = message;
-            }
-
-            if(cause.body) {
-                opts.body = cause.body;
-            }
-
+            opts.body.data = cause;
         } else { // no cause is provided
-            if(cause) {
-                opts.message = cause;
-            }
             index = 0;
         }
 
@@ -156,8 +149,7 @@ Object.keys(CODES).forEach(function (k) {
         opts.body.message = opts.message;
         opts.body.code = opts.restCode;
 
-        var args = slice(arguments, index);
-        args.unshift(opts);
+        var args = [ opts, opts.message ];
         restify.RestError.apply(this, args);
     };
     util.inherits(module.exports[name], restify.RestError);

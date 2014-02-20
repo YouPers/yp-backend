@@ -26,10 +26,11 @@ var postFn = function (baseUrl) {
         }
 
         if (!auth.canAssign(req.user, newUser.roles)) {
-            return next(new error.NotAuthorizedError({
-                message: 'The user is not authorized to assign these roles.',
-                body: {roles: newUser.roles}
-            }));
+            return next(new error.NotAuthorizedError(
+                'The user is not authorized to assign these roles.', {
+                    roles: newUser.roles
+                }
+            ));
         }
 
         req.log.trace(newUser, 'PostFn: Saving new user and profile objects');
@@ -63,14 +64,14 @@ var validateUserPostFn = function(baseUrl) {
             User.findOne(query).select(field).exec(function(err, value) {
                 if(err) { return error.handleError(err, next); }
                 if(value) {
-                    return next(new error.ConflictError({message: field + ' is already in use', body: {value: query[field]}}));
+                    return next(new error.ConflictError(field + ' is already in use', { value: query[field] } ));
                 } else {
                     res.send(200);
                     return next();
                 }
             });
         } else {
-            return next(new error.MissingParameterError({message: 'no field to validate was provided', body: {expectedFields: fields}}));
+            return next(new error.MissingParameterError('no field to validate was provided', { expectedFields: fields }));
         }
     };
 };

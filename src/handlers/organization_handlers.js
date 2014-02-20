@@ -65,22 +65,36 @@ var postFn = function (baseUrl) {
     };
 };
 
-
+/**
+ * A org-Admin may see his organisation
+ * A CampaignLead may see the organisation where he has campaigns in.
+ *
+ * @param baseUrl
+ * @returns {Function}
+ */
 var getAllForUserFn = function (baseUrl) {
     return function (req, res, next) {
 
         var userId = req.user.id;
 
-        Organization.find({administrators: userId})
-            .exec(function(err, organizations) {
+        Campaign.find({campaignLeads: userId}).exec(function(err, campaigns) {
+            var orgs = _.map(campaigns, 'organization');
 
-                if (err) {
-                    return next(err);
-                }
+            Organization.find().or([{administrators: userId}, {_id: {$in: orgs}}])
+                .exec(function(err, organizations) {
 
-                res.send(200, organizations);
-                return next();
-            });
+                    if (err) {
+                        return next(err);
+                    }
+
+                    res.send(200, organizations);
+                    return next();
+                });
+
+
+        });
+
+
     };
 };
 

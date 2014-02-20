@@ -18,7 +18,6 @@ var restify = require("restify"),
     passportHttp = require('passport-http'),
     swagger = require("swagger-node-restify"),
     auth = require('./util/auth'),
-    i18n = require('i18next'),
     ypi18n = require('./util/ypi18n'),
     db = require('./util/database');
 
@@ -30,7 +29,7 @@ var server = restify.createServer({
 });
 
 // initialize Database
-db.initialize(swagger);
+db.initialize(config.loadTestData);
 
 // setting logging of request and response
 // setup better error stacktraces
@@ -55,15 +54,7 @@ longjohn.async_trace_limit = 10;  // defaults to 10
 longjohn.empty_frame = 'ASYNC CALLBACK';
 
 // initialize i18n
-i18n.init({
-    fallbackLng: 'de',
-    supportedLngs: ['de','en', 'fr', 'it'],
-    ns: {
-        namespaces: ['email', 'ical']
-    },
-    resGetPath: 'translations/__ns__.__lng__.json',
-    saveMissing: false,
-    debug: false});
+var i18n = ypi18n.initialize();
 
 // setup middlewares to be used by server
 server.use(restify.requestLogger());

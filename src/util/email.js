@@ -1,5 +1,7 @@
 var env = process.env.NODE_ENV || 'development',
     config = require('../config/config')[env],
+    Logger = require('bunyan'),
+    log = new Logger(config.loggerOptions),
     path = require('path'),
     crypto = require('crypto'),
     _ = require('lodash'),
@@ -33,7 +35,7 @@ var decryptLinkToken = function (token) {
 var sendEmail = function (from, to, subject, templateName, locals) {
     emailTemplates(templatesDir, function (err, template) {
         if (err) {
-            console.log(err);
+            log.error({err: err}, 'error during parsing of all email-templates');
         } else {
 
             _.extend(locals, {
@@ -45,7 +47,7 @@ var sendEmail = function (from, to, subject, templateName, locals) {
             // Send a single email
             template(templateName, locals, function (err, html, text) {
                     if (err) {
-                        console.log(err);
+                       log.error({err:err, locals: locals}, "error during email rendering for :" + to + " template: " + templateName);
                     } else {
                         var mail = {
                             from: from || fromDefault, // sender address
@@ -56,9 +58,9 @@ var sendEmail = function (from, to, subject, templateName, locals) {
                         };
                         smtpTransport.sendMail(mail, function (err, responseStatus) {
                             if (err) {
-                                console.log(err);
+                                log.error({err:err}, "error while sending email for :" + to + " template: " + templateName);
                             } else {
-                                console.log(responseStatus.message);
+                                log.info({responseStatus: responseStatus, message: responseStatus.message}, "email sent: " + to + " template: " + templateName);
                             }
                         });
                     }
@@ -154,8 +156,6 @@ var sendCalInvite = function (to, type, iCalString, i18n) {
 
 var sendActivityPlanInvite = function sendActivityPlanInvite(email, invitingUser, plan, invitedUser, i18n) {
 
-    var from = fromDefault;
-    var to = email;
     var subject = i18n.t("email:ActivityPlanInvitation.subject", {inviting: invitingUser.toJSON(), plan: plan.toJSON()});
     var locals = {
         salutation: i18n.t('email:ActivityPlanInvitation.salutation', {invited: invitedUser ? invitedUser.toJSON() : {}}),
@@ -163,15 +163,12 @@ var sendActivityPlanInvite = function sendActivityPlanInvite(email, invitingUser
         link: config.webclientUrl + "/#/activities/" + plan.activity._id + '/invitation?invitingUserId='+invitingUser._id,
         footer: i18n.t('email:ActivityPlanInvitation.footer')
     };
-    sendEmail(from, to, subject, 'genericYouPersMail', locals);
+    sendEmail(fromDefault, email, subject, 'genericYouPersMail', locals);
 };
 
 var sendCampaignLeadInvite = function sendCampaignLeadInvite(email, invitingUser, campaign, invitedUser, i18n) {
 
-    var from = fromDefault;
-    var to = email;
     var subject = i18n.t("email:CampaignLeadInvite.subject", {inviting:  invitingUser.toJSON(), campaign: campaign.toJSON()});
-
     var token = encryptLinkToken(campaign._id +linkTokenSeparator + email +  (invitedUser ? linkTokenSeparator + invitedUser._id : ''));
     var locals = {
         link: config.webclientUrl + "/#/campaigns/" + campaign._id + '/becomeCampaignLead?invitingUserId='+invitingUser._id+'&token='+token,
@@ -179,11 +176,29 @@ var sendCampaignLeadInvite = function sendCampaignLeadInvite(email, invitingUser
         text: i18n.t('email:CampaignLeadInvite.text', {inviting: invitingUser.toJSON(), campaign: campaign.toJSON()}),
         footer: i18n.t('email:CampaignLeadInvite.footer')
     };
-    sendEmail(from, to, subject, 'genericYouPersMail', locals);
+    sendEmail(fromDefault, email, subject, 'genericYouPersMail', locals);
 };
 
+var sendDailyEventSummary = function sendDailyEventSummary(toAddress, events, user, i18n) {
+    var subject = i18n.t("email:DailyEventSummary.subject", {events: events});
+
+    var locals = {
+        events: events,
+        salutation: i18n.t('email:DailyEventSummary.salutation'),
+        text: "to be written...",
+        link: "mylink",
+        footer: "myFooter"
+    };
+
+    sendEmail(fromDefault, toAddress, subject, 'dailyEventsSummary', locals);
+};
+
+var close = function close() {
+    smtpTransport.close();
+};
 
 module.exports = {
+    closeConnection: close,
     encryptLinkToken: encryptLinkToken,
     decryptLinkToken: decryptLinkToken,
     linkTokenSeparator: linkTokenSeparator,
@@ -192,5 +207,6 @@ module.exports = {
     sendCalInvite: sendCalInvite,
     sendPasswordResetMail: sendPasswordResetMail,
     sendActivityPlanInvite: sendActivityPlanInvite,
-    sendCampaignLeadInvite: sendCampaignLeadInvite
+    sendCampaignLeadInvite: sendCampaignLeadInvite,
+    sendDailyEventSummary: sendDailyEventSummary
 };

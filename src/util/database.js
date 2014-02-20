@@ -1,12 +1,11 @@
-
 var env = process.env.NODE_ENV || 'development',
     config = require('../config/config')[env],
     mongoose = require('mongoose'),
-    fs = require("fs");
+    _ = require('lodash'),
+    swagger = require("swagger-node-restify");
 
 
-
-var initialize = function initialize (swagger) {
+var initialize = function initialize(loadTestData) {
     // Setup Database Connection
     var connectStr = config.db_prefix + '://';
     if (config.db_user && config.db_password) {
@@ -17,14 +16,25 @@ var initialize = function initialize (swagger) {
     console.log(connectStr);
     mongoose.connect(connectStr, {server: {auto_reconnect: true}});
 
-    // Bootstrap models
-    fs.readdirSync('./src/models').forEach(function (file) {
-        if (file.indexOf('_model.js') !== -1) {
-            console.log("Loading model: " + file);
-            var model = require('../models/' + file);
-            if (model.getSwaggerModel) {
-                swagger.addModels(model.getSwaggerModel());
-            }
+    var models = [
+        'activity',
+        'activityPlan',
+        'assessment',
+        'assessmentResult',
+        'campaign',
+        'comment',
+        'goal',
+        'organization',
+        'profile',
+        'user'];
+    if (!loadTestData) {
+        config.loadTestData = false;
+    }
+    _.forEach(models, function (modelName) {
+        console.log("Loading model: " + modelName);
+        var model = require('../models/' + modelName + '_model');
+        if (model.getSwaggerModel) {
+            swagger.addModels(model.getSwaggerModel());
         }
     });
 };

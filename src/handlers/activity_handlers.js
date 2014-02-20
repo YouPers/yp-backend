@@ -140,15 +140,15 @@ function postNewCampaignActivity(req, res, next) {
 
             Campaign.findById(sentActivity.campaign).exec(function (err, campaign) {
                 if (err) {
-                    return done(err);
+                    return next(err);
                 }
                 if (!campaign) {
-                    return done(new Rest.ResourceNotFoundError('Campaign with id: ' + sentActivity.campaign + ' not found.'));
+                    return next(new Rest.ResourceNotFoundError('Campaign with id: ' + sentActivity.campaign + ' not found.'));
                 }
 
                 // check whether the posting user is a campaignLead of the campaign
                 if (!_.contains(campaign.campaignLeads.toString(), req.user.id)) {
-                    return done(new Rest.NotAuthorizedError('The user is not a campaignlead of this campaign.', {
+                    return next(new Rest.NotAuthorizedError('The user is not a campaignlead of this campaign.', {
                         userId: req.user.id,
                         campaignId: campaign.id
                     }));

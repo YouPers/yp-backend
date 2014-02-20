@@ -120,19 +120,19 @@ function postNewCampaignActivity(req, res, next) {
             }
         });
 
-    // check whether delivered owner is the authenticated user
-    if (sentActivity.owner && (req.user.id !== sentActivity.owner)) {
-        return next(new Rest.NotAuthorizedError('POST of object only allowed if owner == authenticated user'));
+    // check whether delivered author is the authenticated user
+    if (sentActivity.author && (req.user.id !== sentActivity.author)) {
+        return next(new Rest.NotAuthorizedError('POST of object only allowed if author == authenticated user'));
     }
 
-    // if no owner delivered set to authenticated user
-    if (!sentActivity.owner) {
-        sentActivity.owner = req.user.id;
+    // if no author delivered set to authenticated user
+    if (!sentActivity.author) {
+        sentActivity.author = req.user.id;
     }
 
     if (!_.contains(req.user.roles, auth.roles.orgadmin) && !_.contains(req.user.roles, auth.roles.campaignlead)) {
         // checks based on roles of requesting user
-        return next(new Rest.NotAuthorizedError('POST of object only allowed if owner is an org admin or a campaign lead'));
+        return next(new Rest.NotAuthorizedError('POST of object only allowed if author is an org admin or a campaign lead'));
     } else {
         if (!sentActivity.campaign) {
             return next(new Rest.InvalidContentError('expected activity to have a campaign id'));

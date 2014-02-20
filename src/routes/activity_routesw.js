@@ -127,6 +127,31 @@ module.exports = function (swagger, config) {
         action: generic.postFn(baseUrl, Activity)
     });
 
+    swagger.addPost({
+        spec: {
+            description: "Operations about Activities",
+            path: baseUrl + "/campaign",
+            notes: "The new activity will get a number 'NEW_C' until, because we have not yet implemented an " +
+                "autoincrement.",
+            summary: "Posts a new campaign activity",
+            method: "POST",
+            "responseClass": "Activity",
+            "nickname": "postCampaignActivity",
+            params: [
+                {
+                    paramType: "body",
+                    name: "ActivityToStore",
+                    description: "the activity to store",
+                    dataType: "Activity"
+                }
+            ],
+            accessLevel: 'al_campaignlead',
+            beforeCallbacks: [handlers.invalidateActivityCache]
+        },
+        action: handlers.postNewCampaignActivity
+    });
+
+
     swagger.addPut({
         spec: {
             description: "Operations about Activities",

@@ -29,6 +29,7 @@ var ProfileSchema = common.newSchema( {
         country: { type: String, trim: true }
     },
     maritalStatus: { type: String, enum: common.enums.maritalStatus, default: "undefined" },
+    language: { type: String, trim: true},
     userPreferences: {
         defaultUserWeekForScheduling: {
             monday: { type: Boolean, default: true },

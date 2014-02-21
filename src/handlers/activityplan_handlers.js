@@ -14,6 +14,12 @@ var env = process.env.NODE_ENV || 'development',
     auth = require('../util/auth');
 
 var getIcalObject = function (plan, recipientUser, iCalType, i18n) {
+
+    // fix for non existing plan.text
+    if (_.isUndefined(plan.text)) {
+        plan.text = "";
+    }
+
     var myCal = new ical.iCalendar();
     var event = new ical.VEvent(plan._id);
     event.addProperty("ORGANIZER", "MAILTO:dontreply@youpers.com", {CN: "YouPers Digital Health"});

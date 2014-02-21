@@ -1,17 +1,17 @@
 {
     "new": {
-        "summary": "YouPers: __plan.activity.title__",
+        "summary": "YouPers: __plan.title__",
         "description": "YouPers Activity: __plan.title__, \n\n__plan.text__, \n\n__link__",
         "htmlDescription": "<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 3.2//EN'>\n<HTML><head></head><body>YouPers activity: __plan.title__<br><br>__plan.text<br><br><a href='__link__'>__link__</a></body></HTML>"
     },
     "update": {
-        "summary": "YouPers: __plan.activity.title__",
+        "summary": "YouPers: __plan.title__",
         "description": "YouPers Activity: __plan.title__, \n\n__plan.text__, \n\n__link__",
         "htmlDescription": "<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 3.2//EN'>\n<HTML><head></head><body>YouPers activity: __plan.title__<br><br>__plan.text<br><br><a href='__link__'>__link__</a></body></HTML>"
     },
     "cancel": {
         "summary": "YouPers: __plan.title__",
-        "description": "YouPers Activityt: __plan.activity.title__, \n\n__plan.text__, \n\n__link__",
+        "description": "YouPers Activityt: __plan.title__, \n\n__plan.text__, \n\n__link__",
         "htmlDescription": "<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 3.2//EN'>\n<HTML><head></head><body>YouPers activity: __plan.title__<br><br>__plan.text<br><br><a href='__link__'>__link__</a></body></HTML>"
     }
 }

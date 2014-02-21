@@ -6,12 +6,12 @@
     },
     "update": {
         "summary": "YouPers: __plan.title__",
-        "description": "YouPers Aktivität: __plan.activity.title__\n\n__plan.text__\n\n__link__",
+        "description": "YouPers Aktivität: __plan.title__\n\n__plan.text__\n\n__link__",
         "htmlDescription": "<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 3.2//EN'>\n<HTML><head></head><body><b>YouPers</b> Aktivität: __plan.title__, <br><br>__plan.text__<br><br><a href='__link__'>__link__</a></body></HTML>"
     },
     "cancel": {
         "summary": "YouPers: __plan.title__",
-        "description": "YouPers Aktivität: __plan.activity.title__\n\n__plan.text__\n\n__link__",
+        "description": "YouPers Aktivität: __plan.title__\n\n__plan.text__\n\n__link__",
         "htmlDescription": "<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 3.2//EN'>\n<HTML><head></head><body><b>YouPers</b> Aktivität: __plan.title__, <br><br>__plan.text__<br><br><a href='__link__'>__link__</a></body></HTML>"
     }
 }

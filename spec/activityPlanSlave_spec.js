@@ -9,7 +9,6 @@
 var frisby = require('frisby');
 var port = process.env.PORT || 8000;
 var URL = 'http://localhost:' + port + '/activityplans';
-var _ = require('lodash');
 var consts = require('./testconsts');
 
 frisby.globalSetup({ // globalSetup is for ALL requests
@@ -24,6 +23,7 @@ var masterPlan = {
     "activity": consts.groupActivity.id,
     "visibility": "public",
     "executionType": "group",
+    "title": "myTitle",
     "mainEvent": {
         "start": "2014-06-16T12:00:00.000Z",
         "end": "2014-06-16T13:00:00.000Z",

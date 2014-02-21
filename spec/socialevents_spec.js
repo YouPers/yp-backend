@@ -24,6 +24,7 @@ frisby.create('SocialEvents: POST an activityPlan as user 1')
         "owner": consts.users.test_ind1.id,
         "activity": consts.groupActivity.id,
         "visibility": "public",
+        "title": "myTitle",
         "executionType": "group",
         "mainEvent": {
             "start": "2014-06-16T12:00:00.000Z",

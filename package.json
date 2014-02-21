@@ -28,7 +28,8 @@
         "gm": "~1.14.2",
         "async": "~0.2.x",
         "i18next": "~1.7.1",
-        "cron": "*"
+        "cron": "*",
+        "shortid": "~2.0.x"
     },
     "devDependencies": {
         "grunt-contrib-jshint": "~0.8.x",

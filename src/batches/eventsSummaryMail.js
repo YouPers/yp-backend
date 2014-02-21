@@ -1,17 +1,18 @@
 var env = process.env.NODE_ENV || 'development',
     config = require('../config/config')[env],
-    Logger = require('bunyan'),
-    log =  new Logger(config.loggerOptions),
     mongoose = require('mongoose'),
     moment = require('moment'),
-    db = require('../util/database'),
-    async = require('async'),
     email = require('../util/email'),
-    i18n = require('../util/ypi18n').initialize();
+    batch = require('./batch');
 
 
-var sendSummaryMail = function sendSummaryMail(user, rangeStart, rangeEnd, done) {
+var sendSummaryMail = function sendSummaryMail(user, rangeStart, rangeEnd, done, context) {
+    var log = (context && context.log) || this.log;
+    var i18n = (context && context.i18n) || this.i18n;
 
+    if (!log || !i18n) {
+        throw new Error('missing log and i18n in either in this or in passed context object');
+    }
     if (user._id) {
         user = user._id;
     }
@@ -44,10 +45,9 @@ var sendSummaryMail = function sendSummaryMail(user, rangeStart, rangeEnd, done)
                         log.error({error: err}, 'User not found');
                         return done(err);
                     }
-
                     i18n.setLng(user.profile.language || 'de', function () {
                         log.info('sending DailySummary Mail to email: ' + user.email + ' with ' + events.length + ' events.');
-                        email.sendDailyEventSummary(user.email, events, user, i18n);
+                        email.sendDailyEventSummary.apply(this, [user.email, events, user, i18n]);
                         return done();
                     });
                 });
@@ -56,15 +56,14 @@ var sendSummaryMail = function sendSummaryMail(user, rangeStart, rangeEnd, done)
 
 };
 
-
-var run = function run() {
-
-    db.initialize(false);
-
+var feeder = function (process) {
+    var log = this.log;
     var timeFrame = this.timeFrameToFindEvents || 24 * 60 * 60 * 1000;
 
     var rangeEnd = moment();
     var rangeStart = moment(rangeEnd).subtract('milliseconds', timeFrame);
+    this.rangeStart = rangeStart;
+    this.rangeEnd = rangeEnd;
 
     log.info("Finding all users who had scheduled events ending between: " + rangeStart.format() + " and " + rangeEnd.format());
 
@@ -78,25 +77,16 @@ var run = function run() {
         }
         })
         .append({$group: {_id: '$owner'}})
-        .exec(function (err, owners) {
-            if (err) {
-                log.error({error: err}, "error");
-            }
-            log.debug({owner: owners}, "found these owners");
-
-            async.forEachLimit(owners, 5, function (owner, done) {
-                return sendSummaryMail(owner, rangeStart, rangeEnd, done);
-            }, function (err) {
-                if (err) {
-                    log.error('error while sending emails');
-                }
-                mongoose.connection.close();
-            });
-
-
-        });
+        .exec(process);
 };
 
+var worker = function (owner, done) {
+    return sendSummaryMail.apply(this, [owner,this.rangeStart, this.rangeEnd,  done]);
+};
+
+var run = function run() {
+    batch.genericBatch(feeder, worker, this);
+};
 
 module.exports = {
     run: run,

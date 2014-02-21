@@ -1,8 +1,5 @@
 describe('Send Summary Email', function() {
 
-
-
-
     var env = process.env.NODE_ENV || 'development',
     config = require('../src/config/config')[env],
     log = require('bunyan').createLogger(config.loggerOptions),
@@ -10,9 +7,6 @@ describe('Send Summary Email', function() {
     moment = require('moment'),
     db = require('../src/util/database'),
     mailBatch = require('../src/batches/eventsSummaryMail');
-
-
-
 
     beforeEach(function () {
         db.initialize(false);

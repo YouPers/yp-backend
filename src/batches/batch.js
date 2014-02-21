@@ -24,17 +24,21 @@ var env = process.env.NODE_ENV || 'development',
  * - where we have no need to use multiple node processes (this means, jobs that do IO (e.g. some DB-calls and than sending an
  * email are perfectly fine, BUT jobs with heavy CPU processing will need another solution.
  *
- * @param feeder(callback(err, workItems)) the feeder function that finds all work items to be processed. Gets a callback it
+ * @param feeder(callback(err, workItems), args...) the feeder function that finds all work items to be processed. Gets a callback it
  * needs to call at the end. Feeder is run in the Batch-Context, e.g. it can get 'this.log', 'this.i18n', 'this.name' or 'this.batchId'
  * @param worker(workItem, callback(err)) the worker function that processes one specific work item. Gets a callback it
  * needs to call at the end. Worker is run in the Batch-Context, e.g. it can get 'this.log', 'this.i18n', 'this.name' or 'this.batchId'
  * @param context The context where the feeder and worker are supposed to run in, usually passed from the scheduler job context.
+ * @param additional optional arguments: are passed on to the feeder and the worker function after their respective
+ * required arguments.
  */
 var genericBatch = function genericBatch(feeder, worker, context) {
     context = context || this;
     db.initialize(false);
     context.batchId = shortid.generate();
     log = context.log = log.child({batchId: context.name + ':' + context.batchId});
+
+    context.i18n = i18n;
 
     log.info('Batch Job: ' + context.name + ":" + context.batchId + ": STARTING");
     var concurrency = context.concurrency || 5;
@@ -60,11 +64,13 @@ var genericBatch = function genericBatch(feeder, worker, context) {
         }
     };
 
+    // passing on the additional arguments we were called with to the feeder function, we remove the first three
+    // and add the rest
+
     var args = [processFn];
     for (var i = 3; i > arguments.length; i++) {
         args.push(arguments[i]);
     }
-    context.i18n = i18n;
 
     feeder.apply(context, args);
 };

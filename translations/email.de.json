@@ -2,7 +2,7 @@
     "ActivityPlanInvitation": {
         "subject": "YouPers: Einladung für eine Gruppen-Aktivität vom __inviting.fullname__",
         "salutation": "Hallo __invited.firstname__",
-        "text": "__inviting.fullname__ hat dich eingeladen an folgender Aktivität teilzunehmen.<br><br><h3>__plan.activity.title__</h3><br><br>Um teilzunehmen, klicke auf den folgenden Link",
+        "text": "__inviting.fullname__ hat dich eingeladen an folgender Aktivität teilzunehmen.<br><br><h3>__plan.title__</h3><br><br>Um teilzunehmen, klicke auf den folgenden Link",
         "footer": "YouPers - Drive Your Health"
     },
     "CampaignLeadInvite": {

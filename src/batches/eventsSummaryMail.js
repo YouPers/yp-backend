@@ -1,6 +1,4 @@
-var env = process.env.NODE_ENV || 'development',
-    config = require('../config/config')[env],
-    mongoose = require('mongoose'),
+var mongoose = require('mongoose'),
     moment = require('moment'),
     email = require('../util/email'),
     batch = require('./batch');
@@ -56,7 +54,7 @@ var sendSummaryMail = function sendSummaryMail(user, rangeStart, rangeEnd, done,
 
 };
 
-var feeder = function (process) {
+var feeder = function (callback) {
     var log = this.log;
     var timeFrame = this.timeFrameToFindEvents || 24 * 60 * 60 * 1000;
 
@@ -77,7 +75,7 @@ var feeder = function (process) {
         }
         })
         .append({$group: {_id: '$owner'}})
-        .exec(process);
+        .exec(callback);
 };
 
 var worker = function (owner, done) {
@@ -91,5 +89,4 @@ var run = function run() {
 module.exports = {
     run: run,
     sendSummaryMail: sendSummaryMail
-
 };

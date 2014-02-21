@@ -22,7 +22,7 @@ describe('Send Summary Email', function() {
         mailBatch.sendSummaryMail( '52a97f1650fca98c29000006', moment().subtract('d',1), moment().add('d',1), function(err) {
             expect(err).toBeUndefined();
             return done();
-        });
+        }, {log: log, i18n: require('i18next')});
     });
 
     afterEach(function() {

@@ -28,8 +28,9 @@ var sendSummaryMail = function sendSummaryMail(user, rangeStart, rangeEnd, done,
 
     // Query explanation
     // - Find all activityPlans for this user that have at least one event in our daterange
-    // - $unwind projects the events array into the result rows, now we have a row for each event of each plan we found
-    // - select all events that are in our daterange
+    // - $unwind projects the events array into the result rows, now we have a row for each event of each plan we found.
+    //   In the events-property of these plans there is now exactly one event!.
+    // - select all plansEvents whose one event is in our daterange
     // - As a result we expect an array of ActivityPlans that have in their respective events-property one specific event
     //   instead of an array (due to the $unwind above)
     mongoose.model('ActivityPlan').aggregate()

@@ -17,7 +17,7 @@ var sendSummaryMail = function sendSummaryMail(user, rangeStart, rangeEnd, done,
     var i18n = (context && context.i18n) || this.i18n;
 
     if (!log || !i18n) {
-        throw new Error('missing log and i18n in either in this or in passed context object');
+        throw new Error('missing log and i18n: must be present either in "this" or in the passed context object');
     }
     if (user._id) {
         user = user._id;

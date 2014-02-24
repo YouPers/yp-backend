@@ -83,7 +83,7 @@ var getListFn = function getSocialEventsListFn(baseUrl, Model) {
                             created: actPlan.mainEvent.start,
                             refDoc: actPlan._id,
                             refDocModel: 'ActivityPlan',
-                            refDocTitle: actPlan.activity.number + ": " + actPlan.activity.title,
+                            refDocTitle: actPlan.number + ": " + actPlan.title,
                             refDocLink: "/activities/" + actPlan.activity._id,
                             text: "Mache mit bei unserer Gruppen-Aktivität"
                         };

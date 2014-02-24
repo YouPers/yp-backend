@@ -18,6 +18,7 @@ var joinable = {
     "activity": consts.groupActivity.id,
     "visibility": "public",
     "executionType": "group",
+    "title": "myTitle",
     "mainEvent": {
         "start": "2014-10-16T12:00:00.000Z",
         "end": "2014-10-16T13:00:00.000Z",
@@ -32,6 +33,7 @@ frisby.create('Activity Join Offers: plan once activity and check whether event 
         "owner": consts.users.test_ind1.id,
         "activity": consts.groupActivity.id,
         "visibility": "public",
+        "title": "myTitle2",
         "executionType": "group",
         "mainEvent": {
             "start": "2014-10-16T12:00:00.000Z",

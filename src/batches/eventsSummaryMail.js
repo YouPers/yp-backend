@@ -83,7 +83,7 @@ var feeder = function (callback) {
     var ActivityPlanModel = mongoose.model('ActivityPlan');
 
     // Query documentation:
-    // find all users that have at least one event that has its start-date in the rage we are interested in
+    // find all users that have at least one event that has its end-date in the rage we are interested in
     // group by user and return an array of objects in the form: [{_id: "qwer32r32r23r"}, {_id: "2342wefwefewf"}, ...]
     var aggregate = ActivityPlanModel.aggregate();
     aggregate

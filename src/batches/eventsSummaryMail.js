@@ -3,7 +3,15 @@ var mongoose = require('mongoose'),
     email = require('../util/email'),
     batch = require('./batch');
 
-
+/**
+ * worker function that sends a DailySummaryMail for one specific user.
+ * @param user an object with a "_id" property containing the id of the user for which to send an email.
+ *             can be a full user object or just an object with this "_id" property.
+ * @param rangeStart
+ * @param rangeEnd
+ * @param done
+ * @param context
+ */
 var sendSummaryMail = function sendSummaryMail(user, rangeStart, rangeEnd, done, context) {
     var log = (context && context.log) || this.log;
     var i18n = (context && context.i18n) || this.i18n;
@@ -18,17 +26,23 @@ var sendSummaryMail = function sendSummaryMail(user, rangeStart, rangeEnd, done,
 
     log.info('preparing Summary Mail for user: ' + user);
 
+    // Query explanation
+    // - Find all activityPlans for this user that have at least one event in our daterange
+    // - $unwind projects the events array into the result rows, now we have a row for each event of each plan we found
+    // - select all events that are in our daterange
+    // - As a result we expect an array of ActivityPlans that have in their respective events-property one specific event
+    //   instead of an array (due to the $unwind above)
     mongoose.model('ActivityPlan').aggregate()
         .append({$match: {owner: user._id || user, events: {$elemMatch: {end: {$gt: rangeStart.toDate(), $lt: rangeEnd.toDate()}}
         }}})
         .append({$unwind: '$events'})
         .append({$match: {'events.end': {$gt: rangeStart.toDate(), $lt: rangeEnd.toDate()}}})
-        .exec(function (err, events) {
+        .exec(function (err, plans) {
             if (err) {
                 log.error(err);
                 return done(err);
             }
-            log.debug({events: events}, 'found events for user: ' + user);
+            log.debug({events: plans}, 'found events for user: ' + user);
 
             mongoose.model('User')
                 .findById(user)
@@ -44,8 +58,8 @@ var sendSummaryMail = function sendSummaryMail(user, rangeStart, rangeEnd, done,
                         return done(err);
                     }
                     i18n.setLng(user.profile.language || 'de', function () {
-                        log.info('sending DailySummary Mail to email: ' + user.email + ' with ' + events.length + ' events.');
-                        email.sendDailyEventSummary.apply(this, [user.email, events, user, i18n]);
+                        log.info('sending DailySummary Mail to email: ' + user.email + ' with ' + plans.length + ' events.');
+                        email.sendDailyEventSummary.apply(this, [user.email, plans, user, i18n]);
                         return done();
                     });
                 });
@@ -67,6 +81,9 @@ var feeder = function (callback) {
 
     var ActivityPlanModel = mongoose.model('ActivityPlan');
 
+    // Query documentation:
+    // find all users that have at least one event that has its start-date in the rage we are interested in
+    // group by user and return an array of objects in the form: [{_id: "qwer32r32r23r"}, {_id: "2342wefwefewf"}, ...]
     var aggregate = ActivityPlanModel.aggregate();
     aggregate
         .append({$match: {events: {$elemMatch: {end: {$gt: rangeStart.toDate(), $lt: rangeEnd.toDate()}

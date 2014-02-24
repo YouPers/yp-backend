@@ -179,11 +179,19 @@ var sendCampaignLeadInvite = function sendCampaignLeadInvite(email, invitingUser
     sendEmail(fromDefault, email, subject, 'genericYouPersMail', locals);
 };
 
-var sendDailyEventSummary = function sendDailyEventSummary(toAddress, events, user, i18n) {
-    var subject = i18n.t("email:DailyEventSummary.subject", {events: events});
+/**
+ * sends a dailyPlannedEventsSummary Email.
+ * @param toAddress - the address to send the email to
+ * @param plans - an array of activityPlans, that have in their events property NOT an array events but only ONE event
+ *                that is to be mentioned in the summary mail.
+ * @param user - a user object with a populated profile.
+ * @param i18n - an i18n object to be used to translate the email content
+ */
+var sendDailyEventSummary = function sendDailyEventSummary(toAddress, plans, user, i18n) {
+    var subject = i18n.t("email:DailyEventSummary.subject", {events: plans});
 
     var locals = {
-        events: events,
+        events: plans,
         salutation: i18n.t('email:DailyEventSummary.salutation'),
         text: "to be written...",
         link: "mylink",

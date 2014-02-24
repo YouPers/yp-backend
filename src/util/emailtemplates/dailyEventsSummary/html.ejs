@@ -1,0 +1,19 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+    <body>
+        <h3><%=salutation%></h3>
+        <br>
+        <%-text%>
+
+        <% for(var i=0; i<events.length; i++) {%>
+        <br>
+        Start: <%= events[i].events.begin %>
+        End: <%=events[i].events.end %>
+        <% } %>
+        <br>
+        <a href="<%= link %>"><%= link %></a>
+        <br>
+        <br>
+        <%= footer %>
+    </body>
+</html>

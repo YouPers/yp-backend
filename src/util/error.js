@@ -5,8 +5,8 @@
  *
  *  <code>() - use default message
  *  <code>(message) - use custom error message
- *  <code>({ message, body: {} } - custom message and response body with additional parameters, message is copied to body
- *
+ *  <code>(data) - default message and an object with additional parameters, for example the name of required/invalid fields or their values
+ *  <code>(message, data) - custom error message and data object
  */
 
 

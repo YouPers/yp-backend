@@ -25,6 +25,7 @@ var activityPlan = {
     "location": "",         // set afterward within the specific test cases
     "visibility": "",       // set afterward within the specific test cases
     "executionType": "",    // set afterward within the specific test cases
+    "title": "myTitle",
     "mainEvent": {
         "start": "",        // set afterward within the specific test cases
         "end": "",          // set afterward within the specific test cases

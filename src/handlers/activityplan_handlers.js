@@ -14,6 +14,12 @@ var env = process.env.NODE_ENV || 'development',
     auth = require('../util/auth');
 
 var getIcalObject = function (plan, recipientUser, iCalType, i18n) {
+
+    // fix for non existing plan.text
+    if (_.isUndefined(plan.text)) {
+        plan.text = "";
+    }
+
     var myCal = new ical.iCalendar();
     var event = new ical.VEvent(plan._id);
     event.addProperty("ORGANIZER", "MAILTO:dontreply@youpers.com", {CN: "YouPers Digital Health"});
@@ -49,11 +55,11 @@ var getIcalObject = function (plan, recipientUser, iCalType, i18n) {
                 {plan: plan.toJSON ? plan.toJSON() : plan, recipient: recipientUser.toJSON(), link: link}),
             {'FMTTYPE': 'text/html'});
         event.addProperty("LOCATION", plan.location);
-        var notifPref = recipientUser.profile.userPreferences.calendarNotification;
+        var notifPref = recipientUser.profile.userPreferences.calendarNotification || "900";
         if (notifPref !== 'none') {
             var alarm = event.addComponent('VALARM');
             alarm.addProperty("ACTION", "DISPLAY");
-            alarm.addProperty("TRIGGER", "-PT" + notifPref);
+            alarm.addProperty("TRIGGER", -1 * notifPref);
             alarm.addProperty("DESCRIPTION", i18n.t('ical:' + iCalType + ".summary", {plan: plan.toJSON ? plan.toJSON() : plan, recipient: recipientUser.toJSON()}));
         }
     }

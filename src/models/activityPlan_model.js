@@ -31,6 +31,9 @@ var ActivityPlanSchema = common.newSchema({
     joiningUsers: [
         {type: ObjectId, ref: 'User'}
     ],
+    title: {type: String, required: true},
+    text: {type: String},
+    number: {type: String},
     location: {type: String},
     executionType: {type: String, enum: common.enums.executiontype},
     visibility: {type: String, enum: common.enums.visibility},

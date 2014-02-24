@@ -7,7 +7,7 @@
                 "iCalInvites": false,
                 "dailyUserMail": false
             },
-            "calendarNotification": "1H"
+            "calendarNotification": "900"
         }
     },
     {
@@ -18,7 +18,7 @@
                 "iCalInvites": false,
                 "dailyUserMail": false
             },
-            "calendarNotification": "1H"
+            "calendarNotification": "900"
         }
     },
     {
@@ -29,7 +29,7 @@
                 "iCalInvites": false,
                 "dailyUserMail": false
             },
-            "calendarNotification": "1H"
+            "calendarNotification": "900"
         }
     },
     {
@@ -40,7 +40,7 @@
                 "iCalInvites": false,
                 "dailyUserMail": false
             },
-            "calendarNotification": "1H"
+            "calendarNotification": "900"
         }
     },
     {
@@ -51,7 +51,7 @@
                 "iCalInvites": false,
                 "dailyUserMail": false
             },
-            "calendarNotification": "1H"
+            "calendarNotification": "900"
         }
     },
     {
@@ -62,7 +62,7 @@
                 "iCalInvites": false,
                 "dailyUserMail": false
             },
-            "calendarNotification": "1H"
+            "calendarNotification": "900"
         }
     },
     {
@@ -73,7 +73,7 @@
                 "iCalInvites": false,
                 "dailyUserMail": false
             },
-            "calendarNotification": "1H"
+            "calendarNotification": "900"
         }
     },
     {
@@ -84,7 +84,7 @@
                 "iCalInvites": false,
                 "dailyUserMail": false
             },
-            "calendarNotification": "1H"
+            "calendarNotification": "900"
         }
     },
     {
@@ -95,7 +95,7 @@
                 "iCalInvites": false,
                 "dailyUserMail": false
             },
-            "calendarNotification": "1H"
+            "calendarNotification": "900"
         }
     },
     {
@@ -106,7 +106,7 @@
                 "iCalInvites": false,
                 "dailyUserMail": false
             },
-            "calendarNotification": "1H"
+            "calendarNotification": "900"
         }
     },
     {
@@ -117,7 +117,7 @@
                 "iCalInvites": false,
                 "dailyUserMail": false
             },
-            "calendarNotification": "1H"
+            "calendarNotification": "900"
         }
     },
     {
@@ -128,7 +128,7 @@
                 "iCalInvites": false,
                 "dailyUserMail": false
             },
-            "calendarNotification": "1H"
+            "calendarNotification": "900"
         }
     },
     {
@@ -139,7 +139,7 @@
                 "iCalInvites": false,
                 "dailyUserMail": false
             },
-            "calendarNotification": "1H"
+            "calendarNotification": "900"
         }
     },
     {
@@ -150,7 +150,7 @@
                 "iCalInvites": false,
                 "dailyUserMail": false
             },
-            "calendarNotification": "1H"
+            "calendarNotification": "900"
         }
     },
     {
@@ -161,7 +161,7 @@
                 "iCalInvites": false,
                 "dailyUserMail": false
             },
-            "calendarNotification": "1H"
+            "calendarNotification": "900"
         }
     }
 

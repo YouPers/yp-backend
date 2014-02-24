@@ -4,11 +4,16 @@
         <h3><%=salutation%></h3>
         <br>
         <%-text%>
+
+        <% for(var i=0; i<events.length; i++) {%>
         <br>
+        Start: <%= events[i].events.begin %>
+        End: <%=events[i].events.end %>
+        <% } %>
         <br>
         <a href="<%= link %>"><%= link %></a>
         <br>
         <br>
-        <%-footer%>
+        <%= footer %>
     </body>
 </html>

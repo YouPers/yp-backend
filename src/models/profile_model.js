@@ -43,7 +43,7 @@ var ProfileSchema = common.newSchema( {
         firstDayOfWeek: { type: String, enum: common.enums.firstDayOfWeek },
         languageUI: { type: String, enum: common.enums.languageUI },
         timezone: { type: String, trim: true },
-        calendarNotification: {type: String, enum: common.enums.calendarNotifications, default: '15M'},
+        calendarNotification: {type: String, enum: common.enums.calendarNotifications, default: '900'},
         email: {
             iCalInvites: { type: Boolean, default: true },
             actPlanInvites: { type: Boolean, default: true },

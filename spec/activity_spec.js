@@ -103,10 +103,10 @@ frisby.create('GET all activites')
             .afterJSON(function(activity) {
                 activity.defaultexecutiontype = 'group';
                 // Use data from previous result in next test
-                frisby.create('Put an Update to single Activity')
+                frisby.create('Activity: Put an Update to single Activity')
                     .put(URL + '/activities/' +activity.id, activity)
                     .auth('test_prodadm','yp')
-                    .expectStatus(200)
+                    .expectStatus(201)
                     .toss();
             })
             .toss();

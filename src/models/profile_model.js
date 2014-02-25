@@ -4,12 +4,13 @@
 
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
+    ObjectId = Schema.ObjectId,
     common = require('./common');
 
 /**
  * Profile Schema
  */
-var ProfileSchema = common.newSchema( {
+var ProfileSchema = common.newSchema({
     owner: { type: Schema.Types.ObjectId, ref: 'User', required: true },
     timestamp: {type: Date},
     gender: { type: String, enum: common.enums.gender, default: "undefined" },
@@ -40,8 +41,10 @@ var ProfileSchema = common.newSchema( {
             saturday: { type: Boolean, default: false },
             sunday: { type: Boolean, default: false  }
         },
+        starredActivities: [
+            {type: ObjectId, ref: 'Activity'}
+        ],
         firstDayOfWeek: { type: String, enum: common.enums.firstDayOfWeek },
-        languageUI: { type: String, enum: common.enums.languageUI },
         timezone: { type: String, trim: true },
         calendarNotification: {type: String, enum: common.enums.calendarNotifications, default: '900'},
         email: {
@@ -52,6 +55,32 @@ var ProfileSchema = common.newSchema( {
     }
 
 });
+
+ProfileSchema.methods.getWorkingDaysAsIcal = function () {
+    var iCalArray = [];
+    if (this.userPreferences.defaultUserWeekForScheduling.monday) {
+        iCalArray.push('MO');
+    }
+    if (this.userPreferences.defaultUserWeekForScheduling.tuesday) {
+        iCalArray.push('TU');
+    }
+    if (this.userPreferences.defaultUserWeekForScheduling.wednesday) {
+        iCalArray.push('WE');
+    }
+    if (this.userPreferences.defaultUserWeekForScheduling.thursday) {
+        iCalArray.push('TH');
+    }
+    if (this.userPreferences.defaultUserWeekForScheduling.friday) {
+        iCalArray.push('FR');
+    }
+    if (this.userPreferences.defaultUserWeekForScheduling.saturday) {
+        iCalArray.push('SA');
+    }
+    if (this.userPreferences.defaultUserWeekForScheduling.sunday) {
+        iCalArray.push('SU');
+    }
+    return iCalArray.join(',');
+};
 
 module.exports = mongoose.model('Profile', ProfileSchema);
 

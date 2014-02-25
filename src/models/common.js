@@ -386,8 +386,6 @@ module.exports = {
 
         // Preference related enums
         firstDayOfWeek: "Monday Sunday".split(' '),
-        languageUI: "German English Italian".split(' '),
-
         // Campaign related enums
         relatedService: "YP-Balance".split(' '),
         paymentStatus: "open paid".split(' '),

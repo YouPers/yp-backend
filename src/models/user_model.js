@@ -23,15 +23,7 @@ var UserSchema = common.newSchema({
     hashed_password: { type: String, trim: true, select: false },
     tempPasswordFlag: { type: Boolean, default: false, select: false },
     campaign: {type: ObjectId, ref: 'Campaign', select: false},
-    profile: {type: ObjectId, ref: 'Profile', select: false},
-    preferences: {
-        starredActivities: [
-            {type: ObjectId, ref: 'Activity'}
-        ],
-        workingDays: [
-            {type: String}
-        ]
-    }
+    profile: {type: ObjectId, ref: 'Profile', select: false}
 });
 
 /**

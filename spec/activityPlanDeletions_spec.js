@@ -66,7 +66,7 @@ frisby.create('Activity Plan Deletions: create a master plan for an activity pla
             .post(URL + '?populate=joiningUsers', slavePlan)
             .expectStatus(201)
             .afterJSON(function (slavePlanPostAnswer) {
-                expect(slavePlanPostAnswer.deleteStatus).toEqual('notDeletableJoinedPlans');
+                expect(slavePlanPostAnswer.deleteStatus).toEqual('deletable');
 
                 frisby.create('Activity Plan Deletions: reload masterPlan')
                     .auth('test_ind1', 'yp')
@@ -75,33 +75,30 @@ frisby.create('Activity Plan Deletions: create a master plan for an activity pla
                     .afterJSON(function (masterPlanReloaded) {
                         expect(masterPlanReloaded.deleteStatus).toEqual('notDeletableJoinedUsers');
 
-                        // try to delete "undeletable" slave plan
-                        frisby.create('Activity Plan Deletions: try delete slave')
-                            .auth('test_ind2', 'yp')
-                            .delete(URL + '/' + slavePlanPostAnswer.id)
-                            .expectStatus(405)
-                            .toss();
-
                         // try to delete "undeletable" master plan
                         frisby.create('Activity Plan Deletions: try delete master')
                             .delete(URL + '/' + masterPlanReloaded.id)
                             .auth('test_ind1', 'yp')
                             .expectStatus(405)
+                            .after(function() {
+                                // try to delete "deletable" slave plan
+                                frisby.create('Activity Plan Deletions: try delete slave')
+                                    .auth('test_ind2', 'yp')
+                                    .delete(URL + '/' + slavePlanPostAnswer.id)
+                                    .expectStatus(200)
+                                    .after(function() {
+                                        // clean up database by removing the master plan
+                                        frisby.create('Activity Plan Deletions: remove master')
+                                            .delete(URL + '/' + masterPlanReloaded.id)
+                                            .auth('sysadm','backtothefuture')
+                                            .expectStatus(200)
+                                            .toss();
+                                    })
+                                    .toss();
+                            })
                             .toss();
 
-                        // clean up database by removing the slave plan
-                        frisby.create('Activity Plan Deletions: remove slave')
-                            .delete(URL + '/' + slavePlanPostAnswer.id)
-                            .auth('sysadm','backtothefuture')
-                            .expectStatus(200)
-                            .toss();
 
-                        // clean up database by removing the master plan
-                        frisby.create('Activity Plan Deletions: remove master')
-                            .delete(URL + '/' + masterPlanReloaded.id)
-                            .auth('sysadm','backtothefuture')
-                            .expectStatus(200)
-                            .toss();
 
                         var pastDateStart = new Date();
                         pastDateStart.setDate(pastDateStart.getDate()-1);

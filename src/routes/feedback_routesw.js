@@ -3,13 +3,19 @@
  *    these routes require authenticated users
  */
 
-var mongoose = require('mongoose'),
-    common = require('./common'),
-    http = require("http"),
+var restify = require("restify"),
     env = process.env.NODE_ENV || 'development',
     config = require('../config/config')[env],
     Logger = require('bunyan'),
-    log = new Logger(config.loggerOptions);
+    log = new Logger(config.loggerOptions),
+    error = require('../util/error'),
+    client = restify.createJsonClient({
+        url: 'https://youpers.atlassian.net',
+        version: '*',
+        log: log
+    });
+
+    client.basicAuth('feedback', 'lkmanv90e3ionm23k');
 
 
 module.exports = function (swagger, config) {
@@ -32,37 +38,45 @@ module.exports = function (swagger, config) {
         },
         action: function (req, res, next) {
 
-            var options = {
-                host: 'youpers.atlassian.net',
-                path: '/rest/api/latest/issue/',
-                method: 'POST',
-                port: 443
-            };
+            if(!req.body) {
+                next(new error.MissingParameterError({ required: 'feedback object'}));
+            }
 
-            var request = http.request(options, function(response) {
-                response.on('data', function (chunk) {
-                    log.debug("feedback response", chunk);
-                });
+            var feedback = req.body;
+            var contactInfo = feedback.contactInfo || 'anonymous';
+            var feedbackCategory = feedback.feedbackCategory || 'none';
+            var description = feedback.description || 'none';
 
-                response.on('end', function () {
-                    next();
-                });
-            });
+            var content = "h4. Category: " + feedbackCategory + "\nh4. Reporter: " + contactInfo + "\nh4. Description:\n" + description +
+                "\n\nh4. Navigator:\n" + feedback.navigator;
 
-
-            request.write({
+            var body = {
                 "fields": {
                     "project":
                     {
-                        "key": "eWorkLife"
+                        "key": "WL"
                     },
-                    "summary": "REST ye merry gentlemen.",
-                    "description": "Creating of an issue using project keys and issue type names using the REST API",
+                    "summary": "User Feedback - " + contactInfo,
+                    "description": content,
                     "issuetype": {
                         "name": "Bug"
-                    }
+                    },
+                    "labels": ["feedback"],
+                    "assignee": { name: "feedback" }
                 }
+            };
+
+
+            var basePath = '/rest/api/latest';
+            client.post(basePath + '/issue', body, function(err, request, response, obj) {
+                if(err) { return error.handleError(err, next); }
+                log.debug('%j', obj);
+
+                res.send(200);
+                return next();
             });
+
+
 
         }
     });

@@ -102,12 +102,12 @@ function invalidateActivityCache(req, res, next) {
     return next();
 }
 
-function processSaveActivity (req, res, next, saveType) {
+function postActivity(req, res, next) {
 
-    req.log.trace({parsedReq: req}, saveType + ' Activity');
+    req.log.trace({parsedReq: req}, 'Post new Activity');
 
     if (!req.body) {
-        return next(new Rest.InvalidContentError('expected JSON body in ' + saveType + 'for activity'));
+        return next(new error.MissingParameterError({ required: 'activity object' }));
     }
 
     var sentActivity = req.body;
@@ -127,14 +127,13 @@ function processSaveActivity (req, res, next, saveType) {
 
     // check whether delivered author is the authenticated user
     if (sentActivity.author && (req.user.id !== sentActivity.author)) {
-        return next(new Rest.NotAuthorizedError('POST of object only allowed if author == authenticated user'));
+        return next(new error.NotAuthorizedError({ author: sentActivity.author, user: req.user.id}));
     }
 
     // if no author delivered set to authenticated user
     if (!sentActivity.author) {
         sentActivity.author = req.user.id;
     }
-
 
     if (_.contains(req.user.roles, auth.roles.productadmin)) {
         // requesting user is a product admin
@@ -147,9 +146,7 @@ function processSaveActivity (req, res, next, saveType) {
         // try to save the new object
         newActivity.save(function (err) {
             if (err) {
-                req.log.error({Error: err}, 'Error Saving Activity');
-                err.statusCode = 409;
-                return next(err);
+                return error.errorHandler(err, next);
             }
 
             res.header('location', '/api/v1/activities' + '/' + newActivity._id);
@@ -159,15 +156,16 @@ function processSaveActivity (req, res, next, saveType) {
 
     } else if (!_.contains(req.user.roles, auth.roles.orgadmin) && !_.contains(req.user.roles, auth.roles.campaignlead)) {
         // checks based on roles of requesting user
-        return next(new Rest.NotAuthorizedError('POST of object only allowed if author is an org admin or a campaign lead'));
+        return next(new error.NotAuthorizedError('POST of object only allowed if author is an org admin or a campaign lead',
+            { user: req.user.id}));
     } else {
         if (!sentActivity.campaign) {
-            return next(new Rest.InvalidContentError('expected activity to have a campaign id'));
+            return next(new error.MissingParameterError('expected activity to have a campaign id', { required: 'campaign id' }));
         } else {
 
             Campaign.findById(sentActivity.campaign).exec(function (err, campaign) {
                 if (err) {
-                    return next(err);
+                    return error.errorHandler(err, next);
                 }
                 if (!campaign) {
                     return next(new Rest.ResourceNotFoundError('Campaign with id: ' + sentActivity.campaign + ' not found.'));
@@ -175,7 +173,7 @@ function processSaveActivity (req, res, next, saveType) {
 
                 // check whether the posting user is a campaignLead of the campaign
                 if (!_.contains(campaign.campaignLeads.toString(), req.user.id)) {
-                    return next(new Rest.NotAuthorizedError('The user is not a campaignlead of this campaign.', {
+                    return next(new error.NotAuthorizedError('The user is not a campaignlead of this campaign.', {
                         userId: req.user.id,
                         campaignId: campaign.id
                     }));
@@ -189,9 +187,7 @@ function processSaveActivity (req, res, next, saveType) {
                 // try to save the new object
                 newActivity.save(function (err) {
                     if (err) {
-                        req.log.error({Error: err}, 'Error Saving Activity');
-                        err.statusCode = 409;
-                        return next(err);
+                        return error.errorHandler(err, next);
                     }
 
                     res.header('location', '/api/v1/activities' + '/' + newActivity._id);
@@ -203,17 +199,116 @@ function processSaveActivity (req, res, next, saveType) {
 
     }
 
-}
-
-function postActivity(req, res, next) {
-
-    processSaveActivity(req, res, next, "Post");
 
 }
 
 function putActivity(req, res, next) {
 
-    processSaveActivity(req, res, next, "Put");
+    req.log.trace({parsedReq: req}, 'Put updated Activity');
+
+    if (!req.body) {
+        return next(new error.MissingParameterError({ required: 'activity object' }));
+    }
+
+    var sentActivity = req.body;
+    req.log.trace({body: sentActivity}, 'parsed req body');
+
+    // ref properties: replace objects by ObjectId in case client sent whole object instead of reference only
+    // do this check only for properties of type ObjectID
+    _.filter(Activity.schema.paths, function (path) {
+        return (path.instance === 'ObjectID');
+    })
+        .forEach(function (myPath) {
+            if ((myPath.path in sentActivity) && (!(typeof sentActivity[myPath.path] === 'string' || sentActivity[myPath.path] instanceof String))) {
+                sentActivity[myPath.path] = sentActivity[myPath.path].id;
+            }
+        });
+
+    // check whether delivered author is the authenticated user
+    if (sentActivity.author && (req.user.id !== sentActivity.author)) {
+        return next(new error.NotAuthorizedError('POST of object only allowed if author == authenticated user', {
+            userId: req.user.id,
+            author: sentActivity.author
+        }));
+    }
+
+    // if no author delivered set to authenticated user
+    if (!sentActivity.author) {
+        sentActivity.author = req.user.id;
+    }
+
+    Activity.findById(req.params.id).exec(function (err, reloadedActivity) {
+        if(err) {
+            return error.handleError(err, next);
+        }
+        if (!reloadedActivity) {
+            return next(new error.ResourceNotFoundError({ id: sentActivity.id}));
+        }
+
+        _.extend(reloadedActivity, sentActivity);
+
+        if (_.contains(req.user.roles, auth.roles.productadmin)) {
+            // requesting user is a product admin
+
+            reloadedActivity.number = "NEW";
+            reloadedActivity.source = "youpers";
+
+            // try to save the new object
+            reloadedActivity.save(function (err) {
+                if (err) {
+                    return error.errorHandler(err, next);
+                }
+
+                res.header('location', '/api/v1/activities' + '/' + reloadedActivity._id);
+                res.send(201, reloadedActivity);
+                return next();
+            });
+
+        } else if (!_.contains(req.user.roles, auth.roles.orgadmin) && !_.contains(req.user.roles, auth.roles.campaignlead)) {
+            // checks based on roles of requesting user
+            return next(new error.NotAuthorizedError('POST of object only allowed if author is an org admin or a campaign lead', {
+                userId: req.user.id
+            }));
+        } else {
+            if (!reloadedActivity.campaign) {
+                return next(new error.MissingParameterError('expected activity to have a campaign id', { required: 'campaign id' }));
+            } else {
+
+                Campaign.findById(reloadedActivity.campaign).exec(function (err, campaign) {
+                    if (err) {
+                        return error.errorHandler(err, next);
+                    }
+                    if (!campaign) {
+                        return next(new Rest.ResourceNotFoundError('Campaign with id: ' + reloadedActivity.campaign + ' not found.'));
+                    }
+
+                    // check whether the posting user is a campaignLead of the campaign
+                    if (!_.contains(campaign.campaignLeads.toString(), req.user.id)) {
+                        return next(new error.NotAuthorizedError('The user is not a campaignlead of this campaign.', {
+                            userId: req.user.id,
+                            campaignId: campaign.id
+                        }));
+                    }
+
+                    reloadedActivity.number = "NEW_C";
+                    reloadedActivity.source = "campaign";
+
+                    // try to save the new object
+                    reloadedActivity.save(function (err) {
+                        if (err) {
+                            return error.errorHandler(err, next);
+                        }
+
+                        res.header('location', '/api/v1/activities' + '/' + reloadedActivity._id);
+                        res.send(201, reloadedActivity);
+                        return next();
+                    });
+                });
+            }
+
+        }
+
+    });
 
 }
 

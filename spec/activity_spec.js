@@ -41,7 +41,7 @@ frisby.create('Activity: post a new activity as a campaign lead without a valid 
         "title": "Test Campaign Activity",
         "text": "New Test Campaign Activity Text"
     })
-    .expectStatus(400)
+    .expectStatus(409)
 
     .toss();
 

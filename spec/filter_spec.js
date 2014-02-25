@@ -27,7 +27,7 @@ frisby.create('GET activities with two ANDed options')
     .expectJSONLength(3)
     .toss();
 
-frisby.create('GET activities with > option')
+frisby.create('GET activities with < option')
     .get(URL + '/activities?filter[number]=<Act-09')
     .expectStatus(200)
     .expectJSONLength(9)
@@ -38,7 +38,7 @@ frisby.create('GET activities with > option')
     })
     .toss();
 
-frisby.create('GET activities with to >> options')
+frisby.create('GET activities with to << options')
     .get(URL + '/activities?filter[number]=<<Act-09')
     .expectStatus(200)
     .expectJSONLength(8)

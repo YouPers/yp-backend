@@ -17,7 +17,7 @@ var sendSummaryMail = function sendSummaryMail(user, rangeStart, rangeEnd, done,
     var i18n = (context && context.i18n) || this.i18n;
 
     if (!log || !i18n) {
-        throw new Error('missing log and i18n in either in this or in passed context object');
+        throw new Error('missing log and i18n: must be present either in "this" or in the passed context object');
     }
     if (user._id) {
         user = user._id;
@@ -28,7 +28,7 @@ var sendSummaryMail = function sendSummaryMail(user, rangeStart, rangeEnd, done,
 
     // Query explanation
     // - Find all activityPlans for this user that have at least one event in our daterange
-    // - $unwind projects the events array into the result rows, now we have a row for each event of each plan we found.
+    // - $unwind the events array into the result rows, now we have a row for each event of each plan we found.
     //   In the events-property of these plans there is now exactly one event!.
     // - select all plansEvents whose one event is in our daterange
     // - As a result we expect an array of ActivityPlans that have in their respective events-property one specific event
@@ -83,7 +83,7 @@ var feeder = function (callback) {
     var ActivityPlanModel = mongoose.model('ActivityPlan');
 
     // Query documentation:
-    // find all users that have at least one event that has its start-date in the rage we are interested in
+    // find all users that have at least one event that has its end-date in the rage we are interested in
     // group by user and return an array of objects in the form: [{_id: "qwer32r32r23r"}, {_id: "2342wefwefewf"}, ...]
     var aggregate = ActivityPlanModel.aggregate();
     aggregate

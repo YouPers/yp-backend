@@ -7,7 +7,7 @@ var moment = require('moment');
 
 frisby.globalSetup({ // globalSetup is for ALL requests
     request: {
-        json:true,
+        json: true,
         headers: {}
     }
 });
@@ -171,7 +171,6 @@ frisby.create('Activity Plan: plan weekly activity and check whether events are 
                     .toss();
 
 
-
             })
             .toss();
     });
@@ -250,7 +249,7 @@ frisby.create('Activity Plan: plan daily activity and check whether events are g
                             .delete(URL + '/activityplans/' + joiningPlan.id)
                             .expectStatus(200)
                             .auth('sysadm', 'backtothefuture')
-                            .after(function() {
+                            .after(function () {
                                 frisby.create('Activity Plan: delete plan 1')
                                     .delete(URL + '/activityplans/' + newPlan.id)
                                     .auth('sysadm', 'backtothefuture')
@@ -259,13 +258,25 @@ frisby.create('Activity Plan: plan daily activity and check whether events are g
                             })
                             .toss();
 
-                        consts.users.test_ind1.preferences.workingDays = ['MO', 'TU', 'WE'];
+                        var profileUpdate = {
+                            userPreferences: {
+                                defaultUserWeekForScheduling: {
+                                    monday: true,
+                                    tuesday: true,
+                                    wednesday: true,
+                                    thursday: false,
+                                    friday: false,
+                                    saturday: false,
+                                    sunday: false
+                                }
+                            }
+                        };
 
-                        frisby.create('Activity Plan: update user preferences to workdays only MO-WE and plan DAILY activity')
-                            .put(URL + '/users/' + consts.users.test_ind1.id, consts.users.test_ind1)
+                        frisby.create('Activity Plan: update user profile preferences to workdays only MO-WE and plan DAILY activity')
+                            .put(URL + '/profiles/' + consts.users.test_ind1.profile, profileUpdate)
                             .auth('test_ind1', 'yp')
                             .expectStatus(200)
-                            .afterJSON(function(updatedUser) {
+                            .afterJSON(function (updatedUser) {
                                 frisby.create('Activity Plan: plan a daily activity for user only working MO, TU, WE')
                                     .auth('test_ind1', 'yp')
                                     .post(URL + '/activityplans', {
@@ -275,7 +286,7 @@ frisby.create('Activity Plan: plan daily activity and check whether events are g
                                         "title": "myTitle",
                                         "executionType": "group",
                                         "mainEvent": {
-                                            "start": moment().add('hours',1).toISOString(),
+                                            "start": moment().add('hours', 1).toISOString(),
                                             "end": moment().add('hours', 2).toISOString(),
                                             "allDay": false,
                                             "frequency": "day",
@@ -291,19 +302,31 @@ frisby.create('Activity Plan: plan daily activity and check whether events are g
                                         "status": "active"
                                     })
                                     .expectStatus(201)
-                                    .afterJSON(function(newPlan) {
-                                        _.forEach(newPlan.events, function(event) {
+                                    .afterJSON(function (newPlan) {
+                                        _.forEach(newPlan.events, function (event) {
                                             expect(moment(event.begin).day()).not.toEqual(4);
                                             expect(moment(event.begin).day()).not.toEqual(5);
                                             expect(moment(event.begin).day()).not.toEqual(6);
                                             expect(moment(event.begin).day()).not.toEqual(0);
                                         });
 
-                                        consts.users.test_ind1.preferences.workingDays = [];
+                                        var profileUpdate2 = {
+                                            userPreferences: {
+                                                defaultUserWeekForScheduling: {
+                                                    monday: true,
+                                                    tuesday: true,
+                                                    wednesday: true,
+                                                    thursday: true,
+                                                    friday: true,
+                                                    saturday: false,
+                                                    sunday: false
+                                                }
+                                            }
+                                        };
 
                                         frisby.create('Activity Plan: reset user')
                                             .auth('test_ind1', 'yp')
-                                            .put(URL + '/users/' + consts.users.test_ind1.id, consts.users.test_ind1)
+                                            .put(URL + '/profiles/' + consts.users.test_ind1.profile, profileUpdate2)
                                             .expectStatus(200)
                                             .toss();
 
@@ -319,7 +342,6 @@ frisby.create('Activity Plan: plan daily activity and check whether events are g
 
                             })
                             .toss();
-
 
 
                     }).toss();

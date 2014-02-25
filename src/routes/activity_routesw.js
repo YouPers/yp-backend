@@ -107,7 +107,7 @@ module.exports = function (swagger, config) {
         spec: {
             description: "Operations about Activities",
             path: baseUrl,
-            notes: "The new activity will get a number 'NEW' until, because we have not yet implemented an " +
+            notes: "The new activity will get a number 'NEW' for product admins and 'NEW_C' for campaign leads, because we have not yet implemented an " +
                 "autoincrement.",
             summary: "Posts a new activity",
             method: "POST",
@@ -121,10 +121,10 @@ module.exports = function (swagger, config) {
                     dataType: "Activity"
                 }
             ],
-            accessLevel: 'al_admin',
+            accessLevel: 'al_all',
             beforeCallbacks: [handlers.invalidateActivityCache]
         },
-        action: generic.postFn(baseUrl, Activity)
+        action: handlers.postActivity
     });
 
     swagger.addPut({
@@ -137,10 +137,11 @@ module.exports = function (swagger, config) {
             "responseClass": "Activity",
             "nickname": "putActivity",
             params: [swagger.pathParam("id", "ID of the activity to be updated", "string")],
-            accessLevel: 'al_admin',
+            accessLevel: 'al_all',
             beforeCallbacks: [handlers.invalidateActivityCache]
         },
-        action: generic.putFn(baseUrl, Activity)
+        action: handlers.putActivity
+//        action: generic.putFn(baseUrl, Activity)
     });
 
     swagger.addDelete({
@@ -155,6 +156,20 @@ module.exports = function (swagger, config) {
             beforeCallbacks: [handlers.invalidateActivityCache]
         },
         action: generic.deleteAllFn(baseUrl, Activity)
+    });
+
+    swagger.addDelete({
+        spec: {
+            description: "Operations about Activities",
+            path: baseUrlWithId,
+            notes: "deletes a specific activity",
+            summary: "deletes a specific activity",
+            method: "DELETE",
+            "nickname": "deleteActivity",
+            accessLevel: 'al_admin',
+            beforeCallbacks: [handlers.invalidateActivityCache]
+        },
+        action: generic.deleteByIdFn(baseUrl, Activity)
     });
 
 };

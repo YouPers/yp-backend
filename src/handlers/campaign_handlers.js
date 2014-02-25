@@ -255,23 +255,23 @@ var postCampaignLeadInviteFn = function postCampaignLeadInviteFn(req, res, next)
             Campaign.findById(req.params.id)
                 .populate('organization')
                 .exec(function (err, campaign) {
-                    if (err) {
-                        return done(err);
-                    }
-                    if (!campaign) {
-                        return done(new error.ResourceNotFoundError({ campaignId: req.params.id }));
-                    }
+                if (err) {
+                    return done(err);
+                }
+                if (!campaign) {
+                    return done(new error.ResourceNotFoundError({ campaignId: req.params.id }));
+                }
 
-                    // check whether the posting user is a campaignLead of the campaign
-                    if (!_.contains(campaign.campaignLeads.toString(), req.user.id)) {
-                        return done(new error.NotAuthorizedError('The user is not a campaignlead of this campaign.', {
-                            userId: req.user.id,
-                            campaignId: campaign.id
-                        }));
-                    }
-                    locals.campaign = campaign;
-                    return done();
-                });
+                // check whether the posting user is a campaignLead of the campaign
+                if (!_.contains(campaign.campaignLeads.toString(), req.user.id)) {
+                    return done(new error.NotAuthorizedError('The user is not a campaignlead of this campaign.', {
+                        userId: req.user.id,
+                        campaignId: campaign.id
+                    }));
+                }
+                locals.campaign = campaign;
+                return done();
+            });
         },
         // for each email try whether we have a user in the Db with this email address and, if yes, load the user
         // to personalize the email then send the invitation mail

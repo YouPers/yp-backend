@@ -98,12 +98,12 @@ var statsQueries = function (timeRange, scopeType, scopeId) {
         {$match: {'newestAnswer.question': new ObjectId('5278c51a6166f2de240000df')}},
         {$group: {
             _id: null,
-            totalUsers: {$sum: 1},
+            totalAssessments: {$sum: 1},
             avgStress: {$avg: '$newestAnswer.answer'}
         }},
         {$project: {
             _id: 0,
-            totalUsers: 1,
+            totalAssessments: 1,
             avgStress: 1}
         });
 

@@ -62,7 +62,7 @@ var ActivityPlanSchema = common.newSchema({
     events: [ActivityPlanEvent]
 });
 
-ActivityPlanEvent.statics.getFieldDescriptions = function() {
+ActivityPlanEvent.statics.getFieldDescriptions = function () {
     return {
         owner: 'The user who owns this ActivityPlanEvent'
     };
@@ -87,13 +87,9 @@ ActivityPlanSchema.statics.activityPlanNotEditableEventsInThePast = "notEditable
 ActivityPlanSchema.methods = {
     // evaluate the delete Status
     evaluateDeleteStatus: function () {
-        // a joined activity plan cannot be deleted
-        if (this.masterPlan && this.masterPlan.toString().length > 0) {
-            return ActivityPlanSchema.statics.activityPlanNotDeletableJoinedPlan;
-        }
-
-        // activity plan cannot be deleted if there are joining users
-        if (this.joiningUsers.length > 0) {
+        // activity plan cannot be deleted if this is a masterPlan with joining users
+        // !this.masterPlan because a plan is a masterPlan if its masterPlan-Property is empty.
+        if (!this.masterPlan && this.joiningUsers.length > 0) {
             return ActivityPlanSchema.statics.activityPlanNotDeletableJoinedUser;
         }
 
@@ -101,8 +97,8 @@ ActivityPlanSchema.methods = {
         var eventsInThePastExist = false;
         var nOfEventsInTheFuture = 0;
         var now = new Date();
-        _.forEach(this.events, function(event) {
-            if (event.begin < now || event.end < now){
+        _.forEach(this.events, function (event) {
+            if (event.begin < now || event.end < now) {
                 eventsInThePastExist = true;
             } else {
                 nOfEventsInTheFuture++;
@@ -158,15 +154,14 @@ ActivityPlanSchema.methods = {
 
 
 ActivityPlanSchema.virtual('deleteStatus')
-    .get(function getDeleteStatus () {
+    .get(function getDeleteStatus() {
         return this.evaluateDeleteStatus();
     });
 
 ActivityPlanSchema.virtual('editStatus')
-    .get(function getEditStatus () {
+    .get(function getEditStatus() {
         return this.evaluateEditStatus();
     });
-
 
 
 ActivityPlanSchema.pre('save', function (next) {
@@ -191,7 +186,7 @@ ActivityPlanSchema.pre('save', function (next) {
             }
 
             // we check whether we need to update the joiningUsers collection of the masterPlan
-            if (!_.find(masterPlan.joiningUsers, function(joiningUser) {
+            if (!_.find(masterPlan.joiningUsers, function (joiningUser) {
                 return joiningUser.equals(self.owner);
             })) {
                 masterPlan.joiningUsers.push(self.owner.toJSON());
@@ -222,7 +217,7 @@ ActivityPlanSchema.pre('save', function (next) {
 
             if (modifiedMaster) {
                 masterPlan.save(function (err) {
-                    if(err) {
+                    if (err) {
                         return error.handleError(err, next);
                     } else {
                         return next();
@@ -243,7 +238,7 @@ ActivityPlanSchema.pre('save', function (next) {
  * when displaying the ActivityPlan. The joiningUsers Array is maintained on the masterPlan and is copied to
  * the slavePlan on demand whenever we load a slave plan.
  */
-ActivityPlanSchema.pre('init', function populateSlavePlans (next, data) {
+ActivityPlanSchema.pre('init', function populateSlavePlans(next, data) {
 
     if (data.masterPlan) {
         var model = mongoose.model('ActivityPlan');
@@ -253,8 +248,12 @@ ActivityPlanSchema.pre('init', function populateSlavePlans (next, data) {
             .populate('owner')
             .populate('joiningUsers')
             .exec(function (err, masterPlan) {
-                if (err || !masterPlan) {
-                    return next(error.handleError(err, next) || new error.ResourceNotFoundError('MasterPlan not found for SlavePlan.', {
+                if (err) {
+                    return next(error.handleError(err, next));
+                }
+
+                if (!masterPlan) {
+                    return next(new error.ResourceNotFoundError('MasterPlan not found for SlavePlan.', {
                         masterPlanId: data.masterPlan,
                         slavePlanId: data._id
                     }));

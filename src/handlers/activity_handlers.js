@@ -102,7 +102,7 @@ function invalidateActivityCache(req, res, next) {
     return next();
 }
 
-function postNewCampaignActivity(req, res, next) {
+function postActivity(req, res, next) {
     req.log.trace({parsedReq: req}, 'Post new Activity');
     if (!req.body) {
         return next(new Rest.InvalidContentError('expected JSON body in POST'));
@@ -130,7 +130,28 @@ function postNewCampaignActivity(req, res, next) {
         sentActivity.author = req.user.id;
     }
 
-    if (!_.contains(req.user.roles, auth.roles.orgadmin) && !_.contains(req.user.roles, auth.roles.campaignlead)) {
+    if (_.contains(req.user.roles, auth.roles.productadmin)) {
+        // requesting user is a product admin
+
+        var newActivity = new Activity(sentActivity);
+
+        newActivity.number = "NEW";
+        newActivity.source = "youpers";
+
+        // try to save the new object
+        newActivity.save(function (err) {
+            if (err) {
+                req.log.error({Error: err}, 'Error Saving Activity');
+                err.statusCode = 409;
+                return next(err);
+            }
+
+            res.header('location', '/api/v1/activities' + '/' + newActivity._id);
+            res.send(201, newActivity);
+            return next();
+        });
+
+    } else if (!_.contains(req.user.roles, auth.roles.orgadmin) && !_.contains(req.user.roles, auth.roles.campaignlead)) {
         // checks based on roles of requesting user
         return next(new Rest.NotAuthorizedError('POST of object only allowed if author is an org admin or a campaign lead'));
     } else {
@@ -156,6 +177,7 @@ function postNewCampaignActivity(req, res, next) {
 
                 var newActivity = new Activity(sentActivity);
 
+                newActivity.number = "NEW_C";
                 newActivity.source = "campaign";
 
                 // try to save the new object
@@ -181,5 +203,5 @@ function postNewCampaignActivity(req, res, next) {
 module.exports = {
     getRecommendationsFn: getRecommendationsFn,
     invalidateActivityCache: invalidateActivityCache,
-    postNewCampaignActivity: postNewCampaignActivity
+    postActivity: postActivity
 };

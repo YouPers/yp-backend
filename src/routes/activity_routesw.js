@@ -107,7 +107,7 @@ module.exports = function (swagger, config) {
         spec: {
             description: "Operations about Activities",
             path: baseUrl,
-            notes: "The new activity will get a number 'NEW' until, because we have not yet implemented an " +
+            notes: "The new activity will get a number 'NEW' for product admins and 'NEW_C' for campaign leads, because we have not yet implemented an " +
                 "autoincrement.",
             summary: "Posts a new activity",
             method: "POST",
@@ -121,36 +121,11 @@ module.exports = function (swagger, config) {
                     dataType: "Activity"
                 }
             ],
-            accessLevel: 'al_admin',
+            accessLevel: 'al_all',
             beforeCallbacks: [handlers.invalidateActivityCache]
         },
-        action: generic.postFn(baseUrl, Activity)
+        action: handlers.postActivity
     });
-
-    swagger.addPost({
-        spec: {
-            description: "Operations about Activities",
-            path: baseUrl + "/campaign",
-            notes: "The new activity will get a number 'NEW_C' until, because we have not yet implemented an " +
-                "autoincrement.",
-            summary: "Posts a new campaign activity",
-            method: "POST",
-            "responseClass": "Activity",
-            "nickname": "postCampaignActivity",
-            params: [
-                {
-                    paramType: "body",
-                    name: "ActivityToStore",
-                    description: "the activity to store",
-                    dataType: "Activity"
-                }
-            ],
-            accessLevel: 'al_campaignlead',
-            beforeCallbacks: [handlers.invalidateActivityCache]
-        },
-        action: handlers.postNewCampaignActivity
-    });
-
 
     swagger.addPut({
         spec: {
@@ -180,6 +155,20 @@ module.exports = function (swagger, config) {
             beforeCallbacks: [handlers.invalidateActivityCache]
         },
         action: generic.deleteAllFn(baseUrl, Activity)
+    });
+
+    swagger.addDelete({
+        spec: {
+            description: "Operations about Activities",
+            path: baseUrlWithId,
+            notes: "deletes a specific activity",
+            summary: "deletes a specific activity",
+            method: "DELETE",
+            "nickname": "deleteActivity",
+            accessLevel: 'al_admin',
+            beforeCallbacks: [handlers.invalidateActivityCache]
+        },
+        action: generic.deleteByIdFn(baseUrl, Activity)
     });
 
 };

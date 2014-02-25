@@ -14,6 +14,8 @@ var ActivitySchema = common.newSchema({
     title: { type: String, trim: true, required: true, i18n: true },
     text: {type: String, trim: true, i18n: true},
     source: { type: String, enum: common.enums.source},
+    author: {type: ObjectId, ref: 'User', required: false},
+    campaign: {type: ObjectId, ref: 'Campaign'},
     defaultfrequency: {type: String, enum: common.enums.activityPlanFrequency},
     defaultexecutiontype: {type: String, enum: common.enums.executiontype},
     defaultvisibility: {type: String, enum: common.enums.visibility},

@@ -471,7 +471,6 @@ module.exports = {
                 req.body.campaign = req.user.campaign.id || req.user.campaign; // handle populated and unpopulated case
             }
 
-
             var newObj = new Model(req.body);
 
             req.log.trace(newObj, 'PostFn: Saving new Object');

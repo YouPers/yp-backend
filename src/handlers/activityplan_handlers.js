@@ -503,6 +503,7 @@ function deleteActivityPlan(req, res, next) {
                     _.remove(masterPlan.joiningUsers, function(ju) {
                         return ju.equals(activityPlan.owner);
                     });
+                    masterPlan.markModified('joiningUsers');
                     masterPlan.save(function(err) {
                         if (err) {
                             return error.handleError(err, next);

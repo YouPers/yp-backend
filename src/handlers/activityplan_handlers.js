@@ -495,12 +495,17 @@ function deleteActivityPlan(req, res, next) {
                     if (err) {
                         return error.handleError(err, next);
                     }
+                    if (!masterPlan) {
+                        return new error.ResourceNotFoundError('MasterPlan not found', {
+                            masterPlanId: activityPlan.masterPlan
+                        });
+                    }
                     _.remove(masterPlan.joiningUsers, function(ju) {
                         return ju.equals(activityPlan.owner);
                     });
                     masterPlan.save(function(err) {
                         if (err) {
-                            return error.handleError(err ,next);
+                            return error.handleError(err, next);
                         }
                     });
                 });

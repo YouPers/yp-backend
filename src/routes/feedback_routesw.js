@@ -1,6 +1,6 @@
 /**
- * User Routes module
- *    these routes require authenticated users
+ * User Feedback routes
+ *    forward user feedback to JIRA API
  */
 
 var restify = require("restify"),

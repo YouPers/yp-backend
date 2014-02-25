@@ -8,7 +8,7 @@ module.exports = {
     users: {
         test_ind1: {
             id: '52a97f1650fca98c29000006',
-            preferences: {}
+            profile: "5303721a4dba580000000016"
         },
         test_ind2: {
             id: '52a97f1650fca98c29000007',

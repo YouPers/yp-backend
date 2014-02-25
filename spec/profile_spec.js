@@ -35,21 +35,22 @@ var userProfile = {
         "country": "Switzerland"
     },
     "maritalStatus": "single",
+    "language": "it",
     "userPreferences": {
         "defaultUserWeekForScheduling": {
             "monday": true,
             "tuesday": true,
             "wednesday": true,
-            "thursday": true,
-            "friday": true,
+            "thursday": false,
+            "friday": false,
             "saturday": false,
             "sunday": false
         },
         "firstDayOfWeek": "Monday",
-        "languageUI": "Italian",
-        "timezone": "Central European Time"
+        "timezone": "+01:00",
+        "starredActivities": ["5278c6adcdeab69a25000054"]
     }
-}
+};
 
 frisby.create('POST new user')
     .post(URL + '/users', {

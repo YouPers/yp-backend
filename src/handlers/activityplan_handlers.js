@@ -79,9 +79,7 @@ var getIcalObject = function (plan, recipientUser, iCalType, i18n) {
 
         var rruleSpec = { FREQ: frequencyMap[plan.mainEvent.frequency] };
         if (rruleSpec.FREQ === 'DAILY') {
-            rruleSpec.BYDAY = recipientUser.preferences && recipientUser.preferences.workingDays && recipientUser.preferences.workingDays.length > 0 ?
-                recipientUser.preferences.workingDays.join(',')
-                : "MO,TU,WE,TH,FR";
+            rruleSpec.BYDAY = recipientUser.profile.getWorkingDaysAsIcal();
         }
 
 

@@ -80,7 +80,7 @@
         "password": "yp",
         "_id": "52a97f1650fca98c2900000a",
         "lastname": "OrgAdmin",
-        "roles": ["orgadmin", "individual"],
+        "roles": ["orgadmin", "campaignlead", "individual"],
         "tempPasswordFlag": false,
         "username": "test_orgadm",
         "profile": "5303721a4dba580000000021"

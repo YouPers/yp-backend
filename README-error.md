@@ -1,9 +1,10 @@
-Error Handling
-==============
+# Error Handling
 
-# Frontend
+## Frontend
 
-## Event Listener
+### Listenter/Service
+
+*Only warn/error type notifications will be posted to the backend*
 
     $scope.$emit('notification', message, {
         type: 'info', // one of error, warn, info, log, debug
@@ -11,26 +12,32 @@ Error Handling
             // translation values
         });
 
-## Success/Error Events
+    var options = {
+        error: error
+    };
 
-    message = localization key, prefixed by notification { success: { message: 'yeah' }, error: { message: 'sorry' } }
+    notificationService.notification('info')(message, options);
 
+*notification:succes / notification:error*
+
+message = localization key
+prefixed by notification { success: { message: 'yeah' }, error: { message: 'sorry' } }
 
     $scope.$emit('notification:success', 'save', { type='warn', values: { name='test' } });
 
-    # notification.success.save: "{{name}} saved"
+    // notification.success.save: "{{name}} saved"
 
     $scope.$emit('notification:error', err);
     $scope.$emit('notification:error', 'dateRange.invalid');
 
-    # notification.error.dateRange.invalid: "nope"
+    // notification.error.dateRange.invalid: "nope"
 
-## Log - without user feedback
+*Log - without user feedback*
 
     $scope.$emit('notification:log', 'comment', { comment: comment );
 
 
-# Backend
+## Backend
 
 
 ## Generic handler
@@ -39,18 +46,19 @@ Error Handling
         return error.handleError(err, next);
     }
 
-## Rest Errors
+### Rest Errors
 
-    see error.js for a list of error codes
-
-    usage: RestError(message, cause)
+see error.js for a list of error codes
+usage: RestError(message, cause)
 
     return next(new error.MissingParameterError({
         required: 'id'
     }));
 
 
-## Error Logging API
+### Error Logging API
+
+Errors are posted/logged in the backend
 
 POST /error
 

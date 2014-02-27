@@ -3,8 +3,7 @@
  *    log errors posted by the client
  */
 
-var restify = require("restify"),
-    env = process.env.NODE_ENV || 'development',
+var env = process.env.NODE_ENV || 'development',
     config = require('../config/config')[env],
     Logger = require('bunyan'),
     log = new Logger(config.loggerOptions),
@@ -35,9 +34,9 @@ module.exports = function (swagger, config) {
                 next(new error.MissingParameterError({ required: 'error object'}));
             }
 
-            var error = req.body;
+            var errorObj = req.body;
 
-            log.error(error);
+            log.error(errorObj);
 
         }
     });

@@ -70,9 +70,6 @@ ActivityPlanEvent.statics.getFieldDescriptions = function () {
 
 ActivityPlanSchema.statics.activityPlanCompletelyDeletable = "deletable";
 ActivityPlanSchema.statics.activityPlanOnlyFutureEventsDeletable = "deletableOnlyFutureEvents";
-ActivityPlanSchema.statics.activityPlanNotDeletableJoinedUser = "notDeletableJoinedUsers";
-ActivityPlanSchema.statics.activityPlanNotDeletableJoinedPlan = "notDeletableJoinedPlans";
-ActivityPlanSchema.statics.activityPlanNotDeletableNoFutureEvents = "notDeletableNoFutureEvents";
 
 ActivityPlanSchema.statics.activityPlanEditable = "editable";
 ActivityPlanSchema.statics.activityPlanNotEditableJoinedPlan = "notEditableJoinedPlans";
@@ -87,11 +84,6 @@ ActivityPlanSchema.statics.activityPlanNotEditableEventsInThePast = "notEditable
 ActivityPlanSchema.methods = {
     // evaluate the delete Status
     evaluateDeleteStatus: function () {
-        // activity plan cannot be deleted if this is a masterPlan with joining users
-        // !this.masterPlan because a plan is a masterPlan if its masterPlan-Property is empty.
-        if (!this.masterPlan && this.joiningUsers.length > 0) {
-            return ActivityPlanSchema.statics.activityPlanNotDeletableJoinedUser;
-        }
 
         // check if there are any events in the past
         var eventsInThePastExist = false;
@@ -108,13 +100,10 @@ ActivityPlanSchema.methods = {
             if (nOfEventsInTheFuture > 0) {
                 // only future events are allowed to be deleted
                 return ActivityPlanSchema.statics.activityPlanOnlyFutureEventsDeletable;
-            } else {
-                // no future events exist to be deleted
-                return ActivityPlanSchema.statics.activityPlanNotDeletableNoFutureEvents;
             }
         }
 
-        // no joining users and no past events, thus the complete activity plan can be deleted
+        // no past events, thus the complete activity plan can be deleted
         return ActivityPlanSchema.statics.activityPlanCompletelyDeletable;
     },
     evaluateEditStatus: function () {

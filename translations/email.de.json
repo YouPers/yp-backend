@@ -36,8 +36,8 @@
         },
         "cancel": {
             "subject": "YouPers: Gelöschter Kalender-Eintrag",
-            "text": "",
-            "html": ""
+            "text": "Der Organisator hat diesen Kalender-Eintrag gelöscht. \nGrund: __reason__",
+            "html": "Der Organisator hat diesen Kalender-Eintrag gelöscht. <br><br>Grund: __reason__"
         }
     }
 }

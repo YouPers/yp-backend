@@ -36,6 +36,7 @@ module.exports = function (swagger, config) {
 
             var errorObj = req.body;
 
+            // TODO: log to distinct file
             log.error(errorObj);
 
         }

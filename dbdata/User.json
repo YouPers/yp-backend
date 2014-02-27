@@ -81,6 +81,7 @@
         "_id": "52a97f1650fca98c2900000a",
         "lastname": "OrgAdmin",
         "roles": ["orgadmin", "campaignlead", "individual"],
+        "campaign": "527916a82079aa8704000006",
         "tempPasswordFlag": false,
         "username": "test_orgadm",
         "profile": "5303721a4dba580000000021"
@@ -95,6 +96,7 @@
         "_id": "52a97f1650fca98c2900000b",
         "lastname": "CampaignLead",
         "roles": ["campaignlead", "individual"],
+        "campaign": "527916a82079aa8704000006",
         "tempPasswordFlag": false,
         "username": "test_campaignlead",
         "profile": "5303721a4dba580000000022"
@@ -109,6 +111,7 @@
         "_id": "52a97f1650fca98c2900000c",
         "lastname": "CampaignLead 2",
         "roles": ["campaignlead", "individual"],
+        "campaign": "527916a82079aa8704000007",
         "tempPasswordFlag": false,
         "username": "test_campaignlead2",
         "profile": "5303721a4dba580000000023"

@@ -21,7 +21,8 @@ var CampaignSchema = common.newSchema({
     productType: { type: String, trim: true, required: true, enum: common.enums.campaignProductType, default: "CampaignProductType1", select: false },
     campaignLeads: [
         {type: ObjectId, ref: 'User'}
-    ]
+    ],
+    avatar: {type: String}
 });
 
 CampaignSchema.statics.adminRoles =  [auth.roles.systemadmin, auth.roles.productadmin, auth.roles.campaignlead, auth.roles.orgadmin];

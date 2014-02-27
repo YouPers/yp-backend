@@ -15,6 +15,18 @@ module.exports = function (swagger, config) {
     var baseUrl = '/campaigns',
         baseUrlWithId = baseUrl + "/{id}";
 
+    swagger.addPost({
+        spec: {
+            description: "avatar image upload",
+            path: baseUrlWithId + "/avatar",
+            summary: "avatar image upload",
+            method: "POST",
+            "nickname": "avatarImagePost",
+            accessLevel: 'al_campaignlead'
+        },
+        action: campaignHandlers.avatarImagePostFn(baseUrl)
+    });
+
     swagger.addGet({
         spec: {
             description: "Operations about campaigns",

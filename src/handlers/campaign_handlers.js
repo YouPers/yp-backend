@@ -8,7 +8,24 @@ var stats = require('../util/stats'),
     Campaign = mongoose.model('Campaign'),
     async = require('async'),
     email = require('../util/email'),
+    image = require('../util/image'),
     moment = require('moment');
+
+
+var getCampaign = function(req, res, next, callback) {
+
+    Campaign.findById(req.params.id)
+        .exec(function(err, obj) {
+            if(err) {
+                return error.handleError(err, next);
+            }
+            if(!obj) {
+                return next(new error.ResourceNotFoundError('Campaign not found', { id: req.params.id }));
+            }
+
+            callback(obj);
+        });
+};
 
 var getCampaignStats = function (baseUrl, Model) {
     return function (req, res, next) {
@@ -383,11 +400,32 @@ var assignCampaignLeadFn = function assignCampaignLeadFn(req, res, next) {
 
 };
 
+var avatarImagePostFn = function(baseUrl) {
+    return function(req, res, next) {
+
+        image.resizeImage(req, req.files.file.path, function (err, image) {
+            if(err) { return error.handleError(err, next); }
+
+            getCampaign(req, res, next, function (obj) {
+
+                obj.avatar = image;
+                obj.save(function(err, result) { if(err) { return error.handleError(err, next); } });
+
+                // send response
+                res.send({avatar: obj.avatar});
+                return next();
+            });
+
+        });
+    };
+};
+
 module.exports = {
     getCampaignStats: getCampaignStats,
     postCampaign: postCampaign,
     putCampaign: putCampaign,
     getAllForUserFn: getAllForUserFn,
     assignCampaignLead: assignCampaignLeadFn,
-    postCampaignLeadInvite: postCampaignLeadInviteFn
+    postCampaignLeadInvite: postCampaignLeadInviteFn,
+    avatarImagePostFn: avatarImagePostFn
 };

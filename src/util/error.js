@@ -145,7 +145,8 @@ Object.keys(CODES).forEach(function (k) {
         if (cause && cause instanceof Error) {
             opts.cause = cause;
             opts.body.data = opts.body.data || {};
-            opts.body.data.errors = cause.errors || cause.body.errors;
+
+            opts.body.data.errors = cause.errors || cause.body ? cause.body.errors : undefined;
         } else if (typeof (cause) === 'object') {
             opts.body.data = cause;
         } else { // no cause is provided

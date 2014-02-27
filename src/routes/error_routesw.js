@@ -37,7 +37,12 @@ module.exports = function (swagger, config) {
             var errorObj = req.body;
 
             // TODO: log to distinct file
-            log.error(errorObj);
+            var options = {
+                type: 'client',
+                user: req.user.id,
+                username: req.user.username
+            };
+            log.child(options).error(errorObj);
 
         }
     });

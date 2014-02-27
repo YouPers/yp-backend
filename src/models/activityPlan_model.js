@@ -35,6 +35,7 @@ var ActivityPlanSchema = common.newSchema({
     text: {type: String},
     number: {type: String},
     location: {type: String},
+    source: { type: String, enum: common.enums.source},
     executionType: {type: String, enum: common.enums.executiontype},
     visibility: {type: String, enum: common.enums.visibility},
     status: {type: String, enum: common.enums.ActivityPlanStatus},

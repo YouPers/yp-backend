@@ -485,6 +485,31 @@ function deleteActivityPlan(req, res, next) {
             };
             ///////////////////
 
+            ///////////
+            // if this is a slave of a masterPlan we need to remove the owner of the slave plan from the
+            // joiningUsers collection of the master
+            if (activityPlan.masterPlan) {
+                ActivityPlanModel.findById(activityPlan.masterPlan, function(err, masterPlan) {
+                    if (err) {
+                        return error.handleError(err, next);
+                    }
+                    if (!masterPlan) {
+                        return new error.ResourceNotFoundError('MasterPlan not found', {
+                            masterPlanId: activityPlan.masterPlan
+                        });
+                    }
+                    _.remove(masterPlan.joiningUsers, function(ju) {
+                        return ju.equals(activityPlan.owner);
+                    });
+                    masterPlan.markModified('joiningUsers');
+                    masterPlan.save(function(err) {
+                        if (err) {
+                            return error.handleError(err, next);
+                        }
+                    });
+                });
+            }
+
 
             // plan can be deleted if user is systemadmin or if it is his own plan
             if (auth.checkAccess(req.user, auth.accessLevels.al_systemadmin)) {

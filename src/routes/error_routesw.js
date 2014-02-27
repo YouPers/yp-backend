@@ -44,6 +44,7 @@ module.exports = function (swagger, config) {
             };
             log.child(options).error(errorObj);
 
+            return next();
         }
     });
 

@@ -3,7 +3,6 @@ var mongoose = require('mongoose'),
     Activity = mongoose.model('Activity'),
     Campaign = mongoose.model('Campaign'),
     AssessmentResult = mongoose.model('AssessmentResult'),
-    Rest = require('restify'),
     _ = require('lodash'),
     auth = require('../util/auth'),
     error = require('../util/error'),
@@ -140,8 +139,8 @@ function postActivity(req, res, next) {
 
         var newActivity = new Activity(sentActivity);
 
+        // TODO: find solution for auto/incrementing activity id's
         newActivity.number = "NEW";
-        newActivity.source = "youpers";
 
         // try to save the new object
         newActivity.save(function (err) {
@@ -168,7 +167,7 @@ function postActivity(req, res, next) {
                     return error.errorHandler(err, next);
                 }
                 if (!campaign) {
-                    return next(new Rest.ResourceNotFoundError('Campaign with id: ' + sentActivity.campaign + ' not found.'));
+                    return next(new error.ResourceNotFoundError('Campaign not found.', { id: sentActivity.campaign }));
                 }
 
                 // check whether the posting user is a campaignLead of the campaign
@@ -181,7 +180,9 @@ function postActivity(req, res, next) {
 
                 var newActivity = new Activity(sentActivity);
 
+                // TODO: find solution for auto/incrementing activity id's
                 newActivity.number = "NEW_C";
+                // orgadmin's and campaignlead's can only manage campaign-specific activities
                 newActivity.source = "campaign";
 
                 // try to save the new object
@@ -248,10 +249,6 @@ function putActivity(req, res, next) {
         _.extend(reloadedActivity, sentActivity);
 
         if (_.contains(req.user.roles, auth.roles.productadmin)) {
-            // requesting user is a product admin
-
-            reloadedActivity.number = "NEW";
-            reloadedActivity.source = "youpers";
 
             // try to save the new object
             reloadedActivity.save(function (err) {
@@ -279,7 +276,7 @@ function putActivity(req, res, next) {
                         return error.errorHandler(err, next);
                     }
                     if (!campaign) {
-                        return next(new Rest.ResourceNotFoundError('Campaign with id: ' + reloadedActivity.campaign + ' not found.'));
+                        return next(new error.ResourceNotFoundError('Campaign not found', { id: reloadedActivity.campaign }));
                     }
 
                     // check whether the posting user is a campaignLead of the campaign
@@ -290,7 +287,7 @@ function putActivity(req, res, next) {
                         }));
                     }
 
-                    reloadedActivity.number = "NEW_C";
+                    // orgadmin's and campaignlead's can only manage campaign-specific activities
                     reloadedActivity.source = "campaign";
 
                     // try to save the new object

@@ -11,6 +11,12 @@
         "text": "__inviting.fullname__ hat Dich eingeladen Kampagnen-Leiter zu werden der YouPers Kampagne <b>__campaign.title__</b> von <b>__campaign.organization.name__</b>.<br><br>Um diese Einladung anzunehmen, klicke auf den folgenden Link:<br>",
         "footer": "YouPers - Drive Your Health"
     },
+    "OrganizationAdminInvite": {
+        "subject": "YouPers: Einladung zum Organisations-Administrator von __inviting.fullname__",
+        "salutation": "Hallo __invited.firstname__",
+        "text": "__inviting.fullname__ hat Dich eingeladen Organisations-Administrator für <b>__organization.name__</b> zu werden.<br><br>Um diese Einladung anzunehmen, klicke auf den folgenden Link:<br>",
+        "footer": "YouPers - Drive Your Health"
+    },
     "passwordReset": {
         "subject": "YouPers: Zurücksetzen des Passworts",
         "salutation": "Hallo __user.firstname__",

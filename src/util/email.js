@@ -178,6 +178,18 @@ var sendCampaignLeadInvite = function sendCampaignLeadInvite(email, invitingUser
     };
     sendEmail(fromDefault, email, subject, 'genericYouPersMail', locals);
 };
+var sendOrganizationAdminInvite = function sendOrganizationAdminInvite(email, invitingUser, organization, invitedUser, i18n) {
+
+    var subject = i18n.t("email:OrganizationAdminInvite.subject", {inviting:  invitingUser.toJSON(), organization: organization.toJSON()});
+    var token = encryptLinkToken(organization._id +linkTokenSeparator + email +  (invitedUser ? linkTokenSeparator + invitedUser._id : ''));
+    var locals = {
+        link: config.webclientUrl + "/#/organizations/" + organization._id + '/becomeOrganizationAdmin?invitingUserId='+invitingUser._id+'&token='+token,
+        salutation: i18n.t('email:OrganizationAdminInvite.salutation', {invited: invitedUser ? invitedUser.toJSON() : {firstname: ''}}),
+        text: i18n.t('email:OrganizationAdminInvite.text', {inviting: invitingUser.toJSON(), organization: organization.toJSON()}),
+        footer: i18n.t('email:OrganizationAdminInvite.footer')
+    };
+    sendEmail(fromDefault, email, subject, 'genericYouPersMail', locals);
+};
 
 /**
  * sends a dailyPlannedEventsSummary Email.
@@ -216,5 +228,6 @@ module.exports = {
     sendPasswordResetMail: sendPasswordResetMail,
     sendActivityPlanInvite: sendActivityPlanInvite,
     sendCampaignLeadInvite: sendCampaignLeadInvite,
+    sendOrganizationAdminInvite: sendOrganizationAdminInvite,
     sendDailyEventSummary: sendDailyEventSummary
 };

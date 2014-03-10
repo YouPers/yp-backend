@@ -16,7 +16,7 @@
         "userPreferences": {
             "email": {
                 "iCalInvites": false,
-                "dailyUserMail": false
+                "dailyUserMail": true
             },
             "calendarNotification": "900"
         }

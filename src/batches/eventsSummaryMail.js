@@ -58,6 +58,12 @@ var sendSummaryMail = function sendSummaryMail(user, rangeStart, rangeEnd, done,
                         log.error({error: err}, 'User not found');
                         return done(err);
                     }
+
+                    if(!user.profile.userPreferences.email.dailyUserMail) {
+                        log.info('sendSummaryMail: User('+user.id+').profile.userPreferences.email.dailyUserMail=false');
+                        return done(new Error('error.notEnabled.dailyUserMail'));
+                    }
+
                     i18n.setLng(user.profile.language || 'de', function () {
                         log.info('sending DailySummary Mail to email: ' + user.email + ' with ' + plans.length + ' events.');
                         email.sendDailyEventSummary.apply(this, [user.email, plans, user, i18n]);
@@ -87,10 +93,13 @@ var feeder = function (callback) {
     // group by user and return an array of objects in the form: [{_id: "qwer32r32r23r"}, {_id: "2342wefwefewf"}, ...]
     var aggregate = ActivityPlanModel.aggregate();
     aggregate
-        .append({$match: {events: {$elemMatch: {end: {$gt: rangeStart.toDate(), $lt: rangeEnd.toDate()}
-        }
-        }
-        }
+        .append({
+            $match: {
+                // TODO: match 'owner.profile.userPreferences.email.dailyUserMail': true,
+                events: {
+                    $elemMatch: {end: {$gt: rangeStart.toDate(), $lt: rangeEnd.toDate()}}
+                }
+            }
         })
         .append({$group: {_id: '$owner'}})
         .exec(callback);
@@ -106,5 +115,6 @@ var run = function run() {
 
 module.exports = {
     run: run,
+    feeder: feeder,
     sendSummaryMail: sendSummaryMail
 };

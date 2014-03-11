@@ -1,23 +1,8 @@
 var error = require('../util/error'),
-    config = require('../config/config')[process.env.NODE_ENV || 'development'],
-    crypto = require('crypto'),
     mongoose = require('mongoose'),
-    Campaign = mongoose.model('Campaign');
-
-
-var encryptPaymentCodeValues = function (value) {
-
-    var cipher = crypto.createCipher(config.paymentCodeTokenEncryption.algorithm, config.paymentCodeTokenEncryption.key);
-    var encrypted = cipher.update(value, 'utf8', 'hex') + cipher.final('hex');
-    return encrypted;
-};
-
-var decryptPaymentCodeValues = function (token) {
-    var decipher = crypto.createDecipher(config.paymentCodeTokenEncryption.algorithm, config.paymentCodeTokenEncryption.key);
-    var decrypted = decipher.update(token, 'hex', 'utf8') + decipher.final('utf8');
-
-    return decrypted;
-};
+    PaymentCode = mongoose.model('PaymentCode'),
+    Campaign = mongoose.model('Campaign'),
+    couponCode = require('coupon-code');
 
 /**
  * @param values
@@ -26,15 +11,23 @@ var decryptPaymentCodeValues = function (token) {
 var generatePaymentCode = function generatePaymentCode() {
     return function (req, res, next) {
 
-        if(!req.body.value) {
-            return next(new error.MissingParameterError({required: 'value'}));
+        var values = req.body;
+
+        if(!values.campaign) {
+            return next(new error.MissingParameterError({required: 'campaign'}));
         }
 
-        var value = req.body.value;
+        var paymentCode = new PaymentCode({
+            code: couponCode.generate(),
+            service: values.service,
+            productType: values.productType,
+            users: values.users,
+            campaign: values.campaign
+        });
 
-        var token = encryptPaymentCodeValues(value);
+        paymentCode.save(function(err) { if(err) { error.handleError(err, next); }});
 
-        res.send(201, { code: token });
+        res.send(201, paymentCode );
         return next();
     };
 };
@@ -46,19 +39,24 @@ var generatePaymentCode = function generatePaymentCode() {
 var validatePaymentCode = function validatePaymentCode() {
     return function (req, res, next) {
 
-        if(!req.body.code) {
+        var code = req.body.code;
+
+        if(!code) {
             return next(new error.MissingParameterError({required: 'code'}));
         }
 
-        var token = req.body.code;
+        PaymentCode.findOne({ code: code }).exec(function (err, paymentCode) {
+            if(err) {
+                return error.handleError(err, next);
+            }
 
-        try {
-            var value = decryptPaymentCodeValues(token);
-            res.send(200, { value: value});
+            if (!paymentCode) {
+                return next(new error.ResourceNotFoundError({ code: code}));
+            }
+
+            res.send(200, paymentCode);
             return next();
-        } catch(e) {
-            return next(new error.InvalidArgumentError('Invalid token'));
-        }
+        });
     };
 };
 
@@ -69,45 +67,62 @@ var validatePaymentCode = function validatePaymentCode() {
 var redeemPaymentCode = function redeemPaymentCode() {
     return function (req, res, next) {
 
-        if(!req.body.code) {
+        var code = req.body.code;
+        var campaign = req.body.campaign;
+
+        if(!code) {
             return next(new error.MissingParameterError({required: 'code'}));
         }
 
 
-        var campaignId = req.body.campaign;
-        if(!campaignId) {
-            return next(new error.MissingParameterError({required: 'campaign'}));
-        }
-
-        var token = req.body.code;
-
         try {
-            var value = decryptPaymentCodeValues(token);
 
-            Campaign.findById(campaignId).select('+paymentStatus').exec(function (err, campaign) {
-                if (err) {
-                    return error.errorHandler(err, next);
+            PaymentCode.findOne({ code: code }).exec(function (err, paymentCode) {
+                if(err) {
+                    return error.handleError(err, next);
                 }
-                if (!campaign) {
-                    return next(new error.ResourceNotFoundError('Campaign not found.', { id: campaignId }));
-                }
-
-                req.log.debug(campaign);
-
-                if(campaign.paymentStatus === 'paid') {
-                    return next(new error.BadMethodError('Campaign is already paid.'));
+                if (!paymentCode) {
+                    return next(new error.ResourceNotFoundError({ code: code}));
                 }
 
-                campaign.paymentStatus = 'paid';
-                campaign.save(function(err) {
-                    if(err) {
-                        return error.handleError(err, next);
+                if(!paymentCode.campaign) {
+                    return next(new error.MissingParameterError({required: 'campaign'}));
+                }
+
+                if(campaign && campaign !== paymentCode.campaign.toString()) {
+                    return next(new error.InvalidArgumentError('paymentCode is assigned to a different campaign', {
+                        current: campaign,
+                        paymentCodeCampaign: paymentCode.campaign
+                    }));
+                }
+
+                Campaign.findById(paymentCode.campaign).select('+paymentStatus').exec(function (err, campaign) {
+                    if (err) {
+                        return error.errorHandler(err, next);
+                    }
+                    if (!campaign) {
+                        return next(new error.ResourceNotFoundError('Campaign not found.', { id: paymentCode.campaign }));
                     }
 
-                    res.send(200, { value: value });
-                    return next();
+                    req.log.debug(campaign);
+
+                    if(campaign.paymentStatus === 'paid') {
+                        return next(new error.BadMethodError('Campaign is already paid.'));
+                    }
+
+                    campaign.paymentStatus = 'paid';
+                    campaign.save(function(err) {
+                        if(err) {
+                            return error.handleError(err, next);
+                        }
+
+                        res.send(200, paymentCode);
+                        return next();
+                    });
                 });
             });
+
+
 
         } catch(e) {
             return next(new error.InvalidArgumentError('Invalid token'));

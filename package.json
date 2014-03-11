@@ -29,7 +29,8 @@
         "async": "~0.2.x",
         "i18next": "~1.7.1",
         "cron": "~1.0.x",
-        "shortid": "~2.0.x"
+        "shortid": "~2.0.x",
+        "coupon-code": "~0.3.x"
     },
     "devDependencies": {
         "grunt-contrib-jshint": "~0.8.x",

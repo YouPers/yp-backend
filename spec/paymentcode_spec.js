@@ -12,16 +12,24 @@ frisby.globalSetup({ // globalSetup is for ALL requests
     }
 });
 
-var testCampaignId = '527916a82079aa8704000007';
-var testValue = '123';
+var testCampaign = '527916a82079aa8704000007';
+var testProductCode = {
+    service: 'testService',
+    productType: 'testProductType',
+    users: '1',
+
+    campaign: testCampaign
+};
 
 frisby.create('generatePaymentCode')
-    .post(URL + '/paymentcode/generate', { value: testValue })
+    .post(URL + '/paymentcode/generate', testProductCode)
     .auth('test_prodadm', 'yp')
     .expectStatus(201)
     .afterJSON(function (response) {
 
         var code = response.code;
+
+        console.log('code: ' + code);
 
         frisby.create('validatePaymentCode: Fail / Missing role orgadmin')
             .post(URL + '/paymentcode/validate', { code: code })
@@ -29,18 +37,11 @@ frisby.create('generatePaymentCode')
             .expectStatus(403)
             .toss();
 
-// TODO: find out why this only occurs locally ( returns a 409 at circleci )
-
-//        frisby.create('validatePaymentCode: Weird: CODE + "test" does not fail')
-//            .post(URL + '/paymentcode/validate', { code: response.code + 'test'} )
-//            .auth('test_orgadm', 'yp')
-//            .expectStatus(200)
-//            .toss();
 
         frisby.create('validatePaymentCode: Fail / Invalid Code')
-            .post(URL + '/paymentcode/validate', { code: 'test' + response.code } )
+            .post(URL + '/paymentcode/validate', { code: 'test' + code } )
             .auth('test_orgadm', 'yp')
-            .expectStatus(409)
+            .expectStatus(404)
             .toss();
 
         frisby.create('validatePaymentCode: Success')
@@ -51,12 +52,12 @@ frisby.create('generatePaymentCode')
 
                 console.log('validatePaymentCode', code);
                 console.log('validatePaymentCode', response.value);
-                expect(response.value).toEqual(testValue);
+//                expect(response.value).toEqual(testValue);
 
 
 
                 frisby.create('redeemPaymentCode: Success')
-                    .post(URL + '/paymentcode/redeem', { code: code, campaign: testCampaignId })
+                    .post(URL + '/paymentcode/redeem', { code: code, campaign: testCampaign })
                     .auth('test_orgadm', 'yp')
                     .expectStatus(200)
                     .afterJSON(function (response) {

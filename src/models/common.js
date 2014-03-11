@@ -390,7 +390,10 @@ module.exports = {
         relatedService: "YP-Balance".split(' '),
         paymentStatus: "open paid".split(' '),
         campaignProductType: "CampaignProductType1 CampaignProductType2 CampaignProductType3".split(' '),
-        calendarNotifications: "none 0 300 600 900 1800 3600 7200 86400 172800".split(' ')
+        calendarNotifications: "none 0 300 600 900 1800 3600 7200 86400 172800".split(' '),
+
+        service: "a b".split(' '),
+        productType: "a b".split(' ')
     },
 
     initializeDbFor: function InitializeDbFor(Model) {

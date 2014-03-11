@@ -21,8 +21,12 @@ var decryptPaymentCodeValues = function (token) {
  * @param values
  * @returns {Function}
  */
-var generatePaymentCode = function getSocialEventsListFn(baseUrl, Model) {
+var generatePaymentCode = function generatePaymentCode() {
     return function (req, res, next) {
+
+        if(!req.body.value) {
+            return next(new error.MissingParameterError({required: 'value'}));
+        }
 
         var value = req.body.value;
 
@@ -37,8 +41,12 @@ var generatePaymentCode = function getSocialEventsListFn(baseUrl, Model) {
  * @param values
  * @returns {Function}
  */
-var validatePaymentCode = function getSocialEventsListFn(baseUrl, Model) {
+var validatePaymentCode = function validatePaymentCode() {
     return function (req, res, next) {
+
+        if(!req.body.code) {
+            return next(new error.MissingParameterError({required: 'code'}));
+        }
 
         var token = req.body.code;
 

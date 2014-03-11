@@ -27,8 +27,16 @@ frisby.create('generatePaymentCode')
             .auth('test_ind3', 'yp')
             .expectStatus(403)
             .toss();
+
+
+        frisby.create('validatePaymentCode: Weird: CODE + "test" does not fail')
+            .post(URL + '/paymentcode/validate', { code: response.code + 'test'} )
+            .auth('test_orgadm', 'yp')
+            .expectStatus(200)
+            .toss();
+
         frisby.create('validatePaymentCode: Fail / Invalid Code')
-            .post(URL + '/paymentcode/validate', { code: response.code + 'test' } )
+            .post(URL + '/paymentcode/validate', { code: 'test' + response.code } )
             .auth('test_orgadm', 'yp')
             .expectStatus(409)
             .toss();
@@ -42,10 +50,6 @@ frisby.create('generatePaymentCode')
                 console.log('validatePaymentCode', code);
                 console.log('validatePaymentCode', response.value);
                 expect(response.value).toEqual(testValue);
-
-//                expect(values).toBeDefined();
-//                expect(values.service).toEqual(testValue.service);
-//                expect(values.userLimit).toEqual(testValue.userLimit);
 
             })
             .toss();

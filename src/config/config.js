@@ -43,7 +43,7 @@ module.exports = {
         },
         paymentCodeTokenEncryption : {
             key: "b12054d4e709c7598e3e8b0d521902e59cd74b41",
-            algorithm: "des"
+            algorithm: "aes128"
         }
     },
     test: {   // used by CircleCI!!!

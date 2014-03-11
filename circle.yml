@@ -1,11 +1,11 @@
 deployment:
-  test:
-    branch: test
-    heroku:
-      appname: yp-backend-test
+  uat:
+    branch: uat
+    commands:
+    - ssh youpers@uat.youpers.com 'bash -s' < bin/deploy.sh
   ci:
     branch: master
-    heroku:
-      appname: yp-backend-ci
+    commands:
+    - ssh youpers@cimaster.youpers.com 'bash -s' < bin/deploy.sh
 
 

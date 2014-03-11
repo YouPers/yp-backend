@@ -72,58 +72,25 @@ module.exports = {
             maxTokenLifetime: 10 * 60 * 1000
         }
     },
-    ci: {   // used by Heroku yp-backend-ci
+    cimaster: {
         root: require('path').normalize(__dirname + '/..'),
         app: {
             name: 'YouPers Platform Server'
         },
-        webclientUrl: "http://yp-ewl-webclient-ci.herokuapp.com",
-        backendUrl: "http://yp-backend-ci.herokuapp.com",
-        host: "yp-backend-ci.herokuapp.com",
+        webclientUrl: "https://cimaster.youpers.com",
+        backendUrl: "https://cimaster.youpers.com/api",
+        host: "cimaster.youpers.com",
         port: '8000',
         db_prefix: 'mongodb',
-        db_host: 'ds047968.mongolab.com',
-        db_port: '47968',
-        db_database: 'heroku_app18686651',
-        db_user: 'yp-backend-db-user',
-        db_password: 'driveyourhealth',
+        db_host: 'localhost',
+        db_port: '27017',
+        db_database: 'test_database',
         loadTestData: true,
         loggerOptions: {
             name: 'Main',
             streams: [
                 {
-                    path: 'logs/server.log',
-                    level: 'info'
-                }
-            ],
-            serializers: bunyan.stdSerializers
-        },
-        linkTokenEncryption : {
-            key: "50126a4a500219238cd678a383cdab197ed5fe42",
-            algorithm: "aes256",
-            maxTokenLifetime: 10 * 60 * 1000
-        }
-    },
-    herokutest: {   // used by Heroku yp-backend-test
-        root: require('path').normalize(__dirname + '/..'),
-        app: {
-            name: 'YouPers Platform Server'
-        },
-        webclientUrl: "http://yp-ewl-backend-test.herokuapp.com",
-        backendUrl: "http://yp-backend-test.herokuapp.com",
-        port: '8000',
-        db_prefix: 'mongodb',
-        db_host: 'ds051658.mongolab.com',
-        db_port: '51658',
-        db_database: 'heroku_app18686715',
-        db_user: 'yp-backend-db-user',
-        db_password: 'driveyourhealth',
-        loadTestData: true,
-        loggerOptions: {
-            name: 'Main',
-            streams: [
-                {
-                    path: 'logs/server.log',
+                    path: '/var/log/yp-backend/server.log',
                     level: 'info'
                 }
             ],

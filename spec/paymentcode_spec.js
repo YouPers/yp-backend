@@ -25,7 +25,7 @@ frisby.create('generatePaymentCode')
 
         frisby.create('validatePaymentCode: Fail / Missing role orgadmin')
             .post(URL + '/paymentcode/validate', { code: code })
-            .auth('test_ind3', 'yp')
+            .auth('test_ind2', 'yp')
             .expectStatus(403)
             .toss();
 

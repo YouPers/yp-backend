@@ -12,6 +12,7 @@ frisby.globalSetup({ // globalSetup is for ALL requests
     }
 });
 
+var testCampaignId = '527916a82079aa8704000007';
 var testValue = '123';
 
 frisby.create('generatePaymentCode')
@@ -50,6 +51,26 @@ frisby.create('generatePaymentCode')
                 console.log('validatePaymentCode', code);
                 console.log('validatePaymentCode', response.value);
                 expect(response.value).toEqual(testValue);
+
+
+
+                frisby.create('redeemPaymentCode: Success')
+                    .post(URL + '/paymentcode/redeem', { code: code, campaign: testCampaignId })
+                    .auth('test_orgadm', 'yp')
+                    .expectStatus(200)
+                    .afterJSON(function (response) {
+
+                        console.log('redeemPaymentCode', response);
+
+
+                        frisby.create('redeemPaymentCode: revert campaign.paymentStatus = paid')
+                            .put(URL + '/campaigns/' + testCampaignId, {"paymentStatus": "open"})
+                            .auth('test_orgadm', 'yp')
+                            .expectStatus(201)
+                            .toss();
+
+                    })
+                    .toss();
 
             })
             .toss();

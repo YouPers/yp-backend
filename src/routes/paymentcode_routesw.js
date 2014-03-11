@@ -30,13 +30,28 @@ module.exports = function (swagger, config) {
             notes: "Validate a payment code",
             summary: "Validate a payment code",
             method: "POST",
-            params: [swagger.bodyParam("value", "payment code value", "String")],
+            params: [swagger.bodyParam("value", "payment code", "String")],
             "responseClass": "String",
             "errorResponses": [],
             "nickname": "validatePaymentCode",
             accessLevel: 'al_orgadmin'
         },
         action: paymentCodeHandlers.validatePaymentCode()
+    });
+    swagger.addPost({
+        spec: {
+            description: "Redeem a payment code",
+            path: '/paymentcode/redeem',
+            notes: "Validate a payment code",
+            summary: "Validate a payment code",
+            method: "POST",
+            params: [swagger.bodyParam("code", "payment code", "String")],
+            "responseClass": "String",
+            "errorResponses": [],
+            "nickname": "redeemPaymentCode",
+            accessLevel: 'al_orgadmin'
+        },
+        action: paymentCodeHandlers.redeemPaymentCode()
     });
 
 

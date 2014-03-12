@@ -22,7 +22,7 @@ var testProductCode = {
 };
 
 frisby.create('generatePaymentCode')
-    .post(URL + '/paymentcode/generate', testProductCode)
+    .post(URL + '/paymentcodes/generate', testProductCode)
     .auth('test_prodadm', 'yp')
     .expectStatus(201)
     .afterJSON(function (response) {
@@ -32,20 +32,20 @@ frisby.create('generatePaymentCode')
         console.log('code: ' + code);
 
         frisby.create('validatePaymentCode: Fail / Missing role orgadmin')
-            .post(URL + '/paymentcode/validate', { code: code })
+            .post(URL + '/paymentcodes/validate', { code: code })
             .auth('test_ind2', 'yp')
             .expectStatus(403)
             .toss();
 
 
         frisby.create('validatePaymentCode: Fail / Invalid Code')
-            .post(URL + '/paymentcode/validate', { code: 'test' + code } )
+            .post(URL + '/paymentcodes/validate', { code: 'test' + code } )
             .auth('test_orgadm', 'yp')
             .expectStatus(404)
             .toss();
 
         frisby.create('validatePaymentCode: Success')
-            .post(URL + '/paymentcode/validate', { code: code })
+            .post(URL + '/paymentcodes/validate', { code: code })
             .auth('test_orgadm', 'yp')
             .expectStatus(200)
             .afterJSON(function (response) {
@@ -57,7 +57,7 @@ frisby.create('generatePaymentCode')
 
 
                 frisby.create('redeemPaymentCode: Success')
-                    .post(URL + '/paymentcode/redeem', { code: code, campaign: testCampaign })
+                    .post(URL + '/paymentcodes/redeem', { code: code, campaign: testCampaign })
                     .auth('test_orgadm', 'yp')
                     .expectStatus(200)
                     .afterJSON(function (response) {

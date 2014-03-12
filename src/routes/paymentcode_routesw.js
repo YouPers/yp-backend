@@ -4,14 +4,19 @@
  * Created by irig on 13.01.14.
  */
 
-var paymentCodeHandlers = require('./../handlers/paymentcode_handlers');
+var paymentCodeHandlers = require('./../handlers/paymentcode_handlers'),
+    mongoose = require('mongoose'),
+    PaymentCode = mongoose.model('PaymentCode'),
+    generic = require('./../handlers/generic');
 
 module.exports = function (swagger, config) {
+
+    var baseUrl = '/paymentcodes';
 
     swagger.addPost({
         spec: {
             description: "Generates a payment code",
-            path: '/paymentcode/generate',
+            path: baseUrl + '/generate',
             notes: "Generates a payment code",
             summary: "Generates a payment code",
             method: "POST",
@@ -23,10 +28,29 @@ module.exports = function (swagger, config) {
         },
         action: paymentCodeHandlers.generatePaymentCode()
     });
+    swagger.addGet({
+        spec: {
+            description: "Get all payment codes",
+            path: baseUrl,
+            notes: "returns all payment codes",
+            summary: "returns all payment codes",
+            params: [generic.params.sort,
+                generic.params.limit,
+                generic.params.filter,
+                generic.params.populate,
+                generic.params.populatedeep],
+            method: "GET",
+            "responseClass": "PaymentCode",
+            "nickname": "getPaymentCodes",
+            accessLevel: 'al_productadmin'
+        },
+        action: generic.getAllFn(baseUrl, PaymentCode)
+    });
+
     swagger.addPost({
         spec: {
             description: "Validate a payment code",
-            path: '/paymentcode/validate',
+            path: baseUrl + '/validate',
             notes: "Validate a payment code",
             summary: "Validate a payment code",
             method: "POST",
@@ -41,7 +65,7 @@ module.exports = function (swagger, config) {
     swagger.addPost({
         spec: {
             description: "Redeem a payment code",
-            path: '/paymentcode/redeem',
+            path: baseUrl + '/redeem',
             notes: "Validate a payment code",
             summary: "Validate a payment code",
             method: "POST",

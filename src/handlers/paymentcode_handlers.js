@@ -13,26 +13,30 @@ var generatePaymentCode = function generatePaymentCode() {
 
         var values = req.body;
 
-        if(!values.campaign) {
-            return next(new error.MissingParameterError({required: 'campaign'}));
+        if(!values || !values.productType || !values.relatedService) {
+            return next(new error.MissingParameterError({required: [
+                'productType',
+                'relatedService'
+            ]}));
         }
 
         var paymentCode = new PaymentCode({
             code: couponCode.generate(),
-            service: values.service,
+            relatedService: values.relatedService,
             productType: values.productType,
-            users: values.users,
-            campaign: values.campaign
+            users: values.users
         });
 
         paymentCode.save(function(err) {
             if(err) {
                 return error.handleError(err, next);
             }
+
+            res.send(201, paymentCode );
+            return next();
+
         });
 
-        res.send(201, paymentCode );
-        return next();
     };
 };
 
@@ -49,7 +53,7 @@ var validatePaymentCode = function validatePaymentCode() {
             return next(new error.MissingParameterError({required: 'code'}));
         }
 
-        PaymentCode.findOne({ code: code }).exec(function (err, paymentCode) {
+        PaymentCode.findOne({ code: code, campaign: { $exists: false } }).exec(function (err, paymentCode) {
             if(err) {
                 return error.handleError(err, next);
             }
@@ -72,16 +76,19 @@ var redeemPaymentCode = function redeemPaymentCode() {
     return function (req, res, next) {
 
         var code = req.body.code;
-        var campaign = req.body.campaign;
+        var campaignId = req.body.campaign;
 
         if(!code) {
             return next(new error.MissingParameterError({required: 'code'}));
         }
 
+        if(!campaignId) {
+            return next(new error.MissingParameterError({required: 'campaign'}));
+        }
 
         try {
 
-            PaymentCode.findOne({ code: code }).exec(function (err, paymentCode) {
+            PaymentCode.findOne({ code: code , campaign: {$exists: false} }).exec(function (err, paymentCode) {
                 if(err) {
                     return error.handleError(err, next);
                 }
@@ -89,39 +96,37 @@ var redeemPaymentCode = function redeemPaymentCode() {
                     return next(new error.ResourceNotFoundError({ code: code}));
                 }
 
-                if(!paymentCode.campaign) {
-                    return next(new error.MissingParameterError({required: 'campaign'}));
-                }
-
-                if(campaign && campaign !== paymentCode.campaign.toString()) {
-                    return next(new error.InvalidArgumentError('paymentCode is assigned to a different campaign', {
-                        current: campaign,
-                        paymentCodeCampaign: paymentCode.campaign
-                    }));
-                }
-
-                Campaign.findById(paymentCode.campaign).select('+paymentStatus').exec(function (err, campaign) {
+                Campaign.findById(campaignId).select('+paymentStatus').exec(function (err, campaign) {
                     if (err) {
                         return error.errorHandler(err, next);
                     }
                     if (!campaign) {
-                        return next(new error.ResourceNotFoundError('Campaign not found.', { id: paymentCode.campaign }));
+                        return next(new error.ResourceNotFoundError('Campaign not found.', { id: campaignId }));
                     }
-
-                    req.log.debug(campaign);
 
                     if(campaign.paymentStatus === 'paid') {
                         return next(new error.BadMethodError('Campaign is already paid.'));
                     }
 
                     campaign.paymentStatus = 'paid';
+
+                    campaign.productType = paymentCode.productType;
+
                     campaign.save(function(err) {
                         if(err) {
                             return error.handleError(err, next);
                         }
 
-                        res.send(200, paymentCode);
-                        return next();
+                        paymentCode.campaign = campaign.id;
+                        paymentCode.save(function(err) {
+                            if(err) {
+                                return error.handleError(err, next);
+                            }
+
+                            res.send(200, paymentCode);
+                            return next();
+                        });
+
                     });
                 });
             });

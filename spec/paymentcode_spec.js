@@ -14,8 +14,8 @@ frisby.globalSetup({ // globalSetup is for ALL requests
 
 var testCampaign = '527916a82079aa8704000007';
 var testProductCode = {
-    service: 'testService',
-    productType: 'testProductType',
+    relatedService: 'YP-Balance',
+    productType: 'CampaignProductType1',
     users: '1',
 
     campaign: testCampaign

@@ -40,10 +40,6 @@ module.exports = {
             key: "50126a4a500219238cd678a383cdab197ed5fe42",
             algorithm: "aes256",
             maxTokenLifetime: 10 * 60 * 1000
-        },
-        paymentCodeTokenEncryption : {
-            key: "b12054d4e709c7598e3e8b0d521902e59cd74b41",
-            algorithm: "aes128"
         }
     },
     test: {   // used by CircleCI!!!
@@ -74,10 +70,6 @@ module.exports = {
             key: "50126a4a500219238cd678a383cdab197ed5fe42",
             algorithm: "aes256",
             maxTokenLifetime: 10 * 60 * 1000
-        },
-        paymentCodeTokenEncryption : {
-            key: "b12054d4e709c7598e3e8b0d521902e59cd74b41",
-            algorithm: "des"
         }
     },
     ci: {   // used by Heroku yp-backend-ci
@@ -172,10 +164,6 @@ module.exports = {
             key: "50126a4a500219238cd678a383cdab197ed5fe42",
             algorithm: "aes256",
             maxTokenLifetime: 10 * 60 * 1000
-        },
-        paymentCodeTokenEncryption : {
-            key: "b12054d4e709c7598e3e8b0d521902e59cd74b41",
-            algorithm: "des"
         }
     },
     production: {

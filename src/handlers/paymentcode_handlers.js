@@ -25,7 +25,11 @@ var generatePaymentCode = function generatePaymentCode() {
             campaign: values.campaign
         });
 
-        paymentCode.save(function(err) { if(err) { error.handleError(err, next); }});
+        paymentCode.save(function(err) {
+            if(err) {
+                return error.handleError(err, next);
+            }
+        });
 
         res.send(201, paymentCode );
         return next();

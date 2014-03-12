@@ -54,11 +54,11 @@ var userProfile = {
 
 frisby.create('POST new user')
     .post(URL + '/users', {
-        username: 'zzz_profile_unittest_user',
+        username: 'XXX_profile_unittest_user',
         fullname:'Profile Unittest',
         firstname: 'Testing',
-        lastname: 'zzzProfileUnittest',
-        email: 'ypunittest1+zzzprofileuser@gmail.com',
+        lastname: 'XXXProfileUnittest',
+        email: 'ypunittest1+XXXprofileuser@gmail.com',
         password:'nopass'})
     .expectStatus(201)
     .afterJSON(function(newUser) {

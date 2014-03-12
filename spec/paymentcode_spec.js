@@ -66,7 +66,7 @@ frisby.create('generatePaymentCode')
 
 
                         frisby.create('redeemPaymentCode: revert campaign.paymentStatus = paid')
-                            .put(URL + '/campaigns/' + testCampaignId, {"paymentStatus": "open"})
+                            .put(URL + '/campaigns/' + testCampaign, {"paymentStatus": "open"})
                             .auth('test_orgadm', 'yp')
                             .expectStatus(201)
                             .toss();

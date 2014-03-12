@@ -63,15 +63,15 @@ frisby.create('POST new user')
     .expectStatus(201)
     .afterJSON(function(newUser) {
         var owner = newUser.id;
-        frisby.create('retrieve user profile by using its id')
+        frisby.create('retrieve user profile by authentication')
             .get(URL + '/profiles')
-            .auth('zzz_profile_unittest_user', 'nopass')
+            .auth('XXX_profile_unittest_user', 'nopass')
             .expectStatus(200)
             .afterJSON(function (profileArray) {
                 var url = URL + '/profiles/' + profileArray[0].id;
                 frisby.create('update user profile using its id')
                     .put(url, userProfile)
-                    .auth('zzz_profile_unittest_user', 'nopass')
+                    .auth('xxx_profile_unittest_user', 'nopass')
                     .expectStatus(200)
                     .expectJSONTypes({
                         id: String,

@@ -25,6 +25,7 @@ var initialize = function initialize(loadTestData) {
         'comment',
         'goal',
         'organization',
+        'paymentCode',
         'profile',
         'user'];
     if (!loadTestData) {

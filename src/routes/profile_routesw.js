@@ -24,7 +24,7 @@ module.exports = function (swagger, config) {
                 generic.params.populatedeep],
             method: "GET",
             "responseClass": "Profile",
-            "nickname": "getUsers",
+            "nickname": "getProfiles",
             accessLevel: 'al_user'
         },
         action: generic.getAllFn(baseUrl, Profile)

@@ -229,7 +229,10 @@ var getAllForUserFn = function (baseUrl) {
 
         var userId = req.user.id;
 
-        Campaign.find({campaignLeads: userId})
+        var all = _.contains(req.user.roles, 'systemadmin');
+        var match = all ? {} : {campaignLeads: userId};
+
+        Campaign.find(match)
             .exec(function(err, campaigns) {
 
                 if(err) {

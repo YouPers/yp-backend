@@ -140,8 +140,8 @@ var validateLocalUsernamePassword = function (username, password, done) {
     UserModel
         .findOne()
         .or([
-            { username: username },
-            {email: username}
+            { username: username.toLowerCase() },
+            {email: username.toLowerCase()}
         ])
         // select the 'private' attributes from the user that are hidden if another user loads the user object
         .select(UserModel.privatePropertiesSelector)

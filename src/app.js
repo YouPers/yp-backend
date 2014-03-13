@@ -80,6 +80,10 @@ server.use(ypi18n.angularTranslateI18nextAdapterPost);
 server.use(passport.initialize());
 server.use(restify.fullResponse());
 
+server.use(function(req,res, next) {
+    res.header('Expires','-1');
+    return next();
+});
 // allows authenticated cross domain requests
 preflightEnabler(server);
 

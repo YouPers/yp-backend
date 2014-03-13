@@ -42,7 +42,22 @@ var ProfileSchema = common.newSchema({
             sunday: { type: Boolean, default: false  }
         },
         starredActivities: [
-            {type: ObjectId, ref: 'Activity'}
+            {
+                timestamp: {type: Date},
+                activity: {type: ObjectId, ref: 'Activity'}
+            }
+        ],
+        rejectedActivities: [
+            {
+                timestamp: {type: Date},
+                activity: {type: ObjectId, ref: 'Activity'}
+            }
+        ],
+        rejectedActivityPlans: [
+            {
+                timestamp: {type: Date},
+                activityPlan: {type: ObjectId, ref: 'ActivityPlan'}
+            }
         ],
         firstDayOfWeek: { type: String, enum: common.enums.firstDayOfWeek },
         timezone: { type: String, trim: true },

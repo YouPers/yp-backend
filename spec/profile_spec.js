@@ -7,8 +7,6 @@
 var frisby = require('frisby');
 var port = process.env.PORT || 8000;
 var URL = 'http://localhost:'+ port;
-var _ = require('lodash');
-var consts = require('./testconsts');
 
 frisby.globalSetup({ // globalSetup is for ALL requests
     request: {
@@ -48,7 +46,9 @@ var userProfile = {
         },
         "firstDayOfWeek": "Monday",
         "timezone": "+01:00",
-        "starredActivities": ["5278c6adcdeab69a25000054"]
+        "starredActivities": [{timestamp: new Date().toISOString(), activity: "5278c6adcdeab69a25000054"}],
+        "rejectedActivities": [{timestamp: new Date().toISOString(), activity: "5278c6adcdeab69a25000090"}],
+        "rejectedActivityPlans": []
     }
 };
 
@@ -75,7 +75,6 @@ frisby.create('POST new user')
                     .expectStatus(200)
                     .expectJSONTypes({
                         id: String,
-                        timestamp: String,
                         birthDate: String,
                         maritalStatus: String
                     })

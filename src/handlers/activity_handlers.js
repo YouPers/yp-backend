@@ -31,7 +31,7 @@ function generateRecommendations(actList, assResult, fokusQuestion, log) {
             });
 
             if (!answerObj || (fokusQuestion && (answerObj.question.toString() !== fokusQuestion))) {
-                log.info('no answer found for question: ' + recWeight.question);
+                log.trace('no answer found for question: ' + recWeight.question);
             } else {
                 weight += (answerObj.answer >= 0) ?
                     answerObj.answer /100* recWeight.positiveAnswerWeight :
@@ -65,6 +65,15 @@ function getRecommendationsFn(req, res, next) {
         if (!actList || actList.length === 0) {
             return next(new error.ResourceNotFoundError('No activities found.'));
         }
+
+        // filter out the activities this user has previously rejected
+        var myActList = _.clone(actList);
+        _.remove(myActList, function(act) {
+            return _.any(req.user.profile.userPreferences.rejectedActivities, function(rejAct) {
+                return rejAct.activity.equals(act._id);
+            });
+        });
+
         AssessmentResult.find({owner: req.user.id})
             .sort({timestamp: -1})
             .limit(1)
@@ -80,7 +89,7 @@ function getRecommendationsFn(req, res, next) {
                 }
                 var fokusQuestion = req.params && req.params.fokus;
 
-                var recs = generateRecommendations(actList, assResults[0], fokusQuestion, req.log);
+                var recs = generateRecommendations(myActList, assResults[0], fokusQuestion, req.log);
                 if (!auth.isAdminForModel(req.user, Activity)) {
                     recs = recs.slice(0,5);
                 }

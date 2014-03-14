@@ -91,7 +91,7 @@ function getRecommendationsFn(req, res, next) {
 
                 var recs = generateRecommendations(myActList, assResults[0], fokusQuestion, req.log);
                 if (!auth.isAdminForModel(req.user, Activity)) {
-                    recs = recs.slice(0,5);
+                    recs = recs.slice(0,10);
                 }
                 res.send(recs);
                 return next();

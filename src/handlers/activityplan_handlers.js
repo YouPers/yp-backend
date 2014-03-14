@@ -13,7 +13,7 @@ var env = process.env.NODE_ENV || 'development',
     async = require('async'),
     auth = require('../util/auth');
 
-var getIcalObject = function (plan, recipientUser, iCalType, i18n) {
+var getIcalObject = function (plan, recipientUser, iCalType, i18n, reason) {
 
     // fix for non existing plan.text
     if (_.isUndefined(plan.text)) {
@@ -146,7 +146,7 @@ function putActivityEvent(req, res, next) {
     var find = ActivityPlanModel.findById(req.params.planId).populate('activity');
 
     find.exec(function (err, planFromDb) {
-        if(err) {
+        if (err) {
             return error.handleError(err, next);
         }
 
@@ -187,12 +187,12 @@ function putActivityEvent(req, res, next) {
         _.extend(eventFromDb, eventToPut);
 
         var saveCallback = function (err, savedActivityPlan) {
-            if(err) {
+            if (err) {
                 return error.handleError(err, next);
             }
 
             ActivityPlanModel.findById(savedActivityPlan._id, function (err, reloadedPlan) {
-                if(err) {
+                if (err) {
                     return error.handleError(err, next);
                 }
                 var savedEvent = _.find(reloadedPlan.events, {'id': req.params.eventId});
@@ -219,7 +219,7 @@ function putActivityEvent(req, res, next) {
                 }
             });
             CommentModel.create(newComments, function (err) {
-                if(err) {
+                if (err) {
                     return error.handleError(err, next);
                 }
                 // the callbackFn is called with an optional argument for each created comment
@@ -292,7 +292,7 @@ function postNewActivityPlan(req, res, next) {
 
     // add fields of activity to the activity plan
     ActivityModel.findById(newActPlan.activity).exec(function (err, foundActivity) {
-        if(err) {
+        if (err) {
             return error.handleError(err, next);
         }
         newActPlan.fields = foundActivity.fields;
@@ -300,7 +300,7 @@ function postNewActivityPlan(req, res, next) {
         req.log.trace(newActPlan, 'PostFn: Saving new Object');
         // try to save the new object
         newActPlan.save(function (err) {
-            if(err) {
+            if (err) {
                 return error.handleError(err, next);
             }
 
@@ -309,7 +309,7 @@ function postNewActivityPlan(req, res, next) {
             // - we need to reload so we get the changes that have been done pre('save') and pre('init')
             //   like updating the joiningUsers Collection
             ActivityPlanModel.findById(newActPlan._id).populate('activity').exec(function (err, reloadedActPlan) {
-                if(err) {
+                if (err) {
                     return error.handleError(err, next);
                 }
 
@@ -358,7 +358,7 @@ function getJoinOffers(req, res, next) {
 
     generic.addStandardQueryOptions(req, dbquery, ActivityPlanModel);
     dbquery.exec(function (err, joinOffers) {
-        if(err) {
+        if (err) {
             return error.handleError(err, next);
         }
         if (!joinOffers || joinOffers.length === 0) {
@@ -436,7 +436,7 @@ function postActivityPlanInvite(req, res, next) {
                 });
         }
     ], function (err) {
-        if(err) {
+        if (err) {
             return error.handleError(err, next);
         }
         res.send(200);
@@ -444,81 +444,48 @@ function postActivityPlanInvite(req, res, next) {
     });
 }
 
-function deleteActivityPlan(req, res, next) {
+function _deleteActivityPlanNoJoiningPlans(activityPlan, user, reason, i18n, done) {
 
-    ActivityPlanModel.findById(req.params.id).populate('activity').exec(function (err, activityPlan) {
-        if(err) {
-            return error.handleError(err, next);
+    if (!activityPlan.masterPlan && activityPlan.joiningUsers.length > 0) {
+        return done(new error.InvalidArgumentError('this method can only be called with masterplans, ' +
+            'that have an empty joiningUsers array or with slaveplans'));
+    }
+    // we need the owner of the plan to send him a cancellation to his email address
+    mongoose.model('User').findById(activityPlan.owner).populate('profile').select('+email +profile').exec(function (err, owner) {
+        if (err) {
+            return error.handleError(err, done);
         }
-        if (!activityPlan) {
-            return next(new error.ResourceNotFoundError('ActivityPlan not found.', {
-                id: req.params.id
+
+        if (!owner) {
+            return done(new error.ResourceNotFoundError('ActivityPlan owner not found.', {
+                activityPlanId: activityPlan.id,
+                owner: activityPlan.owner
             }));
         }
 
-
-        // we need the owner of the plan to send him a cancellation to his email address
-        mongoose.model('User').findById(activityPlan.owner).populate('profile').select('+email +profile').exec(function (err, owner) {
-            if(err) {
-                return error.handleError(err, next);
+        ////////////////////
+        // private functions
+        var _finalSendNotifcationCallback = function (err) {
+            if (err) {
+                return error.handleError(err, done);
             }
-
-            if (!owner) {
-                return next(new error.ResourceNotFoundError('ActivityPlan owner not found.', {
-                    activityPlanId: activityPlan.id,
-                    owner: activityPlan.owner
-                }));
+            if (owner.profile.userPreferences.email.iCalInvites) {
+                var myIcalString = getIcalObject(activityPlan, owner, 'cancel', i18n, reason).toString();
+                email.sendCalInvite(owner.email, 'cancel', myIcalString, i18n, reason);
             }
+            return done();
+        };
+        ///////////////////
 
-            ////////////////////
-            // private functions
-            var _removeCallback = function (err) {
-                if(err) {
-                    return error.handleError(err, next);
-                }
-                if (owner.profile.userPreferences.email.iCalInvites) {
-                    var myIcalString = getIcalObject(activityPlan, owner, 'cancel', req.i18n).toString();
-                    email.sendCalInvite(owner.email, 'cancel', myIcalString, req.i18n);
-                }
-                res.send(200);
-                return next();
-            };
-            ///////////////////
-
-            ///////////
-            // if this is a slave of a masterPlan we need to remove the owner of the slave plan from the
-            // joiningUsers collection of the master
-            if (activityPlan.masterPlan) {
-                ActivityPlanModel.findById(activityPlan.masterPlan, function(err, masterPlan) {
-                    if (err) {
-                        return error.handleError(err, next);
-                    }
-                    if (!masterPlan) {
-                        return new error.ResourceNotFoundError('MasterPlan not found', {
-                            masterPlanId: activityPlan.masterPlan
-                        });
-                    }
-                    _.remove(masterPlan.joiningUsers, function(ju) {
-                        return ju.equals(activityPlan.owner);
-                    });
-                    masterPlan.markModified('joiningUsers');
-                    masterPlan.save(function(err) {
-                        if (err) {
-                            return error.handleError(err, next);
-                        }
-                    });
-                });
-            }
-
-
+        var _removeCallback = function(err) {
             // plan can be deleted if user is systemadmin or if it is his own plan
-            if (auth.checkAccess(req.user, auth.accessLevels.al_systemadmin)) {
-                activityPlan.remove(_removeCallback);
-            } else if (owner._id.equals(req.user._id)) {
+            if (auth.checkAccess(user, auth.accessLevels.al_systemadmin)) {
+                activityPlan.remove(_finalSendNotifcationCallback);
+            } else if (owner._id.equals(user._id || user)) {
 
                 // check deleteStatus
                 if (activityPlan.deleteStatus === ActivityPlanModel.activityPlanCompletelyDeletable) {
-                    activityPlan.remove(_removeCallback);
+                    activityPlan.remove(_finalSendNotifcationCallback);
                 } else if (activityPlan.deleteStatus === ActivityPlanModel.activityPlanOnlyFutureEventsDeletable) {
                     // delete  all future events, set activityPlan to "Done", send cancellations for deleted events
                     var now = new Date();
@@ -529,18 +496,120 @@ function deleteActivityPlan(req, res, next) {
                             activityPlan.events.id(event.id).remove();
                         }
                     });
+                    activityPlan.deletionReason = reason;
                     activityPlan.status = "old";
-                    activityPlan.save(_removeCallback);
+                    activityPlan.save(_finalSendNotifcationCallback);
                 } else {
-                    return next(new error.BadMethodError('This activityPlan cannot be deleted.', {
+                    return done(new error.BadMethodError('This activityPlan cannot be deleted.', {
                         activityPlanId: activityPlan.id,
                         deleteStatus: activityPlan.deleteStatus
                     }));
                 }
 
             } else {
-                return next(new error.NotAuthorizedError('The user is not authorized to delete this plan.'));
+                return done(new error.NotAuthorizedError('The user is not authorized to delete this plan.'));
             }
+        };
+
+        ///////////
+        // if this is a slave of a masterPlan we need to remove the owner of the slave plan from the
+        // joiningUsers collection of the master
+        if (activityPlan.masterPlan) {
+            ActivityPlanModel.findById(activityPlan.masterPlan, function (err, masterPlan) {
+                if (err) {
+                    return error.handleError(err, done);
+                }
+                if (!masterPlan) {
+                    return new error.ResourceNotFoundError('MasterPlan not found', {
+                        masterPlanId: activityPlan.masterPlan
+                    });
+                }
+                _.remove(masterPlan.joiningUsers, function (ju) {
+                    return ju.equals(activityPlan.owner);
+                });
+                masterPlan.markModified('joiningUsers');
+                masterPlan.save(function (err) {
+                    if (err) {
+                        return error.handleError(err, done);
+                    }
+                    return _removeCallback();
+                });
+            });
+        } else {
+            return _removeCallback();
+        }
+
+    });
+}
+
+
+function deleteActivityPlan(req, res, next) {
+    if (!req.params || !req.params.id) {
+        return next(new error.MissingParameterError({ required: 'id' }));
+    }
+    var reason = req.params.reason || '';
+
+    ActivityPlanModel.findById(req.params.id).populate('activity').exec(function (err, activityPlan) {
+        if (err) {
+            return error.handleError(err, next);
+        }
+        if (!activityPlan) {
+            return next(new error.ResourceNotFoundError('ActivityPlan not found.', {
+                id: req.params.id
+            }));
+        }
+
+        // plan can be deleted if user is systemadmin or if it is his own plan
+        if (! ( auth.checkAccess(req.user, auth.accessLevels.al_systemadmin) ||
+                activityPlan.owner.equals(req.user._id))) {
+            return next(new error.NotAuthorizedError());
+        }
+
+
+
+        // if this is a masterPlan and and we have joined users we need to delete the joingingPlans first:
+        // delete the slavePlans and notify them with a calender deletion
+        // email. When all slaves are deleted we delete the master.
+
+        var usersWithSlavePlansToDelete = [];
+        // we have to check whether this is a masterPlan, only then we have to delete slaves.
+        // Reason: If this is a slavePlan, then the owner of the masterPlan is in the joiningUsers-Collection,
+        if (!activityPlan.masterPlan) {
+            usersWithSlavePlansToDelete = activityPlan.joiningUsers;
+        }
+        async.forEach(usersWithSlavePlansToDelete, function (joinedUser, done) {
+            // we need to load the plan and get the user by populating its owner property
+            ActivityPlanModel.find({masterPlan: activityPlan._id, owner: joinedUser._id || joinedUser})
+                .exec(function (err, plans) {
+                    if (err) {
+                        return error.handleError(err, done);
+                    }
+                    if (!plans || plans.length !== 1) {
+                        return done(new error.InvalidArgumentError('0 or more than one slavePlan found for this user: ' + plans.length,
+                            {user: joinedUser, masterPlan: activityPlan._id, slavePlans: plans}));
+                    }
+                    console.log("delete the a slave plan of the requested Plan");
+                    return _deleteActivityPlanNoJoiningPlans(plans[0], joinedUser, reason, req.i18n, done);
+                });
+        }, function (err) {
+            if (err) {
+                return error.handleError(err, next);
+            }
+            // reload the activityPlan to check whether all joiningUsers are gone
+            ActivityPlanModel.findById(activityPlan._id, function(err, reloadedPlan) {
+                if (err) {
+                    return error.handleError(err, next);
+                }
+                console.log("delete the requested plan");
+                return _deleteActivityPlanNoJoiningPlans(reloadedPlan, req.user, reason, req.i18n, function(err) {
+                    if (err) {
+                        return next(err);
+                    } else {
+                        res.send(200);
+                        return next();
+                    }
+                });
+            });
         });
     });
 }
@@ -568,7 +637,7 @@ function putActivityPlan(req, res, next) {
         });
 
     ActivityPlanModel.findById(req.params.id).exec(function (err, loadedActPlan) {
-        if(err) {
+        if (err) {
             return error.handleError(err, next);
         }
         if (!loadedActPlan) {
@@ -577,7 +646,7 @@ function putActivityPlan(req, res, next) {
 
         // check to see if received plan is editable
         if (loadedActPlan.editStatus !== "editable") {
-            var notEditableError = new Error('Error updating in Activity Plan PutFn: Not allowed to update this activity plan with id: ' );
+            var notEditableError = new Error('Error updating in Activity Plan PutFn: Not allowed to update this activity plan with id: ');
             notEditableError.statusCode = 409;
             return next(new error.BadMethodError('This activityPlan cannot be edited.', {
                 activityPlanId: sentPlan.id,
@@ -594,7 +663,7 @@ function putActivityPlan(req, res, next) {
         req.log.trace(loadedActPlan, 'PutFn: Updating existing Object');
 
         loadedActPlan.save(function (err) {
-            if(err) {
+            if (err) {
                 return error.handleError(err, next);
             }
 
@@ -603,8 +672,8 @@ function putActivityPlan(req, res, next) {
             // - we need to reload so we get the changes that have been done pre('save') and pre('init')
             //   like updating the joiningUsers Collection
             ActivityPlanModel.findById(loadedActPlan._id).populate('activity').exec(function (err, reloadedActPlan) {
-            // we read 'activity' so we can get create a nice calendar entry using using the activity title
-                if(err) {
+                // we read 'activity' so we can get create a nice calendar entry using using the activity title
+                if (err) {
                     return error.handleError(err, next);
                 }
                 if (req.user && req.user.email && req.user.profile.userPreferences.email.iCalInvites) {

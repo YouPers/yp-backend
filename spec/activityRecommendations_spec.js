@@ -36,7 +36,7 @@ frisby.create('ActivityRecommendations: post a first answer for this assessment'
             .auth('test_ind2', 'yp')
             .expectStatus(200)
             .afterJSON(function(recs) {
-                expect(recs.length).toEqual(5);
+                expect(recs.length).toEqual(10);
                 console.log(JSON.stringify(recs));
 
                 frisby.create('ActivityRecommendations: reject first recommendation')
@@ -55,7 +55,7 @@ frisby.create('ActivityRecommendations: post a first answer for this assessment'
                             .auth('test_ind2', 'yp')
                             .expectStatus(200)
                             .afterJSON(function(newRecs) {
-                                expect(newRecs.length).toEqual(5);
+                                expect(newRecs.length).toEqual(10);
                                 expect(newRecs[0].activity).not.toEqual(recs[0].activity);
                                 expect(newRecs[0].activity).toEqual(recs[1].activity);
                                 console.log(JSON.stringify(newRecs));

@@ -547,7 +547,7 @@ module.exports = {
                     return error.handleError(err, next);
                 }
                 if (!obj) {
-                    return error.ResourceNotFoundError();
+                    return new error.ResourceNotFoundError();
                 }
                 obj.remove(function (err) {
                     res.send(200);

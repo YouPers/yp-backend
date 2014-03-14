@@ -493,7 +493,21 @@ module.exports = {
             // - schema.pre('remove', ... or
             // - schema.pre('remove', ...
             // see user_model.js for an example
-            Model.find(function (err, objects) {
+
+
+            // check if this is a "personal" object (i.e. has an "owner" property),
+            // if yes only send the objects of the currently logged in user
+            var finder = '';
+            if (Model.schema.paths['owner']) {
+                if (!req.user || !req.user.id) {
+                    return next(new error.NotAuthorizedError('Authentication required for this object'));
+                } else {
+                    finder = {owner: req.user.id};
+                }
+            }
+            var dbQuery = Model.find(finder);
+
+            dbQuery.exec(function (err, objects) {
                 if(err) {
                     return error.handleError(err, next);
                 }

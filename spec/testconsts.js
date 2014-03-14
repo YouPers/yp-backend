@@ -12,6 +12,7 @@ module.exports = {
         },
         test_ind2: {
             id: '52a97f1650fca98c29000007',
+            profile: "5303721a4dba580000000017",
             preferences: {}
         },
         test_ind3: {

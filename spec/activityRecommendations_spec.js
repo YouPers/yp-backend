@@ -14,7 +14,7 @@ frisby.globalSetup({ // globalSetup is for ALL requests
 
 frisby.create('ActivityRecommendations: post a first answer for this assessment')
     .post(URL + '/assessments/525faf0ac558d40000000005/results',
-    {owner: consts.users.test_ind1.id,
+    {owner: consts.users.test_ind2.id,
         assessment: '525faf0ac558d40000000005',
         timestamp: new Date(),
         answers: [
@@ -28,31 +28,31 @@ frisby.create('ActivityRecommendations: post a first answer for this assessment'
                 answered: true}
         ]
     })
-    .auth('test_ind1', 'yp')
+    .auth('test_ind2', 'yp')
     .expectStatus(201)
     .afterJSON(function (json) {
         frisby.create('ActivityRecommendations: get recommendations')
             .get(URL + '/activities/recommendations')
-            .auth('test_ind1', 'yp')
+            .auth('test_ind2', 'yp')
             .expectStatus(200)
             .afterJSON(function(recs) {
                 expect(recs.length).toEqual(5);
                 console.log(JSON.stringify(recs));
 
                 frisby.create('ActivityRecommendations: reject first recommendation')
-                    .put(URL + '/profiles/5303721a4dba580000000016',
+                    .put(URL + '/profiles/'+ consts.users.test_ind2.profile,
                         {userPreferences:
                             {rejectedActivities:
                                 [{activity: recs[0].activity, timestamp: new Date().toISOString()}]
                             }
                         })
-                    .auth('test_ind1', 'yp')
+                    .auth('test_ind2', 'yp')
                     .expectStatus(200)
                     .afterJSON(function(updatedProfile) {
                         console.log(JSON.stringify(updatedProfile));
-                        frisby.create('ActivityRecommendations: get recommendations again')
+                        frisby.create('ActivityRecommendations: get recommendations again and check whether old number 2 is now number 1')
                             .get(URL + '/activities/recommendations')
-                            .auth('test_ind1', 'yp')
+                            .auth('test_ind2', 'yp')
                             .expectStatus(200)
                             .afterJSON(function(newRecs) {
                                 expect(newRecs.length).toEqual(5);
@@ -60,19 +60,26 @@ frisby.create('ActivityRecommendations: post a first answer for this assessment'
                                 expect(newRecs[0].activity).toEqual(recs[1].activity);
                                 console.log(JSON.stringify(newRecs));
 
-                                frisby.create('ActivityRecommendations: reject first recommendation')
-                                    .put(URL + '/profiles/5303721a4dba580000000016',
+                                frisby.create('ActivityRecommendations: reset rejectedActivities on the profile')
+                                    .put(URL + '/profiles/' + consts.users.test_ind2.profile,
                                     {userPreferences:
                                     {rejectedActivities:
                                         []
                                     }
                                     })
-                                    .auth('test_ind1', 'yp')
+                                    .auth('test_ind2', 'yp')
                                     .expectStatus(200)
                                     .afterJSON(function(newprofile) {
                                         expect(newprofile.userPreferences.rejectedActivities.length).toEqual(0);
                                     })
                                     .toss();
+
+                                frisby.create('ActivityRecommendations: remove AssessmentResults')
+                                    .delete(URL + '/assessments/525faf0ac558d40000000005/results')
+                                    .auth('test_ind2', 'yp')
+                                    .expectStatus(200)
+                                    .toss();
+
 
 
                             })

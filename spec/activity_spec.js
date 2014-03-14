@@ -1,7 +1,6 @@
 var frisby = require('frisby');
 var port = process.env.PORT || 8000;
 var URL = 'http://localhost:'+ port;
-var consts = require('./testconsts');
 
 
 frisby.globalSetup({ // globalSetup is for ALL requests
@@ -12,7 +11,6 @@ frisby.globalSetup({ // globalSetup is for ALL requests
 });
 
 frisby.create('Activity: post a new activity as a prodadm')
-    .removeHeader('Authorization')
     .auth('test_prodadm', 'yp')
     .post(URL + '/activities', {
         "title": "Test Activity",
@@ -35,7 +33,6 @@ frisby.create('Activity: post a new activity as a prodadm')
     .toss();
 
 frisby.create('Activity: post a new activity as a campaign lead without a valid campaign id')
-    .removeHeader('Authorization')
     .auth('test_campaignlead', 'yp')
     .post(URL + '/activities', {
         "title": "Test Campaign Activity",
@@ -46,7 +43,6 @@ frisby.create('Activity: post a new activity as a campaign lead without a valid 
     .toss();
 
 frisby.create('Activity: post a new activity as a campaign lead of another campaign')
-    .removeHeader('Authorization')
     .auth('test_campaignlead2', 'yp')
     .post(URL + '/activities', {
         "title": "Test Campaign Activity for wrong campaign",
@@ -58,7 +54,6 @@ frisby.create('Activity: post a new activity as a campaign lead of another campa
     .toss();
 
 frisby.create('Activity: post a new activity as a campaign lead with a valid campaign id')
-    .removeHeader('Authorization')
     .auth('test_campaignlead', 'yp')
     .post(URL + '/activities', {
         "title": "Test Campaign Activity",

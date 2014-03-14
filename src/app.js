@@ -80,10 +80,13 @@ server.use(ypi18n.angularTranslateI18nextAdapterPost);
 server.use(passport.initialize());
 server.use(restify.fullResponse());
 
+// prevents browsers from caching our responses. Without this header IE caches
+// XHR-responses and signals 304 to our app without forwarding the request to the backend.
 server.use(function(req,res, next) {
     res.header('Expires','-1');
     return next();
 });
+
 // allows authenticated cross domain requests
 preflightEnabler(server);
 

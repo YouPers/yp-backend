@@ -447,7 +447,8 @@ function postActivityPlanInvite(req, res, next) {
 function _deleteActivityPlanNoJoiningPlans(activityPlan, user, reason, i18n, done) {
 
     if (!activityPlan.masterPlan && activityPlan.joiningUsers.length > 0) {
-        return done(new error.InvalidArgumentError('this method can only be called with masterplans, that have an empty joiningUsers array'));
+        return done(new error.InvalidArgumentError('this method can only be called with masterplans, ' +
+            'that have an empty joiningUsers array or with slaveplans'));
     }
     // we need the owner of the plan to send him a cancellation to his email address
     mongoose.model('User').findById(activityPlan.owner).populate('profile').select('+email +profile').exec(function (err, owner) {
@@ -495,6 +496,7 @@ function _deleteActivityPlanNoJoiningPlans(activityPlan, user, reason, i18n, don
                             activityPlan.events.id(event.id).remove();
                         }
                     });
+                    activityPlan.deletionReason = reason;
                     activityPlan.status = "old";
                     activityPlan.save(_finalSendNotifcationCallback);
                 } else {
@@ -545,7 +547,7 @@ function deleteActivityPlan(req, res, next) {
     if (!req.params || !req.params.id) {
         return next(new error.MissingParameterError({ required: 'id' }));
     }
-    var reason = req.params.reason;
+    var reason = req.params.reason || '';
 
     ActivityPlanModel.findById(req.params.id).populate('activity').exec(function (err, activityPlan) {
         if (err) {

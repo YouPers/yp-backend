@@ -98,7 +98,7 @@ frisby.create('Activity Plan Deletions: create a master plan for an activity pla
                                                 expect(slavePlanPostAnswer2.masterPlan).toEqual(masterPlanId);
 
                                                 frisby.create('Activity Plan Deletions: try delete master with an existing joining, SUCCESS')
-                                                    .delete(URL + '/' + masterPlanReloaded.id)
+                                                    .delete(URL + '/' + masterPlanReloaded.id+'?reason=I am sick')
                                                     .auth('test_ind1', 'yp')
                                                     .expectStatus(200)
                                                     .after(function () {
@@ -109,11 +109,11 @@ frisby.create('Activity Plan Deletions: create a master plan for an activity pla
                                                             .expectStatus(404)
                                                             .toss();
 
-//                                                        frisby.create('Activity Plan Deletions: check whether slave gone')
-//                                                            .get(URL + '/' + slavePlanPostAnswer2.id)
-//                                                            .auth('sysadm', 'backtothefuture')
-//                                                            .expectStatus(404)
-//                                                            .toss();
+                                                        frisby.create('Activity Plan Deletions: check whether slave gone')
+                                                            .get(URL + '/' + slavePlanPostAnswer2.id)
+                                                            .auth('sysadm', 'backtothefuture')
+                                                            .expectStatus(404)
+                                                            .toss();
 
                                                     })
                                                     .toss();

@@ -315,8 +315,8 @@ function deepPopulate(doc, pathListString, options, callback) {
             });
             if (listOfDocsToPopulate.length > 0) {
                 var lastPathBit = pathBits[pathBits.length - 1];
-// There is an assumption here, that desendent documents which share the same path will all have the same model!
-// If not, we must make a separate populate request for each doc, which could be slow.
+                // There is an assumption here, that desendent documents which share the same path will all have the same model!
+                // If not, we must make a separate populate request for each doc, which could be slow.
                 var model = listOfDocsToPopulate[0].constructor;
                 var pathRequest = [
                     {
@@ -329,11 +329,10 @@ function deepPopulate(doc, pathListString, options, callback) {
                     if (err) {
                         return callback(err);
                     }
-//console.log("model.populate yielded results:",results);
                     doNext();
                 });
             } else {
-// There are no docs to populate at this level.
+                // There are no docs to populate at this level.
                 doNext();
             }
         }
@@ -496,7 +495,7 @@ module.exports = {
 
 
             // check if this is a "personal" object (i.e. has an "owner" property),
-            // if yes only send the objects of the currently logged in user
+            // if yes only delete the objects of the currently logged in user
             var finder = '';
             if (Model.schema.paths['owner']) {
                 if (!req.user || !req.user.id) {

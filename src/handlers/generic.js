@@ -500,8 +500,10 @@ module.exports = {
             if (Model.schema.paths['owner']) {
                 if (!req.user || !req.user.id) {
                     return next(new error.NotAuthorizedError('Authentication required for this object'));
-                } else {
+                } else if (!auth.checkAccess(req.user, 'al_systemadmin')) {
                     finder = {owner: req.user.id};
+                } else {
+                    // user is systemadmin, he may delete all
                 }
             }
             var dbQuery = Model.find(finder);
@@ -525,9 +527,27 @@ module.exports = {
             // - schema.pre('remove', ... or
             // - schema.pre('remove', ...
             // see user_model.js for an example
-            Model.findOne({_id: req.params.id}).exec(function (err, obj) {
+
+            // check if this is a "personal" object (i.e. has an "owner" property),
+            // if yes only delete the objects of the currently logged in user
+            var finder = {_id: req.params.id};
+
+            if (Model.schema.paths['owner']) {
+                if (!req.user || !req.user.id) {
+                    return next(new error.NotAuthorizedError('Authentication required for this object'));
+                } else if (!auth.checkAccess(req.user, 'al_systemadmin')) {
+                    finder.owner = req.user.id;
+                } else {
+                    // user is systemadmin, he may delete all
+                }
+            }
+
+            Model.findOne(finder).exec(function (err, obj) {
                 if(err) {
                     return error.handleError(err, next);
+                }
+                if (!obj) {
+                    return error.ResourceNotFoundError();
                 }
                 obj.remove(function (err) {
                     res.send(200);

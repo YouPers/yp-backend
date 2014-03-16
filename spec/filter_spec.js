@@ -24,7 +24,7 @@ frisby.create('GET activities with filter option returning several results')
 frisby.create('GET activities with two ANDed options')
     .get(URL + '/activities?filter[source]=youpers&filter[number]=Act-17')
     .expectStatus(200)
-    .expectJSONLength(3)
+    .expectJSONLength(4)
     .toss();
 
 frisby.create('GET activities with < option')

@@ -101,7 +101,7 @@ frisby.create('GET all activites')
                 frisby.create('Activity: Put an Update to single Activity')
                     .put(URL + '/activities/' +activity.id, activity)
                     .auth('test_prodadm','yp')
-                    .expectStatus(201)
+                    .expectStatus(200)
                     .toss();
             })
             .toss();

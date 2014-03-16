@@ -137,11 +137,10 @@ module.exports = function (swagger, config) {
             "responseClass": "Activity",
             "nickname": "putActivity",
             params: [swagger.pathParam("id", "ID of the activity to be updated", "string")],
-            accessLevel: 'al_all',
+            accessLevel: 'al_user',
             beforeCallbacks: [handlers.invalidateActivityCache]
         },
         action: handlers.putActivity
-//        action: generic.putFn(baseUrl, Activity)
     });
 
     swagger.addDelete({

@@ -20,9 +20,6 @@ var testUser = {
     lastname: 'Unittest',
     email: 'ypunittest1+newtestuser@gmail.com',
     password: 'nopass',
-    preferences: {
-        workingDays: ['MO', 'TU', 'WE', 'TH']
-    }
 };
 
 var validateUser = {

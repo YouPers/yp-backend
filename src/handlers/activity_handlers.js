@@ -234,14 +234,6 @@ function putActivity(req, res, next) {
             }
         });
 
-    // check whether delivered author is the authenticated user
-    if (sentActivity.author && (req.user.id !== sentActivity.author)) {
-        return next(new error.NotAuthorizedError('POST of object only allowed if author == authenticated user', {
-            userId: req.user.id,
-            author: sentActivity.author
-        }));
-    }
-
     // if no author delivered set to authenticated user
     if (!sentActivity.author) {
         sentActivity.author = req.user.id;
@@ -265,14 +257,13 @@ function putActivity(req, res, next) {
                     return error.errorHandler(err, next);
                 }
 
-                res.header('location', '/api/v1/activities' + '/' + reloadedActivity._id);
-                res.send(201, reloadedActivity);
+                res.send(200, reloadedActivity);
                 return next();
             });
 
         } else if (!_.contains(req.user.roles, auth.roles.orgadmin) && !_.contains(req.user.roles, auth.roles.campaignlead)) {
             // checks based on roles of requesting user
-            return next(new error.NotAuthorizedError('POST of object only allowed if author is an org admin or a campaign lead', {
+            return next(new error.NotAuthorizedError('PUT of object only allowed if author is an org admin or a campaign lead', {
                 userId: req.user.id
             }));
         } else {

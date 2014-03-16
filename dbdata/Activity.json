@@ -14739,9 +14739,9 @@
         "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "defaultvisibility": "campaign",
-        "number": "NEW",
+        "number": "Act-200",
         "qualityFactor": 1,
-        "source": "youpers",
+        "source": "campaign",
         "recWeights": [],
         "fields": ["awarenessAbility"],
         "topics": ["workLifeBalance"],
@@ -14751,8 +14751,8 @@
         "text": "Meeting zur Information der Mitarbeiter über Inhalt und Ablauf der Kampagne und Motivation zur Beteiligung"
     },
     {
-        "number": "NEW",
-        "source": "youpers",
+        "number": "Act-201",
+        "source": "campaign",
         "defaultfrequency": "once",
         "defaultexecutiontype": "self",
         "defaultvisibility": "campaign",
@@ -30926,8 +30926,8 @@
         "text": "Pro Woche gelten 2 1/2 Stunden Bewegung mit mittlerer Intensität als gesundheitswirksame Basisempfehlung. \n\nEs muss jedoch nicht immer Sport sein. Auch andere körperliche Aktivitäten haben ihren Nutzen. \n\nNehme dir am Wochenende Zeit und verrichte eine Stunde körperliche Arbeit.  \nGartenarbeiten oder handwerkliche Arbeiten bieten sich zum Beispiel an.  \nWichtig ist, dass dir die Arbeit Spass macht!!!\n\nWeitere Informationen zum Thema Bewegung findest du [hier](http://www.hepa.ch/internet/hepa/de/home/dokumentation/grundlagendokumente.parsys.70058.downloadList.12250.DownloadFile.tmp/screendhepagrundlagendokument2013.pdf)"
     },
     {
-        "number": "NEW",
-        "source": "youpers",
+        "number": "Act-202",
+        "source": "campaign",
         "defaultfrequency": "once",
         "defaultexecutiontype": "self",
         "defaultvisibility": "campaign",

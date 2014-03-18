@@ -17,10 +17,10 @@ module.exports = function (swagger, config) {
         spec: {
             description: "Operations about Activities",
             path: baseUrl + '/recommendations',
-            notes: "returns only the top 5 recommendations with their public attributes in normal case, ordered by recommendation weight. " +
+            notes: "returns only the top 10 recommendations with their public attributes in normal case, ordered by recommendation weight. " +
                 "If the authenticated user has is an administrator, all " +
                 "attributes with all recommendations are returned (incl. all weights, ...)",
-            summary: "returns the current top 5 recommendations for the authenticated user ",
+            summary: "returns the current top 10 recommendations for the authenticated user ",
             method: "GET",
             "responseClass": "Recommendation",
             "nickname": "getRecommendations",
@@ -39,6 +39,27 @@ module.exports = function (swagger, config) {
         },
         action: handlers.getRecommendationsFn
     });
+
+    swagger.addGet({
+        spec: {
+            description: "Operations about Activities",
+            path: baseUrl + '/offers',
+            notes: "returns the currently available activity offers and recommendations for the current user. The list consists " +
+                "of activities recommended by the assessment evaluation, of campaign recommended activities and activityplans and of personal invitations.",
+            summary: "returns the current top 10 actvity offers for the authenticated user.",
+            method: "GET",
+            "responseClass": "ActivityOffer",
+            "nickname": "getActivityOffers",
+            params: [
+                generic.params.limit,
+                generic.params.populate
+            ],
+            accessLevel: 'al_individual',
+            beforeCallbacks: []
+        },
+        action: handlers.getActivityOffersFn
+    });
+
 
 
     /**
@@ -122,7 +143,7 @@ module.exports = function (swagger, config) {
                 }
             ],
             accessLevel: 'al_all',
-            beforeCallbacks: [handlers.invalidateActivityCache]
+            beforeCallbacks: []
         },
         action: handlers.postActivity
     });
@@ -138,7 +159,7 @@ module.exports = function (swagger, config) {
             "nickname": "putActivity",
             params: [swagger.pathParam("id", "ID of the activity to be updated", "string")],
             accessLevel: 'al_user',
-            beforeCallbacks: [handlers.invalidateActivityCache]
+            beforeCallbacks: []
         },
         action: handlers.putActivity
     });
@@ -152,7 +173,7 @@ module.exports = function (swagger, config) {
             method: "DELETE",
             "nickname": "deleteActivities",
             accessLevel: 'al_admin',
-            beforeCallbacks: [handlers.invalidateActivityCache]
+            beforeCallbacks: []
         },
         action: generic.deleteAllFn(baseUrl, Activity)
     });
@@ -166,7 +187,7 @@ module.exports = function (swagger, config) {
             method: "DELETE",
             "nickname": "deleteActivity",
             accessLevel: 'al_admin',
-            beforeCallbacks: [handlers.invalidateActivityCache]
+            beforeCallbacks: []
         },
         action: generic.deleteByIdFn(baseUrl, Activity)
     });

@@ -6,7 +6,7 @@ var mongoose = require('mongoose'),
     _ = require('lodash'),
     auth = require('../util/auth'),
     error = require('../util/error'),
-    cachedActList;
+    async = require('async');
 
 
 /**
@@ -17,7 +17,7 @@ var mongoose = require('mongoose'),
  * @returns {*}
  * @param fokusQuestion
  */
-function generateRecommendations(actList, assResult, fokusQuestion, log) {
+function _generateRecommendations(actList, assResult, fokusQuestion, log, callback) {
 
     log.trace({assResult: assResult}, 'calculating recs for assResult');
     // calculate recWeight for each activity and store in object
@@ -43,9 +43,49 @@ function generateRecommendations(actList, assResult, fokusQuestion, log) {
     });
 
     log.trace({calculatedWeights: recWeights}, 'finished calculating weights');
-    return _.sortBy(recWeights, function(recWeight) {
+    return callback(_.sortBy(recWeights, function(recWeight) {
         return -recWeight.weight;
-    });
+    }));
+}
+
+var locals;
+
+function _loadActivities(rejectedActivities, done) {
+    Activity
+        .find()
+        .select('+recWeights +qualityFactor -text -description')
+        .exec(function(err, activities) {
+            if (err) {
+                return error.handleError(err, done);
+            }
+
+            if (rejectedActivities && rejectedActivities.length > 0) {
+                _.remove(activities, function(act) {
+                    return _.any(rejectedActivities, function(rejAct) {
+                        return rejAct.activity.equals(act._id);
+                    });
+                });
+            }
+            locals.activities = activities;
+            done();
+        });
+}
+
+function _loadAssessmentResult(user, done) {
+    AssessmentResult.find({owner: user.id})
+        .sort({timestamp: -1})
+        .limit(1)
+        .exec(function (err, assResults) {
+            if(err) {
+                return error.handleError(err, done);
+            }
+            if (assResults && assResults.length > 0) {
+                locals.assResult = assResults[0];
+            }
+
+            done();
+
+        });
 }
 
 function getRecommendationsFn(req, res, next) {
@@ -54,60 +94,25 @@ function getRecommendationsFn(req, res, next) {
         return next(new error.NotAuthorizedError());
     }
 
-    function processActivities(err, actList) {
-        if(err) {
+    locals = {};
+    var fokusQuestion = req.params && req.params.fokus;
+    var rejectedActs = req.user.profile.userPreferences.rejectedActivities || [];
+
+    async.parallel([
+        _loadActivities.bind(null, rejectedActs),
+        _loadAssessmentResult.bind(null, req.user)
+    ], function (err) {
+        if (err) {
             return error.handleError(err, next);
         }
-        if (!cachedActList) {
-            cachedActList = actList;
-        }
-
-        if (!actList || actList.length === 0) {
-            return next(new error.ResourceNotFoundError('No activities found.'));
-        }
-
-        // filter out the activities this user has previously rejected
-        var myActList = _.clone(actList);
-        _.remove(myActList, function(act) {
-            return _.any(req.user.profile.userPreferences.rejectedActivities, function(rejAct) {
-                return rejAct.activity.equals(act._id);
-            });
+        _generateRecommendations(locals.activities, locals.assResult, fokusQuestion, req.log, function(recs) {
+            if (!auth.isAdminForModel(req.user, Activity)) {
+                recs = recs.slice(0,10);
+            }
+            res.send(recs);
+            return next();
         });
-
-        AssessmentResult.find({owner: req.user.id})
-            .sort({timestamp: -1})
-            .limit(1)
-            .exec(function (err, assResults) {
-                if(err) {
-                    return error.handleError(err, next);
-                }
-                if (!assResults || assResults.length === 0) {
-                    // no assessmentResults for this user, return empty recommendation array
-                    req.log.trace('no AssessmentResults found for user: ' + req.username);
-                    res.send([]);
-                    return next();
-                }
-                var fokusQuestion = req.params && req.params.fokus;
-
-                var recs = generateRecommendations(myActList, assResults[0], fokusQuestion, req.log);
-                if (!auth.isAdminForModel(req.user, Activity)) {
-                    recs = recs.slice(0,10);
-                }
-                res.send(recs);
-                return next();
-            });
-    }
-
-    if (cachedActList) {
-        processActivities(null, cachedActList);
-    } else {
-        Activity.find().select('+recWeights +qualityFactor').exec(processActivities);
-    }
-}
-
-function invalidateActivityCache(req, res, next) {
-    cachedActList = null;
-    return next();
+    });
 }
 
 function postActivity(req, res, next) {
@@ -306,12 +311,65 @@ function putActivity(req, res, next) {
         }
 
     });
+}
+
+
+/**
+ * The list of suggested offers consists of:
+ * 1. top offers form the recommendations-list of the recommendation logic "assessmentResult-activity"
+ * 2. currently active campaign activities
+ * 3. currently active campaign activity Plans
+ * 4. currently pending personal invitations
+ * 5. currently available accessible group activities the user may join.
+ *
+ * We return an array of offers, where one offer is an object:
+ * {
+ *      activity: populated link to the actvitiy (always available)
+ *      activityPlan: populated link to the suggested activityPlan (available in case 3./4./5.
+ *      type: one of ('healthCoach', 'campaignActivity', 'campaignPlan', 'invitation', 'availableGroupPlan')
+ *      recommendedBy: populated link to the user  who recommended this, in case:
+ *          1. a virtual user for our digital health coach
+ *          2. a virtual user for the campaign avatar
+ *          3. the campaign lead who added the plan
+ *          4. the peer who sent the invite
+ *          5. the peer who planned the available group activity
+ * }
+ * @param req
+ * @param res
+ * @param next
+ * @returns [{ offer}]
+ */
+function getActivityOffersFn (req, res, next) {
+
+    if (!req.user) {
+        return next(new error.NotAuthorizedError());
+    }
+
+    locals = {
+
+    };
+
+    async.parallel([
+        function recommendations (done) {
+
+        },
+        function campaignActs (done) {},
+        function campaignActPlans (done) {},
+        function personalInvites (done) {},
+        function publicGroupPlans (done) {}
+    ], function (err) {
+        if (err) {
+            return error.handleError(err, next);
+        }
+    });
+
+
 
 }
 
 module.exports = {
     getRecommendationsFn: getRecommendationsFn,
-    invalidateActivityCache: invalidateActivityCache,
     postActivity: postActivity,
-    putActivity: putActivity
+    putActivity: putActivity,
+    getActivityOffersFn: getActivityOffersFn
 };

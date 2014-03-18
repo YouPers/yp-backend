@@ -2,10 +2,10 @@ deployment:
   uat:
     branch: uat
     commands:
-    - ssh youpers@uat.youpers.com 'bash -s' < bin/deploy.sh
+    - ssh youpers@uat.youpers.com 'bash -s' < bin/deploy.sh uat uat
   ci:
     branch: master
     commands:
-    - ssh youpers@cimaster.youpers.com 'bash -s' < bin/deploy.sh
+    - ssh youpers@cimaster.youpers.com 'bash -s' < bin/deploy.sh master cimaster
 
 

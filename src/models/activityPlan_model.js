@@ -43,6 +43,7 @@ var ActivityPlanSchema = common.newSchema({
     fields: [String],
     masterPlan: {type: ObjectId, ref: 'ActivityPlan'},  // set to the joined ActivityPlan in case this is a "slave plan" of somebody joining another plan.
     deletionReason: {type: String},
+    invitedBy: {type: ObjectId, ref: 'User'},
     mainEvent: {
         start: {type: Date},
         end: {type: Date},

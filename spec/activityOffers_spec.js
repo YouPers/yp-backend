@@ -178,7 +178,6 @@ frisby.create('User: POST new user')
                                                             })
                                                             .toss();
 
-
                                                     })
                                                     .toss();
 
@@ -189,40 +188,6 @@ frisby.create('User: POST new user')
 
                             })
                             .toss();
-
-
-//                frisby.create('ActivityRecommendations: reject first recommendation')
-//                    .put(URL + '/profiles/'+ consts.users.test_ind1.profile,
-//                        {userPreferences:
-//                            {rejectedActivities:
-//                                [{activity: recs[0].activity, timestamp: new Date().toISOString()}]
-//                            }
-//                        })
-//                    .auth(offerTestUser.username, offerTestUser.password)
-//                    .expectStatus(200)
-//                    .afterJSON(function(updatedProfile) {
-//                        frisby.create('ActivityRecommendations: get recommendations again and check whether old number 2 is now number 1')
-//                            .get(URL + '/activities/recommendations')
-//                            .auth(offerTestUser.username, offerTestUser.password)
-//                            .expectStatus(200)
-//                            .afterJSON(function(newRecs) {
-//                                expect(newRecs.length).toEqual(10);
-//                                expect(newRecs[0].activity).not.toEqual(recs[0].activity);
-//                                expect(newRecs[0].activity).toEqual(recs[1].activity);
-//
-//                                frisby.create('ActivityRecommendations: reset rejectedActivities on the profile')
-//                                    .put(URL + '/profiles/' + testUser.profile,
-//                                    {userPreferences:
-//                                    {rejectedActivities:
-//                                        []
-//                                    }
-//                                    })
-//                                    .auth(offerTestUser.username, offerTestUser.password)
-//                                    .expectStatus(200)
-//                                    .afterJSON(function(newprofile) {
-//                                        expect(newprofile.userPreferences.rejectedActivities.length).toEqual(0);
-//                                    })
-//                                    .toss();
 
                     })
                     .toss();

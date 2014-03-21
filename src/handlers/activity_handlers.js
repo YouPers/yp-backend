@@ -11,8 +11,9 @@ var mongoose = require('mongoose'),
     nrOfRecs = 6,
 
     ypHealthCoachUser = {
+        avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRU5FN7rcovPPzTBRbpkHx_JTCEk1Et8rnXf-aEvVexzFdYl7rjzw",
         id: "yphealthcoach",
-        fullname: 'YouPers Personal Health Coach'
+        fullname: 'Digital Coach'
     };
 
 /**
@@ -20,8 +21,10 @@ var mongoose = require('mongoose'),
  * @param actList
  * @param assResult
  * @param log
- * @returns {*}
  * @param fokusQuestion
+ * @param populated
+ * @param callback
+ * @returns {*}
  */
 function _generateRecommendations(actList, assResult, fokusQuestion, log, populated, callback) {
 
@@ -354,7 +357,7 @@ function putActivity(req, res, next) {
  * @param req
  * @param res
  * @param next
- * @returns [{ offer}]
+ * @returns [{*}]
  */
 function getActivityOffersFn(req, res, next) {
 

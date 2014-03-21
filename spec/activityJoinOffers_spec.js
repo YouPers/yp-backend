@@ -51,7 +51,7 @@ frisby.create('Activity Join Offers: plan once activity and check whether event 
         var slavePlanID;
 
         frisby.create('ActivityJoinOffers: get all joinoffers for this activity as user from different campaign and see whether this plan is in the list')
-            .get(URL + '/activityplans/joinOffers?activity=5278c6adcdeab69a2500001e')
+            .get(URL + '/activityplans/joinOffers?activity='+ consts.groupActivity.id)
             .auth('test_ind3', 'yp')
             .expectStatus(200)
             .afterJSON(function(joinOffers) {
@@ -60,7 +60,7 @@ frisby.create('Activity Join Offers: plan once activity and check whether event 
             .toss();
 
         frisby.create('ActivityJoinOffers: get all joinoffers for this activity and see whether this plan is in the list')
-            .get(URL + '/activityplans/joinOffers?activity=5278c6adcdeab69a2500001e')
+            .get(URL + '/activityplans/joinOffers?activity='+ consts.groupActivity.id)
             .auth('test_ind1', 'yp')
             .expectStatus(200)
             .expectJSON('?', {

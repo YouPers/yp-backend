@@ -19,7 +19,7 @@ var testUser = {
     firstname: 'Testing',
     lastname: 'Unittest',
     email: 'ypunittest1+newtestuser@gmail.com',
-    password: 'nopass',
+    password: 'nopass'
 };
 
 var validateUser = {

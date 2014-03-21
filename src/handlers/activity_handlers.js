@@ -8,9 +8,10 @@ var mongoose = require('mongoose'),
     error = require('../util/error'),
     async = require('async'),
 
-    nrOfRecs = 6;
+    nrOfRecs = 6,
 
-    healthCoachUser = {
+    ypHealthCoachUser = {
+        id: "yphealthcoach",
         fullname: 'YouPers Personal Health Coach'
     };
 
@@ -22,11 +23,11 @@ var mongoose = require('mongoose'),
  * @returns {*}
  * @param fokusQuestion
  */
-function _generateRecommendations(actList, assResult, fokusQuestion, log, populated,  callback) {
+function _generateRecommendations(actList, assResult, fokusQuestion, log, populated, callback) {
 
     log.trace({assResult: assResult}, 'calculating recs for assResult');
-    // calculate recWeight for each activity and store in object
-    var recWeights = [], weight;
+    // calculate matchValue for each activity and store in object
+    var matchValues = [], weight;
     _.forEach(actList, function (activity) {
         var qualityFactor = activity.qualityFactor || 1;
         weight = 1;
@@ -39,17 +40,18 @@ function _generateRecommendations(actList, assResult, fokusQuestion, log, popula
                 log.trace('no answer found for question: ' + recWeight.question);
             } else {
                 weight += (answerObj.answer >= 0) ?
-                    answerObj.answer /100* recWeight.positiveAnswerWeight :
-                    Math.abs(answerObj.answer)/100 * recWeight.negativeAnswerWeight;
-                log.trace('new weight: '+ weight);
+                    answerObj.answer / 100 * recWeight.positiveAnswerWeight :
+                    Math.abs(answerObj.answer) / 100 * recWeight.negativeAnswerWeight;
+                log.trace('new weight: ' + weight);
             }
         });
-        recWeights.push({activity: populated ? activity : activity.id, weight: weight*qualityFactor});
+        activity.recWeights = undefined;
+        matchValues.push({activity: populated ? activity : activity.id, weight: weight * qualityFactor});
     });
 
-    log.trace({calculatedWeights: recWeights}, 'finished calculating weights');
-    return callback(_.sortBy(recWeights, function(recWeight) {
-        return -recWeight.weight;
+    log.trace({calculatedWeights: matchValues}, 'finished calculating weights');
+    return callback(_.sortBy(matchValues, function (matchValue) {
+        return -matchValue.weight;
     }));
 }
 
@@ -59,20 +61,20 @@ function _loadActivities(rejectedActivities, done) {
     Activity
         .find()
         .select('+recWeights +qualityFactor -text -description')
-        .exec(function(err, activities) {
+        .exec(function (err, activities) {
             if (err) {
                 return error.handleError(err, done);
             }
 
             if (rejectedActivities && rejectedActivities.length > 0) {
-                _.remove(activities, function(act) {
-                    return _.any(rejectedActivities, function(rejAct) {
+                _.remove(activities, function (act) {
+                    return _.any(rejectedActivities, function (rejAct) {
                         return rejAct.activity.equals(act._id);
                     });
                 });
             }
             locals.activities = activities;
-            done();
+            return done();
         });
 }
 
@@ -81,14 +83,14 @@ function _loadAssessmentResult(user, done) {
         .sort({timestamp: -1})
         .limit(1)
         .exec(function (err, assResults) {
-            if(err) {
+            if (err) {
                 return error.handleError(err, done);
             }
             if (assResults && assResults.length > 0) {
                 locals.assResult = assResults[0];
             }
 
-            done();
+            return done();
 
         });
 }
@@ -99,7 +101,6 @@ function getRecommendationsFn(req, res, next) {
         return next(new error.NotAuthorizedError());
     }
 
-    locals = {};
     var fokusQuestion = req.params && req.params.fokus;
     var rejectedActs = req.user.profile.userPreferences.rejectedActivities || [];
 
@@ -111,15 +112,15 @@ function getRecommendationsFn(req, res, next) {
             return error.handleError(err, next);
         }
 
-        if (!locals.assResults) {
+        if (!locals.assResult) {
             // this users has no assessmentResults so we have no recommendations
             res.send([]);
             return next();
         }
 
-        _generateRecommendations(locals.activities, locals.assResult, fokusQuestion, req.log, req.params.populate === 'activity', function(recs) {
+        _generateRecommendations(locals.activities, locals.assResult, fokusQuestion, req.log, req.params.populate === 'activity', function (recs) {
             if (!auth.isAdminForModel(req.user, Activity)) {
-                recs = recs.slice(0,10);
+                recs = recs.slice(0, 10);
             }
             res.send(recs);
             return next();
@@ -257,7 +258,7 @@ function putActivity(req, res, next) {
     }
 
     Activity.findById(req.params.id).exec(function (err, reloadedActivity) {
-        if(err) {
+        if (err) {
             return error.handleError(err, next);
         }
         if (!reloadedActivity) {
@@ -339,7 +340,7 @@ function putActivity(req, res, next) {
  *      activity: populated link to the activity (always available)
  *      activityPlan: [] of populated links to the suggested activityPlans (available in case 3./4./5.)
  *                    may be an array in case this activity has multiple invitations, recommendedPlans
- *      type: [] of one of ('healthCoach', 'campaignActivity', 'campaignPlan', 'personalInvitation', 'publicPlan')
+ *      type: [] of one of ('ypHealthCoach', 'campaignActivity', 'campaignPlan', 'personalInvitation', 'publicPlan')
  *            may be an array if this activity was recommended by more than one source
  *      recommendedBy: []   link to the user  who recommended this, in case:
  *          1. a virtual user for our digital health coach
@@ -355,7 +356,7 @@ function putActivity(req, res, next) {
  * @param next
  * @returns [{ offer}]
  */
-function getActivityOffersFn (req, res, next) {
+function getActivityOffersFn(req, res, next) {
 
     if (!req.user) {
         return next(new error.NotAuthorizedError());
@@ -364,20 +365,22 @@ function getActivityOffersFn (req, res, next) {
     locals = {};
 
     async.parallel([
-        function coachRecommendations (done) {
-            var myResponse = {send: function(obj) {this.recs = obj;}};
+        function coachRecommendations(done) {
+            var myResponse = {send: function (obj) {
+                this.recs = obj;
+            }};
             req.params.populate = 'activity';
-            getRecommendationsFn(req, myResponse, function(err) {
+            getRecommendationsFn(req, myResponse, function (err) {
                 if (err) {
                     return error.handleError(done);
                 }
                 locals.coachRecs = [];
-                _.forEach(myResponse.recs, function(rec) {
+                _.forEach(myResponse.recs, function (rec) {
                     var myRec = {
                         activity: rec.activity,
                         activityPlan: [],
-                        type: ['healthCoach'],
-                        recommendedBy: [healthCoachUser],
+                        type: ['ypHealthCoach'],
+                        recommendedBy: [ypHealthCoachUser],
                         prio: [rec.weight]
                     };
                     locals.coachRecs.push(myRec);
@@ -385,7 +388,8 @@ function getActivityOffersFn (req, res, next) {
                 return done();
             });
         },
-        function campaignActs (done) {
+        function campaignActs(done) {
+            locals.campaignActs = [];
             if (!req.user.campaign) {
                 return done();
             }
@@ -394,27 +398,29 @@ function getActivityOffersFn (req, res, next) {
                 .find({campaign: req.user.campaign})
                 .sort({modified: -1})
                 .populate('author campaign')
-                .exec(function(err, campActs) {
+                .exec(function (err, campActs) {
                     if (err) {
                         return error.handleError(err, done);
                     }
-                    locals.campaignActs = [];
-                    _.forEach(campActs, function(campAct) {
+                    _.forEach(campActs, function (campAct) {
                         var myCampAct = {
                             activity: campAct,
                             activityPlan: [],
                             type: ['campaignActivity'],
-                            recommendedBy: [{
-                                fullname: campAct.campaign.title
-                            }],
-                            prio: [1]
+                            recommendedBy: [
+                                {
+                                    fullname: campAct.campaign.title
+                                }
+                            ],
+                            prio: [400]
                         };
                         locals.campaignActs.push(myCampAct);
                     });
                     return done();
                 });
         },
-        function campaignActPlans (done) {
+        function campaignActPlans(done) {
+            locals.campaignActPlans = [];
             if (!req.user.campaign) {
                 return done();
             }
@@ -422,30 +428,30 @@ function getActivityOffersFn (req, res, next) {
                 .find({
                     campaign: req.user.campaign,
                     visibility: {$in: ['public', 'campaign']},
-                        status: 'active',
-                        executionType: 'group',
-                        masterPlan: null})
+                    status: 'active',
+                    executionType: 'group',
+                    masterPlan: null,
+                    source: 'campaign'})
                 .sort({modified: -1})
                 .populate('activity owner')
-                .exec(function(err, campPlans) {
+                .exec(function (err, campPlans) {
                     if (err) {
                         return error.handleError(err, done);
                     }
-                    locals.campaignActPlans = [];
-                    _.forEach(campPlans, function(campPlan) {
+                    _.forEach(campPlans, function (campPlan) {
                         var myCampPlan = {
                             activity: campPlan.activity,
                             activityPlan: [campPlan],
-                            type: ['campaignPlan'],
+                            type: ['campaignActivityPlan'],
                             recommendedBy: [campPlan.owner],
-                            prio: [1]
+                            prio: [500]
                         };
                         locals.campaignActPlans.push(myCampPlan);
                     });
                     return done();
                 });
         },
-        function personalPlans (done) {
+        function personalPlans(done) {
             ActivityPlan
                 .find({
                     owner: req.user._id,
@@ -460,22 +466,24 @@ function getActivityOffersFn (req, res, next) {
                     return done();
                 });
         },
-        function publicGroupPlans (done) {
+        function publicGroupPlans(done) {
+            // TODO: Decide whether to allow real public plans, over multiple campaigns/organizations!!!
             ActivityPlan
                 .find({
-                    visibility: {$in: ['public', 'campaign']},
-                    campaign: {$in: [null, req.user.campaign]},
+                    visibility: {$in: [ 'campaign']},
+                    campaign: req.user.campaign,
+                    source: 'community',
                     status: 'active',
                     executionType: 'group',
                     masterPlan: null})
-                .sort({modified: -1})
+//                .sort({modified: -1})
                 .populate('activity owner')
-                .exec(function(err, publicPlans) {
+                .exec(function (err, publicPlans) {
                     if (err) {
                         return error.handleError(err, done);
                     }
                     locals.publicGroupPlans = [];
-                    _.forEach(publicPlans, function(publicPlan) {
+                    _.forEach(publicPlans, function (publicPlan) {
                         var myPublicPlan = {
                             activity: publicPlan.activity,
                             activityPlan: [publicPlan],
@@ -502,7 +510,7 @@ function getActivityOffersFn (req, res, next) {
         //     - if its act is in the list of publicGroupActvities --> remove the matching publicGroupActivities from the recommendations
         //               reason: this activity is already planned.
         locals.personalInvites = [];
-        _.forEach(locals.personalPlans, function(plan) {
+        _.forEach(locals.personalPlans, function (plan) {
             if (plan.status === 'invite') {
                 var myPersonalInvite = {
                     activity: plan.activity,
@@ -512,27 +520,27 @@ function getActivityOffersFn (req, res, next) {
                     prio: [1000]
                 };
                 locals.personalInvites.push(myPersonalInvite);
-            }  else if (plan.status === 'active') {
+            } else if (plan.status === 'active') {
 
                 // remove this activity from coachRecs because we have an active plan
-                _.remove(locals.coachRecs, function(rec) {
+                _.remove(locals.coachRecs, function (rec) {
                     return plan.activity._id === rec.activity._id;
                 });
 
                 // remove this activity from campaignRecs because we have an active plan
-                _.remove(locals.campaignActs, function(rec) {
+                _.remove(locals.campaignActs, function (rec) {
                     return plan.activity._id === rec.activity._id;
                 });
 
                 // remove activityPlan from campaignRecPlan because we have an active Plan
-                _.remove(locals.campaignActPlans, function(rec) {
+                _.remove(locals.campaignActPlans, function (rec) {
                     return plan.activity._id === rec.activity._id;
                 });
 
                 // TODO: is it possible to have an invite for an activity that is already planned????
 
                 // remove from publicActivityPlan if we already have an active Plan
-                _.remove(locals.publicPlans, function(rec) {
+                _.remove(locals.publicPlans, function (rec) {
                     return plan.activity._id === rec.activity._id;
                 });
 
@@ -544,15 +552,19 @@ function getActivityOffersFn (req, res, next) {
 
         // consolidate:
         //      we want one consolidated list out of the 5 possible sources so we need to join the five arrays
-        var myRecs = locals.coachRecs.concat([locals.campaignActs, locals.campaignActPlans, locals.personalInvites, locals.publicGroupPlans]);
+        var myRecs = locals.coachRecs
+            .concat(locals.campaignActs)
+            .concat(locals.campaignActPlans)
+            .concat(locals.personalInvites)
+            .concat(locals.publicGroupPlans);
 
         // removeRejected:
         //      the user may have rejected Activities in his profile (when he clicked "not for me" earlier). We need
         //      to remove them from the recommendations.
-        var rejActs= req.user.profile.userPreferences.rejectedActivities;
+        var rejActs = req.user.profile.userPreferences.rejectedActivities;
         if (rejActs.length > 0) {
-            _.remove(myRecs, function(rec) {
-                return _.any(rejActs, function(rejAct) {
+            _.remove(myRecs, function (rec) {
+                return _.any(rejActs, function (rejAct) {
                     return rejAct.equals(rec.activity._id);
                 });
             });
@@ -565,7 +577,7 @@ function getActivityOffersFn (req, res, next) {
 
         // sort them into a object keyed by activity._id to remove dups
         var myRecsHash = {};
-        _.forEach(myRecs, function(rec) {
+        _.forEach(myRecs, function (rec) {
             if (myRecsHash[rec.activity._id]) {
                 // this act already exists, so we merge
                 var existingRec = myRecsHash[rec.activity._id];
@@ -584,9 +596,9 @@ function getActivityOffersFn (req, res, next) {
         // sort and limit:
         //      we want to display the best/most important recommendation first
         //      we only want to deliver a limited number of recommendations
-        res.send( _.sortBy(myRecsHash, function(rec) {
-            return _.max(rec.prio);
-        }).slice(0,nrOfRecs));
+        res.send(_.sortBy(myRecsHash, function (rec) {
+            return -1 * _.max(rec.prio);
+        }).slice(0, nrOfRecs));
         return next();
     });
 }

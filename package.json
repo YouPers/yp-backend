@@ -33,13 +33,13 @@
         "coupon-code": "~0.3.x"
     },
     "devDependencies": {
-        "grunt-contrib-jshint": "~0.8.x",
-        "grunt-contrib-watch": "~0.5.x",
+        "grunt-contrib-jshint": "~0.9.x",
+        "grunt-contrib-watch": "~0.6.x",
         "grunt-jasmine-node": "0.1.x",
         "grunt": "0.4.x",
-        "frisby": "git+https://github.com/YouPers/frisby.git",
+        "frisby": "0.7.x",
         "grunt-nodemon": "~0.2.x",
-        "grunt-concurrent": "~0.4.x",
+        "grunt-concurrent": "~0.5.x",
         "grunt-wait": "~0.1.x",
         "grunt-express-server": "~0.4.x",
         "grunt-curl": "latest"

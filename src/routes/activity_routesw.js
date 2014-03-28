@@ -40,28 +40,6 @@ module.exports = function (swagger, config) {
         action: handlers.getRecommendationsFn
     });
 
-    swagger.addGet({
-        spec: {
-            description: "Operations about Activities",
-            path: baseUrl + '/offers',
-            notes: "returns the currently available activity offers and recommendations for the current user. The list consists " +
-                "of activities recommended by the assessment evaluation, of campaign recommended activities and activityplans and of personal invitations.",
-            summary: "returns the current top 10 actvity offers for the authenticated user.",
-            method: "GET",
-            "responseClass": "ActivityOffer",
-            "nickname": "getActivityOffers",
-            params: [
-                generic.params.limit,
-                generic.params.populate
-            ],
-            accessLevel: 'al_individual',
-            beforeCallbacks: []
-        },
-        action: handlers.getActivityOffersFn
-    });
-
-
-
     /**
      * need to add the Recommendation model here explicitly, because this is a transient class, that does not
      * exist in the database

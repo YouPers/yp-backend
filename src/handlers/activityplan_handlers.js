@@ -3,6 +3,7 @@ var env = process.env.NODE_ENV || 'development',
     mongoose = require('mongoose'),
     ActivityPlanModel = mongoose.model('ActivityPlan'),
     ActivityModel = mongoose.model('Activity'),
+    ActivityOffer = mongoose.model('ActivityOffer'),
     CommentModel = mongoose.model('Comment'),
     generic = require('./generic'),
     error = require('../util/error'),
@@ -318,11 +319,32 @@ function postNewActivityPlan(req, res, next) {
                     email.sendCalInvite(req.user.email, 'new', myIcalString, req.i18n);
                 }
 
-                // remove the populated activity because the client is not gonna expect it to be populated.
-                reloadedActPlan.activity = reloadedActPlan.activity._id;
                 res.header('location', '/api/v1/activitiesPlanned' + '/' + reloadedActPlan._id);
-                res.send(201, reloadedActPlan);
-                return next();
+
+                // check whether this is a public joinable plan, if yes store an corresponding ActivityOffer
+                if (_.contains(['public', 'campaign'],reloadedActPlan.visibility) && 'group' === reloadedActPlan.executionType) {
+                    var offer = new ActivityOffer({
+                        activity: reloadedActPlan.activity._id,
+                        activityPlan: [reloadedActPlan._id],
+                        targetCampaign: reloadedActPlan.campaign,
+                        recommendedBy: [req.user._id],
+                        type: [reloadedActPlan.source === 'campaign' ? 'campaignActivityPlan': 'publicActivityPlan'],
+                        validTo: reloadedActPlan.events[reloadedActPlan.events.length - 1].end,
+                        prio: [reloadedActPlan.source === 'campaign' ? 500: 1]
+                    });
+                    offer.save(function(err, savedOffer) {
+                        if (err) {
+                            return error.handleError(err, next);
+                        }
+                        reloadedActPlan.activity = reloadedActPlan.activity._id;
+                        res.send(201, reloadedActPlan);
+                        return next();
+                    });
+                } else {
+                    reloadedActPlan.activity = reloadedActPlan.activity._id;
+                    res.send(201, reloadedActPlan);
+                    return next();
+                }
             });
 
         });
@@ -427,8 +449,25 @@ function postActivityPlanInvite(req, res, next) {
                             if (err) {
                                 return done(err);
                             }
-                            email.sendActivityPlanInvite(emailaddress, req.user, locals.plan, invitedUser && invitedUser[0], req.i18n);
-                            return done();
+
+                            // save the corresponding ActivityOffer
+                            var actOffer = new ActivityOffer({
+                                activity: locals.plan.actvity._id,
+                                activityPlan: [locals.plan._id],
+                                targetCampaign: locals.plan.campaign,
+                                targetUser: invitedUser && invitedUser._id,
+                                type: ['personalInvitation'],
+                                recommendedBy: [req.user._id],
+                                validTo: locals.plan.events[locals.plan.events.length - 1].end
+                            });
+
+                            actOffer.save(function(err, savedOffer) {
+                                if (err) {
+                                    error.handleError(err, done);
+                                }
+                                email.sendActivityPlanInvite(emailaddress, req.user, locals.plan, invitedUser && invitedUser[0], req.i18n);
+                                return done();
+                            });
                         });
                 },
                 function (err) {
@@ -473,7 +512,14 @@ function _deleteActivityPlanNoJoiningPlans(activityPlan, user, reason, i18n, don
                 var myIcalString = getIcalObject(activityPlan, owner, 'cancel', i18n, reason).toString();
                 email.sendCalInvite(owner.email, 'cancel', myIcalString, i18n, reason);
             }
-            return done();
+
+            // remove any offers to join this plan
+            ActivityOffer.find({activityPlan: activityPlan._id}).remove().exec(function(err) {
+                if (err) {
+                    error.handleError(err, done);
+                }
+                return done();
+            });
         };
         ///////////////////
 

@@ -3,7 +3,6 @@ var frisby = require('frisby'),
     URL = 'http://localhost:' + port,
     _ = require('lodash'),
     bunyan = require('bunyan'),
-    log = bunyan.createLogger({name: 'testlogger'}),
     consts = require('./testconsts');
 
 var testcampaign = {id: '527916a82079aa8704000006'};
@@ -25,14 +24,14 @@ var offerTestUser = {
     password: 'nopass'
 };
 
-frisby.create('User: POST new user')
+frisby.create('ActivityOffers: POST new user')
     .post(URL + '/users', offerTestUser)
     .expectStatus(201)
     .afterJSON(function (testUser) {
 
 
         frisby.create('ActivityOffers: get offers (no campaign, no invites, no assessment --> no recs')
-            .get(URL + '/activities/offers')
+            .get(URL + '/activityoffers')
             .auth(offerTestUser.username, offerTestUser.password)
             .expectStatus(200)
             .afterJSON(function (recs) {
@@ -60,11 +59,11 @@ frisby.create('User: POST new user')
             .expectStatus(201)
             .afterJSON(function (json) {
                 frisby.create('ActivityOffers: get offers, coachAnswers only')
-                    .get(URL + '/activities/offers')
+                    .get(URL + '/activityoffers')
                     .auth(offerTestUser.username, offerTestUser.password)
                     .expectStatus(200)
                     .afterJSON(function (recs) {
-                        expect(recs.length).toEqual(6);
+                        expect(recs.length).toEqual(10);
 
                         _.forEach(recs, function (rec) {
                             expect(rec.type[0]).toEqual('ypHealthCoach');
@@ -73,7 +72,7 @@ frisby.create('User: POST new user')
                             expect(rec.activity.recWeights).toBeUndefined();
                             expect(rec.activityPlan.length).toEqual(0);
                             expect(rec.recommendedBy.length).toEqual(1);
-                            expect(rec.recommendedBy[0].id).toEqual('yphealthcoach');
+                            expect(rec.recommendedBy[0].id).toEqual('53348c27996c80a534319bda');
                         });
 
                         offerTestUser.campaign = testcampaign.id;
@@ -83,11 +82,11 @@ frisby.create('User: POST new user')
                             .expectStatus(200)
                             .after(function () {
                                 frisby.create('ActivityOffers: get offers, coachAnswers only, no campaign Acts yet')
-                                    .get(URL + '/activities/offers')
+                                    .get(URL + '/activityoffers')
                                     .auth(offerTestUser.username, offerTestUser.password)
                                     .expectStatus(200)
                                     .afterJSON(function (recs) {
-                                        expect(recs.length).toEqual(6);
+                                        expect(recs.length).toEqual(10);
                                         _.forEach(recs, function (rec) {
                                             expect(rec.type[0]).toEqual('ypHealthCoach');
                                             expect(rec.activity.id).toBeDefined();
@@ -95,24 +94,26 @@ frisby.create('User: POST new user')
                                             expect(rec.activity.recWeights).toBeUndefined();
                                             expect(rec.activityPlan.length).toEqual(0);
                                             expect(rec.recommendedBy.length).toEqual(1);
-                                            expect(rec.recommendedBy[0].id).toEqual('yphealthcoach');
+                                            expect(rec.recommendedBy[0].id).toEqual('53348c27996c80a534319bda');
                                         });
 
-                                        frisby.create('ActivityOffers: add a campaignAct ')
-                                            .post(URL + '/activities', {
-                                                "title": "Test Campaign Activity",
-                                                "text": "New Test Campaign Activity Text",
-                                                "campaign": testcampaign.id
+                                        frisby.create('ActivityOffers: promote a campaignAct ')
+                                            .post(URL + '/activityoffers', {
+                                                activity: '5278c6adcdeab69a25000046',
+                                                recommendedBy: ['52a97f1650fca98c2900000b'],
+                                                targetCampaign: testcampaign.id,
+                                                type: ['campaignActivity'],
+                                                prio: ['100']
                                             })
                                             .auth('test_campaignlead', 'yp')
                                             .expectStatus(201)
-                                            .afterJSON(function (campAct) {
+                                            .afterJSON(function (campActOffer) {
                                                 frisby.create('ActivityOffers: get offers, with CampaignAct')
-                                                    .get(URL + '/activities/offers')
+                                                    .get(URL + '/activityoffers')
                                                     .auth(offerTestUser.username, offerTestUser.password)
                                                     .expectStatus(200)
                                                     .afterJSON(function (recs) {
-                                                        expect(recs.length).toEqual(6);
+                                                        expect(recs.length).toEqual(10);
                                                         expect(recs[0].type[0]).toEqual('campaignActivity');
                                                         expect(recs[0].prio[0]).toBeGreaterThan(recs[1].prio[0]);
 
@@ -139,17 +140,18 @@ frisby.create('User: POST new user')
                                                             .afterJSON(function (campActPlan) {
 
                                                                 frisby.create('ActivityOffers: get offers, with CampaignActPlan and CampaignAct')
-                                                                    .get(URL + '/activities/offers')
+                                                                    .get(URL + '/activityoffers')
                                                                     .auth(offerTestUser.username, offerTestUser.password)
                                                                     .expectStatus(200)
                                                                     .afterJSON(function (recs) {
-                                                                        expect(recs.length).toEqual(6);
-                                                                        expect(recs[0].type[0]).toEqual('campaignActivityPlan');
-                                                                        expect(recs[1].type[0]).toEqual('campaignActivity');
+                                                                        expect(recs.length).toEqual(10);
+                                                                        expect(recs[0].type).toContain('campaignActivityPlan');
+                                                                        expect(recs[0].type).toContain('campaignActivity');
+                                                                        expect(recs[1].type).toContain('ypHealthCoach');
                                                                         expect(recs[0].prio[0]).toBeGreaterThan(recs[1].prio[0]);
 
-                                                                        frisby.create('ActivityOffers: removeCampaignAct')
-                                                                            .delete(URL + '/activities/' + campAct.id)
+                                                                        frisby.create('ActivityOffers: removeCampaignActOffer')
+                                                                            .delete(URL + '/activityoffers/' + campActOffer.id)
                                                                             .auth('test_sysadm', 'yp')
                                                                             .expectStatus(200)
                                                                             .toss();
@@ -157,6 +159,12 @@ frisby.create('User: POST new user')
                                                                         frisby.create('ActivityOffers: removeCampaignActPlan')
                                                                             .delete(URL + '/activityplans/' + campActPlan.id)
                                                                             .auth('test_sysadm', 'yp')
+                                                                            .expectStatus(200)
+                                                                            .toss();
+
+                                                                        frisby.create('ActivityOffers: removePersonalOffers')
+                                                                            .delete(URL +'/activityoffers')
+                                                                            .auth(offerTestUser.username, offerTestUser.password)
                                                                             .expectStatus(200)
                                                                             .toss();
 

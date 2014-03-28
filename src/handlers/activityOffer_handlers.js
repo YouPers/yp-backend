@@ -95,25 +95,33 @@ function getActivityOffersFn(req, res, next) {
         .find({
             owner: req.user._id,
             status: 'active'})
+        .select('activity')
         .exec(function (err, plans) {
             if (err) {
                 error.handleError(err, next);
             }
+
             var plannedActs = _.map(plans, 'activity');
 
-
+            // get the personal offers
+            var orClause =  [{targetUser: req.user._id}];
+            // if user is in campaign also add campaign offers
+            if (req.user.campaign) {
+                orClause.push({targetCampaign: req.user.campaign._id});
+            }
             ActivityOffer
-                .find({$or: [
-                    {targetUser: req.user._id,
-                        activity: {$not: {$in: plannedActs}}},
-                    {targetCampaign: req.user.campaign && (req.user.campaign._id || req.user.campaign),
-                        activity: {$not: {$in: plannedActs}}}
-                ]})
+                .find({$or: orClause})
                 .populate('activity activityPlan recommendedBy')
                 .exec(function (err, offers) {
                     if (err) {
                         return error.handleError(err, next);
                     }
+
+                    _.remove(offers, function(offer) {
+                        return _.contains(plannedActs, function(plannedActId) {
+                            return plannedActId.equals(offer.activity);
+                        });
+                    });
 
                     if (!offers || offers.length === 0) {
                         res.send([]);

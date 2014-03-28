@@ -29,7 +29,6 @@ frisby.create('ActivityOffers: POST new user')
     .expectStatus(201)
     .afterJSON(function (testUser) {
 
-
         frisby.create('ActivityOffers: get offers (no campaign, no invites, no assessment --> no recs')
             .get(URL + '/activityoffers')
             .auth(offerTestUser.username, offerTestUser.password)

@@ -9,7 +9,7 @@ module.exports = function (swagger, config) {
 
     swagger.addGet({
         spec: {
-            description: "Operations about Activities",
+            description: "Operations about ActivityOffers",
             path: baseUrl,
             notes: "returns the currently available activity offers and recommendations for the current user. The list consists " +
                 "of activities recommended by the assessment evaluation, of campaign recommended activities and activityplans and of personal invitations.",
@@ -25,6 +25,24 @@ module.exports = function (swagger, config) {
             beforeCallbacks: []
         },
         action: handlers.getActivityOffersFn
+    });
+
+    swagger.addGet({
+        spec: {
+            description: "Operations about ActivityOffers",
+            path: baseUrl + '/coach',
+            notes: "returns the current coachRecommendations for a user",
+            method: "GET",
+            "responseClass": "ActivityOffer",
+            "nickname": "getCoachRecommendations",
+            params: [
+                generic.params.limit,
+                generic.params.populate
+            ],
+            accessLevel: 'al_individual',
+            beforeCallbacks: []
+        },
+        action: handlers.getCoachRecommendationsFn
     });
 
     swagger.addPost({

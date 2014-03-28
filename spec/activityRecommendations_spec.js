@@ -32,7 +32,7 @@ frisby.create('ActivityRecommendations: post a first answer for this assessment'
     .expectStatus(201)
     .afterJSON(function (json) {
         frisby.create('ActivityRecommendations: get recommendations')
-            .get(URL + '/activities/recommendations')
+            .get(URL + '/activityoffers/coach')
             .auth('test_ind2', 'yp')
             .expectStatus(200)
             .afterJSON(function(recs) {
@@ -48,7 +48,7 @@ frisby.create('ActivityRecommendations: post a first answer for this assessment'
                     .expectStatus(200)
                     .afterJSON(function(updatedProfile) {
                         frisby.create('ActivityRecommendations: get recommendations again and check whether old number 2 is now number 1')
-                            .get(URL + '/activities/recommendations')
+                            .get(URL + '/activityoffers/coach')
                             .auth('test_ind2', 'yp')
                             .expectStatus(200)
                             .afterJSON(function(newRecs) {

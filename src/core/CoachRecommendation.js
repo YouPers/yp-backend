@@ -169,7 +169,7 @@ function _storeNewRecs(userId, recs, cb) {
  * @param {ObjectId | ObjectId[] | string | string[] } [personalGoals]
  * @param {cb} cb
  */
-function updateRecommendations(userId, rejectedActs, assessmentResult, personalGoals, cb) {
+function _updateRecommendations(userId, rejectedActs, assessmentResult, personalGoals, updateDb, cb) {
     // TODO: load personalGoals of this user if not passed in
     // TODO: load rejectedActs of this user if not passed in
 
@@ -190,20 +190,31 @@ function updateRecommendations(userId, rejectedActs, assessmentResult, personalG
             if (err) {
                 return cb(err);
             }
+            if (updateDb) {
+                async.parallel([
+                    _removeOldRecs.bind(null, userId),
+                    _storeNewRecs.bind(null, userId, recs)
+                ], function (err) {
+                    return cb(err, recs);
+                });
+            } else {
+                return cb(null, recs);
+            }
 
-            async.parallel([
-                 _removeOldRecs.bind(null, userId),
-                 _storeNewRecs.bind(null, userId, recs)
-            ], function(err) {
-                return cb(err, recs);
-            });
 
         });
     });
 
 }
 
+function updateRecommendations(userId, rejectedActs, assessmentResult, personalGoals, cb) {
+    _updateRecommendations(userId, rejectedActs, assessmentResult, personalGoals, true, cb);
+}
+function simulateRecommendations(userId, rejectedActs, assessmentResult, personalGoals, cb) {
+    _updateRecommendations(userId, rejectedActs, assessmentResult, personalGoals, false, cb);
+}
 
 module.exports = {
-    updateRecommendations: updateRecommendations
+    updateRecommendations: updateRecommendations,
+    simulateRecommendations: simulateRecommendations
 };

@@ -1,6 +1,7 @@
 var mongoose = require('mongoose'),
     ActivityPlan = mongoose.model('ActivityPlan'),
     ActivityOffer = mongoose.model('ActivityOffer'),
+    CoachRecommendation = require('../core/CoachRecommendation'),
     _ = require('lodash'),
     error = require('../util/error'),
     utils = require('./handlerUtils'),
@@ -33,14 +34,19 @@ function postActivityOffer(req, res, next) {
 
 }
 
-function getCoachOffersFn(req, res, next) {
+function getCoachRecommendationsFn(req, res, next) {
 
     if (!req.user) {
         return next(new error.NotAuthorizedError());
     }
 
-
-    return next();
+    CoachRecommendation.updateRecommendations(req.user._id, req.user.profile.userPreferences.rejectedActivities, null, null, function(err, recs) {
+        if (err) {
+            error.handleError(err, next);
+        }
+        res.send(recs);
+        return next();
+    });
 }
 
 //function pushMerge(stringOrArrayOrUndefined, string) {
@@ -207,7 +213,7 @@ var deleteActivityOffers = function (req, res, next) {
 };
 
 module.exports = {
-    getCoachOffersFn: getCoachOffersFn,
+    getCoachRecommendationsFn: getCoachRecommendationsFn,
     getActivityOffersFn: getActivityOffersFn,
     postActivityOfferFn: postActivityOffer,
     deleteActivityOffersFn: deleteActivityOffers

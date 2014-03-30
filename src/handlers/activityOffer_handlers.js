@@ -44,7 +44,7 @@ function getCoachRecommendationsFn(req, res, next) {
         if (err) {
             error.handleError(err, next);
         }
-        res.send(recs);
+        res.send(recs || []);
         return next();
     });
 }

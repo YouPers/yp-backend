@@ -29,10 +29,11 @@ describe('CoachRecommendation Module', function () {
             expect(err).toBeNull();
             expect(recs.length).toBeGreaterThan(6);
             expect(recs.length).toBeLessThan(11);
-            expect(recs[0].score >= recs[1].score).toBe(true);
-            expect(recs[1].score >= recs[2].score).toBe(true);
-            expect(recs[recs.length - 2].score >= recs[recs.length -1].score).toBe(true);
-
+            if (recs.length > 4) {
+                expect(recs[0].score >= recs[1].score).toBe(true);
+                expect(recs[1].score >= recs[2].score).toBe(true);
+                expect(recs[recs.length - 2].score >= recs[recs.length - 1].score).toBe(true);
+            }
             return done();
         });
 

@@ -277,8 +277,8 @@ function postNewActivityPlan(req, res, next) {
         sentPlan.owner = req.user.id;
     }
 
-    // set the campaign that this Plan is part of
-    if (req.user.campaign) {
+    // set the campaign that this Plan is part of if it has not been set by the client
+    if (!sentPlan.campaign && req.user.campaign) {
         sentPlan.campaign = req.user.campaign.id || req.user.campaign; // allow populated and unpopulated campaign
     }
 
@@ -452,7 +452,7 @@ function postActivityPlanInvite(req, res, next) {
 
                             // save the corresponding ActivityOffer
                             var actOffer = new ActivityOffer({
-                                activity: locals.plan.actvity._id,
+                                activity: locals.plan.activity._id,
                                 activityPlan: [locals.plan._id],
                                 targetCampaign: locals.plan.campaign,
                                 targetUser: invitedUser && invitedUser._id,

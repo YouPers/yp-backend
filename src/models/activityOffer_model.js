@@ -8,6 +8,13 @@ var mongoose = require('mongoose'),
 
 /**
  * ActivityOffer Schema
+ *
+ * We use arrays for the properties 'activityPlan', 'type', 'recommendedBy' and 'prio' because we deliver to the
+ * clients a consolidated Offers list by activity - meaning, for each activity there is at most one Offer in the API,
+ * but this offer may contain multiple 'activityPlan', 'type', 'recommendedBy' and 'prio'.
+ *
+ * In the Database we usually store them 'not-consolidated', so from a mongo point of view we could use
+ * non-array properties, but since we use the same object in the API we chose the model it like this.
  */
 var ActivityOfferSchema = common.newSchema({
     activity: {type: ObjectId, ref: 'Activity', required: true},

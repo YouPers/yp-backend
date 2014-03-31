@@ -21,7 +21,7 @@ describe('CoachRecommendation Module', function () {
                     answered: true}
             ]
         };
-        CoachRecommendation.updateRecommendations(consts.users.test_ind1.id, [], assResult, null, function(err, recs) {
+        CoachRecommendation.generateAndStoreRecommendations(consts.users.test_ind1.id, [], assResult, null, function(err, recs) {
             console.log(JSON.stringify(recs));
             if (err) {
                 console.log(JSON.stringify(err));

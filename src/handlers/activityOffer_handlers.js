@@ -40,7 +40,7 @@ function getCoachRecommendationsFn(req, res, next) {
         return next(new error.NotAuthorizedError());
     }
 
-    CoachRecommendation.updateRecommendations(req.user._id, req.user.profile.userPreferences.rejectedActivities, null, null, function(err, recs) {
+    CoachRecommendation.generateAndStoreRecommendations(req.user._id, req.user.profile.userPreferences.rejectedActivities, null, null, function(err, recs) {
         if (err) {
             error.handleError(err, next);
         }
@@ -48,16 +48,6 @@ function getCoachRecommendationsFn(req, res, next) {
         return next();
     });
 }
-
-//function pushMerge(stringOrArrayOrUndefined, string) {
-//    if (!stringOrArrayOrUndefined){
-//        return [string];
-//    } else if (_.isArray(stringOrArrayOrUndefined)){
-//        return stringOrArrayOrUndefined.push(string);
-//    } else {
-//        return [stringOrArrayOrUndefined].push(string);
-//    }
-//}
 
 
 /**
@@ -82,7 +72,7 @@ function getCoachRecommendationsFn(req, res, next) {
  *          4. the peer who sent the invite
  *          5. the peer who planned the available group activity
  *          may be an array if the same activity has been recommended by multiple sources.
- *       prio: prioritization Value, in case of recs this is the recWeight
+ *       prio: prioritization Value, in case of CoachRecs this is the score of the algorithm
  * }
  * @param req
  * @param res

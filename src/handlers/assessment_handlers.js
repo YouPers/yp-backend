@@ -49,7 +49,7 @@ function assessmentResultPostFn (baseUrl, Model) {
                 return error.handleError(err, next);
             }
             // TODO: pass the users current goals
-            CoachRecommendation.updateRecommendations(req.user._id, req.user.profile.userPreferences.rejectedActivities,savedObj, null, function(err, recs) {
+            CoachRecommendation.generateAndStoreRecommendations(req.user._id, req.user.profile.userPreferences.rejectedActivities,savedObj, null, function(err, recs) {
                 if (err) {
                     return error.handleError(err, next);
                 }

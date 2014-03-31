@@ -30,6 +30,25 @@ module.exports = function (swagger, config) {
     swagger.addGet({
         spec: {
             description: "Operations about ActivityOffers",
+            path: baseUrlWithId,
+            notes: "returns one ActivityOffer by Id",
+            method: "GET",
+            "responseClass": "ActivityOffer",
+            "nickname": "getActivityOfferById",
+            params: [
+                generic.params.limit,
+                generic.params.populate
+            ],
+            accessLevel: 'al_individual',
+            beforeCallbacks: []
+        },
+        action: generic.getByIdFn(baseUrlWithId, ActivityOffer)
+    });
+
+
+    swagger.addGet({
+        spec: {
+            description: "Operations about ActivityOffers",
             path: baseUrl + '/coach',
             notes: "returns the current coachRecommendations for a user",
             method: "GET",

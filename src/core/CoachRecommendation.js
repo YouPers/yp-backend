@@ -100,6 +100,16 @@ function _loadActivities(rejectedActivities, done) {
         });
 }
 
+/**
+ * loads the assessmentResult if the passed in parameter is empty and stores it to the locals object.
+ * If there is already an assessmentResult passed in, it is just stored to locals without loading from DB.
+ *
+ * @param userId
+ * @param assessmentResult or null
+ * @param done callback
+ * @returns {*}
+ * @private
+ */
 function _loadAssessmentResult(userId, assessmentResult, done) {
     // reset
     locals.assResult = undefined;
@@ -125,7 +135,16 @@ function _loadAssessmentResult(userId, assessmentResult, done) {
     }
 }
 
-function _removeOldRecs(userId, cb) {
+/**
+ * removes the existing CoachRecommendations for the passed in user from the ActivityOffers Collection
+ *
+ * @param userId
+ * @param cb
+ * @private
+ */
+function _removeOldRecsFromActivityOffers(userId, cb) {
+    // mongo/mogoose automagically query the 'type' attribute, which is actually an array, by doing
+    // this here. It means: find documents with 'type' array that contains HEALTH_COACH_TYPE
     ActivityOffer.find({targetUser: userId, type: HEALTH_COACH_TYPE})
         .remove()
         .exec(
@@ -135,7 +154,16 @@ function _removeOldRecs(userId, cb) {
     );
 }
 
-function _storeNewRecs(userId, recs, cb) {
+/**
+ * takes coachrecomendations, turns them into complete ActivityOffers and stores them
+ * into the ActivityOffers collection.
+ *
+ * @param userId
+ * @param recs
+ * @param cb
+ * @private
+ */
+function _storeNewRecsIntoActivityOffers(userId, recs, cb) {
     async.forEach(recs, function(rec, done) {
         var newOffer = new ActivityOffer({
             activity: rec.activity,
@@ -192,8 +220,8 @@ function _updateRecommendations(userId, rejectedActs, assessmentResult, personal
             }
             if (updateDb) {
                 async.parallel([
-                    _removeOldRecs.bind(null, userId),
-                    _storeNewRecs.bind(null, userId, recs)
+                    _removeOldRecsFromActivityOffers.bind(null, userId),
+                    _storeNewRecsIntoActivityOffers.bind(null, userId, recs)
                 ], function (err) {
                     return cb(err, recs);
                 });
@@ -207,14 +235,31 @@ function _updateRecommendations(userId, rejectedActs, assessmentResult, personal
 
 }
 
-function updateRecommendations(userId, rejectedActs, assessmentResult, personalGoals, cb) {
+/**
+ *
+ * @param userId
+ * @param rejectedActs
+ * @param assessmentResult
+ * @param personalGoals
+ * @param cb
+ */
+function generateAndStoreRecommendations(userId, rejectedActs, assessmentResult, personalGoals, cb) {
     _updateRecommendations(userId, rejectedActs, assessmentResult, personalGoals, true, cb);
 }
-function simulateRecommendations(userId, rejectedActs, assessmentResult, personalGoals, cb) {
+
+/**
+ *
+ * @param userId
+ * @param rejectedActs
+ * @param assessmentResult
+ * @param personalGoals
+ * @param cb
+ */
+function generateRecommendations(userId, rejectedActs, assessmentResult, personalGoals, cb) {
     _updateRecommendations(userId, rejectedActs, assessmentResult, personalGoals, false, cb);
 }
 
 module.exports = {
-    updateRecommendations: updateRecommendations,
-    simulateRecommendations: simulateRecommendations
+    generateAndStoreRecommendations: generateAndStoreRecommendations,
+    generateRecommendations: generateRecommendations
 };

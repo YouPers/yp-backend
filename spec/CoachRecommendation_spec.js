@@ -22,10 +22,6 @@ describe('CoachRecommendation Module', function () {
             ]
         };
         CoachRecommendation.generateAndStoreRecommendations(consts.users.test_ind1.id, [], assResult, null, function(err, recs) {
-            console.log(JSON.stringify(recs));
-            if (err) {
-                console.log(JSON.stringify(err));
-            }
             expect(err).toBeNull();
             expect(recs.length).toBeGreaterThan(6);
             expect(recs.length).toBeLessThan(11);
@@ -37,11 +33,6 @@ describe('CoachRecommendation Module', function () {
             return done();
         });
 
-    });
-
-    it('should store the recommendations in the ActivityOffers Collection', function(done) {
-
-       return done();
     });
 
     it('should close db', function(done) {

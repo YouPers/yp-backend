@@ -1,6 +1,6 @@
 module.exports = {
     groupActivity: {
-        id: '5278c6adcdeab69a2500001e'
+        id: '5278c6adcdeab69a25000046'
     },
     aloneActivity: {
         id: "5278c6aecdeab69a250000b9"
@@ -16,6 +16,9 @@ module.exports = {
         },
         test_ind3: {
             id: '52a97f1650fca98c29000055'
+        },
+        test_campaignlead: {
+            id: '52a97f1650fca98c2900000b'
         }
     }
 };

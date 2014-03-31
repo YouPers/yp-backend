@@ -1,114 +1,9 @@
-
 var mongoose = require('mongoose'),
     Activity = mongoose.model('Activity'),
     Campaign = mongoose.model('Campaign'),
-    AssessmentResult = mongoose.model('AssessmentResult'),
     _ = require('lodash'),
     auth = require('../util/auth'),
-    error = require('../util/error'),
-    cachedActList;
-
-
-/**
- * comments
- * @param actList
- * @param assResult
- * @param log
- * @returns {*}
- * @param fokusQuestion
- */
-function generateRecommendations(actList, assResult, fokusQuestion, log) {
-
-    log.trace({assResult: assResult}, 'calculating recs for assResult');
-    // calculate recWeight for each activity and store in object
-    var recWeights = [], weight;
-    _.forEach(actList, function (activity) {
-        var qualityFactor = activity.qualityFactor || 1;
-        weight = 1;
-        _.forEach(activity.recWeights, function (recWeight) {
-            var answerObj = _.find(assResult.answers, function (ans) {
-                return ans.question.equals(recWeight.question);
-            });
-
-            if (!answerObj || (fokusQuestion && (answerObj.question.toString() !== fokusQuestion))) {
-                log.trace('no answer found for question: ' + recWeight.question);
-            } else {
-                weight += (answerObj.answer >= 0) ?
-                    answerObj.answer /100* recWeight.positiveAnswerWeight :
-                    Math.abs(answerObj.answer)/100 * recWeight.negativeAnswerWeight;
-                log.trace('new weight: '+ weight);
-            }
-        });
-        recWeights.push({activity: activity.id, weight: weight*qualityFactor});
-    });
-
-    log.trace({calculatedWeights: recWeights}, 'finished calculating weights');
-    return _.sortBy(recWeights, function(recWeight) {
-        return -recWeight.weight;
-    });
-}
-
-function getRecommendationsFn(req, res, next) {
-
-    if (!req.user) {
-        return next(new error.NotAuthorizedError());
-    }
-
-    function processActivities(err, actList) {
-        if(err) {
-            return error.handleError(err, next);
-        }
-        if (!cachedActList) {
-            cachedActList = actList;
-        }
-
-        if (!actList || actList.length === 0) {
-            return next(new error.ResourceNotFoundError('No activities found.'));
-        }
-
-        // filter out the activities this user has previously rejected
-        var myActList = _.clone(actList);
-        _.remove(myActList, function(act) {
-            return _.any(req.user.profile.userPreferences.rejectedActivities, function(rejAct) {
-                return rejAct.activity.equals(act._id);
-            });
-        });
-
-        AssessmentResult.find({owner: req.user.id})
-            .sort({timestamp: -1})
-            .limit(1)
-            .exec(function (err, assResults) {
-                if(err) {
-                    return error.handleError(err, next);
-                }
-                if (!assResults || assResults.length === 0) {
-                    // no assessmentResults for this user, return empty recommendation array
-                    req.log.trace('no AssessmentResults found for user: ' + req.username);
-                    res.send([]);
-                    return next();
-                }
-                var fokusQuestion = req.params && req.params.fokus;
-
-                var recs = generateRecommendations(myActList, assResults[0], fokusQuestion, req.log);
-                if (!auth.isAdminForModel(req.user, Activity)) {
-                    recs = recs.slice(0,10);
-                }
-                res.send(recs);
-                return next();
-            });
-    }
-
-    if (cachedActList) {
-        processActivities(null, cachedActList);
-    } else {
-        Activity.find().select('+recWeights +qualityFactor').exec(processActivities);
-    }
-}
-
-function invalidateActivityCache(req, res, next) {
-    cachedActList = null;
-    return next();
-}
+    error = require('../util/error');
 
 function postActivity(req, res, next) {
 
@@ -149,64 +44,62 @@ function postActivity(req, res, next) {
         var newActivity = new Activity(sentActivity);
 
         // TODO: find solution for auto/incrementing activity id's
-        newActivity.number = "NEW";
 
         // try to save the new object
         newActivity.save(function (err) {
             if (err) {
-                return error.errorHandler(err, next);
+                return error.handleError(err, next);
             }
 
-            res.header('location', '/api/v1/activities' + '/' + newActivity._id);
+            res.header('location', '/activities' + '/' + newActivity._id);
             res.send(201, newActivity);
             return next();
         });
 
-    } else if (!_.contains(req.user.roles, auth.roles.orgadmin) && !_.contains(req.user.roles, auth.roles.campaignlead)) {
-        // checks based on roles of requesting user
-        return next(new error.NotAuthorizedError('POST of object only allowed if author is an org admin or a campaign lead',
-            { user: req.user.id}));
-    } else {
+    } else if (_.contains(req.user.roles, auth.roles.orgadmin) || _.contains(req.user.roles, auth.roles.campaignlead)) {
+
         if (!sentActivity.campaign) {
             return next(new error.MissingParameterError('expected activity to have a campaign id', { required: 'campaign id' }));
-        } else {
-
-            Campaign.findById(sentActivity.campaign).exec(function (err, campaign) {
-                if (err) {
-                    return error.errorHandler(err, next);
-                }
-                if (!campaign) {
-                    return next(new error.ResourceNotFoundError('Campaign not found.', { id: sentActivity.campaign }));
-                }
-
-                // check whether the posting user is a campaignLead of the campaign
-                if (!_.contains(campaign.campaignLeads.toString(), req.user.id)) {
-                    return next(new error.NotAuthorizedError('The user is not a campaignlead of this campaign.', {
-                        userId: req.user.id,
-                        campaignId: campaign.id
-                    }));
-                }
-
-                var newActivity = new Activity(sentActivity);
-
-                // TODO: find solution for auto/incrementing activity id's
-                newActivity.number = "NEW_C";
-                // orgadmin's and campaignlead's can only manage campaign-specific activities
-                newActivity.source = "campaign";
-
-                // try to save the new object
-                newActivity.save(function (err) {
-                    if (err) {
-                        return error.errorHandler(err, next);
-                    }
-
-                    res.header('location', '/api/v1/activities' + '/' + newActivity._id);
-                    res.send(201, newActivity);
-                    return next();
-                });
-            });
         }
 
+        Campaign.findById(sentActivity.campaign).exec(function (err, campaign) {
+            if (err) {
+                return error.handleError(err, next);
+            }
+
+            if (!campaign) {
+                return next(new error.ResourceNotFoundError('Campaign not found.', { id: sentActivity.campaign }));
+            }
+
+            // check whether the posting user is a campaignLead of the campaign
+            if (!_.contains(campaign.campaignLeads.toString(), req.user.id)) {
+                return next(new error.NotAuthorizedError('The user is not a campaignlead of this campaign.', {
+                    userId: req.user.id,
+                    campaignId: campaign.id
+                }));
+            }
+
+            var newActivity = new Activity(sentActivity);
+
+            // orgadmin's and campaignlead's can only manage campaign-specific activities
+            newActivity.source = "campaign";
+
+            // try to save the new object
+            newActivity.save(function (err, savedActivity) {
+                if (err) {
+                    return error.handleError(err, next);
+                }
+
+                res.header('location', '/api/v1/activities' + '/' + savedActivity._id);
+                res.send(201, savedActivity);
+                return next();
+            });
+        });
+
+
+    } else {
+        return next(new error.NotAuthorizedError('POST of object only allowed if author is an org admin, campaign lead or productAdmin',
+            { user: req.user.id}));
     }
 
 
@@ -240,7 +133,7 @@ function putActivity(req, res, next) {
     }
 
     Activity.findById(req.params.id).exec(function (err, reloadedActivity) {
-        if(err) {
+        if (err) {
             return error.handleError(err, next);
         }
         if (!reloadedActivity) {
@@ -254,7 +147,7 @@ function putActivity(req, res, next) {
             // try to save the new object
             reloadedActivity.save(function (err) {
                 if (err) {
-                    return error.errorHandler(err, next);
+                    return error.handleError(err, next);
                 }
 
                 res.send(200, reloadedActivity);
@@ -273,7 +166,7 @@ function putActivity(req, res, next) {
 
                 Campaign.findById(reloadedActivity.campaign).exec(function (err, campaign) {
                     if (err) {
-                        return error.errorHandler(err, next);
+                        return error.handleError(err, next);
                     }
                     if (!campaign) {
                         return next(new error.ResourceNotFoundError('Campaign not found', { id: reloadedActivity.campaign }));
@@ -293,7 +186,7 @@ function putActivity(req, res, next) {
                     // try to save the new object
                     reloadedActivity.save(function (err) {
                         if (err) {
-                            return error.errorHandler(err, next);
+                            return error.handleError(err, next);
                         }
 
                         res.header('location', '/api/v1/activities' + '/' + reloadedActivity._id);
@@ -306,12 +199,9 @@ function putActivity(req, res, next) {
         }
 
     });
-
 }
 
 module.exports = {
-    getRecommendationsFn: getRecommendationsFn,
-    invalidateActivityCache: invalidateActivityCache,
     postActivity: postActivity,
     putActivity: putActivity
 };

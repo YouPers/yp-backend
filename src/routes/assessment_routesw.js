@@ -7,7 +7,7 @@ var mongoose = require('mongoose'),
     Assessment = mongoose.model('Assessment'),
     AssessmentResult = mongoose.model('AssessmentResult'),
     generic = require('../handlers/generic'),
-    handlers = require('../handlers/assessment_handlers.js');
+    assessment_handlers = require('../handlers/assessment_handlers.js');
 
 
 module.exports = function (swagger, config) {
@@ -67,7 +67,7 @@ module.exports = function (swagger, config) {
             accessLevel: 'al_individual',
             beforeCallbacks: []
         },
-        action: generic.postFn(resultsUrl, AssessmentResult)
+        action: assessment_handlers.assessmentResultPostFn(resultsUrl, AssessmentResult)
     });
 
     swagger.addGet({
@@ -86,7 +86,7 @@ module.exports = function (swagger, config) {
                 accessLevel: 'al_individual',
                 beforeCallbacks: []
             },
-            action: handlers.getNewestResult(resultsUrl, AssessmentResult)
+            action: assessment_handlers.getNewestResult(resultsUrl, AssessmentResult)
         }
     );
 

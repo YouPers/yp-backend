@@ -2,22 +2,26 @@
 
 var _ = require('lodash');
 
-function rulesEngine() {
+function RulesEngine(aRuleSet) {
 
     var self = this;
 
-    this.ruleset = {
-        name: 'default',
-        rules: []
-    };
+    if (aRuleSet) {
+        self.ruleset = aRuleSet;
+    } else {
+        self.ruleset = {
+            name: 'default',
+            rules: []
+        };
+    }
 
     this.setRuleset = function(aRuleset) {
-        this.ruleset = aRuleset;
+        self.ruleset = aRuleset;
     };
 
     this.evaluate = function(facts) {
-        var rules = (this.ruleset.rules);
-        return this.doRules(rules, facts);
+        var rules = self.ruleset.rules;
+        return this.respond(this.doRules(rules, facts));
     };
 
     this.doRules= function(rules, facts) {
@@ -35,20 +39,29 @@ function rulesEngine() {
     };
 
     this.respond = function(r) {
-        var returnType = (this.ruleset.returnType);
+        var returnType = self.ruleset.returnType;
+
+
         if(returnType === 'text'){
             return r.join();
         } else if(returnType.indexOf('expr') !== -1){
             return eval(returnType);
         } else if (_.isFunction(returnType)) {
             return ( (returnType)(r));
-        } else if (returnType === boolean) {
-            return this.returnBoolean(r);
         } else if(returnType === "ResponseData"){
             return r;
+        } else if (returnType === "MatchingRuleId") {
+            var response = [];
+            for (var i = 0; i<r.length; i++) {
+                if (r[i]) {
+                    response.push(self.ruleset.rules[i].id);
+                }
+            }
+            return response;
+        } else {
+            throw new Error('Unknown Returntype');
         }
-        return null;
     };
 }
 
-module.exports = rulesEngine;
+module.exports = RulesEngine;

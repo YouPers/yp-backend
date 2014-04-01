@@ -1,3 +1,5 @@
+var mongoose = require('mongoose');
+
 module.exports = {
     groupActivity: {
         id: '5278c6adcdeab69a25000046'
@@ -20,5 +22,20 @@ module.exports = {
         test_campaignlead: {
             id: '52a97f1650fca98c2900000b'
         }
+    },
+    assessment: {
+        id: '525faf0ac558d40000000005'
+    },
+    newUser: function (cb) {
+        var User = mongoose.model('User');
+        new User({
+            username: 'new_unittest_user' + Math.floor((Math.random() * 10000) + 1),
+            fullname: 'Testing Unittest',
+            firstname: 'Testing',
+            lastname: 'Unittest',
+            email: 'ypunittest1+coachTestUser' + Math.floor((Math.random() * 10000) + 1) + '@gmail.com',
+            password: 'nopass',
+            roles: ['individual']
+        }).save(cb);
     }
 };

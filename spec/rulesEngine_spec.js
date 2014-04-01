@@ -12,7 +12,7 @@ var ruleSet = {
 
 
 describe('RulesEngine', function () {
-    it('should correctly evaluate expression rules', function () {
+    it('should correctly evaluate expression rules, ReturnType Data', function () {
         var re = new RulesEngine();
         re.setRuleset(ruleSet);
         var response = re.evaluate({user: {username: 'reto'}});
@@ -20,6 +20,16 @@ describe('RulesEngine', function () {
         expect(response[0]).toEqual(true);
         expect(response[1]).toEqual(false);
     });
+
+    it('should correctly evaluate expression rules, returnType MatchingRuleId', function () {
+        var re = new RulesEngine();
+        ruleSet.returnType = "MatchingRuleId";
+        re.setRuleset(ruleSet);
+        var response = re.evaluate({user: {username: 'reto'}});
+        expect(response.length).toEqual(1);
+        expect(response[0]).toEqual('id1');
+    });
+
 });
 
 

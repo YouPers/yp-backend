@@ -34,9 +34,4 @@ describe('CoachRecommendation Module', function () {
         });
 
     });
-
-    it('should close db', function(done) {
-        require('mongoose').disconnect();
-        return done();
-    });
 });

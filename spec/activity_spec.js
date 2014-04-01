@@ -14,13 +14,13 @@ frisby.create('Activity: post a new activity as a prodadm')
     .auth('test_prodadm', 'yp')
     .post(URL + '/activities', {
         "title": "Test Activity",
-        "text": "New Test Activity Text"
+        "text": "New Test Activity Text",
+        "number": "UnitTest"
     })
     .expectStatus(201)
     .afterJSON(function (newActivity) {
 
-        expect(newActivity.number).toEqual("NEW");
-//        expect(newActivity.source).toEqual("youpers");
+        expect(newActivity.number).toEqual("UnitTest");
 
         frisby.create('Activity: delete the created prodadm activity again')
             .delete(URL + '/activities/' + newActivity.id)
@@ -36,7 +36,8 @@ frisby.create('Activity: post a new activity as a campaign lead without a valid 
     .auth('test_campaignlead', 'yp')
     .post(URL + '/activities', {
         "title": "Test Campaign Activity",
-        "text": "New Test Campaign Activity Text"
+        "text": "New Test Campaign Activity Text",
+        "number": "UnitTest"
     })
     .expectStatus(409)
 
@@ -47,7 +48,8 @@ frisby.create('Activity: post a new activity as a campaign lead of another campa
     .post(URL + '/activities', {
         "title": "Test Campaign Activity for wrong campaign",
         "text": "New Test Campaign Activity Text",
-        "campaign": "527916a82079aa8704000006"
+        "campaign": "527916a82079aa8704000006",
+        "number": "UnitTest"
     })
     .expectStatus(403)
 
@@ -58,12 +60,13 @@ frisby.create('Activity: post a new activity as a campaign lead with a valid cam
     .post(URL + '/activities', {
         "title": "Test Campaign Activity",
         "text": "New Test Campaign Activity Text",
-        "campaign": "527916a82079aa8704000006"
+        "campaign": "527916a82079aa8704000006",
+        "number": "UnitTest"
     })
     .expectStatus(201)
     .afterJSON(function (newActivity) {
 
-        expect(newActivity.number).toEqual("NEW_C");
+        expect(newActivity.number).toEqual("UnitTest");
         expect(newActivity.source).toEqual("campaign");
 
         frisby.create('Activity: delete the created campaign lead activity again')

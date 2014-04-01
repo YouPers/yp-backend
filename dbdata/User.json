@@ -229,6 +229,21 @@
         "roles" : [  "productadmin" ],
         "emailValidatedFlag" : true,
         "profile": "5303721a4dba580000000030"
+    },
+    {
+        "_id": "53348c27996c80a534319bda",
+        "firstname": "Youpers",
+        "username": "ypHealthCoach",
+        "lastname": "Health Coach",
+        "email": "healthcoach@youpers.com",
+        "password": "nobodyKnowsThisPassword",
+        "fullname": "Youpers Health Coach",
+        "preferences" : { "workingDays" : [ ], "starredActivities" : [ ] },
+        "tempPasswordFlag" : false,
+        "roles" : [  "individual" ],
+        "emailValidatedFlag" : true,
+        "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRU5FN7rcovPPzTBRbpkHx_JTCEk1Et8rnXf-aEvVexzFdYl7rjzw"
+
     }
 
 ]

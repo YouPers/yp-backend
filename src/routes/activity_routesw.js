@@ -13,34 +13,6 @@ module.exports = function (swagger, config) {
     var baseUrl = '/activities';
     var baseUrlWithId = baseUrl + '/{id}';
 
-    swagger.addGet({
-        spec: {
-            description: "Operations about Activities",
-            path: baseUrl + '/recommendations',
-            notes: "returns only the top 5 recommendations with their public attributes in normal case, ordered by recommendation weight. " +
-                "If the authenticated user has is an administrator, all " +
-                "attributes with all recommendations are returned (incl. all weights, ...)",
-            summary: "returns the current top 5 recommendations for the authenticated user ",
-            method: "GET",
-            "responseClass": "Recommendation",
-            "nickname": "getRecommendations",
-            params: [
-                {
-                    paramType: "query",
-                    name: "focus",
-                    description: "the list of assessmentQuestions strings to be used as a focus when generating recommendations",
-                    dataType: "string"
-                },
-                generic.params.limit,
-                generic.params.populate
-            ],
-            accessLevel: 'al_individual',
-            beforeCallbacks: []
-        },
-        action: handlers.getRecommendationsFn
-    });
-
-
     /**
      * need to add the Recommendation model here explicitly, because this is a transient class, that does not
      * exist in the database
@@ -58,9 +30,6 @@ module.exports = function (swagger, config) {
            }
        }
     });
-
-
-
 
     swagger.addGet({
         spec: {
@@ -122,7 +91,7 @@ module.exports = function (swagger, config) {
                 }
             ],
             accessLevel: 'al_all',
-            beforeCallbacks: [handlers.invalidateActivityCache]
+            beforeCallbacks: []
         },
         action: handlers.postActivity
     });
@@ -138,7 +107,7 @@ module.exports = function (swagger, config) {
             "nickname": "putActivity",
             params: [swagger.pathParam("id", "ID of the activity to be updated", "string")],
             accessLevel: 'al_user',
-            beforeCallbacks: [handlers.invalidateActivityCache]
+            beforeCallbacks: []
         },
         action: handlers.putActivity
     });
@@ -152,7 +121,7 @@ module.exports = function (swagger, config) {
             method: "DELETE",
             "nickname": "deleteActivities",
             accessLevel: 'al_admin',
-            beforeCallbacks: [handlers.invalidateActivityCache]
+            beforeCallbacks: []
         },
         action: generic.deleteAllFn(baseUrl, Activity)
     });
@@ -166,7 +135,7 @@ module.exports = function (swagger, config) {
             method: "DELETE",
             "nickname": "deleteActivity",
             accessLevel: 'al_admin',
-            beforeCallbacks: [handlers.invalidateActivityCache]
+            beforeCallbacks: []
         },
         action: generic.deleteByIdFn(baseUrl, Activity)
     });

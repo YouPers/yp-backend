@@ -32,13 +32,11 @@ frisby.create('ActivityRecommendations: post a first answer for this assessment'
     .expectStatus(201)
     .afterJSON(function (json) {
         frisby.create('ActivityRecommendations: get recommendations')
-            .get(URL + '/activities/recommendations')
+            .get(URL + '/activityoffers/coach')
             .auth('test_ind2', 'yp')
             .expectStatus(200)
             .afterJSON(function(recs) {
                 expect(recs.length).toEqual(10);
-                console.log(JSON.stringify(recs));
-
                 frisby.create('ActivityRecommendations: reject first recommendation')
                     .put(URL + '/profiles/'+ consts.users.test_ind2.profile,
                         {userPreferences:
@@ -49,16 +47,14 @@ frisby.create('ActivityRecommendations: post a first answer for this assessment'
                     .auth('test_ind2', 'yp')
                     .expectStatus(200)
                     .afterJSON(function(updatedProfile) {
-                        console.log(JSON.stringify(updatedProfile));
                         frisby.create('ActivityRecommendations: get recommendations again and check whether old number 2 is now number 1')
-                            .get(URL + '/activities/recommendations')
+                            .get(URL + '/activityoffers/coach')
                             .auth('test_ind2', 'yp')
                             .expectStatus(200)
                             .afterJSON(function(newRecs) {
                                 expect(newRecs.length).toEqual(10);
                                 expect(newRecs[0].activity).not.toEqual(recs[0].activity);
                                 expect(newRecs[0].activity).toEqual(recs[1].activity);
-                                console.log(JSON.stringify(newRecs));
 
                                 frisby.create('ActivityRecommendations: reset rejectedActivities on the profile')
                                     .put(URL + '/profiles/' + consts.users.test_ind2.profile,

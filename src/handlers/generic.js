@@ -474,12 +474,12 @@ module.exports = {
 
             req.log.trace(newObj, 'PostFn: Saving new Object');
             // try to save the new object
-            newObj.save(function (err) {
+            newObj.save(function (err, savedObj) {
                 if(err) {
                     return error.handleError(err, next);
                 }
-                res.header('location', baseUrl + '/' + newObj._id);
-                res.send(201, newObj);
+                res.header('location', baseUrl + '/' + savedObj._id);
+                res.send(201, savedObj);
                 return next();
             });
         };
@@ -547,7 +547,7 @@ module.exports = {
                     return error.handleError(err, next);
                 }
                 if (!obj) {
-                    return new error.ResourceNotFoundError();
+                    return next(new error.ResourceNotFoundError());
                 }
                 obj.remove(function (err) {
                     res.send(200);

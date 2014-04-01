@@ -34,10 +34,9 @@ frisby.create('i18n: GET all assessments, no language given, check default')
             .afterJSON(function (assessment) {
                 var initialNameDe = assessment.name;
                 var newNameDe = assessment.name + "NeuerNameDe";
-                assessment.name = newNameDe;
 
                 frisby.create('i18n: Put an Update to simple i18nString, defaultLanguage')
-                    .put(URL + '/assessments/' + assessment.id, assessment)
+                    .put(URL + '/assessments/' + assessment.id, {name: assessment.name + "NeuerNameDe"})
                     .auth('stefan', 'stefan')
                     .expectStatus(200)
                     .expectHeader('yp-language', 'de')
@@ -59,10 +58,8 @@ frisby.create('i18n: GET all assessments, no language given, check default')
                             .afterJSON(function (assessmentEn) {
                                 expect(assessmentEn.name).not.toEqual(updatedAssessment.name);
 
-                                updatedAssessment.name = initialNameDe;
-
                                 frisby.create('i18n: Put an Update to i18nString to resetLanguage, defaultLanguage')
-                                    .put(URL + '/assessments/' + assessment.id, updatedAssessment)
+                                    .put(URL + '/assessments/' + assessment.id, {name: initialNameDe})
                                     .auth('stefan', 'stefan')
                                     .expectStatus(200)
                                     .expectHeader('yp-language', 'de')

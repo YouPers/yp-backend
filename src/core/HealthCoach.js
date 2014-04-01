@@ -4,6 +4,12 @@ var async = require('async'),
     moment = require('moment'),
     RulesEngine = require('../util/rulesEngine');
 
+/**
+ * The ruleset to find out what coachmessages to display under which conditions. This
+ * ruleset will return the list of messageIds to display.
+ *
+ * @type {{returnType: string, rules: {id: string, rule: string}[]}}
+ */
 var healthCoachRuleSet = {
     returnType: "MatchingRuleId",
     rules: [
@@ -13,6 +19,17 @@ var healthCoachRuleSet = {
     ]
 };
 
+/**
+ * the list of facts that the rules can use as base data. Each fact is defined as a an object with:
+ * {
+ *  name: the name of the fact. this is then to be used in the rule to access the data
+ *  description: a description what information this fact will provide
+ *  calc: the function that will calculate this fact. this function will take a userId and a callback function (err, calculatedFact).
+ *  default: the value to be used in case we have no authenticated user account to calculate against. Is used to display
+ *            coachmessages also for users that are not logged in.
+ * }
+ * @type {*[]}
+ */
 var commonFacts = [
         {
             name: 'assessmentResult',
@@ -130,7 +147,14 @@ var commonFacts = [
     ]
     ;
 
-
+/**
+ * Helper object that calculates the Facts for a given user.
+ * the user object and the uistate are always added to the Facts objects, so their properties can be used in rules.
+ *
+ * @param user
+ * @param uistate
+ * @constructor
+ */
 function Facts(user, uistate) {
     var self = this;
     self.user = user;

@@ -2,6 +2,38 @@
 
 var _ = require('lodash');
 
+
+/**
+ * simple RulesEngine that evaluates rules against a Facts object.
+ *
+ * Rules can be written as:
+ * - javascript function(facts) {}
+ * - eval expression using facts.property
+ * rules may be used recursively (experimental feature, fasten seatbelt before using)
+ *
+ * a ruleset may specify what result it expects from the evaluated ruleset in the property: returnType
+ * supported values are:
+ * - 'ResponseData': get the raw array of responseData. Each rule's result is pushed into this resultarray.
+ * - 'MatchingRuleId': get an array of the id of all rules that evaluated to a truthy result.
+ * - function(r): a javascript function that does something with the raw result array.
+ * - 'text': .join() of the raw result array.
+ *
+ * Usage:
+ * var yourRuleSet = {
+ *  returnType: 'ResponseData',
+ *  rules: [
+ *  {id: 'ruleId1', rule: 'facts.name=="blalba"'},
+ *  {id: 'ruleId1', rule: 'facts.name=="bliblo"'},
+ *  ]}
+ *
+ * var facts = calculateYourFacts();
+ *
+ * var re = new RulesEngine(yourRulesSet).
+ * var result = re.evaluate(facts);
+ *
+ * @param aRuleSet
+ * @constructor
+ */
 function RulesEngine(aRuleSet) {
 
     var self = this;
@@ -40,8 +72,6 @@ function RulesEngine(aRuleSet) {
 
     this.respond = function(r) {
         var returnType = self.ruleset.returnType;
-
-
         if(returnType === 'text'){
             return r.join();
         } else if(returnType.indexOf('expr') !== -1){

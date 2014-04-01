@@ -11,7 +11,7 @@ var _ = require('lodash');
  * - eval expression using facts.property
  * rules may be used recursively (experimental feature, fasten seatbelt before using)
  *
- * a ruleset may specify what result it expects from the evaluated ruleset in the property: returnType
+ * a ruleset may specify what result it expects from the evaluated rules in the property: returnType
  * supported values are:
  * - 'ResponseData': get the raw array of responseData. Each rule's result is pushed into this resultarray.
  * - 'MatchingRuleId': get an array of the id of all rules that evaluated to a truthy result.
@@ -23,7 +23,7 @@ var _ = require('lodash');
  *  returnType: 'ResponseData',
  *  rules: [
  *  {id: 'ruleId1', rule: 'facts.name=="blalba"'},
- *  {id: 'ruleId1', rule: 'facts.name=="bliblo"'},
+ *  {id: 'ruleId1', rule: 'facts.count>= 7'},
  *  ]}
  *
  * var facts = calculateYourFacts();

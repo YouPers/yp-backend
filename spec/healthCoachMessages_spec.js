@@ -15,7 +15,7 @@ describe('HealthCoach Module', function () {
         consts.newUser(function (err, user) {
             expect(err).toBeNull();
             expect(user).toBeDefined();
-            hc.getCurrentMessages(user, 'home', function (err, messages, facts) {
+            hc.getCurrentMessages(user, 'home.content', function (err, messages, facts) {
                 expect(err).toBeNull();
                 expect(_.isArray(messages));
                 expect(messages.length).toEqual(2);
@@ -45,7 +45,7 @@ describe('HealthCoach Module', function () {
                 new AssRes(result).save(function (err, result) {
                     expect(err).toBeNull();
                     expect(result).toBeDefined();
-                    hc.getCurrentMessages(user, 'home', function (err, messages, facts) {
+                    hc.getCurrentMessages(user, 'home.content', function (err, messages, facts) {
                         expect(err).toBeNull();
                         expect(_.isArray(messages));
                         expect(messages.length).toEqual(1);
@@ -53,7 +53,7 @@ describe('HealthCoach Module', function () {
                         result.timestamp = moment().subtract(10, 'd').toDate();
                         result.save(function (err, updatedResult) {
                             expect(err).toBeNull();
-                            hc.getCurrentMessages(user, 'home', function (err, messages, facts) {
+                            hc.getCurrentMessages(user, 'home.content', function (err, messages, facts) {
                                 expect(err).toBeNull();
                                 expect(_.isArray(messages));
                                 expect(messages.length).toEqual(2);
@@ -97,7 +97,7 @@ describe('HealthCoach Module', function () {
                 ).save(function (err, savedPlan) {
                         expect(err).toBeNull();
                         expect(savedPlan).toBeDefined();
-                        hc.getCurrentMessages(user, 'home', function (err, messages, facts) {
+                        hc.getCurrentMessages(user, 'home.content', function (err, messages, facts) {
                             expect(err).toBeNull();
                             expect(_.isArray(messages));
                             expect(messages.length).toEqual(1);

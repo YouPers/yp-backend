@@ -286,40 +286,55 @@ function postNewActivityPlan(req, res, next) {
     if (!sentPlan.mainEvent) {
         return next(new error.MissingParameterError({ required: 'mainEvent' }));
     }
-    generateEventsForPlan(sentPlan, req.user, req.i18n);
-    req.log.trace({eventsAfter: sentPlan.events}, 'after generating events');
 
     var newActPlan = new ActivityPlanModel(sentPlan);
 
-    // add fields of activity to the activity plan
-    ActivityModel.findById(newActPlan.activity).exec(function (err, foundActivity) {
-        if (err) {
+    generateEventsForPlan(newActPlan, req.user, req.i18n);
+    req.log.trace({eventsAfter: newActPlan.events}, 'after generating events');
+
+    saveNewActivityPlan(newActPlan, req.user, req.i18n, function(err, savedPlan) {
+        if(err) {
             return error.handleError(err, next);
         }
-        newActPlan.fields = foundActivity.fields;
+        res.header('location', '/api/v1/activitiesPlanned' + '/' + savedPlan._id);
+        res.send(201, savedPlan);
+    });
+}
 
-        req.log.trace(newActPlan, 'PostFn: Saving new Object');
-        // try to save the new object
-        newActPlan.save(function (err) {
+/**
+ * save new activity plan with a mongoose obj that already has been validated
+ *
+ * @param plan - activityPlan obj
+ * @param user - user obj
+ * @param cb - callback(err, savedPlan)
+ */
+function saveNewActivityPlan(plan, user, i18n, cb) {
+
+    // add fields of activity to the activity plan
+    ActivityModel.findById(plan.activity).exec(function (err, foundActivity) {
+        if (err) {
+            return cb(err);
+        }
+        plan.fields = foundActivity.fields;
+
+        plan.save(function (err, savedPlan) {
             if (err) {
-                return error.handleError(err, next);
+                return cb(err);
             }
 
             // we reload ActivityPlan for two reasons:
             // - populate 'activity' so we can get create a nice calendar entry
             // - we need to reload so we get the changes that have been done pre('save') and pre('init')
             //   like updating the joiningUsers Collection
-            ActivityPlanModel.findById(newActPlan._id).populate('activity').exec(function (err, reloadedActPlan) {
+            ActivityPlanModel.findById(savedPlan._id).populate('activity').exec(function (err, reloadedActPlan) {
                 if (err) {
-                    return error.handleError(err, next);
+                    return cb(err);
                 }
 
-                if (req.user && req.user.email && req.user.profile.userPreferences.email.iCalInvites) {
-                    var myIcalString = getIcalObject(reloadedActPlan, req.user, 'new', req.i18n).toString();
-                    email.sendCalInvite(req.user.email, 'new', myIcalString, req.i18n);
+                if (user && user.email && user.profile.userPreferences.email.iCalInvites) {
+                    var myIcalString = getIcalObject(reloadedActPlan, user, 'new', i18n).toString();
+                    email.sendCalInvite(user.email, 'new', myIcalString, i18n);
                 }
-
-                res.header('location', '/api/v1/activitiesPlanned' + '/' + reloadedActPlan._id);
 
                 // check whether this is a public joinable plan, if yes store an corresponding ActivityOffer
                 if (_.contains(['public', 'campaign'],reloadedActPlan.visibility) && 'group' === reloadedActPlan.executionType) {
@@ -327,28 +342,57 @@ function postNewActivityPlan(req, res, next) {
                         activity: reloadedActPlan.activity._id,
                         activityPlan: [reloadedActPlan._id],
                         targetCampaign: reloadedActPlan.campaign,
-                        recommendedBy: [req.user._id],
+                        recommendedBy: [user._id],
                         type: [reloadedActPlan.source === 'campaign' ? 'campaignActivityPlan': 'publicActivityPlan'],
                         validTo: reloadedActPlan.events[reloadedActPlan.events.length - 1].end,
                         prio: [reloadedActPlan.source === 'campaign' ? 500: 1]
                     });
                     offer.save(function(err, savedOffer) {
                         if (err) {
-                            return error.handleError(err, next);
+                            return cb(err);
                         }
                         reloadedActPlan.activity = reloadedActPlan.activity._id;
-                        res.send(201, reloadedActPlan);
-                        return next();
+                        return cb(null, reloadedActPlan);
                     });
                 } else {
                     reloadedActPlan.activity = reloadedActPlan.activity._id;
-                    res.send(201, reloadedActPlan);
-                    return next();
+                    return cb(null, reloadedActPlan);
                 }
             });
 
         });
     });
+}
+
+function postJoinActivityPlanFn(req, res, next) {
+
+    if (!req.params || !req.params.id) {
+        return next(new error.MissingParameterError({ required: 'id' }));
+    }
+
+    ActivityPlanModel.findById(req.params.id).exec(function (err, masterPlan) {
+
+        if (err) {
+            return error.handleError(err, next);
+        }
+
+        var slavePlan = new ActivityPlanModel(masterPlan.toJSON());
+
+        slavePlan.id = undefined;
+        slavePlan.masterPlan = masterPlan._id;
+        slavePlan.joiningUsers = [];
+        slavePlan.owner = req.user.id;
+
+        saveNewActivityPlan(slavePlan, req.user, req.i18n, function(err, savedPlan) {
+            if(err) {
+                return error.handleError(err, next);
+            }
+            res.header('location', '/api/v1/activitiesPlanned' + '/' + savedPlan._id);
+            res.send(201, savedPlan);
+        });
+
+    });
+
 }
 
 function getJoinOffers(req, res, next) {
@@ -740,6 +784,7 @@ function putActivityPlan(req, res, next) {
 module.exports = {
     postNewActivityPlan: postNewActivityPlan,
     putActivityEvent: putActivityEvent,
+    postJoinActivityPlanFn: postJoinActivityPlanFn,
     getJoinOffers: getJoinOffers,
     postActivityPlanInvite: postActivityPlanInvite,
     deleteActivityPlan: deleteActivityPlan,

@@ -56,7 +56,8 @@ module.exports = function (swagger, config) {
             "nickname": "getActivityOfferById",
             params: [
                 generic.params.limit,
-                generic.params.populate
+                generic.params.populate,
+                generic.params.populatedeep
             ],
             accessLevel: 'al_individual',
             beforeCallbacks: []

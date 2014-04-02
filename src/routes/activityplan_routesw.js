@@ -150,6 +150,21 @@ module.exports = function (swagger, config) {
         action: handlers.postActivityPlanInvite
     });
 
+    swagger.addPost({
+        spec: {
+            description: "Operations about ActivityPlans",
+            path: baseUrlWithId + "/join",
+            notes: "Joins an activity plan",
+            summary: "Joins an activity plan",
+            params: [],
+            method: "POST",
+            "nickname": "postJoinActivityPlanFn",
+            accessLevel: 'al_individual',
+            beforeCallbacks: []
+        },
+        action: handlers.postJoinActivityPlanFn
+    });
+
 
     swagger.addPost({
         spec: {

@@ -17,7 +17,12 @@ var getCoachMessagesFn = function getCoachMessagesFn(req, res, next) {
         if (err) {
             return error.handleError(err, next);
         }
-        res.send(messageIds);
+
+        var result = messageIds;
+        if (req.params.debug) {
+            result.push(facts);
+        }
+        res.send(result);
         return next();
     });
 

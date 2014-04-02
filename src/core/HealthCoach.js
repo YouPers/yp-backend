@@ -13,9 +13,9 @@ var async = require('async'),
 var healthCoachRuleSet = {
     returnType: "MatchingRuleId",
     rules: [
-        {id: "msg_1", rule: "facts.uistate == 'home' && !facts.assessmentResult.done"},
-        {id: "msg_2", rule: "facts.uistate == 'home' && facts.assessmentResult.done && facts.assessmentResult.age > 1000*60*60*24*3"},
-        {id: "msg_3", rule: "facts.uistate == 'home' && facts.activities.total.plannedAct == 0"}
+        {id: "msg_1", rule: "facts.uistate == 'home.content' && !facts.assessmentResult.done"},
+        {id: "msg_2", rule: "facts.uistate == 'home.content' && facts.assessmentResult.done && facts.assessmentResult.age > 1000*60*60*24*3"},
+        {id: "msg_3", rule: "facts.uistate == 'home.content' && facts.activities.total.plannedAct == 0"}
     ]
 };
 

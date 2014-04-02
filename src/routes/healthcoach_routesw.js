@@ -20,6 +20,14 @@ module.exports = function (swagger, config) {
                         "required": true,
                         "allowMultiple": false,
                         "paramType": "query"
+                    },
+                    {
+                        "name": "debug",
+                        "description": 'returns the facts object that has been used to calculate the messages as last entry of the result array',
+                        "dataType": 'boolean',
+                        "required": false,
+                        "allowMultiple": false,
+                        "paramType": "query"
                     }
                 ],
                 method: "GET",

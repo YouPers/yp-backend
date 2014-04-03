@@ -1,0 +1,60 @@
+[
+    {
+        "__v": 0,
+        "_id": {
+            "$oid": "527916a82079aa8704000006"
+        },
+        "campaignLeads": [
+            {
+                "$oid": "52a97f1650fca98c2900000b"
+            },
+            {
+                "$oid": "52a97f1650fca98c2900000a"
+            }
+        ],
+        "end": {
+            "$date": 1394816400000
+        },
+        "location": "Zug",
+        "organization": {
+            "$oid": "52f0c64e53d523235b07d8d8"
+        },
+        "paymentStatus": "paid",
+        "productType": "CampaignProductType1",
+        "relatedService": "YP-Balance",
+        "slogan": "Nie zu sp\u00e4t, um den eigenen Stress in den Griff zu kriegen!",
+        "start": {
+            "$date": 1391414400000
+        },
+        "title": "YouPers AG Test Kampagne 1 f\u00fcr WorkLife-Balance"
+    },
+    {
+        "__v": 0,
+        "_id": {
+            "$oid": "527916a82079aa8704000007"
+        },
+        "campaignLeads": [
+            {
+                "$oid": "52a97f1650fca98c2900000b"
+            },
+            {
+                "$oid": "52a97f1650fca98c2900000a"
+            }
+        ],
+        "end": {
+            "$date": 1396026000000
+        },
+        "location": "Z\u00fcrich",
+        "organization": {
+            "$oid": "52f0c64e53d523235b07d8d8"
+        },
+        "paymentStatus": "open",
+        "productType": "CampaignProductType1",
+        "relatedService": "YP-Balance",
+        "slogan": "No (positive) stress, no fun!",
+        "start": {
+            "$date": 1392624000000
+        },
+        "title": "YouPers AG Test Kampagne 2 f\u00fcr WorkLife-Balance"
+    }
+]

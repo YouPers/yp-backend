@@ -53,8 +53,8 @@ function _generateRecommendations(actList, assResult, personalGoal, nrOfRecsToRe
             //          this answer is part of the personalGoals
             if (answerObj && (!personalGoal || (_.contains(personalGoal, answerObj.question.toString())))) {
                 score += (answerObj.answer >= 0) ?
-                    answerObj.answer / 100 * recWeight[1] :
-                    Math.abs(answerObj.answer) / 100 * recWeight[2];
+                    answerObj.answer / 100 * recWeight[2] :
+                    Math.abs(answerObj.answer) / 100 * recWeight[1];
             }
         });
         matchValues.push({activity: activity._id, score: score * qualityFactor});

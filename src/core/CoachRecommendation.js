@@ -42,7 +42,7 @@ function _generateRecommendations(actList, assResult, personalGoal, nrOfRecsToRe
         score = 1;
         _.forEach(activity.recWeights, function (recWeight) {
             var answerObj = _.find(assResult.answers, function (ans) {
-                return recWeight.question.equals(ans.question);
+                return _.isString(ans.question) ? ans.question === recWeight[0] : ans.question.equals(recWeight[0]);
             });
 
             // add score only if
@@ -53,8 +53,8 @@ function _generateRecommendations(actList, assResult, personalGoal, nrOfRecsToRe
             //          this answer is part of the personalGoals
             if (answerObj && (!personalGoal || (_.contains(personalGoal, answerObj.question.toString())))) {
                 score += (answerObj.answer >= 0) ?
-                    answerObj.answer / 100 * recWeight.positiveAnswerWeight :
-                    Math.abs(answerObj.answer) / 100 * recWeight.negativeAnswerWeight;
+                    answerObj.answer / 100 * recWeight[1] :
+                    Math.abs(answerObj.answer) / 100 * recWeight[2];
             }
         });
         matchValues.push({activity: activity._id, score: score * qualityFactor});

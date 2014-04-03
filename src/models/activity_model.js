@@ -24,11 +24,7 @@ var ActivitySchema = common.newSchema({
     topics: [String],
     fields: [String],
     qualityFactor: {type: Number, select: false},
-    recWeights: {type: [
-        {question: {type: ObjectId},
-            negativeAnswerWeight: {type: Number},
-            positiveAnswerWeight: {type: Number}}
-    ], select: false}
+    recWeights: {type: mongoose.Schema.Types.Mixed, select: false}
 });
 
 ActivitySchema.statics.adminAttrsSelector =  '+recWeights +qualityFactor';

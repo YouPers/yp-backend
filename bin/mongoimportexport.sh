@@ -126,11 +126,9 @@ else
         do
             cat $f | python -m json.tool > $f.json
         done
-
-        popd 2>/dev/null
         popd 2>/dev/null
         chgrp staff /tmp/$DB/*.json
         mv /tmp/$DB/*.json $DIR
-        rm /tmp/$DB/*
+        rm -rf /tmp/$DB
     fi
 fi

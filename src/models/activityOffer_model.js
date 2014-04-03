@@ -29,5 +29,3 @@ var ActivityOfferSchema = common.newSchema({
 });
 
 module.exports = mongoose.model('ActivityOffer', ActivityOfferSchema);
-
-common.initializeDbFor(mongoose.model('ActivityOffer'));

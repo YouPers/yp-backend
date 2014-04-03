@@ -29,8 +29,4 @@ CampaignSchema.statics.adminRoles =  [auth.roles.systemadmin, auth.roles.product
 
 CampaignSchema.statics.adminAttrsSelector = '+productType +paymentStatus';
 
-var model = mongoose.model('Campaign', CampaignSchema);
-
-module.exports = mongoose.model('Campaign');
-
-common.initializeDbFor(model);
+module.exports = mongoose.model('Campaign', CampaignSchema);

@@ -144,7 +144,4 @@ UserSchema.pre('remove', function (next) {
     next();
 });
 
-
 module.exports = mongoose.model('User', UserSchema);
-
-common.initializeDbFor(mongoose.model('User'));

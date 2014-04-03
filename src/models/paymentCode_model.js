@@ -21,7 +21,4 @@ var PaymentCodeSchema = common.newSchema({
     users: { type: Number }
 });
 
-
 module.exports = mongoose.model('PaymentCode', PaymentCodeSchema);
-
-common.initializeDbFor(mongoose.model('PaymentCode'));

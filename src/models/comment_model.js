@@ -24,5 +24,3 @@ var CommentSchema = common.newSchema({
 
 
 module.exports = mongoose.model('Comment', CommentSchema);
-
-common.initializeDbFor(mongoose.model('Comment'));

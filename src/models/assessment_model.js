@@ -48,7 +48,3 @@ AssessmentSchema.statics.getFieldDescriptions = function() {
 mongoose.model('AssessmentQuestion', question);
 
 module.exports = mongoose.model('Assessment', AssessmentSchema);
-
-
-
-common.initializeDbFor(mongoose.model('Assessment'));

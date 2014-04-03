@@ -1,8 +1,6 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
     _ = require('lodash'),
-    env = process.env.NODE_ENV || 'development',
-    config = require('../config/config')[env],
     auth = require('../util/auth');
 
 module.exports = {
@@ -84,7 +82,7 @@ module.exports = {
          *
          * @param locale the locale to be loaded.
          * @param basePath used for recursive calls, do not pass any value when you call this Fn in a controller.
-         * @returns {} that can be given to mongoose.query.select()
+         * @returns {*} that can be given to mongoose.query.select()
          */
         mySchema.statics.getI18nPropertySelector = function (locale, basePath) {
 
@@ -391,67 +389,6 @@ module.exports = {
         paymentStatus: "open paid".split(' '),
         campaignProductType: "CampaignProductType1 CampaignProductType2 CampaignProductType3".split(' '),
         calendarNotifications: "none 0 300 600 900 1800 3600 7200 86400 172800".split(' ')
-    },
-
-    initializeDbFor: function InitializeDbFor(Model) {
-        if (config.loadTestData) {
-            // load all existing objects
-            Model.count().exec(function (err, count) {
-                if (err) {
-                    throw err;
-                }
-                var filename = '../../dbdata/' + Model.modelName + '.json';
-                var jsonFromFile;
-                try {
-                    jsonFromFile = require(filename);
-                } catch (Error) {
-                    // silent fail, because if we did not find the file, there is nothing to load. This is expected
-                    // for some objects.
-                }
-                if (jsonFromFile) {
-                    if (jsonFromFile.length > count) {
-                        console.log(Model.modelName + ": initializing Database from File: " + filename);
-                        if (!Array.isArray(jsonFromFile)) {
-                            jsonFromFile = [jsonFromFile];
-                        }
-                        jsonFromFile.forEach(function (jsonObj) {
-                            if (jsonObj.id) {
-                                jsonObj._id = jsonObj.id;
-                            }
-                            var newObj = new Model(jsonObj);
-
-                            newObj.save(function (err) {
-                                if (err) {
-                                    if (err.code === 11000) {
-                                        console.log(Model.modelName + ": not saving Obj: " + jsonObj._id + " because it is already in the database");
-                                    } else {
-                                        console.log(err.message);
-                                        throw err;
-                                    }
-                                }
-                                // fix for User Password hashing of imported users that already have an id in the json...
-                                if (newObj.modelName === 'User' && !newObj.hashed_password) {
-                                    newObj.password = jsonObj.password;
-                                    newObj.save(function (err) {
-                                        if (err) {
-                                            console.log(err.message);
-                                            throw err;
-                                        }
-                                    });
-                                }
-                            });
-                        });
-                    } else {
-                        console.log(Model.modelName + ": no initialization, more or same number of instances already in Database (" + count + ") than in JSON-File (" + jsonFromFile.length + ")");
-                    }
-                } else {
-                    console.log(Model.modelName + ": no initialization, because no load file exists for this Model");
-                }
-            });
-        } else {
-            console.log("no DB initialization because it is disabled for this enviroment");
-        }
     }
-
 }
 ;

@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 LOADING=false
 TARZIP=false
 usage()
@@ -20,7 +21,7 @@ EOF
 while getopts "hlzd:u:p:H:" opt; do
     MAXOPTIND=$OPTIND
     
-    case $opt in 
+    case $opt in
         h)
             usage
             exit

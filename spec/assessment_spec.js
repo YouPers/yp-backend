@@ -12,13 +12,13 @@ frisby.globalSetup({ // globalSetup is for ALL requests
 
 
 frisby.create('Assessment: GET all assessments')
-    .get(URL)
+    .get(URL+'?populate=questions')
     .auth('test_ind1', 'yp')
     .expectStatus(200)
     .expectJSON('*', {
         id: String,
         name: String,
-        questionCats: []
+        questions: []
     })
     // 'afterJSON' automatically parses response body as JSON and passes it as an argument
     .afterJSON(function (assessments) {
@@ -29,7 +29,7 @@ frisby.create('Assessment: GET all assessments')
             .expectStatus(200)
             .expectJSON({
                 name: String,
-                questionCats: []
+                questions: []
             }).
             afterJSON(function (assessment) {
 

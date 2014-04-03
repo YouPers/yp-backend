@@ -182,8 +182,6 @@ function _storeNewRecsIntoActivityOffers(userId, recs, cb) {
 /**
  * callback to use
  * @callback cb
- * @param err
- * @param results
  */
 
 /**
@@ -196,8 +194,10 @@ function _storeNewRecsIntoActivityOffers(userId, recs, cb) {
  * @param {AssessmentResult} assessmentResult
  * @param {ObjectId | ObjectId[] | string | string[] } [personalGoals]
  * @param {cb} cb
+ * @param updateDb
+ * @param isAdmin
  */
-function _updateRecommendations(userId, rejectedActs, assessmentResult, personalGoals, updateDb, cb) {
+function _updateRecommendations(userId, rejectedActs, assessmentResult, personalGoals, updateDb, isAdmin, cb) {
     // TODO: load personalGoals of this user if not passed in
     // TODO: load rejectedActs of this user if not passed in
 
@@ -214,7 +214,7 @@ function _updateRecommendations(userId, rejectedActs, assessmentResult, personal
             return cb();
         }
 
-        _generateRecommendations(locals.activities, locals.assResult, personalGoals, NUMBER_OF_COACH_RECS, function (err, recs) {
+        _generateRecommendations(locals.activities, locals.assResult, personalGoals, isAdmin ? 1000: NUMBER_OF_COACH_RECS, function (err, recs) {
             if (err) {
                 return cb(err);
             }
@@ -242,9 +242,10 @@ function _updateRecommendations(userId, rejectedActs, assessmentResult, personal
  * @param assessmentResult
  * @param personalGoals
  * @param cb
+ * @param isAdmin
  */
-function generateAndStoreRecommendations(userId, rejectedActs, assessmentResult, personalGoals, cb) {
-    _updateRecommendations(userId, rejectedActs, assessmentResult, personalGoals, true, cb);
+function generateAndStoreRecommendations(userId, rejectedActs, assessmentResult, personalGoals, isAdmin, cb) {
+    _updateRecommendations(userId, rejectedActs, assessmentResult, personalGoals, true, isAdmin,  cb);
 }
 
 /**
@@ -254,9 +255,10 @@ function generateAndStoreRecommendations(userId, rejectedActs, assessmentResult,
  * @param assessmentResult
  * @param personalGoals
  * @param cb
+ * @param isAdmin
  */
-function generateRecommendations(userId, rejectedActs, assessmentResult, personalGoals, cb) {
-    _updateRecommendations(userId, rejectedActs, assessmentResult, personalGoals, false, cb);
+function generateRecommendations(userId, rejectedActs, assessmentResult, personalGoals, isAdmin, cb) {
+    _updateRecommendations(userId, rejectedActs, assessmentResult, personalGoals, false, isAdmin, cb);
 }
 
 module.exports = {

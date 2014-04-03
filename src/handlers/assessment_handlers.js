@@ -1,7 +1,9 @@
 
 var error = require('../util/error'),
     handlerUtils = require('./handlerUtils'),
-    CoachRecommendation = require('../core/CoachRecommendation');
+    CoachRecommendation = require('../core/CoachRecommendation'),
+    auth = require('../util/auth'),
+    mongoose = require('mongoose');
 
 var getNewestResult = function (baseUrl, Model) {
     return function (req, res, next) {
@@ -49,7 +51,7 @@ function assessmentResultPostFn (baseUrl, Model) {
                 return error.handleError(err, next);
             }
             // TODO: pass the users current goals
-            CoachRecommendation.generateAndStoreRecommendations(req.user._id, req.user.profile.userPreferences.rejectedActivities,savedObj, null, function(err, recs) {
+            CoachRecommendation.generateAndStoreRecommendations(req.user._id, req.user.profile.userPreferences.rejectedActivities,savedObj, null, auth.isAdminForModel(req.user, mongoose.model('Activity')), function(err, recs) {
                 if (err) {
                     return error.handleError(err, next);
                 }

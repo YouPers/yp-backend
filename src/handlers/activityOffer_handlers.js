@@ -40,11 +40,13 @@ function getCoachRecommendationsFn(req, res, next) {
         return next(new error.NotAuthorizedError());
     }
 
-    CoachRecommendation.generateAndStoreRecommendations(req.user._id, req.user.profile.userPreferences.rejectedActivities, null, null, function(err, recs) {
+    var admin = auth.isAdminForModel(req.user, mongoose.model('Activity'));
+
+    CoachRecommendation.generateAndStoreRecommendations(req.user._id, req.user.profile.userPreferences.rejectedActivities, null, null, admin, function(err, recs) {
         if (err) {
             error.handleError(err, next);
         }
-        res.send(recs || []);
+        res.send(_.sortBy(recs, function(rec) {return -rec.score;}) || []);
         return next();
     });
 }
@@ -77,7 +79,7 @@ function getCoachRecommendationsFn(req, res, next) {
  * @param req
  * @param res
  * @param next
- * @returns [{*}]
+ * @returns {*}
  */
 function getActivityOffersFn(req, res, next) {
 

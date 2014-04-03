@@ -1,6 +1,20 @@
 var error = require('../util/error'),
     _ = require('lodash');
 
+function cleanPopulated(Model, sentJson) {
+// ref properties: replace objects by ObjectId in case client sent whole object instead of reference, only
+    // do this removal for properties of type ObjectID
+    var schema = Model.schema;
+    _.filter(schema.paths, function (path) {
+        return (path.instance === 'ObjectID');
+    })
+        .forEach(function (myPath) {
+            if ((myPath.path in sentJson) && (!(typeof sentJson[myPath.path] === 'string' || sentJson[myPath.path] instanceof String))) {
+                sentJson[myPath.path] = sentJson[myPath.path].id;
+            }
+        });
+}
+
 /**
  * this function checks common preconditions to allow a writing access
  * - the req.body contains the object to write
@@ -20,17 +34,7 @@ function checkWritingPreCond(req, Model) {
         return new error.NotAuthorizedError('Needs to be Authenticated and authorized to POST objects');
     }
 
-    // ref properties: replace objects by ObjectId in case client sent whole object instead of reference, only
-    // do this removal for properties of type ObjectID
-    var schema = Model.schema;
-    _.filter(schema.paths, function (path) {
-        return (path.instance === 'ObjectID');
-    })
-        .forEach(function (myPath) {
-            if ((myPath.path in req.body) && (!(typeof req.body[myPath.path] === 'string' || req.body[myPath.path] instanceof String))) {
-                req.body[myPath.path] = req.body[myPath.path].id;
-            }
-        });
+    cleanPopulated(Model, req.body);
     // check whether owner is the authenticated user
     if (req.body.owner && (req.user.id !== req.body.owner)) {
         return new error.NotAuthorizedError('POST/PUT of object only allowed if owner of new object equals authenticated user', {
@@ -44,5 +48,6 @@ function checkWritingPreCond(req, Model) {
 
 
 module.exports = {
-    checkWritingPreCond: checkWritingPreCond
+    checkWritingPreCond: checkWritingPreCond,
+    cleanPopulated: cleanPopulated
 };

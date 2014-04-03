@@ -337,7 +337,7 @@ function saveNewActivityPlan(plan, user, i18n, cb) {
                 }
 
                 // check whether this is a public joinable plan, if yes store an corresponding ActivityOffer
-                if (_.contains(['public', 'campaign'],reloadedActPlan.visibility) && 'group' === reloadedActPlan.executionType) {
+                if (_.contains(['public', 'campaign'],reloadedActPlan.visibility) && 'group' === reloadedActPlan.executionType && !reloadedActPlan.masterPlan) {
                     var offer = new ActivityOffer({
                         activity: reloadedActPlan.activity._id,
                         activityPlan: [reloadedActPlan._id],

@@ -116,8 +116,8 @@ function getActivityOffersFn(req, res, next) {
                     }
 
                     _.remove(offers, function(offer) {
-                        return _.contains(plannedActs, function(plannedActId) {
-                            return plannedActId.equals(offer.activity);
+                        return _.any(plannedActs, function(plannedActId) {
+                            return plannedActId.equals(offer.activity._id);
                         });
                     });
 

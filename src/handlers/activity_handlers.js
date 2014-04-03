@@ -26,7 +26,7 @@ function postActivity(req, res, next) {
         sentActivity.author = req.user.id;
     }
 
-    function checkPermission(cb) {
+    function _checkPermission(cb) {
 
         if (_.contains(req.user.roles, auth.roles.productadmin)) {
             // requesting user is a product admin
@@ -66,7 +66,7 @@ function postActivity(req, res, next) {
         }
     }
 
-    checkPermission(function(err) {
+    _checkPermission(function(err) {
         if (err) {
             return error.handleError(err, next);
         }

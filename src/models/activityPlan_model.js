@@ -22,6 +22,7 @@ var ActivityPlanEvent = common.newSchema({
     ]
 });
 
+mongoose.model('ActivityPlanEvent', ActivityPlanEvent);
 /**
  * ActivityPlan Schema
  */

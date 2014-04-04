@@ -7,7 +7,8 @@ var error = require('../util/error'),
     Campaign = mongoose.model('Campaign'),
     email = require('../util/email'),
     async = require('async'),
-    _ = require('lodash');
+    _ = require('lodash'),
+    generic = require('./generic');
 
 
 var getOrganization = function(req, res, next, callback) {
@@ -28,15 +29,12 @@ var getOrganization = function(req, res, next, callback) {
 var postFn = function (baseUrl) {
     return function (req, res, next) {
 
-        var err = handlerUtils.checkWritingPreCond(req, Organization);
+        var err = handlerUtils.checkWritingPreCond(req.body,req.user, Organization);
 
         if (err) {
             return error.handleError(err, next);
         }
 
-        if(!req.body) {
-            return next(new error.MissingParameterError({ required: 'organization object' }));
-        }
         var obj = new Organization(req.body);
 
         obj.administrators = [req.user.id];
@@ -46,16 +44,8 @@ var postFn = function (baseUrl) {
             req.user.save(function(err) { if(err) { return error.handleError(err, next); } });
         }
 
-        req.log.trace(obj, 'PostFn: Saving new organization object');
-
         // try to save the new organization object
-        obj.save(function (err) {
-            if(err) { return error.handleError(err, next); }
-
-            res.header('location', baseUrl + '/' + obj._id);
-            res.send(201, obj);
-            return next();
-        });
+        obj.save(generic.writeObjCb(req, res, next));
 
     };
 };
@@ -76,15 +66,7 @@ var getAllForUserFn = function (baseUrl) {
             var orgs = _.map(campaigns, 'organization');
 
             Organization.find().populate('administrators').or([{administrators: userId}, {_id: {$in: orgs}}])
-                .exec(function(err, organizations) {
-
-                    if(err) { return error.handleError(err, next); }
-
-                    res.send(200, organizations);
-                    return next();
-                });
-
-
+                .exec(generic.sendListCb(req,res,next));
         });
 
 

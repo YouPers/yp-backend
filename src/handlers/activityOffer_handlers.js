@@ -5,7 +5,8 @@ var mongoose = require('mongoose'),
     _ = require('lodash'),
     error = require('../util/error'),
     utils = require('./handlerUtils'),
-    auth = require('../util/auth');
+    auth = require('../util/auth'),
+    generic = require('./generic');
 
 
 /**
@@ -16,21 +17,14 @@ var mongoose = require('mongoose'),
  */
 function postActivityOffer(req, res, next) {
 
-    var err = utils.checkWritingPreCond(req, ActivityOffer);
+    var err = utils.checkWritingPreCond(req.body, req.user, ActivityOffer);
     if (err) {
-        return next(err);
+        return error.handleError(err, next);
     }
 
     var offer = new ActivityOffer(req.body);
 
-    offer.save(function (err, savedObj) {
-        if (err) {
-            return error.handleError(err, next);
-        }
-        res.header('location', '/activityoffers/' + savedObj._id);
-        res.send(201, savedObj);
-        return next();
-    });
+    offer.save(generic.writeObjCb(req, res, next));
 
 }
 

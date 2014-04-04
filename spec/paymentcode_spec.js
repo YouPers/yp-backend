@@ -59,7 +59,7 @@ frisby.create('generatePaymentCode')
                 frisby.create('redeemPaymentCode: Success')
                     .post(URL + '/paymentcodes/redeem', { code: code, campaign: testCampaign })
                     .auth('test_orgadm', 'yp')
-                    .expectStatus(200)
+                    .expectStatus(201)
                     .afterJSON(function (response) {
 
                         console.log('redeemPaymentCode', response);

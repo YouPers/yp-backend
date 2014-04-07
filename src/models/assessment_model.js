@@ -3,14 +3,16 @@
  */
 var mongoose = require('mongoose'),
     common = require('./common'),
-    auth = require('../util/auth');
+    auth = require('../util/auth'),
+    ObjectId = mongoose.Schema.ObjectId;
 
 /**
  * Activity Schema
  */
 
-var question = common.newSchema({
+var AssessmentQuestionSchema = common.newSchema({
     "category": String,
+    "assessment": {type: ObjectId},
     "title": {type: String, required: true, i18n: true},
     "type": {type: String, enum: common.enums.questionType},
     "mintext": {type: String, i18n: true},
@@ -24,27 +26,14 @@ var question = common.newSchema({
     "exptext": {type: String, i18n: true}
 });
 
-var questionCatsSchema = common.newSchema({ category: {type: String, required: true},
-    questions: [question]});
-
 var AssessmentSchema = common.newSchema({
     name: {type: String, trim: true, i18n: true},
-    questionCats: [questionCatsSchema]
+    questions: [{type: ObjectId, ref: 'Assessmentquestion'}]
 });
+
 
 AssessmentSchema.statics.adminRoles = [auth.roles.systemadmin, auth.roles.productadmin];
 
-AssessmentSchema.statics.getFieldDescriptions = function() {
-    return {
-        name: 'name of this assessment',
-        questionCats: 'An array of question-Categories, each category contains a list of questions',
-        'questionCat.category': 'The category title of this category',
-        'questionsCat.questions': 'The list of questions in this category',
-        'question.title': 'The title of this question',
-        'question.category': 'The category title this question belongs to'
-    };
-};
-
-mongoose.model('AssessmentQuestion', question);
+mongoose.model('Assessmentquestion', AssessmentQuestionSchema);
 
 module.exports = mongoose.model('Assessment', AssessmentSchema);

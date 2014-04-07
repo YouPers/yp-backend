@@ -33,17 +33,7 @@ module.exports = function (grunt) {
             }
         },
         jasmine_node: {
-            specNameMatcher: "spec", // load only specs containing specNameMatcher
-            projectRoot: ".",
-            requirejs: false,
-            autotest: true,
-            forceExit: true,
-            jUnit: {
-                report: false,
-                savePath: "./build/reports/jasmine/",
-                useDotNotation: true,
-                consolidate: true
-            }
+            specNameMatcher: "spec" // load only specs containing specNameMatcher
         },
         concurrent: {
             dev: {
@@ -79,20 +69,9 @@ module.exports = function (grunt) {
                 options: {
                     port: 8000,
                     script: './src/app.js',
-                    delay: 5000,
+                    delay: 2000,
                     output: null  // is needed, otherwise delay is ignored after any server output to System.out
 
-                }
-            },
-            prod: {
-                options: {
-                    script: 'path/to/prod/server.js',
-                    node_env: 'production'
-                }
-            },
-            test: {
-                options: {
-                    script: 'path/to/test/server.js'
                 }
             }
         },

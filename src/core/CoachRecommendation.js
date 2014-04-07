@@ -211,7 +211,7 @@ function _updateRecommendations(userId, rejectedActs, assessmentResult, personal
 
         if (!locals.assResult) {
             // this users has no assessmentResults so we have no recommendations
-            return cb();
+            return cb(null);
         }
 
         _generateRecommendations(locals.activities, locals.assResult, personalGoals, isAdmin ? 1000: NUMBER_OF_COACH_RECS, function (err, recs) {

@@ -1,3 +1,6 @@
+database:
+  post:
+   - bin/resettestdb.sh
 deployment:
   uat:
     branch: uat

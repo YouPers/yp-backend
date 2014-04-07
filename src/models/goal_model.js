@@ -29,5 +29,3 @@ GoalSchema.statics.getFieldDescriptions = function() {
 };
 
 module.exports = mongoose.model('Goal', GoalSchema);
-
-common.initializeDbFor(mongoose.model('Goal'));

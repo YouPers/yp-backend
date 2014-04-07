@@ -98,5 +98,3 @@ ProfileSchema.methods.getWorkingDaysAsIcal = function () {
 };
 
 module.exports = mongoose.model('Profile', ProfileSchema);
-
-common.initializeDbFor(mongoose.model('Profile'));

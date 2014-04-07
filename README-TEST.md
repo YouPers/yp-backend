@@ -22,7 +22,21 @@ For specific classes/functions we write specific unittests that are  executed as
 These tests are expected to change when the internal structure of our backend changes.
 
 
-## Data available in Unittest
+## Database and Data available in Unittest und e2e-Test
+
+### commands
+- Reset the local database: 'test_database' to the data in testset in dbdata/testset
+
+
+    bin/resettestdb.sh
+
+- export the local database: 'test_database' and overwrite the defined testset in dadata/testset
+
+
+    bin/exporttestdb.sh
+
+- for any different needs use bin/mongoimportexport.sh directly, then you can point it at other databases,
+  only export/import certain collections and much more.
 
 ### Users
 

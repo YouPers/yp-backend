@@ -20,10 +20,5 @@ var OrganizationSchema = common.newSchema({
 
 OrganizationSchema.statics.adminRoles = [auth.roles.systemadmin, auth.roles.productadmin, auth.roles.orgadmin];
 
-var model = mongoose.model('Organization', OrganizationSchema);
+module.exports = mongoose.model('Organization', OrganizationSchema);
 
-module.exports = mongoose.model('Organization');
-
-
-
-common.initializeDbFor(model);

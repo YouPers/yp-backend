@@ -32,5 +32,3 @@ ActivitySchema.statics.adminAttrsSelector =  '+recWeights +qualityFactor';
 ActivitySchema.statics.adminRoles = [auth.roles.systemadmin, auth.roles.productadmin];
 
 module.exports = mongoose.model('Activity', ActivitySchema);
-
-common.initializeDbFor(mongoose.model('Activity'));

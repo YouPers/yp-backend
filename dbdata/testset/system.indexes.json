@@ -1,0 +1,72 @@
+[
+    {
+        "key": {
+            "_id": 1
+        },
+        "name": "_id_",
+        "ns": "test_database.activities",
+        "v": 1
+    },
+    {
+        "key": {
+            "_id": 1
+        },
+        "name": "_id_",
+        "ns": "test_database.assessments",
+        "v": 1
+    },
+    {
+        "key": {
+            "_id": 1
+        },
+        "name": "_id_",
+        "ns": "test_database.campaigns",
+        "v": 1
+    },
+    {
+        "key": {
+            "_id": 1
+        },
+        "name": "_id_",
+        "ns": "test_database.organizations",
+        "v": 1
+    },
+    {
+        "key": {
+            "_id": 1
+        },
+        "name": "_id_",
+        "ns": "test_database.profiles",
+        "v": 1
+    },
+    {
+        "key": {
+            "_id": 1
+        },
+        "name": "_id_",
+        "ns": "test_database.users",
+        "v": 1
+    },
+    {
+        "background": true,
+        "key": {
+            "email": 1
+        },
+        "name": "email_1",
+        "ns": "test_database.users",
+        "safe": null,
+        "unique": true,
+        "v": 1
+    },
+    {
+        "background": true,
+        "key": {
+            "username": 1
+        },
+        "name": "username_1",
+        "ns": "test_database.users",
+        "safe": null,
+        "unique": true,
+        "v": 1
+    }
+]

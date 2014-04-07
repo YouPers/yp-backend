@@ -279,7 +279,3 @@ ActivityPlanSchema.pre('init', function populateSlavePlans(next, data) {
 });
 
 module.exports = mongoose.model('ActivityPlan', ActivityPlanSchema);
-
-
-// initialize Activity DB if not initialized
-common.initializeDbFor(mongoose.model('ActivityPlan'));

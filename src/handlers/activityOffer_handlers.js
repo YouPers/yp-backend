@@ -269,7 +269,7 @@ function getActivityOffersFn(req, res, next) {
                             var countPerType = _.filter(sortedOffers, function(o) {
                                 return _.any(o.type, function(type) {
                                     return _.contains(offer.type, type);
-                                });;
+                                });
                             }).length;
 
                             if(countPerType < maxPerType) {

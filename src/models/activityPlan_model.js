@@ -17,9 +17,8 @@ var ActivityPlanEvent = common.newSchema({
     end: {type: Date},
     doneTs: {type: Date},
     feedback: {type: Number},
-    comments: [
-        {type: ObjectId, ref: 'Comment'}
-    ]
+    comment: {type: String}
+
 });
 
 mongoose.model('ActivityPlanEvent', ActivityPlanEvent);

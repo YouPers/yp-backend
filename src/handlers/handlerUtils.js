@@ -6,10 +6,8 @@ function clean(Model, sentJson) {
     /**read only properties */
     delete sentJson._id;
     delete sentJson.id;
-    delete sentJson.created_at;
-    delete sentJson.modified_at;
-    delete sentJson.modified_by;
-    delete sentJson.created_by;
+    delete sentJson.created;
+    delete sentJson.modified;
 
 // ref properties: replace objects by ObjectId in case client sent whole object instead of reference, only
     // do this removal for properties of type ObjectID

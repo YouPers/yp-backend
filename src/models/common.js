@@ -3,6 +3,7 @@ var mongoose = require('mongoose'),
     _ = require('lodash'),
     auth = require('../util/auth'),
     swaggerAdapter = require('../util/swaggerMongooseAdapter');
+var timestamps = require('mongoose-timestamp');
 
 module.exports = {
 
@@ -159,6 +160,9 @@ module.exports = {
         mySchema.statics.getSwaggerModel = function () {
             return swaggerAdapter.getSwaggerModel(this);
         };
+
+        mySchema.plugin(timestamps, {updatedAt: 'updated', createdAt: 'created'
+        });
 
         return mySchema;
     },

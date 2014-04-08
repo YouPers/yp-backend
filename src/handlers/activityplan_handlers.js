@@ -11,8 +11,8 @@ var calendar = require('../util/calendar'),
     moment = require('moment'),
     async = require('async'),
     auth = require('../util/auth'),
-    handlerUtils = require('./handlerUtils');
-
+    handlerUtils = require('./handlerUtils'),
+    Notification = require('../core/Notification');
 
 function generateEventsForPlan(plan, user, i18n) {
 
@@ -256,10 +256,30 @@ function saveNewActivityPlan(plan, user, i18n, cb) {
                         if (err) {
                             return cb(err);
                         }
-                        reloadedActPlan.activity = reloadedActPlan.activity._id;
-                        return cb(null, reloadedActPlan);
+                        var isCampaignPromotedPlan = (savedPlan.source === "campaign");
+                        if (isCampaignPromotedPlan) {
+                            return new Notification({
+                                type: 'joinablePlan',
+                                title: savedPlan.activity.title,
+                                targetQueue: savedOffer.targetQueue,
+                                author: savedOffer.recommendedBy,
+                                refDocLink: "http://TODOaddALinkHere",
+                                refDocId: savedOffer._id,
+                                refDocModel: 'ActivityOffer',
+                                publishTo: savedPlan.events[savedPlan.events.length-1].end
+                            }).publish(_loadPlanCb);
+                        } else {
+                            return _loadPlanCb(null);
+                        }
                     });
                 } else {
+                    return _loadPlanCb(null);
+                }
+
+                function _loadPlanCb(err, obj) {
+                    if (err) {
+                        error.handleError(err, cb);
+                    }
                     reloadedActPlan.activity = reloadedActPlan.activity._id;
                     return cb(null, reloadedActPlan);
                 }
@@ -383,26 +403,52 @@ function postActivityPlanInvite(req, res, next) {
                                 return done(err);
                             }
 
-                            // save the corresponding ActivityOffer
-                            var actOffer = new ActivityOffer({
-                                activity: locals.plan.activity._id,
-                                activityPlan: [locals.plan._id],
-                                targetQueue: invitedUser && invitedUser._id,
-                                type: ['personalInvitation'],
-                                recommendedBy: [req.user._id],
-                                validTo: locals.plan.events[locals.plan.events.length - 1].end
-                            });
+                            // if this is an existing user, we create an offer and a notification
+                            // if NOT, we just send the email
+                            if (invitedUser && invitedUser.length === 1) {
+                                // save the corresponding ActivityOffer
+                                var actOffer = new ActivityOffer({
+                                    activity: locals.plan.activity._id,
+                                    activityPlan: [locals.plan._id],
+                                    targetQueue: invitedUser[0] && invitedUser[0]._id,
+                                    type: ['personalInvitation'],
+                                    recommendedBy: [req.user._id],
+                                    validTo: locals.plan.events[locals.plan.events.length - 1].end
+                                });
 
-                            actOffer.save(function (err, savedOffer) {
+                                actOffer.save(function (err, savedOffer) {
+                                    if (err) {
+                                        return error.handleError(err, done);
+                                    }
+                                    return new Notification({
+                                        type: 'personalInvitation',
+                                        title: locals.plan.title,
+                                        targetQueue: savedOffer.targetQueue,
+                                        author: savedOffer.recommendedBy,
+                                        refDocLink: "http://TODOaddALinkHere",
+                                        refDocId: savedOffer._id,
+                                        refDocModel: 'ActivityOffer',
+                                        publishTo: locals.plan.events[locals.plan.events.length-1].end
+                                    }).publish(_saveNotifCb);
+
+                                });
+                            } else {
+                                process.nextTick(_saveNotifCb(null));
+                            }
+
+                            function _saveNotifCb(err) {
                                 if (err) {
                                     return error.handleError(err, done);
                                 }
                                 email.sendActivityPlanInvite(emailaddress, req.user, locals.plan, invitedUser && invitedUser[0], req.i18n);
                                 return done();
-                            });
+                            }
                         });
                 },
                 function (err) {
+                    if (err) {
+                        return error.handleError(err, done);
+                    }
                     done();
                 });
         }

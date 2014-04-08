@@ -14,6 +14,7 @@
 var util = require('util');
 var restify = require('restify');
 var mongoose = require('mongoose');
+var _ = require('lodash');
 
 
 var CODES = {
@@ -102,6 +103,9 @@ var CODES = {
  * @returns {*}
  */
 var handleError = function(err, next) {
+    if (!next || !_.isFunction(next)) {
+        throw new Error("Missing Paramter: Pass next() into error.handleError(err, next)");
+    }
     if(err instanceof restify.RestError) {
         return next(err);
     }

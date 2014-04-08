@@ -15,10 +15,11 @@ var mongoose = require('mongoose'),
  */
 var DiaryEntrySchema = common.newSchema({
     owner: {type: ObjectId, ref: 'User', required: true},
-    type: {type: String, enum: ['manual','activityEvent'], required: true},
+    type: {type: String, enum: ['manual','activityPlanEvent'], required: true},
+    activityPlanEvent: {type: ObjectId, ref: 'ActivityPlanEvent'},
     activityPlan: {type: ObjectId, ref: 'ActivityPlan'},
     text: {type: String},
-    mood: {type: Number}
+    feedback: {type: Number}
 });
 
 

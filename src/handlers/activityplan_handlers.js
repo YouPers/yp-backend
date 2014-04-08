@@ -11,7 +11,8 @@ var calendar = require('../util/calendar'),
     async = require('async'),
     auth = require('../util/auth'),
     handlerUtils = require('./handlerUtils'),
-    Notification = require('../core/Notification');
+    Notification = require('../core/Notification'),
+    Diary = require('../core/Diary');
 
 function generateEventsForPlan(plan, user, i18n) {
 
@@ -101,7 +102,23 @@ function putActivityEvent(req, res, next) {
                 planFromDb.status = 'old';
             }
 
-            planFromDb.save(saveCallback);
+            var diaryEntry = {
+                owner: planFromDb.owner,
+                type: 'activityPlanEvent',
+                activityPlanEvent: eventFromDb._id,
+                activityPlan: planFromDb.id,
+                text: eventFromDb.comment,
+                feedback: eventFromDb.feedback,
+                created: eventFromDb.end
+            };
+
+            Diary.createOrUpdateDiaryEntry(diaryEntry, function (err) {
+                if (err) {
+                    return error.handleError(err, next);
+                }
+                planFromDb.save(saveCallback);
+            });
+
 
             function saveCallback (err, savedActivityPlan) {
                 if (err) {

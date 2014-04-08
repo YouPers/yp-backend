@@ -51,6 +51,22 @@ UserSchema.methods = {
     },
     toJsonConfig: {
         hide: ['hashed_password', 'tempPasswordFlag']
+    },
+
+    getPersonalNotificationQueues: function() {
+        // the personal _id of the user for personal messages
+        var queues =  [this._id];
+
+        // add the campaign _id to get Notifications from the camapaign commuinity
+        if (this.campaign) {
+            queues.push(this.campaign._id || this.campaign);
+        }
+
+        // add special queues the user has subscribed to
+        if (this.profile && this.profile.notificationQueues) {
+            queues.concat(this.profile.notificationQueues);
+        }
+        return queues;
     }
 };
 

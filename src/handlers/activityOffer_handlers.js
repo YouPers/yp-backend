@@ -6,8 +6,30 @@ var mongoose = require('mongoose'),
     error = require('../util/error'),
     utils = require('./handlerUtils'),
     auth = require('../util/auth'),
-    generic = require('./generic');
+    generic = require('./generic'),
+    Notification = require('../core/Notification');
 
+function _publishNotificationForOffer(activityOffer, author, cb) {
+
+    activityOffer.populate('activity', 'titleI18n',
+
+        function (err, populatedOffer) {
+
+            if (err) {
+                return cb(err);
+            }
+
+            return new Notification({
+                type: 'activityRecommendation',
+                title: populatedOffer.activity.title,
+                targetQueue: populatedOffer.targetQueue,
+                author: author,
+                refDocLink: "http://TODOaddALinkHere",
+                refDocId: activityOffer._id,
+                refDocModel: 'ActivityOffer'
+            }).publish(cb);
+        });
+}
 
 /**
  * allows to post an Offer/Recommendation for an unplanned activity
@@ -24,8 +46,15 @@ function postActivityOffer(req, res, next) {
 
     var offer = new ActivityOffer(req.body);
 
-    offer.save(generic.writeObjCb(req, res, next));
+    _publishNotificationForOffer(offer, req.user, saveOfferAndSendToClientCb);
 
+    function saveOfferAndSendToClientCb(err, notification) {
+        if (err) {
+            return error.handleError(err, next);
+        }
+
+        offer.save(generic.writeObjCb(req, res, next));
+    }
 }
 
 function getCoachRecommendationsFn(req, res, next) {
@@ -36,11 +65,13 @@ function getCoachRecommendationsFn(req, res, next) {
 
     var admin = auth.isAdminForModel(req.user, mongoose.model('Activity'));
 
-    CoachRecommendation.generateAndStoreRecommendations(req.user._id, req.user.profile.userPreferences.rejectedActivities, null, null, admin, function(err, recs) {
+    CoachRecommendation.generateAndStoreRecommendations(req.user._id, req.user.profile.userPreferences.rejectedActivities, null, null, admin, function (err, recs) {
         if (err) {
             error.handleError(err, next);
         }
-        res.send(_.sortBy(recs, function(rec) {return -rec.score;}) || []);
+        res.send(_.sortBy(recs, function (rec) {
+            return -rec.score;
+        }) || []);
         return next();
     });
 }
@@ -95,22 +126,21 @@ function getActivityOffersFn(req, res, next) {
 
             var plannedActs = _.map(plans, 'activity');
 
-            // get the personal offers
-            var orClause =  [{targetUser: req.user._id}];
-            // if user is in campaign also add campaign offers
+            var targetQueues = [req.user._id];
             if (req.user.campaign) {
-                orClause.push({targetCampaign: req.user.campaign._id});
+                targetQueues.push(req.user.campaign._id);
             }
+
             ActivityOffer
-                .find({$or: orClause})
+                .find({targetQueue: {$in: targetQueues}})
                 .populate('activity activityPlan recommendedBy')
                 .exec(function (err, offers) {
                     if (err) {
                         return error.handleError(err, next);
                     }
 
-                    _.remove(offers, function(offer) {
-                        return _.any(plannedActs, function(plannedActId) {
+                    _.remove(offers, function (offer) {
+                        return _.any(plannedActs, function (plannedActId) {
                             return plannedActId.equals(offer.activity._id);
                         });
                     });
@@ -181,7 +211,7 @@ var deleteActivityOffers = function (req, res, next) {
     if (!req.user || !req.user.id) {
         return next(new error.NotAuthorizedError('Authentication required for this object'));
     } else if (!auth.checkAccess(req.user, 'al_systemadmin')) {
-        finder = {targetUser: req.user.id};
+        finder = {targetQueue: req.user.id};
     } else {
         // user is systemadmin, he may delete all
     }

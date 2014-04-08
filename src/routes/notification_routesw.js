@@ -1,6 +1,7 @@
 var mongoose = require('mongoose'),
     Model = mongoose.model('Notification'),
-    generic = require('./../handlers/generic');
+    generic = require('./../handlers/generic'),
+    notificationHandlers = require('../handlers/notification_handlers');
 
 module.exports = function (swagger, config) {
 
@@ -41,7 +42,7 @@ module.exports = function (swagger, config) {
             "nickname": "getNotification",
             accessLevel: 'al_individual'
         },
-        action: generic.getAllFn(baseUrl, Model)
+        action: notificationHandlers.getAllFn
     });
 
     swagger.addPost({

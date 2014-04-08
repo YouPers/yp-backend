@@ -20,6 +20,7 @@ frisby.create('Activity Plan: plan once activity and check whether event is gene
         "activity": consts.groupActivity.id,
         "title": "myTitle",
         "visibility": "public",
+        "campaign": "527916a82079aa8704000006",
         "executionType": "group",
         "mainEvent": {
             "start": "2014-06-16T12:00:00.000Z",
@@ -102,6 +103,7 @@ frisby.create('Activity Plan: plan weekly activity and check whether events are 
         "owner": consts.users.test_ind1.id,
         "activity": "5278c6adcdeab69a2500001e",
         "visibility": "public",
+        "campaign": "527916a82079aa8704000006",
         "title": "myTitle",
         "executionType": "group",
         "mainEvent": {
@@ -182,6 +184,7 @@ frisby.create('Activity Plan: plan daily activity and check whether events are g
         "activity": consts.groupActivity.id,
         "visibility": "public",
         "title": "myTitle",
+        "campaign": "527916a82079aa8704000006",
         "executionType": "group",
         "mainEvent": {
             "start": "2014-10-16T12:00:00.000Z",
@@ -214,6 +217,7 @@ frisby.create('Activity Plan: plan daily activity and check whether events are g
                 "activity": consts.groupActivity.id,
                 "visibility": "public",
                 "executionType": "group",
+                "campaign": "527916a82079aa8704000006",
                 "title": "myTitle",
                 "mainEvent": {
                     "start": "2014-10-16T12:00:00.000Z",
@@ -284,6 +288,7 @@ frisby.create('Activity Plan: plan daily activity and check whether events are g
                                         "activity": consts.groupActivity.id,
                                         "visibility": "public",
                                         "title": "myTitle",
+                                        "campaign": "527916a82079aa8704000006",
                                         "executionType": "group",
                                         "mainEvent": {
                                             "start": moment().add('hours', 1).toISOString(),

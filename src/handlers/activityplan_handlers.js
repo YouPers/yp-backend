@@ -246,7 +246,7 @@ function saveNewActivityPlan(plan, user, i18n, cb) {
                     var offer = new ActivityOffer({
                         activity: reloadedActPlan.activity._id,
                         activityPlan: [reloadedActPlan._id],
-                        targetCampaign: reloadedActPlan.campaign,
+                        targetQueue: reloadedActPlan.campaign,
                         recommendedBy: [user._id],
                         type: [reloadedActPlan.source === 'campaign' ? 'campaignActivityPlan' : 'publicActivityPlan'],
                         validTo: reloadedActPlan.events[reloadedActPlan.events.length - 1].end,
@@ -387,8 +387,7 @@ function postActivityPlanInvite(req, res, next) {
                             var actOffer = new ActivityOffer({
                                 activity: locals.plan.activity._id,
                                 activityPlan: [locals.plan._id],
-                                targetCampaign: locals.plan.campaign,
-                                targetUser: invitedUser && invitedUser._id,
+                                targetQueue: invitedUser && invitedUser._id,
                                 type: ['personalInvitation'],
                                 recommendedBy: [req.user._id],
                                 validTo: locals.plan.events[locals.plan.events.length - 1].end
@@ -396,7 +395,7 @@ function postActivityPlanInvite(req, res, next) {
 
                             actOffer.save(function (err, savedOffer) {
                                 if (err) {
-                                    error.handleError(err, done);
+                                    return error.handleError(err, done);
                                 }
                                 email.sendActivityPlanInvite(emailaddress, req.user, locals.plan, invitedUser && invitedUser[0], req.i18n);
                                 return done();

@@ -37,7 +37,7 @@ frisby.create('SocialEvents: POST an activityPlan as user 1')
     .expectStatus(201)
     .afterJSON(function (newPlan) {
         frisby.create('SocialEvents: GET SocialEventsForUser as User 2, not in the same campaign')
-            .auth('test_ind2', 'yp')
+            .auth('test_ind3', 'yp')
             .get(URL + '/socialevents')
             .expectStatus(200)
             .afterJSON(function (events) {

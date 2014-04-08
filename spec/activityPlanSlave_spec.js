@@ -98,45 +98,23 @@ frisby.create('Activity Plan Slave: plan weekly activity as a master for a joini
                         frisby.create('Activity Plan Slave: update Event on Slave, add comment')
                             .auth('test_ind2', 'yp')
                             .put(URL + '/' + slavePlanReloaded.id + '/events/' + slavePlanReloaded.events[0].id,
-                            {"feedback": "2", "comments": [
-                                {"text": "new Text from UnitTest"}
-                            ]}, {json: true})
+                            {"feedback": "2", "comment": "new Text from UnitTest"}, {json: true})
                             .expectStatus(200)
                             .afterJSON(function (newUpdatedEvent) {
-                                expect(newUpdatedEvent.comments.length).toEqual(1);
+                                expect(newUpdatedEvent.comment).toBeDefined();
                                 expect(newUpdatedEvent.feedback).toEqual(2);
 
 
                                 frisby.create('Activity Plan Slave: reload slavePlan and check whether we have the comment')
-                                    .get(URL + '/' + slavePlanPostAnswer.id + '?populate=events.comments')
+                                    .get(URL + '/' + slavePlanPostAnswer.id)
                                     .auth('test_ind2', 'yp')
                                     .expectStatus(200)
                                     .afterJSON(function (slavePlanReloadedAgain) {
-                                        expect(slavePlanReloadedAgain.events[0].comments).toBeDefined();
-                                        expect(slavePlanReloadedAgain.events[0].comments.length).toEqual(1);
-                                        expect(slavePlanReloadedAgain.events[0].comments[0].text).toEqual("new Text from UnitTest");
+                                        expect(slavePlanReloadedAgain.events[0].comment).toBeDefined();
+                                        expect(slavePlanReloadedAgain.events[0].comment).toEqual("new Text from UnitTest");
 
                                         frisby.create('Activity Plan Slave: delete slave')
                                             .delete(URL + '/' + slavePlanReloaded.id)
-                                            .auth('sysadm','backtothefuture')
-                                            .expectStatus(200)
-                                            .toss();
-                                    })
-                                    .toss();
-
-                                frisby.create('Activity Plan Slave: reload masterPlan and check whether we see the comment that was made on a slave and whether the joiningUsers Array is still correct')
-                                    .get(URL + '/' + slavePlanReloaded.masterPlan + '?populate=events.comments')
-                                    .auth('test_ind1', 'yp')
-                                    .expectStatus(200)
-                                    .afterJSON(function (masterPlanReloadedAgain) {
-                                        expect(masterPlanReloadedAgain.events[0].comments).toBeDefined();
-                                        expect(masterPlanReloadedAgain.events[0].comments.length).toEqual(1);
-                                        expect(masterPlanReloadedAgain.events[0].comments[0].text).toEqual("new Text from UnitTest");
-                                        expect(masterPlanReloadedAgain.joiningUsers.length).toEqual(1);
-
-
-                                        frisby.create('Activity Plan Slave: delete master')
-                                            .delete(URL + '/' + slavePlan.masterPlan)
                                             .auth('sysadm','backtothefuture')
                                             .expectStatus(200)
                                             .toss();

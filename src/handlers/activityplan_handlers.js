@@ -3,7 +3,6 @@ var calendar = require('../util/calendar'),
     ActivityPlan = mongoose.model('ActivityPlan'),
     Activity = mongoose.model('Activity'),
     ActivityOffer = mongoose.model('ActivityOffer'),
-    Comment = mongoose.model('Comment'),
     generic = require('./generic'),
     error = require('../util/error'),
     _ = require('lodash'),
@@ -11,8 +10,8 @@ var calendar = require('../util/calendar'),
     moment = require('moment'),
     async = require('async'),
     auth = require('../util/auth'),
-    handlerUtils = require('./handlerUtils');
-
+    handlerUtils = require('./handlerUtils'),
+    Notification = require('../core/Notification');
 
 function generateEventsForPlan(plan, user, i18n) {
 
@@ -95,20 +94,16 @@ function putActivityEvent(req, res, next) {
 
             handlerUtils.clean(mongoose.model('ActivityPlanEvent'), eventToPut);
 
-            // checkForNewComments, if there are any comments without id they need to be saved separatly to
-            // the comments collection
-            var newComments;
-            if (eventToPut.comments && Array.isArray(eventToPut.comments) && eventToPut.comments.length > 0) {
-                // some comments posted, check if any of them are new (i.e. do not have an id)
-                newComments = _.select(eventToPut.comments, function (comment) {
-                    return !comment.id;
-                });
-            }
-
-            delete eventToPut.comments;
             _.extend(eventFromDb, eventToPut);
 
-            var saveCallback = function (err, savedActivityPlan) {
+            // set plan status to 'old' if no more events are 'open'
+            if (planFromDb.status === 'active' && !_.any(planFromDb.events, {status: 'open'})) {
+                planFromDb.status = 'old';
+            }
+
+            planFromDb.save(saveCallback);
+
+            function saveCallback (err, savedActivityPlan) {
                 if (err) {
                     return error.handleError(err, next);
                 }
@@ -121,39 +116,6 @@ function putActivityEvent(req, res, next) {
                     res.send(200, savedEvent);
                     return next();
                 });
-            };
-
-            // set plan status to 'old' if no more events are 'open'
-            if (planFromDb.status === 'active' && !_.any(planFromDb.events, {status: 'open'})) {
-                planFromDb.status = 'old';
-            }
-
-            if (newComments && newComments.length > 0) {
-                newComments.forEach(function (comment) {
-                    comment.refDoc = planFromDb.masterPlan || req.params.planId;
-                    comment.refDocModel = 'ActivityPlan';
-                    // TODO: (RBLU) in case of slave documents, this might not be the correct path. Need to think about where the comment really belongs...,
-                    // might have to point to the corresponding master event id
-                    comment.refDocPath = 'events.' + req.params.eventId;
-                    comment.author = req.user.id;
-                    if (!comment.created) {
-                        comment.created = new Date();
-                    }
-                });
-                Comment.create(newComments, function (err) {
-                    if (err) {
-                        return error.handleError(err, next);
-                    }
-                    // the callbackFn is called with an optional argument for each created comment
-                    // we use this to set the ids of the created comments to the updated event
-                    req.log.trace({arguments: arguments}, "Arguments of comments creation");
-                    for (var i = 1; i < arguments.length; i++) {
-                        eventFromDb.comments.push(arguments[i].id);
-                    }
-                    planFromDb.save(saveCallback);
-                });
-            } else {
-                planFromDb.save(saveCallback);
             }
         });
 }
@@ -256,10 +218,30 @@ function saveNewActivityPlan(plan, user, i18n, cb) {
                         if (err) {
                             return cb(err);
                         }
-                        reloadedActPlan.activity = reloadedActPlan.activity._id;
-                        return cb(null, reloadedActPlan);
+                        var isCampaignPromotedPlan = (savedPlan.source === "campaign");
+                        if (isCampaignPromotedPlan) {
+                            return new Notification({
+                                type: 'joinablePlan',
+                                title: savedPlan.activity.title,
+                                targetQueue: savedOffer.targetQueue,
+                                author: savedOffer.recommendedBy,
+                                refDocLink: "http://TODOaddALinkHere",
+                                refDocId: savedOffer._id,
+                                refDocModel: 'ActivityOffer',
+                                publishTo: savedPlan.events[savedPlan.events.length - 1].end
+                            }).publish(_loadPlanCb);
+                        } else {
+                            return _loadPlanCb(null);
+                        }
                     });
                 } else {
+                    return _loadPlanCb(null);
+                }
+
+                function _loadPlanCb(err, obj) {
+                    if (err) {
+                        error.handleError(err, cb);
+                    }
                     reloadedActPlan.activity = reloadedActPlan.activity._id;
                     return cb(null, reloadedActPlan);
                 }
@@ -383,26 +365,52 @@ function postActivityPlanInvite(req, res, next) {
                                 return done(err);
                             }
 
-                            // save the corresponding ActivityOffer
-                            var actOffer = new ActivityOffer({
-                                activity: locals.plan.activity._id,
-                                activityPlan: [locals.plan._id],
-                                targetQueue: invitedUser && invitedUser._id,
-                                type: ['personalInvitation'],
-                                recommendedBy: [req.user._id],
-                                validTo: locals.plan.events[locals.plan.events.length - 1].end
-                            });
+                            // if this is an existing user, we create an offer and a notification
+                            // if NOT, we just send the email
+                            if (invitedUser && invitedUser.length === 1) {
+                                // save the corresponding ActivityOffer
+                                var actOffer = new ActivityOffer({
+                                    activity: locals.plan.activity._id,
+                                    activityPlan: [locals.plan._id],
+                                    targetQueue: invitedUser[0] && invitedUser[0]._id,
+                                    type: ['personalInvitation'],
+                                    recommendedBy: [req.user._id],
+                                    validTo: locals.plan.events[locals.plan.events.length - 1].end
+                                });
 
-                            actOffer.save(function (err, savedOffer) {
+                                actOffer.save(function (err, savedOffer) {
+                                    if (err) {
+                                        return error.handleError(err, done);
+                                    }
+                                    return new Notification({
+                                        type: 'personalInvitation',
+                                        title: locals.plan.title,
+                                        targetQueue: savedOffer.targetQueue,
+                                        author: savedOffer.recommendedBy,
+                                        refDocLink: "http://TODOaddALinkHere",
+                                        refDocId: savedOffer._id,
+                                        refDocModel: 'ActivityOffer',
+                                        publishTo: locals.plan.events[locals.plan.events.length - 1].end
+                                    }).publish(_saveNotifCb);
+
+                                });
+                            } else {
+                                process.nextTick(_saveNotifCb(null));
+                            }
+
+                            function _saveNotifCb(err) {
                                 if (err) {
                                     return error.handleError(err, done);
                                 }
                                 email.sendActivityPlanInvite(emailaddress, req.user, locals.plan, invitedUser && invitedUser[0], req.i18n);
                                 return done();
-                            });
+                            }
                         });
                 },
                 function (err) {
+                    if (err) {
+                        return error.handleError(err, done);
+                    }
                     done();
                 });
         }

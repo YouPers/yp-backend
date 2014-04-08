@@ -18,7 +18,6 @@ var CommentSchema = common.newSchema({
     refDocTitle: {type: String},
     refDocLink: {type:String},
     campaign: {type: ObjectId, ref: 'Campaign'},
-    created: {type: Date, required: true},
     text: {type: String, required: true}
 });
 

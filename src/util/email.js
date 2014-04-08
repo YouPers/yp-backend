@@ -14,7 +14,8 @@ var env = process.env.NODE_ENV || 'development',
             user: "785bb8e4ce318859e0c786257d39f99e",
             pass: "ba3fdc7db0242a16100625394b587085"
         }
-    });
+    }),
+    urlComposer = require('./urlcomposer');
 
 var fromDefault = "YouPers Digital Health <dontreply@youpers.com>",
     linkTokenSeparator = '|';
@@ -81,7 +82,7 @@ var sendEmailVerification = function (user, i18n) {
     var subject = i18n.t("email:emailVerification.subject");
 
     var encryptedEmailAddress = encryptLinkToken(to);
-    var verificationLink = config.webclientUrl + "/#/email_verification/" + encryptedEmailAddress;
+    var verificationLink = urlComposer.emailVerificationUrl(encryptedEmailAddress);
 
     var locals = {
         salutation: i18n.t('email:emailVerification.salutation', {user: user.toJSON()}),
@@ -101,7 +102,7 @@ var sendPasswordResetMail = function (user,i18n) {
 
     var tokenToEncrypt = user.id + linkTokenSeparator + new Date().getMilliseconds();
     var encryptedToken = encryptLinkToken(tokenToEncrypt);
-    var passwordResetLink = config.webclientUrl + "/#/password_reset/" + encryptedToken + "?firstname=" + user.firstname + "&lastname=" + user.lastname;
+    var passwordResetLink = urlComposer.passwordResetUrl(encryptedToken, user.firstname, user.lastname);
 
     var locals = {
         salutation: i18n.t('email:passwordReset.salutation', {user: user.toJSON()}),
@@ -160,7 +161,7 @@ var sendActivityPlanInvite = function sendActivityPlanInvite(email, invitingUser
     var locals = {
         salutation: i18n.t('email:ActivityPlanInvitation.salutation', {invited: invitedUser ? invitedUser.toJSON() : {}}),
         text: i18n.t('email:ActivityPlanInvitation.text', {inviting: invitingUser.toJSON(), plan: plan.toJSON()}),
-        link: config.webclientUrl + "/#/activities/" + plan.activity._id + '/invitation?invitingUserId='+invitingUser._id,
+        link: urlComposer.activityPlanInviteUrl(plan.activity._id, invitingUser._id),
         footer: i18n.t('email:ActivityPlanInvitation.footer')
     };
     sendEmail(fromDefault, email, subject, 'genericYouPersMail', locals);
@@ -171,7 +172,7 @@ var sendCampaignLeadInvite = function sendCampaignLeadInvite(email, invitingUser
     var subject = i18n.t("email:CampaignLeadInvite.subject", {inviting:  invitingUser.toJSON(), campaign: campaign.toJSON()});
     var token = encryptLinkToken(campaign._id +linkTokenSeparator + email +  (invitedUser ? linkTokenSeparator + invitedUser._id : ''));
     var locals = {
-        link: config.webclientUrl + "/#/campaigns/" + campaign._id + '/becomeCampaignLead?invitingUserId='+invitingUser._id+'&token='+token,
+        link: urlComposer.campaignLeadInviteUrl(campaign._id, invitingUser._id, token),
         salutation: i18n.t('email:CampaignLeadInvite.salutation', {invited: invitedUser ? invitedUser.toJSON() : {firstname: ''}}),
         text: i18n.t('email:CampaignLeadInvite.text', {inviting: invitingUser.toJSON(), campaign: campaign.toJSON()}),
         footer: i18n.t('email:CampaignLeadInvite.footer')
@@ -183,7 +184,7 @@ var sendOrganizationAdminInvite = function sendOrganizationAdminInvite(email, in
     var subject = i18n.t("email:OrganizationAdminInvite.subject", {inviting:  invitingUser.toJSON(), organization: organization.toJSON()});
     var token = encryptLinkToken(organization._id +linkTokenSeparator + email +  (invitedUser ? linkTokenSeparator + invitedUser._id : ''));
     var locals = {
-        link: config.webclientUrl + "/#/organizations/" + organization._id + '/becomeOrganizationAdmin?invitingUserId='+invitingUser._id+'&token='+token,
+        link: urlComposer.orgAdminInviteUrl(organization._id, invitingUser._id, token),
         salutation: i18n.t('email:OrganizationAdminInvite.salutation', {invited: invitedUser ? invitedUser.toJSON() : {firstname: ''}}),
         text: i18n.t('email:OrganizationAdminInvite.text', {inviting: invitingUser.toJSON(), organization: organization.toJSON()}),
         footer: i18n.t('email:OrganizationAdminInvite.footer')

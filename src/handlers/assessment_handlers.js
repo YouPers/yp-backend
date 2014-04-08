@@ -14,7 +14,6 @@ var getNewestResult = function (baseUrl, Model) {
                 if(err) {
                     return error.handleError(err, next);
                 }
-                req.log.trace({foundAssResults: result}, 'GET Newest Ass Results');
                 if (!result || result.length === 0){
                     res.send(204);
                     return next();
@@ -30,10 +29,10 @@ var getNewestResult = function (baseUrl, Model) {
 function assessmentResultPostFn (baseUrl, Model) {
     return function (req, res, next) {
 
-        var err = handlerUtils.checkWritingPreCond(req, Model);
+        var err = handlerUtils.checkWritingPreCond(req.body, req.user, Model);
 
         if (err) {
-            return next(err);
+            return error.handleError(err, next);
         }
 
         // if this Model has a campaign Attribute and the user is currently part of a campaign,
@@ -51,11 +50,11 @@ function assessmentResultPostFn (baseUrl, Model) {
                 return error.handleError(err, next);
             }
             // TODO: pass the users current goals
-            CoachRecommendation.generateAndStoreRecommendations(req.user._id, req.user.profile.userPreferences.rejectedActivities,savedObj, null, auth.isAdminForModel(req.user, mongoose.model('Activity')), function(err, recs) {
+            CoachRecommendation.generateAndStoreRecommendations(req.user._id, req.user.profile.userPreferences.rejectedActivities, savedObj, null, auth.isAdminForModel(req.user, mongoose.model('Activity')), function(err, recs) {
                 if (err) {
                     return error.handleError(err, next);
                 }
-                res.header('location', baseUrl + '/' + savedObj._id);
+                res.header('location', req.url + '/' + savedObj._id);
                 res.send(201, savedObj);
                 return next();
             });

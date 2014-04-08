@@ -2,10 +2,10 @@ var error = require('../util/error'),
     mongoose = require('mongoose'),
     PaymentCode = mongoose.model('PaymentCode'),
     Campaign = mongoose.model('Campaign'),
-    couponCode = require('coupon-code');
+    couponCode = require('coupon-code'),
+    generic = require('./generic');
 
 /**
- * @param values
  * @returns {Function}
  */
 var generatePaymentCode = function generatePaymentCode() {
@@ -27,21 +27,12 @@ var generatePaymentCode = function generatePaymentCode() {
             users: values.users
         });
 
-        paymentCode.save(function(err) {
-            if(err) {
-                return error.handleError(err, next);
-            }
-
-            res.send(201, paymentCode );
-            return next();
-
-        });
+        paymentCode.save(generic.writeObjCb(req, res, next));
 
     };
 };
 
 /**
- * @param values
  * @returns {Function}
  */
 var validatePaymentCode = function validatePaymentCode() {
@@ -69,7 +60,6 @@ var validatePaymentCode = function validatePaymentCode() {
 };
 
 /**
- * @param code
  * @returns {Function}
  */
 var redeemPaymentCode = function redeemPaymentCode() {
@@ -118,14 +108,7 @@ var redeemPaymentCode = function redeemPaymentCode() {
                         }
 
                         paymentCode.campaign = campaign.id;
-                        paymentCode.save(function(err) {
-                            if(err) {
-                                return error.handleError(err, next);
-                            }
-
-                            res.send(200, paymentCode);
-                            return next();
-                        });
+                        paymentCode.save(generic.writeObjCb(req, res, next));
 
                     });
                 });

@@ -1,6 +1,10 @@
 var mongoose = require('mongoose');
+var frisby = require('frisby');
+var port = process.env.PORT || 8000;
+var URL = 'http://localhost:' + port;
+var moment = require('moment');
 
-module.exports = {
+var self = module.exports  =  {
     groupActivity: {
         id: '5278c6adcdeab69a25000046'
     },
@@ -20,7 +24,8 @@ module.exports = {
             id: '52a97f1650fca98c29000055'
         },
         test_campaignlead: {
-            id: '52a97f1650fca98c2900000b'
+            id: '52a97f1650fca98c2900000b',
+            username: 'test_campaignlead'
         }
     },
     assessment: {
@@ -37,5 +42,62 @@ module.exports = {
             password: 'nopass',
             roles: ['individual']
         }).save(cb);
+    },
+    newUserInNewCampaignApi: function(cb) {
+        var campaignStart = moment({hour: 8, minute: 0, second: 0}).add('days', 10);
+        var campaignEnd = moment({hour: 17, minute: 0, second: 0}).add('weeks', 6).add('days', 10);
+
+        var testCampaign = {
+            "title": "testOrganization's campaign x for testing ActivityOffers: " + Math.floor((Math.random() * 10000) + 1),
+            "start": campaignStart,
+            "end": campaignEnd,
+            "relatedService": "YP-Balance",
+            "organization": "52f0c64e53d523235b07d8d8",
+            "location": "Alpenstrasse",
+            "slogan": "It's never too late!",
+            "paymentStatus": "open",
+            "productType": "CampaignProductType1",
+            "campaignLeads": [self.users.test_campaignlead.id]
+        };
+
+
+        frisby.create('TestSetup: POST new campaign to existing organization')
+            .post(URL + '/campaigns', testCampaign)
+            .auth('test_orgadm', 'yp')
+            .expectStatus(201)
+            .afterJSON(function (myTestCampaign) {
+
+
+                frisby.create('TestSetup: POST new user')
+                    .post(URL + '/users', {
+                        username: 'new_unittest_user' + Math.floor((Math.random() * 10000) + 1),
+                        fullname: 'Testing Unittest',
+                        campaign: myTestCampaign.id,
+                        firstname: 'Testing',
+                        lastname: 'Unittest',
+                        email: 'ypunittest1+coachTestUser' + Math.floor((Math.random() * 10000) + 1) + '@gmail.com',
+                        password: 'yp',
+                        roles: ['individual']
+                    })
+                    .expectStatus(201)
+                    .afterJSON(function (testUser) {
+                        return cb(null, testUser, myTestCampaign, function cleanup() {
+
+                            frisby.create('TestCleanUp:')
+                                .delete(URL + '/campaigns/'+ myTestCampaign.id)
+                                .auth('test_sysadm', 'yp')
+                                .expectStatus(200)
+                                .toss();
+
+                            frisby.create('TestCleanUp: remove User')
+                                .delete(URL + '/users/' + testUser.id)
+                                .auth('test_sysadm', 'yp')
+                                .expectStatus(200)
+                                .toss();
+
+                        });
+                    })
+                    .toss();
+            }).toss();
     }
 };

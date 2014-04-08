@@ -169,7 +169,7 @@ function _storeNewRecsIntoActivityOffers(userId, recs, cb) {
             activity: rec.activity,
             type: [HEALTH_COACH_TYPE],
             recommendedBy: [HEALTH_COACH_USER_ID],
-            targetUser: userId,
+            targetQueue: userId,
             prio: [rec.score]
         });
 

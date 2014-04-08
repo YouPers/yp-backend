@@ -1,112 +1,29 @@
-var env = process.env.NODE_ENV || 'development',
-    config = require('../config/config')[env],
+var calendar = require('../util/calendar'),
     mongoose = require('mongoose'),
-    ActivityPlanModel = mongoose.model('ActivityPlan'),
-    ActivityModel = mongoose.model('Activity'),
+    ActivityPlan = mongoose.model('ActivityPlan'),
+    Activity = mongoose.model('Activity'),
     ActivityOffer = mongoose.model('ActivityOffer'),
-    CommentModel = mongoose.model('Comment'),
     generic = require('./generic'),
     error = require('../util/error'),
     _ = require('lodash'),
-    ical = require('icalendar'),
     email = require('../util/email'),
     moment = require('moment'),
     async = require('async'),
-    auth = require('../util/auth');
-
-var getIcalObject = function (plan, recipientUser, iCalType, i18n, reason) {
-
-    // fix for non existing plan.text
-    if (_.isUndefined(plan.text)) {
-        plan.text = "";
-    }
-
-    var myCal = new ical.iCalendar();
-    var event = new ical.VEvent(plan._id);
-    event.addProperty("ORGANIZER", "MAILTO:dontreply@youpers.com", {CN: "YouPers Digital Health"});
-    myCal.addProperty("CALSCALE", "GREGORIAN");
-    event.addProperty("ATTENDEE",
-        "MAILTO:" + recipientUser.email,
-        {CUTYPE: "INDIVIDUAL", ROLE: "REQ-PARTICIPANT", PARTSTAT: "NEEDS-ACTION", CN: recipientUser.fullname, "X-NUM-GUESTS": 0 });
-
-    if (iCalType === 'new' || iCalType === 'update') {
-        myCal.addProperty("METHOD", "REQUEST");
-        event.addProperty("STATUS", "CONFIRMED");
-        event.addProperty("SEQUENCE", 0);
-    } else if (iCalType === 'cancel') {
-        myCal.addProperty("METHOD", "CANCEL");
-        event.addProperty("STATUS", "CANCELLED");
-        event.addProperty("SEQUENCE", 1);
-    } else if (iCalType === 'eventsGenerationOnly') {
-        // do nothing here, we do not these properties if we only need the object for eventsGeneration
-    }
-    else {
-        throw new Error('unknown iCal ObjectType: ' + iCalType);
-    }
-
-    if (iCalType !== 'eventsGenerationOnly') {
-        // these properties are not needed for events-generation, so we don't set them
-        var link = config.webclientUrl + "/#/activities/" + plan.activity._id;
-
-        event.setSummary(i18n.t('ical:' + iCalType + ".summary", {plan: plan.toJSON ? plan.toJSON() : plan, recipient: recipientUser.toJSON()}));
-        event.setDescription(i18n.t('ical:' + iCalType + ".description", {plan: plan.toJSON ? plan.toJSON() : plan, recipient: recipientUser.toJSON(), link: link}));
-        // HTML in description: see here: http://www.limilabs.com/blog/html-formatted-content-in-the-description-field-of-an-icalendar
-        event.addProperty("X-ALT-DESC",
-            i18n.t('ical:' + iCalType + ".htmlDescription",
-                {plan: plan.toJSON ? plan.toJSON() : plan, recipient: recipientUser.toJSON(), link: link}),
-            {'FMTTYPE': 'text/html'});
-        event.addProperty("LOCATION", plan.location);
-        var notifPref = recipientUser.profile.userPreferences.calendarNotification || "900";
-        if (notifPref !== 'none') {
-            var alarm = event.addComponent('VALARM');
-            alarm.addProperty("ACTION", "DISPLAY");
-            alarm.addProperty("TRIGGER", -1 * notifPref);
-            alarm.addProperty("DESCRIPTION", i18n.t('ical:' + iCalType + ".summary", {plan: plan.toJSON ? plan.toJSON() : plan, recipient: recipientUser.toJSON()}));
-        }
-    }
-
-    event.setDate(moment(plan.mainEvent.start).toDate(), moment(plan.mainEvent.end).toDate());
-
-
-    if (plan.mainEvent.recurrence && plan.mainEvent.frequency && plan.mainEvent.frequency !== 'once') {
-        var frequencyMap = {
-            'day': 'DAILY',
-            'week': 'WEEKLY',
-            'month': 'MONTHLY'
-        };
-        if (!frequencyMap[plan.mainEvent.frequency]) {
-            throw new Error("unknown recurrence frequency");
-        }
-
-        var rruleSpec = { FREQ: frequencyMap[plan.mainEvent.frequency] };
-        if (rruleSpec.FREQ === 'DAILY') {
-            rruleSpec.BYDAY = recipientUser.profile.getWorkingDaysAsIcal();
-        }
-
-
-        if (plan.mainEvent.recurrence.endby.type === 'on') {
-            rruleSpec.UNTIL = plan.mainEvent.recurrence.endby.on;
-        } else if (plan.mainEvent.recurrence.endby.type === 'after') {
-            rruleSpec.COUNT = plan.mainEvent.recurrence.endby.after;
-        }
-
-        event.addProperty("RRULE", rruleSpec);
-    }
-    event.addProperty("TRANSP", "OPAQUE");
-    myCal.addComponent(event);
-    return myCal;
-};
+    auth = require('../util/auth'),
+    handlerUtils = require('./handlerUtils'),
+    Notification = require('../core/Notification');
 
 function generateEventsForPlan(plan, user, i18n) {
 
     // ToDo: has to be enhanced with functionality to generate only future events for a puts (additional from date as parameter)
 
-    var myIcalObj = getIcalObject(plan, user, 'eventsGenerationOnly', i18n);
+    var myIcalObj = calendar.getIcalObject(plan, user, 'eventsGenerationOnly', i18n);
 
     var duration = moment(plan.mainEvent.end).diff(plan.mainEvent.start);
     var rrule = myIcalObj.events()[0].rrule();
 
     plan.events = [];
+    // if recurring event
     if (rrule) {
         var occurrances = rrule.nextOccurences(moment(plan.mainEvent.start).subtract('day', 1).toDate(), 100);
         _.forEach(occurrances, function (instance) {
@@ -117,6 +34,7 @@ function generateEventsForPlan(plan, user, i18n) {
             });
         });
     } else {
+        // single date event
         plan.events.push({
             status: 'open',
             begin: plan.mainEvent.start,
@@ -140,101 +58,66 @@ function generateEventsForPlan(plan, user, i18n) {
  */
 function putActivityEvent(req, res, next) {
 
-    if (!req || !req.params || !req.params.planId) {
+    if (!req.params.planId) {
         return next(new error.MissingParameterError({ required: 'planId' }));
     }
 
-    var find = ActivityPlanModel.findById(req.params.planId).populate('activity');
-
-    find.exec(function (err, planFromDb) {
-        if (err) {
-            return error.handleError(err, next);
-        }
-
-        if (!planFromDb) {
-            return next(new error.ResourceNotFoundError('ActivityPlan not found', { id: req.params.planId }));
-        }
-
-        // TODO: (rblu) check whether new owner is same als old owner???
-        if (!planFromDb.owner || !planFromDb.owner.equals(req.user.id)) {
-            return next(new error.NotAuthorizedError('The user is not authorized to update this plan.', {
-                userId: req.user.id,
-                activityPlanId: planFromDb.id,
-                owner: planFromDb.owner
-            }));
-        }
-
-        var eventFromDb = _.find(planFromDb.events, {'id': req.params.eventId});
-        if (!eventFromDb) {
-            return next(new error.ResourceNotFoundError('Event not found in ActivityPlan', {
-                eventId: req.params.eventId,
-                activityPlanId: req.params.planId
-            }));
-        }
-
-        var eventToPut = generic.clean(req.body);
-
-        // checkForNewComments, if there are any comments without id they need to be saved separatly to
-        // the comments collection
-        var newComments;
-        if (eventToPut.comments && Array.isArray(eventToPut.comments) && eventToPut.comments.length > 0) {
-            // some comments posted, check if any of them are new (i.e. do not have an id)
-            newComments = _.select(eventToPut.comments, function (comment) {
-                return !comment.id;
-            });
-        }
-
-        delete eventToPut.comments;
-        _.extend(eventFromDb, eventToPut);
-
-        var saveCallback = function (err, savedActivityPlan) {
+    ActivityPlan
+        .findById(req.params.planId).populate('activity')
+        .exec(function (err, planFromDb) {
             if (err) {
                 return error.handleError(err, next);
             }
 
-            ActivityPlanModel.findById(savedActivityPlan._id, function (err, reloadedPlan) {
-                if (err) {
-                    return error.handleError(err, next);
-                }
-                var savedEvent = _.find(reloadedPlan.events, {'id': req.params.eventId});
-                res.send(200, savedEvent);
-                return next();
-            });
-        };
+            if (!planFromDb) {
+                return next(new error.ResourceNotFoundError('ActivityPlan not found', { id: req.params.planId }));
+            }
 
-        // set plan status to 'old' if no more events are 'open'
-        if (planFromDb.status === 'active' && !_.any(planFromDb.events, {status: 'open'})) {
-            planFromDb.status = 'old';
-        }
+            // TODO: (rblu) check whether new owner is same als old owner???
+            if (!planFromDb.owner || !planFromDb.owner.equals(req.user.id)) {
+                return next(new error.NotAuthorizedError('The user is not authorized to update this plan.', {
+                    userId: req.user.id,
+                    activityPlanId: planFromDb.id,
+                    owner: planFromDb.owner
+                }));
+            }
 
-        if (newComments && newComments.length > 0) {
-            newComments.forEach(function (comment) {
-                comment.refDoc = planFromDb.masterPlan || req.params.planId;
-                comment.refDocModel = 'ActivityPlan';
-                // TODO: (RBLU) in case of slave documents, this might not be the correct path. Need to think about where the comment really belongs...,
-                // might have to point to the corresponding master event id
-                comment.refDocPath = 'events.' + req.params.eventId;
-                comment.author = req.user.id;
-                if (!comment.created) {
-                    comment.created = new Date();
-                }
-            });
-            CommentModel.create(newComments, function (err) {
-                if (err) {
-                    return error.handleError(err, next);
-                }
-                // the callbackFn is called with an optional argument for each created comment
-                // we use this to set the ids of the created comments to the updated event
-                req.log.trace({arguments: arguments}, "Arguments of comments creation");
-                for (var i = 1; i < arguments.length; i++) {
-                    eventFromDb.comments.push(arguments[i].id);
-                }
-                planFromDb.save(saveCallback);
-            });
-        } else {
+            var eventFromDb = _.find(planFromDb.events, {'id': req.params.eventId});
+            if (!eventFromDb) {
+                return next(new error.ResourceNotFoundError('Event not found in ActivityPlan', {
+                    eventId: req.params.eventId,
+                    activityPlanId: req.params.planId
+                }));
+            }
+
+            var eventToPut = req.body;
+
+            handlerUtils.clean(mongoose.model('ActivityPlanEvent'), eventToPut);
+
+            _.extend(eventFromDb, eventToPut);
+
+            // set plan status to 'old' if no more events are 'open'
+            if (planFromDb.status === 'active' && !_.any(planFromDb.events, {status: 'open'})) {
+                planFromDb.status = 'old';
+            }
+
             planFromDb.save(saveCallback);
-        }
-    });
+
+            function saveCallback (err, savedActivityPlan) {
+                if (err) {
+                    return error.handleError(err, next);
+                }
+
+                ActivityPlan.findById(savedActivityPlan._id, function (err, reloadedPlan) {
+                    if (err) {
+                        return error.handleError(err, next);
+                    }
+                    var savedEvent = _.find(reloadedPlan.events, {'id': req.params.eventId});
+                    res.send(200, savedEvent);
+                    return next();
+                });
+            }
+        });
 }
 
 /**
@@ -246,23 +129,12 @@ function putActivityEvent(req, res, next) {
  * @param next
  */
 function postNewActivityPlan(req, res, next) {
-    req.log.trace({parsedReq: req}, 'Post new ActivityPlan');
-    if (!req.body) {
-        return next(new error.MissingParameterError('activityPlan object'));
-    }
     var sentPlan = req.body;
-    req.log.trace({body: sentPlan}, 'parsed req body');
-    // ref properties: replace objects by ObjectId in case client sent whole object instead of reference only
-    // do this check only for properties of type ObjectID
-    _.filter(ActivityPlanModel.schema.paths, function (path) {
-        return (path.instance === 'ObjectID');
-    })
-        .forEach(function (myPath) {
-            if ((myPath.path in sentPlan) && (!(typeof sentPlan[myPath.path] === 'string' || sentPlan[myPath.path] instanceof String))) {
-                sentPlan[myPath.path] = sentPlan[myPath.path].id;
-            }
-        });
 
+    var err = handlerUtils.checkWritingPreCond(sentPlan, req.user, ActivityPlan);
+    if (err) {
+        return error.handleError(err, next);
+    }
 
     // check whether delivered owner is the authenticated user
     if (sentPlan.owner && (req.user.id !== sentPlan.owner)) {
@@ -287,18 +159,12 @@ function postNewActivityPlan(req, res, next) {
         return next(new error.MissingParameterError({ required: 'mainEvent' }));
     }
 
-    var newActPlan = new ActivityPlanModel(sentPlan);
+    var newActPlan = new ActivityPlan(sentPlan);
 
     generateEventsForPlan(newActPlan, req.user, req.i18n);
     req.log.trace({eventsAfter: newActPlan.events}, 'after generating events');
 
-    saveNewActivityPlan(newActPlan, req.user, req.i18n, function(err, savedPlan) {
-        if(err) {
-            return error.handleError(err, next);
-        }
-        res.header('location', '/api/v1/activitiesPlanned' + '/' + savedPlan._id);
-        res.send(201, savedPlan);
-    });
+    saveNewActivityPlan(newActPlan, req.user, req.i18n, generic.writeObjCb(req, res, next));
 }
 
 /**
@@ -307,11 +173,12 @@ function postNewActivityPlan(req, res, next) {
  * @param plan - activityPlan obj
  * @param user - user obj
  * @param cb - callback(err, savedPlan)
+ * @param i18n
  */
 function saveNewActivityPlan(plan, user, i18n, cb) {
 
     // add fields of activity to the activity plan
-    ActivityModel.findById(plan.activity).exec(function (err, foundActivity) {
+    Activity.findById(plan.activity).exec(function (err, foundActivity) {
         if (err) {
             return cb(err);
         }
@@ -326,35 +193,55 @@ function saveNewActivityPlan(plan, user, i18n, cb) {
             // - populate 'activity' so we can get create a nice calendar entry
             // - we need to reload so we get the changes that have been done pre('save') and pre('init')
             //   like updating the joiningUsers Collection
-            ActivityPlanModel.findById(savedPlan._id).populate('activity').exec(function (err, reloadedActPlan) {
+            ActivityPlan.findById(savedPlan._id).populate('activity').exec(function (err, reloadedActPlan) {
                 if (err) {
                     return cb(err);
                 }
 
                 if (user && user.email && user.profile.userPreferences.email.iCalInvites) {
-                    var myIcalString = getIcalObject(reloadedActPlan, user, 'new', i18n).toString();
+                    var myIcalString = calendar.getIcalObject(reloadedActPlan, user, 'new', i18n).toString();
                     email.sendCalInvite(user.email, 'new', myIcalString, i18n);
                 }
 
                 // check whether this is a public joinable plan, if yes store an corresponding ActivityOffer
-                if (_.contains(['public', 'campaign'],reloadedActPlan.visibility) && 'group' === reloadedActPlan.executionType && !reloadedActPlan.masterPlan) {
+                if (_.contains(['public', 'campaign'], reloadedActPlan.visibility) && 'group' === reloadedActPlan.executionType && !reloadedActPlan.masterPlan) {
                     var offer = new ActivityOffer({
                         activity: reloadedActPlan.activity._id,
                         activityPlan: [reloadedActPlan._id],
-                        targetCampaign: reloadedActPlan.campaign,
+                        targetQueue: reloadedActPlan.campaign,
                         recommendedBy: [user._id],
-                        type: [reloadedActPlan.source === 'campaign' ? 'campaignActivityPlan': 'publicActivityPlan'],
+                        type: [reloadedActPlan.source === 'campaign' ? 'campaignActivityPlan' : 'publicActivityPlan'],
                         validTo: reloadedActPlan.events[reloadedActPlan.events.length - 1].end,
-                        prio: [reloadedActPlan.source === 'campaign' ? 500: 1]
+                        prio: [reloadedActPlan.source === 'campaign' ? 500 : 1]
                     });
-                    offer.save(function(err, savedOffer) {
+                    offer.save(function (err, savedOffer) {
                         if (err) {
                             return cb(err);
                         }
-                        reloadedActPlan.activity = reloadedActPlan.activity._id;
-                        return cb(null, reloadedActPlan);
+                        var isCampaignPromotedPlan = (savedPlan.source === "campaign");
+                        if (isCampaignPromotedPlan) {
+                            return new Notification({
+                                type: 'joinablePlan',
+                                title: savedPlan.activity.title,
+                                targetQueue: savedOffer.targetQueue,
+                                author: savedOffer.recommendedBy,
+                                refDocLink: "http://TODOaddALinkHere",
+                                refDocId: savedOffer._id,
+                                refDocModel: 'ActivityOffer',
+                                publishTo: savedPlan.events[savedPlan.events.length - 1].end
+                            }).publish(_loadPlanCb);
+                        } else {
+                            return _loadPlanCb(null);
+                        }
                     });
                 } else {
+                    return _loadPlanCb(null);
+                }
+
+                function _loadPlanCb(err, obj) {
+                    if (err) {
+                        error.handleError(err, cb);
+                    }
                     reloadedActPlan.activity = reloadedActPlan.activity._id;
                     return cb(null, reloadedActPlan);
                 }
@@ -370,31 +257,26 @@ function postJoinActivityPlanFn(req, res, next) {
         return next(new error.MissingParameterError({ required: 'id' }));
     }
 
-    ActivityPlanModel.findById(req.params.id).exec(function (err, masterPlan) {
+    ActivityPlan.findById(req.params.id).exec(function (err, masterPlan) {
 
         if (err) {
             return error.handleError(err, next);
         }
 
-        var slavePlan = new ActivityPlanModel(masterPlan.toJSON());
+        var slavePlan = new ActivityPlan(masterPlan.toJSON());
 
         slavePlan.id = undefined;
         slavePlan.masterPlan = masterPlan._id;
         slavePlan.joiningUsers = [];
         slavePlan.owner = req.user.id;
 
-        saveNewActivityPlan(slavePlan, req.user, req.i18n, function(err, savedPlan) {
-            if(err) {
-                return error.handleError(err, next);
-            }
-            res.header('location', '/api/v1/activitiesPlanned' + '/' + savedPlan._id);
-            res.send(201, savedPlan);
-        });
+        saveNewActivityPlan(slavePlan, req.user, req.i18n, generic.writeObjCb(req, res, next));
 
     });
 
 }
 
+// TODO: remove this: use ActivityOffers instead!!!
 function getJoinOffers(req, res, next) {
 
     // check whether the required param 'activity' is here and add it to the dbquery
@@ -402,7 +284,7 @@ function getJoinOffers(req, res, next) {
         return next(new error.MissingParameterError({ required: 'activity' }));
     }
 
-    var dbquery = ActivityPlanModel.find(
+    var dbquery = ActivityPlan.find(
         {activity: req.params.activity,
             executionType: 'group',
             masterPlan: null
@@ -422,19 +304,8 @@ function getJoinOffers(req, res, next) {
         ]);
     }
 
-    generic.addStandardQueryOptions(req, dbquery, ActivityPlanModel);
-    dbquery.exec(function (err, joinOffers) {
-        if (err) {
-            return error.handleError(err, next);
-        }
-        if (!joinOffers || joinOffers.length === 0) {
-            res.send(200, []);
-            return next();
-        }
-
-        res.send(200, joinOffers);
-        return next();
-    });
+    generic.addStandardQueryOptions(req, dbquery, ActivityPlan);
+    dbquery.exec(generic.sendListCb(req, res, next));
 
 }
 
@@ -465,7 +336,7 @@ function postActivityPlanInvite(req, res, next) {
     async.series([
         // first load ActivityPlan
         function (done) {
-            ActivityPlanModel.findById(req.params.id)
+            ActivityPlan.findById(req.params.id)
                 .populate('activity')
                 .populate('owner')
                 .exec(function (err, plan) {
@@ -494,27 +365,52 @@ function postActivityPlanInvite(req, res, next) {
                                 return done(err);
                             }
 
-                            // save the corresponding ActivityOffer
-                            var actOffer = new ActivityOffer({
-                                activity: locals.plan.activity._id,
-                                activityPlan: [locals.plan._id],
-                                targetCampaign: locals.plan.campaign,
-                                targetUser: invitedUser && invitedUser._id,
-                                type: ['personalInvitation'],
-                                recommendedBy: [req.user._id],
-                                validTo: locals.plan.events[locals.plan.events.length - 1].end
-                            });
+                            // if this is an existing user, we create an offer and a notification
+                            // if NOT, we just send the email
+                            if (invitedUser && invitedUser.length === 1) {
+                                // save the corresponding ActivityOffer
+                                var actOffer = new ActivityOffer({
+                                    activity: locals.plan.activity._id,
+                                    activityPlan: [locals.plan._id],
+                                    targetQueue: invitedUser[0] && invitedUser[0]._id,
+                                    type: ['personalInvitation'],
+                                    recommendedBy: [req.user._id],
+                                    validTo: locals.plan.events[locals.plan.events.length - 1].end
+                                });
 
-                            actOffer.save(function(err, savedOffer) {
+                                actOffer.save(function (err, savedOffer) {
+                                    if (err) {
+                                        return error.handleError(err, done);
+                                    }
+                                    return new Notification({
+                                        type: 'personalInvitation',
+                                        title: locals.plan.title,
+                                        targetQueue: savedOffer.targetQueue,
+                                        author: savedOffer.recommendedBy,
+                                        refDocLink: "http://TODOaddALinkHere",
+                                        refDocId: savedOffer._id,
+                                        refDocModel: 'ActivityOffer',
+                                        publishTo: locals.plan.events[locals.plan.events.length - 1].end
+                                    }).publish(_saveNotifCb);
+
+                                });
+                            } else {
+                                process.nextTick(_saveNotifCb(null));
+                            }
+
+                            function _saveNotifCb(err) {
                                 if (err) {
-                                    error.handleError(err, done);
+                                    return error.handleError(err, done);
                                 }
                                 email.sendActivityPlanInvite(emailaddress, req.user, locals.plan, invitedUser && invitedUser[0], req.i18n);
                                 return done();
-                            });
+                            }
                         });
                 },
                 function (err) {
+                    if (err) {
+                        return error.handleError(err, done);
+                    }
                     done();
                 });
         }
@@ -548,17 +444,17 @@ function _deleteActivityPlanNoJoiningPlans(activityPlan, user, reason, i18n, don
 
         ////////////////////
         // private functions
-        var _finalSendNotifcationCallback = function (err) {
+        var _sendNotificationCb = function (err) {
             if (err) {
                 return error.handleError(err, done);
             }
             if (owner.profile.userPreferences.email.iCalInvites) {
-                var myIcalString = getIcalObject(activityPlan, owner, 'cancel', i18n, reason).toString();
+                var myIcalString = calendar.getIcalObject(activityPlan, owner, 'cancel', i18n, reason).toString();
                 email.sendCalInvite(owner.email, 'cancel', myIcalString, i18n, reason);
             }
 
             // remove any offers to join this plan
-            ActivityOffer.find({activityPlan: activityPlan._id}).remove().exec(function(err) {
+            ActivityOffer.find({activityPlan: activityPlan._id}).remove().exec(function (err) {
                 if (err) {
                     error.handleError(err, done);
                 }
@@ -567,16 +463,20 @@ function _deleteActivityPlanNoJoiningPlans(activityPlan, user, reason, i18n, don
         };
         ///////////////////
 
-        var _removeCallback = function(err) {
+        var _removeCallback = function (err) {
+            if (err) {
+                return done(err);
+            }
+
             // plan can be deleted if user is systemadmin or if it is his own plan
             if (auth.checkAccess(user, auth.accessLevels.al_systemadmin)) {
-                activityPlan.remove(_finalSendNotifcationCallback);
+                activityPlan.remove(_sendNotificationCb);
             } else if (owner._id.equals(user._id || user)) {
 
                 // check deleteStatus
-                if (activityPlan.deleteStatus === ActivityPlanModel.activityPlanCompletelyDeletable) {
-                    activityPlan.remove(_finalSendNotifcationCallback);
-                } else if (activityPlan.deleteStatus === ActivityPlanModel.activityPlanOnlyFutureEventsDeletable) {
+                if (activityPlan.deleteStatus === ActivityPlan.activityPlanCompletelyDeletable) {
+                    activityPlan.remove(_sendNotificationCb);
+                } else if (activityPlan.deleteStatus === ActivityPlan.activityPlanOnlyFutureEventsDeletable) {
                     // delete  all future events, set activityPlan to "Done", send cancellations for deleted events
                     var now = new Date();
                     var tempEvents = activityPlan.events.slice();
@@ -588,7 +488,7 @@ function _deleteActivityPlanNoJoiningPlans(activityPlan, user, reason, i18n, don
                     });
                     activityPlan.deletionReason = reason;
                     activityPlan.status = "old";
-                    activityPlan.save(_finalSendNotifcationCallback);
+                    activityPlan.save(_sendNotificationCb);
                 } else {
                     return done(new error.BadMethodError('This activityPlan cannot be deleted.', {
                         activityPlanId: activityPlan.id,
@@ -601,30 +501,36 @@ function _deleteActivityPlanNoJoiningPlans(activityPlan, user, reason, i18n, don
             }
         };
 
-        ///////////
-        // if this is a slave of a masterPlan we need to remove the owner of the slave plan from the
-        // joiningUsers collection of the master
-        if (activityPlan.masterPlan) {
-            ActivityPlanModel.findById(activityPlan.masterPlan, function (err, masterPlan) {
+        function removeSlaveFromMasterPlan(slave, cb) {
+            ActivityPlan.findById(slave.masterPlan, function (err, masterPlan) {
                 if (err) {
-                    return error.handleError(err, done);
+                    return cb(err);
                 }
                 if (!masterPlan) {
-                    return new error.ResourceNotFoundError('MasterPlan not found', {
-                        masterPlanId: activityPlan.masterPlan
-                    });
+                    return cb(new error.ResourceNotFoundError('MasterPlan not found', {
+                        masterPlanId: slave.masterPlan
+                    }));
                 }
                 _.remove(masterPlan.joiningUsers, function (ju) {
-                    return ju.equals(activityPlan.owner);
+                    return ju.equals(slave.owner);
                 });
                 masterPlan.markModified('joiningUsers');
                 masterPlan.save(function (err) {
                     if (err) {
-                        return error.handleError(err, done);
+                        return cb(err);
                     }
-                    return _removeCallback();
+                    return cb();
                 });
             });
+
+        }
+
+
+        ///////////
+        // if this is a slave of a masterPlan we need to remove the owner of the slave plan from the
+        // joiningUsers collection of the master
+        if (activityPlan.masterPlan) {
+            removeSlaveFromMasterPlan(activityPlan, _removeCallback);
         } else {
             return _removeCallback();
         }
@@ -639,7 +545,7 @@ function deleteActivityPlan(req, res, next) {
     }
     var reason = req.params.reason || '';
 
-    ActivityPlanModel.findById(req.params.id).populate('activity').exec(function (err, activityPlan) {
+    ActivityPlan.findById(req.params.id).populate('activity').exec(function (err, activityPlan) {
         if (err) {
             return error.handleError(err, next);
         }
@@ -650,12 +556,10 @@ function deleteActivityPlan(req, res, next) {
         }
 
         // plan can be deleted if user is systemadmin or if it is his own plan
-        if (! ( auth.checkAccess(req.user, auth.accessLevels.al_systemadmin) ||
-                activityPlan.owner.equals(req.user._id))) {
+        if (!( auth.checkAccess(req.user, auth.accessLevels.al_systemadmin) ||
+            activityPlan.owner.equals(req.user._id))) {
             return next(new error.NotAuthorizedError());
         }
-
-
 
         // if this is a masterPlan and and we have joined users we need to delete the joingingPlans first:
         // delete the slavePlans and notify them with a calender deletion
@@ -669,7 +573,7 @@ function deleteActivityPlan(req, res, next) {
         }
         async.forEach(usersWithSlavePlansToDelete, function (joinedUser, done) {
             // we need to load the plan and get the user by populating its owner property
-            ActivityPlanModel.find({masterPlan: activityPlan._id, owner: joinedUser._id || joinedUser})
+            ActivityPlan.find({masterPlan: activityPlan._id, owner: joinedUser._id || joinedUser})
                 .exec(function (err, plans) {
                     if (err) {
                         return error.handleError(err, done);
@@ -678,7 +582,6 @@ function deleteActivityPlan(req, res, next) {
                         return done(new error.InvalidArgumentError('0 or more than one slavePlan found for this user: ' + plans.length,
                             {user: joinedUser, masterPlan: activityPlan._id, slavePlans: plans}));
                     }
-                    console.log("delete the a slave plan of the requested Plan");
                     return _deleteActivityPlanNoJoiningPlans(plans[0], joinedUser, reason, req.i18n, done);
                 });
         }, function (err) {
@@ -686,12 +589,11 @@ function deleteActivityPlan(req, res, next) {
                 return error.handleError(err, next);
             }
             // reload the activityPlan to check whether all joiningUsers are gone
-            ActivityPlanModel.findById(activityPlan._id, function(err, reloadedPlan) {
+            ActivityPlan.findById(activityPlan._id, function (err, reloadedPlan) {
                 if (err) {
                     return error.handleError(err, next);
                 }
-                console.log("delete the requested plan");
-                return _deleteActivityPlanNoJoiningPlans(reloadedPlan, req.user, reason, req.i18n, function(err) {
+                return _deleteActivityPlanNoJoiningPlans(reloadedPlan, req.user, reason, req.i18n, function (err) {
                     if (err) {
                         return next(err);
                     } else {
@@ -706,27 +608,13 @@ function deleteActivityPlan(req, res, next) {
 
 function putActivityPlan(req, res, next) {
 
-    req.log.trace({parsedReq: req}, 'Put updated ActivityPlan');
-
-    if (!req.body) {
-        return next(new error.ResourceNotFoundError('activityPlan object'));
+    var sentPlan = req.body;
+    var err = handlerUtils.checkWritingPreCond(sentPlan, req.user, ActivityPlan);
+    if (err) {
+        error.handleError(err, next);
     }
 
-    var sentPlan = req.body;
-    req.log.trace({body: sentPlan}, 'parsed req body');
-
-    // ref properties: replace objects by ObjectId in case client sent whole object instead of reference only
-    // do this check only for properties of type ObjectID
-    _.filter(ActivityPlanModel.schema.paths, function (path) {
-        return (path.instance === 'ObjectID');
-    })
-        .forEach(function (myPath) {
-            if ((myPath.path in sentPlan) && (!(typeof sentPlan[myPath.path] === 'string' || req.body[myPath.path] instanceof String))) {
-                sentPlan[myPath.path] = sentPlan[myPath.path].id;
-            }
-        });
-
-    ActivityPlanModel.findById(req.params.id).exec(function (err, loadedActPlan) {
+    ActivityPlan.findById(req.params.id).exec(function (err, loadedActPlan) {
         if (err) {
             return error.handleError(err, next);
         }
@@ -761,19 +649,19 @@ function putActivityPlan(req, res, next) {
             // - populate 'activity' so we can get create a nice calendar entry
             // - we need to reload so we get the changes that have been done pre('save') and pre('init')
             //   like updating the joiningUsers Collection
-            ActivityPlanModel.findById(loadedActPlan._id).populate('activity').exec(function (err, reloadedActPlan) {
+            ActivityPlan.findById(loadedActPlan._id).populate('activity').exec(function (err, reloadedActPlan) {
                 // we read 'activity' so we can get create a nice calendar entry using using the activity title
                 if (err) {
                     return error.handleError(err, next);
                 }
                 if (req.user && req.user.email && req.user.profile.userPreferences.email.iCalInvites) {
-                    var myIcalString = getIcalObject(reloadedActPlan, req.user, 'update', req.i18n).toString();
+                    var myIcalString = calendar.getIcalObject(reloadedActPlan, req.user, 'update', req.i18n).toString();
                     email.sendCalInvite(req.user.email, 'update', myIcalString, req.i18n);
                 }
 
                 // remove the populated activity because the client is not gonna expect it to be populated.
                 reloadedActPlan.activity = reloadedActPlan.activity._id;
-                res.header('location', '/api/v1/activitiesPlanned' + '/' + reloadedActPlan._id);
+                res.header('location', req.url + '/' + reloadedActPlan._id);
                 res.send(201, reloadedActPlan);
                 return next();
             });

@@ -11,10 +11,10 @@ var error = require('../util/error'),
 var postFn = function (baseUrl) {
     return function (req, res, next) {
 
-        var err = handlerUtils.checkWritingPreCond(req, User);
+        var err = handlerUtils.checkWritingPreCond(req.body, req.user, User);
 
         if (err) {
-            return next(err);
+            return error.handleError(err, next);
         }
 
         var newUser = new User(req.body);
@@ -41,7 +41,7 @@ var postFn = function (baseUrl) {
             // send verificationEmail
             email.sendEmailVerification(newUser, req.i18n);
 
-            res.header('location', baseUrl + '/' + newUser._id);
+            res.header('location', req.url + '/' + newUser._id);
             res.send(201, newUser);
             return next();
         });

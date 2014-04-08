@@ -4,7 +4,8 @@ var mongoose = require('mongoose'),
     _ = require('lodash'),
     auth = require('../util/auth'),
     error = require('../util/error'),
-    handlerUtils = require('./handlerUtils');
+    handlerUtils = require('./handlerUtils'),
+    generic = require('./generic');
 
 
 function _checkActivityWritePermission(sentActivity, user, cb) {
@@ -64,18 +65,17 @@ function _removeEmptyRecWeights(sentActivity) {
 
 function postActivity(req, res, next) {
 
-    if (!req.body) {
-        return next(new error.MissingParameterError({ required: 'activity object' }));
-    }
-
     var sentActivity = req.body;
 
-    handlerUtils.cleanPopulated(Activity, sentActivity);
+    var err = handlerUtils.checkWritingPreCond(sentActivity, req.user, Activity);
+    if (err) {
+        return error.handleError(err, next);
+    }
 
     _removeEmptyRecWeights(sentActivity);
 
     // check whether delivered author is the authenticated user
-    // only to be checkt for POST becuase in PUT it is allowed to update an activitiy that has been authored by
+    // only to be checked for POST because in PUT it is allowed to update an activity that has been authored by
     // somebody else.
     if (sentActivity.author && (req.user.id !== sentActivity.author)) {
         return next(new error.NotAuthorizedError({ author: sentActivity.author, user: req.user.id}));
@@ -90,27 +90,19 @@ function postActivity(req, res, next) {
         var newActivity = new Activity(sentActivity);
 
         // try to save the new object
-        newActivity.save(function (err) {
-            if (err) {
-                return error.handleError(err, next);
-            }
-
-            res.header('location', '/activities' + '/' + newActivity._id);
-            res.send(201, newActivity);
-            return next();
-        });
+        newActivity.save(generic.writeObjCb(req, res, next));
     });
 }
 
 
 function putActivity(req, res, next) {
 
-    if (!req.body) {
-        return next(new error.MissingParameterError({ required: 'activity object' }));
-    }
-
     var sentActivity = req.body;
-    handlerUtils.cleanPopulated(Activity, sentActivity);
+
+    var err = handlerUtils.checkWritingPreCond(sentActivity, req.user, Activity);
+    if (err) {
+        return error.handleError(err, next);
+    }
 
     _removeEmptyRecWeights(sentActivity);
 
@@ -130,14 +122,7 @@ function putActivity(req, res, next) {
             _.extend(reloadedActivity, sentActivity);
 
             // try to save the new object
-            reloadedActivity.save(function (err) {
-                if (err) {
-                    return error.handleError(err, next);
-                }
-
-                res.send(200, reloadedActivity);
-                return next();
-            });
+            reloadedActivity.save(generic.writeObjCb(req, res, next));
         });
     });
 

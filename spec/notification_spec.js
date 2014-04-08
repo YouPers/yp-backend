@@ -51,19 +51,19 @@ consts.newUserInNewCampaignApi(
                                 expect(notifs[0].targetQueue).toEqual(campaign.id);
                                 expect(notifs[0].author).toEqual(consts.users.test_campaignlead.id);
 
-                                frisby.create('Notifications: post an Announcement to the Youpers Queue')
-                                    .post(URL + '/notifications', {
-                                        author: '52d4f515fac246174c000006',
-                                        title: "new iPhone App from YouPers published",
-                                        targetQueue: "AAAAc64e53d523235b07EEEE",
-                                        type: "message"
-                                    })
-                                    .auth('test_productadmin', 'yp')
-                                    .expectStatus(201)
-                                    .afterJSON(function(newNotif) {
-                                        cleanupFn();
-                                    })
-                                    .toss();
+//                                frisby.create('Notifications: post an Announcement to the Youpers Queue')
+//                                    .post(URL + '/notifications', {
+//                                        author: '52d4f515fac246174c000006',
+//                                        title: "new iPhone App from YouPers published",
+//                                        targetQueue: "AAAAc64e53d523235b07EEEE",
+//                                        type: "message"
+//                                    })
+//                                    .auth('test_productadmin', 'yp')
+//                                    .expectStatus(201)
+//                                    .afterJSON(function(newNotif) {
+//                                        cleanupFn();
+//                                    })
+//                                    .toss();
 
 
 

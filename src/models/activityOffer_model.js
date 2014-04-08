@@ -27,4 +27,6 @@ var ActivityOfferSchema = common.newSchema({
     validTo: {type: Date, required: false}
 });
 
+// TODO
+
 module.exports = mongoose.model('ActivityOffer', ActivityOfferSchema);

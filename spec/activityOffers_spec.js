@@ -50,7 +50,8 @@ consts.newUserInNewCampaignApi(
                     .auth(offerTestUser.username, "yp")
                     .expectStatus(200)
                     .afterJSON(function (recs) {
-                        expect(recs.length).toEqual(10);
+
+                        expect(recs.length).toEqual(3);
 
                         _.forEach(recs, function (rec) {
                             expect(rec.type[0]).toEqual('ypHealthCoach');
@@ -76,7 +77,7 @@ consts.newUserInNewCampaignApi(
                                     .auth(offerTestUser.username, "yp")
                                     .expectStatus(200)
                                     .afterJSON(function (recs) {
-                                        expect(recs.length).toEqual(10);
+                                        expect(recs.length).toEqual(3);
                                         _.forEach(recs, function (rec) {
                                             expect(rec.type[0]).toEqual('ypHealthCoach');
                                             expect(rec.activity.id).toBeDefined();
@@ -103,7 +104,8 @@ consts.newUserInNewCampaignApi(
                                                     .auth(offerTestUser.username, "yp")
                                                     .expectStatus(200)
                                                     .afterJSON(function (recs) {
-                                                        expect(recs.length).toEqual(10);
+
+                                                        expect(recs.length).toEqual(4);
                                                         expect(recs[0].type[0]).toEqual('campaignActivity');
                                                         expect(recs[0].prio[0]).toBeGreaterThan(recs[1].prio[0]);
 
@@ -134,12 +136,12 @@ consts.newUserInNewCampaignApi(
                                                                     .auth(offerTestUser.username, "yp")
                                                                     .expectStatus(200)
                                                                     .afterJSON(function (recs) {
-                                                                        expect(recs.length).toEqual(10);
-                                                                        expect(recs[0].type).toContain('campaignActivityPlan');
-                                                                        expect(recs[1].type).toContain('campaignActivity');
-                                                                        expect(recs[2].type).toContain('ypHealthCoach');
-                                                                        expect(recs[0].prio[0]).toBeGreaterThan(recs[1].prio[0]);
 
+
+                                                                        expect(recs.length).toEqual(5);
+                                                                        expect(recs[0].type).toContain('campaignActivityPlan'); // preferred type
+                                                                        expect(recs[1].type).toContain('ypHealthCoach'); // preferred type
+                                                                        expect(recs[2].type).toContain('campaignActivity'); // next by rank, personalInvitation not available
 
                                                                         frisby.create('ActivityOffers: plan the campaignAct')
                                                                             .post(URL + '/activityplans/' + campActPlan.id + '/join')
@@ -152,11 +154,12 @@ consts.newUserInNewCampaignApi(
                                                                                     .auth(offerTestUser.username, "yp")
                                                                                     .expectStatus(200)
                                                                                     .afterJSON(function (recs) {
-                                                                                        expect(recs.length).toEqual(10);
-                                                                                        expect(recs[0].type).toContain('campaignActivity');
-                                                                                        expect(recs[0].type).not.toContain('campaignActivityPlan');
-                                                                                        expect(recs[1].type).toContain('ypHealthCoach');
-                                                                                        expect(recs[0].prio[0]).toBeGreaterThan(recs[1].prio[0]);
+
+                                                                                        expect(recs.length).toEqual(4);
+
+                                                                                        expect(recs[0].type).toContain('campaignActivity'); // next by rank
+                                                                                        expect(recs[0].type).not.toContain('campaignActivityPlan'); // joined plan should not show up anymore
+                                                                                        expect(recs[1].type).toContain('ypHealthCoach'); // preferred type
 
                                                                                         frisby.create('ActivityOffers: removeCampaignActOffer')
                                                                                             .delete(URL + '/activityoffers/' + campActOffer.id)

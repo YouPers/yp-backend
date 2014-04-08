@@ -3,7 +3,6 @@ var calendar = require('../util/calendar'),
     ActivityPlan = mongoose.model('ActivityPlan'),
     Activity = mongoose.model('Activity'),
     ActivityOffer = mongoose.model('ActivityOffer'),
-    Comment = mongoose.model('Comment'),
     generic = require('./generic'),
     error = require('../util/error'),
     _ = require('lodash'),
@@ -95,20 +94,16 @@ function putActivityEvent(req, res, next) {
 
             handlerUtils.clean(mongoose.model('ActivityPlanEvent'), eventToPut);
 
-            // checkForNewComments, if there are any comments without id they need to be saved separatly to
-            // the comments collection
-            var newComments;
-            if (eventToPut.comments && Array.isArray(eventToPut.comments) && eventToPut.comments.length > 0) {
-                // some comments posted, check if any of them are new (i.e. do not have an id)
-                newComments = _.select(eventToPut.comments, function (comment) {
-                    return !comment.id;
-                });
-            }
-
-            delete eventToPut.comments;
             _.extend(eventFromDb, eventToPut);
 
-            var saveCallback = function (err, savedActivityPlan) {
+            // set plan status to 'old' if no more events are 'open'
+            if (planFromDb.status === 'active' && !_.any(planFromDb.events, {status: 'open'})) {
+                planFromDb.status = 'old';
+            }
+
+            planFromDb.save(saveCallback);
+
+            function saveCallback (err, savedActivityPlan) {
                 if (err) {
                     return error.handleError(err, next);
                 }
@@ -121,39 +116,6 @@ function putActivityEvent(req, res, next) {
                     res.send(200, savedEvent);
                     return next();
                 });
-            };
-
-            // set plan status to 'old' if no more events are 'open'
-            if (planFromDb.status === 'active' && !_.any(planFromDb.events, {status: 'open'})) {
-                planFromDb.status = 'old';
-            }
-
-            if (newComments && newComments.length > 0) {
-                newComments.forEach(function (comment) {
-                    comment.refDoc = planFromDb.masterPlan || req.params.planId;
-                    comment.refDocModel = 'ActivityPlan';
-                    // TODO: (RBLU) in case of slave documents, this might not be the correct path. Need to think about where the comment really belongs...,
-                    // might have to point to the corresponding master event id
-                    comment.refDocPath = 'events.' + req.params.eventId;
-                    comment.author = req.user.id;
-                    if (!comment.created) {
-                        comment.created = new Date();
-                    }
-                });
-                Comment.create(newComments, function (err) {
-                    if (err) {
-                        return error.handleError(err, next);
-                    }
-                    // the callbackFn is called with an optional argument for each created comment
-                    // we use this to set the ids of the created comments to the updated event
-                    req.log.trace({arguments: arguments}, "Arguments of comments creation");
-                    for (var i = 1; i < arguments.length; i++) {
-                        eventFromDb.comments.push(arguments[i].id);
-                    }
-                    planFromDb.save(saveCallback);
-                });
-            } else {
-                planFromDb.save(saveCallback);
             }
         });
 }
@@ -266,7 +228,7 @@ function saveNewActivityPlan(plan, user, i18n, cb) {
                                 refDocLink: "http://TODOaddALinkHere",
                                 refDocId: savedOffer._id,
                                 refDocModel: 'ActivityOffer',
-                                publishTo: savedPlan.events[savedPlan.events.length-1].end
+                                publishTo: savedPlan.events[savedPlan.events.length - 1].end
                             }).publish(_loadPlanCb);
                         } else {
                             return _loadPlanCb(null);
@@ -428,7 +390,7 @@ function postActivityPlanInvite(req, res, next) {
                                         refDocLink: "http://TODOaddALinkHere",
                                         refDocId: savedOffer._id,
                                         refDocModel: 'ActivityOffer',
-                                        publishTo: locals.plan.events[locals.plan.events.length-1].end
+                                        publishTo: locals.plan.events[locals.plan.events.length - 1].end
                                     }).publish(_saveNotifCb);
 
                                 });

@@ -101,6 +101,53 @@ function getCoachRecommendationsFn(req, res, next) {
  *          may be an array if the same activity has been recommended by multiple sources.
  *       prio: prioritization Value, in case of CoachRecs this is the score of the algorithm
  * }
+ *
+ * The array of offers is then sorted into 3 groups,
+ *
+ * - with a preferred offer type of:
+ *
+ * -- campaignActivityPlan
+ * -- ypHealthCoach
+ * -- personalInvitation
+ *
+ * - and in case no more offers with this type are available,
+ *   the next highest rated offer type according to:
+ *
+ * 'publicActivityPlan', // lowest prio
+ * 'personalInvitation',
+ * 'ypHealthCoach',
+ * 'campaignActivity',
+ * 'campaignActivityPlan' // highest prio
+ *
+ *
+ [
+
+     group 1 - left:
+         1. campaign plan
+         2. campaign act
+         3. coach
+         4. personal
+         5. public
+
+     group 2 - middle:
+         1. coach
+         2. campaign plan
+         3. campaign act
+         4. personal
+         5. public
+
+     group 3 - right:
+         1. personal
+         2. campaign plan
+         3. campaign act
+         4. coach
+         5. public
+
+ ] repeats 3x
+
+ *
+ *
+ *
  * @param req
  * @param res
  * @param next
@@ -167,7 +214,7 @@ function getActivityOffersFn(req, res, next) {
                     //      we need to consolidate them into one recommendation with multiple recommenders, sources and possibly plans.
                     //      We do this by merging the recommender, the type and the plan property into an array.
 
-                    // sort them into a object keyed by activity._id to remove dups
+                    // prio them into a object keyed by activity._id to remove dups
                     var myOffersHash = {};
                     _.forEach(offers, function (offer) {
                         if (myOffersHash[offer.activity._id]) {
@@ -183,12 +230,79 @@ function getActivityOffersFn(req, res, next) {
                         }
                     });
 
-                    // sort and limit:
-                    //      we want to display the best/most important recommendation first
-                    //      we only want to deliver a limited number of recommendations
-                    res.send(_.sortBy(myOffersHash, function (offer) {
-                        return -1 * _.max(offer.prio);
-                    }).slice(0, 10));
+                    // sort offers
+
+                    var typesLowestToHighestPriority = [
+                        'publicActivityPlan',
+                        'personalInvitation',
+                        'ypHealthCoach',
+                        'campaignActivity',
+                        'campaignActivityPlan'
+                    ];
+
+                    var priority = function priority(preferredType) {
+
+                        return function(offer) {
+
+                            for(var priority=typesLowestToHighestPriority.length; priority>0; priority--) {
+
+                                if(_.contains(offer.type, preferredType)) {
+                                    return -6;
+                                } else if(_.contains(offer.type, typesLowestToHighestPriority[priority])) {
+                                    return - priority;
+                                }
+                            }
+                        };
+                    };
+
+                    var addOfferByType = function addOfferByType(preferredType) {
+
+                        var sortedByType = _.sortBy(myOffersHash, priority(preferredType));
+
+                        if(sortedByType.length > 0) {
+
+                            var offer = sortedByType[0];
+
+                            // limit to 3 per type
+                            var maxPerType = 3;
+
+                            var countPerType = _.filter(sortedOffers, function(o) {
+                                return _.any(o.type, function(type) {
+                                    return _.contains(offer.type, type);
+                                });
+                            }).length;
+
+                            if(countPerType < maxPerType) {
+                                sortedOffers.push(offer);
+                            }
+
+                            delete myOffersHash[offer.activity._id];
+                        }
+                    };
+
+                    var sortedOffers = [];
+
+                    for(var k=0; k<3; k++) {
+                        addOfferByType('campaignActivityPlan');
+                        addOfferByType('ypHealthCoach');
+                        addOfferByType('personalInvitation');
+                    }
+
+                    // add all personalInvitations
+
+                    sortedOffers.concat(_.filter(myOffersHash, function(offer) {
+                        return _.contains(offer.type, 'personalInvitation');
+                    }));
+
+                    // fill up to 9 with publicActivityPlans
+                    if(sortedOffers.length < 9) {
+                        var publicPlans = _.filter(myOffersHash, function(offer) {
+                            return _.contains(offer.type, 'publicActivityPlan');
+                        });
+                        sortedOffers.concat(publicPlans.slice(0, 9 - sortedOffers.length));
+                    }
+
+                    res.send(sortedOffers);
                     return next();
                 });
 

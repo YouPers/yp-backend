@@ -27,6 +27,6 @@ var ActivityOfferSchema = common.newSchema({
     validTo: {type: Date, required: false}
 });
 
-// TODO
+// TODO: add custom validation for the enum, since mongoose does not support array of strings with the strings being part of an enum.
 
 module.exports = mongoose.model('ActivityOffer', ActivityOfferSchema);

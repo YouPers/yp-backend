@@ -14,11 +14,11 @@ frisby.globalSetup({ // globalSetup is for ALL requests
 });
 
 var testUser = {
-    username: 'new_unittest_user',
+    username: 'new_unittest_user'+Math.floor((Math.random() * 10000) + 1),
     fullname: 'Testing Unittest',
     firstname: 'Testing',
     lastname: 'Unittest',
-    email: 'ypunittest1+newtestuser@gmail.com',
+    email: 'ypunittest1+newtestuser'+ Math.floor((Math.random() * 10000) + 1) +'@gmail.com',
     password: 'nopass'
 };
 
@@ -53,12 +53,8 @@ frisby.create('User: POST validate new user')
                         expect(userList[0].email).toBeUndefined();
                         expect(userList[0].username).toBeUndefined();
 
-                        var testuserid = '';
-                        userList.forEach(function (user) {
-                            if (user.fullname === 'Testing Unittest') {
-                                testuserid = user.id;
-                            }
-                        });
+                        var testuserid = newUser.id;
+
 
                         frisby.create('User: GET just our testuser')
                             .get(URL + '/users/' + testuserid)
@@ -67,21 +63,19 @@ frisby.create('User: POST validate new user')
                             .afterJSON(function (user) {
 
                                 // add the username because the backend is not returning it as a default.
-                                user.username = 'new_unittest_user';
+                                user.username = testUser.username;
                                 expect(user.id).toEqual(testuserid);
 
                                 frisby.create('User: POST verify email address SUCCESS')
-                                    .post(URL + '/users/' + testuserid + '/email_verification', { token: email.encryptLinkToken('ypunittest1+newtestuser@gmail.com') })
-                                    .auth('test_ind1', 'yp')
+                                    .post(URL + '/users/' + testuserid + '/email_verification', { token: email.encryptLinkToken(testUser.email) })
+                                    .auth(user.username, 'nopass')
                                     .expectStatus(200)
-                                    .auth('new_unittest_user', 'nopass')
                                     .toss();
 
                                 frisby.create('User: POST verify email address FAIL invalid token')
                                     .post(URL + '/users/' + testuserid + '/email_verification', { token: "invalid token" })
-                                    .auth('test_ind1', 'yp')
                                     .expectStatus(409)
-                                    .auth('new_unittest_user', 'nopass')
+                                    .auth(user.username, 'nopass')
                                     .toss();
                                 frisby.create('User: POST verify email address FAIL authorization')
                                     .post(URL + '/users/' + testuserid + '/email_verification', { token: "invalid token" })
@@ -103,13 +97,13 @@ frisby.create('User: POST validate new user')
 
                                 frisby.create('User: POST request password reset known username SUCCESS')
                                     .auth()
-                                    .post(URL + '/users/request_password_reset', { usernameOrEmail: "new_unittest_user" })
+                                    .post(URL + '/users/request_password_reset', { usernameOrEmail: testUser.username })
                                     .expectStatus(200)
                                     .toss();
 
                                 frisby.create('User: POST request password reset known email SUCCESS')
                                     .auth()
-                                    .post(URL + '/users/request_password_reset', { usernameOrEmail: "ypunittest1+newtestuser@gmail.com" })
+                                    .post(URL + '/users/request_password_reset', { usernameOrEmail: testUser.email })
                                     .expectStatus(200)
                                     .toss();
 
@@ -153,7 +147,7 @@ frisby.create('User: POST validate new user')
                                     .after(function () {
                                         frisby.create('User: POST Login with new Password SUCCESS')
                                             .post(URL + '/login', {})
-                                            .auth('new_unittest_user', 'myNewPassword')
+                                            .auth(user.username, 'myNewPassword')
                                             .expectStatus(200)
                                             .afterJSON(function (user) {
                                                 frisby.create('User: POST password reset back to original value SUCCESS')

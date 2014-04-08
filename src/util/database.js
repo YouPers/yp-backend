@@ -30,7 +30,8 @@ var initialize = function initialize(loadTestData) {
             'organization',
             'paymentCode',
             'profile',
-            'user'];
+            'user',
+            'notification'];
         if (!loadTestData) {
             config.loadTestData = false;
         }

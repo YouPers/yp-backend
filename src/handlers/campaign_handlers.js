@@ -9,21 +9,22 @@ var stats = require('../util/stats'),
     async = require('async'),
     email = require('../util/email'),
     image = require('../util/image'),
-    moment = require('moment');
+    moment = require('moment'),
+    generic = require('./generic');
 
 
-var getCampaign = function(req, res, next, callback) {
+var getCampaign = function(id, cb) {
 
-    Campaign.findById(req.params.id)
+    Campaign.findById(id)
         .exec(function(err, obj) {
             if(err) {
-                return error.handleError(err, next);
+                return error.handleError(err, cb);
             }
             if(!obj) {
-                return next(new error.ResourceNotFoundError('Campaign not found', { id: req.params.id }));
+                return cb(new error.ResourceNotFoundError('Campaign not found', { id: id }));
             }
 
-            callback(obj);
+            cb(null, obj);
         });
 };
 
@@ -108,14 +109,10 @@ var validateCampaign = function validateCampaign(campaign, userId, type, next) {
 var postCampaign = function (baseUrl) {
     return function (req, res, next) {
 
-        var err = handlerUtils.checkWritingPreCond(req, Campaign);
+        var err = handlerUtils.checkWritingPreCond(req.body, req.user, Campaign);
 
         if(err) {
             return error.handleError(err, next);
-        }
-
-        if(!req.body) {
-            return next(new error.MissingParameterError({ required: 'campaign object' }));
         }
 
         var sentCampaign = new Campaign(req.body);
@@ -169,27 +166,7 @@ function putCampaign(req, res, next) {
     var sentCampaign = req.body;
     req.log.trace({body: sentCampaign}, 'parsed req body');
 
-    // ref properties: replace objects by ObjectId in case client sent whole object instead of reference only
-    // do this check only for properties of type ObjectID
-    // needed e.g. to "clean up" organization
-    _.filter(Campaign.schema.paths, function (path) {
-        return (path.instance === 'ObjectID');
-    })
-        .forEach(function (myPath) {
-            if ((myPath.path in sentCampaign) && (!(typeof sentCampaign[myPath.path] === 'string' || req.body[myPath.path] instanceof String))) {
-                sentCampaign[myPath.path] = sentCampaign[myPath.path].id;
-            }
-        });
-
-    // if client sends whole campaignLead objects, replace them by their respective ObjectId
-
-    _.each(sentCampaign.campaignLeads,function (element, index, list) {
-        if (typeof element !== 'string' ) {
-            if (element.id) {
-                list[index] = element.id;
-            }
-        }
-    });
+    handlerUtils.clean(Campaign, sentCampaign);
 
     Campaign.findById(req.params.id).exec(function (err, reloadedCampaign) {
         if(err) {
@@ -233,15 +210,7 @@ var getAllForUserFn = function (baseUrl) {
         var match = all ? {} : {campaignLeads: userId};
 
         Campaign.find(match)
-            .exec(function(err, campaigns) {
-
-                if(err) {
-                    return error.handleError(err, next);
-                }
-
-                res.send(200, campaigns);
-                return next();
-            });
+            .exec(generic.writeObjCb(req, res, next));
     };
 };
 
@@ -409,7 +378,8 @@ var avatarImagePostFn = function(baseUrl) {
         image.resizeImage(req, req.files.file.path, function (err, image) {
             if(err) { return error.handleError(err, next); }
 
-            getCampaign(req, res, next, function (obj) {
+            getCampaign(req.params.id, function (err, obj) {
+                if (err) {return error.handleError(err, next);}
 
                 obj.avatar = image;
                 obj.save(function(err, result) { if(err) { return error.handleError(err, next); } });

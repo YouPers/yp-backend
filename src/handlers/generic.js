@@ -227,8 +227,8 @@ var _addSort = function (queryparams, dbquery) {
 
 
 var _addFilter = function (queryParams, dbquery, Model) {
-    var filters;
-    if (!(filters = hasProp(queryParams, 'filter', '-filter', '+filter')) && isF(dbquery, 'or', 'nor', 'and')) {
+
+    if (!(hasProp(queryParams, 'filter', '-filter', '+filter')) && isF(dbquery, 'or', 'nor', 'and')) {
         return dbquery;
     }
 
@@ -358,7 +358,7 @@ function resolveDocumentzAtPath(doc, pathBits) {
             resolvedSoFar.push(resolvedField);
         }
     }
-//console.log("Resolving the first field yielded: ",resolvedSoFar);
+
     var remainingPathBits = pathBits.slice(1);
     if (remainingPathBits.length === 0) {
         return resolvedSoFar; // A redundant check given the check at the top, but more efficient.
@@ -373,6 +373,45 @@ function resolveDocumentzAtPath(doc, pathBits) {
 }
 
 
+var sendListCb =  function (req, res, next) {
+    return function (err, objList) {
+        if (err) {
+            return error.handleError(err, next);
+        }
+        if (!objList || objList.length === 0) {
+            res.send([]);
+            return next();
+        }
+        if (req.query && req.query.populatedeep) {
+            deepPopulate(objList, req.query.populatedeep, {}, function (err, result) {
+                if (err) {
+                    return error.handleError(err, next);
+                }
+                res.send(result);
+                return next();
+            });
+        } else {
+            res.send(objList);
+            return next();
+        }
+    };
+};
+
+var writeObjCb = function(req, res, next) {
+    return function(err, savedObject) {
+        if(err) {
+            return error.handleError(err, next);
+        }
+        var responseCode = 200;
+        if (req.method === 'POST') {
+            res.header('location', req.url + '/' + savedObject._id);
+            responseCode = 201;
+        }
+        res.send(responseCode, savedObject);
+        return next();
+    };
+};
+
 /////////////////////////////////////
 // the generic route handlers
 
@@ -386,7 +425,7 @@ module.exports = {
 
             processStandardQueryOptions(req, dbQuery, Model)
                 .exec(function geByIdFnCallback(err, obj) {
-                    if(err) {
+                    if (err) {
                         return error.handleError(err, next);
                     }
                     if (!obj) {
@@ -401,7 +440,7 @@ module.exports = {
                     }
                     if (req.query && req.query.populatedeep) {
                         deepPopulate(obj, req.query.populatedeep, {}, function (err, result) {
-                            if(err) {
+                            if (err) {
                                 return error.handleError(err, next);
                             }
                             res.send(result);
@@ -431,37 +470,17 @@ module.exports = {
             var dbQuery = Model.find(finder);
 
             processStandardQueryOptions(req, dbQuery, Model)
-                .exec(function (err, objList) {
-                    if(err) {
-                        return error.handleError(err, next);
-                    }
-                    if (!objList || objList.length === 0) {
-                        res.send([]);
-                        return next();
-                    }
-                    if (req.query && req.query.populatedeep) {
-                        deepPopulate(objList, req.query.populatedeep, {}, function (err, result) {
-                            if(err) {
-                                return error.handleError(err, next);
-                            }
-                            res.send(result);
-                            return next();
-                        });
-                    } else {
-                        res.send(objList);
-                        return next();
-                    }
-                });
+                .exec(sendListCb(req, res, next));
         };
     },
 
-    postFn: function genericPostFn (baseUrl, Model) {
+    postFn: function genericPostFn(baseUrl, Model) {
         return function (req, res, next) {
 
-            var err = handlerUtils.checkWritingPreCond(req, Model);
+            var err = handlerUtils.checkWritingPreCond(req.body, req.user, Model);
 
             if (err) {
-                return next(err);
+                return error.handleError(err, next);
             }
 
             // if this Model has a campaign Attribute and the user is currently part of a campaign,
@@ -472,16 +491,7 @@ module.exports = {
 
             var newObj = new Model(req.body);
 
-            req.log.trace(newObj, 'PostFn: Saving new Object');
-            // try to save the new object
-            newObj.save(function (err, savedObj) {
-                if(err) {
-                    return error.handleError(err, next);
-                }
-                res.header('location', baseUrl + '/' + savedObj._id);
-                res.send(201, savedObj);
-                return next();
-            });
+            newObj.save(writeObjCb(req, res, next));
         };
     },
 
@@ -509,7 +519,7 @@ module.exports = {
             var dbQuery = Model.find(finder);
 
             dbQuery.exec(function (err, objects) {
-                if(err) {
+                if (err) {
                     return error.handleError(err, next);
                 }
                 _.forEach(objects, function (obj) {
@@ -543,7 +553,7 @@ module.exports = {
             }
 
             Model.findOne(finder).exec(function (err, obj) {
-                if(err) {
+                if (err) {
                     return error.handleError(err, next);
                 }
                 if (!obj) {
@@ -559,17 +569,18 @@ module.exports = {
 
     putFn: function (baseUrl, Model) {
         return function (req, res, next) {
-            var err = handlerUtils.checkWritingPreCond(req, Model);
-
-            if(err) {
+            var err = handlerUtils.checkWritingPreCond(req.body, req.user,  Model);
+            if (err) {
                 return error.handleError(err, next);
             }
 
+            var sentObj = req.body;
+
             // check whether this is an update for roles and check required privileges
-            if (req.body.roles) {
-                if (!auth.canAssign(req.user, req.body.roles)) {
+            if (sentObj.roles) {
+                if (!auth.canAssign(req.user, sentObj.roles)) {
                     return next(new error.NotAuthorizedError('authenticated user has not enough privileges to assign the specified roles', {
-                        roles: req.body.roles
+                        roles: sentObj.roles
                     }));
                 }
             }
@@ -585,7 +596,7 @@ module.exports = {
                 q.select(Model.adminAttrsSelector);
             }
             q.exec(function (err, objFromDb) {
-                if(err) {
+                if (err) {
                     return error.handleError(err, next);
                 }
                 if (!objFromDb) {
@@ -607,40 +618,28 @@ module.exports = {
                     }
 
                     // he is not allowed to change the owner of the object
-                    if (req.body.owner) {
-                        if (!objFromDb.owner.equals(req.body.owner)) {
+                    if (sentObj.owner) {
+                        if (!objFromDb.owner.equals(sentObj.owner)) {
                             return next(new error.NotAuthorizedError('authenticated user is not authorized ' +
                                 'to change the owner of this object', {
                                 currentOwner: objFromDb.owner,
-                                requestedOwner: req.body.owner
+                                requestedOwner: sentObj.owner
                             }));
                         }
                     }
                 }
 
-                _.extend(objFromDb, req.body);
+                _.extend(objFromDb, sentObj);
 
-                objFromDb.save(function (err, savedObj) {
-                    if(err) {
-                        return error.handleError(err, next);
-                    }
-                    res.send(200, savedObj);
-                });
+                objFromDb.save(writeObjCb(req, res, next));
             });
 
         };
     },
 
-    clean: function clean(restObj) {
-        var update = _.extend({}, restObj);
-        /**read only properties */
-        delete update._id;
-        delete update.created_at;
-        delete update.modified_at;
-        delete update.modified_by;
-        delete update.created_by;
-        return update;
-    },
+    sendListCb: sendListCb,
+
+    writeObjCb: writeObjCb,
 
     params: {
         filter: {

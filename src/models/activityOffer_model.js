@@ -19,13 +19,14 @@ var mongoose = require('mongoose'),
 var ActivityOfferSchema = common.newSchema({
     activity: {type: ObjectId, ref: 'Activity', required: true},
     activityPlan: [{type: ObjectId, ref: 'ActivityPlan', required: false}],
-    type: [{type: String}],
-    targetCampaign: {type: ObjectId, ref: 'Campaign', required: false},
-    targetUser: {type: ObjectId, ref: 'User', required: false},
+    type: [{type: String}],  // mongoose does not allows String enum inside []--> only use common.enums.ActivityOfferType here!!!
+    targetQueue: {type: ObjectId, required: true},
     recommendedBy: [{type: ObjectId, ref: 'User', required: true}],
     prio: [{type: Number}],
     validFrom: {type: Date, required: false},
     validTo: {type: Date, required: false}
 });
+
+// TODO
 
 module.exports = mongoose.model('ActivityOffer', ActivityOfferSchema);

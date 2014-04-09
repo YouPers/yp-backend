@@ -274,9 +274,9 @@ function getActivityOffersFn(req, res, next) {
 
                             if(countPerType < maxPerType) {
                                 sortedOffers.push(offer);
+                                delete myOffersHash[offer.activity._id];
                             }
 
-                            delete myOffersHash[offer.activity._id];
                         }
                     };
 

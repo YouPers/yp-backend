@@ -6,7 +6,7 @@ var mongoose = require('mongoose'),
 function createOrUpdateDiaryEntry (entryToStore, cb) {
 
     DiaryEntry
-        .find({activityPlanEvent: entryToStore.activityPlanEvent})
+        .find({refId: entryToStore.refId})
         .exec(function(err, entries) {
             if (err) {
                 error.handleError(err, cb);
@@ -19,7 +19,7 @@ function createOrUpdateDiaryEntry (entryToStore, cb) {
                 _.merge(entries[0], entryToStore);
                 return entries[0].save(cb);
             } else {
-                cb(new Error('should never find more than one diaryEntry for one ActivityPlanEvent'));
+                cb(new Error('should never find more than one diaryEntry for one refId'));
             }
         });
 }

@@ -145,7 +145,7 @@ function _loadAssessmentResult(userId, assessmentResult, done) {
 function _removeOldRecsFromActivityOffers(userId, cb) {
     // mongo/mogoose automagically query the 'type' attribute, which is actually an array, by doing
     // this here. It means: find documents with 'type' array that contains HEALTH_COACH_TYPE
-    ActivityOffer.find({targetUser: userId, type: HEALTH_COACH_TYPE})
+    ActivityOffer.find({targetQueue: userId, type: HEALTH_COACH_TYPE})
         .remove()
         .exec(
         function(err) {

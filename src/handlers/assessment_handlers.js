@@ -25,6 +25,14 @@ var getNewestResult = function (baseUrl, Model) {
 };
 
 
+function assessmentAnswerPutFn (baseUrl, Model) {
+
+    // put a single question
+
+    // load the today's assessment result or create a new one for today
+    // mark it dirty (for generating coach recommendations when loading the offers)
+    // save
+}
 
 function assessmentResultPostFn (baseUrl, Model) {
     return function (req, res, next) {

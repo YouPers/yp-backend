@@ -14,14 +14,15 @@ module.exports = function (swagger, config) {
 
     var baseUrl = '/assessments',
         baseUrlWithId = baseUrl + "/{id}";
-    var resultsUrl = baseUrl + '/{assId}/results';
+    var resultsUrl = baseUrl + '/{assessmentId}/results';
+    var answerUrl = baseUrl + '/{assessmentId}/answer';
 
     swagger.addPut({
         spec: {
             description: "Operations about assessments and assessmentResults",
             path: baseUrlWithId,
             notes: "updates an existing assessment",
-            summary: "stores an update for the assessment with id assId",
+            summary: "stores an update for the assessment with id assessmentId",
             method: "PUT",
             params: [swagger.pathParam("id", "ID of the assessment", "string"),
                 swagger.bodyParam("assessment", "The assessment to store, or only some keys of it", "AssessmentResult")],
@@ -48,9 +49,9 @@ module.exports = function (swagger, config) {
             description: "Operations about assessments and assessmentResults",
             path: resultsUrl,
             notes: "stores a new result",
-            summary: "stores a new result for the assessment with id assId",
+            summary: "stores a new result for the assessment with id assessmentId",
             method: "POST",
-            params: [swagger.pathParam("assId", "ID of the assessment for which to store a result", "string"),
+            params: [swagger.pathParam("assessmentId", "ID of the assessment for which to store a result", "string"),
                 swagger.bodyParam("assessmentResult", "The assessment result to store", "AssessmentResult")],
             "responseMessages": [
                 {
@@ -70,18 +71,35 @@ module.exports = function (swagger, config) {
         action: assessment_handlers.assessmentResultPostFn(resultsUrl, AssessmentResult)
     });
 
+    swagger.addPost({
+        spec: {
+            description: "Post an answer of an assessment result",
+            path: answerUrl,
+            notes: "Post an answer of an assessment result",
+            summary: "Post an answer of an assessment result",
+            method: "POST",
+            params: [swagger.pathParam("assessmentId", "ID of the assessment for which to save and result answer", "string"),
+                swagger.bodyParam("assessmentResultAnswer", "The assessment answer to store", "AssessmentResultAnswer")],
+            "responseMessages": [],
+            "nickname": "assessmentResultAnswerPost",
+            accessLevel: 'al_individual',
+            beforeCallbacks: []
+        },
+        action: assessment_handlers.assessmentResultAnswerPostFn()
+    });
+
     swagger.addGet({
             spec: {
                 description: "Operations about assessments and assessmentResults",
                 path: resultsUrl + '/newest',
                 notes: "always returns zero or one result, the newest result is the one with the newest timestamp",
-                summary: "returns a the newest assessmentResult for the current user and the assessment with id assId",
+                summary: "returns a the newest assessmentResult for the current user and the assessment with id assessmentId",
                 method: "GET",
-                params: [swagger.pathParam("assId", "ID of the assessment for which to store a result", "string"),
+                params: [swagger.pathParam("assessmentId", "ID of the assessment for which to store a result", "string"),
                     generic.params.populate,
                     generic.params.populatedeep],
                 "responseClass": "AssessmentResult",
-                "errorResponses": [swagger.errors.invalid('assId'), swagger.errors.notFound("assessment")],
+                "errorResponses": [swagger.errors.invalid('assessmentId'), swagger.errors.notFound("assessment")],
                 "nickname": "getNewestAssessmentResult",
                 accessLevel: 'al_individual',
                 beforeCallbacks: []
@@ -95,11 +113,11 @@ module.exports = function (swagger, config) {
                 description: "Operations about assessments and assessmentResults",
                 path: resultsUrl,
                 notes: "returns an array of assessmentResults",
-                summary: "returns all assessmentResult for the current user and the assessment with id assId",
+                summary: "returns all assessmentResult for the current user and the assessment with id assessmentId",
                 method: "GET",
-                params: [swagger.pathParam("assId", "ID of the assessment for which to store a result", "string")],
+                params: [swagger.pathParam("assessmentId", "ID of the assessment for which to store a result", "string")],
                 "responseClass": "AssessmentResult",
-                "errorResponses": [swagger.errors.invalid('assId'), swagger.errors.notFound("assessment")],
+                "errorResponses": [swagger.errors.invalid('assessmentId'), swagger.errors.notFound("assessment")],
                 "nickname": "getAssessmentResults",
                 accessLevel: 'al_individual',
                 beforeCallbacks: []
@@ -113,9 +131,9 @@ module.exports = function (swagger, config) {
                 description: "Operations about assessments and assessmentResults",
                 path: resultsUrl,
                 notes: "can only delete the results for one specific assessement",
-                summary: "deletes all assessmentResults for the current user and the assessment with id assId",
+                summary: "deletes all assessmentResults for the current user and the assessment with id assessmentId",
                 method: "DELETE",
-                params: [swagger.pathParam("assId", "ID of the assessment for which to store a result", "string")],
+                params: [swagger.pathParam("assessmentId", "ID of the assessment for which to store a result", "string")],
                 "nickname": "deleteAssessmentResults",
                 accessLevel: 'al_user',
                 beforeCallbacks: []
@@ -129,9 +147,9 @@ module.exports = function (swagger, config) {
                 description: "Operations about assessments and assessmentResults",
                 path: resultsUrl + "/{id}",
                 notes: "can only delete the results for one specific assessement",
-                summary: "deletes one specifv assessmentResult for the current user and the assessment with id assId",
+                summary: "deletes one specifv assessmentResult for the current user and the assessment with id assessmentId",
                 method: "DELETE",
-                params: [swagger.pathParam("assId", "ID of the assessment for which to store a result", "string"),
+                params: [swagger.pathParam("assessmentId", "ID of the assessment for which to store a result", "string"),
                     swagger.pathParam("id", "ID of the result to delete", "string")],
                 "nickname": "deleteAssessmentResult",
                 accessLevel: 'al_user',

@@ -270,6 +270,14 @@ var _addFilter = function (queryParams, dbquery, Model) {
     return dbquery;
 };
 
+var processDbQueryOptions = function(queryOptions, dbquery, Model) {
+    dbquery = _addPagination(queryOptions, dbquery);
+    dbquery = _addPopulation(queryOptions, dbquery);
+    dbquery = _addSort(queryOptions, dbquery);
+    dbquery = _addFilter(queryOptions, dbquery, Model);
+    return dbquery;
+};
+
 var processStandardQueryOptions = function (req, dbquery, Model) {
     if (req.user && auth.isAdminForModel(req.user, Model) && Model.adminAttrsSelector) {
         dbquery.select(Model.adminAttrsSelector);
@@ -279,11 +287,7 @@ var processStandardQueryOptions = function (req, dbquery, Model) {
         dbquery.select(Model.getI18nPropertySelector(req.locale || 'de'));
     }
 
-    dbquery = _addPagination(req.query, dbquery);
-    dbquery = _addPopulation(req.query, dbquery);
-    dbquery = _addSort(req.query, dbquery);
-    dbquery = _addFilter(req.query, dbquery, Model);
-    return dbquery;
+    return processDbQueryOptions(req.query, dbquery, Model);
 };
 
 /**
@@ -418,6 +422,7 @@ var writeObjCb = function(req, res, next) {
 module.exports = {
 
     addStandardQueryOptions: processStandardQueryOptions,
+    processDbQueryOptions: processDbQueryOptions,
 
     getByIdFn: function (baseUrl, Model) {
         return function (req, res, next) {

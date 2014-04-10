@@ -7,7 +7,8 @@ var mongoose = require('mongoose'),
     utils = require('./handlerUtils'),
     auth = require('../util/auth'),
     generic = require('./generic'),
-    Notification = require('../core/Notification');
+    Notification = require('../core/Notification'),
+    urlComposer = require('../util/urlcomposer');
 
 function _publishNotificationForOffer(activityOffer, author, cb) {
 
@@ -24,7 +25,7 @@ function _publishNotificationForOffer(activityOffer, author, cb) {
                 title: populatedOffer.activity.title,
                 targetQueue: populatedOffer.targetQueue,
                 author: author,
-                refDocLink: "http://TODOaddALinkHere",
+                refDocLink: urlComposer.activityOfferUrl(populatedOffer.activity.id),
                 refDocId: activityOffer._id,
                 refDocModel: 'ActivityOffer'
             }).publish(cb);
@@ -178,8 +179,15 @@ function getActivityOffersFn(req, res, next) {
                 targetQueues.push(req.user.campaign._id);
             }
 
+            var selector = {targetQueue: {$in: targetQueues}};
+
+            // check whether the client only wanted offers for one specific activity
+            if (req.params.activity) {
+                selector.activity = req.params.activity;
+            }
+
             ActivityOffer
-                .find({targetQueue: {$in: targetQueues}})
+                .find(selector)
                 .populate('activity activityPlan recommendedBy')
                 .exec(function (err, offers) {
                     if (err) {

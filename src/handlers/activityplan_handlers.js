@@ -12,7 +12,8 @@ var calendar = require('../util/calendar'),
     auth = require('../util/auth'),
     handlerUtils = require('./handlerUtils'),
     Notification = require('../core/Notification'),
-    Diary = require('../core/Diary');
+    Diary = require('../core/Diary'),
+    urlComposer = require('../util/urlcomposer');
 
 function generateEventsForPlan(plan, user, i18n) {
 
@@ -249,7 +250,7 @@ function saveNewActivityPlan(plan, user, i18n, cb) {
                                 title: savedPlan.activity.title,
                                 targetQueue: savedOffer.targetQueue,
                                 author: savedOffer.recommendedBy,
-                                refDocLink: "http://TODOaddALinkHere",
+                                refDocLink: urlComposer.activityOfferUrl(savedPlan.activity.id),
                                 refDocId: savedOffer._id,
                                 refDocModel: 'ActivityOffer',
                                 publishTo: savedPlan.events[savedPlan.events.length - 1].end
@@ -411,7 +412,7 @@ function postActivityPlanInvite(req, res, next) {
                                         title: locals.plan.title,
                                         targetQueue: savedOffer.targetQueue,
                                         author: savedOffer.recommendedBy,
-                                        refDocLink: "http://TODOaddALinkHere",
+                                        refDocLink: urlComposer.activityOfferUrl(savedOffer.activity),
                                         refDocId: savedOffer._id,
                                         refDocModel: 'ActivityOffer',
                                         publishTo: locals.plan.events[locals.plan.events.length - 1].end

@@ -138,17 +138,20 @@ consts.newUserInNewCampaignApi(
                         expect(notifs.length).toEqual(1);
                         expect(notifs[0].type).toEqual('joinablePlan');
 
-                        frisby.create('Notifications: cleanup')
+                        frisby.create('Notifications: cleanup plan 1')
                             .delete(URL + '/activityplans/' + campaignPlan.id)
                             .auth('test_sysadm', 'yp')
                             .expectStatus(200)
+                            .after(function() {
+                                frisby.create('Notifications: cleanup notif 1, should be cleaned automatically when plan is deleted')
+                                    .delete(URL + '/notifications/' + notifs[0].id)
+                                    .auth('test_sysadm', 'yp')
+                                    .expectStatus(404)
+                                    .toss();
+                            })
                             .toss();
 
-                        frisby.create('Notifications: cleanup')
-                            .delete(URL + '/notifications/' + notifs[0].id)
-                            .auth('test_sysadm', 'yp')
-                            .expectStatus(200)
-                            .toss();
+
                         cleanupFn();
 
                     })
@@ -211,17 +214,20 @@ consts.newUserInNewCampaignApi(
                                         expect(notifs.length).toBeGreaterThan(0);
                                         expect(_.map(notifs, 'type')).toContain('personalInvitation');
 
-                                        frisby.create('Notifications: cleanup')
+                                        frisby.create('Notifications: cleanup plan 2')
                                             .delete(URL + '/activityplans/' + myPlan.id)
                                             .auth('test_sysadm', 'yp')
                                             .expectStatus(200)
+                                            .after(function() {
+                                                frisby.create('Notifications: cleanup notif 2, should be cleaned automatically when plan is deleted')
+                                                    .delete(URL + '/notifications/' + notifs[0].id)
+                                                    .auth('test_sysadm', 'yp')
+                                                    .expectStatus(404)
+                                                    .toss();
+                                            })
                                             .toss();
 
-                                        frisby.create('Notifications: cleanup')
-                                            .delete(URL + '/notifications/' + notifs[0].id)
-                                            .auth('test_sysadm', 'yp')
-                                            .expectStatus(200)
-                                            .toss();
+
 
 
                                         cleanupFn();

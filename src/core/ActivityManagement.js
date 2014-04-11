@@ -25,9 +25,10 @@ var actMgr = new ActivityManagement();
 
 actMgr.on('activity:planSaved', function (plan) {
     var isCampaignPromotedPlan = (plan.source === "campaign");
+    var isJoinablePlan = (_.contains(['public', 'campaign'], plan.visibility) && 'group' === plan.executionType && !plan.masterPlan);
 
     // check whether this is a public joinable plan, if yes store an corresponding ActivityOffer
-    if (_.contains(['public', 'campaign'], plan.visibility) && 'group' === plan.executionType && !plan.masterPlan) {
+    if (isJoinablePlan) {
         var offer = new ActivityOffer({
             activity: plan.activity.id,
             activityPlan: [plan.id],
@@ -46,7 +47,24 @@ actMgr.on('activity:planSaved', function (plan) {
     }
 
     // TODO: check whether we need to delete any offers / notifications as the user has planned this activity now
+    // Assumption:
+    // - We delete any personal offers and personal notifications for the same user and for the same masterplan
+    var isSlavePlan = plan.masterPlan;
 
+    if (isSlavePlan) {
+        ActivityOffer
+            .find({targetQueue: plan.owner, activityPlan: plan.masterPlan})
+            .exec(function(err, offers) {
+                _.forEach(offers, function (offer) {
+                    actMgr.emit('activity:offerDeleted', offer);
+                    offer.remove(function (err) {
+                        if (err) {
+                            return actMgr.emit('error', err);
+                        }
+                    });
+                });
+            });
+    }
 });
 
 

@@ -82,25 +82,38 @@ actMgr.on('activity:planDeleted', function (plan) {
     });
 });
 
-actMgr.on('activity:offerSaved', function (offer, plan) {
-    var isCampaignPromotedOffer = ((offer.type[0] === 'campaignActivityPlan') || (offer.type[0] === 'campaignActivity'));
-    var isPersonalInvite = (offer.type[0] === 'personalInvitation');
+actMgr.on('activity:offerSaved', function (offer) {
 
-    if (isCampaignPromotedOffer || isPersonalInvite) {
-        return new Notification({
-            type: mapOfferTypeToNotificationType[offer.type],
-            title: plan.title || offer.activity.title,
-            targetQueue: offer.targetQueue,
-            author: offer.recommendedBy,
-            refDocLink: urlComposer.activityOfferUrl(offer.activity.id),
-            refDocId: offer._id,
-            refDocModel: 'ActivityOffer',
-            publishTo: offer.validTo
-        }).publish(function (err) {
-                if (err) {
-                    return actMgr.emit('error', err);
-                }
-            });
+    // check if offer is populated, if not load the missing referenced objects so we can create nice notifications
+    if (!(offer.activity instanceof mongoose.model('Activity'))) {
+        offer.populate('activity activityPlan', _publishNotification);
+    } else {
+        _publishNotification(null, offer);
+    }
+
+    function _publishNotification(err, offer) {
+        if (err) {
+            return actMgr.emit('Error', err);
+        }
+        var isCampaignPromotedOffer = ((offer.type[0] === 'campaignActivityPlan') || (offer.type[0] === 'campaignActivity'));
+        var isPersonalInvite = (offer.type[0] === 'personalInvitation');
+
+        if (isCampaignPromotedOffer || isPersonalInvite) {
+            return new Notification({
+                type: mapOfferTypeToNotificationType[offer.type],
+                title: (offer.plan && offer.plan.title) || offer.activity.title,
+                targetQueue: offer.targetQueue,
+                author: offer.recommendedBy,
+                refDocLink: urlComposer.activityOfferUrl(offer.activity.id),
+                refDocId: offer._id,
+                refDocModel: 'ActivityOffer',
+                publishTo: offer.validTo
+            }).publish(function (err) {
+                    if (err) {
+                        return actMgr.emit('error', err);
+                    }
+                });
+        }
     }
 });
 

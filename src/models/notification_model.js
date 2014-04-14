@@ -5,7 +5,8 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
     ObjectId = Schema.ObjectId,
     common = require('./common'),
-    notificationTypes = ['message', 'personalInvitation', 'joinablePlan', 'activityRecommendation'];
+    notificationTypes = ['message', 'personalInvitation', 'joinablePlan', 'activityRecommendation'],
+    sourceTypes = ['youpers', 'campaign', 'community'];
 
 /**
  * Notification Schema
@@ -14,6 +15,7 @@ var mongoose = require('mongoose'),
 var NotificationSchema = common.newSchema({
     author: {type: ObjectId, ref: 'User', required: true},
     type: {type: String, enum: notificationTypes, required: true},
+    sourceType: {type: String, enum: sourceTypes, required: true},
     refDocId: {type: ObjectId},
     refDocModel: {type: String},
     title: {type: String},  // redundant information used to display information the referenced Doc

@@ -3,6 +3,7 @@ var calendar = require('../util/calendar'),
     ActivityPlan = mongoose.model('ActivityPlan'),
     Activity = mongoose.model('Activity'),
     ActivityOffer = mongoose.model('ActivityOffer'),
+    actMgr = require('../core/ActivityManagement'),
     generic = require('./generic'),
     error = require('../util/error'),
     _ = require('lodash'),
@@ -11,10 +12,9 @@ var calendar = require('../util/calendar'),
     async = require('async'),
     auth = require('../util/auth'),
     handlerUtils = require('./handlerUtils'),
-    Notification = require('../core/Notification'),
     Diary = require('../core/Diary');
 
-function generateEventsForPlan(plan, user, i18n) {
+function _generateEventsForPlan(plan, user, i18n) {
 
     // ToDo: has to be enhanced with functionality to generate only future events for a puts (additional from date as parameter)
 
@@ -122,7 +122,7 @@ function putActivityEvent(req, res, next) {
             });
 
 
-            function saveCallback (err, savedActivityPlan) {
+            function saveCallback(err, savedActivityPlan) {
                 if (err) {
                     return error.handleError(err, next);
                 }
@@ -180,10 +180,10 @@ function postNewActivityPlan(req, res, next) {
 
     var newActPlan = new ActivityPlan(sentPlan);
 
-    generateEventsForPlan(newActPlan, req.user, req.i18n);
+    _generateEventsForPlan(newActPlan, req.user, req.i18n);
     req.log.trace({eventsAfter: newActPlan.events}, 'after generating events');
 
-    saveNewActivityPlan(newActPlan, req.user, req.i18n, generic.writeObjCb(req, res, next));
+    _saveNewActivityPlan(newActPlan, req.user, req.i18n, generic.writeObjCb(req, res, next));
 }
 
 /**
@@ -194,7 +194,7 @@ function postNewActivityPlan(req, res, next) {
  * @param cb - callback(err, savedPlan)
  * @param i18n
  */
-function saveNewActivityPlan(plan, user, i18n, cb) {
+function _saveNewActivityPlan(plan, user, i18n, cb) {
 
     // add fields of activity to the activity plan
     Activity.findById(plan.activity).exec(function (err, foundActivity) {
@@ -226,49 +226,12 @@ function saveNewActivityPlan(plan, user, i18n, cb) {
                     email.sendCalInvite(user.email, 'new', myIcalString, i18n);
                 }
 
-                var isCampaignPromotedPlan = (savedPlan.source === "campaign");
+                actMgr.emit('activity:planSaved', reloadedActPlan);
 
-                // check whether this is a public joinable plan, if yes store an corresponding ActivityOffer
-                if (_.contains(['public', 'campaign'], reloadedActPlan.visibility) && 'group' === reloadedActPlan.executionType && !reloadedActPlan.masterPlan) {
-                    var offer = new ActivityOffer({
-                        activity: reloadedActPlan.activity._id,
-                        activityPlan: [reloadedActPlan._id],
-                        targetQueue: reloadedActPlan.campaign || reloadedActPlan.owner,
-                        recommendedBy: [user._id],
-                        type: [isCampaignPromotedPlan ? 'campaignActivityPlan' : 'publicActivityPlan'],
-                        validTo: reloadedActPlan.events[reloadedActPlan.events.length - 1].end,
-                        prio: [isCampaignPromotedPlan ? 500 : 1]
-                    });
-                    offer.save(function (err, savedOffer) {
-                        if (err) {
-                            return cb(err);
-                        }
-                        if (isCampaignPromotedPlan) {
-                            return new Notification({
-                                type: 'joinablePlan',
-                                title: savedPlan.activity.title,
-                                targetQueue: savedOffer.targetQueue,
-                                author: savedOffer.recommendedBy,
-                                refDocLink: "http://TODOaddALinkHere",
-                                refDocId: savedOffer._id,
-                                refDocModel: 'ActivityOffer',
-                                publishTo: savedPlan.events[savedPlan.events.length - 1].end
-                            }).publish(_loadPlanCb);
-                        } else {
-                            return _loadPlanCb(null);
-                        }
-                    });
-                } else {
-                    return _loadPlanCb(null);
-                }
+                reloadedActPlan.activity = reloadedActPlan.activity._id;
 
-                function _loadPlanCb(err, obj) {
-                    if (err) {
-                        error.handleError(err, cb);
-                    }
-                    reloadedActPlan.activity = reloadedActPlan.activity._id;
-                    return cb(null, reloadedActPlan);
-                }
+                return cb(null, reloadedActPlan);
+
             });
 
         });
@@ -293,8 +256,9 @@ function postJoinActivityPlanFn(req, res, next) {
         slavePlan.masterPlan = masterPlan._id;
         slavePlan.joiningUsers = [];
         slavePlan.owner = req.user.id;
+        slavePlan.source = 'community';
 
-        saveNewActivityPlan(slavePlan, req.user, req.i18n, generic.writeObjCb(req, res, next));
+        _saveNewActivityPlan(slavePlan, req.user, req.i18n, generic.writeObjCb(req, res, next));
 
     });
 
@@ -406,23 +370,14 @@ function postActivityPlanInvite(req, res, next) {
                                     if (err) {
                                         return error.handleError(err, done);
                                     }
-                                    return new Notification({
-                                        type: 'personalInvitation',
-                                        title: locals.plan.title,
-                                        targetQueue: savedOffer.targetQueue,
-                                        author: savedOffer.recommendedBy,
-                                        refDocLink: "http://TODOaddALinkHere",
-                                        refDocId: savedOffer._id,
-                                        refDocModel: 'ActivityOffer',
-                                        publishTo: locals.plan.events[locals.plan.events.length - 1].end
-                                    }).publish(_saveNotifCb);
-
+                                    actMgr.emit('activity:offerSaved', savedOffer, locals.plan);
+                                    _offerSavedCb(null);
                                 });
                             } else {
-                                process.nextTick(_saveNotifCb(null));
+                                process.nextTick(_offerSavedCb(null));
                             }
 
-                            function _saveNotifCb(err) {
+                            function _offerSavedCb(err) {
                                 if (err) {
                                     return error.handleError(err, done);
                                 }
@@ -468,7 +423,7 @@ function _deleteActivityPlanNoJoiningPlans(activityPlan, user, reason, i18n, don
 
         ////////////////////
         // private functions
-        var _sendNotificationCb = function (err) {
+        var _sendCalenderCancelCb = function (err) {
             if (err) {
                 return error.handleError(err, done);
             }
@@ -476,14 +431,8 @@ function _deleteActivityPlanNoJoiningPlans(activityPlan, user, reason, i18n, don
                 var myIcalString = calendar.getIcalObject(activityPlan, owner, 'cancel', i18n, reason).toString();
                 email.sendCalInvite(owner.email, 'cancel', myIcalString, i18n, reason);
             }
-
-            // remove any offers to join this plan
-            ActivityOffer.find({activityPlan: activityPlan._id}).remove().exec(function (err) {
-                if (err) {
-                    error.handleError(err, done);
-                }
-                return done();
-            });
+            actMgr.emit('activity:planDeleted',activityPlan);
+            return done();
         };
         ///////////////////
 
@@ -494,12 +443,12 @@ function _deleteActivityPlanNoJoiningPlans(activityPlan, user, reason, i18n, don
 
             // plan can be deleted if user is systemadmin or if it is his own plan
             if (auth.checkAccess(user, auth.accessLevels.al_systemadmin)) {
-                activityPlan.remove(_sendNotificationCb);
+                activityPlan.remove(_sendCalenderCancelCb);
             } else if (owner._id.equals(user._id || user)) {
 
                 // check deleteStatus
                 if (activityPlan.deleteStatus === ActivityPlan.activityPlanCompletelyDeletable) {
-                    activityPlan.remove(_sendNotificationCb);
+                    activityPlan.remove(_sendCalenderCancelCb);
                 } else if (activityPlan.deleteStatus === ActivityPlan.activityPlanOnlyFutureEventsDeletable) {
                     // delete  all future events, set activityPlan to "Done", send cancellations for deleted events
                     var now = new Date();
@@ -512,7 +461,7 @@ function _deleteActivityPlanNoJoiningPlans(activityPlan, user, reason, i18n, don
                     });
                     activityPlan.deletionReason = reason;
                     activityPlan.status = "old";
-                    activityPlan.save(_sendNotificationCb);
+                    activityPlan.save(_sendCalenderCancelCb);
                 } else {
                     return done(new error.BadMethodError('This activityPlan cannot be deleted.', {
                         activityPlanId: activityPlan.id,
@@ -632,6 +581,8 @@ function deleteActivityPlan(req, res, next) {
 
 function putActivityPlan(req, res, next) {
 
+    // TODO: handle updates of offers and notifications
+
     var sentPlan = req.body;
     var err = handlerUtils.checkWritingPreCond(sentPlan, req.user, ActivityPlan);
     if (err) {
@@ -657,7 +608,7 @@ function putActivityPlan(req, res, next) {
         }
 
         if (req.body.mainEvent && !_.isEqual(req.body.mainEvent, loadedActPlan.mainEvent)) {
-            generateEventsForPlan(req.body, req.user, req.i18n);
+            _generateEventsForPlan(req.body, req.user, req.i18n);
         }
 
         _.extend(loadedActPlan, req.body);

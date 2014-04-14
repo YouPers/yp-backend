@@ -3,35 +3,14 @@ var mongoose = require('mongoose'),
     ActivityOffer = mongoose.model('ActivityOffer'),
     AssessmentResult = mongoose.model('AssessmentResult'),
     CoachRecommendation = require('../core/CoachRecommendation'),
+    actMgr = require('../core/ActivityManagement'),
     _ = require('lodash'),
     async = require('async'),
     error = require('../util/error'),
     utils = require('./handlerUtils'),
     auth = require('../util/auth'),
-    generic = require('./generic'),
-    Notification = require('../core/Notification');
+    generic = require('./generic');
 
-function _publishNotificationForOffer(activityOffer, author, cb) {
-
-    activityOffer.populate('activity', 'titleI18n',
-
-        function (err, populatedOffer) {
-
-            if (err) {
-                return cb(err);
-            }
-
-            return new Notification({
-                type: 'activityRecommendation',
-                title: populatedOffer.activity.title,
-                targetQueue: populatedOffer.targetQueue,
-                author: author,
-                refDocLink: "http://TODOaddALinkHere",
-                refDocId: activityOffer._id,
-                refDocModel: 'ActivityOffer'
-            }).publish(cb);
-        });
-}
 
 /**
  * allows to post an Offer/Recommendation for an unplanned activity
@@ -48,15 +27,11 @@ function postActivityOffer(req, res, next) {
 
     var offer = new ActivityOffer(req.body);
 
-    _publishNotificationForOffer(offer, req.user, saveOfferAndSendToClientCb);
+    offer.save(function (err, savedOffer) {
+        actMgr.emit('activity:offerSaved', savedOffer);
+        return generic.writeObjCb(req, res, next)(err, savedOffer);
+    });
 
-    function saveOfferAndSendToClientCb(err, notification) {
-        if (err) {
-            return error.handleError(err, next);
-        }
-
-        offer.save(generic.writeObjCb(req, res, next));
-    }
 }
 
 function getCoachRecommendationsFn(req, res, next) {
@@ -124,26 +99,26 @@ function getCoachRecommendationsFn(req, res, next) {
  *
  [
 
-     group 1 - left:
-         1. campaign plan
-         2. campaign act
-         3. coach
-         4. personal
-         5. public
+ group 1 - left:
+ 1. campaign plan
+ 2. campaign act
+ 3. coach
+ 4. personal
+ 5. public
 
-     group 2 - middle:
-         1. coach
-         2. campaign plan
-         3. campaign act
-         4. personal
-         5. public
+ group 2 - middle:
+ 1. coach
+ 2. campaign plan
+ 3. campaign act
+ 4. personal
+ 5. public
 
-     group 3 - right:
-         1. personal
-         2. campaign plan
-         3. campaign act
-         4. coach
-         5. public
+ group 3 - right:
+ 1. personal
+ 2. campaign plan
+ 3. campaign act
+ 4. coach
+ 5. public
 
  ] repeats 3x
 
@@ -215,8 +190,16 @@ function getActivityOffersFn(req, res, next) {
             if (req.user.campaign) {
                 targetQueues.push(req.user.campaign._id);
             }
+
+            var selector = {targetQueue: {$in: targetQueues}};
+
+            // check whether the client only wanted offers for one specific activity
+            if (req.params.activity) {
+                selector.activity = req.params.activity;
+            }
+
             ActivityOffer
-                .find({targetQueue: {$in: targetQueues}})
+                .find(selector)
                 .populate('activity activityPlan recommendedBy')
                 .exec(consolidate);
         }

@@ -1,8 +1,9 @@
 var env = process.env.NODE_ENV || 'development',
     config = require('../config/config')[env];
 
-function activityOfferWebClientUrl(activityOfferId) {
-    return config.webclientUrl + "/#/schedule/" + activityOfferId;
+function activityOfferWebClientUrl(activityId) {
+
+    return config.webclientUrl + "/#/schedule/" + ((activityId.toJSON && activityId.toJSON()) || activityId);
 }
 
 function activityPlanWebClientUrl(activityPlanId) {

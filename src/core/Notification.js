@@ -3,7 +3,8 @@ var EventEmitter = require('events').EventEmitter,
     mongoose = require('mongoose'),
     NotificationModel = mongoose.model('Notification'),
     ALL_YOUPERS_QUEUE = "AAAAc64e53d523235b07EEEE",
-    moment = require('moment');
+    moment = require('moment'),
+    genericHandlers = require('../handlers/generic');
 
 function Notification(aNotification) {
     EventEmitter.call(this);
@@ -33,15 +34,15 @@ Notification.prototype.publish = function(cb) {
 
 };
 
-Notification.getCurrentNotifications = function(user, cb) {
+Notification.getCurrentNotifications = function(user, options, cb) {
     var myQueues = [ALL_YOUPERS_QUEUE].concat(user.getPersonalNotificationQueues());
     var now = moment().toDate();
-    console.log("using date:" + now );
-
-    NotificationModel
+    var query = NotificationModel
         .where({ targetQueue: {$in: myQueues}})
         .and({$or: [{publishTo: {$exists: false}}, {publishTo: {$gte: now}}]})
-        .and({$or: [{publishFrom: {$exists: false}}, {publishFrom: {$lte: now}}]})
+        .and({$or: [{publishFrom: {$exists: false}}, {publishFrom: {$lte: now}}]});
+
+    genericHandlers.processDbQueryOptions(options, query, NotificationModel)
         .exec(cb);
 };
 

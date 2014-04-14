@@ -37,8 +37,6 @@ Notification.prototype.publish = function(cb) {
 Notification.getCurrentNotifications = function(user, options, cb) {
     var myQueues = [ALL_YOUPERS_QUEUE].concat(user.getPersonalNotificationQueues());
     var now = moment().toDate();
-    console.log("using date:" + now );
-
     var query = NotificationModel
         .where({ targetQueue: {$in: myQueues}})
         .and({$or: [{publishTo: {$exists: false}}, {publishTo: {$gte: now}}]})

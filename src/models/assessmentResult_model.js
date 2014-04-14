@@ -11,6 +11,7 @@ var AssessmentResultSchema = common.newSchema({
     campaign: {type: Schema.Types.ObjectId, ref: 'Campaign'},
     assessment: {type: Schema.Types.ObjectId, ref: 'Assessment', required: true},
     timestamp: {type: Date},
+    dirty: { type: Boolean },
     answers: [AssessmentResultAnswer.schema]
 });
 

@@ -74,6 +74,7 @@ function assessmentResultAnswerPutFn () {
                     result.answers.splice(answerIndex, 1);
                 }
                 result.answers.push(newAnswer);
+                result.dirty = true;
 
                 result.save(function(err, saved) {
                     if(err) {

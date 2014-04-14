@@ -1,8 +1,10 @@
 var mongoose = require('mongoose'),
     ActivityPlan = mongoose.model('ActivityPlan'),
     ActivityOffer = mongoose.model('ActivityOffer'),
+    AssessmentResult = mongoose.model('AssessmentResult'),
     CoachRecommendation = require('../core/CoachRecommendation'),
     _ = require('lodash'),
+    async = require('async'),
     error = require('../util/error'),
     utils = require('./handlerUtils'),
     auth = require('../util/auth'),
@@ -159,157 +161,205 @@ function getActivityOffersFn(req, res, next) {
         return next(new error.UnauthorizedError());
     }
 
+    var locals = {};
+
+
     // load currently active plans for this user, because we do not want to display offers that he has
     // already planned
-    ActivityPlan
-        .find({
-            owner: req.user._id,
-            status: 'active'})
-        .select('activity')
-        .exec(function (err, plans) {
-            if (err) {
-                error.handleError(err, next);
-            }
+    var getActivityPlans = function getActivityPlans(done) {
 
-            var plannedActs = _.map(plans, 'activity');
+        ActivityPlan
+            .find({
+                owner: req.user._id,
+                status: 'active'})
+            .select('activity')
+            .exec(function (err, plans) {
+                if (err) {
+                    return done(err);
+                }
+                locals.plans = plans;
+                return done();
+            });
+
+    };
+
+
+    var getAssessmentResult = function getAssessmentResult(done) {
+
+        AssessmentResult
+            .find({}, {}, { sort: { 'created_at' : -1 }}).exec(function (err, results) {
+                if (err) {
+                    return done(err);
+                }
+
+                locals.result = results.length > 0 ? results[0] : undefined;
+                return done();
+            });
+
+    };
+
+
+    async.parallel([ getActivityPlans, getAssessmentResult], function(err) {
+
+        if (err) {
+            return error.handleError(err, next);
+        }
+
+        function loadOffers(err) {
+
+            if (err) {
+                return error.handleError(err, next);
+            }
 
             var targetQueues = [req.user._id];
             if (req.user.campaign) {
                 targetQueues.push(req.user.campaign._id);
             }
-
             ActivityOffer
                 .find({targetQueue: {$in: targetQueues}})
                 .populate('activity activityPlan recommendedBy')
-                .exec(function (err, offers) {
-                    if (err) {
-                        return error.handleError(err, next);
-                    }
+                .exec(consolidate);
+        }
 
-                    _.remove(offers, function (offer) {
-                        return _.any(plannedActs, function (plannedActId) {
-                            return plannedActId.equals(offer.activity._id);
-                        });
-                    });
+        // check if result is dirty (new answers have been put),
+        // then generate and/or load offers, before consolidating them
+        if(locals.result && locals.result.dirty) {
+            var admin = auth.isAdminForModel(req.user, mongoose.model('Activity'));
+            CoachRecommendation.generateAndStoreRecommendations(req.user._id, req.user.profile.userPreferences.rejectedActivities,
+                null, null, admin, loadOffers);
+        } else {
+            loadOffers();
+        }
 
-                    if (!offers || offers.length === 0) {
-                        res.send([]);
-                        return next();
-                    }
+        function consolidate(err, offers) {
 
-                    // removeRejected:
-                    //      the user may have rejected Activities in his profile (when he clicked "not for me" earlier). We need
-                    //      to remove them from the recommendations.
-                    var rejActs = req.user.profile.userPreferences.rejectedActivities;
-                    if (rejActs.length > 0) {
-                        _.remove(offers, function (rec) {
-                            return _.any(rejActs, function (rejAct) {
-                                return rejAct.equals(rec.activity._id);
-                            });
-                        });
-                    }
 
-                    // consolidate dups:
-                    //      if we now have more than one recommendation for the same activity from the different sources
-                    //      we need to consolidate them into one recommendation with multiple recommenders, sources and possibly plans.
-                    //      We do this by merging the recommender, the type and the plan property into an array.
+            var plannedActs = _.map(locals.plans, 'activity');
 
-                    // prio them into a object keyed by activity._id to remove dups
-                    var myOffersHash = {};
-                    _.forEach(offers, function (offer) {
-                        if (myOffersHash[offer.activity._id]) {
-                            // this act already exists, so we merge
-                            var existingRec = myOffersHash[offer.activity._id];
-                            existingRec.activityPlan = existingRec.activityPlan.concat(offer.activityPlan);
-                            existingRec.recommendedBy = existingRec.recommendedBy.concat(offer.recommendedBy);
-                            existingRec.type = existingRec.type.concat(offer.type);
-                            existingRec.prio = existingRec.prio.concat(offer.prio);
-                        } else {
-                            // this act does not yet exist, so we add
-                            myOffersHash[offer.activity._id] = offer;
-                        }
-                    });
-
-                    // sort offers
-
-                    var typesLowestToHighestPriority = [
-                        'publicActivityPlan',
-                        'personalInvitation',
-                        'ypHealthCoach',
-                        'campaignActivity',
-                        'campaignActivityPlan'
-                    ];
-
-                    var priority = function priority(preferredType) {
-
-                        return function(offer) {
-
-                            for(var priority=typesLowestToHighestPriority.length; priority>0; priority--) {
-
-                                if(_.contains(offer.type, preferredType)) {
-                                    return -6;
-                                } else if(_.contains(offer.type, typesLowestToHighestPriority[priority])) {
-                                    return - priority;
-                                }
-                            }
-                        };
-                    };
-
-                    var addOfferByType = function addOfferByType(preferredType) {
-
-                        var sortedByType = _.sortBy(myOffersHash, priority(preferredType));
-
-                        if(sortedByType.length > 0) {
-
-                            var offer = sortedByType[0];
-
-                            // limit to 3 per type
-                            var maxPerType = 3;
-
-                            var countPerType = _.filter(sortedOffers, function(o) {
-                                return _.any(o.type, function(type) {
-                                    return _.contains(offer.type, type);
-                                });
-                            }).length;
-
-                            if(countPerType < maxPerType) {
-                                sortedOffers.push(offer);
-                                delete myOffersHash[offer.activity._id];
-                            }
-
-                        }
-                    };
-
-                    var sortedOffers = [];
-
-                    for(var k=0; k<3; k++) {
-                        addOfferByType('campaignActivityPlan');
-                        addOfferByType('ypHealthCoach');
-                        addOfferByType('personalInvitation');
-                    }
-
-                    // add all personalInvitations
-
-                    sortedOffers.concat(_.filter(myOffersHash, function(offer) {
-                        return _.contains(offer.type, 'personalInvitation');
-                    }));
-
-                    // fill up to 9 with publicActivityPlans
-                    if(sortedOffers.length < 9) {
-                        var publicPlans = _.filter(myOffersHash, function(offer) {
-                            return _.contains(offer.type, 'publicActivityPlan');
-                        });
-                        sortedOffers.concat(publicPlans.slice(0, 9 - sortedOffers.length));
-                    }
-
-                    res.send(sortedOffers);
-                    return next();
+            _.remove(offers, function (offer) {
+                return _.any(plannedActs, function (plannedActId) {
+                    return plannedActId.equals(offer.activity._id);
                 });
+            });
+
+            if (!offers || offers.length === 0) {
+                res.send([]);
+                return next();
+            }
+
+            // removeRejected:
+            //      the user may have rejected Activities in his profile (when he clicked "not for me" earlier). We need
+            //      to remove them from the recommendations.
+            var rejActs = req.user.profile.userPreferences.rejectedActivities;
+            if (rejActs.length > 0) {
+                _.remove(offers, function (rec) {
+                    return _.any(rejActs, function (rejAct) {
+                        return rejAct.equals(rec.activity._id);
+                    });
+                });
+            }
+
+            // consolidate dups:
+            //      if we now have more than one recommendation for the same activity from the different sources
+            //      we need to consolidate them into one recommendation with multiple recommenders, sources and possibly plans.
+            //      We do this by merging the recommender, the type and the plan property into an array.
+
+            // prio them into a object keyed by activity._id to remove dups
+            var myOffersHash = {};
+            _.forEach(offers, function (offer) {
+                if (myOffersHash[offer.activity._id]) {
+                    // this act already exists, so we merge
+                    var existingRec = myOffersHash[offer.activity._id];
+                    existingRec.activityPlan = existingRec.activityPlan.concat(offer.activityPlan);
+                    existingRec.recommendedBy = existingRec.recommendedBy.concat(offer.recommendedBy);
+                    existingRec.type = existingRec.type.concat(offer.type);
+                    existingRec.prio = existingRec.prio.concat(offer.prio);
+                } else {
+                    // this act does not yet exist, so we add
+                    myOffersHash[offer.activity._id] = offer;
+                }
+            });
+
+            // sort offers
+
+            var typesLowestToHighestPriority = [
+                'publicActivityPlan',
+                'personalInvitation',
+                'ypHealthCoach',
+                'campaignActivity',
+                'campaignActivityPlan'
+            ];
+
+            var priority = function priority(preferredType) {
+
+                return function(offer) {
+
+                    for(var priority=typesLowestToHighestPriority.length; priority>0; priority--) {
+
+                        if(_.contains(offer.type, preferredType)) {
+                            return -6;
+                        } else if(_.contains(offer.type, typesLowestToHighestPriority[priority])) {
+                            return - priority;
+                        }
+                    }
+                };
+            };
+
+            var addOfferByType = function addOfferByType(preferredType) {
+
+                var sortedByType = _.sortBy(myOffersHash, priority(preferredType));
+
+                if(sortedByType.length > 0) {
+
+                    var offer = sortedByType[0];
+
+                    // limit to 3 per type
+                    var maxPerType = 3;
+
+                    var countPerType = _.filter(sortedOffers, function(o) {
+                        return _.any(o.type, function(type) {
+                            return _.contains(offer.type, type);
+                        });
+                    }).length;
+
+                    if(countPerType < maxPerType) {
+                        sortedOffers.push(offer);
+                        delete myOffersHash[offer.activity._id];
+                    }
+
+                }
+            };
+
+            var sortedOffers = [];
+
+            for(var k=0; k<3; k++) {
+                addOfferByType('campaignActivityPlan');
+                addOfferByType('ypHealthCoach');
+                addOfferByType('personalInvitation');
+            }
+
+            // add all personalInvitations
+
+            sortedOffers.concat(_.filter(myOffersHash, function(offer) {
+                return _.contains(offer.type, 'personalInvitation');
+            }));
+
+            // fill up to 9 with publicActivityPlans
+            if(sortedOffers.length < 9) {
+                var publicPlans = _.filter(myOffersHash, function(offer) {
+                    return _.contains(offer.type, 'publicActivityPlan');
+                });
+                sortedOffers.concat(publicPlans.slice(0, 9 - sortedOffers.length));
+            }
+
+            res.send(sortedOffers);
+            return next();
+        }
 
 
-        });
+    });
+
 }
-
 
 var deleteActivityOffers = function (req, res, next) {
     // instead of using Model.remove directly, findOne in combination with obj.remove

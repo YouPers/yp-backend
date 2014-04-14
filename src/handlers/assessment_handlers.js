@@ -5,13 +5,12 @@ var error = require('../util/error'),
     auth = require('../util/auth'),
     mongoose = require('mongoose'),
     _ = require('lodash'),
-
     AssessmentResult = mongoose.model('AssessmentResult'),
     AssessmentResultAnswer = mongoose.model('AssessmentResultAnswer');
 
 var getNewestResult = function (baseUrl, Model) {
     return function (req, res, next) {
-        Model.find({assessment: req.params.assId, owner: req.user.id})
+        Model.find({assessment: req.params.assessmentId, owner: req.user.id})
             .sort({timestamp: -1})
             .limit(1)
             .exec(function (err, result) {
@@ -28,8 +27,14 @@ var getNewestResult = function (baseUrl, Model) {
     };
 };
 
-function assessmentResultAnswerPostFn () {
+function assessmentResultAnswerPutFn () {
     return function (req, res, next) {
+
+        var err = handlerUtils.checkWritingPreCond(req.body, req.user, AssessmentResultAnswer);
+
+        if (err) {
+            return error.handleError(err, next);
+        }
 
         var newAnswer = new AssessmentResultAnswer(req.body);
 
@@ -50,7 +55,9 @@ function assessmentResultAnswerPostFn () {
 
                 var result = results.length > 0 ? results[0] : new AssessmentResult({
                     assessment: newAnswer.assessment,
-                    owner: req.user.id
+                    owner: req.user.id,
+                    answers: [],
+                    timestamp: new Date()
                 });
 
 
@@ -59,22 +66,21 @@ function assessmentResultAnswerPostFn () {
                     delete result.id;
                 }
 
-                var answer = _.find(result.answers, function(answer) {
+                var answerIndex = _.findIndex(result.answers, function(answer) {
                     return answer.question.equals(newAnswer.question);
                 });
 
-                if(answer) {
-                    _.merge(answer, newAnswer);
-                } else {
-                    result.answers.push(newAnswer);
+                if(answerIndex >= 0) {
+                    result.answers.splice(answerIndex, 1);
                 }
+                result.answers.push(newAnswer);
 
                 result.save(function(err, saved) {
                     if(err) {
                         return error.handleError(err, next);
                     }
-
-                    res.send(201);
+                    res.send(200);
+                    return next();
                 });
 
             });
@@ -124,5 +130,5 @@ function assessmentResultPostFn (baseUrl, Model) {
 module.exports = {
     getNewestResult: getNewestResult,
     assessmentResultPostFn: assessmentResultPostFn,
-    assessmentResultAnswerPostFn: assessmentResultAnswerPostFn
+    assessmentResultAnswerPutFn: assessmentResultAnswerPutFn
 };

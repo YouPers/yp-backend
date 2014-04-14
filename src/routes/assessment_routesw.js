@@ -15,7 +15,7 @@ module.exports = function (swagger, config) {
     var baseUrl = '/assessments',
         baseUrlWithId = baseUrl + "/{id}";
     var resultsUrl = baseUrl + '/{assessmentId}/results';
-    var answerUrl = baseUrl + '/{assessmentId}/answer';
+    var answerUrl = baseUrl + '/{assessmentId}/answers/{questionId}';
 
     swagger.addPut({
         spec: {
@@ -71,21 +71,21 @@ module.exports = function (swagger, config) {
         action: assessment_handlers.assessmentResultPostFn(resultsUrl, AssessmentResult)
     });
 
-    swagger.addPost({
+    swagger.addPut({
         spec: {
-            description: "Post an answer of an assessment result",
+            description: "Put an answer of an assessment result",
             path: answerUrl,
-            notes: "Post an answer of an assessment result",
-            summary: "Post an answer of an assessment result",
-            method: "POST",
+            notes: "Put an answer of an assessment result",
+            summary: "Put an answer of an assessment result",
+            method: "PUT",
             params: [swagger.pathParam("assessmentId", "ID of the assessment for which to save and result answer", "string"),
                 swagger.bodyParam("assessmentResultAnswer", "The assessment answer to store", "AssessmentResultAnswer")],
             "responseMessages": [],
-            "nickname": "assessmentResultAnswerPost",
+            "nickname": "assessmentResultAnswerPut",
             accessLevel: 'al_individual',
             beforeCallbacks: []
         },
-        action: assessment_handlers.assessmentResultAnswerPostFn()
+        action: assessment_handlers.assessmentResultAnswerPutFn()
     });
 
     swagger.addGet({

@@ -9,4 +9,4 @@ var AssessmentResultAnswerSchema = common.newSchema({
         answered: {type: Boolean, required: true, default: false}
     }
 );
-module.exports = mongoose.model('AssessmentResultAnswerSchema', AssessmentResultAnswerSchema);
+module.exports = mongoose.model('AssessmentResultAnswer', AssessmentResultAnswerSchema);

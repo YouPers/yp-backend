@@ -64,8 +64,24 @@ function _generateRecommendations(actList, assResult, personalGoal, nrOfRecsToRe
         return -matchValue.score;
     });
 
-    var limitedRecs = sortedRecs.slice(0,nrOfRecsToReturn);
-    return cb(null, limitedRecs);
+    // reset dirty flag for assessment result
+
+    if(assResult.dirty) {
+        assResult.dirty = false;
+        assResult.save(function(err) {
+            if(err) {
+                cb(err);
+            }
+            final();
+        });
+    } else {
+        final();
+    }
+
+    function final() {
+        var limitedRecs = sortedRecs.slice(0,nrOfRecsToReturn);
+        return cb(null, limitedRecs);
+    }
 }
 
 var locals = {};

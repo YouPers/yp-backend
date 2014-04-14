@@ -3,18 +3,16 @@
  */
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
-    common = require('./common');
+    common = require('./common'),
+    AssessmentResultAnswer = mongoose.model('AssessmentResultAnswer');
 
 var AssessmentResultSchema = common.newSchema({
     owner: {type: Schema.Types.ObjectId, ref: 'User', required: true},
     campaign: {type: Schema.Types.ObjectId, ref: 'Campaign'},
     assessment: {type: Schema.Types.ObjectId, ref: 'Assessment', required: true},
     timestamp: {type: Date},
-    answers: [{assessment: {type: Schema.Types.ObjectId, ref: 'Assessment', required: true},
-               question: {type: Schema.Types.ObjectId, required: true },
-               answer: {type: Number, required: true, default: 0},
-               answered: {type: Boolean, required: true, default: false}}
-    ]
+    dirty: { type: Boolean },
+    answers: [AssessmentResultAnswer.schema]
 });
 
 

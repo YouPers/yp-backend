@@ -10,118 +10,123 @@ frisby.globalSetup({ // globalSetup is for ALL requests
     }
 });
 
+consts.newUserInNewCampaignApi(
+    function (err, user, campaign, cleanupFn) {
+        if (err) {
+            expect(err).toBeNull();
+        }
 
-frisby.create('Assessment: GET all assessments')
-    .get(URL+'?populate=questions')
-    .auth('test_ind1', 'yp')
-    .expectStatus(200)
-    .expectJSON('*', {
-        id: String,
-        name: String,
-        questions: []
-    })
-    // 'afterJSON' automatically parses response body as JSON and passes it as an argument
-    .afterJSON(function (assessments) {
-        // Use data from previous result in next test
-        frisby.create('Assessment: Get first Assessment by Id')
-            .get(URL + '/' + assessments[0].id)
+
+
+        frisby.create('Assessment: GET all assessments')
+            .get(URL+'?populate=questions')
             .auth('test_ind1', 'yp')
             .expectStatus(200)
-            .expectJSON({
+            .expectJSON('*', {
+                id: String,
                 name: String,
                 questions: []
-            }).
-            afterJSON(function (assessment) {
-
-
-                frisby.create('Assessment: post a first answer for this assessment')
-                    .post(URL + '/' + assessments[0].id + '/results',
-                    {owner: consts.users.test_ind1.id,
-                        assessment: assessments[0].id,
-                        timestamp: new Date(),
-                        answers: [
-                            {assessment: assessments[0].id,
-                                question: '5278c51a6166f2de240000cc',
-                                answer: -23,
-                                answered: true},
-                            {assessment: assessments[0].id,
-                                question: '5278c51a6166f2de240000cb',
-                                answer: 23,
-                                answered: true}
-                        ]
-                    })
+            })
+            // 'afterJSON' automatically parses response body as JSON and passes it as an argument
+            .afterJSON(function (assessments) {
+                // Use data from previous result in next test
+                frisby.create('Assessment: Get first Assessment by Id')
+                    .get(URL + '/' + assessments[0].id)
                     .auth('test_ind1', 'yp')
-                    .expectStatus(201)
-                    .afterJSON(function (newAnswer) {
-                        frisby.create('Assessment: get answers for this assessment 2nd time')
+                    .expectStatus(200)
+                    .expectJSON({
+                        name: String,
+                        questions: []
+                    }).
+                    afterJSON(function (assessment) {
+
+
+                        frisby.create('Assessment: Get result with no answers yet')
                             .get(URL + '/' + assessments[0].id + '/results')
                             .auth('test_ind1', 'yp')
                             .expectStatus(200)
                             .afterJSON(function (answerList) {
 
-                                var newDate = new Date();
 
-                                frisby.create('Assessment: post a second answer for this assessment')
-                                    .post(URL + '/' + assessments[0].id + '/results',
-                                    {owner: consts.users.test_ind1.id,
-                                        assessment: assessments[0].id,
-                                        timestamp: newDate,
-                                        answers: [
-                                            {assessment: assessments[0].id,
-                                                question: '5278c51a6166f2de240000cc',
-                                                answer: -100,
-                                                answered: true},
-                                            {assessment: assessments[0].id,
-                                                question: '5278c51a6166f2de240000cb',
-                                                answer: 23,
-                                                answered: true}
-                                        ]
-                                    })
+                                console.log(answerList);
+                                return;
+
+                                expect(answerList.length).toEqual(0);
+
+
+                                var answer1 = {
+                                    question: '5278c51a6166f2de240000cc',
+                                    assessment: '525faf0ac558d40000000005',
+                                    answer: 50
+                                };
+                                var answer2 = {
+                                    question: '5278c51a6166f2de240000cb',
+                                    assessment: '525faf0ac558d40000000005',
+                                    answer: -50
+                                };
+
+                                frisby.create('Assessment: Put answer for questionId and create a new result for today')
+                                    .put(URL + '/' + assessments[0].id + '/answers/' + answer1.question, answer1)
                                     .auth('test_ind1', 'yp')
-                                    .expectStatus(201)
-                                    .afterJSON(function (newerAnswer) {
+                                    .expectStatus(200)
+                                    .afterJSON(function (answer) {
 
-                                        frisby.create('Assessment: get answers for this assessment 3rd time')
+                                        expect(answer).toBeDefined();
+                                        expect(answer.question).toEqual(answer1.question);
+                                        expect(answer.assessment).toEqual(answer1.assessment);
+                                        expect(answer.answer).toEqual(answer1.answer);
+
+                                        frisby.create('Assessment: Get result with one answer')
                                             .get(URL + '/' + assessments[0].id + '/results')
                                             .auth('test_ind1', 'yp')
                                             .expectStatus(200)
-                                            .expectJSONLength(answerList.length + 1)
-                                            .afterJSON(function (newestAnswerList) {
-                                                frisby.create('Assessment: get newest answers for this assessment')
-                                                    .get(URL + '/' + assessments[0].id + '/results/newest')
+                                            .afterJSON(function (answerList) {
+
+                                                expect(answerList.length).toEqual(1);
+                                                expect(answerList[0].question).toEqual(answer1.question);
+
+                                                frisby.create('Assessment: Put 2nd answer for same result for today')
+                                                    .put(URL + '/' + assessments[0].id + '/answers/' + answer2.question, answer2)
                                                     .auth('test_ind1', 'yp')
                                                     .expectStatus(200)
-                                                    .expectJSON({
-                                                        owner: consts.users.test_ind1.id,
-                                                        timestamp: newDate.toJSON()
-                                                    }
-                                                )
-                                                    .afterJSON(function () {
+                                                    .afterJSON(function (answer) {
 
-                                                        frisby.create('Assessment: delete first answers for this assessment')
-                                                            .auth('test_ind1', 'yp')
-                                                            .delete(URL + '/' + assessments[0].id + '/results/' + newAnswer.id)
-                                                            .expectStatus(200)
-                                                            .toss();
+                                                        expect(answer).toBeDefined();
+                                                        expect(answer.question).toEqual(answer2.question);
+                                                        expect(answer.assessment).toEqual(answer2.assessment);
+                                                        expect(answer.answer).toEqual(answer2.answer);
 
-                                                        frisby.create('Assessment: delete second answers for this assessment')
+
+                                                        frisby.create('Assessment: Get result from today with two answers')
+                                                            .get(URL + '/' + assessments[0].id + '/results')
                                                             .auth('test_ind1', 'yp')
-                                                            .delete(URL + '/' + assessments[0].id + '/results/' + newerAnswer.id)
                                                             .expectStatus(200)
+                                                            .afterJSON(function (answerList) {
+                                                                expect(answerList.length).toEqual(2)
+
+                                                                // cleanup
+                                                                cleanupFn();
+
+                                                            })
                                                             .toss();
 
                                                     })
                                                     .toss();
-
                                             })
                                             .toss();
+
                                     })
                                     .toss();
+
+
+
                             })
                             .toss();
+
                     })
                     .toss();
             })
             .toss();
-    })
-    .toss();
+
+
+    });

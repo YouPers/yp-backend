@@ -2,34 +2,13 @@ var mongoose = require('mongoose'),
     ActivityPlan = mongoose.model('ActivityPlan'),
     ActivityOffer = mongoose.model('ActivityOffer'),
     CoachRecommendation = require('../core/CoachRecommendation'),
+    actMgr = require('../core/ActivityManagement'),
     _ = require('lodash'),
     error = require('../util/error'),
     utils = require('./handlerUtils'),
     auth = require('../util/auth'),
-    generic = require('./generic'),
-    Notification = require('../core/Notification');
+    generic = require('./generic');
 
-function _publishNotificationForOffer(activityOffer, author, cb) {
-
-    activityOffer.populate('activity', 'titleI18n',
-
-        function (err, populatedOffer) {
-
-            if (err) {
-                return cb(err);
-            }
-
-            return new Notification({
-                type: 'activityRecommendation',
-                title: populatedOffer.activity.title,
-                targetQueue: populatedOffer.targetQueue,
-                author: author,
-                refDocLink: "http://TODOaddALinkHere",
-                refDocId: activityOffer._id,
-                refDocModel: 'ActivityOffer'
-            }).publish(cb);
-        });
-}
 
 /**
  * allows to post an Offer/Recommendation for an unplanned activity
@@ -46,15 +25,11 @@ function postActivityOffer(req, res, next) {
 
     var offer = new ActivityOffer(req.body);
 
-    _publishNotificationForOffer(offer, req.user, saveOfferAndSendToClientCb);
+    offer.save(function (err, savedOffer) {
+        actMgr.emit('activity:offerSaved', savedOffer);
+        return generic.writeObjCb(req, res, next)(err, savedOffer);
+    });
 
-    function saveOfferAndSendToClientCb(err, notification) {
-        if (err) {
-            return error.handleError(err, next);
-        }
-
-        offer.save(generic.writeObjCb(req, res, next));
-    }
 }
 
 function getCoachRecommendationsFn(req, res, next) {
@@ -122,26 +97,26 @@ function getCoachRecommendationsFn(req, res, next) {
  *
  [
 
-     group 1 - left:
-         1. campaign plan
-         2. campaign act
-         3. coach
-         4. personal
-         5. public
+ group 1 - left:
+ 1. campaign plan
+ 2. campaign act
+ 3. coach
+ 4. personal
+ 5. public
 
-     group 2 - middle:
-         1. coach
-         2. campaign plan
-         3. campaign act
-         4. personal
-         5. public
+ group 2 - middle:
+ 1. coach
+ 2. campaign plan
+ 3. campaign act
+ 4. personal
+ 5. public
 
-     group 3 - right:
-         1. personal
-         2. campaign plan
-         3. campaign act
-         4. coach
-         5. public
+ group 3 - right:
+ 1. personal
+ 2. campaign plan
+ 3. campaign act
+ 4. coach
+ 5. public
 
  ] repeats 3x
 
@@ -178,8 +153,15 @@ function getActivityOffersFn(req, res, next) {
                 targetQueues.push(req.user.campaign._id);
             }
 
+            var selector = {targetQueue: {$in: targetQueues}};
+
+            // check whether the client only wanted offers for one specific activity
+            if (req.params.activity) {
+                selector.activity = req.params.activity;
+            }
+
             ActivityOffer
-                .find({targetQueue: {$in: targetQueues}})
+                .find(selector)
                 .populate('activity activityPlan recommendedBy')
                 .exec(function (err, offers) {
                     if (err) {
@@ -242,14 +224,14 @@ function getActivityOffersFn(req, res, next) {
 
                     var priority = function priority(preferredType) {
 
-                        return function(offer) {
+                        return function (offer) {
 
-                            for(var priority=typesLowestToHighestPriority.length; priority>0; priority--) {
+                            for (var priority = typesLowestToHighestPriority.length; priority > 0; priority--) {
 
-                                if(_.contains(offer.type, preferredType)) {
+                                if (_.contains(offer.type, preferredType)) {
                                     return -6;
-                                } else if(_.contains(offer.type, typesLowestToHighestPriority[priority])) {
-                                    return - priority;
+                                } else if (_.contains(offer.type, typesLowestToHighestPriority[priority])) {
+                                    return -priority;
                                 }
                             }
                         };
@@ -259,20 +241,20 @@ function getActivityOffersFn(req, res, next) {
 
                         var sortedByType = _.sortBy(myOffersHash, priority(preferredType));
 
-                        if(sortedByType.length > 0) {
+                        if (sortedByType.length > 0) {
 
                             var offer = sortedByType[0];
 
                             // limit to 3 per type
                             var maxPerType = 3;
 
-                            var countPerType = _.filter(sortedOffers, function(o) {
-                                return _.any(o.type, function(type) {
+                            var countPerType = _.filter(sortedOffers, function (o) {
+                                return _.any(o.type, function (type) {
                                     return _.contains(offer.type, type);
                                 });
                             }).length;
 
-                            if(countPerType < maxPerType) {
+                            if (countPerType < maxPerType) {
                                 sortedOffers.push(offer);
                                 delete myOffersHash[offer.activity._id];
                             }
@@ -282,7 +264,7 @@ function getActivityOffersFn(req, res, next) {
 
                     var sortedOffers = [];
 
-                    for(var k=0; k<3; k++) {
+                    for (var k = 0; k < 3; k++) {
                         addOfferByType('campaignActivityPlan');
                         addOfferByType('ypHealthCoach');
                         addOfferByType('personalInvitation');
@@ -290,13 +272,13 @@ function getActivityOffersFn(req, res, next) {
 
                     // add all personalInvitations
 
-                    sortedOffers.concat(_.filter(myOffersHash, function(offer) {
+                    sortedOffers.concat(_.filter(myOffersHash, function (offer) {
                         return _.contains(offer.type, 'personalInvitation');
                     }));
 
                     // fill up to 9 with publicActivityPlans
-                    if(sortedOffers.length < 9) {
-                        var publicPlans = _.filter(myOffersHash, function(offer) {
+                    if (sortedOffers.length < 9) {
+                        var publicPlans = _.filter(myOffersHash, function (offer) {
                             return _.contains(offer.type, 'publicActivityPlan');
                         });
                         sortedOffers.concat(publicPlans.slice(0, 9 - sortedOffers.length));

@@ -21,7 +21,6 @@ var restify = require("restify"),
     i18n = require('i18next'),
     ypi18n = require('./util/ypi18n'),
     error = require('./util/error'),
-    ypi18n = require('./util/ypi18n'),
     db = require('./util/database');
 
 // Configure the server

@@ -56,6 +56,7 @@ consts.newUserInNewCampaignApi(
                                         author: '52d4f515fac246174c000006',
                                         title: "new iPhone App from YouPers published",
                                         targetQueue: "AAAAc64e53d523235b07EEEE",
+                                        sourceType: 'youpers',
                                         type: "message"
                                     })
                                     .auth('test_prodadm', 'yp')
@@ -138,17 +139,20 @@ consts.newUserInNewCampaignApi(
                         expect(notifs.length).toEqual(1);
                         expect(notifs[0].type).toEqual('joinablePlan');
 
-                        frisby.create('Notifications: cleanup')
+                        frisby.create('Notifications: cleanup plan 1')
                             .delete(URL + '/activityplans/' + campaignPlan.id)
                             .auth('test_sysadm', 'yp')
                             .expectStatus(200)
+                            .after(function() {
+                                frisby.create('Notifications: cleanup notif 1, should be cleaned automatically when plan is deleted')
+                                    .delete(URL + '/notifications/' + notifs[0].id)
+                                    .auth('test_sysadm', 'yp')
+                                    .expectStatus(404)
+                                    .toss();
+                            })
                             .toss();
 
-                        frisby.create('Notifications: cleanup')
-                            .delete(URL + '/notifications/' + notifs[0].id)
-                            .auth('test_sysadm', 'yp')
-                            .expectStatus(200)
-                            .toss();
+
                         cleanupFn();
 
                     })
@@ -211,17 +215,20 @@ consts.newUserInNewCampaignApi(
                                         expect(notifs.length).toBeGreaterThan(0);
                                         expect(_.map(notifs, 'type')).toContain('personalInvitation');
 
-                                        frisby.create('Notifications: cleanup')
+                                        frisby.create('Notifications: cleanup plan 2')
                                             .delete(URL + '/activityplans/' + myPlan.id)
                                             .auth('test_sysadm', 'yp')
                                             .expectStatus(200)
+                                            .after(function() {
+                                                frisby.create('Notifications: cleanup notif 2, should be cleaned automatically when plan is deleted')
+                                                    .delete(URL + '/notifications/' + notifs[0].id)
+                                                    .auth('test_sysadm', 'yp')
+                                                    .expectStatus(404)
+                                                    .toss();
+                                            })
                                             .toss();
 
-                                        frisby.create('Notifications: cleanup')
-                                            .delete(URL + '/notifications/' + notifs[0].id)
-                                            .auth('test_sysadm', 'yp')
-                                            .expectStatus(200)
-                                            .toss();
+
 
 
                                         cleanupFn();
@@ -250,6 +257,7 @@ consts.newUserInNewCampaignApi(
                 title: "Perosnal Message to: " + user.username,
                 targetQueue: user.id,
                 type: "message",
+                sourceType: 'youpers',
                 publishFrom: moment().subtract(1, 'h'),
                 publishTo: moment().add(1, 'h')
             })
@@ -275,6 +283,7 @@ consts.newUserInNewCampaignApi(
                                 title: "OUTDATED Message to : " + user.username,
                                 targetQueue: user.id,
                                 type: "message",
+                                sourceType: 'youpers',
                                 publishFrom: moment().subtract(2, 'h'),
                                 publishTo: moment().subtract(1, 'h')
                             })
@@ -295,6 +304,7 @@ consts.newUserInNewCampaignApi(
                                                 title: "FUTURE MESSAGE to: " + user.username,
                                                 targetQueue: user.id,
                                                 type: "message",
+                                                sourceType: 'youpers',
                                                 publishFrom: moment().add(1, 'h'),
                                                 publishTo: moment().add(2, 'h')
                                             })

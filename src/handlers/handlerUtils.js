@@ -48,6 +48,12 @@ function checkWritingPreCond(sentObj, user,  Model) {
         return new error.NotAuthorizedError('Needs to be Authenticated and authorized to POST objects');
     }
 
+    // for 'owned' objects set owner if not passed by client
+    if(Model.schema.paths['owner'] && !sentObj.owner) {
+        sentObj.owner = user.id;
+    }
+
+
     clean(Model, sentObj);
 
     // check whether owner is the authenticated user

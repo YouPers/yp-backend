@@ -32,7 +32,8 @@ var initialize = function initialize(loadTestData) {
             'paymentCode',
             'profile',
             'user',
-            'notification'];
+            'notification',
+            'diaryEntry'];
         if (!loadTestData) {
             config.loadTestData = false;
         }

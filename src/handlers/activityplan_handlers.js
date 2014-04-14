@@ -11,7 +11,8 @@ var calendar = require('../util/calendar'),
     async = require('async'),
     auth = require('../util/auth'),
     handlerUtils = require('./handlerUtils'),
-    Notification = require('../core/Notification');
+    Notification = require('../core/Notification'),
+    Diary = require('../core/Diary');
 
 function generateEventsForPlan(plan, user, i18n) {
 
@@ -101,7 +102,25 @@ function putActivityEvent(req, res, next) {
                 planFromDb.status = 'old';
             }
 
-            planFromDb.save(saveCallback);
+            var diaryEntry = {
+                owner: planFromDb.owner,
+                type: 'activityPlanEvent',
+                refId: eventFromDb._id,
+                image: planFromDb.activity.getPictureUrl(),
+                title: planFromDb.title,
+                text: eventFromDb.comment,
+                feedback: eventFromDb.feedback,
+                dateBegin: eventFromDb.begin,
+                dateEnd: eventFromDb.end
+            };
+
+            Diary.createOrUpdateDiaryEntry(diaryEntry, function (err) {
+                if (err) {
+                    return error.handleError(err, next);
+                }
+                planFromDb.save(saveCallback);
+            });
+
 
             function saveCallback (err, savedActivityPlan) {
                 if (err) {
@@ -184,6 +203,10 @@ function saveNewActivityPlan(plan, user, i18n, cb) {
         }
         plan.fields = foundActivity.fields;
 
+        if (!plan.title) {
+            plan.title = foundActivity.title;
+        }
+
         plan.save(function (err, savedPlan) {
             if (err) {
                 return cb(err);
@@ -203,22 +226,23 @@ function saveNewActivityPlan(plan, user, i18n, cb) {
                     email.sendCalInvite(user.email, 'new', myIcalString, i18n);
                 }
 
+                var isCampaignPromotedPlan = (savedPlan.source === "campaign");
+
                 // check whether this is a public joinable plan, if yes store an corresponding ActivityOffer
                 if (_.contains(['public', 'campaign'], reloadedActPlan.visibility) && 'group' === reloadedActPlan.executionType && !reloadedActPlan.masterPlan) {
                     var offer = new ActivityOffer({
                         activity: reloadedActPlan.activity._id,
                         activityPlan: [reloadedActPlan._id],
-                        targetQueue: reloadedActPlan.campaign,
+                        targetQueue: reloadedActPlan.campaign || reloadedActPlan.owner,
                         recommendedBy: [user._id],
-                        type: [reloadedActPlan.source === 'campaign' ? 'campaignActivityPlan' : 'publicActivityPlan'],
+                        type: [isCampaignPromotedPlan ? 'campaignActivityPlan' : 'publicActivityPlan'],
                         validTo: reloadedActPlan.events[reloadedActPlan.events.length - 1].end,
-                        prio: [reloadedActPlan.source === 'campaign' ? 500 : 1]
+                        prio: [isCampaignPromotedPlan ? 500 : 1]
                     });
                     offer.save(function (err, savedOffer) {
                         if (err) {
                             return cb(err);
                         }
-                        var isCampaignPromotedPlan = (savedPlan.source === "campaign");
                         if (isCampaignPromotedPlan) {
                             return new Notification({
                                 type: 'joinablePlan',

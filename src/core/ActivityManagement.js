@@ -9,10 +9,19 @@ var NotificationModel = require('../models/notification_model');
 
 var mapOfferTypeToNotificationType = {
     'campaignActivityPlan': 'joinablePlan',
+    'publicActivityPlan': 'joinablePlan',
     'campaignActivity': 'activityRecommendation',
-    'personalInvitation': 'personalInvitation'
+    'personalInvitation': 'personalInvitation',
+    'ypHealthCoach': 'activityRecommendation'
 };
 
+var mapOfferTypeToNotificationSourceType = {
+    'campaignActivityPlan': 'campaign',
+    'campaignActivity': 'campaign',
+    'personalInvitation': 'community',
+    'ypHealthCoach': 'youpers',
+    'publicActivityPlan': 'community'
+};
 
 function ActivityManagement() {
     EventEmitter.call(this);
@@ -101,6 +110,7 @@ actMgr.on('activity:offerSaved', function (offer) {
         if (isCampaignPromotedOffer || isPersonalInvite) {
             return new Notification({
                 type: mapOfferTypeToNotificationType[offer.type],
+                sourceType: mapOfferTypeToNotificationSourceType[offer.type],
                 title: (offer.plan && offer.plan.title) || offer.activity.title,
                 targetQueue: offer.targetQueue,
                 author: offer.recommendedBy,
@@ -108,7 +118,8 @@ actMgr.on('activity:offerSaved', function (offer) {
                 refDocId: offer._id,
                 refDocModel: 'ActivityOffer',
                 publishTo: offer.validTo
-            }).publish(function (err) {
+            }).
+                publish(function (err) {
                     if (err) {
                         return actMgr.emit('error', err);
                     }

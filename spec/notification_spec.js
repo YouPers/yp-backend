@@ -56,6 +56,7 @@ consts.newUserInNewCampaignApi(
                                         author: '52d4f515fac246174c000006',
                                         title: "new iPhone App from YouPers published",
                                         targetQueue: "AAAAc64e53d523235b07EEEE",
+                                        sourceType: 'youpers',
                                         type: "message"
                                     })
                                     .auth('test_prodadm', 'yp')
@@ -256,6 +257,7 @@ consts.newUserInNewCampaignApi(
                 title: "Perosnal Message to: " + user.username,
                 targetQueue: user.id,
                 type: "message",
+                sourceType: 'youpers',
                 publishFrom: moment().subtract(1, 'h'),
                 publishTo: moment().add(1, 'h')
             })
@@ -281,6 +283,7 @@ consts.newUserInNewCampaignApi(
                                 title: "OUTDATED Message to : " + user.username,
                                 targetQueue: user.id,
                                 type: "message",
+                                sourceType: 'youpers',
                                 publishFrom: moment().subtract(2, 'h'),
                                 publishTo: moment().subtract(1, 'h')
                             })
@@ -301,6 +304,7 @@ consts.newUserInNewCampaignApi(
                                                 title: "FUTURE MESSAGE to: " + user.username,
                                                 targetQueue: user.id,
                                                 type: "message",
+                                                sourceType: 'youpers',
                                                 publishFrom: moment().add(1, 'h'),
                                                 publishTo: moment().add(2, 'h')
                                             })

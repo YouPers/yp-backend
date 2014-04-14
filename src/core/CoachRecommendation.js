@@ -73,7 +73,7 @@ function _generateRecommendations(actList, assResult, personalGoal, nrOfRecsToRe
                 cb(err);
             }
             final();
-        })
+        });
     } else {
         final();
     }

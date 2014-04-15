@@ -237,7 +237,7 @@ function getActivityOffersFn(req, res, next) {
             if (rejActs.length > 0) {
                 _.remove(offers, function (rec) {
                     return _.any(rejActs, function (rejAct) {
-                        return rejAct.equals(rec.activity._id);
+                        return rejAct.activity.equals(rec.activity._id);
                     });
                 });
             }

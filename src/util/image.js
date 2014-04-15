@@ -2,10 +2,19 @@ var fs = require('fs'),
     gm = require('gm');
 
 
-var resizeImage = function(req, filePath, callback) {
+var resizeImage = function(req, filePath, type, callback) {
 
-    var sizeA = 100;
-    var sizeB = 100;
+
+
+    var dimensions = {
+        user: [100, 100],
+        campaign: [265, 167],
+        organization: [265, 167]
+    };
+
+    var sizeA = dimensions[type][0];
+    var sizeB = dimensions[type][1];
+
     var path = filePath;
     var pathResized = path + "_resized";
 

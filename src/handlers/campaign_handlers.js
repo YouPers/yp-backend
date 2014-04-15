@@ -375,7 +375,7 @@ var assignCampaignLeadFn = function assignCampaignLeadFn(req, res, next) {
 var avatarImagePostFn = function(baseUrl) {
     return function(req, res, next) {
 
-        image.resizeImage(req, req.files.file.path, function (err, image) {
+        image.resizeImage(req, req.files.file.path, 'campaign', function (err, image) {
             if(err) { return error.handleError(err, next); }
 
             getCampaign(req.params.id, function (err, obj) {

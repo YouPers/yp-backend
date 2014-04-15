@@ -234,7 +234,7 @@ var assignOrganizationAdminFn = function assignOrganizationAdminFn(req, res, nex
 var avatarImagePostFn = function(baseUrl) {
     return function(req, res, next) {
 
-        image.resizeImage(req, req.files.file.path, function (err, image) {
+        image.resizeImage(req, req.files.file.path, 'organization', function (err, image) {
             if(err) { return error.handleError(err, next); }
 
             getOrganization(req, res, next, function (org) {

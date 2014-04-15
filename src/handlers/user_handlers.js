@@ -198,7 +198,7 @@ var passwordResetPostFn = function(baseUrl) {
 var avatarImagePostFn = function(baseUrl) {
     return function(req, res, next) {
 
-        image.resizeImage(req, req.files.file.path, function (err, image) {
+        image.resizeImage(req, req.files.file.path, 'user', function (err, image) {
 
             if (err) {
                 return next(err);

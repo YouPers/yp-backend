@@ -12,7 +12,7 @@
         "defaultfrequency": "month",
         "defaultvisibility": "private",
         "descriptionI18n": {
-            "de": "F\u00fchre monatlich deine Stress-Selbstbeurteilung durch und werde dir so bewusst, was deinen Stress ausgel\u00f6st oder verst\u00e4rkt hat und was du n\u00e4chsten Monat dagegen unternehmen kannst"
+            "de": "F\u00fchre monatlich deine Selbstbeurteilung durch und werde dir so bewusst, was deinen Stress ausgel\u00f6st oder verst\u00e4rkt hat und was du n\u00e4chsten Monat dagegen unternehmen kannst"
         },
         "fields": [
             "awarenessAbility"

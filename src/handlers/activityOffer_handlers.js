@@ -184,6 +184,18 @@ function getActivityOffersFn(req, res, next) {
             return error.handleError(err, next);
         }
 
+
+
+        // check if result is dirty (new answers have been put),
+        // then generate and/or load offers, before consolidating them
+        if(locals.result && locals.result.dirty) {
+            var admin = auth.isAdminForModel(req.user, mongoose.model('Activity'));
+            CoachRecommendation.generateAndStoreRecommendations(req.user._id, req.user.profile.userPreferences.rejectedActivities,
+                null, null, admin, loadOffers);
+        } else {
+            loadOffers();
+        }
+
         function loadOffers(err) {
 
             if (err) {
@@ -208,38 +220,18 @@ function getActivityOffersFn(req, res, next) {
                 .exec(consolidate);
         }
 
-        // check if result is dirty (new answers have been put),
-        // then generate and/or load offers, before consolidating them
-        if(locals.result && locals.result.dirty) {
-            var admin = auth.isAdminForModel(req.user, mongoose.model('Activity'));
-            CoachRecommendation.generateAndStoreRecommendations(req.user._id, req.user.profile.userPreferences.rejectedActivities,
-                null, null, admin, loadOffers);
-        } else {
-            loadOffers();
-        }
-
         function consolidate(err, offers) {
 
 
             var plannedActs = _.map(locals.plans, 'activity');
+            var rejActs = _.map(req.user.profile.userPreferences.rejectedActivities, 'activity');
+            var actsToRemove = plannedActs.concat(rejActs);
 
             _.remove(offers, function (offer) {
-                return _.any(plannedActs, function (plannedActId) {
-                    return plannedActId.equals(offer.activity._id);
+                return _.any(actsToRemove, function (actToRemoveId) {
+                    return actToRemoveId.equals(offer.activity._id);
                 });
             });
-
-            // removeRejected:
-            //      the user may have rejected Activities in his profile (when he clicked "not for me" earlier). We need
-            //      to remove them from the recommendations.
-            var rejActs = req.user.profile.userPreferences.rejectedActivities;
-            if (rejActs.length > 0) {
-                _.remove(offers, function (rec) {
-                    return _.any(rejActs, function (rejAct) {
-                        return rejAct.activity.equals(rec.activity._id);
-                    });
-                });
-            }
 
             // consolidate dups:
             //      if we now have more than one recommendation for the same activity from the different sources
@@ -296,7 +288,7 @@ function getActivityOffersFn(req, res, next) {
                     var offer = sortedByType[0];
 
                     // limit to 3 per type
-                    var maxPerType = 3;
+                    var maxPerType = 5;
 
                     var countPerType = _.filter(sortedOffers, function(o) {
                         return _.any(o.type, function(type) {
@@ -335,12 +327,18 @@ function getActivityOffersFn(req, res, next) {
             }
 
             if(sortedOffers.length < 3) {
-                _getDefaultActivityOffers(activityFilter, function(err, offers) {
+                _getDefaultActivityOffers(activityFilter, function(err, defaultOffers) {
                    if(err) {
                        return error.handleError(err, next);
                    }
 
-                    sortedOffers = sortedOffers.concat(offers);
+                    sortedOffers = sortedOffers.concat(defaultOffers);
+
+                    _.remove(sortedOffers, function (offer) {
+                        return _.any(actsToRemove, function (actToRemoveId) {
+                            return offer.activity._id.equals(actToRemoveId);
+                        });
+                    });
 
                     res.send(sortedOffers);
                     return next();

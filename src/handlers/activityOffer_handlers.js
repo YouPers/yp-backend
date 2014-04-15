@@ -1,4 +1,6 @@
 var mongoose = require('mongoose'),
+    User = mongoose.model('User'),
+    Activity = mongoose.model('Activity'),
     ActivityPlan = mongoose.model('ActivityPlan'),
     ActivityOffer = mongoose.model('ActivityOffer'),
     AssessmentResult = mongoose.model('AssessmentResult'),
@@ -225,11 +227,6 @@ function getActivityOffersFn(req, res, next) {
                 });
             });
 
-            if (!offers || offers.length === 0) {
-                res.send([]);
-                return next();
-            }
-
             // removeRejected:
             //      the user may have rejected Activities in his profile (when he clicked "not for me" earlier). We need
             //      to remove them from the recommendations.
@@ -335,14 +332,27 @@ function getActivityOffersFn(req, res, next) {
                 sortedOffers.concat(publicPlans.slice(0, 9 - sortedOffers.length));
             }
 
-            res.send(sortedOffers);
-            return next();
+            if(sortedOffers.length < 3) {
+                _getDefaultActivityOffers(function(err, offers) {
+                   if(err) {
+                       return error.handleError(err, next);
+                   }
+
+                    sortedOffers = sortedOffers.concat(offers);
+
+                    res.send(sortedOffers);
+                    return next();
+                });
+            } else {
+                res.send(sortedOffers);
+                return next();
+            }
         }
-
-
     });
 
 }
+
+
 
 var deleteActivityOffers = function (req, res, next) {
     // instead of using Model.remove directly, findOne in combination with obj.remove
@@ -374,6 +384,39 @@ var deleteActivityOffers = function (req, res, next) {
         res.send(200);
     });
 };
+
+function _getDefaultActivityOffers(cb) {
+
+    Activity
+        .find({}, {}, { sort: { 'qualityFactor' : -1 }, limit: 3 })
+        .exec(function(err, activities) {
+
+            if(err) {
+                cb(err);
+            }
+
+            User.findById(CoachRecommendation.healthCoachUserId, function(err, healthCoachUser) {
+                if(err) {
+                    cb(err);
+                }
+                var offers = [];
+                _.forEach(activities, function(activity) {
+
+                    var offer = {
+                        activity: activity,
+                        activityPlan: [],
+                        recommendedBy: [healthCoachUser],
+                        type: ['defaultActivity'],
+                        prio: activity.qualityFactor
+                    };
+
+                    offers.push(offer);
+                });
+
+                cb(null, offers);
+            });
+        });
+}
 
 module.exports = {
     getCoachRecommendationsFn: getCoachRecommendationsFn,

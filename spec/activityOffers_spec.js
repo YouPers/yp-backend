@@ -17,12 +17,12 @@ consts.newUserInNewCampaignApi(
             expect(err).toBeNull();
         }
 
-        frisby.create('ActivityOffers: get offers (no campaign, no invites, no assessment --> no recs')
+        frisby.create('ActivityOffers: get offers (no campaign, no invites, no assessment --> just 3 default offers')
             .get(URL + '/activityoffers')
             .auth(offerTestUser.username, "yp")
             .expectStatus(200)
             .afterJSON(function (recs) {
-                expect(recs.length).toEqual(0);
+                expect(recs.length).toEqual(3);
             })
             .toss();
 

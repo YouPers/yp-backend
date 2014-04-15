@@ -200,6 +200,6 @@ module.exports = {
         calendarNotifications: "none 0 300 600 900 1800 3600 7200 86400 172800".split(' '),
 
         // activityOffers
-        activityOfferType: "campaignActivity campaignActivityPlan ypHealthCoach personalInvitation publicActivityPlan".split(' ')
+        activityOfferType: "campaignActivity campaignActivityPlan ypHealthCoach personalInvitation publicActivityPlan defaultActivity".split(' ')
     }
 };

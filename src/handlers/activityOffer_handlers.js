@@ -206,7 +206,11 @@ function getActivityOffersFn(req, res, next) {
             }
 
             var activity = req.params.activity;
-            var selector = activity ? { activity: activity } : { targetQueue: {$in: targetQueues} };
+            var selector =  { targetQueue: {$in: targetQueues} };
+
+            if(activity) {
+                selector.activity = activity;
+            }
 
             ActivityOffer
                 .find(selector)

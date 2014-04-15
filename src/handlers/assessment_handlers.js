@@ -8,20 +8,20 @@ var error = require('../util/error'),
     AssessmentResult = mongoose.model('AssessmentResult'),
     AssessmentResultAnswer = mongoose.model('AssessmentResultAnswer');
 
-var getNewestResult = function (baseUrl, Model) {
+var getNewestResult = function (baseUrl) {
     return function (req, res, next) {
-        Model.find({assessment: req.params.assessmentId, owner: req.user.id})
+        AssessmentResult.find({assessment: req.params.assessmentId, owner: req.user.id})
             .sort({timestamp: -1})
             .limit(1)
-            .exec(function (err, result) {
+            .exec(function (err, results) {
                 if(err) {
                     return error.handleError(err, next);
                 }
-                if (!result || result.length === 0){
+                if (!results || results.length === 0){
                     res.send(204);
                     return next();
                 }
-                res.send(result[0]);
+                res.send(results[0]);
                 return next();
             });
     };
@@ -48,7 +48,7 @@ function assessmentResultAnswerPutFn () {
 
         // get latest result
         AssessmentResult
-            .find({}, {}, { sort: { 'created_at' : -1 }}).exec(function (err, results) {
+            .find({owner: req.user.id, assessment: newAnswer.assessment}, {}, { sort: { 'created_at' : -1 }}).exec(function (err, results) {
                 if (err) {
                     return error.handleError(err, next);
                 }

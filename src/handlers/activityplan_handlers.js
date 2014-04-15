@@ -374,7 +374,7 @@ function postActivityPlanInvite(req, res, next) {
                                     _offerSavedCb(null);
                                 });
                             } else {
-                                process.nextTick(_offerSavedCb(null));
+                                process.nextTick(_offerSavedCb);
                             }
 
                             function _offerSavedCb(err) {

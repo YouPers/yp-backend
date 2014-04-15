@@ -138,6 +138,8 @@ function getActivityOffersFn(req, res, next) {
         return next(new error.UnauthorizedError());
     }
 
+    var activityFilter = req.params.activity;
+
     var locals = {};
 
 
@@ -196,7 +198,7 @@ function getActivityOffersFn(req, res, next) {
             var selector = {targetQueue: {$in: targetQueues}};
 
             // check whether the client only wanted offers for one specific activity
-            if (req.params.activity) {
+            if (activityFilter) {
                 selector.activity = req.params.activity;
             }
 
@@ -333,7 +335,7 @@ function getActivityOffersFn(req, res, next) {
             }
 
             if(sortedOffers.length < 3) {
-                _getDefaultActivityOffers(function(err, offers) {
+                _getDefaultActivityOffers(activityFilter, function(err, offers) {
                    if(err) {
                        return error.handleError(err, next);
                    }
@@ -385,10 +387,13 @@ var deleteActivityOffers = function (req, res, next) {
     });
 };
 
-function _getDefaultActivityOffers(cb) {
-
+function _getDefaultActivityOffers(activityFilter, cb) {
+    var selector = {};
+    if (activityFilter) {
+        selector._id = activityFilter;
+    }
     Activity
-        .find({}, {}, { sort: { 'qualityFactor' : -1 }, limit: 3 })
+        .find(selector, {}, { sort: { 'qualityFactor' : -1 }, limit: 3 })
         .exec(function(err, activities) {
 
             if(err) {

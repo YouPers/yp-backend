@@ -220,6 +220,31 @@ function getActivityOffersFn(req, res, next) {
                 return error.handleError(err, next);
             }
 
+            var activity = req.params.activity;
+
+            if(!activity) {
+                var plannedActs = _.map(locals.plans, 'activity');
+
+                _.remove(offers, function (offer) {
+                    return _.any(plannedActs, function (plannedActId) {
+                        return plannedActId.equals(offer.activity._id);
+                    });
+                });
+
+
+                // removeRejected:
+                //      the user may have rejected Activities in his profile (when he clicked "not for me" earlier). We need
+                //      to remove them from the recommendations.
+                var rejActs = req.user.profile.userPreferences.rejectedActivities;
+                if (rejActs.length > 0) {
+                    _.remove(offers, function (rec) {
+                        return _.any(rejActs, function (rejAct) {
+                            return rejAct.activity.equals(rec.activity._id);
+                        });
+                    });
+                }
+            }
+
             // consolidate dups
             //      if we now have more than one recommendation for the same activity from the different sources
             //      we need to consolidate them into one recommendation with multiple recommenders, sources and possibly plans.
@@ -242,7 +267,6 @@ function getActivityOffersFn(req, res, next) {
             });
 
 
-            var activity = req.params.activity;
 
             if(activity) {
 
@@ -279,27 +303,6 @@ function getActivityOffersFn(req, res, next) {
                     return next();
                 }
 
-            }
-
-            var plannedActs = _.map(locals.plans, 'activity');
-
-            _.remove(myOffersHash, function (offer) {
-                return _.any(plannedActs, function (plannedActId) {
-                    return plannedActId.equals(offer.activity._id);
-                });
-            });
-
-
-            // removeRejected:
-            //      the user may have rejected Activities in his profile (when he clicked "not for me" earlier). We need
-            //      to remove them from the recommendations.
-            var rejActs = req.user.profile.userPreferences.rejectedActivities;
-            if (rejActs.length > 0) {
-                _.remove(myOffersHash, function (rec) {
-                    return _.any(rejActs, function (rejAct) {
-                        return rejAct.activity.equals(rec.activity._id);
-                    });
-                });
             }
 
             // sort offers

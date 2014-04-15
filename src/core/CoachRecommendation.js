@@ -279,5 +279,7 @@ function generateRecommendations(userId, rejectedActs, assessmentResult, persona
 
 module.exports = {
     generateAndStoreRecommendations: generateAndStoreRecommendations,
-    generateRecommendations: generateRecommendations
+    generateRecommendations: generateRecommendations,
+
+    healthCoachUserId: HEALTH_COACH_USER_ID
 };

@@ -19,8 +19,8 @@ describe('HealthCoach Module', function () {
                 expect(err).toBeNull();
                 expect(_.isArray(messages));
                 expect(messages.length).toEqual(2);
-                expect(messages[0]).toEqual('msg_1');
-                expect(messages[1]).toEqual('msg_3');
+                expect(messages[0]).toEqual('hcmsg.1');
+                expect(messages[1]).toEqual('hcmsg.3');
                 user.remove();
                 done();
             });
@@ -57,7 +57,7 @@ describe('HealthCoach Module', function () {
                                 expect(err).toBeNull();
                                 expect(_.isArray(messages));
                                 expect(messages.length).toEqual(2);
-                                expect(messages[0]).toEqual('msg_2');
+                                expect(messages[0]).toEqual('hcmsg.2');
                                 result.remove();
                                 user.remove();
                                 done();
@@ -101,7 +101,7 @@ describe('HealthCoach Module', function () {
                             expect(err).toBeNull();
                             expect(_.isArray(messages));
                             expect(messages.length).toEqual(1);
-                            expect(messages[0]).toEqual('msg_1');
+                            expect(messages[0]).toEqual('hcmsg.1');
                             savedPlan.remove();
                             user.remove();
                             done();

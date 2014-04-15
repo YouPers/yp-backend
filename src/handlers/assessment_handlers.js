@@ -85,8 +85,7 @@ function assessmentResultAnswerPutFn () {
                 });
 
             });
-                // mark it dirty (for generating coach recommendations when loading the offers)
-        // save
+
     };
 }
 

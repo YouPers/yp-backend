@@ -166,7 +166,7 @@ function getActivityOffersFn(req, res, next) {
     var getAssessmentResult = function getAssessmentResult(done) {
 
         AssessmentResult
-            .find({}, {}, { sort: { 'created_at' : -1 }}).exec(function (err, results) {
+            .find({owner: req.user.id}, {}, { sort: { 'created_at' : -1 }}).exec(function (err, results) {
                 if (err) {
                     return done(err);
                 }

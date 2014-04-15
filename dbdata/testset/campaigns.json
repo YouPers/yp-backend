@@ -26,7 +26,8 @@
         "start": {
             "$date": 1391414400000
         },
-        "title": "YouPers AG Test Kampagne 1 f\u00fcr WorkLife-Balance"
+        "title": "YouPers AG Test Kampagne 1 f\u00fcr WorkLife-Balance",
+        "avatar": "/assets/img/campaignavatarstress_u10.png"
     },
     {
         "__v": 0,
@@ -55,6 +56,7 @@
         "start": {
             "$date": 1392624000000
         },
-        "title": "YouPers AG Test Kampagne 2 f\u00fcr WorkLife-Balance"
+        "title": "YouPers AG Test Kampagne 2 f\u00fcr WorkLife-Balance",
+        "avatar": "/assets/img/campaignavatarstress_u10.png"
     }
 ]

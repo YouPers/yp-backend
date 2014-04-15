@@ -182,29 +182,6 @@ function getActivityOffersFn(req, res, next) {
             return error.handleError(err, next);
         }
 
-        function loadOffers(err) {
-
-            if (err) {
-                return error.handleError(err, next);
-            }
-
-            var targetQueues = [req.user._id];
-            if (req.user.campaign) {
-                targetQueues.push(req.user.campaign._id);
-            }
-
-            var selector = {targetQueue: {$in: targetQueues}};
-
-            // check whether the client only wanted offers for one specific activity
-            if (req.params.activity) {
-                selector.activity = req.params.activity;
-            }
-
-            ActivityOffer
-                .find(selector)
-                .populate('activity activityPlan recommendedBy')
-                .exec(consolidate);
-        }
 
         // check if result is dirty (new answers have been put),
         // then generate and/or load offers, before consolidating them
@@ -216,30 +193,34 @@ function getActivityOffersFn(req, res, next) {
             loadOffers();
         }
 
-        function consolidate(err, offers) {
 
+        function loadOffers(err) {
 
-            var plannedActs = _.map(locals.plans, 'activity');
-
-            _.remove(offers, function (offer) {
-                return _.any(plannedActs, function (plannedActId) {
-                    return plannedActId.equals(offer.activity._id);
-                });
-            });
-
-            // removeRejected:
-            //      the user may have rejected Activities in his profile (when he clicked "not for me" earlier). We need
-            //      to remove them from the recommendations.
-            var rejActs = req.user.profile.userPreferences.rejectedActivities;
-            if (rejActs.length > 0) {
-                _.remove(offers, function (rec) {
-                    return _.any(rejActs, function (rejAct) {
-                        return rejAct.activity.equals(rec.activity._id);
-                    });
-                });
+            if (err) {
+                return error.handleError(err, next);
             }
 
-            // consolidate dups:
+            var targetQueues = [req.user._id];
+            if (req.user.campaign) {
+                targetQueues.push(req.user.campaign._id);
+            }
+
+            var activity = req.params.activity;
+            var selector = activity ? { activity: activity } : { targetQueue: {$in: targetQueues} };
+
+            ActivityOffer
+                .find(selector)
+                .populate('activity activityPlan recommendedBy')
+                .exec(consolidate);
+        }
+
+        function consolidate(err, offers) {
+
+            if(err) {
+                return error.handleError(err, next);
+            }
+
+            // consolidate dups
             //      if we now have more than one recommendation for the same activity from the different sources
             //      we need to consolidate them into one recommendation with multiple recommenders, sources and possibly plans.
             //      We do this by merging the recommender, the type and the plan property into an array.
@@ -259,6 +240,67 @@ function getActivityOffersFn(req, res, next) {
                     myOffersHash[offer.activity._id] = offer;
                 }
             });
+
+
+            var activity = req.params.activity;
+
+            if(activity) {
+
+                if(_.size(myOffersHash) === 0 || !myOffersHash[activity]) {
+
+                    // default offers are not stored
+
+                    return Activity.findById(activity, function(err, act) {
+                        if(err) {
+                            return error.handleError(err, next);
+                        }
+                        if(!act) {
+                            return next(new error.ResourceNotFoundError({ activity: activity}));
+                        }
+
+                        User.findById(CoachRecommendation.healthCoachUserId, function(err, healthCoachUser) {
+                            if(err) {
+                                return error.handleError(err, next);
+                            }
+
+                            var offer = _newActivityOffer(act, healthCoachUser);
+                            res.send([offer]);
+                            return next();
+                        });
+                    });
+
+                } else if(_.size(myOffersHash) > 1) {
+                    return next(new error.InvalidContentError("activity offer not unique", {
+                        activity: activity,
+                        offers: myOffersHash
+                    }));
+                } else {
+                    res.send([myOffersHash[activity]]);
+                    return next();
+                }
+
+            }
+
+            var plannedActs = _.map(locals.plans, 'activity');
+
+            _.remove(myOffersHash, function (offer) {
+                return _.any(plannedActs, function (plannedActId) {
+                    return plannedActId.equals(offer.activity._id);
+                });
+            });
+
+
+            // removeRejected:
+            //      the user may have rejected Activities in his profile (when he clicked "not for me" earlier). We need
+            //      to remove them from the recommendations.
+            var rejActs = req.user.profile.userPreferences.rejectedActivities;
+            if (rejActs.length > 0) {
+                _.remove(myOffersHash, function (rec) {
+                    return _.any(rejActs, function (rejAct) {
+                        return rejAct.activity.equals(rec.activity._id);
+                    });
+                });
+            }
 
             // sort offers
 
@@ -385,6 +427,16 @@ var deleteActivityOffers = function (req, res, next) {
     });
 };
 
+function _newActivityOffer(activity, user) {
+    return {
+        activity: activity,
+        activityPlan: [],
+        recommendedBy: [user],
+        type: ['defaultActivity'],
+        prio: activity.qualityFactor
+    };
+}
+
 function _getDefaultActivityOffers(cb) {
 
     Activity
@@ -401,19 +453,10 @@ function _getDefaultActivityOffers(cb) {
                 }
                 var offers = [];
                 _.forEach(activities, function(activity) {
-
-                    var offer = {
-                        activity: activity,
-                        activityPlan: [],
-                        recommendedBy: [healthCoachUser],
-                        type: ['defaultActivity'],
-                        prio: activity.qualityFactor
-                    };
-
-                    offers.push(offer);
+                    offers.push(_newActivityOffer(activity, healthCoachUser));
                 });
 
-                cb(null, offers);
+                return cb(null, offers);
             });
         });
 }

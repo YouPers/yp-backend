@@ -1,44 +1,6 @@
 [
     {
         "_id": {
-            "$oid": "5278c51a6166f2de240000df"
-        },
-        "category": "general",
-        "exptextI18n": {
-            "de": "Der generelle Stresslevel zeigt das allgemeine Wohlbefinden bzw. die allgemeine Stresssituation."
-        },
-        "maxtextI18n": {
-            "de": "\u00dcberfordernd"
-        },
-        "maxtextexampleI18n": {
-            "de": "Die beruflichen und privaten Aufgaben \u00fcberfordern mich, weshalb ich oft frustriert bin und mich dadurch anhaltend gestresst f\u00fchle."
-        },
-        "maxtextresultI18n": {
-            "de": "Wenn du dich im Beruf und in der Freizeit \u00fcberfordert f\u00fchlst, versuche deine Arbeitsgestaltung und dein Zeitmanagement zu verbessern und plane ausgleichende Aktivit\u00e4ten ein."
-        },
-        "midtextI18n": {
-            "de": "Ausgewogen"
-        },
-        "midtextexampleI18n": {
-            "de": "Die beruflichen und privaten Aufgaben fordern mich, weshalb ich mich motiviert bzw. \"positiv gestresst\" f\u00fchle."
-        },
-        "mintextI18n": {
-            "de": "Unterfordernd"
-        },
-        "mintextexampleI18n": {
-            "de": "Die beruflichen und privaten Aufgaben unterfordern mich, weshalb ich mich oft gelangweilt und dadurch anhaltend gestresst f\u00fchle."
-        },
-        "mintextresultI18n": {
-            "de": "Wenn du dich im Beruf und in der Freizeit unterfordert f\u00fchlst, hilft es dir, zus\u00e4tzliche fordernde bzw. inspirierende Aktivit\u00e4ten zu suchen und wahrzunehmen."
-        },
-        "titleI18n": {
-            "de": "Stresslevel"
-        },
-        "type": "twoSided"
-    }
-    ,
-    {
-        "_id": {
             "$oid": "5278c51a6166f2de240000dd"
         },
         "category": "work",

@@ -357,7 +357,7 @@
         "_id": {
             "$oid": "53348c27996c80a534319bda"
         },
-        "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRU5FN7rcovPPzTBRbpkHx_JTCEk1Et8rnXf-aEvVexzFdYl7rjzw",
+        "avatar": "assets/img/healthcoach.png",
         "email": "healthcoach@youpers.com",
         "emailValidatedFlag": true,
         "firstname": "Youpers",

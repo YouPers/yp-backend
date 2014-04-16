@@ -227,11 +227,14 @@ function getActivityOffersFn(req, res, next) {
             var rejActs = _.map(req.user.profile.userPreferences.rejectedActivities, 'activity');
             var actsToRemove = plannedActs.concat(rejActs);
 
-            _.remove(offers, function (offer) {
-                return _.any(actsToRemove, function (actToRemoveId) {
-                    return actToRemoveId.equals(offer.activity._id);
+            // only remove if the user did not request offers for one specific activity
+            if (!activityFilter) {
+                _.remove(offers, function (offer) {
+                    return _.any(actsToRemove, function (actToRemoveId) {
+                        return actToRemoveId.equals(offer.activity._id);
+                    });
                 });
-            });
+            }
 
             // consolidate dups:
             //      if we now have more than one recommendation for the same activity from the different sources
@@ -326,7 +329,7 @@ function getActivityOffersFn(req, res, next) {
                 sortedOffers.concat(publicPlans.slice(0, 9 - sortedOffers.length));
             }
 
-            if(sortedOffers.length < 3) {
+            if((activityFilter && sortedOffers.length ===0) ||  sortedOffers.length < 3) {
                 _getDefaultActivityOffers(activityFilter, function(err, defaultOffers) {
                    if(err) {
                        return error.handleError(err, next);
@@ -334,11 +337,14 @@ function getActivityOffersFn(req, res, next) {
 
                     sortedOffers = sortedOffers.concat(defaultOffers);
 
-                    _.remove(sortedOffers, function (offer) {
-                        return _.any(actsToRemove, function (actToRemoveId) {
-                            return offer.activity._id.equals(actToRemoveId);
+                    // only remove if the user did not request offers for one specific activity
+                    if (!activityFilter) {
+                        _.remove(sortedOffers, function (offer) {
+                            return _.any(actsToRemove, function (actToRemoveId) {
+                                return offer.activity._id.equals(actToRemoveId);
+                            });
                         });
-                    });
+                    }
 
                     res.send(sortedOffers);
                     return next();

@@ -329,7 +329,7 @@ function getActivityOffersFn(req, res, next) {
                 sortedOffers.concat(publicPlans.slice(0, 9 - sortedOffers.length));
             }
 
-            if((activityFilter && sortedOffers.length ===0) ||  sortedOffers.length < 3) {
+            if((activityFilter && sortedOffers.length ===0) ||  (!activityFilter && sortedOffers.length < 3)) {
                 _getDefaultActivityOffers(activityFilter, function(err, defaultOffers) {
                    if(err) {
                        return error.handleError(err, next);

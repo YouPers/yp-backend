@@ -422,7 +422,7 @@ function _getDefaultActivityOffers(activityFilter, cb) {
                     offers.push(offer);
                 });
 
-                cb(null, offers);
+                return cb(null, offers);
             });
         });
 }

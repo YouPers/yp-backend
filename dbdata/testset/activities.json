@@ -153,7 +153,7 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": "MISSING TRANSLATION"
+            "de": "Mit der Stress-Selbstbeurteilung wird der subjektive IST-Zustand der Stresssituation registriert. \nDie Selbstbeurteilung wird monatlich durchgeführt und hat zum Ziel: \n\n* Stressoren und Stressauslöser frühzeitig zu erkennen\n* sich der Stressfaktoren bewusst zu werden\n* frühzeitig gegen die Stressfaktoren vorzugehen\n* mit Hilfe der vorgeschlagenen Aktivitäten und dem Stress-Tagebuch sein subjektives Stressempfinden zu reduzieren\n* langfristig Dauerstress und Überbelastung zu vermeiden"
         },
         "titleI18n": {
             "de": "Selbstbeurteilung"
@@ -16029,7 +16029,7 @@
         ],
         "source": "youpers",
         "textI18n": {
-            "de": "Beachte bei der Planung deines Aufbautrainings folgende Reihenfolge: \n\n1. Steigere die H\u00e4ufigkeit des Trainings\n2. Steigere die Dauer des Trainings\n3. Erh\u00f6he die Intensit\u00e4t des Trainings\n\nAusserdem gelten beim Aufbautraining folgende, allgemeing\u00fcltige Regeln:\n\n* Wichtig ist das richtige Verh\u00e4ltnis von Belastung und Erholung (\u00fcber eine gewisse Trainingsperiode)\n* Achte auf das richtige Verh\u00e4ltnis von Intensit\u00e4t und Belastungsumfang (pro Training)\n* Trainiere kontinuierlich\n* Trainiere nicht zu einseitig\n* Erkenne Leistungsstillstand / \u00dcbertraining\n* Es ist eine kontinuierliche Verbesserung der Leistung m\u00f6glich"
+            "de": "Beachte bei der Planung deines Aufbautrainings folgende Reihenfolge: \n\n1. Steigere die H\u00e4ufigkeit des Trainings\n2. Steigere die Dauer des Trainings\n3. Erh\u00f6he die Intensit\u00e4t des Trainings\n\nAusserdem gelten beim Aufbautraining folgende, allgemeing\u00fcltige Regeln:  \n\n* Wichtig ist das richtige Verh\u00e4ltnis von Belastung und Erholung (\u00fcber eine gewisse Trainingsperiode)\n* Achte auf das richtige Verh\u00e4ltnis von Intensit\u00e4t und Belastungsumfang (pro Training)\n* Trainiere kontinuierlich\n* Trainiere nicht zu einseitig\n* Erkenne Leistungsstillstand / \u00dcbertraining\n* Es ist eine kontinuierliche Verbesserung der Leistung m\u00f6glich"
         },
         "titleI18n": {
             "de": "Aufbautraining"
@@ -18873,7 +18873,7 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": "MISSING TRANSLATION"
+            "de": "Ein Stress-Tagebuch ist eine individuelle Bestandesaufnahme (Protokollierung) der Stresssituation der Vergangenheit und dauert über mehrere Tage (oder auch Wochen) an. Es sollen sowohl starke Stresssituationen wie auch kleinere Begebenheiten notiert werden. \nWichtig ist auch, dass die **Gefühlslage** in den Situationen protokolliert wird, die einen Einfluss auf den Körper ausgelöst haben, von grossen Streits bis hin zu kleinen Ärgernissen.\nDas Stress-Tagebuch soll immer mit sich geführt werden, um aktuell und schnell Einträge machen zu können!"
         },
         "titleI18n": {
             "de": "Stress-Tagebuch"

@@ -7,22 +7,6 @@ var urlComposer = require('../util/urlcomposer');
 var Notification = require('../core/Notification');
 var NotificationModel = require('../models/notification_model');
 
-var mapOfferTypeToNotificationType = {
-    'campaignActivityPlan': 'joinablePlan',
-    'publicActivityPlan': 'joinablePlan',
-    'campaignActivity': 'activityRecommendation',
-    'personalInvitation': 'personalInvitation',
-    'ypHealthCoach': 'activityRecommendation'
-};
-
-var mapOfferTypeToNotificationSourceType = {
-    'campaignActivityPlan': 'campaign',
-    'campaignActivity': 'campaign',
-    'personalInvitation': 'community',
-    'ypHealthCoach': 'youpers',
-    'publicActivityPlan': 'community',
-    'defaultActivity': 'youpers'
-};
 
 function ActivityManagement() {
     EventEmitter.call(this);
@@ -110,8 +94,8 @@ actMgr.on('activity:offerSaved', function (offer) {
 
         if (isCampaignPromotedOffer || isPersonalInvite) {
             return new Notification({
-                type: mapOfferTypeToNotificationType[offer.type],
-                sourceType: mapOfferTypeToNotificationSourceType[offer.type],
+                type: ActivityOffer.mapOfferTypeToNotificationType[offer.type],
+                sourceType: ActivityOffer.mapOfferTypeToSourceType[offer.type],
                 title: (offer.plan && offer.plan.title) || offer.activity.title,
                 targetQueue: offer.targetQueue,
                 author: offer.recommendedBy,

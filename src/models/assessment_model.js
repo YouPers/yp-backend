@@ -28,12 +28,12 @@ var AssessmentQuestionSchema = common.newSchema({
 
 var AssessmentSchema = common.newSchema({
     name: {type: String, trim: true, i18n: true},
-    questions: [{type: ObjectId, ref: 'Assessmentquestion'}]
+    questions: [{type: ObjectId, ref: 'AssessmentQuestion'}]
 });
 
 
 AssessmentSchema.statics.adminRoles = [auth.roles.systemadmin, auth.roles.productadmin];
 
-mongoose.model('Assessmentquestion', AssessmentQuestionSchema);
+mongoose.model('AssessmentQuestion', AssessmentQuestionSchema);
 
 module.exports = mongoose.model('Assessment', AssessmentSchema);

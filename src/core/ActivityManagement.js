@@ -20,7 +20,8 @@ var mapOfferTypeToNotificationSourceType = {
     'campaignActivity': 'campaign',
     'personalInvitation': 'community',
     'ypHealthCoach': 'youpers',
-    'publicActivityPlan': 'community'
+    'publicActivityPlan': 'community',
+    'defaultActivity': 'youpers'
 };
 
 function ActivityManagement() {

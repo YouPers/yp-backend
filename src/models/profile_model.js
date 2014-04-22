@@ -41,6 +41,12 @@ var ProfileSchema = common.newSchema({
             saturday: { type: Boolean, default: false },
             sunday: { type: Boolean, default: false  }
         },
+        focus: [
+            {
+                timestamp: {type: Date},
+                question: {type: ObjectId, ref: 'AssessmentQuestion'}
+            }
+        ],
         starredActivities: [
             {
                 timestamp: {type: Date},

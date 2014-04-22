@@ -20,8 +20,9 @@ var HEALTH_COACH_TYPE = 'ypHealthCoach';
  *
  * @param actList the list of activities to score
  * @param assResult the assessmentResult to score against
- * @param personalGoal an array of goals corresponding to _ids of assessmentQuestions the user wants to focus on. If
- * this is null or empty array we consider all questions. If it is set to at least one question, we only consider the
+ * @param personalGoal an array of focus-questions corresponding to _ids of assessmentQuestions the user wants to focus on.
+ * We expect an array of objects with property question: e.g. [{question: "id", timestamp: "ts"}, ...]
+ * If this is null or empty array we consider all questions. If it is set to at least one question, we only consider the
  * questions that the user wants to focus on.
  * @param nrOfRecsToReturn
  * @param cb callback function with arguments (err, rec)
@@ -31,6 +32,9 @@ var HEALTH_COACH_TYPE = 'ypHealthCoach';
 function _generateRecommendations(actList, assResult, personalGoal, nrOfRecsToReturn, cb) {
     if (_.isString(personalGoal) && personalGoal.length > 0 ) {
         personalGoal = [personalGoal];
+    } else if (_.isArray(personalGoal) &&  personalGoal.length > 0 && _.isObject(personalGoal[0])) {
+        // unwrap the focus objects into a simple array of questionIds.
+        personalGoal = _.map(personalGoal, 'question');
     } else if (_.isArray(personalGoal) && (personalGoal.length = 0)) {
         personalGoal = undefined;
     }
@@ -216,6 +220,8 @@ function _storeNewRecsIntoActivityOffers(userId, recs, cb) {
 function _updateRecommendations(userId, rejectedActs, assessmentResult, personalGoals, updateDb, isAdmin, cb) {
     // TODO: load personalGoals of this user if not passed in
     // TODO: load rejectedActs of this user if not passed in
+
+
 
     async.parallel([
         _loadActivities.bind(null, rejectedActs),

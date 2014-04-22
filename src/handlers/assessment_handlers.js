@@ -24,7 +24,7 @@ var getNewestResult = function (baseUrl) {
                     return error.handleError(err, next);
                 }
                 if (!results || results.length === 0) {
-                    res.send([]);
+                    res.send(204);
                     return next();
                 }
                 var newestResult = results[0];

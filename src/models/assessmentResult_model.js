@@ -31,6 +31,83 @@ AssessmentResultSchema.statics.getFieldDescriptions = function () {
     };
 };
 
+var needForActionEvalFns = {
+    "work": function(high, mid, low) {
+        var need = 0;
+        if (high >= 3) {
+            need = 10;
+        } else if (high >= 2) {
+            need = 9;
+        } else if (high >= 1 || mid >= 4) {
+            need = 8;
+        } else if (mid >= 3) {
+            need = 7;
+        } else if (mid >= 2) {
+            need = 6;
+        } else if (mid >= 1 || low >= 4) {
+            need = 5;
+        } else if (low >= 3) {
+            need = 4;
+        } else if (low >= 2) {
+            need = 3;
+        } else if (low >= 1) {
+            need = 2;
+        } else {
+            need = 1;
+        }
+        return need;
+    },
+    "leisure": function(high, mid, low) {
+        var need = 0;
+        if (high >= 2) {
+            need = 10;
+        } else if (high >= 1 || mid >= 2) {
+            need = 9;
+        } else if (mid >= 1 || low >= 2) {
+            need = 6;
+        } else if (low >= 1) {
+            need = 2;
+        } else {
+            need = 1;
+        }
+        return need;
+    },
+    "handling": function(high, mid, low) {
+        var need = 0;
+        if (high >= 2) {
+            need = 10;
+        } else if (high >= 1 || mid >= 2) {
+            need = 9;
+        } else if (mid >= 1 || low >= 2) {
+            need = 6;
+        } else if (low >= 1) {
+            need = 2;
+        } else {
+            need = 1;
+        }
+        return need;
+    },
+    "stresstypus": function(high, mid, low) {
+        var need = 0;
+        if (high >= 2) {
+            need = 10;
+        } else if (high >= 1 || mid >= 3) {
+            need = 9;
+        } else if (mid >= 2) {
+            need = 2;
+        } else if (mid >= 1 || low >= 3) {
+            need = 6;
+        } else if (low >= 2) {
+            need = 2;
+        } else if (low >= 1) {
+            need = 2;
+        } else {
+            need = 1;
+        }
+        return need;
+    }
+};
+
 var questionsByIdCache;
 
 AssessmentResultSchema.pre('save', function (next) {
@@ -75,30 +152,11 @@ function _caluculateNeedForAction(answers, questionsById) {
             return normalizedValue;
         });
 
-        var need = 0;
-        if (countNormalizedValues['high'] >= 3) {
-            need = 10;
-        } else if (countNormalizedValues['high'] >= 2) {
-            need = 9;
-        } else if (countNormalizedValues['high'] >= 1 || countNormalizedValues['mid'] >= 4) {
-            need = 8;
-        } else if (countNormalizedValues['mid'] >= 3) {
-            need = 7;
-        } else if (countNormalizedValues['mid'] >= 2) {
-            need = 6;
-        } else if (countNormalizedValues['mid'] >= 1 || countNormalizedValues['low'] >= 4) {
-            need = 5;
-        } else if (countNormalizedValues['low'] >= 3) {
-            need = 4;
-        } else if (countNormalizedValues['low'] >= 2) {
-            need = 3;
-        } else if (countNormalizedValues['low'] >= 1) {
-            need = 2;
-        } else {
-            need = 1;
-        }
 
-        needForAction[catName] = need;
+
+        needForAction[catName] = needForActionEvalFns[catName](countNormalizedValues['high'],
+            countNormalizedValues['mid'],
+            countNormalizedValues['low']);
     });
 
     return needForAction;

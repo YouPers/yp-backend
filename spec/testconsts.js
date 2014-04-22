@@ -8,6 +8,9 @@ var self = module.exports  =  {
     groupActivity: {
         id: '5278c6adcdeab69a25000046'
     },
+    groupActivity2: {
+        id: '5278c6adcdeab69a2500006f'
+    },
     aloneActivity: {
         id: "5278c6aecdeab69a250000b9"
     },

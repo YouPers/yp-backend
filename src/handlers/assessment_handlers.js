@@ -1,4 +1,3 @@
-
 var error = require('../util/error'),
     handlerUtils = require('./handlerUtils'),
     CoachRecommendation = require('../core/CoachRecommendation'),
@@ -6,28 +5,47 @@ var error = require('../util/error'),
     mongoose = require('mongoose'),
     _ = require('lodash'),
     AssessmentResult = mongoose.model('AssessmentResult'),
-    AssessmentResultAnswer = mongoose.model('AssessmentResultAnswer');
+    AssessmentQuestion = mongoose.model('AssessmentQuestion'),
+    AssessmentResultAnswer = mongoose.model('AssessmentResultAnswer'),
+    generic = require('./generic');
 
 var getNewestResult = function (baseUrl) {
     return function (req, res, next) {
-        AssessmentResult.find({assessment: req.params.assessmentId, owner: req.user.id})
+
+        var dbQuery = AssessmentResult.find({assessment: req.params.assessmentId, owner: req.user.id});
+
+        generic.addStandardQueryOptions(req, dbQuery, AssessmentResult);
+
+        dbQuery
             .sort({timestamp: -1})
             .limit(1)
             .exec(function (err, results) {
-                if(err) {
+                if (err) {
                     return error.handleError(err, next);
                 }
-                if (!results || results.length === 0){
+                if (!results || results.length === 0) {
                     res.send(204);
                     return next();
                 }
-                res.send(results[0]);
-                return next();
+                var newestResult = results[0];
+                if (req.params.populatedeep && req.params.populatedeep === 'answers.question') {
+                    AssessmentQuestion.populate(newestResult.answers, 'question', function (err, answers) {
+                        if (err) {
+                            return error.handleError(err, next);
+                        }
+                        res.send(newestResult);
+                        return next();
+                    });
+                } else {
+                    res.send(newestResult);
+                    return next();
+                }
+
             });
     };
 };
 
-function assessmentResultAnswerPutFn () {
+function assessmentResultAnswerPutFn() {
     return function (req, res, next) {
 
         var err = handlerUtils.checkWritingPreCond(req.body, req.user, AssessmentResultAnswer);
@@ -48,7 +66,7 @@ function assessmentResultAnswerPutFn () {
 
         // get latest result
         AssessmentResult
-            .find({owner: req.user.id, assessment: newAnswer.assessment}, {}, { sort: { 'created_at' : -1 }}).exec(function (err, results) {
+            .find({owner: req.user.id, assessment: newAnswer.assessment}, {}, { sort: { 'created_at': -1 }}).exec(function (err, results) {
                 if (err) {
                     return error.handleError(err, next);
                 }
@@ -62,22 +80,22 @@ function assessmentResultAnswerPutFn () {
 
 
                 // delete id if older than today to save a new result
-                if(result.timestamp < today) {
+                if (result.timestamp < today) {
                     delete result.id;
                 }
 
-                var answerIndex = _.findIndex(result.answers, function(answer) {
+                var answerIndex = _.findIndex(result.answers, function (answer) {
                     return answer.question.equals(newAnswer.question);
                 });
 
-                if(answerIndex >= 0) {
+                if (answerIndex >= 0) {
                     result.answers.splice(answerIndex, 1);
                 }
                 result.answers.push(newAnswer);
                 result.dirty = true;
 
-                result.save(function(err, saved) {
-                    if(err) {
+                result.save(function (err, saved) {
+                    if (err) {
                         return error.handleError(err, next);
                     }
                     res.send(200);
@@ -89,7 +107,7 @@ function assessmentResultAnswerPutFn () {
     };
 }
 
-function assessmentResultPostFn (baseUrl, Model) {
+function assessmentResultPostFn(baseUrl, Model) {
     return function (req, res, next) {
 
         var err = handlerUtils.checkWritingPreCond(req.body, req.user, Model);
@@ -109,22 +127,27 @@ function assessmentResultPostFn (baseUrl, Model) {
         req.log.trace(newObj, 'PostFn: Saving new Object');
         // try to save the new object
         newObj.save(function (err, savedObj) {
-            if(err) {
+            if (err) {
                 return error.handleError(err, next);
             }
-            // TODO: pass the users current goals
-            CoachRecommendation.generateAndStoreRecommendations(req.user._id, req.user.profile.userPreferences.rejectedActivities, savedObj, null, auth.isAdminForModel(req.user, mongoose.model('Activity')), function(err, recs) {
-                if (err) {
-                    return error.handleError(err, next);
-                }
-                res.header('location', req.url + '/' + savedObj._id);
-                res.send(201, savedObj);
-                return next();
-            });
+
+            CoachRecommendation.generateAndStoreRecommendations(
+                req.user._id,
+                req.user.profile.userPreferences.rejectedActivities,
+                savedObj,
+                req.user.profile.userPreferences.focus,
+                auth.isAdminForModel(req.user, mongoose.model('Activity')),
+                function (err, recs) {
+                    if (err) {
+                        return error.handleError(err, next);
+                    }
+                    res.header('location', req.url + '/' + savedObj._id);
+                    res.send(201, savedObj);
+                    return next();
+                });
         });
     };
 }
-
 
 
 module.exports = {

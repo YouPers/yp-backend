@@ -55,7 +55,6 @@ var self = module.exports  =  {
             "start": campaignStart,
             "end": campaignEnd,
             "relatedService": "YP-Balance",
-            "organization": "52f0c64e53d523235b07d8d8",
             "location": "Alpenstrasse",
             "slogan": "It's never too late!",
             "paymentStatus": "open",

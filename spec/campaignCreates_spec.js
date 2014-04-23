@@ -24,7 +24,6 @@ var testCampaign = {
     "start": campaignStart,
     "end": campaignEnd,
     "relatedService": "YP-Balance",
-    "organization": "52f0c64e53d523235b07d8d8",
     "location": "Los Feliz",
     "slogan": "It's never too late!",
     "paymentStatus": "open",
@@ -72,7 +71,6 @@ frisby.create('Campaigns Creates: POST new campaign to existing organization')
                             "start": campaignStart,
                             "end": campaignEnd,
                             "relatedService": "YP-Balance",
-                            "organization": "52f0c64e53d523235b07d8d8",
                             "location": "Los Feliz",
                             "slogan": "It's never too late!",
                             "productType": "CampaignProductType1"
@@ -90,40 +88,5 @@ frisby.create('Campaigns Creates: POST new campaign to existing organization')
             })
             .toss();
 
-    })
-    .toss();
-
-frisby.create('Campaigns Creates: POST new campaign to existing organization as campaign lead')
-    .post(URL + '/campaigns', testCampaign)
-    .auth('test_campaignlead', 'yp')
-    .expectStatus(403)
-    .toss();
-
-frisby.create('Campaigns Creates: POST new campaign to existing organization as individual user')
-    .post(URL + '/campaigns', testCampaign)
-    .auth('test_ind1', 'yp')
-    .expectStatus(403)
-    .toss();
-
-
-var testOrganization = {
-    name: 'testOrganization',
-    location: 'test address',
-    sector: 'test sector',
-    nrOfEmployees: '10',
-    avatar: 'assets/img/YouPersAvatar.png'
-};
-
-frisby.create('Campaigns Creates: POST new organization to get a 2nd org admin')
-    .post(URL + '/organizations', testOrganization)
-    .auth('test_ind1', 'yp')
-    .expectStatus(201)
-    .afterJSON(function (newOrganization) {
-
-        frisby.create('Campaigns Creates: POST new campaign to wrong organization')
-            .post(URL + '/campaigns', testCampaign)
-            .auth('test_ind1', 'yp')
-            .expectStatus(403)
-            .toss();
     })
     .toss();

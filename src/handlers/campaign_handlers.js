@@ -58,15 +58,18 @@ var getCampaignStats = function (baseUrl, Model) {
 
 var validateCampaign = function validateCampaign(campaign, userId, type, next) {
     // check if posting user is an org admin of the organization this new campaign belongs to
-    Organization.findById(campaign.organization).exec(function(err, org) {
+    Organization.find({administrators: userId}).exec(function(err, organizations) {
         if(err) {
             return error.handleError(err, next);
         }
-        if(!org) {
-            return next(new error.ResourceNotFoundError({
-                id: campaign.organization
+        if(!organizations || organizations.length !== 1) {
+            return next(new error.ConflictError("user is administrator for more than one organization", {
+                organizations: organizations
             }));
         }
+        var org = organizations[0];
+
+        campaign.organization = org;
 
         var orgAdmin = _.contains(org.administrators.toString(), userId);
 

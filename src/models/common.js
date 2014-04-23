@@ -122,17 +122,20 @@ module.exports = {
                 ret.id = ret._id;
                 delete ret._id;
 
-                ret.version = ret.__v;
-                delete ret.__v;
+                // handler viruals into the JSON
+                // TODO: move the configuration whish virtuals to output as JSON into a property of
+                // the schema instead of this ifs here
 
-                // store manually the virtual doc.deleteStatus to the return value
                 if (doc.deleteStatus) {
                     ret.deleteStatus = doc.deleteStatus;
                 }
 
-                // store manually the virtual doc.editStatus to the return value
                 if (doc.editStatus) {
                     ret.editStatus = doc.editStatus;
+                }
+
+                if (doc.sourceType) {
+                    ret.sourceType = doc.sourceType;
                 }
 
                 _.forEach(multilingualValues, function (prop) {

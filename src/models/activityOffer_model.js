@@ -27,6 +27,27 @@ var ActivityOfferSchema = common.newSchema({
     validTo: {type: Date, required: false}
 });
 
+ActivityOfferSchema.statics.mapOfferTypeToSourceType = {
+    'campaignActivityPlan': 'campaign',
+    'campaignActivity': 'campaign',
+    'personalInvitation': 'community',
+    'ypHealthCoach': 'youpers',
+    'publicActivityPlan': 'community',
+    'defaultActivity': 'youpers'
+};
+
+ActivityOfferSchema.statics.mapOfferTypeToNotificationType = {
+    'campaignActivityPlan': 'joinablePlan',
+    'publicActivityPlan': 'joinablePlan',
+    'campaignActivity': 'activityRecommendation',
+    'personalInvitation': 'personalInvitation',
+    'ypHealthCoach': 'activityRecommendation'
+};
+
+ActivityOfferSchema.virtual('sourceType').get(function() {
+    return ActivityOfferSchema.statics.mapOfferTypeToSourceType[this.type];
+});
+
 // TODO: add custom validation for the enum, since mongoose does not support array of strings with the strings being part of an enum.
 
 module.exports = mongoose.model('ActivityOffer', ActivityOfferSchema);

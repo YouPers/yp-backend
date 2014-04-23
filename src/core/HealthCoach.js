@@ -16,7 +16,9 @@ var healthCoachRuleSet = {
         {id: "hcmsg.1", rule: "facts.uistate == 'home.content' && !facts.assessmentResult.done"},
         {id: "hcmsg.2", rule: "facts.uistate == 'home.content' && facts.assessmentResult.done && facts.assessmentResult.age > 1000*60*60*24*3"},
         {id: "hcmsg.3", rule: "facts.uistate == 'home.content' && facts.activities.total.plannedAct == 0"},
-        {id: "hcmsg.4", rule: "facts.uistate == 'select.content' && !facts.assessmentResult.done"}
+        {id: "hcmsg.4", rule: "facts.uistate == 'select.content' && !facts.assessmentResult.done"},
+        {id: "hcmsg.5", rule: "facts.uistate == 'check.content' && !facts.assessmentResult.done"},
+        {id: "hcmsg.6", rule: "facts.uistate == 'check.content' && facts.assessmentResult.completion < 0.5"}
     ]
 };
 
@@ -58,7 +60,7 @@ var commonFacts = [
                         }
                         if (result.length === 1) {
                             fact.done = true;
-                            fact.completion = '1';
+                            fact.completion = result[0].answers.length / 26;
                             fact.age = moment().diff(moment(result[0].timestamp));
                         }
 

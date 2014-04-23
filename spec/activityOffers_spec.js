@@ -113,7 +113,7 @@ consts.newUserInNewCampaignApi(
                                                         frisby.create('ActivityOffers: add campaign ActPlan for existing Act')
                                                             .post(URL + '/activityplans', {
                                                                 "owner": consts.users.test_campaignlead.id,
-                                                                "activity": consts.groupActivity.id,
+                                                                "activity": consts.groupActivity2.id,
                                                                 "title": "myTitle",
                                                                 "visibility": "campaign",
                                                                 "source": "campaign",
@@ -135,6 +135,7 @@ consts.newUserInNewCampaignApi(
                                                                     .get(URL + '/activityoffers')
                                                                     .auth(offerTestUser.username, "yp")
                                                                     .expectStatus(200)
+                                                                    .inspectJSON()
                                                                     .afterJSON(function (recs) {
 
 

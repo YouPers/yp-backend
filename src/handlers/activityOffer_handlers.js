@@ -44,8 +44,10 @@ function getCoachRecommendationsFn(req, res, next) {
 
     var admin = auth.isAdminForModel(req.user, mongoose.model('Activity'));
 
-    CoachRecommendation.generateAndStoreRecommendations(req.user._id, req.user.profile.userPreferences.rejectedActivities, null, null, admin, function (err, recs) {
-        if (err) {
+    CoachRecommendation.generateAndStoreRecommendations(req.user._id,
+        req.user.profile.userPreferences.rejectedActivities, null, req.user.profile.userPreferences.focus, admin, function (err, recs) {
+
+            if (err) {
             error.handleError(err, next);
         }
         res.send(_.sortBy(recs, function (rec) {
@@ -191,7 +193,7 @@ function getActivityOffersFn(req, res, next) {
         if(locals.result && locals.result.dirty) {
             var admin = auth.isAdminForModel(req.user, mongoose.model('Activity'));
             CoachRecommendation.generateAndStoreRecommendations(req.user._id, req.user.profile.userPreferences.rejectedActivities,
-                null, null, admin, loadOffers);
+                null, req.user.profile.userPreferences.focus, admin, loadOffers);
         } else {
             loadOffers();
         }
@@ -422,7 +424,7 @@ function _getDefaultActivityOffers(activityFilter, cb) {
                     offers.push(offer);
                 });
 
-                cb(null, offers);
+                return cb(null, offers);
             });
         });
 }

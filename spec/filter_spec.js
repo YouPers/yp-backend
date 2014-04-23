@@ -30,7 +30,7 @@ frisby.create('GET activities with two ANDed options')
 frisby.create('GET activities with < option')
     .get(URL + '/activities?filter[number]=<Act-09')
     .expectStatus(200)
-    .expectJSONLength(7)
+    .expectJSONLength(5)
     .afterJSON(function (activities) {
         for (var i = 0; i < activities.length; i++) {
             console.log('filtered activiy (=>Act-98): ' + activities[i].number);
@@ -41,7 +41,7 @@ frisby.create('GET activities with < option')
 frisby.create('GET activities with to << options')
     .get(URL + '/activities?filter[number]=<<Act-09')
     .expectStatus(200)
-    .expectJSONLength(6)
+    .expectJSONLength(4)
     .afterJSON(function (activities) {
         for (var i = 0; i < activities.length; i++) {
             console.log('filtered activiy (=>>Act-98): ' + activities[i].number);

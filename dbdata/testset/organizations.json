@@ -10,10 +10,19 @@
             }
         ],
         "avatar": "assets/img/YouPersAvatar.png",
-        "location": "test address",
         "name": "Test Organization 1",
-        "nrOfEmployees": "10",
-        "sector": "test sector"
+        "address": {
+            "street": "test street 1",
+            "zipCode": "012345",
+            "city": "test city"
+        },
+        "sector": "test sector",
+        "contact": {
+            "firstname": "test contact firstname",
+            "lastname": "test contact lastname",
+            "email": "test@youpers.com",
+            "phone": "0041 12345678900"
+        }
     },
     {
         "__v": 0,
@@ -26,9 +35,7 @@
             }
         ],
         "avatar": "assets/img/logo.png",
-        "location": "test address",
         "name": "YouPers Test Org",
-        "nrOfEmployees": "100",
         "sector": "test sector"
     }
 ]

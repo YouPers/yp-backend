@@ -11,9 +11,22 @@ var mongoose = require('mongoose'),
  */
 var OrganizationSchema = common.newSchema({
     name: { type: String, trim: true, required: true },
-    location: {type: String, trim: true},
+    address: {
+        street: {type: String, trim: true},
+        zipCode: {type: String, trim: true},
+        city: {type: String, trim: true}
+    },
+    legalForm: {type: String, trim: true},
     sector: {type: String, trim: true},
-    nrOfEmployees: {type: String, trim: true},
+
+    contact: {
+        firstname: {type: String, trim: true},
+        lastname: {type: String, trim: true},
+        position: {type: String, trim: true},
+        email: {type: String, trim: true},
+        phone: {type: String, trim: true}
+    },
+
     administrators: {type: [{ type: ObjectId, ref: 'User'}]},
     avatar: {type: String}
 });

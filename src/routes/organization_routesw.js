@@ -41,6 +41,21 @@ module.exports = function (swagger, config) {
         },
         action: organizationHandlers.postFn(baseUrl)
     });
+    swagger.addPut({
+        spec: {
+            description: "Update organization",
+            path: baseUrlWithId,
+            notes: "updates an organization",
+            summary: "updates an organization",
+            method: "PUT",
+            params: [swagger.bodyParam("organization", "organization object", "Organization")],
+            "responseClass": "Organization",
+            "errorResponses": [],
+            "nickname": "putOrganization",
+            accessLevel: 'al_orgadmin'
+        },
+        action: generic.putFn(baseUrlWithId, Organization)
+    });
 
     swagger.addGet({
         spec: {

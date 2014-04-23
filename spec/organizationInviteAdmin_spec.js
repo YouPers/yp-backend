@@ -22,13 +22,13 @@ var test_ind2Id = '52a97f1650fca98c29000007';
 
 frisby.create('OrganizationInviteAdmin: POST new org')
     .post(URL + '/organizations', testOrg)
-    .auth('test_orgadm', 'yp')
+    .auth('test_ind1', 'yp')
     .expectStatus(201)
     .afterJSON(function (newOrg) {
 
         frisby.create('OrganizationInviteAdmin: GET the created org')
             .get(URL + '/organizations/' + newOrg.id)
-            .auth('test_orgadm', 'yp')
+            .auth('test_ind1', 'yp')
             .expectStatus(200)
             .afterJSON(function (org) {
 
@@ -45,13 +45,13 @@ frisby.create('OrganizationInviteAdmin: POST new org')
 
                 frisby.create('OrganizationInviteAdmin: invite a new user')
                     .post(URL + '/organizations/' + newOrg.id + '/inviteOrganizationAdminEmail', {email: "ypunittest1+mynewuser@gmail.com"})
-                    .auth('test_orgadm', 'yp')
+                    .auth('test_ind1', 'yp')
                     .expectStatus(200)
                     .toss();
 
                 frisby.create('OrganizationInviteAdmin: invite the existing user test_ind2')
                     .post(URL + '/organizations/' + newOrg.id + '/inviteOrganizationAdminEmail', {email: "ypunittest1+individual2@gmail.com"})
-                    .auth('test_orgadm', 'yp')
+                    .auth('test_ind1', 'yp')
                     .expectStatus(200)
                     .after(function () {
                         // we need to create the token ourselves, because we cannot get the email in this test

@@ -24,7 +24,6 @@ var testCampaign = {
     "start": campaignStart,
     "end": campaignEnd,
     "relatedService": "YP-Balance",
-    "organization": "52f0c64e53d523235b07d8d8",
     "location": "Los Feliz",
     "slogan": "It's never too late!",
     "paymentStatus": "open",
@@ -48,17 +47,11 @@ frisby.create('Campaigns Edits: POST new campaign to existing organization for l
 
         frisby.create('Campaigns Edits: PUT a changed campaign title and an additional campaign lead to the previsously created campaign')
             .put(URL + '/campaigns/' + campaignId, newCampaign1)
-            .auth('test_orgadm', 'yp')
+            .auth('test_ind3', 'yp')
             .expectStatus(201)
             .afterJSON(function (reloadedCampaign1) {
 
                 expect(reloadedCampaign1.title).toEqual("new title for this campaign");
-
-                frisby.create('Campaigns Edits: PUT changed campaign to existing organization as additional campaign lead')
-                    .put(URL + '/campaigns/' + campaignId, {"location": "Los Angeles"})
-                    .auth('test_campaignlead', 'yp')
-                    .expectStatus(201)
-                    .toss();
 
                 campaignStart = moment({hour: 8, minute: 0, second: 0}).add('days',10);
                 campaignEnd = moment({hour: 17, minute: 0, second: 0}).add('weeks',27).add('days',10);
@@ -68,7 +61,6 @@ frisby.create('Campaigns Edits: POST new campaign to existing organization for l
                     "start": campaignStart,
                     "end": campaignEnd,
                     "relatedService": "YP-Balance",
-                    "organization": "52f0c64e53d523235b07d8d8",
                     "location": "Los Feliz",
                     "slogan": "It's never too late!",
                     "productType": "CampaignProductType1"
@@ -82,13 +74,13 @@ frisby.create('Campaigns Edits: POST new campaign to existing organization for l
 
                 frisby.create('Campaigns Edits: PUT changed campaign to existing organization as campaign lead not listed as campaign lead on this campaign')
                     .put(URL + '/campaigns/' + campaignId, {"title": "new title for this campaign"})
-                    .auth('test_campaignlead2', 'yp')
+                    .auth('test_ind2', 'yp')
                     .expectStatus(403)
                     .toss();
 
                 frisby.create('Campaigns Edits: PUT changed campaign to existing organization as individual user')
                     .put(URL + '/campaigns/' + campaignId, {"title": "new title for this campaign"})
-                    .auth('test_ind1', 'yp')
+                    .auth('test_ind2', 'yp')
                     .expectStatus(403)
                     .toss();
 
@@ -106,11 +98,6 @@ frisby.create('Campaigns Edits: POST new campaign to existing organization for l
                     .expectStatus(201)
                     .afterJSON(function (newOrganization) {
 
-                        frisby.create('Campaigns Edits: PUT changed campaign to wrong organization')
-                            .put(URL + '/campaigns/' + campaignId, {"title": "new title for this campaign"})
-                            .auth('test_ind1', 'yp')
-                            .expectStatus(403)
-                            .toss();
 
                         frisby.create('Campaigns Edits: DELETE the campaign 1: ' + reloadedCampaign1.id)
                             .auth('sysadm', 'backtothefuture')

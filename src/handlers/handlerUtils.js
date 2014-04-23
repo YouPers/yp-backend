@@ -13,7 +13,7 @@ function clean(Model, sentJson) {
     // do this removal for properties of type ObjectID
     var schema = Model.schema;
     _.filter(schema.paths, function (path) {
-        return (path.instance === 'ObjectID' || (path.caster && path.caster.instance === 'ObjectId'));
+        return (path.instance === 'ObjectID' || (path.caster && path.caster.instance === 'ObjectID'));
     })
         .forEach(function (myPath) {
             if (myPath.path in sentJson && _.isArray(sentJson[myPath.path])) {

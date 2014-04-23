@@ -176,6 +176,8 @@ function putCampaign(req, res, next) {
             return next(new error.ResourceNotFoundError({ id: sentCampaign.id}));
         }
 
+//        _.merge(reloadedCampaign, _.omit(sentCampaign, 'campaignLeads'));
+
         _.extend(reloadedCampaign, sentCampaign);
 
         validateCampaign(reloadedCampaign, req.user.id, "PUT", function (err) {

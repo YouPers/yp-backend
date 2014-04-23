@@ -23,19 +23,5 @@
             "email": "test@youpers.com",
             "phone": "0041 12345678900"
         }
-    },
-    {
-        "__v": 0,
-        "_id": {
-            "$oid": "52f0c64e53d523235b07d8d9"
-        },
-        "administrators": [
-            {
-                "$oid": "52a97f1650fca98c2900000a"
-            }
-        ],
-        "avatar": "assets/img/logo.png",
-        "name": "YouPers Test Org",
-        "sector": "test sector"
     }
 ]

@@ -94,8 +94,8 @@ actMgr.on('activity:offerSaved', function (offer) {
 
         if (isCampaignPromotedOffer || isPersonalInvite) {
             return new Notification({
-                type: ActivityOffer.mapOfferTypeToNotificationType[offer.type],
-                sourceType: ActivityOffer.mapOfferTypeToSourceType[offer.type],
+                type: ActivityOffer.mapOfferTypeToNotificationType[offer.type[0]],
+                sourceType: ActivityOffer.mapOfferTypeToSourceType[offer.type[0]],
                 title: (offer.plan && offer.plan.title) || offer.activity.title,
                 targetQueue: offer.targetQueue,
                 author: offer.recommendedBy,

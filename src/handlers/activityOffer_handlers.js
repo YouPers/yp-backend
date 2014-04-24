@@ -30,6 +30,9 @@ function postActivityOffer(req, res, next) {
     var offer = new ActivityOffer(req.body);
 
     offer.save(function (err, savedOffer) {
+        if (err) {
+            return error.handleError(err, next);
+        }
         actMgr.emit('activity:offerSaved', savedOffer);
         return generic.writeObjCb(req, res, next)(err, savedOffer);
     });
@@ -48,13 +51,13 @@ function getCoachRecommendationsFn(req, res, next) {
         req.user.profile.userPreferences.rejectedActivities, null, req.user.profile.userPreferences.focus, admin, function (err, recs) {
 
             if (err) {
-            error.handleError(err, next);
-        }
-        res.send(_.sortBy(recs, function (rec) {
-            return -rec.score;
-        }) || []);
-        return next();
-    });
+                error.handleError(err, next);
+            }
+            res.send(_.sortBy(recs, function (rec) {
+                return -rec.score;
+            }) || []);
+            return next();
+        });
 }
 
 
@@ -168,7 +171,7 @@ function getActivityOffersFn(req, res, next) {
     var getAssessmentResult = function getAssessmentResult(done) {
 
         AssessmentResult
-            .find({owner: req.user.id}, {}, { sort: { 'created_at' : -1 }}).exec(function (err, results) {
+            .find({owner: req.user.id}, {}, { sort: { 'created_at': -1 }}).exec(function (err, results) {
                 if (err) {
                     return done(err);
                 }
@@ -180,17 +183,16 @@ function getActivityOffersFn(req, res, next) {
     };
 
 
-    async.parallel([ getActivityPlans, getAssessmentResult], function(err) {
+    async.parallel([ getActivityPlans, getAssessmentResult], function (err) {
 
         if (err) {
             return error.handleError(err, next);
         }
 
 
-
         // check if result is dirty (new answers have been put),
         // then generate and/or load offers, before consolidating them
-        if(locals.result && locals.result.dirty) {
+        if (locals.result && locals.result.dirty) {
             var admin = auth.isAdminForModel(req.user, mongoose.model('Activity'));
             CoachRecommendation.generateAndStoreRecommendations(req.user._id, req.user.profile.userPreferences.rejectedActivities,
                 null, req.user.profile.userPreferences.focus, admin, loadOffers);
@@ -271,14 +273,14 @@ function getActivityOffersFn(req, res, next) {
 
             var priority = function priority(preferredType) {
 
-                return function(offer) {
+                return function (offer) {
 
-                    for(var priority=typesLowestToHighestPriority.length; priority>0; priority--) {
+                    for (var priority = typesLowestToHighestPriority.length; priority > 0; priority--) {
 
-                        if(_.contains(offer.type, preferredType)) {
+                        if (_.contains(offer.type, preferredType)) {
                             return -6;
-                        } else if(_.contains(offer.type, typesLowestToHighestPriority[priority])) {
-                            return - priority;
+                        } else if (_.contains(offer.type, typesLowestToHighestPriority[priority])) {
+                            return -priority;
                         }
                     }
                 };
@@ -288,20 +290,20 @@ function getActivityOffersFn(req, res, next) {
 
                 var sortedByType = _.sortBy(myOffersHash, priority(preferredType));
 
-                if(sortedByType.length > 0) {
+                if (sortedByType.length > 0) {
 
                     var offer = sortedByType[0];
 
                     // limit to 3 per type
                     var maxPerType = 5;
 
-                    var countPerType = _.filter(sortedOffers, function(o) {
-                        return _.any(o.type, function(type) {
+                    var countPerType = _.filter(sortedOffers, function (o) {
+                        return _.any(o.type, function (type) {
                             return _.contains(offer.type, type);
                         });
                     }).length;
 
-                    if(countPerType < maxPerType) {
+                    if (countPerType < maxPerType) {
                         sortedOffers.push(offer);
                         delete myOffersHash[offer.activity._id];
                     }
@@ -311,7 +313,7 @@ function getActivityOffersFn(req, res, next) {
 
             var sortedOffers = [];
 
-            for(var k=0; k<3; k++) {
+            for (var k = 0; k < 3; k++) {
                 addOfferByType('campaignActivityPlan');
                 addOfferByType('ypHealthCoach');
                 addOfferByType('personalInvitation');
@@ -319,23 +321,23 @@ function getActivityOffersFn(req, res, next) {
 
             // add all personalInvitations
 
-            sortedOffers.concat(_.filter(myOffersHash, function(offer) {
+            sortedOffers.concat(_.filter(myOffersHash, function (offer) {
                 return _.contains(offer.type, 'personalInvitation');
             }));
 
             // fill up to 9 with publicActivityPlans
-            if(sortedOffers.length < 9) {
-                var publicPlans = _.filter(myOffersHash, function(offer) {
+            if (sortedOffers.length < 9) {
+                var publicPlans = _.filter(myOffersHash, function (offer) {
                     return _.contains(offer.type, 'publicActivityPlan');
                 });
                 sortedOffers.concat(publicPlans.slice(0, 9 - sortedOffers.length));
             }
 
-            if((activityFilter && sortedOffers.length ===0) ||  (!activityFilter && sortedOffers.length < 3)) {
-                _getDefaultActivityOffers(activityFilter, function(err, defaultOffers) {
-                   if(err) {
-                       return error.handleError(err, next);
-                   }
+            if ((activityFilter && sortedOffers.length === 0) || (!activityFilter && sortedOffers.length < 3)) {
+                _getDefaultActivityOffers(activityFilter, function (err, defaultOffers) {
+                    if (err) {
+                        return error.handleError(err, next);
+                    }
 
                     sortedOffers = sortedOffers.concat(defaultOffers);
 
@@ -359,7 +361,6 @@ function getActivityOffersFn(req, res, next) {
     });
 
 }
-
 
 
 var deleteActivityOffers = function (req, res, next) {
@@ -399,19 +400,19 @@ function _getDefaultActivityOffers(activityFilter, cb) {
         selector._id = activityFilter;
     }
     Activity
-        .find(selector, {}, { sort: { 'qualityFactor' : -1 }, limit: 3 })
-        .exec(function(err, activities) {
+        .find(selector, {}, { sort: { 'qualityFactor': -1 }, limit: 3 })
+        .exec(function (err, activities) {
 
-            if(err) {
+            if (err) {
                 cb(err);
             }
 
-            User.findById(CoachRecommendation.healthCoachUserId, function(err, healthCoachUser) {
-                if(err) {
+            User.findById(CoachRecommendation.healthCoachUserId, function (err, healthCoachUser) {
+                if (err) {
                     cb(err);
                 }
                 var offers = [];
-                _.forEach(activities, function(activity) {
+                _.forEach(activities, function (activity) {
 
                     var offer = {
                         activity: activity,

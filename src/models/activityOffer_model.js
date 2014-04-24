@@ -45,7 +45,7 @@ ActivityOfferSchema.statics.mapOfferTypeToNotificationType = {
 };
 
 ActivityOfferSchema.virtual('sourceType').get(function() {
-    return ActivityOfferSchema.statics.mapOfferTypeToSourceType[this.type];
+    return ActivityOfferSchema.statics.mapOfferTypeToSourceType[this.type[0]];
 });
 
 // TODO: add custom validation for the enum, since mongoose does not support array of strings with the strings being part of an enum.

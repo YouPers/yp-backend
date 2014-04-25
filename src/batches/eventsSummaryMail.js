@@ -60,8 +60,8 @@ var sendSummaryMail = function sendSummaryMail(user, rangeStart, rangeEnd, done,
                     }
 
                     if(!user.profile.userPreferences.email.dailyUserMail) {
-                        log.info('sendSummaryMail: User('+user.id+').profile.userPreferences.email.dailyUserMail=false');
-                        return done(new Error('error.notEnabled.dailyUserMail'));
+                        log.info('sendSummaryMail: User('+user.username+':'+user.id+').profile.userPreferences.email.dailyUserMail=false');
+                        return done();
                     }
 
                     i18n.setLng(user.profile.language || 'de', function () {

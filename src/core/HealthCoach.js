@@ -60,6 +60,7 @@ var commonFacts = [
                         }
                         if (result.length === 1) {
                             fact.done = true;
+                            // TODO: fix this magic calculation to use the number of questions in the assessment- currently hardcoded 26
                             fact.completion = result[0].answers.length / 26;
                             fact.age = moment().diff(moment(result[0].timestamp));
                         }

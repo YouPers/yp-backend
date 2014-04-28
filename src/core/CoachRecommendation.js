@@ -55,7 +55,7 @@ function _generateRecommendations(actList, assResult, personalGoal, nrOfRecsToRe
             //          there are no personalGoals
             //            OR
             //          this answer is part of the personalGoals
-            if (answerObj && (!personalGoal || (_.contains(personalGoal, answerObj.question.toString())))) {
+            if (answerObj && (!personalGoal || personalGoal.length === 0 || (_.contains(personalGoal, answerObj.question.toString())))) {
                 score += (answerObj.answer >= 0) ?
                     answerObj.answer / 100 * recWeight[2] :
                     Math.abs(answerObj.answer) / 100 * recWeight[1];

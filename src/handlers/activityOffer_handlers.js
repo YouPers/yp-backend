@@ -376,7 +376,7 @@ function getActivityOffersFn(req, res, next) {
 
 function _getCampaignActivityOffers (req, res, next) {
 
-    var query =  ActivityOffer.find({targetQueue: req.params.campaign});
+    var query =  ActivityOffer.find({targetQueue: req.params.campaign, type: {$ne: 'publicActivityPlan'}});
     generic.addStandardQueryOptions(req, query, ActivityOffer);
 
     return query

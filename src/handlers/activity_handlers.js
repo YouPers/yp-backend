@@ -128,7 +128,27 @@ function putActivity(req, res, next) {
 
 }
 
+
+function getAllActivities (baseUrl, Model) {
+    return function (req, res, next) {
+        var finder = '';
+
+        if (req.params.campaign) {
+            finder = {$or: [{campaign: null}, {campaign: req.params.campaign}]};
+        } else {
+            finder = {campaign: null};
+        }
+
+        var dbQuery = Model.find(finder);
+
+        generic.addStandardQueryOptions(req, dbQuery, Model)
+            .exec(generic.sendListCb(req, res, next));
+    };
+}
+
+
 module.exports = {
     postActivity: postActivity,
-    putActivity: putActivity
+    putActivity: putActivity,
+    getAllActivities: getAllActivities
 };

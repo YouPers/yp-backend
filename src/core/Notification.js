@@ -46,4 +46,16 @@ Notification.getCurrentNotifications = function(user, options, cb) {
         .exec(cb);
 };
 
+Notification.getCampaignNotifications = function(user, campaign, options, cb) {
+    var myQueues = [campaign.id || campaign];
+
+    var query = NotificationModel
+        .where({ targetQueue: {$in: myQueues}})
+        .where({ type: 'message'});
+
+    genericHandlers.processDbQueryOptions(options, query, NotificationModel)
+        .exec(cb);
+};
+
+
 module.exports = Notification;

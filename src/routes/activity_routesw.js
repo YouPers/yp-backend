@@ -68,7 +68,7 @@ module.exports = function (swagger, config) {
             accessLevel: 'al_all',
             beforeCallbacks: []
         },
-        action: generic.getAllFn(baseUrl, Activity)
+        action: handlers.getAllActivities(baseUrl, Activity)
     });
 
 

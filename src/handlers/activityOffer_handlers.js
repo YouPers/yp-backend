@@ -139,6 +139,11 @@ function getCoachRecommendationsFn(req, res, next) {
  */
 function getActivityOffersFn(req, res, next) {
 
+    if (req.params.campaign && auth.checkAccess(req.user, 'al_campaignlead')) {
+        // this is a campaignleads request for administration of offers in a campaign
+        return _getCampaignActivityOffers(req,res,next);
+    }
+
     if (!req.user) {
         return next(new error.UnauthorizedError());
     }
@@ -362,6 +367,14 @@ function getActivityOffersFn(req, res, next) {
 
 }
 
+function _getCampaignActivityOffers (req, res, next) {
+
+    var query =  ActivityOffer.find({targetQueue: req.params.campaign});
+    generic.addStandardQueryOptions(req, query, ActivityOffer);
+
+    return query
+        .exec(generic.sendListCb(req, res, next));
+}
 
 var deleteActivityOffers = function (req, res, next) {
     // instead of using Model.remove directly, findOne in combination with obj.remove

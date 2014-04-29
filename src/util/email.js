@@ -162,10 +162,11 @@ var sendActivityPlanInvite = function sendActivityPlanInvite(email, invitingUser
         salutation: i18n.t('email:ActivityPlanInvitation.salutation', {invited: invitedUser ? invitedUser.toJSON() : {}}),
         text: i18n.t('email:ActivityPlanInvitation.text', {inviting: invitingUser.toJSON(), plan: plan.toJSON()}),
         link: urlComposer.activityPlanInviteUrl(plan.activity._id, invitingUser._id),
-        linkText: plan.title,
+        plan: plan,
+        image: urlComposer.activityImageUrl(plan.activity.number),
         footer: i18n.t('email:ActivityPlanInvitation.footer')
     };
-    sendEmail(fromDefault, email, subject, 'genericYouPersMail', locals);
+    sendEmail(fromDefault, email, subject, 'activityInviteMail', locals);
 };
 
 var sendCampaignLeadInvite = function sendCampaignLeadInvite(email, invitingUser, campaign, invitedUser, i18n) {

@@ -162,6 +162,7 @@ var sendActivityPlanInvite = function sendActivityPlanInvite(email, invitingUser
         salutation: i18n.t('email:ActivityPlanInvitation.salutation', {invited: invitedUser ? invitedUser.toJSON() : {}}),
         text: i18n.t('email:ActivityPlanInvitation.text', {inviting: invitingUser.toJSON(), plan: plan.toJSON()}),
         link: urlComposer.activityPlanInviteUrl(plan.activity._id, invitingUser._id),
+        linkText: plan.title,
         footer: i18n.t('email:ActivityPlanInvitation.footer')
     };
     sendEmail(fromDefault, email, subject, 'genericYouPersMail', locals);

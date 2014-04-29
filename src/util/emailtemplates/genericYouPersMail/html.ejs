@@ -1,14 +1,301 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
-    <body>
-        <h3><%=salutation%></h3>
-        <br>
-        <%-text%>
-        <br>
-        <br>
-        <a href="<%= link %>"><%= link %></a>
-        <br>
-        <br>
-        <%-footer%>
+    <head>
+        <!-- This is a simple example template that you can edit to create your own custom templates -->
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <!-- Facebook sharing information tags -->
+        <meta property="og:title" content="*|MC:SUBJECT|*">
+
+        <title>*|MC:SUBJECT|*</title>
+
+	<style type="text/css">
+		#outlook a{
+			padding:0;
+		}
+		body{
+			width:100% !important;
+		}
+		body{
+			-webkit-text-size-adjust:none;
+		}
+		body{
+			margin:0;
+			padding:0;
+		}
+		img{
+			border:none;
+			font-size:14px;
+			font-weight:bold;
+			height:auto;
+			line-height:100%;
+			outline:none;
+			text-decoration:none;
+			text-transform:capitalize;
+		}
+		#backgroundTable{
+			height:100% !important;
+			margin:0;
+			padding:0;
+			width:100% !important;
+		}
+		body,.backgroundTable{
+			background-color:#DCDDDB;
+		}
+		#templateContainer{
+			border:1px solid #DDDDDD;
+		}
+		h1,.h1{
+			color:#202020;
+			display:block;
+			font-family:Arial;
+			font-size:34px;
+			font-weight:bold;
+			line-height:100%;
+			margin-bottom:10px;
+			text-align:left;
+		}
+		h2,.h2{
+			color:#202020;
+			display:block;
+			font-family:Arial;
+			font-size:30px;
+			font-weight:bold;
+			line-height:100%;
+			margin-bottom:10px;
+			text-align:left;
+		}
+		h3,.h3{
+			color:#202020;
+			display:block;
+			font-family:Arial;
+			font-size:26px;
+			font-weight:bold;
+			line-height:100%;
+			margin-bottom:10px;
+			text-align:left;
+		}
+		h4,.h4{
+			color:#202020;
+			display:block;
+			font-family:Arial;
+			font-size:22px;
+			font-weight:bold;
+			line-height:100%;
+			margin-bottom:10px;
+			text-align:left;
+		}
+		#templatePreheader{
+			background-color:#DCDDDB;
+		}
+		.preheaderContent div{
+			color:#473F45;
+			font-family:Arial;
+			font-size:10px;
+			line-height:100%;
+			text-align:left;
+		}
+		.preheaderContent div a:link,.preheaderContent div a:visited{
+			color:#336699;
+			font-weight:normal;
+			text-decoration:underline;
+		}
+		.preheaderContent div img{
+			height:auto;
+			max-width:600px;
+		}
+		#templateHeader{
+			background-color:#FFFFFF;
+			border-bottom:0;
+		}
+		.headerContent{
+			color:#473F45;
+			font-family:Arial;
+			font-size:34px;
+			font-weight:bold;
+			line-height:100%;
+			padding:0;
+			text-align:center;
+			vertical-align:middle;
+		}
+		.headerContent a:link,.headerContent a:visited{
+			color:#336699;
+			font-weight:normal;
+			text-decoration:underline;
+		}
+		#headerImage{
+			height:auto;
+			max-width:600px !important;
+		}
+		#templateContainer,.bodyContent{
+			background-color:#fdfdfd;
+		}
+		.bodyContent div{
+			color:#505050;
+			font-family:Arial;
+			font-size:14px;
+			line-height:150%;
+			text-align:left;
+		}
+		.bodyContent div a:link,.bodyContent div a:visited{
+			color:#336699;
+			font-weight:normal;
+			text-decoration:underline;
+		}
+		.bodyContent img{
+			display:inline;
+			margin-bottom:10px;
+		}
+		#templateFooter{
+			background-color:#FDFDFD;
+			border-top:0;
+		}
+		.footerContent div{
+			color:#707070;
+			font-family:Arial;
+			font-size:12px;
+			line-height:125%;
+			text-align:left;
+		}
+		.footerContent div a:link,.footerContent div a:visited{
+			color:#473F45;
+			font-weight:normal;
+			text-decoration:underline;
+		}
+		.footerContent img{
+			display:inline;
+		}
+		#social{
+			background-color:#FAFAFA;
+			border:1px solid #F5F5F5;
+		}
+		#social div{
+			text-align:center;
+		}
+		#utility{
+			background-color:#FDFDFD;
+			border-top:1px solid #F5F5F5;
+		}
+		#utility div{
+			text-align:center;
+		}
+		#monkeyRewards img{
+			max-width:160px;
+		}
+</style></head>
+    <body leftmargin="0" marginwidth="0" topmargin="0" marginheight="0" offset="0" style="-webkit-text-size-adjust: none;margin: 0;padding: 0;background-color: #DCDDDB;width: 100% !important;">
+    	<center>
+        	<table border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" id="backgroundTable" style="margin: 0;padding: 0;height: 100% !important;width: 100% !important;">
+            	<tr>
+                	<td align="center" valign="top">
+                        <!-- // Begin Template Preheader \\ -->
+                        <table border="0" cellpadding="10" cellspacing="0" width="600" id="templatePreheader" style="background-color: #DCDDDB;">
+                            <tr>
+                                <td valign="top" class="preheaderContent">
+
+                                	<!-- // Begin Module: Standard Preheader \\ -->
+                                    <table border="0" cellpadding="10" cellspacing="0" width="100%">
+                                    	<tr>
+                                        	<td valign="top">
+                                            	<div style="color: #473F45;font-family: Arial;font-size: 10px;line-height: 100%;text-align: left;"><%-text%></div>
+                                            </td>
+                                            <td valign="top" width="180">
+                                            	<div style="color: #473F45;font-family: Arial;font-size: 10px;line-height: 100%;text-align: left;">
+                                                	<!-- *|IFNOT:ARCHIVE_PAGE|* -->Is this email not displaying correctly?<br><a href="<%- link %>" target="_blank" style="color: #336699;font-weight: normal;text-decoration: underline;">View it in your browser</a>.<!-- *|END:IF|* -->
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                	<!-- // End Module: Standard Preheader \\ -->
+
+                                </td>
+                            </tr>
+                        </table>
+                        <!-- // End Template Preheader \\ -->
+                    	<table border="0" cellpadding="0" cellspacing="0" width="600" id="templateContainer" style="border: 1px solid #DDDDDD;background-color: #fdfdfd;">
+                        	<tr>
+                            	<td align="center" valign="top">
+                                    <!-- // Begin Template Header \\ -->
+                                	<table border="0" cellpadding="0" cellspacing="0" width="600" id="templateHeader" style="background-color: #FFFFFF;border-bottom: 0;">
+                                        <tr>
+                                            <td class="headerContent" style="color: #473F45;font-family: Arial;font-size: 34px;font-weight: bold;line-height: 100%;padding: 0;text-align: center;vertical-align: middle;">
+
+                                            	<!-- // Begin Module: Standard Header Image \\ -->
+                                            	<img src="https://gallery.mailchimp.com/0f1a7dd663e5b1ac99711f7c0/images/green_background_black_40344bdf.png" alt="" border="0" style="margin: 0;padding: 0;height: 100px;width: 600px;border: none;font-size: 14px;font-weight: bold;line-height: 100%;outline: none;text-decoration: none;text-transform: capitalize;">
+                                            	<!-- // End Module: Standard Header Image \\ -->
+
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <!-- // End Template Header \\ -->
+                                </td>
+                            </tr>
+                        	<tr>
+                            	<td align="center" valign="top">
+                                    <!-- // Begin Template Body \\ -->
+                                	<table border="0" cellpadding="10" cellspacing="0" width="600" id="templateBody">
+                                    	<tr>
+                                            <td valign="top" class="bodyContent" style="background-color: #fdfdfd;">
+
+                                                <!-- // Begin Module: Standard Content \\ -->
+                                                <table border="0" cellpadding="10" cellspacing="0" width="100%">
+                                                    <tr>
+                                                        <td valign="top">
+                                                            <div style="color: #505050;font-family: Arial;font-size: 14px;line-height: 150%;text-align: left;"><div class="bodyContent" style="text-align: left;background-color: #fdfdfd;color: #505050;font-family: Arial;font-size: 14px;line-height: 150%;"><span style="font-size:18px"><%=salutation%></span></div>
+
+<div class="bodyContent" style="text-align: left;background-color: #fdfdfd;color: #505050;font-family: Arial;font-size: 14px;line-height: 150%;"><br>
+<span style="font-size:18px"><%-text%></span><br>
+&nbsp;</div>
+
+<div class="bodyContent" style="text-align: left;background-color: #fdfdfd;color: #505050;font-family: Arial;font-size: 14px;line-height: 150%;"><span class="h2" style="color: #202020;display: block;font-family: Arial;font-size: 30px;font-weight: bold;line-height: 100%;margin-bottom: 10px;text-align: left;"><span class="h1" style="color: #202020;display: block;font-family: Arial;font-size: 34px;font-weight: bold;line-height: 100%;margin-bottom: 10px;text-align: left;"><span class="headerContent" style="color: #473F45;font-family: Arial;font-size: 34px;font-weight: bold;line-height: 100%;padding: 0;text-align: center;vertical-align: middle;"><strong><span style="font-size:32px">
+
+                        <a href="<%= link %>"><%= linkText ? linkText : link %></a>
+
+</span></strong></span></span></span></div>
+
+														</td>
+                                                    </tr>
+                                                </table>
+                                                <!-- // End Module: Standard Content \\ -->
+
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <!-- // End Template Body \\ -->
+                                </td>
+                            </tr>
+                        	<tr>
+                            	<td align="center" valign="top">
+                                    <!-- // Begin Template Footer \\ -->
+                                	<table border="0" cellpadding="10" cellspacing="0" width="600" id="templateFooter" style="background-color: #FDFDFD;border-top: 0;">
+                                    	<tr>
+                                        	<td valign="top" class="footerContent">
+
+                                                <!-- // Begin Module: Standard Footer \\ -->
+                                                <table border="0" cellpadding="10" cellspacing="0" width="100%">
+                                                    <tr>
+                                                        <td colspan="2" valign="middle" id="social" style="background-color: #FAFAFA;border: 1px solid #F5F5F5;">
+                                                            <div style="color: #707070;font-family: Arial;font-size: 12px;line-height: 125%;text-align: center;"><div class="preheaderContent" style="color: #707070;font-family: Arial;font-size: 12px;line-height: 125%;text-align: center;"><img align="none" height="114" src="https://gallery.mailchimp.com/0f1a7dd663e5b1ac99711f7c0/images/green_background_black_40d0f1ed.png" style="width: 600px;height: 114px;border: none;font-size: 14px;font-weight: bold;line-height: 100%;outline: none;text-decoration: none;text-transform: capitalize;display: inline;" width="600"></div>
+</div>
+                                                    </td></tr>
+                                                    <tr>
+                                                        <td colspan="2" valign="middle" id="utility" style="background-color: #FDFDFD;border-top: 1px solid #F5F5F5;">
+                                                            <div style="color: #707070;font-family: Arial;font-size: 12px;line-height: 125%;text-align: center;">&nbsp;<a href="https://www.youpers.com" style="color: #473F45;font-weight: normal;text-decoration: underline;">about YouPers</a> <!-- *|IFNOT:ARCHIVE_PAGE|* --> &nbsp;</div>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                                <!-- // End Module: Standard Footer \\ -->
+
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <!-- // End Template Footer \\ -->
+                                </td>
+                            </tr>
+                        </table>
+                        <br>
+                    </td>
+                </tr>
+            </table>
+        </center>
     </body>
 </html>

@@ -74,7 +74,8 @@ var ProfileSchema = common.newSchema({
             actPlanInvites: { type: Boolean, default: true },
             dailyUserMail: { type: Boolean, default: true }
         },
-        lastDiaryEntry: {type: Date}
+        lastDiaryEntry: {type: Date},
+        doNotAskAgainForDiaryEntry: { type: Boolean, default: false }
     }
 
 });

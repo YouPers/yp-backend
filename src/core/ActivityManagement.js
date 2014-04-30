@@ -119,7 +119,7 @@ actMgr.on('activity:offerDeleted', function (offer) {
         .find({refDocId: offer._id})
         .exec(function(err, notifs) {
             _.forEach(notifs, function(notif) {
-                notification.remove(function (err) {
+                notif.remove(function (err) {
                     if (err) {
                         return actMgr.emit('error', err);
                     }

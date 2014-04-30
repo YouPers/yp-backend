@@ -275,7 +275,7 @@ consts.newUserInNewCampaignApi(
                         id: String
                     })
                     .afterJSON(function (notifs) {
-                        expect(_.map(notifs, 'id')).toContain(notification.id);
+                        expect(_.map(notifs, 'id')).toContain(notif.id);
 
                         frisby.create('Notifications: post outdated an Announcement to the Users Queue, ')
                             .post(URL + '/notifications', {
@@ -295,7 +295,7 @@ consts.newUserInNewCampaignApi(
                                     .auth(user.username, 'yp')
                                     .expectStatus(200)
                                     .afterJSON(function (notifs) {
-                                        expect(_.map(notifs, 'id')).not.toContain(notification.id);
+                                        expect(_.map(notifs, 'id')).not.toContain(notif.id);
 
 
                                         frisby.create('Notifications: post a future Announcement to the Users Queue, ')
@@ -322,12 +322,12 @@ consts.newUserInNewCampaignApi(
                                                         id: String
                                                     })
                                                     .afterJSON(function (notifs) {
-                                                        expect(_.map(notifs, 'id')).not.toContain(notification.id);
+                                                        expect(_.map(notifs, 'id')).not.toContain(notif.id);
                                                         cleanupFn();
 
                                                         _.forEach(notifs, function(notif) {
                                                             frisby.create("Notifications: cleanup")
-                                                                .delete(URL + '/notifications/' + notification.id)
+                                                                .delete(URL + '/notifications/' + notif.id)
                                                                 .auth('test_sysadm', 'yp')
                                                                 .expectStatus(200)
                                                                 .toss();

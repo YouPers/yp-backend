@@ -30,11 +30,13 @@ var HEALTH_COACH_TYPE = 'ypHealthCoach';
  * @private
  */
 function _generateRecommendations(actList, assResult, personalGoal, nrOfRecsToReturn, cb) {
-    if (_.isString(personalGoal) && personalGoal.length > 0 ) {
+    if (_.isString(personalGoal) && personalGoal.length > 0) {
         personalGoal = [personalGoal];
-    } else if (_.isArray(personalGoal) &&  personalGoal.length > 0 && _.isObject(personalGoal[0])) {
+    } else if (_.isArray(personalGoal) && personalGoal.length > 0 && _.isObject(personalGoal[0])) {
         // unwrap the focus objects into a simple array of questionIds.
-        personalGoal = _.map(personalGoal, 'question');
+        personalGoal = _.map(personalGoal, function (goal) {
+            return goal.question.toString();
+        });
     } else if (_.isArray(personalGoal) && (personalGoal.length = 0)) {
         personalGoal = undefined;
     }
@@ -70,10 +72,10 @@ function _generateRecommendations(actList, assResult, personalGoal, nrOfRecsToRe
 
     // reset dirty flag for assessment result
 
-    if(assResult.dirty) {
+    if (assResult.dirty) {
         assResult.dirty = false;
-        assResult.save(function(err) {
-            if(err) {
+        assResult.save(function (err) {
+            if (err) {
                 cb(err);
             }
             final();
@@ -83,7 +85,7 @@ function _generateRecommendations(actList, assResult, personalGoal, nrOfRecsToRe
     }
 
     function final() {
-        var limitedRecs = sortedRecs.slice(0,nrOfRecsToReturn);
+        var limitedRecs = sortedRecs.slice(0, nrOfRecsToReturn);
         return cb(null, limitedRecs);
     }
 }
@@ -168,7 +170,7 @@ function _removeOldRecsFromActivityOffers(userId, cb) {
     ActivityOffer.find({targetQueue: userId, type: HEALTH_COACH_TYPE})
         .remove()
         .exec(
-        function(err) {
+        function (err) {
             return cb(err);
         }
     );
@@ -184,7 +186,7 @@ function _removeOldRecsFromActivityOffers(userId, cb) {
  * @private
  */
 function _storeNewRecsIntoActivityOffers(userId, recs, cb) {
-    async.forEach(recs, function(rec, done) {
+    async.forEach(recs, function (rec, done) {
         var newOffer = new ActivityOffer({
             activity: rec.activity,
             type: [HEALTH_COACH_TYPE],
@@ -194,7 +196,7 @@ function _storeNewRecsIntoActivityOffers(userId, recs, cb) {
         });
 
         newOffer.save(done);
-    }, function(err) {
+    }, function (err) {
         return cb(err);
     });
 }
@@ -222,7 +224,6 @@ function _updateRecommendations(userId, rejectedActs, assessmentResult, personal
     // TODO: load rejectedActs of this user if not passed in
 
 
-
     async.parallel([
         _loadActivities.bind(null, rejectedActs),
         _loadAssessmentResult.bind(null, userId, assessmentResult)
@@ -236,7 +237,7 @@ function _updateRecommendations(userId, rejectedActs, assessmentResult, personal
             return cb(null);
         }
 
-        _generateRecommendations(locals.activities, locals.assResult, personalGoals, isAdmin ? 1000: NUMBER_OF_COACH_RECS, function (err, recs) {
+        _generateRecommendations(locals.activities, locals.assResult, personalGoals, isAdmin ? 1000 : NUMBER_OF_COACH_RECS, function (err, recs) {
             if (err) {
                 return cb(err);
             }
@@ -267,7 +268,7 @@ function _updateRecommendations(userId, rejectedActs, assessmentResult, personal
  * @param isAdmin
  */
 function generateAndStoreRecommendations(userId, rejectedActs, assessmentResult, personalGoals, isAdmin, cb) {
-    _updateRecommendations(userId, rejectedActs, assessmentResult, personalGoals, true, isAdmin,  cb);
+    _updateRecommendations(userId, rejectedActs, assessmentResult, personalGoals, true, isAdmin, cb);
 }
 
 /**

@@ -22,7 +22,9 @@ actMgr.on('activity:planSaved', function (plan) {
     var isJoinablePlan = (_.contains(['public', 'campaign'], plan.visibility) && 'group' === plan.executionType && !plan.masterPlan);
 
     // check whether this is a public joinable plan, if yes store an corresponding ActivityOffer
-    if (isJoinablePlan) {
+    // but if this a campaign Promoted Plan we do not generate an offer because we expect the frontend to
+    // store the offer explicitly in this case, to control all attributes of the offer
+    if (isJoinablePlan && !isCampaignPromotedPlan) {
         var offer = new ActivityOffer({
             activity: plan.activity.id,
             activityPlan: [plan.id],

@@ -5,6 +5,7 @@ var env = process.env.NODE_ENV || 'development',
     path = require('path'),
     crypto = require('crypto'),
     _ = require('lodash'),
+    moment = require('moment'),
     templatesDir = path.join(__dirname, 'emailtemplates'),
     nodemailer = require('nodemailer'),
     emailTemplates = require('email-templates'),
@@ -157,13 +158,27 @@ var sendCalInvite = function (to, type, iCalString, i18n, reason) {
 
 var sendActivityPlanInvite = function sendActivityPlanInvite(email, invitingUser, plan, invitedUser, i18n) {
 
+    moment.lang(i18n.language());
+
+    var frequency = plan.mainEvent.frequency;
+    var weekday = moment(plan.mainEvent.start).format("dddd") + (frequency === 'week' ? 's,' : ',');
+    var date = moment(plan.mainEvent.start).format("D.MM.") +
+        frequency === 'once' ? '' :
+            moment(plan.events[plan.events.length-1].end).format("D.MM.YYYY");
+
+    var time = moment(plan.mainEvent.start).format('HH:mm') + ' - ' + moment(plan.mainEvent.end).format('HH:mm');
+
+    var eventDate = weekday + '<br/>' + time + '<br/>' + date;
+
     var subject = i18n.t("email:ActivityPlanInvitation.subject", {inviting: invitingUser.toJSON(), plan: plan.toJSON()});
     var locals = {
-        salutation: i18n.t('email:ActivityPlanInvitation.salutation', {invited: invitedUser ? invitedUser.toJSON() : {}}),
+        salutation: i18n.t('email:ActivityPlanInvitation.salutation' + (invitedUser ? '': 'Anonymous'), {invited: invitedUser ? invitedUser.toJSON() : {}}),
         text: i18n.t('email:ActivityPlanInvitation.text', {inviting: invitingUser.toJSON(), plan: plan.toJSON()}),
         link: urlComposer.activityPlanInviteUrl(plan.activity._id, invitingUser._id),
         plan: plan,
+        eventDate: eventDate,
         image: urlComposer.activityImageUrl(plan.activity.number),
+        header: i18n.t('email:ActivityPlanInvitation.header'),
         footer: i18n.t('email:ActivityPlanInvitation.footer')
     };
     sendEmail(fromDefault, email, subject, 'activityInviteMail', locals);
@@ -175,8 +190,9 @@ var sendCampaignLeadInvite = function sendCampaignLeadInvite(email, invitingUser
     var token = encryptLinkToken(campaign._id +linkTokenSeparator + email +  (invitedUser ? linkTokenSeparator + invitedUser._id : ''));
     var locals = {
         link: urlComposer.campaignLeadInviteUrl(campaign._id, invitingUser._id, token),
-        salutation: i18n.t('email:CampaignLeadInvite.salutation', {invited: invitedUser ? invitedUser.toJSON() : {firstname: ''}}),
+        salutation: i18n.t('email:CampaignLeadInvite.salutation' + invitedUser ? '': 'Anonymous', {invited: invitedUser ? invitedUser.toJSON() : {firstname: ''}}),
         text: i18n.t('email:CampaignLeadInvite.text', {inviting: invitingUser.toJSON(), campaign: campaign.toJSON()}),
+        header: i18n.t('email:CampaignLeadInvite.header'),
         footer: i18n.t('email:CampaignLeadInvite.footer')
     };
     sendEmail(fromDefault, email, subject, 'genericYouPersMail', locals);
@@ -187,8 +203,9 @@ var sendOrganizationAdminInvite = function sendOrganizationAdminInvite(email, in
     var token = encryptLinkToken(organization._id +linkTokenSeparator + email +  (invitedUser ? linkTokenSeparator + invitedUser._id : ''));
     var locals = {
         link: urlComposer.orgAdminInviteUrl(organization._id, invitingUser._id, token),
-        salutation: i18n.t('email:OrganizationAdminInvite.salutation', {invited: invitedUser ? invitedUser.toJSON() : {firstname: ''}}),
+        salutation: i18n.t('email:OrganizationAdminInvite.salutation' + invitedUser ? '': 'Anonymous', {invited: invitedUser ? invitedUser.toJSON() : {firstname: ''}}),
         text: i18n.t('email:OrganizationAdminInvite.text', {inviting: invitingUser.toJSON(), organization: organization.toJSON()}),
+        header: i18n.t('email:OrganizationAdminInvite.header'),
         footer: i18n.t('email:OrganizationAdminInvite.footer')
     };
     sendEmail(fromDefault, email, subject, 'genericYouPersMail', locals);

@@ -109,7 +109,7 @@ module.exports = {
         },
         port: '8000',
         webclientUrl: "https://uat.youpers.com",
-        backendUrl: "https://uat.youpers.com",
+        backendUrl: "https://uat.youpers.com/api",
         db_prefix: 'mongodb',
         db_host: 'localhost',
         db_port: '51111',
@@ -133,12 +133,38 @@ module.exports = {
             maxTokenLifetime: 10 * 60 * 1000
         }
     },
-    production: {
-        root: require('path').normalize(__dirname + '/..'), app: {
-            name: 'Nodejs Restify Mongoose Demo'
+    prod: {
+        root: require('path').normalize(__dirname + '/..'),
+        app: {
+            name: 'YouPers Platform Server'
         },
-        loadTestData: false
+        port: '8000',
+        webclientUrl: "https://prod.youpers.com",
+        backendUrl: "https://prod.youpers.com/api",
+        db_prefix: 'mongodb',
+        db_host: 'localhost',
+        db_port: '51111',
+        db_database: 'ypdb',
+        db_user: 'nodeDbAccess',
+        db_password: 'yp13%mongodb%prod',
+        loadTestData: true,
+        loggerOptions: {
+            name: 'Main',
+            streams: [
+                {
+                    path: '/var/log/yp-backend/server.log',
+                    level: 'info'
+                }
+            ],
+            serializers: bunyan.stdSerializers
+        },
+        linkTokenEncryption : {
+            key: "50126a4a500219238cd678a383cdsdfsdfdsfsdfe42",
+            algorithm: "aes256",
+            maxTokenLifetime: 10 * 60 * 1000
+        }
     }
+
 };
 
 

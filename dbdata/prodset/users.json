@@ -1,0 +1,23 @@
+[
+    {
+        "__v": 0,
+        "_id": {
+            "$oid": "525fb247101e3300000010ee"
+        },
+        "avatar": "assets/img/KTLU.jpeg",
+        "email": "webmaster@youpers.com",
+        "emailValidatedFlag": true,
+        "firstname": "System",
+        "fullname": "System Administrator",
+        "hashed_password": "a54966212958eb146139a6e1dd16044ca33dc8b9",
+        "lastname": "Administrator",
+        "profile": {
+            "$oid": "533d4045a771f4000092f31a"
+        },
+        "roles": [
+            "systemadmin"
+        ],
+        "tempPasswordFlag": false,
+        "username": "sysadm"
+    }
+]

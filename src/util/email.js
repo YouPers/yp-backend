@@ -161,10 +161,10 @@ var sendActivityPlanInvite = function sendActivityPlanInvite(email, invitingUser
     moment.lang(i18n.language());
 
     var frequency = plan.mainEvent.frequency;
-    var weekday = moment(plan.mainEvent.start).format("dddd") + (frequency === 'week' ? 's,' : ',');
-    var date = moment(plan.mainEvent.start).format("D.MM.") +
+    var weekday = moment(plan.mainEvent.start).format("dddd") + (frequency === 'week' ? 's' : '');
+    var date = moment(plan.mainEvent.start).format("D.M.") +
         frequency === 'once' ? '' :
-            moment(plan.events[plan.events.length-1].end).format("D.MM.YYYY");
+            moment(plan.events[plan.events.length-1].end).format("D.M.YYYY");
 
     var time = moment(plan.mainEvent.start).format('HH:mm') + ' - ' + moment(plan.mainEvent.end).format('HH:mm');
 

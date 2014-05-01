@@ -1,7 +1,7 @@
 {
     "ActivityPlanInvitation": {
         "subject": "YouPers: Einladung für eine Gruppen-Aktivität vom __inviting.fullname__",
-        "salutation": "Hallo __invited.firstname__!",
+        "salutation": "Hallo <strong>__invited.firstname__!</strong>",
         "salutationAnonymous": "",
         "text": "<strong>__inviting.fullname__</strong></string> lädt dich ein, diese Aktivität mit ihm mitzumachen",
         "header": "Wird diese Email nicht richtig angezeigt?",
@@ -9,7 +9,7 @@
     },
     "CampaignLeadInvite": {
         "subject": "YouPers: Einladung zum Kampagnen-Leiter von __inviting.fullname__",
-        "salutation": "Hallo __invited.firstname__!",
+        "salutation": "Hallo <strong>__invited.firstname__!</strong>",
         "salutationAnonymous": "",
         "text": "__inviting.fullname__ hat Dich eingeladen Kampagnen-Leiter zu werden der YouPers Kampagne <b>__campaign.title__</b> von <b>__campaign.organization.name__</b>.<br><br>Um diese Einladung anzunehmen, klicke auf den folgenden Link:<br>",
         "header": "Wird diese Email nicht richtig angezeigt?",
@@ -17,7 +17,7 @@
     },
     "OrganizationAdminInvite": {
         "subject": "YouPers: Einladung zum Organisations-Administrator von __inviting.fullname__",
-        "salutation": "Hallo __invited.firstname__!",
+        "salutation": "Hallo <strong>__invited.firstname__!</strong>",
         "salutationAnonymous": "",
         "text": "__inviting.fullname__ hat Dich eingeladen Organisations-Administrator für <b>__organization.name__</b> zu werden.<br><br>Um diese Einladung anzunehmen, klicke auf den folgenden Link:<br>",
         "header": "Wird diese Email nicht richtig angezeigt?",

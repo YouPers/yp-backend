@@ -7,4 +7,4 @@ PW=$2
 
 echo "**** LOADING MONGO DATABASE $HOST:$DB with user: $USER,  base data"
 
-bin/mongoimportexport.sh -h $HOST -u $USER -p $PW -d dbdata/prodset -l $DB
+bin/mongoimportexport.sh -H $HOST -u $USER -p $PW -d dbdata/prodset -l $DB

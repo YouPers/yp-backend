@@ -142,6 +142,9 @@ UserSchema.pre('save', function (next) {
     if (!validatePresenceOf(this.password)) {
         next(new error.MissingParameterError({ required: 'password' }));
     }
+    if (!this.avatar) {
+        this.avatar = this.profile.gender === 'male' ? '/assets/img/avatar_man.png' : '/assets/img/avatar_woman.png';
+    }
     next();
 });
 

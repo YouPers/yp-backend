@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-HOST=localhost:51111
+HOST=localhost:27017
 DB=ypdb
 USER=$1
 PW=$2

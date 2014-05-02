@@ -131,67 +131,82 @@ consts.newUserInNewCampaignApi(
                                                             .expectStatus(201)
                                                             .afterJSON(function (campActPlan) {
 
-                                                                frisby.create('ActivityOffers: get offers, with CampaignActPlan and CampaignAct')
+                                                                frisby.create('ActivityOffers: get offers, with CampaignAct, but no CampaignActPlan-Offer because the for CampaignActPlans the offer has to be submitted explicitly')
                                                                     .get(URL + '/activityoffers')
                                                                     .auth(offerTestUser.username, "yp")
                                                                     .expectStatus(200)
-                                                                    .inspectJSON()
                                                                     .afterJSON(function (recs) {
 
 
-                                                                        expect(recs.length).toEqual(7);
-                                                                        expect(recs[0].type).toContain('campaignActivityPlan'); // preferred type
+                                                                        expect(recs.length).toEqual(6);
+                                                                        expect(recs[0].type).toContain('campaignActivity'); // next by rank, personalInvitation not available
                                                                         expect(recs[1].type).toContain('ypHealthCoach'); // preferred type
-                                                                        expect(recs[2].type).toContain('campaignActivity'); // next by rank, personalInvitation not available
 
-                                                                        frisby.create('ActivityOffers: plan the campaignAct')
-                                                                            .post(URL + '/activityplans/' + campActPlan.id + '/join')
-                                                                            .auth(offerTestUser.username, "yp")
+
+                                                                        frisby.create('ActivityOffers: post ActivityOffer for CampaignPlan')
+                                                                            .post(URL + '/activityoffers', {
+                                                                                activity: consts.groupActivity2.id,
+                                                                                recommendedBy: ['52a97f1650fca98c2900000b'],
+                                                                                targetQueue: myTestCampaign.id,
+                                                                                type: ['campaignActivityPlan'],
+                                                                                prio: ['100'],
+                                                                                plan: [campActPlan.id]
+                                                                            })
+                                                                            .auth('test_campaignlead', 'yp')
                                                                             .expectStatus(201)
-                                                                            .afterJSON(function (slavePlan) {
+                                                                            .afterJSON(function (campaignActPlanOffer) {
 
-                                                                                frisby.create('ActivityOffers: get offers, with CampaignActPlan and CampaignAct after planning, do not expect to get the planned one')
-                                                                                    .get(URL + '/activityoffers')
+
+                                                                                frisby.create('ActivityOffers: plan the campaignAct')
+                                                                                    .post(URL + '/activityplans/' + campActPlan.id + '/join')
                                                                                     .auth(offerTestUser.username, "yp")
-                                                                                    .expectStatus(200)
-                                                                                    .afterJSON(function (recs) {
+                                                                                    .expectStatus(201)
+                                                                                    .afterJSON(function (slavePlan) {
 
-                                                                                        expect(recs.length).toEqual(6);
-
-                                                                                        expect(recs[0].type).toContain('campaignActivity'); // next by rank
-                                                                                        expect(recs[0].type).not.toContain('campaignActivityPlan'); // joined plan should not show up anymore
-                                                                                        expect(recs[1].type).toContain('ypHealthCoach'); // preferred type
-
-                                                                                        frisby.create('ActivityOffers: removeCampaignActOffer')
-                                                                                            .delete(URL + '/activityoffers/' + campActOffer.id)
-                                                                                            .auth('test_sysadm', 'yp')
-                                                                                            .expectStatus(200)
-                                                                                            .toss();
-
-                                                                                        frisby.create('ActivityOffers: removeCampaignActPlan')
-                                                                                            .delete(URL + '/activityplans/' + campActPlan.id)
-                                                                                            .auth('test_sysadm', 'yp')
-                                                                                            .expectStatus(200)
-                                                                                            .toss();
-
-                                                                                        frisby.create('ActivityOffers: removePersonalOffers')
-                                                                                            .delete(URL + '/activityoffers')
+                                                                                        frisby.create('ActivityOffers: get offers, with CampaignActPlan and CampaignAct after planning, do not expect to get the planned one')
+                                                                                            .get(URL + '/activityoffers')
                                                                                             .auth(offerTestUser.username, "yp")
                                                                                             .expectStatus(200)
-                                                                                            .toss();
+                                                                                            .afterJSON(function (recs) {
 
-                                                                                        frisby.create('ActivityOffers: remove AssessmentResults')
-                                                                                            .delete(URL + '/assessments/525faf0ac558d40000000005/results')
-                                                                                            .auth(offerTestUser.username, "yp")
-                                                                                            .expectStatus(200)
-                                                                                            .after(function () {
+                                                                                                expect(recs.length).toEqual(6);
 
-                                                                                                return cleanupFn();
+                                                                                                expect(recs[0].type).toContain('campaignActivity'); // next by rank
+                                                                                                expect(recs[0].type).not.toContain('campaignActivityPlan'); // joined plan should not show up anymore
+                                                                                                expect(recs[1].type).toContain('ypHealthCoach'); // preferred type
+
+                                                                                                frisby.create('ActivityOffers: removeCampaignActOffer')
+                                                                                                    .delete(URL + '/activityoffers/' + campActOffer.id)
+                                                                                                    .auth('test_sysadm', 'yp')
+                                                                                                    .expectStatus(200)
+                                                                                                    .toss();
+
+                                                                                                frisby.create('ActivityOffers: removeCampaignActPlan')
+                                                                                                    .delete(URL + '/activityplans/' + campActPlan.id)
+                                                                                                    .auth('test_sysadm', 'yp')
+                                                                                                    .expectStatus(200)
+                                                                                                    .toss();
+
+                                                                                                frisby.create('ActivityOffers: removePersonalOffers')
+                                                                                                    .delete(URL + '/activityoffers')
+                                                                                                    .auth(offerTestUser.username, "yp")
+                                                                                                    .expectStatus(200)
+                                                                                                    .toss();
+
+                                                                                                frisby.create('ActivityOffers: remove AssessmentResults')
+                                                                                                    .delete(URL + '/assessments/525faf0ac558d40000000005/results')
+                                                                                                    .auth(offerTestUser.username, "yp")
+                                                                                                    .expectStatus(200)
+                                                                                                    .after(function () {
+
+                                                                                                        return cleanupFn();
+                                                                                                    })
+                                                                                                    .toss();
                                                                                             })
                                                                                             .toss();
+
                                                                                     })
                                                                                     .toss();
-
                                                                             })
                                                                             .toss();
 

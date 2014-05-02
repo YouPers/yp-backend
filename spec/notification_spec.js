@@ -131,24 +131,19 @@ consts.newUserInNewCampaignApi(
             .auth(consts.users.test_campaignlead.username, 'yp')
             .expectStatus(201)
             .afterJSON(function (campaignPlan) {
-                frisby.create('Notifications: check notifications of user --> one campaignPlan Notification')
+                frisby.create('Notifications: check notifications of user --> zero notifications becuase for campaign plans we do not implicitly generate Offers')
                     .get(URL + '/notifications')
                     .auth(user.username, 'yp')
                     .expectStatus(200)
                     .afterJSON(function (notifs) {
-                        expect(notifs.length).toEqual(1);
-                        expect(notifs[0].type).toEqual('joinablePlan');
+                        expect(notifs.length).toEqual(0);
 
                         frisby.create('Notifications: cleanup plan 1')
                             .delete(URL + '/activityplans/' + campaignPlan.id)
                             .auth('test_sysadm', 'yp')
                             .expectStatus(200)
                             .after(function() {
-                                frisby.create('Notifications: cleanup notif 1, should be cleaned automatically when plan is deleted')
-                                    .delete(URL + '/notifications/' + notifs[0].id)
-                                    .auth('test_sysadm', 'yp')
-                                    .expectStatus(404)
-                                    .toss();
+
                             })
                             .toss();
 

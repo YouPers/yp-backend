@@ -1,5 +1,11 @@
 #!/bin/bash
 set -e
-echo "**** RESETTING MONGO DATABASE localhost:test_database to dbdata/testset"
-mongo test_database --eval "db.dropDatabase();"
-bin/mongoimportexport.sh -d dbdata/testset -l test_database
+DB=$1
+
+if [ -z "$DB" ]; then
+    DB="test_database"
+fi
+
+echo "**** RESETTING MONGO DATABASE localhost:$DB to dbdata/testset"
+mongo $DB --eval "db.dropDatabase();"
+bin/mongoimportexport.sh -d dbdata/testset -l $DB

@@ -177,6 +177,7 @@ var sendActivityPlanInvite = function sendActivityPlanInvite(email, invitingUser
         salutation: i18n.t('email:ActivityPlanInvitation.salutation' + (invitedUser ? '': 'Anonymous'), {invited: invitedUser ? invitedUser.toJSON() : {}}),
         text: i18n.t('email:ActivityPlanInvitation.text', {inviting: invitingUser.toJSON(), plan: plan.toJSON()}),
         link: urlComposer.activityPlanInviteUrl(plan.activity._id, invitingUser._id),
+        title: plan.activity.title,
         plan: plan,
         eventDate: eventDate,
         image: urlComposer.activityImageUrl(plan.activity.number),

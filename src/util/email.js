@@ -159,7 +159,7 @@ var sendCalInvite = function (to, type, iCalString, i18n, reason) {
 var sendActivityPlanInvite = function sendActivityPlanInvite(email, invitingUser, plan, invitedUser, i18n) {
 
     var localMoment = function localMoment(date) {
-        return moment(date).lang(i18n.language()).tz('Europe/Zurich')
+        return moment(date).lang(i18n.language()).tz('Europe/Zurich');
     };
 
     var frequency = plan.mainEvent.frequency;

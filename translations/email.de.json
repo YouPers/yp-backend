@@ -1,53 +1,53 @@
 {
     "ActivityPlanInvitation": {
-        "subject": "YouPers: Einladung für eine Gruppen-Aktivität vom __inviting.fullname__",
+        "subject": "YOUPERS: Einladung für eine Gruppen-Aktivität vom __inviting.fullname__",
         "salutation": "Hallo <strong>__invited.firstname__!</strong>",
         "salutationAnonymous": "",
-        "text": "<strong>__inviting.fullname__</strong></string> lädt dich ein, diese Aktivität mit ihm mitzumachen",
+        "text": "<b>__inviting.fullname__</b> lädt dich ein, diese Aktivität mit ihm mitzumachen",
         "header": "Wird diese Email nicht richtig angezeigt?",
-        "footer": "YouPers - Drive Your Health"
+        "footer": "YOUPERS - Drive Your Health"
     },
     "CampaignLeadInvite": {
-        "subject": "YouPers: Einladung zum Kampagnen-Leiter von __inviting.fullname__",
+        "subject": "YOUPERS: Einladung zum Kampagnen-Leiter von __inviting.fullname__",
         "salutation": "Hallo <strong>__invited.firstname__!</strong>",
         "salutationAnonymous": "",
-        "text": "__inviting.fullname__ hat Dich eingeladen Kampagnen-Leiter zu werden der YouPers Kampagne <b>__campaign.title__</b> von <b>__campaign.organization.name__</b>.<br><br>Um diese Einladung anzunehmen, klicke auf den folgenden Link:<br>",
+        "text": "<b>__inviting.fullname__</b> hat Dich eingeladen Kampagnen-Leiter zu werden der YOUPERS Kampagne <br/> <h1><b>__campaign.title__</b></h1> <br/>von <b>__campaign.organization.name__</b>.<br><br>",
         "header": "Wird diese Email nicht richtig angezeigt?",
-        "footer": "YouPers - Drive Your Health"
+        "footer": "YOUPERS - Drive Your Health"
     },
     "OrganizationAdminInvite": {
-        "subject": "YouPers: Einladung zum Organisations-Administrator von __inviting.fullname__",
+        "subject": "YOUPERS: Einladung zum Organisations-Administrator von __inviting.fullname__",
         "salutation": "Hallo <strong>__invited.firstname__!</strong>",
         "salutationAnonymous": "",
-        "text": "__inviting.fullname__ hat Dich eingeladen Organisations-Administrator für <b>__organization.name__</b> zu werden.<br><br>Um diese Einladung anzunehmen, klicke auf den folgenden Link:<br>",
+        "text": "<b>__inviting.fullname__</b> hat Dich eingeladen Organisations-Administrator für <b>__organization.name__</b> zu werden.<br><br>",
         "header": "Wird diese Email nicht richtig angezeigt?",
-        "footer": "YouPers - Drive Your Health"
+        "footer": "YOUPERS - Drive Your Health"
     },
     "passwordReset": {
-        "subject": "YouPers: Zurücksetzen des Passworts",
+        "subject": "YOUPERS: Zurücksetzen des Passworts",
         "salutation": "Hallo __user.firstname__!",
         "text": "Jemand hat vor kurzem verlangt, dass das Youpers Digital Health Passwort für <b>__user.username__ (__user.email__)</b> zurückgesetzt wird.<br><br>Um es zurückzusetzen klicke auf diesen Link:",
-        "footer": "Wenn Du das Passwort nicht zurücksetzen möchtest oder wenn nicht Du selber diese Anfrage ausgelöst hast, kannst du dieses Email igenorieren. Dein Passwort wird dann nicht geändert.<br><br>YouPers - Drive Your Health"
+        "footer": "Wenn Du das Passwort nicht zurücksetzen möchtest oder wenn nicht Du selber diese Anfrage ausgelöst hast, kannst du dieses Email igenorieren. Dein Passwort wird dann nicht geändert.<br><br>YOUPERS - Drive Your Health"
     },
     "emailVerification": {
-        "subject": "YouPers: Bitte validiere deine E-Mail-Adresse",
+        "subject": "YOUPERS: Bitte validiere deine E-Mail-Adresse",
         "salutation": "Hallo __user.firstname__!",
         "text": "Wir wollen sichergehen, dass du wirklich __user.username__ mit email '__user.email__' bist. <br><br>Öffne den folgenden Link, um weiterzumachen:",
-        "footer": "YouPers - Drive Your Health"
+        "footer": "YOUPERS - Drive Your Health"
     },
     "iCalMail": {
         "new": {
-            "subject": "YouPers: Neuer Kalender-Eintrag",
+            "subject": "YOUPERS: Neuer Kalender-Eintrag",
             "text": "",
             "html": ""
         },
         "update": {
-            "subject": "YouPers: Angepasster Kalender-Eintrag",
+            "subject": "YOUPERS: Angepasster Kalender-Eintrag",
             "text": "",
             "html": ""
         },
         "cancel": {
-            "subject": "YouPers: Gelöschter Kalender-Eintrag",
+            "subject": "YOUPERS: Gelöschter Kalender-Eintrag",
             "text": "Der Organisator hat diesen Kalender-Eintrag gelöscht. \nGrund: __reason__",
             "html": "Der Organisator hat diesen Kalender-Eintrag gelöscht. <br><br>Grund: __reason__"
         }

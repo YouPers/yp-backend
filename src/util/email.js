@@ -192,11 +192,13 @@ var sendCampaignLeadInvite = function sendCampaignLeadInvite(email, invitingUser
         link: urlComposer.campaignLeadInviteUrl(campaign._id, invitingUser._id, token),
         salutation: i18n.t('email:CampaignLeadInvite.salutation' + invitedUser ? '': 'Anonymous', {invited: invitedUser ? invitedUser.toJSON() : {firstname: ''}}),
         text: i18n.t('email:CampaignLeadInvite.text', {inviting: invitingUser.toJSON(), campaign: campaign.toJSON()}),
+        image: urlComposer.campaignImageUrl(), // TODO: use avatar from campaign instead of hardcoded stressmanagement image
         header: i18n.t('email:CampaignLeadInvite.header'),
         footer: i18n.t('email:CampaignLeadInvite.footer')
     };
-    sendEmail(fromDefault, email, subject, 'genericYouPersMail', locals);
+    sendEmail(fromDefault, email, subject, 'campaignLeadInviteMail', locals);
 };
+
 var sendOrganizationAdminInvite = function sendOrganizationAdminInvite(email, invitingUser, organization, invitedUser, i18n) {
 
     var subject = i18n.t("email:OrganizationAdminInvite.subject", {inviting:  invitingUser.toJSON(), organization: organization.toJSON()});

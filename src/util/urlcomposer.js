@@ -28,6 +28,9 @@ function orgAdminInviteUrl (organizationId, invitingUserId, token) {
 function activityImageUrl (activityNumber) {
     return config.webclientUrl + "/assets/actpics/"+activityNumber + ".jpg";
 }
+function campaignImageUrl () {
+    return config.webclientUrl + "/assets/img/stressManagement.png";
+}
 
 module.exports = {
     activityOfferUrl: activityOfferWebClientUrl,
@@ -37,5 +40,6 @@ module.exports = {
     activityPlanInviteUrl: activityPlanInviteUrl,
     campaignLeadInviteUrl: campaignLeadInviteUrl,
     orgAdminInviteUrl: orgAdminInviteUrl,
-    activityImageUrl: activityImageUrl
+    activityImageUrl: activityImageUrl,
+    campaignImageUrl: campaignImageUrl
 };

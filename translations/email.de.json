@@ -3,7 +3,7 @@
         "subject": "YOUPERS: Einladung für eine Gruppen-Aktivität vom __inviting.fullname__",
         "salutation": "Hallo <strong>__invited.firstname__!</strong>",
         "salutationAnonymous": "",
-        "text": "<b>__inviting.fullname__</b> lädt dich ein, diese Aktivität mit ihm mitzumachen",
+        "text": "<strong>__inviting.fullname__</strong></string> lädt dich zu dieser Aktivität ein",
         "header": "Wird diese Email nicht richtig angezeigt?",
         "footer": "YOUPERS - Drive Your Health"
     },

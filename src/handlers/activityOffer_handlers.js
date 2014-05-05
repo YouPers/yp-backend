@@ -263,10 +263,18 @@ function getActivityOffersFn(req, res, next) {
                 if (myOffersHash[offer.activity._id]) {
                     // this act already exists, so we merge
                     var existingRec = myOffersHash[offer.activity._id];
-                    existingRec.activityPlan = existingRec.activityPlan.concat(offer.activityPlan);
-                    existingRec.recommendedBy = existingRec.recommendedBy.concat(offer.recommendedBy);
-                    existingRec.type = existingRec.type.concat(offer.type);
-                    existingRec.prio = existingRec.prio.concat(offer.prio);
+                    _.forEach(offer.activityPlan, function(activityPlan) {
+                        if(!_.contains(_.pluck(existingRec.activityPlan, 'id'), activityPlan.id)) {
+                            existingRec.activityPlan.push(activityPlan);
+                        }
+                    });
+                    _.forEach(offer.recommendedBy, function(recommendedBy) {
+                        if(!_.contains(_.pluck(existingRec.recommendedBy, 'id'), recommendedBy.id)) {
+                            existingRec.recommendedBy.push(recommendedBy);
+                        }
+                    });
+                    existingRec.type = _.union(existingRec.type, offer.type);
+                    existingRec.prio = _.union(existingRec.prio, offer.prio);
                 } else {
                     // this act does not yet exist, so we add
                     myOffersHash[offer.activity._id] = offer;

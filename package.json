@@ -24,6 +24,7 @@
         "passport-http": "0.2.x",
         "icalendar": "git+https://github.com/YouPers/node-icalendar.git",
         "moment": "~2.5.x",
+        "moment-timezone": "~0.0.x",
         "swagger-node-restify": "git+https://github.com/YouPers/swagger-node-restify.git",
         "gm": "~1.14.2",
         "async": "~0.6.x",

@@ -5,7 +5,7 @@ var env = process.env.NODE_ENV || 'development',
     path = require('path'),
     crypto = require('crypto'),
     _ = require('lodash'),
-    moment = require('moment'),
+    moment = require('moment-timezone'),
     templatesDir = path.join(__dirname, 'emailtemplates'),
     nodemailer = require('nodemailer'),
     emailTemplates = require('email-templates'),
@@ -158,15 +158,17 @@ var sendCalInvite = function (to, type, iCalString, i18n, reason) {
 
 var sendActivityPlanInvite = function sendActivityPlanInvite(email, invitingUser, plan, invitedUser, i18n) {
 
-    moment.lang(i18n.language());
+    var localMoment = function localMoment(date) {
+        return moment(date).lang(i18n.language()).tz('Europe/Zurich')
+    };
 
     var frequency = plan.mainEvent.frequency;
-    var weekday = moment(plan.mainEvent.start).format("dddd") + (frequency === 'week' ? 's' : '');
-    var date = moment(plan.mainEvent.start).format("D.M.") +
+    var weekday = localMoment(plan.mainEvent.start).format("dddd") + (frequency === 'week' ? 's' : '');
+    var date = localMoment(plan.mainEvent.start).format("D.M.") +
         frequency === 'once' ? '' :
-            moment(plan.events[plan.events.length-1].end).format("D.M.YYYY");
+        localMoment(plan.events[plan.events.length-1].end).format("D.M.YYYY");
 
-    var time = moment(plan.mainEvent.start).format('HH:mm') + ' - ' + moment(plan.mainEvent.end).format('HH:mm');
+    var time = localMoment(plan.mainEvent.start).format('HH:mm') + ' - ' + localMoment(plan.mainEvent.end).format('HH:mm');
 
     var eventDate = weekday + '<br/>' + time + '<br/>' + date;
 

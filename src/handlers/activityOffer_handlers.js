@@ -144,10 +144,6 @@ function getActivityOffersFn(req, res, next) {
         return _getCampaignActivityOffers(req,res,next);
     }
 
-    if (!req.user) {
-        return next(new error.UnauthorizedError());
-    }
-
     var activityFilter = req.params.activity;
 
     var locals = {};
@@ -187,8 +183,9 @@ function getActivityOffersFn(req, res, next) {
 
     };
 
+    var collectionTasks = req.user ? [ getActivityPlans, getAssessmentResult] : [];
 
-    async.parallel([ getActivityPlans, getAssessmentResult], function (err) {
+    async.parallel(collectionTasks, function (err) {
 
         if (err) {
             return error.handleError(err, next);
@@ -238,10 +235,13 @@ function getActivityOffersFn(req, res, next) {
 
         function consolidate(err, offers) {
 
+            var actsToRemove = [];
 
-            var plannedActs = _.map(locals.plans, 'activity');
-            var rejActs = _.map(req.user.profile.userPreferences.rejectedActivities, 'activity');
-            var actsToRemove = plannedActs.concat(rejActs);
+            if(req.user) {
+                var plannedActs = _.map(locals.plans, 'activity');
+                var rejActs = _.map(req.user.profile.userPreferences.rejectedActivities, 'activity');
+                actsToRemove = plannedActs.concat(rejActs);
+            }
 
             // only remove if the user did not request offers for one specific activity
             if (!activityFilter) {

@@ -40,7 +40,7 @@ module.exports = function (swagger, config) {
                 generic.params.limit,
                 generic.params.populate
             ],
-            accessLevel: 'al_individual',
+            accessLevel: 'al_all',
             beforeCallbacks: []
         },
         action: handlers.getActivityOffersFn

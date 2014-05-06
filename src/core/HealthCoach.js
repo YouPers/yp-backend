@@ -18,7 +18,16 @@ var healthCoachRuleSet = {
         {id: "hcmsg.3", rule: "facts.uistate == 'home.content' && facts.activities.total.plannedAct == 0"},
         {id: "hcmsg.4", rule: "facts.uistate == 'select.content' && !facts.assessmentResult.done"},
         {id: "hcmsg.5", rule: "facts.uistate == 'check.content' && !facts.assessmentResult.done"},
-        {id: "hcmsg.6", rule: "facts.uistate == 'check.content' && facts.assessmentResult.completion < 0.5"}
+        {id: "hcmsg.6", rule: "facts.uistate == 'check.content' && facts.assessmentResult.completion < 0.5"},
+        {id: "hcmsg.7", rule: "facts.uistate == 'focus.content' && !facts.assessmentResult.done"},
+        {id: "hcmsg.8", rule: "facts.uistate == 'plan.offer' && facts.activities.total.plannedAct == 0"},
+        {id: "hcmsg.9", rule: "facts.uistate == 'diary.content' && facts.diary.entries == 0"},
+        {id: "hcmsg.10", rule: "facts.uistate == 'plan.content' && facts.activities.total.open > 0"},
+        {id: "hcmsg.11", rule: "facts.uistate == 'focus.content' && facts.user.profile.userPreferences.focus.length == 0"},
+        {id: "hcmsg.12", rule: "facts.uistate == 'focus.content' && facts.user.profile.userPreferences.focus.length > 0"},
+        {id: "hcmsg.13", rule: "facts.uistate == 'select.content' && facts.user.profile.userPreferences.focus.length > 0 && facts.activities.total.plannedAct == 0"},
+        {id: "hcmsg.14", rule: "facts.uistate == 'select.content' &&  facts.user.profile.userPreferences.focus.length > 0 && facts.activities.total.plannedAct > 0"},
+        {id: "hcmsg.15", rule: "facts.uistate == 'plan.offer' && facts.activities.total.plannedAct > 0 && facts.activities.total.open >0"}
     ]
 };
 
@@ -73,6 +82,43 @@ var commonFacts = [
                 completion: 0
             }
         },
+        {
+            name: 'diary',
+            description: 'provides information about the diary entries of the user:' +
+                'entries: (int) number of diary entry' +
+                'age: (int) the seconds since the users last diary entry',
+            calc: function (userId, cb) {
+                mongoose.model('DiaryEntry').aggregate([
+                        {$match: {owner: userId}},
+                        {$sort: {created: -1}}
+                    ],
+                    function (err, result) {
+
+                        if (err) {
+                            return cb(err);
+                        }
+
+                        if (!result || result.length === 0) {
+                            return cb(null, {entries: 0, age: 0});
+                        }
+
+                        var fact = {
+                            entries: result.length,
+                            age: moment().diff(moment(result[0].created))
+                        };
+
+                        return cb(null, fact);
+                    });
+            },
+            default: {
+                entries: 0,
+                age: 0
+            }
+        },
+
+
+
+
         {
             name: 'activities',
             description: 'provides information about how many activities a user has planned, done, missed' +
@@ -139,13 +185,6 @@ var commonFacts = [
                     done: 0
                 }
 
-            }
-        },
-        {
-            name: 'goals',
-            description: 'number of set goals in the current challenge',
-            calc: function (userId, cb) {
-                return cb(null, []);
             }
         }
     ]

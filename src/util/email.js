@@ -117,7 +117,7 @@ var sendPasswordResetMail = function (user,i18n) {
 };
 
 
-var sendCalInvite = function (to, type, iCalString, i18n, reason) {
+var sendCalInvite = function (to, type, iCalString, plan, i18n, reason) {
     // default method is request
     var method = 'REQUEST';
     // for cancellation we use CANCEL
@@ -128,9 +128,9 @@ var sendCalInvite = function (to, type, iCalString, i18n, reason) {
     var mail = {
         from: fromDefault, // sender address
         to: to, // list of receivers
-        subject: i18n.t('email:iCalMail.'+type+'.subject'), // Subject line
-        text: i18n.t('email:iCalMail.'+type+'.text', {reason: reason}),
-        html: i18n.t('email:iCalMail.'+type+'.html', {reason: reason}),
+        subject: i18n.t('email:iCalMail.'+type+'.subject', {reason: reason, plan: plan.toJSON()}), // Subject line
+        text: i18n.t('email:iCalMail.'+type+'.text', {reason: reason, plan: plan.toJSON()}),
+        html: i18n.t('email:iCalMail.'+type+'.html', {reason: reason, plan: plan.toJSON()}),
         alternatives: [
             {
                 contentType: 'text/calendar; charset="UTF-8"; method=' + method,

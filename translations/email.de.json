@@ -37,17 +37,17 @@
     },
     "iCalMail": {
         "new": {
-            "subject": "YOUPERS: Neuer Kalender-Eintrag",
-            "text": "",
-            "html": ""
+            "subject": "YOUPERS: Neuer Kalender-Eintrag für: __plan.activity.title__",
+            "text": "Neuer Kalendereintrag für __plan.activity.title__",
+            "html": "Neuer Kalendereintrag<br><br><h1>__plan.activity.title__</h1><p>__plan.activity.description__</p>"
         },
         "update": {
-            "subject": "YOUPERS: Angepasster Kalender-Eintrag",
-            "text": "",
-            "html": ""
+            "subject": "YOUPERS: Angepasster Kalender-Eintrag für: __plan.activity.title__",
+            "text": "Neuer Kalendereintrag für __plan.activity.title__",
+            "html": "Neuer Kalendereintrag<br><br><h1>__plan.activity.title__</h1>><p>__plan.activity.description__</p>"
         },
         "cancel": {
-            "subject": "YOUPERS: Gelöschter Kalender-Eintrag",
+            "subject": "YOUPERS: Gelöschter Kalender-Eintrag für: __plan.activity.title__",
             "text": "Der Organisator hat diesen Kalender-Eintrag gelöscht. \nGrund: __reason__",
             "html": "Der Organisator hat diesen Kalender-Eintrag gelöscht. <br><br>Grund: __reason__"
         }

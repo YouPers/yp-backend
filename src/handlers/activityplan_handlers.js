@@ -223,7 +223,7 @@ function _saveNewActivityPlan(plan, user, i18n, cb) {
 
                 if (user && user.email && user.profile.userPreferences.email.iCalInvites) {
                     var myIcalString = calendar.getIcalObject(reloadedActPlan, user, 'new', i18n).toString();
-                    email.sendCalInvite(user.email, 'new', myIcalString, i18n);
+                    email.sendCalInvite(user.email, 'new', myIcalString, reloadedActPlan, i18n);
                 }
 
                 actMgr.emit('activity:planSaved', reloadedActPlan);
@@ -429,7 +429,7 @@ function _deleteActivityPlanNoJoiningPlans(activityPlan, user, reason, i18n, don
             }
             if (owner.profile.userPreferences.email.iCalInvites) {
                 var myIcalString = calendar.getIcalObject(activityPlan, owner, 'cancel', i18n, reason).toString();
-                email.sendCalInvite(owner.email, 'cancel', myIcalString, i18n, reason);
+                email.sendCalInvite(owner.email, 'cancel', myIcalString, activityPlan, i18n, reason);
             }
             actMgr.emit('activity:planDeleted',activityPlan);
             return done();
@@ -631,7 +631,7 @@ function putActivityPlan(req, res, next) {
                 }
                 if (req.user && req.user.email && req.user.profile.userPreferences.email.iCalInvites) {
                     var myIcalString = calendar.getIcalObject(reloadedActPlan, req.user, 'update', req.i18n).toString();
-                    email.sendCalInvite(req.user.email, 'update', myIcalString, req.i18n);
+                    email.sendCalInvite(req.user.email, 'update', myIcalString, reloadedActPlan, req.i18n);
                 }
 
                 // remove the populated activity because the client is not gonna expect it to be populated.

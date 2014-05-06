@@ -32,7 +32,7 @@ ActivitySchema.statics.adminAttrsSelector =  '+recWeights +qualityFactor';
 ActivitySchema.statics.adminRoles = [auth.roles.systemadmin, auth.roles.productadmin];
 
 ActivitySchema.methods.getPictureUrl = function() {
-    return "https://googledrive.com/host/0B95w28y1cwlsMDdMUFQ1TmFpWG8/5278c6adcdeab69a25000047.jpg";
+    return '/assets/actpics/' + this.number + '.jpg';
 };
 
 module.exports = mongoose.model('Activity', ActivitySchema);

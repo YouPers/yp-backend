@@ -18,7 +18,7 @@ var env = process.env.NODE_ENV || 'development',
     }),
     urlComposer = require('./urlcomposer');
 
-var fromDefault = "YouPers Digital Health <dontreply@youpers.com>",
+var fromDefault = "YOUPERS Gesundheitscoach <dontreply@youpers.com>",
     linkTokenSeparator = '|';
 
 var encryptLinkToken = function (linkToken) {

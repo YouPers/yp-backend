@@ -66,7 +66,7 @@ function assessmentResultAnswerPutFn() {
 
         // get latest result
         AssessmentResult
-            .find({owner: req.user.id, assessment: newAnswer.assessment}, {}, { sort: { 'created_at': -1 }}).exec(function (err, results) {
+            .find({owner: req.user.id, assessment: newAnswer.assessment}, {}, { sort: { 'created': -1 }}).exec(function (err, results) {
                 if (err) {
                     return error.handleError(err, next);
                 }

@@ -227,7 +227,7 @@ function getActivityOffersFn(req, res, next) {
                 .find(selector)
                 .populate('activity activityPlan recommendedBy')
                 .exec(function(err, offers) {
-                    User.populate(offers, { path: 'activityPlan.owner' }, function(err, offers) {
+                    User.populate(offers, { path: 'activityPlan.owner activityPlan.joiningUsers' }, function(err, offers) {
 
                         consolidate(err, offers);
 

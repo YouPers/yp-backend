@@ -63,7 +63,12 @@ var validateUserPostFn = function(baseUrl) {
             User.findOne(query).select(field).exec(function(err, value) {
                 if(err) { return error.handleError(err, next); }
                 if(value) {
-                    return next(new error.ConflictError(field + ' is already in use', { value: query[field] } ));
+                    // we use a HTTP error to communicate the fact that this is a duplicate username or email
+                    // but there is no reason to fill the server logs with this, as this is an expected case
+                    // therefore we suppress the automatic logging of errors
+                    var errorMsg = new error.ConflictError(field + ' is already in use', { value: query[field] } );
+                    errorMsg.doNotLog = true;
+                    return next(errorMsg);
                 } else {
                     res.send(200);
                     return next();

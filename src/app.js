@@ -18,7 +18,6 @@ var restify = require("restify"),
     passportHttp = require('passport-http'),
     swagger = require("swagger-node-restify"),
     auth = require('./util/auth'),
-    i18n = require('i18next'),
     ypi18n = require('./util/ypi18n'),
     error = require('./util/error'),
     db = require('./util/database');
@@ -45,20 +44,18 @@ server.pre(function (request, response, next) {
 server.on('uncaughtException', function (req, res, route, err) {
     req.log.error(err);
     console.error('Caught uncaught Exception: ' + err );
-    console.error("Error uncaught Exception: " + JSON.stringify(err));
     res.send(new error.InternalError(err, err.message || 'unexpected error'));
     return (true);
 });
 
 process.on('uncaughtException', function(err){
     console.error('Caught uncaught Exception: ' + err );
-    console.error('Caught uncaught Exception content: ' + JSON.stringify(err) );
     process.exit(8);
 });
 
 server.on('after', function (req, res, route, err) {
     req.log.debug({res: res}, "finished processing request");
-    if (err) {
+    if (err && !err.doNotLog) {
         req.log.info({req: req});
         if (req.body) {
             req.log.info({requestbody: req.body});

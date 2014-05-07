@@ -66,7 +66,18 @@ var sendSummaryMail = function sendSummaryMail(user, rangeStart, rangeEnd, done,
 
                     i18n.setLng(user.profile.language || 'de', function () {
                         log.info('sending DailySummary Mail to email: ' + user.email + ' with ' + plans.length + ' events.');
-                        email.sendDailyEventSummary.apply(this, [user.email, plans, user, i18n]);
+
+                        ///////////////////////////////////////////////
+                        // TODO: WL-722 sending the summary emails to YOUPERS to get some information about the campaign
+                        // we replace the user's email temporary with the youpers.operator
+                        // need to reenable after the Kt. Luzern Test-Campaign
+                        //
+                        // correct Line:
+                        // email.sendDailyEventSummary.apply(this, [user.email, plans, user, i18n]);
+                        //
+                        // temporary disabling:
+                        email.sendDailyEventSummary.apply(this, ['youpers.operator@gmail.com', plans, user, i18n]);
+
                         return done();
                     });
                 });

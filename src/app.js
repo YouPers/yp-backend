@@ -44,9 +44,17 @@ server.pre(function (request, response, next) {
 // log unexpected errors
 server.on('uncaughtException', function (req, res, route, err) {
     req.log.error(err);
+    console.error('Caught uncaught Exception: ' + err );
+    console.error("Error uncaught Exception: " + JSON.stringify(err));
     res.send(new error.InternalError(err, err.message || 'unexpected error'));
     return (true);
 });
+
+process.on('uncaughtException', function(err){
+    console.error('Caught uncaught Exception: ' + err );
+    console.error('Caught uncaught Exception content: ' + JSON.stringify(err) );
+});
+
 server.on('after', function (req, res, route, err) {
     req.log.debug({res: res}, "finished processing request");
     if (err) {

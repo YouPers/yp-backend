@@ -53,6 +53,7 @@ server.on('uncaughtException', function (req, res, route, err) {
 process.on('uncaughtException', function(err){
     console.error('Caught uncaught Exception: ' + err );
     console.error('Caught uncaught Exception content: ' + JSON.stringify(err) );
+    process.exit(8);
 });
 
 server.on('after', function (req, res, route, err) {

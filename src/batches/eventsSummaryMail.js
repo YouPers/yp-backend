@@ -70,7 +70,7 @@ var sendSummaryMail = function sendSummaryMail(user, rangeStart, rangeEnd, done,
                         ///////////////////////////////////////////////
                         // TODO: WL-722 sending the summary emails to YOUPERS to get some information about the campaign
                         // we replace the user's email temporary with the youpers.operator
-                        // need to reenable after the Kt. Luzern Test-Campaign
+                        // need to reenable real user's email address after the Kt. Luzern Test-Campaign
                         //
                         // correct Line:
                         // email.sendDailyEventSummary.apply(this, [user.email, plans, user, i18n]);

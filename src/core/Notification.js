@@ -4,7 +4,8 @@ var EventEmitter = require('events').EventEmitter,
     NotificationModel = mongoose.model('Notification'),
     ALL_YOUPERS_QUEUE = "AAAAc64e53d523235b07EEEE",
     moment = require('moment'),
-    genericHandlers = require('../handlers/generic');
+    genericHandlers = require('../handlers/generic'),
+    error = require('../util/error');
 
 function Notification(aNotification) {
     EventEmitter.call(this);
@@ -46,12 +47,25 @@ Notification.getCurrentNotifications = function(user, options, cb) {
         .exec(cb);
 };
 
-Notification.getCampaignNotifications = function(user, campaign, options, cb) {
+Notification.getCampaignNotifications = function(user, campaign, mode, previewDate, options, cb) {
     var myQueues = [campaign.id || campaign];
 
     var query = NotificationModel
-        .where({ targetQueue: {$in: myQueues}})
-        .where({ type: 'message'});
+        .where({ targetQueue: {$in: myQueues}});
+
+    if (mode === 'administrate') {
+        // only the manual Notifications can be administrated, the Notification for Events and Recommendations must
+        // be administrated by changing the respective CampaignActivityEvent or CampaignActivityRecommendation.
+        query.where({ type: 'message'});
+    } else if (mode=== 'preview') {
+        var dateToUse = new Date(moment(previewDate)) || moment().toDate();
+        query
+            .and({$or: [{publishTo: {$exists: false}}, {publishTo: {$gte: dateToUse}}]})
+            .and({$or: [{publishFrom: {$exists: false}}, {publishFrom: {$lte: dateToUse}}]});
+    } else {
+        return cb(new error.InvalidArgumentError('Unknown mode: ' + mode));
+    }
+
 
     genericHandlers.processDbQueryOptions(options, query, NotificationModel)
         .exec(cb);

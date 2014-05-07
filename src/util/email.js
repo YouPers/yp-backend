@@ -35,6 +35,7 @@ var decryptLinkToken = function (token) {
 };
 
 var sendEmail = function (from, to, subject, templateName, locals) {
+
     emailTemplates(templatesDir, function (err, template) {
         if (err) {
             log.error({err: err}, 'error during parsing of all email-templates');
@@ -60,7 +61,7 @@ var sendEmail = function (from, to, subject, templateName, locals) {
                         };
                         smtpTransport.sendMail(mail, function (err, responseStatus) {
                             if (err) {
-                                log.error({err:err}, "error while sending email for :" + to + " template: " + templateName);
+                                log.error({err:err, data: err.data}, "error while sending email for: " + to + " template: " + templateName);
                             } else {
                                 log.info({responseStatus: responseStatus, message: responseStatus.message}, "email sent: " + to + " template: " + templateName);
                             }
@@ -149,9 +150,9 @@ var sendCalInvite = function (to, type, iCalString, plan, i18n, reason) {
 
     smtpTransport.sendMail(mail, function (err, responseStatus) {
         if (err) {
-            console.log(err);
+            log.error({err:err, data: err.data}, "error while sending email for: " + to + ", icalInvite");
         } else {
-            console.log(responseStatus.message);
+            log.info({responseStatus: responseStatus, message: responseStatus.message}, "email sent: " + to + ", icalInvite");
         }
     });
 };

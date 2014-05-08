@@ -314,8 +314,8 @@ function getActivityOffersFn(req, res, next) {
 
                     var offer = sortedByType[0];
 
-                    // limit to 3 per type
-                    var maxPerType = 5;
+                    // limit to 8 per type
+                    var maxPerType = 8;
 
                     var countPerType = _.filter(sortedOffers, function (o) {
                         return _.any(o.type, function (type) {
@@ -428,7 +428,7 @@ function _getDefaultActivityOffers(activityFilter, cb) {
         selector._id = activityFilter;
     }
     Activity
-        .find(selector, {}, { sort: { 'qualityFactor': -1 }, limit: 3 })
+        .find(selector, {}, { sort: { 'qualityFactor': -1 }, limit: 8 })
         .exec(function (err, activities) {
 
             if (err) {
@@ -447,6 +447,7 @@ function _getDefaultActivityOffers(activityFilter, cb) {
                         activityPlan: [],
                         recommendedBy: [healthCoachUser],
                         type: ['defaultActivity'],
+                        sourceType: 'youpers',
                         prio: activity.qualityFactor
                     };
 

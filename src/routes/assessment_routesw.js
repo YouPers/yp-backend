@@ -92,7 +92,7 @@ module.exports = function (swagger, config) {
             spec: {
                 description: "Operations about assessments and assessmentResults",
                 path: resultsUrl + '/newest',
-                notes: "always returns zero or one result, the newest result is the one with the newest timestamp",
+                notes: "always returns zero or one result, the newest result is the one with the newest created timestamp",
                 summary: "returns a the newest assessmentResult for the current user and the assessment with id assessmentId",
                 method: "GET",
                 params: [swagger.pathParam("assessmentId", "ID of the assessment for which to store a result", "string"),

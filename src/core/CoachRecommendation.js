@@ -141,7 +141,7 @@ function _loadAssessmentResult(userId, assessmentResult, done) {
         return done();
     } else {
         AssessmentResult.find({owner: userId})
-            .sort({timestamp: -1})
+            .sort({created: -1})
             .limit(1)
             .exec(function (err, assResults) {
                 if (err) {

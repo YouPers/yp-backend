@@ -52,7 +52,7 @@ var commonFacts = [
             calc: function (userId, cb) {
                 mongoose.model('AssessmentResult').aggregate([
                         {$match: {owner: userId}},
-                        {$sort: {timestamp: -1}},
+                        {$sort: {created: -1}},
                         {$limit: 1}
                     ],
                     function (err, result) {
@@ -71,7 +71,7 @@ var commonFacts = [
                             fact.done = true;
                             // TODO: fix this magic calculation to use the number of questions in the assessment- currently hardcoded 26
                             fact.completion = result[0].answers.length / 26;
-                            fact.age = moment().diff(moment(result[0].timestamp));
+                            fact.age = moment().diff(moment(result[0].created));
                         }
 
                         return cb(null, fact);

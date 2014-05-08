@@ -12,7 +12,6 @@ var AssessmentResultSchema = common.newSchema({
     owner: {type: Schema.Types.ObjectId, ref: 'User', required: true},
     campaign: {type: Schema.Types.ObjectId, ref: 'Campaign'},
     assessment: {type: Schema.Types.ObjectId, ref: 'Assessment', required: true},
-    timestamp: {type: Date},
     dirty: { type: Boolean },
     answers: [AssessmentResultAnswer.schema],
     needForAction: {} // using Mixed type because the keys of this object are dynamic (depend on categories of all questions)
@@ -26,8 +25,7 @@ AssessmentResultSchema.statics.getFieldDescriptions = function () {
         'answer.answer': "the actual answer to this question, minumum: -100, maximum: 100",
         owner: "reference to the user owning this Result",
         campaign: "reference to the campaign this result was entered in, used for statistics",
-        assessment: "reference to the assessment this result belongs to",
-        timestamp: "optional on POST, is filled by server when not submitted"
+        assessment: "reference to the assessment this result belongs to"
     };
 };
 

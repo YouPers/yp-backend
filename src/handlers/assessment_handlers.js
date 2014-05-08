@@ -17,7 +17,7 @@ var getNewestResult = function (baseUrl) {
         generic.addStandardQueryOptions(req, dbQuery, AssessmentResult);
 
         dbQuery
-            .sort({timestamp: -1})
+            .sort({created: -1})
             .limit(1)
             .exec(function (err, results) {
                 if (err) {
@@ -66,7 +66,7 @@ function assessmentResultAnswerPutFn() {
 
         // get latest result
         AssessmentResult
-            .find({owner: req.user.id, assessment: newAnswer.assessment}, {}, { sort: { 'created': -1 }}).exec(function (err, results) {
+            .find({owner: req.user.id, assessment: newAnswer.assessment}, {}, { sort: { 'created': -1 }}).limit(1).exec(function (err, results) {
                 if (err) {
                     return error.handleError(err, next);
                 }
@@ -74,14 +74,14 @@ function assessmentResultAnswerPutFn() {
                 var result = results.length > 0 ? results[0] : new AssessmentResult({
                     assessment: newAnswer.assessment,
                     owner: req.user.id,
-                    answers: [],
-                    timestamp: new Date()
+                    answers: []
                 });
 
 
                 // delete id if older than today to save a new result
-                if (result.timestamp < today) {
+                if (result.created < today) {
                     delete result.id;
+                    delete result.created;
                 }
 
                 var answerIndex = _.findIndex(result.answers, function (answer) {

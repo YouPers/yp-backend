@@ -200,7 +200,7 @@ var commonFacts = [
  */
 function Facts(user, uistate) {
     var self = this;
-    self.user = user;
+    self.user = user || {profile: {userPreferences: {}}};
     self.uistate = uistate;
 
 
@@ -253,7 +253,12 @@ function HealthCoach() {
             if (err) {
                 return cb(err);
             }
-            var result = re.evaluate(facts);
+            var result = [];
+            try {
+                result = re.evaluate(facts);
+            } catch (error) {
+                return cb(error);
+            }
             return cb(null, result, facts);
         });
     };

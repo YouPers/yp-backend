@@ -30,7 +30,6 @@ consts.newUserInNewCampaignApi(
             .post(URL + '/assessments/525faf0ac558d40000000005/results',
             {owner: offerTestUser,
                 assessment: '525faf0ac558d40000000005',
-                timestamp: new Date(),
                 answers: [
                     {assessment: '525faf0ac558d40000000005',
                         question: '5278c51a6166f2de240000cc',

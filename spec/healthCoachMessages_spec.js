@@ -35,7 +35,6 @@ describe('HealthCoach Module', function () {
                 expect(user).toBeDefined();
 
                 var result = {
-                    timestamp: new Date(),
                     owner: user._id,
                     assessment: consts.assessment.id,
                     answers: []
@@ -50,7 +49,7 @@ describe('HealthCoach Module', function () {
                         expect(_.isArray(messages));
                         expect(messages.length).toEqual(1);
 
-                        result.timestamp = moment().subtract(10, 'd').toDate();
+                        result.created = moment().subtract(10, 'd').toDate();
                         result.save(function (err, updatedResult) {
                             expect(err).toBeNull();
                             hc.getCurrentMessages(user, 'home.content', function (err, messages, facts) {

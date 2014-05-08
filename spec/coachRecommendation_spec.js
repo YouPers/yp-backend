@@ -9,7 +9,6 @@ describe('CoachRecommendation Module', function () {
 
         var assResult = {owner: consts.users.test_ind1.id,
             assessment: '525faf0ac558d40000000005',
-            timestamp: new Date(),
             answers: [
                 {assessment: '525faf0ac558d40000000005',
                     question: '5278c51a6166f2de240000cc',

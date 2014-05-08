@@ -16,7 +16,6 @@ frisby.create('ActivityRecommendations: post a first answer for this assessment'
     .post(URL + '/assessments/525faf0ac558d40000000005/results',
     {owner: consts.users.test_ind2.id,
         assessment: '525faf0ac558d40000000005',
-        timestamp: new Date(),
         answers: [
             {assessment: '525faf0ac558d40000000005',
                 question: '5278c51a6166f2de240000cc',

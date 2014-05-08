@@ -64,7 +64,7 @@ UserSchema.methods = {
 
         // add special queues the user has subscribed to
         if (this.profile && this.profile.notificationQueues) {
-            queues.concat(this.profile.notificationQueues);
+            queues = queues.concat(this.profile.notificationQueues);
         }
         return queues;
     }

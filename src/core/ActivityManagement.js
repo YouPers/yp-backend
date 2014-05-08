@@ -104,6 +104,7 @@ actMgr.on('activity:offerSaved', function (offer) {
                 refDocLink: urlComposer.activityOfferUrl(offer.activity.id),
                 refDocId: offer._id,
                 refDocModel: 'ActivityOffer',
+                publishFrom: offer.validFrom,
                 publishTo: offer.validTo
             }).
                 publish(function (err) {
@@ -122,6 +123,24 @@ actMgr.on('activity:offerDeleted', function (offer) {
         .exec(function(err, notifs) {
             _.forEach(notifs, function(notif) {
                 notif.remove(function (err) {
+                    if (err) {
+                        return actMgr.emit('error', err);
+                    }
+                });
+            });
+        });
+});
+
+
+actMgr.on('activity:offerUpdated', function (offer) {
+    // check whether there are any notifications to be deleted
+    NotificationModel
+        .find({refDocId: offer._id})
+        .exec(function(err, notifs) {
+            _.forEach(notifs, function(notif) {
+                notif.publishFrom = offer.validFrom;
+                notif.publishTo = offer.publishTo;
+                notif.save(function(err, savedNotif) {
                     if (err) {
                         return actMgr.emit('error', err);
                     }

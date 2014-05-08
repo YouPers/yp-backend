@@ -39,6 +39,54 @@ function postActivityOffer(req, res, next) {
 
 }
 
+/**
+ * allows to post an Offer/Recommendation for an unplanned activity
+ * @param req
+ * @param res
+ * @param next
+ */
+function putActivityOffer(req, res, next) {
+
+    var err = utils.checkWritingPreCond(req.body, req.user, ActivityOffer);
+    if (err) {
+        return error.handleError(err, next);
+    }
+    var sentObj = req.body;
+
+    var q = ActivityOffer.findById(req.params.id);
+
+    // if this Model has privateProperties, include them in the select, so we get the whole object
+    // because we need to save it later!
+    if (ActivityOffer.privatePropertiesSelector) {
+        q.select(ActivityOffer.privatePropertiesSelector);
+    }
+    if (ActivityOffer.adminAttrsSelector) {
+        q.select(ActivityOffer.adminAttrsSelector);
+    }
+
+    q.exec(function (err, objFromDb) {
+        if (err) {
+            return error.handleError(err, next);
+        }
+        if (!objFromDb) {
+            return next(new error.ResourceNotFoundError('no object found with the specified id', {
+                id: req.params.id
+            }));
+        }
+
+        _.extend(objFromDb, sentObj);
+
+        return objFromDb.save(function(err, savedOffer) {
+            actMgr.emit('activity:offerUpdated', savedOffer);
+            return generic.writeObjCb(req, res, next)(null, savedOffer);
+        });
+    });
+}
+
+
+
+
+
 function getCoachRecommendationsFn(req, res, next) {
 
     if (!req.user) {
@@ -430,11 +478,35 @@ var deleteActivityOffers = function (req, res, next) {
             return error.handleError(err, next);
         }
         _.forEach(objects, function (obj) {
-            obj.remove();
+            obj.remove(function(err) {
+                if (err) {
+                    req.log.error(err);
+                }
+                actMgr.emit( 'activity:offerDeleted', obj);
+            });
         });
         res.send(200);
     });
 };
+
+
+function deleteActivityOfferByIdFn(req, res, next) {
+    var finder = {_id: req.params.id};
+
+    ActivityOffer.findOne(finder).exec(function (err, obj) {
+        if (err) {
+            return error.handleError(err, next);
+        }
+        if (!obj) {
+            return next(new error.ResourceNotFoundError());
+        }
+        obj.remove(function (err) {
+            actMgr.emit( 'activity:offerDeleted', obj);
+            res.send(200);
+        });
+
+    });
+}
 
 function _getDefaultActivityOffers(activityFilter, cb) {
     var selector = {};
@@ -477,5 +549,7 @@ module.exports = {
     getCoachRecommendationsFn: getCoachRecommendationsFn,
     getActivityOffersFn: getActivityOffersFn,
     postActivityOfferFn: postActivityOffer,
-    deleteActivityOffersFn: deleteActivityOffers
+    deleteActivityOffersFn: deleteActivityOffers,
+    deleteActivityOfferByIdFn: deleteActivityOfferByIdFn,
+    putActivityOfferFn: putActivityOffer
 };

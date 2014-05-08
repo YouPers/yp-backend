@@ -82,6 +82,24 @@ module.exports = function (swagger, config) {
 
     });
 
+
+    swagger.addPut({
+        spec: {
+            description: "Operations about ActivityOffers",
+            path: baseUrlWithId,
+            notes: "allows to update an activityOffer",
+            summary: "put an activityOffer",
+            method: "PUT",
+            "nickname": "putActivityOffer",
+            accessLevel: 'al_individual',
+            beforeCallbacks: []
+        },
+        action: handlers.putActivityOfferFn
+
+    });
+
+
+
     swagger.addDelete({
         spec: {
             description: "Operations about ActivityOffers",
@@ -107,7 +125,7 @@ module.exports = function (swagger, config) {
             accessLevel: 'al_individual',
             beforeCallbacks: []
         },
-        action: generic.deleteByIdFn(baseUrl, ActivityOffer)
+        action: handlers.deleteActivityOfferByIdFn
     });
 
 

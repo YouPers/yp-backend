@@ -17,12 +17,12 @@ consts.newUserInNewCampaignApi(
             expect(err).toBeNull();
         }
 
-        frisby.create('ActivityOffers: get offers (no campaign, no invites, no assessment --> just 3 default offers')
+        frisby.create('ActivityOffers: get offers (no campaign, no invites, no assessment --> just 8 default offers')
             .get(URL + '/activityoffers')
             .auth(offerTestUser.username, "yp")
             .expectStatus(200)
             .afterJSON(function (recs) {
-                expect(recs.length).toEqual(3);
+                expect(recs.length).toEqual(8);
             })
             .toss();
 
@@ -51,7 +51,7 @@ consts.newUserInNewCampaignApi(
                     .expectStatus(200)
                     .afterJSON(function (recs) {
 
-                        expect(recs.length).toEqual(5);
+                        expect(recs.length).toEqual(8);
 
                         _.forEach(recs, function (rec) {
                             expect(rec.type[0]).toEqual('ypHealthCoach');
@@ -77,7 +77,7 @@ consts.newUserInNewCampaignApi(
                                     .auth(offerTestUser.username, "yp")
                                     .expectStatus(200)
                                     .afterJSON(function (recs) {
-                                        expect(recs.length).toEqual(5);
+                                        expect(recs.length).toEqual(8);
                                         _.forEach(recs, function (rec) {
                                             expect(rec.type[0]).toEqual('ypHealthCoach');
                                             expect(rec.activity.id).toBeDefined();
@@ -105,7 +105,7 @@ consts.newUserInNewCampaignApi(
                                                     .expectStatus(200)
                                                     .afterJSON(function (recs) {
 
-                                                        expect(recs.length).toEqual(6);
+                                                        expect(recs.length).toEqual(9);
                                                         expect(recs[0].type[0]).toEqual('campaignActivity');
                                                         expect(recs[0].prio[0]).toBeGreaterThan(recs[1].prio[0]);
 
@@ -138,7 +138,7 @@ consts.newUserInNewCampaignApi(
                                                                     .afterJSON(function (recs) {
 
 
-                                                                        expect(recs.length).toEqual(6);
+                                                                        expect(recs.length).toEqual(9);
                                                                         expect(recs[0].type).toContain('campaignActivity'); // next by rank, personalInvitation not available
                                                                         expect(recs[1].type).toContain('ypHealthCoach'); // preferred type
 
@@ -169,7 +169,7 @@ consts.newUserInNewCampaignApi(
                                                                                             .expectStatus(200)
                                                                                             .afterJSON(function (recs) {
 
-                                                                                                expect(recs.length).toEqual(6);
+                                                                                                expect(recs.length).toEqual(9);
 
                                                                                                 expect(recs[0].type).toContain('campaignActivity'); // next by rank
                                                                                                 expect(recs[0].type).not.toContain('campaignActivityPlan'); // joined plan should not show up anymore

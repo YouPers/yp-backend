@@ -339,9 +339,9 @@ function getActivityOffersFn(req, res, next) {
                 addOfferByType('personalInvitation');
             }
 
-            // add all personalInvitations
+            // add all personalInvitations that were not added before
 
-            sortedOffers.concat(_.filter(myOffersHash, function (offer) {
+            sortedOffers = sortedOffers.concat(_.filter(myOffersHash, function (offer) {
                 return _.contains(offer.type, 'personalInvitation');
             }));
 
@@ -350,7 +350,7 @@ function getActivityOffersFn(req, res, next) {
                 var publicPlans = _.filter(myOffersHash, function (offer) {
                     return _.contains(offer.type, 'publicActivityPlan');
                 });
-                sortedOffers.concat(publicPlans.slice(0, 9 - sortedOffers.length));
+                sortedOffers = sortedOffers.concat(publicPlans.slice(0, 9 - sortedOffers.length));
             }
 
             if ((activityFilter && sortedOffers.length === 0) || (!activityFilter && sortedOffers.length < 3)) {

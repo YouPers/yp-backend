@@ -191,6 +191,20 @@ function getActivityOffersFn(req, res, next) {
             return error.handleError(err, next);
         }
 
+        // check if activity has already been planned
+        if (activityFilter) {
+            var plan = _.find(locals.plans, function (plan) {
+                return plan.activity.equals(activityFilter);
+            });
+            if(plan) {
+                return next(new error.ConflictError('The user has already planned this activity', {
+                    activityId: activityFilter,
+                    activityPlanId: plan.id,
+                    reason: 'alreadyPlanned'
+                }));
+            }
+        }
+
 
         // check if result is dirty (new answers have been put),
         // then generate and/or load offers, before consolidating them

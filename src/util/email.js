@@ -90,9 +90,13 @@ var sendEmailVerification = function (user, i18n) {
     var verificationLink = urlComposer.emailVerificationUrl(encryptedEmailAddress);
 
     var locals = {
+        title: i18n.t('email:emailVerification.title'),
         salutation: i18n.t('email:emailVerification.salutation', {user: user.toJSON()}),
         text: i18n.t('email:emailVerification.text', {user: user.toJSON()}),
-        footer: i18n.t('email:ActivityPlanInvitation.footer'),
+        header: i18n.t('email:emailVerification.header'),
+        footer: i18n.t('email:emailVerification.footer'),
+        background: urlComposer.mailBackgroundImageUrl(),
+        logo: urlComposer.mailLogoImageUrl(),
         link: verificationLink
     };
 
@@ -110,9 +114,13 @@ var sendPasswordResetMail = function (user,i18n) {
     var passwordResetLink = urlComposer.passwordResetUrl(encryptedToken, user.firstname, user.lastname);
 
     var locals = {
+        title: i18n.t('email:passwordReset.title'),
         salutation: i18n.t('email:passwordReset.salutation', {user: user.toJSON()}),
         text: i18n.t('email:passwordReset.text', {user: user.toJSON()}),
+        header: i18n.t('email:passwordReset.header'),
         footer: i18n.t('email:passwordReset.footer'),
+        logo: urlComposer.mailLogoImageUrl(),
+        background: urlComposer.mailBackgroundImageUrl(),
         link: passwordResetLink
     };
 
@@ -187,7 +195,8 @@ var sendActivityPlanInvite = function sendActivityPlanInvite(email, invitingUser
         eventDate: eventDate,
         image: urlComposer.activityImageUrl(plan.activity.number),
         header: i18n.t('email:ActivityPlanInvitation.header'),
-        footer: i18n.t('email:ActivityPlanInvitation.footer')
+        footer: i18n.t('email:ActivityPlanInvitation.footer'),
+        logo: urlComposer.mailFooterImageUrl()
     };
     sendEmail(fromDefault, email, subject, 'activityInviteMail', locals);
 };
@@ -202,7 +211,8 @@ var sendCampaignLeadInvite = function sendCampaignLeadInvite(email, invitingUser
         text: i18n.t('email:CampaignLeadInvite.text', {inviting: invitingUser.toJSON(), campaign: campaign.toJSON()}),
         image: urlComposer.campaignImageUrl(), // TODO: use avatar from campaign instead of hardcoded stressmanagement image
         header: i18n.t('email:CampaignLeadInvite.header'),
-        footer: i18n.t('email:CampaignLeadInvite.footer')
+        footer: i18n.t('email:CampaignLeadInvite.footer'),
+        logo: urlComposer.mailFooterImageUrl()
     };
     sendEmail(fromDefault, email, subject, 'campaignLeadInviteMail', locals);
 };
@@ -216,7 +226,8 @@ var sendOrganizationAdminInvite = function sendOrganizationAdminInvite(email, in
         salutation: i18n.t('email:OrganizationAdminInvite.salutation' + invitedUser ? '': 'Anonymous', {invited: invitedUser ? invitedUser.toJSON() : {firstname: ''}}),
         text: i18n.t('email:OrganizationAdminInvite.text', {inviting: invitingUser.toJSON(), organization: organization.toJSON()}),
         header: i18n.t('email:OrganizationAdminInvite.header'),
-        footer: i18n.t('email:OrganizationAdminInvite.footer')
+        footer: i18n.t('email:OrganizationAdminInvite.footer'),
+        logo: urlComposer.mailFooterImageUrl()
     };
     sendEmail(fromDefault, email, subject, 'genericYouPersMail', locals);
 };

@@ -124,28 +124,37 @@ UserSchema.pre('save', function (next) {
     }
 
     if (!this.isNew || this.profile) {
-        return next();
+        if (this.campaign && (this.campaign !== this.profile.campaign )) {
+            Profile.update({_id: this.profile}, {campaign: this.campaign}).exec(function(err){
+                if (err) {
+                    return error.handleError(err, next);
+                }
+                return next();
+            });
+        } else {
+            return next();
+        }
     } else {
         // generate and store new profile id into new user object
         var newProfileId = mongoose.Types.ObjectId();
         this.profile = newProfileId;
 
-        var newProfile = new Profile( { _id: newProfileId, owner: this.id, timestamp: new Date() } );
+        var newProfile = new Profile( { _id: newProfileId, owner: this.id, timestamp: new Date(), campaign: this.campaign } );
 
         newProfile.save(function (err) {
             if (err) {
                 return error.handleError(err, next);
             }
         });
+        if (!validatePresenceOf(this.password)) {
+            next(new error.MissingParameterError({ required: 'password' }));
+        }
+        if (!this.avatar) {
+            this.avatar = this.profile.gender === 'male' ? '/assets/img/avatar_man.png' : '/assets/img/avatar_woman.png';
+        }
+        next();
 
     }
-    if (!validatePresenceOf(this.password)) {
-        next(new error.MissingParameterError({ required: 'password' }));
-    }
-    if (!this.avatar) {
-        this.avatar = this.profile.gender === 'male' ? '/assets/img/avatar_man.png' : '/assets/img/avatar_woman.png';
-    }
-    next();
 });
 
 UserSchema.pre('remove', function (next) {

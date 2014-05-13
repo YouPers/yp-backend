@@ -74,7 +74,8 @@ function assessmentResultAnswerPutFn() {
                 var result = results.length > 0 ? results[0] : new AssessmentResult({
                     assessment: newAnswer.assessment,
                     owner: req.user.id,
-                    answers: []
+                    answers: [],
+                    campaign: req.user.campaign.id
                 });
 
 
@@ -82,6 +83,8 @@ function assessmentResultAnswerPutFn() {
                 if (result.created < today) {
                     delete result.id;
                     delete result.created;
+                    // update campaign if user has changed campaign
+                    result.campaign = req.user.campaign.id;
                 }
 
                 var answerIndex = _.findIndex(result.answers, function (answer) {

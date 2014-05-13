@@ -160,6 +160,10 @@ ActivityPlanSchema.pre('save', function (next) {
     var self = this;
     var model = mongoose.model('ActivityPlan');
 
+    // force the internal version key to be incremented in save(), so we can reliably use it
+    // as sequence number of iCal Objects generated for this plan
+    self.increment();
+
     // if this is a slave Plan, we need to update the master plan
     if (self.masterPlan) {
         // load the master Plan
@@ -237,8 +241,8 @@ ActivityPlanSchema.pre('init', function populateSlavePlans(next, data) {
 
         // this is a slave plan, so we get the current data from its master
         model.findById(data.masterPlan)
-            .populate('owner')
-            .populate('joiningUsers')
+            .populate('owner', '+email')
+            .populate('joiningUsers', '+email')
             .exec(function (err, masterPlan) {
                 if (err) {
                     return next(error.handleError(err, next));
@@ -261,7 +265,7 @@ ActivityPlanSchema.pre('init', function populateSlavePlans(next, data) {
                     }
                 });
                 // add the owner of the master
-                data.joiningUsers.push(masterPlan.owner);
+                data.joiningUsers.unshift(masterPlan.owner);
 
                 // populate the comments from the masterPlan, because we do not save the event comments on the slave plan
                 _.forEach(masterPlan.events, function (masterEvent) {

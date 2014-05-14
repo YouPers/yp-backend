@@ -36,7 +36,9 @@ var postFn = function (baseUrl) {
 
         // try to save the new user and profile objects
         newUser.save(function (err) {
-            if (err) { return error.handleError(err, next); }
+            if (err) {
+                return error.handleError(err, next);
+            }
 
             // send verificationEmail
             email.sendEmailVerification(newUser, req.i18n);
@@ -48,7 +50,7 @@ var postFn = function (baseUrl) {
     };
 };
 
-var validateUserPostFn = function(baseUrl) {
+var validateUserPostFn = function (baseUrl) {
     return function (req, res, next) {
         var fields = 'username email'.split(' ');
 
@@ -56,17 +58,19 @@ var validateUserPostFn = function(baseUrl) {
             return req.body[field];
         });
 
-        if(field) {
+        if (field) {
             var query = {};
             query[field] = req.body[field];
 
-            User.findOne(query).select(field).exec(function(err, value) {
-                if(err) { return error.handleError(err, next); }
-                if(value) {
+            User.findOne(query).select(field).exec(function (err, value) {
+                if (err) {
+                    return error.handleError(err, next);
+                }
+                if (value) {
                     // we use a HTTP error to communicate the fact that this is a duplicate username or email
                     // but there is no reason to fill the server logs with this, as this is an expected case
                     // therefore we suppress the automatic logging of errors
-                    var errorMsg = new error.ConflictError(field + ' is already in use', { value: query[field] } );
+                    var errorMsg = new error.ConflictError(field + ' is already in use', { value: query[field] });
                     errorMsg.doNotLog = true;
                     return next(errorMsg);
                 } else {
@@ -80,10 +84,10 @@ var validateUserPostFn = function(baseUrl) {
     };
 };
 
-var getUser = function(req, res, next, callback) {
+var getUser = function (req, res, next, callback) {
 
 
-    if(req.params.id !== req.user.id) {
+    if (req.params.id !== req.user.id) {
         return next(new error.ConflictError('User ID in request parameters does not match authenticated user', {
             requestUserId: req.params.id,
             authenticatedUserId: req.user.id
@@ -92,22 +96,24 @@ var getUser = function(req, res, next, callback) {
 
     User.findById(req.params.id)
         .select(User.privatePropertiesSelector)
-        .exec(function(err, user) {
-        if(err) { return error.handleError(err, next); }
-        if(!user) {
-            return next(new error.ResourceNotFoundError('User not found', { id: req.params.id }));
-        }
+        .exec(function (err, user) {
+            if (err) {
+                return error.handleError(err, next);
+            }
+            if (!user) {
+                return next(new error.ResourceNotFoundError('User not found', { id: req.params.id }));
+            }
 
-        callback(user);
-    });
+            callback(user);
+        });
 };
 
-var emailVerificationPostFn = function(baseUrl) {
-    return function(req, res, next) {
+var emailVerificationPostFn = function (baseUrl) {
+    return function (req, res, next) {
 
-        getUser(req, res, next, function(user) {
+        getUser(req, res, next, function (user) {
 
-            if(req.body && req.body.token === email.encryptLinkToken(user.email)) {
+            if (req.body && req.body.token === email.encryptLinkToken(user.email)) {
 
                 user.emailValidatedFlag = true;
                 user.save();
@@ -115,7 +121,7 @@ var emailVerificationPostFn = function(baseUrl) {
 
                 res.send(200, {});
                 return next();
-            } else if(!req.body || !req.body.token) {
+            } else if (!req.body || !req.body.token) {
                 return next(new error.MissingParameterError({ required: 'token' }));
             } else {
                 return next(new error.InvalidArgumentError('Invalid Token', { token: req.body.token }));
@@ -127,47 +133,52 @@ var emailVerificationPostFn = function(baseUrl) {
 };
 
 
-var requestPasswordResetPostFn = function(baseUrl) {
-    return function(req, res, next) {
+var requestPasswordResetPostFn = function (baseUrl) {
+    return function (req, res, next) {
 
         // check payload
-        if (!req.body || !req.body.usernameOrEmail ) {
+        if (!req.body || !req.body.usernameOrEmail) {
             return next(new error.MissingParameterError({ required: 'usernameOrEmail'}));
         }
 
 
         User.findOne()
-            .or([{username: req.body.usernameOrEmail}, {email: req.body.usernameOrEmail}])
+            .or([
+                {username: req.body.usernameOrEmail},
+                {email: req.body.usernameOrEmail}
+            ])
             .select('+email +username')
-            .exec(function(err, user) {
-            if(err) { error.handleError(err, next); }
-            if(!user) {
-                return next(new error.InvalidArgumentError('unknown username or email', { usernameOrEmail: req.body.usernameOrEmail }));
-            }
+            .exec(function (err, user) {
+                if (err) {
+                    error.handleError(err, next);
+                }
+                if (!user) {
+                    return next(new error.InvalidArgumentError('unknown username or email', { usernameOrEmail: req.body.usernameOrEmail }));
+                }
 
-            email.sendPasswordResetMail(user, req.i18n);
+                email.sendPasswordResetMail(user, req.i18n);
 
-            res.send(200, {});
-            return next();
+                res.send(200, {});
+                return next();
 
-        });
+            });
 
     };
 
 };
 
-var passwordResetPostFn = function(baseUrl) {
-    return function(req, res, next) {
+var passwordResetPostFn = function (baseUrl) {
+    return function (req, res, next) {
 
         // check payload
-        if (!req.body || !req.body.token || !req.body.password) {
+        if (!req.body || !req.body.token || !req.body.password) {
             return next(new error.MissingParameterError({ required: ['token', 'password']}));
         }
 
         var decryptedToken;
 
         try {
-             decryptedToken = email.decryptLinkToken(req.body.token);
+            decryptedToken = email.decryptLinkToken(req.body.token);
         } catch (err) {
             return next(new error.InvalidArgumentError('Invalid Token', { token: req.body.token }));
         }
@@ -181,27 +192,29 @@ var passwordResetPostFn = function(baseUrl) {
 
         User.findById(userId)
             .select(User.privatePropertiesSelector)
-            .exec(function(err, user) {
-            if(err) { return error.handleError(err, next); }
-            if(!user) {
-                return next(new error.ResourceNotFoundError('User not found', { id: userId }));
-            }
+            .exec(function (err, user) {
+                if (err) {
+                    return error.handleError(err, next);
+                }
+                if (!user) {
+                    return next(new error.ResourceNotFoundError('User not found', { id: userId }));
+                }
 
-             user.hashed_password = undefined;
-             user.password = req.body.password;
-             user.save(function(err, saveduser) {
+                user.hashed_password = undefined;
+                user.password = req.body.password;
+                user.save(function (err, saveduser) {
 
-                 res.send(200, {});
-                 return next();
-             });
+                    res.send(200, {});
+                    return next();
+                });
 
-        });
+            });
 
     };
 };
 
-var avatarImagePostFn = function(baseUrl) {
-    return function(req, res, next) {
+var avatarImagePostFn = function (baseUrl) {
+    return function (req, res, next) {
 
         image.resizeImage(req, req.files.file.path, 'user', function (err, image) {
 
@@ -211,8 +224,10 @@ var avatarImagePostFn = function(baseUrl) {
 
             var user = req.user;
             user.avatar = image;
-            user.save(function(err, savedUser) {
-                if (err) { return error.handleError(err, next); }
+            user.save(function (err, savedUser) {
+                if (err) {
+                    return error.handleError(err, next);
+                }
             });
 
             // send response
@@ -223,11 +238,62 @@ var avatarImagePostFn = function(baseUrl) {
     };
 };
 
+/**
+ * req.body = {
+ *     device: {
+ *          deviceType: "ios"
+ *          token: "asdfasdf",
+ *          model: "iPhone 4S"
+ *          osVersion: "iOS 7.1.1"
+ *     }
+ * }
+ * @param req
+ * @param res
+ * @param next
+ * @returns {*}
+ */
+var loginFn = function (req, res, next) {
+    req.log.trace({user: req.user}, '/login: user authenticated');
+
+    if (req.body && req.body.device) {
+
+        var newDevice = req.body.device;
+        var profile = req.user.profile;
+
+        // check whether this device is already stored on the profile
+        var isAlreadyStored = _.any(profile.devices, function(device) {
+            return newDevice.token === device.token;
+        });
+
+
+        // if no, store the new device on the profile
+        if (!isAlreadyStored) {
+            profile.devices.push(newDevice);
+            profile.save(function(err, savedProfile) {
+                if (err) {
+                    return error.handleError(err, next);
+                }
+                res.send(req.user);
+                return next();
+            });
+
+        } else {
+            // if yes, ok, don't do anything
+            res.send(req.user);
+            return next();
+        }
+    } else {
+        res.send(req.user);
+        return next();
+    }
+};
+
 module.exports = {
     postFn: postFn,
     validateUserPostFn: validateUserPostFn,
     emailVerificationPostFn: emailVerificationPostFn,
     requestPasswordResetPostFn: requestPasswordResetPostFn,
     passwordResetPostFn: passwordResetPostFn,
-    avatarImagePostFn: avatarImagePostFn
+    avatarImagePostFn: avatarImagePostFn,
+    loginFn: loginFn
 };

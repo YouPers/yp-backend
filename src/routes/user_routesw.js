@@ -205,10 +205,6 @@ module.exports = function (swagger, config) {
             "nickname": "login",
             accessLevel: 'al_user'
         },
-        action: function(req, res, next) {
-            req.log.trace({user: req.user},'/login: user authenticated');
-            res.send(req.user);
-            return next();
-        }
+        action: userHandlers.loginFn
     });
 };

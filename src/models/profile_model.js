@@ -32,6 +32,12 @@ var ProfileSchema = common.newSchema({
     },
     maritalStatus: { type: String, enum: common.enums.maritalStatus, default: "undefined" },
     language: { type: String, trim: true},
+    devices: [{
+        deviceType: {type: String},
+        model: {type: String},
+        osVersion: {type: String},
+        token: {type: String}
+    }],
     userPreferences: {
         defaultUserWeekForScheduling: {
             monday: { type: Boolean, default: true },

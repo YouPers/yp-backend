@@ -12,7 +12,8 @@ var calendar = require('../util/calendar'),
     async = require('async'),
     auth = require('../util/auth'),
     handlerUtils = require('./handlerUtils'),
-    Diary = require('../core/Diary');
+    Diary = require('../core/Diary'),
+    push = require('../util/pushNotification');
 
 function _generateEventsForPlan(plan, user, i18n) {
 
@@ -226,6 +227,7 @@ function _saveNewActivityPlan(plan, user, i18n, cb) {
                     email.sendCalInvite(user.email, 'new', myIcalString, reloadedActPlan, i18n);
                 }
 
+
                 actMgr.emit('activity:planSaved', reloadedActPlan);
 
                 // remove the populated activity and masterplan because the client is not gonna expect it to be populated.
@@ -352,6 +354,8 @@ function postActivityPlanInvite(req, res, next) {
                 function (emailaddress, done) {
                     mongoose.model('User')
                         .find({email: emailaddress})
+                        .select('+profile')
+                        .populate('profile')
                         .exec(function (err, invitedUser) {
                             if (err) {
                                 return done(err);
@@ -386,6 +390,10 @@ function postActivityPlanInvite(req, res, next) {
                                     return error.handleError(err, done);
                                 }
                                 email.sendActivityPlanInvite(emailaddress, req.user, locals.plan, invitedUser && invitedUser[0], req.i18n);
+
+                                if (invitedUser[0] && invitedUser[0].profile.devices && invitedUser[0].profile.devices.length > 0) {
+                                    push.sendNotification(invitedUser[0].profile.devices, "you got a new invitation");
+                                }
                                 return done();
                             }
                         });

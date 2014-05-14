@@ -1,8 +1,8 @@
 var apn = require('apn');
 
 var options = {
-    cert: '../certs/yp_balance_cert.pem',
-    key: '../certs/yp_balance_key_noenc.pem',
+    cert: 'certs/yp_balance_cert.pem',
+    key: 'certs/yp_balance_key_noenc.pem',
     passphrase: ''
 
 };

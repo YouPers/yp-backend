@@ -186,15 +186,15 @@ var statsQueries = function (timeRange, scopeType, scopeId) {
         eventsQuery.append(timeRangePipelineEntry);
     }
     eventsQuery.append(
-        {$project: {
-            events: 1
+        {   $project: {
+            status: {$cond: [{$gt: ['$events.end', new Date()]},'future', '$events.status']}
         }},
         {$group: {
-            _id: {status: '$events.status'},
+            _id: '$status',
             count: {$sum: 1}
         }},
         {$project: {
-            status: '$_id.status',
+            status: '$_id',
             count: 1,
             _id: 0
         }}

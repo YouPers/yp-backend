@@ -229,6 +229,9 @@ function _saveNewActivityPlan(plan, user, i18n, cb) {
                 actMgr.emit('activity:planSaved', reloadedActPlan);
 
                 reloadedActPlan.activity = reloadedActPlan.activity._id;
+                if (reloadedActPlan.masterPlan) {
+                    reloadedActPlan.masterPlan = reloadedActPlan.masterPlan._id;
+                }
 
                 return cb(null, reloadedActPlan);
 

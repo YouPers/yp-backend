@@ -31,6 +31,15 @@ function activityImageUrl (activityNumber) {
 function campaignImageUrl () {
     return config.webclientUrl + "/assets/img/stressManagement.png";
 }
+function mailLogoImageUrl () {
+    return config.webclientUrl + "/assets/img/yp_logo_mail.gif";
+}
+function mailFooterImageUrl () {
+    return config.webclientUrl + "/assets/img/yp_logo_mail_white.gif";
+}
+function mailBackgroundImageUrl () {
+    return config.webclientUrl + "/assets/img/green_background.jpg";
+}
 
 module.exports = {
     activityOfferUrl: activityOfferWebClientUrl,
@@ -41,5 +50,8 @@ module.exports = {
     campaignLeadInviteUrl: campaignLeadInviteUrl,
     orgAdminInviteUrl: orgAdminInviteUrl,
     activityImageUrl: activityImageUrl,
-    campaignImageUrl: campaignImageUrl
+    campaignImageUrl: campaignImageUrl,
+    mailLogoImageUrl: mailLogoImageUrl,
+    mailFooterImageUrl: mailFooterImageUrl,
+    mailBackgroundImageUrl: mailBackgroundImageUrl
 };

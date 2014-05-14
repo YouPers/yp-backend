@@ -11,12 +11,13 @@
         "subject": "YOUPERS: Einladung zum Kampagnen-Leiter von __inviting.fullname__",
         "salutation": "Hallo <strong>__invited.firstname__!</strong>",
         "salutationAnonymous": "",
-        "text": "<b>__inviting.fullname__</b> hat Dich eingeladen Kampagnen-Leiter zu werden der YOUPERS Kampagne <br/> <h1><b>__campaign.title__</b></h1> <br/>von <b>__campaign.organization.name__</b>.<br><br>",
+        "text": "<b>__inviting.fullname__</b> hat Dich eingeladen Kampagnen-Leiter zu werden der YOUPERS Kampagne <br/> <h1><b>__campaign.title__</b></h1> <br/> __campaign.participants__ <br/>__campaign.organization.name__ <br><br>",
         "header": "Wird diese Email nicht richtig angezeigt?",
         "footer": "YOUPERS - Drive Your Health"
     },
     "OrganizationAdminInvite": {
         "subject": "YOUPERS: Einladung zum Organisations-Administrator von __inviting.fullname__",
+        "title": "Einladung als Organisations-Administrator",
         "salutation": "Hallo <strong>__invited.firstname__!</strong>",
         "salutationAnonymous": "",
         "text": "<b>__inviting.fullname__</b> hat Dich eingeladen Organisations-Administrator für <b>__organization.name__</b> zu werden.<br><br>",
@@ -24,16 +25,20 @@
         "footer": "YOUPERS - Drive Your Health"
     },
     "passwordReset": {
+        "title": "Passwort zurücksetzten",
         "subject": "YOUPERS: Zurücksetzen des Passworts",
-        "salutation": "Hallo __user.firstname__!",
+        "salutation": "Hallo <b>__user.firstname__</b>!",
         "text": "Jemand hat vor kurzem verlangt, dass das Youpers Digital Health Passwort für <b>__user.username__ (__user.email__)</b> zurückgesetzt wird.<br><br>Um es zurückzusetzen klicke auf diesen Link:",
-        "footer": "Wenn Du das Passwort nicht zurücksetzen möchtest oder wenn nicht Du selber diese Anfrage ausgelöst hast, kannst du dieses Email igenorieren. Dein Passwort wird dann nicht geändert.<br><br>YOUPERS - Drive Your Health"
+        "header": "Wird diese Email nicht richtig angezeigt?",
+        "footer": "Wenn Du das Passwort nicht zurücksetzen möchtest oder wenn nicht Du selber diese Anfrage ausgelöst hast, kannst du dieses Email ignorieren. Dein Passwort wird dann nicht geändert.<br><br>Vielen Dank!"
     },
     "emailVerification": {
+        "title": "Email Verifizierung",
         "subject": "YOUPERS: Bitte validiere deine E-Mail-Adresse",
         "salutation": "Hallo __user.firstname__!",
-        "text": "Wir wollen sichergehen, dass du wirklich __user.username__ mit email '__user.email__' bist. <br><br>Öffne den folgenden Link, um weiterzumachen:",
-        "footer": "YOUPERS - Drive Your Health"
+        "text": "Wir wollen sichergehen, dass du wirklich __user.username__ mit der Email-Adresse '__user.email__' bist. <br><br>Öffne den folgenden Link, um weiterzumachen:",
+        "header": "Wird diese Email nicht richtig angezeigt?",
+        "footer": "Vielen Dank!"
     },
     "iCalMail": {
         "new": {

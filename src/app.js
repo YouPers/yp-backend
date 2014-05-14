@@ -40,13 +40,6 @@ server.pre(function (request, response, next) {
     return next();
 });
 
-// log unexpected errors
-server.on('uncaughtException', function (req, res, route, err) {
-    req.log.error(err);
-    console.error('Caught uncaught Exception: ' + err );
-    res.send(new error.InternalError(err, err.message || 'unexpected error'));
-    return (true);
-});
 
 process.on('uncaughtException', function(err){
     console.error('Caught uncaught Exception: ' + err );
@@ -102,6 +95,13 @@ passport.use(new passportHttp.BasicStrategy(auth.validateLocalUsernamePassword))
 swagger.setAppHandler(server);
 swagger.setAuthorizationMiddleWare(auth.roleBasedAuth);
 swagger.configureSwaggerPaths("", "/api-docs", "");
+
+swagger.setErrorHandler(function (req, res, err) {
+    req.log.error(err);
+    console.error('Caught uncaught Exception: ' + err );
+    res.send(new error.InternalError(err, err.message || 'unexpected error'));
+    return (true);
+});
 
 // TODO: (RBLU) remove this when all routes have been properly documented
 // setup our (still undocumented) routes

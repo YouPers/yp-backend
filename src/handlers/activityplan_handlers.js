@@ -228,6 +228,7 @@ function _saveNewActivityPlan(plan, user, i18n, cb) {
 
                 actMgr.emit('activity:planSaved', reloadedActPlan);
 
+                // remove the populated activity and masterplan because the client is not gonna expect it to be populated.
                 reloadedActPlan.activity = reloadedActPlan.activity._id;
                 if (reloadedActPlan.masterPlan) {
                     reloadedActPlan.masterPlan = reloadedActPlan.masterPlan._id;
@@ -637,9 +638,14 @@ function putActivityPlan(req, res, next) {
                     email.sendCalInvite(req.user.email, 'update', myIcalString, reloadedActPlan, req.i18n);
                 }
 
-                // remove the populated activity because the client is not gonna expect it to be populated.
+                // remove the populated activity and masterplan because the client is not gonna expect it to be populated.
                 reloadedActPlan.activity = reloadedActPlan.activity._id;
+                if (reloadedActPlan.masterPlan) {
+                    reloadedActPlan.masterPlan = reloadedActPlan.masterPlan._id;
+                }
+
                 res.header('location', req.url + '/' + reloadedActPlan._id);
+
                 res.send(201, reloadedActPlan);
                 return next();
             });

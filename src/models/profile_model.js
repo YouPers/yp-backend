@@ -15,6 +15,7 @@ var ProfileSchema = common.newSchema({
     timestamp: {type: Date},
     gender: { type: String, enum: common.enums.gender, default: "undefined" },
     birthDate: { type: Date },
+    campaign: {type:  Schema.Types.ObjectId, ref:'Campaign'},
     homeAddress: {
         street: { type: String, trim: true },
         houseNumber: { type: String, trim: true },

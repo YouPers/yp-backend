@@ -216,7 +216,7 @@ function _saveNewActivityPlan(plan, user, i18n, cb) {
             // - populate 'activity' so we can get create a nice calendar entry
             // - we need to reload so we get the changes that have been done pre('save') and pre('init')
             //   like updating the joiningUsers Collection
-            ActivityPlan.findById(savedPlan._id).populate('activity').exec(function (err, reloadedActPlan) {
+            ActivityPlan.findById(savedPlan._id).populate('activity masterPlan').exec(function (err, reloadedActPlan) {
                 if (err) {
                     return cb(err);
                 }
@@ -229,6 +229,9 @@ function _saveNewActivityPlan(plan, user, i18n, cb) {
                 actMgr.emit('activity:planSaved', reloadedActPlan);
 
                 reloadedActPlan.activity = reloadedActPlan.activity._id;
+                if (reloadedActPlan.masterPlan) {
+                    reloadedActPlan.masterPlan = reloadedActPlan.masterPlan._id;
+                }
 
                 return cb(null, reloadedActPlan);
 
@@ -624,7 +627,7 @@ function putActivityPlan(req, res, next) {
             // - populate 'activity' so we can get create a nice calendar entry
             // - we need to reload so we get the changes that have been done pre('save') and pre('init')
             //   like updating the joiningUsers Collection
-            ActivityPlan.findById(loadedActPlan._id).populate('activity').exec(function (err, reloadedActPlan) {
+            ActivityPlan.findById(loadedActPlan._id).populate('activity masterPlan').exec(function (err, reloadedActPlan) {
                 // we read 'activity' so we can get create a nice calendar entry using using the activity title
                 if (err) {
                     return error.handleError(err, next);
@@ -636,7 +639,12 @@ function putActivityPlan(req, res, next) {
 
                 // remove the populated activity because the client is not gonna expect it to be populated.
                 reloadedActPlan.activity = reloadedActPlan.activity._id;
+                if (reloadedActPlan.masterPlan) {
+                    reloadedActPlan.masterPlan = reloadedActPlan.masterPlan._id;
+                }
+
                 res.header('location', req.url + '/' + reloadedActPlan._id);
+
                 res.send(201, reloadedActPlan);
                 return next();
             });

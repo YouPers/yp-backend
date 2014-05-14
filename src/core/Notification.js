@@ -98,14 +98,16 @@ Notification.dismissNotification = function dismissNotification(notificationId, 
             cb(err);
         }
 
+        var userId = (user.id ? user.id : user);
+
         // just delete the notification if it is a personal invitation for this user
-        if(notification.type === 'personalInvitation' && user.id.equals(notification.targetQueue)) {
+        if(notification.type === 'personalInvitation' && userId.equals(notification.targetQueue)) {
             notification.remove(cb);
         }
 
         var notificationDismissed = new NotificationDismissedModel({
             expiresAt: notification.publishTo,
-            user: user.id,
+            user: userId,
             notification: notification.id
         });
 

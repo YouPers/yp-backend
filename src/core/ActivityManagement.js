@@ -30,9 +30,9 @@ actMgr.on('activity:planSaved', function (plan) {
             activityPlan: [plan.id],
             targetQueue: plan.campaign || plan.owner, // TODO: This || plan.owner is a hack to prevent "public" offers to show up in multiple campaigns. Need to decide on how to deal with real PUBLIC offer
             recommendedBy: [plan.owner],
-            type: [isCampaignPromotedPlan ? 'campaignActivityPlan' : 'publicActivityPlan'],
+            type: ['publicActivityPlan'],
             validTo: plan.events[plan.events.length - 1].end,
-            prio: [isCampaignPromotedPlan ? 500 : 1]
+            prio: [1]
         });
         offer.save(function (err, savedOffer) {
             if (err) {
@@ -61,6 +61,21 @@ actMgr.on('activity:planSaved', function (plan) {
                 });
             });
     }
+
+    // find all notification for (this user or this user's campaign) and activity, dismiss them for this user
+
+    NotificationModel
+        .find({refDocs: { id: plan.activity.id }, $or: [{ targetQueue: plan.owner }, { targetQueue: plan.campaign }]})
+        .exec(function(err, notifs) {
+            _.forEach(notifs, function(notif) {
+
+                Notification.dismissNotification(notif.id, plan.owner, function(err) {
+                    if (err) {
+                        return actMgr.emit('error', err);
+                    }
+                });
+            });
+        });
 });
 
 
@@ -93,6 +108,7 @@ actMgr.on('activity:offerSaved', function (offer) {
         }
         var isCampaignPromotedOffer = ((offer.type[0] === 'campaignActivityPlan') || (offer.type[0] === 'campaignActivity'));
         var isPersonalInvite = (offer.type[0] === 'personalInvitation');
+        var isPublicPlan = (offer.type[0] === 'publicActivityPlan')
 
         if (isCampaignPromotedOffer || isPersonalInvite) {
             var notification = new Notification({
@@ -116,6 +132,10 @@ actMgr.on('activity:offerSaved', function (offer) {
                         return actMgr.emit('error', err);
                     }
                 });
+        } else if (isPublicPlan){
+            // this is a public plan, we do not genereate Notifications for these
+        } else {
+            throw new Error('unknown offertype: ' + offer.type[0]);
         }
     }
 });

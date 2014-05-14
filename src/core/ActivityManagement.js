@@ -95,18 +95,22 @@ actMgr.on('activity:offerSaved', function (offer) {
         var isPersonalInvite = (offer.type[0] === 'personalInvitation');
 
         if (isCampaignPromotedOffer || isPersonalInvite) {
-            return new Notification({
+            var notification = new Notification({
                 type: ActivityOffer.mapOfferTypeToNotificationType[offer.type[0]],
                 sourceType: ActivityOffer.mapOfferTypeToSourceType[offer.type[0]],
                 title: (offer.plan && offer.plan.title) || offer.activity.title,
                 targetQueue: offer.targetQueue,
                 author: offer.recommendedBy,
                 refDocLink: urlComposer.activityOfferUrl(offer.activity.id),
-                refDocId: offer._id,
-                refDocModel: 'ActivityOffer',
+                refDocs: [ { id: offer._id, model: 'ActivityOffer' }, { id: offer.activity._id, model: 'Activity' } ],
                 publishFrom: offer.validFrom,
                 publishTo: offer.validTo
-            }).
+            });
+            if(offer.plan) {
+                notification.push({ id: offer.plan.id, model: 'ActivityPlan' });
+            }
+
+            return notification.
                 publish(function (err) {
                     if (err) {
                         return actMgr.emit('error', err);
@@ -119,7 +123,7 @@ actMgr.on('activity:offerSaved', function (offer) {
 actMgr.on('activity:offerDeleted', function (offer) {
     // check whether there are any notifications to be deleted
     NotificationModel
-        .find({refDocId: offer._id})
+        .find({refDocs: { id: offer._id }})
         .exec(function(err, notifs) {
             _.forEach(notifs, function(notif) {
                 notif.remove(function (err) {
@@ -135,7 +139,7 @@ actMgr.on('activity:offerDeleted', function (offer) {
 actMgr.on('activity:offerUpdated', function (offer) {
     // check whether there are any notifications to be deleted
     NotificationModel
-        .find({refDocId: offer._id})
+        .find({refDocs: { id: offer._id }})
         .exec(function(err, notifs) {
             _.forEach(notifs, function(notif) {
                 notif.publishFrom = offer.validFrom;

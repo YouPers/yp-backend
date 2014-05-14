@@ -75,6 +75,11 @@ consts.newUserInNewCampaignApi(
                                             })
                                             .afterJSON(function (notifs) {
                                                 expect(notifs.length).toEqual(2);
+
+
+                                                // TODO: plan activities and check if they are dismissed
+
+
                                                 frisby.create('Notification: delete public notifs')
                                                     .delete(URL + '/notifications/' + newPublicNotif.id)
                                                     .auth('test_sysadm', 'yp')

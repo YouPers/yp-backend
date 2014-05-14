@@ -89,4 +89,30 @@ Notification.getCampaignNotifications = function(user, campaign, mode, previewDa
 };
 
 
+Notification.dismissNotification = function dismissNotification(notificationId, user, cb) {
+
+
+    NotificationModel.findById(notificationId, function(err, notification) {
+
+        if(err) {
+            cb(err);
+        }
+
+        // just delete the notification if it is a personal invitation for this user
+        if(notification.type === 'personalInvitation' && user.id.equals(notification.targetQueue)) {
+            notification.remove(cb);
+        }
+
+        var notificationDismissed = new NotificationDismissedModel({
+            expiresAt: notification.publishTo,
+            user: user.id,
+            notification: notification.id
+        });
+
+        notificationDismissed.save(cb);
+
+    });
+
+};
+
 module.exports = Notification;

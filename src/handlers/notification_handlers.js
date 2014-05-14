@@ -2,7 +2,6 @@ var generic = require('./generic'),
     Notification = require('../core/Notification'),
     mongoose = require('mongoose'),
     NotificationModel = mongoose.model('Notification'),
-    NotificationDismissedModel = mongoose.model('NotificationDismissed'),
     auth = require('../util/auth'),
     error = require('../util/error');
 
@@ -19,6 +18,7 @@ function getStandardQueryOptions(req) {
     };
 }
 
+
 var deleteByIdFn = function (baseUrl) {
     return function deleteByIdFn (req, res, next) {
 
@@ -33,27 +33,13 @@ var deleteByIdFn = function (baseUrl) {
             return generic.deleteByIdFn(baseUrl, NotificationModel);
         }
 
-        NotificationModel.findById(req.params.id, function(err, notification) {
-
+        Notification.dismissNotification(req.params.id, req.user, function(err, notification) {
             if(err) {
                 return error.handleError(err, next);
             }
-
-            // just delete the notification if it is a personal invitation for this user
-            if(notification.type === 'personalInvitation' && req.user.id.equals(notification.targetQueue)) {
-                return generic.deleteByIdFn(baseUrl, NotificationModel);
-            }
-
-            var notificationDismissed = new NotificationDismissedModel({
-                expiresAt: notification.publishTo,
-                user: req.user.id,
-                notification: notification.id
-            });
-
-            notificationDismissed.save(generic.writeObjCb(req, res, next));
-
+            res.send(200);
+            return next();
         });
-
     };
 };
 

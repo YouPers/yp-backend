@@ -225,11 +225,13 @@ var sendOrganizationAdminInvite = function sendOrganizationAdminInvite(email, in
     var subject = i18n.t("email:OrganizationAdminInvite.subject", {inviting:  invitingUser.toJSON(), organization: organization.toJSON()});
     var token = encryptLinkToken(organization._id +linkTokenSeparator + email +  (invitedUser ? linkTokenSeparator + invitedUser._id : ''));
     var locals = {
+        title: i18n.t("email:OrganizationAdminInvite.title"),
         link: urlComposer.orgAdminInviteUrl(organization._id, invitingUser._id, token),
         salutation: i18n.t('email:OrganizationAdminInvite.salutation' + invitedUser ? '': 'Anonymous', {invited: invitedUser ? invitedUser.toJSON() : {firstname: ''}}),
         text: i18n.t('email:OrganizationAdminInvite.text', {inviting: invitingUser.toJSON(), organization: organization.toJSON()}),
         header: i18n.t('email:OrganizationAdminInvite.header'),
         footer: i18n.t('email:OrganizationAdminInvite.footer'),
+        background: urlComposer.mailBackgroundImageUrl(),
         logo: urlComposer.mailFooterImageUrl()
     };
     sendEmail(fromDefault, email, subject, 'genericYouPersMail', locals);

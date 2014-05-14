@@ -17,6 +17,7 @@
     },
     "OrganizationAdminInvite": {
         "subject": "YOUPERS: Einladung zum Organisations-Administrator von __inviting.fullname__",
+        "title": "Einladung als Organisations-Administrator",
         "salutation": "Hallo <strong>__invited.firstname__!</strong>",
         "salutationAnonymous": "",
         "text": "<b>__inviting.fullname__</b> hat Dich eingeladen Organisations-Administrator für <b>__organization.name__</b> zu werden.<br><br>",

@@ -2,10 +2,12 @@ var EventEmitter = require('events').EventEmitter,
     util = require('util'),
     mongoose = require('mongoose'),
     NotificationModel = mongoose.model('Notification'),
+    NotificationDismissedModel = mongoose.model('NotificationDismissed'),
     ALL_YOUPERS_QUEUE = "AAAAc64e53d523235b07EEEE",
     moment = require('moment'),
     genericHandlers = require('../handlers/generic'),
-    error = require('../util/error');
+    error = require('../util/error'),
+    _ = require('lodash');
 
 function Notification(aNotification) {
     EventEmitter.call(this);
@@ -36,15 +38,30 @@ Notification.prototype.publish = function(cb) {
 };
 
 Notification.getCurrentNotifications = function(user, options, cb) {
-    var myQueues = [ALL_YOUPERS_QUEUE].concat(user.getPersonalNotificationQueues());
-    var now = moment().toDate();
-    var query = NotificationModel
-        .where({ targetQueue: {$in: myQueues}})
-        .and({$or: [{publishTo: {$exists: false}}, {publishTo: {$gte: now}}]})
-        .and({$or: [{publishFrom: {$exists: false}}, {publishFrom: {$lte: now}}]});
 
-    genericHandlers.processDbQueryOptions(options, query, NotificationModel)
-        .exec(cb);
+    NotificationDismissedModel.find({ user: user.id }, function(err, nd) {
+
+        if(err) {
+            cb(err);
+        }
+
+        var dismissedNotifications = _.map(nd, 'notification');
+
+        var myQueues = [ALL_YOUPERS_QUEUE].concat(user.getPersonalNotificationQueues());
+        var now = moment().toDate();
+        var query = NotificationModel
+            .where({
+                targetQueue: { $in: myQueues }
+            })
+            .and({_id: { $nin: dismissedNotifications }})
+            .and({$or: [{publishTo: {$exists: false}}, {publishTo: {$gte: now}}]})
+            .and({$or: [{publishFrom: {$exists: false}}, {publishFrom: {$lte: now}}]});
+
+        genericHandlers.processDbQueryOptions(options, query, NotificationModel)
+            .exec(cb);
+
+    });
+
 };
 
 Notification.getCampaignNotifications = function(user, campaign, mode, previewDate, options, cb) {

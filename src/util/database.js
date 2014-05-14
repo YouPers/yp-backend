@@ -33,6 +33,7 @@ var initialize = function initialize(loadTestData) {
             'profile',
             'user',
             'notification',
+            'notificationDismissed',
             'diaryEntry'];
         if (!loadTestData) {
             config.loadTestData = false;

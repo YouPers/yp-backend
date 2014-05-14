@@ -41,10 +41,10 @@ server.pre(function (request, response, next) {
 });
 
 
-//process.on('uncaughtException', function(err){
-//    console.error('Caught uncaught Exception: ' + err );
-//    process.exit(8);
-//});
+process.on('uncaughtException', function(err){
+    console.error('Caught uncaught Exception: ' + err );
+    process.exit(8);
+});
 
 server.on('after', function (req, res, route, err) {
     req.log.debug({res: res}, "finished processing request");

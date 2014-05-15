@@ -713,7 +713,7 @@ function _updateSlavePlans(updatedMasterPlan, req, cb) {
                             if (slaveUser && slaveUser.email && slaveUser.profile.userPreferences.email.iCalInvites) {
                                 req.log.debug({start: savedSlavePlan.mainEvent.start, end: savedSlavePlan.mainEvent.end}, 'Updated Slave Plan');
                                 var myIcalString = calendar.getIcalObject(updatedMasterPlan, slaveUser, 'update', req.i18n).toString();
-                                email.sendCalInvite(slaveUser.email, 'update', myIcalString, savedSlavePlan, req.i18n);
+                                email.sendCalInvite(slaveUser.email, 'update', myIcalString, updatedMasterPlan, req.i18n);
                             }
                             return done();
                         });

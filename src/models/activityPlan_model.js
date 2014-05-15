@@ -147,7 +147,7 @@ ActivityPlanSchema.pre('save', function (next) {
 
     // force the internal version key to be incremented in save(), so we can reliably use it
     // as sequence number of iCal Objects generated for this plan
-    //self.increment();
+    self.increment();
 
     // if this is a slave Plan, we need to update the master plan
     if (self.masterPlan) {

@@ -26,7 +26,7 @@ actMgr.on('activity:planSaved', function (plan) {
     // store the offer explicitly in this case, to control all attributes of the offer
     if (isJoinablePlan && !isCampaignPromotedPlan) {
         var offer = new ActivityOffer({
-            activity: plan.activity.id,
+            activity: plan.activity.id || plan.activity,
             activityPlan: [plan.id],
             targetQueue: plan.campaign || plan.owner, // TODO: This || plan.owner is a hack to prevent "public" offers to show up in multiple campaigns. Need to decide on how to deal with real PUBLIC offer
             recommendedBy: [plan.owner],
@@ -65,7 +65,8 @@ actMgr.on('activity:planSaved', function (plan) {
     // find all notification for (this user or this user's campaign) and activity, dismiss them for this user
 
     NotificationModel
-        .find({refDocs: { id: plan.activity.id }, $or: [{ targetQueue: plan.owner }, { targetQueue: plan.campaign }]})
+        .find({refDocs: { $elemMatch: { docId: plan.activity._id }}})
+        .and({$or: [{ targetQueue: plan.owner }, { targetQueue: plan.campaign }]})
         .exec(function(err, notifs) {
             _.forEach(notifs, function(notif) {
 
@@ -118,12 +119,12 @@ actMgr.on('activity:offerSaved', function (offer) {
                 targetQueue: offer.targetQueue,
                 author: offer.recommendedBy,
                 refDocLink: urlComposer.activityOfferUrl(offer.activity.id),
-                refDocs: [ { id: offer._id, model: 'ActivityOffer' }, { id: offer.activity._id, model: 'Activity' } ],
+                refDocs: [ { docId: offer._id, model: 'ActivityOffer' }, { docId: offer.activity._id, model: 'Activity' } ],
                 publishFrom: offer.validFrom,
                 publishTo: offer.validTo
             });
             if(offer.plan) {
-                notification.push({ id: offer.plan.id, model: 'ActivityPlan' });
+                notification.push({ docId: offer.plan.id, model: 'ActivityPlan' });
             }
 
             return notification.
@@ -143,7 +144,7 @@ actMgr.on('activity:offerSaved', function (offer) {
 actMgr.on('activity:offerDeleted', function (offer) {
     // check whether there are any notifications to be deleted
     NotificationModel
-        .find({refDocs: { id: offer._id }})
+        .find({refDocs: { docId: offer._id }})
         .exec(function(err, notifs) {
             _.forEach(notifs, function(notif) {
                 notif.remove(function (err) {
@@ -159,7 +160,7 @@ actMgr.on('activity:offerDeleted', function (offer) {
 actMgr.on('activity:offerUpdated', function (offer) {
     // check whether there are any notifications to be deleted
     NotificationModel
-        .find({refDocs: { id: offer._id }})
+        .find({refDocs: { docId: offer._id }})
         .exec(function(err, notifs) {
             _.forEach(notifs, function(notif) {
                 notif.publishFrom = offer.validFrom;

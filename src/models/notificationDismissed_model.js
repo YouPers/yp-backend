@@ -18,5 +18,6 @@ var NotificationDismissedSchema = common.newSchema({
 
 });
 
+NotificationDismissedSchema.index({user: 1, notification: 1}, {unique: true, dropDups: true });
 
 module.exports = mongoose.model('NotificationDismissed', NotificationDismissedSchema);

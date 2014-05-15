@@ -14,9 +14,7 @@ var calendar = require('../util/calendar'),
     handlerUtils = require('./handlerUtils'),
     Diary = require('../core/Diary');
 
-function _generateEventsForPlan(plan, user, i18n) {
-
-    // ToDo: has to be enhanced with functionality to generate only future events for a puts (additional from date as parameter)
+function _generateEventsForPlan(plan, user, i18n, planToUpdate) {
 
     var myIcalObj = calendar.getIcalObject(plan, user, 'eventsGenerationOnly', i18n);
 
@@ -42,6 +40,13 @@ function _generateEventsForPlan(plan, user, i18n) {
             end: plan.mainEvent.end
         });
     }
+
+    // if we generate because we are updating an existing plan, we are only interested in the future events, BUT we
+    // need to keep the passed events of the planToUpdate (there is the information whether the user done/missed/open the
+    // passed events
+    if (planToUpdate) {
+        _replacePassedEvents(plan, planToUpdate);
+    }
     return plan;
 }
 
@@ -49,8 +54,6 @@ function _generateEventsForPlan(plan, user, i18n) {
  * handles a PUT request to /ActivityPlan/:planId/event/:eventId.
  * Expects that the ActivityPlan and the event with the corresponding Id exists. Only allows the owning user
  * of the ActivityPlan to update the ActivityEvent.
- * Handles one or more new comments in the ActivityEvent. A comment is considered "new" when there is no id.
- * Comment.author is overwritten by the currently logged in user.
  *
  * @param req
  * @param res
@@ -256,6 +259,92 @@ function _saveNewActivityPlan(plan, req, cb) {
     });
 }
 
+/**
+ * deletes all passed events from the newPlan and replaces them with the passedEvents from the oldPlan.
+ * mutates the new Plan
+ * @param newPlan
+ * @param oldPlan
+ * @private
+ */
+function _replacePassedEvents(newPlan, oldPlan) {
+    var now = new Date();
+    // remove all passed events from the newPlan
+    _.remove(newPlan.events, function (event) {
+        return event.end < now;
+    });
+
+    // add all passed events from the oldPlan
+    _.forEach(oldPlan.events, function (event) {
+        if (event.end < now) {
+            newPlan.events.unshift(event);
+        }
+    });
+    return newPlan;
+}
+
+/**
+ * deletes all future events from the targetPlan and replaces them with the futureEvents from the sourcePlan.
+ * mutates the new Plan
+ * @param targetPlan
+ * @param sourcePlan
+ * @private
+ */
+function _replaceFutureEvents(targetPlan, sourcePlan) {
+    var now = new Date();
+
+    // remove all future events from the targetPlan
+    var eventsToRemove = _.filter(targetPlan.events, function (event) {
+        return event.end > now;
+    });
+    _.forEach(eventsToRemove, function(event){
+        event.remove();
+    });
+
+    // add all future events from the sourcePlan
+    _.forEach(sourcePlan.events, function (event) {
+        if (event.end > now) {
+            targetPlan.events.push(event);
+        }
+    });
+    return targetPlan;
+}
+
+/**
+ * creates a slavePlan from a masterPlan for a given targetUser that is about to Join the MasterPlan
+ * If no slavePlanToUpdate is given, the returned slavePlan is a copy of the masterplan without an ObjectId.
+ *
+ * If a slavePlanToUpdate is passed, then we replace all passed events from the masterPlan with the
+ * passed events from the slavePlanToUpdate to preserve the history of the slaveUser.
+ *
+ * @param masterPlan
+ * @param targetUser
+ * @param slavePlanToUpdate
+ * @returns {ActivityPlan}
+ * @private
+ */
+function _createSlaveFromMaster(masterPlan, targetUser, slavePlanToUpdate) {
+    if (slavePlanToUpdate) {
+        slavePlanToUpdate.mainEvent = masterPlan.mainEvent;
+        slavePlanToUpdate.title = masterPlan.title;
+        slavePlanToUpdate.location = masterPlan.location;
+        _replaceFutureEvents(slavePlanToUpdate, masterPlan);
+        return slavePlanToUpdate;
+    } else {
+        var slavePlan = new ActivityPlan(masterPlan.toJSON());
+        slavePlan.id = undefined;
+        slavePlan.masterPlan = masterPlan._id;
+        slavePlan.joiningUsers = [];
+        slavePlan.owner = targetUser.id;
+        slavePlan.source = 'community';
+        if (!slavePlan.activity) {
+            slavePlan.activity = masterPlan.activity._id || masterPlan.activity;
+        }
+        return slavePlan;
+    }
+
+
+}
+
 function postJoinActivityPlanFn(req, res, next) {
 
     if (!req.params || !req.params.id) {
@@ -268,15 +357,9 @@ function postJoinActivityPlanFn(req, res, next) {
             return error.handleError(err, next);
         }
 
-        var slavePlan = new ActivityPlan(masterPlan.toJSON());
+        var slavePlan = _createSlaveFromMaster(masterPlan, req.user);
 
-        slavePlan.id = undefined;
-        slavePlan.masterPlan = masterPlan._id;
-        slavePlan.joiningUsers = [];
-        slavePlan.owner = req.user.id;
-        slavePlan.source = 'community';
-
-        _saveNewActivityPlan(slavePlan, req,  generic.writeObjCb(req, res, next));
+        _saveNewActivityPlan(slavePlan, req, generic.writeObjCb(req, res, next));
 
     });
 
@@ -449,7 +532,7 @@ function _deleteActivityPlanNoJoiningPlans(activityPlan, user, reason, i18n, don
                 var myIcalString = calendar.getIcalObject(activityPlan, owner, 'cancel', i18n, reason).toString();
                 email.sendCalInvite(owner.email, 'cancel', myIcalString, activityPlan, i18n, reason);
             }
-            actMgr.emit('activity:planDeleted',activityPlan);
+            actMgr.emit('activity:planDeleted', activityPlan);
             return done();
         };
         ///////////////////
@@ -597,9 +680,48 @@ function deleteActivityPlan(req, res, next) {
     });
 }
 
+
+function _updateSlavePlans(updatedMasterPlan, req, cb) {
+
+    ActivityPlan
+        .find({masterPlan: updatedMasterPlan._id})
+        .populate('owner', '+profile +email')
+        .exec(function (err, slavePlansToUpdate) {
+            if (err) {
+                return error.handleError(err, cb);
+            }
+            async.forEach(slavePlansToUpdate,
+                function (slavePlan, done) {
+
+                    var slaveUser = slavePlan.owner;
+                    var newSlavePlan = _createSlaveFromMaster(updatedMasterPlan, slaveUser, slavePlan);
+
+                    // depopulate newSlavePlan.activity if needed before saving
+                    if (newSlavePlan.activity._id) {
+                        newSlavePlan.activity = newSlavePlan.activity._id;
+                    }
+                    newSlavePlan.save(function (err, savedSlavePlan) {
+                        if (err) {
+                            return done(err);
+                        }
+                        mongoose.model('Profile').populate(slaveUser, 'profile', function () {
+                            if (slaveUser && slaveUser.email && slaveUser.profile.userPreferences.email.iCalInvites) {
+                                req.log.debug({start: savedSlavePlan.mainEvent.start, end: savedSlavePlan.mainEvent.end}, 'Updated Slave Plan');
+                                var myIcalString = calendar.getIcalObject(updatedMasterPlan, slaveUser, 'update', req.i18n).toString();
+                                email.sendCalInvite(slaveUser.email, 'update', myIcalString, savedSlavePlan, req.i18n);
+                            }
+                            return done();
+                        });
+
+                    });
+                }, cb);
+
+        });
+}
+
 function putActivityPlan(req, res, next) {
 
-    // TODO: handle updates of offers and notifications
+    // TODO: handle updates of offers validFrom/validTo and notifications publishFrom/publishTo
 
     var sentPlan = req.body;
     var err = handlerUtils.checkWritingPreCond(sentPlan, req.user, ActivityPlan);
@@ -636,13 +758,11 @@ function putActivityPlan(req, res, next) {
             }));
         }
 
-        if (req.body.mainEvent && !_.isEqual(req.body.mainEvent, loadedActPlan.mainEvent)) {
-            _generateEventsForPlan(req.body, req.user, req.i18n);
+        if (sentPlan.mainEvent && !_.isEqual(sentPlan.mainEvent, loadedActPlan.mainEvent)) {
+            _generateEventsForPlan(sentPlan, req.user, req.i18n, loadedActPlan);
         }
 
         _.extend(loadedActPlan, req.body);
-
-        req.log.trace(loadedActPlan, 'PutFn: Updating existing Object');
 
         loadedActPlan.save(function (err) {
             if (err) {
@@ -650,30 +770,47 @@ function putActivityPlan(req, res, next) {
             }
 
             // we reload ActivityPlan for two reasons:
-            // - populate 'activity' so we can get create a nice calendar entry
+            // - populate 'activity' so we can create a nice calendar entry
             // - we need to reload so we get the changes that have been done pre('save') and pre('init')
             //   like updating the joiningUsers Collection
             ActivityPlan.findById(loadedActPlan._id).populate('activity masterPlan').exec(function (err, reloadedActPlan) {
-                // we read 'activity' so we can get create a nice calendar entry using using the activity title
+                if (err) {
+                    return error.handleError(err, next);
+                }
                 req.log.debug({start: reloadedActPlan.mainEvent.start, end: reloadedActPlan.mainEvent.end}, 'Saved Edited Plan');
                 if (err) {
                     return error.handleError(err, next);
                 }
+                // sending the owner of the plan an updateEmail
                 if (req.user && req.user.email && req.user.profile.userPreferences.email.iCalInvites) {
                     var myIcalString = calendar.getIcalObject(reloadedActPlan, req.user, 'update', req.i18n).toString();
                     email.sendCalInvite(req.user.email, 'update', myIcalString, reloadedActPlan, req.i18n);
                 }
 
-                // remove the populated activity and masterplan because the client is not gonna expect it to be populated.
+                // remove the populated activity  because the client and the follwoing code is not gonna expect it to be populated.
                 reloadedActPlan.activity = reloadedActPlan.activity._id;
-                if (reloadedActPlan.masterPlan) {
-                    reloadedActPlan.masterPlan = reloadedActPlan.masterPlan._id;
+
+                // if this is a masterPlan and we have joinginUsers we need to update the slaves
+                if (!reloadedActPlan.masterPlan && reloadedActPlan.joiningUsers.length > 0) {
+                    return _updateSlavePlans(reloadedActPlan, req, _sendUpdateCb);
+                } else {
+                    return _sendUpdateCb(null);
                 }
 
-                res.header('location', req.url + '/' + reloadedActPlan._id);
+                function _sendUpdateCb(err) {
+                    if (err) {
+                        error.handleError(err, next);
+                    }
 
-                res.send(201, reloadedActPlan);
-                return next();
+                    if (reloadedActPlan.masterPlan) {
+                        reloadedActPlan.masterPlan = reloadedActPlan.masterPlan._id;
+                    }
+
+                    res.header('location', req.url + '/' + reloadedActPlan._id);
+
+                    res.send(201, reloadedActPlan);
+                    return next();
+                }
             });
         });
     });

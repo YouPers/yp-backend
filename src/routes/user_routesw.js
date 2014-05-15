@@ -37,6 +37,7 @@ module.exports = function (swagger, config) {
             description: "avatar image upload",
             path: baseUrlWithId + "/avatar",
             summary: "avatar image upload",
+            notes: "uses traditional HTTP Multipart post, accepting at least jpg and png",
             method: "POST",
             "nickname": "avatarImagePost",
             accessLevel: 'al_user'

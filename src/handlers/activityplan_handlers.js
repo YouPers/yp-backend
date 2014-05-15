@@ -563,8 +563,13 @@ function _deleteActivityPlanNoJoiningPlans(activityPlan, user, reason, i18n, don
                     activityPlan.deletionReason = reason;
                     activityPlan.status = "old";
                     activityPlan.save(_sendCalenderCancelCb);
+                } else if (activityPlan.deleteStatus === ActivityPlan.notDeletableNoFutureEvents) {
+                    // if this is not deleteable because of no future events we have in fact
+                    // nothing to do, we just pretend that we deleted all future events, by doing nothing
+                    // and signalling success
+                    _sendCalenderCancelCb(null);
                 } else {
-                    return done(new error.BadMethodError('This activityPlan cannot be deleted.', {
+                    return done(new error.ConflictError('This activityPlan cannot be deleted.', {
                         activityPlanId: activityPlan.id,
                         deleteStatus: activityPlan.deleteStatus
                     }));
@@ -750,9 +755,7 @@ function putActivityPlan(req, res, next) {
 
         // check to see if received plan is editable
         if (loadedActPlan.editStatus !== "editable") {
-            var notEditableError = new Error('Error updating in Activity Plan PutFn: Not allowed to update this activity plan with id: ');
-            notEditableError.statusCode = 409;
-            return next(new error.BadMethodError('This activityPlan cannot be edited.', {
+            return next(new error.ConflictError('Error updating in Activity Plan PutFn: Not allowed to update this activity plan.', {
                 activityPlanId: sentPlan.id,
                 editStatus: loadedActPlan.editStatus
             }));
@@ -808,7 +811,7 @@ function putActivityPlan(req, res, next) {
 
                     res.header('location', req.url + '/' + reloadedActPlan._id);
 
-                    res.send(201, reloadedActPlan);
+                    res.send(200, reloadedActPlan);
                     return next();
                 }
             });

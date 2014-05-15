@@ -186,10 +186,10 @@ frisby.create('Activity Plan Deletions: create a master plan for an activity pla
                             .expectStatus(201)
                             .afterJSON(function (masterPlanPostAnswer) {
 
-                                expect(masterPlanPostAnswer.deleteStatus).toEqual('deletable');
+                                expect(masterPlanPostAnswer.deleteStatus).toEqual('notDeletableNoFutureEvents');
 
                                 // try deleting undeletable activity plan
-                                frisby.create('Activity Plan Deletions: delete future events')
+                                frisby.create('Activity Plan Deletions: try delete future Plan with No Future Events ')
                                     .delete(URL + '/' + masterPlanPostAnswer.id)
                                     .auth('test_ind1', 'yp')
                                     .expectStatus(200)

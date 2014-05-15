@@ -36,7 +36,7 @@ var decryptLinkToken = function (token) {
 
 var sendEmail = function (from, to, subject, templateName, locals) {
 
-    log.info({emailTo: to}, 'loading templates for sending: ' + templateName);
+    log.debug({emailTo: to}, 'loading templates for sending: ' + templateName);
     emailTemplates(templatesDir, function (err, template) {
         if (err) {
             log.error({err: err}, 'error during parsing of all email-templates');
@@ -48,7 +48,7 @@ var sendEmail = function (from, to, subject, templateName, locals) {
                 subject: subject
             });
 
-            log.info({emailTo: to}, 'templating email: ' + templateName);
+            log.debug({emailTo: to}, 'templating email: ' + templateName);
             // Send a single email
             template(templateName, locals, function (err, html, text) {
                     if (err) {
@@ -61,7 +61,7 @@ var sendEmail = function (from, to, subject, templateName, locals) {
                             text: text, // plaintext body
                             html: html // html body
                         };
-                        log.info({emailTo: to}, 'trying to send email: ' + templateName);
+                        log.debug({emailTo: to}, 'trying to send email: ' + templateName);
                         smtpTransport.sendMail(mail, function (err, responseStatus) {
                             if (err) {
                                 log.error({err:err, data: err.data}, "error while sending email for: " + to + " template: " + templateName);
@@ -159,7 +159,7 @@ var sendCalInvite = function (to, type, iCalString, plan, i18n, reason) {
             }
         ]};
 
-    log.info({emailTo: to}, 'trying to send iCalInvite-Email.');
+    log.debug({emailTo: to}, 'trying to send iCalInvite-Email.');
     smtpTransport.sendMail(mail, function (err, responseStatus) {
         if (err) {
             log.error({err:err, data: err.data}, "error while sending email for: " + to + ", icalInvite");

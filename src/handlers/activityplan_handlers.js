@@ -202,9 +202,8 @@ function postNewActivityPlan(req, res, next) {
  * save new activity plan with a mongoose obj that already has been validated
  *
  * @param plan - activityPlan obj
- * @param user - user obj
+ * @param req - the request
  * @param cb - callback(err, savedPlan)
- * @param i18n
  */
 function _saveNewActivityPlan(plan, req, cb) {
     var user = req.user;
@@ -608,17 +607,16 @@ function putActivityPlan(req, res, next) {
         error.handleError(err, next);
     }
 
-    // check required Attributes
-    if (!sentPlan.mainEvent) {
-        return next(new error.MissingParameterError({ required: 'mainEvent' }));
+    // check required Attributes, if we get a main event, at least from and to must be set
+    if (sentPlan.mainEvent) {
+        if (!sentPlan.mainEvent.start) {
+            return next(new error.MissingParameterError({ required: 'mainEvent.start' }));
+        }
+        if (!sentPlan.mainEvent.end) {
+            return next(new error.MissingParameterError({ required: 'mainEvent.end' }));
+        }
     }
 
-    if (!sentPlan.mainEvent.start) {
-        return next(new error.MissingParameterError({ required: 'mainEvent.start' }));
-    }
-    if (!sentPlan.mainEvent.end) {
-        return next(new error.MissingParameterError({ required: 'mainEvent.end' }));
-    }
 
     ActivityPlan.findById(req.params.id).exec(function (err, loadedActPlan) {
         if (err) {

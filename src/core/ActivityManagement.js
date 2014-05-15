@@ -149,6 +149,24 @@ actMgr.on('activity:offerUpdated', function (offer) {
         });
 });
 
+actMgr.on('activity:planUpdated', function(updatedPlan) {
+    ActivityOffer.find({activityPlan: updatedPlan._id}).exec(function (err, offers) {
+        _.forEach(offers, function (offer) {
+            actMgr.emit('activity:offerUpdated', offer);
+            if (offer.validTo > updatedPlan.events[updatedPlan.events.length -1].end) {
+                offer.validTo = updatedPlan.events[updatedPlan.events.length -1].end;
+                offer.save(function (err, updatedOffer) {
+                    if (err) {
+                        return actMgr.emit('error', err);
+                    }
+                    actMgr.emit('activity:offerUpdated', updatedOffer);
+                });
+            }
+        });
+    });
+
+});
+
 
 actMgr.on('error', function(err) {
     // TODO: do real error handling

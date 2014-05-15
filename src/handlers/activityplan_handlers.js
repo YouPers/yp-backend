@@ -725,9 +725,6 @@ function _updateSlavePlans(updatedMasterPlan, req, cb) {
 }
 
 function putActivityPlan(req, res, next) {
-
-    // TODO: handle updates of offers validFrom/validTo and notifications publishFrom/publishTo
-
     var sentPlan = req.body;
     var err = handlerUtils.checkWritingPreCond(sentPlan, req.user, ActivityPlan);
     if (err) {
@@ -808,7 +805,7 @@ function putActivityPlan(req, res, next) {
                     if (reloadedActPlan.masterPlan) {
                         reloadedActPlan.masterPlan = reloadedActPlan.masterPlan._id;
                     }
-
+                    actMgr.emit('activity:planUpdated', reloadedActPlan);
                     res.header('location', req.url + '/' + reloadedActPlan._id);
 
                     res.send(200, reloadedActPlan);

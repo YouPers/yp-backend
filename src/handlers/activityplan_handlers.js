@@ -155,6 +155,18 @@ function postNewActivityPlan(req, res, next) {
         return error.handleError(err, next);
     }
 
+    // check required Attributes
+    if (!sentPlan.mainEvent) {
+        return next(new error.MissingParameterError({ required: 'mainEvent' }));
+    }
+
+    if (!sentPlan.mainEvent.start) {
+        return next(new error.MissingParameterError({ required: 'mainEvent.start' }));
+    }
+    if (!sentPlan.mainEvent.end) {
+        return next(new error.MissingParameterError({ required: 'mainEvent.end' }));
+    }
+
     // check whether delivered owner is the authenticated user
     if (sentPlan.owner && (req.user.id !== sentPlan.owner)) {
         return next(new error.NotAuthorizedError({
@@ -183,7 +195,7 @@ function postNewActivityPlan(req, res, next) {
     _generateEventsForPlan(newActPlan, req.user, req.i18n);
     req.log.trace({eventsAfter: newActPlan.events}, 'after generating events');
 
-    _saveNewActivityPlan(newActPlan, req.user, req.i18n, generic.writeObjCb(req, res, next));
+    _saveNewActivityPlan(newActPlan, req, generic.writeObjCb(req, res, next));
 }
 
 /**
@@ -194,7 +206,9 @@ function postNewActivityPlan(req, res, next) {
  * @param cb - callback(err, savedPlan)
  * @param i18n
  */
-function _saveNewActivityPlan(plan, user, i18n, cb) {
+function _saveNewActivityPlan(plan, req, cb) {
+    var user = req.user;
+    var i18n = req.i18n;
 
     // add fields of activity to the activity plan
     Activity.findById(plan.activity).exec(function (err, foundActivity) {
@@ -222,6 +236,7 @@ function _saveNewActivityPlan(plan, user, i18n, cb) {
                 }
 
                 if (user && user.email && user.profile.userPreferences.email.iCalInvites) {
+                    req.log.debug({start: reloadedActPlan.mainEvent.start, end: reloadedActPlan.mainEvent.end}, 'Saved New Plan');
                     var myIcalString = calendar.getIcalObject(reloadedActPlan, user, 'new', i18n).toString();
                     email.sendCalInvite(user.email, 'new', myIcalString, reloadedActPlan, i18n);
                 }
@@ -262,7 +277,7 @@ function postJoinActivityPlanFn(req, res, next) {
         slavePlan.owner = req.user.id;
         slavePlan.source = 'community';
 
-        _saveNewActivityPlan(slavePlan, req.user, req.i18n, generic.writeObjCb(req, res, next));
+        _saveNewActivityPlan(slavePlan, req,  generic.writeObjCb(req, res, next));
 
     });
 
@@ -593,6 +608,18 @@ function putActivityPlan(req, res, next) {
         error.handleError(err, next);
     }
 
+    // check required Attributes
+    if (!sentPlan.mainEvent) {
+        return next(new error.MissingParameterError({ required: 'mainEvent' }));
+    }
+
+    if (!sentPlan.mainEvent.start) {
+        return next(new error.MissingParameterError({ required: 'mainEvent.start' }));
+    }
+    if (!sentPlan.mainEvent.end) {
+        return next(new error.MissingParameterError({ required: 'mainEvent.end' }));
+    }
+
     ActivityPlan.findById(req.params.id).exec(function (err, loadedActPlan) {
         if (err) {
             return error.handleError(err, next);
@@ -630,6 +657,7 @@ function putActivityPlan(req, res, next) {
             //   like updating the joiningUsers Collection
             ActivityPlan.findById(loadedActPlan._id).populate('activity masterPlan').exec(function (err, reloadedActPlan) {
                 // we read 'activity' so we can get create a nice calendar entry using using the activity title
+                req.log.debug({start: reloadedActPlan.mainEvent.start, end: reloadedActPlan.mainEvent.end}, 'Saved Edited Plan');
                 if (err) {
                     return error.handleError(err, next);
                 }

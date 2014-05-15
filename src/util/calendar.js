@@ -1,5 +1,7 @@
 var env = process.env.NODE_ENV || 'development',
     config = require('../config/config')[env],
+    Logger = require('bunyan'),
+    log = new Logger(config.loggerOptions),
     _ = require('lodash'),
     ical = require('icalendar'),
     moment = require('moment');
@@ -56,7 +58,8 @@ var getIcalObject = function (plan, recipientUser, iCalType, i18n, reason) {
     }
 
     event.setDate(moment(plan.mainEvent.start).toDate(), moment(plan.mainEvent.end).toDate());
-
+    log.debug("generated ical with From: " + moment(plan.mainEvent.start).toDate());
+    log.debug("generated ical with To: " + moment(plan.mainEvent.end).toDate());
 
     if (plan.mainEvent.recurrence && plan.mainEvent.frequency && plan.mainEvent.frequency !== 'once') {
         var frequencyMap = {

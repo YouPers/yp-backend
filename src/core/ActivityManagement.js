@@ -108,7 +108,7 @@ actMgr.on('activity:offerSaved', function (offer) {
         }
         var isCampaignPromotedOffer = ((offer.type[0] === 'campaignActivityPlan') || (offer.type[0] === 'campaignActivity'));
         var isPersonalInvite = (offer.type[0] === 'personalInvitation');
-        var isPublicPlan = (offer.type[0] === 'publicActivityPlan')
+        var isPublicPlan = (offer.type[0] === 'publicActivityPlan');
 
         if (isCampaignPromotedOffer || isPersonalInvite) {
             var notification = new Notification({

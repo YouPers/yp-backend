@@ -24,14 +24,12 @@ var fromDefault = "YOUPERS Gesundheitscoach <dontreply@youpers.com>",
 var encryptLinkToken = function (linkToken) {
 
     var cipher = crypto.createCipher(config.linkTokenEncryption.algorithm, config.linkTokenEncryption.key);
-    var encrypted = cipher.update(linkToken, 'utf8', 'hex') + cipher.final('hex');
-    return encrypted;
+    return cipher.update(linkToken, 'utf8', 'hex') + cipher.final('hex');
 };
 
 var decryptLinkToken = function (token) {
     var decipher = crypto.createDecipher(config.linkTokenEncryption.algorithm, config.linkTokenEncryption.key);
-    var decrypted = decipher.update(token, 'hex', 'utf8') + decipher.final('utf8');
-    return decrypted;
+    return decipher.update(token, 'hex', 'utf8') + decipher.final('utf8');
 };
 
 var sendEmail = function (from, to, subject, templateName, locals) {
@@ -148,14 +146,13 @@ var sendCalInvite = function (to, type, iCalString, plan, i18n, reason) {
                 contentType: 'text/calendar; charset="UTF-8"; method=' + method,
                 contentEncoding: '7bit',
                 contents: iCalString
-
             }
         ],
         attachments: [
             {
                 fileName: 'ical.ics',
                 contents: iCalString,
-                contentType: 'application/ics"'
+                contentType: 'application/ics'
             }
         ]};
 

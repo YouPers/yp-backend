@@ -100,7 +100,7 @@ frisby.create('Activity Plan: plan once activity and check whether event is gene
 
 frisby.create('Activity Plan: plan weekly activity and check whether events are generated, with EndBy: after 6')
     .post(URL + '/activityplans', {
-        "owner": consts.users.test_ind1.id,
+        "owner": consts.users.test_ind2.id,
         "activity": "5278c6adcdeab69a2500001e",
         "visibility": "public",
         "campaign": "527916a82079aa8704000006",
@@ -136,16 +136,15 @@ frisby.create('Activity Plan: plan weekly activity and check whether events are 
 
 
         frisby.create('Activity Plan: Update an Event without comment')
-            .put(URL + '/activityplans/' + newPlan[0].id + '/events/' + newPlan[0].events[0].id, {feedback: 5, status: 'done'}, {json: true})
+            .put(URL + '/activityplans/' + newPlan.id + '/events/' + newPlan.events[0].id, {feedback: 5, status: 'done'}, {json: true})
             .auth('test_ind2', 'yp')
             .expectStatus(200)
             .afterJSON(function (updatedEvent) {
-                var nrOfComments = plans[0].events[0].comments.length;
                 expect(updatedEvent.feedback).toEqual(5);
                 expect(updatedEvent.status).toEqual('done');
 
                 frisby.create('Activity Plan: Get plan again and check whether feedback is updated')
-                    .get(URL + '/activityplans/' + newPlan[0].id)
+                    .get(URL + '/activityplans/' + newPlan.id)
                     .auth('test_ind2', 'yp')
                     .expectStatus(200)
                     .afterJSON(function (reloadedPlan) {
@@ -153,13 +152,11 @@ frisby.create('Activity Plan: plan weekly activity and check whether events are 
                         expect(reloadedPlan.events[0].status).toEqual('done');
                         frisby.create('Activity Plan: update Events again, reset feedback, add comment')
                             .put(URL + '/activityplans/' + reloadedPlan.id + '/events/' + reloadedPlan.events[0].id,
-                            {"feedback": "2", "comments": [
-                                {"text": "new Text from UnitTest"}
-                            ]}, {json: true})
+                            {"feedback": "2", "comment": "new Text from UnitTest"}, {json: true})
                             .auth('test_ind2', 'yp')
                             .expectStatus(200)
                             .afterJSON(function (newUpdatedEvent) {
-                                expect(newUpdatedEvent.comments.length).toEqual(nrOfComments + 1);
+                                expect(newUpdatedEvent.comment).toEqual("new Text from UnitTest");
                                 expect(newUpdatedEvent.feedback).toEqual(2);
                                 frisby.create('Activity Plan: delete again')
                                     .delete(URL + '/activityplans/' + newPlan.id)
@@ -171,11 +168,10 @@ frisby.create('Activity Plan: plan weekly activity and check whether events are 
 
                     })
                     .toss();
-
-
             })
             .toss();
-    });
+    })
+    .toss();
 
 frisby.create('Activity Plan: plan daily activity and check whether events are generated, with EndBy: after 6')
     .auth('test_ind3', 'yp')
@@ -291,8 +287,8 @@ frisby.create('Activity Plan: plan daily activity and check whether events are g
                                         "campaign": "527916a82079aa8704000006",
                                         "executionType": "group",
                                         "mainEvent": {
-                                            "start": moment().add('hours', 1).toISOString(),
-                                            "end": moment().add('hours', 2).toISOString(),
+                                            "start": moment().day(2).add('hours', 1).toISOString(),
+                                            "end": moment().day(2).add('hours', 2).toISOString(),
                                             "allDay": false,
                                             "frequency": "day",
                                             "recurrence": {

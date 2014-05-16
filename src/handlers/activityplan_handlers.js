@@ -274,7 +274,7 @@ function _replacePassedEvents(newPlan, oldPlan) {
     });
 
     // add all passed events from the oldPlan
-    _.forEach(oldPlan.events, function (event) {
+    _.forEach(oldPlan.events.reverse(), function (event) {
         if (event.end < now) {
             newPlan.events.unshift(event);
         }
@@ -709,6 +709,7 @@ function _updateSlavePlans(updatedMasterPlan, req, cb) {
                         if (err) {
                             return done(err);
                         }
+
                         mongoose.model('Profile').populate(slaveUser, 'profile', function () {
                             if (slaveUser && slaveUser.email && slaveUser.profile.userPreferences.email.iCalInvites) {
                                 req.log.debug({start: savedSlavePlan.mainEvent.start, end: savedSlavePlan.mainEvent.end}, 'Updated Slave Plan');

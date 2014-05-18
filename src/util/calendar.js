@@ -84,7 +84,8 @@ var getIcalObject = function (plan, recipientUser, iCalType, i18n, reason) {
     // somehow the "more correct way" of passing a timezone with DTSTART and DTEND does not work correctly yet,
     // if we add these 2 lines instead of the following line, the times seem to be interpreted in the wrong timezone,
     // and our events are off by 1 or 2 hours. Possible reason: the formatting done by event.addProperty() formats
-    // it as UTC
+    // it as UTC. The Reason that the two following lines do not work is because the node-iCalender library simply does not
+    // support this feature --> see node-icalendar/lib/types.js line 75
     //event.addProperty('DTSTART',moment(plan.mainEvent.start).tz('Europe/Zurich').format(), {TZID: CET_TIMEZONE_ID} );
     //event.addProperty('DTEND',moment(plan.mainEvent.end).tz('Europe/Zurich').format(), {TZID: CET_TIMEZONE_ID} );
 

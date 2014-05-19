@@ -22,15 +22,20 @@ var getIcalObject = function (plan, recipientUser, iCalType, i18n, reason) {
     myCal.addProperty("CALSCALE", "GREGORIAN");
     myCal.addComponent(_getTimezone(plan));
 
-    var event = new ical.VEvent(plan._id);
-    event.addProperty("SEQUENCE", plan.__v);
+    // if this is a SlavePlan we use the masterPlans id as the iCal id, if it is a masterPlan we use its id
+    var iCalEventId = isMasterPlan ? plan._id : plan.masterPlan._id || plan.masterPlan;
+    var event = new ical.VEvent(iCalEventId);
+
+    // if this is a SlavePlan we use the masterPlans __v as the iCal SEQUENCE, if it is a masterPlan we use its __v
+    var sequence = isMasterPlan ? plan.__v : plan.masterPlan.__v;
+    event.addProperty("SEQUENCE", sequence);
 
     if (iCalType !== 'eventsGenerationOnly') {
         if (isGroupPlan) {
 
             // Organizer and attendees are only relevant for group plans
             // the organizer of this event is either the owner of the plan or the owner of the masterPlan.
-            // The owner of the masterPlan is always the first member of the JoiningUsers Collection --> activityPlan_model :264
+            // The owner of the masterPlan is always the first member of the JoiningUsers Collection --> activityPlan_model Line:264
             var organizer = isMasterPlan ? plan.owner : plan.joiningUsers[0];
             var targetAttendee = recipientUser;
             var otherAttendees = plan.joiningUsers.slice(1);
@@ -41,10 +46,13 @@ var getIcalObject = function (plan, recipientUser, iCalType, i18n, reason) {
                     "MAILTO:" + targetAttendee.email,
                 {CUTYPE: "INDIVIDUAL", RSVP: "TRUE", ROLE: "REQ-PARTICIPANT", PARTSTAT: "NEEDS-ACTION", CN: "You", "X-NUM-GUESTS": 0 });
 
-            _.forEach(otherAttendees, function (atendee) {
-                event.addProperty("ATTENDEE",
-                        "MAILTO:" + atendee.email,
-                    {CUTYPE: "INDIVIDUAL", ROLE: "REQ-PARTICIPANT", PARTSTAT: "ACCEPTED", CN: atendee.fullname, "X-NUM-GUESTS": 0 });
+            _.forEach(otherAttendees, function (attendee) {
+                // make sure we only add the guy receiving this iCal one time
+                if (attendee.email !== organizer.email && attendee.email !== targetAttendee.email) {
+                    event.addProperty("ATTENDEE",
+                            "MAILTO:" + attendee.email,
+                        {CUTYPE: "INDIVIDUAL", ROLE: "REQ-PARTICIPANT", PARTSTAT: "ACCEPTED", CN: attendee.fullname, "X-NUM-GUESTS": 0 });
+                }
             });
         }
 

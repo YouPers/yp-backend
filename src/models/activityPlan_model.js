@@ -73,12 +73,11 @@ ActivityPlanEvent.statics.getFieldDescriptions = function () {
 
 ActivityPlanSchema.statics.activityPlanCompletelyDeletable = "deletable";
 ActivityPlanSchema.statics.activityPlanOnlyFutureEventsDeletable = "deletableOnlyFutureEvents";
+ActivityPlanSchema.statics.notDeletableNoFutureEvents = "notDeletableNoFutureEvents";
 
 ActivityPlanSchema.statics.activityPlanEditable = "editable";
-ActivityPlanSchema.statics.activityPlanNotEditableJoinedPlan = "notEditableJoinedPlans";
-ActivityPlanSchema.statics.activityPlanNotEditableJoinedUser = "notEditableJoinedUsers";
-ActivityPlanSchema.statics.activityPlanNotEditableNotSingleEvent = "notEditableNotSingleEvent";
-ActivityPlanSchema.statics.activityPlanNotEditableEventsInThePast = "notEditablePastEvent";
+ActivityPlanSchema.statics.activityPlanNotEditableJoinedPlan = "notEditableJoinedPlan";
+ActivityPlanSchema.statics.activityPlanNotEditableAllEventsInThePast = "notEditablePastEvent";
 
 /**
  * Methods
@@ -87,52 +86,38 @@ ActivityPlanSchema.statics.activityPlanNotEditableEventsInThePast = "notEditable
 ActivityPlanSchema.methods = {
     // evaluate the delete Status
     evaluateDeleteStatus: function () {
-
-        // check if there are any events in the past
-        var eventsInThePastExist = false;
-        var nOfEventsInTheFuture = 0;
         var now = new Date();
-        _.forEach(this.events, function (event) {
-            if (event.begin < now || event.end < now) {
-                eventsInThePastExist = true;
-            } else {
-                nOfEventsInTheFuture++;
-            }
+        // check if there are any events in the past
+        var eventsInThePastExist = _.any(this.events, function(event) {
+            return event.end < now;
         });
-        if (eventsInThePastExist) {
-            if (nOfEventsInTheFuture > 0) {
-                // only future events are allowed to be deleted
+        var eventsInTheFutureExist = _.any(this.events, function(event) {
+            return event.end > now;
+        });
+        if (eventsInThePastExist && eventsInTheFutureExist) {
                 return ActivityPlanSchema.statics.activityPlanOnlyFutureEventsDeletable;
             }
+         else if (!eventsInTheFutureExist) {
+            return ActivityPlanSchema.statics.notDeletableNoFutureEvents;
+        } else if (!eventsInThePastExist) {
+            return ActivityPlanSchema.statics.activityPlanCompletelyDeletable;
+        } else {
+            throw new Error('should not be possible');
         }
-
-        // no past events, thus the complete activity plan can be deleted
-        return ActivityPlanSchema.statics.activityPlanCompletelyDeletable;
     },
     evaluateEditStatus: function () {
-
-        // currently, only single activity plans (no master and/or joined plans)
-        // with a single and not yet past event are editable
 
         // a joined activity plan cannot be edited
         if (this.masterPlan && this.masterPlan.toString().length > 0) {
             return ActivityPlanSchema.statics.activityPlanNotEditableJoinedPlan;
         }
 
-        // activity plan cannot be edited if there are joining users
-        if (this.joiningUsers.length > 0) {
-            return ActivityPlanSchema.statics.activityPlanNotEditableJoinedUser;
-        }
-
-        // activity plan cannot be edited if there are more than one event
-        if (this.events.length > 1) {
-            return ActivityPlanSchema.statics.activityPlanNotEditableNotSingleEvent;
-        }
-
-        // activity plan cannot be edited if the single event is not in the future
+        // activity plan cannot be edited if all events are in the past
         var now = new Date();
-        if (this.events[0].begin < now || this.events[0].end < now) {
-            return ActivityPlanSchema.statics.activityPlanNotEditableEventsInThePast;
+        if (_.every(this.events, function(event) {
+            return event.end < now;
+        })) {
+            return ActivityPlanSchema.statics.activityPlanNotEditableAllEventsInThePast;
         }
 
         // passed editable tests
@@ -174,7 +159,11 @@ ActivityPlanSchema.pre('save', function (next) {
                 return next(new error.ResourceNotFoundError('MasterPlan not found.', { id: self.masterPlan }));
             }
 
-            if (masterPlan.owner === self.owner) {
+            if (self.owner && self.owner._id) {
+                self.owner = self.owner._id;
+            }
+
+            if (masterPlan.owner.equals(self.owner)) {
                 return next(new error.NotAuthorizedError('A user cannot join his own activityPlan.', {
                     owner: self.owner,
                     activityPlanId: self.masterPlan
@@ -192,24 +181,6 @@ ActivityPlanSchema.pre('save', function (next) {
             // the joiningUsers collection of the slavePlan is not saved, it should always remain empty because
             // it will be populated by the pre'init' function when loading the slavePlan
             self.joiningUsers = [];
-
-            // if there exists eventComment in this plan, it must be moved to the master
-            _.forEach(self.events, function (event) {
-                _.forEach(event.comments, function (comment) {
-                    var masterEvent = _.find(masterPlan.events, function (masterEventCand) {
-                        return (masterEventCand.begin.toJSON() === event.begin.toJSON());
-                    });
-                    if (!masterEvent) {
-                        return next(new error.ResourceNotFoundError('MasterEvent not found for this event.', {
-                            activityPlanId: masterPlan.id,
-                            eventId: event.id
-                        }));
-                    }
-                    masterEvent.comments.push(comment);
-                    modifiedMaster = true;
-                });
-                event.comments = [];
-            });
 
             if (modifiedMaster) {
                 masterPlan.save(function (err) {
@@ -267,14 +238,6 @@ ActivityPlanSchema.pre('init', function populateSlavePlans(next, data) {
                 // add the owner of the master
                 data.joiningUsers.unshift(masterPlan.owner);
 
-                // populate the comments from the masterPlan, because we do not save the event comments on the slave plan
-                _.forEach(masterPlan.events, function (masterEvent) {
-                    _.find(data.events, function (slaveEvent) {
-                        if (slaveEvent.begin === masterEvent.begin) {
-                            slaveEvent.comments = masterEvent.comments;
-                        }
-                    });
-                });
                 return next();
             });
     } else {

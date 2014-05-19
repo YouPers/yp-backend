@@ -46,6 +46,13 @@ process.on('uncaughtException', function(err){
     process.exit(8);
 });
 
+server.on('uncaughtException', function(req, res, route, err){
+    req.log.error(err);
+    console.error('Caught uncaught Exception: ' + err );
+    res.send(new error.InternalError(err, err.message || 'unexpected error'));
+    return (true);
+});
+
 server.on('after', function (req, res, route, err) {
     req.log.debug({res: res}, "finished processing request");
     if (err && !err.doNotLog) {

@@ -139,7 +139,7 @@ actMgr.on('activity:offerUpdated', function (offer) {
         .exec(function(err, notifs) {
             _.forEach(notifs, function(notif) {
                 notif.publishFrom = offer.validFrom;
-                notif.publishTo = offer.publishTo;
+                notif.publishTo = offer.validTo;
                 notif.save(function(err, savedNotif) {
                     if (err) {
                         return actMgr.emit('error', err);
@@ -152,7 +152,8 @@ actMgr.on('activity:offerUpdated', function (offer) {
 actMgr.on('activity:planUpdated', function(updatedPlan) {
     ActivityOffer.find({activityPlan: updatedPlan._id}).exec(function (err, offers) {
         _.forEach(offers, function (offer) {
-            actMgr.emit('activity:offerUpdated', offer);
+            // The validTo of the offer has to be equal or earlier than the last event,
+            // it does not make sense to offer something that has already happened.
             if (offer.validTo > updatedPlan.events[updatedPlan.events.length -1].end) {
                 offer.validTo = updatedPlan.events[updatedPlan.events.length -1].end;
                 offer.save(function (err, updatedOffer) {

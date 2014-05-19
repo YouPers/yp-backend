@@ -313,8 +313,8 @@ function _replaceFutureEvents(targetPlan, sourcePlan) {
  * creates a slavePlan from a masterPlan for a given targetUser that is about to Join the MasterPlan
  * If no slavePlanToUpdate is given, the returned slavePlan is a copy of the masterplan without an ObjectId.
  *
- * If a slavePlanToUpdate is passed, then we replace all passed events from the masterPlan with the
- * passed events from the slavePlanToUpdate to preserve the history of the slaveUser.
+ * If a slavePlanToUpdate is passed, then update the slavePlanToUpdate by replacing all future events with the future
+ * events of the new MasterPlan and updating the relevant other properties with the values from the new MasterPlan.
  *
  * @param masterPlan
  * @param targetUser
@@ -763,7 +763,7 @@ function putActivityPlan(req, res, next) {
             _generateEventsForPlan(sentPlan, req.user, req.i18n, loadedActPlan);
         }
 
-        _.extend(loadedActPlan, req.body);
+        _.extend(loadedActPlan, sentPlan);
 
         loadedActPlan.save(function (err) {
             if (err) {

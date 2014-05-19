@@ -163,7 +163,7 @@ ActivityPlanSchema.pre('save', function (next) {
                 self.owner = self.owner._id;
             }
 
-            if (masterPlan.owner === self.owner) {
+            if (masterPlan.owner.equals(self.owner)) {
                 return next(new error.NotAuthorizedError('A user cannot join his own activityPlan.', {
                     owner: self.owner,
                     activityPlanId: self.masterPlan

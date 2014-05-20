@@ -167,6 +167,10 @@ module.exports = {
         mySchema.plugin(timestamps, {updatedAt: 'updated', createdAt: 'created'
         });
 
+        mySchema.methods.getStatsString = function() {
+            return this.title;
+        };
+
         return mySchema;
     },
 

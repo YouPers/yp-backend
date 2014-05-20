@@ -46,8 +46,12 @@ module.exports = function (swagger, config) {
             var contactInfo = feedback.contactInfo || 'anonymous';
             var feedbackCategory = feedback.feedbackCategory || 'none';
             var description = feedback.description || 'none';
+            var email = feedback.contactInfo && req.user.email || 'noEmailAddressProvided';
 
-            var content = "h4. Category: " + feedbackCategory + "\nh4. Reporter: " + contactInfo + "\nh4. Description:\n" + description +
+            var content = "h4. Category: " + feedbackCategory +
+                "\nh4. Reporter: " + contactInfo +
+                "\nh4. Email: " + email +
+                "\nh4. Description:\n" + description +
                 "\n\nh4. Navigator:\n" + feedback.navigator;
 
             var body = {

@@ -11,7 +11,8 @@ var mongoose = require('mongoose'),
     error = require('../util/error'),
     utils = require('./handlerUtils'),
     auth = require('../util/auth'),
-    generic = require('./generic');
+    generic = require('./generic'),
+    moment = require('moment');
 
 
 /**
@@ -281,9 +282,11 @@ function getActivityOffersFn(req, res, next) {
             if (activityFilter) {
                 selector.activity = req.params.activity;
             }
-
+            var dateToUse = moment().toDate();
             ActivityOffer
                 .find(selector)
+                .and({$or: [{validTo: {$exists: false}}, {validTo: {$gte: dateToUse}}]})
+                .and({$or: [{validFrom: {$exists: false}}, {validFrom: {$lte: dateToUse}}]})
                 .populate('activity activityPlan recommendedBy')
                 .exec(function(err, offers) {
                     User.populate(offers, { path: 'activityPlan.owner activityPlan.joiningUsers' }, function(err, offers) {

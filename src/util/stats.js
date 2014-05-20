@@ -1,18 +1,6 @@
-var events = require('events'),
-    mongoose = require('mongoose'),
+var mongoose = require('mongoose'),
     moment = require('moment'),
     ObjectId = mongoose.Types.ObjectId;
-
-
-var statsUpdaterInstance = new events.EventEmitter();
-
-statsUpdaterInstance.update = function (event, newValue, oldValue, newContext) {
-    var self = this;
-    process.nextTick(function () {
-            self.emit(event, newValue, oldValue, newContext);
-        }
-    );
-};
 
 var statsQueries = function (timeRange, scopeType, scopeId) {
     if (!scopeType) {
@@ -43,9 +31,9 @@ var statsQueries = function (timeRange, scopeType, scopeId) {
     assUpdatesPerDayQuery.append(
         { $project: {
             date: {
-                year: {$year: '$timestamp'},
-                month: {$month: '$timestamp'},
-                day: {$dayOfMonth: '$timestamp'}
+                year: {$year: '$created'},
+                month: {$month: '$created'},
+                day: {$dayOfMonth: '$created'}
             },
             owner: '$owner'
         }
@@ -89,7 +77,7 @@ var statsQueries = function (timeRange, scopeType, scopeId) {
         assessmentTotalsQuery.append(scopePipelineEntry);
     }
     assessmentTotalsQuery.append(
-        {$sort: {timestamp: -1}},
+        {$sort: {created: -1}},
         {$group: {
             _id: '$owner',
             newestAnswer: {$first: '$answers'}
@@ -114,7 +102,7 @@ var statsQueries = function (timeRange, scopeType, scopeId) {
         topStressorsQuery.append(scopePipelineEntry);
     }
     topStressorsQuery.append(
-        {$sort: {timestamp: -1}},
+        {$sort: {created: -1}},
         {$group: {
             _id: '$owner',
             newestAnswer: {$first: '$answers'}
@@ -192,24 +180,21 @@ var statsQueries = function (timeRange, scopeType, scopeId) {
         eventsQuery.append(scopePipelineEntry);
     }
     eventsQuery.append(
-        {$unwind: '$events'},
-        {$unwind: '$fields'}
+        {$unwind: '$events'}
     );
     if (timeRangePipelineEntry) {
         eventsQuery.append(timeRangePipelineEntry);
     }
     eventsQuery.append(
-        {$project: {
-            events: 1,
-            fields: 1
+        {   $project: {
+            status: {$cond: [{$gt: ['$events.end', new Date()]},'future', '$events.status']}
         }},
         {$group: {
-            _id: {status: '$events.status', field: '$fields'},
+            _id: '$status',
             count: {$sum: 1}
         }},
         {$project: {
-            field: '$_id.field',
-            status: '$_id.status',
+            status: '$_id',
             count: 1,
             _id: 0
         }}
@@ -264,6 +249,42 @@ var statsQueries = function (timeRange, scopeType, scopeId) {
         }}
     );
 
+    var focusSetQuery = mongoose.model('Profile').aggregate();
+    if (scopePipelineEntry) {
+        focusSetQuery.append(scopePipelineEntry);
+    }
+    if (timeRangePipelineEntry) {
+        focusSetQuery.append(timeRangePipelineEntry);
+    }
+    focusSetQuery.append(
+        {$match: {focus: {$ne: []}}},
+        {$group: {_id: 'total',
+                  users: {$sum: 1}}
+        },
+        {$project: {
+            users: 1,
+            _id: 0
+        }}
+    );
+
+    var usersWithDiaryEntryQuery = mongoose.model('Profile').aggregate();
+    if (scopePipelineEntry) {
+        usersWithDiaryEntryQuery.append(scopePipelineEntry);
+    }
+    if (timeRangePipelineEntry) {
+        usersWithDiaryEntryQuery.append(timeRangePipelineEntry);
+    }
+    usersWithDiaryEntryQuery.append(
+        {$match: {lastDiaryEntry: {$ne: ''}}},
+        {$group: {_id: 'total',
+            users: {$sum: 1}}
+        },
+        {$project: {
+            users: 1,
+            _id: 0
+        }}
+    );
+
     return {
         assUpdatesPerDay: assUpdatesPerDayQuery,
         assUpdatesTotal: assUpdatesTotalQuery,
@@ -273,10 +294,13 @@ var statsQueries = function (timeRange, scopeType, scopeId) {
         activitiesPlannedTotal: actsPlannedTotalQuery,
         activityEvents: eventsQuery,
         activityEventsTotal: eventsTotalQuery,
-        usersTotal: usersTotalQuery
+        usersTotal: usersTotalQuery,
+        focusSet: focusSetQuery,
+        usersWithDiaryEntry: usersWithDiaryEntryQuery
         };
 };
 
+
+
 module.exports = {
-    statsUpdater: statsUpdaterInstance,
-    queries: statsQueries };
+    queries: statsQueries};

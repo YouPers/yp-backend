@@ -17,6 +17,7 @@
     },
     "OrganizationAdminInvite": {
         "subject": "YOUPERS: Einladung zum Organisations-Administrator von __inviting.fullname__",
+        "title": "Einladung als Organisations-Administrator",
         "salutation": "Hallo <strong>__invited.firstname__!</strong>",
         "salutationAnonymous": "",
         "text": "<b>__inviting.fullname__</b> hat Dich eingeladen Organisations-Administrator für <b>__organization.name__</b> zu werden.<br><br>",
@@ -41,17 +42,17 @@
     },
     "iCalMail": {
         "new": {
-            "subject": "YOUPERS: Neuer Kalender-Eintrag für: __plan.activity.title__",
-            "text": "Neuer Kalendereintrag für __plan.activity.title__",
-            "html": "Neuer Kalendereintrag<br><br><h1>__plan.activity.title__</h1><p>__plan.activity.description__</p>"
+            "subject": "YOUPERS: Neuer Kalender-Eintrag für: __plan.title__",
+            "text": "Neuer Kalendereintrag für __plan.title__",
+            "html": "Neuer Kalendereintrag<br><br><h1>__plan.title__</h1><p>__plan.activity.description__</p>"
         },
         "update": {
-            "subject": "YOUPERS: Angepasster Kalender-Eintrag für: __plan.activity.title__",
-            "text": "Neuer Kalendereintrag für __plan.activity.title__",
-            "html": "Neuer Kalendereintrag<br><br><h1>__plan.activity.title__</h1>><p>__plan.activity.description__</p>"
+            "subject": "YOUPERS: Angepasster Kalender-Eintrag für: __plan.title__",
+            "text": "Neuer Kalendereintrag für __plan.title__",
+            "html": "Neuer Kalendereintrag<br><br><h1>__plan.title__</h1><p>__plan.activity.description__</p>"
         },
         "cancel": {
-            "subject": "YOUPERS: Gelöschter Kalender-Eintrag für: __plan.activity.title__",
+            "subject": "YOUPERS: Gelöschter Kalender-Eintrag für: __plan.title__",
             "text": "Der Organisator hat diesen Kalender-Eintrag gelöscht. \nGrund: __reason__",
             "html": "Der Organisator hat diesen Kalender-Eintrag gelöscht. <br><br>Grund: __reason__"
         }

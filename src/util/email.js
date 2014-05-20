@@ -24,19 +24,17 @@ var fromDefault = "YOUPERS Gesundheitscoach <dontreply@youpers.com>",
 var encryptLinkToken = function (linkToken) {
 
     var cipher = crypto.createCipher(config.linkTokenEncryption.algorithm, config.linkTokenEncryption.key);
-    var encrypted = cipher.update(linkToken, 'utf8', 'hex') + cipher.final('hex');
-    return encrypted;
+    return cipher.update(linkToken, 'utf8', 'hex') + cipher.final('hex');
 };
 
 var decryptLinkToken = function (token) {
     var decipher = crypto.createDecipher(config.linkTokenEncryption.algorithm, config.linkTokenEncryption.key);
-    var decrypted = decipher.update(token, 'hex', 'utf8') + decipher.final('utf8');
-    return decrypted;
+    return decipher.update(token, 'hex', 'utf8') + decipher.final('utf8');
 };
 
 var sendEmail = function (from, to, subject, templateName, locals) {
 
-    log.info({emailTo: to}, 'loading templates for sending: ' + templateName);
+    log.debug({emailTo: to}, 'loading templates for sending: ' + templateName);
     emailTemplates(templatesDir, function (err, template) {
         if (err) {
             log.error({err: err}, 'error during parsing of all email-templates');
@@ -48,7 +46,7 @@ var sendEmail = function (from, to, subject, templateName, locals) {
                 subject: subject
             });
 
-            log.info({emailTo: to}, 'templating email: ' + templateName);
+            log.debug({emailTo: to}, 'templating email: ' + templateName);
             // Send a single email
             template(templateName, locals, function (err, html, text) {
                     if (err) {
@@ -61,7 +59,7 @@ var sendEmail = function (from, to, subject, templateName, locals) {
                             text: text, // plaintext body
                             html: html // html body
                         };
-                        log.info({emailTo: to}, 'trying to send email: ' + templateName);
+                        log.debug({emailTo: to}, 'trying to send email: ' + templateName);
                         smtpTransport.sendMail(mail, function (err, responseStatus) {
                             if (err) {
                                 log.error({err:err, data: err.data}, "error while sending email for: " + to + " template: " + templateName);
@@ -148,18 +146,17 @@ var sendCalInvite = function (to, type, iCalString, plan, i18n, reason) {
                 contentType: 'text/calendar; charset="UTF-8"; method=' + method,
                 contentEncoding: '7bit',
                 contents: iCalString
-
             }
         ],
         attachments: [
             {
                 fileName: 'ical.ics',
                 contents: iCalString,
-                contentType: 'application/ics"'
+                contentType: 'application/ics'
             }
         ]};
 
-    log.info({emailTo: to}, 'trying to send iCalInvite-Email.');
+    log.debug({emailTo: to}, 'trying to send iCalInvite-Email.');
     smtpTransport.sendMail(mail, function (err, responseStatus) {
         if (err) {
             log.error({err:err, data: err.data}, "error while sending email for: " + to + ", icalInvite");
@@ -225,11 +222,13 @@ var sendOrganizationAdminInvite = function sendOrganizationAdminInvite(email, in
     var subject = i18n.t("email:OrganizationAdminInvite.subject", {inviting:  invitingUser.toJSON(), organization: organization.toJSON()});
     var token = encryptLinkToken(organization._id +linkTokenSeparator + email +  (invitedUser ? linkTokenSeparator + invitedUser._id : ''));
     var locals = {
+        title: i18n.t("email:OrganizationAdminInvite.title"),
         link: urlComposer.orgAdminInviteUrl(organization._id, invitingUser._id, token),
         salutation: i18n.t('email:OrganizationAdminInvite.salutation' + invitedUser ? '': 'Anonymous', {invited: invitedUser ? invitedUser.toJSON() : {firstname: ''}}),
         text: i18n.t('email:OrganizationAdminInvite.text', {inviting: invitingUser.toJSON(), organization: organization.toJSON()}),
         header: i18n.t('email:OrganizationAdminInvite.header'),
         footer: i18n.t('email:OrganizationAdminInvite.footer'),
+        background: urlComposer.mailBackgroundImageUrl(),
         logo: urlComposer.mailFooterImageUrl()
     };
     sendEmail(fromDefault, email, subject, 'genericYouPersMail', locals);

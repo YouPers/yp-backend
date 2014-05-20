@@ -147,7 +147,7 @@ actMgr.on('activity:offerSaved', function (offer) {
 actMgr.on('activity:offerDeleted', function (offer) {
     // check whether there are any notifications to be deleted
     NotificationModel
-        .find({refDocs: { docId: offer._id }})
+        .find({refDocs: {$elemMatch: {docId: offer._id }}})
         .exec(function(err, notifs) {
             _.forEach(notifs, function(notif) {
                 notif.remove(function (err) {

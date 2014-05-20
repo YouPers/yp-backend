@@ -53,7 +53,7 @@ var deleteByIdFn = function (baseUrl) {
 
         // check if user is campaign lead and the administrate flag is set,
         // just delete and don't dismiss the notification
-        if (auth.checkAccess(req.user, 'al_systemadmin') || auth.checkAccess(req.user, 'al_campaignlead') &&
+        if (auth.checkAccess(req.user, 'al_systemadmin') ||auth.checkAccess(req.user, 'al_productadmin')  ||auth.checkAccess(req.user, 'al_campaignlead') &&
             req.params.mode && req.params.mode === 'administrate') {
             return generic.deleteByIdFn(baseUrl, NotificationModel)(req, res, next);
         }

@@ -75,7 +75,7 @@ function assessmentResultAnswerPutFn() {
                     assessment: newAnswer.assessment,
                     owner: req.user.id,
                     answers: [],
-                    campaign: req.user.campaign.id
+                    campaign: req.user.campaign && req.user.campaign.id // campaign is always populated in the req.user auth.js:149
                 });
 
 
@@ -84,7 +84,7 @@ function assessmentResultAnswerPutFn() {
                     delete result.id;
                     delete result.created;
                     // update campaign if user has changed campaign
-                    result.campaign = req.user.campaign.id;
+                    result.campaign = req.user.campaign && req.user.campaign.id; // campaign is always populated in the req.user auth.js:149
                 }
 
                 var answerIndex = _.findIndex(result.answers, function (answer) {

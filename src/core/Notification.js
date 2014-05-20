@@ -89,6 +89,17 @@ Notification.getCampaignNotifications = function(user, campaign, mode, previewDa
 };
 
 
+/**
+ * dismissed a Notification for the current user
+ *
+ * internally this method checks whether the notification can really be delete or only dismissed.
+ * Delete is possible if the requesting user is the only recipient of this notification.
+ * When there are multiple recipients the notification is only hidden.
+ *  *
+ * @param notificationId ObjectId of notification to be deleted
+ * @param user
+ * @param cb
+ */
 Notification.dismissNotification = function dismissNotification(notificationId, user, cb) {
 
 

@@ -29,7 +29,8 @@ function getStandardQueryOptions(req) {
  * 1. the requesting user is the only recipient OR
  * 2. the requesting user is the author of the notification and wants to really delete it for every recipient.
  *
- * in all other cases the notification is only dismissed.
+ * in all other cases the notification is only dismissed. The differentiation between 1. and 2. is implemented in the
+ * Notification.dismissNotification method.
  *
  * Special Case:
  * When a campaignlead sends a DELETE for a notification and he is the author of the notification we need to differentiate

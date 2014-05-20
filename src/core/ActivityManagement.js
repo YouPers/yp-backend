@@ -6,6 +6,10 @@ var _ = require('lodash');
 var urlComposer = require('../util/urlcomposer');
 var Notification = require('../core/Notification');
 var NotificationModel = require('../models/notification_model');
+var env = process.env.NODE_ENV || 'development';
+var config = require('./config/config')[env];
+var Logger = require('bunyan');
+var log = new Logger(config.loggerOptions);
 
 
 function ActivityManagement() {
@@ -42,7 +46,6 @@ actMgr.on('activity:planSaved', function (plan) {
         });
     }
 
-    // TODO: check whether we need to delete any offers / notifications as the user has planned this activity now
     // Assumption:
     // - We delete any personal offers and personal notifications for the same user and for the same masterplan
     var isSlavePlan = plan.masterPlan;
@@ -195,8 +198,7 @@ actMgr.on('activity:planUpdated', function(updatedPlan) {
 
 
 actMgr.on('error', function(err) {
-    // TODO: do real error handling
-    console.log(err);
+    log.error(err);
     throw new Error(err);
 });
 

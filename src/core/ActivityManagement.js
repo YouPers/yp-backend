@@ -6,6 +6,10 @@ var _ = require('lodash');
 var urlComposer = require('../util/urlcomposer');
 var Notification = require('../core/Notification');
 var NotificationModel = require('../models/notification_model');
+var env = process.env.NODE_ENV || 'development';
+var config = require('../config/config')[env];
+var Logger = require('bunyan');
+var log = new Logger(config.loggerOptions);
 
 
 function ActivityManagement() {
@@ -26,13 +30,13 @@ actMgr.on('activity:planSaved', function (plan) {
     // store the offer explicitly in this case, to control all attributes of the offer
     if (isJoinablePlan && !isCampaignPromotedPlan) {
         var offer = new ActivityOffer({
-            activity: plan.activity.id,
+            activity: plan.activity.id || plan.activity,
             activityPlan: [plan.id],
             targetQueue: plan.campaign || plan.owner, // TODO: This || plan.owner is a hack to prevent "public" offers to show up in multiple campaigns. Need to decide on how to deal with real PUBLIC offer
             recommendedBy: [plan.owner],
-            type: [isCampaignPromotedPlan ? 'campaignActivityPlan' : 'publicActivityPlan'],
+            type: ['publicActivityPlan'],
             validTo: plan.events[plan.events.length - 1].end,
-            prio: [isCampaignPromotedPlan ? 500 : 1]
+            prio: [1]
         });
         offer.save(function (err, savedOffer) {
             if (err) {
@@ -42,7 +46,6 @@ actMgr.on('activity:planSaved', function (plan) {
         });
     }
 
-    // TODO: check whether we need to delete any offers / notifications as the user has planned this activity now
     // Assumption:
     // - We delete any personal offers and personal notifications for the same user and for the same masterplan
     var isSlavePlan = plan.masterPlan;
@@ -61,6 +64,22 @@ actMgr.on('activity:planSaved', function (plan) {
                 });
             });
     }
+
+    // find all notification for (this user or this user's campaign) and activity, dismiss them for this user
+
+    NotificationModel
+        .find({refDocs: { $elemMatch: { docId: plan.activity._id }}})
+        .and({$or: [{ targetQueue: plan.owner }, { targetQueue: plan.campaign }]})
+        .exec(function(err, notifs) {
+            _.forEach(notifs, function(notif) {
+
+                Notification.dismissNotification(notif.id, plan.owner, function(err) {
+                    if (err) {
+                        return actMgr.emit('error', err);
+                    }
+                });
+            });
+        });
 });
 
 
@@ -93,25 +112,34 @@ actMgr.on('activity:offerSaved', function (offer) {
         }
         var isCampaignPromotedOffer = ((offer.type[0] === 'campaignActivityPlan') || (offer.type[0] === 'campaignActivity'));
         var isPersonalInvite = (offer.type[0] === 'personalInvitation');
+        var isPublicPlan = (offer.type[0] === 'publicActivityPlan');
 
         if (isCampaignPromotedOffer || isPersonalInvite) {
-            return new Notification({
+            var notification = new Notification({
                 type: ActivityOffer.mapOfferTypeToNotificationType[offer.type[0]],
                 sourceType: ActivityOffer.mapOfferTypeToSourceType[offer.type[0]],
                 title: (offer.plan && offer.plan.title) || offer.activity.title,
                 targetQueue: offer.targetQueue,
                 author: offer.recommendedBy,
                 refDocLink: urlComposer.activityOfferUrl(offer.activity.id),
-                refDocId: offer._id,
-                refDocModel: 'ActivityOffer',
+                refDocs: [ { docId: offer._id, model: 'ActivityOffer' }, { docId: offer.activity._id, model: 'Activity' } ],
                 publishFrom: offer.validFrom,
                 publishTo: offer.validTo
-            }).
+            });
+            if(offer.plan) {
+                notification.push({ docId: offer.plan.id, model: 'ActivityPlan' });
+            }
+
+            return notification.
                 publish(function (err) {
                     if (err) {
                         return actMgr.emit('error', err);
                     }
                 });
+        } else if (isPublicPlan){
+            // this is a public plan, we do not genereate Notifications for these
+        } else {
+            throw new Error('unknown offertype: ' + offer.type[0]);
         }
     }
 });
@@ -119,7 +147,7 @@ actMgr.on('activity:offerSaved', function (offer) {
 actMgr.on('activity:offerDeleted', function (offer) {
     // check whether there are any notifications to be deleted
     NotificationModel
-        .find({refDocId: offer._id})
+        .find({refDocs: {$elemMatch: {docId: offer._id }}})
         .exec(function(err, notifs) {
             _.forEach(notifs, function(notif) {
                 notif.remove(function (err) {
@@ -135,7 +163,7 @@ actMgr.on('activity:offerDeleted', function (offer) {
 actMgr.on('activity:offerUpdated', function (offer) {
     // check whether there are any notifications to be deleted
     NotificationModel
-        .find({refDocId: offer._id})
+        .find({refDocs: { docId: offer._id }})
         .exec(function(err, notifs) {
             _.forEach(notifs, function(notif) {
                 notif.publishFrom = offer.validFrom;
@@ -170,8 +198,7 @@ actMgr.on('activity:planUpdated', function(updatedPlan) {
 
 
 actMgr.on('error', function(err) {
-    // TODO: do real error handling
-    console.log(err);
+    log.error(err);
     throw new Error(err);
 });
 

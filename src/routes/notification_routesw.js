@@ -65,14 +65,14 @@ module.exports = function (swagger, config) {
             spec: {
                 description: "Operations about notifications",
                 path: baseUrlWithId,
-                notes: "delete notification",
-                summary: "Deletes a notification by id",
+                notes: "delete/dismiss notification",
+                summary: "Deletes or dismisses a notification by id",
                 method: "DELETE",
                 param: [swagger.pathParam("id", "ID of the notification to be fetched", "string")],
                 "nickname": "deleteNotification",
                 accessLevel: 'al_user'
             },
-            action:  generic.deleteByIdFn(baseUrl, Model)
+            action:  notificationHandlers.deleteByIdFn(baseUrl, Model)
         }
     );
 

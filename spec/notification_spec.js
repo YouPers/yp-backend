@@ -18,7 +18,7 @@ consts.newUserInNewCampaignApi(
         if (err) {
             expect(err).toBeNull();
         }
-        frisby.create('Notifications: check notifications of user --> EMTPY')
+        frisby.create('Notifications: check notifications of user --> EMPTY')
             .get(URL + '/notifications')
             .auth(user.username, 'yp')
             .expectStatus(200)
@@ -62,7 +62,7 @@ consts.newUserInNewCampaignApi(
                                     .auth('test_prodadm', 'yp')
                                     .expectStatus(201)
                                     .afterJSON(function (newPublicNotif) {
-                                        frisby.create('Notifications: check notifications of user --> one notification')
+                                        frisby.create('Notifications: check notifications of user --> two notifications')
                                             .get(URL + '/notifications')
                                             .auth(user.username, 'yp')
                                             .expectStatus(200)
@@ -75,12 +75,77 @@ consts.newUserInNewCampaignApi(
                                             })
                                             .afterJSON(function (notifs) {
                                                 expect(notifs.length).toEqual(2);
-                                                frisby.create('Notification: delete public notifs')
-                                                    .delete(URL + '/notifications/' + newPublicNotif.id)
-                                                    .auth('test_sysadm', 'yp')
-                                                    .expectStatus(200)
+
+                                                var activityNotification = _.find(notifs, { type: 'activityRecommendation' });
+                                                var activityDoc = _.find(activityNotification.refDocs, { model: 'Activity'});
+
+                                                frisby.create('Notifications: plan activity offer and check if it has been dismissed')
+                                                    .post(URL + '/activityplans', {
+                                                        "owner": user.id,
+                                                        "activity": activityDoc.docId,
+                                                        "visibility": "public",
+                                                        "campaign": campaign.id,
+                                                        "title": "myTitle",
+                                                        "executionType": "self",
+                                                        "mainEvent": {
+                                                            "start": "2014-10-16T12:00:00.000Z",
+                                                            "end": "2014-10-16T13:00:00.000Z",
+                                                            "allDay": false,
+                                                            "frequency": "once"
+                                                        },
+                                                        "status": "active"
+                                                    })
+                                                    .auth(user.username, 'yp')
+                                                    .expectStatus(201)
+                                                    .afterJSON(function (newPlan) {
+
+                                                        frisby.create('Notifications: check notifications of user --> now only one notification')
+                                                            .get(URL + '/notifications')
+                                                            .auth(user.username, 'yp')
+                                                            .expectStatus(200)
+                                                            .afterJSON(function (notifs) {
+
+
+                                                                expect(notifs.length).toEqual(1);
+
+                                                                frisby.create('cleanup the campaign promoted offer and notification')
+                                                                    .delete(URL + '/activityoffers/' + activityOffer.id)
+                                                                    .auth(consts.users.test_campaignlead.username, 'yp')
+                                                                    .expectStatus(200)
+                                                                    .after(function() {
+                                                                        frisby.create('check whether the notification of campaign promoted Offer has been deleted')
+                                                                            .get(URL + '/notifications/' + activityNotification.id)
+                                                                            .auth(consts.users.test_campaignlead.username, 'yp')
+                                                                            .expectStatus(404)
+                                                                            .toss();
+
+                                                                    })
+                                                                    .toss();
+
+
+
+                                                                frisby.create('Notification: delete public notifs as a product admin')
+                                                                    .delete(URL + '/notifications/' + newPublicNotif.id + '?mode=administrate')
+                                                                    .auth('test_prodadm', 'yp')
+                                                                    .expectStatus(200)
+                                                                    .after(function () {
+                                                                        frisby.create('check whether the YouPers Announcement has been deleted')
+                                                                            .get(URL + '/notifications/' +  newPublicNotif.id)
+                                                                            .auth('test_prodadm', 'yp')
+                                                                            .expectStatus(404)
+                                                                            .toss();
+
+                                                                        cleanupFn();
+
+                                                                    })
+                                                                    .toss();
+
+
+                                                            })
+                                                            .toss();
+                                                    })
                                                     .toss();
-                                                cleanupFn();
+
                                             })
                                             .toss();
 
@@ -96,6 +161,7 @@ consts.newUserInNewCampaignApi(
             })
             .toss();
     });
+
 
 consts.newUserInNewCampaignApi(
     function (err, user, campaign, cleanupFn) {
@@ -142,13 +208,12 @@ consts.newUserInNewCampaignApi(
                             .delete(URL + '/activityplans/' + campaignPlan.id)
                             .auth('test_sysadm', 'yp')
                             .expectStatus(200)
-                            .after(function() {
-
+                            .after(function () {
+                                cleanupFn();
                             })
                             .toss();
 
 
-                        cleanupFn();
 
                     })
                     .toss();
@@ -190,7 +255,7 @@ consts.newUserInNewCampaignApi(
             .auth(user.username, 'yp')
             .expectStatus(201)
             .afterJSON(function (myPlan) {
-                frisby.create('Notifications: check notifications of user after public group plan post --> EMTPY')
+                frisby.create('Notifications: check notifications of user after public group plan post --> EMPTY')
                     .get(URL + '/notifications')
                     .auth(user.username, 'yp')
                     .expectStatus(200)
@@ -214,19 +279,20 @@ consts.newUserInNewCampaignApi(
                                             .delete(URL + '/activityplans/' + myPlan.id)
                                             .auth('test_sysadm', 'yp')
                                             .expectStatus(200)
-                                            .after(function() {
+                                            .after(function () {
+
                                                 frisby.create('Notifications: cleanup notif 2, should be cleaned automatically when plan is deleted')
                                                     .delete(URL + '/notifications/' + notifs[0].id)
                                                     .auth('test_sysadm', 'yp')
                                                     .expectStatus(404)
+                                                    .after(function() {
+                                                        cleanupFn();
+
+                                                    })
                                                     .toss();
                                             })
                                             .toss();
 
-
-
-
-                                        cleanupFn();
 
                                     })
                                     .toss();
@@ -239,6 +305,7 @@ consts.newUserInNewCampaignApi(
             })
             .toss();
     });
+
 
 consts.newUserInNewCampaignApi(
     function (err, user, campaign, cleanupFn) {
@@ -258,7 +325,7 @@ consts.newUserInNewCampaignApi(
             })
             .auth('test_prodadm', 'yp')
             .expectStatus(201)
-            .afterJSON(function (notif) {
+            .afterJSON(function (notif1) {
                 frisby.create('Notifications: check notifications of user --> one notification')
                     .get(URL + '/notifications')
                     .auth(user.username, 'yp')
@@ -270,7 +337,7 @@ consts.newUserInNewCampaignApi(
                         id: String
                     })
                     .afterJSON(function (notifs) {
-                        expect(_.map(notifs, 'id')).toContain(notif.id);
+                        expect(_.map(notifs, 'id')).toContain(notif1.id);
 
                         frisby.create('Notifications: post outdated an Announcement to the Users Queue, ')
                             .post(URL + '/notifications', {
@@ -284,13 +351,13 @@ consts.newUserInNewCampaignApi(
                             })
                             .auth('test_prodadm', 'yp')
                             .expectStatus(201)
-                            .afterJSON(function (notif) {
+                            .afterJSON(function (notif2) {
                                 frisby.create('Notifications: check notifications of user --> outdated one not included')
                                     .get(URL + '/notifications')
                                     .auth(user.username, 'yp')
                                     .expectStatus(200)
                                     .afterJSON(function (notifs) {
-                                        expect(_.map(notifs, 'id')).not.toContain(notif.id);
+                                        expect(_.map(notifs, 'id')).not.toContain(notif2.id);
 
 
                                         frisby.create('Notifications: post a future Announcement to the Users Queue, ')
@@ -305,7 +372,7 @@ consts.newUserInNewCampaignApi(
                                             })
                                             .auth('test_prodadm', 'yp')
                                             .expectStatus(201)
-                                            .afterJSON(function (notif) {
+                                            .afterJSON(function (notif3) {
                                                 frisby.create('Notifications: check notifications of user --> future one not included')
                                                     .get(URL + '/notifications')
                                                     .auth(user.username, 'yp')
@@ -317,16 +384,31 @@ consts.newUserInNewCampaignApi(
                                                         id: String
                                                     })
                                                     .afterJSON(function (notifs) {
-                                                        expect(_.map(notifs, 'id')).not.toContain(notif.id);
-                                                        cleanupFn();
+                                                        expect(_.map(notifs, 'id')).not.toContain(notif3.id);
 
-                                                        _.forEach(notifs, function(notif) {
-                                                            frisby.create("Notifications: cleanup")
-                                                                .delete(URL + '/notifications/' + notif.id)
-                                                                .auth('test_sysadm', 'yp')
-                                                                .expectStatus(200)
-                                                                .toss();
-                                                        });
+
+                                                        frisby.create("Notifications: cleanup")
+                                                            .delete(URL + '/notifications/' + notif1.id)
+                                                            .auth(user.username, 'yp')
+                                                            .expectStatus(200).
+                                                            after(function() {
+                                                                frisby.create("Notifications: cleanup")
+                                                                    .delete(URL + '/notifications/' + notif2.id)
+                                                                    .auth(user.username, 'yp')
+                                                                    .expectStatus(200)
+                                                                    .after(function() {
+                                                                        frisby.create("Notifications: cleanup")
+                                                                            .delete(URL + '/notifications/' + notif3.id)
+                                                                            .auth(user.username, 'yp')
+                                                                            .expectStatus(200)
+                                                                            .after(function() {
+                                                                                cleanupFn();
+                                                                            })
+                                                                            .toss();
+                                                                    })
+                                                                    .toss();
+                                                            })
+                                                            .toss();
                                                     })
                                                     .toss();
                                             })
@@ -335,9 +417,9 @@ consts.newUserInNewCampaignApi(
                                     .toss();
                             })
                             .toss();
-
                     })
                     .toss();
+
             })
             .toss();
     });

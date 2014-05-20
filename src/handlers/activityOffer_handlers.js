@@ -504,6 +504,9 @@ function deleteActivityOfferByIdFn(req, res, next) {
             return next(new error.ResourceNotFoundError());
         }
         obj.remove(function (err) {
+            if (err) {
+                error.handleError(err, next);
+            }
             actMgr.emit( 'activity:offerDeleted', obj);
             res.send(200);
         });

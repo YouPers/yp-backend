@@ -562,10 +562,12 @@ module.exports = {
                     return error.handleError(err, next);
                 }
                 if (!obj) {
+                    req.log.error(finder);
                     return next(new error.ResourceNotFoundError());
                 }
                 obj.remove(function (err) {
                     res.send(200);
+                    return next();
                 });
 
             });

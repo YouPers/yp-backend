@@ -7,7 +7,7 @@ var urlComposer = require('../util/urlcomposer');
 var Notification = require('../core/Notification');
 var NotificationModel = require('../models/notification_model');
 var env = process.env.NODE_ENV || 'development';
-var config = require('./config/config')[env];
+var config = require('../config/config')[env];
 var Logger = require('bunyan');
 var log = new Logger(config.loggerOptions);
 

@@ -14,6 +14,9 @@ var NotificationDismissedSchema = common.newSchema({
     user: {type: ObjectId, ref: 'User', required: true},
     notification: {type: ObjectId, ref: 'Notification', required: true},
 
+    // this (the expires property) creates a mongo TTL-Index, that automatically drops a document
+    // whenever the expiresAt is smaller then NOW
+    // see mongo TTL Indexes for more information
     expiresAt: { type: Date, expires: 0 }
 
 });

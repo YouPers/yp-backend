@@ -21,6 +21,8 @@ var NotificationDismissedSchema = common.newSchema({
 
 });
 
-NotificationDismissedSchema.index({user: 1, notification: 1}, {unique: true, dropDups: true });
+// we only want one dismissal per user and notification, the save method catches the
+// duplicate key errors, see core/Notification.dismissNotification:128
+NotificationDismissedSchema.index({user: 1, notification: 1}, {unique: true});
 
 module.exports = mongoose.model('NotificationDismissed', NotificationDismissedSchema);

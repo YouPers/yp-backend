@@ -59,25 +59,15 @@ var sendSummaryMail = function sendSummaryMail(user, rangeStart, rangeEnd, done,
                         return done(err);
                     }
 
-                    if(!user.profile.userPreferences.email.dailyUserMail) {
-                        log.info('sendSummaryMail: User('+user.username+':'+user.id+').profile.userPreferences.email.dailyUserMail=false');
+                    if (!user.profile.userPreferences.email.dailyUserMail) {
+                        log.info('sendSummaryMail: User(' + user.username + ':' + user.id + ').profile.userPreferences.email.dailyUserMail=false');
                         return done();
                     }
 
                     i18n.setLng(user.profile.language || 'de', function () {
                         log.info('sending DailySummary Mail to email: ' + user.email + ' with ' + plans.length + ' events.');
 
-                        ///////////////////////////////////////////////
-                        // TODO: WL-722 sending the summary emails to YOUPERS to get some information about the campaign
-                        // we replace the user's email temporary with the youpers.operator
-                        // need to reenable real user's email address after the Kt. Luzern Test-Campaign
-                        //
-                        // correct Line:
-                        // email.sendDailyEventSummary.apply(this, [user.email, plans, user, i18n]);
-                        //
-                        // temporary disabling:
-                        email.sendDailyEventSummary.apply(this, ['youpers.operator@gmail.com', plans, user, i18n]);
-
+                        email.sendDailyEventSummary.apply(this, [user.email, plans, user, i18n]);
                         return done();
                     });
                 });
@@ -117,7 +107,7 @@ var feeder = function (callback) {
 };
 
 var worker = function (owner, done) {
-    return sendSummaryMail.apply(this, [owner,this.rangeStart, this.rangeEnd,  done]);
+    return sendSummaryMail.apply(this, [owner, this.rangeStart, this.rangeEnd, done]);
 };
 
 var run = function run() {

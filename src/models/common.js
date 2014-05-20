@@ -138,6 +138,10 @@ module.exports = {
                     ret.sourceType = doc.sourceType;
                 }
 
+                if (_.isNumber(doc.planCount)) {
+                    ret.planCount = doc.planCount;
+                }
+
                 _.forEach(multilingualValues, function (prop) {
 
                     // enable the virtual

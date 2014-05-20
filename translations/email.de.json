@@ -49,7 +49,7 @@
         "update": {
             "subject": "YOUPERS: Angepasster Kalender-Eintrag für: __plan.title__",
             "text": "Neuer Kalendereintrag für __plan.title__",
-            "html": "Neuer Kalendereintrag<br><br><h1>__plan.title__</h1>"
+            "html": "Neuer Kalendereintrag<br><br><h1>__plan.title__</h1><p>__plan.activity.description__</p>"
         },
         "cancel": {
             "subject": "YOUPERS: Gelöschter Kalender-Eintrag für: __plan.title__",

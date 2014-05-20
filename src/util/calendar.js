@@ -107,6 +107,17 @@ var getIcalObject = function (plan, recipientUser, iCalType, i18n, reason) {
             'week': 'WEEKLY',
             'month': 'MONTHLY'
         };
+
+        var weekdayMap = {
+            '0': 'SU',
+            '1': 'MO',
+            '2': 'TU',
+            '3': 'WE',
+            '4': 'TH',
+            '5': 'FR',
+            '6': 'SA'
+        };
+
         if (!frequencyMap[plan.mainEvent.frequency]) {
             throw new Error("unknown recurrence frequency");
         }
@@ -114,6 +125,15 @@ var getIcalObject = function (plan, recipientUser, iCalType, i18n, reason) {
         var rruleSpec = { FREQ: frequencyMap[plan.mainEvent.frequency] };
         if (rruleSpec.FREQ === 'DAILY') {
             rruleSpec.BYDAY = recipientUser.profile.getWorkingDaysAsIcal();
+
+            // Outlook Fix: Outlook really does not like it when the startDate is not part of the BYDAY rule.
+            // it simply cannot parse the iCal file anymore
+            // so if the DTSTART Date is on a day that is not part of the working-Days we add it specifically
+            // for this event.
+            var dayOfWeek = weekdayMap[''+moment(plan.mainEvent.start).day()];
+            if (!_.contains(rruleSpec.BYDAY, dayOfWeek)) {
+                rruleSpec.BYDAY = rruleSpec.BYDAY + ','+ dayOfWeek;
+            }
         }
 
 

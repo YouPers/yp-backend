@@ -122,7 +122,14 @@ Notification.dismissNotification = function dismissNotification(notificationId, 
             notification: notification.id
         });
 
-        return notificationDismissed.save(cb);
+        return notificationDismissed.save(function(err) {
+            // we deliberately want to ignore DuplicateKey Errors, becuause there is not reason to store the dissmissals more than once
+            // MONGO Duplicate KeyError code: 11000
+            if (err && err.code !== 11000) {
+                return cb(err);
+            }
+            return cb();
+        });
 
     });
 

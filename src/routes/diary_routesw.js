@@ -16,9 +16,9 @@ module.exports = function (swagger, config) {
             method: "GET",
             params: [swagger.pathParam("id", "ID of the diaryentry to be fetched", "string"),
                 generic.params.populate],
-            "responseClass": "Diaryentry",
+            "responseClass": "DiaryEntry",
             "errorResponses": [swagger.errors.invalid('id'), swagger.errors.notFound("user")],
-            "nickname": "getDiaryentryById",
+            "nickname": "getDiaryEntryById",
             accessLevel: 'al_individual'
         },
         action: generic.getByIdFn(baseUrl, Model)
@@ -37,7 +37,7 @@ module.exports = function (swagger, config) {
                 generic.params.filter,
                 generic.params.populate,
                 generic.params.populatedeep],
-            "responseClass": "Diaryentry",
+            "responseClass": "DiaryEntry",
             "nickname": "getDiaryentries",
             accessLevel: 'al_individual'
         },
@@ -51,8 +51,8 @@ module.exports = function (swagger, config) {
                 notes: "POSTs a new diaryentry",
                 summary: "POSTs a new diaryentry",
                 method: "POST",
-                param: [swagger.bodyParam("Diaryentry", "new Diaryentry object", "Diaryentry")],
-                "responseClass": "Diaryentry",
+                param: [swagger.bodyParam("DiaryEntry", "new DiaryEntry object", "DiaryEntry")],
+                "responseClass": "DiaryEntry",
                 "nickname": "postDiaryentries",
                 accessLevel: 'al_individual'
             },
@@ -68,7 +68,7 @@ module.exports = function (swagger, config) {
                 summary: "Deletes a diaryentry by id",
                 method: "DELETE",
                 param: [swagger.pathParam("id", "ID of the diaryentry to be fetched", "string")],
-                "nickname": "deleteDiaryentry",
+                "nickname": "deleteDiaryEntry",
                 accessLevel: 'al_user'
             },
             action:  generic.deleteByIdFn(baseUrl, Model)

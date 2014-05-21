@@ -77,15 +77,12 @@ function putActivityOffer(req, res, next) {
 
         _.extend(objFromDb, sentObj);
 
-        return objFromDb.save(function(err, savedOffer) {
+        return objFromDb.save(function (err, savedOffer) {
             actMgr.emit('activity:offerUpdated', savedOffer);
             return generic.writeObjCb(req, res, next)(null, savedOffer);
         });
     });
 }
-
-
-
 
 
 function getCoachRecommendationsFn(req, res, next) {
@@ -190,7 +187,7 @@ function getActivityOffersFn(req, res, next) {
 
     if (req.params.campaign && auth.checkAccess(req.user, 'al_campaignlead')) {
         // this is a campaignleads request for administration of offers in a campaign
-        return _getCampaignActivityOffers(req,res,next);
+        return _getCampaignActivityOffers(req, res, next);
     }
 
     var activityFilter = req.params.activity;
@@ -245,7 +242,7 @@ function getActivityOffersFn(req, res, next) {
             var plan = _.find(locals.plans, function (plan) {
                 return plan.activity.equals(activityFilter);
             });
-            if(plan) {
+            if (plan) {
                 return next(new error.ConflictError('The user has already planned this activity', {
                     activityId: activityFilter,
                     activityPlanId: plan.id,
@@ -285,11 +282,17 @@ function getActivityOffersFn(req, res, next) {
             var dateToUse = moment().toDate();
             ActivityOffer
                 .find(selector)
-                .and({$or: [{validTo: {$exists: false}}, {validTo: {$gte: dateToUse}}]})
-                .and({$or: [{validFrom: {$exists: false}}, {validFrom: {$lte: dateToUse}}]})
+                .and({$or: [
+                    {validTo: {$exists: false}},
+                    {validTo: {$gte: dateToUse}}
+                ]})
+                .and({$or: [
+                    {validFrom: {$exists: false}},
+                    {validFrom: {$lte: dateToUse}}
+                ]})
                 .populate('activity activityPlan recommendedBy')
-                .exec(function(err, offers) {
-                    User.populate(offers, { path: 'activityPlan.owner activityPlan.joiningUsers' }, function(err, offers) {
+                .exec(function (err, offers) {
+                    User.populate(offers, { path: 'activityPlan.owner activityPlan.joiningUsers' }, function (err, offers) {
 
                         consolidate(err, offers);
 
@@ -302,7 +305,7 @@ function getActivityOffersFn(req, res, next) {
 
             var actsToRemove = [];
 
-            if(req.user) {
+            if (req.user) {
                 var plannedActs = _.map(locals.plans, 'activity');
                 var rejActs = _.map(req.user.profile.userPreferences.rejectedActivities, 'activity');
                 actsToRemove = plannedActs.concat(rejActs);
@@ -328,13 +331,13 @@ function getActivityOffersFn(req, res, next) {
                 if (myOffersHash[offer.activity._id]) {
                     // this act already exists, so we merge
                     var existingRec = myOffersHash[offer.activity._id];
-                    _.forEach(offer.activityPlan, function(activityPlan) {
-                        if(!_.contains(_.pluck(existingRec.activityPlan, 'id'), activityPlan.id)) {
+                    _.forEach(offer.activityPlan, function (activityPlan) {
+                        if (!_.contains(_.pluck(existingRec.activityPlan, 'id'), activityPlan.id)) {
                             existingRec.activityPlan.push(activityPlan);
                         }
                     });
-                    _.forEach(offer.recommendedBy, function(recommendedBy) {
-                        if(!_.contains(_.pluck(existingRec.recommendedBy, 'id'), recommendedBy.id)) {
+                    _.forEach(offer.recommendedBy, function (recommendedBy) {
+                        if (!_.contains(_.pluck(existingRec.recommendedBy, 'id'), recommendedBy.id)) {
                             existingRec.recommendedBy.push(recommendedBy);
                         }
                     });
@@ -447,13 +450,41 @@ function getActivityOffersFn(req, res, next) {
 
 }
 
-function _getCampaignActivityOffers (req, res, next) {
+function _getCampaignActivityOffers(req, res, next) {
 
-    var query =  ActivityOffer.find({targetQueue: req.params.campaign, type: {$ne: 'publicActivityPlan'}});
+    var query = ActivityOffer.find({targetQueue: req.params.campaign, type: {$ne: 'publicActivityPlan'}});
     generic.addStandardQueryOptions(req, query, ActivityOffer);
 
-    return query
-        .exec(generic.sendListCb(req, res, next));
+    query.exec(function (err, offers) {
+
+        // for offers of type recommendation add the count of how many users have planned this activity as part
+        // of the campaign
+        async.forEach(_.filter(offers, function (offer) {
+                return offer.type[0] === 'campaignActivity';
+            }),
+            function (offer, done) {
+                ActivityPlan.count(
+                    {activity: offer.activity._id || offer.activity,
+                        campaign: offer.targetQueue._id || offer.targetQueue
+                    }).exec(function (err, count) {
+                        if (err) {
+                            return done(err);
+                        }
+                        req.log.info({count: count}, 'plan Count');
+                        offer.planCount = count;
+                        return done();
+                    });
+            },
+            function (err) {
+                if (err) {
+                    return error.handleError(err, next);
+                }
+                return generic.sendListCb(req, res, next)(err, offers);
+            }
+        );
+
+
+    });
 }
 
 var deleteActivityOffers = function (req, res, next) {
@@ -481,11 +512,11 @@ var deleteActivityOffers = function (req, res, next) {
             return error.handleError(err, next);
         }
         _.forEach(objects, function (obj) {
-            obj.remove(function(err) {
+            obj.remove(function (err) {
                 if (err) {
                     req.log.error(err);
                 }
-                actMgr.emit( 'activity:offerDeleted', obj);
+                actMgr.emit('activity:offerDeleted', obj);
             });
         });
         res.send(200);
@@ -507,7 +538,7 @@ function deleteActivityOfferByIdFn(req, res, next) {
             if (err) {
                 error.handleError(err, next);
             }
-            actMgr.emit( 'activity:offerDeleted', obj);
+            actMgr.emit('activity:offerDeleted', obj);
             res.send(200);
         });
 

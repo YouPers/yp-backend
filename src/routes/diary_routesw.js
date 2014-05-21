@@ -9,7 +9,7 @@ module.exports = function (swagger, config) {
 
     swagger.addGet({
         spec: {
-            description: "Operations about diaryentries",
+            description: "Operations about diaryEntries",
             path: baseUrlWithId,
             notes: "returns a diaryentry based on id",
             summary: "find diaryentry by id",
@@ -26,7 +26,7 @@ module.exports = function (swagger, config) {
 
     swagger.addGet({
         spec: {
-            description: "Operations about diaryentries",
+            description: "Operations about diaryEntries",
             path: baseUrl,
             notes: "returns all diaryentries, but limits to 100 entries by default, is not owner-constrained, e.g. it returns diaryentries" +
                 "from several users. Use query params sort:'created:-1' and limit to retrieve the newest diaryentries",
@@ -46,7 +46,7 @@ module.exports = function (swagger, config) {
 
     swagger.addPost({
             spec: {
-                description: "Operations about diaryentries",
+                description: "Operations about diaryEntries",
                 path: baseUrl,
                 notes: "POSTs a new diaryentry",
                 summary: "POSTs a new diaryentry",
@@ -62,7 +62,7 @@ module.exports = function (swagger, config) {
 
     swagger.addDelete({
             spec: {
-                description: "Operations about diaryentries",
+                description: "Operations about diaryEntries",
                 path: baseUrlWithId,
                 notes: "delete diaryentry",
                 summary: "Deletes a diaryentry by id",
@@ -77,7 +77,7 @@ module.exports = function (swagger, config) {
 
     swagger.addDelete({
             spec: {
-                description: "Operations about diaryentries",
+                description: "Operations about diaryEntries",
                 path: baseUrl,
                 notes: "delete all diaryentries",
                 summary: "Deletes diaryentries",

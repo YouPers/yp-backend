@@ -124,9 +124,13 @@ function getSwaggerModel(aMongooseModel) {
     }
 
     function getModelNameFromPropertyName(propertyName, dontDepluralize) {
-        return _.last(propertyName) === 's' && !dontDepluralize ?
-            propertyName.charAt(0).toUpperCase() + propertyName.slice(1, -1)
-            : propertyName.charAt(0).toUpperCase() + propertyName.slice(1);
+        if (propertyName.indexOf('I18n') !== -1) {
+            return 'I18nString';
+        } else {
+            return _.last(propertyName) === 's' && !dontDepluralize ?
+                propertyName.charAt(0).toUpperCase() + propertyName.slice(1, -1)
+                : propertyName.charAt(0).toUpperCase() + propertyName.slice(1);
+        }
     }
 
     function handleEmbeddedDocProperty(propertyName, type) {

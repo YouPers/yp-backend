@@ -100,8 +100,8 @@ frisby.create('Campaigns Edits: POST new campaign to existing organization for l
 
 
                         frisby.create('Campaigns Edits: DELETE the campaign 1: ' + reloadedCampaign1.id)
-                            .auth('sysadm', 'backtothefuture')
                             .delete(URL+ '/campaigns/' + campaignId)
+                            .auth('sysadm', 'backtothefuture')
                             .expectStatus(200)
                             .toss();
 

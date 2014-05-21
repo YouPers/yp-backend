@@ -91,8 +91,8 @@ frisby.create('Activity Join Offers: plan once activity and check whether event 
 
 
                 frisby.create('ActivityJoinOffers: join the first joinablePlan as a different user')
-                    .auth('test_ind2', 'yp')
                     .post(URL + '/activityplans', joinable)
+                    .auth('test_ind2', 'yp')
                     .expectStatus(201)
                     .expectJSON({
                         activity: consts.groupActivity.id,

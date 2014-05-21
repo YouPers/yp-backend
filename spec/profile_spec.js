@@ -81,8 +81,8 @@ frisby.create('POST new user')
                     .expectJSON(userProfile)
                     .toss();
                 frisby.create('DELETE our testuser')
-                    .auth('sysadm', 'backtothefuture')
                     .delete(URL+ '/users/' + owner)
+                    .auth('sysadm', 'backtothefuture')
                     .expectStatus(200)
                     .toss();
 

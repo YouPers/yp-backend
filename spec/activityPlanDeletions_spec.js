@@ -61,37 +61,37 @@ frisby.create('Activity Plan Deletions: create a master plan for an activity pla
         slavePlan.owner = consts.users.test_ind2.id;
 
         frisby.create('Activity Plan Deletions: post a joining plan ')
-            .auth('test_ind2', 'yp')
             .post(URL + '?populate=joiningUsers', slavePlan)
+            .auth('test_ind2', 'yp')
             .expectStatus(201)
             .afterJSON(function (slavePlanPostAnswer) {
                 expect(slavePlanPostAnswer.deleteStatus).toEqual('deletable');
 
                 frisby.create('Activity Plan Deletions: reload masterPlan')
-                    .auth('test_ind1', 'yp')
                     .get(URL + '/' + masterPlanId)
+                    .auth('test_ind1', 'yp')
                     .expectStatus(200)
                     .afterJSON(function (masterPlanReloaded) {
                         expect(masterPlanReloaded.deleteStatus).toEqual('deletable');
                         expect(masterPlanReloaded.joiningUsers).toContain(consts.users.test_ind2.id);
 
                         frisby.create('Activity Plan Deletions: try delete slave, SUCCESS')
-                            .auth('test_ind2', 'yp')
                             .delete(URL + '/' + slavePlanPostAnswer.id)
+                            .auth('test_ind2', 'yp')
                             .expectStatus(200)
                             .after(function () {
 
                                 frisby.create('Activity Plan Deletions: reload masterPlan, check empty JoiningUsers')
-                                    .auth('test_ind1', 'yp')
                                     .get(URL + '/' + masterPlanId)
+                                    .auth('test_ind1', 'yp')
                                     .expectStatus(200)
                                     .afterJSON(function (masterPlanReloaded2) {
                                         expect(masterPlanReloaded2.deleteStatus).toEqual('deletable');
                                         expect(masterPlanReloaded2.joiningUsers).not.toContain(consts.users.test_ind2.id);
 
                                         frisby.create('Activity Plan Deletions: post a joining plan again')
-                                            .auth('test_ind2', 'yp')
                                             .post(URL + '?populate=joiningUsers', slavePlan)
+                                            .auth('test_ind2', 'yp')
                                             .expectStatus(201)
                                             .afterJSON(function (slavePlanPostAnswer2) {
                                                 expect(slavePlanPostAnswer2.deleteStatus).toEqual('deletable');
@@ -158,8 +158,8 @@ frisby.create('Activity Plan Deletions: create a master plan for an activity pla
                     .toss();
 
                 frisby.create('Activity Plan Deletions: reload masterPlan')
-                    .auth('test_ind1', 'yp')
                     .get(URL + '/' + masterPlanPostAnswer.id)
+                    .auth('test_ind1', 'yp')
                     .expectStatus(200)
                     .afterJSON(function (masterPlanReloaded) {
                         expect(masterPlanReloaded.events.length).toEqual(1);

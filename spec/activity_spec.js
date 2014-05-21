@@ -11,12 +11,12 @@ frisby.globalSetup({ // globalSetup is for ALL requests
 });
 
 frisby.create('Activity: post a new activity as a prodadm')
-    .auth('test_prodadm', 'yp')
     .post(URL + '/activities', {
         "title": "Test Activity",
         "text": "New Test Activity Text",
         "number": "UnitTest"
     })
+    .auth('test_prodadm', 'yp')
     .expectStatus(201)
     .afterJSON(function (newActivity) {
 
@@ -33,36 +33,36 @@ frisby.create('Activity: post a new activity as a prodadm')
     .toss();
 
 frisby.create('Activity: post a new activity as a campaign lead without a valid campaign id')
-    .auth('test_campaignlead', 'yp')
     .post(URL + '/activities', {
         "title": "Test Campaign Activity",
         "text": "New Test Campaign Activity Text",
         "number": "UnitTest"
     })
+    .auth('test_campaignlead', 'yp')
     .expectStatus(409)
 
     .toss();
 
 frisby.create('Activity: post a new activity as a campaign lead of another campaign')
-    .auth('test_campaignlead2', 'yp')
     .post(URL + '/activities', {
         "title": "Test Campaign Activity for wrong campaign",
         "text": "New Test Campaign Activity Text",
         "campaign": "527916a82079aa8704000006",
         "number": "UnitTest"
     })
+    .auth('test_campaignlead2', 'yp')
     .expectStatus(403)
 
     .toss();
 
 frisby.create('Activity: post a new activity as a campaign lead with a valid campaign id')
-    .auth('test_campaignlead', 'yp')
     .post(URL + '/activities', {
         "title": "Test Campaign Activity",
         "text": "New Test Campaign Activity Text",
         "campaign": "527916a82079aa8704000006",
         "number": "UnitTest"
     })
+    .auth('test_campaignlead', 'yp')
     .expectStatus(201)
     .afterJSON(function (newActivity) {
 

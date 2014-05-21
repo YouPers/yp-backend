@@ -52,8 +52,8 @@ var activityPlan = {
 
 
 frisby.create('Activity Plan Edits: create a single activity plan with a single event')
-    .auth('test_ind1', 'yp')
     .post(URL, activityPlan)
+    .auth('test_ind1', 'yp')
     .expectStatus(201)
     .afterJSON(function (activityPlanPostAnswer) {
 
@@ -66,8 +66,8 @@ frisby.create('Activity Plan Edits: create a single activity plan with a single 
         activityPlanPostAnswer.location = editedLocation;
 
         frisby.create('Activity Plan Edits: update plan with modified location and visibily, id: ' + activityPlanPostAnswer.id)
-            .auth('test_ind1', 'yp')
             .put(URL + '/' + activityPlanPostAnswer.id, activityPlanPostAnswer)
+            .auth('test_ind1', 'yp')
             .expectStatus(200)
             .afterJSON(function (activityPlanPutAnswer) {
                 expect(activityPlanPutAnswer.editStatus).toEqual('editable');
@@ -78,8 +78,8 @@ frisby.create('Activity Plan Edits: create a single activity plan with a single 
                 activityPlanPutAnswer.mainEvent.frequency = "week";
 
                 frisby.create('Activity Plan Edits: update plan change frequency to "week", id: ' + activityPlanPutAnswer.id)
-                    .auth('test_ind1', 'yp')
                     .put(URL + '/' + activityPlanPutAnswer.id, activityPlanPutAnswer)
+                    .auth('test_ind1', 'yp')
                     .expectStatus(200)
                     .afterJSON(function (activityPlanPutAnswer2) {
                         expect(activityPlanPutAnswer2.editStatus).toEqual('editable');
@@ -88,8 +88,8 @@ frisby.create('Activity Plan Edits: create a single activity plan with a single 
 
                         // delete activity plan
                         frisby.create('Activity Plan Edits: delete activity plan')
-                            .auth('test_ind1', 'yp')
                             .delete(URL + '/' + activityPlanPutAnswer2.id)
+                            .auth('test_ind1', 'yp')
                             .expectStatus(200)
                             .toss();
                     })
@@ -104,8 +104,8 @@ activityPlanSingleEventPassed.mainEvent.start = moment(initialDateStart).subtrac
 activityPlanSingleEventPassed.mainEvent.end = moment(initialDateEnd).subtract('d', 3).toDate();
 
 frisby.create('Activity Plan Edits: create single activity plan with single event in the past')
-    .auth('test_ind1', 'yp')
     .post(URL, activityPlanSingleEventPassed)
+    .auth('test_ind1', 'yp')
     .expectStatus(201)
     .afterJSON(function (activityPlanPostAnswer) {
 
@@ -150,8 +150,8 @@ frisby.create('Activity Plan Edits: create a single activity plan with a single 
         slavePlan.owner = consts.users.test_ind2.id;
 
         frisby.create('Activity Plan Edits: post a joining plan ')
-            .auth('test_ind2', 'yp')
             .post(URL + '?populate=joiningUsers', slavePlan)
+            .auth('test_ind2', 'yp')
             .expectStatus(201)
             .afterJSON(function (slavePlanPostAnswer) {
                 expect(slavePlanPostAnswer.editStatus).toEqual('notEditableJoinedPlan');
@@ -164,16 +164,16 @@ frisby.create('Activity Plan Edits: create a single activity plan with a single 
                 slavePlan.mainEvent.frequency = "week";
 
                 frisby.create('Activity Plan Edits: try to update joined plan, 409')
-                    .auth('test_ind2', 'yp')
                     .put(URL + '/' + slavePlanPostAnswer.id, slavePlan)
+                    .auth('test_ind2', 'yp')
                     .expectStatus(409)
                     .afterJSON(function (activityPlanPutAnswer) {
 
                         // now try to modify something even though it is not allowed to update this master plan
 
                         frisby.create('Activity Plan Edits: reload masterPlan')
-                            .auth('test_ind1', 'yp')
                             .get(URL + '/' + masterPlanId)
+                            .auth('test_ind1', 'yp')
                             .expectStatus(200)
                             .afterJSON(function (masterPlanReloaded) {
                                 expect(masterPlanReloaded.editStatus).toEqual('editable');
@@ -181,14 +181,14 @@ frisby.create('Activity Plan Edits: create a single activity plan with a single 
                                 masterPlanReloaded.mainEvent.frequency = "week";
 
                                 frisby.create('Activity Plan Edits: try to update master plan, id: ' + masterPlanReloaded.id)
-                                    .auth('test_ind1', 'yp')
                                     .put(URL + '/' + masterPlanReloaded.id, masterPlanReloaded)
+                                    .auth('test_ind1', 'yp')
                                     .expectStatus(200)
                                     .afterJSON(function (activityPlanPutAnswer) {
 
                                         frisby.create('Activity Plan Edits: reload slavePlan, check whether it was updated automaticallly')
-                                            .auth('test_ind2', 'yp')
                                             .get(URL + '/' + slavePlanPostAnswer.id)
+                                            .auth('test_ind2', 'yp')
                                             .expectStatus(200)
                                             .afterJSON(function (reloadedSlavePlan) {
 
@@ -259,8 +259,8 @@ frisby.create('Activity Plan Edits: create a weekly activity plan with 3 events 
                 delete initialPlan.__v;
 
                 frisby.create('Activity Plan Edits: update plan, expect only future events to have changed, old events to be preserved')
-                    .auth('test_ind1', 'yp')
                     .put(URL + '/' + initialPlan.id, initialPlan)
+                    .auth('test_ind1', 'yp')
                     .afterJSON(function (updatedPlan) {
                         expect(updatedPlan.editStatus).toEqual('editable');
                         expect(updatedPlan.events.length).toEqual(6);

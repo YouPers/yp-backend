@@ -107,8 +107,8 @@ frisby.create('CampaignsInviteLead: POST new campaign to existing organization')
                                                         expect(campaign.campaignLeads).toContain(test_ind2Id);
 
                                                         frisby.create('CampaignsInviteLead: DELETE the campaign')
-                                                            .auth('sysadm', 'backtothefuture')
                                                             .delete(URL + '/campaigns/' + newCampaign.id)
+                                                            .auth('sysadm', 'backtothefuture')
                                                             .expectStatus(200)
                                                             .toss();
 

@@ -42,8 +42,8 @@ var masterPlan = {
 };
 
 frisby.create('Activity Plan Slave: plan weekly activity as a master for a joining test')
-    .auth('test_ind1', 'yp')
     .post(URL, masterPlan)
+    .auth('test_ind1', 'yp')
     .expectStatus(201)
     .afterJSON(function (masterPlanPostAnswer) {
         expect(masterPlanPostAnswer.events).toBeDefined();
@@ -61,8 +61,8 @@ frisby.create('Activity Plan Slave: plan weekly activity as a master for a joini
         slavePlan.owner = consts.users.test_ind2.id;
 
         frisby.create('Activity Plan Slave: post a joining plan ')
-            .auth('test_ind2', 'yp')
             .post(URL + '?populate=joiningUsers', slavePlan)
+            .auth('test_ind2', 'yp')
             .expectStatus(201)
             .afterJSON(function (slavePlanPostAnswer) {
                 expect(slavePlanPostAnswer.masterPlan).toEqual(slavePlan.masterPlan);
@@ -76,8 +76,8 @@ frisby.create('Activity Plan Slave: plan weekly activity as a master for a joini
                 //    .put(URL + )
 
                 frisby.create('Activity Plan Slave: reload masterPlan')
-                    .auth('test_ind1', 'yp')
                     .get(URL + '/' + slavePlan.masterPlan)
+                    .auth('test_ind1', 'yp')
                     .expectStatus(200)
                     .afterJSON(function (masterPlanReloaded) {
                         expect(masterPlanReloaded.masterPlan).not.toBeDefined();
@@ -96,8 +96,8 @@ frisby.create('Activity Plan Slave: plan weekly activity as a master for a joini
                         expect(slavePlanReloaded.joiningUsers).not.toContain(slavePlanPostAnswer.owner);
 
                         frisby.create('Activity Plan Slave: update Event on Slave, add comment')
-                            .auth('test_ind2', 'yp')
                             .put(URL + '/' + slavePlanReloaded.id + '/events/' + slavePlanReloaded.events[0].id,
+                            .auth('test_ind2', 'yp')
                             {"feedback": "2", "comment": "new Text from UnitTest"}, {json: true})
                             .expectStatus(200)
                             .afterJSON(function (newUpdatedEvent) {

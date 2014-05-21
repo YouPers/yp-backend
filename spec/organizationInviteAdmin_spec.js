@@ -92,8 +92,8 @@ frisby.create('OrganizationInviteAdmin: POST new org')
                                                         expect(org.administrators).toContain(test_ind2Id);
 
                                                         frisby.create('OrganizationInviteAdmin: DELETE the org')
-                                                            .auth('sysadm', 'backtothefuture')
                                                             .delete(URL + '/organizations/' + newOrg.id)
+                                                            .auth('sysadm', 'backtothefuture')
                                                             .expectStatus(200)
                                                             .toss();
 

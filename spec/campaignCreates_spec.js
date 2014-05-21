@@ -58,8 +58,8 @@ frisby.create('Campaigns Creates: POST new campaign to existing organization')
                         expect(user.fullname).toEqual("Test OrgAdmin");
 
                         frisby.create('Campaigns Creates: DELETE the campaign 1: ' + reloadedCampaign1.id)
-                            .auth('sysadm', 'backtothefuture')
                             .delete(URL+ '/campaigns/' + reloadedCampaign1.id)
+                            .auth('sysadm', 'backtothefuture')
                             .expectStatus(200)
                             .toss();
 

@@ -181,7 +181,7 @@ function getSwaggerModel(aMongooseModel) {
                     realTargetModel.properties[realPropertyName] = {type: subModelName};
                 } else {
                     realTargetModel.properties[realPropertyName] = {
-                        type: typeMap[path.constructor.name || path.options.type.name] || path.options.type.name
+                        type: typeMap[path.constructor.name] || typeMap[path.options.type.name] || path.options.type.name
                     };
                 }
 

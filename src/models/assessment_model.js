@@ -4,7 +4,9 @@
 var mongoose = require('mongoose'),
     common = require('./common'),
     auth = require('../util/auth'),
-    ObjectId = mongoose.Schema.ObjectId;
+    ObjectId = mongoose.Schema.ObjectId,
+    swaggerAdapter = require('../util/swaggerMongooseAdapter'),
+    _ = require('lodash');
 
 /**
  * Activity Schema
@@ -30,6 +32,10 @@ var AssessmentSchema = common.newSchema({
     name: {type: String, trim: true, i18n: true},
     questions: [{type: ObjectId, ref: 'AssessmentQuestion'}]
 });
+
+AssessmentSchema.statics.getSwaggerModel = function () {
+    return _.merge(swaggerAdapter.getSwaggerModel(this), swaggerAdapter.getSwaggerModel(mongoose.model('AssessmentQuestion')));
+};
 
 
 AssessmentSchema.statics.adminRoles = [auth.roles.systemadmin, auth.roles.productadmin];

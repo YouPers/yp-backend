@@ -28,11 +28,11 @@ function getSwaggerModel(aMongooseModel) {
         return newModel;
     }
 
-    var mainModel = createAndRegisterNewSwaggerModel(this.modelName);
+    var mainModel = createAndRegisterNewSwaggerModel(aMongooseModel.modelName);
 
-    var hiddenProps = this.toJsonConfig && this.toJsonConfig.hide || [];
+    var hiddenProps = aMongooseModel.toJsonConfig && aMongooseModel.toJsonConfig.hide || [];
     hiddenProps = hiddenProps.concat(['__v', '_id']);
-    var fieldDescriptions = this.getFieldDescriptions && this.getFieldDescriptions() || {};
+    var fieldDescriptions = aMongooseModel.getFieldDescriptions && aMongooseModel.getFieldDescriptions() || {};
 
 
     function addEmbeddedDocProps(parentType, targetModel) {

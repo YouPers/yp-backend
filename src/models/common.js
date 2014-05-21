@@ -123,7 +123,7 @@ module.exports = {
                 delete ret._id;
 
                 // handler viruals into the JSON
-                // TODO: move the configuration whish virtuals to output as JSON into a property of
+                // TODO: move the configuration which virtuals to output as JSON into a property of
                 // the schema instead of this ifs here
 
                 if (doc.deleteStatus) {

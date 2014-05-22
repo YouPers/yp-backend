@@ -97,8 +97,8 @@ frisby.create('Activity Plan Slave: plan weekly activity as a master for a joini
 
                         frisby.create('Activity Plan Slave: update Event on Slave, add comment')
                             .put(URL + '/' + slavePlanReloaded.id + '/events/' + slavePlanReloaded.events[0].id,
-                            .auth('test_ind2', 'yp')
                             {"feedback": "2", "comment": "new Text from UnitTest"}, {json: true})
+                            .auth('test_ind2', 'yp')
                             .expectStatus(200)
                             .afterJSON(function (newUpdatedEvent) {
                                 expect(newUpdatedEvent.comment).toBeDefined();

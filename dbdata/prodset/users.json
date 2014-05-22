@@ -18,7 +18,13 @@
             "systemadmin"
         ],
         "tempPasswordFlag": false,
-        "username": "sysadm"
+        "username": "sysadm",
+        "created": {
+            "$date": 1398338294301
+        },
+        "updated": {
+            "$date": 1398338294301
+        }
     },
     {
         "__v": 0,
@@ -39,6 +45,12 @@
             "individual"
         ],
         "tempPasswordFlag": false,
-        "username": "yphealthcoach"
+        "username": "yphealthcoach",
+        "created": {
+            "$date": 1398338294301
+        },
+        "updated": {
+            "$date": 1398338294301
+        }
     }
 ]

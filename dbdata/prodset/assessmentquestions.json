@@ -34,7 +34,13 @@
         "titleI18n": {
             "de": "Arbeitsmenge"
         },
-        "type": "twoSided"
+        "type": "twoSided",
+        "created": {
+            "$date": 1398338294301
+        },
+        "updated": {
+            "$date": 1398338294301
+        }
     },
     {
         "_id": {
@@ -71,7 +77,13 @@
         "titleI18n": {
             "de": "Erfolgsdruck"
         },
-        "type": "twoSided"
+        "type": "twoSided",
+        "created": {
+            "$date": 1398338294301
+        },
+        "updated": {
+            "$date": 1398338294301
+        }
     },
     {
         "_id": {
@@ -108,7 +120,13 @@
         "titleI18n": {
             "de": "Unterst\u00fctzung"
         },
-        "type": "twoSided"
+        "type": "twoSided",
+        "created": {
+            "$date": 1398338294301
+        },
+        "updated": {
+            "$date": 1398338294301
+        }
     },
     {
         "_id": {
@@ -145,7 +163,13 @@
         "titleI18n": {
             "de": "Selbstbestimmung"
         },
-        "type": "twoSided"
+        "type": "twoSided",
+        "created": {
+            "$date": 1398338294301
+        },
+        "updated": {
+            "$date": 1398338294301
+        }
     },
     {
         "_id": {
@@ -176,7 +200,13 @@
         "titleI18n": {
             "de": "Arbeitsbedingungen"
         },
-        "type": "oneSided"
+        "type": "oneSided",
+        "created": {
+            "$date": 1398338294301
+        },
+        "updated": {
+            "$date": 1398338294301
+        }
     },
     {
         "_id": {
@@ -213,7 +243,13 @@
         "titleI18n": {
             "de": "Arbeitsanforderungen"
         },
-        "type": "twoSided"
+        "type": "twoSided",
+        "created": {
+            "$date": 1398338294301
+        },
+        "updated": {
+            "$date": 1398338294301
+        }
     },
     {
         "_id": {
@@ -250,7 +286,13 @@
         "titleI18n": {
             "de": "Arbeitsidentifikation"
         },
-        "type": "twoSided"
+        "type": "twoSided",
+        "created": {
+            "$date": 1398338294301
+        },
+        "updated": {
+            "$date": 1398338294301
+        }
     },
     {
         "_id": {
@@ -287,7 +329,13 @@
         "titleI18n": {
             "de": "Anerkennung"
         },
-        "type": "twoSided"
+        "type": "twoSided",
+        "created": {
+            "$date": 1398338294301
+        },
+        "updated": {
+            "$date": 1398338294301
+        }
     },
     {
         "_id": {
@@ -324,7 +372,13 @@
         "titleI18n": {
             "de": "Entwicklungsm\u00f6glichkeiten"
         },
-        "type": "twoSided"
+        "type": "twoSided",
+        "created": {
+            "$date": 1398338294301
+        },
+        "updated": {
+            "$date": 1398338294301
+        }
     },
     {
         "_id": {
@@ -361,7 +415,13 @@
         "titleI18n": {
             "de": "Betriebsklima"
         },
-        "type": "twoSided"
+        "type": "twoSided",
+        "created": {
+            "$date": 1398338294301
+        },
+        "updated": {
+            "$date": 1398338294301
+        }
     },
     {
         "_id": {
@@ -392,7 +452,13 @@
         "titleI18n": {
             "de": "Arbeitsplatzsicherheit"
         },
-        "type": "oneSided"
+        "type": "oneSided",
+        "created": {
+            "$date": 1398338294301
+        },
+        "updated": {
+            "$date": 1398338294301
+        }
     },
     {
         "_id": {
@@ -429,7 +495,13 @@
         "titleI18n": {
             "de": "Freizeitverpflichtungen"
         },
-        "type": "twoSided"
+        "type": "twoSided",
+        "created": {
+            "$date": 1398338294301
+        },
+        "updated": {
+            "$date": 1398338294301
+        }
     },
     {
         "_id": {
@@ -460,7 +532,13 @@
         "titleI18n": {
             "de": "Famili\u00e4re Situation"
         },
-        "type": "oneSided"
+        "type": "oneSided",
+        "created": {
+            "$date": 1398338294301
+        },
+        "updated": {
+            "$date": 1398338294301
+        }
     },
     {
         "_id": {
@@ -491,7 +569,13 @@
         "titleI18n": {
             "de": "Finanzielle Situation"
         },
-        "type": "oneSided"
+        "type": "oneSided",
+        "created": {
+            "$date": 1398338294301
+        },
+        "updated": {
+            "$date": 1398338294301
+        }
     },
     {
         "_id": {
@@ -528,7 +612,13 @@
         "titleI18n": {
             "de": "Soziales Umfeld"
         },
-        "type": "twoSided"
+        "type": "twoSided",
+        "created": {
+            "$date": 1398338294301
+        },
+        "updated": {
+            "$date": 1398338294301
+        }
     },
     {
         "_id": {
@@ -565,7 +655,13 @@
         "titleI18n": {
             "de": "Selbstanforderungen"
         },
-        "type": "twoSided"
+        "type": "twoSided",
+        "created": {
+            "$date": 1398338294301
+        },
+        "updated": {
+            "$date": 1398338294301
+        }
     },
     {
         "_id": {
@@ -602,7 +698,13 @@
         "titleI18n": {
             "de": "Kontrollbed\u00fcrfnis"
         },
-        "type": "twoSided"
+        "type": "twoSided",
+        "created": {
+            "$date": 1398338294301
+        },
+        "updated": {
+            "$date": 1398338294301
+        }
     },
     {
         "_id": {
@@ -639,7 +741,13 @@
         "titleI18n": {
             "de": "Verantwortungsbewusstsein"
         },
-        "type": "twoSided"
+        "type": "twoSided",
+        "created": {
+            "$date": 1398338294301
+        },
+        "updated": {
+            "$date": 1398338294301
+        }
     },
     {
         "_id": {
@@ -676,7 +784,13 @@
         "titleI18n": {
             "de": "Harmoniebed\u00fcrfnis"
         },
-        "type": "twoSided"
+        "type": "twoSided",
+        "created": {
+            "$date": 1398338294301
+        },
+        "updated": {
+            "$date": 1398338294301
+        }
     },
     {
         "_id": {
@@ -713,7 +827,13 @@
         "titleI18n": {
             "de": "Geltungsbed\u00fcrfnis"
         },
-        "type": "twoSided"
+        "type": "twoSided",
+        "created": {
+            "$date": 1398338294301
+        },
+        "updated": {
+            "$date": 1398338294301
+        }
     }
     ,
     {
@@ -745,7 +865,13 @@
         "titleI18n": {
             "de": "Pausen"
         },
-        "type": "oneSided"
+        "type": "oneSided",
+        "created": {
+            "$date": 1398338294301
+        },
+        "updated": {
+            "$date": 1398338294301
+        }
     },
     {
         "_id": {
@@ -776,7 +902,13 @@
         "titleI18n": {
             "de": "Schlaf"
         },
-        "type": "oneSided"
+        "type": "oneSided",
+        "created": {
+            "$date": 1398338294301
+        },
+        "updated": {
+            "$date": 1398338294301
+        }
     },
     {
         "_id": {
@@ -807,7 +939,13 @@
         "titleI18n": {
             "de": "Entspannung"
         },
-        "type": "oneSided"
+        "type": "oneSided",
+        "created": {
+            "$date": 1398338294301
+        },
+        "updated": {
+            "$date": 1398338294301
+        }
     },
     {
         "_id": {
@@ -844,7 +982,13 @@
         "titleI18n": {
             "de": "K\u00f6rperliche Aktivit\u00e4t"
         },
-        "type": "twoSided"
+        "type": "twoSided",
+        "created": {
+            "$date": 1398338294301
+        },
+        "updated": {
+            "$date": 1398338294301
+        }
     },
     {
         "_id": {
@@ -881,7 +1025,13 @@
         "titleI18n": {
             "de": "Sozialer Austausch"
         },
-        "type": "twoSided"
+        "type": "twoSided",
+        "created": {
+            "$date": 1398338294301
+        },
+        "updated": {
+            "$date": 1398338294301
+        }
     },
     {
         "_id": {
@@ -912,7 +1062,13 @@
         "titleI18n": {
             "de": "Ern\u00e4hrung"
         },
-        "type": "oneSided"
+        "type": "oneSided",
+        "created": {
+            "$date": 1398338294301
+        },
+        "updated": {
+            "$date": 1398338294301
+        }
     }
 
 ]

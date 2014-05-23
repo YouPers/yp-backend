@@ -2,7 +2,11 @@ var error = require('../util/error'),
     _ = require('lodash'),
     ObjectId = require('mongoose').Schema.ObjectId,
     handlerUtils = require('./handlerUtils'),
-    auth = require('../util/auth');
+    auth = require('../util/auth'),
+    env = process.env.NODE_ENV || 'development',
+    config = require('../config/config')[env],
+    Logger = require('bunyan'),
+    log = new Logger(config.loggerOptions);
 
 ////////////////////////////////////
 // helper functions
@@ -328,7 +332,7 @@ function deepPopulate(doc, pathListString, options, callback) {
                         options: options
                     }
                 ];
-                console.log("Populating field '" + lastPathBit + "' of " + listOfDocsToPopulate.length + " " + model.modelName + "(s)");
+                log.debug("generic.js:deepPopulate: Populating field '" + lastPathBit + "' of " + listOfDocsToPopulate.length + " " + model.modelName + "(s)");
                 model.populate(listOfDocsToPopulate, pathRequest, function (err, results) {
                     if (err) {
                         return callback(err);

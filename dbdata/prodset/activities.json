@@ -698,14 +698,14 @@
         ],
         "source": "youpers",
         "textI18n": {
-            "de": "Reviews und Meta-Analysen belegen gut, dass Stress-Management-Trainings (SMT), einschliesslich Stress-Resistenz-Trainings (stress inoculation trainings), Entspannungs- und Meditations&shy;methoden sowie soziale Kompetenz- und Fitness-Trainings, bezüglich gesundheitlicher Effekte wirksam sind.\n\nWeitere Informationen zum Thema \"Strategien und Interventionen zur Stressbekämpfung\" findest du auf Seite 89 in \n<a href='http://www.gesundheitsfoerderung.ch/pdf_doc_xls/d/betriebliche_gesundheitsfoerderung/grundlagen_wissen/PsychGesundheit_de.pdf#page=89' target='_blank'>Psychische Gesundheit - Stress.</a>"
+            "de": "Reviews und Meta-Analysen belegen gut, dass Stress-Management-Trainings (SMT), einschliesslich Stress-Resistenz-Trainings (stress inoculation trainings), Entspannungs- und Meditations&shy;methoden sowie soziale Kompetenz- und Fitness-Trainings, bezüglich gesundheitlicher Effekte wirksam sind.\n\nWeitere Informationen zum Thema \"Strategien und Interventionen zur Stressbekämpfung\" findest du auf Seite 89 in \n<a href='http://edudoc.ch/record/29554/files/135.pdf#page=89' target='_blank'>Psychische Gesundheit - Stress.</a>"
         },
         "titleI18n": {
             "de": "Training zur Stressabwehr"
         },
         "topics": [ "workLifeBalance" ],
         "updated": {
-            "$date": 1399043975827
+            "$date": 1400155551182
         }
     },
     {
@@ -1344,14 +1344,14 @@
         ],
         "source": "youpers",
         "textI18n": {
-            "de": "Ein offenes Gespräch mit der bzw. dem Vorgesetzten kann helfen, die Situation zu klären.\n  \nDer bzw. dem Vorgesetzten ist häufig gar nicht bekannt, wie überlastet eine Mitarbeitende bzw. ein Mitarbeitender ist, weil sich selten jemand dort beklagt. \n\nEs zeugt von Verantwortungs&shy;be&shy;wusst&shy;sein, wenn nicht mehr Aufgaben über&shy;nommen werden, als tatsächlich mit der nötigen Sorgfalt bewältigt werden können.\n\nWeitere Informationen findest du unter:\n\n* <a href='http://www.medizinfo.de/kopfundseele/stress/stressumgang.htm' target='_blank'>Förderung psychischer Gesund&shy;heit als Führungsaufgabe](http://psyga.info/fileadmin/user_upload/PDFs/psyGA_eLearningTool_Booklet.pdf)\n\n* [Umgang mit Stress</a>"
+            "de": "Ein offenes Gespräch mit der bzw. dem Vorgesetzten kann helfen, die Situation zu klären.\n  \nDer bzw. dem Vorgesetzten ist häufig gar nicht bekannt, wie überlastet eine Mitarbeitende bzw. ein Mitarbeitender ist, weil sich selten jemand dort beklagt. \n\nEs zeugt von Verantwortungs&shy;be&shy;wusst&shy;sein, wenn nicht mehr Aufgaben über&shy;nommen werden, als tatsächlich mit der nötigen Sorgfalt bewältigt werden können.\n\nWeitere Informationen:\n* <a href='http://psyga.info/fileadmin/user_upload/PDFs/psyGA_eLearningTool_Booklet.pdf'\ntarget='_blank'>Förderung psychischer Gesund&shy;heit als Führungsaufgabe</a>\n* <a href='http://www.medizinfo.de/kopfundseele/stress/stressumgang.htm' target='_blank'>Umgang mit Stress</a>"
         },
         "titleI18n": {
             "de": "Arbeitsgestaltung"
         },
         "topics": [ "workLifeBalance" ],
         "updated": {
-            "$date": 1398418734825
+            "$date": 1400074404993
         }
     },
     {
@@ -1605,14 +1605,14 @@
         ],
         "source": "youpers",
         "textI18n": {
-            "de": "Stelle die Höhe deines Stuhles so ein, dass deine Füsse flach auf dem Boden stehen. \n\nOber- und Unterschenkel sollten einen Winkel von mindestens 90 Grad bilden.\n\nWenn du aufrecht auf deinem Stuhl sitzt, sollte die Tischhöhe so eingestellt sein, dass deine Ellbogen locker auf dem Tisch aufliegen, ohne die Schultern anzuheben.\n\nWeitere Informationen zum Thema \"Ergonomie am Bildschirmarbeitsplatz\" findest du \nbei <a href='http://www.ekas-box.ch/swf/de/pdf/PraktischeTipps.pdf#page=4' target='_blank'>suva](http://www.suva.ch/startseite-suva/service-suva/lernprogramme-suva/ergonomie-am-bildschirmarbeitsplatz-suva.htm) oder \n[EKAS.</a>"
+            "de": "Stelle die Höhe deines Stuhles so ein, dass deine Füsse flach auf dem Boden stehen. \n\nOber- und Unterschenkel sollten einen Winkel von mindestens 90 Grad bilden.\n\nWenn du aufrecht auf deinem Stuhl sitzt, sollte die Tischhöhe so eingestellt sein, dass deine Ellbogen locker auf dem Tisch aufliegen, ohne die Schultern anzuheben.\n\nWeitere Informationen zum Thema \"Ergonomisches Arbeiten\" findest du \nbei <a href='http://www.ekas-box.ch/swf/de/pdf/PraktischeTipps.pdf#page=4' target='_blank'>EKAS</a> oder <a href='http://www.suva.ch/startseite-suva/service-suva/lernprogramme-suva/ergonomie-am-bildschirmarbeitsplatz-suva.htm'\ntarget='_blank'>suva.</a>"
         },
         "titleI18n": {
             "de": "Ergonomie am Arbeitsplatz"
         },
         "topics": [ "workLifeBalance" ],
         "updated": {
-            "$date": 1399035676356
+            "$date": 1400074729454
         }
     },
     {
@@ -1645,14 +1645,14 @@
         ],
         "source": "youpers",
         "textI18n": {
-            "de": "Stelle den Bildschirm gerade vor dich hin, damit du deinen Kopf nicht seitlich abdrehen musst. \n\nDie Höhe sollte so eingestellt sein, dass der obere Bildschirmrand eine Hand&shy;breite unter deiner Augenhöhe ist. \n\nDer Abstand zwischen Augen und Bildschirm sollte mindestens eine Armlänge betragen, bei grösseren Monitoren etwas mehr.\n\nWeitere Informationen zum Thema \"Ergonomie am Bildschirmarbeitsplatz\" findest du \nbei <a href='http://www.ekas-box.ch/swf/de/pdf/PraktischeTipps.pdf#page=5' target='_blank'>suva](http://www.suva.ch/startseite-suva/service-suva/lernprogramme-suva/ergonomie-am-bildschirmarbeitsplatz-suva.htm) oder\n[EKAS.</a>"
+            "de": "Stelle den Bildschirm gerade vor dich hin, damit du deinen Kopf nicht seitlich abdrehen musst. \n\nDie Höhe sollte so eingestellt sein, dass der obere Bildschirmrand eine Hand&shy;breite unter deiner Augenhöhe ist. \n\nDer Abstand zwischen Augen und Bildschirm sollte mindestens eine Armlänge betragen, bei grösseren Monitoren etwas mehr.\n\nWeitere Informationen zum Thema \"Ergonomisches Arbeiten\" findest du \nbei <a href='http://www.ekas-box.ch/swf/de/pdf/PraktischeTipps.pdf#page=4' target='_blank'>EKAS</a> oder <a href='http://www.suva.ch/startseite-suva/service-suva/lernprogramme-suva/ergonomie-am-bildschirmarbeitsplatz-suva.htm'\ntarget='_blank'>suva.</a>"
         },
         "titleI18n": {
             "de": "Ergonomie am Bildschirm"
         },
         "topics": [ "workLifeBalance" ],
         "updated": {
-            "$date": 1398419611124
+            "$date": 1400074803419
         }
     },
     {
@@ -2127,14 +2127,14 @@
         ],
         "source": "youpers",
         "textI18n": {
-            "de": "Siehe auch <a href='http://www.gesundheitsfoerderung.ch/pdf_doc_xls/d/betriebliche_gesundheitsfoerderung/grundlagen_wissen/Rahmenkonzept_Gesundheitskompetenz_de.pdf' target='_blank'>Rahmenkonzept bezüglich Gesundheitskompetenz.</a>"
+            "de": ""
         },
         "titleI18n": {
             "de": "Arbeitsabläufe und Aufgaben"
         },
         "topics": [ "workLifeBalance" ],
         "updated": {
-            "$date": 1398431555585
+            "$date": 1400154961825
         }
     },
     {
@@ -2168,14 +2168,14 @@
         ],
         "source": "youpers",
         "textI18n": {
-            "de": "Siehe auch <a href='http://www.gesundheitsfoerderung.ch/pdf_doc_xls/d/betriebliche_gesundheitsfoerderung/grundlagen_wissen/Rahmenkonzept_Gesundheitskompetenz_de.pdf' target='_blank'>Rahmenkonzept bezüglich Gesundheitskompetenz.</a>"
+            "de": ""
         },
         "titleI18n": {
             "de": "Arbeitsumgebung"
         },
         "topics": [ "workLifeBalance" ],
         "updated": {
-            "$date": 1398431579493
+            "$date": 1400155035690
         }
     },
     {
@@ -2211,14 +2211,14 @@
         ],
         "source": "youpers",
         "textI18n": {
-            "de": "Siehe auch <a href='http://www.gesundheitsfoerderung.ch/pdf_doc_xls/d/betriebliche_gesundheitsfoerderung/grundlagen_wissen/Rahmenkonzept_Gesundheitskompetenz_de.pdf' target='_blank'>Rahmenkonzept bezüglich Gesundheitskompetenz.</a>"
+            "de": ""
         },
         "titleI18n": {
             "de": "Flexible Arbeitszeiten"
         },
         "topics": [ "workLifeBalance" ],
         "updated": {
-            "$date": 1398431598373
+            "$date": 1400155071505
         }
     },
     {
@@ -2257,14 +2257,14 @@
         ],
         "source": "youpers",
         "textI18n": {
-            "de": "Siehe auch <a href='http://www.gesundheitsfoerderung.ch/pdf_doc_xls/d/betriebliche_gesundheitsfoerderung/grundlagen_wissen/Rahmenkonzept_Gesundheitskompetenz_de.pdf' target='_blank'>Rahmenkonzept bezüglich Gesundheitskompetenz.</a>"
+            "de": ""
         },
         "titleI18n": {
             "de": "Einfluss auf Arbeitssituation"
         },
         "topics": [ "workLifeBalance" ],
         "updated": {
-            "$date": 1398431609891
+            "$date": 1400155105006
         }
     },
     {
@@ -2301,14 +2301,14 @@
         ],
         "source": "youpers",
         "textI18n": {
-            "de": "Siehe auch <a href='http://www.gesundheitsfoerderung.ch/pdf_doc_xls/d/betriebliche_gesundheitsfoerderung/grundlagen_wissen/Rahmenkonzept_Gesundheitskompetenz_de.pdf' target='_blank'>Rahmenkonzept bezüglich Gesundheitskompetenz.</a>"
+            "de": ""
         },
         "titleI18n": {
             "de": "Entwicklungs&shy;möglichkeiten"
         },
         "topics": [ "workLifeBalance" ],
         "updated": {
-            "$date": 1398431174756
+            "$date": 1400155136740
         }
     },
     {
@@ -2344,14 +2344,14 @@
         ],
         "source": "youpers",
         "textI18n": {
-            "de": "Siehe auch <a href='http://www.gesundheitsfoerderung.ch/pdf_doc_xls/d/betriebliche_gesundheitsfoerderung/grundlagen_wissen/Rahmenkonzept_Gesundheitskompetenz_de.pdf' target='_blank'>Rahmenkonzept bezüglich Gesundheitskompetenz.</a>"
+            "de": ""
         },
         "titleI18n": {
             "de": "Rollen und Ziele"
         },
         "topics": [ "workLifeBalance" ],
         "updated": {
-            "$date": 1398431161493
+            "$date": 1400155168636
         }
     },
     {
@@ -2392,14 +2392,14 @@
         ],
         "source": "youpers",
         "textI18n": {
-            "de": "Siehe auch <a href='http://www.gesundheitsfoerderung.ch/pdf_doc_xls/d/betriebliche_gesundheitsfoerderung/grundlagen_wissen/Rahmenkonzept_Gesundheitskompetenz_de.pdf' target='_blank'>Rahmenkonzept bezüglich Gesundheitskompetenz.</a>"
+            "de": ""
         },
         "titleI18n": {
             "de": "Feedback"
         },
         "topics": [ "workLifeBalance" ],
         "updated": {
-            "$date": 1398431647295
+            "$date": 1400155350710
         }
     },
     {
@@ -2439,14 +2439,14 @@
         ],
         "source": "youpers",
         "textI18n": {
-            "de": "Siehe auch <a href='http://www.gesundheitsfoerderung.ch/pdf_doc_xls/d/betriebliche_gesundheitsfoerderung/grundlagen_wissen/Rahmenkonzept_Gesundheitskompetenz_de.pdf' target='_blank'>Rahmenkonzept bezüglich Gesundheitskompetenz.</a>"
+            "de": ""
         },
         "titleI18n": {
             "de": "Familienfreundliche Arbeitspolitik"
         },
         "topics": [ "workLifeBalance" ],
         "updated": {
-            "$date": 1398431251531
+            "$date": 1400155378771
         }
     },
     {
@@ -2485,14 +2485,14 @@
         ],
         "source": "youpers",
         "textI18n": {
-            "de": "Siehe auch <a href='http://www.gesundheitsfoerderung.ch/pdf_doc_xls/d/betriebliche_gesundheitsfoerderung/grundlagen_wissen/Rahmenkonzept_Gesundheitskompetenz_de.pdf' target='_blank'>Rahmenkonzept Gesundheitskompetenz.</a>"
+            "de": ""
         },
         "titleI18n": {
             "de": "Erfolgsbeteiligung"
         },
         "topics": [ "workLifeBalance" ],
         "updated": {
-            "$date": 1399475444126
+            "$date": 1400155408991
         }
     },
     {
@@ -2536,7 +2536,7 @@
         },
         "topics": [ "workLifeBalance" ],
         "updated": {
-            "$date": 1399041827274
+            "$date": 1400155447208
         }
     },
     {
@@ -2914,14 +2914,14 @@
         ],
         "source": "youpers",
         "textI18n": {
-            "de": "Plane dir die Zeit für das Ballspielen fest in deinem Termin&shy;kalender ein und ver&shy;abrede dich. So kannst du vom gesund&shy;heitlichen Nutzen der Bewegung pro&shy;fi&shy;tie&shy;ren und soziale Kontakte pflegen. \n\nWenn du dich zum Sport mit anderen Personen verabredest, führst du diese Aktivität auch öfters durch, da die anderen Personen auf dich warten. \n\nZudem macht ein gemeinsames Sport&shy;treiben mehr Spass und fördert den Zusammenhalt.\n\nMehr Informationen zu <a href='http://www.hepa.ch/internet/hepa/de/home/dokumentation/grundlagendokumente.parsys.70058.downloadList.12250.DownloadFile.tmp/screendhepagrundlagendokument2013.pdf' target='_blank'>grenzenlosen Möglichkeiten kleiner Ballspiele.](http://www.mobilesport.ch/2011/03/30/kleine-ballspiele-grenzenlose-moeglichkeiten/)\n\nWeitere Informationen zum Thema \"Bewegung\" findest du [im Grund&shy;lagen&shy;dokument gesundheitswirksame Bewegung.</a>"
+            "de": "Plane dir die Zeit für das Ballspielen fest in deinem Termin&shy;kalender ein und ver&shy;abrede dich. So kannst du vom gesund&shy;heitlichen Nutzen der Bewegung pro&shy;fi&shy;tie&shy;ren und soziale Kontakte pflegen. \n\nWenn du dich zum Sport mit anderen Personen verabredest, führst du diese Aktivität auch öfters durch, da die anderen Personen auf dich warten. \n\nZudem macht ein gemeinsames Sport&shy;treiben mehr Spass und fördert den Zusammenhalt.\n\nWeitere Informationen:\n* <a href='http://www.hepa.ch/internet/hepa/de/home/dokumentation/grundlagendokumente.parsys.70058.downloadList.12250.DownloadFile.tmp/screendhepagrundlagendokument2013.pdf' target='_blank'>Grund&shy;lagen&shy;dokument gesundheitswirksame Bewegung\n* <a href='http://www.mobilesport.ch/2011/03/30/kleine-ballspiele-grenzenlose-moeglichkeiten/'target='_blank'>grenzenlose Möglichkeiten kleiner Ballspiele</a>"
         },
         "titleI18n": {
             "de": "Ballspiel"
         },
         "topics": [ "workLifeBalance" ],
         "updated": {
-            "$date": 1398434233051
+            "$date": 1400071706682
         }
     },
     {
@@ -3468,14 +3468,14 @@
         ],
         "source": "youpers",
         "textI18n": {
-            "de": "Yoga ist eine althergebrachte Methode und stammt aus Indien. \n\nUrsprünglich diente Yoga der Er&shy;wei&shy;te&shy;rung des Bewusstseins durch ver&shy;schie&shy;dene Meditationstechniken und be&shy;in&shy;haltete eine philosophische Be&shy;trach&shy;tung der Welt und der Lebensführung. \n\nMit regelmässigen Körper- und Atem&shy;übungen kann man ein nachhaltiges Entspannen erreichen. \n\nAusserdem konnten positive Wirkungen auf die **Psyche** (u.a. weniger Ängstlich&shy;keit und Depressivität, Verbesserung der Kon&shy;zentration) und auf den **Körper** (u.a. tieferer Blutdruck, bessere Durch&shy;blu&shy;tung) nachgewiesen werden.\n\nWeitere Informationen findest du unter <a href='http://www.gesundheitsfoerderung.ch/pdf_doc_xls/f/gesundheitsfoerderung_promotion_staerken/Grundlagen_Wissen/entspannungsbericht_d.pdf' target='_blank'>Grundlagenpapier Entspannung.</a>"
+            "de": "Yoga ist eine althergebrachte Methode und stammt aus Indien. \n\nUrsprünglich diente Yoga der Er&shy;wei&shy;te&shy;rung des Bewusstseins durch ver&shy;schie&shy;dene Meditationstechniken und be&shy;in&shy;haltete eine philosophische Be&shy;trach&shy;tung der Welt und der Lebensführung. \n\nMit regelmässigen Körper- und Atem&shy;übungen kann man ein nachhaltiges Entspannen erreichen. \n\nAusserdem konnten positive Wirkungen auf die **Psyche** (u.a. weniger Ängstlich&shy;keit und Depressivität, Verbesserung der Kon&shy;zentration) und auf den **Körper** (u.a. tieferer Blutdruck, bessere Durch&shy;blu&shy;tung) nachgewiesen werden.\n\nWeitere Informationen findest du unter <a href='http://www.publicjobs.ch.ch/fileadmin/user/global/docs/Stellen/01_Entspannung.pdf 'target='_blank'>Grundlagenpapier Entspannung.</a>"
         },
         "titleI18n": {
             "de": "Yoga-Übungen am Abend"
         },
         "topics": [ "workLifeBalance" ],
         "updated": {
-            "$date": 1399046720369
+            "$date": 1400067695105
         }
     },
     {
@@ -3526,14 +3526,14 @@
         ],
         "source": "youpers",
         "textI18n": {
-            "de": "Meditative Verfahren haben ihren Ur&shy;sprung in asiatischen Religionen wie Hinduismus und Buddhismus. \n\nDas Ziel der klassischen Meditation besteht in der Förderung spirituellen Wachstums, der Erweiterung des Bewusstseins und in der Aneignung einer tiefen, inneren Ruhe. \n\nStudien belegen positive Aus&shy;wir&shy;kung&shy;en von Meditation auf Stress&shy;be&shy;wälti&shy;gung:  \n* sie lindert Spannungszustände\n* verringert die Atemfrequenz\n* verbessert die Konzentration\n* erhöht die Aufmerksamkeit\n* senkt den Blutdruck\n\nWeitere Informationen unter:\n\n* <a href='http://www1.uni-hamburg.de/psych-3/seminar/toennies/medit.pdf' target='_blank'>Grundlagenbericht Entspannung](http://www.gesundheitsfoerderung.ch/pdf_doc_xls/f/gesundheitsfoerderung_promotion_staerken/Grundlagen_Wissen/entspannungsbericht_d.pdf)\n* <a href='http://wiki.yoga-vidya.de/Wissenschaftliche_Studien_Meditation#Meditation_reduziert_Stress' target='_blank'>Meditation reduziert Stress</a>\n* [Meditative Verfahren</a>"
+            "de": "Meditative Verfahren haben ihren Ur&shy;sprung in asiatischen Religionen wie Hinduismus und Buddhismus. \n\nDas Ziel der klassischen Meditation besteht in der Förderung spirituellen Wachstums, der Erweiterung des Bewusstseins und in der Aneignung einer tiefen, inneren Ruhe. \n\nStudien belegen positive Aus&shy;wir&shy;kung&shy;en von Meditation auf Stress&shy;be&shy;wälti&shy;gung:  \n* sie lindert Spannungszustände\n* verringert die Atemfrequenz\n* verbessert die Konzentration\n* erhöht die Aufmerksamkeit\n* senkt den Blutdruck\n\nWeitere Informationen unter:\n\n* <a href='http://www1.uni-hamburg.de/psych-3/seminar/toennies/medit.pdf' target='_blank'>Meditative Verfahren</a>\n* <a href='http://www.publicjobs.ch.ch/fileadmin/user/global/docs/Stellen/01_Entspannung.pdf'\ntarget='_blank'>Grundlagenbericht Entspannung</a>\n* <a href='http://wiki.yoga-vidya.de/Wissenschaftliche_Studien_Meditation#Meditation_reduziert_Stress'\ntarget='_blank'>Wissenschaftliche Studien</a>"
         },
         "titleI18n": {
             "de": "Meditationsübung"
         },
         "topics": [ "workLifeBalance" ],
         "updated": {
-            "$date": 1399042094937
+            "$date": 1400068287386
         }
     },
     {
@@ -3584,14 +3584,14 @@
         ],
         "source": "youpers",
         "textI18n": {
-            "de": "Das Autogene Training (AT) zählt zu den bekanntesten Entspannungsverfahren. \n\nDas Training hat zum Ziel, über Selbst&shy;entspannung zu einer psycho&shy;physio&shy;logischen Umschaltung von einer ak&shy;ti&shy;vi&shy;täts&shy;gerichteten in eine der Erholung dienende  Reaktionslage zu kommen. \n\nAutogenes Training sieht einen sechs&shy;stu&shy;figen Ablauf vor, deren Übungen über drei Monate gelernt werden:\n\n1. Schwereübung\n2. Wärmeübung\n3. Herzübung\n4. Atemübung\n5. Sonnengeflechtübung\n6. Stirnkühleübung\n\nWeitere Informationen findest du im <a href='http://www.gesundheitsfoerderung.ch/pdf_doc_xls/f/gesundheitsfoerderung_promotion_staerken/Grundlagen_Wissen/entspannungsbericht_d.pdf' target='_blank'>Grundlagenbericht Entspannung.</a>"
+            "de": "Das Autogene Training (AT) zählt zu den bekanntesten Entspannungsverfahren. \n\nDas Training hat zum Ziel, über Selbst&shy;entspannung zu einer psycho&shy;physio&shy;logischen Umschaltung von einer ak&shy;ti&shy;vi&shy;täts&shy;gerichteten in eine der Erholung dienende  Reaktionslage zu kommen. \n\nAutogenes Training sieht einen sechs&shy;stu&shy;figen Ablauf vor, deren Übungen über drei Monate gelernt werden:\n\n1. Schwereübung\n2. Wärmeübung\n3. Herzübung\n4. Atemübung\n5. Sonnengeflechtübung\n6. Stirnkühleübung\n\nWeitere Informationen findest du im <a href='http://www.publicjobs.ch.ch/fileadmin/user/global/docs/Stellen/01_Entspannung.pdf' target='_blank'>Grundlagenbericht Entspannung.</a>"
         },
         "titleI18n": {
             "de": "Autogenes Training am Abend"
         },
         "topics": [ "workLifeBalance" ],
         "updated": {
-            "$date": 1399046655811
+            "$date": 1400068399029
         }
     },
     {
@@ -3849,14 +3849,14 @@
         ],
         "source": "youpers",
         "textI18n": {
-            "de": "Verwöhne dich und behandle dich gut!\n\nNimm dir Zeit für dich selber! Es ist er&shy;laubt und sogar empfohlen, sich be&shy;wusst Auszeiten zu nehmen und sich etwas zu gönnen.\n\nSiehe auch <a href='http://www.gesundheitsfoerderung.ch/pdf_doc_xls/f/gesundheitsfoerderung_promotion_staerken/Grundlagen_Wissen/entspannungsbericht_d.pdf#page=18' target='_blank'>Entspannungsmöglichkeiten und deren Wirkung.</a>"
+            "de": "Verwöhne dich und behandle dich gut!\n\nNimm dir Zeit für dich selber! Es ist er&shy;laubt und sogar empfohlen, sich be&shy;wusst Auszeiten zu nehmen und sich etwas zu gönnen.\n\nSiehe auch <a href='http://www.publicjobs.ch.ch/fileadmin/user/global/docs/Stellen/01_Entspannung.pdf#page=18' target='_blank'>Entspannungsmöglichkeiten und deren Wirkung.</a>"
         },
         "titleI18n": {
             "de": "Entspannungsbad am Abend"
         },
         "topics": [ "workLifeBalance" ],
         "updated": {
-            "$date": 1398439004453
+            "$date": 1400068484779
         }
     },
     {
@@ -4296,14 +4296,14 @@
         ],
         "source": "youpers",
         "textI18n": {
-            "de": "Biofeedback gehört zu den klassischen, systematischen und am besten erforschten Entspannungsmethoden und -techniken.\n\nBeim Biofeedback werden Körper&shy;pro&shy;zesse mittels elek&shy;tro&shy;nischer Messgeräte (z.B. EEG, EKG, EMG) in wahrnehmbare (akustische oder optische) Signale ver&shy;wandelt. Damit wird die Möglichkeit er&shy;öffnet, Prozesse im Körper willkürlich zu beeinflussen. Es handelt sich also um eine Rückkoppelung (**«Feedback»**) von **«Bio»**signalen.\n\nWerte wie Hauttemperatur, Puls&shy;frequenz, Muskelspannung, Atmung und Alphafrequenzen des Gehirns liefern Hinweise auf den Spannungs&shy;zustand (z.B. Stress) des Körpers. \n\nWeitere Informationen findest du im <a href='http://www.gesundheitsfoerderung.ch/pdf_doc_xls/f/gesundheitsfoerderung_promotion_staerken/Grundlagen_Wissen/entspannungsbericht_d.pdf' target='_blank'>Grundlagenbericht Entspannung.</a>"
+            "de": "Biofeedback gehört zu den klassischen, systematischen und am besten erforschten Entspannungsmethoden und -techniken.\n\nBeim Biofeedback werden Körper&shy;pro&shy;zesse mittels elek&shy;tro&shy;nischer Messgeräte (z.B. EEG, EKG, EMG) in wahrnehmbare (akustische oder optische) Signale ver&shy;wandelt. Damit wird die Möglichkeit er&shy;öffnet, Prozesse im Körper willkürlich zu beeinflussen. Es handelt sich also um eine Rückkoppelung (**«Feedback»**) von **«Bio»**signalen.\n\nWerte wie Hauttemperatur, Puls&shy;frequenz, Muskelspannung, Atmung und Alphafrequenzen des Gehirns liefern Hinweise auf den Spannungs&shy;zustand (z.B. Stress) des Körpers. \n\nWeitere Informationen findest du im <a href='http://www.publicjobs.ch.ch/fileadmin/user/global/docs/Stellen/01_Entspannung.pdf' target='_blank'>Grundlagenbericht Entspannung.</a>"
         },
         "titleI18n": {
             "de": "Biofeedback"
         },
         "topics": [ "workLifeBalance" ],
         "updated": {
-            "$date": 1398442702085
+            "$date": 1400068544522
         }
     },
     {
@@ -5282,14 +5282,14 @@
         ],
         "source": "youpers",
         "textI18n": {
-            "de": "Wasser ist der beste Durstlöscher. \n\nSüssgetränke enthalten oft sehr viel Zucker und können je nach Menge zu Übergewicht führen. \n\nTrinke mehrmals täglich ein Glas Was&shy;ser. Hahnenwasser ist fast kos&shy;ten&shy;los, überall erhältlich und hygienisch ein&shy;wand&shy;frei.\n\nWeitere Informationen zum Thema findest du unter:\n\n* <a href='http://www.gesundheitsfoerderung.ch/pages/Gesundes_Koerpergewicht/Allgemeines/wassertrinken.php' target='_blank'>Wasser trinken</a>\n* <a href='http://www.gesundheit.lu.ch/broschuere_was_essen_und_trinken._pdf.pdf' target='_blank'>Informationen und praktische Tipps für Berufstätige</a>"
+            "de": "Wasser ist der beste Durstlöscher. \n\nSüssgetränke enthalten oft sehr viel Zucker und können je nach Menge zu Übergewicht führen. \n\nTrinke mehrmals täglich ein Glas Was&shy;ser. Hahnenwasser ist fast kos&shy;ten&shy;los, überall erhältlich und hygienisch ein&shy;wand&shy;frei.\n\nWeitere Informationen zum Thema findest du unter:\n\n* <a href='http://hahnenburger.ch/home.html' target='_blank'>Wasser trinken</a>\n* <a href='http://www.gesundheit.lu.ch/broschuere_was_essen_und_trinken._pdf.pdf' target='_blank'>Informationen und praktische Tipps für Berufstätige</a>"
         },
         "titleI18n": {
             "de": "Pause und Bewegung"
         },
         "topics": [ "workLifeBalance" ],
         "updated": {
-            "$date": 1399388182399
+            "$date": 1400069133889
         }
     },
     {
@@ -5607,14 +5607,14 @@
         ],
         "source": "youpers",
         "textI18n": {
-            "de": "Wasser ist der beste Durstlöscher. \n\nSüssgetränke enthalten oft sehr viel Zucker und können je nach Menge zu Übergewicht führen. \n\nTrinke mehrmals täglich ein Glas Was&shy;ser. Hahnenwasser ist fast kos&shy;ten&shy;los, überall erhältlich und hygienisch einwandfrei. \n\nWeitere Informationen zum Thema findest du unter:  \n\n* <a href='http://www.gesundheitsfoerderung.ch/pages/Gesundes_Koerpergewicht/Allgemeines/wassertrinken.php' target='_blank'>Wasser trinken</a>\n* <a href='http://www.gesundheit.lu.ch/broschuere_was_essen_und_trinken._pdf.pdf' target='_blank'>Broschüre mit praktischen Tipps für Essen und Trinken im Berufsalltag</a>"
+            "de": "Wasser ist der beste Durstlöscher. \n\nSüssgetränke enthalten oft sehr viel Zucker und können je nach Menge zu Übergewicht führen. \n\nTrinke mehrmals täglich ein Glas Was&shy;ser. Hahnenwasser ist fast kos&shy;ten&shy;los, überall erhältlich und hygienisch einwandfrei. \n\nWeitere Informationen zum Thema findest du unter:  \n\n* <a href='http://hahnenburger.ch/home.html' target='_blank'>Wasser trinken</a>\n* <a href='http://www.gesundheit.lu.ch/broschuere_was_essen_und_trinken._pdf.pdf' target='_blank'>Informationen und praktische Tipps für Berufstätige</a>"
         },
         "titleI18n": {
             "de": "Wasserglas"
         },
         "topics": [ "workLifeBalance" ],
         "updated": {
-            "$date": 1399448939350
+            "$date": 1400069063545
         }
     },
     {
@@ -5749,14 +5749,14 @@
         ],
         "source": "youpers",
         "textI18n": {
-            "de": "Der durchschnittliche Tagesbedarf an Flüssigkeit bei einem Erwachsenen be&shy;trägt ca. 2 Liter. Ein Teil davon wird durch feste Nahrung aufgenommen. Die Deutsche Gesellschaft für Ernährung (DGE) empfiehlt, <a href='http://www.dge.de/modules.php?name=News&file=article&sid=503)\n\nDer Ge&shy;samt&shy;be&shy;darf hängt von externen Faktoren wie Wetter, körperliche Be&shy;an&shy;spruch&shy;ung, Ernährungsgewohnheiten u.a. ab.\nEin dauerhafter Mangel an Flüs&shy;sig&shy;keit führt zu **Dehydratation** und schliesslich zur  **Aus&shy;trock&shy;nung**.\n\nAuch zu viel Flüssigkeit kann auf den Organismus schädlich wirken. Bei mehr als 6 Litern Flüssigkeitszufuhr wird das Blut zu stark verdünnt, die Zellen plat&shy;zen und die Gehirnmasse schwillt dra&shy;ma&shy;tisch an. Eine mögliche Folge ist der Tod (**Hyperhydration**' target='_blank'>jeden Tag etwa 1.5 Liter Flüssigkeit zu trinken.</a>."
+            "de": "Der durchschnittliche Tagesbedarf an Flüssigkeit bei einem Erwachsenen be&shy;trägt 2 - 2.5 Liter. Ein Teil davon wird durch feste Nahrung aufgenommen. Die restlichen ca. 1.5 Liter sollten durch trinken zugeführt werden, wie die Deut&shy;sche Gesellschaft für Ernährung (DGE) empfiehlt <a href='http://www.dge.de/modules.php?name=News&file=article&sid=503' target='_blank'> (mehr Informationen).</a>\n\nDer Ge&shy;samt&shy;be&shy;darf hängt von externen Faktoren wie Wetter, körperliche Be&shy;an&shy;spruch&shy;ung, Ernährungsgewohnheiten u.a. ab.\nEin dauerhafter Mangel an Flüs&shy;sig&shy;keit führt zu **Dehydratation** und schliesslich zur  **Aus&shy;trock&shy;nung**.\n\nAuch zu viel Flüssigkeit kann auf den Organismus schädlich wirken. Bei mehr als 6 Litern Flüssigkeitszufuhr wird das Blut zu stark verdünnt, die Zellen plat&shy;zen und die Gehirnmasse schwillt dra&shy;ma&shy;tisch an. Eine mögliche Folge ist der Tod (**Hyperhydration**)"
         },
         "titleI18n": {
             "de": "Wasserflasche"
         },
         "topics": [ "workLifeBalance" ],
         "updated": {
-            "$date": 1399448622798
+            "$date": 1400074855936
         }
     },
     {
@@ -5943,14 +5943,14 @@
         ],
         "source": "youpers",
         "textI18n": {
-            "de": "Siehe auch <a href='http://www.gesundheitsfoerderung.ch/pdf_doc_xls/d/betriebliche_gesundheitsfoerderung/grundlagen_wissen/PsychGesundheit_de.pdf#page=98' target='_blank'>Grundlagenwissen Gesundheit.</a>"
+            "de": "Siehe auch <a href='http://edudoc.ch/record/29554/files/135.pdf#page=98' target='_blank'>Grundlagenwissen Gesundheit.</a>"
         },
         "titleI18n": {
             "de": "Rückenmuskeln und Wirbelsäule"
         },
         "topics": [ "workLifeBalance" ],
         "updated": {
-            "$date": 1399446972123
+            "$date": 1400066859087
         }
     },
     {
@@ -7516,14 +7516,14 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": "Generiere für deine Gesundheit, dein Wohlbefinden und deine Leistungs&shy;fä&shy;hig&shy;keit einen zusätzlichen Nutzen, in&shy;dem du neben der empfohlenen Be&shy;we&shy;gung noch regelmässig ein Trai&shy;ning für Ausdauer, Kraft, Beweglichkeit und Koordination absolvierst.\n\nInformationen zu Ausdauerübungen findest du unter folgendem Link:  \n<a href='http://www.mobilesport.ch/?tdv=766&jp=1&lang=de' target='_blank'>Ausdauerübungen](http://www.mobilesport.ch/?tdv=763&jp=1&lang=de)\n\nInformationen zu Kraftübungen findest du unter folgendem Link:  \n<a href='http://www.mobilesport.ch/?tdv=757&jp=1&lang=de' target='_blank'>Kraftübungen</a>\n\nInformationen zu Beweglichkeits- und Koordinationsübungen findest du unter folgendem Link:  \n[Beweglichkeitsübungen</a>"
+            "de": "Generiere für deine Gesundheit, dein Wohlbefinden und deine Leistungs&shy;fä&shy;hig&shy;keit einen zusätzlichen Nutzen, in&shy;dem du neben der empfohlenen Be&shy;we&shy;gung noch regelmässig ein Trai&shy;ning für Ausdauer, Kraft, Beweglichkeit und Koordination absolvierst.\n\nInformationen zu Ausdauerübungen findest du unter folgendem Link:  \n* <a href='http://www.mobilesport.ch/?tdv=763&jp=1&lang=de'\ntarget='_blank'>Ausdauerübungen</a>\n\nInformationen zu Kraftübungen findest du unter folgendem Link:  \n* <a href='http://www.mobilesport.ch/?tdv=757&jp=1&lang=de' target='_blank'>Kraftübungen</a>\n\nInformationen zu Beweglichkeits- und Koordinationsübungen findest du unter folgendem Link:  \n* <a href='http://www.mobilesport.ch/?tdv=766&jp=1&lang=de' target='_blank'>Beweglichkeitsübungen</a>"
         },
         "titleI18n": {
             "de": "Regelmässiges Training"
         },
         "topics": [ "workLifeBalance" ],
         "updated": {
-            "$date": 1399456447323
+            "$date": 1400073421440
         }
     },
     {
@@ -8524,7 +8524,7 @@
         }
     },
     {
-        "__v": 2,
+        "__v": 4,
         "_id": {
             "$oid": "5278c6aecdeab69a250000be"
         },
@@ -8565,7 +8565,13 @@
             [ "5278c51a6166f2de240000c4", 2, 0 ],
             [ "5278c51a6166f2de240000c3", 2, 2 ],
             [ "5278c51a6166f2de240000c2", 2, 2 ],
-            [ "5278c51a6166f2de240000c1", 2, 0 ]
+            [ "5278c51a6166f2de240000c1", 2, 0 ],
+            [ "5278c51a6166f2de240000db", 0, 0 ],
+            [ "5278c51a6166f2de240000da", 0, 0 ],
+            [ "5278c51a6166f2de240000d9", 0, 0 ],
+            [ "5278c51a6166f2de240000d6", 0, 0 ],
+            [ "5278c51a6166f2de240000d5", 0, 0 ],
+            [ "5278c51a6166f2de240000d3", 0, 0 ]
         ],
         "source": "community",
         "textI18n": {
@@ -8576,7 +8582,7 @@
         },
         "topics": [ "workLifeBalance" ],
         "updated": {
-            "$date": 1399470348634
+            "$date": 1400751812338
         }
     },
     {
@@ -8625,14 +8631,14 @@
         ],
         "source": "youpers",
         "textI18n": {
-            "de": "Durch Hypnose gelangt man in einen veränderten Bewusstseinszustand. Der freie Wille bleibt jedoch erhalten. \n\nDiese Methode trägt zur Entspannung und Beruhigung bei und hilft, sein Unterbewusstsein zu entdecken. \n\nDurch verschiedene Techniken, wie Wieder&shy;ho&shy;lung, Reizabschirmung oder Konzentration auf irgendeinen Inhalt wird ein eingeengter Bewusst&shy;seins&shy;zu&shy;stand, ähnlich einer Trance, hergestellt und kann zu gesteigerter Gedächtnis&shy;leistung, Selbstvertrauen, Zuversicht oder Kontrolle von Körperfunktionen (Schmerz) führen.\n\n**Hypnotherapien** (Hypnose durch Fach&shy;person) und **Selbsthypnose** sind wirk&shy;same Mittel um Stress ab&shy;zu&shy;bau&shy;en und das Selbstwertgefühl zu steigern.\n\nWeitere Informationen findest du <a href='http://www.gesundheitsfoerderung.ch/pdf_doc_xls/f/gesundheitsfoerderung_promotion_staerken/Grundlagen_Wissen/entspannungsbericht_d.pdf' target='_blank'>hier.</a>"
+            "de": "Durch Hypnose gelangt man in einen veränderten Bewusstseinszustand. Der freie Wille bleibt jedoch erhalten. \n\nDiese Methode trägt zur Entspannung und Beruhigung bei und hilft, sein Unterbewusstsein zu entdecken. \n\nDurch Techniken wie Reizabschirmung oder Konzentration auf irgendeinen Inhalt wird ein eingeengter Bewusst&shy;seins&shy;zu&shy;stand, ähnlich einer Trance, hergestellt und kann zu gesteigerter Gedächtnis&shy;leistung, Selbstvertrauen, Zuversicht oder Kontrolle von Körper&shy;funktionen (Schmerz) führen.\n\n**Hypnotherapien** (Hypnose durch Fach&shy;person) und **Selbsthypnose** sind wirk&shy;same Mittel um Stress ab&shy;zu&shy;bau&shy;en und das Selbstwertgefühl zu steigern.\n\nWeitere Informationen findest du <a href='http://www.publicjobs.ch.ch/fileadmin/user/global/docs/Stellen/01_Entspannung.pdf 'target='_blank'>hier.</a>"
         },
         "titleI18n": {
             "de": "Hypnoseübung"
         },
         "topics": [ "workLifeBalance" ],
         "updated": {
-            "$date": 1399471203785
+            "$date": 1400067423789
         }
     },
     {
@@ -9748,14 +9754,14 @@
         ],
         "source": "youpers",
         "textI18n": {
-            "de": "Durch Hypnose gelangt man in einen veränderten Bewusstseinszustand. Der freie Wille bleibt jedoch erhalten. \n\nDiese Methode trägt zur Entspannung und Beruhigung bei und hilft, sein Unterbewusstsein zu entdecken. \n\nDurch verschiedene Techniken, wie Wieder&shy;ho&shy;lung, Reizabschirmung oder Konzentration auf irgendeinen Inhalt wird ein eingeengter Bewusst&shy;seins&shy;zu&shy;stand, ähnlich einer Trance, hergestellt und kann zu gesteigerter Gedächtnis&shy;leistung, Selbstvertrauen, Zuversicht oder Kontrolle von Körperfunktionen (Schmerz) führen.\n\n**Hypnotherapien** (Hypnose durch Fach&shy;person) und **Selbsthypnose** sind wirk&shy;same Mittel um Stress ab&shy;zu&shy;bau&shy;en und das Selbstwertgefühl zu steigern.\n\nWeitere Informationen findest du <a href='http://www.gesundheitsfoerderung.ch/pdf_doc_xls/f/gesundheitsfoerderung_promotion_staerken/Grundlagen_Wissen/entspannungsbericht_d.pdf' target='_blank'>hier.</a>"
+            "de": "Durch Hypnose gelangt man in einen veränderten Bewusstseinszustand. Der freie Wille bleibt jedoch erhalten. \n\nDiese Methode trägt zur Entspannung und Beruhigung bei und hilft, sein Unterbewusstsein zu entdecken. \n\nDurch verschiedene Techniken, wie Wieder&shy;ho&shy;lung, Reizabschirmung oder Konzentration auf irgendeinen Inhalt wird ein eingeengter Bewusst&shy;seins&shy;zu&shy;stand, ähnlich einer Trance, hergestellt und kann zu gesteigerter Gedächtnis&shy;leistung, Selbstvertrauen, Zuversicht oder Kontrolle von Körperfunktionen (Schmerz) führen.\n\n**Hypnotherapien** (Hypnose durch Fach&shy;person) und **Selbsthypnose** sind wirk&shy;same Mittel um Stress ab&shy;zu&shy;bau&shy;en und das Selbstwertgefühl zu steigern.\n\nWeitere Informationen findest du <a href='http://www.publicjobs.ch.ch/fileadmin/user/global/docs/Stellen/01_Entspannung.pdf 'target='_blank'>hier.</a>"
         },
         "titleI18n": {
             "de": "Hypnotherapie"
         },
         "topics": [ "workLifeBalance" ],
         "updated": {
-            "$date": 1399473732793
+            "$date": 1400067078424
         }
     },
     {
@@ -10037,7 +10043,7 @@
         },
         "topics": [ "workLifeBalance" ],
         "updated": {
-            "$date": 1399473984447
+            "$date": 1400146733772
         }
     },
     {

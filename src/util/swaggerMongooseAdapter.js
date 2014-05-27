@@ -180,7 +180,7 @@ function getSwaggerModel(aMongooseModel) {
                     subModelName = handleEmbeddedDocProperty(realPropertyName, type, realTargetModel);
                     realTargetModel.properties[realPropertyName] = {type: subModelName};
                 } else if (isReference(type)) {
-                    realTargetModel.properties[realPropertyName] = {$ref: path.options.ref};
+                    realTargetModel.properties[realPropertyName] = {type: path.options.ref};
                 } else {
                     realTargetModel.properties[realPropertyName] = {
                         type: typeMap[path.constructor.name] || typeMap[path.options.type.name] || path.options.type.name

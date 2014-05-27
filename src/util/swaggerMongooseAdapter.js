@@ -40,7 +40,7 @@ function getSwaggerModel(aMongooseModel) {
         _.forOwn(parentType, function (property, propertyName) {
 
                 if (isReference(property.type)) {
-                    targetModel.properties[propertyName] = {type: property.type.type.name};
+                    targetModel.properties[propertyName] = {$ref: property.ref || property.type.name};
                 } else if (isArray(property)) {
                     addArrayProperty(propertyName, property, targetModel);
                 } else if (isSubSchema(property.type)) {
@@ -98,7 +98,7 @@ function getSwaggerModel(aMongooseModel) {
     }
 
     function isReference(type) {
-        return type && type.type && type.type.name === 'ObjectId';
+        return (type && type.name === 'ObjectId') || (type && type.type && type.type.name === 'ObjectId');
     }
 
     function isSubSchema(type) {
@@ -179,6 +179,8 @@ function getSwaggerModel(aMongooseModel) {
                 } else if (isEmbeddedDoc(type)) {
                     subModelName = handleEmbeddedDocProperty(realPropertyName, type, realTargetModel);
                     realTargetModel.properties[realPropertyName] = {type: subModelName};
+                } else if (isReference(type)) {
+                    realTargetModel.properties[realPropertyName] = {$ref: path.options.ref};
                 } else {
                     realTargetModel.properties[realPropertyName] = {
                         type: typeMap[path.constructor.name] || typeMap[path.options.type.name] || path.options.type.name

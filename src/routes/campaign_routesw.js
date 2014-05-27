@@ -125,7 +125,7 @@ module.exports = function (swagger, config) {
                     paramType: "body",
                     name: "email",
                     description: "object with one property: 'email', an email address, or an array of adresses, or a separated String of emails (by ';, ')",
-                    dataType: "Object",
+                    dataType: "EmailObject",
                     required: true
                 }
             ],
@@ -136,6 +136,15 @@ module.exports = function (swagger, config) {
         },
         action: campaignHandlers.postCampaignLeadInvite
     });
+
+    swagger.addModels({EmailObject: {
+        id: 'EmailObject',
+        required: ['email'],
+        properties: {
+            email: {type: 'string'}
+        }
+    }});
+
 
     swagger.addPost({
         spec: {

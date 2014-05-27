@@ -31,7 +31,6 @@ module.exports = function (swagger, config) {
             summary: "Post feedback",
             method: "POST",
             params: [swagger.bodyParam("feedback", "feedback object", "Feedback")],
-            "responseClass": "Campaign",
             "errorResponses": [],
             "nickname": "postFeedback",
             accessLevel: 'al_all'
@@ -84,5 +83,17 @@ module.exports = function (swagger, config) {
 
         }
     });
+
+    swagger.addModels({Feedback: {
+        id: 'Feedback',
+        required: ['id'],
+        properties: {
+            id: {type: 'string'},
+            contactInfo: {type: 'string'},
+            feedbackCategory: {type: 'string'},
+            description: {type: 'string'},
+            navigator: {type: 'string'}
+        }
+    }});
 
 };

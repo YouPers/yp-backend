@@ -20,8 +20,8 @@ module.exports = function (swagger, config) {
             notes: "Generates a payment code",
             summary: "Generates a payment code",
             method: "POST",
-            params: [swagger.bodyParam("values", "payment code values", "Object")],
-            "responseClass": "String",
+            params: [swagger.bodyParam("values", "payment code values", "PaymentCode")],
+            "responseClass": "PaymentCode",
             "errorResponses": [],
             "nickname": "generatePaymentCode",
             accessLevel: 'al_productadmin'
@@ -54,8 +54,8 @@ module.exports = function (swagger, config) {
             notes: "Validate a payment code",
             summary: "Validate a payment code",
             method: "POST",
-            params: [swagger.bodyParam("value", "payment code", "String")],
-            "responseClass": "String",
+            params: [swagger.bodyParam("value", "payment code", "string")],
+            "responseClass": "string",
             "errorResponses": [],
             "nickname": "validatePaymentCode",
             accessLevel: 'al_orgadmin'
@@ -69,8 +69,8 @@ module.exports = function (swagger, config) {
             notes: "Validate a payment code",
             summary: "Validate a payment code",
             method: "POST",
-            params: [swagger.bodyParam("code", "payment code", "String")],
-            "responseClass": "String",
+            params: [swagger.bodyParam("code", "payment code", "string")],
+            "responseClass": "string",
             "errorResponses": [],
             "nickname": "redeemPaymentCode",
             accessLevel: 'al_orgadmin'

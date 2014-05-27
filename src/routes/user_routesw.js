@@ -23,14 +23,25 @@ module.exports = function (swagger, config) {
             summary: "validate user",
             method: "POST",
             params: [
-                swagger.bodyParam("username", "check if username is unique", "string"),
-                swagger.bodyParam("email", "check if email is unique", "string")
+                swagger.bodyParam("usernameEmail", "check if username is unique", "UsernameEmail")
             ],
             "nickname": "validateUser",
             accessLevel: 'al_all'
         },
         action: userHandlers.validateUserPostFn(baseUrl)
     });
+
+
+    swagger.addModels({UsernameEmail: {
+        id: 'UsernameEmail',
+        required: [],
+        properties: {
+            email: {type: 'string'},
+            username: {type: 'string'}
+        }
+    }});
+
+
 
     swagger.addPost({
         spec: {

@@ -57,7 +57,12 @@ var getIcalObject = function (plan, recipientUser, iCalType, i18n, reason) {
         }
     }
 
-    event.setDate(moment(plan.mainEvent.start).toDate(), moment(plan.mainEvent.end).toDate());
+    var fromDate = moment(plan.mainEvent.start).toDate();
+    var toDate = moment(plan.mainEvent.end).toDate();
+    fromDate.dateTimeMode = 'floating';
+    toDate.dateTimeMode = 'floating';
+
+    event.setDate(fromDate, toDate);
     log.debug("generated ical with From: " + moment(plan.mainEvent.start).toDate());
     log.debug("generated ical with To: " + moment(plan.mainEvent.end).toDate());
 

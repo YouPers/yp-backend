@@ -51,7 +51,8 @@ module.exports = function (grunt) {
                     watch: ['src'],
                     delay: 1,
                     env: {
-                        PORT: '8000'
+                        PORT: '8000',
+                        TZ: 'UTC'
                     }
                 }
             }

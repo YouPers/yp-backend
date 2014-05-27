@@ -131,4 +131,4 @@ swagger.configure(config.backendUrl, "0.1");
 
 var port = process.env.PORT || config.port;
 server.listen(port);
-console.log('App started on port ' + port);
+console.log('App started on port ' + port +', now is: ' + new Date());

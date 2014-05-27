@@ -157,7 +157,7 @@ module.exports = function (swagger, config) {
                     paramType: "query",
                     name: "token",
                     description: "the authtoken the user has gotten with his invitation email",
-                    dataType: "String",
+                    dataType: "string",
                     required: true
                 }
             ],

@@ -32,7 +32,8 @@
         "cron": "~1.0.x",
         "shortid": "~2.0.x",
         "coupon-code": "~0.3.x",
-        "mongoose-timestamp": "~0.2.x"
+        "mongoose-timestamp": "~0.2.x",
+        "node-rest-client": "*"
     },
     "devDependencies": {
         "grunt-contrib-jshint": "~0.10.x",

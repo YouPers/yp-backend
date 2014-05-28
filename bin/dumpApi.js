@@ -16,6 +16,14 @@ var client = new Client();
 client.get(url, function(data, response) {
     var parsedData =  JSON.parse(data);
 
+    fs.writeFile(targetDir + 'api-docs.json', JSON.stringify(parsedData), function(err) {
+        if(err) {
+            console.log(err);
+        } else {
+            console.log("The file was saved!");
+        }
+    });
+
     _.forEach(parsedData.apis, function(api) {
 
 

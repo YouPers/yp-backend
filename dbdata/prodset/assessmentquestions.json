@@ -17,7 +17,7 @@
             "de": "Wenn du dich von deiner Arbeitsmenge \u00fcberfordert f\u00fchlst, hilft es dir, deine Arbeitsgestaltung und dein Zeitmanagement zu verbessern sowie entspannende Aktivit\u00e4ten zu planen. Besprich dies ausserdem mit deinem Vorgesetzten oder dem Personalverantwortlichen."
         },
         "midtextI18n": {
-            "de": "Gerade richtig"
+            "de": "Ausgewogen"
         },
         "midtextexampleI18n": {
             "de": "Die Arbeitsmenge ist gerade ideal, weshalb ich mich motiviert bzw. \"positiv gestresst\" f\u00fchle."
@@ -34,13 +34,7 @@
         "titleI18n": {
             "de": "Arbeitsmenge"
         },
-        "type": "twoSided",
-        "created": {
-            "$date": 1398338294301
-        },
-        "updated": {
-            "$date": 1398338294301
-        }
+        "type": "twoSided"
     },
     {
         "_id": {
@@ -60,7 +54,7 @@
             "de": "Wenn du dich bez\u00fcglich Erfolgsdruck \u00fcberfordert f\u00fchlst, besprich dies mit deinem/deiner Vorgesetzten oder dem/der Personalverantwortlichen und plane ausgleichende Aktivit\u00e4ten ein."
         },
         "midtextI18n": {
-            "de": "Optimal"
+            "de": "Ausgewogen"
         },
         "midtextexampleI18n": {
             "de": "Der Erfolgsdruck fordert und motiviert mich im positiven Sinne."
@@ -77,13 +71,7 @@
         "titleI18n": {
             "de": "Erfolgsdruck"
         },
-        "type": "twoSided",
-        "created": {
-            "$date": 1398338294301
-        },
-        "updated": {
-            "$date": 1398338294301
-        }
+        "type": "twoSided"
     },
     {
         "_id": {
@@ -103,7 +91,7 @@
             "de": "Wenn du dich von deinem/deiner Vorgesetzten oder deinem Arbeitsumfeld \u00fcberbetreut f\u00fchlst, besprich dies mit deinem/deiner Vorgesetzten oder deinem/deiner Personalverantwortlichen."
         },
         "midtextI18n": {
-            "de": "Gerade richtig"
+            "de": "Angemessen"
         },
         "midtextexampleI18n": {
             "de": "Ich erhalte die ben\u00f6tigte Unterst\u00fctzung, wenn ich sie brauche."
@@ -120,13 +108,7 @@
         "titleI18n": {
             "de": "Unterst\u00fctzung"
         },
-        "type": "twoSided",
-        "created": {
-            "$date": 1398338294301
-        },
-        "updated": {
-            "$date": 1398338294301
-        }
+        "type": "twoSided"
     },
     {
         "_id": {
@@ -146,7 +128,7 @@
             "de": "Wenn du dich von deinem Selbstbestimmungsgrad \u00fcberfordert f\u00fchlst, besprich dies mit deinem/deiner Vorgesetzten oder deinem/deiner Personalverantwortlichen."
         },
         "midtextI18n": {
-            "de": "Gerade richtig"
+            "de": "Angemessen"
         },
         "midtextexampleI18n": {
             "de": "Der Selbstbestimmungsgrad bei meiner Arbeit stimmt f\u00fcr mich."
@@ -163,13 +145,7 @@
         "titleI18n": {
             "de": "Selbstbestimmung"
         },
-        "type": "twoSided",
-        "created": {
-            "$date": 1398338294301
-        },
-        "updated": {
-            "$date": 1398338294301
-        }
+        "type": "twoSided"
     },
     {
         "_id": {
@@ -183,7 +159,7 @@
             "de": "n/a"
         },
         "midtextI18n": {
-            "de": "Optimal"
+            "de": "Angemessen"
         },
         "midtextexampleI18n": {
             "de": "Die \u00e4usseren Arbeitsbedinungen sind f\u00fcr mich optimal."
@@ -200,13 +176,7 @@
         "titleI18n": {
             "de": "Arbeitsbedingungen"
         },
-        "type": "oneSided",
-        "created": {
-            "$date": 1398338294301
-        },
-        "updated": {
-            "$date": 1398338294301
-        }
+        "type": "oneSided"
     },
     {
         "_id": {
@@ -243,13 +213,7 @@
         "titleI18n": {
             "de": "Arbeitsanforderungen"
         },
-        "type": "twoSided",
-        "created": {
-            "$date": 1398338294301
-        },
-        "updated": {
-            "$date": 1398338294301
-        }
+        "type": "twoSided"
     },
     {
         "_id": {
@@ -286,13 +250,7 @@
         "titleI18n": {
             "de": "Arbeitsidentifikation"
         },
-        "type": "twoSided",
-        "created": {
-            "$date": 1398338294301
-        },
-        "updated": {
-            "$date": 1398338294301
-        }
+        "type": "twoSided"
     },
     {
         "_id": {
@@ -312,7 +270,7 @@
             "de": "Wenn du dich aufgrund indifferenter und \u00fcbertriebener Anerkennung gestresst f\u00fchlst, besprich dies mit deinem/deiner Vorgesetzten oder deinem/deiner Personalverantwortlichen."
         },
         "midtextI18n": {
-            "de": "gerade richtig"
+            "de": "Angemessen"
         },
         "midtextexampleI18n": {
             "de": "F\u00fcr gute Arbeitsleistungen erhalte ich die entsprechende Anerkennung."
@@ -329,13 +287,7 @@
         "titleI18n": {
             "de": "Anerkennung"
         },
-        "type": "twoSided",
-        "created": {
-            "$date": 1398338294301
-        },
-        "updated": {
-            "$date": 1398338294301
-        }
+        "type": "twoSided"
     },
     {
         "_id": {
@@ -355,7 +307,7 @@
             "de": "Wenn du dich bez\u00fcglich deinen Entwicklungsm\u00f6glichkeiten \u00fcberfordert f\u00fchlst, besprich dies mit deinem/deiner Vorgesetzten oder deinem/deiner Personalverantwortlichen."
         },
         "midtextI18n": {
-            "de": "Optimal"
+            "de": "Ausgewogen"
         },
         "midtextexampleI18n": {
             "de": "Ich kann mich beruflich stetig weiterentwickeln und bin deshalb sehr motiviert."
@@ -372,13 +324,7 @@
         "titleI18n": {
             "de": "Entwicklungsm\u00f6glichkeiten"
         },
-        "type": "twoSided",
-        "created": {
-            "$date": 1398338294301
-        },
-        "updated": {
-            "$date": 1398338294301
-        }
+        "type": "twoSided"
     },
     {
         "_id": {
@@ -398,7 +344,7 @@
             "de": "Wenn du dich von der betrieblichen Atmosph\u00e4re zu stark eingenommen f\u00fchlst, empfiehlt sich, deine Priorit\u00e4ten zu hinterfragen und anzupassen."
         },
         "midtextI18n": {
-            "de": "Optimal"
+            "de": "Angemessen"
         },
         "midtextexampleI18n": {
             "de": "In meinem Arbeitsumfeld herrscht ein gutes, motivierendes Betriebsklima. Arbeitskonflikte werden kollegial gel\u00f6st. Niemand wird gemobbt oder diskriminiert."
@@ -415,13 +361,7 @@
         "titleI18n": {
             "de": "Betriebsklima"
         },
-        "type": "twoSided",
-        "created": {
-            "$date": 1398338294301
-        },
-        "updated": {
-            "$date": 1398338294301
-        }
+        "type": "twoSided"
     },
     {
         "_id": {
@@ -435,7 +375,7 @@
             "de": "n/a"
         },
         "midtextI18n": {
-            "de": "hoch"
+            "de": "Angemessen"
         },
         "midtextexampleI18n": {
             "de": "Ich habe keinen Grund zur Annahme, dass mein Arbeitsplatz in n\u00e4chster Zeit gef\u00e4hrdet sein k\u00f6nnte."
@@ -452,13 +392,7 @@
         "titleI18n": {
             "de": "Arbeitsplatzsicherheit"
         },
-        "type": "oneSided",
-        "created": {
-            "$date": 1398338294301
-        },
-        "updated": {
-            "$date": 1398338294301
-        }
+        "type": "oneSided"
     },
     {
         "_id": {
@@ -478,7 +412,7 @@
             "de": "Wenn du dich von deinen Freizeitverpflichtungen \u00fcberfordert f\u00fchlst, schaffe dir mehr pers\u00f6nliche Erholungsr\u00e4ume und hinterfrage deine Priorit\u00e4ten. Bespreche die Situation auch mit deinem /deiner Partner/in, um gemeinsam eine Stressbew\u00e4ltigungsstrategie zu entwickeln."
         },
         "midtextI18n": {
-            "de": "Gerade richtig"
+            "de": "Ausgewogen"
         },
         "midtextexampleI18n": {
             "de": "In der Freizeit f\u00fchle ich mich gerade richtig ausgef\u00fcllt."
@@ -495,13 +429,7 @@
         "titleI18n": {
             "de": "Freizeitverpflichtungen"
         },
-        "type": "twoSided",
-        "created": {
-            "$date": 1398338294301
-        },
-        "updated": {
-            "$date": 1398338294301
-        }
+        "type": "twoSided"
     },
     {
         "_id": {
@@ -515,7 +443,7 @@
             "de": "n/a"
         },
         "midtextI18n": {
-            "de": "nicht belastend"
+            "de": "Ausgewogen"
         },
         "midtextexampleI18n": {
             "de": "Ich empfinde meine famili\u00e4re Situation als ausgleichend zu meiner beruflichen Belastung."
@@ -532,13 +460,7 @@
         "titleI18n": {
             "de": "Famili\u00e4re Situation"
         },
-        "type": "oneSided",
-        "created": {
-            "$date": 1398338294301
-        },
-        "updated": {
-            "$date": 1398338294301
-        }
+        "type": "oneSided"
     },
     {
         "_id": {
@@ -552,7 +474,7 @@
             "de": "n/a"
         },
         "midtextI18n": {
-            "de": "nicht belastend"
+            "de": "Ausgewogen"
         },
         "midtextexampleI18n": {
             "de": "Ich habe keine finanziellen Probleme oder Sorgen."
@@ -569,13 +491,7 @@
         "titleI18n": {
             "de": "Finanzielle Situation"
         },
-        "type": "oneSided",
-        "created": {
-            "$date": 1398338294301
-        },
-        "updated": {
-            "$date": 1398338294301
-        }
+        "type": "oneSided"
     },
     {
         "_id": {
@@ -595,7 +511,7 @@
             "de": "Wenn du dich von deinem sozialen Umfeld eingeengt f\u00fchlst, schaffe dir mehr pers\u00f6nliche Freir\u00e4ume und richte deine Priorit\u00e4ten st\u00e4rker auf deine pers\u00f6nlichen Bed\u00fcrfnisse aus."
         },
         "midtextI18n": {
-            "de": "Optimal"
+            "de": "Ausgewogen"
         },
         "midtextexampleI18n": {
             "de": "Mein soziales Umfeld unterst\u00fctzt mich bei meiner Stressbew\u00e4ltigung optimal."
@@ -612,13 +528,7 @@
         "titleI18n": {
             "de": "Soziales Umfeld"
         },
-        "type": "twoSided",
-        "created": {
-            "$date": 1398338294301
-        },
-        "updated": {
-            "$date": 1398338294301
-        }
+        "type": "twoSided"
     },
     {
         "_id": {
@@ -655,13 +565,7 @@
         "titleI18n": {
             "de": "Selbstanforderungen"
         },
-        "type": "twoSided",
-        "created": {
-            "$date": 1398338294301
-        },
-        "updated": {
-            "$date": 1398338294301
-        }
+        "type": "twoSided"
     },
     {
         "_id": {
@@ -698,13 +602,7 @@
         "titleI18n": {
             "de": "Kontrollbed\u00fcrfnis"
         },
-        "type": "twoSided",
-        "created": {
-            "$date": 1398338294301
-        },
-        "updated": {
-            "$date": 1398338294301
-        }
+        "type": "twoSided"
     },
     {
         "_id": {
@@ -741,13 +639,7 @@
         "titleI18n": {
             "de": "Verantwortungsbewusstsein"
         },
-        "type": "twoSided",
-        "created": {
-            "$date": 1398338294301
-        },
-        "updated": {
-            "$date": 1398338294301
-        }
+        "type": "twoSided"
     },
     {
         "_id": {
@@ -784,13 +676,7 @@
         "titleI18n": {
             "de": "Harmoniebed\u00fcrfnis"
         },
-        "type": "twoSided",
-        "created": {
-            "$date": 1398338294301
-        },
-        "updated": {
-            "$date": 1398338294301
-        }
+        "type": "twoSided"
     },
     {
         "_id": {
@@ -827,13 +713,7 @@
         "titleI18n": {
             "de": "Geltungsbed\u00fcrfnis"
         },
-        "type": "twoSided",
-        "created": {
-            "$date": 1398338294301
-        },
-        "updated": {
-            "$date": 1398338294301
-        }
+        "type": "twoSided"
     }
     ,
     {
@@ -848,7 +728,7 @@
             "de": "n/a"
         },
         "midtextI18n": {
-            "de": "Optimal"
+            "de": "Angemessen"
         },
         "midtextexampleI18n": {
             "de": "Ich g\u00f6nne mir w\u00e4hrend meines Arbeitstages zur Erholung mehrmals eine kurze Arbeitspause sowie \u00fcber den Mittag, am Feierabend und am Wochenende eine l\u00e4ngere Erholungszeit."
@@ -865,13 +745,7 @@
         "titleI18n": {
             "de": "Pausen"
         },
-        "type": "oneSided",
-        "created": {
-            "$date": 1398338294301
-        },
-        "updated": {
-            "$date": 1398338294301
-        }
+        "type": "oneSided"
     },
     {
         "_id": {
@@ -885,7 +759,7 @@
             "de": "n/a"
         },
         "midtextI18n": {
-            "de": "Optimal"
+            "de": "Angemessen"
         },
         "midtextexampleI18n": {
             "de": "Ich wache in der Nacht selten auf und f\u00fchle mich am Morgen nach dem Schlaf richtig erholt."
@@ -902,13 +776,7 @@
         "titleI18n": {
             "de": "Schlaf"
         },
-        "type": "oneSided",
-        "created": {
-            "$date": 1398338294301
-        },
-        "updated": {
-            "$date": 1398338294301
-        }
+        "type": "oneSided"
     },
     {
         "_id": {
@@ -922,7 +790,7 @@
             "de": "n/a"
         },
         "midtextI18n": {
-            "de": "Optimal"
+            "de": "Angemessen"
         },
         "midtextexampleI18n": {
             "de": "Ich f\u00fchre in den Arbeitpausen regelm\u00e4ssig Entspannungs\u00fcbungen durch. In der Freizeit kommen bei mir entspannende bzw. beruhigende Aktivit\u00e4ten nicht zu kurz."
@@ -939,13 +807,7 @@
         "titleI18n": {
             "de": "Entspannung"
         },
-        "type": "oneSided",
-        "created": {
-            "$date": 1398338294301
-        },
-        "updated": {
-            "$date": 1398338294301
-        }
+        "type": "oneSided"
     },
     {
         "_id": {
@@ -982,13 +844,7 @@
         "titleI18n": {
             "de": "K\u00f6rperliche Aktivit\u00e4t"
         },
-        "type": "twoSided",
-        "created": {
-            "$date": 1398338294301
-        },
-        "updated": {
-            "$date": 1398338294301
-        }
+        "type": "twoSided"
     },
     {
         "_id": {
@@ -1025,13 +881,7 @@
         "titleI18n": {
             "de": "Sozialer Austausch"
         },
-        "type": "twoSided",
-        "created": {
-            "$date": 1398338294301
-        },
-        "updated": {
-            "$date": 1398338294301
-        }
+        "type": "twoSided"
     },
     {
         "_id": {
@@ -1062,13 +912,7 @@
         "titleI18n": {
             "de": "Ern\u00e4hrung"
         },
-        "type": "oneSided",
-        "created": {
-            "$date": 1398338294301
-        },
-        "updated": {
-            "$date": 1398338294301
-        }
+        "type": "oneSided"
     }
 
 ]

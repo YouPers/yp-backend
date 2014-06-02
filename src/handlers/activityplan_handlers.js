@@ -171,9 +171,16 @@ function getActivityPlanConflicts(req, res, next) {
     // var beginOfFirstNewEvent = newEvents[0].begin;
     // var endOfLastNewEvent = newEvents[newEvents.length-1].end;
 
-    ActivityPlan
-        .find({owner: req.user._id, status: 'active'})
-        .exec(function(err, oldPlans) {
+
+    // if the sentPlan has an id, we want to exclude it from the conflicts-search, because this is an editing of a plan
+    // and conflicts with itself should not be returned.
+    var q = ActivityPlan
+        .find({owner: req.user._id, status: 'active'});
+
+        if (sentPlan.id) {
+            q.where({$ne: {_id: mongoose.Types.ObjectId(sentPlan.id)}});
+        }
+        q.exec(function(err, oldPlans) {
             if (err) {
                 return error.handleError(err, next);
             }

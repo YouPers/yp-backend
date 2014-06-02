@@ -28,16 +28,16 @@ function _generateEventsForPlan(plan, user, i18n, planToUpdate) {
         _.forEach(occurrances, function (instance) {
             plan.events.push({
                 status: 'open',
-                begin: instance,
-                end: moment(instance).add('ms', duration)
+                begin: moment(instance).toDate(),
+                end: moment(instance).add('ms', duration).toDate()
             });
         });
     } else {
         // single date event
         plan.events.push({
             status: 'open',
-            begin: plan.mainEvent.start,
-            end: plan.mainEvent.end
+            begin: moment(plan.mainEvent.start).toDate(),
+            end: moment(plan.mainEvent.end).toDate()
         });
     }
 
@@ -141,6 +141,79 @@ function putActivityEvent(req, res, next) {
             }
         });
 }
+
+function getActivityPlanConflicts(req, res, next) {
+    var sentPlan = req.body;
+
+    // check required Attributes
+    if (!sentPlan.mainEvent) {
+        return next(new error.MissingParameterError({ required: 'mainEvent' }));
+    }
+
+    if (!sentPlan.mainEvent.start) {
+        return next(new error.MissingParameterError({ required: 'mainEvent.start' }));
+    }
+    if (!sentPlan.mainEvent.end) {
+        return next(new error.MissingParameterError({ required: 'mainEvent.end' }));
+    }
+
+    // generate all events from the sentPlan to validate -> sentEvents
+    _generateEventsForPlan(sentPlan, req.user, req.i18n);
+    var newEvents = sentPlan.events;
+
+    // load all planned events of this user that:
+    //     plannedEvent.begin before the end of the last sentEvent.end
+    // AND
+    //     .plannedEventend after the begin of the first sentEvent.start
+    // only these events can have conflicts
+
+    // TODO: improve performance by only loading plans that possibly conflict. This query here uses the status flag which is good enough to filter all old events.
+    // var beginOfFirstNewEvent = newEvents[0].begin;
+    // var endOfLastNewEvent = newEvents[newEvents.length-1].end;
+
+    ActivityPlan
+        .find({owner: req.user._id, status: 'active'})
+        .exec(function(err, oldPlans) {
+            if (err) {
+                return error.handleError(err, next);
+            }
+            var conflicts = [];
+
+            // put the events of the loaded plans in an ordered list by beginDate
+            var plannedEvents = [];
+            _.forEach(oldPlans, function(plan) {
+                _.forEach(plan.events, function(event) {
+                    // use plain "non-mongoose" object to prevent troubles with serializing the "pseudo attribute" title
+                    var plainEventObj = event.toObject();
+                    plainEventObj.title = plan.title;
+                    delete plainEventObj._id;
+                    plannedEvents.push(plainEventObj);
+                });
+            });
+
+            // go over all newEvents:
+            //     forEach newEvent:
+            //        find all plannedEvents, that have:
+            //                     plannedEvent.start < newEvent.end
+            //                     AND
+            //                     plannedEvent.end > sentEvent.start:
+            //                      WE FOUND A CONFLICT
+
+            _.forEach(newEvents, function(newEvent) {
+                var conflictingEvent = _.find(plannedEvents, function(plannedEvent) {
+                    return ((plannedEvent.begin < newEvent.end) && (plannedEvent.end > newEvent.begin));
+                });
+                if (conflictingEvent) {
+                    conflicts.push({newEvent: newEvent, conflictingEvent: conflictingEvent});
+                }
+            });
+
+            res.send(conflicts);
+            return next();
+        });
+}
+
+
 
 /**
  * handles a POST request to /ActivityPlan
@@ -824,5 +897,6 @@ module.exports = {
     getJoinOffers: getJoinOffers,
     postActivityPlanInvite: postActivityPlanInvite,
     deleteActivityPlan: deleteActivityPlan,
-    putActivityPlan: putActivityPlan
+    putActivityPlan: putActivityPlan,
+    getActivityPlanConflicts: getActivityPlanConflicts
 };

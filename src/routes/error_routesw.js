@@ -14,6 +14,17 @@ module.exports = function (swagger, config) {
 
     var baseUrl = '/error';
 
+    swagger.addModels({
+        ErrorObject: {
+            id: "ErrorObject",
+            required: [],
+            properties: {
+                message: {type: "string"},
+                code: {type: "string"},
+                stacktrace: {type: "string"}
+            }
+        }
+    });
 
     swagger.addPost({
         spec: {
@@ -22,8 +33,7 @@ module.exports = function (swagger, config) {
             notes: "log errors posted by the client",
             summary: "Post errors expierenced on a client to be logged on the server. Allows passing an Error Object in the body in JSON format.",
             method: "POST",
-            params: [swagger.bodyParam("error", "error object", "string")],
-            responseClass: "string",
+            params: [swagger.bodyParam("error", "error object", "ErrorObject")],
             errorResponses: [],
             nickname: "postError",
             accessLevel: "al_all"

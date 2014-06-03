@@ -51,7 +51,7 @@ module.exports = function (swagger, config) {
                 notes: "POSTs a new diaryentry",
                 summary: "POSTs a new diaryentry",
                 method: "POST",
-                param: [swagger.bodyParam("DiaryEntry", "new DiaryEntry object", "DiaryEntry")],
+                params: [swagger.bodyParam("DiaryEntry", "new DiaryEntry object", "DiaryEntry")],
                 "responseClass": "DiaryEntry",
                 "nickname": "postDiaryentries",
                 accessLevel: 'al_individual'
@@ -67,7 +67,7 @@ module.exports = function (swagger, config) {
                 notes: "delete diaryentry",
                 summary: "Deletes a diaryentry by id",
                 method: "DELETE",
-                param: [swagger.pathParam("id", "ID of the diaryentry to be fetched", "string")],
+                params: [swagger.pathParam("id", "ID of the diaryentry to be fetched", "string")],
                 "nickname": "deleteDiaryEntry",
                 accessLevel: 'al_user'
             },

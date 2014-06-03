@@ -46,15 +46,15 @@ function getSwaggerModel(aMongooseModel) {
         _.forOwn(parentType, function (property, propertyName) {
 
                 if (isReference(property.type)) {
-                    targetModel.properties[propertyName] = {$ref: property.ref || property.type.name};
+                    targetModel.properties[propertyName] = {type: property.ref || property.type.name};
                 } else if (isArray(property)) {
                     addArrayProperty(propertyName, property, targetModel);
                 } else if (isSubSchema(property.type)) {
                     subModelName = handleSubSchemaProperty(propertyName, property.type, targetModel);
-                    targetModel.properties[propertyName].items['$ref'] = subModelName;
+                    targetModel.properties[propertyName].items['type'] = subModelName;
                 } else if (isEmbeddedDoc(property.type)) {
                     subModelName = handleEmbeddedDocProperty(propertyName, property.type, targetModel);
-                    targetModel.properties[propertyName].items['$ref'] = subModelName;
+                    targetModel.properties[propertyName].items['type'] = subModelName;
                 } else if (property.type && property.type.name) {
                     targetModel.properties[propertyName] = {type: typeMap[property.type.name] || property.type.name};
                 } else if (property.name) {
@@ -82,15 +82,15 @@ function getSwaggerModel(aMongooseModel) {
         var subModelName;
 
         if (isReference(type)) {
-            targetModel.properties[propertyName].items['$ref'] = typeMap[type.ref] || type.ref;
+            targetModel.properties[propertyName].items['type'] = typeMap[type.ref] || type.ref;
         } else if (isArray(type)) {
             addArrayProperty(propertyName, type[0], targetModel);
         } else if (isSubSchema(type)) {
             subModelName = handleSubSchemaProperty(propertyName, type, targetModel);
-            targetModel.properties[propertyName].items['$ref'] = subModelName;
+            targetModel.properties[propertyName].items['type'] = subModelName;
         } else if (isEmbeddedDoc(type)) {
             subModelName = handleEmbeddedDocProperty(propertyName, type, targetModel);
-            targetModel.properties[propertyName].items['$ref'] = subModelName;
+            targetModel.properties[propertyName].items['type'] = subModelName;
         } else if (type && type.name) {
             targetModel.properties[propertyName].items.type = typeMap[type.name] || type.name;
         } else {

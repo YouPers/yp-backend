@@ -120,7 +120,7 @@ function getCoachRecommendationsFn(req, res, next) {
  *      activity: populated link to the activity (always available)
  *      activityPlan: [] of populated links to the suggested activityPlans (available in case 3./4./5.)
  *                    may be an array in case this activity has multiple invitations, recommendedPlans
- *      type: [] of one of ('ypHealthCoach', 'campaignActivity', 'campaignPlan', 'personalInvitation', 'publicPlan')
+ *      offerType: [] of one of ('ypHealthCoach', 'campaignActivity', 'campaignPlan', 'personalInvitation', 'publicPlan')
  *            may be an array if this activity was recommended by more than one source
  *      recommendedBy: []   link to the user  who recommended this, in case:
  *          1. a virtual user for our digital health coach
@@ -134,14 +134,14 @@ function getCoachRecommendationsFn(req, res, next) {
  *
  * The array of offers is then sorted into 3 groups,
  *
- * - with a preferred offer type of:
+ * - with a preferred offerType of:
  *
  * -- campaignActivityPlan
  * -- ypHealthCoach
  * -- personalInvitation
  *
- * - and in case no more offers with this type are available,
- *   the next highest rated offer type according to:
+ * - and in case no more offers with this offerType are available,
+ *   the next highest rated offer offerType according to:
  *
  * 'publicActivityPlan', // lowest prio
  * 'personalInvitation',
@@ -323,7 +323,7 @@ function getActivityOffersFn(req, res, next) {
             // consolidate dups:
             //      if we now have more than one recommendation for the same activity from the different sources
             //      we need to consolidate them into one recommendation with multiple recommenders, sources and possibly plans.
-            //      We do this by merging the recommender, the type and the plan property into an array.
+            //      We do this by merging the recommender, the offerType and the plan property into an array.
 
             // prio them into a object keyed by activity._id to remove dups
             var myOffersHash = {};
@@ -341,7 +341,7 @@ function getActivityOffersFn(req, res, next) {
                             existingRec.recommendedBy.push(recommendedBy);
                         }
                     });
-                    existingRec.type = _.union(existingRec.type, offer.type);
+                    existingRec.offerType = _.union(existingRec.offerType, offer.offerType);
                     existingRec.prio = _.union(existingRec.prio, offer.prio);
                 } else {
                     // this act does not yet exist, so we add
@@ -365,9 +365,9 @@ function getActivityOffersFn(req, res, next) {
 
                     for (var priority = typesLowestToHighestPriority.length; priority > 0; priority--) {
 
-                        if (_.contains(offer.type, preferredType)) {
+                        if (_.contains(offer.offerType, preferredType)) {
                             return -6;
-                        } else if (_.contains(offer.type, typesLowestToHighestPriority[priority])) {
+                        } else if (_.contains(offer.offerType, typesLowestToHighestPriority[priority])) {
                             return -priority;
                         }
                     }
@@ -386,8 +386,8 @@ function getActivityOffersFn(req, res, next) {
                     var maxPerType = 8;
 
                     var countPerType = _.filter(sortedOffers, function (o) {
-                        return _.any(o.type, function (type) {
-                            return _.contains(offer.type, type);
+                        return _.any(o.offerType, function (offerType) {
+                            return _.contains(offer.offerType, offerType);
                         });
                     }).length;
 
@@ -410,13 +410,13 @@ function getActivityOffersFn(req, res, next) {
             // add all personalInvitations that were not added before
 
             sortedOffers = sortedOffers.concat(_.filter(myOffersHash, function (offer) {
-                return _.contains(offer.type, 'personalInvitation');
+                return _.contains(offer.offerType, 'personalInvitation');
             }));
 
             // fill up to 9 with publicActivityPlans
             if (sortedOffers.length < 9) {
                 var publicPlans = _.filter(myOffersHash, function (offer) {
-                    return _.contains(offer.type, 'publicActivityPlan');
+                    return _.contains(offer.offerType, 'publicActivityPlan');
                 });
                 sortedOffers = sortedOffers.concat(publicPlans.slice(0, 9 - sortedOffers.length));
             }
@@ -452,15 +452,15 @@ function getActivityOffersFn(req, res, next) {
 
 function _getCampaignActivityOffers(req, res, next) {
 
-    var query = ActivityOffer.find({targetQueue: req.params.campaign, type: {$ne: 'publicActivityPlan'}});
+    var query = ActivityOffer.find({targetQueue: req.params.campaign, offerType: {$ne: 'publicActivityPlan'}});
     generic.addStandardQueryOptions(req, query, ActivityOffer);
 
     query.exec(function (err, offers) {
 
-        // for offers of type recommendation add the count of how many users have planned this activity as part
+        // for offers of offerType recommendation add the count of how many users have planned this activity as part
         // of the campaign
         async.forEach(_.filter(offers, function (offer) {
-                return offer.type[0] === 'campaignActivity';
+                return offer.offerType[0] === 'campaignActivity';
             }),
             function (offer, done) {
                 ActivityPlan.count(
@@ -569,7 +569,7 @@ function _getDefaultActivityOffers(activityFilter, cb) {
                         activity: activity,
                         activityPlan: [],
                         recommendedBy: [healthCoachUser],
-                        type: ['defaultActivity'],
+                        offerType: ['defaultActivity'],
                         sourceType: 'youpers',
                         prio: activity.qualityFactor
                     };

@@ -14,6 +14,12 @@ function getSwaggerModel(aMongooseModel) {
         'Mixed': 'string'
     };
 
+    var propertyToModelNameMap = {
+        "focus": "Focus",
+        "starredActivities": "StarredActivity",
+        "rejectedActivities": "RejectedActivity"
+    };
+
     var swaggerModels = {};
 
     function createAndRegisterNewSwaggerModel(modelName) {
@@ -124,7 +130,9 @@ function getSwaggerModel(aMongooseModel) {
     }
 
     function getModelNameFromPropertyName(propertyName, dontDepluralize) {
-        if (propertyName.indexOf('I18n') !== -1) {
+        if (propertyToModelNameMap[propertyName]) {
+            return propertyToModelNameMap[propertyName];
+        } else if (propertyName.indexOf('I18n') !== -1) {
             return 'I18nString';
         } else {
             return _.last(propertyName) === 's' && !dontDepluralize ?

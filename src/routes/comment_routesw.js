@@ -51,7 +51,7 @@ module.exports = function (swagger, config) {
             notes: "POSTs a new comment",
             summary: "POSTs a new comment",
             method: "POST",
-            param: [swagger.bodyParam("Comment", "new Comment object", "Comment")],
+            params: [swagger.bodyParam("Comment", "new Comment object", "Comment")],
             "responseClass": "Comment",
             "nickname": "postComments",
             accessLevel: 'al_individual'
@@ -67,7 +67,7 @@ module.exports = function (swagger, config) {
                 notes: "delete comment",
                 summary: "Deletes a comment by id",
                 method: "DELETE",
-                param: [swagger.pathParam("id", "ID of the comment to be fetched", "string")],
+                params: [swagger.pathParam("id", "ID of the comment to be fetched", "string")],
                 "nickname": "deleteComment",
                 accessLevel: 'al_user'
             },

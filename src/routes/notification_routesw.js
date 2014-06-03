@@ -52,7 +52,7 @@ module.exports = function (swagger, config) {
             notes: "POSTs a new notification",
             summary: "POSTs a new notification",
             method: "POST",
-            param: [swagger.bodyParam("Notification", "new Notification object", "Notification")],
+            params: [swagger.bodyParam("Notification", "new Notification object", "Notification")],
             "responseClass": "Notification",
             "nickname": "postNotifications",
             accessLevel: 'al_individual'
@@ -68,7 +68,7 @@ module.exports = function (swagger, config) {
                 notes: "delete/dismiss notification",
                 summary: "Deletes or dismisses a notification by id",
                 method: "DELETE",
-                param: [swagger.pathParam("id", "ID of the notification to be fetched", "string")],
+                params: [swagger.pathParam("id", "ID of the notification to be fetched", "string")],
                 "nickname": "deleteNotification",
                 accessLevel: 'al_user'
             },

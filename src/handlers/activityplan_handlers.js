@@ -462,7 +462,7 @@ function postActivityPlanInvite(req, res, next) {
                                     activity: locals.plan.activity._id,
                                     activityPlan: [locals.plan._id],
                                     targetQueue: invitedUser[0] && invitedUser[0]._id,
-                                    type: ['personalInvitation'],
+                                    offerType: ['personalInvitation'],
                                     recommendedBy: [req.user._id],
                                     validTo: locals.plan.events[locals.plan.events.length - 1].end
                                 });

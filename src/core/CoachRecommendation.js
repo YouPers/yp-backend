@@ -167,7 +167,7 @@ function _loadAssessmentResult(userId, assessmentResult, done) {
 function _removeOldRecsFromActivityOffers(userId, cb) {
     // mongo/mogoose automagically query the 'type' attribute, which is actually an array, by doing
     // this here. It means: find documents with 'type' array that contains HEALTH_COACH_TYPE
-    ActivityOffer.find({targetQueue: userId, type: HEALTH_COACH_TYPE})
+    ActivityOffer.find({targetQueue: userId, offerType: HEALTH_COACH_TYPE})
         .remove()
         .exec(
         function (err) {
@@ -189,7 +189,7 @@ function _storeNewRecsIntoActivityOffers(userId, recs, cb) {
     async.forEach(recs, function (rec, done) {
         var newOffer = new ActivityOffer({
             activity: rec.activity,
-            type: [HEALTH_COACH_TYPE],
+            offerType: [HEALTH_COACH_TYPE],
             recommendedBy: [HEALTH_COACH_USER_ID],
             targetQueue: userId,
             prio: [rec.score]

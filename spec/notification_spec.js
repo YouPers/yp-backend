@@ -30,7 +30,7 @@ consts.newUserInNewCampaignApi(
                         activity: consts.aloneActivity.id,
                         recommendedBy: [consts.users.test_campaignlead.id],
                         targetQueue: campaign.id,
-                        type: ['campaignActivity'],
+                        offerType: ['campaignActivity'],
                         prio: ['100']
                     })
                     .auth(consts.users.test_campaignlead.username, 'yp')

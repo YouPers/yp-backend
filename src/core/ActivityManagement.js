@@ -34,7 +34,7 @@ actMgr.on('activity:planSaved', function (plan) {
             activityPlan: [plan.id],
             targetQueue: plan.campaign || plan.owner, // TODO: This || plan.owner is a hack to prevent "public" offers to show up in multiple campaigns. Need to decide on how to deal with real PUBLIC offer
             recommendedBy: [plan.owner],
-            type: ['publicActivityPlan'],
+            offerType: ['publicActivityPlan'],
             validTo: plan.events[plan.events.length - 1].end,
             prio: [1]
         });
@@ -110,14 +110,14 @@ actMgr.on('activity:offerSaved', function (offer) {
         if (err) {
             return actMgr.emit('Error', err);
         }
-        var isCampaignPromotedOffer = ((offer.type[0] === 'campaignActivityPlan') || (offer.type[0] === 'campaignActivity'));
-        var isPersonalInvite = (offer.type[0] === 'personalInvitation');
-        var isPublicPlan = (offer.type[0] === 'publicActivityPlan');
+        var isCampaignPromotedOffer = ((offer.offerType[0] === 'campaignActivityPlan') || (offer.offerType[0] === 'campaignActivity'));
+        var isPersonalInvite = (offer.offerType[0] === 'personalInvitation');
+        var isPublicPlan = (offer.offerType[0] === 'publicActivityPlan');
 
         if (isCampaignPromotedOffer || isPersonalInvite) {
             var notification = new Notification({
-                type: ActivityOffer.mapOfferTypeToNotificationType[offer.type[0]],
-                sourceType: ActivityOffer.mapOfferTypeToSourceType[offer.type[0]],
+                type: ActivityOffer.mapOfferTypeToNotificationType[offer.offerType[0]],
+                sourceType: ActivityOffer.mapOfferTypeToSourceType[offer.offerType[0]],
                 title: (offer.plan && offer.plan.title) || offer.activity.title,
                 targetQueue: offer.targetQueue,
                 author: offer.recommendedBy,
@@ -139,7 +139,7 @@ actMgr.on('activity:offerSaved', function (offer) {
         } else if (isPublicPlan){
             // this is a public plan, we do not genereate Notifications for these
         } else {
-            throw new Error('unknown offertype: ' + offer.type[0]);
+            throw new Error('unknown offertype: ' + offer.offerType[0]);
         }
     }
 });

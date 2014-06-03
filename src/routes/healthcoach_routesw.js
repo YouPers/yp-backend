@@ -31,6 +31,7 @@ module.exports = function (swagger, config) {
                     }
                 ],
                 method: "GET",
+                responseClass: "Array[string]",
                 "nickname": "coachMessagesGet",
                 accessLevel: 'al_all'},
             action: coachHandlers.getCoachMessagesFn

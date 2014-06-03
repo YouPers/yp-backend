@@ -13,7 +13,7 @@ module.exports = function (swagger, config) {
             path: baseUrl + '/coach',
             notes: "returns the current coachRecommendations for a user",
             method: "GET",
-            "responseClass": "ActivityOffer",
+            "responseClass": "Array[ActivityOffer]",
             "nickname": "getCoachRecommendations",
             params: [
                 generic.params.limit,
@@ -34,7 +34,7 @@ module.exports = function (swagger, config) {
                 "of activities recommended by the assessment evaluation, of campaign recommended activities and activityplans and of personal invitations.",
             summary: "returns the current top 10 actvity offers for the authenticated user.",
             method: "GET",
-            "responseClass": "ActivityOffer",
+            "responseClass": "[ActivityOffer]",
             "nickname": "getActivityOffers",
             params: [
                 generic.params.limit,

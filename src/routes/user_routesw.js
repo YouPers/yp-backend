@@ -132,7 +132,7 @@ module.exports = function (swagger, config) {
                 generic.params.populate,
                 generic.params.populatedeep],
             method: "GET",
-            "responseClass": "User",
+            "responseClass": "Array[User]",
             "nickname": "getUsers",
             accessLevel: 'al_admin'
         },

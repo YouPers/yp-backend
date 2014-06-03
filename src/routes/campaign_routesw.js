@@ -71,7 +71,7 @@ module.exports = function (swagger, config) {
                     default: 'all'
                 }
             ],
-            "responseClass": "Campaign",
+            "responseClass": "string",
             "errorResponses": [swagger.errors.invalid('id'), swagger.errors.notFound("campaign")],
             "nickname": "getCampaignStatsById",
             accessLevel: 'al_campaignlead'
@@ -91,7 +91,7 @@ module.exports = function (swagger, config) {
                 genericHandlers.params.populate,
                 genericHandlers.params.populatedeep],
             method: "GET",
-            "responseClass": "Campaign",
+            "responseClass": "Array[Campaign]",
             "nickname": "getCampaigns",
             accessLevel: 'al_campaignlead'
         },

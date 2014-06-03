@@ -37,7 +37,7 @@ module.exports = function (swagger, config) {
                 generic.params.filter,
                 generic.params.populate,
                 generic.params.populatedeep],
-            "responseClass": "Comment",
+            "responseClass": "Array[Comment]",
             "nickname": "getComments",
             accessLevel: 'al_individual'
         },

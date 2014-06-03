@@ -34,7 +34,7 @@ module.exports = function (swagger, config) {
                 generic.params.populatedeep
             ],
             method: "GET",
-            "responseClass": "ActivityPlan",
+            "responseClass": "Array[ActivityPlan]",
             "nickname": "getJoinOffers",
             accessLevel: 'al_individual',
             beforeCallbacks: []
@@ -81,7 +81,7 @@ module.exports = function (swagger, config) {
                 generic.params.filter,
                 generic.params.populate,
                 generic.params.populatedeep],
-            "responseClass": "ActivityPlan",
+            "responseClass": "Array[ActivityPlan]",
             "nickname": "getActivityPlans",
             accessLevel: 'al_individual',
             beforeCallbacks: []

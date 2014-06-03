@@ -40,7 +40,7 @@ module.exports = function (swagger, config) {
                 generic.params.populate,
                 generic.params.populatedeep],
             method: "GET",
-            "responseClass": "PaymentCode",
+            "responseClass": "Array[PaymentCode]",
             "nickname": "getPaymentCodes",
             accessLevel: 'al_productadmin'
         },

@@ -37,7 +37,7 @@ module.exports = function (swagger, config) {
                 generic.params.filter,
                 generic.params.populate,
                 generic.params.populatedeep],
-            "responseClass": "DiaryEntry",
+            "responseClass": "Array[DiaryEntry]",
             "nickname": "getDiaryentries",
             accessLevel: 'al_individual'
         },

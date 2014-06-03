@@ -23,7 +23,7 @@ module.exports = function (swagger, config) {
                 generic.params.populate,
                 generic.params.populatedeep],
             method: "GET",
-            "responseClass": "Profile",
+            "responseClass": "Array[Profile]",
             "nickname": "getProfiles",
             accessLevel: 'al_user'
         },

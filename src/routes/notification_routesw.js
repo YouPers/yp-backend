@@ -38,7 +38,7 @@ module.exports = function (swagger, config) {
                 generic.params.limit,
                 generic.params.filter,
                 generic.params.populate],
-            "responseClass": "Notification",
+            "responseClass": "Array[Notification]",
             "nickname": "getNotification",
             accessLevel: 'al_individual'
         },

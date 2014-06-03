@@ -87,7 +87,7 @@ module.exports = function (swagger, config) {
                 generic.params.populate,
                 generic.params.populatedeep],
             method: "GET",
-            "responseClass": "Organization",
+            "responseClass": "Array[Organization]",
             "nickname": "getOrganizations",
             accessLevel: 'al_user' // orgadmin's about to be need this check too
         },

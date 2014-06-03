@@ -21,6 +21,7 @@ module.exports = function (swagger, config) {
             method: "GET",
             nickname: "getStats",
             accessLevel: 'al_individual',
+            responseClass: 'string',
             params: [
                 {
                     paramType: "query",

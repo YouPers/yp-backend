@@ -4,7 +4,7 @@ var mongoose = require('mongoose'),
 
 var AssessmentResultAnswerSchema = common.newSchema({
         assessment: {type: Schema.Types.ObjectId, ref: 'Assessment', required: true},
-        question: {type: Schema.Types.ObjectId, required: true },
+        question: {type: Schema.Types.ObjectId, ref: 'AssessmentQuestion', required: true },
         answer: {type: Number, required: true, default: 0}
     }
 );

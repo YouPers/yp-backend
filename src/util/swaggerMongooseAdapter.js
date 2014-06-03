@@ -46,7 +46,7 @@ function getSwaggerModel(aMongooseModel) {
         _.forOwn(parentType, function (property, propertyName) {
 
                 if (isReference(property.type)) {
-                    targetModel.properties[propertyName] = {type: property.ref || property.type.name};
+                    targetModel.properties[propertyName] = {type: property.ref || property.type.name || 'ObjectId'};
                 } else if (isArray(property)) {
                     addArrayProperty(propertyName, property, targetModel);
                 } else if (isSubSchema(property.type)) {
@@ -56,9 +56,9 @@ function getSwaggerModel(aMongooseModel) {
                     subModelName = handleEmbeddedDocProperty(propertyName, property.type, targetModel);
                     targetModel.properties[propertyName].items['type'] = subModelName;
                 } else if (property.type && property.type.name) {
-                    targetModel.properties[propertyName] = {type: typeMap[property.type.name] || property.type.name};
+                    targetModel.properties[propertyName] = {type: typeMap[property.type.name] || property.type.name}|| 'ObjectId';
                 } else if (property.name) {
-                    targetModel.properties[propertyName] = {type: typeMap[property.name] || property.name};
+                    targetModel.properties[propertyName] = {type: typeMap[property.name] || property.name || 'ObjectId'};
                 }
                 else {
                     throw new Error('unknown type for: ' + propertyName + ' propType: ' + property);
@@ -82,7 +82,7 @@ function getSwaggerModel(aMongooseModel) {
         var subModelName;
 
         if (isReference(type)) {
-            targetModel.properties[propertyName].items['type'] = typeMap[type.ref] || type.ref;
+            targetModel.properties[propertyName].items['type'] = typeMap[type.ref] || type.ref || 'ObjectId';
         } else if (isArray(type)) {
             addArrayProperty(propertyName, type[0], targetModel);
         } else if (isSubSchema(type)) {
@@ -92,7 +92,7 @@ function getSwaggerModel(aMongooseModel) {
             subModelName = handleEmbeddedDocProperty(propertyName, type, targetModel);
             targetModel.properties[propertyName].items['type'] = subModelName;
         } else if (type && type.name) {
-            targetModel.properties[propertyName].items.type = typeMap[type.name] || type.name;
+            targetModel.properties[propertyName].items.type = typeMap[type.name] || type.name || 'ObjectId';
         } else {
             throw new Error('type of arrayElement is not yet supported inside an Array: ' + propertyName);
         }
@@ -188,7 +188,7 @@ function getSwaggerModel(aMongooseModel) {
                     subModelName = handleEmbeddedDocProperty(realPropertyName, type, realTargetModel);
                     realTargetModel.properties[realPropertyName] = {type: subModelName};
                 } else if (isReference(type)) {
-                    realTargetModel.properties[realPropertyName] = {type: path.options.ref};
+                    realTargetModel.properties[realPropertyName] = {type: path.options.ref || 'ObjectId'};
                 } else {
                     realTargetModel.properties[realPropertyName] = {
                         type: typeMap[path.constructor.name] || typeMap[path.options.type.name] || path.options.type.name

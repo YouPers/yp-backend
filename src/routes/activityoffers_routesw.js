@@ -34,7 +34,7 @@ module.exports = function (swagger, config) {
                 "of activities recommended by the assessment evaluation, of campaign recommended activities and activityplans and of personal invitations.",
             summary: "returns the current top 10 actvity offers for the authenticated user.",
             method: "GET",
-            "responseClass": "[ActivityOffer]",
+            "responseClass": "Array[ActivityOffer]",
             "nickname": "getActivityOffers",
             params: [
                 generic.params.limit,

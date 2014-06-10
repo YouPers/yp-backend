@@ -31,8 +31,7 @@
         "cron": "~1.0.x",
         "shortid": "~2.0.x",
         "coupon-code": "~0.3.x",
-        "mongoose-timestamp": "~0.2.x",
-        "node-rest-client": "*"
+        "mongoose-timestamp": "~0.2.x"
     },
     "devDependencies": {
         "grunt-contrib-jshint": "~0.10.x",
@@ -44,7 +43,8 @@
         "grunt-concurrent": "~0.5.x",
         "grunt-wait": "~0.1.x",
         "grunt-express-server": "~0.4.x",
-        "grunt-curl": "latest"
+        "grunt-curl": "latest",
+        "node-rest-client": "git+https://github.com/aacerox/node-rest-client.git"
     },
     "scripts": {
         "test": "grunt test",

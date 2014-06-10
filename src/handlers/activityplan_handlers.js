@@ -312,7 +312,7 @@ function _saveNewActivityPlan(plan, req, cb) {
             // - populate 'activity' so we can get create a nice calendar entry
             // - we need to reload so we get the changes that have been done pre('save') and pre('init')
             //   like updating the joiningUsers Collection
-            ActivityPlan.findById(savedPlan._id).populate('activity masterPlan').exec(function (err, reloadedActPlan) {
+            ActivityPlan.findById(savedPlan._id).populate('activity masterPlan owner').exec(function (err, reloadedActPlan) {
                 if (err) {
                     return cb(err);
                 }

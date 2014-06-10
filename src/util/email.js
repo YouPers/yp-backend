@@ -32,7 +32,7 @@ var decryptLinkToken = function (token) {
     return decipher.update(token, 'hex', 'utf8') + decipher.final('utf8');
 };
 
-var sendEmail = function (from, to, subject, templateName, locals) {
+var sendEmail = function (from, to, subject, templateName, locals, mailExtensions) {
 
     log.debug({emailTo: to}, 'loading templates for sending: ' + templateName);
     emailTemplates(templatesDir, function (err, template) {
@@ -59,6 +59,9 @@ var sendEmail = function (from, to, subject, templateName, locals) {
                             text: text, // plaintext body
                             html: html // html body
                         };
+                        if(mailExtensions) {
+                            _.extend(mail, mailExtensions);
+                        }
                         log.debug({emailTo: to}, 'trying to send email: ' + templateName);
                         smtpTransport.sendMail(mail, function (err, responseStatus) {
                             if (err) {
@@ -135,12 +138,7 @@ var sendCalInvite = function (to, type, iCalString, plan, i18n, reason) {
         method = 'CANCEL';
     }
 
-    var mail = {
-        from: fromDefault, // sender address
-        to: to, // list of receivers
-        subject: i18n.t('email:iCalMail.'+type+'.subject', {reason: reason, plan: plan.toJSON()}), // Subject line
-        text: i18n.t('email:iCalMail.'+type+'.text', {reason: reason, plan: plan.toJSON()}),
-        html: i18n.t('email:iCalMail.'+type+'.html', {reason: reason, plan: plan.toJSON()}),
+    var mailExtensions = {
         alternatives: [
             {
                 contentType: 'text/calendar; charset="UTF-8"; method=' + method,
@@ -156,14 +154,20 @@ var sendCalInvite = function (to, type, iCalString, plan, i18n, reason) {
             }
         ]};
 
-    log.debug({emailTo: to}, 'trying to send iCalInvite-Email.');
-    smtpTransport.sendMail(mail, function (err, responseStatus) {
-        if (err) {
-            log.error({err:err, data: err.data}, "error while sending email for: " + to + ", icalInvite");
-        } else {
-            log.info({responseStatus: responseStatus, message: responseStatus.message}, "email sent: " + to + ", icalInvite");
-        }
-    });
+    var subject = i18n.t('email:iCalMail.' + type + '.subject', {reason: reason, plan: plan.toJSON()});
+    var locals = {
+        salutation: i18n.t('email:iCalMail.' + type + '.salutation', {user: plan.owner.firstname}),
+        text: i18n.t('email:iCalMail.' + type + '.text', {plan: plan.toJSON()}),
+        title: plan.activity.title,
+        plan: plan,
+        image: urlComposer.activityImageUrl(plan.activity.number),
+        footer: i18n.t('email:iCalMail.footer'),
+        background: urlComposer.mailBackgroundImageUrl(),
+        logo: urlComposer.mailLogoImageUrl()
+    };
+
+    sendEmail(fromDefault, to, subject, 'calendarEventMail', locals, mailExtensions);
+
 };
 
 var sendActivityPlanInvite = function sendActivityPlanInvite(email, invitingUser, plan, invitedUser, i18n) {

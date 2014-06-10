@@ -42,6 +42,32 @@ module.exports = function (swagger, config) {
         action: handlers.getJoinOffers
     });
 
+    swagger.addPost({
+        spec: {
+            description: "Operations about ActivityPlans",
+            path: baseUrl + "/conflicts",
+            notes: "Gets the list of conflicting events in case there are any for the activityPlan in the body." +
+                "If there are no conflicts, it returns an emtpy list",
+            summary: "Validates an activityPlan that a user is about to POST",
+            params: [
+                {
+                    paramType: "body",
+                    name: "activityPlan",
+                    description: "the activityPlan to validate",
+                    dataType: "ActivityPlan",
+                    required: true
+                }
+            ],
+            responseClass: "SchedulingConflict",
+            method: "POST",
+            "nickname": "getActivityPlanConflicts",
+            accessLevel: 'al_individual',
+            beforeCallbacks: []
+        },
+        action: handlers.getActivityPlanConflicts
+    });
+
+
     swagger.addGet({
         spec: {
             description: "Operations about ActivityPlans",
@@ -199,6 +225,8 @@ module.exports = function (swagger, config) {
         },
         action: handlers.postNewActivityPlan
     });
+
+
 
     swagger.addPut({
         spec: {

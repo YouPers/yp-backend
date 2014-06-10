@@ -44,7 +44,7 @@
         "grunt-wait": "~0.1.x",
         "grunt-express-server": "~0.4.x",
         "grunt-curl": "latest",
-        "node-rest-client": "0.8.x"
+        "node-rest-client": "git+https://github.com/aacerox/node-rest-client.git"
     },
     "scripts": {
         "test": "grunt test",

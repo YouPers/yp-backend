@@ -240,7 +240,7 @@ frisby.create('Activity Plan: plan daily activity and check whether events are g
                     .auth('test_ind3', 'yp')
                     .expectStatus(200)
                     .afterJSON(function (reloadedNewPlan) {
-                        expect(_.indexOf(reloadedNewPlan.joiningUsers, joiningPlan.owner)).not.toEqual(-1);
+                        expect(_.indexOf(reloadedNewPlan.joiningUsers, joiningPlan.owner.id)).not.toEqual(-1);
                         expect(reloadedNewPlan.deleteStatus).toEqual("deletable");
 
                         frisby.create('Activity Plan: delete plan 2')

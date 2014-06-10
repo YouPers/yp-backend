@@ -81,8 +81,8 @@ frisby.create('Activity Plan Slave: plan weekly activity as a master for a joini
                     .expectStatus(200)
                     .afterJSON(function (masterPlanReloaded) {
                         expect(masterPlanReloaded.masterPlan).not.toBeDefined();
-                        expect(masterPlanReloaded.joiningUsers).toContain(slavePlanPostAnswer.owner);
-                        expect(masterPlanReloaded.joiningUsers).not.toContain(masterPlanReloaded.owner);
+                        expect(masterPlanReloaded.joiningUsers).toContain(slavePlanPostAnswer.owner.id);
+                        expect(masterPlanReloaded.joiningUsers).not.toContain(masterPlanReloaded.owner.id);
                     }).toss();
 
                 frisby.create('Activity Plan Slave: reload slavePlan')

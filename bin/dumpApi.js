@@ -10,13 +10,15 @@ process.argv.forEach(function (val, index, array) {
 var targetDir = '/tmp/apidocs/';
 var baseUrl = 'http://localhost:8000';
 var url = baseUrl + '/api-docs';
+var subDir = 'api-docs/';
 
 var client = new Client();
 
 client.get(url, function(data, response) {
     var parsedData =  JSON.parse(data);
 
-    fs.writeFile(targetDir + 'api-docs.json', JSON.stringify(parsedData), function(err) {
+    //fs.writeFile(targetDir + 'api-docs.json', JSON.stringify(parsedData), function(err) {
+    fs.writeFile(targetDir + 'api-docs.json', JSON.stringify(parsedData, null, "\t"), function(err) {
         if(err) {
             console.log(err);
         } else {
@@ -32,7 +34,7 @@ client.get(url, function(data, response) {
             var resourceName = api.path.split('/')[2];
             console.log(resourceName);
 
-            fs.writeFile(targetDir + resourceName + '.json', JSON.stringify(apidata), function(err) {
+            fs.writeFile(targetDir + subDir + resourceName , JSON.stringify(apidata, null, "\t"), function(err) {
                 if(err) {
                     console.log(err);
                 } else {

@@ -58,7 +58,7 @@ var validateUserPostFn = function(baseUrl) {
 
         if(field) {
             var query = {};
-            query[field] = req.body[field];
+            query[field] = req.body[field].toLowerCase();
 
             User.findOne(query).select(field).exec(function(err, value) {
                 if(err) { return error.handleError(err, next); }

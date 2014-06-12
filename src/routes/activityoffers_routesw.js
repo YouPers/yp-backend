@@ -55,8 +55,7 @@ module.exports = function (swagger, config) {
             "responseClass": "ActivityOffer",
             "nickname": "getActivityOfferById",
             params: [
-                generic.params.limit,
-                generic.params.populate,
+	            swagger.pathParam("id", "ID of the activity to be fetched", "string"),
                 generic.params.populatedeep
             ],
             accessLevel: 'al_individual',
@@ -74,6 +73,7 @@ module.exports = function (swagger, config) {
             notes: "allows to post an activityOffer to promote an Activity to a targetAudience.",
             summary: "post an activityOffer",
             method: "POST",
+            params: [swagger.bodyParam("ActivityOffer", "new ActivityOffer object", "ActivityOffer")],
             "nickname": "postActivityOffer",
             accessLevel: 'al_individual',
             beforeCallbacks: []
@@ -90,6 +90,9 @@ module.exports = function (swagger, config) {
             notes: "allows to update an activityOffer",
             summary: "put an activityOffer",
             method: "PUT",
+            params: [swagger.pathParam("id", "the id of the activityOffer to update", "string"), swagger.bodyParam("ActivityOffer", "ActivityOffer to be updated", "ActivityOffer")],
+            "responseClass": "ActivityOffer",
+            "errorResponses": [swagger.errors.invalid('id'), swagger.errors.notFound("activityOffer")],
             "nickname": "putActivityOffer",
             accessLevel: 'al_individual',
             beforeCallbacks: []
@@ -121,6 +124,15 @@ module.exports = function (swagger, config) {
             notes: "deletes a specific ActivityOffers",
             summary: "deletes a specific ActivityOffers",
             method: "DELETE",
+            params: [
+                {
+                    paramType: "path",
+                    name: "id",
+                    description: "the id of the activityOffers to fetch ",
+                    dataType: "string",
+                    required: true
+                }
+            ],
             "nickname": "deleteActivityOffer",
             accessLevel: 'al_individual',
             beforeCallbacks: []

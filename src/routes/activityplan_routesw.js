@@ -71,8 +71,8 @@ module.exports = function (swagger, config) {
         id: 'SchedulingConflict',
         required: ['newEvent', 'conflictingEvent'],
         properties: {
-            newEvent: {type: 'ActivityPlanEvent'},
-            conflictingEvent: {type: 'ActivityPlanEvent'}
+            newEvent: {type: 'Event'},
+            conflictingEvent: {type: 'Event'}
         }
     }});
 

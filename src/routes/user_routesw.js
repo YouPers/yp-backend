@@ -50,6 +50,9 @@ module.exports = function (swagger, config) {
             summary: "avatar image upload",
             notes: "uses traditional HTTP Multipart post, accepting at least jpg and png",
             method: "POST",
+            params: [swagger.pathParam("id", "ID of the user to be fetched", "string"),
+                swagger.bodyParam("avatar", "The avatar image as string representation", "string")],
+            "errorResponses": [swagger.errors.invalid('avatar')],
             "nickname": "avatarImagePost",
             accessLevel: 'al_user'
         },

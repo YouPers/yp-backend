@@ -11,8 +11,6 @@
     "dependencies": {
         "restify": "2.8.x",
         "mongoose": "3.8.x",
-        "mongo": "0.1.x",
-        "client-sessions": "0.6.x",
         "nodemailer": "0.6.x",
         "email-templates": "1.0.x",
         "longjohn": "0.2.x",
@@ -21,7 +19,7 @@
         "passport": "0.2.x",
         "passport-http": "0.2.x",
         "icalendar": "git+https://github.com/YouPers/node-icalendar.git",
-        "moment": "~2.6.x",
+        "moment": "~2.7.x",
         "moment-timezone": "~0.0.x",
         "swagger-node-restify": "git+https://github.com/YouPers/swagger-node-restify.git",
         "gm": "~1.16.0",
@@ -30,7 +28,8 @@
         "cron": "~1.0.x",
         "shortid": "~2.0.x",
         "coupon-code": "~0.3.x",
-        "mongoose-timestamp": "~0.2.x"
+        "mongoose-timestamp": "~0.2.x",
+        "newrelic": "*"
     },
     "devDependencies": {
         "grunt-contrib-jshint": "~0.10.x",

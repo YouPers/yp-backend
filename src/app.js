@@ -22,6 +22,10 @@ var restify = require("restify"),
     error = require('./util/error'),
     db = require('./util/database');
 
+if (process.env.NEW_RELIC_ENABLED) {
+    require('newrelic');
+}
+
 // Configure the server
 var server = restify.createServer({
     name: 'YP Platform Server',
@@ -41,14 +45,14 @@ server.pre(function (request, response, next) {
 });
 
 
-process.on('uncaughtException', function(err){
-    console.error('Caught uncaught Exception: ' + err );
+process.on('uncaughtException', function (err) {
+    console.error('Caught uncaught Exception: ' + err);
     process.exit(8);
 });
 
-server.on('uncaughtException', function(req, res, route, err){
+server.on('uncaughtException', function (req, res, route, err) {
     req.log.error(err);
-    console.error('Caught uncaught Exception: ' + err );
+    console.error('Caught uncaught Exception: ' + err);
     res.send(new error.InternalError(err, err.message || 'unexpected error'));
     return (true);
 });
@@ -87,8 +91,8 @@ server.use(restify.fullResponse());
 
 // prevents browsers from caching our responses. Without this header IE caches
 // XHR-responses and signals 304 to our app without forwarding the request to the backend.
-server.use(function(req,res, next) {
-    res.header('Expires','-1');
+server.use(function (req, res, next) {
+    res.header('Expires', '-1');
     return next();
 });
 
@@ -105,7 +109,7 @@ swagger.configureSwaggerPaths("", "/api-docs", "");
 
 swagger.setErrorHandler(function (req, res, err) {
     req.log.error(err);
-    console.error('Caught uncaught Exception: ' + err );
+    console.error('Caught uncaught Exception: ' + err);
     res.send(new error.InternalError(err, err.message || 'unexpected error'));
     return (true);
 });
@@ -131,4 +135,4 @@ swagger.configure(config.backendUrl, "0.1");
 
 var port = process.env.PORT || config.port;
 server.listen(port);
-console.log('App started on port ' + port +', now is: ' + new Date());
+console.log('App started on port ' + port + ', now is: ' + new Date());

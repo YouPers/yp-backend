@@ -67,6 +67,14 @@ module.exports = function (swagger, config) {
         action: handlers.getActivityPlanConflicts
     });
 
+    swagger.addModels({SchedulingConflict: {
+        id: 'SchedulingConflict',
+        required: ['newEvent', 'conflictingEvent'],
+        properties: {
+            newEvent: {type: 'ActivityPlanEvent'},
+            conflictingEvent: {type: 'ActivityPlanEvent'}
+        }
+    }});
 
     swagger.addGet({
         spec: {
@@ -255,7 +263,7 @@ module.exports = function (swagger, config) {
                     paramType: "body",
                     name: "activityPlanEvent",
                     description: "the activityPlanEvent to store",
-                    dataType: "Event",
+                    dataType: "ActivityPlanEvent",
                     required: true
                 },
                 {

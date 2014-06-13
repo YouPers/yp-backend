@@ -211,7 +211,7 @@ function getActivityPlanConflicts(req, res, next) {
                     return ((plannedEvent.begin < newEvent.end) && (plannedEvent.end > newEvent.begin));
                 });
                 if (conflictingEvent) {
-                    conflicts.push({newEvent: newEvent, conflictingEvent: conflictingEvent});
+                    conflicts.push({conflictingNewEvent: newEvent, conflictingSavedEvent: conflictingEvent});
                 }
             });
 

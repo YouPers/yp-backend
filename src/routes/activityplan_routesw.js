@@ -69,10 +69,10 @@ module.exports = function (swagger, config) {
 
     swagger.addModels({SchedulingConflict: {
         id: 'SchedulingConflict',
-        required: ['newEvent', 'conflictingEvent'],
+        required: ['conflictingNewEvent', 'conflictingSavedEvent'],
         properties: {
-            newEvent: {type: 'Event'},
-            conflictingEvent: {type: 'Event'}
+            conflictingNewEvent: {type: 'Event'},
+            conflictingSavedEvent: {type: 'Event'}
         }
     }});
 

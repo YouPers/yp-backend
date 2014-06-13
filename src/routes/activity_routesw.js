@@ -105,7 +105,7 @@ module.exports = function (swagger, config) {
             method: "PUT",
             "responseClass": "Activity",
             "nickname": "putActivity",
-            params: [swagger.pathParam("id", "ID of the activity to be updated", "string")],
+            params: [swagger.pathParam("id", "ID of the activity to be updated", "string"), swagger.bodyParam("activity", "activity to be updated", "Activity")],
             accessLevel: 'al_user',
             beforeCallbacks: []
         },

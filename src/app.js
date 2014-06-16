@@ -5,6 +5,10 @@
 // Load configurations
 console.log("NODE_ENV:" + process.env.NODE_ENV);
 
+if (process.env.NEW_RELIC_ENABLED) {
+    require('newrelic');
+}
+
 var env = process.env.NODE_ENV || 'development',
     config = require('./config/config')[env];
 
@@ -21,10 +25,6 @@ var restify = require("restify"),
     ypi18n = require('./util/ypi18n'),
     error = require('./util/error'),
     db = require('./util/database');
-
-if (process.env.NEW_RELIC_ENABLED) {
-    require('newrelic');
-}
 
 // Configure the server
 var server = restify.createServer({

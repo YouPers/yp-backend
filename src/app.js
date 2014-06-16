@@ -6,6 +6,7 @@
 console.log("NODE_ENV:" + process.env.NODE_ENV);
 
 if (process.env.NEW_RELIC_ENABLED) {
+    console.log("Enabling relic: " + process.env.NEW_RELIC_ENABLED);
     require('newrelic');
 }
 

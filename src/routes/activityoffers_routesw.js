@@ -32,7 +32,7 @@ module.exports = function (swagger, config) {
             path: baseUrl,
             notes: "returns the currently available activity offers and recommendations for the current user. The list consists " +
                 "of activities recommended by the assessment evaluation, of campaign recommended activities and activityplans and of personal invitations.",
-            summary: "returns the current top 10 actvity offers for the authenticated user.",
+            summary: "returns the current top 10 activity offers for the authenticated user.",
             method: "GET",
             "responseClass": "Array[ActivityOffer]",
             "nickname": "getActivityOffers",

@@ -134,6 +134,7 @@ module.exports = function (swagger, config) {
             summary: "deletes a specific activity",
             method: "DELETE",
             "nickname": "deleteActivity",
+            params: [swagger.pathParam("id", "ID of the activity to be deleted", "string")],
             accessLevel: 'al_admin',
             beforeCallbacks: []
         },

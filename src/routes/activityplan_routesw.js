@@ -174,7 +174,8 @@ module.exports = function (swagger, config) {
                     description: "object with one property: 'email', an email address, or an array of adresses, or a separated String of emails (by ';, ')",
                     dataType: "EmailObject",
                     required: true
-                }
+                },
+                swagger.pathParam("id", "the id of the activityPlan to invite", "string")
             ],
             method: "POST",
             "nickname": "postActivityPlanInvite",
@@ -198,7 +199,7 @@ module.exports = function (swagger, config) {
             path: baseUrlWithId + "/join",
             notes: "Joins an activity plan",
             summary: "Joins an activity plan",
-            params: [],
+            params: [swagger.pathParam("id", "the id of the activityPlan to join", "string")],
             method: "POST",
             "nickname": "postJoinActivityPlanFn",
             accessLevel: 'al_individual',

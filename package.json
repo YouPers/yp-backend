@@ -30,7 +30,8 @@
         "coupon-code": "~0.3.x",
         "mongoose-timestamp": "~0.2.x",
         "newrelic": "*",
-        "nodetime": "*"
+        "nodetime": "*",
+        "mongoose-eventify": "*"
     },
     "devDependencies": {
         "grunt-contrib-jshint": "~0.10.x",

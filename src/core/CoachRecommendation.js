@@ -30,6 +30,11 @@ var HEALTH_COACH_TYPE = 'ypHealthCoach';
  * @private
  */
 function _generateRecommendations(actList, assResult, personalGoal, nrOfRecsToReturn, cb) {
+
+    var indexedAnswers = _.indexBy(assResult.answers, function(answer) {
+        return answer.question.toString();
+    });
+
     if (_.isString(personalGoal) && personalGoal.length > 0) {
         personalGoal = [personalGoal];
     } else if (_.isArray(personalGoal) && personalGoal.length > 0 && _.isObject(personalGoal[0])) {
@@ -47,9 +52,7 @@ function _generateRecommendations(actList, assResult, personalGoal, nrOfRecsToRe
         var qualityFactor = activity.qualityFactor || 1;
         score = 1;
         _.forEach(activity.recWeights, function (recWeight) {
-            var answerObj = _.find(assResult.answers, function (ans) {
-                return _.isString(ans.question) ? ans.question === recWeight[0] : ans.question.equals(recWeight[0]);
-            });
+            var answerObj = indexedAnswers[recWeight[0].toString()];
 
             // add score only if
             //     we have an answer for this weight

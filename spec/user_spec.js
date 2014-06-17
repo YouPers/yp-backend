@@ -41,6 +41,12 @@ frisby.create('User: POST validate new user')
                     .expectStatus(409)
                     .toss();
 
+                validateUser.username = validateUser.username.toUpperCase();
+                frisby.create('User: POST validate - must be case insensitive')
+                    .post(URL + '/users/validate', validateUser)
+                    .expectStatus(409)
+                    .toss();
+
 
                 frisby.create('User: GET all users')
                     .get(URL + '/users')

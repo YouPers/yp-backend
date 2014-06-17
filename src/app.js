@@ -6,9 +6,18 @@
 console.log("NODE_ENV:" + process.env.NODE_ENV);
 
 if (process.env.NEW_RELIC_ENABLED) {
-    console.log("Enabling relic: " + process.env.NEW_RELIC_ENABLED);
+    console.log("Enabling new relic: " + process.env.NEW_RELIC_ENABLED);
     require('newrelic');
 }
+
+if (process.env.NODE_TIME_ENABLED && process.env.NODE_TIME_KEY) {
+    console.log("Enabling Nodetime: " + process.env.NODE_TIME_ENABLED);
+    require('nodetime').profile({
+        accountKey: process.env.NODE_TIME_KEY,
+        appName: 'yp-backend '+ process.env.NODE_ENV
+    });
+}
+
 
 var env = process.env.NODE_ENV || 'development',
     config = require('./config/config')[env];

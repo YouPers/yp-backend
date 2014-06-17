@@ -29,7 +29,8 @@
         "shortid": "~2.0.x",
         "coupon-code": "~0.3.x",
         "mongoose-timestamp": "~0.2.x",
-        "newrelic": "*"
+        "newrelic": "*",
+        "nodetime": "*"
     },
     "devDependencies": {
         "grunt-contrib-jshint": "~0.10.x",
@@ -42,7 +43,8 @@
         "grunt-wait": "~0.1.x",
         "grunt-express-server": "~0.4.x",
         "grunt-curl": "~1.5.x",
-        "node-rest-client": "~1.0.x"
+        "node-rest-client": "~1.0.x",
+        "commander": "~2.2.x"
     },
     "scripts": {
         "test": "grunt test",

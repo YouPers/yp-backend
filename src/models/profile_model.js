@@ -106,4 +106,6 @@ ProfileSchema.methods.getWorkingDaysAsIcal = function () {
     return iCalArray.join(',');
 };
 
+ProfileSchema.plugin(require('mongoose-eventify'));
+
 module.exports = mongoose.model('Profile', ProfileSchema);

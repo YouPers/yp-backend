@@ -55,7 +55,7 @@ module.exports = function (swagger, config) {
             "responseClass": "ActivityOffer",
             "nickname": "getActivityOfferById",
             params: [
-	            swagger.pathParam("id", "ID of the activity to be fetched", "string"),
+                swagger.pathParam("id", "ID of the activity to be fetched", "string"),
                 generic.params.populatedeep
             ],
             accessLevel: 'al_individual',
@@ -63,8 +63,6 @@ module.exports = function (swagger, config) {
         },
         action: generic.getByIdFn(baseUrlWithId, ActivityOffer)
     });
-
-
 
     swagger.addPost({
         spec: {
@@ -100,7 +98,6 @@ module.exports = function (swagger, config) {
         action: handlers.putActivityOfferFn
 
     });
-
 
 
     swagger.addDelete({

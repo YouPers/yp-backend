@@ -5,11 +5,11 @@ var _ = require('lodash'),
     ActivityOffer = mongoose.model('ActivityOffer'),
     error = require('../util/error'),
     async = require('async'),
-    Profile = mongoose.model('Profile');
-var env = process.env.NODE_ENV || 'development';
-var config = require('../config/config')[env];
-var Logger = require('bunyan');
-var log = new Logger(config.loggerOptions);
+    Profile = mongoose.model('Profile'),
+    env = process.env.NODE_ENV || 'development',
+    config = require('../config/config')[env],
+    Logger = require('bunyan'),
+    log = new Logger(config.loggerOptions);
 
 var NUMBER_OF_COACH_RECS = 10;
 var HEALTH_COACH_USER_ID = '53348c27996c80a534319bda';

@@ -80,6 +80,7 @@ module.exports = function (swagger, config) {
                 "autoincrement.",
             summary: "Posts a new activity",
             method: "POST",
+            mobileSDK: "disabled",
             "responseClass": "Activity",
             "nickname": "postActivity",
             params: [
@@ -103,6 +104,7 @@ module.exports = function (swagger, config) {
             notes: "update an existing activity",
             summary: "Update an Activity",
             method: "PUT",
+            mobileSDK: "disabled",
             "responseClass": "Activity",
             "nickname": "putActivity",
             params: [swagger.pathParam("id", "ID of the activity to be updated", "string"), swagger.bodyParam("activity", "activity to be updated", "Activity")],
@@ -119,6 +121,7 @@ module.exports = function (swagger, config) {
             notes: "deletes all activities",
             summary: "Deletes all Activities",
             method: "DELETE",
+            mobileSDK: "disabled",
             "nickname": "deleteActivities",
             accessLevel: 'al_admin',
             beforeCallbacks: []
@@ -133,6 +136,7 @@ module.exports = function (swagger, config) {
             notes: "deletes a specific activity",
             summary: "deletes a specific activity",
             method: "DELETE",
+            mobileSDK: "disabled",
             "nickname": "deleteActivity",
             params: [swagger.pathParam("id", "ID of the activity to be deleted", "string")],
             accessLevel: 'al_admin',

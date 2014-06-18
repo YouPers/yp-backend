@@ -250,6 +250,10 @@ function postNewActivityPlan(req, res, next) {
         return next(new error.MissingParameterError({ required: 'mainEvent.end' }));
     }
 
+    if (!sentPlan.activity) {
+        return next(new error.MissingParameterError('"activity" is a required attribute', { required: 'activity' }));
+    }
+
     // check whether delivered owner is the authenticated user
     if (sentPlan.owner && (req.user.id !== sentPlan.owner)) {
         return next(new error.NotAuthorizedError({
@@ -297,6 +301,11 @@ function _saveNewActivityPlan(plan, req, cb) {
         if (err) {
             return cb(err);
         }
+
+        if (!foundActivity) {
+            return cb(new error.InvalidArgumentError('referenced activity not found', { required: 'activity', activity: plan.activity }));
+        }
+
         plan.fields = foundActivity.fields;
 
         if (!plan.title) {

@@ -17,7 +17,7 @@ var postFn = function (baseUrl) {
             return error.handleError(err, next);
         }
 
-        var password = req.password || req.body.password;
+        var password = req.params.password || req.body.password;
         if (!password) {
             return next(new error.MissingParameterError('User needs a password', {required: 'password'}));
         }

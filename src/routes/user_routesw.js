@@ -78,9 +78,11 @@ module.exports = function (swagger, config) {
         spec: {
             description: "password reset",
             path: baseUrl + "/password_reset",
-            notes: "resets a user's password to a new password with a temporary token as credentials",
+            notes: "resets a user's password to a new password with a temporary token as credentials. To be used from a " +
+                "webclient, mobile apps should redirect to a the web using a link to reset passwords.",
             summary: "password reset",
             method: "POST",
+            mobileSDK: "disabled",
             params: [swagger.bodyParam("token", "a JSON object with two attributes 'token' and 'password'", "string")],
             "errorResponses": [swagger.errors.invalid('token'), swagger.errors.invalid('password')],
             "nickname": "resetpassword",
@@ -94,7 +96,9 @@ module.exports = function (swagger, config) {
             description: "request password reset",
             path: baseUrl + "/request_password_reset",
             notes: "requests a password reset for the supplied username or email. An email will be sent to the user" +
-                " with a link that allows him to reset his password",
+                " with a link that allows him to reset his password. Should be used on a web interface only" +
+                "Mobile apps should use a link to redirect to a mobile app.",
+            mobileSDK: "disabled",
             summary: "requests a password reset for the supplied username or email.",
             method: "POST",
             params: [swagger.bodyParam("username", "a JSON object with one attribute 'usernameOrEmail'", "string")],
@@ -166,7 +170,10 @@ module.exports = function (swagger, config) {
             notes: "creates the user and an associated empty user profile from the object passed in the body and returns the new use",
             summary: "creates a new user and an empty user profile",
             method: "POST",
-            params: [swagger.bodyParam("user", "updated user object", "User")],
+            params: [
+                swagger.bodyParam("user", "updated user object", "User"),
+                swagger.queryParam("password", "the password to be set for this new user", "string")
+            ],
             "responseClass": "User",
             "errorResponses": [],
             "nickname": "postUser",

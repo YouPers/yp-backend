@@ -144,6 +144,7 @@ frisby.create('User: POST validate new user')
                                                     .post(URL + '/users/password_reset', { token: validToken, password: "nopass" })
                                                     .expectStatus(200)
                                                     .after(function () {
+
                                                         user.password_old = 'nopass';
                                                         user.password = "newpass";
 
@@ -165,10 +166,54 @@ frisby.create('User: POST validate new user')
                                                                     .expectStatus(200)// new user, no content yet
                                                                     .expectJSONLength(0)
                                                                     .after(function () {
-                                                                        frisby.create('User: DELETE our testuser')
-                                                                            .delete(URL + '/users/' + user.id)
-                                                                            .auth('sysadm', 'backtothefuture')
-                                                                            .expectStatus(200)
+
+
+                                                                        user.firstname = "test_change_1";
+
+                                                                        frisby.create('User: PUT another user and fail with no authorization')
+                                                                            .put(URL + '/users/' + testuserid, user)
+                                                                            .auth("test_ind1", "yp")
+                                                                            .expectStatus(403)
+                                                                            .afterJSON(function (user2) {
+
+                                                                                user.firstname = "test_change_2";
+
+                                                                                delete user.password_old;
+                                                                                user.password = "test_password";
+
+                                                                                frisby.create('User: PUT another user and succeed as system admin')
+                                                                                    .put(URL + '/users/' + testuserid, user)
+                                                                                    .auth("test_sysadm", "yp")
+                                                                                    .expectStatus(200)
+                                                                                    .afterJSON(function (user2) {
+
+                                                                                        expect(user2.firstname).toEqual(user.firstname);
+
+
+                                                                                        user.username = testUser.username;
+                                                                                        user.password_old = user.password;
+                                                                                        user.password = "yet_another_password";
+
+                                                                                        frisby.create('User: PUT as this user and authenticate with the changed password')
+                                                                                            .put(URL + '/users/' + testuserid, user)
+                                                                                            .auth(user.username, user.password_old)
+                                                                                            .expectStatus(200)
+                                                                                            .afterJSON(function (user3) {
+
+
+                                                                                                frisby.create('User: DELETE our testuser')
+                                                                                                    .delete(URL + '/users/' + user.id)
+                                                                                                    .auth('sysadm', 'backtothefuture')
+                                                                                                    .expectStatus(200)
+                                                                                                    .toss();
+
+                                                                                            })
+                                                                                            .toss();
+
+                                                                                    })
+                                                                                    .toss();
+
+                                                                            })
                                                                             .toss();
 
                                                                     })

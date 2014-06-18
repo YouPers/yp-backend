@@ -48,7 +48,7 @@ module.exports = function (swagger, config) {
             notes: "updates an organization",
             summary: "updates an organization",
             method: "PUT",
-            params: [swagger.bodyParam("organization", "organization object", "Organization")],
+            params: [swagger.pathParam("id", "ID of the organization to be updated", "string"), swagger.bodyParam("organization", "organization object", "Organization")],
             "responseClass": "Organization",
             "errorResponses": [],
             "nickname": "putOrganization",

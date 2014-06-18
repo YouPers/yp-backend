@@ -116,8 +116,8 @@ module.exports = function (swagger, config) {
                 summary: "returns all assessmentResult for the current user and the assessment with id assessmentId",
                 method: "GET",
                 params: [swagger.pathParam("assessmentId", "ID of the assessment for which to store a result", "string"),
-                generic.params.populate,
-                generic.params.populatedeep],
+                    generic.params.populate,
+                    generic.params.populatedeep],
                 "responseClass": "Array[AssessmentResult]",
                 "errorResponses": [swagger.errors.invalid('assessmentId'), swagger.errors.notFound("assessment")],
                 "nickname": "getAssessmentResults",
@@ -188,8 +188,8 @@ module.exports = function (swagger, config) {
             notes: "returns the assessment by id, pass the Object Id as String ",
             summary: "returns one specific assessment by id",
             params: [swagger.pathParam("id", "ID of the assessment to fetch", "string"),
-            	generic.params.populate,
-            	generic.params.populatedeep
+                generic.params.populate,
+                generic.params.populatedeep
             ],
             "errorResponses": [swagger.errors.invalid('id'), swagger.errors.notFound("assessment")],
             method: "GET",
@@ -200,18 +200,4 @@ module.exports = function (swagger, config) {
         action: generic.getByIdFn(baseUrl, Assessment)
 
     });
-
-    swagger.addDelete({
-        spec: {
-            description: "Operations about assessments and assessmentResults",
-            path: baseUrl,
-            notes: "Admin only! do not use if you don't know exactly what this does!",
-            summary: "deletes all assessments in the system",
-            method: "DELETE",
-            "nickname": "deleteAssessments",
-            accessLevel: 'al_admin'
-        },
-        action: generic.deleteAllFn(baseUrl, Assessment)
-    });
-
 };

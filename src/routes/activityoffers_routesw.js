@@ -32,7 +32,7 @@ module.exports = function (swagger, config) {
             path: baseUrl,
             notes: "returns the currently available activity offers and recommendations for the current user. The list consists " +
                 "of activities recommended by the assessment evaluation, of campaign recommended activities and activityplans and of personal invitations.",
-            summary: "returns the current top 10 actvity offers for the authenticated user.",
+            summary: "returns the current top 10 activity offers for the authenticated user.",
             method: "GET",
             "responseClass": "Array[ActivityOffer]",
             "nickname": "getActivityOffers",
@@ -55,7 +55,7 @@ module.exports = function (swagger, config) {
             "responseClass": "ActivityOffer",
             "nickname": "getActivityOfferById",
             params: [
-	            swagger.pathParam("id", "ID of the activity to be fetched", "string"),
+                swagger.pathParam("id", "ID of the activity to be fetched", "string"),
                 generic.params.populatedeep
             ],
             accessLevel: 'al_individual',
@@ -63,8 +63,6 @@ module.exports = function (swagger, config) {
         },
         action: generic.getByIdFn(baseUrlWithId, ActivityOffer)
     });
-
-
 
     swagger.addPost({
         spec: {
@@ -100,7 +98,6 @@ module.exports = function (swagger, config) {
         action: handlers.putActivityOfferFn
 
     });
-
 
 
     swagger.addDelete({

@@ -4,11 +4,24 @@ var _ = require('lodash'),
     AssessmentResult = mongoose.model('AssessmentResult'),
     ActivityOffer = mongoose.model('ActivityOffer'),
     error = require('../util/error'),
-    async = require('async');
+    async = require('async'),
+    Profile = mongoose.model('Profile'),
+    env = process.env.NODE_ENV || 'development',
+    config = require('../config/config')[env],
+    Logger = require('bunyan'),
+    log = new Logger(config.loggerOptions);
 
 var NUMBER_OF_COACH_RECS = 10;
 var HEALTH_COACH_USER_ID = '53348c27996c80a534319bda';
 var HEALTH_COACH_TYPE = 'ypHealthCoach';
+
+Profile.on('change:userPreferences.focus', function (changedProfile) {
+    generateAndStoreRecommendations(changedProfile.owner, changedProfile.userPreferences.rejectedActivities, null, changedProfile.userPreferences.focus, false, function (err, recs) {
+        if (err) {
+            log.error(err);
+        }
+    });
+});
 
 /**
  * Evaluate an assessmentResult against a list of activities and returns a scored list of the activities
@@ -30,6 +43,11 @@ var HEALTH_COACH_TYPE = 'ypHealthCoach';
  * @private
  */
 function _generateRecommendations(actList, assResult, personalGoal, nrOfRecsToReturn, cb) {
+
+    var indexedAnswers = _.indexBy(assResult.answers, function (answer) {
+        return answer.question.toString();
+    });
+
     if (_.isString(personalGoal) && personalGoal.length > 0) {
         personalGoal = [personalGoal];
     } else if (_.isArray(personalGoal) && personalGoal.length > 0 && _.isObject(personalGoal[0])) {
@@ -47,9 +65,7 @@ function _generateRecommendations(actList, assResult, personalGoal, nrOfRecsToRe
         var qualityFactor = activity.qualityFactor || 1;
         score = 1;
         _.forEach(activity.recWeights, function (recWeight) {
-            var answerObj = _.find(assResult.answers, function (ans) {
-                return _.isString(ans.question) ? ans.question === recWeight[0] : ans.question.equals(recWeight[0]);
-            });
+            var answerObj = indexedAnswers[recWeight[0].toString()];
 
             // add score only if
             //     we have an answer for this weight

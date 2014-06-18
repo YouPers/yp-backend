@@ -17,8 +17,9 @@ module.exports = function (swagger, config) {
             description: "Operations about ActivityPlans",
             path: baseUrl + '/joinOffers',
             notes: "Only returns public plans and plans in the same campaign as the user is currently participating in. " +
-                "Is is constrained by the activity-Reference, that has to be passed in.",
-            summary: "returns activityPlans other users have published to invite colleages to join where the current user has access to.",
+                "It is constrained by the activity-Reference, that has to be passed in.",
+            summary: "returns activityPlans for one specific activity, that other users/campaignleads have published in a space I have access to." +
+                " This allows the user to select which group he would like to join for a specific activity",
             params: [
                 {
                     paramType: "query",
@@ -174,7 +175,8 @@ module.exports = function (swagger, config) {
                     description: "object with one property: 'email', an email address, or an array of adresses, or a separated String of emails (by ';, ')",
                     dataType: "EmailObject",
                     required: true
-                }
+                },
+                swagger.pathParam("id", "the id of the activityPlan to invite", "string")
             ],
             method: "POST",
             "nickname": "postActivityPlanInvite",
@@ -198,7 +200,7 @@ module.exports = function (swagger, config) {
             path: baseUrlWithId + "/join",
             notes: "Joins an activity plan",
             summary: "Joins an activity plan",
-            params: [],
+            params: [swagger.pathParam("id", "the id of the activityPlan to join", "string")],
             method: "POST",
             "nickname": "postJoinActivityPlanFn",
             accessLevel: 'al_individual',
@@ -217,6 +219,7 @@ module.exports = function (swagger, config) {
                 "this plan (the user is basically joining the masterPlan). When the attribute masterPlan is empty," +
                 "then this new plan can become a masterPlan, when other users post slavePlans later.",
             summary: "Posts a new activityPlan",
+            responseClass: "ActivityPlan",
             params: [
                 {
                     paramType: "body",
@@ -227,7 +230,7 @@ module.exports = function (swagger, config) {
                 }
             ],
             method: "POST",
-            "nickname": "postActivityPlan",
+            nickname: "postActivityPlan",
             accessLevel: 'al_individual',
             beforeCallbacks: []
         },

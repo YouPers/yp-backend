@@ -12,6 +12,10 @@ frisby.globalSetup({ // globalSetup is for ALL requests
     }
 });
 
+// set the startDate in the future and ensure that it is a Wednesday
+var startDate = moment().add('d',5).day(4).startOf('hour').toDate();
+var endDate = moment(startDate).add('h',1).toDate();
+
 frisby.create('Activity Plan: plan once activity and check whether event is generated')
     .post(URL + '/activityplans', {
         "owner": consts.users.test_ind1.id,
@@ -21,8 +25,8 @@ frisby.create('Activity Plan: plan once activity and check whether event is gene
         "campaign": "527916a82079aa8704000006",
         "executionType": "group",
         "mainEvent": {
-            "start": "2014-06-16T12:00:00.000Z",
-            "end": "2014-06-16T13:00:00.000Z",
+            "start": startDate,
+            "end": endDate,
             "allDay": false,
             "frequency": "once"
         },
@@ -33,7 +37,7 @@ frisby.create('Activity Plan: plan once activity and check whether event is gene
     .afterJSON(function (newPlan) {
         expect(newPlan.events).toBeDefined();
         expect(newPlan.events.length).toEqual(1);
-        expect(newPlan.events[0].begin).toEqual('2014-06-16T12:00:00.000Z');
+        expect(new Date(newPlan.events[0].begin)).toEqual(startDate);
         expect(newPlan.joiningUsers).toMatchOrBeEmpty();
         expect(newPlan.masterPlan).not.toBeDefined();
 
@@ -106,8 +110,8 @@ frisby.create('Activity Plan: plan weekly activity and check whether events are 
         "title": "myTitle",
         "executionType": "group",
         "mainEvent": {
-            "start": "2014-10-16T12:00:00.000Z",
-            "end": "2014-10-16T13:00:00.000Z",
+            "start": startDate,
+            "end": endDate,
             "allDay": false,
             "frequency": "week",
             "recurrence": {
@@ -126,8 +130,8 @@ frisby.create('Activity Plan: plan weekly activity and check whether events are 
     .afterJSON(function (newPlan) {
         expect(newPlan.events).toBeDefined();
         expect(newPlan.events.length).toEqual(6);
-        expect(newPlan.events[0].begin).toEqual('2014-10-16T12:00:00.000Z');
-        expect(newPlan.events[1].begin).toEqual('2014-10-23T12:00:00.000Z');
+        expect(new Date(newPlan.events[0].begin)).toEqual(startDate);
+        expect(new Date(newPlan.events[1].begin)).toEqual(moment(startDate).add('d',7).toDate());
         expect(newPlan.joiningUsers).toMatchOrBeEmpty();
         expect(newPlan.masterPlan).not.toBeDefined();
         expect(newPlan.events[0].status).toEqual('open');
@@ -181,8 +185,8 @@ frisby.create('Activity Plan: plan daily activity and check whether events are g
         "campaign": "527916a82079aa8704000006",
         "executionType": "group",
         "mainEvent": {
-            "start": "2014-10-16T12:00:00.000Z",
-            "end": "2014-10-16T13:00:00.000Z",
+            "start": startDate,
+            "end": endDate,
             "allDay": false,
             "frequency": "day",
             "recurrence": {
@@ -201,8 +205,8 @@ frisby.create('Activity Plan: plan daily activity and check whether events are g
     .afterJSON(function (newPlan) {
         expect(newPlan.events).toBeDefined();
         expect(newPlan.events.length).toEqual(6);
-        expect(newPlan.events[0].end).toEqual('2014-10-16T13:00:00.000Z');
-        expect(newPlan.events[5].end).toEqual('2014-10-23T13:00:00.000Z');  //skipping the two weekend-days
+        expect(new Date(newPlan.events[0].end)).toEqual(moment(endDate).toDate());
+        expect(new Date(newPlan.events[5].end)).toEqual(moment(endDate).add('d',7).toDate());  //skipping the two weekend-days
 
         frisby.create('Activity Plan: let another user join this plan')
             .post(URL + '/activityplans', {
@@ -213,8 +217,8 @@ frisby.create('Activity Plan: plan daily activity and check whether events are g
                 "campaign": "527916a82079aa8704000006",
                 "title": "myTitle",
                 "mainEvent": {
-                    "start": "2014-10-16T12:00:00.000Z",
-                    "end": "2014-10-16T13:00:00.000Z",
+                    "start": startDate,
+                    "end": endDate,
                     "allDay": false,
                     "frequency": "day",
                     "recurrence": {

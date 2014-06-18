@@ -10,6 +10,7 @@ var frisby = require('frisby');
 var port = process.env.PORT || 8000;
 var URL = 'http://localhost:' + port + '/activityplans';
 var consts = require('./testconsts');
+var moment = require('moment');
 
 frisby.globalSetup({ // globalSetup is for ALL requests
     request: {
@@ -18,6 +19,9 @@ frisby.globalSetup({ // globalSetup is for ALL requests
     }
 });
 
+// set the startDate in the future and ensure that it is a Wednesday
+var startDate = moment().add('d',5).day(4).toDate();
+var endDate = moment(startDate).add('h',1).toDate();
 
 var masterPlan = {
     "owner": consts.users.test_ind1.id,
@@ -26,8 +30,8 @@ var masterPlan = {
     "executionType": "group",
     "title": "myTitle",
     "mainEvent": {
-        "start": "2014-06-16T12:00:00.000Z",
-        "end": "2014-06-16T13:00:00.000Z",
+        "start": startDate,
+        "end": endDate,
         "allDay": false,
         "frequency": "week",
         "recurrence": {

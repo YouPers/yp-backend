@@ -32,7 +32,7 @@ var ProfileSchema = common.newSchema({
     maritalStatus: { type: String, enum: common.enums.maritalStatus, default: "undefined" },
     language: { type: String, trim: true},
     userPreferences: {
-        defaultUserWorkWeek: [String],
+        defaultWorkWeek: [String],
         personalGoal: {type: String},
         focus: [
             {

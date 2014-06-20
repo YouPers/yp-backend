@@ -12,8 +12,7 @@ var calendar = require('../util/calendar'),
     moment = require('moment'),
     async = require('async'),
     auth = require('../util/auth'),
-    handlerUtils = require('./handlerUtils'),
-    Diary = require('../core/Diary');
+    handlerUtils = require('./handlerUtils');
 
 function _getEvents(plan, ownerId, fromDate) {
 
@@ -26,7 +25,7 @@ function _getEvents(plan, ownerId, fromDate) {
     _.forEach(occurrences, function (instance) {
         events.push({
             status: 'open',
-            begin: moment(instance).toDate(),
+            start: moment(instance).toDate(),
             end: moment(instance).add('ms', duration).toDate(),
             activityPlan: plan._id,
             activity: plan.activity,
@@ -35,98 +34,6 @@ function _getEvents(plan, ownerId, fromDate) {
     });
 
     return events;
-}
-
-/**
- * handles a PUT request to /ActivityPlan/:planId/event/:eventId.
- * Expects that the ActivityPlan and the event with the corresponding Id exists. Only allows the owning user
- * of the ActivityPlan to update the ActivityEvent.
- *
- * @param req
- * @param res
- * @param next
- * @returns {*}
- */
-function putActivityEvent(req, res, next) {
-
-    if (!req.params.planId) {
-        return next(new error.MissingParameterError({ required: 'planId' }));
-    }
-
-    ActivityPlan
-        .findById(req.params.planId).populate('activity')
-        .exec(function (err, planFromDb) {
-            if (err) {
-                return error.handleError(err, next);
-            }
-
-            if (!planFromDb) {
-                return next(new error.ResourceNotFoundError('ActivityPlan not found', { id: req.params.planId }));
-            }
-
-            // TODO: (rblu) check whether new owner is same als old owner???
-            if (!planFromDb.owner || !planFromDb.owner.equals(req.user.id)) {
-                return next(new error.NotAuthorizedError('The user is not authorized to update this plan.', {
-                    userId: req.user.id,
-                    activityPlanId: planFromDb.id,
-                    owner: planFromDb.owner
-                }));
-            }
-
-            var eventFromDb = _.find(planFromDb.events, {'id': req.params.eventId});
-            if (!eventFromDb) {
-                return next(new error.ResourceNotFoundError('Event not found in ActivityPlan', {
-                    eventId: req.params.eventId,
-                    activityPlanId: req.params.planId
-                }));
-            }
-
-            var eventToPut = req.body;
-
-            handlerUtils.clean(mongoose.model('ActivityPlanEvent'), eventToPut);
-
-            _.extend(eventFromDb, eventToPut);
-
-            // set plan status to 'old' if no more events are 'open'
-            if (planFromDb.status === 'active' && !_.any(planFromDb.events, {status: 'open'})) {
-                planFromDb.status = 'old';
-            }
-
-            var diaryEntry = {
-                owner: planFromDb.owner,
-                type: 'activityPlanEvent',
-                refId: eventFromDb._id,
-                image: planFromDb.activity.getPictureUrl(),
-                title: planFromDb.title,
-                text: eventFromDb.comment,
-                feedback: eventFromDb.feedback,
-                dateBegin: eventFromDb.begin,
-                dateEnd: eventFromDb.end
-            };
-
-            Diary.createOrUpdateDiaryEntry(diaryEntry, function (err) {
-                if (err) {
-                    return error.handleError(err, next);
-                }
-                planFromDb.save(saveCallback);
-            });
-
-
-            function saveCallback(err, savedActivityPlan) {
-                if (err) {
-                    return error.handleError(err, next);
-                }
-
-                ActivityPlan.findById(savedActivityPlan._id, function (err, reloadedPlan) {
-                    if (err) {
-                        return error.handleError(err, next);
-                    }
-                    var savedEvent = _.find(reloadedPlan.events, {'id': req.params.eventId});
-                    res.send(200, savedEvent);
-                    return next();
-                });
-            }
-        });
 }
 
 function getActivityPlanConflicts(req, res, next) {
@@ -148,13 +55,13 @@ function getActivityPlanConflicts(req, res, next) {
     var newEvents = _getEvents(sentPlan, req.user.id);
 
     // load all planned events of this user that:
-    //     plannedEvent.begin before the end of the last sentEvent.end
+    //     plannedEvent.start before the end of the last sentEvent.end
     // AND
     //     .plannedEventend after the begin of the first sentEvent.start
     // only these events can have conflicts
 
     // TODO: improve performance by only loading plans that possibly conflict. This query here uses the status flag which is good enough to filter all old events.
-    // var beginOfFirstNewEvent = newEvents[0].begin;
+    // var beginOfFirstNewEvent = newEvents[0].start;
     // var endOfLastNewEvent = newEvents[newEvents.length-1].end;
 
 
@@ -194,7 +101,7 @@ function getActivityPlanConflicts(req, res, next) {
 
         _.forEach(newEvents, function (newEvent) {
             var conflictingEvent = _.find(plannedEvents, function (plannedEvent) {
-                return ((plannedEvent.begin < newEvent.end) && (plannedEvent.end > newEvent.begin));
+                return ((plannedEvent.start < newEvent.end) && (plannedEvent.end > newEvent.start));
             });
             if (conflictingEvent) {
                 conflicts.push({conflictingNewEvent: newEvent, conflictingSavedEvent: conflictingEvent});
@@ -261,14 +168,23 @@ function postNewActivityPlan(req, res, next) {
         sentPlan.campaign = req.user.campaign.id || req.user.campaign; // allow populated and unpopulated campaign
     }
 
-    var events = _getEvents(sentPlan, req.user.id);
-    ActivityEvent.create(events, function (err, events) {
-        if (err) {
-            error.handleError(err, next);
-        }
+    // set the byday of the mainEvent to the user's default if the client did not do it, only for daily activities
+    if (sentPlan.mainEvent.frequency === 'day' && !sentPlan.mainEvent.recurrence.byday) {
+        sentPlan.mainEvent.recurrence.byday = req.user.profile.userPreferences.defaultWorkWeek;
+    }
 
-        var newActPlan = new ActivityPlan(sentPlan);
-        _saveNewActivityPlan(newActPlan, req, generic.writeObjCb(req, res, next));
+    var newActPlan = new ActivityPlan(sentPlan);
+
+    _saveNewActivityPlan(newActPlan, req, function (err, plan) {
+
+        var events = _getEvents(plan, req.user.id);
+        ActivityEvent.create(events, function (err) {
+            if (err) {
+                error.handleError(err, next);
+            }
+
+            generic.writeObjCb(req, res, next)(null, plan);
+        });
     });
 }
 
@@ -309,7 +225,7 @@ function _saveNewActivityPlan(plan, req, cb) {
             // - populate 'activity' so we can get create a nice calendar entry
             // - we need to reload so we get the changes that have been done pre('save') and pre('init')
             //   like updating the joiningUsers Collection
-            ActivityPlan.findById(savedPlan._id).populate('activity masterPlan owner').exec(function (err, reloadedActPlan) {
+            ActivityPlan.findById(savedPlan._id).populate('activity owner').exec(function (err, reloadedActPlan) {
                 if (err) {
                     return cb(err);
                 }
@@ -324,9 +240,6 @@ function _saveNewActivityPlan(plan, req, cb) {
 
                 // remove the populated activity and masterplan because the client is not gonna expect it to be populated.
                 reloadedActPlan.activity = reloadedActPlan.activity._id;
-                if (reloadedActPlan.masterPlan) {
-                    reloadedActPlan.masterPlan = reloadedActPlan.masterPlan._id;
-                }
 
                 return cb(null, reloadedActPlan);
 
@@ -478,6 +391,7 @@ function _sendIcalMessages(activityPlan, req, reason, type, done) {
                     var myIcalString = calendar.getIcalObject(activityPlan, user, type, req.i18n, reason).toString();
                     email.sendCalInvite(user.email, type, myIcalString, activityPlan, req.i18n, reason);
                 }
+                return next();
             },
             done);
     });
@@ -486,7 +400,7 @@ function _deleteFutureEvents(activityPlan, done) {
     var now = new Date();
 
     ActivityEvent
-        .remove({activityPlan: activityPlan._id, begin: {$gte: now}})
+        .remove({activityPlan: activityPlan._id, start: {$gte: now}})
         .exec(function (err, count) {
             if (err) {
                 return done(err);
@@ -501,7 +415,7 @@ function deleteActivityPlan(req, res, next) {
     }
     var reason = req.params.reason || 'The organizer Deleted this activity';
 
-    ActivityPlan.findById(req.params.id).populate('activity owner joiningUsers').exec(function (err, activityPlan) {
+    ActivityPlan.findById(req.params.id).populate('activity').populate('owner joiningUsers', '+profile +email').exec(function (err, activityPlan) {
         if (err) {
             return error.handleError(err, next);
         }
@@ -518,7 +432,7 @@ function deleteActivityPlan(req, res, next) {
         }
 
 
-        if (activityPlan.getDeleteStatus === ActivityPlan.notDeletableNoFutureEvents) {
+        if (activityPlan.deleteStatus === ActivityPlan.notDeletableNoFutureEvents) {
             // if this is not deleteable because of no future events we have in fact
             // nothing to do, we just pretend that we deleted all future events, by doing nothing
             // and signalling success
@@ -535,22 +449,26 @@ function deleteActivityPlan(req, res, next) {
         }
 
         function _deletePlan(done) {
-            if (activityPlan.getDeleteStatus === 'deletable') {
+
+            var deleteStatus = activityPlan.deleteStatus;
+            if (deleteStatus === 'deletable') {
                 activityPlan.remove(done);
-            } else if (activityPlan.getDeleteStatus === 'deletableOnlyFutureEvents') {
+            } else if (deleteStatus === 'deletableOnlyFutureEvents') {
                 activityPlan.status = 'old';
                 if (activityPlan.mainEvent.frequency !== 'once') {
-                    activityPlan.mainEvent.recurrence.endby = new Date();
+                    activityPlan.mainEvent.recurrence.on = new Date();
                     activityPlan.mainEvent.recurrence.after = undefined;
                     activityPlan.save(done);
                 } else {
                     throw new Error('should never arrive here, it is not possible to have an "once" plan that has ' +
                         'passed and future events at the same time');
                 }
+            } else {
+                throw new Error('unknown DeleteStatus: ' + activityPlan.deleteStatus);
             }
         }
 
-        async.parallel([
+        return async.parallel([
                 _sendCalendarCancelMessages,
                 _deleteEvents,
                 _deletePlan
@@ -560,12 +478,11 @@ function deleteActivityPlan(req, res, next) {
                     error.handleError(err, next);
                 }
                 actMgr.emit('activity:planDeleted', activityPlan);
+                res.send(200);
                 return next();
             });
     });
 }
-
-
 
 
 function putActivityPlan(req, res, next) {
@@ -611,7 +528,7 @@ function putActivityPlan(req, res, next) {
 
         function _deleteEventsInFuture(done) {
             if (sentPlan.mainEvent && !_.isEqual(sentPlan.mainEvent, loadedActPlan.mainEvent)) {
-                return _deleteFutureEvents(loadedActPlan,done);
+                return _deleteFutureEvents(loadedActPlan, done);
             } else {
                 return done();
             }
@@ -640,7 +557,7 @@ function putActivityPlan(req, res, next) {
             if (sentPlan.mainEvent && !_.isEqual(sentPlan.mainEvent, loadedActPlan.mainEvent)) {
                 var users = [loadedActPlan.owner].concat(loadedActPlan.joiningUsers);
 
-                return async.forEach(users, function(user, cb) {
+                return async.forEach(users, function (user, cb) {
                     var events = _getEvents(loadedActPlan, user._id, new Date());
                     ActivityEvent.create(events, cb);
                 }, done);
@@ -653,7 +570,7 @@ function putActivityPlan(req, res, next) {
         return async.parallel([
                 _savePlan,
                 _sendCalendarUpdates,
-                function(done) {
+                function (done) {
                     async.series([
                         _deleteEventsInFuture,
                         _updateEventsForAllUsers
@@ -666,7 +583,6 @@ function putActivityPlan(req, res, next) {
 
 module.exports = {
     postNewActivityPlan: postNewActivityPlan,
-    putActivityEvent: putActivityEvent,
     postJoinActivityPlanFn: postJoinActivityPlanFn,
     postActivityPlanInvite: postActivityPlanInvite,
     deleteActivityPlan: deleteActivityPlan,

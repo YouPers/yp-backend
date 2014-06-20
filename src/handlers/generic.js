@@ -641,7 +641,6 @@ module.exports = {
                 }
 
                 _.extend(objFromDb, sentObj);
-
                 objFromDb.save(writeObjCb(req, res, next));
             });
 

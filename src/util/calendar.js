@@ -113,7 +113,7 @@ var getIcalObject = function (plan, recipientUser, iCalType, i18n, reason) {
             throw new Error("unknown recurrence frequency");
         }
 
-        event.addProperty("RRULE", _getRruleSpec(plan, recipientUser.profile.getWorkingDaysAsIcal()));
+        event.addProperty("RRULE", _getRruleSpec(plan, recipientUser.profile.defaultWorkWeek));
     }
     event.addProperty("TRANSP", "OPAQUE");
     myCal.addComponent(event);
@@ -134,7 +134,7 @@ function _getRruleSpec(plan) {
 
     var rruleSpec = { FREQ: frequencyMap[plan.mainEvent.frequency] };
     if (rruleSpec.FREQ === 'DAILY') {
-        rruleSpec.BYDAY = plan.recurrence.byday.join(',');
+        rruleSpec.BYDAY = plan.mainEvent.recurrence.byday.join(',');
 
         // Outlook Fix: Outlook really does not like it when the startDate is not part of the BYDAY rule.
         // it simply cannot parse the iCal file anymore
@@ -179,9 +179,10 @@ function getOccurrences(plan, fromDate) {
     fromDate = fromDate || moment(plan.mainEvent.start).subtract('day', 1).toDate();
 
     if (plan.mainEvent.frequency === 'once') {
-        return plan.mainEvent.start;
+        return [plan.mainEvent.start];
     } else {
-        return new ical.RRule(_getRruleSpec(plan)).nextOccurences(fromDate, 100);
+        var rrule = new ical.RRule(_getRruleSpec(plan), plan.mainEvent.start);
+        return rrule.nextOccurences(fromDate, 100);
     }
 }
 

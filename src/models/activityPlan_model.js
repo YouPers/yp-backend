@@ -16,7 +16,7 @@ var ActivityEvent = common.newSchema({
     activity: {type: ObjectId, ref: 'Activity'},
     activityPlan: {type: ObjectId, ref: 'ActivityPlan'},
     status: {type: String, enum: common.enums.activityPlanEventStatus},
-    begin: {type: Date},
+    start: {type: Date},
     end: {type: Date},
     doneTs: {type: Date},
     feedback: {type: Number},
@@ -85,10 +85,10 @@ ActivityPlanSchema.virtual('deleteStatus')
 
         var now = moment();
         // check if there are any events in the past, checking the first is enough!
-        var eventsInThePastExist = moment(occurrences[0]).add('ms', duration).before(now);
+        var eventsInThePastExist = moment(occurrences[0]).add('ms', duration).isBefore(now);
 
         // check if there are any events in the past, checking whether the last one is already passed is enough!
-        var eventsInTheFutureExist = moment(occurrences[occurrences.length -1]).add('ms', duration).after(now);
+        var eventsInTheFutureExist = moment(occurrences[occurrences.length -1]).add('ms', duration).isAfter(now);
 
         if (eventsInThePastExist && eventsInTheFutureExist) {
             return ActivityPlanSchema.statics.activityPlanOnlyFutureEventsDeletable;
@@ -109,7 +109,7 @@ ActivityPlanSchema.virtual('editStatus')
         var now = moment();
 
         // check if there are any events in the past, checking whether the last one is already passed is enough!
-        var eventsInTheFutureExist = moment(occurrences[occurrences.length -1]).add('ms', duration).after(now);
+        var eventsInTheFutureExist = moment(occurrences[occurrences.length -1]).add('ms', duration).isAfter(now);
 
         // activity plan cannot be edited if all events are in the past
         if (!eventsInTheFutureExist) {

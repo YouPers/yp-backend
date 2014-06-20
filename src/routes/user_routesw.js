@@ -65,6 +65,7 @@ module.exports = function (swagger, config) {
             path: baseUrlWithId + "/email_verification",
             notes: "email verification notes",
             summary: "email verification",
+            mobileSDK: "disabled",
             method: "POST",
             params: [swagger.bodyParam("token", "the token a user's email address is verified with", "string")],
             "errorResponses": [swagger.errors.invalid('token')],

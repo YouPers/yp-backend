@@ -8,6 +8,13 @@ var env = process.env.NODE_ENV || 'development',
 
     CET_TIMEZONE_ID = "Europe/Zurich";
 
+var frequencyMap = {
+    'day': 'DAILY',
+    'week': 'WEEKLY',
+    'month': 'MONTHLY'
+};
+
+
 var getIcalObject = function (plan, recipientUser, iCalType, i18n, reason) {
 
     // fix for non existing plan.text
@@ -30,62 +37,57 @@ var getIcalObject = function (plan, recipientUser, iCalType, i18n, reason) {
     var sequence = isMasterPlan ? plan.__v : plan.masterPlan.__v;
     event.addProperty("SEQUENCE", sequence);
 
-    if (iCalType !== 'eventsGenerationOnly') {
-        if (isGroupPlan) {
+    if (isGroupPlan) {
 
-            // Organizer and attendees are only relevant for group plans
-            // the organizer of this event is either the owner of the plan or the owner of the masterPlan.
-            // The owner of the masterPlan is always the first member of the JoiningUsers Collection --> activityPlan_model Line:264
-            var organizer = isMasterPlan ? plan.owner : plan.joiningUsers[0];
-            var targetAttendee = recipientUser;
-            var otherAttendees = plan.joiningUsers.slice(1);
+        // Organizer and attendees are only relevant for group plans
+        // the organizer of this event is either the owner of the plan or the owner of the masterPlan.
+        // The owner of the masterPlan is always the first member of the JoiningUsers Collection --> activityPlan_model Line:264
+        var organizer = isMasterPlan ? plan.owner : plan.joiningUsers[0];
+        var targetAttendee = recipientUser;
+        var otherAttendees = plan.joiningUsers.slice(1);
 
-            event.addProperty("ORGANIZER", "MAILTO:" + organizer.email, {CN: organizer.fullname});
+        event.addProperty("ORGANIZER", "MAILTO:" + organizer.email, {CN: organizer.fullname});
 
-            event.addProperty("ATTENDEE",
-                    "MAILTO:" + targetAttendee.email,
-                {CUTYPE: "INDIVIDUAL", RSVP: "TRUE", ROLE: "REQ-PARTICIPANT", PARTSTAT: "NEEDS-ACTION", CN: "You", "X-NUM-GUESTS": 0 });
+        event.addProperty("ATTENDEE",
+                "MAILTO:" + targetAttendee.email,
+            {CUTYPE: "INDIVIDUAL", RSVP: "TRUE", ROLE: "REQ-PARTICIPANT", PARTSTAT: "NEEDS-ACTION", CN: "You", "X-NUM-GUESTS": 0 });
 
-            _.forEach(otherAttendees, function (attendee) {
-                // make sure we only add the guy receiving this iCal one time
-                if (attendee.email !== organizer.email && attendee.email !== targetAttendee.email) {
-                    event.addProperty("ATTENDEE",
-                            "MAILTO:" + attendee.email,
-                        {CUTYPE: "INDIVIDUAL", ROLE: "REQ-PARTICIPANT", PARTSTAT: "ACCEPTED", CN: attendee.fullname, "X-NUM-GUESTS": 0 });
-                }
-            });
-        }
+        _.forEach(otherAttendees, function (attendee) {
+            // make sure we only add the guy receiving this iCal one time
+            if (attendee.email !== organizer.email && attendee.email !== targetAttendee.email) {
+                event.addProperty("ATTENDEE",
+                        "MAILTO:" + attendee.email,
+                    {CUTYPE: "INDIVIDUAL", ROLE: "REQ-PARTICIPANT", PARTSTAT: "ACCEPTED", CN: attendee.fullname, "X-NUM-GUESTS": 0 });
+            }
+        });
+    }
 
-        if (iCalType === 'new' || iCalType === 'update') {
-            myCal.addProperty("METHOD", "REQUEST");
-            event.addProperty("STATUS", "CONFIRMED");
-        } else if (iCalType === 'cancel') {
-            myCal.addProperty("METHOD", "CANCEL");
-            event.addProperty("STATUS", "CANCELLED");
-        } else if (iCalType === 'eventsGenerationOnly') {
-            // do nothing here, we do need not these properties if we only need the object for eventsGeneration
-        }
-        else {
-            throw new Error('unknown iCal ObjectType: ' + iCalType);
-        }
+    if (iCalType === 'new' || iCalType === 'update') {
+        myCal.addProperty("METHOD", "REQUEST");
+        event.addProperty("STATUS", "CONFIRMED");
+    } else if (iCalType === 'cancel') {
+        myCal.addProperty("METHOD", "CANCEL");
+        event.addProperty("STATUS", "CANCELLED");
+    } else {
+        throw new Error('unknown iCal ObjectType: ' + iCalType);
+    }
 
-        var link = config.webclientUrl + "/#/activities/" + plan.activity._id;
+    var link = config.webclientUrl + "/#/activities/" + plan.activity._id;
 
-        event.setSummary(i18n.t('ical:' + iCalType + ".summary", {plan: plan.toJSON ? plan.toJSON() : plan, recipient: recipientUser.toJSON()}));
-        event.setDescription(i18n.t('ical:' + iCalType + ".description", {plan: plan.toJSON ? plan.toJSON() : plan, recipient: recipientUser.toJSON(), link: link}));
-        // HTML in description: see here: http://www.limilabs.com/blog/html-formatted-content-in-the-description-field-of-an-icalendar
-        event.addProperty("X-ALT-DESC",
-            i18n.t('ical:' + iCalType + ".htmlDescription",
-                {plan: plan.toJSON ? plan.toJSON() : plan, recipient: recipientUser.toJSON(), link: link}),
-            {'FMTTYPE': 'text/html'});
-        event.addProperty("LOCATION", plan.location);
-        var notifPref = recipientUser.profile.userPreferences.calendarNotification || "900";
-        if (notifPref !== 'none') {
-            var alarm = event.addComponent('VALARM');
-            alarm.addProperty("ACTION", "DISPLAY");
-            alarm.addProperty("TRIGGER", -1 * notifPref);
-            alarm.addProperty("DESCRIPTION", i18n.t('ical:' + iCalType + ".summary", {plan: plan.toJSON ? plan.toJSON() : plan, recipient: recipientUser.toJSON()}));
-        }
+    event.setSummary(i18n.t('ical:' + iCalType + ".summary", {plan: plan.toJSON ? plan.toJSON() : plan, recipient: recipientUser.toJSON()}));
+    event.setDescription(i18n.t('ical:' + iCalType + ".description", {plan: plan.toJSON ? plan.toJSON() : plan, recipient: recipientUser.toJSON(), link: link}));
+    // HTML in description: see here: http://www.limilabs.com/blog/html-formatted-content-in-the-description-field-of-an-icalendar
+    event.addProperty("X-ALT-DESC",
+        i18n.t('ical:' + iCalType + ".htmlDescription",
+            {plan: plan.toJSON ? plan.toJSON() : plan, recipient: recipientUser.toJSON(), link: link}),
+        {'FMTTYPE': 'text/html'});
+    event.addProperty("LOCATION", plan.location);
+    var notifPref = recipientUser.profile.userPreferences.calendarNotification || "900";
+    if (notifPref !== 'none') {
+        var alarm = event.addComponent('VALARM');
+        alarm.addProperty("ACTION", "DISPLAY");
+        alarm.addProperty("TRIGGER", -1 * notifPref);
+        alarm.addProperty("DESCRIPTION", i18n.t('ical:' + iCalType + ".summary", {plan: plan.toJSON ? plan.toJSON() : plan, recipient: recipientUser.toJSON()}));
     }
 
     // TODO: Fix timezone passing in icalevents
@@ -106,53 +108,51 @@ var getIcalObject = function (plan, recipientUser, iCalType, i18n, reason) {
     log.debug("generated ical with To: " + moment(plan.mainEvent.end).toDate());
 
     if (plan.mainEvent.recurrence && plan.mainEvent.frequency && plan.mainEvent.frequency !== 'once') {
-        var frequencyMap = {
-            'day': 'DAILY',
-            'week': 'WEEKLY',
-            'month': 'MONTHLY'
-        };
-
-        var weekdayMap = {
-            '0': 'SU',
-            '1': 'MO',
-            '2': 'TU',
-            '3': 'WE',
-            '4': 'TH',
-            '5': 'FR',
-            '6': 'SA'
-        };
 
         if (!frequencyMap[plan.mainEvent.frequency]) {
             throw new Error("unknown recurrence frequency");
         }
 
-        var rruleSpec = { FREQ: frequencyMap[plan.mainEvent.frequency] };
-        if (rruleSpec.FREQ === 'DAILY') {
-            rruleSpec.BYDAY = recipientUser.profile.getWorkingDaysAsIcal();
-
-            // Outlook Fix: Outlook really does not like it when the startDate is not part of the BYDAY rule.
-            // it simply cannot parse the iCal file anymore
-            // so if the DTSTART Date is on a day that is not part of the working-Days we add it specifically
-            // for this event.
-            var dayOfWeek = weekdayMap[''+moment(plan.mainEvent.start).day()];
-            if (!_.contains(rruleSpec.BYDAY, dayOfWeek)) {
-                rruleSpec.BYDAY = rruleSpec.BYDAY + ','+ dayOfWeek;
-            }
-        }
-
-
-        if (plan.mainEvent.recurrence.endby.type === 'on') {
-            rruleSpec.UNTIL = plan.mainEvent.recurrence.endby.on;
-        } else if (plan.mainEvent.recurrence.endby.type === 'after') {
-            rruleSpec.COUNT = plan.mainEvent.recurrence.endby.after;
-        }
-
-        event.addProperty("RRULE", rruleSpec);
+        event.addProperty("RRULE", _getRruleSpec(plan, recipientUser.profile.getWorkingDaysAsIcal()));
     }
     event.addProperty("TRANSP", "OPAQUE");
     myCal.addComponent(event);
     return myCal;
 };
+
+function _getRruleSpec(plan) {
+
+    var weekdayMap = {
+        '0': 'SU',
+        '1': 'MO',
+        '2': 'TU',
+        '3': 'WE',
+        '4': 'TH',
+        '5': 'FR',
+        '6': 'SA'
+    };
+
+    var rruleSpec = { FREQ: frequencyMap[plan.mainEvent.frequency] };
+    if (rruleSpec.FREQ === 'DAILY') {
+        rruleSpec.BYDAY = plan.recurrence.byday.join(',');
+
+        // Outlook Fix: Outlook really does not like it when the startDate is not part of the BYDAY rule.
+        // it simply cannot parse the iCal file anymore
+        // so if the DTSTART Date is on a day that is not part of the working-Days we add it specifically
+        // for this event.
+        var dayOfWeek = weekdayMap['' + moment(plan.mainEvent.start).day()];
+        if (!_.contains(rruleSpec.BYDAY, dayOfWeek)) {
+            rruleSpec.BYDAY = rruleSpec.BYDAY + ',' + dayOfWeek;
+        }
+    }
+
+    if (plan.mainEvent.recurrence.endby.type === 'on') {
+        rruleSpec.UNTIL = plan.mainEvent.recurrence.endby.on;
+    } else if (plan.mainEvent.recurrence.endby.type === 'after') {
+        rruleSpec.COUNT = plan.mainEvent.recurrence.endby.after;
+    }
+    return rruleSpec;
+}
 
 function _getTimezone(plan) {
 
@@ -160,19 +160,32 @@ function _getTimezone(plan) {
     var tz = new ical.VTimezone(null, CET_TIMEZONE_ID);
 
     var std = tz.addComponent('STANDARD');
-    std.addProperty('DTSTART',new Date(1970,0,1,4,0,0));
+    std.addProperty('DTSTART', new Date(1970, 0, 1, 4, 0, 0));
     std.addProperty('RRULE', {FREQ: 'YEARLY', INTERVAL: 1, BYMONTH: '10', BYDAY: '-1SU'});
     std.addProperty('TZOFFSETFROM', '0200');
     std.addProperty('TZOFFSETTO', '0100');
 
     var dst = tz.addComponent('DAYLIGHT');
-    dst.addProperty('DTSTART', new Date(1970,0,1,3,0,0));
-    dst.addProperty('RRULE', {FREQ: 'YEARLY',INTERVAL:'1',BYDAY: '-1SU',BYMONTH: '3'});
+    dst.addProperty('DTSTART', new Date(1970, 0, 1, 3, 0, 0));
+    dst.addProperty('RRULE', {FREQ: 'YEARLY', INTERVAL: '1', BYDAY: '-1SU', BYMONTH: '3'});
     dst.addProperty('TZOFFSETFROM', '0100');
     dst.addProperty('TZOFFSETTO', '0200');
 
     return tz;
 }
+
+function getOccurrences(plan, fromDate) {
+
+    fromDate = fromDate || moment(plan.mainEvent.start).subtract('day', 1).toDate();
+
+    if (plan.mainEvent.frequency === 'once') {
+        return plan.mainEvent.start;
+    } else {
+        return new ical.RRule(_getRruleSpec(plan)).nextOccurences(fromDate, 100);
+    }
+}
+
 module.exports = {
-    getIcalObject: getIcalObject
+    getIcalObject: getIcalObject,
+    getOccurrences: getOccurrences
 };

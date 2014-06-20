@@ -185,7 +185,7 @@ module.exports = {
         visibility: "private campaign public".split(' '),
         field: "AwarenessAbility Relaxation TimeManagement SocialInteraction WorkStructuring Breaks PhysicalActivity LeisureActivity Nutrition".split(' '),
         topic: "workLifeBalance",
-        ActivityPlanStatus: "active old".split(' '),
+        ActivityPlanStatus: "active deleted old".split(' '),
 
         // ActivityPlanEven enums
         activityPlanEventStatus: "open done missed".split(' '),

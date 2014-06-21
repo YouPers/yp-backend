@@ -51,6 +51,10 @@ function getActivityPlanConflicts(req, res, next) {
         return next(new error.MissingParameterError({ required: 'mainEvent.end' }));
     }
 
+    if (!sentPlan.mainEvent.recurrence.byday) {
+        sentPlan.mainEvent.recurrence.byday = req.user.profile.userPreferences.defaultWorkWeek;
+    }
+
     // generate all events from the sentPlan to validate -> sentEvents
     var newEvents = _getEvents(sentPlan, req.user.id);
 
@@ -67,13 +71,13 @@ function getActivityPlanConflicts(req, res, next) {
 
     // if the sentPlan has an id, we want to exclude it from the conflicts-search, because this is an editing of a plan
     // and conflicts with itself should not be returned.
-    var q = ActivityPlan
-        .find({owner: req.user._id, status: 'active'});
+    var q = ActivityEvent
+        .find({owner: req.user._id, status: 'open'});
 
     if (sentPlan.id) {
-        q.where({$ne: {_id: mongoose.Types.ObjectId(sentPlan.id)}});
+        q.where({$ne: {activityPlan: mongoose.Types.ObjectId(sentPlan.id)}});
     }
-    q.exec(function (err, oldPlans) {
+    q.exec(function (err, oldEvents) {
         if (err) {
             return error.handleError(err, next);
         }
@@ -81,14 +85,13 @@ function getActivityPlanConflicts(req, res, next) {
 
         // put the events of the loaded plans in an ordered list by beginDate
         var plannedEvents = [];
-        _.forEach(oldPlans, function (plan) {
-            _.forEach(plan.events, function (event) {
-                // use plain "non-mongoose" object to prevent troubles with serializing the "pseudo attribute" title
-                var plainEventObj = event.toObject();
-                plainEventObj.title = plan.title;
-                delete plainEventObj._id;
-                plannedEvents.push(plainEventObj);
-            });
+
+        _.forEach(oldEvents, function (event) {
+            // use plain "non-mongoose" object to prevent troubles with serializing the "pseudo attribute" title
+            var plainEventObj = event.toObject();
+            // plainEventObj.title = plan.title;
+            delete plainEventObj._id;
+            plannedEvents.push(plainEventObj);
         });
 
         // go over all newEvents:
@@ -382,8 +385,13 @@ function postActivityPlanInvite(req, res, next) {
 }
 
 
-function _sendIcalMessages(activityPlan, req, reason, type, done) {
-    var users = [activityPlan.owner].concat(activityPlan.joiningUsers);
+function _sendIcalMessages(activityPlan, joiner, req, reason, type, done) {
+    var users;
+    if (joiner) {
+        users = [joiner];
+    } else {
+        users = [activityPlan.owner].concat(activityPlan.joiningUsers);
+    }
 
     mongoose.model('Profile').populate(users, {path: 'profile', model: 'Profile'}, function (err, users) {
         async.forEach(users, function (user, next) {
@@ -396,17 +404,22 @@ function _sendIcalMessages(activityPlan, req, reason, type, done) {
             done);
     });
 }
-function _deleteFutureEvents(activityPlan, done) {
+function _deleteFutureEvents(activityPlan, joiner, done) {
     var now = new Date();
 
-    ActivityEvent
-        .remove({activityPlan: activityPlan._id, start: {$gte: now}})
-        .exec(function (err, count) {
-            if (err) {
-                return done(err);
-            }
-            return done(null);
-        });
+    var q = ActivityEvent
+        .remove({activityPlan: activityPlan._id, start: {$gte: now}});
+
+    if (joiner) {
+        q.where({owner: joiner._id});
+    }
+
+    q.exec(function (err, count) {
+        if (err) {
+            return done(err);
+        }
+        return done(null);
+    });
 }
 
 function deleteActivityPlan(req, res, next) {
@@ -424,10 +437,14 @@ function deleteActivityPlan(req, res, next) {
                 id: req.params.id
             }));
         }
+        var joiner = _.find(activityPlan.joiningUsers, function (user) {
+            return user.equals(req.user);
+        });
 
-        // plan can be deleted if user is systemadmin or if it is his own plan
+        // plan can be deleted if user is systemadmin or if it is his own plan or if the user is a joiner
         if (!( auth.checkAccess(req.user, auth.accessLevels.al_systemadmin) ||
-            activityPlan.owner._id.equals(req.user._id))) {
+            activityPlan.owner._id.equals(req.user._id) ||
+            joiner)) {
             return next(new error.NotAuthorizedError());
         }
 
@@ -437,35 +454,43 @@ function deleteActivityPlan(req, res, next) {
             // nothing to do, we just pretend that we deleted all future events, by doing nothing
             // and signalling success
             actMgr.emit('activity:planDeleted', activityPlan);
+            res.send(200);
             return next();
         }
 
         function _deleteEvents(done) {
-            _deleteFutureEvents(activityPlan, done);
+            _deleteFutureEvents(activityPlan, joiner, done);
         }
 
         function _sendCalendarCancelMessages(done) {
-            _sendIcalMessages(activityPlan, req, reason, 'cancel', done);
+            _sendIcalMessages(activityPlan, joiner, req, reason, 'cancel', done);
         }
 
         function _deletePlan(done) {
 
-            var deleteStatus = activityPlan.deleteStatus;
-            if (deleteStatus === 'deletable') {
-                activityPlan.remove(done);
-            } else if (deleteStatus === 'deletableOnlyFutureEvents') {
-                activityPlan.status = 'old';
-                if (activityPlan.mainEvent.frequency !== 'once') {
-                    activityPlan.mainEvent.recurrence.on = new Date();
-                    activityPlan.mainEvent.recurrence.after = undefined;
-                    activityPlan.save(done);
-                } else {
-                    throw new Error('should never arrive here, it is not possible to have an "once" plan that has ' +
-                        'passed and future events at the same time');
-                }
+            if (joiner) {
+                activityPlan.joiningUsers.remove(req.user);
+                activityPlan.save(done);
             } else {
-                throw new Error('unknown DeleteStatus: ' + activityPlan.deleteStatus);
+                var deleteStatus = activityPlan.deleteStatus;
+                if (deleteStatus === 'deletable') {
+                    activityPlan.remove(done);
+                } else if (deleteStatus === 'deletableOnlyFutureEvents') {
+                    activityPlan.status = 'old';
+                    if (activityPlan.mainEvent.frequency !== 'once') {
+                        activityPlan.mainEvent.recurrence.on = new Date();
+                        activityPlan.mainEvent.recurrence.after = undefined;
+                        activityPlan.save(done);
+                    } else {
+                        throw new Error('should never arrive here, it is not possible to have an "once" plan that has ' +
+                            'passed and future events at the same time');
+                    }
+                } else {
+                    throw new Error('unknown DeleteStatus: ' + activityPlan.deleteStatus);
+                }
+
             }
+
         }
 
         return async.parallel([
@@ -528,14 +553,14 @@ function putActivityPlan(req, res, next) {
 
         function _deleteEventsInFuture(done) {
             if (sentPlan.mainEvent && !_.isEqual(sentPlan.mainEvent, loadedActPlan.mainEvent)) {
-                return _deleteFutureEvents(loadedActPlan, done);
+                return _deleteFutureEvents(loadedActPlan, null, done);
             } else {
                 return done();
             }
         }
 
         function _sendCalendarUpdates(done) {
-            _sendIcalMessages(loadedActPlan, req, null, 'cancel', done);
+            _sendIcalMessages(loadedActPlan, null, req, null, 'cancel', done);
         }
 
 

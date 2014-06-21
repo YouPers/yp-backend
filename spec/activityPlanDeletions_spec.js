@@ -8,7 +8,8 @@
 
 var frisby = require('frisby');
 var port = process.env.PORT || 8000;
-var URL = 'http://localhost:' + port + '/activityplans';
+var BASE_URL = 'http://localhost:' + port;
+var URL = BASE_URL + '/activityplans';
 var consts = require('./testconsts');
 var moment = require('moment');
 
@@ -20,8 +21,8 @@ frisby.globalSetup({ // globalSetup is for ALL requests
 });
 
 // set the startDate in the future and ensure that it is a Wednesday
-var startDate = moment().add('d',5).day(4).toDate();
-var endDate = moment(startDate).add('h',1).toDate();
+var startDate = moment().add('d', 5).day(4).toDate();
+var endDate = moment(startDate).add('h', 1).toDate();
 
 var masterPlan = {
     "owner": consts.users.test_ind1.id,
@@ -56,16 +57,8 @@ frisby.create('Activity Plan Deletions: create a master plan for an activity pla
 
         expect(masterPlanPostAnswer.deleteStatus).toEqual('deletable');
 
-        // create a slave Plan for this masterPlan
-        var slavePlan = masterPlanPostAnswer;
-        slavePlan.masterPlan = masterPlanPostAnswer.id;
-        delete slavePlan.id;
-        delete slavePlan.events;
-        delete slavePlan.joiningUsers;
-        slavePlan.owner = consts.users.test_ind2.id;
-
-        frisby.create('Activity Plan Deletions: post a joining plan ')
-            .post(URL + '?populate=joiningUsers', slavePlan)
+        frisby.create('Activity Plan Deletions: post a join')
+            .post(URL + '/' + masterPlanPostAnswer.id + '/join')
             .auth('test_ind2', 'yp')
             .expectStatus(201)
             .afterJSON(function (slavePlanPostAnswer) {
@@ -94,31 +87,39 @@ frisby.create('Activity Plan Deletions: create a master plan for an activity pla
                                         expect(masterPlanReloaded2.joiningUsers).not.toContain(consts.users.test_ind2.id);
 
                                         frisby.create('Activity Plan Deletions: post a joining plan again')
-                                            .post(URL + '?populate=joiningUsers', slavePlan)
+                                            .post(URL + '/' + masterPlanReloaded2.id + '/join')
                                             .auth('test_ind2', 'yp')
                                             .expectStatus(201)
                                             .afterJSON(function (slavePlanPostAnswer2) {
                                                 expect(slavePlanPostAnswer2.deleteStatus).toEqual('deletable');
-                                                expect(slavePlanPostAnswer2.masterPlan).toEqual(masterPlanId);
 
                                                 frisby.create('Activity Plan Deletions: try delete master with an existing joining, SUCCESS')
-                                                    .delete(URL + '/' + masterPlanReloaded.id+'?reason=I am sick')
+                                                    .delete(URL + '/' + masterPlanReloaded.id + '?reason=I am sick')
                                                     .auth('test_ind1', 'yp')
                                                     .expectStatus(200)
                                                     .after(function () {
 
-                                                        frisby.create('Activity Plan Deletions: check whether master gone')
-                                                            .get(URL + '/' + masterPlanReloaded.id)
+                                                        frisby.create('Activity Plan Deletions: check all organizer events gone, SUCCESS')
+                                                            .get(BASE_URL + '/activityevents?filter[activityPlan]=' + masterPlanReloaded.id)
                                                             .auth('test_ind1', 'yp')
-                                                            .expectStatus(404)
+                                                            .expectStatus(200)
+                                                            .expectJSONLength(0)
+                                                            .after(function () {
+                                                                frisby.create('Activity Plan Deletions: check all joiner events gone, SUCCESS')
+                                                                    .get(BASE_URL + '/activityevents?filter[activityPlan]=' + masterPlanReloaded.id)
+                                                                    .auth('test_ind2', 'yp')
+                                                                    .expectStatus(200)
+                                                                    .expectJSONLength(0)
+                                                                    .after(function () {
+                                                                        frisby.create('Activity Plan Deletions: check whether master gone')
+                                                                            .get(URL + '/' + masterPlanReloaded.id)
+                                                                            .auth('test_ind1', 'yp')
+                                                                            .expectStatus(404)
+                                                                            .toss();
+                                                                    })
+                                                                    .toss();
+                                                            })
                                                             .toss();
-
-                                                        frisby.create('Activity Plan Deletions: check whether slave gone')
-                                                            .get(URL + '/' + slavePlanPostAnswer2.id)
-                                                            .auth('sysadm', 'backtothefuture')
-                                                            .expectStatus(404)
-                                                            .toss();
-
                                                     })
                                                     .toss();
                                             })
@@ -137,20 +138,20 @@ frisby.create('Activity Plan Deletions: create a master plan for an activity pla
 
     .toss();
 
-        var pastDateStart = new Date();
-        pastDateStart.setDate(pastDateStart.getDate() - 1);
-        var pastDateEnd = new Date();
-        pastDateEnd.setDate(pastDateEnd.getDate() - 1);
-        pastDateEnd.setHours(pastDateEnd.getHours() + 1);
-        masterPlan.mainEvent.start = pastDateStart;
-        masterPlan.mainEvent.end = pastDateEnd;
-        masterPlan.mainEvent.frequency = "week";
+var pastDateStart = new Date();
+pastDateStart.setDate(pastDateStart.getDate() - 1);
+var pastDateEnd = new Date();
+pastDateEnd.setDate(pastDateEnd.getDate() - 1);
+pastDateEnd.setHours(pastDateEnd.getHours() + 1);
+masterPlan.mainEvent.start = pastDateStart;
+masterPlan.mainEvent.end = pastDateEnd;
+masterPlan.mainEvent.frequency = "week";
 
-        frisby.create('Activity Plan Deletions: create activity plan with one event in the past')
-            .post(URL, masterPlan)
-            .auth('test_ind1', 'yp')
-            .expectStatus(201)
-            .afterJSON(function (masterPlanPostAnswer) {
+frisby.create('Activity Plan Deletions: create activity plan with one event in the past')
+    .post(URL, masterPlan)
+    .auth('test_ind1', 'yp')
+    .expectStatus(201)
+    .afterJSON(function (masterPlanPostAnswer) {
 
                 expect(masterPlanPostAnswer.deleteStatus).toEqual('deletableOnlyFutureEvents');
 
@@ -166,7 +167,6 @@ frisby.create('Activity Plan Deletions: create a master plan for an activity pla
                     .auth('test_ind1', 'yp')
                     .expectStatus(200)
                     .afterJSON(function (masterPlanReloaded) {
-                        expect(masterPlanReloaded.events.length).toEqual(1);
 
                         // clean up database by removing the plan
                         frisby.create('Activity Plan Deletions: remove plan')
@@ -204,8 +204,5 @@ frisby.create('Activity Plan Deletions: create a master plan for an activity pla
                     }).toss();
 
 
-            }).toss();
-
-
-
-
+    })
+    .toss();

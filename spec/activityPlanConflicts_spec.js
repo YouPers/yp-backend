@@ -2,7 +2,7 @@ var frisby = require('frisby');
 var port = process.env.PORT || 8000;
 var URL = 'http://localhost:' + port + '/activityplans';
 var consts = require('./testconsts');
-var moment = require('moments');
+var moment = require('moment');
 
 frisby.globalSetup({ // globalSetup is for ALL requests
     request: {
@@ -51,10 +51,6 @@ frisby.create('ActivityPlanConflicts: test whether there is no conflict for the 
             .auth('test_ind1', 'yp')
             .expectStatus(201)
             .afterJSON(function (newPlan) {
-                expect(newPlan.events).toBeDefined();
-                expect(newPlan.events.length).toEqual(masterPlan.mainEvent.recurrence['endby'].after);
-                expect(newPlan.events[0].begin).toEqual(startDate);
-                expect(newPlan.events[1].begin).toEqual(moment(startDate).add(1,'d').toDate());
                 expect(newPlan.id).toBeDefined();
 
                 frisby.create('ActivityPlanConflicts: test whether there are now 6 conflicts')

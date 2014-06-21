@@ -181,7 +181,7 @@ function getOccurrences(plan, fromDate) {
     if (plan.mainEvent.frequency === 'once') {
         return [plan.mainEvent.start];
     } else {
-        var rrule = new ical.RRule(_getRruleSpec(plan), plan.mainEvent.start);
+        var rrule = new ical.RRule(_getRruleSpec(plan), moment(plan.mainEvent.start).toDate());
         return rrule.nextOccurences(fromDate, 100);
     }
 }

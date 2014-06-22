@@ -217,22 +217,32 @@ frisby.create('Activity Plan: plan daily activity and check whether events are g
                                 expect(moment(events[0].start).isSame(moment(startDate))).toBe(true);
                                 expect(moment(events[0].end).isSame(moment(endDate))).toBe(true);
 
-                                frisby.create('Activity Plan: try to delete plan as joiningUser, FAIL')
+                                frisby.create('Activity Plan: try to delete plan as joiningUser, partial SUCCESS, only his events are gone')
                                     .delete(URL + '/activityplans/' + newPlan.id)
                                     .auth('test_ind1', 'yp')
-                                    .expectStatus(403)
+                                    .expectStatus(200)
                                     .after(function () {
-                                        frisby.create('Activity Plan: delete the created activityPlan as organizer, SUCCESS')
-                                            .delete(URL + '/activityplans/' + newPlan.id)
-                                            .auth('test_ind3', 'yp')
-                                            .expectStatus(200)
+
+                                        frisby.create('Activity Plan: try to get the left plan as ex-joiningUser, FAIL')
+                                            .get(URL + '/activityplans/' + newPlan.id)
+                                            .auth('test_ind1', 'yp')
+                                            .expectStatus(403)
                                             .after(function () {
 
-                                                frisby.create('ActivityPlan: get Events and check whether events are deleted')
-                                                    .get(URL + '/activityevents?filter[activityPlan]=' + newPlan.id)
-                                                    .auth('test_ind1', 'yp')
+
+                                                frisby.create('Activity Plan: delete the created activityPlan as organizer, SUCCESS')
+                                                    .delete(URL + '/activityplans/' + newPlan.id)
+                                                    .auth('test_ind3', 'yp')
                                                     .expectStatus(200)
-                                                    .expectJSONLength(0)
+                                                    .after(function () {
+
+                                                        frisby.create('ActivityPlan: get Events and check whether events are deleted')
+                                                            .get(URL + '/activityevents?filter[activityPlan]=' + newPlan.id)
+                                                            .auth('test_ind1', 'yp')
+                                                            .expectStatus(200)
+                                                            .expectJSONLength(0)
+                                                            .toss();
+                                                    })
                                                     .toss();
                                             })
                                             .toss();

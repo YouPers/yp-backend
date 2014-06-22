@@ -200,9 +200,11 @@ function getActivityOffersFn(req, res, next) {
     var getActivityPlans = function getActivityPlans(done) {
 
         ActivityPlan
-            .find({
+            .find({$or: [{
                 owner: req.user._id,
-                status: 'active'})
+                status: 'active'}, {
+                joiningUsers: req.user._id,
+                status: 'active'}]})
             .select('activity')
             .exec(function (err, plans) {
                 if (err) {

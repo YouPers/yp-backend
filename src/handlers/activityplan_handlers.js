@@ -183,7 +183,7 @@ function postNewActivityPlan(req, res, next) {
         var events = _getEvents(plan, req.user.id);
         ActivityEvent.create(events, function (err) {
             if (err) {
-                error.handleError(err, next);
+                return error.handleError(err, next);
             }
 
             generic.writeObjCb(req, res, next)(null, plan);
@@ -270,7 +270,7 @@ function postJoinActivityPlanFn(req, res, next) {
 
         ActivityEvent.create(events, function (err, events) {
             if (err) {
-                error.handleError(err, next);
+                return error.handleError(err, next);
             }
             masterPlan.save(generic.writeObjCb(req, res, next));
         });
@@ -500,7 +500,7 @@ function deleteActivityPlan(req, res, next) {
             ],
             function (err) {
                 if (err) {
-                    error.handleError(err, next);
+                    return error.handleError(err, next);
                 }
                 actMgr.emit('activity:planDeleted', activityPlan);
                 res.send(200);
@@ -514,7 +514,7 @@ function putActivityPlan(req, res, next) {
     var sentPlan = req.body;
     var err = handlerUtils.checkWritingPreCond(sentPlan, req.user, ActivityPlan);
     if (err) {
-        error.handleError(err, next);
+        return error.handleError(err, next);
     }
 
     // check required Attributes, if we get a main event, at least from and to must be set
@@ -528,82 +528,90 @@ function putActivityPlan(req, res, next) {
     }
 
 
-    ActivityPlan.findById(req.params.id).populate('activity owner joiningUsers').exec(function (err, loadedActPlan) {
-        if (err) {
-            return error.handleError(err, next);
-        }
-        if (!loadedActPlan) {
-            return next(new error.ResourceNotFoundError('ActivityPlan not found.', { id: sentPlan.id }));
-        }
-
-        // check to see if received plan is editable
-        if (loadedActPlan.editStatus !== "editable") {
-            return next(new error.ConflictError('Error updating in Activity Plan PutFn: Not allowed to edit this activity plan.', {
-                activityPlanId: sentPlan.id,
-                editStatus: loadedActPlan.editStatus
-            }));
-        }
-
-        _.extend(loadedActPlan, sentPlan);
-
-
-        function _savePlan(done) {
-            loadedActPlan.save(done);
-        }
-
-        function _deleteEventsInFuture(done) {
-            if (sentPlan.mainEvent && !_.isEqual(sentPlan.mainEvent, loadedActPlan.mainEvent)) {
-                return _deleteFutureEvents(loadedActPlan, null, done);
-            } else {
-                return done();
-            }
-        }
-
-        function _sendCalendarUpdates(done) {
-            _sendIcalMessages(loadedActPlan, null, req, null, 'cancel', done);
-        }
-
-
-        function finalCb(err) {
+    ActivityPlan
+        .findById(req.params.id)
+        .populate('activity')
+        .populate('owner joiningUsers', '+profile +email')
+        .exec(function (err, loadedActPlan) {
             if (err) {
-                error.handleError(err, next);
+                return error.handleError(err, next);
+            }
+            if (!loadedActPlan) {
+                return next(new error.ResourceNotFoundError('ActivityPlan not found.', { id: sentPlan.id }));
             }
 
-            loadedActPlan.activity = loadedActPlan.activity._id;
-
-            actMgr.emit('activity:planUpdated', loadedActPlan);
-
-            res.send(200, loadedActPlan);
-            return next();
-        }
-
-
-        function _updateEventsForAllUsers(done) {
-            if (sentPlan.mainEvent && !_.isEqual(sentPlan.mainEvent, loadedActPlan.mainEvent)) {
-                var users = [loadedActPlan.owner].concat(loadedActPlan.joiningUsers);
-
-                return async.forEach(users, function (user, cb) {
-                    var events = _getEvents(loadedActPlan, user._id, new Date());
-                    ActivityEvent.create(events, cb);
-                }, done);
-            } else {
-                return done();
+            // check to see if received plan is editable
+            if (loadedActPlan.editStatus !== "editable") {
+                return next(new error.ConflictError('Error updating in Activity Plan PutFn: Not allowed to edit this activity plan.', {
+                    activityPlanId: sentPlan.id,
+                    editStatus: loadedActPlan.editStatus
+                }));
             }
 
-        }
+            // we do not allow to update the owner of a plan and the joiningUsers array directly with a put.
+            delete sentPlan.owner;
+            delete sentPlan.joiningUsers;
 
-        return async.parallel([
-                _savePlan,
-                _sendCalendarUpdates,
-                function (done) {
-                    async.series([
-                        _deleteEventsInFuture,
-                        _updateEventsForAllUsers
-                    ], done);
+            _.extend(loadedActPlan, sentPlan);
+
+
+            function _savePlan(done) {
+                loadedActPlan.save(done);
+            }
+
+            function _deleteEventsInFuture(done) {
+                if (sentPlan.mainEvent && !_.isEqual(sentPlan.mainEvent, loadedActPlan.mainEvent)) {
+                    return _deleteFutureEvents(loadedActPlan, null, done);
+                } else {
+                    return done();
                 }
-            ],
-            finalCb);
-    });
+            }
+
+            function _sendCalendarUpdates(done) {
+                _sendIcalMessages(loadedActPlan, null, req, null, 'cancel', done);
+            }
+
+
+            function finalCb(err) {
+                if (err) {
+                    return error.handleError(err, next);
+                }
+
+                loadedActPlan.activity = loadedActPlan.activity._id;
+
+                actMgr.emit('activity:planUpdated', loadedActPlan);
+
+                res.send(200, loadedActPlan);
+                return next();
+            }
+
+
+            function _updateEventsForAllUsers(done) {
+                if (sentPlan.mainEvent && !_.isEqual(sentPlan.mainEvent, loadedActPlan.mainEvent)) {
+                    var users = [loadedActPlan.owner].concat(loadedActPlan.joiningUsers);
+
+                    return async.forEach(users, function (user, cb) {
+                        var events = _getEvents(loadedActPlan, user._id, new Date());
+                        ActivityEvent.create(events, cb);
+                    }, done);
+                } else {
+                    return done();
+                }
+
+            }
+
+            return async.parallel([
+                    _savePlan,
+                    _sendCalendarUpdates,
+                    function (done) {
+                        async.series([
+                            _deleteEventsInFuture,
+                            _updateEventsForAllUsers
+                        ], done);
+                    }
+                ],
+                finalCb);
+        });
 }
 
 module.exports = {

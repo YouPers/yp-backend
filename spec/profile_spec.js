@@ -35,15 +35,7 @@ var userProfile = {
     "maritalStatus": "single",
     "language": "it",
     "userPreferences": {
-        "defaultUserWeekForScheduling": {
-            "monday": true,
-            "tuesday": true,
-            "wednesday": true,
-            "thursday": false,
-            "friday": false,
-            "saturday": false,
-            "sunday": false
-        },
+        "defaultWorkWeek": ['MO', 'TU', 'WE', 'TH', 'FR'],
         "firstDayOfWeek": "Monday",
         "timezone": "+01:00",
         "starredActivities": [{timestamp: new Date().toISOString(), activity: "5278c6adcdeab69a25000054"}],

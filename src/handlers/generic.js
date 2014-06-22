@@ -440,6 +440,7 @@ module.exports = {
                     if (!obj) {
                         return next(new error.ResourceNotFoundError());
                     }
+                    var isOwnedObj =  Model.schema.paths['owner'];
 
                     var isOwner = false;
                     //check if the object has an owner and whether the current user owns the object
@@ -458,7 +459,7 @@ module.exports = {
                         });
                     }
 
-                    if (!isOwner && !isJoiner) {
+                    if (isOwnedObj && !isOwner && !isJoiner) {
                         return next(new error.NotAuthorizedError('Authenticated User does not own this object'));
                     }
 

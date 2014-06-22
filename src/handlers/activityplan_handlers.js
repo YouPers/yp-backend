@@ -345,7 +345,7 @@ function postActivityPlanInvite(req, res, next) {
                                     targetQueue: invitedUser[0] && invitedUser[0]._id,
                                     offerType: ['personalInvitation'],
                                     recommendedBy: [req.user._id],
-                                    validTo: locals.plan.events[locals.plan.events.length - 1].end
+                                    validTo: locals.plan.lastEventEnd
                                 });
 
                                 actOffer.save(function (err, savedOffer) {

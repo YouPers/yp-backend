@@ -261,7 +261,7 @@ frisby.create('Activity Plan: plan daily activity and check whether events are g
 
 
 var profileUpdate = {
-    userPreferences: {
+    prefs: {
         defaultWorkWeek: ["MO", "TU", "WE"],
         "calendarNotification": "900",
         "email": {
@@ -315,7 +315,7 @@ frisby.create('Activity Plan: update user profile preferences to workdays only M
                 });
 
                 var profileUpdate2 = {
-                    userPreferences: {
+                    prefs: {
                         "calendarNotification": "900",
                         "defaultWorkWeek": ["MO", "TU", "WE", "TH", "FR"],
                         "email": {

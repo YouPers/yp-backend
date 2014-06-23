@@ -15,8 +15,8 @@ var NUMBER_OF_COACH_RECS = 10;
 var HEALTH_COACH_USER_ID = '53348c27996c80a534319bda';
 var HEALTH_COACH_TYPE = 'ypHealthCoach';
 
-Profile.on('change:userPreferences.focus', function (changedProfile) {
-    generateAndStoreRecommendations(changedProfile.owner, changedProfile.userPreferences.rejectedActivities, null, changedProfile.userPreferences.focus, false, function (err, recs) {
+Profile.on('change:prefs.focus', function (changedProfile) {
+    generateAndStoreRecommendations(changedProfile.owner, changedProfile.prefs.rejectedActivities, null, changedProfile.prefs.focus, false, function (err, recs) {
         if (err) {
             log.error(err);
         }

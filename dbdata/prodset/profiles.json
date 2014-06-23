@@ -44,7 +44,7 @@
         "timestamp": {
             "$date": 1396523077464
         },
-        "userPreferences": {
+        "prefs": {
             "calendarNotification": "900",
             "defaultWorkWeek": ["MO", "TU", "WE", "TH", "FR"],
             "email": {

@@ -166,8 +166,8 @@ function addOp(str, isString, type) {
         }
     } else if (str[0] === '!') {
         if (isString) {
-            op = '$regex';
-            val = new RegExp('!(' + str.substring(1) + ')', 'i');
+            op = '$not';
+            val = new RegExp(str.substring(1), 'i');
         } else {
             op = '$ne';
             val = str.substring(1);

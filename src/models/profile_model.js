@@ -31,7 +31,7 @@ var ProfileSchema = common.newSchema({
     },
     maritalStatus: { type: String, enum: common.enums.maritalStatus, default: "undefined" },
     language: { type: String, trim: true},
-    userPreferences: {
+    prefs: {
         defaultWorkWeek: {type: [String], default: ['MO', 'TU', 'WE', 'TH', 'FR']},
         personalGoal: {type: String},
         focus: [
@@ -58,7 +58,7 @@ var ProfileSchema = common.newSchema({
                 activityPlan: {type: ObjectId, ref: 'ActivityPlan'}
             }
         ],
-        firstDayOfWeek: { type: String, enum: common.enums.firstDayOfWeek },
+        firstDayOfWeek: { type: String, enum: ['SU', 'MO'] },
         timezone: { type: String, trim: true },
         calendarNotification: {type: String, enum: common.enums.calendarNotifications, default: '900'},
         email: {

@@ -52,7 +52,7 @@ function getActivityPlanConflicts(req, res, next) {
     }
 
     if (!sentPlan.mainEvent.recurrence.byday) {
-        sentPlan.mainEvent.recurrence.byday = req.user.profile.userPreferences.defaultWorkWeek;
+        sentPlan.mainEvent.recurrence.byday = req.user.profile.prefs.defaultWorkWeek;
     }
 
     // generate all events from the sentPlan to validate -> sentEvents
@@ -173,7 +173,7 @@ function postNewActivityPlan(req, res, next) {
 
     // set the byday of the mainEvent to the user's default if the client did not do it, only for daily activities
     if (sentPlan.mainEvent.frequency === 'day' && !sentPlan.mainEvent.recurrence.byday) {
-        sentPlan.mainEvent.recurrence.byday = req.user.profile.userPreferences.defaultWorkWeek;
+        sentPlan.mainEvent.recurrence.byday = req.user.profile.prefs.defaultWorkWeek;
     }
 
     var newActPlan = new ActivityPlan(sentPlan);
@@ -233,7 +233,7 @@ function _saveNewActivityPlan(plan, req, cb) {
                     return cb(err);
                 }
 
-                if (user && user.email && user.profile.userPreferences.email.iCalInvites) {
+                if (user && user.email && user.profile.prefs.email.iCalInvites) {
                     req.log.debug({start: reloadedActPlan.mainEvent.start, end: reloadedActPlan.mainEvent.end}, 'Saved New Plan');
                     var myIcalString = calendar.getIcalObject(reloadedActPlan, user, 'new', i18n).toString();
                     email.sendCalInvite(user.email, 'new', myIcalString, reloadedActPlan, i18n);
@@ -395,7 +395,7 @@ function _sendIcalMessages(activityPlan, joiner, req, reason, type, done) {
 
     mongoose.model('Profile').populate(users, {path: 'profile', model: 'Profile'}, function (err, users) {
         async.forEach(users, function (user, next) {
-                if (user.profile.userPreferences.email.iCalInvites) {
+                if (user.profile.prefs.email.iCalInvites) {
                     var myIcalString = calendar.getIcalObject(activityPlan, user, type, req.i18n, reason).toString();
                     email.sendCalInvite(user.email, type, myIcalString, activityPlan, req.i18n, reason);
                 }

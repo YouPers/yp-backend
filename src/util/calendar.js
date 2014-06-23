@@ -82,7 +82,7 @@ var getIcalObject = function (plan, recipientUser, iCalType, i18n, reason) {
             {plan: plan.toJSON ? plan.toJSON() : plan, recipient: recipientUser.toJSON(), link: link}),
         {'FMTTYPE': 'text/html'});
     event.addProperty("LOCATION", plan.location);
-    var notifPref = recipientUser.profile.userPreferences.calendarNotification || "900";
+    var notifPref = recipientUser.profile.prefs.calendarNotification || "900";
     if (notifPref !== 'none') {
         var alarm = event.addComponent('VALARM');
         alarm.addProperty("ACTION", "DISPLAY");

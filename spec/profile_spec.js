@@ -34,7 +34,7 @@ var userProfile = {
     },
     "maritalStatus": "single",
     "language": "it",
-    "userPreferences": {
+    "prefs": {
         "defaultWorkWeek": ['MO', 'TU', 'WE', 'TH', 'FR'],
         "firstDayOfWeek": "Monday",
         "timezone": "+01:00",

@@ -16,8 +16,8 @@ function getSwaggerModel(aMongooseModel) {
 
     var propertyToModelNameMap = {
         "focus": "Focus",
-        "starredActivities": "StarredActivity",
-        "rejectedActivities": "RejectedActivity"
+        "starredIdeas": "StarredIdea",
+        "rejectedIdeas": "RejectedIdea"
     };
 
     var swaggerModels = {};

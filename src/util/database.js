@@ -19,7 +19,7 @@ var initialize = function initialize(loadTestData) {
         mongoose.connect(connectStr, {server: {auto_reconnect: true}});
 
         var models = [
-            'activity',
+            'idea',
             'activityPlan',
             'activityOffer',
             'assessment',

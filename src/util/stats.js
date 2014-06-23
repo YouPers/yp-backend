@@ -147,12 +147,12 @@ var statsQueries = function (timeRange, scopeType, scopeId) {
     }
     actsPlannedQuery.append(
         {$group: {
-            _id: '$activity',
+            _id: '$idea',
             count: {$sum: 1}
         }},
         {$sort: {count: -1}},
         {$project: {
-            activity: '$_id',
+            idea: '$_id',
             _id: 0,
             count: 1
         }});

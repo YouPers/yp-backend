@@ -39,8 +39,8 @@ frisby.create('ActivityRecommendations: post a first answer for this assessment'
                 frisby.create('ActivityRecommendations: reject first recommendation')
                     .put(URL + '/profiles/'+ consts.users.test_ind2.profile,
                         {prefs:
-                            {rejectedActivities:
-                                [{activity: recs[0].activity, timestamp: new Date().toISOString()}]
+                            {rejectedIdeas:
+                                [{idea: recs[0].idea, timestamp: new Date().toISOString()}]
                             }
                         })
                     .auth('test_ind2', 'yp')
@@ -52,20 +52,20 @@ frisby.create('ActivityRecommendations: post a first answer for this assessment'
                             .expectStatus(200)
                             .afterJSON(function(newRecs) {
                                 expect(newRecs.length).toEqual(10);
-                                expect(newRecs[0].activity).not.toEqual(recs[0].activity);
-                                expect(newRecs[0].activity).toEqual(recs[1].activity);
+                                expect(newRecs[0].idea).not.toEqual(recs[0].idea);
+                                expect(newRecs[0].idea).toEqual(recs[1].idea);
 
-                                frisby.create('ActivityRecommendations: reset rejectedActivities on the profile')
+                                frisby.create('ActivityRecommendations: reset rejectedIdeas on the profile')
                                     .put(URL + '/profiles/' + consts.users.test_ind2.profile,
                                     {prefs:
-                                    {rejectedActivities:
+                                    {rejectedIdeas:
                                         []
                                     }
                                     })
                                     .auth('test_ind2', 'yp')
                                     .expectStatus(200)
                                     .afterJSON(function(newprofile) {
-                                        expect(newprofile.prefs.rejectedActivities.length).toEqual(0);
+                                        expect(newprofile.prefs.rejectedIdeas.length).toEqual(0);
                                     })
                                     .toss();
 

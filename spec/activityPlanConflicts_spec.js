@@ -21,7 +21,7 @@ consts.newUserInNewCampaignApi(
 
         var masterPlan = {
             "owner": user.id,
-            "activity": consts.groupActivity.id,
+            "idea": consts.groupIdea.id,
             "visibility": "public",
             "executionType": "group",
             "title": "myTitle",

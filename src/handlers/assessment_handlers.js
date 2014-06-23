@@ -136,10 +136,10 @@ function assessmentResultPostFn(baseUrl, Model) {
 
             CoachRecommendation.generateAndStoreRecommendations(
                 req.user._id,
-                req.user.profile.prefs.rejectedActivities,
+                req.user.profile.prefs.rejectedIdeas,
                 savedObj,
                 req.user.profile.prefs.focus,
-                auth.isAdminForModel(req.user, mongoose.model('Activity')),
+                auth.isAdminForModel(req.user, mongoose.model('Idea')),
                 function (err, recs) {
                     if (err) {
                         return error.handleError(err, next);

@@ -25,7 +25,7 @@ function campaignLeadInviteUrl(campaignId, invitingUserId, token) {
 function orgAdminInviteUrl (organizationId, invitingUserId, token) {
     return config.webclientUrl + "/#/organizations/" + organizationId + '/becomeOrganizationAdmin?invitingUserId='+invitingUserId+'&token='+token;
 }
-function activityImageUrl (activityNumber) {
+function ideaImageUrl (activityNumber) {
     return config.webclientUrl + "/assets/actpics/"+activityNumber + ".jpg";
 }
 function campaignImageUrl () {
@@ -49,7 +49,7 @@ module.exports = {
     activityPlanInviteUrl: activityPlanInviteUrl,
     campaignLeadInviteUrl: campaignLeadInviteUrl,
     orgAdminInviteUrl: orgAdminInviteUrl,
-    activityImageUrl: activityImageUrl,
+    ideaImageUrl: ideaImageUrl,
     campaignImageUrl: campaignImageUrl,
     mailLogoImageUrl: mailLogoImageUrl,
     mailFooterImageUrl: mailFooterImageUrl,

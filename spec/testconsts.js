@@ -5,13 +5,13 @@ var URL = 'http://localhost:' + port;
 var moment = require('moment');
 
 var self = module.exports  =  {
-    groupActivity: {
+    groupIdea: {
         id: '5278c6adcdeab69a25000046'
     },
-    groupActivity2: {
+    groupIdea2: {
         id: '5278c6adcdeab69a2500006f'
     },
-    aloneActivity: {
+    aloneIdea: {
         id: "5278c6aecdeab69a250000b9"
     },
     users: {

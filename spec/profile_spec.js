@@ -38,8 +38,8 @@ var userProfile = {
         "defaultWorkWeek": ['MO', 'TU', 'WE', 'TH', 'FR'],
         "firstDayOfWeek": "Monday",
         "timezone": "+01:00",
-        "starredActivities": [{timestamp: new Date().toISOString(), activity: "5278c6adcdeab69a25000054"}],
-        "rejectedActivities": [{timestamp: new Date().toISOString(), activity: "5278c6adcdeab69a25000090"}],
+        "starredIdeas": [{timestamp: new Date().toISOString(), idea: "5278c6adcdeab69a25000054"}],
+        "rejectedIdeas": [{timestamp: new Date().toISOString(), idea: "5278c6adcdeab69a25000090"}],
         "rejectedActivityPlans": []
     }
 };

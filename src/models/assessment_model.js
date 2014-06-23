@@ -9,7 +9,7 @@ var mongoose = require('mongoose'),
     _ = require('lodash');
 
 /**
- * Activity Schema
+ * Idea Schema
  */
 
 var AssessmentQuestionSchema = common.newSchema({

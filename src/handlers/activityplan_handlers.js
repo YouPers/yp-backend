@@ -1,7 +1,7 @@
 var calendar = require('../util/calendar'),
     mongoose = require('mongoose'),
     ActivityPlan = mongoose.model('ActivityPlan'),
-    Activity = mongoose.model('Activity'),
+    Idea = mongoose.model('Idea'),
     ActivityEvent = mongoose.model('ActivityEvent'),
     ActivityOffer = mongoose.model('ActivityOffer'),
     actMgr = require('../core/ActivityManagement'),
@@ -28,7 +28,7 @@ function _getEvents(plan, ownerId, fromDate) {
             start: moment(instance).toDate(),
             end: moment(instance).add('ms', duration).toDate(),
             activityPlan: plan._id,
-            activity: plan.activity,
+            idea: plan.idea,
             owner: ownerId
         });
     });
@@ -145,8 +145,8 @@ function postNewActivityPlan(req, res, next) {
         return next(new error.MissingParameterError({ required: 'mainEvent.end' }));
     }
 
-    if (!sentPlan.activity) {
-        return next(new error.MissingParameterError('"activity" is a required attribute', { required: 'activity' }));
+    if (!sentPlan.idea) {
+        return next(new error.MissingParameterError('"idea" is a required attribute', { required: 'idea' }));
     }
 
     if (sentPlan.joiningUsers && sentPlan.joiningUsers.length > 0) {
@@ -179,8 +179,12 @@ function postNewActivityPlan(req, res, next) {
     var newActPlan = new ActivityPlan(sentPlan);
 
     _saveNewActivityPlan(newActPlan, req, function (err, plan) {
+        if (err) {
+            return error.handleError(err, next);
+        }
 
         var events = _getEvents(plan, req.user.id);
+
         ActivityEvent.create(events, function (err) {
             if (err) {
                 return error.handleError(err, next);
@@ -193,7 +197,7 @@ function postNewActivityPlan(req, res, next) {
 
 
 /**
- * save new activity plan with a mongoose obj that already has been validated
+ * save new activityPlan with a mongoose obj that already has been validated
  *
  * @param plan - activityPlan obj
  * @param req - the request
@@ -203,20 +207,20 @@ function _saveNewActivityPlan(plan, req, cb) {
     var user = req.user;
     var i18n = req.i18n;
 
-    // add fields of activity to the activity plan
-    Activity.findById(plan.activity).exec(function (err, foundActivity) {
+    // add fields of idea to the activityPlan
+    Idea.findById(plan.idea).exec(function (err, foundIdea) {
         if (err) {
             return cb(err);
         }
 
-        if (!foundActivity) {
-            return cb(new error.InvalidArgumentError('referenced activity not found', { required: 'activity', activity: plan.activity }));
+        if (!foundIdea) {
+            return cb(new error.InvalidArgumentError('referenced idea not found', { required: 'idea', idea: plan.idea }));
         }
 
-        plan.fields = foundActivity.fields;
+        plan.fields = foundIdea.fields;
 
         if (!plan.title) {
-            plan.title = foundActivity.title;
+            plan.title = foundIdea.title;
         }
 
         plan.save(function (err, savedPlan) {
@@ -225,10 +229,10 @@ function _saveNewActivityPlan(plan, req, cb) {
             }
 
             // we reload ActivityPlan for two reasons:
-            // - populate 'activity' so we can get create a nice calendar entry
+            // - populate 'idea' so we can get create a nice calendar entry
             // - we need to reload so we get the changes that have been done pre('save') and pre('init')
             //   like updating the joiningUsers Collection
-            ActivityPlan.findById(savedPlan._id).populate('activity owner').exec(function (err, reloadedActPlan) {
+            ActivityPlan.findById(savedPlan._id).populate('idea owner').exec(function (err, reloadedActPlan) {
                 if (err) {
                     return cb(err);
                 }
@@ -241,8 +245,8 @@ function _saveNewActivityPlan(plan, req, cb) {
 
                 actMgr.emit('activity:planSaved', reloadedActPlan);
 
-                // remove the populated activity and masterplan because the client is not gonna expect it to be populated.
-                reloadedActPlan.activity = reloadedActPlan.activity._id;
+                // remove the populated idea and masterplan because the client is not gonna expect it to be populated.
+                reloadedActPlan.idea = reloadedActPlan.idea._id;
 
                 return cb(null, reloadedActPlan);
 
@@ -307,7 +311,7 @@ function postActivityPlanInvite(req, res, next) {
         // first load ActivityPlan
         function (done) {
             ActivityPlan.findById(req.params.id)
-                .populate('activity')
+                .populate('idea')
                 .populate('owner')
                 .exec(function (err, plan) {
                     if (err) {
@@ -340,7 +344,7 @@ function postActivityPlanInvite(req, res, next) {
                             if (invitedUser && invitedUser.length === 1) {
                                 // save the corresponding ActivityOffer
                                 var actOffer = new ActivityOffer({
-                                    activity: locals.plan.activity._id,
+                                    idea: locals.plan.idea._id,
                                     activityPlan: [locals.plan._id],
                                     targetQueue: invitedUser[0] && invitedUser[0]._id,
                                     offerType: ['personalInvitation'],
@@ -428,7 +432,7 @@ function deleteActivityPlan(req, res, next) {
     }
     var reason = req.params.reason || 'The organizer Deleted this activity';
 
-    ActivityPlan.findById(req.params.id).populate('activity').populate('owner joiningUsers', '+profile +email').exec(function (err, activityPlan) {
+    ActivityPlan.findById(req.params.id).populate('idea').populate('owner joiningUsers', '+profile +email').exec(function (err, activityPlan) {
         if (err) {
             return error.handleError(err, next);
         }
@@ -530,7 +534,7 @@ function putActivityPlan(req, res, next) {
 
     ActivityPlan
         .findById(req.params.id)
-        .populate('activity')
+        .populate('idea')
         .populate('owner joiningUsers', '+profile +email')
         .exec(function (err, loadedActPlan) {
             if (err) {
@@ -542,7 +546,7 @@ function putActivityPlan(req, res, next) {
 
             // check to see if received plan is editable
             if (loadedActPlan.editStatus !== "editable") {
-                return next(new error.ConflictError('Error updating in Activity Plan PutFn: Not allowed to edit this activity plan.', {
+                return next(new error.ConflictError('Error updating in Idea Plan PutFn: Not allowed to edit this activityPlan.', {
                     activityPlanId: sentPlan.id,
                     editStatus: loadedActPlan.editStatus
                 }));
@@ -577,7 +581,7 @@ function putActivityPlan(req, res, next) {
                     return error.handleError(err, next);
                 }
 
-                loadedActPlan.activity = loadedActPlan.activity._id;
+                loadedActPlan.idea = loadedActPlan.idea._id;
 
                 actMgr.emit('activity:planUpdated', loadedActPlan);
 

@@ -17,7 +17,7 @@ var mongoose = require('mongoose'),
  * non-array properties, but since we use the same object in the API we chose the model it like this.
  */
 var ActivityOfferSchema = common.newSchema({
-    activity: {type: ObjectId, ref: 'Activity', required: true},
+    idea: {type: ObjectId, ref: 'Idea', required: true},
     activityPlan: [{type: ObjectId, ref: 'ActivityPlan', required: false}],
     offerType: [String],  // mongoose does not allows String enum inside []--> only use common.enums.ActivityOfferType here!!!
     targetQueue: {type: ObjectId, required: true},

@@ -72,7 +72,7 @@ var getIcalObject = function (plan, recipientUser, iCalType, i18n, reason) {
         throw new Error('unknown iCal ObjectType: ' + iCalType);
     }
 
-    var link = config.webclientUrl + "/#/activities/" + plan.activity._id;
+    var link = config.webclientUrl + "/#/activities/" + plan.idea._id;
 
     event.setSummary(i18n.t('ical:' + iCalType + ".summary", {plan: plan.toJSON ? plan.toJSON() : plan, recipient: recipientUser.toJSON()}));
     event.setDescription(i18n.t('ical:' + iCalType + ".description", {plan: plan.toJSON ? plan.toJSON() : plan, recipient: recipientUser.toJSON(), link: link}));

@@ -81,7 +81,7 @@ describe('HealthCoach Module', function () {
                 new ActivityPlan(
                     {
                         owner: user._id,
-                        activity: consts.aloneActivity.id,
+                        idea: consts.aloneIdea.id,
                         "title": "myTitle",
                         "visibility": "private",
                         "executionType": "self",

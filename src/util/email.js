@@ -158,9 +158,9 @@ var sendCalInvite = function (to, type, iCalString, plan, i18n, reason) {
     var locals = {
         salutation: i18n.t('email:iCalMail.' + type + '.salutation', {user: plan.owner.firstname}),
         text: i18n.t('email:iCalMail.' + type + '.text', {plan: plan.toJSON()}),
-        title: plan.activity.title,
+        title: plan.idea.title,
         plan: plan,
-        image: urlComposer.activityImageUrl(plan.activity.number),
+        image: urlComposer.ideaImageUrl(plan.idea.number),
         footer: i18n.t('email:iCalMail.footer'),
         background: urlComposer.mailBackgroundImageUrl(),
         logo: urlComposer.mailLogoImageUrl()
@@ -190,11 +190,11 @@ var sendActivityPlanInvite = function sendActivityPlanInvite(email, invitingUser
     var locals = {
         salutation: i18n.t('email:ActivityPlanInvitation.salutation' + (invitedUser ? '': 'Anonymous'), {invited: invitedUser ? invitedUser.toJSON() : {}}),
         text: i18n.t('email:ActivityPlanInvitation.text', {inviting: invitingUser.toJSON(), plan: plan.toJSON()}),
-        link: urlComposer.activityPlanInviteUrl(plan.activity._id, invitingUser._id),
-        title: plan.activity.title,
+        link: urlComposer.activityPlanInviteUrl(plan.idea._id, invitingUser._id),
+        title: plan.idea.title,
         plan: plan,
         eventDate: eventDate,
-        image: urlComposer.activityImageUrl(plan.activity.number),
+        image: urlComposer.ideaImageUrl(plan.idea.number),
         header: i18n.t('email:ActivityPlanInvitation.header'),
         footer: i18n.t('email:ActivityPlanInvitation.footer'),
         logo: urlComposer.mailFooterImageUrl()

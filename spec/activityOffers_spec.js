@@ -54,9 +54,9 @@ consts.newUserInNewCampaignApi(
 
                         _.forEach(recs, function (rec) {
                             expect(rec.offerType[0]).toEqual('ypHealthCoach');
-                            expect(rec.activity.id).toBeDefined();
+                            expect(rec.idea.id).toBeDefined();
                             expect(rec.offerType.length).toEqual(1);
-                            expect(rec.activity.recWeights).toBeUndefined();
+                            expect(rec.idea.recWeights).toBeUndefined();
                             expect(rec.activityPlan.length).toEqual(0);
                             expect(rec.recommendedBy.length).toEqual(1);
                             expect(rec.recommendedBy[0].id).toEqual('53348c27996c80a534319bda');
@@ -79,17 +79,17 @@ consts.newUserInNewCampaignApi(
                                         expect(recs.length).toEqual(8);
                                         _.forEach(recs, function (rec) {
                                             expect(rec.offerType[0]).toEqual('ypHealthCoach');
-                                            expect(rec.activity.id).toBeDefined();
+                                            expect(rec.idea.id).toBeDefined();
                                             expect(rec.offerType.length).toEqual(1);
-                                            expect(rec.activity.recWeights).toBeUndefined();
+                                            expect(rec.idea.recWeights).toBeUndefined();
                                             expect(rec.activityPlan.length).toEqual(0);
                                             expect(rec.recommendedBy.length).toEqual(1);
                                             expect(rec.recommendedBy[0].id).toEqual('53348c27996c80a534319bda');
                                         });
 
-                                        frisby.create('ActivityOffers: promote a campaignAct ')
+                                        frisby.create('IdeaOffers: promote a campaignAct ')
                                             .post(URL + '/activityoffers', {
-                                                activity: consts.aloneActivity.id,
+                                                idea: consts.aloneIdea.id,
                                                 recommendedBy: ['52a97f1650fca98c2900000b'],
                                                 targetQueue: myTestCampaign.id,
                                                 offerType: ['campaignActivity'],
@@ -112,7 +112,7 @@ consts.newUserInNewCampaignApi(
                                                         frisby.create('ActivityOffers: add campaign ActPlan for existing Act')
                                                             .post(URL + '/activityplans', {
                                                                 "owner": consts.users.test_campaignlead.id,
-                                                                "activity": consts.groupActivity2.id,
+                                                                "idea": consts.groupIdea2.id,
                                                                 "title": "myTitle",
                                                                 "visibility": "campaign",
                                                                 "source": "campaign",
@@ -144,7 +144,7 @@ consts.newUserInNewCampaignApi(
 
                                                                         frisby.create('ActivityOffers: post ActivityOffer for CampaignPlan')
                                                                             .post(URL + '/activityoffers', {
-                                                                                activity: consts.groupActivity2.id,
+                                                                                idea: consts.groupIdea2.id,
                                                                                 recommendedBy: ['52a97f1650fca98c2900000b'],
                                                                                 targetQueue: myTestCampaign.id,
                                                                                 offerType: ['campaignActivityPlan'],

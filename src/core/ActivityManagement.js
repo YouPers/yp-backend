@@ -30,7 +30,7 @@ actMgr.on('activity:planSaved', function (plan) {
     // store the offer explicitly in this case, to control all attributes of the offer
     if (isJoinablePlan && !isCampaignPromotedPlan) {
         var offer = new ActivityOffer({
-            activity: plan.activity.id || plan.activity,
+            idea: plan.idea.id || plan.idea,
             activityPlan: [plan.id],
             targetQueue: plan.campaign || plan.owner, // TODO: This || plan.owner is a hack to prevent "public" offers to show up in multiple campaigns. Need to decide on how to deal with real PUBLIC offer
             recommendedBy: [plan.owner],
@@ -65,10 +65,10 @@ actMgr.on('activity:planSaved', function (plan) {
             });
     }
 
-    // find all notification for (this user or this user's campaign) and activity, dismiss them for this user
+    // find all notification for (this user or this user's campaign) and idea, dismiss them for this user
 
     NotificationModel
-        .find({refDocs: { $elemMatch: { docId: plan.activity._id }}})
+        .find({refDocs: { $elemMatch: { docId: plan.idea._id }}})
         .and({$or: [{ targetQueue: plan.owner }, { targetQueue: plan.campaign }]})
         .exec(function(err, notifs) {
             _.forEach(notifs, function(notif) {
@@ -100,8 +100,8 @@ actMgr.on('activity:planDeleted', function (plan) {
 actMgr.on('activity:offerSaved', function (offer) {
 
     // check if offer is populated, if not load the missing referenced objects so we can create nice notifications
-    if (!(offer.activity instanceof mongoose.model('Activity'))) {
-        offer.populate('activity activityPlan', _publishNotification);
+    if (!(offer.idea instanceof mongoose.model('Idea'))) {
+        offer.populate('idea activityPlan', _publishNotification);
     } else {
         _publishNotification(null, offer);
     }
@@ -118,11 +118,11 @@ actMgr.on('activity:offerSaved', function (offer) {
             var notification = new Notification({
                 type: ActivityOffer.mapOfferTypeToNotificationType[offer.offerType[0]],
                 sourceType: ActivityOffer.mapOfferTypeToSourceType[offer.offerType[0]],
-                title: (offer.plan && offer.plan.title) || offer.activity.title,
+                title: (offer.plan && offer.plan.title) || offer.idea.title,
                 targetQueue: offer.targetQueue,
                 author: offer.recommendedBy,
-                refDocLink: urlComposer.activityOfferUrl(offer.activity.id),
-                refDocs: [ { docId: offer._id, model: 'ActivityOffer' }, { docId: offer.activity._id, model: 'Activity' } ],
+                refDocLink: urlComposer.activityOfferUrl(offer.idea.id),
+                refDocs: [ { docId: offer._id, model: 'ActivityOffer' }, { docId: offer.idea._id, model: 'Idea' } ],
                 publishFrom: offer.validFrom,
                 publishTo: offer.validTo
             });

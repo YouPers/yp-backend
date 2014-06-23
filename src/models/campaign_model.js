@@ -7,7 +7,7 @@ var mongoose = require('mongoose'),
     auth = require('../util/auth');
 
 /**
- * Activity Schema
+ * Idea Schema
  */
 var CampaignSchema = common.newSchema({
     title: { type: String, trim: true, required: true },

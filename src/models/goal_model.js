@@ -6,7 +6,7 @@ var mongoose = require('mongoose'),
     ObjectId = mongoose.Schema.ObjectId;
 
 /**
- * Activity Schema
+ * Idea Schema
  */
 var GoalSchema = common.newSchema({
     owner: {type: ObjectId, ref: 'User', required: true},

@@ -7,9 +7,9 @@ var mongoose = require('mongoose'),
     auth = require('../util/auth');
 
 /**
- * Activity Schema
+ * Idea Schema
  */
-var ActivitySchema = common.newSchema({
+var IdeaSchema = common.newSchema({
     number: {type: String, trim: true, required: true},
     title: { type: String, trim: true, required: true, i18n: true },
     description: { type: String, trim: true, required: true, i18n: true },
@@ -27,12 +27,12 @@ var ActivitySchema = common.newSchema({
     recWeights: {type: mongoose.Schema.Types.Mixed, select: false}
 });
 
-ActivitySchema.statics.adminAttrsSelector =  '+recWeights +qualityFactor';
+IdeaSchema.statics.adminAttrsSelector =  '+recWeights +qualityFactor';
 
-ActivitySchema.statics.adminRoles = [auth.roles.systemadmin, auth.roles.productadmin];
+IdeaSchema.statics.adminRoles = [auth.roles.systemadmin, auth.roles.productadmin];
 
-ActivitySchema.methods.getPictureUrl = function() {
+IdeaSchema.methods.getPictureUrl = function() {
     return '/assets/actpics/' + this.number + '.jpg';
 };
 
-module.exports = mongoose.model('Activity', ActivitySchema);
+module.exports = mongoose.model('Idea', IdeaSchema);

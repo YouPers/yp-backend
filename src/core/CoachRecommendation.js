@@ -1,6 +1,6 @@
 var _ = require('lodash'),
     mongoose = require('mongoose'),
-    Activity = mongoose.model('Activity'),
+    Idea = mongoose.model('Idea'),
     AssessmentResult = mongoose.model('AssessmentResult'),
     ActivityOffer = mongoose.model('ActivityOffer'),
     error = require('../util/error'),
@@ -16,7 +16,7 @@ var HEALTH_COACH_USER_ID = '53348c27996c80a534319bda';
 var HEALTH_COACH_TYPE = 'ypHealthCoach';
 
 Profile.on('change:prefs.focus', function (changedProfile) {
-    generateAndStoreRecommendations(changedProfile.owner, changedProfile.prefs.rejectedActivities, null, changedProfile.prefs.focus, false, function (err, recs) {
+    generateAndStoreRecommendations(changedProfile.owner, changedProfile.prefs.rejectedIdeas, null, changedProfile.prefs.focus, false, function (err, recs) {
         if (err) {
             log.error(err);
         }
@@ -24,14 +24,14 @@ Profile.on('change:prefs.focus', function (changedProfile) {
 });
 
 /**
- * Evaluate an assessmentResult against a list of activities and returns a scored list of the activities
+ * Evaluate an assessmentResult against a list of ideas and returns a scored list of the ideas
  * that are recommended for someone with this assessmentResult.
  * If no personalGoals are set all available answers are used for scoring, if personalGoals are set only the
  * corresponding answers are used for scoring.
  *
  * The resulting array is ordered by descending score, so the "best" recommendation comes first.
  *
- * @param actList the list of activities to score
+ * @param actList the list of ideas to score
  * @param assResult the assessmentResult to score against
  * @param personalGoal an array of focus-questions corresponding to _ids of assessmentQuestions the user wants to focus on.
  * We expect an array of objects with property question: e.g. [{question: "id", timestamp: "ts"}, ...]
@@ -59,12 +59,12 @@ function _generateRecommendations(actList, assResult, personalGoal, nrOfRecsToRe
         personalGoal = undefined;
     }
 
-    // calculate matchValue for each activity and store in object
+    // calculate matchValue for each idea and store in object
     var matchValues = [], score;
-    _.forEach(actList, function (activity) {
-        var qualityFactor = activity.qualityFactor || 1;
+    _.forEach(actList, function (idea) {
+        var qualityFactor = idea.qualityFactor || 1;
         score = 1;
-        _.forEach(activity.recWeights, function (recWeight) {
+        _.forEach(idea.recWeights, function (recWeight) {
             var answerObj = indexedAnswers[recWeight[0].toString()];
 
             // add score only if
@@ -79,7 +79,7 @@ function _generateRecommendations(actList, assResult, personalGoal, nrOfRecsToRe
                     Math.abs(answerObj.answer) / 100 * recWeight[1];
             }
         });
-        matchValues.push({activity: activity._id, score: score * qualityFactor});
+        matchValues.push({idea: idea._id, score: score * qualityFactor});
     });
 
     var sortedRecs = _.sortBy(matchValues, function (matchValue) {
@@ -109,31 +109,30 @@ function _generateRecommendations(actList, assResult, personalGoal, nrOfRecsToRe
 var locals = {};
 
 /**
- * loads all activities relevant
- * @param rejectedActivities
+ * loads all ideas relevant
+ * @param rejectedIdeas
  * @param done
  * @private
  */
-function _loadActivities(rejectedActivities, done) {
+function _loadIdeas(rejectedIdeas, done) {
     // reset
-    locals.activities = undefined;
+    locals.ideas = undefined;
 
-    Activity
-        .find()
+    Idea.find()
         .select('recWeights qualityFactor')
-        .exec(function (err, activities) {
+        .exec(function (err, ideas) {
             if (err) {
                 return error.handleError(err, done);
             }
 
-            if (rejectedActivities && rejectedActivities.length > 0) {
-                _.remove(activities, function (act) {
-                    return _.any(rejectedActivities, function (rejAct) {
-                        return rejAct.activity.equals(act._id);
+            if (rejectedIdeas && rejectedIdeas.length > 0) {
+                _.remove(ideas, function (idea) {
+                    return _.any(rejectedIdeas, function (rejIdea) {
+                        return rejIdea.idea.equals(idea._id);
                     });
                 });
             }
-            locals.activities = activities;
+            locals.ideas = ideas;
             return done();
         });
 }
@@ -204,7 +203,7 @@ function _removeOldRecsFromActivityOffers(userId, cb) {
 function _storeNewRecsIntoActivityOffers(userId, recs, cb) {
     async.forEach(recs, function (rec, done) {
         var newOffer = new ActivityOffer({
-            activity: rec.activity,
+            idea: rec.idea,
             offerType: [HEALTH_COACH_TYPE],
             recommendedBy: [HEALTH_COACH_USER_ID],
             targetQueue: userId,
@@ -224,24 +223,24 @@ function _storeNewRecsIntoActivityOffers(userId, recs, cb) {
 
 /**
  * updates the coachRecommendations that are currently stored for this user.
- * if the rejectedActs, personalGoals and last assessmentResult are not passed in, the method tries to load
+ * if the rejectedIdeas, personalGoals and last assessmentResult are not passed in, the method tries to load
  * them from the database
  *
  * @param {ObjectId | string} userId of the user to update the recs for
- * @param {ObjectId[] | string[]} rejectedActs the list of rejected activities as Ids
+ * @param {ObjectId[] | string[]} rejectedIdeas the list of rejected ideas as Ids
  * @param {AssessmentResult} assessmentResult
  * @param {ObjectId | ObjectId[] | string | string[] } [personalGoals]
  * @param {cb} cb
  * @param updateDb
  * @param isAdmin
  */
-function _updateRecommendations(userId, rejectedActs, assessmentResult, personalGoals, updateDb, isAdmin, cb) {
+function _updateRecommendations(userId, rejectedIdeas, assessmentResult, personalGoals, updateDb, isAdmin, cb) {
     // TODO: load personalGoals of this user if not passed in
     // TODO: load rejectedActs of this user if not passed in
 
 
     async.parallel([
-        _loadActivities.bind(null, rejectedActs),
+        _loadIdeas.bind(null, rejectedIdeas),
         _loadAssessmentResult.bind(null, userId, assessmentResult)
     ], function (err) {
         if (err) {
@@ -253,7 +252,7 @@ function _updateRecommendations(userId, rejectedActs, assessmentResult, personal
             return cb(null);
         }
 
-        _generateRecommendations(locals.activities, locals.assResult, personalGoals, isAdmin ? 1000 : NUMBER_OF_COACH_RECS, function (err, recs) {
+        _generateRecommendations(locals.ideas, locals.assResult, personalGoals, isAdmin ? 1000 : NUMBER_OF_COACH_RECS, function (err, recs) {
             if (err) {
                 return cb(err);
             }
@@ -277,27 +276,27 @@ function _updateRecommendations(userId, rejectedActs, assessmentResult, personal
 /**
  *
  * @param userId
- * @param rejectedActs
+ * @param rejectedIdeas
  * @param assessmentResult
  * @param personalGoals
  * @param cb
  * @param isAdmin
  */
-function generateAndStoreRecommendations(userId, rejectedActs, assessmentResult, personalGoals, isAdmin, cb) {
-    _updateRecommendations(userId, rejectedActs, assessmentResult, personalGoals, true, isAdmin, cb);
+function generateAndStoreRecommendations(userId, rejectedIdeas, assessmentResult, personalGoals, isAdmin, cb) {
+    _updateRecommendations(userId, rejectedIdeas, assessmentResult, personalGoals, true, isAdmin, cb);
 }
 
 /**
  *
  * @param userId
- * @param rejectedActs
+ * @param rejectedIdeas
  * @param assessmentResult
  * @param personalGoals
  * @param cb
  * @param isAdmin
  */
-function generateRecommendations(userId, rejectedActs, assessmentResult, personalGoals, isAdmin, cb) {
-    _updateRecommendations(userId, rejectedActs, assessmentResult, personalGoals, false, isAdmin, cb);
+function generateRecommendations(userId, rejectedIdeas, assessmentResult, personalGoals, isAdmin, cb) {
+    _updateRecommendations(userId, rejectedIdeas, assessmentResult, personalGoals, false, isAdmin, cb);
 }
 
 module.exports = {

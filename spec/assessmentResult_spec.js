@@ -1,7 +1,6 @@
 require('../src/util/database').initialize(false);
 
 var mongoose = require('mongoose'),
-    _ = require('lodash'),
     AssessmentResult = mongoose.model('AssessmentResult');
 
 

@@ -27,7 +27,7 @@ consts.newUserInNewCampaignApi(
 
                 frisby.create('Notifications: promote a campaign Activity')
                     .post(URL + '/activityoffers', {
-                        activity: consts.aloneActivity.id,
+                        idea: consts.aloneIdea.id,
                         recommendedBy: [consts.users.test_campaignlead.id],
                         targetQueue: campaign.id,
                         offerType: ['campaignActivity'],
@@ -77,12 +77,12 @@ consts.newUserInNewCampaignApi(
                                                 expect(notifs.length).toEqual(2);
 
                                                 var activityNotification = _.find(notifs, { type: 'activityRecommendation' });
-                                                var activityDoc = _.find(activityNotification.refDocs, { model: 'Activity'});
+                                                var activityDoc = _.find(activityNotification.refDocs, { model: 'Idea'});
 
                                                 frisby.create('Notifications: plan activity offer and check if it has been dismissed')
                                                     .post(URL + '/activityplans', {
                                                         "owner": user.id,
-                                                        "activity": activityDoc.docId,
+                                                        "idea": activityDoc.docId,
                                                         "visibility": "public",
                                                         "campaign": campaign.id,
                                                         "title": "myTitle",
@@ -172,7 +172,7 @@ consts.newUserInNewCampaignApi(
         frisby.create('Notifications: post a campaignActivityPlan')
             .post(URL + '/activityplans', {
                 "owner": consts.users.test_campaignlead.id,
-                "activity": consts.groupActivity.id,
+                "idea": consts.groupIdea.id,
                 "visibility": "campaign",
                 "executionType": "group",
                 "campaign": campaign.id,
@@ -231,7 +231,7 @@ consts.newUserInNewCampaignApi(
         frisby.create('Notifications: post an activityPlan SUCCESS')
             .post(URL + '/activityplans', {
                 "owner": user.id,
-                "activity": consts.groupActivity.id,
+                "idea": consts.groupIdea.id,
                 "visibility": "campaign",
                 "executionType": "group",
                 "campaign": campaign.id,

@@ -35,7 +35,7 @@ actMgr.on('activity:planSaved', function (plan) {
             targetQueue: plan.campaign || plan.owner, // TODO: This || plan.owner is a hack to prevent "public" offers to show up in multiple campaigns. Need to decide on how to deal with real PUBLIC offer
             recommendedBy: [plan.owner],
             offerType: ['publicActivityPlan'],
-            validTo: plan.events[plan.events.length - 1].end,
+            validTo: plan.lastEventEnd,
             prio: [1]
         });
         offer.save(function (err, savedOffer) {
@@ -182,8 +182,8 @@ actMgr.on('activity:planUpdated', function(updatedPlan) {
         _.forEach(offers, function (offer) {
             // The validTo of the offer has to be equal or earlier than the last event,
             // it does not make sense to offer something that has already happened.
-            if (offer.validTo > updatedPlan.events[updatedPlan.events.length -1].end) {
-                offer.validTo = updatedPlan.events[updatedPlan.events.length -1].end;
+            if (offer.validTo > updatedPlan.lastEventEnd) {
+                offer.validTo = updatedPlan.lastEventEnd;
                 offer.save(function (err, updatedOffer) {
                     if (err) {
                         return actMgr.emit('error', err);

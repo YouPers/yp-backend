@@ -1,6 +1,7 @@
 var mongoose = require('mongoose'),
     Model = mongoose.model('Invitation'),
-    generic = require('./../handlers/generic');
+    generic = require('./../handlers/generic'),
+    handlers = require('../handlers/socialInteraction_handlers');
 
 module.exports = function (swagger, config) {
 
@@ -41,7 +42,7 @@ module.exports = function (swagger, config) {
             "nickname": "getInvitations",
             accessLevel: 'al_individual'
         },
-        action: generic.getAllFn(baseUrl, Model)
+        action: handlers.getAllFn(baseUrl, Model)
     });
 
     swagger.addPost({
@@ -71,7 +72,7 @@ module.exports = function (swagger, config) {
                 "nickname": "deleteInvitation",
                 accessLevel: 'al_user'
             },
-            action:  generic.deleteByIdFn(baseUrl, Model)
+            action:  handlers.deleteByIdFn(baseUrl, Model)
         }
     );
 

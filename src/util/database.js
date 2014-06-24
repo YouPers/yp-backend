@@ -37,6 +37,7 @@ var initialize = function initialize(loadTestData) {
 
             'space',
             'socialInteraction',
+            'socialInteractionDismissed',
             'message',
             'invitation',
             'recommendation'

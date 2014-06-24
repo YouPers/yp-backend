@@ -156,7 +156,7 @@ var sendCalInvite = function (toUser, type, iCalString, plan, i18n, reason) {
 
     var subject = i18n.t('email:iCalMail.' + type + '.subject', {reason: reason, plan: plan.toJSON()});
     var locals = {
-        salutation: i18n.t('email:iCalMail.' + type + '.salutation', {user: toUser.firstname}),
+        salutation: i18n.t('email:iCalMail.' + type + '.salutation', {user: toUser.toJSON()}),
         text: i18n.t('email:iCalMail.' + type + '.text', {plan: plan.toJSON()}),
         title: plan.idea.title,
         plan: plan,

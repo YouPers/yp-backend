@@ -401,8 +401,8 @@ function _sendIcalMessages(activityPlan, joiner, req, reason, type, done) {
         users = [activityPlan.owner].concat(activityPlan.joiningUsers);
     }
 
-    mongoose.model('Profile').populate(users, {path: 'profile', model: 'Profile'}, function (err, users) {
-        async.forEach(users, function (user, next) {
+    mongoose.model('Profile').populate(users, {path: 'profile', model: 'Profile'}, function (err, populatedUsers) {
+        async.forEach(populatedUsers, function (user, next) {
                 if (user.profile.prefs.email.iCalInvites) {
                     var myIcalString = calendar.getIcalObject(activityPlan, user, type, req.i18n, reason).toString();
                     email.sendCalInvite(user, type, myIcalString, activityPlan, req.i18n, reason);
@@ -450,9 +450,10 @@ function deleteActivityPlan(req, res, next) {
         });
 
         // plan can be deleted if user is systemadmin or if it is his own plan or if the user is a joiner
-        if (!( auth.checkAccess(req.user, auth.accessLevels.al_systemadmin) ||
-            activityPlan.owner._id.equals(req.user._id) ||
-            joiner)) {
+        if (!
+            (auth.checkAccess(req.user, auth.accessLevels.al_systemadmin) ||
+                activityPlan.owner._id.equals(req.user._id) ||
+                joiner)) {
             return next(new error.NotAuthorizedError());
         }
 

@@ -14,7 +14,7 @@ module.exports = {
      * @param options
      * @returns {Schema}
      */
-    newSchema: function (definition, options) {
+    newSchema: function (definition, options, BaseSchema) {
 
         // we keep track of all i18n strings on this schema
         var multilingualValues = [];
@@ -47,7 +47,8 @@ module.exports = {
             }
         });
 
-        var mySchema = new Schema(definition, options);
+        var mySchema = BaseSchema ? new BaseSchema(definition, options) :
+            new Schema(definition, options);
 
         // To make it easy for clients/handlers/controllers to access the i18n properties we add virtual
         // getters and setters
@@ -209,6 +210,9 @@ module.exports = {
         calendarNotifications: "none 0 300 600 900 1800 3600 7200 86400 172800".split(' '),
 
         // activityOffers
-        activityOfferType: "campaignActivity campaignActivityPlan ypHealthCoach personalInvitation publicActivityPlan defaultActivity".split(' ')
+        activityOfferType: "campaignActivity campaignActivityPlan ypHealthCoach personalInvitation publicActivityPlan defaultActivity".split(' '),
+
+        // type of the targeted space for a social interaction
+        targetSpace: "user activity campaign system".split(' ')
     }
 };

@@ -1,24 +1,24 @@
 var mongoose = require('mongoose'),
-    Model = mongoose.model('Comment'),
+    Model = mongoose.model('Message'),
     generic = require('./../handlers/generic');
 
 module.exports = function (swagger, config) {
 
-    var baseUrl = '/comments',
+    var baseUrl = '/messages',
         baseUrlWithId = baseUrl + '/{id}';
 
     swagger.addGet({
         spec: {
-            description: "Operations about comments",
+            description: "Operations about messages",
             path: baseUrlWithId,
-            notes: "returns a comment based on id",
-            summary: "find comment by id",
+            notes: "returns a message based on id",
+            summary: "find message by id",
             method: "GET",
-            params: [swagger.pathParam("id", "ID of the comment to be fetched", "string"),
+            params: [swagger.pathParam("id", "ID of the message to be fetched", "string"),
                 generic.params.populate],
-            "responseClass": "Comment",
+            "responseClass": "Message",
             "errorResponses": [swagger.errors.invalid('id'), swagger.errors.notFound("user")],
-            "nickname": "getCommentById",
+            "nickname": "getMessageById",
             accessLevel: 'al_individual'
         },
         action: generic.getByIdFn(baseUrl, Model)
@@ -26,19 +26,19 @@ module.exports = function (swagger, config) {
 
     swagger.addGet({
         spec: {
-            description: "Operations about comments",
+            description: "Operations about messages",
             path: baseUrl,
-            notes: "returns all comments, but limits to 100 entries by default, is not owner-constrained, e.g. it returns comments" +
-                "from several users. Use query params sort:'created:-1' and limit to retrieve the newest comments",
-            summary: "get all comments",
+            notes: "returns all messages, but limits to 100 entries by default, is not owner-constrained, e.g. it returns messages" +
+                "from several users. Use query params sort:'created:-1' and limit to retrieve the newest messages",
+            summary: "get all messages",
             method: "GET",
             params: [generic.params.sort,
                 generic.params.limit,
                 generic.params.filter,
                 generic.params.populate,
                 generic.params.populatedeep],
-            "responseClass": "Array[Comment]",
-            "nickname": "getComments",
+            "responseClass": "Array[Message]",
+            "nickname": "getMessages",
             accessLevel: 'al_individual'
         },
         action: generic.getAllFn(baseUrl, Model)
@@ -46,14 +46,14 @@ module.exports = function (swagger, config) {
 
     swagger.addPost({
         spec: {
-            description: "Operations about comments",
+            description: "Operations about messages",
             path: baseUrl,
-            notes: "POSTs a new comment",
-            summary: "POSTs a new comment",
+            notes: "POSTs a new message",
+            summary: "POSTs a new message",
             method: "POST",
-            params: [swagger.bodyParam("Comment", "new Comment object", "Comment")],
-            "responseClass": "Comment",
-            "nickname": "postComments",
+            params: [swagger.bodyParam("Message", "new Message object", "Message")],
+            "responseClass": "Message",
+            "nickname": "postMessages",
             accessLevel: 'al_individual'
         },
         action:  generic.postFn(baseUrl, Model)
@@ -62,13 +62,13 @@ module.exports = function (swagger, config) {
 
     swagger.addDelete({
             spec: {
-                description: "Operations about comments",
+                description: "Operations about messages",
                 path: baseUrlWithId,
-                notes: "delete comment",
-                summary: "Deletes a comment by id",
+                notes: "delete message",
+                summary: "Deletes a message by id",
                 method: "DELETE",
-                params: [swagger.pathParam("id", "ID of the comment to be fetched", "string")],
-                "nickname": "deleteComment",
+                params: [swagger.pathParam("id", "ID of the message to be fetched", "string")],
+                "nickname": "deleteMessage",
                 accessLevel: 'al_user'
             },
             action:  generic.deleteByIdFn(baseUrl, Model)
@@ -77,12 +77,12 @@ module.exports = function (swagger, config) {
 
     swagger.addDelete({
             spec: {
-                description: "Operations about comments",
+                description: "Operations about messages",
                 path: baseUrl,
-                notes: "delete all comments",
-                summary: "Deletes comments",
+                notes: "delete all messages",
+                summary: "Deletes messages",
                 method: "DELETE",
-                "nickname": "deleteComments",
+                "nickname": "deleteMessages",
                 accessLevel: 'al_admin'
             },
             action:  generic.deleteAllFn(baseUrl, Model)

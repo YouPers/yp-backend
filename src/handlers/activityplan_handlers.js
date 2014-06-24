@@ -29,7 +29,8 @@ function _getEvents(plan, ownerId, fromDate) {
             end: moment(instance).add('ms', duration).toDate(),
             activityPlan: plan._id,
             idea: plan.idea,
-            owner: ownerId
+            owner: ownerId,
+            campaign: plan.campaign
         });
     });
 

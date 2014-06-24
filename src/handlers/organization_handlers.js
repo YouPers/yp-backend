@@ -11,14 +11,14 @@ var error = require('../util/error'),
     generic = require('./generic');
 
 
-var getOrganization = function(req, res, next, callback) {
+var getOrganization = function (req, res, next, callback) {
 
     Organization.findById(req.params.id)
-        .exec(function(err, org) {
-            if(err) {
+        .exec(function (err, org) {
+            if (err) {
                 return error.handleError(err, next);
             }
-            if(!org) {
+            if (!org) {
                 return next(new error.ResourceNotFoundError('Organization not found', { id: req.params.id }));
             }
 
@@ -29,7 +29,7 @@ var getOrganization = function(req, res, next, callback) {
 var postFn = function (baseUrl) {
     return function (req, res, next) {
 
-        var err = handlerUtils.checkWritingPreCond(req.body,req.user, Organization);
+        var err = handlerUtils.checkWritingPreCond(req.body, req.user, Organization);
 
         if (err) {
             return error.handleError(err, next);
@@ -39,9 +39,13 @@ var postFn = function (baseUrl) {
 
         obj.administrators = [req.user.id];
 
-        if(!_.contains(req.user.roles, auth.roles.orgadmin)) {
+        if (!_.contains(req.user.roles, auth.roles.orgadmin)) {
             req.user.roles.push(auth.roles.orgadmin);
-            req.user.save(function(err) { if(err) { return error.handleError(err, next); } });
+            req.user.save(function (err) {
+                if (err) {
+                    return error.handleError(err, next);
+                }
+            });
         }
 
         // try to save the new organization object
@@ -54,23 +58,24 @@ var postFn = function (baseUrl) {
  * A org-Admin may see his organisation
  * A CampaignLead may see the organisation where he has campaigns in.
  *
- * @param baseUrl
- * @returns {Function}
+ * @param req
+ * @param res
+ * @param next
  */
-var getAllForUserFn = function (baseUrl) {
-    return function (req, res, next) {
+var getAllForUserFn = function (req, res, next) {
+   var userId = req.user.id;
 
-        var userId = req.user.id;
+    Campaign.find({campaignLeads: userId}).exec(function (err, campaigns) {
+        var orgs = _.map(campaigns, 'organization');
 
-        Campaign.find({campaignLeads: userId}).exec(function(err, campaigns) {
-            var orgs = _.map(campaigns, 'organization');
+        Organization.find().populate('administrators').or([
+            {administrators: userId},
+            {_id: {$in: orgs}}
+        ])
+            .exec(generic.sendListCb(req, res, next));
+    });
 
-            Organization.find().populate('administrators').or([{administrators: userId}, {_id: {$in: orgs}}])
-                .exec(generic.sendListCb(req,res,next));
-        });
 
-
-    };
 };
 
 
@@ -142,7 +147,7 @@ var postOrganizationAdminInviteFn = function postOrganizationAdminInviteFn(req, 
                 });
         }
     ], function (err) {
-        if(err) {
+        if (err) {
             return error.handleError(err, next);
         }
         res.send(200);
@@ -197,7 +202,7 @@ var assignOrganizationAdminFn = function assignOrganizationAdminFn(req, res, nex
 
     Organization.findById(req.params.id)
         .exec(function (err, organization) {
-            if(err) {
+            if (err) {
                 return error.handleError(err, next);
             }
             if (!organization) {
@@ -205,10 +210,10 @@ var assignOrganizationAdminFn = function assignOrganizationAdminFn(req, res, nex
             }
 
             // we check whether we need to update the administrators collection of the organization
-            if (!_.contains(organization.administrators.toString(),req.user.id)) {
+            if (!_.contains(organization.administrators.toString(), req.user.id)) {
                 organization.administrators.push(req.user._id);
-                organization.save(function(err) {
-                    if(err) {
+                organization.save(function (err) {
+                    if (err) {
                         return error.handleError(err, next);
                     }
                 });
@@ -217,8 +222,8 @@ var assignOrganizationAdminFn = function assignOrganizationAdminFn(req, res, nex
             // check whether we need to add the orgadmin role to the user
             if (!_.contains(req.user.roles, auth.roles.orgadmin)) {
                 req.user.roles.push(auth.roles.orgadmin);
-                req.user.save(function(err) {
-                    if(err) {
+                req.user.save(function (err) {
+                    if (err) {
                         return error.handleError(err, next);
                     }
                 });
@@ -231,16 +236,22 @@ var assignOrganizationAdminFn = function assignOrganizationAdminFn(req, res, nex
 
 };
 
-var avatarImagePostFn = function(baseUrl) {
-    return function(req, res, next) {
+var avatarImagePostFn = function (baseUrl) {
+    return function (req, res, next) {
 
         image.resizeImage(req, req.files.file.path, 'organization', function (err, image) {
-            if(err) { return error.handleError(err, next); }
+            if (err) {
+                return error.handleError(err, next);
+            }
 
             getOrganization(req, res, next, function (org) {
 
                 org.avatar = image;
-                org.save(function(err, savedOrg) { if(err) { return error.handleError(err, next); } });
+                org.save(function (err, savedOrg) {
+                    if (err) {
+                        return error.handleError(err, next);
+                    }
+                });
 
                 // send response
                 res.send({avatar: org.avatar});

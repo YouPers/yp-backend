@@ -12,37 +12,6 @@ module.exports = function (swagger, config) {
     var baseUrl = '/activityplans';
     var baseUrlWithId = baseUrl + '/{id}';
 
-    swagger.addGet({
-        spec: {
-            description: "Operations about ActivityPlans",
-            path: baseUrl + '/joinOffers',
-            notes: "Only returns public plans and plans in the same campaign as the user is currently participating in. " +
-                "It is constrained by the activity-Reference, that has to be passed in.",
-            summary: "returns activityPlans for one specific activity, that other users/campaignleads have published in a space I have access to." +
-                " This allows the user to select which group he would like to join for a specific activity",
-            params: [
-                {
-                    paramType: "query",
-                    name: "activity",
-                    description: "the activity for which joinOffers are fetched",
-                    dataType: "string",
-                    required: true
-                },
-                generic.params.sort,
-                generic.params.limit,
-                generic.params.filter,
-                generic.params.populate,
-                generic.params.populatedeep
-            ],
-            method: "GET",
-            "responseClass": "Array[ActivityPlan]",
-            "nickname": "getJoinOffers",
-            accessLevel: 'al_individual',
-            beforeCallbacks: []
-        },
-        action: handlers.getJoinOffers
-    });
-
     swagger.addPost({
         spec: {
             description: "Operations about ActivityPlans",

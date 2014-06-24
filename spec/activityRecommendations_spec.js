@@ -38,7 +38,7 @@ frisby.create('ActivityRecommendations: post a first answer for this assessment'
                 expect(recs.length).toEqual(10);
                 frisby.create('ActivityRecommendations: reject first recommendation')
                     .put(URL + '/profiles/'+ consts.users.test_ind2.profile,
-                        {userPreferences:
+                        {prefs:
                             {rejectedActivities:
                                 [{activity: recs[0].activity, timestamp: new Date().toISOString()}]
                             }
@@ -57,7 +57,7 @@ frisby.create('ActivityRecommendations: post a first answer for this assessment'
 
                                 frisby.create('ActivityRecommendations: reset rejectedActivities on the profile')
                                     .put(URL + '/profiles/' + consts.users.test_ind2.profile,
-                                    {userPreferences:
+                                    {prefs:
                                     {rejectedActivities:
                                         []
                                     }
@@ -65,7 +65,7 @@ frisby.create('ActivityRecommendations: post a first answer for this assessment'
                                     .auth('test_ind2', 'yp')
                                     .expectStatus(200)
                                     .afterJSON(function(newprofile) {
-                                        expect(newprofile.userPreferences.rejectedActivities.length).toEqual(0);
+                                        expect(newprofile.prefs.rejectedActivities.length).toEqual(0);
                                     })
                                     .toss();
 

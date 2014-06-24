@@ -14,15 +14,7 @@
         },
         "userPreferences": {
             "calendarNotification": "900",
-            "defaultUserWeekForScheduling": {
-                "friday": true,
-                "monday": true,
-                "saturday": false,
-                "sunday": false,
-                "thursday": true,
-                "tuesday": true,
-                "wednesday": true
-            },
+            "defaultWorkWeek": ["MO", "TU", "WE", "TH", "FR"],
             "email": {
                 "actPlanInvites": true,
                 "dailyUserMail": true,
@@ -52,17 +44,9 @@
         "timestamp": {
             "$date": 1396523077464
         },
-        "userPreferences": {
+        "prefs": {
             "calendarNotification": "900",
-            "defaultUserWeekForScheduling": {
-                "friday": true,
-                "monday": true,
-                "saturday": false,
-                "sunday": false,
-                "thursday": true,
-                "tuesday": true,
-                "wednesday": true
-            },
+            "defaultWorkWeek": ["MO", "TU", "WE", "TH", "FR"],
             "email": {
                 "actPlanInvites": true,
                 "dailyUserMail": true,

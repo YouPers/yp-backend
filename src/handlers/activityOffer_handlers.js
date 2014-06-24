@@ -94,7 +94,7 @@ function getCoachRecommendationsFn(req, res, next) {
     var admin = auth.isAdminForModel(req.user, mongoose.model('Activity'));
 
     CoachRecommendation.generateAndStoreRecommendations(req.user._id,
-        req.user.profile.userPreferences.rejectedActivities, null, req.user.profile.userPreferences.focus, admin, function (err, recs) {
+        req.user.profile.prefs.rejectedActivities, null, req.user.profile.prefs.focus, admin, function (err, recs) {
 
             if (err) {
                 error.handleError(err, next);
@@ -200,9 +200,11 @@ function getActivityOffersFn(req, res, next) {
     var getActivityPlans = function getActivityPlans(done) {
 
         ActivityPlan
-            .find({
+            .find({$or: [{
                 owner: req.user._id,
-                status: 'active'})
+                status: 'active'}, {
+                joiningUsers: req.user._id,
+                status: 'active'}]})
             .select('activity')
             .exec(function (err, plans) {
                 if (err) {
@@ -256,8 +258,8 @@ function getActivityOffersFn(req, res, next) {
         // then generate and/or load offers, before consolidating them
         if (locals.result && locals.result.dirty) {
             var admin = auth.isAdminForModel(req.user, mongoose.model('Activity'));
-            CoachRecommendation.generateAndStoreRecommendations(req.user._id, req.user.profile.userPreferences.rejectedActivities,
-                null, req.user.profile.userPreferences.focus, admin, loadOffers);
+            CoachRecommendation.generateAndStoreRecommendations(req.user._id, req.user.profile.prefs.rejectedActivities,
+                null, req.user.profile.prefs.focus, admin, loadOffers);
         } else {
             loadOffers();
         }
@@ -307,7 +309,7 @@ function getActivityOffersFn(req, res, next) {
 
             if (req.user) {
                 var plannedActs = _.map(locals.plans, 'activity');
-                var rejActs = _.map(req.user.profile.userPreferences.rejectedActivities, 'activity');
+                var rejActs = _.map(req.user.profile.prefs.rejectedActivities, 'activity');
                 actsToRemove = plannedActs.concat(rejActs);
             }
 

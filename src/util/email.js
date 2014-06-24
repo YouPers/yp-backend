@@ -180,7 +180,7 @@ var sendActivityPlanInvite = function sendActivityPlanInvite(email, invitingUser
     var weekday = localMoment(plan.mainEvent.start).format("dddd") + (frequency === 'week' ? 's' : '');
     var date = localMoment(plan.mainEvent.start).format("D.M.") +
         frequency === 'once' ? '' :
-        localMoment(plan.events[plan.events.length-1].end).format("D.M.YYYY");
+        localMoment(plan.lastEventEnd).format("D.M.YYYY");
 
     var time = localMoment(plan.mainEvent.start).format('HH:mm') + ' - ' + localMoment(plan.mainEvent.end).format('HH:mm');
 

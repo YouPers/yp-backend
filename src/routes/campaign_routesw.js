@@ -94,7 +94,7 @@ module.exports = function (swagger, config) {
             method: "GET",
             "responseClass": "Array[Campaign]",
             "nickname": "getCampaigns",
-            accessLevel: 'al_campaignlead'
+            accessLevel: 'al_all'
         },
         action: campaignHandlers.getAllForUserFn(baseUrl, Campaign)
     });

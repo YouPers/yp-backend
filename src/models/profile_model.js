@@ -31,16 +31,8 @@ var ProfileSchema = common.newSchema({
     },
     maritalStatus: { type: String, enum: common.enums.maritalStatus, default: "undefined" },
     language: { type: String, trim: true},
-    userPreferences: {
-        defaultUserWeekForScheduling: {
-            monday: { type: Boolean, default: true },
-            tuesday: { type: Boolean, default: true },
-            wednesday: { type: Boolean, default: true },
-            thursday: { type: Boolean, default: true },
-            friday: { type: Boolean, default: true },
-            saturday: { type: Boolean, default: false },
-            sunday: { type: Boolean, default: false  }
-        },
+    prefs: {
+        defaultWorkWeek: {type: [String], default: ['MO', 'TU', 'WE', 'TH', 'FR']},
         personalGoal: {type: String},
         focus: [
             {
@@ -66,7 +58,7 @@ var ProfileSchema = common.newSchema({
                 activityPlan: {type: ObjectId, ref: 'ActivityPlan'}
             }
         ],
-        firstDayOfWeek: { type: String, enum: common.enums.firstDayOfWeek },
+        firstDayOfWeek: { type: String, enum: ['SU', 'MO'] },
         timezone: { type: String, trim: true },
         calendarNotification: {type: String, enum: common.enums.calendarNotifications, default: '900'},
         email: {
@@ -79,32 +71,6 @@ var ProfileSchema = common.newSchema({
     }
 
 });
-
-ProfileSchema.methods.getWorkingDaysAsIcal = function () {
-    var iCalArray = [];
-    if (this.userPreferences.defaultUserWeekForScheduling.monday) {
-        iCalArray.push('MO');
-    }
-    if (this.userPreferences.defaultUserWeekForScheduling.tuesday) {
-        iCalArray.push('TU');
-    }
-    if (this.userPreferences.defaultUserWeekForScheduling.wednesday) {
-        iCalArray.push('WE');
-    }
-    if (this.userPreferences.defaultUserWeekForScheduling.thursday) {
-        iCalArray.push('TH');
-    }
-    if (this.userPreferences.defaultUserWeekForScheduling.friday) {
-        iCalArray.push('FR');
-    }
-    if (this.userPreferences.defaultUserWeekForScheduling.saturday) {
-        iCalArray.push('SA');
-    }
-    if (this.userPreferences.defaultUserWeekForScheduling.sunday) {
-        iCalArray.push('SU');
-    }
-    return iCalArray.join(',');
-};
 
 ProfileSchema.plugin(require('mongoose-eventify'));
 

@@ -40,9 +40,7 @@ var getIcalObject = function (plan, recipientUser, iCalType, i18n, reason) {
     if (isGroupPlan) {
 
         // Organizer and attendees are only relevant for group plans
-        // the organizer of this event is either the owner of the plan or the owner of the masterPlan.
-        // The owner of the masterPlan is always the first member of the JoiningUsers Collection --> activityPlan_model Line:264
-        var organizer = isMasterPlan ? plan.owner : plan.joiningUsers[0];
+        var organizer = plan.owner;
         var targetAttendee = recipientUser;
         var otherAttendees = plan.joiningUsers.slice(1);
 

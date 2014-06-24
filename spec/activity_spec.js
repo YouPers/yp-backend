@@ -79,7 +79,7 @@ frisby.create('Activity: post a new activity as a campaign lead with a valid cam
     })
     .toss();
 
-frisby.create('GET all activites')
+frisby.create('Activity: GET all activites')
     .get(URL + '/activities')
     .expectStatus(200)
     .expectJSON('*', {
@@ -90,7 +90,7 @@ frisby.create('GET all activites')
     .afterJSON(function(activities) {
 
         // Use data from previous result in next test
-        frisby.create('Get single Activity')
+        frisby.create('Activity: Get single Activity')
             .get(URL + '/activities/' + activities[0].id)
             .expectStatus(200)
             .expectJSON({

@@ -166,8 +166,8 @@ function addOp(str, isString, type) {
         }
     } else if (str[0] === '!') {
         if (isString) {
-            op = '$regex';
-            val = new RegExp('!(' + str.substring(1) + ')', 'i');
+            op = '$not';
+            val = new RegExp(str.substring(1), 'i');
         } else {
             op = '$ne';
             val = str.substring(1);
@@ -274,7 +274,7 @@ var _addFilter = function (queryParams, dbquery, Model) {
     return dbquery;
 };
 
-var processDbQueryOptions = function(queryOptions, dbquery, Model) {
+var processDbQueryOptions = function (queryOptions, dbquery, Model) {
     dbquery = _addPagination(queryOptions, dbquery);
     dbquery = _addPopulation(queryOptions, dbquery);
     dbquery = _addSort(queryOptions, dbquery);
@@ -381,7 +381,7 @@ function resolveDocumentzAtPath(doc, pathBits) {
 }
 
 
-var sendListCb =  function (req, res, next) {
+var sendListCb = function (req, res, next) {
     return function (err, objList) {
         if (err) {
             return error.handleError(err, next);
@@ -405,9 +405,9 @@ var sendListCb =  function (req, res, next) {
     };
 };
 
-var writeObjCb = function(req, res, next) {
-    return function(err, savedObject) {
-        if(err) {
+var writeObjCb = function (req, res, next) {
+    return function (err, savedObject) {
+        if (err) {
             return error.handleError(err, next);
         }
         var responseCode = 200;
@@ -440,13 +440,29 @@ module.exports = {
                     if (!obj) {
                         return next(new error.ResourceNotFoundError());
                     }
+                    var isOwnedObj =  Model.schema.paths['owner'];
 
+                    var isOwner = false;
                     //check if the object has an owner and whether the current user owns the object
-                    if (obj.owner && (!req.user ||
-                        (obj.owner._id && (obj.owner._id + '' !== req.user.id)) || // case: owner is populated
-                        (!obj.owner._id && !obj.owner.equals(req.user.id)))) {     // case: owner is not populated, is ObjectId
+                    if (obj.owner) {
+                        var ownerId = obj.owner._id || obj.owner;
+                        if (ownerId.equals(req.user._id)) {
+                            isOwner = true;
+                        }
+                    }
+
+                    var isJoiner = false;
+                    // check if this is a obj that can be joined and whether the current user is joiner
+                    if (obj.joiningUsers) {
+                        isJoiner = _.find(obj.joiningUsers, function (joiningUser) {
+                            return (joiningUser._id || joiningUser).equals(req.user._id);
+                        });
+                    }
+
+                    if (isOwnedObj && !isOwner && !isJoiner) {
                         return next(new error.NotAuthorizedError('Authenticated User does not own this object'));
                     }
+
                     if (req.query && req.query.populatedeep) {
                         deepPopulate(obj, req.query.populatedeep, {}, function (err, result) {
                             if (err) {
@@ -580,7 +596,7 @@ module.exports = {
 
     putFn: function (baseUrl, Model) {
         return function (req, res, next) {
-            var err = handlerUtils.checkWritingPreCond(req.body, req.user,  Model);
+            var err = handlerUtils.checkWritingPreCond(req.body, req.user, Model);
             if (err) {
                 return error.handleError(err, next);
             }
@@ -616,6 +632,15 @@ module.exports = {
                     }));
                 }
 
+
+                if (Model.modelName === 'User' && req.user && req.user.id !== objFromDb.id) {
+                    if(!auth.checkAccess(req.user, 'al_systemadmin')) {
+                        return next(new error.NotAuthorizedError('Not authorized to change this user'));
+                    } else if(sentObj.password) {
+                        objFromDb.hashed_password = undefined;
+                    }
+                }
+
                 // if this is an "owned" object
                 if (objFromDb.owner) {
 
@@ -641,7 +666,6 @@ module.exports = {
                 }
 
                 _.extend(objFromDb, sentObj);
-
                 objFromDb.save(writeObjCb(req, res, next));
             });
 

@@ -59,8 +59,8 @@ var sendSummaryMail = function sendSummaryMail(user, rangeStart, rangeEnd, done,
                         return done(err);
                     }
 
-                    if (!user.profile.userPreferences.email.dailyUserMail) {
-                        log.info('sendSummaryMail: User(' + user.username + ':' + user.id + ').profile.userPreferences.email.dailyUserMail=false');
+                    if (!user.profile.prefs.email.dailyUserMail) {
+                        log.info('sendSummaryMail: User(' + user.username + ':' + user.id + ').profile.prefs.email.dailyUserMail=false');
                         return done();
                     }
 
@@ -96,7 +96,7 @@ var feeder = function (callback) {
     aggregate
         .append({
             $match: {
-                // TODO: match 'owner.profile.userPreferences.email.dailyUserMail': true,
+                // TODO: match 'owner.profile.prefs.email.dailyUserMail': true,
                 events: {
                     $elemMatch: {end: {$gt: rangeStart.toDate(), $lt: rangeEnd.toDate()}}
                 }

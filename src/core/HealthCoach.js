@@ -23,10 +23,10 @@ var healthCoachRuleSet = {
         {id: "hcmsg.8", rule: "facts.uistate == 'plan.offer' && facts.activities.total.plannedAct == 0"},
         {id: "hcmsg.9", rule: "facts.uistate == 'diary.content' && facts.diary.entries == 0"},
         {id: "hcmsg.10", rule: "facts.uistate == 'plan.content' && facts.activities.total.open > 0"},
-        {id: "hcmsg.11", rule: "facts.uistate == 'focus.content' && facts.user.profile.userPreferences.focus.length == 0"},
-        {id: "hcmsg.12", rule: "facts.uistate == 'focus.content' && facts.user.profile.userPreferences.focus.length > 0"},
-        {id: "hcmsg.13", rule: "facts.uistate == 'select.content' && facts.user.profile.userPreferences.focus.length > 0 && facts.activities.total.plannedAct == 0"},
-        {id: "hcmsg.14", rule: "facts.uistate == 'select.content' &&  facts.user.profile.userPreferences.focus.length > 0 && facts.activities.total.plannedAct > 0"},
+        {id: "hcmsg.11", rule: "facts.uistate == 'focus.content' && facts.user.profile.prefs.focus.length == 0"},
+        {id: "hcmsg.12", rule: "facts.uistate == 'focus.content' && facts.user.profile.prefs.focus.length > 0"},
+        {id: "hcmsg.13", rule: "facts.uistate == 'select.content' && facts.user.profile.prefs.focus.length > 0 && facts.activities.total.plannedAct == 0"},
+        {id: "hcmsg.14", rule: "facts.uistate == 'select.content' &&  facts.user.profile.prefs.focus.length > 0 && facts.activities.total.plannedAct > 0"},
         {id: "hcmsg.15", rule: "facts.uistate == 'plan.offer' && facts.activities.total.plannedAct > 0 && facts.activities.total.open >0"}
     ]
 };
@@ -200,7 +200,7 @@ var commonFacts = [
  */
 function Facts(user, uistate) {
     var self = this;
-    self.user = user || {profile: {userPreferences: {}}};
+    self.user = user || {profile: {prefs: {}}};
     self.uistate = uistate;
 
 

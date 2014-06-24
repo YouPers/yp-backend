@@ -185,7 +185,7 @@ module.exports = {
         visibility: "private campaign public".split(' '),
         field: "AwarenessAbility Relaxation TimeManagement SocialInteraction WorkStructuring Breaks PhysicalActivity LeisureActivity Nutrition".split(' '),
         topic: "workLifeBalance",
-        ActivityPlanStatus: "active old".split(' '),
+        ActivityPlanStatus: "active deleted old".split(' '),
 
         // ActivityPlanEven enums
         activityPlanEventStatus: "open done missed".split(' '),
@@ -202,8 +202,6 @@ module.exports = {
         gender: "undefined female male".split(' '),
         maritalStatus: "undefined single unmarried married separated divorced widowed".split(' '),
 
-        // Preference related enums
-        firstDayOfWeek: "Monday Sunday".split(' '),
         // Campaign related enums
         relatedService: "YP-Balance".split(' '),
         paymentStatus: "open paid".split(' '),

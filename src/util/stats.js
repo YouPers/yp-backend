@@ -19,7 +19,7 @@ var statsQueries = function (timeRange, scopeType, scopeId) {
 
     var timeRangePipelineEntry = null;
     if (timeRange && (timeRange !== 'all')) {
-        timeRangePipelineEntry = {$match: {'events.begin': {$gt: moment().startOf(timeRange).toDate(), $lt: moment().endOf(timeRange).toDate()}}};
+        timeRangePipelineEntry = {$match: {'start': {$gt: moment().startOf(timeRange).toDate(), $lt: moment().endOf(timeRange).toDate()}}};
     }
 
     ///////////////////////////////////////

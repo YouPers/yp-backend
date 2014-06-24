@@ -23,7 +23,7 @@ var actMgr = new ActivityManagement();
 
 actMgr.on('activity:planSaved', function (plan) {
     var isCampaignPromotedPlan = (plan.source === "campaign");
-    var isJoinablePlan = (_.contains(['public', 'campaign'], plan.visibility) && 'group' === plan.executionType && !plan.masterPlan);
+    var isJoinablePlan = (_.contains(['public', 'campaign'], plan.visibility) && 'group' === plan.executionType );
 
     // check whether this is a public joinable plan, if yes store an corresponding ActivityOffer
     // but if this a campaign Promoted Plan we do not generate an offer because we expect the frontend to
@@ -44,25 +44,6 @@ actMgr.on('activity:planSaved', function (plan) {
             }
             return actMgr.emit('activity:offerSaved', savedOffer, plan);
         });
-    }
-
-    // Assumption:
-    // - We delete any personal offers and personal notifications for the same user and for the same masterplan
-    var isSlavePlan = plan.masterPlan;
-
-    if (isSlavePlan) {
-        ActivityOffer
-            .find({targetQueue: plan.owner, activityPlan: plan.masterPlan})
-            .exec(function(err, offers) {
-                _.forEach(offers, function (offer) {
-                    actMgr.emit('activity:offerDeleted', offer);
-                    offer.remove(function (err) {
-                        if (err) {
-                            return actMgr.emit('error', err);
-                        }
-                    });
-                });
-            });
     }
 
     // find all notification for (this user or this user's campaign) and idea, dismiss them for this user

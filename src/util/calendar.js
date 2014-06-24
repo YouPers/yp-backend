@@ -23,18 +23,17 @@ var getIcalObject = function (plan, recipientUser, iCalType, i18n, reason) {
     }
 
     var isGroupPlan = plan.executionType === 'group';
-    var isMasterPlan = !plan.masterPlan;
 
     var myCal = new ical.iCalendar();
     myCal.addProperty("CALSCALE", "GREGORIAN");
     myCal.addComponent(_getTimezone(plan));
 
     // if this is a SlavePlan we use the masterPlans id as the iCal id, if it is a masterPlan we use its id
-    var iCalEventId = isMasterPlan ? plan._id : plan.masterPlan._id || plan.masterPlan;
+    var iCalEventId =  plan._id;
     var event = new ical.VEvent(iCalEventId);
 
     // if this is a SlavePlan we use the masterPlans __v as the iCal SEQUENCE, if it is a masterPlan we use its __v
-    var sequence = isMasterPlan ? plan.__v : plan.masterPlan.__v;
+    var sequence = plan.__v;
     event.addProperty("SEQUENCE", sequence);
 
     if (isGroupPlan) {

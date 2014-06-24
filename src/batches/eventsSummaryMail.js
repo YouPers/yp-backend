@@ -33,17 +33,15 @@ var sendSummaryMail = function sendSummaryMail(user, rangeStart, rangeEnd, done,
     // - select all plansEvents whose one event is in our daterange
     // - As a result we expect an array of ActivityPlans that have in their respective events-property one specific event
     //   instead of an array (due to the $unwind above)
-    mongoose.model('ActivityPlan').aggregate()
-        .append({$match: {owner: user._id || user, events: {$elemMatch: {end: {$gt: rangeStart.toDate(), $lt: rangeEnd.toDate()}}
+    mongoose.model('ActivityEvent').aggregate()
+        .append({$match: {owner: user._id || user, end: {$gt: rangeStart.toDate(), $lt: rangeEnd.toDate()
         }}})
-        .append({$unwind: '$events'})
-        .append({$match: {'events.end': {$gt: rangeStart.toDate(), $lt: rangeEnd.toDate()}}})
-        .exec(function (err, plans) {
+        .exec(function (err, events) {
             if (err) {
                 log.error(err);
                 return done(err);
             }
-            log.debug({events: plans}, 'found events for user: ' + user);
+            log.debug({events: events}, 'found events for user: ' + user);
 
             mongoose.model('User')
                 .findById(user)
@@ -65,9 +63,9 @@ var sendSummaryMail = function sendSummaryMail(user, rangeStart, rangeEnd, done,
                     }
 
                     i18n.setLng(user.profile.language || 'de', function () {
-                        log.info('sending DailySummary Mail to email: ' + user.email + ' with ' + plans.length + ' events.');
+                        log.info('sending DailySummary Mail to email: ' + user.email + ' with ' + events.length + ' events.');
 
-                        email.sendDailyEventSummary.apply(this, [user.email, plans, user, i18n]);
+                        email.sendDailyEventSummary.apply(this, [user.email, events, user, i18n]);
                         return done();
                     });
                 });

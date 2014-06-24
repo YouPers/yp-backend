@@ -115,10 +115,6 @@ var commonFacts = [
                 age: 0
             }
         },
-
-
-
-
         {
             name: 'activities',
             description: 'provides information about how many activities a user has planned, done, missed' +
@@ -127,41 +123,43 @@ var commonFacts = [
                 'next7days: {planned: # of planned activities}',
             calc: function (userId, cb) {
                 var self = this;
-                mongoose.model('ActivityPlan').find({owner: userId}).exec(
-                    function (err, plans) {
+                mongoose.model('ActivityEvent').find({owner: userId}).exec(
+                    function (err, events) {
                         if (err) {
                             return cb(err);
                         }
 
                         var fact = _.clone(self.default);
-                        if (!plans || !plans.length || plans.length === 0) {
+                        if (!events || events.length === 0) {
                             return cb(null, fact);
                         }
 
                         var now = moment();
+                        var activities = {};
 
-                        _.forEach(plans, function (plan) {
-                            fact.total.plannedAct++;
-                            _.forEach(plan.events, function (event) {
-                                // event in future or passed
-                                if (now.diff(moment(event.begin)) < 0) {
-                                    // future
-                                    fact.total.future++;
-                                    if (now.diff(moment(event.begin), 'days') > -7) {
-                                        // less than 7 days in the future
-                                        fact.next7Days.planned++;
-                                    }
-                                } else {
-                                    // event in the past
-                                    fact.total[event.status]++;
-                                    if (now.diff(moment(event.begin), 'days') < 7) {
-                                        // less then 7 days passed
-                                        fact.last7Days[event.status]++;
-                                    }
+                        _.forEach(events, function (event) {
 
+                            // counting the number of uniq plans for this user by putting them in a hash and
+                            // counting the keys at the end
+                            activities[event.activityPlan] = "planned";
+                            // event in future or passed
+                            if (now.diff(moment(event.start)) < 0) {
+                                // future
+                                fact.total.future++;
+                                if (now.diff(moment(event.start), 'days') > -7) {
+                                    // less than 7 days in the future
+                                    fact.next7Days.planned++;
+                                }
+                            } else {
+                                // event in the past
+                                fact.total[event.status]++;
+                                if (now.diff(moment(event.start), 'days') < 7) {
+                                    // less then 7 days passed
+                                    fact.last7Days[event.status]++;
                                 }
 
-                            });
+                            }
+                            fact.total.plannedAct = _.keys(activities).length;
                         });
 
                         return cb(null, fact);

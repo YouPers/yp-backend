@@ -36,15 +36,26 @@ var self = module.exports  =  {
     },
     newUser: function (cb) {
         var User = mongoose.model('User');
+        var rnd = Math.floor((Math.random() * 10000) + 1);
         new User({
-            username: 'new_unittest_user' + Math.floor((Math.random() * 10000) + 1),
+            username: 'new_unittest_user' + rnd,
             fullname: 'Testing Unittest',
             firstname: 'Testing',
             lastname: 'Unittest',
-            email: 'ypunittest1+coachTestUser' + Math.floor((Math.random() * 10000) + 1) + '@gmail.com',
+            email: 'ypunittest1+TestUser' + rnd + '@gmail.com',
             password: 'nopass',
             roles: ['individual']
-        }).save(cb);
+        }).save(function(err, user) {
+            if (err) {
+                return cb(err);
+            }
+            User.findById(user.id).populate('profile').select('+email +profile').exec(function(err, user) {
+                // add the email back in, because it is not part of the default selected properties of user.
+
+                user.email = 'ypunittest1+TestUser' + rnd + '@gmail.com';
+                return cb(null, user);
+            });
+        });
     },
     newUserInNewCampaignApi: function(cb) {
         var campaignStart = moment({hour: 8, minute: 0, second: 0}).add('days', 10);
@@ -68,16 +79,16 @@ var self = module.exports  =  {
             .auth('test_orgadm', 'yp')
             .expectStatus(201)
             .afterJSON(function (myTestCampaign) {
-
+                var rnd = Math.floor((Math.random() * 10000) + 1);
 
                 frisby.create('TestSetup: POST new user')
                     .post(URL + '/users', {
-                        username: 'new_unittest_user' + Math.floor((Math.random() * 10000) + 1),
+                        username: 'new_unittest_user' + rnd,
                         fullname: 'Testing Unittest',
                         campaign: myTestCampaign.id,
                         firstname: 'Testing',
                         lastname: 'Unittest',
-                        email: 'ypunittest1+coachTestUser' + Math.floor((Math.random() * 10000) + 1) + '@gmail.com',
+                        email: 'ypunittest1+coachTestUser' + rnd + '@gmail.com',
                         password: 'yp',
                         roles: ['individual']
                     })

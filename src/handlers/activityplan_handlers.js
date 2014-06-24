@@ -240,7 +240,7 @@ function _saveNewActivityPlan(plan, req, cb) {
                 if (user && user.email && user.profile.prefs.email.iCalInvites) {
                     req.log.debug({start: reloadedActPlan.mainEvent.start, end: reloadedActPlan.mainEvent.end}, 'Saved New Plan');
                     var myIcalString = calendar.getIcalObject(reloadedActPlan, user, 'new', i18n).toString();
-                    email.sendCalInvite(user.email, 'new', myIcalString, reloadedActPlan, i18n);
+                    email.sendCalInvite(user, 'new', myIcalString, reloadedActPlan, i18n);
                 }
 
                 actMgr.emit('activity:planSaved', reloadedActPlan);
@@ -275,6 +275,10 @@ function postJoinActivityPlanFn(req, res, next) {
         ActivityEvent.create(events, function (err, events) {
             if (err) {
                 return error.handleError(err, next);
+            }
+            if (req.user && req.user.email && req.user.profile.prefs.email.iCalInvites) {
+                var myIcalString = calendar.getIcalObject(masterPlan, req.user, 'new', req.i18n).toString();
+                email.sendCalInvite(req.user, 'new', myIcalString, masterPlan, req.i18n);
             }
             masterPlan.save(generic.writeObjCb(req, res, next));
         });
@@ -401,7 +405,7 @@ function _sendIcalMessages(activityPlan, joiner, req, reason, type, done) {
         async.forEach(users, function (user, next) {
                 if (user.profile.prefs.email.iCalInvites) {
                     var myIcalString = calendar.getIcalObject(activityPlan, user, type, req.i18n, reason).toString();
-                    email.sendCalInvite(user.email, type, myIcalString, activityPlan, req.i18n, reason);
+                    email.sendCalInvite(user, type, myIcalString, activityPlan, req.i18n, reason);
                 }
                 return next();
             },

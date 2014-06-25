@@ -3,8 +3,9 @@ var error = require('../util/error'),
     mongoose = require('mongoose'),
     moment = require('moment'),
     auth = require('../util/auth'),
-    SocialInteraction = mongoose.model('SocialInteraction'),
-    SocialInteractionDismissed = mongoose.model('SocialInteractionDismissed'),
+    SocialInteraction = require('../core/SocialInteraction'),
+    SocialInteractionModel = mongoose.model('SocialInteraction'),
+    SocialInteractionDismissedModel = mongoose.model('SocialInteractionDismissed'),
     _ = require('lodash');
 
 var getAllFn = function getAllFn(baseUrl, Model, fromAllOwners) {
@@ -12,7 +13,7 @@ var getAllFn = function getAllFn(baseUrl, Model, fromAllOwners) {
 
         var user = req.user;
 
-        SocialInteractionDismissed.find({ user: user.id }, function(err, sid) {
+        SocialInteractionDismissedModel.find({ user: user.id }, function(err, sid) {
 
             if(err) {
                 return error.handleError(err, next);
@@ -44,42 +45,6 @@ var getAllFn = function getAllFn(baseUrl, Model, fromAllOwners) {
 };
 
 
-var dismissSocialInteraction = function dismissSocialInteraction(socialInteractionId, user, cb) {
-
-
-    SocialInteraction.findById(socialInteractionId, function(err, socialInteraction) {
-
-        if(err) {
-            cb(err);
-        }
-
-        var userId = (user._id ? user._id : user);
-
-        // just delete the socialInteraction if the only targeted space is the user
-        if(!_.any(socialInteraction.targetSpaces, function(space) {
-            return space.targetModel !== 'User';
-        })) {
-            return socialInteraction.remove(cb);
-        }
-
-        var socialInteractionDismissed = new SocialInteractionDismissed({
-            expiresAt: socialInteraction.publishTo,
-            user: userId,
-            socialInteraction: socialInteraction.id
-        });
-
-        return socialInteractionDismissed.save(function(err) {
-            // we deliberately want to ignore DuplicateKey Errors, because there is not reason to store the dissmissals more than once
-            // MONGO Duplicate KeyError code: 11000
-            if (err && err.code !== 11000) {
-                return cb(err);
-            }
-            return cb();
-        });
-
-    });
-
-};
 
 var deleteByIdFn = function (baseUrl, Model) {
     return function deleteByIdFn (req, res, next) {
@@ -91,11 +56,11 @@ var deleteByIdFn = function (baseUrl, Model) {
         // system admins can delete any socialInteraction, with the 'administrate' flag set
         if (auth.checkAccess(req.user, 'al_systemadmin') &&
             req.params.mode && req.params.mode === 'administrate') {
-            return generic.deleteByIdFn(baseUrl, SocialInteraction)(req, res, next);
+            return generic.deleteByIdFn(baseUrl, SocialInteractionModel)(req, res, next);
         }
 
         // TODO: add check for Model
-        dismissSocialInteraction(req.params.id, req.user, function(err, socialInteraction) {
+        SocialInteraction.dismissSocialInteraction(req.params.id, req.user, function(err, socialInteraction) {
             if(err) {
                 return error.handleError(err, next);
             }
@@ -106,7 +71,6 @@ var deleteByIdFn = function (baseUrl, Model) {
 };
 
 module.exports = {
-    dismissSocialInteraction: dismissSocialInteraction,
     deleteByIdFn: deleteByIdFn,
     getAllFn: getAllFn
 };

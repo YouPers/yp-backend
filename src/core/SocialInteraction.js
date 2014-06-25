@@ -1,11 +1,14 @@
 var EventEmitter = require('events').EventEmitter;
 var util = require('util');
 var mongoose = require('mongoose');
+var SocialInteractionModel = mongoose.model('SocialInteraction');
+var SocialInteractionDismissedModel = mongoose.model('SocialInteractionDismissed');
 var Invitation = mongoose.model('Invitation');
 var env = process.env.NODE_ENV || 'development';
 var config = require('../config/config')[env];
 var Logger = require('bunyan');
 var log = new Logger(config.loggerOptions);
+var _ = require('lodash');
 
 
 function SocialInteraction() {
@@ -15,9 +18,9 @@ function SocialInteraction() {
 util.inherits(SocialInteraction, EventEmitter);
 
 
-var socialInteraction = new SocialInteraction();
+var SocialInteraction = new SocialInteraction();
 
-socialInteraction.on('invitation:activityPlan', function (from, to, activityPlan) {
+SocialInteraction.on('invitation:activityPlan', function (from, to, activityPlan) {
 
     var invitation = new Invitation({
 
@@ -36,13 +39,13 @@ socialInteraction.on('invitation:activityPlan', function (from, to, activityPlan
 
     invitation.save(function(err, inv) {
         if(err) {
-            socialInteraction.emit('error', err);
+            SocialInteraction.emit('error', err);
         }
     });
 
 });
 
-socialInteraction.on('invitation:campaignLead', function (from, to, campaign) {
+SocialInteraction.on('invitation:campaignLead', function (from, to, campaign) {
 
     var invitation = new Invitation({
 
@@ -61,13 +64,13 @@ socialInteraction.on('invitation:campaignLead', function (from, to, campaign) {
 
     invitation.save(function(err, inv) {
         if(err) {
-            socialInteraction.emit('error', err);
+            SocialInteraction.emit('error', err);
         }
     });
 
 });
 
-socialInteraction.on('invitation:organizationAdmin', function (from, to, organization) {
+SocialInteraction.on('invitation:organizationAdmin', function (from, to, organization) {
 
     var invitation = new Invitation({
 
@@ -84,17 +87,99 @@ socialInteraction.on('invitation:organizationAdmin', function (from, to, organiz
 
     invitation.save(function(err, inv) {
         if(err) {
-            socialInteraction.emit('error', err);
+            SocialInteraction.emit('error', err);
         }
     });
 
 });
 
 
-socialInteraction.on('error', function(err) {
+SocialInteraction.on('error', function(err) {
     log.error(err);
     throw new Error(err);
 });
 
+SocialInteraction.dismissInvitation = function dismissInvitation(refDoc, users, cb) {
 
-module.exports = socialInteraction;
+    var userIds;
+
+    if(typeof users === 'object') {
+        userIds = [users];
+    } else {
+        userIds = _.map(users, '_id');
+    }
+
+
+    // find all invitations for this refDoc targeted to one of these users
+    Invitation.find({
+
+        targetSpaces: {
+            $elemMatch: {
+                type: 'user',
+                targetId: { $in: userIds },
+                targetModel: 'User'
+            }
+        },
+        refDocs: { $elemMatch: {
+            docId: refDoc._id,
+            model: refDoc.modelName
+        }}
+    }).exec(function(err, invitations) {
+        _.forEach(invitations, function (invitation) {
+
+            var spaces = _.find(invitation.targetSpaces, function(space) {
+                return _.contains(userIds, space.targetId);
+            });
+
+            var users = _.map(spaces, 'targetId');
+
+            // TODO: async all parallel -> callback
+//
+            _.forEach(users, function(user) {
+//                SocialInteraction.dismissSocialInteraction(invitation._id, user._id || user, cb);
+            });
+
+        });
+    });
+
+};
+
+SocialInteraction.dismissSocialInteraction = function dismissSocialInteraction(socialInteractionId, user, cb) {
+
+
+    SocialInteractionModel.findById(socialInteractionId, function(err, socialInteraction) {
+
+        if(err) {
+            cb(err);
+        }
+
+        var userId = (user._id ? user._id : user);
+
+        // just delete the socialInteraction if the only targeted space is the user
+        // -> if there are no other target spaces than for this user
+        if(!_.any(socialInteraction.targetSpaces, function(space) {
+            return space.targetModel !== 'User' || !space.targetId.equals(userId);
+        })) {
+            return socialInteraction.remove(cb);
+        }
+
+        var socialInteractionDismissed = new SocialInteractionDismissedModel({
+            expiresAt: socialInteraction.publishTo,
+            user: userId,
+            socialInteraction: socialInteraction.id
+        });
+
+        return socialInteractionDismissed.save(function(err) {
+            // we deliberately want to ignore DuplicateKey Errors, because there is not reason to store the dissmissals more than once
+            // MONGO Duplicate KeyError code: 11000
+            if (err && err.code !== 11000) {
+                return cb(err);
+            }
+            return cb();
+        });
+
+    });
+
+};
+
+module.exports = SocialInteraction;

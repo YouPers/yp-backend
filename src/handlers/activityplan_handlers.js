@@ -283,6 +283,7 @@ function postJoinActivityPlanFn(req, res, next) {
                 email.sendCalInvite(req.user, 'new', myIcalString, masterPlan, req.i18n);
             }
             masterPlan.save(generic.writeObjCb(req, res, next));
+            SocialInteraction.dismissInvitation(masterPlan, req.user);
         });
     });
 

@@ -6,6 +6,7 @@ var _ = require('lodash');
 var urlComposer = require('../util/urlcomposer');
 var Notification = require('../core/Notification');
 var NotificationModel = require('../models/notification_model');
+var SocialInteraction = require('../core/SocialInteraction');
 var env = process.env.NODE_ENV || 'development';
 var config = require('../config/config')[env];
 var Logger = require('bunyan');
@@ -46,6 +47,8 @@ actMgr.on('activity:planSaved', function (plan) {
         });
     }
 
+    // find all invitations for this
+
     // find all notification for (this user or this user's campaign) and idea, dismiss them for this user
 
     NotificationModel
@@ -61,6 +64,16 @@ actMgr.on('activity:planSaved', function (plan) {
                 });
             });
         });
+});
+
+actMgr.on('activity:planJoined', function (plan, joinedUser) {
+
+    SocialInteraction.dismissInvitation(plan, joinedUser, function(err) {
+        if(err) {
+            return actMgr.emit('error', err);
+        }
+    });
+
 });
 
 

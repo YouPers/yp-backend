@@ -175,19 +175,16 @@ var statsQueries = function (timeRange, scopeType, scopeId) {
 
     /////////////////////////////////////////////////////
     // ActivityEvents
-    var eventsQuery = mongoose.model('ActivityPlan').aggregate();
+    var eventsQuery = mongoose.model('ActivityEvent').aggregate();
     if (scopePipelineEntry) {
         eventsQuery.append(scopePipelineEntry);
     }
-    eventsQuery.append(
-        {$unwind: '$events'}
-    );
     if (timeRangePipelineEntry) {
         eventsQuery.append(timeRangePipelineEntry);
     }
     eventsQuery.append(
         {   $project: {
-            status: {$cond: [{$gt: ['$events.end', new Date()]},'future', '$events.status']}
+            status: {$cond: [{$gt: ['$end', new Date()]},'future', '$status']}
         }},
         {$group: {
             _id: '$status',

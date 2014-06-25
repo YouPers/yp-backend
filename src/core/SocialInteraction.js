@@ -42,6 +42,31 @@ socialInteraction.on('invitation:activityPlan', function (from, to, activityPlan
 
 });
 
+socialInteraction.on('invitation:campaignLead', function (from, to, campaign) {
+
+    var invitation = new Invitation({
+
+        author: from._id,
+
+        targetSpaces: [{
+            type: 'user',
+            targetId: to._id,
+            targetModel: 'User'
+        }],
+
+        refDocs: [{ docId: campaign._id, model: 'Campaign'}],
+
+        publishTo: campaign.end
+    });
+
+    invitation.save(function(err, inv) {
+        if(err) {
+            socialInteraction.emit('error', err);
+        }
+    });
+
+});
+
 
 socialInteraction.on('error', function(err) {
     log.error(err);

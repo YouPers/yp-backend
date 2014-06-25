@@ -29,6 +29,10 @@ var self = module.exports  =  {
         test_campaignlead: {
             id: '52a97f1650fca98c2900000b',
             username: 'test_campaignlead'
+        },
+        test_orgadm: {
+            id: '52a97f1650fca98c2900000a',
+            username: 'test_orgadm'
         }
     },
     assessment: {
@@ -53,7 +57,15 @@ var self = module.exports  =  {
                 // add the email back in, because it is not part of the default selected properties of user.
 
                 user.email = 'ypunittest1+TestUser' + rnd + '@gmail.com';
-                return cb(null, user);
+
+                return cb(null, user, function cleanup() {
+
+                    frisby.create('TestCleanUp: remove User')
+                        .delete(URL + '/users/' + user.id)
+                        .auth('test_sysadm', 'yp')
+                        .expectStatus(200)
+                        .toss();
+                });
             });
         });
     },

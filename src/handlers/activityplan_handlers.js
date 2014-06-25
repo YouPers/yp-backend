@@ -5,7 +5,7 @@ var calendar = require('../util/calendar'),
     ActivityEvent = mongoose.model('ActivityEvent'),
     ActivityOffer = mongoose.model('ActivityOffer'),
     actMgr = require('../core/ActivityManagement'),
-    socialInteraction = require('../core/SocialInteraction'),
+    SocialInteraction = require('../core/SocialInteraction'),
     generic = require('./generic'),
     error = require('../util/error'),
     _ = require('lodash'),
@@ -350,7 +350,7 @@ function postActivityPlanInvite(req, res, next) {
                             // if NOT, we just send the email
                             if (invitedUser && invitedUser.length === 1) {
 
-                                socialInteraction.emit('invitation:activityPlan', req.user, invitedUser[0], locals.plan);
+                                SocialInteraction.emit('invitation:activityPlan', req.user, invitedUser[0], locals.plan);
 
                                 // save the corresponding ActivityOffer
                                 var actOffer = new ActivityOffer({

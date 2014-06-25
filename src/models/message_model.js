@@ -2,8 +2,6 @@
  * Module dependencies.
  */
 var mongoose = require('mongoose'),
-    Schema = mongoose.Schema,
-    ObjectId = Schema.ObjectId,
     common = require('./common'),
     SocialInteraction = mongoose.model('SocialInteraction'),
     AbstractSocialInteractionSchema = require('./socialInteraction_schema');
@@ -13,7 +11,6 @@ var mongoose = require('mongoose'),
  * @type {Schema}
  */
 var MessageSchema = common.newSchema({
-
 
 }, undefined, AbstractSocialInteractionSchema);
 

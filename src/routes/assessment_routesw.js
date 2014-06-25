@@ -65,6 +65,7 @@ module.exports = function (swagger, config) {
                 }
             ],
             "nickname": "postAssessmentResult",
+            responseClass: "AssessmentResult",
             accessLevel: 'al_individual',
             beforeCallbacks: []
         },

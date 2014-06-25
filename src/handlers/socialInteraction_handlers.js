@@ -23,7 +23,7 @@ var getAllFn = function getAllFn(baseUrl, Model, fromAllOwners) {
 
             var finder = {
                 targetSpaces: { $elemMatch: { targetId: user._id, targetModel: 'User' }}
-                // TODO: add targetSpaces for campaign/activity/system
+//                // TODO: add targetSpaces for campaign/activity/system
             };
 
             var dbQuery = Model.find(finder)
@@ -31,8 +31,8 @@ var getAllFn = function getAllFn(baseUrl, Model, fromAllOwners) {
                 .and({$or: [{publishTo: {$exists: false}}, {publishTo: {$gte: now}}]})
                 .and({$or: [{publishFrom: {$exists: false}}, {publishFrom: {$lte: now}}]});
 
-            generic.addStandardQueryOptions(req, dbQuery, Model)
-                .exec(generic.sendListCb(req, res, next));
+            //generic.addStandardQueryOptions(req, dbQuery, Model)
+            dbQuery.exec(generic.sendListCb(req, res, next));
         });
     };
 
@@ -51,7 +51,7 @@ var dismissSocialInteraction = function dismissSocialInteraction(socialInteracti
         var userId = (user._id ? user._id : user);
 
         // just delete the socialInteraction if the only targeted space is the user
-        if(_.any(socialInteraction.targetSpaces, function(space) {
+        if(!_.any(socialInteraction.targetSpaces, function(space) {
             return space.targetModel !== 'User';
         })) {
             return socialInteraction.remove(cb);

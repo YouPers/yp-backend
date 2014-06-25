@@ -12,9 +12,7 @@ frisby.globalSetup({ // globalSetup is for ALL requests
     }
 });
 
-var testActivityId = '';
-
-// invite user to activity
+// invite user to an activity plan
 
 consts.newUserInNewCampaignApi(
     function (err, user, campaign, cleanupFn) {
@@ -57,7 +55,9 @@ consts.newUserInNewCampaignApi(
 
                                 var invitation = invitations[0];
 
-                                expect(invitation.activityPlan).toEqual(newPlan.id);
+                                expect(invitation.refDocs.length).toEqual(1);
+                                expect(invitation.refDocs[0].model).toEqual('ActivityPlan');
+                                expect(invitation.refDocs[0].docId).toEqual(newPlan.id);
 
                                 frisby.create('Message: dismiss the message')
                                     .delete(URL + '/socialInteractions/' + invitation.id)
@@ -71,22 +71,13 @@ consts.newUserInNewCampaignApi(
                                             .expectStatus(200)
                                             .afterJSON(function (socialInteractions) {
                                                 expect(socialInteractions.length).toEqual(0);
-//                                                cleanupFn();
+                                                cleanupFn();
                                             })
                                             .toss();
                                     })
                                     .toss();
-
                             })
                             .toss();
-
-                        // wait for a moment, invitation is sent asynchronously
-
-                        process.nextTick(function() {
-
-
-
-                        });
                     })
                     .toss();
             })

@@ -15,7 +15,11 @@ function AbstractSocialInteractionSchema() {
         publishFrom: {type: Date},
         publishTo: {type: Date},
 
-        author: {type: ObjectId, ref: 'User', required: true}
+        author: {type: ObjectId, ref: 'User', required: true},
+
+        title: {type: String, required: false},
+        text: {type: String, required: false},
+        refDocs: [{ docId: {type: ObjectId}, model: {type: String}}]
 
     });
 }

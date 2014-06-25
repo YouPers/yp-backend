@@ -14,8 +14,6 @@ var mongoose = require('mongoose'),
  */
 var InvitationSchema = common.newSchema({
 
-    activityPlan: {type: ObjectId, ref: 'ActivityPlan', required: true}
-
 }, undefined, AbstractSocialInteractionSchema);
 
 

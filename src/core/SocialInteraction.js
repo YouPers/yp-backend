@@ -29,8 +29,6 @@ socialInteraction.on('invitation:activityPlan', function (from, to, activityPlan
             targetModel: 'User'
         }],
 
-        activityPlan: activityPlan._id,
-
         refDocs: [{ docId: activityPlan._id, model: 'ActivityPlan'}],
 
         publishTo: activityPlan.lastEventEnd

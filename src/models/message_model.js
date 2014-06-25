@@ -14,10 +14,6 @@ var mongoose = require('mongoose'),
  */
 var MessageSchema = common.newSchema({
 
-    title: {type: String, required: true},
-    text: {type: String, required: true},
-    refDocs: [{ docId: {type: ObjectId}, model: {type: String}}]
-
 
 }, undefined, AbstractSocialInteractionSchema);
 

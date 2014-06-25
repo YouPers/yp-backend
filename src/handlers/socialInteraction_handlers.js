@@ -22,8 +22,13 @@ var getAllFn = function getAllFn(baseUrl, Model, fromAllOwners) {
             var now = moment().toDate();
 
             var finder = {
-                targetSpaces: { $elemMatch: { targetId: user._id, targetModel: 'User' }}
-//                // TODO: add targetSpaces for campaign/activity/system
+                targetSpaces: { $elemMatch: {
+                    $or: [
+                        { type: 'user', targetId: user._id, targetModel: 'User' },
+                        { type: 'campaign', targetId: user.campaign, targetModel: 'Campaign' }
+                    ]
+                }}
+//                // TODO: add targetSpaces for activity/system
             };
 
             var dbQuery = Model.find(finder)
@@ -64,7 +69,7 @@ var dismissSocialInteraction = function dismissSocialInteraction(socialInteracti
         });
 
         return socialInteractionDismissed.save(function(err) {
-            // we deliberately want to ignore DuplicateKey Errors, becuause there is not reason to store the dissmissals more than once
+            // we deliberately want to ignore DuplicateKey Errors, because there is not reason to store the dissmissals more than once
             // MONGO Duplicate KeyError code: 11000
             if (err && err.code !== 11000) {
                 return cb(err);

@@ -38,6 +38,9 @@ var self = module.exports  =  {
     assessment: {
         id: '525faf0ac558d40000000005'
     },
+    organization: {
+        id: '52f0c64e53d523235b07d8d8'
+    },
     newUser: function (cb) {
         var User = mongoose.model('User');
         var rnd = Math.floor((Math.random() * 10000) + 1);

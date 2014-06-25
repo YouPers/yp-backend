@@ -59,13 +59,13 @@ consts.newUserInNewCampaignApi(
                                 expect(invitation.refDocs[0].model).toEqual('ActivityPlan');
                                 expect(invitation.refDocs[0].docId).toEqual(newPlan.id);
 
-                                frisby.create('Message: dismiss the message')
+                                frisby.create('Invitation: dismiss the message')
                                     .delete(URL + '/socialInteractions/' + invitation.id)
                                     .auth(user.username, 'yp')
                                     .expectStatus(200)
                                     .after(function() {
 
-                                        frisby.create('Message: get inbox, will be empty again')
+                                        frisby.create('Invitation: get inbox, will be empty again')
                                             .get(URL + '/socialInteractions')
                                             .auth(user.username, 'yp')
                                             .expectStatus(200)
@@ -112,13 +112,63 @@ consts.newUserInNewCampaignApi(
                         expect(invitation.refDocs[0].model).toEqual('Campaign');
                         expect(invitation.refDocs[0].docId).toEqual(campaign.id);
 
-                        frisby.create('Message: dismiss the message')
+                        frisby.create('Invitation: dismiss the message')
                             .delete(URL + '/socialInteractions/' + invitation.id)
                             .auth(user.username, 'yp')
                             .expectStatus(200)
                             .after(function() {
 
-                                frisby.create('Message: get inbox, will be empty again')
+                                frisby.create('Invitation: get inbox, will be empty again')
+                                    .get(URL + '/socialInteractions')
+                                    .auth(user.username, 'yp')
+                                    .expectStatus(200)
+                                    .afterJSON(function (socialInteractions) {
+                                        expect(socialInteractions.length).toEqual(0);
+                                        cleanupFn();
+                                    })
+                                    .toss();
+                            })
+                            .toss();
+                    })
+                    .toss();
+            })
+            .toss();
+
+    });
+// invite user to be organization admin
+
+consts.newUserInNewCampaignApi(
+    function (err, user, campaign, cleanupFn) {
+        if (err) {
+            expect(err).toBeNull();
+        }
+
+        frisby.create("Invitation: invite user to be organization admin")
+            .post(URL + '/organizations/' + consts.organization.id + "/inviteOrganizationAdminEmail", { email: user.email })
+            .auth(consts.users.test_orgadm.username, 'yp')
+            .expectStatus(200)
+            .after(function () {
+
+                frisby.create('Invitation: get invitations, will contain 1 invitation')
+                    .get(URL + '/invitations')
+                    .auth(user.username, 'yp')
+                    .expectStatus(200)
+                    .afterJSON(function (invitations) {
+                        expect(invitations.length).toEqual(1);
+
+                        var invitation = invitations[0];
+
+                        expect(invitation.refDocs.length).toEqual(1);
+                        expect(invitation.refDocs[0].model).toEqual('Organization');
+                        expect(invitation.refDocs[0].docId).toEqual(consts.organization.id);
+
+                        frisby.create('Invitation: dismiss the message')
+                            .delete(URL + '/socialInteractions/' + invitation.id)
+                            .auth(user.username, 'yp')
+                            .expectStatus(200)
+                            .after(function() {
+
+                                frisby.create('Invitation: get inbox, will be empty again')
                                     .get(URL + '/socialInteractions')
                                     .auth(user.username, 'yp')
                                     .expectStatus(200)

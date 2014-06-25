@@ -5,6 +5,7 @@ var error = require('../util/error'),
     mongoose = require('mongoose'),
     Organization = mongoose.model('Organization'),
     Campaign = mongoose.model('Campaign'),
+    SocialInteraction = require('../core/SocialInteraction'),
     email = require('../util/email'),
     async = require('async'),
     _ = require('lodash'),
@@ -138,6 +139,11 @@ var postOrganizationAdminInviteFn = function postOrganizationAdminInviteFn(req, 
                             if (err) {
                                 return done(err);
                             }
+
+                            if (invitedUser && invitedUser.length === 1) {
+                                SocialInteraction.emit('invitation:organizationAdmin', req.user, invitedUser[0], locals.organization);
+                            }
+
                             email.sendOrganizationAdminInvite(emailaddress, req.user, locals.organization, invitedUser && invitedUser[0], req.i18n);
                             return done();
                         });

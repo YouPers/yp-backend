@@ -36,8 +36,8 @@ var getAllFn = function getAllFn(baseUrl, Model, fromAllOwners) {
                 .and({$or: [{publishTo: {$exists: false}}, {publishTo: {$gte: now}}]})
                 .and({$or: [{publishFrom: {$exists: false}}, {publishFrom: {$lte: now}}]});
 
-            //generic.addStandardQueryOptions(req, dbQuery, Model)
-            dbQuery.exec(generic.sendListCb(req, res, next));
+            generic.addStandardQueryOptions(req, dbQuery, Model)
+                .exec(generic.sendListCb(req, res, next));
         });
     };
 

@@ -1,14 +1,16 @@
-var EventEmitter = require('events').EventEmitter;
-var util = require('util');
-var mongoose = require('mongoose');
-var SocialInteractionModel = mongoose.model('SocialInteraction');
-var SocialInteractionDismissedModel = mongoose.model('SocialInteractionDismissed');
-var Invitation = mongoose.model('Invitation');
-var env = process.env.NODE_ENV || 'development';
-var config = require('../config/config')[env];
-var Logger = require('bunyan');
-var log = new Logger(config.loggerOptions);
-var _ = require('lodash');
+var EventEmitter = require('events').EventEmitter,
+    error = require('../util/error'),
+    util = require('util'),
+    mongoose = require('mongoose'),
+    SocialInteractionModel = mongoose.model('SocialInteraction'),
+    SocialInteractionDismissedModel = mongoose.model('SocialInteractionDismissed'),
+    Invitation = mongoose.model('Invitation'),
+    env = process.env.NODE_ENV || 'development',
+    config = require('../config/config')[env],
+    Logger = require('bunyan'),
+    log = new Logger(config.loggerOptions),
+    _ = require('lodash'),
+    async = require('async');
 
 
 function SocialInteraction() {
@@ -99,16 +101,23 @@ SocialInteraction.on('error', function(err) {
     throw new Error(err);
 });
 
-SocialInteraction.dismissInvitation = function dismissInvitation(refDoc, users, cb) {
+SocialInteraction.dismissInvitations = function dismissInvitation(refDoc, users, cb) {
 
     var userIds;
 
-    if(typeof users === 'object') {
+    if(!_.isArray(users)) {
         userIds = [users];
-    } else {
-        userIds = _.map(users, '_id');
     }
 
+    userIds = _.map(_.clone(userIds), function(user) {
+        if( typeof user === 'object' && user._id) {
+            return user._id;
+        } else if (user instanceof mongoose.Types.ObjectId) {
+            return user;
+        } else {
+            cb(new Error('invalid argument users'));
+        }
+    });
 
     // find all invitations for this refDoc targeted to one of these users
     Invitation.find({
@@ -122,23 +131,33 @@ SocialInteraction.dismissInvitation = function dismissInvitation(refDoc, users, 
         },
         refDocs: { $elemMatch: {
             docId: refDoc._id,
-            model: refDoc.modelName
+            model: refDoc.constructor.modelName
         }}
     }).exec(function(err, invitations) {
+
+        // for each invitation, find all relevant users and dismiss the invitation
         _.forEach(invitations, function (invitation) {
 
-            var spaces = _.find(invitation.targetSpaces, function(space) {
-                return _.contains(userIds, space.targetId);
+            var spaces = _.filter(invitation.targetSpaces, function(space) {
+                return _.any(userIds, function(user) {
+                    return user.equals(space.targetId);
+                });
             });
 
             var users = _.map(spaces, 'targetId');
 
-            // TODO: async all parallel -> callback
-//
+            var dismissals = [];
+
             _.forEach(users, function(user) {
-//                SocialInteraction.dismissSocialInteraction(invitation._id, user._id || user, cb);
+                dismissals.push(SocialInteraction.dismissSocialInteraction.bind(null, invitation._id, user));
             });
 
+            async.parallel(dismissals, function (err) {
+                if (err) {
+                    return error.handleError(err, cb);
+                }
+                cb();
+            });
         });
     });
 
@@ -175,7 +194,7 @@ SocialInteraction.dismissSocialInteraction = function dismissSocialInteraction(s
             if (err && err.code !== 11000) {
                 return cb(err);
             }
-            return cb();
+            return cb(null);
         });
 
     });

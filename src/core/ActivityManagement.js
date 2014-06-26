@@ -68,7 +68,7 @@ actMgr.on('activity:planSaved', function (plan) {
 
 actMgr.on('activity:planJoined', function (plan, joinedUser) {
 
-    SocialInteraction.dismissInvitation(plan, joinedUser, function(err) {
+    SocialInteraction.dismissInvitations(plan, joinedUser, function(err) {
         if(err) {
             return actMgr.emit('error', err);
         }

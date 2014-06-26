@@ -59,11 +59,11 @@ consts.newUserInNewCampaignApi(
                                 expect(invitation.refDocs[0].model).toEqual('ActivityPlan');
                                 expect(invitation.refDocs[0].docId).toEqual(newPlan.id);
 
-                                frisby.create('Invitation: dismiss the message')
-                                    .delete(URL + '/socialInteractions/' + invitation.id)
+                                frisby.create('Invitation: join the plan, will dismiss the invitation')
+                                    .post(URL + '/activityplans/' + newPlan.id + '/join')
                                     .auth(user.username, 'yp')
-                                    .expectStatus(200)
-                                    .after(function() {
+                                    .expectStatus(201)
+                                    .afterJSON(function (joinedPlan) {
 
                                         frisby.create('Invitation: get inbox, will be empty again')
                                             .get(URL + '/socialInteractions')

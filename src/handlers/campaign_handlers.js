@@ -374,6 +374,8 @@ var assignCampaignLeadFn = function assignCampaignLeadFn(req, res, next) {
                 });
             }
 
+            SocialInteraction.dismissInvitations(campaign, req.user);
+
             res.send(200, campaign);
             return next();
         });

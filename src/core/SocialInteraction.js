@@ -156,7 +156,9 @@ SocialInteraction.dismissInvitations = function dismissInvitation(refDoc, users,
                 if (err) {
                     return error.handleError(err, cb);
                 }
-                cb();
+                if(cb) {
+                    cb();
+                }
             });
         });
     });

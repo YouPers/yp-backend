@@ -235,6 +235,8 @@ var assignOrganizationAdminFn = function assignOrganizationAdminFn(req, res, nex
                 });
             }
 
+            SocialInteraction.dismissInvitations(organization, req.user);
+
             res.send(200, organization);
             return next();
         });

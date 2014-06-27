@@ -179,7 +179,7 @@ module.exports = {
     },
 
     enums: {
-        // Activity related enums
+        // Idea related enums
         source: "youpers community campaign".split(' '),
         executiontype: "self group".split(' '),
         visibility: "private campaign public".split(' '),

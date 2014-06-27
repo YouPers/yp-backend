@@ -8,12 +8,13 @@ var mongoose = require('mongoose'),
     calendar = require('../util/calendar'),
     moment = require('moment');
 
+
 /**
  * ActivityPlan Schema
  */
 var ActivityPlanSchema = common.newSchema({
     owner: {type: ObjectId, ref: 'User', required: true},
-    activity: {type: ObjectId, ref: 'Activity', required: true},
+    idea: {type: ObjectId, ref: 'Idea', required: true},
     joiningUsers: [
         {type: ObjectId, ref: 'User'}
     ],
@@ -89,7 +90,7 @@ ActivityPlanSchema.virtual('editStatus')
         // check if there are any events in the past, checking whether the last one is already passed is enough!
         var eventsInTheFutureExist = moment(occurrences[occurrences.length -1]).add('ms', duration).isAfter(now);
 
-        // activity plan cannot be edited if all events are in the past
+        // activityPlan cannot be edited if all events are in the past
         if (!eventsInTheFutureExist) {
             return ActivityPlanSchema.statics.activityPlanNotEditableAllEventsInThePast;
         }

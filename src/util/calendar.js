@@ -23,18 +23,17 @@ var getIcalObject = function (plan, recipientUser, iCalType, i18n, reason) {
     }
 
     var isGroupPlan = plan.executionType === 'group';
-    var isMasterPlan = !plan.masterPlan;
 
     var myCal = new ical.iCalendar();
     myCal.addProperty("CALSCALE", "GREGORIAN");
     myCal.addComponent(_getTimezone(plan));
 
     // if this is a SlavePlan we use the masterPlans id as the iCal id, if it is a masterPlan we use its id
-    var iCalEventId = isMasterPlan ? plan._id : plan.masterPlan._id || plan.masterPlan;
+    var iCalEventId =  plan._id;
     var event = new ical.VEvent(iCalEventId);
 
     // if this is a SlavePlan we use the masterPlans __v as the iCal SEQUENCE, if it is a masterPlan we use its __v
-    var sequence = isMasterPlan ? plan.__v : plan.masterPlan.__v;
+    var sequence = plan.__v;
     event.addProperty("SEQUENCE", sequence);
 
     if (isGroupPlan) {
@@ -70,7 +69,7 @@ var getIcalObject = function (plan, recipientUser, iCalType, i18n, reason) {
         throw new Error('unknown iCal ObjectType: ' + iCalType);
     }
 
-    var link = config.webclientUrl + "/#/activities/" + plan.activity._id;
+    var link = config.webclientUrl + "/#/activities/" + plan.idea._id;
 
     event.setSummary(i18n.t('ical:' + iCalType + ".summary", {plan: plan.toJSON ? plan.toJSON() : plan, recipient: recipientUser.toJSON()}));
     event.setDescription(i18n.t('ical:' + iCalType + ".description", {plan: plan.toJSON ? plan.toJSON() : plan, recipient: recipientUser.toJSON(), link: link}));

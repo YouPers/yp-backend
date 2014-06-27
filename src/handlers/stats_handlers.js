@@ -7,7 +7,7 @@ var stats = require('../util/stats'),
 
 var id2humanReadableString = {};
 (function loadIdResolveCache () {
-    var cachedModels = ['Activity', 'AssessmentQuestion'];
+    var cachedModels = ['Idea', 'AssessmentQuestion'];
 
     async.forEach(cachedModels, function(modelName, done) {
         mongoose.model(modelName).find().exec(function(err, docs) {

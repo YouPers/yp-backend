@@ -40,16 +40,16 @@ var ProfileSchema = common.newSchema({
                 question: {type: ObjectId, ref: 'AssessmentQuestion'}
             }
         ],
-        starredActivities: [
+        starredIdeas: [
             {
                 timestamp: {type: Date},
-                activity: {type: ObjectId, ref: 'Activity'}
+                idea: {type: ObjectId, ref: 'Idea'}
             }
         ],
-        rejectedActivities: [
+        rejectedIdeas: [
             {
                 timestamp: {type: Date},
-                activity: {type: ObjectId, ref: 'Activity'}
+                idea: {type: ObjectId, ref: 'Idea'}
             }
         ],
         rejectedActivityPlans: [

@@ -19,7 +19,7 @@ var statsQueries = function (timeRange, scopeType, scopeId) {
 
     var timeRangePipelineEntry = null;
     if (timeRange && (timeRange !== 'all')) {
-        timeRangePipelineEntry = {$match: {'events.begin': {$gt: moment().startOf(timeRange).toDate(), $lt: moment().endOf(timeRange).toDate()}}};
+        timeRangePipelineEntry = {$match: {'start': {$gt: moment().startOf(timeRange).toDate(), $lt: moment().endOf(timeRange).toDate()}}};
     }
 
     ///////////////////////////////////////
@@ -147,12 +147,12 @@ var statsQueries = function (timeRange, scopeType, scopeId) {
     }
     actsPlannedQuery.append(
         {$group: {
-            _id: '$activity',
+            _id: '$idea',
             count: {$sum: 1}
         }},
         {$sort: {count: -1}},
         {$project: {
-            activity: '$_id',
+            idea: '$_id',
             _id: 0,
             count: 1
         }});
@@ -175,19 +175,16 @@ var statsQueries = function (timeRange, scopeType, scopeId) {
 
     /////////////////////////////////////////////////////
     // ActivityEvents
-    var eventsQuery = mongoose.model('ActivityPlan').aggregate();
+    var eventsQuery = mongoose.model('ActivityEvent').aggregate();
     if (scopePipelineEntry) {
         eventsQuery.append(scopePipelineEntry);
     }
-    eventsQuery.append(
-        {$unwind: '$events'}
-    );
     if (timeRangePipelineEntry) {
         eventsQuery.append(timeRangePipelineEntry);
     }
     eventsQuery.append(
         {   $project: {
-            status: {$cond: [{$gt: ['$events.end', new Date()]},'future', '$events.status']}
+            status: {$cond: [{$gt: ['$end', new Date()]},'future', '$status']}
         }},
         {$group: {
             _id: '$status',

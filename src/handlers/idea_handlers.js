@@ -1,5 +1,5 @@
 var mongoose = require('mongoose'),
-    Activity = mongoose.model('Activity'),
+    Idea = mongoose.model('Idea'),
     Campaign = mongoose.model('Campaign'),
     _ = require('lodash'),
     auth = require('../util/auth'),
@@ -8,12 +8,12 @@ var mongoose = require('mongoose'),
     generic = require('./generic');
 
 
-function _checkActivityWritePermission(sentActivity, user, cb) {
+function _checkIdeaWritePermission(sentIdea, user, cb) {
 
 
     // if no author delivered set to authenticated user
-    if (!sentActivity.author) {
-        sentActivity.author = user.id;
+    if (!sentIdea.author) {
+        sentIdea.author = user.id;
     }
 
     if (_.contains(user.roles, auth.roles.productadmin)) {
@@ -22,17 +22,17 @@ function _checkActivityWritePermission(sentActivity, user, cb) {
 
     } else if (_.contains(user.roles, auth.roles.orgadmin) || _.contains(user.roles, auth.roles.campaignlead)) {
         // requesting user is a campaignlead or orgadmin
-        if (!sentActivity.campaign) {
-            return cb(new error.MissingParameterError('expected activity to have a campaign id', { required: 'campaign id' }));
+        if (!sentIdea.campaign) {
+            return cb(new error.MissingParameterError('expected idea to have a campaign id', { required: 'campaign id' }));
         }
 
-        Campaign.findById(sentActivity.campaign).exec(function (err, campaign) {
+        Campaign.findById(sentIdea.campaign).exec(function (err, campaign) {
             if (err) {
                 return error.handleError(err, cb);
             }
 
             if (!campaign) {
-                return cb(new error.ResourceNotFoundError('Campaign not found.', { id: sentActivity.campaign }));
+                return cb(new error.ResourceNotFoundError('Campaign not found.', { id: sentIdea.campaign }));
             }
 
             // check whether the posting user is a campaignLead of the campaign
@@ -42,7 +42,7 @@ function _checkActivityWritePermission(sentActivity, user, cb) {
                     campaignId: campaign.id
                 }));
             }
-            sentActivity.source = "campaign";
+            sentIdea.source = "campaign";
             // everything is fine -->
             return cb();
         });
@@ -54,82 +54,82 @@ function _checkActivityWritePermission(sentActivity, user, cb) {
     }
 }
 
-function _removeEmptyRecWeights(sentActivity) {
-    if (_.isArray(sentActivity.recWeights)) {
-        _.remove(sentActivity.recWeights, function (recWeight) {
+function _removeEmptyRecWeights(sentIdea) {
+    if (_.isArray(sentIdea.recWeights)) {
+        _.remove(sentIdea.recWeights, function (recWeight) {
             return (_.isNull(recWeight[1]) || _.isUndefined(recWeight[1] || recWeight[1] === 0)) &&
                 (_.isNull(recWeight[2]) || _.isUndefined(recWeight[2] || recWeight[1] === 0));
         });
     }
 }
 
-function postActivity(req, res, next) {
+function postIdea(req, res, next) {
 
-    var sentActivity = req.body;
+    var sentIdea = req.body;
 
-    var err = handlerUtils.checkWritingPreCond(sentActivity, req.user, Activity);
+    var err = handlerUtils.checkWritingPreCond(sentIdea, req.user, Idea);
     if (err) {
         return error.handleError(err, next);
     }
 
-    _removeEmptyRecWeights(sentActivity);
+    _removeEmptyRecWeights(sentIdea);
 
     // check whether delivered author is the authenticated user
-    // only to be checked for POST because in PUT it is allowed to update an activity that has been authored by
+    // only to be checked for POST because in PUT it is allowed to update an idea that has been authored by
     // somebody else.
-    if (sentActivity.author && (req.user.id !== sentActivity.author)) {
-        return next(new error.NotAuthorizedError({ author: sentActivity.author, user: req.user.id}));
+    if (sentIdea.author && (req.user.id !== sentIdea.author)) {
+        return next(new error.NotAuthorizedError({ author: sentIdea.author, user: req.user.id}));
     }
 
 
-    _checkActivityWritePermission(sentActivity, req.user, function (err) {
+    _checkIdeaWritePermission(sentIdea, req.user, function (err) {
         if (err) {
             return error.handleError(err, next);
         }
 
-        var newActivity = new Activity(sentActivity);
+        var newIdea = new Idea(sentIdea);
 
         // try to save the new object
-        newActivity.save(generic.writeObjCb(req, res, next));
+        newIdea.save(generic.writeObjCb(req, res, next));
     });
 }
 
 
-function putActivity(req, res, next) {
+function putIdea(req, res, next) {
 
-    var sentActivity = req.body;
+    var sentIdea = req.body;
 
-    var err = handlerUtils.checkWritingPreCond(sentActivity, req.user, Activity);
+    var err = handlerUtils.checkWritingPreCond(sentIdea, req.user, Idea);
     if (err) {
         return error.handleError(err, next);
     }
 
-    _removeEmptyRecWeights(sentActivity);
+    _removeEmptyRecWeights(sentIdea);
 
-    _checkActivityWritePermission(sentActivity, req.user, function (err) {
+    _checkIdeaWritePermission(sentIdea, req.user, function (err) {
         if (err) {
             return error.handleError(err, next);
         }
 
-        Activity.findById(req.params.id).exec(function (err, reloadedActivity) {
+        Idea.findById(req.params.id).exec(function (err, reloadedIdea) {
             if (err) {
                 return error.handleError(err, next);
             }
-            if (!reloadedActivity) {
-                return next(new error.ResourceNotFoundError({ id: sentActivity.id}));
+            if (!reloadedIdea) {
+                return next(new error.ResourceNotFoundError({ id: sentIdea.id}));
             }
 
-            _.extend(reloadedActivity, sentActivity);
+            _.extend(reloadedIdea, sentIdea);
 
             // try to save the new object
-            reloadedActivity.save(generic.writeObjCb(req, res, next));
+            reloadedIdea.save(generic.writeObjCb(req, res, next));
         });
     });
 
 }
 
 
-function getAllActivities (baseUrl, Model) {
+function getAllIdeas (baseUrl, Model) {
     return function (req, res, next) {
         var finder = '';
 
@@ -148,7 +148,7 @@ function getAllActivities (baseUrl, Model) {
 
 
 module.exports = {
-    postActivity: postActivity,
-    putActivity: putActivity,
-    getAllActivities: getAllActivities
+    postIdea: postIdea,
+    putIdea: putIdea,
+    getAllIdeas: getAllIdeas
 };

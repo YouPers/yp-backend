@@ -1,6 +1,6 @@
 var mongoose = require('mongoose'),
     User = mongoose.model('User'),
-    Activity = mongoose.model('Activity'),
+    Idea = mongoose.model('Idea'),
     ActivityPlan = mongoose.model('ActivityPlan'),
     ActivityOffer = mongoose.model('ActivityOffer'),
     AssessmentResult = mongoose.model('AssessmentResult'),
@@ -91,10 +91,10 @@ function getCoachRecommendationsFn(req, res, next) {
         return next(new error.NotAuthorizedError());
     }
 
-    var admin = auth.isAdminForModel(req.user, mongoose.model('Activity'));
+    var admin = auth.isAdminForModel(req.user, mongoose.model('Idea'));
 
     CoachRecommendation.generateAndStoreRecommendations(req.user._id,
-        req.user.profile.prefs.rejectedActivities, null, req.user.profile.prefs.focus, admin, function (err, recs) {
+        req.user.profile.prefs.rejectedIdeas, null, req.user.profile.prefs.focus, admin, function (err, recs) {
 
             if (err) {
                 error.handleError(err, next);
@@ -111,24 +111,24 @@ function getCoachRecommendationsFn(req, res, next) {
  * The list of suggested offers consists of:
  * 1. top offers form the coachRecommendations of the recommendation logic "assessmentResult-activity"
  * 2. currently active campaign activities
- * 3. currently active campaign activity Plans
+ * 3. currently active campaign activityPlans
  * 4. currently pending personal invitations
  * 5. currently available accessible group activities the user may join.
  *
  * We return an array of offers, where one offer is an object:
  * {
- *      activity: populated link to the activity (always available)
+ *      idea: populated link to the idea (always available)
  *      activityPlan: [] of populated links to the suggested activityPlans (available in case 3./4./5.)
- *                    may be an array in case this activity has multiple invitations, recommendedPlans
+ *                    may be an array in case this idea has multiple invitations, recommendedPlans
  *      offerType: [] of one of ('ypHealthCoach', 'campaignActivity', 'campaignPlan', 'personalInvitation', 'publicPlan')
- *            may be an array if this activity was recommended by more than one source
+ *            may be an array if this idea was recommended by more than one source
  *      recommendedBy: []   link to the user  who recommended this, in case:
  *          1. a virtual user for our digital health coach
  *          2. a virtual user for the campaign avatar
  *          3. the campaign lead who added the plan
  *          4. the peer who sent the invite
  *          5. the peer who planned the available group activity
- *          may be an array if the same activity has been recommended by multiple sources.
+ *          may be an array if the same idea has been recommended by multiple sources.
  *       prio: prioritization Value, in case of CoachRecs this is the score of the algorithm
  * }
  *
@@ -190,7 +190,7 @@ function getActivityOffersFn(req, res, next) {
         return _getCampaignActivityOffers(req, res, next);
     }
 
-    var activityFilter = req.params.activity;
+    var ideaFilter = req.params.idea;
 
     var locals = {};
 
@@ -205,7 +205,7 @@ function getActivityOffersFn(req, res, next) {
                 status: 'active'}, {
                 joiningUsers: req.user._id,
                 status: 'active'}]})
-            .select('activity')
+            .select('idea')
             .exec(function (err, plans) {
                 if (err) {
                     return done(err);
@@ -239,14 +239,14 @@ function getActivityOffersFn(req, res, next) {
             return error.handleError(err, next);
         }
 
-        // check if activity has already been planned
-        if (activityFilter) {
+        // check if idea has already been planned
+        if (ideaFilter) {
             var plan = _.find(locals.plans, function (plan) {
-                return plan.activity.equals(activityFilter);
+                return plan.idea.equals(ideaFilter);
             });
             if (plan) {
-                return next(new error.ConflictError('The user has already planned this activity', {
-                    activityId: activityFilter,
+                return next(new error.ConflictError('The user has already planned this idea', {
+                    ideaId: ideaFilter,
                     activityPlanId: plan.id,
                     reason: 'alreadyPlanned'
                 }));
@@ -257,8 +257,8 @@ function getActivityOffersFn(req, res, next) {
         // check if result is dirty (new answers have been put),
         // then generate and/or load offers, before consolidating them
         if (locals.result && locals.result.dirty) {
-            var admin = auth.isAdminForModel(req.user, mongoose.model('Activity'));
-            CoachRecommendation.generateAndStoreRecommendations(req.user._id, req.user.profile.prefs.rejectedActivities,
+            var admin = auth.isAdminForModel(req.user, mongoose.model('Idea'));
+            CoachRecommendation.generateAndStoreRecommendations(req.user._id, req.user.profile.prefs.rejectedIdeas,
                 null, req.user.profile.prefs.focus, admin, loadOffers);
         } else {
             loadOffers();
@@ -278,8 +278,8 @@ function getActivityOffersFn(req, res, next) {
             var selector = {targetQueue: {$in: targetQueues}};
 
             // check whether the client only wanted offers for one specific activity
-            if (activityFilter) {
-                selector.activity = req.params.activity;
+            if (ideaFilter) {
+                selector.idea = req.params.idea;
             }
             var dateToUse = moment().toDate();
             ActivityOffer
@@ -292,7 +292,7 @@ function getActivityOffersFn(req, res, next) {
                     {validFrom: {$exists: false}},
                     {validFrom: {$lte: dateToUse}}
                 ]})
-                .populate('activity activityPlan recommendedBy')
+                .populate('idea activityPlan recommendedBy')
                 .exec(function (err, offers) {
                     User.populate(offers, { path: 'activityPlan.owner activityPlan.joiningUsers' }, function (err, offers) {
 
@@ -308,31 +308,31 @@ function getActivityOffersFn(req, res, next) {
             var actsToRemove = [];
 
             if (req.user) {
-                var plannedActs = _.map(locals.plans, 'activity');
-                var rejActs = _.map(req.user.profile.prefs.rejectedActivities, 'activity');
+                var plannedActs = _.map(locals.plans, 'idea');
+                var rejActs = _.map(req.user.profile.prefs.rejectedIdeas, 'idea');
                 actsToRemove = plannedActs.concat(rejActs);
             }
 
-            // only remove if the user did not request offers for one specific activity
-            if (!activityFilter) {
+            // only remove if the user did not request offers for one specific idea
+            if (!ideaFilter) {
                 _.remove(offers, function (offer) {
                     return _.any(actsToRemove, function (actToRemoveId) {
-                        return actToRemoveId.equals(offer.activity._id);
+                        return actToRemoveId.equals(offer.idea._id);
                     });
                 });
             }
 
             // consolidate dups:
-            //      if we now have more than one recommendation for the same activity from the different sources
+            //      if we now have more than one recommendation for the same idea from the different sources
             //      we need to consolidate them into one recommendation with multiple recommenders, sources and possibly plans.
             //      We do this by merging the recommender, the offerType and the plan property into an array.
 
-            // prio them into a object keyed by activity._id to remove dups
+            // prio them into a object keyed by idea._id to remove dups
             var myOffersHash = {};
             _.forEach(offers, function (offer) {
-                if (myOffersHash[offer.activity._id]) {
+                if (myOffersHash[offer.idea._id]) {
                     // this act already exists, so we merge
-                    var existingRec = myOffersHash[offer.activity._id];
+                    var existingRec = myOffersHash[offer.idea._id];
                     _.forEach(offer.activityPlan, function (activityPlan) {
                         if (!_.contains(_.pluck(existingRec.activityPlan, 'id'), activityPlan.id)) {
                             existingRec.activityPlan.push(activityPlan);
@@ -347,7 +347,7 @@ function getActivityOffersFn(req, res, next) {
                     existingRec.prio = _.union(existingRec.prio, offer.prio);
                 } else {
                     // this act does not yet exist, so we add
-                    myOffersHash[offer.activity._id] = offer;
+                    myOffersHash[offer.idea._id] = offer;
                 }
             });
 
@@ -395,7 +395,7 @@ function getActivityOffersFn(req, res, next) {
 
                     if (countPerType < maxPerType) {
                         sortedOffers.push(offer);
-                        delete myOffersHash[offer.activity._id];
+                        delete myOffersHash[offer.idea._id];
                     }
 
                 }
@@ -423,19 +423,19 @@ function getActivityOffersFn(req, res, next) {
                 sortedOffers = sortedOffers.concat(publicPlans.slice(0, 9 - sortedOffers.length));
             }
 
-            if ((activityFilter && sortedOffers.length === 0) || (!activityFilter && sortedOffers.length < 3)) {
-                _getDefaultActivityOffers(activityFilter, function (err, defaultOffers) {
+            if ((ideaFilter && sortedOffers.length === 0) || (!ideaFilter && sortedOffers.length < 3)) {
+                _getDefaultActivityOffers(ideaFilter, function (err, defaultOffers) {
                     if (err) {
                         return error.handleError(err, next);
                     }
 
                     sortedOffers = sortedOffers.concat(defaultOffers);
 
-                    // only remove if the user did not request offers for one specific activity
-                    if (!activityFilter) {
+                    // only remove if the user did not request offers for one specific idea
+                    if (!ideaFilter) {
                         _.remove(sortedOffers, function (offer) {
                             return _.any(actsToRemove, function (actToRemoveId) {
-                                return offer.activity._id.equals(actToRemoveId);
+                                return offer.idea._id.equals(actToRemoveId);
                             });
                         });
                     }
@@ -459,14 +459,14 @@ function _getCampaignActivityOffers(req, res, next) {
 
     query.exec(function (err, offers) {
 
-        // for offers of offerType recommendation add the count of how many users have planned this activity as part
+        // for offers of offerType recommendation add the count of how many users have planned this idea as part
         // of the campaign
         async.forEach(_.filter(offers, function (offer) {
                 return offer.offerType[0] === 'campaignActivity';
             }),
             function (offer, done) {
                 ActivityPlan.count(
-                    {activity: offer.activity._id || offer.activity,
+                    {idea: offer.idea._id || offer.idea,
                         campaign: offer.targetQueue._id || offer.targetQueue
                     }).exec(function (err, count) {
                         if (err) {
@@ -552,7 +552,7 @@ function _getDefaultActivityOffers(activityFilter, cb) {
     if (activityFilter) {
         selector._id = activityFilter;
     }
-    Activity
+    Idea
         .find(selector, {}, { sort: { 'qualityFactor': -1 }, limit: 8 })
         .exec(function (err, activities) {
 
@@ -565,15 +565,15 @@ function _getDefaultActivityOffers(activityFilter, cb) {
                     cb(err);
                 }
                 var offers = [];
-                _.forEach(activities, function (activity) {
+                _.forEach(activities, function (idea) {
 
                     var offer = {
-                        activity: activity,
+                        idea: idea,
                         activityPlan: [],
                         recommendedBy: [healthCoachUser],
                         offerType: ['defaultActivity'],
                         sourceType: 'youpers',
-                        prio: activity.qualityFactor
+                        prio: idea.qualityFactor
                     };
 
                     offers.push(offer);

@@ -91,7 +91,7 @@ module.exports = function (swagger, config) {
             "nickname": "getOrganizations",
             accessLevel: 'al_user' // orgadmin's about to be need this check too
         },
-        action: organizationHandlers.getAllForUserFn(baseUrl, Organization)
+        action: organizationHandlers.getAllForUserFn
     });
 
     swagger.addDelete({

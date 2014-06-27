@@ -23,19 +23,19 @@ var actMgr = new ActivityManagement();
 
 actMgr.on('activity:planSaved', function (plan) {
     var isCampaignPromotedPlan = (plan.source === "campaign");
-    var isJoinablePlan = (_.contains(['public', 'campaign'], plan.visibility) && 'group' === plan.executionType && !plan.masterPlan);
+    var isJoinablePlan = (_.contains(['public', 'campaign'], plan.visibility) && 'group' === plan.executionType );
 
     // check whether this is a public joinable plan, if yes store an corresponding ActivityOffer
     // but if this a campaign Promoted Plan we do not generate an offer because we expect the frontend to
     // store the offer explicitly in this case, to control all attributes of the offer
     if (isJoinablePlan && !isCampaignPromotedPlan) {
         var offer = new ActivityOffer({
-            activity: plan.activity.id || plan.activity,
+            idea: plan.idea.id || plan.idea,
             activityPlan: [plan.id],
             targetQueue: plan.campaign || plan.owner, // TODO: This || plan.owner is a hack to prevent "public" offers to show up in multiple campaigns. Need to decide on how to deal with real PUBLIC offer
             recommendedBy: [plan.owner],
             offerType: ['publicActivityPlan'],
-            validTo: plan.events[plan.events.length - 1].end,
+            validTo: plan.lastEventEnd,
             prio: [1]
         });
         offer.save(function (err, savedOffer) {
@@ -46,29 +46,10 @@ actMgr.on('activity:planSaved', function (plan) {
         });
     }
 
-    // Assumption:
-    // - We delete any personal offers and personal notifications for the same user and for the same masterplan
-    var isSlavePlan = plan.masterPlan;
-
-    if (isSlavePlan) {
-        ActivityOffer
-            .find({targetQueue: plan.owner, activityPlan: plan.masterPlan})
-            .exec(function(err, offers) {
-                _.forEach(offers, function (offer) {
-                    actMgr.emit('activity:offerDeleted', offer);
-                    offer.remove(function (err) {
-                        if (err) {
-                            return actMgr.emit('error', err);
-                        }
-                    });
-                });
-            });
-    }
-
-    // find all notification for (this user or this user's campaign) and activity, dismiss them for this user
+    // find all notification for (this user or this user's campaign) and idea, dismiss them for this user
 
     NotificationModel
-        .find({refDocs: { $elemMatch: { docId: plan.activity._id }}})
+        .find({refDocs: { $elemMatch: { docId: plan.idea._id }}})
         .and({$or: [{ targetQueue: plan.owner }, { targetQueue: plan.campaign }]})
         .exec(function(err, notifs) {
             _.forEach(notifs, function(notif) {
@@ -100,8 +81,8 @@ actMgr.on('activity:planDeleted', function (plan) {
 actMgr.on('activity:offerSaved', function (offer) {
 
     // check if offer is populated, if not load the missing referenced objects so we can create nice notifications
-    if (!(offer.activity instanceof mongoose.model('Activity'))) {
-        offer.populate('activity activityPlan', _publishNotification);
+    if (!(offer.idea instanceof mongoose.model('Idea'))) {
+        offer.populate('idea activityPlan', _publishNotification);
     } else {
         _publishNotification(null, offer);
     }
@@ -118,11 +99,11 @@ actMgr.on('activity:offerSaved', function (offer) {
             var notification = new Notification({
                 type: ActivityOffer.mapOfferTypeToNotificationType[offer.offerType[0]],
                 sourceType: ActivityOffer.mapOfferTypeToSourceType[offer.offerType[0]],
-                title: (offer.plan && offer.plan.title) || offer.activity.title,
+                title: (offer.plan && offer.plan.title) || offer.idea.title,
                 targetQueue: offer.targetQueue,
                 author: offer.recommendedBy,
-                refDocLink: urlComposer.activityOfferUrl(offer.activity.id),
-                refDocs: [ { docId: offer._id, model: 'ActivityOffer' }, { docId: offer.activity._id, model: 'Activity' } ],
+                refDocLink: urlComposer.activityOfferUrl(offer.idea.id),
+                refDocs: [ { docId: offer._id, model: 'ActivityOffer' }, { docId: offer.idea._id, model: 'Idea' } ],
                 publishFrom: offer.validFrom,
                 publishTo: offer.validTo
             });
@@ -182,8 +163,8 @@ actMgr.on('activity:planUpdated', function(updatedPlan) {
         _.forEach(offers, function (offer) {
             // The validTo of the offer has to be equal or earlier than the last event,
             // it does not make sense to offer something that has already happened.
-            if (offer.validTo > updatedPlan.events[updatedPlan.events.length -1].end) {
-                offer.validTo = updatedPlan.events[updatedPlan.events.length -1].end;
+            if (offer.validTo > updatedPlan.lastEventEnd) {
+                offer.validTo = updatedPlan.lastEventEnd;
                 offer.save(function (err, updatedOffer) {
                     if (err) {
                         return actMgr.emit('error', err);

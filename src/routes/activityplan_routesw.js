@@ -167,8 +167,8 @@ module.exports = function (swagger, config) {
         spec: {
             description: "Operations about ActivityPlans",
             path: baseUrlWithId + "/join",
-            notes: "Joins an activity plan",
-            summary: "Joins an activity plan",
+            notes: "Joins an activityPlan",
+            summary: "Joins an activityPlan",
             params: [swagger.pathParam("id", "the id of the activityPlan to join", "string")],
             method: "POST",
             "nickname": "postJoinActivityPlanFn",

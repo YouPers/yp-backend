@@ -4,13 +4,13 @@
  */
 
 var mongoose = require('mongoose'),
-    Activity = mongoose.model('Activity'),
+    Idea = mongoose.model('Idea'),
     generic = require('../handlers/generic'),
-    handlers = require('../handlers/activity_handlers');
+    handlers = require('../handlers/idea_handlers');
 
 module.exports = function (swagger, config) {
 
-    var baseUrl = '/activities';
+    var baseUrl = '/ideas';
     var baseUrlWithId = baseUrl + '/{id}';
 
     /**
@@ -25,7 +25,7 @@ module.exports = function (swagger, config) {
            required: ['activity'],
            type: "object",
            properties: {
-               activity: {type: "Activity"},
+               activity: {type: "Idea"},
                weight: {type: "double"}
            }
        }
@@ -33,116 +33,116 @@ module.exports = function (swagger, config) {
 
     swagger.addGet({
         spec: {
-            description: "Operations about Activities",
+            description: "Operations about Ideas",
             path: baseUrlWithId,
             notes: "returns only the public attributes in normal case. If the authenticated user has role 'admin', all " +
                 "attributes are returned (incl. all recWeights, ...)",
-            summary: "returns an activity based on id",
-            params: [swagger.pathParam("id", "ID of the activity to be fetched", "string"),
+            summary: "returns an idea based on id",
+            params: [swagger.pathParam("id", "ID of the idea to be fetched", "string"),
                 generic.params.populate],
             method: "GET",
-            "responseClass": "Activity",
-            "nickname": "getActivity",
+            "responseClass": "Idea",
+            "nickname": "getIdea",
             accessLevel: 'al_all',
             beforeCallbacks: []
         },
-        action: generic.getByIdFn(baseUrl, Activity)
+        action: generic.getByIdFn(baseUrl, Idea)
 
     });
 
     swagger.addGet({
         spec: {
-            description: "Operations about Activities",
+            description: "Operations about Ideas",
             path: baseUrl,
             notes: "returns only the public attributes in normal case. If the authenticated user has role 'admin', all " +
                 "attributes are returned (incl. all recWeights, ...)",
-            summary: "returns all activities",
+            summary: "returns all ideas",
             params: [generic.params.sort,
                 generic.params.limit,
                 generic.params.filter,
                 generic.params.populate,
                 generic.params.populatedeep],
             method: "GET",
-            "responseClass": "Array[Activity]",
-            "nickname": "getActivities",
+            "responseClass": "Array[Idea]",
+            "nickname": "getIdeas",
             accessLevel: 'al_all',
             beforeCallbacks: []
         },
-        action: handlers.getAllActivities(baseUrl, Activity)
+        action: handlers.getAllIdeas(baseUrl, Idea)
     });
 
 
     swagger.addPost({
         spec: {
-            description: "Operations about Activities",
+            description: "Operations about Ideas",
             path: baseUrl,
-            notes: "The new activity will get a number 'NEW' for product admins and 'NEW_C' for campaign leads, because we have not yet implemented an " +
+            notes: "The new idea will get a number 'NEW' for product admins and 'NEW_C' for campaign leads, because we have not yet implemented an " +
                 "autoincrement.",
             summary: "Posts a new activity",
             method: "POST",
             mobileSDK: "disabled",
-            "responseClass": "Activity",
-            "nickname": "postActivity",
+            "responseClass": "Idea",
+            "nickname": "postIdea",
             params: [
                 {
                     paramType: "body",
-                    name: "ActivityToStore",
-                    description: "the activity to store",
-                    dataType: "Activity"
+                    name: "IdeaToStore",
+                    description: "the idea to store",
+                    dataType: "Idea"
                 }
             ],
             accessLevel: 'al_all',
             beforeCallbacks: []
         },
-        action: handlers.postActivity
+        action: handlers.postIdea
     });
 
     swagger.addPut({
         spec: {
-            description: "Operations about Activities",
+            description: "Operations about Ideas",
             path: baseUrlWithId,
             notes: "update an existing activity",
-            summary: "Update an Activity",
+            summary: "Update an Idea",
             method: "PUT",
             mobileSDK: "disabled",
-            "responseClass": "Activity",
-            "nickname": "putActivity",
-            params: [swagger.pathParam("id", "ID of the activity to be updated", "string"), swagger.bodyParam("activity", "activity to be updated", "Activity")],
+            "responseClass": "Idea",
+            "nickname": "putIdea",
+            params: [swagger.pathParam("id", "ID of the idea to be updated", "string"), swagger.bodyParam("idea", "idea to be updated", "Idea")],
             accessLevel: 'al_user',
             beforeCallbacks: []
         },
-        action: handlers.putActivity
+        action: handlers.putIdea
     });
 
     swagger.addDelete({
         spec: {
-            description: "Operations about Activities",
+            description: "Operations about Ideas",
             path: baseUrl,
-            notes: "deletes all activities",
-            summary: "Deletes all Activities",
+            notes: "deletes all ideas",
+            summary: "Deletes all Ideas",
             method: "DELETE",
             mobileSDK: "disabled",
-            "nickname": "deleteActivities",
+            "nickname": "deleteIdeas",
             accessLevel: 'al_admin',
             beforeCallbacks: []
         },
-        action: generic.deleteAllFn(baseUrl, Activity)
+        action: generic.deleteAllFn(baseUrl, Idea)
     });
 
     swagger.addDelete({
         spec: {
-            description: "Operations about Activities",
+            description: "Operations about Ideas",
             path: baseUrlWithId,
             notes: "deletes a specific activity",
             summary: "deletes a specific activity",
             method: "DELETE",
             mobileSDK: "disabled",
-            "nickname": "deleteActivity",
-            params: [swagger.pathParam("id", "ID of the activity to be deleted", "string")],
+            "nickname": "deleteIdea",
+            params: [swagger.pathParam("id", "ID of the idea to be deleted", "string")],
             accessLevel: 'al_admin',
             beforeCallbacks: []
         },
-        action: generic.deleteByIdFn(baseUrl, Activity)
+        action: generic.deleteByIdFn(baseUrl, Idea)
     });
 
 };

@@ -4,7 +4,12 @@ var HealthCoach = require('../src/core/HealthCoach'),
     consts = require('./testconsts'),
     mongoose = require('mongoose'),
     _ = require('lodash'),
-    moment = require('moment');
+    moment = require('moment'),
+    env = process.env.NODE_ENV || 'development',
+    config = require('../src/config/config')[env],
+    Logger = require('bunyan'),
+    log = new Logger(config.loggerOptions),
+    ypi18n = require('../src/util/ypi18n');
 
 
 describe('HealthCoach Module', function () {
@@ -77,11 +82,13 @@ describe('HealthCoach Module', function () {
                 expect(err).toBeNull();
                 expect(user).toBeDefined();
 
-                var ActivityPlan = mongoose.model('ActivityPlan');
-                new ActivityPlan(
-                    {
-                        owner: user._id,
-                        activity: consts.aloneActivity.id,
+                var activityPlanHandler = require('../src/handlers/activityplan_handlers');
+                var req = {};
+                req.log = log;
+                req.i18n = ypi18n.initialize();
+                req.body = {
+                        owner: user.id,
+                        idea: consts.aloneIdea.id,
                         "title": "myTitle",
                         "visibility": "private",
                         "executionType": "self",
@@ -92,25 +99,32 @@ describe('HealthCoach Module', function () {
                             "frequency": "once"
                         },
                         "status": "active"
-                    }
-                ).save(function (err, savedPlan) {
-                        expect(err).toBeNull();
-                        expect(savedPlan).toBeDefined();
+                    };
+
+                req.user = user;
+
+                var res = {send: function(code, body){
+                    res.code = code;
+                    res.body = body;
+                }};
+
+            activityPlanHandler.postNewActivityPlan(req, res,
+            function (err) {
+                        expect(err).toBeUndefined();
                         hc.getCurrentMessages(user, 'home.content', function (err, messages, facts) {
+                            console.log(messages);
                             expect(err).toBeNull();
                             expect(_.isArray(messages));
                             expect(messages.length).toEqual(1);
                             expect(messages[0]).toEqual('hcmsg.1');
-                            savedPlan.remove();
+                            expect(messages).not.toContain('hsmsg.3');
                             user.remove();
+                            mongoose.model('ActivityEvent').remove({activityPlan: res.body._id}).exec();
+
+                            res.body.remove();
                             done();
                         });
-
-
                     });
-
-
             });
-
     });
 });

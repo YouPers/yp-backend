@@ -21,7 +21,7 @@ consts.newUserInNewCampaignApi(
 
         var masterPlan = {
             "owner": user.id,
-            "activity": consts.groupActivity.id,
+            "idea": consts.groupIdea.id,
             "visibility": "public",
             "executionType": "group",
             "title": "myTitle",
@@ -113,6 +113,9 @@ consts.newUserInNewCampaignApi(
                                                                     .delete(URL + '/' + newPlan.id)
                                                                     .auth(user.username, 'yp')
                                                                     .expectStatus(200)
+                                                                    .after(function() {
+                                                                        return cleanupFn();
+                                                                    })
                                                                     .toss();
                                                             })
                                                             .toss();

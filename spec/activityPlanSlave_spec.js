@@ -20,7 +20,7 @@ frisby.globalSetup({ // globalSetup is for ALL requests
 
 var masterPlan = {
     "owner": consts.users.test_ind1.id,
-    "activity": consts.groupActivity.id,
+    "idea": consts.groupIdea.id,
     "visibility": "public",
     "executionType": "group",
     "title": "myTitle",
@@ -41,14 +41,14 @@ var masterPlan = {
     "status": "active"
 };
 
-frisby.create('Activity Plan Slave: plan weekly activity as a master for a joining test')
+frisby.create('ActivityPlan Slave: plan weekly activity as a master for a joining test')
     .post(URL, masterPlan)
     .auth('test_ind1', 'yp')
     .expectStatus(201)
     .afterJSON(function (masterPlanPostAnswer) {
         expect(masterPlanPostAnswer.id).toBeDefined();
 
-        frisby.create('Activity Plan Slave: join the Plan')
+        frisby.create('ActivityPlan Slave: join the Plan')
             .post(URL + '/' + masterPlanPostAnswer.id +'/join')
             .auth('test_ind2', 'yp')
             .expectStatus(201)
@@ -59,7 +59,7 @@ frisby.create('Activity Plan Slave: plan weekly activity as a master for a joini
                 expect(slavePlanPostAnswer.joiningUsers.length).toEqual(1); // owner is nicht im Array
 
 
-                frisby.create('Activity Plan Slave: reload masterPlan')
+                frisby.create('ActivityPlan Slave: reload masterPlan')
                     .get(URL + '/' + masterPlanPostAnswer.id)
                     .auth('test_ind1', 'yp')
                     .expectStatus(200)
@@ -67,7 +67,7 @@ frisby.create('Activity Plan Slave: plan weekly activity as a master for a joini
                         expect(masterPlanReloaded.joiningUsers).toContain(consts.users.test_ind2.id);
                         expect(masterPlanReloaded.joiningUsers).not.toContain(masterPlanReloaded.owner.id);
 
-                        frisby.create('Activity Plan Slave: delete plan')
+                        frisby.create('ActivityPlan Slave: delete plan')
                             .delete(URL + '/' + masterPlanPostAnswer.id)
                             .auth('sysadm','backtothefuture')
                             .expectStatus(200)

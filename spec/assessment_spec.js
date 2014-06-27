@@ -46,11 +46,6 @@ consts.newUserInNewCampaignApi(
                             .auth('test_ind1', 'yp')
                             .expectStatus(200)
                             .afterJSON(function (answerList) {
-
-
-                                console.log(answerList);
-                                return;
-
                                 expect(answerList.length).toEqual(0);
 
 
@@ -69,18 +64,14 @@ consts.newUserInNewCampaignApi(
                                     .put(URL + '/' + assessments[0].id + '/answers/' + answer1.question, answer1)
                                     .auth('test_ind1', 'yp')
                                     .expectStatus(200)
-                                    .afterJSON(function (answer) {
-
-                                        expect(answer).toBeDefined();
-                                        expect(answer.question).toEqual(answer1.question);
-                                        expect(answer.assessment).toEqual(answer1.assessment);
-                                        expect(answer.answer).toEqual(answer1.answer);
+                                    .after(function () {
 
                                         frisby.create('Assessment: Get result with one answer')
                                             .get(URL + '/' + assessments[0].id + '/results')
                                             .auth('test_ind1', 'yp')
                                             .expectStatus(200)
-                                            .afterJSON(function (answerList) {
+                                            .afterJSON(function (results) {
+                                                var answerList = results[0].answers;
 
                                                 expect(answerList.length).toEqual(1);
                                                 expect(answerList[0].question).toEqual(answer1.question);
@@ -89,23 +80,18 @@ consts.newUserInNewCampaignApi(
                                                     .put(URL + '/' + assessments[0].id + '/answers/' + answer2.question, answer2)
                                                     .auth('test_ind1', 'yp')
                                                     .expectStatus(200)
-                                                    .afterJSON(function (answer) {
-
-                                                        expect(answer).toBeDefined();
-                                                        expect(answer.question).toEqual(answer2.question);
-                                                        expect(answer.assessment).toEqual(answer2.assessment);
-                                                        expect(answer.answer).toEqual(answer2.answer);
-
+                                                    .after(function () {
 
                                                         frisby.create('Assessment: Get result from today with two answers')
                                                             .get(URL + '/' + assessments[0].id + '/results')
                                                             .auth('test_ind1', 'yp')
                                                             .expectStatus(200)
-                                                            .afterJSON(function (answerList) {
-                                                                expect(answerList.length).toEqual(2)
+                                                            .afterJSON(function (results) {
+                                                                var answerList = results[0].answers;
+                                                                expect(answerList.length).toEqual(2);
 
                                                                 // cleanup
-                                                                cleanupFn();
+                                                                return cleanupFn();
 
                                                             })
                                                             .toss();

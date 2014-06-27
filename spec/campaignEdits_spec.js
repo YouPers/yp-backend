@@ -70,7 +70,15 @@ consts.newUserInNewCampaignApi(
                     .post(URL + '/organizations', testOrganization)
                     .auth('test_ind1', 'yp')
                     .expectStatus(201)
-                    .after(cleanupFn)
+                    .afterJSON(function(org) {
+                        frisby.create('Campaigns Edits: Delete the org again')
+                            .delete(URL + '/organizations/' + org.id)
+                            .auth('test_sysadm', 'yp')
+                            .expectStatus(200)
+                            .toss();
+
+                        return cleanupFn();
+                    })
                     .toss();
 
             })

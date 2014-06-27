@@ -223,41 +223,4 @@ module.exports = function (swagger, config) {
         },
         action: handlers.putActivityPlan
     });
-
-    swagger.addPut({
-        spec: {
-            description: "Operations about ActivityPlans",
-            path: baseUrl + '/{planId}/events/{eventId}',
-            notes: "To set done, missed and feedback. Allows to add a single new comment to the event",
-            summary: "Updates an existing ActivityEvent of an existing ActivityPlan.",
-            params: [
-                {
-                    paramType: "body",
-                    name: "activityPlanEvent",
-                    description: "the activityPlanEvent to store",
-                    dataType: "Event",
-                    required: true
-                },
-                {
-                    paramType: "path",
-                    name: "planId",
-                    description: "the id of activityPlan that contains the event to update ",
-                    dataType: "string",
-                    required: true
-                },
-                {
-                    paramType: "path",
-                    name: "eventId",
-                    description: "the id of the event to update",
-                    dataType: "string",
-                    required: true
-                }
-            ],
-            method: "PUT",
-            "nickname": "putActivityPlanEvent",
-            accessLevel: 'al_individual',
-            beforeCallbacks: []
-        },
-        action: handlers.putActivityEvent
-    });
 };

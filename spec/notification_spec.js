@@ -124,7 +124,7 @@ consts.newUserInNewCampaignApi(
                                                                                     .auth('test_sysadm', 'yp')
                                                                                     .expectStatus(200)
                                                                                     .after(function() {
-                                                                                        cleanupFn();
+                                                                                        return cleanupFn();
                                                                                     })
                                                                                     .toss();
                                                                             })
@@ -217,7 +217,7 @@ consts.newUserInNewCampaignApi(
                             .auth('test_sysadm', 'yp')
                             .expectStatus(200)
                             .after(function () {
-                                cleanupFn();
+                                return cleanupFn();
                             })
                             .toss();
 
@@ -294,7 +294,7 @@ consts.newUserInNewCampaignApi(
                                                     .auth('test_sysadm', 'yp')
                                                     .expectStatus(404)
                                                     .after(function() {
-                                                        cleanupFn();
+                                                        return cleanupFn();
 
                                                     })
                                                     .toss();
@@ -410,7 +410,7 @@ consts.newUserInNewCampaignApi(
                                                                             .auth(user.username, 'yp')
                                                                             .expectStatus(200)
                                                                             .after(function() {
-                                                                                cleanupFn();
+                                                                                return cleanupFn();
                                                                             })
                                                                             .toss();
                                                                     })

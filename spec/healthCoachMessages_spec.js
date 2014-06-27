@@ -126,6 +126,5 @@ describe('HealthCoach Module', function () {
                         });
                     });
             });
-
     });
 });

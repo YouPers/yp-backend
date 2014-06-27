@@ -3,7 +3,6 @@
 var frisby = require('frisby');
 var port = process.env.PORT || 8000;
 var URL = 'http://localhost:'+ port;
-var consts = require('./testconsts');
 
 frisby.globalSetup({ // globalSetup is for ALL requests
     request: {
@@ -29,8 +28,6 @@ frisby.create('generatePaymentCode')
 
         var code = response.code;
 
-        console.log('code: ' + code);
-
         frisby.create('validatePaymentCode: Fail / Missing role orgadmin')
             .post(URL + '/paymentcodes/validate', { code: code })
             .auth('test_ind2', 'yp')
@@ -49,9 +46,6 @@ frisby.create('generatePaymentCode')
             .auth('test_orgadm', 'yp')
             .expectStatus(200)
             .afterJSON(function (response) {
-
-                console.log('validatePaymentCode', code);
-                console.log('validatePaymentCode', response.value);
 //                expect(response.value).toEqual(testValue);
 
 
@@ -62,13 +56,10 @@ frisby.create('generatePaymentCode')
                     .expectStatus(201)
                     .afterJSON(function (response) {
 
-                        console.log('redeemPaymentCode', response);
-
-
                         frisby.create('redeemPaymentCode: revert campaign.paymentStatus = paid')
                             .put(URL + '/campaigns/' + testCampaign, {"paymentStatus": "open"})
                             .auth('test_orgadm', 'yp')
-                            .expectStatus(201)
+                            .expectStatus(200)
                             .toss();
 
                     })

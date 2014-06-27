@@ -62,7 +62,7 @@ var self = module.exports  =  {
         var campaignEnd = moment({hour: 17, minute: 0, second: 0}).add('weeks', 6).add('days', 10);
 
         var testCampaign = {
-            "title": "testOrganization's campaign x for testing ActivityOffers: " + Math.floor((Math.random() * 10000) + 1),
+            "title": "testOrganization's campaign x for testing: " + Math.floor((Math.random() * 10000) + 1),
             "start": campaignStart,
             "end": campaignEnd,
             "relatedService": "YP-Balance",

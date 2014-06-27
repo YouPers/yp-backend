@@ -93,7 +93,7 @@ consts.newUserInNewCampaignApi(
                                             expect(rec.recommendedBy[0].id).toEqual('53348c27996c80a534319bda');
                                         });
 
-                                        frisby.create('IdeaOffers: promote a campaignAct ')
+                                        frisby.create('ActivityOffers: promote a campaignAct ')
                                             .post(URL + '/activityoffers', {
                                                 idea: consts.aloneIdea.id,
                                                 recommendedBy: ['52a97f1650fca98c2900000b'],

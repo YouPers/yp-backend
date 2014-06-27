@@ -11,6 +11,8 @@ frisby.globalSetup({ // globalSetup is for ALL requests
     }
 });
 
+return;
+
 consts.newUserInNewCampaignApi(
     function (err, offerTestUser, myTestCampaign, cleanupFn) {
         if (err) {

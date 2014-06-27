@@ -5,6 +5,7 @@ var EventEmitter = require('events').EventEmitter,
     SocialInteractionModel = mongoose.model('SocialInteraction'),
     SocialInteractionDismissedModel = mongoose.model('SocialInteractionDismissed'),
     Invitation = mongoose.model('Invitation'),
+    Recommendation = mongoose.model('Recommendation'),
     env = process.env.NODE_ENV || 'development',
     config = require('../config/config')[env],
     Logger = require('bunyan'),
@@ -101,7 +102,15 @@ SocialInteraction.on('error', function(err) {
     throw new Error(err);
 });
 
-SocialInteraction.dismissInvitations = function dismissInvitation(refDoc, users, cb) {
+SocialInteraction.dismissRecommendations = function dismissInvitations(refDoc, users, cb) {
+    SocialInteraction.dismissSocialInteraction(Recommendation, refDoc, users, cb);
+};
+
+SocialInteraction.dismissInvitations = function dismissInvitations(refDoc, users, cb) {
+    SocialInteraction.dismissSocialInteraction(Invitation, refDoc, users, cb);
+};
+
+SocialInteraction.dismissSocialInteraction = function dismissSocialInteraction(model, refDoc, users, cb) {
 
     var userIds;
 
@@ -115,12 +124,17 @@ SocialInteraction.dismissInvitations = function dismissInvitation(refDoc, users,
         } else if (user instanceof mongoose.Types.ObjectId) {
             return user;
         } else {
-            cb(new Error('invalid argument users'));
+            var err = new Error('invalid argument users');
+            if(cb) {
+                cb(err);
+            } else {
+                SocialInteraction.emit('error', err);
+            }
         }
     });
 
     // find all invitations for this refDoc targeted to one of these users
-    Invitation.find({
+    model.find({
 
         targetSpaces: {
             $elemMatch: {
@@ -133,12 +147,12 @@ SocialInteraction.dismissInvitations = function dismissInvitation(refDoc, users,
             docId: refDoc._id,
             model: refDoc.constructor.modelName
         }}
-    }).exec(function(err, invitations) {
+    }).exec(function(err, socialInteractions) {
 
         // for each invitation, find all relevant users and dismiss the invitation
-        _.forEach(invitations, function (invitation) {
+        _.forEach(socialInteractions, function (socialInteraction) {
 
-            var spaces = _.filter(invitation.targetSpaces, function(space) {
+            var spaces = _.filter(socialInteraction.targetSpaces, function(space) {
                 return _.any(userIds, function(user) {
                     return user.equals(space.targetId);
                 });
@@ -149,7 +163,7 @@ SocialInteraction.dismissInvitations = function dismissInvitation(refDoc, users,
             var dismissals = [];
 
             _.forEach(users, function(user) {
-                dismissals.push(SocialInteraction.dismissSocialInteraction.bind(null, invitation._id, user));
+                dismissals.push(SocialInteraction.dismissSocialInteractionById.bind(null, socialInteraction._id, user));
             });
 
             async.parallel(dismissals, function (err) {
@@ -165,7 +179,7 @@ SocialInteraction.dismissInvitations = function dismissInvitation(refDoc, users,
 
 };
 
-SocialInteraction.dismissSocialInteraction = function dismissSocialInteraction(socialInteractionId, user, cb) {
+SocialInteraction.dismissSocialInteractionById = function dismissSocialInteraction(socialInteractionId, user, cb) {
 
 
     SocialInteractionModel.findById(socialInteractionId, function(err, socialInteraction) {

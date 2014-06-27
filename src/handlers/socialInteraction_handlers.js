@@ -60,7 +60,7 @@ var deleteByIdFn = function (baseUrl, Model) {
         }
 
         // TODO: add check for Model
-        SocialInteraction.dismissSocialInteraction(req.params.id, req.user, function(err, socialInteraction) {
+        SocialInteraction.dismissSocialInteractionById(req.params.id, req.user, function(err, socialInteraction) {
             if(err) {
                 return error.handleError(err, next);
             }

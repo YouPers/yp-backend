@@ -47,7 +47,14 @@ actMgr.on('activity:planSaved', function (plan) {
         });
     }
 
-    // find all invitations for this
+    // find and dismiss all health coach recommendations for this idea
+
+    // TODO: only health coach or from all other users as well
+
+    // TODO: alternative approach: generateAndStoreRecommendations here as well
+
+    SocialInteraction.dismissRecommendations(plan.idea, plan.owner);
+
 
     // find all notification for (this user or this user's campaign) and idea, dismiss them for this user
 
@@ -68,16 +75,18 @@ actMgr.on('activity:planSaved', function (plan) {
 
 actMgr.on('activity:planJoined', function (plan, joinedUser) {
 
-    SocialInteraction.dismissInvitations(plan, joinedUser, function(err) {
-        if(err) {
-            return actMgr.emit('error', err);
-        }
-    });
+    SocialInteraction.dismissRecommendations(plan.idea, joinedUser, handleError);
+    SocialInteraction.dismissInvitations(plan, joinedUser, handleError);
 
 });
 
 
 actMgr.on('activity:planDeleted', function (plan) {
+
+
+    // TODO: enable dismissInvitations to dismiss a invitation for all users
+    //SocialInteraction.dismissInvitations(plan, null, handleError);
+
     // remove any offers to join this plan
     ActivityOffer.find({activityPlan: plan._id}).exec(function (err, offers) {
         _.forEach(offers, function (offer) {
@@ -190,6 +199,11 @@ actMgr.on('activity:planUpdated', function(updatedPlan) {
 
 });
 
+function handleError(err) {
+    if(err) {
+        return actMgr.emit('error', err);
+    }
+}
 
 actMgr.on('error', function(err) {
     log.error(err);

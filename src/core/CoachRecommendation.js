@@ -2,7 +2,7 @@ var _ = require('lodash'),
     mongoose = require('mongoose'),
     Idea = mongoose.model('Idea'),
     AssessmentResult = mongoose.model('AssessmentResult'),
-    ActivityOffer = mongoose.model('ActivityOffer'),
+    Recommendation = mongoose.model('Recommendation'),
     error = require('../util/error'),
     async = require('async'),
     Profile = mongoose.model('Profile'),
@@ -13,7 +13,6 @@ var _ = require('lodash'),
 
 var NUMBER_OF_COACH_RECS = 10;
 var HEALTH_COACH_USER_ID = '53348c27996c80a534319bda';
-var HEALTH_COACH_TYPE = 'ypHealthCoach';
 
 Profile.on('change:prefs.focus', function (changedProfile) {
     generateAndStoreRecommendations(changedProfile.owner, changedProfile.prefs.rejectedIdeas, null, changedProfile.prefs.focus, false, function (err, recs) {
@@ -173,50 +172,6 @@ function _loadAssessmentResult(userId, assessmentResult, done) {
 }
 
 /**
- * removes the existing CoachRecommendations for the passed in user from the ActivityOffers Collection
- *
- * @param userId
- * @param cb
- * @private
- */
-function _removeOldRecsFromActivityOffers(userId, cb) {
-    // mongo/mogoose automagically query the 'type' attribute, which is actually an array, by doing
-    // this here. It means: find documents with 'type' array that contains HEALTH_COACH_TYPE
-    ActivityOffer.find({targetQueue: userId, offerType: HEALTH_COACH_TYPE})
-        .remove()
-        .exec(
-        function (err) {
-            return cb(err);
-        }
-    );
-}
-
-/**
- * takes coachrecomendations, turns them into complete ActivityOffers and stores them
- * into the ActivityOffers collection.
- *
- * @param userId
- * @param recs
- * @param cb
- * @private
- */
-function _storeNewRecsIntoActivityOffers(userId, recs, cb) {
-    async.forEach(recs, function (rec, done) {
-        var newOffer = new ActivityOffer({
-            idea: rec.idea,
-            offerType: [HEALTH_COACH_TYPE],
-            recommendedBy: [HEALTH_COACH_USER_ID],
-            targetQueue: userId,
-            prio: [rec.score]
-        });
-
-        newOffer.save(done);
-    }, function (err) {
-        return cb(err);
-    });
-}
-
-/**
  * callback to use
  * @callback cb
  */
@@ -257,12 +212,79 @@ function _updateRecommendations(userId, rejectedIdeas, assessmentResult, persona
                 return cb(err);
             }
             if (updateDb) {
-                async.parallel([
-                    _removeOldRecsFromActivityOffers.bind(null, userId),
-                    _storeNewRecsIntoActivityOffers.bind(null, userId, recs)
-                ], function (err) {
-                    return cb(err, recs);
+
+                // find all health coach recommendations for this user
+                Recommendation.find({
+                    targetSpaces: {
+                        $elemMatch: {
+                            type: 'user',
+                            targetModel: 'User',
+                            targetId: userId
+                        }
+                    },
+                    author: HEALTH_COACH_USER_ID
+                }).exec(function(err, recommendations) {
+
+                    var previousIdeas = _.map(recommendations, 'idea');
+                    var currentIdeas = _.map(recs, 'idea');
+
+                    // TODO: optimize these filters
+                    var obsoleteIdeas = _.filter(previousIdeas, function(idea) {
+                       return !_.any(currentIdeas, function(recIdea) {
+                           return recIdea.equals(idea);
+                       });
+                    });
+                    var newIdeas = _.filter(currentIdeas, function(idea) {
+                       return !_.any(previousIdeas, function(recIdea) {
+                           return recIdea.equals(idea);
+                       });
+                    });
+
+                    // remove recommendation for obsolete ideas
+                    var removeRecs = function removeRecs(ideas, done) {
+                        Recommendation.remove({
+                            targetSpaces: {
+                                $elemMatch: {
+                                    type: 'user',
+                                    targetId: userId,
+                                    targetModel: 'User'
+                                }
+                            },
+                            idea: {
+                                $in: ideas
+                            }
+
+                        }).exec(done);
+                    };
+
+                    // store recommendation for new ideas
+                    var storeRec = function storeRec(idea, done) {
+                        var rec = new Recommendation({
+                            targetSpaces: [{
+                                type: 'user',
+                                targetId: userId,
+                                targetModel: 'User'
+                            }],
+                            author: HEALTH_COACH_USER_ID,
+                            refDocs: [{ docId: idea, model: 'Idea' }],
+                            idea: idea
+                        });
+                        rec.save(done);
+                    };
+
+                    var updateRecs = [removeRecs.bind(null, obsoleteIdeas)];
+
+                    _.forEach(newIdeas, function(idea) {
+                        updateRecs.push(storeRec.bind(null, idea));
+                    });
+
+                    async.parallel(updateRecs, function(err, storedRecs) {
+                        return cb(err, recs);
+                    });
+
                 });
+
+
             } else {
                 return cb(null, recs);
             }

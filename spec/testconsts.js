@@ -19,6 +19,10 @@ var self = module.exports  =  {
             id: '52a97f1650fca98c29000006',
             profile: "5303721a4dba580000000016"
         },
+        yphealthcoach: {
+            id: '53348c27996c80a534319bda',
+            username: 'yphealthcoach'
+        },
         test_ind2: {
             id: '52a97f1650fca98c29000007',
             profile: "5303721a4dba580000000017"

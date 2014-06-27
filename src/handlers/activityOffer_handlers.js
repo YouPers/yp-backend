@@ -111,7 +111,7 @@ function getCoachRecommendationsFn(req, res, next) {
  * The list of suggested offers consists of:
  * 1. top offers form the coachRecommendations of the recommendation logic "assessmentResult-activity"
  * 2. currently active campaign activities
- * 3. currently active campaign activity Plans
+ * 3. currently active campaign activityPlans
  * 4. currently pending personal invitations
  * 5. currently available accessible group activities the user may join.
  *

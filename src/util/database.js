@@ -21,6 +21,7 @@ var initialize = function initialize(loadTestData) {
         var models = [
             'idea',
             'activityPlan',
+            'activityEvent',
             'activityOffer',
             'assessment',
             'assessmentResultAnswer',

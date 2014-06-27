@@ -2,7 +2,8 @@ var frisby = require('frisby'),
     port = process.env.PORT || 8000,
     URL = 'http://localhost:' + port,
     _ = require('lodash'),
-    consts = require('./testconsts');
+    consts = require('./testconsts'),
+    moment = require('moment');
 
 frisby.globalSetup({ // globalSetup is for ALL requests
     request: {
@@ -10,6 +11,11 @@ frisby.globalSetup({ // globalSetup is for ALL requests
         headers: {}
     }
 });
+
+// set the startDate in the future and ensure that it is a Wednesday
+var startDate = moment().add('d', 5).day(4).startOf('hour').toDate();
+var endDate = moment(startDate).add('h', 1).toDate();
+
 
 consts.newUserInNewCampaignApi(
     function (err, offerTestUser, myTestCampaign, cleanupFn) {
@@ -119,8 +125,8 @@ consts.newUserInNewCampaignApi(
                                                                 "campaign": myTestCampaign.id,
                                                                 "executionType": "group",
                                                                 "mainEvent": {
-                                                                    "start": "2014-06-16T12:00:00.000Z",
-                                                                    "end": "2014-06-16T13:00:00.000Z",
+                                                                    "start": startDate,
+                                                                    "end": endDate,
                                                                     "allDay": false,
                                                                     "frequency": "once"
                                                                 },

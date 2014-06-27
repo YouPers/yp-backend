@@ -103,7 +103,10 @@ describe('HealthCoach Module', function () {
 
                 req.user = user;
 
-                var res = {send: function(){}};
+                var res = {send: function(code, body){
+                    res.code = code;
+                    res.body = body;
+                }};
 
             activityPlanHandler.postNewActivityPlan(req, res,
             function (err) {
@@ -116,6 +119,9 @@ describe('HealthCoach Module', function () {
                             expect(messages[0]).toEqual('hcmsg.1');
                             expect(messages).not.toContain('hsmsg.3');
                             user.remove();
+                            mongoose.model('ActivityEvent').remove({activityPlan: res.body._id}).exec();
+
+                            res.body.remove();
                             done();
                         });
                     });

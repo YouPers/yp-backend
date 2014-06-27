@@ -271,6 +271,14 @@ frisby.create('ActivityPlan Edits: create a weekly activityPlan with 3 events pa
                                         expect(moment(newEvents[3].start).toDate()).toEqual(moment(events[3].start).add(1, 'h').toDate());
                                         expect(moment(newEvents[5].start).toDate()).toEqual(moment(events[5].start).add(1, 'h').toDate());
                                         expect(newEvents[1].status).toEqual('missed');
+
+                                        // cleanup joined activityPlan
+                                        frisby.create('ActivityPlan Edits: cleanup updatedPlan, id: ' + updatedPlan.id)
+                                            .delete(URL + '/' + updatedPlan.id)
+                                            .auth('sysadm', 'backtothefuture')
+                                            .expectStatus(200)
+                                            .toss();
+
                                     })
                                     .toss();
                             })

@@ -117,12 +117,20 @@ consts.newUserInNewCampaignApi(
                                                                             .get(URL + '/notifications/' + activityNotification.id)
                                                                             .auth(consts.users.test_campaignlead.username, 'yp')
                                                                             .expectStatus(404)
-                                                                            .toss();
+                                                                            .after(function() {
 
+                                                                                frisby.create('delete the created activityPlan')
+                                                                                    .delete(URL + '/activityplans/' + newPlan.id)
+                                                                                    .auth('test_sysadm', 'yp')
+                                                                                    .expectStatus(200)
+                                                                                    .after(function() {
+                                                                                        cleanupFn();
+                                                                                    })
+                                                                                    .toss();
+                                                                            })
+                                                                            .toss();
                                                                     })
                                                                     .toss();
-
-
 
                                                                 frisby.create('Notification: delete public notifs as a product admin')
                                                                     .delete(URL + '/notifications/' + newPublicNotif.id + '?mode=administrate')
@@ -135,7 +143,7 @@ consts.newUserInNewCampaignApi(
                                                                             .expectStatus(404)
                                                                             .toss();
 
-                                                                        cleanupFn();
+
 
                                                                     })
                                                                     .toss();

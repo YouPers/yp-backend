@@ -289,8 +289,8 @@ frisby.create('ActivityPlan: update user profile preferences to workdays only MO
                 "campaign": "527916a82079aa8704000006",
                 "executionType": "group",
                 "mainEvent": {
-                    "start": moment().day(2).add('hours', 1).toISOString(),
-                    "end": moment().day(2).add('hours', 2).toISOString(),
+                    "start": moment().add('w',1).day(2).add('hours', 1).toISOString(),
+                    "end": moment().add('w',1).day(2).add('hours', 2).toISOString(),
                     "allDay": false,
                     "frequency": "day",
                     "recurrence": {

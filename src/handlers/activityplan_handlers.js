@@ -413,11 +413,14 @@ function _sendIcalMessages(activityPlan, joiner, req, reason, type, done) {
             done);
     });
 }
-function _deleteFutureEvents(activityPlan, joiner, done) {
-    var now = new Date();
+function _deleteActivityEvents(activityPlan, joiner, fromDate, done) {
 
     var q = ActivityEvent
-        .remove({activityPlan: activityPlan._id, start: {$gte: now}});
+        .remove({activityPlan: activityPlan._id});
+
+    if (fromDate) {
+        q.where({start: {$gte: fromDate}});
+    }
 
     if (joiner) {
         q.where({owner: joiner._id});
@@ -437,86 +440,95 @@ function deleteActivityPlan(req, res, next) {
     }
     var reason = req.params.reason || 'The organizer Deleted this activity';
 
-    ActivityPlan.findById(req.params.id).populate('idea').populate('owner joiningUsers', '+profile +email').exec(function (err, activityPlan) {
-        if (err) {
-            return error.handleError(err, next);
-        }
-        if (!activityPlan) {
-            return next(new error.ResourceNotFoundError('ActivityPlan not found.', {
-                id: req.params.id
-            }));
-        }
-        var joiner = _.find(activityPlan.joiningUsers, function (user) {
-            return user.equals(req.user);
-        });
+    ActivityPlan
+        .findById(req.params.id)
+        .populate('idea')
+        .populate('owner joiningUsers', '+profile +email')
+        .exec(function (err, activityPlan) {
 
-        // plan can be deleted if user is systemadmin or if it is his own plan or if the user is a joiner
-        if (!
-            (auth.checkAccess(req.user, auth.accessLevels.al_systemadmin) ||
-                activityPlan.owner._id.equals(req.user._id) ||
-                joiner)) {
-            return next(new error.NotAuthorizedError());
-        }
+            if (err) {
+                return error.handleError(err, next);
+            }
+            if (!activityPlan) {
+                return next(new error.ResourceNotFoundError('ActivityPlan not found.', {
+                    id: req.params.id
+                }));
+            }
+            var joiner = _.find(activityPlan.joiningUsers, function (user) {
+                return user.equals(req.user);
+            });
 
+            var sysadmin = auth.checkAccess(req.user, auth.accessLevels.al_systemadmin);
 
-        if (activityPlan.deleteStatus === ActivityPlan.notDeletableNoFutureEvents) {
-            // if this is not deleteable because of no future events we have in fact
-            // nothing to do, we just pretend that we deleted all future events, by doing nothing
-            // and signalling success
-            actMgr.emit('activity:planDeleted', activityPlan);
-            res.send(200);
-            return next();
-        }
+            var owner = activityPlan.owner._id.equals(req.user._id);
 
-        function _deleteEvents(done) {
-            _deleteFutureEvents(activityPlan, joiner, done);
-        }
+            // plan can be deleted if user is systemadmin or if it is his own plan or if the user is a joiner
+            if (!(sysadmin || owner || joiner)) {
+                return next(new error.NotAuthorizedError());
+            }
 
-        function _sendCalendarCancelMessages(done) {
-            _sendIcalMessages(activityPlan, joiner, req, reason, 'cancel', done);
-        }
+            if (activityPlan.deleteStatus === ActivityPlan.notDeletableNoFutureEvents && !sysadmin) {
+                // if this is not deletable because of no future events we have in fact
+                // nothing to do, we just pretend that we deleted all future events, by doing nothing
+                // and signalling success
+                actMgr.emit('activity:planDeleted', activityPlan);
+                res.send(200);
+                return next();
+            }
 
-        function _deletePlan(done) {
-
-            if (joiner) {
-                activityPlan.joiningUsers.remove(req.user);
-                activityPlan.save(done);
-            } else {
-                var deleteStatus = activityPlan.deleteStatus;
-                if (deleteStatus === 'deletable') {
-                    activityPlan.remove(done);
-                } else if (deleteStatus === 'deletableOnlyFutureEvents') {
-                    activityPlan.status = 'old';
-                    if (activityPlan.mainEvent.frequency !== 'once') {
-                        activityPlan.mainEvent.recurrence.on = new Date();
-                        activityPlan.mainEvent.recurrence.after = undefined;
-                        activityPlan.save(done);
-                    } else {
-                        throw new Error('should never arrive here, it is not possible to have an "once" plan that has ' +
-                            'passed and future events at the same time');
-                    }
+            function _deleteEvents(done) {
+                if (sysadmin) {
+                    _deleteActivityEvents(activityPlan, joiner, null, done);
                 } else {
-                    throw new Error('unknown DeleteStatus: ' + activityPlan.deleteStatus);
+                    _deleteActivityEvents(activityPlan, joiner, new Date(), done);
+                }
+            }
+
+            function _sendCalendarCancelMessages(done) {
+                _sendIcalMessages(activityPlan, joiner, req, reason, 'cancel', done);
+            }
+
+            function _deletePlan(done) {
+
+                if (joiner) {
+                    activityPlan.joiningUsers.remove(req.user);
+                    activityPlan.save(done);
+                } else {
+                    var deleteStatus = activityPlan.deleteStatus;
+                    if (deleteStatus === 'deletable' || sysadmin) {
+                        activityPlan.remove(done);
+                    } else if (deleteStatus === 'deletableOnlyFutureEvents') {
+                        activityPlan.status = 'old';
+                        if (activityPlan.mainEvent.frequency !== 'once') {
+                            activityPlan.mainEvent.recurrence.on = new Date();
+                            activityPlan.mainEvent.recurrence.after = undefined;
+                            activityPlan.save(done);
+                        } else {
+                            throw new Error('should never arrive here, it is not possible to have an "once" plan that has ' +
+                                'passed and future events at the same time');
+                        }
+                    } else {
+                        throw new Error('unknown DeleteStatus: ' + activityPlan.deleteStatus);
+                    }
+
                 }
 
             }
 
-        }
-
-        return async.parallel([
-                _sendCalendarCancelMessages,
-                _deleteEvents,
-                _deletePlan
-            ],
-            function (err) {
-                if (err) {
-                    return error.handleError(err, next);
-                }
-                actMgr.emit('activity:planDeleted', activityPlan);
-                res.send(200);
-                return next();
-            });
-    });
+            return async.parallel([
+                    _sendCalendarCancelMessages,
+                    _deleteEvents,
+                    _deletePlan
+                ],
+                function (err) {
+                    if (err) {
+                        return error.handleError(err, next);
+                    }
+                    actMgr.emit('activity:planDeleted', activityPlan);
+                    res.send(200);
+                    return next();
+                });
+        });
 }
 
 
@@ -571,7 +583,7 @@ function putActivityPlan(req, res, next) {
 
             function _deleteEventsInFuture(done) {
                 if (sentPlan.mainEvent && !_.isEqual(sentPlan.mainEvent, loadedActPlan.mainEvent)) {
-                    return _deleteFutureEvents(loadedActPlan, null, done);
+                    return _deleteActivityEvents(loadedActPlan, null, new Date(), done);
                 } else {
                     return done();
                 }

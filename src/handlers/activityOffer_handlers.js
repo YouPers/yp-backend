@@ -117,18 +117,18 @@ function getCoachRecommendationsFn(req, res, next) {
  *
  * We return an array of offers, where one offer is an object:
  * {
- *      activity: populated link to the activity (always available)
+ *      idea: populated link to the idea (always available)
  *      activityPlan: [] of populated links to the suggested activityPlans (available in case 3./4./5.)
- *                    may be an array in case this activity has multiple invitations, recommendedPlans
+ *                    may be an array in case this idea has multiple invitations, recommendedPlans
  *      offerType: [] of one of ('ypHealthCoach', 'campaignActivity', 'campaignPlan', 'personalInvitation', 'publicPlan')
- *            may be an array if this activity was recommended by more than one source
+ *            may be an array if this idea was recommended by more than one source
  *      recommendedBy: []   link to the user  who recommended this, in case:
  *          1. a virtual user for our digital health coach
  *          2. a virtual user for the campaign avatar
  *          3. the campaign lead who added the plan
  *          4. the peer who sent the invite
  *          5. the peer who planned the available group activity
- *          may be an array if the same activity has been recommended by multiple sources.
+ *          may be an array if the same idea has been recommended by multiple sources.
  *       prio: prioritization Value, in case of CoachRecs this is the score of the algorithm
  * }
  *

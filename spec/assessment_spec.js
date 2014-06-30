@@ -87,11 +87,19 @@ consts.newUserInNewCampaignApi(
                                                             .auth('test_ind1', 'yp')
                                                             .expectStatus(200)
                                                             .afterJSON(function (results) {
+                                                                expect(results.length).toEqual(1);
                                                                 var answerList = results[0].answers;
                                                                 expect(answerList.length).toEqual(2);
+                                                                frisby.create('Assessment: delete Result again')
+                                                                    .delete(URL + '/' + assessments[0].id + '/results/' + results[0].id)
+                                                                    .auth('test_ind1', 'yp')
+                                                                    .expectStatus(200)
+                                                                    .after(function () {
+                                                                        // cleanup
+                                                                        return cleanupFn();
+                                                                    })
+                                                                    .toss();
 
-                                                                // cleanup
-                                                                return cleanupFn();
 
                                                             })
                                                             .toss();

@@ -2,6 +2,7 @@ var frisby = require('frisby'),
     port = process.env.PORT || 8000,
     URL = 'http://localhost:' + port,
     _ = require('lodash'),
+    async = require('async'),
     consts = require('./testconsts'),
     moment = require('moment');
 
@@ -12,6 +13,73 @@ frisby.globalSetup({ // globalSetup is for ALL requests
     }
 });
 
+// campaign wide recommendations
+
+consts.newUserInNewCampaignApi(
+    function (err, user, campaign, cleanupFn) {
+        if (err) {
+            expect(err).toBeNull();
+        }
+
+
+        frisby.create('Recommendations: get no recommendations for new user')
+            .get(URL + '/recommendations')
+            .auth(user.username, "yp")
+            .expectStatus(200)
+            .afterJSON(function (recs) {
+                expect(recs.length).toEqual(0);
+
+
+                frisby.create('Recommendations: recommend an idea to the campaign ')
+                    .post(URL + '/recommendations', {
+
+                        targetSpaces: [
+                            {
+                                type: 'campaign',
+                                targetId: campaign.id
+                            }
+                        ],
+
+                        author: consts.users.test_campaignlead.id,
+                        publishFrom: moment(),
+                        publishTo: moment().add('hours', 1),
+
+                        refDocs: [{ docId: consts.aloneIdea.id, model: 'Campaign'}],
+                        idea: consts.aloneIdea.id
+                    })
+                    .auth(consts.users.test_campaignlead.username, 'yp')
+                    .expectStatus(201)
+                    .afterJSON(function (recommendation) {
+
+                        frisby.create('Recommendations: get no recommendations for new user')
+                            .get(URL + '/recommendations')
+                            .auth(user.username, "yp")
+                            .expectStatus(200)
+                            .afterJSON(function (recs) {
+                                expect(recs.length).toEqual(1);
+                                expect(recs[0].targetSpaces[0].type).toEqual('campaign');
+                                expect(recs[0].targetSpaces[0].targetId).toEqual(campaign.id);
+
+                                        frisby.create('Message: delete the recommendation as system admin')
+                                    .delete(URL + '/socialInteractions/' + recs[0].id + '?mode=administrate')
+                                    .auth('test_sysadm', 'yp')
+                                    .expectStatus(200)
+                                    .after(function () {
+                                        cleanupFn();
+                                    })
+                                    .toss();
+
+                            })
+                            .toss();
+
+                    })
+                    .toss();
+            })
+            .toss();
+    });
+
+
+// health coach recommendations
 
 consts.newUserInNewCampaignApi(
     function (err, user, campaign, cleanupFn) {
@@ -84,7 +152,7 @@ consts.newUserInNewCampaignApi(
                             .expectStatus(201)
                             .afterJSON(function (newPlan) {
 
-                                frisby.create('Recommendations: get recommendations from health coach only')
+                                frisby.create('Recommendations: get recommendations without the already planned idea')
                                     .get(URL + '/recommendations')
                                     .auth(user.username, "yp")
                                     .expectStatus(200)
@@ -92,6 +160,21 @@ consts.newUserInNewCampaignApi(
 
                                         expect(newRecs.length).toEqual(recs.length - 1);
                                         expect(_.map(newRecs, 'idea')).not.toContain(idea);
+
+                                        async.each(newRecs, function(rec, done) {
+                                            frisby.create('Message: dismiss the message anyway')
+                                                .delete(URL + '/socialInteractions/' + rec.id)
+                                                .auth(user.username, 'yp')
+                                                .expectStatus(200)
+                                                .after(function () {
+                                                    done();
+                                                })
+                                                .toss();
+                                        }, function(err) {
+                                            // if any of the file processing produced an error, err would equal that error
+                                            expect(err).toBeUndefined();
+                                            cleanupFn();
+                                        });
 
                                     })
                                     .toss();

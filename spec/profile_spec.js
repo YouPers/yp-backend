@@ -60,9 +60,9 @@ frisby.create('POST new user')
             .auth('XXX_profile_unittest_user', 'nopass')
             .expectStatus(200)
             .afterJSON(function (profileArray) {
-                var url = URL + '/profiles/' + profileArray[0].id;
+                var profileUrl = URL + '/profiles/' + profileArray[0].id;
                 frisby.create('update user profile using its id')
-                    .put(url, userProfile)
+                    .put(profileUrl, userProfile)
                     .auth('xxx_profile_unittest_user', 'nopass')
                     .expectStatus(200)
                     .expectJSONTypes({
@@ -71,11 +71,13 @@ frisby.create('POST new user')
                         maritalStatus: String
                     })
                     .expectJSON(userProfile)
-                    .toss();
-                frisby.create('DELETE our testuser')
-                    .delete(URL+ '/users/' + owner)
-                    .auth('sysadm', 'backtothefuture')
-                    .expectStatus(200)
+                    .afterJSON(function(updatedProfile) {
+                        frisby.create('DELETE our testuser')
+                            .delete(URL+ '/users/' + owner)
+                            .auth('sysadm', 'backtothefuture')
+                            .expectStatus(200)
+                            .toss();
+                    })
                     .toss();
 
             })

@@ -38,9 +38,21 @@ frisby.create('ActivityRecommendations: post a first answer for this assessment'
                 expect(recs.length).toEqual(10);
                 frisby.create('ActivityRecommendations: reject first recommendation')
                     .put(URL + '/profiles/'+ consts.users.test_ind2.profile,
-                        {prefs:
-                            {rejectedIdeas:
-                                [{idea: recs[0].idea, timestamp: new Date().toISOString()}]
+                        {
+
+                            prefs: {
+                                "calendarNotification": "900",
+                                "defaultWorkWeek": ["MO", "TU", "WE", "TH", "FR"],
+                                "email": {
+                                    "actPlanInvites": true,
+                                    "dailyUserMail": false,
+                                    "iCalInvites": false
+                                },
+                                rejectedIdeas:
+                                    [{idea: recs[0].idea, timestamp: new Date().toISOString()}],
+
+                                "rejectedActivityPlans": [],
+                                "starredIdeas": []
                             }
                         })
                     .auth('test_ind2', 'yp')
@@ -57,10 +69,19 @@ frisby.create('ActivityRecommendations: post a first answer for this assessment'
 
                                 frisby.create('ActivityRecommendations: reset rejectedIdeas on the profile')
                                     .put(URL + '/profiles/' + consts.users.test_ind2.profile,
-                                    {prefs:
-                                    {rejectedIdeas:
-                                        []
-                                    }
+                                    {
+                                        prefs: {
+                                            "calendarNotification": "900",
+                                            "defaultWorkWeek": ["MO", "TU", "WE", "TH", "FR"],
+                                            "email": {
+                                                "actPlanInvites": true,
+                                                "dailyUserMail": false,
+                                                "iCalInvites": false
+                                            },
+                                            "rejectedIdeas": [],
+                                            "rejectedActivityPlans": [],
+                                            "starredIdeas": []
+                                        }
                                     })
                                     .auth('test_ind2', 'yp')
                                     .expectStatus(200)

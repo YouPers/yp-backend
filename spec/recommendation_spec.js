@@ -162,7 +162,7 @@ consts.newUserInNewCampaignApi(
                                         expect(_.map(newRecs, 'idea')).not.toContain(idea);
 
                                         async.each(newRecs, function(rec, done) {
-                                            frisby.create('Message: dismiss the message anyway')
+                                            frisby.create('Recommendations: dismiss the message anyway')
                                                 .delete(URL + '/socialInteractions/' + rec.id)
                                                 .auth(user.username, 'yp')
                                                 .expectStatus(200)
@@ -173,6 +173,13 @@ consts.newUserInNewCampaignApi(
                                         }, function(err) {
                                             // if any of the file processing produced an error, err would equal that error
                                             expect(err).toBeUndefined();
+
+                                            frisby.create('Recommendations: remove AssessmentResults')
+                                                .delete(URL + '/assessments/525faf0ac558d40000000005/results')
+                                                .auth(user.username, 'yp')
+                                                .expectStatus(200)
+                                                .toss();
+
                                             cleanupFn();
                                         });
 

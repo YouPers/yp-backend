@@ -264,14 +264,11 @@ consts.newUserInNewCampaignApi(
                                 expect(org.administrators.length).toEqual(2);
                                 expect(org.administrators).toContain(user.id);
 
-                                console.log(org.administrators);
                                 delete org.__v;
 
                                 _.remove(org.administrators, function(admin) {
                                     return admin === user.id;
                                 });
-
-                                console.log(org.administrators);
 
                                 frisby.create('Invitation: remove the new admin again')
                                     .put(URL + '/organizations/' + consts.organization.id, org)

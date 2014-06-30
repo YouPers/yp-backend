@@ -148,18 +148,20 @@ SocialInteraction.dismissSocialInteraction = function dismissSocialInteraction(m
         }
     };
 
+    finder.refDocs = {
+        $elemMatch: {
+        docId: refDoc._id,
+        model: refDoc.constructor.modelName
+        }
+    };
+
     // find all invitations for this refDoc targeted to one of these users
-    model.find(_.merge(finder, {
-        refDocs: { $elemMatch: {
-            docId: refDoc._id,
-            model: refDoc.constructor.modelName
-        }}
-    })).exec(function(err, socialInteractions) {
+    model.find(finder).exec(function(err, socialInteractions) {
 
         // for each invitation, find all relevant users and dismiss the invitation
         _.forEach(socialInteractions, function (socialInteraction) {
 
-            var spaces = _.filter(socialInteraction.targetSpaces, function(space) {
+            var spaces = allUsers ? socialInteraction.targetSpaces : _.filter(socialInteraction.targetSpaces, function(space) {
                 return _.any(userIds, function(user) {
                     return user.equals(space.targetId);
                 });

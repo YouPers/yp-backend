@@ -25,11 +25,11 @@ var getAllFn = function getAllFn(baseUrl, Model, fromAllOwners) {
             var finder = {
                 targetSpaces: { $elemMatch: {
                     $or: [
-                        { type: 'user', targetId: user._id, targetModel: 'User' },
-                        { type: 'campaign', targetId: user.campaign, targetModel: 'Campaign' }
+                        { type: 'user', targetId: user._id },
+                        { type: 'campaign', targetId: user.campaign }
                     ]
                 }}
-//                // TODO: add targetSpaces for activity/system
+//                // TODO: add targetSpaces for activity/system, get from user doc
             };
 
             var dbQuery = Model.find(finder)

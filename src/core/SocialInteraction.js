@@ -23,6 +23,8 @@ util.inherits(SocialInteraction, EventEmitter);
 
 var SocialInteraction = new SocialInteraction();
 
+SocialInteraction.allUsers = 'ALL_USERS';
+
 SocialInteraction.on('invitation:activityPlan', function (from, to, activityPlan) {
 
     var invitation = new Invitation({
@@ -114,40 +116,45 @@ SocialInteraction.dismissSocialInteraction = function dismissSocialInteraction(m
 
     var userIds;
 
-    if(!_.isArray(users)) {
-        userIds = [users];
+    var allUsers = users === SocialInteraction.allUsers;
+
+    if(!allUsers) {
+        if(!_.isArray(users)) {
+            userIds = [users];
+        }
+
+        userIds = _.map(_.clone(userIds), function(user) {
+            if( typeof user === 'object' && user._id) {
+                return user._id;
+            } else if (user instanceof mongoose.Types.ObjectId) {
+                return user;
+            } else {
+                var err = new Error('invalid argument users');
+                if(cb) {
+                    cb(err);
+                } else {
+                    SocialInteraction.emit('error', err);
+                }
+            }
+        });
     }
 
-    userIds = _.map(_.clone(userIds), function(user) {
-        if( typeof user === 'object' && user._id) {
-            return user._id;
-        } else if (user instanceof mongoose.Types.ObjectId) {
-            return user;
-        } else {
-            var err = new Error('invalid argument users');
-            if(cb) {
-                cb(err);
-            } else {
-                SocialInteraction.emit('error', err);
-            }
-        }
-    });
-
-    // find all invitations for this refDoc targeted to one of these users
-    model.find({
-
+    var finder = allUsers ? {} : {
         targetSpaces: {
             $elemMatch: {
                 type: 'user',
-                targetId: { $in: userIds },
-                targetModel: 'User'
+                targetId: { $in: userIds }
             }
-        },
+        }
+    };
+
+    // find all invitations for this refDoc targeted to one of these users
+    model.find(_.merge(finder, {
         refDocs: { $elemMatch: {
             docId: refDoc._id,
             model: refDoc.constructor.modelName
         }}
-    }).exec(function(err, socialInteractions) {
+    })).exec(function(err, socialInteractions) {
 
         // for each invitation, find all relevant users and dismiss the invitation
         _.forEach(socialInteractions, function (socialInteraction) {

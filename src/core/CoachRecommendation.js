@@ -225,20 +225,11 @@ function _updateRecommendations(userId, rejectedIdeas, assessmentResult, persona
                     author: HEALTH_COACH_USER_ID
                 }).exec(function(err, recommendations) {
 
-                    var previousIdeas = _.map(recommendations, 'idea');
-                    var currentIdeas = _.map(recs, 'idea');
+                    var previousIdeas = _.map(recommendations, function(rec) {return rec.idea.toString();});
+                    var currentIdeas = _.map(recs, function(rec) {return rec.idea.toString();});
 
-                    // TODO: optimize these filters
-                    var obsoleteIdeas = _.filter(previousIdeas, function(idea) {
-                       return !_.any(currentIdeas, function(recIdea) {
-                           return recIdea.equals(idea);
-                       });
-                    });
-                    var newIdeas = _.filter(currentIdeas, function(idea) {
-                       return !_.any(previousIdeas, function(recIdea) {
-                           return recIdea.equals(idea);
-                       });
-                    });
+                    var obsoleteIdeas = _.difference(previousIdeas, currentIdeas);
+                    var newIdeas = _.difference(currentIdeas, previousIdeas);
 
                     // remove recommendation for obsolete ideas
                     var removeRecs = function removeRecs(ideas, done) {

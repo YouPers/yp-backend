@@ -84,8 +84,7 @@ actMgr.on('activity:planJoined', function (plan, joinedUser) {
 actMgr.on('activity:planDeleted', function (plan) {
 
 
-    // TODO: enable dismissInvitations to dismiss a invitation for all users
-    //SocialInteraction.dismissInvitations(plan, null, handleError);
+    SocialInteraction.dismissInvitations(plan, SocialInteraction.allUsers, handleError);
 
     // remove any offers to join this plan
     ActivityOffer.find({activityPlan: plan._id}).exec(function (err, offers) {

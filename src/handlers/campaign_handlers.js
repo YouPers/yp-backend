@@ -14,14 +14,14 @@ var stats = require('../util/stats'),
     generic = require('./generic');
 
 
-var getCampaign = function(id, cb) {
+var getCampaign = function (id, cb) {
 
     Campaign.findById(id)
-        .exec(function(err, obj) {
-            if(err) {
+        .exec(function (err, obj) {
+            if (err) {
                 return error.handleError(err, cb);
             }
-            if(!obj) {
+            if (!obj) {
                 return cb(new error.ResourceNotFoundError('Campaign not found', { id: id }));
             }
 
@@ -43,10 +43,10 @@ var getCampaignStats = function (baseUrl, Model) {
                 required: 'type'
             }));
         }
-        var query = stats.queries(req.params.range,'campaign', req.params.id)[type];
+        var query = stats.queries(req.params.range, 'campaign', req.params.id)[type];
 
         query.exec(function (err, result) {
-            if(err) {
+            if (err) {
                 return error.handleError(err, next);
             }
             res.send(result);
@@ -59,11 +59,11 @@ var getCampaignStats = function (baseUrl, Model) {
 
 var validateCampaign = function validateCampaign(campaign, userId, type, next) {
     // check if posting user is an org admin of the organization this new campaign belongs to
-    Organization.find({administrators: userId}).exec(function(err, organizations) {
-        if(err) {
+    Organization.find({administrators: userId}).exec(function (err, organizations) {
+        if (err) {
             return error.handleError(err, next);
         }
-        if(!organizations || organizations.length !== 1) {
+        if (!organizations || organizations.length !== 1) {
             return next(new error.ConflictError("user is administrator for more than one organization", {
                 organizations: organizations
             }));
@@ -115,27 +115,27 @@ var postCampaign = function (baseUrl) {
 
         var err = handlerUtils.checkWritingPreCond(req.body, req.user, Campaign);
 
-        if(err) {
+        if (err) {
             return error.handleError(err, next);
         }
 
         var sentCampaign = new Campaign(req.body);
 
         validateCampaign(sentCampaign, req.user.id, "POST", function (err) {
-            if(err) {
+            if (err) {
                 return error.handleError(err, next);
             }
 
             sentCampaign.campaignLeads = [req.user.id];
 
-            if(!_.contains(req.user.roles, auth.roles.campaignlead)) {
+            if (!_.contains(req.user.roles, auth.roles.campaignlead)) {
                 req.user.roles.push(auth.roles.campaignlead);
             }
 
             // update user with his new role as campaign lead
 
-            req.user.save(function(err) {
-                if(err) {
+            req.user.save(function (err) {
+                if (err) {
                     return error.handleError(err, next);
                 }
             });
@@ -144,15 +144,7 @@ var postCampaign = function (baseUrl) {
             req.log.trace(sentCampaign, 'PostFn: Saving new Campaign object');
 
             // try to save the new campaign object
-            sentCampaign.save(function (err) {
-                if(err) {
-                    return error.handleError(err, next);
-                }
-
-                res.header('location', baseUrl + '/' + sentCampaign._id);
-                res.send(201, sentCampaign);
-                return next();
-            });
+            sentCampaign.save(generic.writeObjCb(req, res, next));
 
         });
 
@@ -173,7 +165,7 @@ function putCampaign(req, res, next) {
     handlerUtils.clean(Campaign, sentCampaign);
 
     Campaign.findById(req.params.id).exec(function (err, reloadedCampaign) {
-        if(err) {
+        if (err) {
             return error.handleError(err, next);
         }
         if (!reloadedCampaign) {
@@ -183,22 +175,13 @@ function putCampaign(req, res, next) {
         _.extend(reloadedCampaign, sentCampaign);
 
         validateCampaign(reloadedCampaign, req.user.id, "PUT", function (err) {
-            if(err) {
+            if (err) {
                 return error.handleError(err, next);
             }
 
             req.log.trace(reloadedCampaign, 'PutFn: Updating existing Object');
 
-            reloadedCampaign.save(function (err) {
-                if(err) {
-                    return error.handleError(err, next);
-                }
-
-                res.header('location', '/api/v1/campaigns' + '/' + reloadedCampaign._id);
-                res.send(201, reloadedCampaign);
-                return next();
-            });
-
+            reloadedCampaign.save(generic.writeObjCb(req, res, next));
         });
     });
 
@@ -248,23 +231,23 @@ var postCampaignLeadInviteFn = function postCampaignLeadInviteFn(req, res, next)
             Campaign.findById(req.params.id)
                 .populate('organization')
                 .exec(function (err, campaign) {
-                if (err) {
-                    return done(err);
-                }
-                if (!campaign) {
-                    return done(new error.ResourceNotFoundError({ campaignId: req.params.id }));
-                }
+                    if (err) {
+                        return done(err);
+                    }
+                    if (!campaign) {
+                        return done(new error.ResourceNotFoundError({ campaignId: req.params.id }));
+                    }
 
-                // check whether the posting user is a campaignLead of the campaign
-                if (!_.contains(campaign.campaignLeads.toString(), req.user.id)) {
-                    return done(new error.NotAuthorizedError('The user is not a campaignlead of this campaign.', {
-                        userId: req.user.id,
-                        campaignId: campaign.id
-                    }));
-                }
-                locals.campaign = campaign;
-                return done();
-            });
+                    // check whether the posting user is a campaignLead of the campaign
+                    if (!_.contains(campaign.campaignLeads.toString(), req.user.id)) {
+                        return done(new error.NotAuthorizedError('The user is not a campaignlead of this campaign.', {
+                            userId: req.user.id,
+                            campaignId: campaign.id
+                        }));
+                    }
+                    locals.campaign = campaign;
+                    return done();
+                });
         },
         // for each email try whether we have a user in the Db with this email address and, if yes, load the user
         // to personalize the email then send the invitation mail
@@ -292,7 +275,7 @@ var postCampaignLeadInviteFn = function postCampaignLeadInviteFn(req, res, next)
                 });
         }
     ], function (err) {
-        if(err) {
+        if (err) {
             return error.handleError(err, next);
         }
         res.send(200);
@@ -347,7 +330,7 @@ var assignCampaignLeadFn = function assignCampaignLeadFn(req, res, next) {
 
     Campaign.findById(req.params.id)
         .exec(function (err, campaign) {
-            if(err) {
+            if (err) {
                 return error.handleError(err, next);
             }
             if (!campaign) {
@@ -355,10 +338,10 @@ var assignCampaignLeadFn = function assignCampaignLeadFn(req, res, next) {
             }
 
             // we check whether we need to update the campaignLeads collection of the campaign
-            if (!_.contains(campaign.campaignLeads.toString(),req.user.id)) {
+            if (!_.contains(campaign.campaignLeads.toString(), req.user.id)) {
                 campaign.campaignLeads.push(req.user._id);
-                campaign.save(function(err) {
-                    if(err) {
+                campaign.save(function (err) {
+                    if (err) {
                         return error.handleError(err, next);
                     }
                 });
@@ -367,8 +350,8 @@ var assignCampaignLeadFn = function assignCampaignLeadFn(req, res, next) {
             // check whether we need to add the campaignLead role to the user
             if (!_.contains(req.user.roles, auth.roles.campaignlead)) {
                 req.user.roles.push(auth.roles.campaignlead);
-                req.user.save(function(err) {
-                    if(err) {
+                req.user.save(function (err) {
+                    if (err) {
                         return error.handleError(err, next);
                     }
                 });
@@ -383,17 +366,25 @@ var assignCampaignLeadFn = function assignCampaignLeadFn(req, res, next) {
 
 };
 
-var avatarImagePostFn = function(baseUrl) {
-    return function(req, res, next) {
+var avatarImagePostFn = function (baseUrl) {
+    return function (req, res, next) {
 
         image.resizeImage(req, req.files.file.path, 'campaign', function (err, image) {
-            if(err) { return error.handleError(err, next); }
+            if (err) {
+                return error.handleError(err, next);
+            }
 
             getCampaign(req.params.id, function (err, obj) {
-                if (err) {return error.handleError(err, next);}
+                if (err) {
+                    return error.handleError(err, next);
+                }
 
                 obj.avatar = image;
-                obj.save(function(err, result) { if(err) { return error.handleError(err, next); } });
+                obj.save(function (err, result) {
+                    if (err) {
+                        return error.handleError(err, next);
+                    }
+                });
 
                 // send response
                 res.send({avatar: obj.avatar});

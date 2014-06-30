@@ -30,9 +30,9 @@ module.exports = function (swagger, config) {
         spec: {
             description: "Operations about ActivityOffers",
             path: baseUrl,
-            notes: "returns the currently available activity offers and recommendations for the current user. The list consists " +
+            notes: "returns the currently available activityOffers and recommendations for the current user. The list consists " +
                 "of activities recommended by the assessment evaluation, of campaign recommended activities and activityplans and of personal invitations.",
-            summary: "returns the current top 10 activity offers for the authenticated user.",
+            summary: "returns the current top 10 activityOffers for the authenticated user.",
             method: "GET",
             "responseClass": "Array[ActivityOffer]",
             "nickname": "getActivityOffers",
@@ -55,7 +55,7 @@ module.exports = function (swagger, config) {
             "responseClass": "ActivityOffer",
             "nickname": "getActivityOfferById",
             params: [
-                swagger.pathParam("id", "ID of the activity to be fetched", "string"),
+                swagger.pathParam("id", "ID of the activityOffer to be fetched", "string"),
                 generic.params.populatedeep
             ],
             accessLevel: 'al_individual',
@@ -68,7 +68,7 @@ module.exports = function (swagger, config) {
         spec: {
             description: "Operations about ActivityOffers",
             path: baseUrl,
-            notes: "allows to post an activityOffer to promote an Activity to a targetAudience.",
+            notes: "allows to post an activityOffer to promote an Idea to a targetAudience.",
             summary: "post an activityOffer",
             method: "POST",
             params: [swagger.bodyParam("ActivityOffer", "new ActivityOffer object", "ActivityOffer")],

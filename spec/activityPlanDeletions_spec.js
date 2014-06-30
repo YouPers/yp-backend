@@ -11,6 +11,7 @@ var port = process.env.PORT || 8000;
 var BASE_URL = 'http://localhost:' + port;
 var URL = BASE_URL + '/activityplans';
 var consts = require('./testconsts');
+var _ = require('lodash');
 var moment = require('moment');
 
 frisby.globalSetup({ // globalSetup is for ALL requests
@@ -143,12 +144,13 @@ pastDateStart.setDate(pastDateStart.getDate() - 1);
 var pastDateEnd = new Date();
 pastDateEnd.setDate(pastDateEnd.getDate() - 1);
 pastDateEnd.setHours(pastDateEnd.getHours() + 1);
-masterPlan.mainEvent.start = pastDateStart;
-masterPlan.mainEvent.end = pastDateEnd;
-masterPlan.mainEvent.frequency = "week";
+var planOneEventPassed = _.cloneDeep(masterPlan);
+planOneEventPassed.mainEvent.start = pastDateStart;
+planOneEventPassed.mainEvent.end = pastDateEnd;
+planOneEventPassed.mainEvent.frequency = "week";
 
 frisby.create('ActivityPlan Deletions: create activityPlan with one event in the past')
-    .post(URL, masterPlan)
+    .post(URL, planOneEventPassed)
     .auth('test_ind1', 'yp')
     .expectStatus(201)
     .afterJSON(function (masterPlanPostAnswer) {
@@ -175,34 +177,45 @@ frisby.create('ActivityPlan Deletions: create activityPlan with one event in the
                             .expectStatus(200)
                             .toss();
 
-                        pastDateStart = new Date();
-                        pastDateStart.setDate(pastDateStart.getDate() - 30);
-                        pastDateEnd = new Date();
-                        pastDateEnd.setDate(pastDateEnd.getDate() - 30);
-                        pastDateEnd.setHours(pastDateEnd.getHours() + 1);
-                        masterPlan.mainEvent.start = pastDateStart;
-                        masterPlan.mainEvent.end = pastDateEnd;
-                        masterPlan.mainEvent.frequency = "day";
-
-                        frisby.create('ActivityPlan Deletions: create activityPlan with all events in the past')
-                            .post(URL, masterPlan)
-                            .auth('test_ind1', 'yp')
-                            .expectStatus(201)
-                            .afterJSON(function (masterPlanPostAnswer) {
-
-                                expect(masterPlanPostAnswer.deleteStatus).toEqual('notDeletableNoFutureEvents');
-
-                                // try deleting undeletable activityPlan
-                                frisby.create('ActivityPlan Deletions: try delete future Plan with No Future Events ')
-                                    .delete(URL + '/' + masterPlanPostAnswer.id)
-                                    .auth('test_ind1', 'yp')
-                                    .expectStatus(200)
-                                    .toss();
-
-                            }).toss();
-
                     }).toss();
-
-
     })
     .toss();
+
+
+var earlierPastDateStart = new Date();
+earlierPastDateStart.setDate(earlierPastDateStart.getDate() - 30);
+var earlierDateEnd = new Date();
+earlierDateEnd.setDate(earlierDateEnd.getDate() - 30);
+earlierDateEnd.setHours(earlierDateEnd.getHours() + 1);
+var planAllEventsPassed = _.cloneDeep(masterPlan);
+
+planAllEventsPassed.mainEvent.start = earlierPastDateStart;
+planAllEventsPassed.mainEvent.end = earlierDateEnd;
+planAllEventsPassed.mainEvent.frequency = "day";
+
+frisby.create('ActivityPlan Deletions: create activityPlan with all events in the past')
+    .post(URL, planAllEventsPassed)
+    .auth('test_ind1', 'yp')
+    .expectStatus(201)
+    .afterJSON(function (masterPlanPostAnswer) {
+
+        expect(masterPlanPostAnswer.deleteStatus).toEqual('notDeletableNoFutureEvents');
+
+        // try deleting undeletable activityPlan
+        frisby.create('ActivityPlan Deletions: try delete future Plan with No Future Events ')
+            .delete(URL + '/' + masterPlanPostAnswer.id)
+            .auth('test_ind1', 'yp')
+            .expectStatus(200)
+            .after(function() {
+
+                // now really delete it with admin priv
+                frisby.create('ActivityPlan Deletions: try delete future Plan with No Future Events ')
+                    .delete(URL + '/' + masterPlanPostAnswer.id)
+                    .auth('test_sysadm', 'yp')
+                    .expectStatus(200)
+                    .toss();
+
+            })
+            .toss();
+
+    }).toss();

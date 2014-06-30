@@ -44,25 +44,38 @@ frisby.create('Campaigns Get: POST new campaign to existing organization')
                 paymentStatus: String,
                 productType: String
             })
-            .toss();
+            .after(function() {
 
-        frisby.create('Campaigns Get: GET the created campaign as anonymous, check if protected Attrs are  NOT loaded')
-            .get(URL + '/campaigns/' + newCampaign1.id)
-            .expectStatus(200)
-            .afterJSON(function(campaign) {
-                expect(campaign.paymentStatus).toBeUndefined();
-                expect(campaign.productType).toBeUndefined();
+
+                frisby.create('Campaigns Get: GET the created campaign as anonymous, check if protected Attrs are  NOT loaded')
+                    .get(URL + '/campaigns/' + newCampaign1.id)
+                    .expectStatus(200)
+                    .afterJSON(function(campaign) {
+                        expect(campaign.paymentStatus).toBeUndefined();
+                        expect(campaign.productType).toBeUndefined();
+                    })
+                    .after(function() {
+
+                        frisby.create('Campaigns Get: GET the created campaign as anonymous, check if protected Attrs are  NOT loaded')
+                            .get(URL + '/campaigns/' + newCampaign1.id)
+                            .auth('test_ind2', 'yp')
+                            .expectStatus(200)
+                            .afterJSON(function(campaign) {
+                                expect(campaign.paymentStatus).toBeUndefined();
+                                expect(campaign.productType).toBeUndefined();
+
+                                frisby.create('delete the created campaign')
+                                    .delete(URL + '/campaigns/' + newCampaign1.id)
+                                    .auth('test_sysadm', 'yp')
+                                    .expectStatus(200)
+                                    .toss();
+                            })
+                            .toss();
+                    })
+                    .toss();
+
             })
             .toss();
 
-        frisby.create('Campaigns Get: GET the created campaign as anonymous, check if protected Attrs are  NOT loaded')
-            .get(URL + '/campaigns/' + newCampaign1.id)
-            .auth('test_ind2', 'yp')
-            .expectStatus(200)
-            .afterJSON(function(campaign) {
-                expect(campaign.paymentStatus).toBeUndefined();
-                expect(campaign.productType).toBeUndefined();
-            })
-            .toss();
     })
     .toss();

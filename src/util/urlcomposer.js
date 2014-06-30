@@ -25,8 +25,8 @@ function campaignLeadInviteUrl(campaignId, invitingUserId, token) {
 function orgAdminInviteUrl (organizationId, invitingUserId, token) {
     return config.webclientUrl + "/#/organizations/" + organizationId + '/becomeOrganizationAdmin?invitingUserId='+invitingUserId+'&token='+token;
 }
-function ideaImageUrl (activityNumber) {
-    return config.webclientUrl + "/assets/actpics/"+activityNumber + ".jpg";
+function ideaImageUrl (ideaNumber) {
+    return config.webclientUrl + "/assets/actpics/"+ideaNumber + ".jpg";
 }
 function campaignImageUrl () {
     return config.webclientUrl + "/assets/img/stressManagement.png";

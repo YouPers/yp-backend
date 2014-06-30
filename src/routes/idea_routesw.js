@@ -37,8 +37,8 @@ module.exports = function (swagger, config) {
             path: baseUrlWithId,
             notes: "returns only the public attributes in normal case. If the authenticated user has role 'admin', all " +
                 "attributes are returned (incl. all recWeights, ...)",
-            summary: "returns an activity based on id",
-            params: [swagger.pathParam("id", "ID of the activity to be fetched", "string"),
+            summary: "returns an idea based on id",
+            params: [swagger.pathParam("id", "ID of the idea to be fetched", "string"),
                 generic.params.populate],
             method: "GET",
             "responseClass": "Idea",
@@ -76,7 +76,7 @@ module.exports = function (swagger, config) {
         spec: {
             description: "Operations about Ideas",
             path: baseUrl,
-            notes: "The new activity will get a number 'NEW' for product admins and 'NEW_C' for campaign leads, because we have not yet implemented an " +
+            notes: "The new idea will get a number 'NEW' for product admins and 'NEW_C' for campaign leads, because we have not yet implemented an " +
                 "autoincrement.",
             summary: "Posts a new activity",
             method: "POST",
@@ -87,7 +87,7 @@ module.exports = function (swagger, config) {
                 {
                     paramType: "body",
                     name: "IdeaToStore",
-                    description: "the activity to store",
+                    description: "the idea to store",
                     dataType: "Idea"
                 }
             ],
@@ -107,7 +107,7 @@ module.exports = function (swagger, config) {
             mobileSDK: "disabled",
             "responseClass": "Idea",
             "nickname": "putIdea",
-            params: [swagger.pathParam("id", "ID of the activity to be updated", "string"), swagger.bodyParam("activity", "activity to be updated", "Idea")],
+            params: [swagger.pathParam("id", "ID of the idea to be updated", "string"), swagger.bodyParam("idea", "idea to be updated", "Idea")],
             accessLevel: 'al_user',
             beforeCallbacks: []
         },
@@ -138,7 +138,7 @@ module.exports = function (swagger, config) {
             method: "DELETE",
             mobileSDK: "disabled",
             "nickname": "deleteIdea",
-            params: [swagger.pathParam("id", "ID of the activity to be deleted", "string")],
+            params: [swagger.pathParam("id", "ID of the idea to be deleted", "string")],
             accessLevel: 'al_admin',
             beforeCallbacks: []
         },

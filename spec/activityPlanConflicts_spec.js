@@ -113,6 +113,9 @@ consts.newUserInNewCampaignApi(
                                                                     .delete(URL + '/' + newPlan.id)
                                                                     .auth(user.username, 'yp')
                                                                     .expectStatus(200)
+                                                                    .after(function() {
+                                                                        return cleanupFn();
+                                                                    })
                                                                     .toss();
                                                             })
                                                             .toss();

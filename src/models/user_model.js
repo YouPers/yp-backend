@@ -159,9 +159,8 @@ UserSchema.pre('save', function (next) {
 
 UserSchema.pre('remove', function (next) {
 
-    var profileId = this.profile;
 
-    var profile = Profile.find( { _id: profileId } );
+    var profile = Profile.find( { owner: this._id } );
 
     profile.remove(function (err) {
         if (err) {

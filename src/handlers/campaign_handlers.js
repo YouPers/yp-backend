@@ -253,25 +253,32 @@ var postCampaignLeadInviteFn = function postCampaignLeadInviteFn(req, res, next)
         // to personalize the email then send the invitation mail
         // if we do not find a user for this email we send the same email but without personalization.
         function (done) {
+
+            // collect known users for storing invitations
+            var recipients = [];
+
             async.forEach(emails,
                 function (emailaddress, done) {
                     mongoose.model('User')
                         .find({email: emailaddress})
-                        .exec(function (err, invitedUser) {
+                        .exec(function (err, invitedUsers) {
                             if (err) {
                                 return done(err);
                             }
 
-                            if (invitedUser && invitedUser.length === 1) {
-                                SocialInteraction.emit('invitation:campaignLead', req.user, invitedUser[0], locals.campaign);
+                            if (invitedUsers && invitedUsers.length === 1) {
+                                recipients.push(invitedUsers[0]);
+                            } else {
+                                recipients.push(emailaddress);
                             }
 
-                            email.sendCampaignLeadInvite(emailaddress, req.user, locals.campaign, invitedUser && invitedUser[0], req.i18n);
+                            email.sendCampaignLeadInvite(emailaddress, req.user, locals.campaign, invitedUsers && invitedUsers[0], req.i18n);
                             return done();
                         });
                 },
                 function (err) {
                     done();
+                    SocialInteraction.emit('invitation:campaignLead', req.user, recipients, locals.campaign);
                 });
         }
     ], function (err) {

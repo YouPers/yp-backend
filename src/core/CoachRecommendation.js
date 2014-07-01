@@ -312,9 +312,49 @@ function generateRecommendations(userId, rejectedIdeas, assessmentResult, person
     _updateRecommendations(userId, rejectedIdeas, assessmentResult, personalGoals, false, isAdmin, cb);
 }
 
+
+
+// keeping as a reference, currently not in use
+var getDefaultRecommendations = function getDefaultRecommendations(campaignId, cb) {
+
+    Idea
+        .find({}, {}, { sort: { 'qualityFactor': -1 }, limit: 8 })
+        .exec(function (err, ideas) {
+
+            if (err) {
+                cb(err);
+            }
+
+            var recs = [];
+            _.forEach(ideas, function (idea) {
+
+                var recommendation = {
+
+                    targetSpaces: [
+                        {
+//                                type: 'campaign',
+//                                targetId: campaign.id
+                        }
+                    ],
+
+                    author: HEALTH_COACH_USER_ID,
+
+                    refDocs: [{ docId: campaignId, model: 'Campaign'}],
+                    idea: idea._id
+                };
+
+
+                recs.push(recommendation);
+            });
+
+            return cb(null, recs);
+        });
+};
+
 module.exports = {
     generateAndStoreRecommendations: generateAndStoreRecommendations,
     generateRecommendations: generateRecommendations,
+    getDefaultRecommendations: getDefaultRecommendations,
 
     healthCoachUserId: HEALTH_COACH_USER_ID
 };

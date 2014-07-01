@@ -11,6 +11,10 @@ frisby.globalSetup({ // globalSetup is for ALL requests
     }
 });
 
+// TODO: talk about open questions first: https://youpers.atlassian.net/browse/WL-936
+
+// disabled for now
+return;
 
 frisby.create('ActivityRecommendations: post a first answer for this assessment')
     .post(URL + '/assessments/525faf0ac558d40000000005/results',
@@ -31,7 +35,7 @@ frisby.create('ActivityRecommendations: post a first answer for this assessment'
     .expectStatus(201)
     .afterJSON(function (json) {
         frisby.create('ActivityRecommendations: get recommendations')
-            .get(URL + '/activityoffers/coach')
+            .get(URL + '/recommendations')
             .auth('test_ind2', 'yp')
             .expectStatus(200)
             .afterJSON(function(recs) {
@@ -59,7 +63,7 @@ frisby.create('ActivityRecommendations: post a first answer for this assessment'
                     .expectStatus(200)
                     .afterJSON(function(updatedProfile) {
                         frisby.create('ActivityRecommendations: get recommendations again and check whether old number 2 is now number 1')
-                            .get(URL + '/activityoffers/coach')
+                            .get(URL + '/recommendations')
                             .auth('test_ind2', 'yp')
                             .expectStatus(200)
                             .afterJSON(function(newRecs) {

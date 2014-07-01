@@ -209,10 +209,7 @@ module.exports = {
         campaignProductType: "CampaignProductType1 CampaignProductType2 CampaignProductType3".split(' '),
         calendarNotifications: "none 0 300 600 900 1800 3600 7200 86400 172800".split(' '),
 
-        // activityOffers
-        activityOfferType: "campaignActivity campaignActivityPlan ypHealthCoach personalInvitation publicActivityPlan defaultActivity".split(' '),
-
         // type of the targeted space for a social interaction
-        targetSpace: "user activity campaign system".split(' ')
+        targetSpace: "user activity campaign system email".split(' ')
     }
 };

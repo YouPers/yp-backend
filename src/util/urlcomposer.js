@@ -1,11 +1,6 @@
 var env = process.env.NODE_ENV || 'development',
     config = require('../config/config')[env];
 
-function activityOfferWebClientUrl(activityId) {
-
-    return config.webclientUrl + "/#/schedule/" + ((activityId.toJSON && activityId.toJSON()) || activityId);
-}
-
 function activityPlanWebClientUrl(activityPlanId) {
     return config.webclientUrl + "/#/schedule/" + activityPlanId;
 }
@@ -42,7 +37,6 @@ function mailBackgroundImageUrl () {
 }
 
 module.exports = {
-    activityOfferUrl: activityOfferWebClientUrl,
     activityPlanUrl: activityPlanWebClientUrl,
     emailVerificationUrl: emailVerificationUrl,
     passwordResetUrl: passwordResetUrl,

@@ -44,7 +44,7 @@ consts.newUserInNewCampaignApi(
                         publishFrom: moment(),
                         publishTo: moment().add('hours', 1),
 
-                        refDocs: [{ docId: consts.aloneIdea.id, model: 'Campaign'}],
+                        refDocs: [{ docId: consts.aloneIdea.id, model: 'Idea'}],
                         idea: consts.aloneIdea.id
                     })
                     .auth(consts.users.test_campaignlead.username, 'yp')

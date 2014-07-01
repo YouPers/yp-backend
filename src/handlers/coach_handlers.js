@@ -1,5 +1,9 @@
-var HealthCoach = require('../core/HealthCoach'),
-    error = require('../util/error');
+var mongoose = require('mongoose'),
+    HealthCoach = require('../core/HealthCoach'),
+    CoachRecommendation = require('../core/CoachRecommendation'),
+    error = require('../util/error'),
+    auth = require('../util/auth'),
+    _ = require('lodash');
 
 var hc = new HealthCoach();
 
@@ -28,7 +32,28 @@ var getCoachMessagesFn = function getCoachMessagesFn(req, res, next) {
 
 };
 
+var getCoachRecommendationsFn = function getCoachRecommendationsFn(req, res, next) {
+
+    if (!req.user) {
+        return next(new error.NotAuthorizedError());
+    }
+
+    var admin = auth.isAdminForModel(req.user, mongoose.model('Idea'));
+
+    CoachRecommendation.generateAndStoreRecommendations(req.user._id,
+        req.user.profile.prefs.rejectedIdeas, null, req.user.profile.prefs.focus, admin, function (err, recs) {
+
+            if (err) {
+                error.handleError(err, next);
+            }
+            res.send(_.sortBy(recs, function (rec) {
+                return -rec.score;
+            }) || []);
+            return next();
+        });
+};
 
 module.exports = {
-    getCoachMessagesFn: getCoachMessagesFn
+    getCoachMessagesFn: getCoachMessagesFn,
+    getCoachRecommendationsFn: getCoachRecommendationsFn
 };

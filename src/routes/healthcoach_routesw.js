@@ -1,7 +1,8 @@
 /**
  * Organization Routes module
  */
-var coachHandlers = require('./../handlers/coach_handlers.js');
+var coachHandlers = require('./../handlers/coach_handlers.js'),
+    generic = require('./../handlers/generic');
 
 module.exports = function (swagger, config) {
 
@@ -37,4 +38,23 @@ module.exports = function (swagger, config) {
             action: coachHandlers.getCoachMessagesFn
         }
     );
+
+    swagger.addGet({
+        spec: {
+            description: "Operations about ActivityOffers",
+            path: '/coachRecommendations',
+            notes: "returns the current coachRecommendations for a user",
+            method: "GET",
+            "responseClass": "Array[ActivityOffer]",
+            "nickname": "getCoachRecommendations",
+            params: [
+                generic.params.limit,
+                generic.params.populate
+            ],
+            accessLevel: 'al_individual',
+            beforeCallbacks: []
+        },
+        action: coachHandlers.getCoachRecommendationsFn
+    });
+
 };

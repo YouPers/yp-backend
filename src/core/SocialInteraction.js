@@ -40,8 +40,12 @@ function _createTargetSpacesFromRecipients(to) {
         if(typeof recipient === 'object' && recipient.constructor.modelName === 'User') {
             targetSpaces.push({
                 type: 'user',
-                targetId: recipient._id,
-                targetModel: 'User'
+                targetId: recipient._id
+            });
+        } else if(typeof recipient === 'object' && recipient.constructor.modelName === 'Campaign') {
+            targetSpaces.push({
+                type: 'campaign',
+                targetId: recipient._id
             });
         } else if(typeof to === 'string') {
             targetSpaces.push({

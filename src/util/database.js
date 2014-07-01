@@ -22,7 +22,6 @@ var initialize = function initialize(loadTestData) {
             'idea',
             'activityPlan',
             'activityEvent',
-            'activityOffer',
             'assessment',
             'assessmentResultAnswer',
             'assessmentResult',

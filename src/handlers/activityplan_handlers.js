@@ -3,7 +3,6 @@ var calendar = require('../util/calendar'),
     ActivityPlan = mongoose.model('ActivityPlan'),
     Idea = mongoose.model('Idea'),
     ActivityEvent = mongoose.model('ActivityEvent'),
-    ActivityOffer = mongoose.model('ActivityOffer'),
     actMgr = require('../core/ActivityManagement'),
     SocialInteraction = require('../core/SocialInteraction'),
     generic = require('./generic'),
@@ -337,6 +336,10 @@ function postActivityPlanInvite(req, res, next) {
         // to personalize the email
         // then send the invitation mails
         function (done) {
+
+            // collect known users for storing invitations
+            var recipients = [];
+
             async.forEach(emails,
                 function (emailaddress, done) {
                     mongoose.model('User')
@@ -346,47 +349,21 @@ function postActivityPlanInvite(req, res, next) {
                                 return done(err);
                             }
 
-
-                            // if this is an existing user, we create an offer and a notification
-                            // if NOT, we just send the email
                             if (invitedUser && invitedUser.length === 1) {
-
-                                SocialInteraction.emit('invitation:activityPlan', req.user, invitedUser[0], locals.plan);
-
-                                // save the corresponding ActivityOffer
-                                var actOffer = new ActivityOffer({
-                                    idea: locals.plan.idea._id,
-                                    activityPlan: [locals.plan._id],
-                                    targetQueue: invitedUser[0] && invitedUser[0]._id,
-                                    offerType: ['personalInvitation'],
-                                    recommendedBy: [req.user._id],
-                                    validTo: locals.plan.lastEventEnd
-                                });
-
-                                actOffer.save(function (err, savedOffer) {
-                                    if (err) {
-                                        return error.handleError(err, done);
-                                    }
-                                    actMgr.emit('activity:offerSaved', savedOffer, locals.plan);
-                                    _offerSavedCb(null);
-                                });
+                                recipients.push(invitedUser);
                             } else {
-                                process.nextTick(_offerSavedCb);
+                                recipients.push(emailaddress);
                             }
 
-                            function _offerSavedCb(err) {
-                                if (err) {
-                                    return error.handleError(err, done);
-                                }
-                                email.sendActivityPlanInvite(emailaddress, req.user, locals.plan, invitedUser && invitedUser[0], req.i18n);
-                                return done();
-                            }
+                            email.sendActivityPlanInvite(emailaddress, req.user, locals.plan, invitedUser && invitedUser[0], req.i18n);
+                            return done();
                         });
                 },
                 function (err) {
                     if (err) {
                         return error.handleError(err, done);
                     }
+                    SocialInteraction.emit('invitation:activityPlan', req.user, recipients, locals.plan);
                     done();
                 });
         }

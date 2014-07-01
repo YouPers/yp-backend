@@ -131,6 +131,10 @@ var postOrganizationAdminInviteFn = function postOrganizationAdminInviteFn(req, 
         // to personalize the email then send the invitation mail
         // if we do not find a user for this email we send the same email but without personalization.
         function (done) {
+
+            // collect known users for storing invitations
+            var recipients = [];
+
             async.forEach(emails,
                 function (emailaddress, done) {
                     mongoose.model('User')
@@ -141,7 +145,9 @@ var postOrganizationAdminInviteFn = function postOrganizationAdminInviteFn(req, 
                             }
 
                             if (invitedUser && invitedUser.length === 1) {
-                                SocialInteraction.emit('invitation:organizationAdmin', req.user, invitedUser[0], locals.organization);
+                                recipients.push(invitedUser);
+                            } else {
+                                recipients.push(emailaddress);
                             }
 
                             email.sendOrganizationAdminInvite(emailaddress, req.user, locals.organization, invitedUser && invitedUser[0], req.i18n);
@@ -150,6 +156,8 @@ var postOrganizationAdminInviteFn = function postOrganizationAdminInviteFn(req, 
                 },
                 function (err) {
                     done();
+
+                    SocialInteraction.emit('invitation:organizationAdmin', req.user, recipients, locals.organization);
                 });
         }
     ], function (err) {

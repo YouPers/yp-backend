@@ -210,6 +210,6 @@ module.exports = {
         calendarNotifications: "none 0 300 600 900 1800 3600 7200 86400 172800".split(' '),
 
         // type of the targeted space for a social interaction
-        targetSpace: "user activity campaign system".split(' ')
+        targetSpace: "user activity campaign system email".split(' ')
     }
 };

@@ -25,20 +25,48 @@ var SocialInteraction = new SocialInteraction();
 
 SocialInteraction.allUsers = 'ALL_USERS';
 
+
+/**
+ *
+ * @param to        single or multiple recipients, can either be email addresses or users
+ * @returns {Array} targetSpaces
+ * @private
+ */
+function _createTargetSpacesFromRecipients(to) {
+    var recipients = _.isArray(to) ? to : [to];
+    var targetSpaces = [];
+
+    _.forEach(recipients, function(recipient) {
+        if(typeof recipient === 'object' && recipient.constructor.modelName === 'User') {
+            targetSpaces.push({
+                type: 'user',
+                targetId: recipient._id,
+                targetModel: 'User'
+            });
+        } else if(typeof to === 'string') {
+            targetSpaces.push({
+                type: 'email',
+                targetId: recipient
+            });
+        }
+    });
+    return targetSpaces;
+}
+
+/**
+ * store invitations for an activity
+ *
+ * @param from      inviting user / author
+ * @param to        single or multiple recipients, can either be email addresses or users
+ * @param activity  the referenced activity
+ *
+ */
 SocialInteraction.on('invitation:activityPlan', function (from, to, activityPlan) {
 
     var invitation = new Invitation({
-
         author: from._id,
-
-        targetSpaces: [{
-            type: 'user',
-            targetId: to._id,
-            targetModel: 'User'
-        }],
-
+        targetSpaces: _createTargetSpacesFromRecipients(to),
         refDocs: [{ docId: activityPlan._id, model: 'ActivityPlan'}],
-
         publishTo: activityPlan.lastEventEnd
     });
 
@@ -47,23 +75,22 @@ SocialInteraction.on('invitation:activityPlan', function (from, to, activityPlan
             SocialInteraction.emit('error', err);
         }
     });
-
 });
 
+/**
+ * store invitations for a campaignLead
+ *
+ * @param from      inviting user / author
+ * @param to        single or multiple recipients, can either be email addresses or users
+ * @param activity  the referenced campaign
+ *
+ */
 SocialInteraction.on('invitation:campaignLead', function (from, to, campaign) {
 
     var invitation = new Invitation({
-
         author: from._id,
-
-        targetSpaces: [{
-            type: 'user',
-            targetId: to._id,
-            targetModel: 'User'
-        }],
-
+        targetSpaces: _createTargetSpacesFromRecipients(to),
         refDocs: [{ docId: campaign._id, model: 'Campaign'}],
-
         publishTo: campaign.end
     });
 
@@ -72,21 +99,21 @@ SocialInteraction.on('invitation:campaignLead', function (from, to, campaign) {
             SocialInteraction.emit('error', err);
         }
     });
-
 });
 
+/**
+ * store invitations for an organization admin
+ *
+ * @param from      inviting user / author
+ * @param to        single or multiple recipients, can either be email addresses or users
+ * @param activity  the referenced organization
+ *
+ */
 SocialInteraction.on('invitation:organizationAdmin', function (from, to, organization) {
 
     var invitation = new Invitation({
-
         author: from._id,
-
-        targetSpaces: [{
-            type: 'user',
-            targetId: to._id,
-            targetModel: 'User'
-        }],
-
+        targetSpaces: _createTargetSpacesFromRecipients(to),
         refDocs: [{ docId: organization._id, model: 'Organization'}]
     });
 
@@ -95,7 +122,6 @@ SocialInteraction.on('invitation:organizationAdmin', function (from, to, organiz
             SocialInteraction.emit('error', err);
         }
     });
-
 });
 
 

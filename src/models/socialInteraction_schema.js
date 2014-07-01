@@ -19,7 +19,7 @@ function AbstractSocialInteractionSchema() {
 
         title: {type: String, required: false},
         text: {type: String, required: false},
-        refDocs: [{ docId: {type: ObjectId}, model: {type: String}}]
+        refDocs: [{ docId: {type: ObjectId}, model: {type: String}, doc: Schema.Types.Mixed}]
 
     });
 }

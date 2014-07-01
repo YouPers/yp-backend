@@ -6,6 +6,7 @@ var _ = require('lodash');
 var urlComposer = require('../util/urlcomposer');
 var Notification = require('../core/Notification');
 var NotificationModel = require('../models/notification_model');
+var SocialInteraction = require('../core/SocialInteraction');
 var env = process.env.NODE_ENV || 'development';
 var config = require('../config/config')[env];
 var Logger = require('bunyan');
@@ -46,6 +47,15 @@ actMgr.on('activity:planSaved', function (plan) {
         });
     }
 
+    // find and dismiss all health coach recommendations for this idea
+
+    // TODO: only health coach or from all other users as well
+
+    // TODO: alternative approach: generateAndStoreRecommendations here as well
+
+    SocialInteraction.dismissRecommendations(plan.idea, plan.owner);
+
+
     // find all notification for (this user or this user's campaign) and idea, dismiss them for this user
 
     NotificationModel
@@ -63,8 +73,19 @@ actMgr.on('activity:planSaved', function (plan) {
         });
 });
 
+actMgr.on('activity:planJoined', function (plan, joinedUser) {
+
+    SocialInteraction.dismissRecommendations(plan.idea, joinedUser, handleError);
+    SocialInteraction.dismissInvitations(plan, joinedUser, handleError);
+
+});
+
 
 actMgr.on('activity:planDeleted', function (plan) {
+
+
+    SocialInteraction.dismissInvitations(plan, SocialInteraction.allUsers, handleError);
+
     // remove any offers to join this plan
     ActivityOffer.find({activityPlan: plan._id}).exec(function (err, offers) {
         _.forEach(offers, function (offer) {
@@ -177,6 +198,11 @@ actMgr.on('activity:planUpdated', function(updatedPlan) {
 
 });
 
+function handleError(err) {
+    if(err) {
+        return actMgr.emit('error', err);
+    }
+}
 
 actMgr.on('error', function(err) {
     log.error(err);

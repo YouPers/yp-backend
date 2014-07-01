@@ -19,6 +19,10 @@ var self = module.exports  =  {
             id: '52a97f1650fca98c29000006',
             profile: "5303721a4dba580000000016"
         },
+        yphealthcoach: {
+            id: '53348c27996c80a534319bda',
+            username: 'yphealthcoach'
+        },
         test_ind2: {
             id: '52a97f1650fca98c29000007',
             profile: "5303721a4dba580000000017"
@@ -29,10 +33,17 @@ var self = module.exports  =  {
         test_campaignlead: {
             id: '52a97f1650fca98c2900000b',
             username: 'test_campaignlead'
+        },
+        test_orgadm: {
+            id: '52a97f1650fca98c2900000a',
+            username: 'test_orgadm'
         }
     },
     assessment: {
         id: '525faf0ac558d40000000005'
+    },
+    organization: {
+        id: '52f0c64e53d523235b07d8d8'
     },
     newUser: function (cb) {
         var User = mongoose.model('User');
@@ -53,7 +64,15 @@ var self = module.exports  =  {
                 // add the email back in, because it is not part of the default selected properties of user.
 
                 user.email = 'ypunittest1+TestUser' + rnd + '@gmail.com';
-                return cb(null, user);
+
+                return cb(null, user, function cleanup() {
+
+                    frisby.create('TestCleanUp: remove User')
+                        .delete(URL + '/users/' + user.id)
+                        .auth('test_sysadm', 'yp')
+                        .expectStatus(200)
+                        .toss();
+                });
             });
         });
     },

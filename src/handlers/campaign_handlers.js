@@ -6,6 +6,7 @@ var stats = require('../util/stats'),
     mongoose = require('mongoose'),
     Organization = mongoose.model('Organization'),
     Campaign = mongoose.model('Campaign'),
+    SocialInteraction = require('../core/SocialInteraction'),
     async = require('async'),
     email = require('../util/email'),
     image = require('../util/image'),
@@ -260,6 +261,11 @@ var postCampaignLeadInviteFn = function postCampaignLeadInviteFn(req, res, next)
                             if (err) {
                                 return done(err);
                             }
+
+                            if (invitedUser && invitedUser.length === 1) {
+                                SocialInteraction.emit('invitation:campaignLead', req.user, invitedUser[0], locals.campaign);
+                            }
+
                             email.sendCampaignLeadInvite(emailaddress, req.user, locals.campaign, invitedUser && invitedUser[0], req.i18n);
                             return done();
                         });
@@ -350,6 +356,8 @@ var assignCampaignLeadFn = function assignCampaignLeadFn(req, res, next) {
                     }
                 });
             }
+
+            SocialInteraction.dismissInvitations(campaign, req.user);
 
             res.send(200, campaign);
             return next();

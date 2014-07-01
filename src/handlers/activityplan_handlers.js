@@ -5,6 +5,7 @@ var calendar = require('../util/calendar'),
     ActivityEvent = mongoose.model('ActivityEvent'),
     ActivityOffer = mongoose.model('ActivityOffer'),
     actMgr = require('../core/ActivityManagement'),
+    SocialInteraction = require('../core/SocialInteraction'),
     generic = require('./generic'),
     error = require('../util/error'),
     _ = require('lodash'),
@@ -282,6 +283,7 @@ function postJoinActivityPlanFn(req, res, next) {
                 email.sendCalInvite(req.user, 'new', myIcalString, masterPlan, req.i18n);
             }
             masterPlan.save(generic.writeObjCb(req, res, next));
+            actMgr.emit('activity:planJoined', masterPlan, req.user);
         });
     });
 
@@ -344,9 +346,13 @@ function postActivityPlanInvite(req, res, next) {
                                 return done(err);
                             }
 
+
                             // if this is an existing user, we create an offer and a notification
                             // if NOT, we just send the email
                             if (invitedUser && invitedUser.length === 1) {
+
+                                SocialInteraction.emit('invitation:activityPlan', req.user, invitedUser[0], locals.plan);
+
                                 // save the corresponding ActivityOffer
                                 var actOffer = new ActivityOffer({
                                     idea: locals.plan.idea._id,

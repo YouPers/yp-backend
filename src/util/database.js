@@ -27,7 +27,6 @@ var initialize = function initialize(loadTestData) {
             'assessmentResultAnswer',
             'assessmentResult',
             'campaign',
-            'comment',
             'goal',
             'organization',
             'paymentCode',
@@ -35,7 +34,15 @@ var initialize = function initialize(loadTestData) {
             'user',
             'notification',
             'notificationDismissed',
-            'diaryEntry'];
+            'diaryEntry',
+
+            'space',
+            'socialInteraction',
+            'socialInteractionDismissed',
+            'message',
+            'invitation',
+            'recommendation'
+        ];
         if (!loadTestData) {
             config.loadTestData = false;
         }

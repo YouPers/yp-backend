@@ -1,6 +1,6 @@
 var calendar = require('../util/calendar'),
     mongoose = require('mongoose'),
-    ActivityPlan = mongoose.model('ActivityPlan'),
+    Activity = mongoose.model('Activity'),
     Idea = mongoose.model('Idea'),
     ActivityEvent = mongoose.model('ActivityEvent'),
     actMgr = require('../core/ActivityManagement'),
@@ -14,11 +14,11 @@ var calendar = require('../util/calendar'),
     auth = require('../util/auth'),
     handlerUtils = require('./handlerUtils');
 
-function _getEvents(plan, ownerId, fromDate) {
+function _getEvents(activity, ownerId, fromDate) {
 
-    var duration = moment(plan.mainEvent.end).diff(plan.mainEvent.start);
+    var duration = moment(activity.mainEvent.end).diff(activity.mainEvent.start);
 
-    var occurrences = calendar.getOccurrences(plan, fromDate);
+    var occurrences = calendar.getOccurrences(activity, fromDate);
 
     var events = [];
 
@@ -27,37 +27,37 @@ function _getEvents(plan, ownerId, fromDate) {
             status: 'open',
             start: moment(instance).toDate(),
             end: moment(instance).add('ms', duration).toDate(),
-            activityPlan: plan._id,
-            idea: plan.idea,
+            activity: activity._id,
+            idea: activity.idea,
             owner: ownerId,
-            campaign: plan.campaign
+            campaign: activity.campaign
         });
     });
 
     return events;
 }
 
-function getActivityPlanConflicts(req, res, next) {
-    var sentPlan = req.body;
+function getActivityConflicts(req, res, next) {
+    var sentActivity = req.body;
 
     // check required Attributes
-    if (!sentPlan.mainEvent) {
+    if (!sentActivity.mainEvent) {
         return next(new error.MissingParameterError({ required: 'mainEvent' }));
     }
 
-    if (!sentPlan.mainEvent.start) {
+    if (!sentActivity.mainEvent.start) {
         return next(new error.MissingParameterError({ required: 'mainEvent.start' }));
     }
-    if (!sentPlan.mainEvent.end) {
+    if (!sentActivity.mainEvent.end) {
         return next(new error.MissingParameterError({ required: 'mainEvent.end' }));
     }
 
-    if (!sentPlan.mainEvent.recurrence.byday) {
-        sentPlan.mainEvent.recurrence.byday = req.user.profile.prefs.defaultWorkWeek;
+    if (!sentActivity.mainEvent.recurrence.byday) {
+        sentActivity.mainEvent.recurrence.byday = req.user.profile.prefs.defaultWorkWeek;
     }
 
-    // generate all events from the sentPlan to validate -> sentEvents
-    var newEvents = _getEvents(sentPlan, req.user.id);
+    // generate all events from the sentActivity to validate -> sentEvents
+    var newEvents = _getEvents(sentActivity, req.user.id);
 
     // load all planned events of this user that:
     //     plannedEvent.start before the end of the last sentEvent.end
@@ -70,13 +70,13 @@ function getActivityPlanConflicts(req, res, next) {
     // var endOfLastNewEvent = newEvents[newEvents.length-1].end;
 
 
-    // if the sentPlan has an id, we want to exclude it from the conflicts-search, because this is an editing of a plan
+    // if the sentActivity has an id, we want to exclude it from the conflicts-search, because this is an editing of a activity
     // and conflicts with itself should not be returned.
     var q = ActivityEvent
         .find({owner: req.user._id, status: 'open'});
 
-    if (sentPlan.id) {
-        q.where({$ne: {activityPlan: mongoose.Types.ObjectId(sentPlan.id)}});
+    if (sentActivity.id) {
+        q.where({$ne: {activity: mongoose.Types.ObjectId(sentActivity.id)}});
     }
     q.exec(function (err, oldEvents) {
         if (err) {
@@ -90,7 +90,7 @@ function getActivityPlanConflicts(req, res, next) {
         _.forEach(oldEvents, function (event) {
             // use plain "non-mongoose" object to prevent troubles with serializing the "pseudo attribute" title
             var plainEventObj = event.toObject();
-            // plainEventObj.title = plan.title;
+            // plainEventObj.title = activity.title;
             delete plainEventObj._id;
             plannedEvents.push(plainEventObj);
         });
@@ -119,137 +119,137 @@ function getActivityPlanConflicts(req, res, next) {
 
 
 /**
- * handles a POST request to /ActivityPlan
- * generates all the ActivityEvents according to the planning options in the plan.
+ * handles a POST request to /Activity
+ * generates all the ActivityEvents according to the planning options in the activity.
  *
  * @param req
  * @param res
  * @param next
  */
-function postNewActivityPlan(req, res, next) {
-    var sentPlan = req.body;
+function postNewActivity(req, res, next) {
+    var sentActivity = req.body;
 
-    var err = handlerUtils.checkWritingPreCond(sentPlan, req.user, ActivityPlan);
+    var err = handlerUtils.checkWritingPreCond(sentActivity, req.user, Activity);
     if (err) {
         return error.handleError(err, next);
     }
 
     // check required Attributes
-    if (!sentPlan.mainEvent) {
+    if (!sentActivity.mainEvent) {
         return next(new error.MissingParameterError({ required: 'mainEvent' }));
     }
 
-    if (!sentPlan.mainEvent.start) {
+    if (!sentActivity.mainEvent.start) {
         return next(new error.MissingParameterError({ required: 'mainEvent.start' }));
     }
-    if (!sentPlan.mainEvent.end) {
+    if (!sentActivity.mainEvent.end) {
         return next(new error.MissingParameterError({ required: 'mainEvent.end' }));
     }
 
-    if (!sentPlan.idea) {
+    if (!sentActivity.idea) {
         return next(new error.MissingParameterError('"idea" is a required attribute', { required: 'idea' }));
     }
 
-    if (sentPlan.joiningUsers && sentPlan.joiningUsers.length > 0) {
-        return next(new error.InvalidArgumentError('"joiningUsers" has to be emtpy for now plan, use JOIN Api to join an existing plan'));
+    if (sentActivity.joiningUsers && sentActivity.joiningUsers.length > 0) {
+        return next(new error.InvalidArgumentError('"joiningUsers" has to be emtpy for new activity, use JOIN Api to join an existing activity'));
     }
 
     // check whether delivered owner is the authenticated user
-    if (sentPlan.owner && (req.user.id !== sentPlan.owner)) {
+    if (sentActivity.owner && (req.user.id !== sentActivity.owner)) {
         return next(new error.NotAuthorizedError({
             userId: req.user.id,
-            owner: sentPlan.owner
+            owner: sentActivity.owner
         }));
     }
 
     // if no owner delivered set to authenticated user
-    if (!sentPlan.owner) {
-        sentPlan.owner = req.user.id;
+    if (!sentActivity.owner) {
+        sentActivity.owner = req.user.id;
     }
 
-    // set the campaign that this Plan is part of if it has not been set by the client
-    if (!sentPlan.campaign && req.user.campaign) {
-        sentPlan.campaign = req.user.campaign.id || req.user.campaign; // allow populated and unpopulated campaign
+    // set the campaign that this activity is part of if it has not been set by the client
+    if (!sentActivity.campaign && req.user.campaign) {
+        sentActivity.campaign = req.user.campaign.id || req.user.campaign; // allow populated and unpopulated campaign
     }
 
     // set the byday of the mainEvent to the user's default if the client did not do it, only for daily activities
-    if (sentPlan.mainEvent.frequency === 'day' && !sentPlan.mainEvent.recurrence.byday) {
-        sentPlan.mainEvent.recurrence.byday = req.user.profile.prefs.defaultWorkWeek;
+    if (sentActivity.mainEvent.frequency === 'day' && !sentActivity.mainEvent.recurrence.byday) {
+        sentActivity.mainEvent.recurrence.byday = req.user.profile.prefs.defaultWorkWeek;
     }
 
-    var newActPlan = new ActivityPlan(sentPlan);
+    var newActivity = new Activity(sentActivity);
 
-    _saveNewActivityPlan(newActPlan, req, function (err, plan) {
+    _saveNewActivity(newActivity, req, function (err, savedActivity) {
         if (err) {
             return error.handleError(err, next);
         }
 
-        var events = _getEvents(plan, req.user.id);
+        var events = _getEvents(savedActivity, req.user.id);
 
         ActivityEvent.create(events, function (err) {
             if (err) {
                 return error.handleError(err, next);
             }
 
-            generic.writeObjCb(req, res, next)(null, plan);
+            generic.writeObjCb(req, res, next)(null, savedActivity);
         });
     });
 }
 
 
 /**
- * save new activityPlan with a mongoose obj that already has been validated
+ * save new activity with a mongoose obj that already has been validated
  *
- * @param plan - activityPlan obj
+ * @param activity - activity obj
  * @param req - the request
  * @param cb - callback(err, savedPlan)
  */
-function _saveNewActivityPlan(plan, req, cb) {
+function _saveNewActivity(activity, req, cb) {
     var user = req.user;
     var i18n = req.i18n;
 
-    // add fields of idea to the activityPlan
-    Idea.findById(plan.idea).exec(function (err, foundIdea) {
+    // add fields of idea to the activity
+    Idea.findById(activity.idea).exec(function (err, foundIdea) {
         if (err) {
             return cb(err);
         }
 
         if (!foundIdea) {
-            return cb(new error.InvalidArgumentError('referenced idea not found', { required: 'idea', idea: plan.idea }));
+            return cb(new error.InvalidArgumentError('referenced idea not found', { required: 'idea', idea: activity.idea }));
         }
 
-        plan.fields = foundIdea.fields;
+        activity.fields = foundIdea.fields;
 
-        if (!plan.title) {
-            plan.title = foundIdea.title;
+        if (!activity.title) {
+            activity.title = foundIdea.title;
         }
 
-        plan.save(function (err, savedPlan) {
+        activity.save(function (err, savedActivity) {
             if (err) {
                 return cb(err);
             }
 
-            // we reload ActivityPlan for two reasons:
+            // we reload Activity for two reasons:
             // - populate 'idea' so we can get create a nice calendar entry
             // - we need to reload so we get the changes that have been done pre('save') and pre('init')
             //   like updating the joiningUsers Collection
-            ActivityPlan.findById(savedPlan._id).populate('idea owner').exec(function (err, reloadedActPlan) {
+            Activity.findById(savedActivity._id).populate('idea owner').exec(function (err, reloadedActivity) {
                 if (err) {
                     return cb(err);
                 }
 
                 if (user && user.email && user.profile.prefs.email.iCalInvites) {
-                    req.log.debug({start: reloadedActPlan.mainEvent.start, end: reloadedActPlan.mainEvent.end}, 'Saved New Plan');
-                    var myIcalString = calendar.getIcalObject(reloadedActPlan, user, 'new', i18n).toString();
-                    email.sendCalInvite(user, 'new', myIcalString, reloadedActPlan, i18n);
+                    req.log.debug({start: reloadedActivity.mainEvent.start, end: reloadedActivity.mainEvent.end}, 'Saved New activity');
+                    var myIcalString = calendar.getIcalObject(reloadedActivity, user, 'new', i18n).toString();
+                    email.sendCalInvite(user, 'new', myIcalString, reloadedActivity, i18n);
                 }
 
-                actMgr.emit('activity:planSaved', reloadedActPlan);
+                actMgr.emit('activity:activitySaved', reloadedActivity);
 
-                // remove the populated idea and masterplan because the client is not gonna expect it to be populated.
-                reloadedActPlan.idea = reloadedActPlan.idea._id;
+                // remove the populated idea because the client is not gonna expect it to be populated.
+                reloadedActivity.idea = reloadedActivity.idea._id;
 
-                return cb(null, reloadedActPlan);
+                return cb(null, reloadedActivity);
 
             });
 
@@ -258,38 +258,44 @@ function _saveNewActivityPlan(plan, req, cb) {
 }
 
 
-function postJoinActivityPlanFn(req, res, next) {
+function postJoinActivityFn(req, res, next) {
 
     if (!req.params || !req.params.id) {
         return next(new error.MissingParameterError({ required: 'id' }));
     }
 
-    ActivityPlan.findById(req.params.id).exec(function (err, masterPlan) {
+    Activity.findById(req.params.id).exec(function (err, masterActivity) {
 
         if (err) {
             return error.handleError(err, next);
         }
 
-        masterPlan.joiningUsers.push(req.user.id);
-        var events = _getEvents(masterPlan, req.user.id);
+        if (_.any(masterActivity.joiningUsers, function(joinerObjId) {
+            return joinerObjId.equals(req.user._id);
+        })) {
+            return next(new error.InvalidArgumentError('this user has already joined this activity', {user: req.user, activity: masterActivity}));
+        }
+
+        masterActivity.joiningUsers.push(req.user.id);
+        var events = _getEvents(masterActivity, req.user.id);
 
         ActivityEvent.create(events, function (err, events) {
             if (err) {
                 return error.handleError(err, next);
             }
             if (req.user && req.user.email && req.user.profile.prefs.email.iCalInvites) {
-                var myIcalString = calendar.getIcalObject(masterPlan, req.user, 'new', req.i18n).toString();
-                email.sendCalInvite(req.user, 'new', myIcalString, masterPlan, req.i18n);
+                var myIcalString = calendar.getIcalObject(masterActivity, req.user, 'new', req.i18n).toString();
+                email.sendCalInvite(req.user, 'new', myIcalString, masterActivity, req.i18n);
             }
-            masterPlan.save(generic.writeObjCb(req, res, next));
-            actMgr.emit('activity:planJoined', masterPlan, req.user);
+            masterActivity.save(generic.writeObjCb(req, res, next));
+            actMgr.emit('activity:activityJoined', masterActivity, req.user);
         });
     });
 
 }
 
 
-function postActivityPlanInvite(req, res, next) {
+function postActivityInvite(req, res, next) {
     if (!req.params || !req.params.id) {
         return next(new error.MissingParameterError({ required: 'id' }));
     }
@@ -314,21 +320,21 @@ function postActivityPlanInvite(req, res, next) {
     var locals = {
     };
     async.series([
-        // first load ActivityPlan
+        // first load Activity
         function (done) {
-            ActivityPlan.findById(req.params.id)
+            Activity.findById(req.params.id)
                 .populate('idea')
                 .populate('owner')
-                .exec(function (err, plan) {
+                .exec(function (err, activity) {
                     if (err) {
                         return done(err);
                     }
-                    if (!plan) {
-                        return done(new error.ResourceNotFoundError('ActivityPlan not found.', {
+                    if (!activity) {
+                        return done(new error.ResourceNotFoundError('Activity not found.', {
                             id: req.params.id
                         }));
                     }
-                    locals.plan = plan;
+                    locals.activity = activity;
                     return done();
                 });
         },
@@ -355,7 +361,7 @@ function postActivityPlanInvite(req, res, next) {
                                 recipients.push(emailaddress);
                             }
 
-                            email.sendActivityPlanInvite(emailaddress, req.user, locals.plan, invitedUsers && invitedUsers[0], req.i18n);
+                            email.sendActivityInvite(emailaddress, req.user, locals.activity, invitedUsers && invitedUsers[0], req.i18n);
                             return done();
                         });
                 },
@@ -363,7 +369,7 @@ function postActivityPlanInvite(req, res, next) {
                     if (err) {
                         return error.handleError(err, done);
                     }
-                    SocialInteraction.emit('invitation:activityPlan', req.user, recipients, locals.plan);
+                    SocialInteraction.emit('invitation:activity', req.user, recipients, locals.activity);
                     done();
                 });
         }
@@ -377,29 +383,29 @@ function postActivityPlanInvite(req, res, next) {
 }
 
 
-function _sendIcalMessages(activityPlan, joiner, req, reason, type, done) {
+function _sendIcalMessages(activity, joiner, req, reason, type, done) {
     var users;
     if (joiner) {
         users = [joiner];
     } else {
-        users = [activityPlan.owner].concat(activityPlan.joiningUsers);
+        users = [activity.owner].concat(activity.joiningUsers);
     }
 
     mongoose.model('Profile').populate(users, {path: 'profile', model: 'Profile'}, function (err, populatedUsers) {
         async.forEach(populatedUsers, function (user, next) {
                 if (user.profile.prefs.email.iCalInvites) {
-                    var myIcalString = calendar.getIcalObject(activityPlan, user, type, req.i18n, reason).toString();
-                    email.sendCalInvite(user, type, myIcalString, activityPlan, req.i18n, reason);
+                    var myIcalString = calendar.getIcalObject(activity, user, type, req.i18n, reason).toString();
+                    email.sendCalInvite(user, type, myIcalString, activity, req.i18n, reason);
                 }
                 return next();
             },
             done);
     });
 }
-function _deleteActivityEvents(activityPlan, joiner, fromDate, done) {
+function _deleteActivityEvents(activity, joiner, fromDate, done) {
 
     var q = ActivityEvent
-        .remove({activityPlan: activityPlan._id});
+        .remove({activity: activity._id});
 
     if (fromDate) {
         q.where({start: {$gte: fromDate}});
@@ -417,81 +423,81 @@ function _deleteActivityEvents(activityPlan, joiner, fromDate, done) {
     });
 }
 
-function deleteActivityPlan(req, res, next) {
+function deleteActivity(req, res, next) {
     if (!req.params || !req.params.id) {
         return next(new error.MissingParameterError({ required: 'id' }));
     }
     var reason = req.params.reason || 'The organizer Deleted this activity';
 
-    ActivityPlan
+    Activity
         .findById(req.params.id)
         .populate('idea')
         .populate('owner joiningUsers', '+profile +email')
-        .exec(function (err, activityPlan) {
+        .exec(function (err, activity) {
 
             if (err) {
                 return error.handleError(err, next);
             }
-            if (!activityPlan) {
-                return next(new error.ResourceNotFoundError('ActivityPlan not found.', {
+            if (!activity) {
+                return next(new error.ResourceNotFoundError('Activity not found.', {
                     id: req.params.id
                 }));
             }
-            var joiner = _.find(activityPlan.joiningUsers, function (user) {
+            var joiner = _.find(activity.joiningUsers, function (user) {
                 return user.equals(req.user);
             });
 
             var sysadmin = auth.checkAccess(req.user, auth.accessLevels.al_systemadmin);
 
-            var owner = activityPlan.owner._id.equals(req.user._id);
+            var owner = activity.owner._id.equals(req.user._id);
 
-            // plan can be deleted if user is systemadmin or if it is his own plan or if the user is a joiner
+            // activity can be deleted if user is systemadmin or if it is his own activity or if the user is a joiner
             if (!(sysadmin || owner || joiner)) {
                 return next(new error.NotAuthorizedError());
             }
 
-            if (activityPlan.deleteStatus === ActivityPlan.notDeletableNoFutureEvents && !sysadmin) {
+            if (activity.deleteStatus === Activity.notDeletableNoFutureEvents && !sysadmin) {
                 // if this is not deletable because of no future events we have in fact
                 // nothing to do, we just pretend that we deleted all future events, by doing nothing
                 // and signalling success
-                actMgr.emit('activity:planDeleted', activityPlan);
+                actMgr.emit('activity:activityDeleted', activity);
                 res.send(200);
                 return next();
             }
 
             function _deleteEvents(done) {
                 if (sysadmin) {
-                    _deleteActivityEvents(activityPlan, joiner, null, done);
+                    _deleteActivityEvents(activity, joiner, null, done);
                 } else {
-                    _deleteActivityEvents(activityPlan, joiner, new Date(), done);
+                    _deleteActivityEvents(activity, joiner, new Date(), done);
                 }
             }
 
             function _sendCalendarCancelMessages(done) {
-                _sendIcalMessages(activityPlan, joiner, req, reason, 'cancel', done);
+                _sendIcalMessages(activity, joiner, req, reason, 'cancel', done);
             }
 
-            function _deletePlan(done) {
+            function _deleteActivity(done) {
 
                 if (joiner) {
-                    activityPlan.joiningUsers.remove(req.user);
-                    activityPlan.save(done);
+                    activity.joiningUsers.remove(req.user);
+                    activity.save(done);
                 } else {
-                    var deleteStatus = activityPlan.deleteStatus;
+                    var deleteStatus = activity.deleteStatus;
                     if (deleteStatus === 'deletable' || sysadmin) {
-                        activityPlan.remove(done);
+                        activity.remove(done);
                     } else if (deleteStatus === 'deletableOnlyFutureEvents') {
-                        activityPlan.status = 'old';
-                        if (activityPlan.mainEvent.frequency !== 'once') {
-                            activityPlan.mainEvent.recurrence.on = new Date();
-                            activityPlan.mainEvent.recurrence.after = undefined;
-                            activityPlan.save(done);
+                        activity.status = 'old';
+                        if (activity.mainEvent.frequency !== 'once') {
+                            activity.mainEvent.recurrence.on = new Date();
+                            activity.mainEvent.recurrence.after = undefined;
+                            activity.save(done);
                         } else {
-                            throw new Error('should never arrive here, it is not possible to have an "once" plan that has ' +
+                            throw new Error('should never arrive here, it is not possible to have an "once" activity that has ' +
                                 'passed and future events at the same time');
                         }
                     } else {
-                        throw new Error('unknown DeleteStatus: ' + activityPlan.deleteStatus);
+                        throw new Error('unknown DeleteStatus: ' + activity.deleteStatus);
                     }
 
                 }
@@ -501,13 +507,13 @@ function deleteActivityPlan(req, res, next) {
             return async.parallel([
                     _sendCalendarCancelMessages,
                     _deleteEvents,
-                    _deletePlan
+                    _deleteActivity
                 ],
                 function (err) {
                     if (err) {
                         return error.handleError(err, next);
                     }
-                    actMgr.emit('activity:planDeleted', activityPlan);
+                    actMgr.emit('activity:activityDeleted', activity);
                     res.send(200);
                     return next();
                 });
@@ -515,65 +521,65 @@ function deleteActivityPlan(req, res, next) {
 }
 
 
-function putActivityPlan(req, res, next) {
-    var sentPlan = req.body;
-    var err = handlerUtils.checkWritingPreCond(sentPlan, req.user, ActivityPlan);
+function putActivity(req, res, next) {
+    var sentActivity = req.body;
+    var err = handlerUtils.checkWritingPreCond(sentActivity, req.user, Activity);
     if (err) {
         return error.handleError(err, next);
     }
 
     // check required Attributes, if we get a main event, at least from and to must be set
-    if (sentPlan.mainEvent) {
-        if (!sentPlan.mainEvent.start) {
+    if (sentActivity.mainEvent) {
+        if (!sentActivity.mainEvent.start) {
             return next(new error.MissingParameterError({ required: 'mainEvent.start' }));
         }
-        if (!sentPlan.mainEvent.end) {
+        if (!sentActivity.mainEvent.end) {
             return next(new error.MissingParameterError({ required: 'mainEvent.end' }));
         }
     }
 
 
-    ActivityPlan
+    Activity
         .findById(req.params.id)
         .populate('idea')
         .populate('owner joiningUsers', '+profile +email')
-        .exec(function (err, loadedActPlan) {
+        .exec(function (err, loadedActivity) {
             if (err) {
                 return error.handleError(err, next);
             }
-            if (!loadedActPlan) {
-                return next(new error.ResourceNotFoundError('ActivityPlan not found.', { id: sentPlan.id }));
+            if (!loadedActivity) {
+                return next(new error.ResourceNotFoundError('Activity not found.', { id: sentActivity.id }));
             }
 
-            // check to see if received plan is editable
-            if (loadedActPlan.editStatus !== "editable") {
-                return next(new error.ConflictError('Error updating in Idea Plan PutFn: Not allowed to edit this activityPlan.', {
-                    activityPlanId: sentPlan.id,
-                    editStatus: loadedActPlan.editStatus
+            // check to see if received activity is editable
+            if (loadedActivity.editStatus !== "editable") {
+                return next(new error.ConflictError('Error updating in activityPutFn: Not allowed to edit this activity.', {
+                    activityId: sentActivity.id,
+                    editStatus: loadedActivity.editStatus
                 }));
             }
 
-            // we do not allow to update the owner of a plan and the joiningUsers array directly with a put.
-            delete sentPlan.owner;
-            delete sentPlan.joiningUsers;
+            // we do not allow to update the owner of and the joiningUsers array directly with a put.
+            delete sentActivity.owner;
+            delete sentActivity.joiningUsers;
 
-            _.extend(loadedActPlan, sentPlan);
+            _.extend(loadedActivity, sentActivity);
 
 
-            function _savePlan(done) {
-                loadedActPlan.save(done);
+            function _saveActivity(done) {
+                loadedActivity.save(done);
             }
 
             function _deleteEventsInFuture(done) {
-                if (sentPlan.mainEvent && !_.isEqual(sentPlan.mainEvent, loadedActPlan.mainEvent)) {
-                    return _deleteActivityEvents(loadedActPlan, null, new Date(), done);
+                if (sentActivity.mainEvent && !_.isEqual(sentActivity.mainEvent, loadedActivity.mainEvent)) {
+                    return _deleteActivityEvents(loadedActivity, null, new Date(), done);
                 } else {
                     return done();
                 }
             }
 
             function _sendCalendarUpdates(done) {
-                _sendIcalMessages(loadedActPlan, null, req, null, 'cancel', done);
+                _sendIcalMessages(loadedActivity, null, req, null, 'cancel', done);
             }
 
 
@@ -582,21 +588,21 @@ function putActivityPlan(req, res, next) {
                     return error.handleError(err, next);
                 }
 
-                loadedActPlan.idea = loadedActPlan.idea._id;
+                loadedActivity.idea = loadedActivity.idea._id;
 
-                actMgr.emit('activity:planUpdated', loadedActPlan);
+                actMgr.emit('activity:activityUpdated', loadedActivity);
 
-                res.send(200, loadedActPlan);
+                res.send(200, loadedActivity);
                 return next();
             }
 
 
             function _updateEventsForAllUsers(done) {
-                if (sentPlan.mainEvent && !_.isEqual(sentPlan.mainEvent, loadedActPlan.mainEvent)) {
-                    var users = [loadedActPlan.owner].concat(loadedActPlan.joiningUsers);
+                if (sentActivity.mainEvent && !_.isEqual(sentActivity.mainEvent, loadedActivity.mainEvent)) {
+                    var users = [loadedActivity.owner].concat(loadedActivity.joiningUsers);
 
                     return async.forEach(users, function (user, cb) {
-                        var events = _getEvents(loadedActPlan, user._id, new Date());
+                        var events = _getEvents(loadedActivity, user._id, new Date());
                         ActivityEvent.create(events, cb);
                     }, done);
                 } else {
@@ -606,7 +612,7 @@ function putActivityPlan(req, res, next) {
             }
 
             return async.parallel([
-                    _savePlan,
+                    _saveActivity,
                     _sendCalendarUpdates,
                     function (done) {
                         async.series([
@@ -620,10 +626,10 @@ function putActivityPlan(req, res, next) {
 }
 
 module.exports = {
-    postNewActivityPlan: postNewActivityPlan,
-    postJoinActivityPlanFn: postJoinActivityPlanFn,
-    postActivityPlanInvite: postActivityPlanInvite,
-    deleteActivityPlan: deleteActivityPlan,
-    putActivityPlan: putActivityPlan,
-    getActivityPlanConflicts: getActivityPlanConflicts
+    postNewActivity: postNewActivity,
+    postJoinActivityFn: postJoinActivityFn,
+    postActivityInvite: postActivityInvite,
+    deleteActivity: deleteActivity,
+    putActivity: putActivity,
+    getActivityConflicts: getActivityConflicts
 };

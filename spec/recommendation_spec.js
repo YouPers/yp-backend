@@ -133,10 +133,9 @@ consts.newUserInNewCampaignApi(
                         var idea = recs[0].idea;
 
                         frisby.create('Recommendations: plan a recommended activity')
-                            .post(URL + '/activityplans', {
+                            .post(URL + '/activities', {
                                 "owner": user,
                                 "idea": idea,
-                                "visibility": "public",
                                 "campaign": campaign.id,
                                 "title": "myTitle",
                                 "executionType": "group",

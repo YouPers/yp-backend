@@ -5,7 +5,7 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
     ObjectId = Schema.ObjectId,
     common = require('./common'),
-    notificationTypes = ['message', 'personalInvitation', 'joinablePlan', 'activityRecommendation'],
+    notificationTypes = ['Message', 'Invitation', 'Recommendation'],
     sourceTypes = ['youpers', 'campaign', 'community'];
 
 /**

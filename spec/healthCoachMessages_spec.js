@@ -82,7 +82,7 @@ describe('HealthCoach Module', function () {
                 expect(err).toBeNull();
                 expect(user).toBeDefined();
 
-                var activityPlanHandler = require('../src/handlers/activityplan_handlers');
+                var activityHandler = require('../src/handlers/activity_handlers');
                 var req = {};
                 req.log = log;
                 req.i18n = ypi18n.initialize();
@@ -108,7 +108,7 @@ describe('HealthCoach Module', function () {
                     res.body = body;
                 }};
 
-            activityPlanHandler.postNewActivityPlan(req, res,
+            activityHandler.postNewActivity(req, res,
             function (err) {
                         expect(err).toBeUndefined();
                         hc.getCurrentMessages(user, 'home.content', function (err, messages, facts) {
@@ -119,7 +119,7 @@ describe('HealthCoach Module', function () {
                             expect(messages[0]).toEqual('hcmsg.1');
                             expect(messages).not.toContain('hsmsg.3');
                             user.remove();
-                            mongoose.model('ActivityEvent').remove({activityPlan: res.body._id}).exec();
+                            mongoose.model('ActivityEvent').remove({activity: res.body._id}).exec();
 
                             res.body.remove();
                             done();

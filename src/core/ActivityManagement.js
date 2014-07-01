@@ -2,7 +2,6 @@ var EventEmitter = require('events').EventEmitter;
 var util = require('util');
 var mongoose = require('mongoose');
 var _ = require('lodash');
-var Notification = require('../core/Notification');
 var Invitation = mongoose.model('Invitation');
 var SocialInteraction = require('../core/SocialInteraction');
 var env = process.env.NODE_ENV || 'development';

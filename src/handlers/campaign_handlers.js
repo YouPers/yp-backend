@@ -261,18 +261,18 @@ var postCampaignLeadInviteFn = function postCampaignLeadInviteFn(req, res, next)
                 function (emailaddress, done) {
                     mongoose.model('User')
                         .find({email: emailaddress})
-                        .exec(function (err, invitedUser) {
+                        .exec(function (err, invitedUsers) {
                             if (err) {
                                 return done(err);
                             }
 
-                            if (invitedUser && invitedUser.length === 1) {
-                                recipients.push(invitedUser);
+                            if (invitedUsers && invitedUsers.length === 1) {
+                                recipients.push(invitedUsers[0]);
                             } else {
                                 recipients.push(emailaddress);
                             }
 
-                            email.sendCampaignLeadInvite(emailaddress, req.user, locals.campaign, invitedUser && invitedUser[0], req.i18n);
+                            email.sendCampaignLeadInvite(emailaddress, req.user, locals.campaign, invitedUsers && invitedUsers[0], req.i18n);
                             return done();
                         });
                 },

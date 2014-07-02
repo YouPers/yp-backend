@@ -89,5 +89,24 @@
                 "$oid": "5278c51a6166f2de240000c1"
             }
         ]
+    },
+    {
+        "__v": 0,
+        "_id": {
+            "$oid": "525faf0ac558d40000000005"
+        },
+        "nameI18n": {
+            "de": "Beurteile Deinen Ernährung",
+            "en": "Assess your personal nutrition"
+        },
+
+        "questions": [
+            {
+                "$oid": "5278c51a6166f2de240000de"
+            },
+            {
+                "$oid": "5278c51a6166f2de240000e0"
+            }
+        ]
     }
 ]

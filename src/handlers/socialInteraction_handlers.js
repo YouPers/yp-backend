@@ -11,7 +11,7 @@ var error = require('../util/error'),
 var getByIdFn = function getByIdFn(baseUrl, Model) {
     return function getById(req, res, next) {
 
-        Model.findById(req.params.id).exec(function(err, socialInteraction) {
+        Model.findById(req.params.id).populate('author').exec(function(err, socialInteraction) {
 
             if (err) {
                 return error.handleError(err, next);

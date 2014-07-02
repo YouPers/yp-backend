@@ -15,33 +15,31 @@ var frequencyMap = {
 };
 
 
-var getIcalObject = function (plan, recipientUser, iCalType, i18n, reason) {
+var getIcalObject = function (activity, recipientUser, iCalType, i18n, reason) {
 
-    // fix for non existing plan.text
-    if (_.isUndefined(plan.text)) {
-        plan.text = "";
+    // fix for non existing activity.text
+    if (_.isUndefined(activity.text)) {
+        activity.text = "";
     }
 
-    var isGroupPlan = plan.executionType === 'group';
+    var isGroupPlan = activity.executionType === 'group';
 
     var myCal = new ical.iCalendar();
     myCal.addProperty("CALSCALE", "GREGORIAN");
-    myCal.addComponent(_getTimezone(plan));
+    myCal.addComponent(_getTimezone(activity));
 
-    // if this is a SlavePlan we use the masterPlans id as the iCal id, if it is a masterPlan we use its id
-    var iCalEventId =  plan._id;
+    var iCalEventId =  activity._id;
     var event = new ical.VEvent(iCalEventId);
 
-    // if this is a SlavePlan we use the masterPlans __v as the iCal SEQUENCE, if it is a masterPlan we use its __v
-    var sequence = plan.__v;
+    var sequence = activity.__v;
     event.addProperty("SEQUENCE", sequence);
 
     if (isGroupPlan) {
 
         // Organizer and attendees are only relevant for group plans
-        var organizer = plan.owner;
+        var organizer = activity.owner;
         var targetAttendee = recipientUser;
-        var otherAttendees = plan.joiningUsers.slice(1);
+        var otherAttendees = activity.joiningUsers.slice(1);
 
         event.addProperty("ORGANIZER", "MAILTO:" + organizer.email, {CN: organizer.fullname});
 
@@ -69,22 +67,22 @@ var getIcalObject = function (plan, recipientUser, iCalType, i18n, reason) {
         throw new Error('unknown iCal ObjectType: ' + iCalType);
     }
 
-    var link = config.webclientUrl + "/#/activities/" + plan.idea._id;
+    var link = config.webclientUrl + "/#/activities/" + activity.idea._id;
 
-    event.setSummary(i18n.t('ical:' + iCalType + ".summary", {plan: plan.toJSON ? plan.toJSON() : plan, recipient: recipientUser.toJSON()}));
-    event.setDescription(i18n.t('ical:' + iCalType + ".description", {plan: plan.toJSON ? plan.toJSON() : plan, recipient: recipientUser.toJSON(), link: link}));
+    event.setSummary(i18n.t('ical:' + iCalType + ".summary", {activity: activity.toJSON ? activity.toJSON() : activity, recipient: recipientUser.toJSON()}));
+    event.setDescription(i18n.t('ical:' + iCalType + ".description", {activity: activity.toJSON ? activity.toJSON() : activity, recipient: recipientUser.toJSON(), link: link}));
     // HTML in description: see here: http://www.limilabs.com/blog/html-formatted-content-in-the-description-field-of-an-icalendar
     event.addProperty("X-ALT-DESC",
         i18n.t('ical:' + iCalType + ".htmlDescription",
-            {plan: plan.toJSON ? plan.toJSON() : plan, recipient: recipientUser.toJSON(), link: link}),
+            {activity: activity.toJSON ? activity.toJSON() : activity, recipient: recipientUser.toJSON(), link: link}),
         {'FMTTYPE': 'text/html'});
-    event.addProperty("LOCATION", plan.location);
+    event.addProperty("LOCATION", activity.location);
     var notifPref = recipientUser.profile.prefs.calendarNotification || "900";
     if (notifPref !== 'none') {
         var alarm = event.addComponent('VALARM');
         alarm.addProperty("ACTION", "DISPLAY");
         alarm.addProperty("TRIGGER", -1 * notifPref);
-        alarm.addProperty("DESCRIPTION", i18n.t('ical:' + iCalType + ".summary", {plan: plan.toJSON ? plan.toJSON() : plan, recipient: recipientUser.toJSON()}));
+        alarm.addProperty("DESCRIPTION", i18n.t('ical:' + iCalType + ".summary", {activity: activity.toJSON ? activity.toJSON() : activity, recipient: recipientUser.toJSON()}));
     }
 
     // TODO: Fix timezone passing in icalevents
@@ -93,31 +91,31 @@ var getIcalObject = function (plan, recipientUser, iCalType, i18n, reason) {
     // and our events are off by 1 or 2 hours. Possible reason: the formatting done by event.addProperty() formats
     // it as UTC. The Reason that the two following lines do not work is because the node-iCalender library simply does not
     // support this feature --> see node-icalendar/lib/types.js line 75
-    //event.addProperty('DTSTART',moment(plan.mainEvent.start).tz('Europe/Zurich').format(), {TZID: CET_TIMEZONE_ID} );
-    //event.addProperty('DTEND',moment(plan.mainEvent.end).tz('Europe/Zurich').format(), {TZID: CET_TIMEZONE_ID} );
+    //event.addProperty('DTSTART',moment(activity.mainEvent.start).tz('Europe/Zurich').format(), {TZID: CET_TIMEZONE_ID} );
+    //event.addProperty('DTEND',moment(activity.mainEvent.end).tz('Europe/Zurich').format(), {TZID: CET_TIMEZONE_ID} );
 
-    var fromDate = moment(plan.mainEvent.start).toDate();
-    var toDate = moment(plan.mainEvent.end).toDate();
+    var fromDate = moment(activity.mainEvent.start).toDate();
+    var toDate = moment(activity.mainEvent.end).toDate();
     fromDate.dateTimeMode = 'floating';
     toDate.dateTimeMode = 'floating';
     event.setDate(fromDate, toDate);
-    log.debug("generated ical with From: " + moment(plan.mainEvent.start).toDate());
-    log.debug("generated ical with To: " + moment(plan.mainEvent.end).toDate());
+    log.debug("generated ical with From: " + moment(activity.mainEvent.start).toDate());
+    log.debug("generated ical with To: " + moment(activity.mainEvent.end).toDate());
 
-    if (plan.mainEvent.recurrence && plan.mainEvent.frequency && plan.mainEvent.frequency !== 'once') {
+    if (activity.mainEvent.recurrence && activity.mainEvent.frequency && activity.mainEvent.frequency !== 'once') {
 
-        if (!frequencyMap[plan.mainEvent.frequency]) {
+        if (!frequencyMap[activity.mainEvent.frequency]) {
             throw new Error("unknown recurrence frequency");
         }
 
-        event.addProperty("RRULE", _getRruleSpec(plan, recipientUser.profile.defaultWorkWeek));
+        event.addProperty("RRULE", _getRruleSpec(activity, recipientUser.profile.defaultWorkWeek));
     }
     event.addProperty("TRANSP", "OPAQUE");
     myCal.addComponent(event);
     return myCal;
 };
 
-function _getRruleSpec(plan) {
+function _getRruleSpec(activity) {
 
     var weekdayMap = {
         '0': 'SU',
@@ -129,31 +127,31 @@ function _getRruleSpec(plan) {
         '6': 'SA'
     };
 
-    var rruleSpec = { FREQ: frequencyMap[plan.mainEvent.frequency] };
+    var rruleSpec = { FREQ: frequencyMap[activity.mainEvent.frequency] };
     if (rruleSpec.FREQ === 'DAILY') {
-        rruleSpec.BYDAY = plan.mainEvent.recurrence.byday.join(',');
+        rruleSpec.BYDAY = activity.mainEvent.recurrence.byday.join(',');
 
         // Outlook Fix: Outlook really does not like it when the startDate is not part of the BYDAY rule.
         // it simply cannot parse the iCal file anymore
         // so if the DTSTART Date is on a day that is not part of the working-Days we add it specifically
         // for this event.
-        var dayOfWeek = weekdayMap['' + moment(plan.mainEvent.start).day()];
+        var dayOfWeek = weekdayMap['' + moment(activity.mainEvent.start).day()];
         if (!_.contains(rruleSpec.BYDAY, dayOfWeek)) {
             rruleSpec.BYDAY = rruleSpec.BYDAY + ',' + dayOfWeek;
         }
     }
 
-    if (plan.mainEvent.recurrence.endby.type === 'on') {
-        rruleSpec.UNTIL = plan.mainEvent.recurrence.endby.on;
-    } else if (plan.mainEvent.recurrence.endby.type === 'after') {
-        rruleSpec.COUNT = plan.mainEvent.recurrence.endby.after;
+    if (activity.mainEvent.recurrence.endby.type === 'on') {
+        rruleSpec.UNTIL = activity.mainEvent.recurrence.endby.on;
+    } else if (activity.mainEvent.recurrence.endby.type === 'after') {
+        rruleSpec.COUNT = activity.mainEvent.recurrence.endby.after;
     }
     return rruleSpec;
 }
 
-function _getTimezone(plan) {
+function _getTimezone(activity) {
 
-    // TOOD: use the correct timezone for this plan, currecntly using fixed CEST timezone
+    // TOOD: use the correct timezone for this activity, currecntly using fixed CEST timezone
     var tz = new ical.VTimezone(null, CET_TIMEZONE_ID);
 
     var std = tz.addComponent('STANDARD');
@@ -171,14 +169,14 @@ function _getTimezone(plan) {
     return tz;
 }
 
-function getOccurrences(plan, fromDate) {
+function getOccurrences(activity, fromDate) {
 
-    fromDate = fromDate || moment(plan.mainEvent.start).subtract('day', 1).toDate();
+    fromDate = fromDate || moment(activity.mainEvent.start).subtract('day', 1).toDate();
 
-    if (plan.mainEvent.frequency === 'once') {
-        return [plan.mainEvent.start];
+    if (activity.mainEvent.frequency === 'once') {
+        return [activity.mainEvent.start];
     } else {
-        var rrule = new ical.RRule(_getRruleSpec(plan), moment(plan.mainEvent.start).toDate());
+        var rrule = new ical.RRule(_getRruleSpec(activity), moment(activity.mainEvent.start).toDate());
         return rrule.nextOccurences(fromDate, 100);
     }
 }

@@ -65,13 +65,13 @@ function _createTargetSpacesFromRecipients(to) {
  * @param activity  the referenced activity
  *
  */
-SocialInteraction.on('invitation:activityPlan', function (from, to, activityPlan) {
+SocialInteraction.on('invitation:activity', function (from, to, activity) {
 
     var invitation = new Invitation({
         author: from._id,
         targetSpaces: _createTargetSpacesFromRecipients(to),
-        refDocs: [{ docId: activityPlan._id, model: 'ActivityPlan'}],
-        publishTo: activityPlan.lastEventEnd
+        refDocs: [{ docId: activity._id, model: 'Activity'}],
+        publishTo: activity.lastEventEnd
     });
 
     invitation.save(function(err, inv) {

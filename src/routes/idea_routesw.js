@@ -22,10 +22,10 @@ module.exports = function (swagger, config) {
     swagger.addModels({
        Recommendation: {
            id: "Recommendation",
-           required: ['activity'],
+           required: ['idea'],
            type: "object",
            properties: {
-               activity: {type: "Idea"},
+               idea: {type: "Idea"},
                weight: {type: "double"}
            }
        }

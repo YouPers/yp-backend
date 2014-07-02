@@ -3,38 +3,38 @@
  *    these routes require authenticated users
  */
 var mongoose = require('mongoose'),
-    Model = mongoose.model('ActivityPlan'),
+    Model = mongoose.model('Activity'),
     generic = require('./../handlers/generic'),
-    handlers = require('../handlers/activityplan_handlers');
+    handlers = require('../handlers/activity_handlers');
 
 module.exports = function (swagger, config) {
 
-    var baseUrl = '/activityplans';
+    var baseUrl = '/activities';
     var baseUrlWithId = baseUrl + '/{id}';
 
     swagger.addPost({
         spec: {
-            description: "Operations about ActivityPlans",
+            description: "Operations about Activities",
             path: baseUrl + "/conflicts",
-            notes: "Gets the list of conflicting events in case there are any for the activityPlan in the body." +
+            notes: "Gets the list of conflicting events in case there are any for the activity in the body." +
                 "If there are no conflicts, it returns an emtpy list",
-            summary: "Validates an activityPlan that a user is about to POST",
+            summary: "Validates an activity that a user is about to POST",
             params: [
                 {
                     paramType: "body",
-                    name: "activityPlan",
-                    description: "the activityPlan to validate",
-                    dataType: "ActivityPlan",
+                    name: "activity",
+                    description: "the activity to validate",
+                    dataType: "Activity",
                     required: true
                 }
             ],
             responseClass: "SchedulingConflict",
             method: "POST",
-            "nickname": "getActivityPlanConflicts",
+            "nickname": "getActivityConflicts",
             accessLevel: 'al_individual',
             beforeCallbacks: []
         },
-        action: handlers.getActivityPlanConflicts
+        action: handlers.getActivityConflicts
     });
 
     swagger.addModels({SchedulingConflict: {
@@ -48,24 +48,24 @@ module.exports = function (swagger, config) {
 
     swagger.addGet({
         spec: {
-            description: "Operations about ActivityPlans",
+            description: "Operations about Activities",
             path: baseUrlWithId,
-            notes: "Returns an activityPlan by Id, only returns the plan if the current user is the owner of the plan",
-            summary: "Returns an activityPlan by Id",
+            notes: "Returns an activity by Id, only returns the activity if the current user is the owner of the activity",
+            summary: "Returns an activity by Id",
             params: [
                 {
                     paramType: "path",
                     name: "id",
-                    description: "the id of the activityPlan to fetch ",
+                    description: "the id of the activity to fetch ",
                     dataType: "string",
                     required: true
                 },
                 generic.params.populate,
                 generic.params.populatedeep
             ],
-            "responseClass": "ActivityPlan",
+            "responseClass": "Activity",
             method: "GET",
-            "nickname": "getActivityPlan",
+            "nickname": "getActivity",
             accessLevel: 'al_individual',
             beforeCallbacks: []
         },
@@ -74,19 +74,19 @@ module.exports = function (swagger, config) {
 
     swagger.addGet({
         spec: {
-            description: "Operations about ActivityPlans",
+            description: "Operations about Activities",
             path: baseUrl,
-            notes: "only returns ActivityPlans of the current user, the API does not allow to retrieve" +
+            notes: "only returns Activities of the current user, the API does not allow to retrieve" +
                 "plans owned by other users",
-            summary: "returns all activityPlans of the currently logged in user",
+            summary: "returns all activities of the currently logged in user",
             method: "GET",
             params: [generic.params.sort,
                 generic.params.limit,
                 generic.params.filter,
                 generic.params.populate,
                 generic.params.populatedeep],
-            "responseClass": "Array[ActivityPlan]",
-            "nickname": "getActivityPlans",
+            "responseClass": "Array[Activity]",
+            "nickname": "getActivities",
             accessLevel: 'al_individual',
             beforeCallbacks: []
         },
@@ -95,36 +95,36 @@ module.exports = function (swagger, config) {
 
     swagger.addDelete({
         spec: {
-            description: "Operations about ActivityPlans",
+            description: "Operations about Activities",
             path: baseUrlWithId,
-            notes: "Deletes a specific activityPlan",
-            summary: "Deletes a specific activityPlan",
+            notes: "Deletes a specific activity",
+            summary: "Deletes a specific activity",
             params: [
                 {
                     paramType: "path",
                     name: "id",
-                    description: "the id of the activityPlan to fetch ",
+                    description: "the id of the activity to fetch ",
                     dataType: "string",
                     required: true
                 }
             ],
 
             method: "DELETE",
-            "nickname": "deleteActivityPlan",
+            "nickname": "deleteActivity",
             accessLevel: 'al_individual',
             beforeCallbacks: []
         },
-        action: handlers.deleteActivityPlan
+        action: handlers.deleteActivity
     });
 
     swagger.addDelete({
         spec: {
-            description: "Operations about ActivityPlans",
+            description: "Operations about Activities",
             path: baseUrl,
-            notes: "Deletes all activityPlans",
-            summary: "Deletes all activityPlans",
+            notes: "Deletes all activities",
+            summary: "Deletes all activities",
             method: "DELETE",
-            "nickname": "deleteActivityPlans",
+            "nickname": "deleteActivities",
             accessLevel: 'al_admin',
             beforeCallbacks: []
         },
@@ -133,10 +133,10 @@ module.exports = function (swagger, config) {
 
     swagger.addPost({
         spec: {
-            description: "Operations about ActivityPlans",
+            description: "Operations about Activities",
             path: baseUrlWithId + "/inviteEmail",
             notes: "Posts an invitation for one or more email-addresses",
-            summary: "Request an invitation for joining this plan to be sent by the backend to the supplied email address(es)",
+            summary: "Request an invitation for joining this activity to be sent by the backend to the supplied email address(es)",
             params: [
                 {
                     paramType: "body",
@@ -145,14 +145,14 @@ module.exports = function (swagger, config) {
                     dataType: "EmailObject",
                     required: true
                 },
-                swagger.pathParam("id", "the id of the activityPlan to invite", "string")
+                swagger.pathParam("id", "the id of the activity to invite", "string")
             ],
             method: "POST",
-            "nickname": "postActivityPlanInvite",
+            "nickname": "postActivityInvite",
             accessLevel: 'al_individual',
             beforeCallbacks: []
         },
-        action: handlers.postActivityPlanInvite
+        action: handlers.postActivityInvite
     });
 
     swagger.addModels({EmailObject: {
@@ -165,62 +165,59 @@ module.exports = function (swagger, config) {
 
     swagger.addPost({
         spec: {
-            description: "Operations about ActivityPlans",
+            description: "Operations about Activities",
             path: baseUrlWithId + "/join",
-            notes: "Joins an activityPlan",
-            summary: "Joins an activityPlan",
-            params: [swagger.pathParam("id", "the id of the activityPlan to join", "string")],
+            notes: "Joins an activity",
+            summary: "Joins an activity",
+            params: [swagger.pathParam("id", "the id of the activity to join", "string")],
             method: "POST",
-            "nickname": "postJoinActivityPlanFn",
+            "nickname": "postJoinActivityFn",
             accessLevel: 'al_individual',
             beforeCallbacks: []
         },
-        action: handlers.postJoinActivityPlanFn
+        action: handlers.postJoinActivityFn
     });
 
 
     swagger.addPost({
         spec: {
-            description: "Operations about ActivityPlans",
+            description: "Operations about Activities",
             path: baseUrl,
-            notes: "Posts a new plan, when the attribute masterPlan is set to the string of another plan, " +
-                "then the new plan is just a slave of " +
-                "this plan (the user is basically joining the masterPlan). When the attribute masterPlan is empty," +
-                "then this new plan can become a masterPlan, when other users post slavePlans later.",
-            summary: "Posts a new activityPlan",
-            responseClass: "ActivityPlan",
+            notes: "Posts a new activity. JoiningUsers property has to be empty - use the activity/join API to join an existing activity",
+            summary: "Posts a new activity",
+            responseClass: "Activity",
             params: [
                 {
                     paramType: "body",
-                    name: "activityPlan",
-                    description: "the activityPlan to store",
-                    dataType: "ActivityPlan",
+                    name: "activity",
+                    description: "the activity to store",
+                    dataType: "Activity",
                     required: true
                 }
             ],
             method: "POST",
-            nickname: "postActivityPlan",
+            nickname: "postActivity",
             accessLevel: 'al_individual',
             beforeCallbacks: []
         },
-        action: handlers.postNewActivityPlan
+        action: handlers.postNewActivity
     });
 
 
 
     swagger.addPut({
         spec: {
-            description: "Operations about ActivityPlans",
+            description: "Operations about Activities",
             path: baseUrlWithId,
-            notes: "Updates an existing plan.",
-            summary: "Updates an existing activityPlan",
+            notes: "Updates an existing activity.",
+            summary: "Updates an existing activity",
             method: "PUT",
-            params: [swagger.pathParam("id", "the id of the activityPlan to update", "string"), swagger.bodyParam("activityPlan", "activityPlan to be updated", "ActivityPlan")],
-            "responseClass": "ActivityPlan",
-            "errorResponses": [swagger.errors.invalid('id'), swagger.errors.notFound("activityPlan")],
-            "nickname": "putActivityPlan",
+            params: [swagger.pathParam("id", "the id of the activity to update", "string"), swagger.bodyParam("activity", "activity to be updated", "Activity")],
+            "responseClass": "Activity",
+            "errorResponses": [swagger.errors.invalid('id'), swagger.errors.notFound("activity")],
+            "nickname": "putActivity",
             accessLevel: 'al_individual'
         },
-        action: handlers.putActivityPlan
+        action: handlers.putActivity
     });
 };

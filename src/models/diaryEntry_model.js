@@ -15,7 +15,7 @@ var mongoose = require('mongoose'),
  */
 var DiaryEntrySchema = common.newSchema({
     owner: {type: ObjectId, ref: 'User', required: true},
-    type: {type: String, enum: ['manual','activityPlanEvent'], required: true},
+    type: {type: String, enum: ['manual','activityEvent'], required: true},
     image: {type: String},
     refId: {type: ObjectId},
     text: {type: String},

@@ -61,6 +61,20 @@ consts.newUserInNewCampaignApi(
                                 expect(invitation.refDocs[0].model).toEqual('Activity');
                                 expect(invitation.refDocs[0].docId).toEqual(newPlan.id);
 
+
+                                frisby.create('Invitation: get this single invitation populated with the activity')
+                                    .get(URL + '/invitations/' + invitation.id)
+                                    .auth(user.username, 'yp')
+                                    .expectStatus(200)
+                                    .afterJSON(function (invitation) {
+
+                                        expect(invitation.refDocs.length).toEqual(1);
+                                        expect(invitation.refDocs[0].doc).toBeDefined();
+                                        expect(invitation.refDocs[0].doc.id).toEqual(newPlan.id);
+
+                                    })
+                                    .toss();
+
                                 frisby.create('Invitation: join the activity, will dismiss the invitation')
                                     .post(URL + '/activities/' + newPlan.id + '/join')
                                     .auth(user.username, 'yp')

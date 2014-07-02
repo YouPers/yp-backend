@@ -22,7 +22,7 @@ module.exports = function (swagger, config) {
             "nickname": "getMessageById",
             accessLevel: 'al_individual'
         },
-        action: generic.getByIdFn(baseUrl, Model)
+        action: handlers.getByIdFn(baseUrl, Model)
     });
 
     swagger.addGet({

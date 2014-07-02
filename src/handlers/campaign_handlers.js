@@ -6,7 +6,6 @@ var stats = require('../util/stats'),
     mongoose = require('mongoose'),
     Organization = mongoose.model('Organization'),
     Campaign = mongoose.model('Campaign'),
-    ActivityPlan = mongoose.model('ActivityPlan'),
     SocialInteractionModel = mongoose.model('SocialInteraction'),
     SocialInteraction = require('../core/SocialInteraction'),
     async = require('async'),
@@ -43,35 +42,9 @@ var getCampaignOffers = function (req, res, next) {
             return next();
         }
 
-        async.each(socialInteractions, function (si, done1) {
+        async.each(socialInteractions, function (si, done) {
 
-            async.each(si.refDocs, function(refDoc, done2) {
-
-                mongoose.model(refDoc.model).findById(refDoc.docId).populate('idea').exec(function (err, document) {
-                    refDoc.doc = document;
-
-                    if(refDoc.model === 'Idea') {
-
-                        // calculate the count this idea has been planned within the campaign
-                        ActivityPlan.count({
-                            idea: document._id,
-                            campaign: campaignId
-                        }).exec(function (err, count) {
-                            if (err) {
-                                return done2(err);
-                            }
-                            req.log.info({count: count}, 'plan Count');
-                            si.planCount = count;
-                            return done2();
-                        });
-                    } else {
-                        return done2(err);
-                    }
-                });
-
-            }, function(err, results) {
-                return done1(err);
-            });
+            SocialInteraction.populateSocialInteraction(si, campaignId, done);
 
         }, function(err, results) {
             if(err) {

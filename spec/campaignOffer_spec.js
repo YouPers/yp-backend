@@ -93,6 +93,8 @@ consts.newUserInNewCampaignApi(
                                     .expectStatus(200)
                                     .afterJSON(function (campaignOffers) {
 
+                                        expect(campaignOffers.length).toEqual(2);
+
                                     })
                                     .toss();
 

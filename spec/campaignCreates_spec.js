@@ -23,7 +23,7 @@ var testCampaign = {
     "title": "testOrganization's campaign 1 for work life balance",
     "start": campaignStart,
     "end": campaignEnd,
-    "relatedService": "YP-Balance",
+    "topic": "53b416cfa43aac62a2debda1",
     "location": "Los Feliz",
     "slogan": "It's never too late!",
     "paymentStatus": "open",
@@ -70,7 +70,7 @@ frisby.create('Campaigns Creates: POST new campaign to existing organization')
                             "title": "testOrganization's campaign 2 for work life balance",
                             "start": campaignStart,
                             "end": campaignEnd,
-                            "relatedService": "YP-Balance",
+                            "topic": "53b416cfa43aac62a2debda1",
                             "location": "Los Feliz",
                             "slogan": "It's never too late!",
                             "productType": "CampaignProductType1"

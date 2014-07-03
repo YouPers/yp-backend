@@ -196,7 +196,8 @@ var getAllForUserFn = function (baseUrl) {
         var all = _.contains(req.user.roles, 'systemadmin');
         var match = all ? {} : {campaignLeads: userId};
 
-        Campaign.find(match)
+        var dbQuery = Campaign.find(match);
+        generic.addStandardQueryOptions(req, dbQuery, Campaign)
             .exec(generic.writeObjCb(req, res, next));
     };
 };

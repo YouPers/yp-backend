@@ -16,7 +16,7 @@ var PaymentCodeSchema = common.newSchema({
 
     campaign: {type: ObjectId},
 
-    relatedService: { type: String, enum: common.enums.relatedService, required: true },
+    topic: { type: ObjectId, ref: 'Topic', required: true },
     productType: { type: String, enum: common.enums.campaignProductType, required: true },
     users: { type: Number }
 });

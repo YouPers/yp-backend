@@ -1,0 +1,30 @@
+[
+    {
+        "__v": 0,
+        "_id": {
+            "$oid": "53b416cfa43aac62a2debda1"
+        },
+        "created": {
+            "$date": "2014-07-02T16:27:27.418+0200"
+        },
+        "name": "Stress",
+        "shortDescription": "StressManagement",
+        "updated": {
+            "$date": "2014-07-02T16:27:27.418+0200"
+        }
+    },
+    {
+        "__v": 0,
+        "_id": {
+            "$oid": "53b416fba43aac62a2debda2"
+        },
+        "created": {
+            "$date": "2014-07-02T16:28:11.813+0200"
+        },
+        "name": "Ern\u00e4hrung",
+        "shortDescription": "Gesunde Ern\u00e4hrung am Arbeitsplatz",
+        "updated": {
+            "$date": "2014-07-02T16:28:11.813+0200"
+        }
+    }
+]

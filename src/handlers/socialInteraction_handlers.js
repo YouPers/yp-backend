@@ -21,8 +21,10 @@ var getAllFn = function getAllFn(baseUrl, Model, fromAllOwners) {
 
             var dismissedSocialInteractions = _.map(sid, 'socialInteraction');
             var now = moment().toDate();
+            var adminMode = auth.checkAccess(req.user, auth.accessLevels.al_admin) &&
+                req.params.mode && req.params.mode === 'administrate';
 
-            var finder = {
+            var finder = adminMode ? {} : {
                 targetSpaces: { $elemMatch: {
                     $or: [
                         { type: 'user', targetId: user._id },
@@ -32,10 +34,19 @@ var getAllFn = function getAllFn(baseUrl, Model, fromAllOwners) {
 //                // TODO: add targetSpaces for activity/system, get from user doc
             };
 
-            var dbQuery = Model.find(finder)
-                .and({_id: { $nin: dismissedSocialInteractions }})
-                .and({$or: [{publishTo: {$exists: false}}, {publishTo: {$gte: now}}]})
-                .and({$or: [{publishFrom: {$exists: false}}, {publishFrom: {$lte: now}}]});
+
+            var dbQuery = Model.find(finder);
+
+            if(!adminMode) {
+                dbQuery
+                    .and({_id: { $nin: dismissedSocialInteractions }})
+                    .and({$or: [{publishTo: {$exists: false}}, {publishTo: {$gte: now}}]})
+                    .and({$or: [{publishFrom: {$exists: false}}, {publishFrom: {$lte: now}}]});
+
+                if(user.profile.language) {
+                    dbQuery.and({ $or: [{language: {$exists: false}}, {language: user.profile.language}] });
+                }
+            }
 
             generic.addStandardQueryOptions(req, dbQuery, Model)
                 .exec(generic.sendListCb(req, res, next));
@@ -53,20 +64,27 @@ var deleteByIdFn = function (baseUrl, Model) {
             return next(new error.MissingParameterError({ required: 'id' }));
         }
 
-        // system admins can delete any socialInteraction, with the 'administrate' flag set
-        if (auth.checkAccess(req.user, 'al_systemadmin') &&
-            req.params.mode && req.params.mode === 'administrate') {
-            return generic.deleteByIdFn(baseUrl, SocialInteractionModel)(req, res, next);
-        }
+        Model.findById(req.params.id).exec(function(err, socialInteraction) {
 
-        // TODO: add check for Model
-        SocialInteraction.dismissSocialInteractionById(req.params.id, req.user, function(err, socialInteraction) {
-            if(err) {
-                return error.handleError(err, next);
+            // the author may delete his own socialInteraction,
+            // system admins can delete any socialInteraction, with the 'administrate' flag set
+            if (req.user._id.equals(socialInteraction.author) ||
+                auth.checkAccess(req.user, 'al_systemadmin') &&
+                    req.params.mode && req.params.mode === 'administrate') {
+                return generic.deleteByIdFn(baseUrl, SocialInteractionModel)(req, res, next);
             }
-            res.send(200);
-            return next();
+
+            // TODO: add check for Model
+            SocialInteraction.dismissSocialInteractionById(req.params.id, req.user, function(err, socialInteraction) {
+                if(err) {
+                    return error.handleError(err, next);
+                }
+                res.send(200);
+                return next();
+            });
+
         });
+
     };
 };
 

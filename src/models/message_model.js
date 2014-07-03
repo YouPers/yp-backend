@@ -12,6 +12,9 @@ var mongoose = require('mongoose'),
  */
 var MessageSchema = common.newSchema({
 
+    language: { type: String, trim: true},
+    important: { type: Boolean, default: false }
+
 }, undefined, AbstractSocialInteractionSchema);
 
 

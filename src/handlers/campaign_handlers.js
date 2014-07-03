@@ -247,8 +247,8 @@ var getAllForUserFn = function (baseUrl) {
 
         var userId = req.user.id;
 
-        var all = _.contains(req.user.roles, 'systemadmin');
-        var match = all ? {} : {campaignLeads: userId};
+        var admin = auth.checkAccess(req.user, auth.accessLevels.al_admin);
+        var match = admin ? {} : {campaignLeads: userId};
 
         Campaign.find(match)
             .exec(generic.writeObjCb(req, res, next));

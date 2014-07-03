@@ -44,34 +44,6 @@ module.exports = function (swagger, config) {
         action: generic.putFn(baseUrl, Assessment)
     });
 
-    swagger.addPost({
-        spec: {
-            description: "Operations about assessments and assessmentResults",
-            path: resultsUrl,
-            notes: "stores a new result",
-            summary: "stores a new result for the assessment with id assessmentId",
-            method: "POST",
-            params: [swagger.pathParam("assessmentId", "ID of the assessment for which to store a result", "string"),
-                swagger.bodyParam("assessmentResult", "The assessment result to store", "AssessmentResult")],
-            "responseMessages": [
-                {
-                    "code": 201,
-                    "message": "Created",
-                    "responseModel": "AssessmentResult"
-                },
-                {
-                    "code": 401,
-                    "message": "Unauthorized: client or user not authorized to call this method"
-                }
-            ],
-            "nickname": "postAssessmentResult",
-            responseClass: "AssessmentResult",
-            accessLevel: 'al_individual',
-            beforeCallbacks: []
-        },
-        action: assessment_handlers.assessmentResultPostFn(resultsUrl, AssessmentResult)
-    });
-
     swagger.addPut({
         spec: {
             description: "Put an answer of an assessment result",

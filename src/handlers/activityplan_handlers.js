@@ -208,7 +208,6 @@ function _saveNewActivityPlan(plan, req, cb) {
     var user = req.user;
     var i18n = req.i18n;
 
-    // add fields of idea to the activityPlan
     Idea.findById(plan.idea).exec(function (err, foundIdea) {
         if (err) {
             return cb(err);
@@ -217,8 +216,6 @@ function _saveNewActivityPlan(plan, req, cb) {
         if (!foundIdea) {
             return cb(new error.InvalidArgumentError('referenced idea not found', { required: 'idea', idea: plan.idea }));
         }
-
-        plan.fields = foundIdea.fields;
 
         if (!plan.title) {
             plan.title = foundIdea.title;

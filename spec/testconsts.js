@@ -42,6 +42,9 @@ var self = module.exports  =  {
     assessment: {
         id: '525faf0ac558d40000000005'
     },
+    topic: {
+        id: '53b416cfa43aac62a2debda1'
+    },
     organization: {
         id: '52f0c64e53d523235b07d8d8'
     },

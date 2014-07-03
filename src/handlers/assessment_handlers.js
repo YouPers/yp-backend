@@ -1,7 +1,5 @@
 var error = require('../util/error'),
     handlerUtils = require('./handlerUtils'),
-    CoachRecommendation = require('../core/CoachRecommendation'),
-    auth = require('../util/auth'),
     mongoose = require('mongoose'),
     _ = require('lodash'),
     AssessmentResult = mongoose.model('AssessmentResult'),
@@ -75,7 +73,8 @@ function assessmentResultAnswerPutFn() {
                     assessment: newAnswer.assessment,
                     owner: req.user.id,
                     answers: [],
-                    campaign: req.user.campaign && req.user.campaign.id // campaign is always populated in the req.user auth.js:149
+                    campaign: req.user.campaign && req.user.campaign.id, // campaign is always populated in the req.user auth.js:149
+                    topic: req.user.campaign.topic
                 });
 
 
@@ -110,51 +109,7 @@ function assessmentResultAnswerPutFn() {
     };
 }
 
-function assessmentResultPostFn(baseUrl, Model) {
-    return function (req, res, next) {
-
-        var err = handlerUtils.checkWritingPreCond(req.body, req.user, Model);
-
-        if (err) {
-            return error.handleError(err, next);
-        }
-
-        // if this Model has a campaign Attribute and the user is currently part of a campaign,
-        // we set the campaign on this object --> by default new objects are part of a campaign
-        if (req.user && req.user.campaign && Model.schema.paths['campaign']) {
-            req.body.campaign = req.user.campaign.id || req.user.campaign; // handle populated and unpopulated case
-        }
-
-        var newObj = new Model(req.body);
-
-        req.log.trace(newObj, 'PostFn: Saving new Object');
-        // try to save the new object
-        newObj.save(function (err, savedObj) {
-            if (err) {
-                return error.handleError(err, next);
-            }
-
-            CoachRecommendation.generateAndStoreRecommendations(
-                req.user._id,
-                req.user.profile.prefs.rejectedIdeas,
-                savedObj,
-                req.user.profile.prefs.focus,
-                auth.isAdminForModel(req.user, mongoose.model('Idea')),
-                function (err, recs) {
-                    if (err) {
-                        return error.handleError(err, next);
-                    }
-                    res.header('location', req.url + '/' + savedObj._id);
-                    res.send(201, savedObj);
-                    return next();
-                });
-        });
-    };
-}
-
-
 module.exports = {
     getNewestResult: getNewestResult,
-    assessmentResultPostFn: assessmentResultPostFn,
     assessmentResultAnswerPutFn: assessmentResultAnswerPutFn
 };

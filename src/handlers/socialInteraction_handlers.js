@@ -8,6 +8,30 @@ var error = require('../util/error'),
     SocialInteractionDismissedModel = mongoose.model('SocialInteractionDismissed'),
     _ = require('lodash');
 
+var getByIdFn = function getByIdFn(baseUrl, Model) {
+    return function getById(req, res, next) {
+
+        Model.findById(req.params.id).populate('author').exec(function(err, socialInteraction) {
+
+            if (err) {
+                return error.handleError(err, next);
+            }
+            if (!socialInteraction) {
+                return next(new error.ResourceNotFoundError());
+            }
+// methods are not accessible for discriminators, see https://github.com/LearnBoost/mongoose/issues/2167
+//            if(socialInteraction.isTargeted && !socialInteraction.isTargeted(user)) {
+//                return next(new error.NotAuthorizedError());
+//            }
+
+            SocialInteraction.populateSocialInteraction(socialInteraction, null, function(err, populated) {
+                res.send(populated);
+                return next();
+            });
+
+        });
+    };
+};
 var getAllFn = function getAllFn(baseUrl, Model, fromAllOwners) {
     return function getAll(req, res, next) {
 
@@ -91,5 +115,6 @@ var deleteByIdFn = function (baseUrl, Model) {
 
 module.exports = {
     deleteByIdFn: deleteByIdFn,
+    getByIdFn: getByIdFn,
     getAllFn: getAllFn
 };

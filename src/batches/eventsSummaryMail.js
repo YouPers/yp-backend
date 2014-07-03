@@ -27,12 +27,7 @@ var sendSummaryMail = function sendSummaryMail(user, rangeStart, rangeEnd, done,
     log.info('preparing Summary Mail for user: ' + user);
 
     // Query explanation
-    // - Find all activityPlans for this user that have at least one event in our daterange
-    // - $unwind the events array into the result rows, now we have a row for each event of each plan we found.
-    //   In the events-property of these plans there is now exactly one event!.
-    // - select all plansEvents whose one event is in our daterange
-    // - As a result we expect an array of ActivityPlans that have in their respective events-property one specific event
-    //   instead of an array (due to the $unwind above)
+    // - Find all Events for this user in our daterange
     mongoose.model('ActivityEvent').aggregate()
         .append({$match: {owner: user._id || user, end: {$gt: rangeStart.toDate(), $lt: rangeEnd.toDate()
         }}})
@@ -85,12 +80,12 @@ var feeder = function (callback) {
 
     log.info("Finding all users who had scheduled events ending between: " + rangeStart.format() + " and " + rangeEnd.format());
 
-    var ActivityPlanModel = mongoose.model('ActivityPlan');
+    var ActivityModel = mongoose.model('Activity');
 
     // Query documentation:
     // find all users that have at least one event that has its end-date in the rage we are interested in
     // group by user and return an array of objects in the form: [{_id: "qwer32r32r23r"}, {_id: "2342wefwefewf"}, ...]
-    var aggregate = ActivityPlanModel.aggregate();
+    var aggregate = ActivityModel.aggregate();
     aggregate
         .append({
             $match: {

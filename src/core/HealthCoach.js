@@ -141,7 +141,7 @@ var commonFacts = [
 
                             // counting the number of uniq plans for this user by putting them in a hash and
                             // counting the keys at the end
-                            activities[event.activityPlan] = "planned";
+                            activities[event.activity] = "planned";
                             // event in future or passed
                             if (now.diff(moment(event.start)) < 0) {
                                 // future

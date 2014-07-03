@@ -42,18 +42,9 @@ var getCampaignOffers = function (req, res, next) {
             return next();
         }
 
-        async.each(socialInteractions, function (si, done1) {
+        async.each(socialInteractions, function (si, done) {
 
-            async.each(si.refDocs, function(refDoc, done2) {
-
-                mongoose.model(refDoc.model).findById(refDoc.docId).populate('idea').exec(function (err, document) {
-                    refDoc.doc = document;
-                    return done2(err);
-                });
-
-            }, function(err, results) {
-                return done1(err);
-            });
+            SocialInteraction.populateSocialInteraction(si, campaignId, done);
 
         }, function(err, results) {
             if(err) {

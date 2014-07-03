@@ -52,10 +52,10 @@ var ProfileSchema = common.newSchema({
                 idea: {type: ObjectId, ref: 'Idea'}
             }
         ],
-        rejectedActivityPlans: [
+        rejectedActivities: [
             {
                 timestamp: {type: Date},
-                activityPlan: {type: ObjectId, ref: 'ActivityPlan'}
+                activity: {type: ObjectId, ref: 'Activity'}
             }
         ],
         firstDayOfWeek: { type: String, enum: ['SU', 'MO'] },

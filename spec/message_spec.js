@@ -164,8 +164,18 @@ consts.newUserInNewCampaignApi(
                                                             .expectStatus(200)
                                                             .afterJSON(function (socialInteractions) {
                                                                 expect(socialInteractions.length).toEqual(0);
-                                                                cleanupFn();
-                                                                cleanupFn2();
+
+                                                                frisby.create('Message: delete the message as admin')
+                                                                    .delete(URL + '/socialInteractions/' + msg.id + '?mode=administrate')
+                                                                    .auth(consts.users.test_prodadm.username, 'yp')
+                                                                    .expectStatus(200)
+                                                                    .after(function () {
+                                                                        cleanupFn();
+                                                                        cleanupFn2();
+                                                                    })
+                                                                    .toss();
+
+
                                                             })
                                                             .toss();
                                                     })
@@ -232,21 +242,12 @@ consts.newUserInNewCampaignApi(
                             .afterJSON(function (socialInteractions) {
                                 expect(socialInteractions.length).toEqual(0);
 
-                                frisby.create('Message: dismiss the message anyway')
-                                    .delete(URL + '/socialInteractions/' + message.id)
-                                    .auth(user.username, 'yp')
+                                frisby.create('Message: delete the message as admin')
+                                    .delete(URL + '/socialInteractions/' + message.id + '?mode=administrate')
+                                    .auth(consts.users.test_prodadm.username, 'yp')
                                     .expectStatus(200)
-                                    .after(function() {
-
-                                        frisby.create('Message: get inbox, will still be empty')
-                                            .get(URL + '/socialInteractions')
-                                            .auth(user.username, 'yp')
-                                            .expectStatus(200)
-                                            .afterJSON(function (socialInteractions) {
-                                                expect(socialInteractions.length).toEqual(0);
-                                                cleanupFn();
-                                            })
-                                            .toss();
+                                    .after(function () {
+                                        cleanupFn();
                                     })
                                     .toss();
                             })

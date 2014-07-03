@@ -6,6 +6,7 @@ var stats = require('../util/stats'),
     mongoose = require('mongoose'),
     Organization = mongoose.model('Organization'),
     Campaign = mongoose.model('Campaign'),
+    SocialInteractionModel = mongoose.model('SocialInteraction'),
     SocialInteraction = require('../core/SocialInteraction'),
     async = require('async'),
     email = require('../util/email'),
@@ -13,6 +14,59 @@ var stats = require('../util/stats'),
     moment = require('moment'),
     generic = require('./generic');
 
+
+var getCampaignOffers = function (req, res, next) {
+
+    var campaignId = req.params.id;
+
+    if(!campaignId) {
+        return next(new error.MissingParameterError({
+            required: 'id'
+        }));
+    }
+
+    SocialInteractionModel.find({
+        __t: { $in: ['Invitation', 'Recommendation'] },
+        targetSpaces: { $elemMatch: {
+            type: 'campaign',
+            targetId: campaignId
+        }}
+    }).exec(function(err, socialInteractions) {
+
+        if(err) {
+            return error.handleError(err, next);
+        }
+
+        if(!socialInteractions || socialInteractions.length === 0) {
+            res.send([]);
+            return next();
+        }
+
+        async.each(socialInteractions, function (si, done1) {
+
+            async.each(si.refDocs, function(refDoc, done2) {
+
+                mongoose.model(refDoc.model).findById(refDoc.docId).populate('idea').exec(function (err, document) {
+                    refDoc.doc = document;
+                    return done2(err);
+                });
+
+            }, function(err, results) {
+                return done1(err);
+            });
+
+        }, function(err, results) {
+            if(err) {
+                return error.handleError(err, next);
+            }
+
+            res.send(socialInteractions);
+            return next();
+        });
+
+    });
+
+};
 
 var getCampaign = function (id, cb) {
 
@@ -404,6 +458,7 @@ var avatarImagePostFn = function (baseUrl) {
 };
 
 module.exports = {
+    getCampaignOffers: getCampaignOffers,
     getCampaignStats: getCampaignStats,
     postCampaign: postCampaign,
     putCampaign: putCampaign,

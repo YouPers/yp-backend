@@ -1,4 +1,5 @@
 var error = require('../util/error'),
+    auth = require('../util/auth'),
     _ = require('lodash');
 
 function clean(Model, sentJson) {
@@ -52,6 +53,10 @@ function checkWritingPreCond(sentObj, user,  Model) {
     if(Model.schema.paths['owner'] && !sentObj.owner) {
         sentObj.owner = user.id;
     }
+    // for 'authored' objects set author if not passed by client
+    if(Model.schema.paths['author'] && !sentObj.author) {
+        sentObj.author = user.id;
+    }
 
 
     clean(Model, sentObj);
@@ -61,6 +66,14 @@ function checkWritingPreCond(sentObj, user,  Model) {
         return new error.NotAuthorizedError('POST/PUT of object only allowed if owner of new object equals authenticated user', {
             user: user.id,
             owner: sentObj.owner
+        });
+    }
+    // check whether author is the authenticated user, disabled for admins
+    var admin = user && auth.checkAccess(user, 'al_admin');
+    if (!admin && sentObj.author && (user.id !== sentObj.author)) {
+        return new error.NotAuthorizedError('POST/PUT of object only allowed if author of new object equals authenticated user', {
+            user: user.id,
+            author: sentObj.author
         });
     }
 

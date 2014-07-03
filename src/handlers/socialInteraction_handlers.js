@@ -28,10 +28,11 @@ var getAllFn = function getAllFn(baseUrl, Model, fromAllOwners) {
                 targetSpaces: { $elemMatch: {
                     $or: [
                         { type: 'user', targetId: user._id },
-                        { type: 'campaign', targetId: user.campaign }
+                        { type: 'campaign', targetId: user.campaign },
+                        { type: 'system' }
                     ]
                 }}
-//                // TODO: add targetSpaces for activity/system, get from user doc
+//                // TODO: add targetSpaces for activity, get from user doc
             };
 
 

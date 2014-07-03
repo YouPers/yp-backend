@@ -6,6 +6,7 @@ var error = require('../util/error'),
     SocialInteraction = require('../core/SocialInteraction'),
     SocialInteractionModel = mongoose.model('SocialInteraction'),
     SocialInteractionDismissedModel = mongoose.model('SocialInteractionDismissed'),
+    async = require('async'),
     _ = require('lodash');
 
 var getByIdFn = function getByIdFn(baseUrl, Model) {
@@ -74,7 +75,24 @@ var getAllFn = function getAllFn(baseUrl, Model, fromAllOwners) {
             }
 
             generic.addStandardQueryOptions(req, dbQuery, Model)
-                .exec(generic.sendListCb(req, res, next));
+                .exec(function(err, socialInteractions) {
+
+                    async.each(socialInteractions, function (si, done) {
+
+                        SocialInteraction.populateSocialInteraction(si, null, done);
+
+                    }, function(err, results) {
+                        if(err) {
+                            return error.handleError(err, next);
+                        }
+
+                        return generic.sendListCb(req, res, next)(err, socialInteractions);
+                    });
+
+
+                });
+
+
         });
     };
 

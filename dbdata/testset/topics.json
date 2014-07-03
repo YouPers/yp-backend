@@ -1,30 +1,16 @@
 [
     {
-        "__v": 0,
         "_id": {
             "$oid": "53b416cfa43aac62a2debda1"
         },
-        "created": {
-            "$date": "1399277457905"
-        },
         "name": "Stress Management",
-        "shortDescription": "StressManagement und Burnout Prävention",
-        "updated": {
-            "$date": "1399277457905"
-        }
+        "shortDescription": "StressManagement und Burnout Prävention"
     },
     {
-        "__v": 0,
         "_id": {
             "$oid": "53b416fba43aac62a2debda2"
         },
-        "created": {
-            "$date": "1399277457905"
-        },
         "name": "Ern\u00e4hrung am Arbeitsplatz",
-        "shortDescription": "Gesunde Ern\u00e4hrung am Arbeitsplatz",
-        "updated": {
-            "$date": "1399277457905"
-        }
+        "shortDescription": "Gesunde Ern\u00e4hrung am Arbeitsplatz"
     }
 ]

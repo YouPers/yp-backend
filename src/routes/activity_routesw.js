@@ -77,7 +77,7 @@ module.exports = function (swagger, config) {
             description: "Operations about Activities",
             path: baseUrl,
             notes: "only returns Activities of the current user, the API does not allow to retrieve" +
-                "plans owned by other users",
+                "activities owned by other users",
             summary: "returns all activities of the currently logged in user",
             method: "GET",
             params: [generic.params.sort,

@@ -1,6 +1,7 @@
 var error = require('../util/error'),
     _ = require('lodash'),
-    ObjectId = require('mongoose').Schema.ObjectId,
+    mongoose = require('mongoose'),
+    ObjectId = mongoose.Schema.ObjectId,
     handlerUtils = require('./handlerUtils'),
     auth = require('../util/auth'),
     env = process.env.NODE_ENV || 'development',
@@ -99,7 +100,7 @@ function split(val, delim, ret) {
 
 // query options
 
-var _addPopulation = function (queryparams, dbquery) {
+var _addPopulation = function (queryparams, dbquery, locale) {
     // check whether our dbquery supports population
     if (!(dbquery && dbquery.populate && isF(dbquery, 'populate'))) {
         return dbquery;
@@ -109,11 +110,11 @@ var _addPopulation = function (queryparams, dbquery) {
 
     //handle array style populate.
     if (Array.isArray(queryparams.populate) || typeof queryparams.populate === 'string') {
-        _populate(schema, dbquery, split(queryparams.populate));
+        _populate(schema, dbquery, split(queryparams.populate), locale);
     } else {
         //handle object style populate.
         _.each(queryparams.populate, function (v, k) {
-            _populate(schema, dbquery, flatJoin(v));
+            _populate(schema, dbquery, flatJoin(v), locale);
         });
     }
     delete queryparams.populate;
@@ -122,15 +123,27 @@ var _addPopulation = function (queryparams, dbquery) {
 
 //mongoose throws an exception if you try and populate an non ObjectID
 // this is suppose to guard against that. See if we can fix it.
-function _populate(schema, dbquery, paths) {
+function _populate(schema, dbquery, paths, locale) {
     paths = Array.isArray(paths) ? paths : [paths];
     for (var i = paths.length; i--;) {
         var p = paths[i];
         if (schema && schema.path) {
             // TODO: (RBLU) Disable this check because it breaks population of deep porperties like 'events.comments', Fix later
-            // var ref = schema.path(p);
+            var ref = schema.path(p);
+            var modelName, selector;
+            if (ref && ref.options && ref.options.type[0]) {
+                modelName = ref.options.type[0].ref;
+                selector = mongoose.model(modelName).getI18nPropertySelector && mongoose.model(modelName).getI18nPropertySelector(locale);
+            }
+            if (selector) {
+                dbquery.populate(p, selector);
+            } else {
+                dbquery.populate(p);
+            }
+
             // if (ref && (ref.instance && ref.instance === 'ObjectID' || ref.caster && ref.caster.instance === 'ObjectID')) {
-            dbquery.populate(p);
+
+
             //}
         } else {
             dbquery.populate(p);
@@ -274,9 +287,9 @@ var _addFilter = function (queryParams, dbquery, Model) {
     return dbquery;
 };
 
-var processDbQueryOptions = function (queryOptions, dbquery, Model) {
+var processDbQueryOptions = function (queryOptions, dbquery, Model, locale) {
     dbquery = _addPagination(queryOptions, dbquery);
-    dbquery = _addPopulation(queryOptions, dbquery);
+    dbquery = _addPopulation(queryOptions, dbquery, locale);
     dbquery = _addSort(queryOptions, dbquery);
     dbquery = _addFilter(queryOptions, dbquery, Model);
     return dbquery;
@@ -291,7 +304,7 @@ var processStandardQueryOptions = function (req, dbquery, Model) {
         dbquery.select(Model.getI18nPropertySelector(req.locale || 'de'));
     }
 
-    return processDbQueryOptions(req.query, dbquery, Model);
+    return processDbQueryOptions(req.query, dbquery, Model, req.locale);
 };
 
 /**

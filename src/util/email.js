@@ -130,7 +130,7 @@ var sendPasswordResetMail = function (user,i18n) {
 };
 
 
-var sendCalInvite = function (toUser, type, iCalString, plan, i18n, reason) {
+var sendCalInvite = function (toUser, type, iCalString, activity, i18n, reason) {
     // default method is request
     var method = 'REQUEST';
     // for cancellation we use CANCEL
@@ -154,13 +154,13 @@ var sendCalInvite = function (toUser, type, iCalString, plan, i18n, reason) {
             }
         ]};
 
-    var subject = i18n.t('email:iCalMail.' + type + '.subject', {reason: reason, plan: plan.toJSON()});
+    var subject = i18n.t('email:iCalMail.' + type + '.subject', {reason: reason, activity: activity.toJSON()});
     var locals = {
         salutation: i18n.t('email:iCalMail.' + type + '.salutation', {user: toUser.toJSON()}),
-        text: i18n.t('email:iCalMail.' + type + '.text', {plan: plan.toJSON()}),
-        title: plan.idea.title,
-        plan: plan,
-        image: urlComposer.ideaImageUrl(plan.idea.number),
+        text: i18n.t('email:iCalMail.' + type + '.text', {activity: activity.toJSON()}),
+        title: activity.idea.title,
+        activity: activity,
+        image: urlComposer.ideaImageUrl(activity.idea.number),
         footer: i18n.t('email:iCalMail.footer'),
         background: urlComposer.mailBackgroundImageUrl(),
         logo: urlComposer.mailLogoImageUrl()
@@ -170,33 +170,33 @@ var sendCalInvite = function (toUser, type, iCalString, plan, i18n, reason) {
 
 };
 
-var sendActivityPlanInvite = function sendActivityPlanInvite(email, invitingUser, plan, invitedUser, i18n) {
+var sendActivityInvite = function sendActivityInvite(email, invitingUser, activity, invitedUser, i18n) {
 
     var localMoment = function localMoment(date) {
         return moment(date).lang(i18n.language()).tz('Europe/Zurich');
     };
 
-    var frequency = plan.mainEvent.frequency;
-    var weekday = localMoment(plan.mainEvent.start).format("dddd") + (frequency === 'week' ? 's' : '');
-    var date = localMoment(plan.mainEvent.start).format("D.M.") +
+    var frequency = activity.mainEvent.frequency;
+    var weekday = localMoment(activity.mainEvent.start).format("dddd") + (frequency === 'week' ? 's' : '');
+    var date = localMoment(activity.mainEvent.start).format("D.M.") +
         frequency === 'once' ? '' :
-        localMoment(plan.lastEventEnd).format("D.M.YYYY");
+        localMoment(activity.lastEventEnd).format("D.M.YYYY");
 
-    var time = localMoment(plan.mainEvent.start).format('HH:mm') + ' - ' + localMoment(plan.mainEvent.end).format('HH:mm');
+    var time = localMoment(activity.mainEvent.start).format('HH:mm') + ' - ' + localMoment(activity.mainEvent.end).format('HH:mm');
 
     var eventDate = weekday + '<br/>' + time + '<br/>' + date;
 
-    var subject = i18n.t("email:ActivityPlanInvitation.subject", {inviting: invitingUser.toJSON(), plan: plan.toJSON()});
+    var subject = i18n.t("email:ActivityInvitation.subject", {inviting: invitingUser.toJSON(), activity: activity.toJSON()});
     var locals = {
-        salutation: i18n.t('email:ActivityPlanInvitation.salutation' + (invitedUser ? '': 'Anonymous'), {invited: invitedUser ? invitedUser.toJSON() : {}}),
-        text: i18n.t('email:ActivityPlanInvitation.text', {inviting: invitingUser.toJSON(), plan: plan.toJSON()}),
-        link: urlComposer.activityPlanInviteUrl(plan.idea._id, invitingUser._id),
-        title: plan.idea.title,
-        plan: plan,
+        salutation: i18n.t('email:ActivityInvitation.salutation' + (invitedUser ? '': 'Anonymous'), {invited: invitedUser ? invitedUser.toJSON() : {}}),
+        text: i18n.t('email:ActivityInvitation.text', {inviting: invitingUser.toJSON(), activity: activity.toJSON()}),
+        link: urlComposer.activityInviteUrl(activity.idea._id, invitingUser._id),
+        title: activity.idea.title,
+        activity: activity,
         eventDate: eventDate,
-        image: urlComposer.ideaImageUrl(plan.idea.number),
-        header: i18n.t('email:ActivityPlanInvitation.header'),
-        footer: i18n.t('email:ActivityPlanInvitation.footer'),
+        image: urlComposer.ideaImageUrl(activity.idea.number),
+        header: i18n.t('email:ActivityInvitation.header'),
+        footer: i18n.t('email:ActivityInvitation.footer'),
         logo: urlComposer.mailFooterImageUrl()
     };
     sendEmail(fromDefault, email, subject, 'activityInviteMail', locals);
@@ -241,7 +241,7 @@ var sendOrganizationAdminInvite = function sendOrganizationAdminInvite(email, in
 /**
  * sends a dailyPlannedEventsSummary Email.
  * @param toAddress - the address to send the email to
- * @param events - an array of activityPlans, that have in their events property NOT an array events but only ONE event
+ * @param events - an array of activities, that have in their events property NOT an array events but only ONE event
  *                that is to be mentioned in the summary mail.
  * @param user - a user object with a populated profile.
  * @param i18n - an i18n object to be used to translate the email content
@@ -273,7 +273,7 @@ module.exports = {
     sendEmailVerification: sendEmailVerification,
     sendCalInvite: sendCalInvite,
     sendPasswordResetMail: sendPasswordResetMail,
-    sendActivityPlanInvite: sendActivityPlanInvite,
+    sendActivityInvite: sendActivityInvite,
     sendCampaignLeadInvite: sendCampaignLeadInvite,
     sendOrganizationAdminInvite: sendOrganizationAdminInvite,
     sendDailyEventSummary: sendDailyEventSummary

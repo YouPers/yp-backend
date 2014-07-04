@@ -1,8 +1,8 @@
 var env = process.env.NODE_ENV || 'development',
     config = require('../config/config')[env];
 
-function activityPlanWebClientUrl(activityPlanId) {
-    return config.webclientUrl + "/#/schedule/" + activityPlanId;
+function activityWebClientUrl(activityId) {
+    return config.webclientUrl + "/#/schedule/" + activityId;
 }
 function emailVerificationUrl(encryptedEmailAddress) {
     return config.webclientUrl + "/#/email_verification/" + encryptedEmailAddress;
@@ -11,7 +11,7 @@ function passwordResetUrl(encryptedToken, firstname, lastname) {
     return config.webclientUrl + "/#/password_reset/" + encryptedToken + "?firstname=" + firstname + "&lastname=" + lastname;
 }
 
-function activityPlanInviteUrl(planId, invitingUserId) {
+function activityInviteUrl(planId, invitingUserId) {
     return config.webclientUrl + "/#/invite/" + invitingUserId + '/activity/' + planId;
 }
 function campaignLeadInviteUrl(campaignId, invitingUserId, token) {
@@ -37,10 +37,10 @@ function mailBackgroundImageUrl () {
 }
 
 module.exports = {
-    activityPlanUrl: activityPlanWebClientUrl,
+    activityUrl: activityWebClientUrl,
     emailVerificationUrl: emailVerificationUrl,
     passwordResetUrl: passwordResetUrl,
-    activityPlanInviteUrl: activityPlanInviteUrl,
+    activityInviteUrl: activityInviteUrl,
     campaignLeadInviteUrl: campaignLeadInviteUrl,
     orgAdminInviteUrl: orgAdminInviteUrl,
     ideaImageUrl: ideaImageUrl,

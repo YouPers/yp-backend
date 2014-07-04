@@ -42,18 +42,9 @@ var getCampaignOffers = function (req, res, next) {
             return next();
         }
 
-        async.each(socialInteractions, function (si, done1) {
+        async.each(socialInteractions, function (si, done) {
 
-            async.each(si.refDocs, function(refDoc, done2) {
-
-                mongoose.model(refDoc.model).findById(refDoc.docId).populate('idea').exec(function (err, document) {
-                    refDoc.doc = document;
-                    return done2(err);
-                });
-
-            }, function(err, results) {
-                return done1(err);
-            });
+            SocialInteraction.populateSocialInteraction(si, campaignId, done);
 
         }, function(err, results) {
             if(err) {
@@ -247,8 +238,8 @@ var getAllForUserFn = function (baseUrl) {
 
         var userId = req.user.id;
 
-        var all = _.contains(req.user.roles, 'systemadmin');
-        var match = all ? {} : {campaignLeads: userId};
+        var admin = auth.checkAccess(req.user, auth.accessLevels.al_admin);
+        var match = admin ? {} : {campaignLeads: userId};
 
         var dbQuery = Campaign.find(match);
         generic.addStandardQueryOptions(req, dbQuery, Campaign)

@@ -17,6 +17,7 @@ var self = module.exports  =  {
     users: {
         test_ind1: {
             id: '52a97f1650fca98c29000006',
+            username: 'test_ind1',
             profile: "5303721a4dba580000000016"
         },
         yphealthcoach: {
@@ -25,10 +26,12 @@ var self = module.exports  =  {
         },
         test_ind2: {
             id: '52a97f1650fca98c29000007',
+            username: 'test_ind2',
             profile: "5303721a4dba580000000017"
         },
         test_ind3: {
-            id: '52a97f1650fca98c29000055'
+            id: '52a97f1650fca98c29000055',
+            username: 'username'
         },
         test_campaignlead: {
             id: '52a97f1650fca98c2900000b',
@@ -37,6 +40,10 @@ var self = module.exports  =  {
         test_orgadm: {
             id: '52a97f1650fca98c2900000a',
             username: 'test_orgadm'
+        },
+        test_prodadm: {
+            id: '52a97f1650fca98c29000008',
+            username: 'test_prodadm'
         }
     },
     assessment: {

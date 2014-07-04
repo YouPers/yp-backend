@@ -13,6 +13,7 @@ module.exports = {
      * @param definition
      * @param options
      * @returns {Schema}
+     * @param BaseSchema
      */
     newSchema: function (definition, options, BaseSchema) {
 
@@ -123,9 +124,8 @@ module.exports = {
                 ret.id = ret._id;
                 delete ret._id;
 
-                // handler viruals into the JSON
-                // TODO: move the configuration which virtuals to output as JSON into a property of
-                // the schema instead of this ifs here
+                // handling virtuals into the JSON
+                // TODO: move the configuration which virtuals to output as JSON into a property of the schema instead of these ifs here
 
                 if (doc.deleteStatus) {
                     ret.deleteStatus = doc.deleteStatus;
@@ -137,10 +137,6 @@ module.exports = {
 
                 if (doc.sourceType) {
                     ret.sourceType = doc.sourceType;
-                }
-
-                if (_.isNumber(doc.planCount)) {
-                    ret.planCount = doc.planCount;
                 }
 
                 _.forEach(multilingualValues, function (prop) {
@@ -183,17 +179,16 @@ module.exports = {
         // Idea related enums
         source: "youpers community campaign".split(' '),
         executiontype: "self group".split(' '),
-        visibility: "private campaign public".split(' '),
         field: "AwarenessAbility Relaxation TimeManagement SocialInteraction WorkStructuring Breaks PhysicalActivity LeisureActivity Nutrition".split(' '),
         topic: "workLifeBalance",
-        ActivityPlanStatus: "active deleted old".split(' '),
+        ActivityStatus: "active deleted old".split(' '),
 
-        // ActivityPlanEven enums
-        activityPlanEventStatus: "open done missed".split(' '),
+        // ActivityEven enums
+        activityEventStatus: "open done missed".split(' '),
         activityRecurrenceEndByType: "after on never".split(' '),
-        activityPlanFrequency: "once day week month year".split(' '),
-        activityPlanDeletable: "deletable deletableOnlyFutureEvents notDeletableJoinedUsers notDeletableJoinedPlans notDeletableNoFutureEvents".split(' '),
-        activityPlanEditable: "editable notEditableJoinedPlans notEditableJoinedUsers notEditableNotSingleEvent notEditablePastEvent".split(' '),
+        activityFrequency: "once day week month year".split(' '),
+        activityDeletable: "deletable deletableOnlyFutureEvents notDeletableNoFutureEvents".split(' '),
+        activityEditable: "editable notEditableJoined notEditablePastEvent".split(' '),
 
         // Assessment related enums
         questionType: "oneSided twoSided".split(' '),

@@ -46,7 +46,7 @@ consts.newUserInNewCampaignApi(
 
 
                 frisby.create('CampaignOffers: plan an activity for an invitation')
-                    .post(URL + '/activityplans', {
+                    .post(URL + '/activities', {
                         "owner": consts.users.test_ind1.id,
                         "idea": consts.groupIdea.id,
                         "title": "myTitle",
@@ -80,7 +80,7 @@ consts.newUserInNewCampaignApi(
                                 publishTo: moment().add('hours', 1),
 
                                 refDocs: [
-                                    { docId: newPlan.id, model: 'ActivityPlan'}
+                                    { docId: newPlan.id, model: 'Activity'}
                                 ]
                             })
                             .auth(consts.users.test_campaignlead.username, 'yp')
@@ -91,16 +91,9 @@ consts.newUserInNewCampaignApi(
                                     .get(URL + '/campaigns/' + campaign.id + '/offers')
                                     .auth(consts.users.test_campaignlead.username, "yp")
                                     .expectStatus(200)
-                                    .inspectJSON()
                                     .afterJSON(function (campaignOffers) {
 
-//                                        console.log(campaignOffers);
-//
-//                                        _.forEach(campaignOffers, function(co) {
-//
-//
-//
-//                                        })
+                                        expect(campaignOffers.length).toEqual(2);
 
                                     })
                                     .toss();

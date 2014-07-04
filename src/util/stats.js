@@ -141,7 +141,7 @@ var statsQueries = function (timeRange, scopeType, scopeId) {
 
     ///////////////////////////////////////////////////
     // activitiesPlanned
-    var actsPlannedQuery = mongoose.model('ActivityPlan').aggregate();
+    var actsPlannedQuery = mongoose.model('Activity').aggregate();
     if (scopePipelineEntry) {
         actsPlannedQuery.append(scopePipelineEntry);
     }
@@ -159,7 +159,7 @@ var statsQueries = function (timeRange, scopeType, scopeId) {
 
     ///////////////////////////////////////////////////
     // activitiesPlanned Total
-    var actsPlannedTotalQuery = mongoose.model('ActivityPlan').aggregate();
+    var actsPlannedTotalQuery = mongoose.model('Activity').aggregate();
     if (scopePipelineEntry) {
         actsPlannedTotalQuery.append(scopePipelineEntry);
     }
@@ -199,7 +199,7 @@ var statsQueries = function (timeRange, scopeType, scopeId) {
 
     /////////////////////////////////////////////////////
     // ActivityEvents Total
-    var eventsTotalQuery = mongoose.model('ActivityPlan').aggregate();
+    var eventsTotalQuery = mongoose.model('Activity').aggregate();
     if (scopePipelineEntry) {
         eventsTotalQuery.append(scopePipelineEntry);
     }

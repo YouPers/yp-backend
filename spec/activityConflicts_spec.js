@@ -1,6 +1,6 @@
 var frisby = require('frisby');
 var port = process.env.PORT || 8000;
-var URL = 'http://localhost:' + port + '/activityplans';
+var URL = 'http://localhost:' + port + '/activities';
 var consts = require('./testconsts');
 var moment = require('moment');
 
@@ -43,21 +43,21 @@ consts.newUserInNewCampaignApi(
         };
 
 
-        frisby.create('ActivityPlanConflicts: test whether there is no conflict for the plan we are about to post')
+        frisby.create('ActivityConflicts: test whether there is no conflict for the activity we are about to post')
             .post(URL + '/conflicts', masterPlan)
             .auth(user.username, 'yp')
             .expectStatus(200)
             .afterJSON(function (emptyConflicts) {
                 expect(emptyConflicts.length).toEqual(0);
 
-                frisby.create('ActivityPlanConflicts: plan weekly activity for a conflict test')
+                frisby.create('ActivityConflicts: plan weekly activity for a conflict test')
                     .post(URL, masterPlan)
                     .auth(user.username, 'yp')
                     .expectStatus(201)
                     .afterJSON(function (newPlan) {
                         expect(newPlan.id).toBeDefined();
 
-                        frisby.create('ActivityPlanConflicts: test whether there are now 6 conflicts')
+                        frisby.create('ActivityConflicts: test whether there are now 6 conflicts')
                             .post(URL + '/conflicts', masterPlan)
                             .auth(user.username, 'yp')
                             .expectStatus(200)
@@ -68,7 +68,7 @@ consts.newUserInNewCampaignApi(
                                 masterPlan.mainEvent.end = moment(startDate).add(1, 'm').toDate();
                                 masterPlan.mainEvent.frequency = 'once';
 
-                                frisby.create('ActivityPlanConflicts: test for "once" plan with overlapping of first event, expect 1 conflict')
+                                frisby.create('ActivityConflicts: test for "once" activity with overlapping of first event, expect 1 conflict')
                                     .post(URL + '/conflicts', masterPlan)
                                     .auth(user.username, 'yp')
                                     .expectStatus(200)
@@ -80,7 +80,7 @@ consts.newUserInNewCampaignApi(
                                         masterPlan.mainEvent.end = startDate;
                                         masterPlan.mainEvent.frequency = 'once';
 
-                                        frisby.create('ActivityPlanConflicts: test for "once" plan with end equals exact match of first event begin, expect 0 conflict')
+                                        frisby.create('ActivityConflicts: test for "once" activity with end equals exact match of first event begin, expect 0 conflict')
                                             .post(URL + '/conflicts', masterPlan)
                                             .auth(user.username, 'yp')
                                             .expectStatus(200)
@@ -91,7 +91,7 @@ consts.newUserInNewCampaignApi(
                                                 masterPlan.mainEvent.start = endDate;
                                                 masterPlan.mainEvent.end = moment(endDate).add(5, 'm').toDate();
                                                 masterPlan.mainEvent.frequency = 'once';
-                                                frisby.create('ActivityPlanConflicts: test for "once" plan with start equals exact match of last event end, expect 0 conflict')
+                                                frisby.create('ActivityConflicts: test for "once" activity with start equals exact match of last event end, expect 0 conflict')
                                                     .post(URL + '/conflicts', masterPlan)
                                                     .auth(user.username, 'yp')
                                                     .expectStatus(200)
@@ -102,14 +102,14 @@ consts.newUserInNewCampaignApi(
                                                         masterPlan.mainEvent.start = moment(endDate).subtract(1, 'm').toDate();
                                                         masterPlan.mainEvent.end = moment(endDate).add(5, 'm').toDate();
                                                         masterPlan.mainEvent.frequency = 'once';
-                                                        frisby.create('ActivityPlanConflicts: test for "once" plan with start equals small overlap of last event end, expect 1 conflict')
+                                                        frisby.create('ActivityConflicts: test for "once" activity with start equals small overlap of last event end, expect 1 conflict')
                                                             .post(URL + '/conflicts', masterPlan)
                                                             .auth(user.username, 'yp')
                                                             .expectStatus(200)
                                                             .afterJSON(function (conflicts) {
                                                                 expect(conflicts.length).toEqual(1);
 
-                                                                frisby.create('ActivityPlanConflicts: delete the created activityPlan again')
+                                                                frisby.create('ActivityConflicts: delete the created activity again')
                                                                     .delete(URL + '/' + newPlan.id)
                                                                     .auth(user.username, 'yp')
                                                                     .expectStatus(200)

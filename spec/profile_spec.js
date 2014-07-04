@@ -40,7 +40,7 @@ var userProfile = {
         "timezone": "+01:00",
         "starredIdeas": [{timestamp: new Date().toISOString(), idea: "5278c6adcdeab69a25000054"}],
         "rejectedIdeas": [{timestamp: new Date().toISOString(), idea: "5278c6adcdeab69a25000090"}],
-        "rejectedActivityPlans": []
+        "rejectedActivities": []
     }
 };
 

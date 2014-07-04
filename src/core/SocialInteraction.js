@@ -6,6 +6,7 @@ var EventEmitter = require('events').EventEmitter,
     SocialInteractionDismissedModel = mongoose.model('SocialInteractionDismissed'),
     Invitation = mongoose.model('Invitation'),
     Recommendation = mongoose.model('Recommendation'),
+    Activity = mongoose.model('Activity'),
     env = process.env.NODE_ENV || 'development',
     config = require('../config/config')[env],
     Logger = require('bunyan'),
@@ -65,13 +66,13 @@ function _createTargetSpacesFromRecipients(to) {
  * @param activity  the referenced activity
  *
  */
-SocialInteraction.on('invitation:activityPlan', function (from, to, activityPlan) {
+SocialInteraction.on('invitation:activity', function (from, to, activity) {
 
     var invitation = new Invitation({
         author: from._id,
         targetSpaces: _createTargetSpacesFromRecipients(to),
-        refDocs: [{ docId: activityPlan._id, model: 'ActivityPlan'}],
-        publishTo: activityPlan.lastEventEnd
+        refDocs: [{ docId: activity._id, model: 'Activity'}],
+        publishTo: activity.lastEventEnd
     });
 
     invitation.save(function(err, inv) {
@@ -252,6 +253,51 @@ SocialInteraction.dismissSocialInteractionById = function dismissSocialInteracti
             return cb(null);
         });
 
+    });
+
+};
+
+
+/**
+ *
+ * populate the refDocs of a socialInteraction, store them in refDoc.doc
+ *
+ * NOTE: campaignId is optional!
+ *
+ * @param socialInteraction
+ * @param campaignId - optional, needed for the count an activity has been planned within a campaign
+ * @param cb
+ */
+SocialInteraction.populateSocialInteraction = function(socialInteraction, campaignId, cb) {
+
+    async.each(socialInteraction.refDocs, function(refDoc, done) {
+
+        mongoose.model(refDoc.model).findById(refDoc.docId).populate('idea').exec(function (err, document) {
+
+            // store the populated document in the refDoc
+            refDoc.doc = document;
+
+            if(campaignId && refDoc.model === 'Idea') {
+
+                // calculate the count this idea has been planned within the campaign
+                Activity.count({
+                    idea: document._id,
+                    campaign: campaignId
+                }).exec(function (err, count) {
+                    if (err) {
+                        return done(err);
+                    }
+                    log.info({count: count}, 'plan Count');
+                    socialInteraction.planCount = count;
+                    return done();
+                });
+            } else {
+                return done(err);
+            }
+        });
+
+    }, function(err, results) {
+        return cb(err, socialInteraction);
     });
 
 };

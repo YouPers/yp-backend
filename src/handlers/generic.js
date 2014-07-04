@@ -433,7 +433,7 @@ module.exports = {
             var dbQuery = Model.findById(req.params.id);
 
             processStandardQueryOptions(req, dbQuery, Model)
-                .exec(function geByIdFnCallback(err, obj) {
+                .exec(function getByIdFnCallback(err, obj) {
                     if (err) {
                         return error.handleError(err, next);
                     }

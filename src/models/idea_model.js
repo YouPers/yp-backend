@@ -20,8 +20,7 @@ var IdeaSchema = common.newSchema({
     defaultfrequency: {type: String, enum: common.enums.activityFrequency},
     defaultexecutiontype: {type: String, enum: common.enums.executiontype},
     defaultduration: {type: Number},
-    topics: [String],
-    fields: [String],
+    topics: [{type: ObjectId, ref: 'Topic'}],
     qualityFactor: {type: Number, select: false},
     recWeights: {type: mongoose.Schema.Types.Mixed, select: false}
 });

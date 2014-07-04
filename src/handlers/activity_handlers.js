@@ -200,7 +200,7 @@ function postNewActivity(req, res, next) {
 /**
  * save new activity with a mongoose obj that already has been validated
  *
- * @param activity - activity obj
+ * @param plan - activity obj
  * @param req - the request
  * @param cb - callback(err, savedPlan)
  */
@@ -217,8 +217,6 @@ function _saveNewActivity(activity, req, cb) {
         if (!foundIdea) {
             return cb(new error.InvalidArgumentError('referenced idea not found', { required: 'idea', idea: activity.idea }));
         }
-
-        activity.fields = foundIdea.fields;
 
         if (!activity.title) {
             activity.title = foundIdea.title;

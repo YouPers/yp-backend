@@ -13,16 +13,16 @@ var generatePaymentCode = function generatePaymentCode() {
 
         var values = req.body;
 
-        if(!values || !values.productType || !values.relatedService) {
+        if(!values || !values.productType || !values.topic) {
             return next(new error.MissingParameterError({required: [
                 'productType',
-                'relatedService'
+                'topic'
             ]}));
         }
 
         var paymentCode = new PaymentCode({
             code: couponCode.generate(),
-            relatedService: values.relatedService,
+            topic: values.topic,
             productType: values.productType,
             users: values.users
         });

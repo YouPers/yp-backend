@@ -30,7 +30,8 @@ var AssessmentQuestionSchema = common.newSchema({
 
 var AssessmentSchema = common.newSchema({
     name: {type: String, trim: true, i18n: true},
-    questions: [{type: ObjectId, ref: 'AssessmentQuestion'}]
+    questions: [{type: ObjectId, ref: 'AssessmentQuestion'}],
+    topic: {type: ObjectId, ref: 'Topic', required: true}
 });
 
 AssessmentSchema.statics.getSwaggerModel = function () {

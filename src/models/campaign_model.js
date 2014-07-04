@@ -13,7 +13,7 @@ var CampaignSchema = common.newSchema({
     title: { type: String, trim: true, required: true },
     start: {type: Date, required: true },
     end: {type: Date, required: true },
-    relatedService: {type: String, trim: true, enum: common.enums.relatedService, default: "YP-Balance"},
+    topic: {type: ObjectId, ref: 'Topic', required: true},
     organization:  { type: ObjectId, ref: 'Organization', required: true },
     participants: { type: String, trim: true},
     location: { type: String, trim: true },

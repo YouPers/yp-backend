@@ -25,14 +25,14 @@ Profile.on('change:prefs.focus', function (changedProfile) {
 /**
  * Evaluate an assessmentResult against a list of ideas and returns a scored list of the ideas
  * that are recommended for someone with this assessmentResult.
- * If no personalGoals are set all available answers are used for scoring, if personalGoals are set only the
+ * If no focus are set all available answers are used for scoring, if focus are set only the
  * corresponding answers are used for scoring.
  *
  * The resulting array is ordered by descending score, so the "best" recommendation comes first.
  *
  * @param actList the list of ideas to score
  * @param assResult the assessmentResult to score against
- * @param personalGoal an array of focus-questions corresponding to _ids of assessmentQuestions the user wants to focus on.
+ * @param focus an array of focus-questions corresponding to _ids of assessmentQuestions the user wants to focus on.
  * We expect an array of objects with property question: e.g. [{question: "id", timestamp: "ts"}, ...]
  * If this is null or empty array we consider all questions. If it is set to at least one question, we only consider the
  * questions that the user wants to focus on.
@@ -41,21 +41,21 @@ Profile.on('change:prefs.focus', function (changedProfile) {
  * @returns {*}
  * @private
  */
-function _generateRecommendations(actList, assResult, personalGoal, nrOfRecsToReturn, cb) {
+function _generateRecommendations(actList, assResult, focus, nrOfRecsToReturn, cb) {
 
     var indexedAnswers = _.indexBy(assResult.answers, function (answer) {
         return answer.question.toString();
     });
 
-    if (_.isString(personalGoal) && personalGoal.length > 0) {
-        personalGoal = [personalGoal];
-    } else if (_.isArray(personalGoal) && personalGoal.length > 0 && _.isObject(personalGoal[0])) {
+    if (_.isString(focus) && focus.length > 0) {
+        focus = [focus];
+    } else if (_.isArray(focus) && focus.length > 0 && _.isObject(focus[0])) {
         // unwrap the focus objects into a simple array of questionIds.
-        personalGoal = _.map(personalGoal, function (goal) {
+        focus = _.map(focus, function (goal) {
             return goal.question.toString();
         });
-    } else if (_.isArray(personalGoal) && (personalGoal.length = 0)) {
-        personalGoal = undefined;
+    } else if (_.isArray(focus) && (focus.length = 0)) {
+        focus = undefined;
     }
 
     // calculate matchValue for each idea and store in object
@@ -69,10 +69,10 @@ function _generateRecommendations(actList, assResult, personalGoal, nrOfRecsToRe
             // add score only if
             //     we have an answer for this weight
             //     AND
-            //          there are no personalGoals
+            //          there are no focus
             //            OR
-            //          this answer is part of the personalGoals
-            if (answerObj && (!personalGoal || personalGoal.length === 0 || (_.contains(personalGoal, answerObj.question.toString())))) {
+            //          this answer is part of the focus
+            if (answerObj && (!focus || focus.length === 0 || (_.contains(focus, answerObj.question.toString())))) {
                 score += (answerObj.answer >= 0) ?
                     answerObj.answer / 100 * recWeight[2] :
                     Math.abs(answerObj.answer) / 100 * recWeight[1];
@@ -87,22 +87,23 @@ function _generateRecommendations(actList, assResult, personalGoal, nrOfRecsToRe
 
     // reset dirty flag for assessment result
 
+    function finalCb() {
+        var limitedRecs = sortedRecs.slice(0, nrOfRecsToReturn);
+        return cb(null, limitedRecs);
+    }
+
     if (assResult.dirty) {
         assResult.dirty = false;
         assResult.save(function (err) {
             if (err) {
                 cb(err);
             }
-            final();
+            finalCb();
         });
     } else {
-        final();
+        finalCb();
     }
 
-    function final() {
-        var limitedRecs = sortedRecs.slice(0, nrOfRecsToReturn);
-        return cb(null, limitedRecs);
-    }
 }
 
 var locals = {};
@@ -113,11 +114,11 @@ var locals = {};
  * @param done
  * @private
  */
-function _loadIdeas(rejectedIdeas, done) {
+function _loadIdeas(topic, rejectedIdeas, done) {
     // reset
     locals.ideas = undefined;
 
-    Idea.find()
+    Idea.find({topics: topic.toString()})
         .select('recWeights qualityFactor')
         .exec(function (err, ideas) {
             if (err) {
@@ -146,7 +147,7 @@ function _loadIdeas(rejectedIdeas, done) {
  * @returns {*}
  * @private
  */
-function _loadAssessmentResult(userId, assessmentResult, done) {
+function _loadAssessmentResult(userId, assessmentResult, topic, done) {
     // reset
     locals.assResult = undefined;
 
@@ -154,7 +155,7 @@ function _loadAssessmentResult(userId, assessmentResult, done) {
         locals.assResult = assessmentResult;
         return done();
     } else {
-        AssessmentResult.find({owner: userId})
+        AssessmentResult.find({owner: userId, topic: topic})
             .sort({created: -1})
             .limit(1)
             .exec(function (err, assResults) {
@@ -164,9 +165,7 @@ function _loadAssessmentResult(userId, assessmentResult, done) {
                 if (assResults && assResults.length > 0) {
                     locals.assResult = assResults[0];
                 }
-
                 return done();
-
             });
     }
 }
@@ -178,36 +177,41 @@ function _loadAssessmentResult(userId, assessmentResult, done) {
 
 /**
  * updates the coachRecommendations that are currently stored for this user.
- * if the rejectedIdeas, personalGoals and last assessmentResult are not passed in, the method tries to load
+ * if the rejectedIdeas, focus and last assessmentResult are not passed in, the method tries to load
  * them from the database
  *
  * @param {ObjectId | string} userId of the user to update the recs for
  * @param {ObjectId[] | string[]} rejectedIdeas the list of rejected ideas as Ids
  * @param {AssessmentResult} assessmentResult
- * @param {ObjectId | ObjectId[] | string | string[] } [personalGoals]
+ * @param {ObjectId | ObjectId[] | string | string[] } [focus]
  * @param {cb} cb
  * @param updateDb
  * @param isAdmin
  */
-function _updateRecommendations(userId, rejectedIdeas, assessmentResult, personalGoals, updateDb, isAdmin, cb) {
-    // TODO: load personalGoals of this user if not passed in
+function _updateRecommendations(userId, topic, rejectedIdeas, assessmentResult, focus, updateDb, isAdmin, cb) {
+    // TODO: load focus of this user if not passed in
     // TODO: load rejectedActs of this user if not passed in
 
 
     async.parallel([
-        _loadIdeas.bind(null, rejectedIdeas),
-        _loadAssessmentResult.bind(null, userId, assessmentResult)
+        _loadIdeas.bind(null, topic, rejectedIdeas),
+        _loadAssessmentResult.bind(null, userId, assessmentResult, topic)
     ], function (err) {
         if (err) {
             return error.handleError(err, cb);
         }
 
-        if (!locals.assResult) {
-            // this users has no assessmentResults so we have no recommendations
-            return cb(null);
+        if (!locals.assResult ) {
+            if (!isAdmin) {
+                // this users has no assessmentResults so we have no recommendations
+                return cb(null);
+            } else {
+                // user is admin so we create an empty assResult for him
+                locals.assResult = {answers: []};
+            }
         }
 
-        _generateRecommendations(locals.ideas, locals.assResult, personalGoals, isAdmin ? 1000 : NUMBER_OF_COACH_RECS, function (err, recs) {
+        _generateRecommendations(locals.ideas, locals.assResult, focus, isAdmin ? 1000 : NUMBER_OF_COACH_RECS, function (err, recs) {
             if (err) {
                 return cb(err);
             }
@@ -291,12 +295,12 @@ function _updateRecommendations(userId, rejectedIdeas, assessmentResult, persona
  * @param userId
  * @param rejectedIdeas
  * @param assessmentResult
- * @param personalGoals
+ * @param focus
  * @param cb
  * @param isAdmin
  */
-function generateAndStoreRecommendations(userId, rejectedIdeas, assessmentResult, personalGoals, isAdmin, cb) {
-    _updateRecommendations(userId, rejectedIdeas, assessmentResult, personalGoals, true, isAdmin, cb);
+function generateAndStoreRecommendations(userId, topic, rejectedIdeas, assessmentResult, focus, isAdmin, cb) {
+    _updateRecommendations(userId, topic, rejectedIdeas, assessmentResult, focus, true, isAdmin, cb);
 }
 
 /**
@@ -304,12 +308,12 @@ function generateAndStoreRecommendations(userId, rejectedIdeas, assessmentResult
  * @param userId
  * @param rejectedIdeas
  * @param assessmentResult
- * @param personalGoals
+ * @param focus
  * @param cb
  * @param isAdmin
  */
-function generateRecommendations(userId, rejectedIdeas, assessmentResult, personalGoals, isAdmin, cb) {
-    _updateRecommendations(userId, rejectedIdeas, assessmentResult, personalGoals, false, isAdmin, cb);
+function generateRecommendations(userId, topic, rejectedIdeas, assessmentResult, focus, isAdmin, cb) {
+    _updateRecommendations(userId, topic,  rejectedIdeas, assessmentResult, focus, false, isAdmin, cb);
 }
 
 

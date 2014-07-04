@@ -1,0 +1,16 @@
+[
+    {
+        "_id": {
+            "$oid": "53b416cfa43aac62a2debda1"
+        },
+        "name": "Stress Management",
+        "shortDescription": "StressManagement und Burnout Prävention"
+    },
+    {
+        "_id": {
+            "$oid": "53b416fba43aac62a2debda2"
+        },
+        "name": "Ern\u00e4hrung am Arbeitsplatz",
+        "shortDescription": "Gesunde Ern\u00e4hrung am Arbeitsplatz"
+    }
+]

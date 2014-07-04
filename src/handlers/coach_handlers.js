@@ -17,7 +17,7 @@ var getCoachMessagesFn = function getCoachMessagesFn(req, res, next) {
         return next(new error.MissingParameterError('uistate is required as a query parameter', { required: 'uistate' }));
     }
 
-    hc.getCurrentMessages(req.user, req.params.uistate, function(err, messageIds, facts) {
+    hc.getCurrentMessages(req.user, req.params.uistate, function (err, messageIds, facts) {
         if (err) {
             return error.handleError(err, next);
         }
@@ -39,8 +39,14 @@ var getCoachRecommendationsFn = function getCoachRecommendationsFn(req, res, nex
     }
 
     var admin = auth.isAdminForModel(req.user, mongoose.model('Idea'));
+    var topic = (req.params.topic && mongoose.Types.ObjectId(req.params.topic)) ||
+        (req.user.campaign && req.user.campaign.topic);
 
-    CoachRecommendation.generateAndStoreRecommendations(req.user._id,
+    if (!topic) {
+        return next(new error.MissingParameterError('topic must be passed as query param, or the current user must have a campaign set.'));
+    }
+
+    CoachRecommendation.generateAndStoreRecommendations(req.user._id, topic,
         req.user.profile.prefs.rejectedIdeas, null, req.user.profile.prefs.focus, admin, function (err, recs) {
 
             if (err) {

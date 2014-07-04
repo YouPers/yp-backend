@@ -241,7 +241,8 @@ var getAllForUserFn = function (baseUrl) {
         var admin = auth.checkAccess(req.user, auth.accessLevels.al_admin);
         var match = admin ? {} : {campaignLeads: userId};
 
-        Campaign.find(match)
+        var dbQuery = Campaign.find(match);
+        generic.addStandardQueryOptions(req, dbQuery, Campaign)
             .exec(generic.writeObjCb(req, res, next));
     };
 };

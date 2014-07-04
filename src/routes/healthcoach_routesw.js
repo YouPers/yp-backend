@@ -49,7 +49,14 @@ module.exports = function (swagger, config) {
             "nickname": "getCoachRecommendations",
             params: [
                 generic.params.limit,
-                generic.params.populate
+                generic.params.populate,
+                {"name": "topic",
+                    "description": 'chooses the topic to get the recommendations for (overriding the users current campaign)',
+                    "dataType": 'string',
+                    "required": false,
+                    "allowMultiple": false,
+                    "paramType": "query"
+                }
             ],
             accessLevel: 'al_individual',
             beforeCallbacks: []

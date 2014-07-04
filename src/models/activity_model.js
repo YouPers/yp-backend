@@ -25,7 +25,6 @@ var ActivitySchema = common.newSchema({
     executionType: {type: String, enum: common.enums.executiontype},
     status: {type: String, enum: common.enums.ActivityStatus},
     campaign: {type: ObjectId, ref: 'Campaign'},
-    fields: [String],
     deletionReason: {type: String},
     mainEvent: {
         start: {type: Date},

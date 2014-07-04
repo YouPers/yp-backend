@@ -100,7 +100,7 @@ consts.newUserInNewCampaignApi(
             .toss();
 
 
-        frisby.create('Recommendations: post a first answer for this assessment')
+        frisby.create('Recommendations: put a first answer for this assessment')
             .put(URL + '/assessments/525faf0ac558d40000000005/answers/5278c51a6166f2de240000cc',
             {assessment: '525faf0ac558d40000000005',
                 question: '5278c51a6166f2de240000cc',
@@ -110,7 +110,7 @@ consts.newUserInNewCampaignApi(
             .auth(user.username, "yp")
             .expectStatus(200)
             .after(function () {
-                frisby.create('Recommendations: post a first answer for this assessment')
+                frisby.create('Recommendations: put a second answer for this assessment')
                     .put(URL + '/assessments/525faf0ac558d40000000005/answers/5278c51a6166f2de240000cb',
                     {assessment: '525faf0ac558d40000000005',
                         question: '5278c51a6166f2de240000cb',
@@ -125,33 +125,7 @@ consts.newUserInNewCampaignApi(
                             .get(URL + '/coachRecommendations')
                             .auth(user.username, "yp")
                             .expectStatus(200)
-                            .afterJSON(function (json) {
-
-                        _.forEach(recs, function(rec) {
-                            expect(rec.author).toEqual(consts.users.yphealthcoach.id);
-                        });
-
-                        var idea = recs[0].idea;
-
-                        frisby.create('Recommendations: plan a recommended activity')
-                            .post(URL + '/activities', {
-                                "owner": user,
-                                "idea": idea,
-                                "campaign": campaign.id,
-                                "title": "myTitle",
-                                "executionType": "group",
-                                "mainEvent": {
-                                    "start": moment(),
-                                    "end": moment().add('hours', 2),
-                                    "allDay": false,
-                                    "frequency": "once"
-                                },
-                                "status": "active"
-                            })
-                            .auth(user.username, 'yp')
-                            .expectStatus(201)
-                            .afterJSON(function (newPlan) {
-
+                            .afterJSON(function (recs) {
                                 frisby.create('Recommendations: get recommendations without the already planned idea')
                                     .get(URL + '/recommendations')
                                     .auth(user.username, "yp")
@@ -168,10 +142,9 @@ consts.newUserInNewCampaignApi(
                                         var idea = recs[0].idea;
 
                                         frisby.create('Recommendations: plan a recommended activity')
-                                            .post(URL + '/activityplans', {
+                                            .post(URL + '/activities', {
                                                 "owner": user,
                                                 "idea": idea,
-                                                "visibility": "public",
                                                 "campaign": campaign.id,
                                                 "title": "myTitle",
                                                 "executionType": "group",
@@ -191,32 +164,71 @@ consts.newUserInNewCampaignApi(
                                                     .get(URL + '/recommendations')
                                                     .auth(user.username, "yp")
                                                     .expectStatus(200)
-                                                    .afterJSON(function (newRecs) {
+                                                    .afterJSON(function (recs) {
 
-                                                        expect(newRecs.length).toEqual(recs.length - 1);
-                                                        expect(_.map(newRecs, 'idea')).not.toContain(idea);
+                                                        expect(recs.length).toBeGreaterThan(6);
+                                                        expect(recs.length).toBeLessThan(11);
 
-                                                        async.each(newRecs, function (rec, done) {
-                                                            frisby.create('Recommendations: dismiss the message anyway')
-                                                                .delete(URL + '/socialInteractions/' + rec.id)
-                                                                .auth(user.username, 'yp')
-                                                                .expectStatus(200)
-                                                                .after(function () {
-                                                                    done();
-                                                                })
-                                                                .toss();
-                                                        }, function (err) {
-                                                            // if any of the file processing produced an error, err would equal that error
-                                                            expect(err).toBeUndefined();
-
-                                                            frisby.create('Recommendations: remove AssessmentResults')
-                                                                .delete(URL + '/assessments/525faf0ac558d40000000005/results')
-                                                                .auth(user.username, 'yp')
-                                                                .expectStatus(200)
-                                                                .toss();
-
-                                                            cleanupFn();
+                                                        _.forEach(recs, function (rec) {
+                                                            expect(rec.author).toEqual(consts.users.yphealthcoach.id);
                                                         });
+
+                                                        var idea = recs[0].idea;
+
+                                                        frisby.create('Recommendations: plan a recommended activity')
+                                                            .post(URL + '/activities', {
+                                                                "owner": user,
+                                                                "idea": idea,
+                                                                "visibility": "public",
+                                                                "campaign": campaign.id,
+                                                                "title": "myTitle",
+                                                                "executionType": "group",
+                                                                "mainEvent": {
+                                                                    "start": moment(),
+                                                                    "end": moment().add('hours', 2),
+                                                                    "allDay": false,
+                                                                    "frequency": "once"
+                                                                },
+                                                                "status": "active"
+                                                            })
+                                                            .auth(user.username, 'yp')
+                                                            .expectStatus(201)
+                                                            .afterJSON(function (newPlan) {
+
+                                                                frisby.create('Recommendations: get recommendations without the already planned idea')
+                                                                    .get(URL + '/recommendations')
+                                                                    .auth(user.username, "yp")
+                                                                    .expectStatus(200)
+                                                                    .afterJSON(function (newRecs) {
+
+                                                                        expect(newRecs.length).toEqual(recs.length - 1);
+                                                                        expect(_.map(newRecs, 'idea')).not.toContain(idea);
+
+                                                                        async.each(newRecs, function (rec, done) {
+                                                                            frisby.create('Recommendations: dismiss the message anyway')
+                                                                                .delete(URL + '/socialInteractions/' + rec.id)
+                                                                                .auth(user.username, 'yp')
+                                                                                .expectStatus(200)
+                                                                                .after(function () {
+                                                                                    done();
+                                                                                })
+                                                                                .toss();
+                                                                        }, function (err) {
+                                                                            // if any of the file processing produced an error, err would equal that error
+                                                                            expect(err).toBeUndefined();
+
+                                                                            frisby.create('Recommendations: remove AssessmentResults')
+                                                                                .delete(URL + '/assessments/525faf0ac558d40000000005/results')
+                                                                                .auth(user.username, 'yp')
+                                                                                .expectStatus(200)
+                                                                                .toss();
+
+                                                                            cleanupFn();
+                                                                        });
+                                                                    })
+                                                                    .toss();
+                                                            })
+                                                            .toss();
                                                     })
                                                     .toss();
                                             })

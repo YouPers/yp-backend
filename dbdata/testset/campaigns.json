@@ -19,6 +19,9 @@
         "organization": {
             "$oid": "52f0c64e53d523235b07d8d8"
         },
+        "topic": {
+            "$oid": "53b416cfa43aac62a2debda1"
+        },
         "paymentStatus": "paid",
         "productType": "CampaignProductType1",
         "relatedService": "YP-Balance",
@@ -48,6 +51,9 @@
         "location": "Z\u00fcrich",
         "organization": {
             "$oid": "52f0c64e53d523235b07d8d8"
+        },
+        "topic": {
+            "$oid": "53b416cfa43aac62a2debda1"
         },
         "paymentStatus": "open",
         "productType": "CampaignProductType1",

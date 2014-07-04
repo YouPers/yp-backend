@@ -21,8 +21,7 @@ var IdeaSchema = common.newSchema({
     defaultexecutiontype: {type: String, enum: common.enums.executiontype},
     defaultvisibility: {type: String, enum: common.enums.visibility},
     defaultduration: {type: Number},
-    topics: [String],
-    fields: [String],
+    topics: [{type: ObjectId, ref: 'Topic'}],
     qualityFactor: {type: Number, select: false},
     recWeights: {type: mongoose.Schema.Types.Mixed, select: false}
 });

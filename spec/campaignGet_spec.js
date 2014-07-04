@@ -23,7 +23,7 @@ var testCampaign = {
     "title": "testOrganization's campaign 1 for work life balance",
     "start": campaignStart,
     "end": campaignEnd,
-    "relatedService": "YP-Balance",
+    "topic": "53b416cfa43aac62a2debda1",
     "organization": "52f0c64e53d523235b07d8d8",
     "location": "Los Feliz",
     "slogan": "It's never too late!",

@@ -11,6 +11,7 @@ var mongoose = require('mongoose'),
 var AssessmentResultSchema = common.newSchema({
     owner: {type: Schema.Types.ObjectId, ref: 'User', required: true},
     campaign: {type: Schema.Types.ObjectId, ref: 'Campaign'},
+    topic: {type: Schema.Types.ObjectId, ref: 'Topic'},
     assessment: {type: Schema.Types.ObjectId, ref: 'Assessment', required: true},
     dirty: { type: Boolean },
     answers: [AssessmentResultAnswer.schema],
@@ -96,6 +97,25 @@ var needForActionEvalFns = {
         } else if (mid >= 1 || low >= 3) {
             need = 6;
         } else if (low >= 2) {
+            need = 2;
+        } else if (low >= 1) {
+            need = 2;
+        } else {
+            need = 1;
+        }
+        return need;
+    },
+    "lunch": function(high, mid, low) {
+        var need = 0;
+        if (high >= 2) {
+            need = 10;
+        } else if (high >= 1 || mid >= 1) {
+            need = 8;
+        } else if (mid >= 2) {
+            need = 2;
+        } else if (mid >= 1 || low >= 1) {
+            need = 6;
+        } else if (low >= 1) {
             need = 2;
         } else if (low >= 1) {
             need = 2;

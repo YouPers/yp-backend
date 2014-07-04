@@ -34,7 +34,7 @@ var initialize = function initialize(loadTestData) {
             'notification',
             'notificationDismissed',
             'diaryEntry',
-
+            'topic',
             'space',
             'socialInteraction',
             'socialInteractionDismissed',

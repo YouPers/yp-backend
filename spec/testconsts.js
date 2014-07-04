@@ -42,6 +42,9 @@ var self = module.exports  =  {
     assessment: {
         id: '525faf0ac558d40000000005'
     },
+    topic: {
+        id: '53b416cfa43aac62a2debda1'
+    },
     organization: {
         id: '52f0c64e53d523235b07d8d8'
     },
@@ -84,7 +87,7 @@ var self = module.exports  =  {
             "title": "testOrganization's campaign x for testing: " + Math.floor((Math.random() * 10000) + 1),
             "start": campaignStart,
             "end": campaignEnd,
-            "relatedService": "YP-Balance",
+            "topic": "53b416cfa43aac62a2debda1",
             "location": "Alpenstrasse",
             "slogan": "It's never too late!",
             "paymentStatus": "open",

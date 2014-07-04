@@ -115,8 +115,7 @@ consts.newUserInNewCampaignApi(
                     {assessment: '525faf0ac558d40000000005',
                         question: '5278c51a6166f2de240000cb',
                         answer: 23,
-                        answered: true}
-                )
+                        answered: true})
                     .auth(user.username, "yp")
                     .expectStatus(200)
                     .after(function () {
@@ -126,14 +125,13 @@ consts.newUserInNewCampaignApi(
                             .auth(user.username, "yp")
                             .expectStatus(200)
                             .afterJSON(function (recs) {
-                                frisby.create('Recommendations: get recommendations without the already planned idea')
+                                frisby.create('Recommendations: get recommendations')
                                     .get(URL + '/recommendations')
                                     .auth(user.username, "yp")
                                     .expectStatus(200)
                                     .afterJSON(function (recs) {
 
-                                        expect(recs.length).toBeGreaterThan(6);
-                                        expect(recs.length).toBeLessThan(11);
+                                        expect(recs.length).toEqual(3);
 
                                         _.forEach(recs, function (rec) {
                                             expect(rec.author).toEqual(consts.users.yphealthcoach.id);
@@ -164,67 +162,54 @@ consts.newUserInNewCampaignApi(
                                                     .get(URL + '/recommendations')
                                                     .auth(user.username, "yp")
                                                     .expectStatus(200)
-                                                    .afterJSON(function (recs) {
+                                                    .afterJSON(function (recsWithoutPlannedIdea) {
 
-                                                        expect(recs.length).toBeGreaterThan(6);
-                                                        expect(recs.length).toBeLessThan(11);
+                                                        expect(recsWithoutPlannedIdea.length).toEqual(2);
 
-                                                        _.forEach(recs, function (rec) {
+                                                        _.forEach(recsWithoutPlannedIdea, function (rec) {
                                                             expect(rec.author).toEqual(consts.users.yphealthcoach.id);
                                                         });
 
-                                                        var idea = recs[0].idea;
+                                                        frisby.create('Recommendations: regenerate recommendations again, to check whether we do duplicate them')
+                                                            .get(URL + '/coachRecommendations')
+                                                            .auth(user.username, "yp")
+                                                            .expectStatus(200)
+                                                            .afterJSON(function (coachRecs) {
 
-                                                        frisby.create('Recommendations: plan a recommended activity')
-                                                            .post(URL + '/activities', {
-                                                                "owner": user,
-                                                                "idea": idea,
-                                                                "visibility": "public",
-                                                                "campaign": campaign.id,
-                                                                "title": "myTitle",
-                                                                "executionType": "group",
-                                                                "mainEvent": {
-                                                                    "start": moment(),
-                                                                    "end": moment().add('hours', 2),
-                                                                    "allDay": false,
-                                                                    "frequency": "once"
-                                                                },
-                                                                "status": "active"
-                                                            })
-                                                            .auth(user.username, 'yp')
-                                                            .expectStatus(201)
-                                                            .afterJSON(function (newPlan) {
-
-                                                                frisby.create('Recommendations: get recommendations without the already planned idea')
+                                                                frisby.create('Recommendations: get recommendations after regeneration without the already planned idea')
                                                                     .get(URL + '/recommendations')
                                                                     .auth(user.username, "yp")
                                                                     .expectStatus(200)
                                                                     .afterJSON(function (newRecs) {
 
-                                                                        expect(newRecs.length).toEqual(recs.length - 1);
-                                                                        expect(_.map(newRecs, 'idea')).not.toContain(idea);
-
-                                                                        async.each(newRecs, function (rec, done) {
-                                                                            frisby.create('Recommendations: dismiss the message anyway')
-                                                                                .delete(URL + '/socialInteractions/' + rec.id)
-                                                                                .auth(user.username, 'yp')
-                                                                                .expectStatus(200)
-                                                                                .after(function () {
-                                                                                    done();
-                                                                                })
-                                                                                .toss();
-                                                                        }, function (err) {
-                                                                            // if any of the file processing produced an error, err would equal that error
-                                                                            expect(err).toBeUndefined();
-
-                                                                            frisby.create('Recommendations: remove AssessmentResults')
-                                                                                .delete(URL + '/assessments/525faf0ac558d40000000005/results')
-                                                                                .auth(user.username, 'yp')
-                                                                                .expectStatus(200)
-                                                                                .toss();
-
-                                                                            cleanupFn();
+                                                                        expect(newRecs.length).toEqual(3);
+//
+                                                                        _.forEach(newRecs, function (rec) {
+                                                                            expect(rec.idea).not.toEqual(idea);
                                                                         });
+
+
+//                                                                        async.each(newRecs, function (rec, done) {
+//                                                                            frisby.create('Recommendations: dismiss the message anyway')
+//                                                                                .delete(URL + '/socialInteractions/' + rec.id)
+//                                                                                .auth(user.username, 'yp')
+//                                                                                .expectStatus(200)
+//                                                                                .after(function () {
+//                                                                                    done();
+//                                                                                })
+//                                                                                .toss();
+//                                                                        }, function (err) {
+//                                                                            // if any of the file processing produced an error, err would equal that error
+//                                                                            expect(err).toBeUndefined();
+//
+//                                                                            frisby.create('Recommendations: remove AssessmentResults')
+//                                                                                .delete(URL + '/assessments/525faf0ac558d40000000005/results')
+//                                                                                .auth(user.username, 'yp')
+//                                                                                .expectStatus(200)
+//                                                                                .toss();
+//
+//                                                                            cleanupFn();
+//                                                                        });
                                                                     })
                                                                     .toss();
                                                             })

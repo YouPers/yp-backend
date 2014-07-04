@@ -20,16 +20,12 @@ describe('CoachRecommendation Module', function () {
                     answered: true}
             ]
         };
-        CoachRecommendation.generateAndStoreRecommendations(consts.users.test_ind1.id,consts.topic.id ,[], assResult, null, false,function(err, recs) {
+        CoachRecommendation.generateAndStoreRecommendations(consts.users.test_ind1.id, consts.topic.id, [], assResult, null, false, function (err, recs) {
             expect(err).toEqual(null);
-            expect(recs.length).toBeGreaterThan(6);
-            expect(recs.length).toBeLessThan(11);
-            if (recs.length > 4) {
-                expect(recs[0].score >= recs[1].score).toBe(true);
-                expect(recs[1].score >= recs[2].score).toBe(true);
-                expect(recs[recs.length - 2].score >= recs[recs.length - 1].score).toBe(true);
-                expect(recs.length).toEqual(10);
-            }
+            expect(recs.length).toBeGreaterThan(2);
+            expect(recs.length).toBeLessThan(4);
+            expect(recs[0].score >= recs[1].score).toBe(true);
+            expect(recs[1].score >= recs[2].score).toBe(true);
             return done();
         });
 

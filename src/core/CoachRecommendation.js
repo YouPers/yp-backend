@@ -11,14 +11,21 @@ var _ = require('lodash'),
     Logger = require('bunyan'),
     log = new Logger(config.loggerOptions);
 
-var NUMBER_OF_COACH_RECS = 10;
+var NUMBER_OF_COACH_RECS = 3;
 var HEALTH_COACH_USER_ID = '53348c27996c80a534319bda';
 
 Profile.on('change:prefs.focus', function (changedProfile) {
-    generateAndStoreRecommendations(changedProfile.owner, changedProfile.prefs.rejectedIdeas, null, changedProfile.prefs.focus, false, function (err, recs) {
-        if (err) {
-            log.error(err);
+
+    mongoose.model('User').findById(changedProfile.owner).select('campaign').populate('campaign').exec(function (err, user) {
+        if (err || !user) {
+            log.error(err || "owner of profile not found: " + changedProfile.owner);
+            return;
         }
+        generateAndStoreRecommendations(changedProfile.owner, user.campaign.topic, changedProfile.prefs.rejectedIdeas, null, changedProfile.prefs.focus, false, function (err, recs) {
+            if (err) {
+                log.error(err);
+            }
+        });
     });
 });
 
@@ -41,7 +48,7 @@ Profile.on('change:prefs.focus', function (changedProfile) {
  * @returns {*}
  * @private
  */
-function _generateRecommendations(actList, assResult, focus, nrOfRecsToReturn, cb) {
+function _calculateRecommendations(actList, assResult, focus, nrOfRecsToReturn, cb) {
 
     var indexedAnswers = _.indexBy(assResult.answers, function (answer) {
         return answer.question.toString();
@@ -113,25 +120,20 @@ var locals = {};
  * @param rejectedIdeas
  * @param done
  * @private
+ * @param topic
  */
 function _loadIdeas(topic, rejectedIdeas, done) {
     // reset
     locals.ideas = undefined;
 
     Idea.find({topics: topic.toString()})
+        .where({_id: {$not: {$in: rejectedIdeas}}})
         .select('recWeights qualityFactor')
         .exec(function (err, ideas) {
             if (err) {
                 return error.handleError(err, done);
             }
 
-            if (rejectedIdeas && rejectedIdeas.length > 0) {
-                _.remove(ideas, function (idea) {
-                    return _.any(rejectedIdeas, function (rejIdea) {
-                        return rejIdea.idea.equals(idea._id);
-                    });
-                });
-            }
             locals.ideas = ideas;
             return done();
         });
@@ -146,6 +148,7 @@ function _loadIdeas(topic, rejectedIdeas, done) {
  * @param done callback
  * @returns {*}
  * @private
+ * @param topic
  */
 function _loadAssessmentResult(userId, assessmentResult, topic, done) {
     // reset
@@ -187,106 +190,126 @@ function _loadAssessmentResult(userId, assessmentResult, topic, done) {
  * @param {cb} cb
  * @param updateDb
  * @param isAdmin
+ * @param topic
  */
 function _updateRecommendations(userId, topic, rejectedIdeas, assessmentResult, focus, updateDb, isAdmin, cb) {
     // TODO: load focus of this user if not passed in
     // TODO: load rejectedActs of this user if not passed in
 
+    // loading the already planned ideas of this user - we do not want to recommend things that this user has already planned
+    mongoose.model('Activity').find({$or: [
+        {owner: userId},
+        {joiningUsers: userId}
+    ]}).select('idea').exec(function (err, plannedIdeas) {
 
-    async.parallel([
-        _loadIdeas.bind(null, topic, rejectedIdeas),
-        _loadAssessmentResult.bind(null, userId, assessmentResult, topic)
-    ], function (err) {
-        if (err) {
-            return error.handleError(err, cb);
-        }
+        rejectedIdeas = _.map(rejectedIdeas, 'idea').concat(_.map(plannedIdeas, 'idea'));
 
-        if (!locals.assResult ) {
-            if (!isAdmin) {
-                // this users has no assessmentResults so we have no recommendations
-                return cb(null);
-            } else {
-                // user is admin so we create an empty assResult for him
-                locals.assResult = {answers: []};
-            }
-        }
-
-        _generateRecommendations(locals.ideas, locals.assResult, focus, isAdmin ? 1000 : NUMBER_OF_COACH_RECS, function (err, recs) {
+        async.parallel([
+            _loadIdeas.bind(null, topic, rejectedIdeas),
+            _loadAssessmentResult.bind(null, userId, assessmentResult, topic)
+        ], function (err) {
             if (err) {
-                return cb(err);
+                return error.handleError(err, cb);
             }
-            if (updateDb) {
 
-                // find all health coach recommendations for this user
-                Recommendation.find({
-                    targetSpaces: {
-                        $elemMatch: {
-                            type: 'user',
-                            targetModel: 'User',
-                            targetId: userId
-                        }
-                    },
-                    author: HEALTH_COACH_USER_ID
-                }).exec(function(err, recommendations) {
+            if (!locals.assResult) {
+                if (!isAdmin) {
+                    // this users has no assessmentResults so we have no recommendations
+                    return cb(null);
+                } else {
+                    // user is admin so we create an empty assResult for him, with this he gets to see the scores of ideas
+                    // with an empty assessment (--> the qualityFactor)
+                    locals.assResult = {answers: []};
+                }
+            }
 
-                    var previousIdeas = _.map(recommendations, function(rec) {return rec.idea.toString();});
-                    var currentIdeas = _.map(recs, function(rec) {return rec.idea.toString();});
+            _calculateRecommendations(locals.ideas, locals.assResult, focus, isAdmin ? 1000 : NUMBER_OF_COACH_RECS, function (err, newRecs) {
+                if (err) {
+                    return cb(err);
+                }
+                if (updateDb) {
 
-                    var obsoleteIdeas = _.difference(previousIdeas, currentIdeas);
-                    var newIdeas = _.difference(currentIdeas, previousIdeas);
-
-                    // remove recommendation for obsolete ideas
-                    var removeRecs = function removeRecs(ideas, done) {
-                        Recommendation.remove({
-                            targetSpaces: {
-                                $elemMatch: {
-                                    type: 'user',
-                                    targetId: userId,
-                                    targetModel: 'User'
-                                }
-                            },
-                            idea: {
-                                $in: ideas
-                            }
-
-                        }).exec(done);
-                    };
-
-                    // store recommendation for new ideas
-                    var storeRec = function storeRec(idea, done) {
-                        var rec = new Recommendation({
-                            targetSpaces: [{
+                    // find all health coach recommendations for this user
+                    Recommendation.find({
+                        targetSpaces: {
+                            $elemMatch: {
                                 type: 'user',
-                                targetId: userId,
-                                targetModel: 'User'
-                            }],
-                            author: HEALTH_COACH_USER_ID,
-                            refDocs: [{ docId: idea, model: 'Idea' }],
-                            idea: idea
+                                targetId: userId
+                            }
+                        },
+                        author: HEALTH_COACH_USER_ID
+                    }).exec(function (err, existingRecs) {
+                        if (err) {
+                            return cb(err);
+                        }
+                        var previousIdeas = _.map(existingRecs, function (rec) {
+                            return rec.idea.toString();
                         });
-                        rec.save(done);
-                    };
+                        var currentIdeas = _.map(newRecs, function (rec) {
+                            return rec.idea.toString();
+                        });
 
-                    var updateRecs = [removeRecs.bind(null, obsoleteIdeas)];
+                        var obsoleteIdeas = _.difference(previousIdeas, currentIdeas);
+                        var newIdeas = _.difference(currentIdeas, previousIdeas);
 
-                    _.forEach(newIdeas, function(idea) {
-                        updateRecs.push(storeRec.bind(null, idea));
+                        // remove recommendation for obsolete ideas
+                        var removeRecs = function removeRecs(ideas, done) {
+                            Recommendation.remove({
+                                targetSpaces: {
+                                    $elemMatch: {
+                                        type: 'user',
+                                        targetId: userId
+                                    }
+                                },
+                                idea: {
+                                    $in: ideas
+                                }
+
+                            }).exec(done);
+                        };
+
+                        // store recommendation for new ideas
+                        var storeRec = function storeRec(idea, done) {
+                            var rec = new Recommendation({
+                                targetSpaces: [
+                                    {
+                                        type: 'user',
+                                        targetId: userId
+                                    }
+                                ],
+                                author: HEALTH_COACH_USER_ID,
+                                refDocs: [
+                                    { docId: idea, model: 'Idea' }
+                                ],
+                                idea: idea
+                            });
+                            rec.save(done);
+                        };
+
+                        var updateRecs = [removeRecs.bind(null, obsoleteIdeas)];
+
+                        _.forEach(newIdeas, function (idea) {
+                            updateRecs.push(storeRec.bind(null, idea));
+                        });
+
+                        async.parallel(updateRecs, function (err, storedRecs) {
+                            return cb(err, newRecs);
+                        });
+
                     });
 
-                    async.parallel(updateRecs, function(err, storedRecs) {
-                        return cb(err, recs);
-                    });
 
-                });
-
-
-            } else {
-                return cb(null, recs);
-            }
+                } else {
+                    return cb(null, newRecs);
+                }
 
 
+            });
         });
+
+
     });
+
 
 }
 
@@ -298,6 +321,7 @@ function _updateRecommendations(userId, topic, rejectedIdeas, assessmentResult, 
  * @param focus
  * @param cb
  * @param isAdmin
+ * @param topic
  */
 function generateAndStoreRecommendations(userId, topic, rejectedIdeas, assessmentResult, focus, isAdmin, cb) {
     _updateRecommendations(userId, topic, rejectedIdeas, assessmentResult, focus, true, isAdmin, cb);
@@ -311,11 +335,11 @@ function generateAndStoreRecommendations(userId, topic, rejectedIdeas, assessmen
  * @param focus
  * @param cb
  * @param isAdmin
+ * @param topic
  */
 function generateRecommendations(userId, topic, rejectedIdeas, assessmentResult, focus, isAdmin, cb) {
-    _updateRecommendations(userId, topic,  rejectedIdeas, assessmentResult, focus, false, isAdmin, cb);
+    _updateRecommendations(userId, topic, rejectedIdeas, assessmentResult, focus, false, isAdmin, cb);
 }
-
 
 
 // keeping as a reference, currently not in use
@@ -343,7 +367,9 @@ var getDefaultRecommendations = function getDefaultRecommendations(campaignId, c
 
                     author: HEALTH_COACH_USER_ID,
 
-                    refDocs: [{ docId: campaignId, model: 'Campaign'}],
+                    refDocs: [
+                        { docId: campaignId, model: 'Campaign'}
+                    ],
                     idea: idea._id
                 };
 

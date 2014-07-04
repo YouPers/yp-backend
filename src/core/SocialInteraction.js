@@ -186,10 +186,13 @@ SocialInteraction.dismissSocialInteraction = function dismissSocialInteraction(m
         }
     };
 
-    // find all invitations for this refDoc targeted to one of these users
+    // find all soi for this refDoc targeted to one of these users
     model.find(finder).exec(function(err, socialInteractions) {
+        if (err) {
+            return error.handleError(err, cb);
+        }
 
-        // for each invitation, find all relevant users and dismiss the invitation
+        // for each soi, find all relevant users and dismiss the invitation
         _.forEach(socialInteractions, function (socialInteraction) {
 
             var spaces = allUsers ? socialInteraction.targetSpaces : _.filter(socialInteraction.targetSpaces, function(space) {
@@ -225,7 +228,11 @@ SocialInteraction.dismissSocialInteractionById = function dismissSocialInteracti
     SocialInteractionModel.findById(socialInteractionId, function(err, socialInteraction) {
 
         if(err) {
-            cb(err);
+            return cb(err);
+        }
+
+        if (!socialInteraction) {
+            return cb(new Error('Social Interaction not found: ' + socialInteractionId));
         }
 
         var userId = (user._id ? user._id : user);

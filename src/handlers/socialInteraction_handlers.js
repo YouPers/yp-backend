@@ -109,6 +109,15 @@ var deleteByIdFn = function (baseUrl, Model) {
 
         Model.findById(req.params.id).exec(function(err, socialInteraction) {
 
+            if (err) {
+                return error.handleError(err, next);
+            }
+
+            if (!socialInteraction) {
+                // the soi we wanted to delete does not exist -->
+                res.send(200);
+                return next();
+            }
             // the author may delete his own socialInteraction,
             // system admins can delete any socialInteraction, with the 'administrate' flag set
             var adminMode = auth.checkAccess(req.user, 'al_admin') &&

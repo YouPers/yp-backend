@@ -31,8 +31,7 @@ consts.newUserInNewCampaignApi(
                     author: '52d4f515fac246174c000006',
                     targetSpaces: [{
                         type: 'user',
-                        targetId: user.id,
-                        targetModel: 'User'
+                        targetId: user.id
                     }],
 
                     title: 'Hello ' + user.firstname + '!',
@@ -115,8 +114,7 @@ consts.newUserInNewCampaignApi(
                             author: '52d4f515fac246174c000006',
                             targetSpaces: [{
                                 type: 'campaign',
-                                targetId: campaign.id,
-                                targetModel: 'Campaign'
+                                targetId: campaign.id
                             }],
 
                             title: 'Hello ' + user.firstname + '!',
@@ -216,8 +214,7 @@ consts.newUserInNewCampaignApi(
                     author: '52d4f515fac246174c000006',
                     targetSpaces: [{
                         type: 'campaign',
-                        targetId: campaign.id,
-                        targetModel: 'Campaign'
+                        targetId: campaign.id
                     }],
 
                     title: 'Hello ' + user.firstname + '!',

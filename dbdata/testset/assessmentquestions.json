@@ -23,7 +23,7 @@
             "it": "In generale, ho troppo lavoro da fare, così ho spesso lavoro diverse ore / lavoro straordinario / lavoro sotto pressione. Non ho tempo per un'accurata pianificazione e organizzazione del lavoro. Mi manca la mia vita privata."
         },
         "maxtextresultI18n": {
-            "de": "Wenn du dich von deiner Arbeitsmenge überfordert fühlst, hilft es dir, deine Arbeitsgestaltung und dein Zeitmanagement zu verbessern sowie entspannende Aktivitäten zu planen. Besprich dies ausserdem mit deinem Vorgesetzten oder dem Personalverantwortlichen.",
+            "de": "Wenn du dich von deiner Arbeitsmenge überfordert fühlst, hilft es dir, deine Arbeitsgestaltung und dein Zeitmanagement zu verbessern sowie entspannende Aktivitäten zu planen. Besprich dies ausserdem mit deinem/deiner Vorgesetzten oder dem Personalverantwortlichen.",
             "en": "If you feel overwhelmed by your workload, it helps to improve your work structure and time management as well as to plan relaxing activities. Also it may help to discuss this with your supervisor or your HR representative.",
             "fr": "Lorsque tu te sens dépassé(e) par ta charge de travail, une meilleure organisation de ton travail et de ton temps peuvent t'aider, tout comme planifier des activités de détente. Discutes-en par exemple avec ton supérieur et/ou ton gestionnaire des ressources humaines.",
             "it": "Se ti senti sopraffatto dal carico di lavoro, aiuta a migliorare l' organizzazione del lavoro e la gestione del tempo, al fine di pianificare le attività rilassanti. Discutine anche con il tuo supervisore o il tuo responsabile."
@@ -151,7 +151,7 @@
             "it": "Zu viel"
         },
         "maxtextexampleI18n": {
-            "de": "Ich werde von meinem Vorgesetzten bzw. meinem Arbeitsumfeld \"überbetreut\".",
+            "de": "Ich werde von meinem/meiner Vorgesetzten bzw. meinem Arbeitsumfeld \"überbetreut\".",
             "en": "My supervisor and my working environment are micromanaging me.",
             "fr": "Je suis trop pris en charge par mon supérieur, voire par mon environnement de travail.",
             "it": "Ich werde von meinem/meiner Vorgesetzten bzw. meinem Arbeitsumfeld \"überbetreut\"."
@@ -876,7 +876,7 @@
             "it": "Ich fühle mich aufgrund meiner permanenten Geldknappheit bzw. meiner Schulden oft gestresst."
         },
         "mintextresultI18n": {
-            "de": "Wenn dich deine finanzielle Situation belastet, empfiehlt sich, eine für dich passende Budget- bzw. Schuldenabbau-Planung auszuarbeiten und strikte einzuhalten. Bespreche die Situation und Planung auch mit deinem/deiner Partner/in und bei Bedarf mit einem/einer Fachexperten/in (z.B. dipl. Finanzberater/in).",
+            "de": "Wenn dich deine finanzielle Situation belastet, empfiehlt sich, eine für dich passende Budget- bzw. Schuldenabbau-Planung auszuarbeiten und strikt einzuhalten. Bespreche die Situation und Planung auch mit deinem/deiner Partner/in und bei Bedarf mit einem/einer Fachexperten/in (z.B. dipl. Finanzberater/in).",
             "en": "If your financial situation stresses you, it is advisable to prepare and strictly follow a suitable budget and debt reduction plan. Also discuss the situation and planning with your partner, and if required, with an expert (e.g. a Financial Adviser).",
             "fr": "Si ta situation financière t'accable, il est recommandé d'établir un budget adapté, voire un plan de remboursement de la dette, et d'y adhérer de façon stricte. Discute de la situation et de la planification avec ton/ta conjoint(e) et, si nécessaire, avec un(e) spécialiste (par ex: conseiller financier).",
             "it": "Wenn dich deine finanzielle Situation belastet, empfiehlt sich, eine für dich passende Budget- bzw. Schuldenabbau-Planung auszuarbeiten und strikt einzuhalten. Bespreche die Situation und Planung auch mit deinem/deiner Partner/in und bei Bedarf mit einem/einer Fachexperten/in (z.B. dipl. Finanzberater/in)."
@@ -974,7 +974,7 @@
             "it": "Zu hoch"
         },
         "maxtextexampleI18n": {
-            "de": "Ich habe sehr hohe Ansprüche an mich selbst und andere. Ich gerate deshalb immer wieder in Anspruchs-Diskussionen mit meinem Vorgesetzten/meiner Vorgesetztin, meinen Mitarbeitern oder meinen Arbeitskollegen. Meine hohen Selbstanforderungen erhöhen meinen Stress. Andere und ich selber schätzen mich als perfektionistisch ein.",
+            "de": "Ich habe sehr hohe Ansprüche an mich selbst und andere. Ich gerate deshalb immer wieder in Anspruchs-Diskussionen mit meinem/meiner Vorgesetzten, meinen Mitarbeitern oder meinen Arbeitskollegen. Meine hohen Selbstanforderungen erhöhen meinen Stress. Andere und ich selber schätzen mich als perfektionistisch ein.",
             "en": "I have very high standards for myself and others. I therefore repeatedly get into demand-discussions with my supervisor, my employees or my coworkers. My high self-requirements increase my stress. Others and I myself consider me as perfectionist.",
             "fr": "Je suis très exigeant(e) avec les autres et avec moi-même. Par conséquent, j'ai continuellement des discussions avec mon/ma supérieur(e), mes employé(e)s ou mes collègues de travail. Ma forte auto-exigence augmente mon stress. Les autres, tout comme moi, me considèrent comme un(e) perfectionniste.",
             "it": "Ich habe sehr hohe Ansprüche an mich selbst und andere. Ich gerate deshalb immer wieder in Anspruchs-Diskussionen mit meinem/meiner Vorgesetzten, meinen Mitarbeitern oder meinen Arbeitskollegen. Meine hohen Selbstanforderungen erhöhen meinen Stress. Andere und ich selber schätzen mich als perfektionistisch ein."
@@ -992,7 +992,7 @@
             "it": "Ausgewogen"
         },
         "midtextexampleI18n": {
-            "de": "Ich habe realistische Ansprüche an mich selbst und andere. Ich gerate nur sehr selten in Anspruchs-Diskussionen mit meinen Vorgesetzten/meiner Vorgesetztin, meinem Partner/meiner Partnerin oder meinen Arbeitskollegen. Andere und ich selber schätzen mich weder als minimalistisch noch als perfektionistisch ein.",
+            "de": "Ich habe realistische Ansprüche an mich selbst und andere. Ich gerate nur sehr selten in Anspruchs-Diskussionen mit meinem/meiner Vorgesetzten, meinem Partner/meiner Partnerin oder meinen Arbeitskollegen. Andere und ich selber schätzen mich weder als minimalistisch noch als perfektionistisch ein.",
             "en": "I have realistic demands for myself and others. I only very rarely get into demand-discussions with my supervisor, my partner or my coworkers. Others and I myself consider me neither as minimalist nor perfectionist.",
             "fr": "J'ai des exigences réalistes avec moi-même et avec les autres. Je n'ai que très rarement des discussions avec mon/ma supérieur(e), mon/ma conjoint(e) ou mes collègues de travail. Les autres, tout comme moi, ne me considèrent ni comme un(e) minimaliste, ni comme un(e) perfectionniste.",
             "it": "Ich habe realistische Ansprüche an mich selbst und andere. Ich gerate nur sehr selten in Anspruchs-Diskussionen mit meinem/meiner Vorgesetzten, meinem Partner/meiner Partnerin oder meinen Arbeitskollegen. Andere und ich selber schätzen mich weder als minimalistisch noch als perfektionistisch ein."
@@ -1004,7 +1004,7 @@
             "it": "Zu tief"
         },
         "mintextexampleI18n": {
-            "de": "Ich habe keine hohen Ansprüche an mich selbst und andere. Ich gerate deshalb immer wieder in Anspruchs-Diskussionen mit meinen Vorgesetzten/meiner Vorgesetztin, meinem Partner/meiner Partnerin oder meinen Arbeitskolleg/-innen. Ich fühle mich gestresst, weil ich die Anforderungen meines Vorgesetzten/meiner Vorgesetztin bzw. meines Umfeldes nicht erfülle. Andere und ich selber schätzen mich als minimalistisch ein.",
+            "de": "Ich habe keine hohen Ansprüche an mich selbst und andere. Ich gerate deshalb immer wieder in Anspruchs-Diskussionen mit meinem/meiner Vorgesetzten, meinem Partner/meiner Partnerin oder meinen Arbeitskollegen. Ich fühle mich gestresst, weil ich die Anforderungen meines/meiner Vorgesetzten bzw. meines Umfeldes nicht erfülle. Andere und ich selber schätzen mich als minimalistisch ein.",
             "en": "I do not have high demands for myself and others. I therefore repeatedly get into demand-discussions with my supervisor, my partner or my coworkers. I feel stressed because I do not fulfill the requirements of my supervisor and my environment, respectively. Others and I myself consider me as minimalist.",
             "fr": "Je ne suis pas exigeant avec les autres. Par conséquent, j'entre continuellement en discussion avec mon/ma supérieur(e), mon/ma conjoint(e) ou mes collègues de travail. Je me sens stressé(e) parce que je ne réponds pas aux exigences de mon/ma supérieur(e) ou de mon entourage. Les autres, tout comme moi, me considèrent comme un(e) minimaliste.",
             "it": "Ich habe keine hohen Ansprüche an mich selbst und andere. Ich gerate deshalb immer wieder in Anspruchs-Diskussionen mit meinem/meiner Vorgesetzten, meinem Partner/meiner Partnerin oder meinen Arbeitskollegen. Ich fühle mich gestresst, weil ich die Anforderungen meines/meiner Vorgesetzten bzw. meines Umfeldes nicht erfülle. Andere und ich selber schätzen mich als minimalistisch ein."
@@ -1029,7 +1029,7 @@
         },
         "category": "stresstypus",
         "exptextI18n": {
-            "de": "Ein zu hohes/zu tiefes Kontrollbedürfnis kann Stressverstärken. Beurteile hier dein persönliches Kontrollbedürfnis.",
+            "de": "Ein zu hohes/tiefes Kontrollbedürfnis kann Stress verstärken. Beurteile hier dein persönliches Kontrollbedürfnis.",
             "en": "A too high/low need for control can intensify stress. Evaluate your personal need for control.",
             "fr": "Un besoin de contrôle trop fort ou trop faible peut accroître le stress. Évalue ici ta situation personnelle.",
             "it": "Ein zu hohes/tiefes Kontrollbedürfnis kann Stress verstärken. Beurteile hier dein persönliches Kontrollbedürfnis."
@@ -1272,7 +1272,7 @@
             "it": "Zu tief"
         },
         "mintextexampleI18n": {
-            "de": "Mein Geltungsbedürnis ist im Vergleich mit meinen Kontakten eher gering. Ich gerate deshalb immer wieder in Diskussionen mit Personen aus meinem Umfeld (Vorgesetzte/r, Partner/in, Arbeitskollege/-in), welche mein Verhalten als zu unterordnend bezeichnen.",
+            "de": "Mein Geltungsbedürfnis ist im Vergleich zu meinen Kontakten eher gering. Ich gerate deshalb immer wieder in Diskussionen mit Personen aus meinem Umfeld (Vorgesetzte/r, Partner/in, Arbeitskollege/-in), welche mein Verhalten als zu unterordnend bezeichnen.",
             "en": "My need for recognition is rather low compared to my contacts. I therefore repeatedly get into discussions with people of my environment (supervisor, partner, coworker), who consider my behavior as too submissive.",
             "fr": "Mon besoin d'être mis en valeur est plutôt bas en comparaison aux autres. Par conséquent je me trouve continuellement engagé dans des discussions avec les gens de mon entourage (supérieur(e), conjoint(e), collègues de travail), lesquels considèrent mon comportement comme trop soumis.",
             "it": "Mein Geltungsbedürfnis ist im Vergleich zu meinen Kontakten eher gering. Ich gerate deshalb immer wieder in Diskussionen mit Personen aus meinem Umfeld (Vorgesetzte/r, Partner/in, Arbeitskollege/-in), welche mein Verhalten als zu unterordnend bezeichnen."

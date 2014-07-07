@@ -27,7 +27,13 @@ var getNewestResult = function (baseUrl) {
                 }
                 var newestResult = results[0];
                 if (req.params.populatedeep && req.params.populatedeep === 'answers.question') {
-                    AssessmentQuestion.populate(newestResult.answers, 'question', function (err, answers) {
+
+                    var paths = {
+                        path: 'question',
+                        select: AssessmentQuestion.getI18nPropertySelector(req.locale)
+                    };
+
+                    AssessmentQuestion.populate(newestResult.answers, paths, function (err, answers) {
                         if (err) {
                             return error.handleError(err, next);
                         }

@@ -128,7 +128,9 @@ function _populate(schema, dbquery, paths, locale) {
     for (var i = paths.length; i--;) {
         var p = paths[i];
         if (schema && schema.path) {
-            // TODO: (RBLU) Disable this check because it breaks population of deep porperties like 'events.comments', Fix later
+            // TODO: (RBLU) Don't know why this check is here. Disable this check because it breaks population of deep porperties like 'events.comments', Fix later
+            // if (ref && (ref.instance && ref.instance === 'ObjectID' || ref.caster && ref.caster.instance === 'ObjectID')) {
+
             var ref = schema.path(p);
             var modelName, selector;
             if (ref && ref.options && ref.options.type[0]) {
@@ -141,7 +143,6 @@ function _populate(schema, dbquery, paths, locale) {
                 dbquery.populate(p);
             }
 
-            // if (ref && (ref.instance && ref.instance === 'ObjectID' || ref.caster && ref.caster.instance === 'ObjectID')) {
 
 
             //}

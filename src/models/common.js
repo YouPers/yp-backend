@@ -169,7 +169,7 @@ module.exports = {
         });
 
         mySchema.methods.getStatsString = function() {
-            return this.title;
+            return this.titleI18n || this.title;
         };
 
         return mySchema;

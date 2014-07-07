@@ -40,7 +40,8 @@
 
         "updated": {
             "$date": 1399277457905
-        }
+        },
+        "action": "assessment"
     },
     {
         "__v": 6,

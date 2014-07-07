@@ -206,6 +206,6 @@ module.exports = {
         // type of the targeted space for a social interaction
         targetSpace: "user activity campaign system email".split(' '),
 
-        actionType: "assessment".split(' ')
+        actionType: "assessment focus".split(' ')
     }
 };

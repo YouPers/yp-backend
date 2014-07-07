@@ -2,6 +2,7 @@ var EventEmitter = require('events').EventEmitter;
 var util = require('util');
 var mongoose = require('mongoose');
 var _ = require('lodash');
+var User = mongoose.model('User');
 var Invitation = mongoose.model('Invitation');
 var SocialInteraction = require('../core/SocialInteraction');
 var env = process.env.NODE_ENV || 'development';
@@ -16,6 +17,11 @@ function ActivityManagement() {
 
 util.inherits(ActivityManagement, EventEmitter);
 
+
+User.on('change:campaign', function (user) {
+
+    // TODO: plan self-assessment idea
+});
 
 var actMgr = new ActivityManagement();
 

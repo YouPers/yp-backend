@@ -24,10 +24,7 @@ var IdeaSchema = common.newSchema({
     qualityFactor: {type: Number, select: false},
     recWeights: {type: mongoose.Schema.Types.Mixed, select: false},
 
-    action: {
-        actionType: { type: String, enum: common.enums.targetSpace, required: true },
-        values: {}
-    }
+    action: { type: String, enum: common.enums.actionType }
 
 });
 

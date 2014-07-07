@@ -233,13 +233,21 @@ function putCampaign(req, res, next) {
 }
 
 
+/**
+ * lists all campaigns this user has access to.
+ * set the query parameter "listall" to "true" to list all available campaigns in the system.
+ *
+ * @param baseUrl
+ * @returns {Function}
+ */
 var getAllForUserFn = function (baseUrl) {
     return function (req, res, next) {
 
         var userId = req.user.id;
 
         var admin = auth.checkAccess(req.user, auth.accessLevels.al_admin);
-        var match = admin ? {} : {campaignLeads: userId};
+        var listall = req.params.listall;
+        var match = admin || listall ? {} : {campaignLeads: userId};
 
         var dbQuery = Campaign.find(match);
         generic.addStandardQueryOptions(req, dbQuery, Campaign)

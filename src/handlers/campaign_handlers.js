@@ -247,7 +247,7 @@ var getAllForUserFn = function (baseUrl) {
 
         var admin = auth.checkAccess(req.user, auth.accessLevels.al_admin);
         var listall = req.params.listall;
-        var match = admin || listall ? {} : {campaignLeads: userId};
+        var match = (admin || listall) ? {} : {campaignLeads: userId};
 
         var dbQuery = Campaign.find(match);
         generic.addStandardQueryOptions(req, dbQuery, Campaign)

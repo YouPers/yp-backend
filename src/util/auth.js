@@ -59,12 +59,25 @@ function checkAccess(user, accessLevel, callback) {
     // if we do not have a user, we only allow anonymous
     if (!user) {
         if (accessLevel === 'al_all' || accessLevel === 'al_anonymousonly') {
-            return callback();
+            if (callback) {
+                return callback();
+            } else {
+                return true;
+            }
         } else if (Array.isArray(accessLevel) &&
             (_.contains(accessLevel, roles.anonymous))) {
-            return callback();
+            if (callback) {
+                return callback();
+            } else {
+                return true;
+            }
         } else {
-            return callback(user ? new error.NotAuthorizedError() : new error.UnauthorizedError());
+            if (callback) {
+                return callback(user ? new error.NotAuthorizedError() : new error.UnauthorizedError());
+            } else {
+                return false;
+            }
+
         }
     }
 

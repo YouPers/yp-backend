@@ -13,7 +13,7 @@
             }
         ],
         "end": {
-            "$date": 1504846400000
+            "$date": 1420046400000
         },
         "location": "Zug",
         "organization": {
@@ -28,7 +28,7 @@
         "relatedService": "YP-Balance",
         "slogan": "Nie zu sp\u00e4t, um den eigenen Stress in den Griff zu kriegen!",
         "start": {
-            "$date": 1391414400000
+            "$date": 1404314400000
         },
         "title": "Stress Management",
         "avatar": "/assets/img/campaignavatarstress_u10.png"
@@ -47,7 +47,7 @@
             }
         ],
         "end": {
-            "$date": 1506026000000
+            "$date": 1420026000000
         },
         "location": "Z\u00fcrich",
         "organization": {
@@ -62,7 +62,7 @@
         "relatedService": "YP-Balance",
         "slogan": "No (positive) stress, no fun!",
         "start": {
-            "$date": 1392624000000
+            "$date": 1404324000000
         },
         "title": "Ernährung am Arbeitsplatz",
         "avatar": "/assets/img/campaignavatarstress_u10.png"

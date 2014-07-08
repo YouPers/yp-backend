@@ -144,7 +144,7 @@ consts.newUserInNewCampaignApi(
                                         expect(msg.title).toEqual(message.title);
 
                                         frisby.create('Message: get inbox with another user not in the same campaign, no messages')
-                                            .get(URL + '/socialInteractions')
+                                            .get(URL + '/messages')
                                             .auth(user2.username, 'yp')
                                             .expectStatus(200)
                                             .afterJSON(function (socialInteractions) {

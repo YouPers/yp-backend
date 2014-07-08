@@ -85,7 +85,7 @@ consts.newUserInNewCampaignApi(
                                     .after(function () {
 
                                         frisby.create('Message: get inbox, no more messages')
-                                            .get(URL + '/socialInteractions')
+                                            .get(URL + '/messages')
                                             .auth(consts.users.test_prodadm.username, 'yp')
                                             .expectStatus(200)
                                             .afterJSON(function (socialInteractions) {

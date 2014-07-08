@@ -254,7 +254,8 @@ var statsQueries = function (timeRange, scopeType, scopeId) {
         focusSetQuery.append(timeRangePipelineEntry);
     }
     focusSetQuery.append(
-        {$match: {focus: {$ne: []}}},
+        {$match: {'prefs.focus': {$exists: true}}},
+        {$match: {'prefs.focus': {$ne: []}}},
         {$group: {_id: 'total',
                   users: {$sum: 1}}
         },
@@ -272,7 +273,7 @@ var statsQueries = function (timeRange, scopeType, scopeId) {
         usersWithDiaryEntryQuery.append(timeRangePipelineEntry);
     }
     usersWithDiaryEntryQuery.append(
-        {$match: {lastDiaryEntry: {$ne: ''}}},
+        {$match: {'prefs.lastDiaryEntry': {$exists: true}}},
         {$group: {_id: 'total',
             users: {$sum: 1}}
         },

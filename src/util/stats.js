@@ -171,7 +171,37 @@ var statsQueries = function (timeRange, scopeType, scopeId) {
         {$project: {
             _id: 0,
             activitiesPlannedTotal: 1
-        }});
+        }})
+
+    ///////////////////////////////////////////////////
+    // activitiesPlanned Per Day
+    var actsPlannedPerDayQuery = mongoose.model('Activity').aggregate();
+    if (scopePipelineEntry) {
+        actsPlannedPerDayQuery.append(scopePipelineEntry);
+    }
+    actsPlannedPerDayQuery.append(
+        { $project: {
+            date: {
+                year: {$year: '$created'},
+                month: {$month: '$created'},
+                day: {$dayOfMonth: '$created'}
+            },
+            joiningUsers: '$joiningUsers'
+        }
+        },
+        {
+            $group: {
+                _id: '$date',
+                plannedPerDay: {$sum: {$add: [1, {$size: '$joiningUsers'}]}}
+            }
+        },
+        {$project: {
+            date: '$_id',
+            _id: 0,
+            plannedPerDay: 1
+        }},
+        {$sort: {'date.year': -1, 'date.month': -1, 'date.day': -1}}
+    );
 
     /////////////////////////////////////////////////////
     // ActivityEvents
@@ -289,6 +319,7 @@ var statsQueries = function (timeRange, scopeType, scopeId) {
         assTotals: assessmentTotalsQuery,
         topStressors: topStressorsQuery,
         activitiesPlanned: actsPlannedQuery,
+        activitiesPlannedPerDay: actsPlannedPerDayQuery,
         activitiesPlannedTotal: actsPlannedTotalQuery,
         activityEvents: eventsQuery,
         activityEventsTotal: eventsTotalQuery,

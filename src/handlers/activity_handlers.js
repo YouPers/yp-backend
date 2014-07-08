@@ -76,7 +76,7 @@ function getActivityConflicts(req, res, next) {
         .find({owner: req.user._id, status: 'open'});
 
     if (sentActivity.id) {
-        q.where({$ne: {activity: mongoose.Types.ObjectId(sentActivity.id)}});
+        q.where({activity: {$ne: mongoose.Types.ObjectId(sentActivity.id)}});
     }
     q.exec(function (err, oldEvents) {
         if (err) {

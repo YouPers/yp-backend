@@ -34,8 +34,7 @@ var statsQueries = function (timeRange, scopeType, scopeId) {
                 year: {$year: '$created'},
                 month: {$month: '$created'},
                 day: {$dayOfMonth: '$created'}
-            },
-            owner: '$owner'
+            }
         }
         },
         {
@@ -48,7 +47,8 @@ var statsQueries = function (timeRange, scopeType, scopeId) {
             date: '$_id',
             _id: 0,
             updatesPerDay: 1
-        }}
+        }},
+        {$sort: {'date.year': -1, 'date.month': -1, 'date.day': -1}}
     );
 
     ///////////////////////////////////////

@@ -40,13 +40,13 @@ var statsQueries = function (timeRange, scopeType, scopeId) {
         {
             $group: {
                 _id: '$date',
-                updatesPerDay: {$sum: 1}
+                count: {$sum: 1}
             }
         },
         {$project: {
             date: '$_id',
             _id: 0,
-            updatesPerDay: 1
+            count: 1
         }},
         {$sort: {'date.year': -1, 'date.month': -1, 'date.day': -1}}
     );
@@ -192,13 +192,13 @@ var statsQueries = function (timeRange, scopeType, scopeId) {
         {
             $group: {
                 _id: '$date',
-                plannedPerDay: {$sum: {$add: [1, {$size: '$joiningUsers'}]}}
+                count: {$sum: {$add: [1, {$size: '$joiningUsers'}]}}
             }
         },
         {$project: {
             date: '$_id',
             _id: 0,
-            plannedPerDay: 1
+            count: 1
         }},
         {$sort: {'date.year': -1, 'date.month': -1, 'date.day': -1}}
     );
@@ -229,20 +229,14 @@ var statsQueries = function (timeRange, scopeType, scopeId) {
 
     /////////////////////////////////////////////////////
     // ActivityEvents Total
-    var eventsTotalQuery = mongoose.model('Activity').aggregate();
+    var eventsTotalQuery = mongoose.model('ActivityEvent').aggregate();
     if (scopePipelineEntry) {
         eventsTotalQuery.append(scopePipelineEntry);
     }
-    eventsTotalQuery.append(
-        {$unwind: '$events'}
-    );
     if (timeRangePipelineEntry) {
         eventsTotalQuery.append(timeRangePipelineEntry);
     }
     eventsTotalQuery.append(
-        {$project: {
-            events: 1
-        }},
         {$group: {
             _id: 'Total',
             eventsTotal: {$sum: 1}

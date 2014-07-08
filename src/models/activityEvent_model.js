@@ -11,6 +11,7 @@ var mongoose = require('mongoose'),
  */
 var ActivityEvent = common.newSchema({
     owner: {type: ObjectId, ref: 'User'},
+    campaign: {type: ObjectId, ref: 'Campaign'},
     idea: {type: ObjectId, ref: 'Idea'},
     activity: {type: ObjectId, ref: 'Activity'},
     status: {type: String, enum: common.enums.activityEventStatus},

@@ -171,4 +171,6 @@ UserSchema.pre('remove', function (next) {
     next();
 });
 
+UserSchema.plugin(require('mongoose-eventify'));
+
 module.exports = mongoose.model('User', UserSchema);

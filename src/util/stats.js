@@ -171,7 +171,7 @@ var statsQueries = function (timeRange, scopeType, scopeId) {
         {$project: {
             _id: 0,
             activitiesPlannedTotal: 1
-        }})
+        }});
 
     ///////////////////////////////////////////////////
     // activitiesPlanned Per Day

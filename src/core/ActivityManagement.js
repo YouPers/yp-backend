@@ -103,7 +103,12 @@ actMgr.defaultActivity = function(idea, user) {
     if (campaignId) {
         activity.campaign = campaignId;
     }
-    return new Activity(activity);
+    var activityModel = new Activity(activity);
+
+    // repopulate idea
+    activityModel.idea = idea;
+
+    return  activityModel;
 };
 
 

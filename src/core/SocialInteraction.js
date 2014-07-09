@@ -71,6 +71,7 @@ SocialInteraction.on('invitation:activity', function (from, to, activity) {
     var invitation = new Invitation({
         author: from._id,
         targetSpaces: _createTargetSpacesFromRecipients(to),
+        idea: activity.idea,
         refDocs: [{ docId: activity._id, model: 'Activity'}],
         publishTo: activity.lastEventEnd
     });

@@ -1,5 +1,6 @@
 var mongoose = require('mongoose'),
     Idea = mongoose.model('Idea'),
+    ActivityManagement = require('../core/ActivityManagement'),
     Campaign = mongoose.model('Campaign'),
     _ = require('lodash'),
     auth = require('../util/auth'),
@@ -146,9 +147,26 @@ function getAllIdeas (baseUrl, Model) {
     };
 }
 
+function getDefaultActivity (req, res, next) {
+    Idea.findById(req.params.id).exec(function(err, idea) {
+        if (err) {
+            return error.handleError(err, next);
+        }
+        if (!idea) {
+            return next(new error.ResourceNotFoundError());
+        }
+
+        var defaultActivity = ActivityManagement.defaultActivity(idea, req.user);
+        req.log.info(defaultActivity);
+        defaultActivity._id = undefined;
+        res.send(defaultActivity);
+        return next();
+    });
+}
 
 module.exports = {
     postIdea: postIdea,
     putIdea: putIdea,
-    getAllIdeas: getAllIdeas
+    getAllIdeas: getAllIdeas,
+    getDefaultActivity: getDefaultActivity
 };

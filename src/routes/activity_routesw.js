@@ -90,7 +90,7 @@ module.exports = function (swagger, config) {
             accessLevel: 'al_individual',
             beforeCallbacks: []
         },
-        action: generic.getAllFn(baseUrl, Model)
+        action: handlers.getAll
     });
 
     swagger.addDelete({

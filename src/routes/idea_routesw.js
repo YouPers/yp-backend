@@ -53,6 +53,24 @@ module.exports = function (swagger, config) {
     swagger.addGet({
         spec: {
             description: "Operations about Ideas",
+            path: baseUrlWithId + '/defaultActivity',
+            notes: "returns the default activity template for this idea",
+            summary: "returns the default activity template for this idea",
+            params: [swagger.pathParam("id", "ID of the idea to be fetched", "string"),
+                generic.params.populate],
+            method: "GET",
+            "responseClass": "Activity",
+            "nickname": "getDefaultActivity",
+            accessLevel: 'al_user',
+            beforeCallbacks: []
+        },
+        action: handlers.getDefaultActivity
+
+    });
+
+    swagger.addGet({
+        spec: {
+            description: "Operations about Ideas",
             path: baseUrl,
             notes: "returns only the public attributes in normal case. If the authenticated user has role 'admin', all " +
                 "attributes are returned (incl. all recWeights, ...)",

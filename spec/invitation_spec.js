@@ -57,6 +57,7 @@ consts.newUserInNewCampaignApi(
 
                                 var invitation = invitations[0];
 
+                                expect(invitation.idea).toBeDefined();
                                 expect(invitation.refDocs.length).toEqual(1);
                                 expect(invitation.refDocs[0].model).toEqual('Activity');
                                 expect(invitation.refDocs[0].docId).toEqual(newPlan.id);

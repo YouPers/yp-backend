@@ -638,7 +638,7 @@ function getAll(req, res, next) {
     generic.addStandardQueryOptions(req, dbQuery, Activity)
         .exec(generic.sendListCb(req, res, next));
 
-};
+}
 
 module.exports = {
     postNewActivity: postNewActivity,

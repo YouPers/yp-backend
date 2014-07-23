@@ -635,8 +635,8 @@ function getAll(req, res, next) {
 
     var dbQuery = Activity.find(finder);
 
-    generic.addStandardQueryOptions(req, dbQuery, Activity)
-        .exec(generic.sendListCb(req, res, next));
+    var op = generic.addStandardQueryOptions(req, dbQuery, Activity);
+    op.exec(generic.sendListCb(req, res, next));
 
 }
 

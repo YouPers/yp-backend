@@ -67,7 +67,7 @@ actMgr.defaultActivity = function(idea, user) {
         mainEvent.recurrence = {
             "endby": {
                 "type": "after",
-                "after": 6
+                "after": 3
             },
             every: 1
         };
@@ -78,7 +78,7 @@ actMgr.defaultActivity = function(idea, user) {
         mainEvent.recurrence = {
             "endby": {
                 "type": "after",
-                "after": 6
+                "after": 3
             },
             every: 1
         };

@@ -74,6 +74,10 @@ var getAllFn = function getAllFn(baseUrl, Model, fromAllOwners) {
                 }
             }
 
+            if(req.params.refDocId) {
+                dbQuery.and({ refDocs: { $nin: dismissedSocialInteractions }});
+            }
+
             generic.addStandardQueryOptions(req, dbQuery, Model)
                 .exec(function(err, socialInteractions) {
 

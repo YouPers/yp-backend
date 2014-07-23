@@ -20,6 +20,9 @@
         "topics": [
             {
                 "$oid": "53b416cfa43aac62a2debda1"
+            },
+            {
+                "$oid": "53b416fba43aac62a2debda2"
             }
         ],
         "number": "Act-03",
@@ -37,7 +40,8 @@
 
         "updated": {
             "$date": 1399277457905
-        }
+        },
+        "action": "assessment"
     },
     {
         "__v": 6,

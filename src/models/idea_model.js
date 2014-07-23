@@ -22,7 +22,10 @@ var IdeaSchema = common.newSchema({
     defaultduration: {type: Number},
     topics: [{type: ObjectId, ref: 'Topic'}],
     qualityFactor: {type: Number, select: false},
-    recWeights: {type: mongoose.Schema.Types.Mixed, select: false}
+    recWeights: {type: mongoose.Schema.Types.Mixed, select: false},
+
+    action: { type: String, enum: common.enums.actionType }
+
 });
 
 IdeaSchema.statics.adminAttrsSelector =  '+recWeights +qualityFactor';

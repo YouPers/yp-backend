@@ -12,7 +12,9 @@ var EventEmitter = require('events').EventEmitter,
     Logger = require('bunyan'),
     log = new Logger(config.loggerOptions),
     _ = require('lodash'),
-    async = require('async');
+    async = require('async'),
+    moment = require('moment'),
+    generic = require('../handlers/generic');
 
 
 function SocialInteraction() {
@@ -307,6 +309,93 @@ SocialInteraction.populateSocialInteraction = function(socialInteraction, campai
         return cb(err, socialInteraction);
     });
 
+};
+
+/**
+ * returns all SocialInteractions for the currently logged in user. With the optional options-object several aspects
+ * can be configured:
+ * options.refDocId: if this is passed, only SOI that reference this Document are returened
+ * options.adminMode: if this is "true" SOIs for all users are returned, also the publishFrom/publishTo are ignored.
+ * options.queryOptions: the usual queryOptions {limit, sort, populate} fields
+ * options.locale: the current locale to be used if i18n-fields are to be loaded
+ *
+ * @param user the user for who the sois are loaded
+ * @param model the soi-model to use, can be SocialInteration or one of it subclasses
+ * @param options
+ * @param cb
+ */
+SocialInteraction.getAllForUser = function (user, model, options, cb) {
+    log.debug('SocialInteraction.getAllForUser', {user: user, model: model, options: options});
+    var adminMode = options && options.adminMode;
+    var refDocId = options && options.refDocId;
+    var queryOptions = options && options.queryOptions;
+    var locale = options && options.locale;
+    var populateRefDocs = (options && options.populateRefDocs) || (queryOptions.populate && queryOptions.populate.indexOf('refDocs' !== -1));
+
+    SocialInteractionDismissedModel.find({ user: user._id }, function (err, sid) {
+
+        if (err) {
+            return error.handleError(err, cb);
+        }
+
+        var dismissedSocialInteractions = _.map(sid, 'socialInteraction');
+        var now = moment().toDate();
+
+        var userFinder = user ? {
+            targetSpaces: { $elemMatch: {
+                $or: [
+                    { type: 'user', targetId: user._id },
+                    { type: 'campaign', targetId: user.campaign },
+                    { type: 'system' }
+                ]
+            }}
+//                // TODO: add targetSpaces for activity, get from user doc
+        } : {};
+
+
+        var dbQuery = model.find(userFinder);
+
+        if (!adminMode) {
+            dbQuery
+                .and({_id: { $nin: dismissedSocialInteractions }})
+                .and({$or: [
+                    {publishTo: {$exists: false}},
+                    {publishTo: {$gte: now}}
+                ]})
+                .and({$or: [
+                    {publishFrom: {$exists: false}},
+                    {publishFrom: {$lte: now}}
+                ]});
+
+            if (user.profile.language) {
+                dbQuery.and({ $or: [
+                    {language: {$exists: false}},
+                    {language: user.profile.language}
+                ] });
+            }
+        }
+
+        if (refDocId) {
+            dbQuery.and({ refDocs: { $elemMatch: {docId: refDocId}}});
+        }
+
+        generic.processDbQueryOptions(queryOptions, dbQuery, locale, model)
+            .exec(function (err, socialInteractions) {
+                log.debug('SocialInteraction.getAllForUser: found sois: ' + socialInteractions.length, socialInteractions);
+                if (populateRefDocs) {
+                    return async.each(socialInteractions, function (si, done) {
+                        SocialInteraction.populateSocialInteraction(si, null, done);
+                    }, function(err) {
+                        if (err) {
+                            return cb(err);
+                        }
+                        return cb(err, socialInteractions);
+                    });
+                } else {
+                    return cb(err, socialInteractions);
+                }
+            });
+    });
 };
 
 module.exports = SocialInteraction;

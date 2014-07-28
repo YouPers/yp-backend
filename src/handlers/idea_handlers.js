@@ -6,7 +6,9 @@ var mongoose = require('mongoose'),
     auth = require('../util/auth'),
     error = require('../util/error'),
     handlerUtils = require('./handlerUtils'),
-    generic = require('./generic');
+    generic = require('./generic'),
+    async = require('async'),
+    SocialInteraction = require('../core/SocialInteraction');
 
 
 function _checkIdeaWritePermission(sentIdea, user, cb) {
@@ -130,12 +132,15 @@ function putIdea(req, res, next) {
 }
 
 
-function getAllIdeas (baseUrl, Model) {
+function getAllIdeas(baseUrl, Model) {
     return function (req, res, next) {
         var finder = '';
 
         if (req.params.campaign) {
-            finder = {$or: [{campaign: null}, {campaign: req.params.campaign}]};
+            finder = {$or: [
+                {campaign: null},
+                {campaign: req.params.campaign}
+            ]};
         } else {
             finder = {campaign: null};
         }
@@ -147,8 +152,8 @@ function getAllIdeas (baseUrl, Model) {
     };
 }
 
-function getDefaultActivity (req, res, next) {
-    Idea.findById(req.params.id).exec(function(err, idea) {
+function getDefaultActivity(req, res, next) {
+    Idea.findById(req.params.id).exec(function (err, idea) {
         if (err) {
             return error.handleError(err, next);
         }
@@ -164,9 +169,76 @@ function getDefaultActivity (req, res, next) {
     });
 }
 
+function getIdeaUserContext(req, res, next) {
+    var ideaId = req.params.id;
+    if (!ideaId) {
+        return next(new error.MissingParameterError('id of idea is required'));
+    }
+    var userId = req.user.id;
+    var ctx = {};
+    async.parallel([
+        function loadIdea(done) {
+            Idea.findById(ideaId).exec(function (err, idea) {
+                if (err) {
+                    return done(err);
+                }
+                if (!idea) {
+                    return done(new error.ResourceNotFoundError('idea not found'));
+                }
+                ctx.idea = idea;
+                return done();
+            });
+        },
+        function loadActivities(done) {
+            var userClause = { $or: [
+                { owner: userId },
+                { joiningUsers: userId }
+            ]};
+            mongoose.model('Activity')
+                .find({idea: ideaId})
+                .where(userClause)
+                .populate('owner joiningUsers')
+                .exec(function (err, activities) {
+                    if (err) {
+                        return done(err);
+                    }
+                    ctx.activities = activities;
+                    return done();
+                });
+        },
+        function loadSocialInteractions(done) {
+
+            var queryOptions = req.query;
+            queryOptions.populate = req.query.populate ? 'author ' +  req.query.populate : 'author';
+
+            var options = {
+                refDocId: ideaId,
+                locale: req.locale,
+                queryOptions: queryOptions,
+                adminMode: false
+            };
+
+            SocialInteraction.getAllForUser(userId, mongoose.model('SocialInteraction'), options, function (err, sois) {
+                if (err) {
+                    return done(err);
+                }
+                ctx.socialInteractions = sois;
+                return done();
+            });
+        }
+    ], function (err) {
+        if (err) {
+            return error.handleError(err, next);
+        }
+        res.send(ctx);
+        return next();
+    });
+}
+
 module.exports = {
     postIdea: postIdea,
     putIdea: putIdea,
     getAllIdeas: getAllIdeas,
-    getDefaultActivity: getDefaultActivity
+    getDefaultActivity: getDefaultActivity,
+    getUserContextByIdFn: getIdeaUserContext
 };

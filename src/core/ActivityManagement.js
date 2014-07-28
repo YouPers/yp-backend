@@ -28,8 +28,13 @@ var actMgr = new ActivityManagement();
  *  - schedule assessment activity
  *
  */
-User.on('change:campaign', function (user) {
-    Activity.find({ idea: ASSESSMENT_IDEA, status: 'active' }).exec(function (err, activities) {
+
+User.on('change:campaign', function(user) {
+    Activity.find({
+        owner: user._id,
+        idea: ASSESSMENT_IDEA,
+        status: 'active'
+    }).exec(function (err, activities) {
         handleError(err);
 
         // only plan assessment idea if there is no active activity yet
@@ -69,6 +74,7 @@ actMgr.defaultActivity = function(idea, user) {
                 "type": "after",
                 "after": 3
             },
+            byday: user.profile.prefs.defaultWorkWeek,
             every: 1
         };
     } else { // default is "once"
@@ -112,15 +118,29 @@ actMgr.defaultActivity = function(idea, user) {
 };
 
 
-actMgr.on('activity:activitySaved', function (activity) {
+actMgr.on('activity:activityCreated', function (activity) {
+
+    if(!activity.private) {
+
+        // we need the model for the recipient targetSpace, create pseudo model instead of loading the campaign
+//        var campaign = activity.campaign instanceof mongoose.Types.ObjectId ? {
+//            _id: activity.campaign,
+//            constructor: { modelName: 'Campaign' }
+//        } : activity.campaign;
+
+
+        //TODO: WIP, disabled for now, as it destroys the tests
+//        SocialInteraction.emit('invitation:activity', activity.owner, campaign, activity);
+    }
 
     // find and dismiss all health coach recommendations for this idea
-
     // TODO: only health coach or from all other users as well
-
-    // TODO: alternative approach: generateAndStoreRecommendations here as well
-
     SocialInteraction.dismissRecommendations(activity.idea, activity.owner);
+});
+
+actMgr.on('activity:activitySaved', function (activity) {
+
+
 });
 
 actMgr.on('activity:activityJoined', function (activity, joinedUser) {

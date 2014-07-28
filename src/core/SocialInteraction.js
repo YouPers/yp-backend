@@ -182,8 +182,7 @@ SocialInteraction.dismissSocialInteraction = function dismissSocialInteraction(m
 
     finder.refDocs = {
         $elemMatch: {
-        docId: refDoc._id,
-        model: refDoc.constructor.modelName
+        docId: refDoc._id || refDoc
         }
     };
 

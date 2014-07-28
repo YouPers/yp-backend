@@ -129,6 +129,9 @@ function _getRruleSpec(activity) {
 
     var rruleSpec = { FREQ: frequencyMap[activity.mainEvent.frequency] };
     if (rruleSpec.FREQ === 'DAILY') {
+        if (!activity.mainEvent.recurrence.byday) {
+            throw new Error('for daily activities recurrence.byday must be defined.');
+        }
         rruleSpec.BYDAY = activity.mainEvent.recurrence.byday.join(',');
 
         // Outlook Fix: Outlook really does not like it when the startDate is not part of the BYDAY rule.

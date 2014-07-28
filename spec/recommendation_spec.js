@@ -164,6 +164,8 @@ consts.newUserInNewCampaignApi(
                                                     .expectStatus(200)
                                                     .afterJSON(function (recsWithoutPlannedIdea) {
 
+                                                        console.log(recsWithoutPlannedIdea);
+
                                                         expect(recsWithoutPlannedIdea.length).toEqual(2);
 
                                                         _.forEach(recsWithoutPlannedIdea, function (rec) {

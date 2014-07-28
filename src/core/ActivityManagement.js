@@ -123,10 +123,10 @@ actMgr.on('activity:activityCreated', function (activity) {
     if(!activity.private) {
 
         // we need the model for the recipient targetSpace, create pseudo model instead of loading the campaign
-        var campaign = activity.campaign instanceof mongoose.Types.ObjectId ? {
-            _id: activity.campaign,
-            constructor: { modelName: 'Campaign' }
-        } : activity.campaign;
+//        var campaign = activity.campaign instanceof mongoose.Types.ObjectId ? {
+//            _id: activity.campaign,
+//            constructor: { modelName: 'Campaign' }
+//        } : activity.campaign;
 
 
         //TODO: WIP, disabled for now, as it destroys the tests

@@ -128,7 +128,9 @@ actMgr.on('activity:activityCreated', function (activity) {
             constructor: { modelName: 'Campaign' }
         } : activity.campaign;
 
-        SocialInteraction.emit('invitation:activity', activity.owner, campaign, activity);
+
+        //TODO: WIP, disabled for now, as it destroys the tests
+//        SocialInteraction.emit('invitation:activity', activity.owner, campaign, activity);
     }
 
     // find and dismiss all health coach recommendations for this idea

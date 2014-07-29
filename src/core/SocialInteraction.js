@@ -370,14 +370,19 @@ SocialInteraction.getAllForUser = function (user, model, options, cb) {
 
             var now = moment().toDate();
 
+            var orClauses = [
+                { type: 'user', targetId: user._id },
+                { type: 'system' },
+                { $and: [{type: 'activity'}, {targetId: {$in: locals.activityIds}}]}
+            ];
+
+            if (user.campaign) {
+                orClauses.push({ type: 'campaign', targetId: user.campaign._id });
+            }
+
             var targetSpaceFinder = user ? {
                 targetSpaces: { $elemMatch: {
-                    $or: [
-                        { type: 'user', targetId: user._id },
-                        { type: 'campaign', targetId: user.campaign._id },
-                        { type: 'system' },
-                        { $and: [{type: 'activity'}, {targetId: {$in: locals.activityIds}}]}
-                    ]
+                    $or: orClauses
                 }}
             } : {};
 

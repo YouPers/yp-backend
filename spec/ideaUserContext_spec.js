@@ -52,7 +52,7 @@ consts.newUserInNewCampaignApi(
                         publishTo: moment().add('hours', 1),
 
                         refDocs: [
-                            { docId: consts.aloneIdea.id, model: 'Idea'},
+                            { docId: consts.groupIdea.id, model: 'Idea'},
                             { docId: newActivity.id, model: 'Activity'}
                         ],
                         idea: consts.aloneIdea.id
@@ -78,6 +78,7 @@ consts.newUserInNewCampaignApi(
                                     .auth(user.username, 'yp')
                                     .expectStatus(200)
                                     .toss();
+                                return cleanupFn();
                             })
                             .toss();
                     })
@@ -129,6 +130,7 @@ consts.newUserInNewCampaignApi(
                             .auth('test_campaignlead', 'yp')
                             .expectStatus(200)
                             .toss();
+                        return cleanupFn();
                     })
                     .toss();
             })

@@ -169,78 +169,84 @@ function getDefaultActivity(req, res, next) {
     });
 }
 
+
 function getIdeaUserContext(req, res, next) {
     var ideaId = req.params.id;
     if (!ideaId) {
         return next(new error.MissingParameterError('id of idea is required'));
     }
     var ctx = {};
-    async.parallel([
-        function loadIdea(done) {
-            Idea.findById(ideaId).exec(function (err, idea) {
+
+    function _loadIdea(done) {
+        Idea.findById(ideaId).exec(function (err, idea) {
+            if (err) {
+                return done(err);
+            }
+            if (!idea) {
+                return done(new error.ResourceNotFoundError('idea not found'));
+            }
+            ctx.idea = idea;
+            return done();
+        });
+    }
+
+    function _loadActivities(done) {
+        var userClause = { $or: [
+            { owner: req.user._id },
+            { joiningUsers: req.user._id }
+        ]};
+        mongoose.model('Activity')
+            .find({idea: ideaId})
+            .where(userClause)
+            .populate('owner joiningUsers')
+            .exec(function (err, activities) {
                 if (err) {
                     return done(err);
                 }
-                if (!idea) {
-                    return done(new error.ResourceNotFoundError('idea not found'));
-                }
-                ctx.idea = idea;
+                ctx.activities = activities;
                 return done();
             });
-        },
-        function loadActivities(done) {
-            var userClause = { $or: [
-                { owner: req.user._id },
-                { joiningUsers: req.user._id }
-            ]};
-            mongoose.model('Activity')
-                .find({idea: ideaId})
-                .where(userClause)
-                .populate('owner joiningUsers')
-                .exec(function (err, activities) {
-                    if (err) {
-                        return done(err);
-                    }
-                    ctx.activities = activities;
-                    return done();
-                });
-        },
-        function loadSocialInteractions(done) {
+    }
 
-            var queryOptions = req.query;
-            queryOptions.populate = req.query.populate ? 'author ' +  req.query.populate : 'author';
+    function _loadSocialInteractions(done) {
 
-            var options = {
-                refDocId: ideaId,
-                locale: req.locale,
-                queryOptions: queryOptions,
-                adminMode: false
-            };
+        var queryOptions = req.query;
+        queryOptions.populate = req.query.populate ? 'author ' + req.query.populate : 'author';
 
-            SocialInteraction.getAllForUser(req.user, mongoose.model('SocialInteraction'), options, function (err, sois) {
-                if (err) {
-                    return done(err);
-                }
-                ctx.socialInteractions = _.groupBy(sois, '__t');
-                return done();
-            });
-        },
-        function loadEvents (done) {
-            mongoose.model('ActivityEvent').find({owner: req.user._id, idea: ideaId}).exec(function (err, events) {
-                if (err) {
-                    return done(err);
-                }
-                ctx.events = events;
-                return done();
-            });
-        }
-    ], function (err) {
-        if (err) {
-            return error.handleError(err, next);
-        }
-        res.send(ctx);
-        return next();
-    });
+        var options = {
+            refDocId: ideaId,
+            locale: req.locale,
+            queryOptions: queryOptions,
+            adminMode: false
+        };
+
+        SocialInteraction.getAllForUser(req.user, mongoose.model('SocialInteraction'), options, function (err, sois) {
+            if (err) {
+                return done(err);
+            }
+            ctx.socialInteractions = _.groupBy(sois, '__t');
+            return done();
+        });
+    }
+
+    function _loadEvents(done) {
+        mongoose.model('ActivityEvent').find({owner: req.user._id, idea: ideaId}).exec(function (err, events) {
+            if (err) {
+                return done(err);
+            }
+            ctx.events = events;
+            return done();
+        });
+    }
+
+    async.parallel([_loadIdea, _loadActivities, _loadSocialInteractions, _loadEvents],
+        function (err) {
+            if (err) {
+                return error.handleError(err, next);
+            }
+            res.send(ctx);
+            return next();
+        });
 }
 
 module.exports = {

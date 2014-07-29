@@ -339,31 +339,35 @@ SocialInteraction.getAllForUser = function (user, model, options, cb) {
     var populateRefDocs = (options && options.populateRefDocs) || (queryOptions.populate && queryOptions.populate.indexOf('refDocs' !== -1));
 
     var locals = {};
-    async.parallel([
-            function (done) {
-                SocialInteractionDismissedModel.find({ user: user._id }, function (err, sid) {
 
-                    if (err) {
-                        return done(err);
-                    }
+    function _loadSocialInteractionDismissed(done) {
+        SocialInteractionDismissedModel.find({ user: user._id }, function (err, sid) {
 
-                    locals.dismissedSocialInteractions = _.map(sid, 'socialInteraction');
-                    return done();
-                });
-            },
-            function (done) {
-                mongoose.model('Activity').find({ $or: [
-                    { owner: user._id },
-                    { joiningUsers: user._id }
-                ]}, function (err, activities) {
-                    if (err) {
-                        return done(err);
-                    }
-                    locals.activityIds = _.map(activities, '_id');
-                    return done();
-                });
+            if (err) {
+                return done(err);
             }
-        ], function (err) {
+
+            locals.dismissedSocialInteractions = _.map(sid, 'socialInteraction');
+            return done();
+        });
+    }
+
+    function _loadActivities(done) {
+        mongoose.model('Activity').find({ $or: [
+            { owner: user._id },
+            { joiningUsers: user._id }
+        ]}, function (err, activities) {
+            if (err) {
+                return done(err);
+            }
+            locals.activityIds = _.map(activities, '_id');
+            return done();
+        });
+    }
+
+
+    async.parallel([_loadSocialInteractionDismissed, _loadActivities],
+        function (err) {
             if (err) {
                 return cb(err);
             }
@@ -373,7 +377,10 @@ SocialInteraction.getAllForUser = function (user, model, options, cb) {
             var orClauses = [
                 { type: 'user', targetId: user._id },
                 { type: 'system' },
-                { $and: [{type: 'activity'}, {targetId: {$in: locals.activityIds}}]}
+                { $and: [
+                    {type: 'activity'},
+                    {targetId: {$in: locals.activityIds}}
+                ]}
             ];
 
             if (user.campaign) {

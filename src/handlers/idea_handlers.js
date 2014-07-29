@@ -174,7 +174,6 @@ function getIdeaUserContext(req, res, next) {
     if (!ideaId) {
         return next(new error.MissingParameterError('id of idea is required'));
     }
-    var userId = req.user.id;
     var ctx = {};
     async.parallel([
         function loadIdea(done) {
@@ -191,8 +190,8 @@ function getIdeaUserContext(req, res, next) {
         },
         function loadActivities(done) {
             var userClause = { $or: [
-                { owner: userId },
-                { joiningUsers: userId }
+                { owner: req.user._id },
+                { joiningUsers: req.user._id }
             ]};
             mongoose.model('Activity')
                 .find({idea: ideaId})
@@ -218,11 +217,20 @@ function getIdeaUserContext(req, res, next) {
                 adminMode: false
             };
 
-            SocialInteraction.getAllForUser(userId, mongoose.model('SocialInteraction'), options, function (err, sois) {
+            SocialInteraction.getAllForUser(req.user, mongoose.model('SocialInteraction'), options, function (err, sois) {
                 if (err) {
                     return done(err);
                 }
-                ctx.socialInteractions = sois;
+                ctx.socialInteractions = _.groupBy(sois, '__t');
+                return done();
+            });
+        },
+        function loadEvents (done) {
+            mongoose.model('ActivityEvent').find({owner: req.user._id, idea: ideaId}).exec(function (err, events) {
+                if (err) {
+                    return done(err);
+                }
+                ctx.events = events;
                 return done();
             });
         }

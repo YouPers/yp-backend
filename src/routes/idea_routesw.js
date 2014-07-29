@@ -43,7 +43,7 @@ module.exports = function (swagger, config) {
             method: "GET",
             "responseClass": "IdeaUserContext",
             "nickname": "getIdeaUserContext",
-            accessLevel: 'al_all',
+            accessLevel: 'al_user',
             beforeCallbacks: []
         },
         action: handlers.getUserContextByIdFn

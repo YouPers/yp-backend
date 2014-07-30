@@ -40,7 +40,8 @@ module.exports = {
             key: "50126a4a500219238cd678a383cdab197ed5fe42",
             algorithm: "aes256",
             maxTokenLifetime: 10 * 60 * 1000
-        }
+        },
+        accessTokenSecret: "oikjnf/(*)çasfdASF=)(=(++"
     },
     test: {   // used by CircleCI!!!
         root: require('path').normalize(__dirname + '/..'),
@@ -70,7 +71,8 @@ module.exports = {
             key: "50126a4a500219238cd678a383cdab197ed5fe42",
             algorithm: "aes256",
             maxTokenLifetime: 10 * 60 * 1000
-        }
+        },
+        accessTokenSecret: "oikjnf/(*)çasfdASF=)(=(++asdfadsf"
     },
     cimaster: {
         root: require('path').normalize(__dirname + '/..'),
@@ -100,7 +102,9 @@ module.exports = {
             key: "50126a4a500219238cd678a383cdab197ed5fe42",
             algorithm: "aes256",
             maxTokenLifetime: 10 * 60 * 1000
-        }
+        },
+        accessTokenSecret: "oikasdfCVBCVBjnf/(*)çasfdASF=)(=(++"
+
     },
     uat: {
         root: require('path').normalize(__dirname + '/..'),
@@ -131,7 +135,8 @@ module.exports = {
             key: "50126a4a500219238cd678a383cdab197ed5fe42",
             algorithm: "aes256",
             maxTokenLifetime: 10 * 60 * 1000
-        }
+        },
+        accessTokenSecret: "oikjnf/(*)çaYXCVYXCVsfdASF=)(=(++"
     },
     prod: {
         root: require('path').normalize(__dirname + '/..'),
@@ -162,7 +167,8 @@ module.exports = {
             key: "50126a4a500219238cd678a383cdsdfsdfdsfsdfe42",
             algorithm: "aes256",
             maxTokenLifetime: 10 * 60 * 1000
-        }
+        },
+        accessTokenSecret: "oikjnf/(*)çasfdASFASDFASDF=)(=(++"
     }
 
 };

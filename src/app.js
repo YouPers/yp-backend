@@ -30,6 +30,10 @@ var restify = require("restify"),
     Logger = require('bunyan'),
     passport = require('passport'),
     passportHttp = require('passport-http'),
+//    OAuth2Strategy = require('passport-oauth').OAuth2Strategy,
+    FacebookStrategy = require('passport-facebook').Strategy,
+    BearerStrategy = require('passport-http-bearer').Strategy,
+    GitHubStrategy = require('passport-github').Strategy,
     swagger = require("swagger-node-restify"),
     auth = require('./util/auth'),
     ypi18n = require('./util/ypi18n'),
@@ -111,6 +115,27 @@ preflightEnabler(server);
 
 // setup authentication, currently only HTTP Basic auth over HTTPS is supported
 passport.use(new passportHttp.BasicStrategy(auth.validateLocalUsernamePassword));
+passport.use(new GitHubStrategy({
+        clientID: 'ddfb0568a53ead210f61',
+        clientSecret: 'ee82f353b27509bb1cb9269b26b02b611e528fe6',
+        callbackURL: "http://localhost:8000/auth/github/callback",
+        scope: "user"
+    },
+    auth.gitHubVerifyCallback
+));
+
+passport.use(new FacebookStrategy({
+        clientID: '1443351149277228',
+        clientSecret: 'd910fee6236a08c7606069f6bb72f626',
+        callbackURL: "http://localhost:8000/auth/facebook/callback",
+        scope: ["public_profile", "email"],
+        enableProof: false,
+        profileFields: ['id', 'displayName', 'photos', 'email', 'name', 'last_name', 'first_name']
+    },
+    auth.facebookVerifyCallback
+));
+passport.use(new BearerStrategy(auth.validateBearerToken));
+
 
 // setup swagger documentation
 swagger.setAppHandler(server);

@@ -212,25 +212,4 @@ module.exports = function (swagger, config) {
         },
         action: generic.deleteAllFn(baseUrl, User)
     });
-
-    swagger.addPost({
-        spec: {
-            description: "validate authentication credentials",
-            path: "/login",
-            notes: "validates the passed credentials and returns the user object belonging to the credentials",
-            summary: "currently supports HTTP Basic Auth over HTTPS",
-            method: "POST",
-            params: [swagger.headerParam("Authentication", "HTTP Basic Auth credentials", "string", true)],
-            responseClass: "User",
-            "errorResponses": [],
-            "beforeCallbacks": [],
-            "nickname": "login",
-            accessLevel: 'al_user'
-        },
-        action: function(req, res, next) {
-            req.log.trace({user: req.user},'/login: user authenticated');
-            res.send(req.user);
-            return next();
-        }
-    });
 };

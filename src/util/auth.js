@@ -1,6 +1,13 @@
-/**
- * Created by retoblunschi on 20.12.13.
- */
+var mongoose = require('mongoose');
+var jwt = require('jwt-simple');
+var passport = require('passport');
+var error = require('../util/error');
+var _ = require('lodash');
+var env = process.env.NODE_ENV || 'development';
+var config = require('../config/config')[env];
+var moment = require('moment');
+
+
 
 var roles = {
         anonymous: 'anonymous',
@@ -27,18 +34,15 @@ var roles = {
         al_admin: [roles.productadmin, roles.systemadmin],
         al_productadmin: [ roles.productadmin, roles.systemadmin ],
         al_systemadmin: [roles.systemadmin ]
-    },
-    passport = require('passport'),
-    error = require('../util/error'),
-    _ = require('lodash');
+    };
 
 
 function roleBasedAuth(accessLevel) {
     if (!accessLevels[accessLevel]) {
-        throw new Error('unkonwn accessLevel: ' + accessLevel);
+        throw new Error('unknown accessLevel: ' + accessLevel);
     }
     return function (req, res, next) {
-        passport.authenticate('basic', function (err, user, info) {
+        passport.authenticate(['bearer', 'basic' ], function (err, user, info) {
             if (err) {
                 return error.handleError(err, next);
             }
@@ -50,7 +54,6 @@ function roleBasedAuth(accessLevel) {
                     return next();
                 }
             });
-
         })(req, res, next);
     };
 }
@@ -88,13 +91,13 @@ function checkAccess(user, accessLevel, callback) {
 
     if (_.intersection(accessLevel, suppliedRoles).length > 0) {
         if (callback) {
-        return callback();
+            return callback();
         } else {
             return true;
         }
     } else {
         if (callback) {
-        return callback(new error.NotAuthorizedError());
+            return callback(new error.NotAuthorizedError());
         } else {
             return false;
         }
@@ -149,15 +152,15 @@ var canAssign = function (loggedInUser, requestedRoles) {
  * authenication is successful, otherwise it will pass false.
  */
 var validateLocalUsernamePassword = function (username, password, done) {
-    var UserModel = require('mongoose').model('User');
-    UserModel
+
+    mongoose.model('User')
         .findOne()
         .or([
             { username: username.toLowerCase() },
-            {email: username.toLowerCase()}
+            { email: username.toLowerCase()}
         ])
         // select the 'private' attributes from the user that are hidden if another user loads the user object
-        .select(UserModel.privatePropertiesSelector)
+        .select(mongoose.model('User').privatePropertiesSelector)
         .populate('profile')
         .populate('campaign')
         .exec(function (err, user) {
@@ -174,6 +177,102 @@ var validateLocalUsernamePassword = function (username, password, done) {
         });
 };
 
+var gitHubVerifyCallback = function (accessToken, refreshToken, profile, done) {
+
+    mongoose.model('User').findOneAndUpdate(
+        { provider: 'github', providerId: profile.id },
+        {
+            firstname: profile.username,
+            lastname: "",
+            fullname: profile.displayName || profile.username,
+            accessToken: accessToken || '',
+            refreshToken: refreshToken || '',
+            provider: 'github',
+            providerId: profile.id,
+            emails: profile.emails,
+            photos: profile.photos || [],
+            email: profile.emails[0].email,
+            avatar: profile._json.avatar_url,
+            emailValidatedFlag: true,
+            username: profile.username,
+            roles: ['individual']
+        },
+        {upsert: true},
+        function (err, user) {
+            return done(err, user);
+        });
+};
+
+var facebookVerifyCallback = function(accessToken, refreshToken, profile, done) {
+    mongoose.model('User').findOneAndUpdate(
+        { provider: 'facebook', providerId: profile.id },
+        {
+            firstname: profile.name.givenName,
+            lastname: profile.name.familyName,
+            fullname: profile.displayName || profile.username,
+            accessToken: accessToken || '',
+            refreshToken: refreshToken || '',
+            provider: 'facebook',
+            providerId: profile.id,
+            emails: profile.emails,
+            photos: profile.photos || [],
+            email: profile.emails[0].value,
+            avatar: profile.photos[0].value,
+            emailValidatedFlag: true,
+            username: profile.displayName,
+            roles: ['individual']
+        },
+        {upsert: true},
+        function (err, user) {
+            return done(err, user);
+        });
+};
+
+function validateBearerToken(token, done) {
+    if (token) {
+        try {
+            var decoded = jwt.decode(token, config.accessTokenSecret);
+
+            if (decoded.exp <= Date.now()) {
+                return done(new Error('Token Expired Error'));
+            }
+
+            var userId = decoded.iss;
+            mongoose.model('User').findById(userId)
+                .select(mongoose.model('User').privatePropertiesSelector)
+                .exec(function(err, user) {
+                if (err) {
+                    return error.handleError(err, done);
+                }
+                if (!user) { return done(null, false); }
+                return done(null, user);
+            });
+        } catch (err) {
+            return done(err);
+        }
+    } else {
+        done();
+    }
+}
+
+function loginAndExchangeToken(req, res, next) {
+    if (!req.user) {
+        return error.handleError(new Error('User must be defined at this point'), next);
+    }
+
+    var expires = moment().add('days', 7).valueOf();
+    var token = jwt.encode({
+        iss: req.user.id,
+        exp: expires
+    }, config.accessTokenSecret);
+
+
+    res.header('Location', config.webclientUrl + '/#home?token='+token + '&expires=' +expires);
+    res.send(302);
+}
+
+
+
 module.exports = {
     roleBasedAuth: roleBasedAuth,
     isAdminForModel: isAdminForModel,
@@ -181,5 +280,9 @@ module.exports = {
     accessLevels: accessLevels,
     canAssign: canAssign,
     checkAccess: checkAccess,
-    validateLocalUsernamePassword: validateLocalUsernamePassword
+    validateLocalUsernamePassword: validateLocalUsernamePassword,
+    gitHubVerifyCallback: gitHubVerifyCallback,
+    validateBearerToken: validateBearerToken,
+    loginAndExchangeToken: loginAndExchangeToken,
+    facebookVerifyCallback: facebookVerifyCallback
 };

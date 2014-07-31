@@ -22,7 +22,7 @@ module.exports = function (swagger, config) {
             authMiddleware: passport.authenticate([ 'basic' ], {session: false}),
             accessLevel: 'al_user'
         },
-        action: auth.loginAndExchangeToken
+        action: auth.loginAndExchangeTokenOauth
     });
 
     swagger.addGet({
@@ -58,7 +58,7 @@ module.exports = function (swagger, config) {
             authMiddleware: passport.authenticate([ 'github' ], {session: false}),
             accessLevel: 'al_user'
         },
-        action: auth.loginAndExchangeToken
+        action: auth.loginAndExchangeTokenRedirect
     });
 
     swagger.addGet({
@@ -94,7 +94,7 @@ module.exports = function (swagger, config) {
             authMiddleware: passport.authenticate([ 'facebook' ], {session: false}),
             accessLevel: 'al_user'
         },
-        action: auth.loginAndExchangeToken
+        action: auth.loginAndExchangeTokenRedirect
     });
 
 
@@ -112,11 +112,7 @@ module.exports = function (swagger, config) {
             "nickname": "login",
             accessLevel: 'al_user'
         },
-        action: function(req, res, next) {
-            req.log.trace({user: req.user},'/login: user authenticated');
-            res.send(req.user);
-            return next();
-        }
+        action: auth.loginAndExchangeTokenAjax
     });
 
 };

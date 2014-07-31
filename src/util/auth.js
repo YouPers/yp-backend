@@ -255,16 +255,21 @@ function validateBearerToken(token, done) {
     }
 }
 
-function loginAndExchangeToken(req, res, next) {
+function calculateToken(user, expires) {
+    var token = jwt.encode({
+        iss: user.id,
+        exp: expires
+    }, config.accessTokenSecret);
+    return token;
+}
+
+function loginAndExchangeTokenRedirect(req, res, next) {
     if (!req.user) {
         return error.handleError(new Error('User must be defined at this point'), next);
     }
 
     var expires = moment().add('days', 7).valueOf();
-    var token = jwt.encode({
-        iss: req.user.id,
-        exp: expires
-    }, config.accessTokenSecret);
+    var token = calculateToken(req.user, expires);
 
 
     res.header('Location', config.webclientUrl + '/#home?token='+token + '&expires=' +expires);
@@ -272,6 +277,24 @@ function loginAndExchangeToken(req, res, next) {
 }
 
 
+function loginAndExchangeTokenAjax(req, res, next) {
+    if (!req.user) {
+        return error.handleError(new Error('User must be defined at this point'), next);
+    }
+    req.log.trace({user: req.user},'/login: user authenticated');
+
+    var expires = moment().add('days', 7).valueOf();
+    var token = calculateToken(req.user, expires);
+
+    var payload = {
+        user: req.user,
+        token: token,
+        expires: expires
+    };
+
+    res.send(payload);
+    return next();
+}
 
 module.exports = {
     roleBasedAuth: roleBasedAuth,
@@ -283,6 +306,7 @@ module.exports = {
     validateLocalUsernamePassword: validateLocalUsernamePassword,
     gitHubVerifyCallback: gitHubVerifyCallback,
     validateBearerToken: validateBearerToken,
-    loginAndExchangeToken: loginAndExchangeToken,
+    loginAndExchangeTokenRedirect: loginAndExchangeTokenRedirect,
+    loginAndExchangeTokenAjax: loginAndExchangeTokenAjax,
     facebookVerifyCallback: facebookVerifyCallback
 };

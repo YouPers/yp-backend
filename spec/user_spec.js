@@ -145,7 +145,9 @@ frisby.create('User: POST validate new user')
                                             .post(URL + '/login', {})
                                             .auth(user.username, 'myNewPassword')
                                             .expectStatus(200)
-                                            .afterJSON(function (user) {
+                                            .afterJSON(function (result) {
+                                                var user = result.user;
+
                                                 frisby.create('User: POST password reset back to original value SUCCESS')
                                                     .post(URL + '/users/password_reset', { token: validToken, password: "nopass" })
                                                     .expectStatus(200)

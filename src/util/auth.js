@@ -240,6 +240,7 @@ function validateBearerToken(token, done) {
             var userId = decoded.iss;
             mongoose.model('User').findById(userId)
                 .select(mongoose.model('User').privatePropertiesSelector)
+                .populate('profile campaign')
                 .exec(function(err, user) {
                 if (err) {
                     return error.handleError(err, done);
@@ -256,11 +257,10 @@ function validateBearerToken(token, done) {
 }
 
 function calculateToken(user, expires) {
-    var token = jwt.encode({
+    return jwt.encode({
         iss: user.id,
         exp: expires
     }, config.accessTokenSecret);
-    return token;
 }
 
 function loginAndExchangeTokenRedirect(req, res, next) {

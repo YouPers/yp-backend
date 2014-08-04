@@ -79,7 +79,7 @@ function assessmentResultAnswerPutFn() {
                     assessment: newAnswer.assessment,
                     owner: req.user.id,
                     answers: [],
-                    campaign: req.user.campaign && req.user.campaign.id, // campaign is always populated in the req.user auth.js:149
+                    campaign: req.user.campaign && (req.user.campaign.id || req.user.campaign), // handle empty, populated and unpopulated case
                     topic: req.user.campaign.topic
                 });
 

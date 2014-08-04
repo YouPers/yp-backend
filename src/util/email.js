@@ -9,11 +9,11 @@ var env = process.env.NODE_ENV || 'development',
     templatesDir = path.join(__dirname, 'emailtemplates'),
     nodemailer = require('nodemailer'),
     emailTemplates = require('email-templates'),
-    smtpTransport = nodemailer.createTransport("SMTP", {
+    smtpTransport = nodemailer.createTransport({
         service: "Mailjet",
         auth: {
             user: "785bb8e4ce318859e0c786257d39f99e",
-            pass: "ba3fdc7db0242a16100625394b587085"
+            pass: "3d60c4eca11f1e5112f94503805c0bcd"
         }
     }),
     urlComposer = require('./urlcomposer');

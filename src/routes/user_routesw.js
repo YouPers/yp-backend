@@ -213,7 +213,7 @@ module.exports = function (swagger, config) {
         action: generic.deleteAllFn(baseUrl, User)
     });
 
-    swagger.addPost({
+    swagger.addOperation({
         spec: {
             description: "validate authentication credentials",
             path: "/login",

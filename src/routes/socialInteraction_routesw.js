@@ -8,7 +8,7 @@ module.exports = function (swagger, config) {
     var baseUrl = '/socialInteractions',
         baseUrlWithId = baseUrl + '/{id}';
 
-    swagger.addGet({
+    swagger.addOperation({
         spec: {
             description: "Operations about socialInteractions",
             path: baseUrlWithId,
@@ -25,7 +25,7 @@ module.exports = function (swagger, config) {
         action: handlers.getByIdFn(baseUrl, Model)
     });
 
-    swagger.addGet({
+    swagger.addOperation({
         spec: {
             description: "Operations about socialInteractions",
             path: baseUrl,
@@ -44,7 +44,7 @@ module.exports = function (swagger, config) {
         action: handlers.getAllFn(baseUrl, Model)
     });
 
-    swagger.addDelete({
+    swagger.addOperation({
             spec: {
                 description: "Operations about socialInteractions",
                 path: baseUrlWithId,

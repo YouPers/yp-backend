@@ -23,7 +23,7 @@ module.exports = function (swagger, config) {
     var baseUrl = '/feedback';
 
 
-    swagger.addPost({
+    swagger.addOperation({
         spec: {
             description: "Post feedback",
             path: baseUrl,

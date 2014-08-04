@@ -12,7 +12,7 @@ module.exports = function (swagger, config) {
 
     var baseUrl = '/stats';
 
-    swagger.addGet({
+    swagger.addOperation({
         spec: {
             description: "Operations to get statistics ",
             path: baseUrl,

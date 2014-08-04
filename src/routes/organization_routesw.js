@@ -14,7 +14,7 @@ module.exports = function (swagger, config) {
         baseUrlWithId = baseUrl + "/{id}";
 
 
-    swagger.addPost({
+    swagger.addOperation({
         spec: {
             description: "avatar image upload",
             path: baseUrlWithId + "/avatar",
@@ -26,7 +26,7 @@ module.exports = function (swagger, config) {
         action: organizationHandlers.avatarImagePostFn(baseUrl)
     });
 
-    swagger.addPost({
+    swagger.addOperation({
         spec: {
             description: "Create organization",
             path: baseUrl,
@@ -41,7 +41,7 @@ module.exports = function (swagger, config) {
         },
         action: organizationHandlers.postFn(baseUrl)
     });
-    swagger.addPut({
+    swagger.addOperation({
         spec: {
             description: "Update organization",
             path: baseUrlWithId,
@@ -57,7 +57,7 @@ module.exports = function (swagger, config) {
         action: generic.putFn(baseUrlWithId, Organization)
     });
 
-    swagger.addGet({
+    swagger.addOperation({
         spec: {
             description: "Get organization",
             path: baseUrlWithId,
@@ -75,7 +75,7 @@ module.exports = function (swagger, config) {
         action: generic.getByIdFn(baseUrl, Organization)
     });
 
-    swagger.addGet({
+    swagger.addOperation({
         spec: {
             description: "Return all organizations administrated by the authenticated user",
             path: baseUrl,
@@ -94,7 +94,7 @@ module.exports = function (swagger, config) {
         action: organizationHandlers.getAllForUserFn
     });
 
-    swagger.addDelete({
+    swagger.addOperation({
         spec: {
             description: "Delete organization",
             path: baseUrlWithId,
@@ -109,7 +109,7 @@ module.exports = function (swagger, config) {
         },
         action: generic.deleteByIdFn(baseUrl, Organization)
     });
-    swagger.addPost({
+    swagger.addOperation({
         spec: {
             description: "Invite an organization administrator",
             path: baseUrlWithId + "/inviteOrganizationAdminEmail",
@@ -132,7 +132,7 @@ module.exports = function (swagger, config) {
         action: organizationHandlers.postOrganizationAdminInviteFn
     });
 
-    swagger.addPost({
+    swagger.addOperation({
         spec: {
             description: "Assign a organization admin",
             path: baseUrlWithId + "/assignOrganizationAdmin",

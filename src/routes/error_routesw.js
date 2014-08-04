@@ -26,7 +26,7 @@ module.exports = function (swagger, config) {
         }
     });
 
-    swagger.addPost({
+    swagger.addOperation({
         spec: {
             description: "Post errors",
             path: baseUrl,

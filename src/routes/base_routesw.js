@@ -13,7 +13,7 @@ module.exports = function (swagger, config) {
      * Ping the API server
      * Kind of pointless since the server has to be up to even respond, but demonstrates most basic API
      */
-    swagger.addGet({
+    swagger.addOperation({
         spec: {
             description: "Basic Operations to test connection and availability of API and Database",
             path: '/ping',
@@ -38,7 +38,7 @@ module.exports = function (swagger, config) {
      * @param request
      * @param response
      */
-    swagger.addGet({
+    swagger.addOperation({
         spec: {
             description: "Basic Operations to test connection and availability of API and Database",
             path: '/ping/db',

@@ -8,7 +8,7 @@ module.exports = function (swagger, config) {
     var baseUrl = '/invitations',
         baseUrlWithId = baseUrl + '/{id}';
 
-    swagger.addGet({
+    swagger.addOperation({
         spec: {
             description: "Operations about invitations",
             path: baseUrlWithId,
@@ -25,7 +25,7 @@ module.exports = function (swagger, config) {
         action: handlers.getByIdFn(baseUrl, Model)
     });
 
-    swagger.addGet({
+    swagger.addOperation({
         spec: {
             description: "Operations about invitations",
             path: baseUrl,
@@ -45,7 +45,7 @@ module.exports = function (swagger, config) {
         action: handlers.getAllFn(baseUrl, Model)
     });
 
-    swagger.addPost({
+    swagger.addOperation({
         spec: {
             description: "Operations about invitations",
             path: baseUrl,
@@ -61,7 +61,7 @@ module.exports = function (swagger, config) {
         }
     );
 
-    swagger.addDelete({
+    swagger.addOperation({
             spec: {
                 description: "Operations about invitations",
                 path: baseUrlWithId,
@@ -76,7 +76,7 @@ module.exports = function (swagger, config) {
         }
     );
 
-    swagger.addDelete({
+    swagger.addOperation({
             spec: {
                 description: "Operations about invitations",
                 path: baseUrl,

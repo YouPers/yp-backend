@@ -7,7 +7,7 @@ module.exports = function (swagger, config) {
     var baseUrl = '/auth/';
 
 
-    swagger.addPost({
+    swagger.addOperation({
         spec: {
             description: "validate authentication credentials",
             path: baseUrl + "basic",
@@ -25,7 +25,7 @@ module.exports = function (swagger, config) {
         action: auth.loginAndExchangeTokenOauth
     });
 
-    swagger.addGet({
+    swagger.addOperation({
         spec: {
             description: "validate authentication credentials",
             path: baseUrl + "github",
@@ -43,7 +43,7 @@ module.exports = function (swagger, config) {
         action: null
     });
 
-    swagger.addGet({
+    swagger.addOperation({
         spec: {
             description: "validate authentication credentials",
             path: baseUrl + "github/callback",
@@ -61,7 +61,7 @@ module.exports = function (swagger, config) {
         action: auth.loginAndExchangeTokenRedirect
     });
 
-    swagger.addGet({
+    swagger.addOperation({
         spec: {
             description: "validate authentication credentials",
             path: baseUrl + "facebook",
@@ -79,7 +79,7 @@ module.exports = function (swagger, config) {
         action: null
     });
 
-    swagger.addGet({
+    swagger.addOperation({
         spec: {
             description: "validate authentication credentials",
             path: baseUrl + "facebook/callback",
@@ -98,7 +98,7 @@ module.exports = function (swagger, config) {
     });
 
 
-    swagger.addPost({
+    swagger.addOperation({
         spec: {
             description: "validate authentication credentials",
             path: "/login",

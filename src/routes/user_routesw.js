@@ -16,7 +16,7 @@ module.exports = function (swagger, config) {
         baseUrlWithId = baseUrl + "/{id}";
 
 
-    swagger.addPost({
+    swagger.addOperation({
         spec: {
             description: "validate user",
             path: "/users/validate",
@@ -43,7 +43,7 @@ module.exports = function (swagger, config) {
 
 
 
-    swagger.addPost({
+    swagger.addOperation({
         spec: {
             description: "avatar image upload",
             path: baseUrlWithId + "/avatar",
@@ -59,7 +59,7 @@ module.exports = function (swagger, config) {
         action: userHandlers.avatarImagePostFn(baseUrl)
     });
 
-    swagger.addPost({
+    swagger.addOperation({
         spec: {
             description: "email verification description",
             path: baseUrlWithId + "/email_verification",
@@ -75,7 +75,7 @@ module.exports = function (swagger, config) {
         action: userHandlers.emailVerificationPostFn(baseUrl)
     });
 
-    swagger.addPost({
+    swagger.addOperation({
         spec: {
             description: "password reset",
             path: baseUrl + "/password_reset",
@@ -92,7 +92,7 @@ module.exports = function (swagger, config) {
         action: userHandlers.passwordResetPostFn(baseUrl)
     });
 
-    swagger.addPost({
+    swagger.addOperation({
         spec: {
             description: "request password reset",
             path: baseUrl + "/request_password_reset",
@@ -110,7 +110,7 @@ module.exports = function (swagger, config) {
         action: userHandlers.requestPasswordResetPostFn(baseUrl)
     });
 
-    swagger.addGet({
+    swagger.addOperation({
         spec: {
             description: "Operations about users",
             path: baseUrlWithId,
@@ -128,7 +128,7 @@ module.exports = function (swagger, config) {
         action: generic.getByIdFn(baseUrl, User)
     });
 
-    swagger.addGet({
+    swagger.addOperation({
         spec: {
             description: "Operations about users",
             path: baseUrl,
@@ -148,7 +148,7 @@ module.exports = function (swagger, config) {
     });
 
 
-    swagger.addPut({
+    swagger.addOperation({
         spec: {
             description: "Operations about users",
             path: baseUrlWithId,
@@ -164,7 +164,7 @@ module.exports = function (swagger, config) {
         action: generic.putFn(baseUrl, User)
     });
 
-    swagger.addPost({
+    swagger.addOperation({
         spec: {
             description: "Operations about users",
             path: baseUrl,
@@ -183,7 +183,7 @@ module.exports = function (swagger, config) {
         action: userHandlers.postFn(baseUrl)
     });
 
-    swagger.addDelete({
+    swagger.addOperation({
         spec: {
             description: "Operations about users",
             path: baseUrlWithId,
@@ -198,7 +198,7 @@ module.exports = function (swagger, config) {
         },
         action: generic.deleteByIdFn(baseUrl, User)
     });
-    swagger.addDelete({
+    swagger.addOperation({
         spec: {
             description: "Operations about users",
             path: baseUrl,

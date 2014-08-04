@@ -13,7 +13,7 @@ module.exports = function (swagger, config) {
     var baseUrl = '/profiles',
         baseUrlWithId = baseUrl + "/{id}";
 
-    swagger.addGet({
+    swagger.addOperation({
         spec: {
             description: "Operations about user profiles",
             path: baseUrl,
@@ -30,7 +30,7 @@ module.exports = function (swagger, config) {
         action: generic.getAllFn(baseUrl, Profile)
     });
 
-    swagger.addPut({
+    swagger.addOperation({
         spec: {
             description: "Operations about user profiles",
             path: baseUrlWithId,

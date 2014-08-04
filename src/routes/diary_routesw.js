@@ -7,7 +7,7 @@ module.exports = function (swagger, config) {
     var baseUrl = '/diaryentries',
         baseUrlWithId = baseUrl + '/{id}';
 
-    swagger.addGet({
+    swagger.addOperation({
         spec: {
             description: "Operations about diaryEntries",
             path: baseUrlWithId,
@@ -24,7 +24,7 @@ module.exports = function (swagger, config) {
         action: generic.getByIdFn(baseUrl, Model)
     });
 
-    swagger.addGet({
+    swagger.addOperation({
         spec: {
             description: "Operations about diaryEntries",
             path: baseUrl,
@@ -44,7 +44,7 @@ module.exports = function (swagger, config) {
         action: generic.getAllFn(baseUrl, Model)
     });
 
-    swagger.addPost({
+    swagger.addOperation({
             spec: {
                 description: "Operations about diaryEntries",
                 path: baseUrl,
@@ -60,7 +60,7 @@ module.exports = function (swagger, config) {
         }
     );
 
-    swagger.addDelete({
+    swagger.addOperation({
             spec: {
                 description: "Operations about diaryEntries",
                 path: baseUrlWithId,
@@ -75,7 +75,7 @@ module.exports = function (swagger, config) {
         }
     );
 
-    swagger.addDelete({
+    swagger.addOperation({
             spec: {
                 description: "Operations about diaryEntries",
                 path: baseUrl,

@@ -17,7 +17,7 @@ module.exports = function (swagger, config) {
     var resultsUrl = baseUrl + '/{assessmentId}/results';
     var answerUrl = baseUrl + '/{assessmentId}/answers/{questionId}';
 
-    swagger.addPut({
+    swagger.addOperation({
         spec: {
             description: "Operations about assessments and assessmentResults",
             path: baseUrlWithId,
@@ -44,7 +44,7 @@ module.exports = function (swagger, config) {
         action: generic.putFn(baseUrl, Assessment)
     });
 
-    swagger.addPut({
+    swagger.addOperation({
         spec: {
             description: "Put an answer of an assessment result",
             path: answerUrl,
@@ -62,7 +62,7 @@ module.exports = function (swagger, config) {
         action: assessment_handlers.assessmentResultAnswerPutFn()
     });
 
-    swagger.addGet({
+    swagger.addOperation({
             spec: {
                 description: "Operations about assessments and assessmentResults",
                 path: resultsUrl + '/newest',
@@ -82,7 +82,7 @@ module.exports = function (swagger, config) {
         }
     );
 
-    swagger.addGet({
+    swagger.addOperation({
             spec: {
                 description: "Operations about assessments and assessmentResults",
                 path: resultsUrl,
@@ -102,7 +102,7 @@ module.exports = function (swagger, config) {
         }
     );
 
-    swagger.addDelete({
+    swagger.addOperation({
             spec: {
                 description: "Operations about assessments and assessmentResults",
                 path: resultsUrl,
@@ -118,7 +118,7 @@ module.exports = function (swagger, config) {
         }
     );
 
-    swagger.addDelete({
+    swagger.addOperation({
             spec: {
                 description: "Operations about assessments and assessmentResults",
                 path: resultsUrl + "/{id}",
@@ -136,7 +136,7 @@ module.exports = function (swagger, config) {
     );
 
 
-    swagger.addGet({
+    swagger.addOperation({
         spec: {
             description: "Operations about assessments and assessmentResults",
             path: baseUrl,
@@ -155,7 +155,7 @@ module.exports = function (swagger, config) {
         action: generic.getAllFn(baseUrl, Assessment)
     });
 
-    swagger.addGet({
+    swagger.addOperation({
         spec: {
             description: "Operations about assessments and assessmentResults",
             path: baseUrlWithId,
@@ -175,7 +175,7 @@ module.exports = function (swagger, config) {
 
     });
 
-    swagger.addDelete({
+    swagger.addOperation({
         spec: {
             description: "Operations about assessments and assessmentResults",
             path: baseUrl,

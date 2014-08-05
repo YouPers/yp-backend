@@ -1,179 +1,51 @@
 /**
- * Environment dependent configuration properties
+ * Environment dependent configuration manamgement
+ *
+ * default configuration is defined in:
+ *    - defaults.json
+ *
+ * anything that is environment specific is
+ *  - for development and ci instances:
+ *      - in a checked in [env].json file in this directory
+ *
+ *  - for all real server instances (running with pm2 on debian linux)
+ *      - defined in the server machine config (for YouPers internal: see the private repo "serveradmin", deployed using ansible)
+ *
+ *  IMPORTANT:
+ *  No passwords/credentials with access to production level data can be checked into this repository, they must go to the
+ *  environment config!!!
  */
 
-var bunyan = require('bunyan');
+var nconf = require('nconf');
+var env = process.env.NODE_ENV || 'development';
+console.log("NODE_ENV:" + process.env.NODE_ENV + ", using env: " + env);
 
-module.exports = {
-    development: {
-        root: require('path').normalize(__dirname + '/..'),
-        app: {
-            name: 'Nodejs Restify Mongoose Demo'
-        },
-        host: 'localhost',
-        port: '8000',
-        webclientUrl: "http://localhost:9000",
-        backendUrl: "http://localhost:8000",
-        db_prefix: 'mongodb',
-        db_host: 'localhost',
-        db_port: '27017',
-        db_database: 'test_database',
-        session_timeout: 1200000, // defaults to 20 minutes, in ms (20 * 60 * 1000)
-        socket_loglevel: '2', // 0 - error, 1 - warn, 2 - info, 3 - debug
-        version: '0.1.0',
-        loadTestData: true,
-        loggerOptions: {
-            name: 'Main',
-            streams: [
-                {
-                    stream: process.stdout,
-                    level: 'info'
-                },
-                {
-                    path: 'logs/server.log',
-                    level: 'debug'
-                }
-            ],
-            serializers: bunyan.stdSerializers
-        },
-        linkTokenEncryption : {
-            key: "50126a4a500219238cd678a383cdab197ed5fe42",
-            algorithm: "aes256",
-            maxTokenLifetime: 10 * 60 * 1000
-        },
-        accessTokenSecret: "oikjnf/(*)çasfdASF=)(=(++"
-    },
-    test: {   // used by CircleCI!!!
-        root: require('path').normalize(__dirname + '/..'),
-        app: {
-            name: 'YouPers Platform Server'
-        },
-        host: 'localhost',
-        port: '8000',
-        webclientUrl: "http://localhost:9000",
-        backendUrl: "http://localhost:8000",
-        db_prefix: 'mongodb',
-        db_host: 'localhost',
-        db_port: '27017',
-        db_database: 'test_database',
-        loadTestData: true,
-        loggerOptions: {
-            name: 'Main',
-            streams: [
-                {
-                    path: 'logs/server.log',
-                    level: 'info'
-                }
-            ],
-            serializers: bunyan.stdSerializers
-        },
-        linkTokenEncryption : {
-            key: "50126a4a500219238cd678a383cdab197ed5fe42",
-            algorithm: "aes256",
-            maxTokenLifetime: 10 * 60 * 1000
-        },
-        accessTokenSecret: "oikjnf/(*)çasfdASF=)(=(++asdfadsf"
-    },
-    cimaster: {
-        root: require('path').normalize(__dirname + '/..'),
-        app: {
-            name: 'YouPers Platform Server'
-        },
-        webclientUrl: "https://cimaster.youpers.com",
-        backendUrl: "https://cimaster.youpers.com/api",
-        host: "cimaster.youpers.com",
-        port: '8000',
-        db_prefix: 'mongodb',
-        db_host: 'localhost',
-        db_port: '27017',
-        db_database: 'test_database',
-        loadTestData: true,
-        loggerOptions: {
-            name: 'Main',
-            streams: [
-                {
-                    path: '/var/log/yp-backend/server.log',
-                    level: 'info'
-                }
-            ],
-            serializers: bunyan.stdSerializers
-        },
-        linkTokenEncryption : {
-            key: "50126a4a500219238cd678a383cdab197ed5fe42",
-            algorithm: "aes256",
-            maxTokenLifetime: 10 * 60 * 1000
-        },
-        accessTokenSecret: "oikasdfCVBCVBjnf/(*)çasfdASF=)(=(++"
+//
+// 1. any overrides
+//
+nconf.overrides({});
 
-    },
-    uat: {
-        root: require('path').normalize(__dirname + '/..'),
-        app: {
-            name: 'YouPers Platform Server'
-        },
-        port: '8000',
-        webclientUrl: "https://uat.youpers.com",
-        backendUrl: "https://uat.youpers.com/api",
-        db_prefix: 'mongodb',
-        db_host: 'localhost',
-        db_port: '27017',
-        db_database: 'ypdb',
-        db_user: 'nodeDbAccess',
-        db_password: 'yp13%mongodb%uat',
-        loadTestData: true,
-        loggerOptions: {
-            name: 'Main',
-            streams: [
-                {
-                    path: '/var/log/yp-backend/server.log',
-                    level: 'info'
-                }
-            ],
-            serializers: bunyan.stdSerializers
-        },
-        linkTokenEncryption : {
-            key: "50126a4a500219238cd678a383cdab197ed5fe42",
-            algorithm: "aes256",
-            maxTokenLifetime: 10 * 60 * 1000
-        },
-        accessTokenSecret: "oikjnf/(*)çaYXCVYXCVsfdASF=)(=(++"
-    },
-    prod: {
-        root: require('path').normalize(__dirname + '/..'),
-        app: {
-            name: 'YouPers Platform Server'
-        },
-        port: '8000',
-        webclientUrl: "https://prod.youpers.com",
-        backendUrl: "https://prod.youpers.com/api",
-        db_prefix: 'mongodb',
-        db_host: 'localhost',
-        db_port: '27017',
-        db_database: 'ypdb',
-        db_user: 'nodeDbAccess',
-        db_password: 'yp13%mongodb%prod',
-        loadTestData: true,
-        loggerOptions: {
-            name: 'Main',
-            streams: [
-                {
-                    path: '/var/log/yp-backend/server.log',
-                    level: 'info'
-                }
-            ],
-            serializers: bunyan.stdSerializers
-        },
-        linkTokenEncryption : {
-            key: "50126a4a500219238cd678a383cdsdfsdfdsfsdfe42",
-            algorithm: "aes256",
-            maxTokenLifetime: 10 * 60 * 1000
-        },
-        accessTokenSecret: "oikjnf/(*)çasfdASFASDFASDF=)(=(++"
-    }
+//
+// 2. `process.env`
+// 3. `process.argv`
+//
+nconf.env().argv();
 
-};
+//
+// 4. Values in `config/[env].json`
+//
+nconf.file('envspecific_'+env, require('path').normalize(__dirname + '/'+ env + '.json'));
+console.log('reading config from: ' + require('path').normalize(__dirname + '/'+ env + '.json'));
 
+//
+// 5. Values in `config/defaults.json`
+//
+nconf.file('defaultfile',require('path').normalize(__dirname + '/defaults.json'));
+console.log('reading config from: ' + require('path').normalize(__dirname + '/defaults.json'));
 
+//
+// 6. hardcoded defaults:
+// will probably not be used, we use the defaults.json file instead.
+nconf.defaults({});
 
-
-
+module.exports = nconf.get();

@@ -8,7 +8,7 @@ var mongoose = require('mongoose'),
     organizationHandlers = require('./../handlers/organization_handlers.js');
 
 
-module.exports = function (swagger, config) {
+module.exports = function (swagger) {
 
     var baseUrl = '/organizations',
         baseUrlWithId = baseUrl + "/{id}";

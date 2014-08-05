@@ -4,6 +4,7 @@ var frisby = require('frisby');
 var email = require('../src/util/email');
 var port = process.env.PORT || 8000;
 var URL = 'http://localhost:' + port;
+var config = require('../src/config/config');
 
 frisby.globalSetup({ // globalSetup is for ALL requests
     request: {
@@ -128,8 +129,8 @@ frisby.create('User: POST validate new user')
                                     .expectStatus(409)
                                     .toss();
 
-                                var expiredToken = email.encryptLinkToken(newUser.id + email.linkTokenSeparator + (new Date().getMilliseconds() - (11 * 60 * 1000)));
-                                var validToken = email.encryptLinkToken(newUser.id + email.linkTokenSeparator + (new Date().getMilliseconds()));
+                                var expiredToken = email.encryptLinkToken(newUser.id + config.linkTokenEncryption.separator + (new Date().getMilliseconds() - (11 * 60 * 1000)));
+                                var validToken = email.encryptLinkToken(newUser.id + config.linkTokenEncryption.separator + (new Date().getMilliseconds()));
 
                                 frisby.create('User: POST password reset valid OLD token with password FAIL because of expired token')
                                     .post(URL + '/users/password_reset', { token: expiredToken, password: "myNewPassword" })

@@ -2,32 +2,28 @@
  * Main server startup and configuration commands
  */
 
-// Load configurations
-console.log("NODE_ENV:" + process.env.NODE_ENV);
+// Load configuration
+var config = require('./config/config');
 
-if (process.env.NEW_RELIC_ENABLED) {
-    console.log("Enabling new relic: " + process.env.NEW_RELIC_ENABLED);
+if (config.NEW_RELIC_ENABLED) {
+    console.log("Enabling new relic: " + config.NEW_RELIC_ENABLED);
     require('newrelic');
 }
 
-if (process.env.NODE_TIME_ENABLED && process.env.NODE_TIME_KEY) {
-    console.log("Enabling Nodetime: " + process.env.NODE_TIME_ENABLED);
+if (config.NODE_TIME_ENABLED && config.NODE_TIME_KEY) {
+    console.log("Enabling Nodetime: " + config.NODE_TIME_ENABLED);
     require('nodetime').profile({
-        accountKey: process.env.NODE_TIME_KEY,
-        appName: 'yp-backend '+ process.env.NODE_ENV
+        accountKey: config.NODE_TIME_KEY,
+        appName: 'yp-backend '+ config.NODE_ENV
     });
 }
-
-
-var env = process.env.NODE_ENV || 'development',
-    config = require('./config/config')[env];
 
 // Modules
 var restify = require("restify"),
     preflightEnabler = require('./util/corspreflight'),
     longjohn = require("longjohn"),
     fs = require("fs"),
-    Logger = require('bunyan'),
+    logger = require('./util/log').logger,
     passport = require('passport'),
     passportHttp = require('passport-http'),
 //    OAuth2Strategy = require('passport-oauth').OAuth2Strategy,
@@ -40,15 +36,16 @@ var restify = require("restify"),
     error = require('./util/error'),
     db = require('./util/database');
 
+
 // Configure the server
 var server = restify.createServer({
     name: 'YP Platform Server',
     version: config.version,
-    log: new Logger(config.loggerOptions)
+    log: logger
 });
 
 // initialize Database
-db.initialize(config.loadTestData);
+db.initialize();
 
 // setting logging of request and response
 // setup better error stacktraces
@@ -149,25 +146,16 @@ swagger.setErrorHandler(function (req, res, err) {
     return (true);
 });
 
-// TODO: (RBLU) remove this when all routes have been properly documented
-// setup our (still undocumented) routes
+// setup our routes
 fs.readdirSync('./src/routes').forEach(function (file) {
     if (file.indexOf('_route.js') !== -1) {
-        console.log("Loading route: " + file);
-        require('./routes/' + file)(server, config);
-    }
-});
-
-// setup our (properly documented) routes
-fs.readdirSync('./src/routes').forEach(function (file) {
-    if (file.indexOf('_routesw.js') !== -1) {
-        console.log("Loading route: " + file);
-        require('./routes/' + file)(swagger, config);
+        console.log("Initializing route: " + file);
+        require('./routes/' + file)(swagger);
     }
 });
 swagger.configure(config.backendUrl, "0.1");
 
 
-var port = process.env.PORT || config.port;
+var port = config.port;
 server.listen(port);
 console.log('App started on port ' + port + ', now is: ' + new Date());

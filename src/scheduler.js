@@ -1,9 +1,6 @@
-var env = process.env.NODE_ENV || 'development',
-    config = require('./config/config')[env],
-    cronJob = require('cron').CronJob,
+var cronJob = require('cron').CronJob,
     _ = require('lodash'),
-    Logger = require('bunyan'),
-    log = new Logger(config.loggerOptions),
+    log = require('./util/log').logger,
     eventsSummaryMail = require('./batches/eventsSummaryMail');
 
 /////////////////////////////////////////

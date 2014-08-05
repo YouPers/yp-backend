@@ -1,16 +1,15 @@
-var env = process.env.NODE_ENV || 'development',
-    config = require('../config/config')[env],
+var config = require('../config/config'),
     mongoose = require('mongoose'),
     _ = require('lodash'),
     swagger = require("swagger-node-restify");
 
 
-var initialize = function initialize(loadTestData) {
+var initialize = function initialize() {
 
     if (mongoose.connection.readyState === 0) {
         // Setup Database Connection
         var connectStr = config.db_prefix + '://';
-        if (config.db_user && config.db_password) {
+        if (config.db_user && config.db_password && config.db_user !== 'None' && config.db_password !== 'None') {
             connectStr += config.db_user + ':' + config.db_password + '@';
         }
         connectStr += config.db_host + ':' + config.db_port + '/' + config.db_database;
@@ -26,7 +25,6 @@ var initialize = function initialize(loadTestData) {
             'assessmentResultAnswer',
             'assessmentResult',
             'campaign',
-            'goal',
             'organization',
             'paymentCode',
             'profile',
@@ -42,9 +40,6 @@ var initialize = function initialize(loadTestData) {
             'invitation',
             'recommendation'
         ];
-        if (!loadTestData) {
-            config.loadTestData = false;
-        }
         _.forEach(models, function (modelName) {
             console.log("Loading model: " + modelName);
             var model = require('../models/' + modelName + '_model');

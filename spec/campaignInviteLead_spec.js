@@ -5,6 +5,7 @@ var port = process.env.PORT || 8000;
 var URL = 'http://localhost:' + port;
 var moment = require('moment');
 var email = require('../src/util/email');
+var config = require('../src/config/config');
 
 frisby.globalSetup({ // globalSetup is for ALL requests
     request: {
@@ -71,9 +72,9 @@ frisby.create('CampaignsInviteLead: POST new campaign to existing organization')
                     .after(function () {
                         // we need to create the token ourselves, because we cannot get the email in this test
                         var token = email.encryptLinkToken(newCampaign.id +
-                            email.linkTokenSeparator +
+                                config.linkTokenEncryption.separator +
                             'ypunittest1+individual2@gmail.com' +
-                            email.linkTokenSeparator +
+                                config.linkTokenEncryption.separator +
                             test_ind2Id
                         );
 

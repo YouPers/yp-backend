@@ -10,7 +10,7 @@ var mongoose = require('mongoose'),
     assessment_handlers = require('../handlers/assessment_handlers.js');
 
 
-module.exports = function (swagger, config) {
+module.exports = function (swagger) {
 
     var baseUrl = '/assessments',
         baseUrlWithId = baseUrl + "/{id}";
@@ -162,8 +162,8 @@ module.exports = function (swagger, config) {
             notes: "returns the assessment by id, pass the Object Id as String ",
             summary: "returns one specific assessment by id",
             params: [swagger.pathParam("id", "ID of the assessment to fetch", "string"),
-            	generic.params.populate,
-            	generic.params.populatedeep
+                generic.params.populate,
+                generic.params.populatedeep
             ],
             "errorResponses": [swagger.errors.invalid('id'), swagger.errors.notFound("assessment")],
             method: "GET",

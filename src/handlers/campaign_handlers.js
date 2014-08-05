@@ -12,7 +12,8 @@ var stats = require('../util/stats'),
     email = require('../util/email'),
     image = require('../util/image'),
     moment = require('moment'),
-    generic = require('./generic');
+    generic = require('./generic'),
+    config = require('../config/config');
 
 
 var getCampaignOffers = function (req, res, next) {
@@ -358,7 +359,7 @@ var assignCampaignLeadFn = function assignCampaignLeadFn(req, res, next) {
     var tokenElements;
 
     try {
-        tokenElements = email.decryptLinkToken(req.params.token).split(email.linkTokenSeparator);
+        tokenElements = email.decryptLinkToken(req.params.token).split(config.linkTokenEncryption.separator);
     } catch (err) {
         return next(new error.InvalidArgumentError('Invalid token', {
             token: req.params.token

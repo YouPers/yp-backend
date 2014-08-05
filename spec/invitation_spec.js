@@ -4,7 +4,8 @@ var frisby = require('frisby'),
     _ = require('lodash'),
     consts = require('./testconsts'),
     moment = require('moment'),
-    email = require('../src/util/email');
+    email = require('../src/util/email'),
+    config = require('../src/config/config');
 
 
 frisby.globalSetup({ // globalSetup is for ALL requests
@@ -204,10 +205,10 @@ consts.newUserInNewCampaignApi(
 
                         // we need to create the token ourselves, because we cannot get the email in this test
                         var token = email.encryptLinkToken(campaign.id +
-                            email.linkTokenSeparator +
-                            user.email +
-                            email.linkTokenSeparator +
-                            user.id
+                                config.linkTokenEncryption.separator +
+                                user.email +
+                                config.linkTokenEncryption.separator +
+                                user.id
                         );
 
                         frisby.create('Invitation: accept invitation for campaign lead')
@@ -265,10 +266,10 @@ consts.newUserInNewCampaignApi(
 
                         // we need to create the token ourselves, because we cannot get the email in this test
                         var token = email.encryptLinkToken(consts.organization.id +
-                            email.linkTokenSeparator +
-                            user.email +
-                            email.linkTokenSeparator +
-                            user.id
+                                config.linkTokenEncryption.separator +
+                                user.email +
+                                config.linkTokenEncryption.separator +
+                                user.id
                         );
 
                         frisby.create('Invitation: submit the assign new org Lead')
@@ -281,7 +282,7 @@ consts.newUserInNewCampaignApi(
 
                                 delete org.__v;
 
-                                _.remove(org.administrators, function(admin) {
+                                _.remove(org.administrators, function (admin) {
                                     return admin === user.id;
                                 });
 

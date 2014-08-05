@@ -10,7 +10,7 @@ var mongoose = require('mongoose'),
     common = require('./common');
 
 
-module.exports = function (swagger, config) {
+module.exports = function (swagger) {
 
     var baseUrl = '/campaigns',
         baseUrlWithId = baseUrl + "/{id}";

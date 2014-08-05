@@ -1,7 +1,5 @@
-var env = process.env.NODE_ENV || 'development',
-    config = require('../config/config')[env],
-    Logger = require('bunyan'),
-    log = new Logger(config.loggerOptions),
+var config = require('../config/config'),
+    log = require('./log').logger,
     path = require('path'),
     crypto = require('crypto'),
     _ = require('lodash'),
@@ -9,17 +7,11 @@ var env = process.env.NODE_ENV || 'development',
     templatesDir = path.join(__dirname, 'emailtemplates'),
     nodemailer = require('nodemailer'),
     emailTemplates = require('email-templates'),
-    smtpTransport = nodemailer.createTransport({
-        service: "Mailjet",
-        auth: {
-            user: "785bb8e4ce318859e0c786257d39f99e",
-            pass: "3d60c4eca11f1e5112f94503805c0bcd"
-        }
-    }),
+    smtpTransport = nodemailer.createTransport(config.nodemailer),
     urlComposer = require('./urlcomposer');
 
-var fromDefault = "YOUPERS Gesundheitscoach <dontreply@youpers.com>",
-    linkTokenSeparator = '|';
+var fromDefault = config.email.fromString,
+    linkTokenSeparator = config.linkTokenEncryption.separator;
 
 var encryptLinkToken = function (linkToken) {
 
@@ -268,7 +260,6 @@ module.exports = {
     closeConnection: close,
     encryptLinkToken: encryptLinkToken,
     decryptLinkToken: decryptLinkToken,
-    linkTokenSeparator: linkTokenSeparator,
     sendEmail: sendEmail,
     sendEmailVerification: sendEmailVerification,
     sendCalInvite: sendCalInvite,

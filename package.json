@@ -37,7 +37,9 @@
         "mongoose-timestamp": "~0.2.x",
         "newrelic": "*",
         "nodetime": "*",
-        "mongoose-eventify": "*"
+        "mongoose-eventify": "*",
+        "nconf": "~0.6.x"
+
     },
     "devDependencies": {
         "grunt-contrib-jshint": "~0.10.x",

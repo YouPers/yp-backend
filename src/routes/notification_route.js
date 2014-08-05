@@ -3,7 +3,7 @@ var mongoose = require('mongoose'),
     generic = require('./../handlers/generic'),
     notificationHandlers = require('../handlers/notification_handlers');
 
-module.exports = function (swagger, config) {
+module.exports = function (swagger) {
 
     var baseUrl = '/notifications',
         baseUrlWithId = baseUrl + '/{id}';

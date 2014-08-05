@@ -50,7 +50,7 @@ module.exports = function (swagger) {
 
     });
 
-    swagger.addGet({
+    swagger.addOperation({
         spec: {
             description: "Operations about Ideas",
             path: baseUrlWithId,

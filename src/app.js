@@ -124,19 +124,10 @@ swagger.setErrorHandler(function (req, res, err) {
     return (true);
 });
 
-// TODO: (RBLU) remove this when all routes have been properly documented
-// setup our (still undocumented) routes
+// setup our routes
 fs.readdirSync('./src/routes').forEach(function (file) {
     if (file.indexOf('_route.js') !== -1) {
-        console.log("Loading route: " + file);
-        require('./routes/' + file)(server, config);
-    }
-});
-
-// setup our (properly documented) routes
-fs.readdirSync('./src/routes').forEach(function (file) {
-    if (file.indexOf('_routesw.js') !== -1) {
-        console.log("Loading route: " + file);
+        console.log("Initializing route: " + file);
         require('./routes/' + file)(swagger, config);
     }
 });

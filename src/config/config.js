@@ -21,7 +21,6 @@ module.exports = {
         session_timeout: 1200000, // defaults to 20 minutes, in ms (20 * 60 * 1000)
         socket_loglevel: '2', // 0 - error, 1 - warn, 2 - info, 3 - debug
         version: '0.1.0',
-        loadTestData: true,
         loggerOptions: {
             name: 'Main',
             streams: [
@@ -55,7 +54,6 @@ module.exports = {
         db_host: 'localhost',
         db_port: '27017',
         db_database: 'test_database',
-        loadTestData: true,
         loggerOptions: {
             name: 'Main',
             streams: [
@@ -85,7 +83,6 @@ module.exports = {
         db_host: 'localhost',
         db_port: '27017',
         db_database: 'test_database',
-        loadTestData: true,
         loggerOptions: {
             name: 'Main',
             streams: [
@@ -116,7 +113,6 @@ module.exports = {
         db_database: 'ypdb',
         db_user: 'nodeDbAccess',
         db_password: 'yp13%mongodb%uat',
-        loadTestData: true,
         loggerOptions: {
             name: 'Main',
             streams: [
@@ -147,7 +143,6 @@ module.exports = {
         db_database: 'ypdb',
         db_user: 'nodeDbAccess',
         db_password: 'yp13%mongodb%prod',
-        loadTestData: true,
         loggerOptions: {
             name: 'Main',
             streams: [

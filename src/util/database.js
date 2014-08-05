@@ -5,7 +5,7 @@ var env = process.env.NODE_ENV || 'development',
     swagger = require("swagger-node-restify");
 
 
-var initialize = function initialize(loadTestData) {
+var initialize = function initialize() {
 
     if (mongoose.connection.readyState === 0) {
         // Setup Database Connection
@@ -26,7 +26,6 @@ var initialize = function initialize(loadTestData) {
             'assessmentResultAnswer',
             'assessmentResult',
             'campaign',
-            'goal',
             'organization',
             'paymentCode',
             'profile',
@@ -42,9 +41,6 @@ var initialize = function initialize(loadTestData) {
             'invitation',
             'recommendation'
         ];
-        if (!loadTestData) {
-            config.loadTestData = false;
-        }
         _.forEach(models, function (modelName) {
             console.log("Loading model: " + modelName);
             var model = require('../models/' + modelName + '_model');

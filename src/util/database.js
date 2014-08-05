@@ -9,7 +9,7 @@ var initialize = function initialize() {
     if (mongoose.connection.readyState === 0) {
         // Setup Database Connection
         var connectStr = config.db_prefix + '://';
-        if (config.db_user && config.db_password) {
+        if (config.db_user && config.db_password && config.db_user !== 'None' && config.db_password !== 'None') {
             connectStr += config.db_user + ':' + config.db_password + '@';
         }
         connectStr += config.db_host + ':' + config.db_port + '/' + config.db_database;

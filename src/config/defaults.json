@@ -1,0 +1,32 @@
+{
+    "app": {
+        "name": "Nodejs Restify Mongoose Demo"
+    },
+    "session_timeout": 1200000,
+    "socket_loglevel": "2",
+    "version": "0.1.0",
+    "host": "localhost",
+    "port": "8000",
+    "webclientUrl": "http://localhost:9000",
+    "backendUrl": "http://localhost:8000",
+    "db_prefix": "mongodb",
+    "db_host": "localhost",
+    "db_port": "27017",
+    "db_database": "test_database",
+    "linkTokenEncryption": {
+        "key": "50126a4a500219238cd678a383cdab197ed5fe42",
+        "algorithm": "aes256",
+        "maxTokenLifetime": 600000,
+        "separator": "|"
+    },
+    "nodemailer": {
+        "service": "Mailjet",
+        "auth": {
+            "user": "785bb8e4ce318859e0c786257d39f99e",
+            "pass": "3d60c4eca11f1e5112f94503805c0bcd"
+        }
+    },
+    "email": {
+        "fromString": "YOUPERS Gesundheitscoach <dontreply@youpers.com>"
+    }
+}

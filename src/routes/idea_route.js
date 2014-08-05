@@ -8,7 +8,7 @@ var mongoose = require('mongoose'),
     generic = require('../handlers/generic'),
     handlers = require('../handlers/idea_handlers');
 
-module.exports = function (swagger, config) {
+module.exports = function (swagger) {
 
     var baseUrl = '/ideas';
     var baseUrlWithId = baseUrl + '/{id}';

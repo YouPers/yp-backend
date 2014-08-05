@@ -3,14 +3,11 @@
  *    log errors posted by the client
  */
 
-var env = process.env.NODE_ENV || 'development',
-    config = require('../config/config')[env],
-    Logger = require('bunyan'),
-    log = new Logger(config.loggerOptions),
-    error = require('../util/error');
+var error = require('../util/error');
+var log = require('../util/log').logger;
 
 
-module.exports = function (swagger, config) {
+module.exports = function (swagger) {
 
     var baseUrl = '/error';
 

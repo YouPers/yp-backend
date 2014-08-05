@@ -4,10 +4,7 @@ var error = require('../util/error'),
     ObjectId = mongoose.Schema.ObjectId,
     handlerUtils = require('./handlerUtils'),
     auth = require('../util/auth'),
-    env = process.env.NODE_ENV || 'development',
-    config = require('../config/config')[env],
-    Logger = require('bunyan'),
-    log = new Logger(config.loggerOptions);
+    log = require('../util/log').logger;
 
 ////////////////////////////////////
 // helper functions

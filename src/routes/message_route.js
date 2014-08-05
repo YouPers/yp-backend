@@ -3,7 +3,7 @@ var mongoose = require('mongoose'),
     generic = require('./../handlers/generic'),
     handlers = require('../handlers/socialInteraction_handlers');
 
-module.exports = function (swagger, config) {
+module.exports = function (swagger) {
 
     var baseUrl = '/messages',
         baseUrlWithId = baseUrl + '/{id}';

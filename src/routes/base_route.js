@@ -7,7 +7,7 @@
  */
 var  mongoose = require('mongoose');
 
-module.exports = function (swagger, config) {
+module.exports = function (swagger) {
 
     /**
      * Ping the API server

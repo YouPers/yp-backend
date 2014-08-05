@@ -7,10 +7,8 @@ var mongoose = require('mongoose'),
     User = mongoose.model('User'),
     generic = require('./../handlers/generic'),
     userHandlers = require('./../handlers/user_handlers.js');
-//    ObjectId = mongoose.Types.ObjectId;
 
-
-module.exports = function (swagger, config) {
+module.exports = function (swagger) {
 
     var baseUrl = '/users',
         baseUrlWithId = baseUrl + "/{id}";

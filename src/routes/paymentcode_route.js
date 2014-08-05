@@ -9,7 +9,7 @@ var paymentCodeHandlers = require('./../handlers/paymentcode_handlers'),
     PaymentCode = mongoose.model('PaymentCode'),
     generic = require('./../handlers/generic');
 
-module.exports = function (swagger, config) {
+module.exports = function (swagger) {
 
     var baseUrl = '/paymentcodes';
 

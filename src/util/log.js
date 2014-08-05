@@ -15,6 +15,11 @@ if (logConf.stdout) {
         level: logConf.stdout
     });
 }
+
+if (logConf.stream) {
+    loggerOptions.streams.push(logConf.stream);
+}
+
 var logger = bunyan.createLogger(loggerOptions);
 
 module.exports = {

@@ -74,7 +74,7 @@ var feeder = function (callback) {
     var timeFrame = this.timeFrameToFindEvents || 24 * 60 * 60 * 1000;
 
     var rangeEnd = moment();
-    var rangeStart = moment(rangeEnd).subtract('milliseconds', timeFrame);
+    var rangeStart = moment(rangeEnd).subtract(timeFrame, 'milliseconds');
     this.rangeStart = rangeStart;
     this.rangeEnd = rangeEnd;
 

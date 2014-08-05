@@ -171,7 +171,7 @@ function _getTimezone(activity) {
 
 function getOccurrences(activity, fromDate) {
 
-    fromDate = fromDate || moment(activity.mainEvent.start).subtract('day', 1).toDate();
+    fromDate = fromDate || moment(activity.mainEvent.start).subtract( 1, 'day').toDate();
 
     if (activity.mainEvent.frequency === 'once') {
         return [activity.mainEvent.start];

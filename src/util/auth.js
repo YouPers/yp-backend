@@ -7,8 +7,6 @@ var env = process.env.NODE_ENV || 'development';
 var config = require('../config/config')[env];
 var moment = require('moment');
 
-
-
 var roles = {
         anonymous: 'anonymous',
         individual: 'individual',
@@ -153,80 +151,134 @@ var canAssign = function (loggedInUser, requestedRoles) {
  */
 var validateLocalUsernamePassword = function (username, password, done) {
 
-    mongoose.model('User')
-        .findOne()
-        .or([
-            { username: username.toLowerCase() },
-            { email: username.toLowerCase()}
-        ])
-        // select the 'private' attributes from the user that are hidden if another user loads the user object
+    _loadUser({$or: [
+        { username: username.toLowerCase() },
+        { email: username.toLowerCase()}
+    ]}, function (err, user) {
+        if (err) {
+            return done(err);
+        }
+        if (!user) {
+            return done(null, false);
+        }
+        if (!user.validPassword(password)) {
+            return done(null, false);
+        }
+        return done(null,user);
+    });
+};
+
+function _loadUser(finder, cb) {
+    return mongoose.model('User').find(finder)
         .select(mongoose.model('User').privatePropertiesSelector)
-        .populate('profile')
-        .populate('campaign')
-        .exec(function (err, user) {
+        .populate('profile campaign')
+        .exec(function(err, users) {
+            if (err) {
+                return cb(err);
+            }
+
+            if (!users || users.length === 0) {
+                return cb(err, null);
+            }
+
+            if (users.length > 1) {
+                return cb(new Error('More than one user found for the crendentials, should not be possible'));
+            }
+
+            return cb(err, users[0]);
+        });
+}
+
+
+function _getOAuth2ProviderCallbackFn(providerName, providerProfileToUserMappingFn, profileUpdateFn) {
+    return function (accessToken, refreshToken, providerProfile, done) {
+        _loadUser({provider: providerName, providerId: providerProfile.id }, function (err, user) {
             if (err) {
                 return done(err);
             }
-            if (!user) {
-                return done(null, false);
+            if (user) {
+                // we have an existing user for this provider id and providerId, so we return it
+                return done(err, user);
             }
-            if (!user.validPassword(password)) {
-                return done(null, false);
-            }
-            return done(null, user);
+
+            // we do not have a user for this credentials, so we create one
+            var UserModel =  mongoose.model('User');
+            user = new UserModel(providerProfileToUserMappingFn(providerProfile, accessToken, refreshToken));
+            user.save(function (err, savedUser) {
+                if (err) {
+                    return done(err);
+                }
+                if (profileUpdateFn && _.isFunction(profileUpdateFn)) {
+                    mongoose.model('Profile')
+                        .findById(savedUser.profile)
+                        .exec(function (err, savedProfile) {
+                            if (err) {
+                                return done(err);
+                            }
+
+                            profileUpdateFn(savedProfile, providerProfile);
+                            return savedProfile.save(function(err, savedProfile) {
+                                if (err) {
+                                    return done(err);
+                                }
+                                return done(err, savedUser);
+                            });
+                        });
+                } else {
+                    return done(err, savedUser);
+                }
+
+            });
         });
-};
 
-var gitHubVerifyCallback = function (accessToken, refreshToken, profile, done) {
+    };
+}
 
-    mongoose.model('User').findOneAndUpdate(
-        { provider: 'github', providerId: profile.id },
-        {
-            firstname: profile.username,
-            lastname: "",
-            fullname: profile.displayName || profile.username,
+var gitHubVerifyCallback = _getOAuth2ProviderCallbackFn('github',
+    function userMappingFn (providerProfile, accessToken, refreshToken) {
+        return {
+            firstname: providerProfile.username,
+            lastname: providerProfile.username,
+            fullname: providerProfile.displayName || providerProfile.username,
             accessToken: accessToken || '',
             refreshToken: refreshToken || '',
             provider: 'github',
-            providerId: profile.id,
-            emails: profile.emails,
-            photos: profile.photos || [],
-            email: profile.emails[0].email,
-            avatar: profile._json.avatar_url,
+            providerId: providerProfile.id,
+            emails: providerProfile.emails,
+            photos: providerProfile.photos || [],
+            email: providerProfile.emails[0].email,
+            avatar: providerProfile._json.avatar_url,
             emailValidatedFlag: true,
-            username: profile.username,
+            username: providerProfile.username,
             roles: ['individual']
-        },
-        {upsert: true},
-        function (err, user) {
-            return done(err, user);
-        });
-};
+        };
+    }
+);
 
-var facebookVerifyCallback = function(accessToken, refreshToken, profile, done) {
-    mongoose.model('User').findOneAndUpdate(
-        { provider: 'facebook', providerId: profile.id },
-        {
-            firstname: profile.name.givenName,
-            lastname: profile.name.familyName,
-            fullname: profile.displayName || profile.username,
+var facebookVerifyCallback = _getOAuth2ProviderCallbackFn('facebook',
+    function (providerProfile, accessToken, refreshToken) {
+        return {
+            firstname: providerProfile.name.givenName,
+            lastname: providerProfile.name.familyName,
+            fullname: providerProfile.displayName || providerProfile.username,
             accessToken: accessToken || '',
             refreshToken: refreshToken || '',
             provider: 'facebook',
-            providerId: profile.id,
-            emails: profile.emails,
-            photos: profile.photos || [],
-            email: profile.emails[0].value,
-            avatar: profile.photos[0].value,
+            providerId: providerProfile.id,
+            emails: providerProfile.emails,
+            photos: providerProfile.photos || [],
+            email: providerProfile.emails[0].value,
+            avatar: providerProfile.photos[0].value,
             emailValidatedFlag: true,
-            username: profile.displayName,
+            username: providerProfile.displayName,
             roles: ['individual']
-        },
-        {upsert: true},
-        function (err, user) {
-            return done(err, user);
-        });
-};
+        };
+    },
+    function profileUpdateFn(existingProfile, providerProfile) {
+        existingProfile.gender = providerProfile.gender;
+    }
+);
+
 
 function validateBearerToken(token, done) {
     if (token) {
@@ -238,15 +290,15 @@ function validateBearerToken(token, done) {
             }
 
             var userId = decoded.iss;
-            mongoose.model('User').findById(userId)
-                .select(mongoose.model('User').privatePropertiesSelector)
-                .populate('profile campaign')
-                .exec(function(err, user) {
+
+            _loadUser({_id: mongoose.Types.ObjectId(userId)}, function (err, user) {
                 if (err) {
                     return error.handleError(err, done);
                 }
-                if (!user) { return done(null, false); }
-                return done(null, user);
+                if (!user) {
+                    return done(null, false);
+                }
+                return done(null, user, {scope: 'all', roles: user.roles});
             });
         } catch (err) {
             return done(err);
@@ -256,23 +308,22 @@ function validateBearerToken(token, done) {
     }
 }
 
-function calculateToken(user, expires) {
-    return jwt.encode({
-        iss: user.id,
-        exp: expires
-    }, config.accessTokenSecret);
+function _calculateToken(user) {
+    var expires = moment().add('days', 7).valueOf();
+
+    return {
+        encodedToken: jwt.encode({iss: user.id, exp: expires}, config.accessTokenSecret),
+        expires: expires
+    };
 }
 
 function loginAndExchangeTokenRedirect(req, res, next) {
     if (!req.user) {
         return error.handleError(new Error('User must be defined at this point'), next);
     }
+    var tokenInfo = _calculateToken(req.user);
 
-    var expires = moment().add('days', 7).valueOf();
-    var token = calculateToken(req.user, expires);
-
-
-    res.header('Location', config.webclientUrl + '/#home?token='+token + '&expires=' +expires);
+    res.header('Location', config.webclientUrl + '/#home?token=' + tokenInfo.encodedToken + '&expires=' + tokenInfo.expires);
     res.send(302);
 }
 
@@ -281,15 +332,14 @@ function loginAndExchangeTokenAjax(req, res, next) {
     if (!req.user) {
         return error.handleError(new Error('User must be defined at this point'), next);
     }
-    req.log.trace({user: req.user},'/login: user authenticated');
+    req.log.trace({user: req.user}, '/login: user authenticated');
 
-    var expires = moment().add('days', 7).valueOf();
-    var token = calculateToken(req.user, expires);
+    var tokenInfo = _calculateToken(req.user);
 
     var payload = {
         user: req.user,
-        token: token,
-        expires: expires
+        token: tokenInfo.encodedToken,
+        expires: tokenInfo.expires
     };
 
     res.send(payload);

@@ -1,5 +1,19 @@
 /**
- * Environment dependent configuration properties
+ * Environment dependent configuration manamgement
+ *
+ * default configuration is defined in:
+ *    - defaults.json
+ *
+ * anything that is environment specific is
+ *  - for development and ci instances:
+ *      - in a checked in [env].json file in this directory
+ *
+ *  - for all real server instances (running with pm2 on debian linux)
+ *      - defined in the server machine config (for YouPers internal: see the private repo "serveradmin", deployed using ansible)
+ *
+ *  IMPORTANT:
+ *  No passwords/credentials with access to production level data can be checked into this repository, they must go to the
+ *  environment config!!!
  */
 
 var nconf = require('nconf');
@@ -31,6 +45,7 @@ console.log('reading config from: ' + require('path').normalize(__dirname + '/de
 
 //
 // 6. hardcoded defaults:
+// will probably not be used, we use the defaults.json file instead.
 nconf.defaults({});
 
 module.exports = nconf.get();

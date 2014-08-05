@@ -3,8 +3,7 @@ var jwt = require('jwt-simple');
 var passport = require('passport');
 var error = require('../util/error');
 var _ = require('lodash');
-var env = process.env.NODE_ENV || 'development';
-var config = require('../config/config')[env];
+var config = require('../config/config');
 var moment = require('moment');
 
 var roles = {

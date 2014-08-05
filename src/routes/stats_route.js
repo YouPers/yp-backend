@@ -8,11 +8,11 @@ var // passport = require('passport'),
     common = require('./common');
 
 // TODO: enable authentication for stats, not everyone should be able to get stats.
-module.exports = function (swagger, config) {
+module.exports = function (swagger) {
 
     var baseUrl = '/stats';
 
-    swagger.addGet({
+    swagger.addOperation({
         spec: {
             description: "Operations to get statistics ",
             path: baseUrl,

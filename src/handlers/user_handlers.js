@@ -3,10 +3,10 @@ var error = require('../util/error'),
     email = require('../util/email'),
     image = require('../util/image'),
     auth = require('../util/auth'),
-    config = require('../config/config')[process.env.NODE_ENV || 'development'],
     mongoose = require('mongoose'),
     User = mongoose.model('User'),
-    _ = require('lodash');
+    _ = require('lodash'),
+    config = require('../config/config');
 
 var postFn = function (baseUrl) {
     return function (req, res, next) {
@@ -178,8 +178,8 @@ var passwordResetPostFn = function(baseUrl) {
             return next(new error.InvalidArgumentError('Invalid Token', { token: req.body.token }));
         }
 
-        var userId = decryptedToken.split(email.linkTokenSeparator)[0];
-        var tokentimestamp = decryptedToken.split(email.linkTokenSeparator)[1];
+        var userId = decryptedToken.split(config.linkTokenEncryption.separator)[0];
+        var tokentimestamp = decryptedToken.split(config.linkTokenEncryption.separator)[1];
 
         if (new Date().getMilliseconds() - tokentimestamp > config.linkTokenEncryption.maxTokenLifetime) {
             return next(new error.InvalidArgumentError('Token is expired', { token: req.body.token }));

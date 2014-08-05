@@ -8,7 +8,7 @@ var mongoose = require('mongoose'),
     generic = require('../handlers/generic'),
     handlers = require('../handlers/idea_handlers');
 
-module.exports = function (swagger, config) {
+module.exports = function (swagger) {
 
     var baseUrl = '/ideas';
     var baseUrlWithId = baseUrl + '/{id}';
@@ -31,7 +31,7 @@ module.exports = function (swagger, config) {
        }
     });
 
-    swagger.addGet({
+    swagger.addOperation({
         spec: {
             description: "Operations about Ideas",
             path: baseUrlWithId + "/usercontext",
@@ -69,7 +69,7 @@ module.exports = function (swagger, config) {
 
     });
 
-    swagger.addGet({
+    swagger.addOperation({
         spec: {
             description: "Operations about Ideas",
             path: baseUrlWithId + '/defaultActivity',
@@ -87,7 +87,7 @@ module.exports = function (swagger, config) {
 
     });
 
-    swagger.addGet({
+    swagger.addOperation({
         spec: {
             description: "Operations about Ideas",
             path: baseUrl,
@@ -109,7 +109,7 @@ module.exports = function (swagger, config) {
     });
 
 
-    swagger.addPost({
+    swagger.addOperation({
         spec: {
             description: "Operations about Ideas",
             path: baseUrl,
@@ -134,7 +134,7 @@ module.exports = function (swagger, config) {
         action: handlers.postIdea
     });
 
-    swagger.addPut({
+    swagger.addOperation({
         spec: {
             description: "Operations about Ideas",
             path: baseUrlWithId,
@@ -151,7 +151,7 @@ module.exports = function (swagger, config) {
         action: handlers.putIdea
     });
 
-    swagger.addDelete({
+    swagger.addOperation({
         spec: {
             description: "Operations about Ideas",
             path: baseUrl,
@@ -166,7 +166,7 @@ module.exports = function (swagger, config) {
         action: generic.deleteAllFn(baseUrl, Idea)
     });
 
-    swagger.addDelete({
+    swagger.addOperation({
         spec: {
             description: "Operations about Ideas",
             path: baseUrlWithId,

@@ -2,12 +2,12 @@ var mongoose = require('mongoose'),
     Model = mongoose.model('Topic'),
     generic = require('./../handlers/generic');
 
-module.exports = function (swagger, config) {
+module.exports = function (swagger) {
 
     var baseUrl = '/topics',
         baseUrlWithId = baseUrl + '/{id}';
 
-    swagger.addGet({
+    swagger.addOperation({
         spec: {
             description: "Operations about topics",
             path: baseUrlWithId,
@@ -24,7 +24,7 @@ module.exports = function (swagger, config) {
         action: generic.getByIdFn(baseUrl, Model)
     });
 
-    swagger.addGet({
+    swagger.addOperation({
         spec: {
             description: "Operations about topics",
             path: baseUrl,
@@ -44,7 +44,7 @@ module.exports = function (swagger, config) {
         action: generic.getAllFn(baseUrl, Model)
     });
 
-    swagger.addPost({
+    swagger.addOperation({
         spec: {
             description: "Operations about topics",
             path: baseUrl,
@@ -60,7 +60,7 @@ module.exports = function (swagger, config) {
         }
     );
 
-    swagger.addDelete({
+    swagger.addOperation({
             spec: {
                 description: "Operations about topics",
                 path: baseUrlWithId,
@@ -75,7 +75,7 @@ module.exports = function (swagger, config) {
         }
     );
 
-    swagger.addDelete({
+    swagger.addOperation({
             spec: {
                 description: "Operations about topics",
                 path: baseUrl,

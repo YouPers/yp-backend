@@ -8,11 +8,7 @@ var Invitation = mongoose.model('Invitation');
 var Idea = mongoose.model('Idea');
 var Activity = mongoose.model('Activity');
 var SocialInteraction = require('../core/SocialInteraction');
-var env = process.env.NODE_ENV || 'development';
-var config = require('../config/config')[env];
-var Logger = require('bunyan');
-var log = new Logger(config.loggerOptions);
-
+var log = require('../util/log').logger;
 var ASSESSMENT_IDEA = "5278c6accdeab69a25000008";
 
 function ActivityManagement() {

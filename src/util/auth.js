@@ -1,6 +1,12 @@
 var mongoose = require('mongoose');
 var jwt = require('jwt-simple');
 var passport = require('passport');
+var passportHttp = require('passport-http');
+//  var  OAuth2Strategy = require('passport-oauth').OAuth2Strategy;
+var FacebookStrategy = require('passport-facebook').Strategy;
+var BearerStrategy = require('passport-http-bearer').Strategy;
+var GitHubStrategy = require('passport-github').Strategy;
+
 var error = require('../util/error');
 var _ = require('lodash');
 var config = require('../config/config');
@@ -233,7 +239,7 @@ function _getOAuth2ProviderCallbackFn(providerName, providerProfileToUserMapping
     };
 }
 
-var gitHubVerifyCallback = _getOAuth2ProviderCallbackFn('github',
+var _gitHubVerifyCallback = _getOAuth2ProviderCallbackFn('github',
     function userMappingFn (providerProfile, accessToken, refreshToken) {
         return {
             firstname: providerProfile.username,
@@ -254,7 +260,7 @@ var gitHubVerifyCallback = _getOAuth2ProviderCallbackFn('github',
     }
 );
 
-var facebookVerifyCallback = _getOAuth2ProviderCallbackFn('facebook',
+var _facebookVerifyCallback = _getOAuth2ProviderCallbackFn('facebook',
     function (providerProfile, accessToken, refreshToken) {
         return {
             firstname: providerProfile.name.givenName,
@@ -279,7 +285,7 @@ var facebookVerifyCallback = _getOAuth2ProviderCallbackFn('facebook',
 );
 
 
-function validateBearerToken(token, done) {
+function _validateBearerToken(token, done) {
     if (token) {
         try {
             var decoded = jwt.decode(token, config.accessTokenSecret);
@@ -345,6 +351,32 @@ function loginAndExchangeTokenAjax(req, res, next) {
     return next();
 }
 
+function setupPassport(passport) {
+    // setup authentication, currently only HTTP Basic auth over HTTPS is supported
+    passport.use(new passportHttp.BasicStrategy(validateLocalUsernamePassword));
+    passport.use(new GitHubStrategy({
+            clientID: 'ddfb0568a53ead210f61',
+            clientSecret: 'ee82f353b27509bb1cb9269b26b02b611e528fe6',
+            callbackURL: "http://localhost:8000/auth/github/callback",
+            scope: "user"
+        },
+        _gitHubVerifyCallback
+    ));
+
+    passport.use(new FacebookStrategy({
+            clientID: '1443351149277228',
+            clientSecret: 'd910fee6236a08c7606069f6bb72f626',
+            callbackURL: "http://localhost:8000/auth/facebook/callback",
+            scope: ["public_profile", "email"],
+            enableProof: false,
+            profileFields: ['id', 'displayName', 'photos', 'email', 'name', 'last_name', 'first_name']
+        },
+        _facebookVerifyCallback
+    ));
+    passport.use(new BearerStrategy(_validateBearerToken));
+
+}
+
 module.exports = {
     roleBasedAuth: roleBasedAuth,
     isAdminForModel: isAdminForModel,
@@ -352,10 +384,7 @@ module.exports = {
     accessLevels: accessLevels,
     canAssign: canAssign,
     checkAccess: checkAccess,
-    validateLocalUsernamePassword: validateLocalUsernamePassword,
-    gitHubVerifyCallback: gitHubVerifyCallback,
-    validateBearerToken: validateBearerToken,
     loginAndExchangeTokenRedirect: loginAndExchangeTokenRedirect,
     loginAndExchangeTokenAjax: loginAndExchangeTokenAjax,
-    facebookVerifyCallback: facebookVerifyCallback
+    setupPassport: setupPassport
 };

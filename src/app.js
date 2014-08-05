@@ -114,7 +114,7 @@ swagger.configureSwaggerPaths("", "/api-docs", "");
 
 swagger.setErrorHandler(function (req, res, err) {
     req.log.error(err);
-    console.error('Caught uncaught Exception: ' + err);
+    console.error('Caught uncaught Exception in Swagger: ' + err + ' message: ' + err.message);
     res.send(new error.InternalError(err, err.message || 'unexpected error'));
     return (true);
 });

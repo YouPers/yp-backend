@@ -71,7 +71,7 @@ module.exports = function (grunt) {
                 options: {
                     port: 8000,
                     script: './src/app.js',
-                    delay: 2000,
+                    delay: 3000,
                     output: null  // is needed, otherwise delay is ignored after any server output to System.out
 
                 }

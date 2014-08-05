@@ -25,7 +25,6 @@ var restify = require("restify"),
     fs = require("fs"),
     logger = require('./util/log').logger,
     passport = require('passport'),
-    passportHttp = require('passport-http'),
     swagger = require("swagger-node-restify"),
     auth = require('./util/auth'),
     ypi18n = require('./util/ypi18n'),
@@ -53,13 +52,13 @@ server.pre(function (request, response, next) {
 
 
 process.on('uncaughtException', function (err) {
-    console.error('Caught uncaught Exception: ' + err);
+    console.error('Caught uncaught process Exception: ' + err);
     process.exit(8);
 });
 
 server.on('uncaughtException', function (req, res, route, err) {
     req.log.error(err);
-    console.error('Caught uncaught Exception: ' + err);
+    console.error('Caught uncaught server Exception: ' + err);
     res.send(new error.InternalError(err, err.message || 'unexpected error'));
     return (true);
 });
@@ -106,8 +105,7 @@ server.use(function (req, res, next) {
 // allows authenticated cross domain requests
 preflightEnabler(server);
 
-// setup authentication, currently only HTTP Basic auth over HTTPS is supported
-passport.use(new passportHttp.BasicStrategy(auth.validateLocalUsernamePassword));
+auth.setupPassport(passport);
 
 // setup swagger documentation
 swagger.setAppHandler(server);
@@ -116,7 +114,7 @@ swagger.configureSwaggerPaths("", "/api-docs", "");
 
 swagger.setErrorHandler(function (req, res, err) {
     req.log.error(err);
-    console.error('Caught uncaught Exception: ' + err);
+    console.error('Caught uncaught Exception in Swagger: ' + err + ' message: ' + err.message);
     res.send(new error.InternalError(err, err.message || 'unexpected error'));
     return (true);
 });

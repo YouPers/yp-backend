@@ -34,6 +34,25 @@ module.exports = function (swagger) {
     swagger.addOperation({
         spec: {
             description: "Operations about Ideas",
+            path: baseUrlWithId + "/usercontext",
+            notes: "returns a usercontext object for the idea with the passed in id. This usercontext object contains all" +
+                "Information for the current user concerning this idea (activities, comments, invitations, recommendations",
+            summary: "returns a usercontext object for the idea with the passed in id",
+            params: [swagger.pathParam("id", "ID of the idea to be fetched", "string"),
+                generic.params.populate],
+            method: "GET",
+            "responseClass": "IdeaUserContext",
+            "nickname": "getIdeaUserContext",
+            accessLevel: 'al_user',
+            beforeCallbacks: []
+        },
+        action: handlers.getUserContextByIdFn
+
+    });
+
+    swagger.addOperation({
+        spec: {
+            description: "Operations about Ideas",
             path: baseUrlWithId,
             notes: "returns only the public attributes in normal case. If the authenticated user has role 'admin', all " +
                 "attributes are returned (incl. all recWeights, ...)",

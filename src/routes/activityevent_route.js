@@ -2,7 +2,7 @@ var mongoose = require('mongoose'),
     Model = mongoose.model('ActivityEvent'),
     generic = require('./../handlers/generic');
 
-module.exports = function (swagger, config) {
+module.exports = function (swagger) {
 
     var baseUrl = '/activityevents',
         baseUrlWithId = baseUrl + '/{id}';

@@ -4,7 +4,7 @@
 var coachHandlers = require('./../handlers/coach_handlers.js'),
     generic = require('./../handlers/generic');
 
-module.exports = function (swagger, config) {
+module.exports = function (swagger) {
 
     var baseUrl = '/coachmessages';
 

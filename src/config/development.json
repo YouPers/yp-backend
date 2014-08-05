@@ -1,0 +1,12 @@
+{
+    "log": {
+        "name": "Main",
+        "stdout": "info",
+        "streams": [
+           {
+                "path": "logs/server.log",
+                "level": "debug"
+            }
+        ]
+    }
+}

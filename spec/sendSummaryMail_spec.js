@@ -1,8 +1,6 @@
 describe('Send Summary Email', function() {
 
-    var env = process.env.NODE_ENV || 'development',
-    config = require('../src/config/config')[env],
-    log = require('bunyan').createLogger(config.loggerOptions),
+    var log = require('../src/util/log').logger,
     mongoose = require('mongoose'),
     moment = require('moment'),
     db = require('../src/util/database'),

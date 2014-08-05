@@ -5,10 +5,7 @@ var HealthCoach = require('../src/core/HealthCoach'),
     mongoose = require('mongoose'),
     _ = require('lodash'),
     moment = require('moment'),
-    env = process.env.NODE_ENV || 'development',
-    config = require('../src/config/config')[env],
-    Logger = require('bunyan'),
-    log = new Logger(config.loggerOptions),
+    log = require('../src/util/log').logger,
     ypi18n = require('../src/util/ypi18n');
 
 

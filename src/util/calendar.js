@@ -1,11 +1,8 @@
-var env = process.env.NODE_ENV || 'development',
-    config = require('../config/config')[env],
-    Logger = require('bunyan'),
-    log = new Logger(config.loggerOptions),
+var log = require('./log').logger,
     _ = require('lodash'),
     ical = require('icalendar'),
     moment = require('moment-timezone'),
-
+    config = require('../config/config'),
     CET_TIMEZONE_ID = "Europe/Zurich";
 
 var frequencyMap = {

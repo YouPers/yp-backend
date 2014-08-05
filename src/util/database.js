@@ -1,5 +1,4 @@
-var env = process.env.NODE_ENV || 'development',
-    config = require('../config/config')[env],
+var config = require('../config/config'),
     mongoose = require('mongoose'),
     _ = require('lodash'),
     swagger = require("swagger-node-restify");

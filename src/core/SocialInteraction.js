@@ -7,10 +7,7 @@ var EventEmitter = require('events').EventEmitter,
     Invitation = mongoose.model('Invitation'),
     Recommendation = mongoose.model('Recommendation'),
     Activity = mongoose.model('Activity'),
-    env = process.env.NODE_ENV || 'development',
-    config = require('../config/config')[env],
-    Logger = require('bunyan'),
-    log = new Logger(config.loggerOptions),
+    log = require('../util/log').logger,
     _ = require('lodash'),
     async = require('async');
 

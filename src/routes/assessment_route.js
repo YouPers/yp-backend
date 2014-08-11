@@ -6,6 +6,7 @@
 var mongoose = require('mongoose'),
     Assessment = mongoose.model('Assessment'),
     AssessmentResult = mongoose.model('AssessmentResult'),
+    AssessmentQuestion = mongoose.model('AssessmentQuestion'),
     generic = require('../handlers/generic'),
     assessment_handlers = require('../handlers/assessment_handlers.js');
 
@@ -16,6 +17,7 @@ module.exports = function (swagger) {
         baseUrlWithId = baseUrl + "/{id}";
     var resultsUrl = baseUrl + '/{assessmentId}/results';
     var answerUrl = baseUrl + '/{assessmentId}/answers/{questionId}';
+    var questionUrl = baseUrl + '/{assessmentId}/questions';
 
     swagger.addOperation({
         spec: {
@@ -42,6 +44,32 @@ module.exports = function (swagger) {
             beforeCallbacks: []
         },
         action: generic.putFn(baseUrl, Assessment)
+    });
+
+    swagger.addOperation({
+        spec: {
+            description: "Operations about assessments",
+            path: baseUrl,
+            notes: "post a new assessment",
+            summary: "stores a new assessment",
+            method: "POST",
+            params: [swagger.bodyParam("assessment", "The assessment to store, or only some keys of it", "AssessmentResult")],
+            "responseMessages": [
+                {
+                    "code": 200,
+                    "message": "Created",
+                    "responseModel": "Assessment"
+                },
+                {
+                    "code": 401,
+                    "message": "Unauthorized: client or user not authorized to call this method"
+                }
+            ],
+            "nickname": "postAssessment",
+            accessLevel: 'al_admin',
+            beforeCallbacks: []
+        },
+        action: generic.postFn(baseUrl, Assessment)
     });
 
     swagger.addOperation({
@@ -187,5 +215,48 @@ module.exports = function (swagger) {
         },
         action: generic.deleteAllFn(baseUrl, Assessment)
     });
+
+
+    swagger.addOperation({
+        spec: {
+            description: "Operations about assessments",
+            path: questionUrl,
+            notes: "post a new assessment question",
+            summary: "stores a new question for an assessment",
+            method: "POST",
+            params: [swagger.bodyParam("assessmentQuestion", "The question to store", "AssessmentQuestion")],
+            "responseMessages": [
+                {
+                    "code": 200,
+                    "message": "Created",
+                    "responseModel": "AssessmentQuestion"
+                },
+                {
+                    "code": 401,
+                    "message": "Unauthorized: client or user not authorized to call this method"
+                }
+            ],
+            "nickname": "postAssessmentQuestion",
+            accessLevel: 'al_productadmin',
+            beforeCallbacks: []
+        },
+        action: generic.postFn(baseUrl, AssessmentQuestion)
+    });
+
+    swagger.addOperation({
+            spec: {
+                description: "Operations about assessmentQuestions",
+                path: questionUrl,
+                notes: "delete all questions for the specified assessment",
+                summary: "delete all questions for the specified assessment",
+                method: "DELETE",
+                params: [swagger.pathParam("assessmentId", "ID of the assessment for which to store a result", "string")],
+                "nickname": "deleteAssessmentQuestions",
+                accessLevel: 'al_admin',
+                beforeCallbacks: []
+            },
+            action: generic.deleteAllFn(questionUrl, AssessmentQuestion)
+        }
+    );
 
 };

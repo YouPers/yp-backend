@@ -191,7 +191,7 @@ module.exports = {
         activityEditable: "editable notEditableJoined notEditablePastEvent".split(' '),
 
         // Assessment related enums
-        questionType: "oneSided twoSided".split(' '),
+        questionType: "twoSided leftSided rightSided".split(' '),
         questionCategory: "generalStresslevel atWork leisureTime stressType stressMeasures".split(' '),
 
         // Profile related enums

@@ -7,7 +7,7 @@
             "de": "Stress Management"
         },
         "shortDescriptionI18n": {
-            "de": "StressManagement und Burnout Prävention"
+            "de": "StressManagement und Burnout Pr\u00e4vention"
         }
     },
     {
@@ -15,10 +15,10 @@
             "$oid": "53b416fba43aac62a2debda2"
         },
         "nameI18n": {
-            "de": "Gesunde Ernährung"
+            "de": "Gesunde Ern\u00e4hrung"
         },
         "shortDescriptionI18n": {
-            "de": "Gesunde Ern\u00e4hrung gibt ein gutes Lebensgefühl"
+            "de": "Gesunde Ern\u00e4hrung gibt ein gutes Lebensgef\u00fchl"
         }
     },
     {
@@ -26,7 +26,7 @@
             "$oid": "53b416fba43aac62a2debda3"
         },
         "nameI18n": {
-            "de": "Körperliche Fitness"
+            "de": "K\u00f6rperliche Fitness"
         }
     },
     {
@@ -45,6 +45,4 @@
             "de": "Sicheres Arbeiten"
         }
     }
-
-
 ]

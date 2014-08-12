@@ -52,7 +52,7 @@
             "fr": "Alimentation",
             "it": "Ern\u00e4hrung"
         },
-        "type": "leftSided"
+        "type": "oneSided"
     },
     {
         "_id": {
@@ -241,7 +241,7 @@
             "fr": "D\u00e9tente",
             "it": "Entspannung"
         },
-        "type": "leftSided"
+        "type": "oneSided"
     },
     {
         "_id": {
@@ -296,7 +296,7 @@
             "fr": "Sommeil",
             "it": "Schlaf"
         },
-        "type": "leftSided"
+        "type": "oneSided"
     },
     {
         "_id": {
@@ -351,7 +351,7 @@
             "fr": "Pauses",
             "it": "Pausen"
         },
-        "type": "leftSided"
+        "type": "oneSided"
     },
     {
         "_id": {
@@ -808,7 +808,7 @@
             "fr": "Situation financi\u00e8re",
             "it": "Finanzielle Situation"
         },
-        "type": "leftSided"
+        "type": "oneSided"
     },
     {
         "_id": {
@@ -863,7 +863,7 @@
             "fr": "Situation familiale",
             "it": "Famili\u00e4re Situation"
         },
-        "type": "leftSided"
+        "type": "oneSided"
     },
     {
         "_id": {
@@ -985,7 +985,7 @@
             "fr": "S\u00e9curit\u00e9 d'emploi",
             "it": "Arbeitsplatzsicherheit"
         },
-        "type": "leftSided"
+        "type": "oneSided"
     },
     {
         "_id": {
@@ -1375,7 +1375,7 @@
             "fr": "Conditions de travail",
             "it": "Arbeitsbedingungen"
         },
-        "type": "leftSided"
+        "type": "oneSided"
     },
     {
         "_id": {
@@ -1655,7 +1655,7 @@
         },
         "category": "qualityAndQuantity",
         "created": {
-            "$date": "2014-08-11T17:21:49.652+0200"
+            "$date": 1407770509652
         },
         "exptextI18n": {
             "de": "Bei diesem Kriterium beurteilst du, ob und wieviel Fleisch, Fisch, Eier und/oder Tofu du zu dir nimmst."
@@ -1683,7 +1683,7 @@
         },
         "type": "twoSided",
         "updated": {
-            "$date": "2014-08-11T17:21:49.652+0200"
+            "$date": 1407770509652
         }
     },
     {
@@ -1696,7 +1696,7 @@
         },
         "category": "qualityAndQuantity",
         "created": {
-            "$date": "2014-08-11T17:21:49.657+0200"
+            "$date": 1407770509657
         },
         "exptextI18n": {
             "de": "Bei diesem Kriterium beurteilst du, ob und wieviel Getreideprodukte, Kartoffeln und H\u00fclsenfr\u00fcchte du zu dir nimmst."
@@ -1724,7 +1724,7 @@
         },
         "type": "leftSided",
         "updated": {
-            "$date": "2014-08-11T17:21:49.657+0200"
+            "$date": 1407770509657
         }
     },
     {
@@ -1737,7 +1737,7 @@
         },
         "category": "time",
         "created": {
-            "$date": "2014-08-11T17:21:49.667+0200"
+            "$date": 1407770509667
         },
         "exptextI18n": {
             "de": "Bei diesem Kriterium beurteilst du, ob du dich bereits zum Fr\u00fchst\u00fcck gesund ern\u00e4hrst und somit optimal in den Tag startest."
@@ -1765,7 +1765,7 @@
         },
         "type": "leftSided",
         "updated": {
-            "$date": "2014-08-11T17:21:49.667+0200"
+            "$date": 1407770509667
         }
     },
     {
@@ -1778,7 +1778,7 @@
         },
         "category": "time",
         "created": {
-            "$date": "2014-08-11T17:21:49.675+0200"
+            "$date": 1407770509675
         },
         "exptextI18n": {
             "de": "Bei diesem Kriterium beurteilst du, ob du dir zum Mittagessen Zeit nimmst und etwas Gesundes isst, was dir auch gut tut."
@@ -1806,7 +1806,7 @@
         },
         "type": "leftSided",
         "updated": {
-            "$date": "2014-08-11T17:21:49.675+0200"
+            "$date": 1407770509675
         }
     },
     {
@@ -1819,7 +1819,7 @@
         },
         "category": "time",
         "created": {
-            "$date": "2014-08-11T17:21:49.684+0200"
+            "$date": 1407770509684
         },
         "exptextI18n": {
             "de": "Bei diesem Kriterium beurteilst du, ob du dich mit deinem Abendessen gut ern\u00e4hrst und somit den Tag gesund beendest."
@@ -1847,7 +1847,7 @@
         },
         "type": "leftSided",
         "updated": {
-            "$date": "2014-08-11T17:21:49.684+0200"
+            "$date": 1407770509684
         }
     },
     {
@@ -1860,7 +1860,7 @@
         },
         "category": "qualityAndQuantity",
         "created": {
-            "$date": "2014-08-11T17:21:49.700+0200"
+            "$date": 1407770509700
         },
         "exptextI18n": {
             "de": "Bei diesem Kriterium beurteilst du, ob und wieviel Gem\u00fcse und Salat du zu dir nimmst."
@@ -1888,7 +1888,7 @@
         },
         "type": "leftSided",
         "updated": {
-            "$date": "2014-08-11T17:21:49.700+0200"
+            "$date": 1407770509700
         }
     },
     {
@@ -1901,7 +1901,7 @@
         },
         "category": "qualityAndQuantity",
         "created": {
-            "$date": "2014-08-11T17:21:49.725+0200"
+            "$date": 1407770509725
         },
         "exptextI18n": {
             "de": "Bei diesem Kriterium beurteilst du, ob und wieviel Obst, Fr\u00fcchte und Beeren du zu dir nimmst."
@@ -1929,7 +1929,7 @@
         },
         "type": "twoSided",
         "updated": {
-            "$date": "2014-08-11T17:21:49.725+0200"
+            "$date": 1407770509725
         }
     },
     {
@@ -1942,7 +1942,7 @@
         },
         "category": "qualityAndQuantity",
         "created": {
-            "$date": "2014-08-11T17:21:49.731+0200"
+            "$date": 1407770509731
         },
         "exptextI18n": {
             "de": "Bei diesem Kriterium beurteilst du, wie ausgewogen, abwechslungsreich und vertr\u00e4glich deine Ern\u00e4hrung ist."
@@ -1970,7 +1970,7 @@
         },
         "type": "leftSided",
         "updated": {
-            "$date": "2014-08-11T17:21:49.731+0200"
+            "$date": 1407770509731
         }
     },
     {
@@ -1983,7 +1983,7 @@
         },
         "category": "badHabbits",
         "created": {
-            "$date": "2014-08-11T17:21:49.756+0200"
+            "$date": 1407770509756
         },
         "exptextI18n": {
             "de": "Bei diesem Kriterium beurteilst du, wieviel S\u00fcsses du zu dir nimmst."
@@ -2011,7 +2011,7 @@
         },
         "type": "rightSided",
         "updated": {
-            "$date": "2014-08-11T17:21:49.756+0200"
+            "$date": 1407770509756
         }
     },
     {
@@ -2024,7 +2024,7 @@
         },
         "category": "badHabbits",
         "created": {
-            "$date": "2014-08-11T17:21:49.767+0200"
+            "$date": 1407770509767
         },
         "exptextI18n": {
             "de": "Bei diesem Kriterium beurteilst du, wieviel salzige Knabbereien du zu dir nimmst."
@@ -2052,7 +2052,7 @@
         },
         "type": "rightSided",
         "updated": {
-            "$date": "2014-08-11T17:21:49.767+0200"
+            "$date": 1407770509767
         }
     },
     {
@@ -2065,7 +2065,7 @@
         },
         "category": "badHabbits",
         "created": {
-            "$date": "2014-08-11T17:21:49.784+0200"
+            "$date": 1407770509784
         },
         "exptextI18n": {
             "de": "Bei diesem Kriterieum beurteilst du, wieviel Alkohol du zu dir nimmst."
@@ -2093,7 +2093,7 @@
         },
         "type": "rightSided",
         "updated": {
-            "$date": "2014-08-11T17:21:49.784+0200"
+            "$date": 1407770509784
         }
     },
     {
@@ -2106,7 +2106,7 @@
         },
         "category": "badHabbits",
         "created": {
-            "$date": "2014-08-11T17:21:49.794+0200"
+            "$date": 1407770509794
         },
         "exptextI18n": {
             "de": "Bei diesem Kriterium beurteilst du dein Rauchverhalten."
@@ -2134,7 +2134,7 @@
         },
         "type": "rightSided",
         "updated": {
-            "$date": "2014-08-11T17:21:49.794+0200"
+            "$date": 1407770509794
         }
     },
     {
@@ -2147,7 +2147,7 @@
         },
         "category": "attitudeAndAdaptability",
         "created": {
-            "$date": "2014-08-11T17:21:49.800+0200"
+            "$date": 1407770509800
         },
         "exptextI18n": {
             "de": "Bei diesem Kriterium beurteilst du das Verh\u00e4ltnis zwischen deinem Energieverbrauch und  deiner Kalorienzufuhr durch Ern\u00e4hrung."
@@ -2175,7 +2175,7 @@
         },
         "type": "leftSided",
         "updated": {
-            "$date": "2014-08-11T17:21:49.800+0200"
+            "$date": 1407770509800
         }
     },
     {
@@ -2188,7 +2188,7 @@
         },
         "category": "attitudeAndAdaptability",
         "created": {
-            "$date": "2014-08-11T17:21:49.808+0200"
+            "$date": 1407770509808
         },
         "exptextI18n": {
             "de": "Bei diesem Kriterium beurteilst du, ob du gen\u00fcgend Ess-, Trink- oder auch einfach nur Erholungspausen w\u00e4hrend des Arbeitstages machst."
@@ -2216,7 +2216,7 @@
         },
         "type": "leftSided",
         "updated": {
-            "$date": "2014-08-11T17:21:49.808+0200"
+            "$date": 1407770509808
         }
     },
     {
@@ -2229,7 +2229,7 @@
         },
         "category": "attitudeAndAdaptability",
         "created": {
-            "$date": "2014-08-11T17:21:49.817+0200"
+            "$date": 1407770509817
         },
         "exptextI18n": {
             "de": "Bei diesem Kriterium beurteilst du deine M\u00f6glichkeiten, gesundes Essen genussvoll mit lieben Kollegen in einem netten Ambiente zu dir zu nehmen."
@@ -2257,7 +2257,7 @@
         },
         "type": "leftSided",
         "updated": {
-            "$date": "2014-08-11T17:21:49.817+0200"
+            "$date": 1407770509817
         }
     },
     {
@@ -2270,7 +2270,7 @@
         },
         "category": "attitudeAndAdaptability",
         "created": {
-            "$date": "2014-08-11T17:21:49.835+0200"
+            "$date": 1407770509835
         },
         "exptextI18n": {
             "de": "Bei diesem Kriterium beurteilst du deine pers\u00f6nliche Einsch\u00e4tzung und Motivation, an deiner Ern\u00e4hrung etwas zu \u00e4ndern und zu verbessern."
@@ -2298,7 +2298,7 @@
         },
         "type": "leftSided",
         "updated": {
-            "$date": "2014-08-11T17:21:49.835+0200"
+            "$date": 1407770509835
         }
     },
     {
@@ -2311,7 +2311,7 @@
         },
         "category": "attitudeAndAdaptability",
         "created": {
-            "$date": "2014-08-11T17:21:49.858+0200"
+            "$date": 1407770509858
         },
         "exptextI18n": {
             "de": "Bei diesem Kriterium beurteilst du deine pers\u00f6nliche Einsch\u00e4tzung und Motivation, t\u00e4glich die empfohlene Menge von 1.5 Litern Wasser zu trinken."
@@ -2339,7 +2339,7 @@
         },
         "type": "leftSided",
         "updated": {
-            "$date": "2014-08-11T17:21:49.858+0200"
+            "$date": 1407770509858
         }
     },
     {
@@ -2352,7 +2352,7 @@
         },
         "category": "exercise",
         "created": {
-            "$date": "2014-08-11T17:21:49.866+0200"
+            "$date": 1407770509866
         },
         "exptextI18n": {
             "de": "Bei diesem Kriterium beurteilst du, ob du dich im Alltag gen\u00fcgend bewegst."
@@ -2380,7 +2380,7 @@
         },
         "type": "leftSided",
         "updated": {
-            "$date": "2014-08-11T17:21:49.866+0200"
+            "$date": 1407770509866
         }
     },
     {
@@ -2393,7 +2393,7 @@
         },
         "category": "exercise",
         "created": {
-            "$date": "2014-08-11T17:21:49.875+0200"
+            "$date": 1407770509875
         },
         "exptextI18n": {
             "de": "Bei diesem Kriterium beurteilst du, ob gen\u00fcgend sportliche Aktivit\u00e4ten aus\u00fcbst."
@@ -2421,7 +2421,7 @@
         },
         "type": "leftSided",
         "updated": {
-            "$date": "2014-08-11T17:21:49.875+0200"
+            "$date": 1407770509875
         }
     },
     {
@@ -2434,7 +2434,7 @@
         },
         "category": "musculature",
         "created": {
-            "$date": "2014-08-11T17:21:49.892+0200"
+            "$date": 1407770509892
         },
         "exptextI18n": {
             "de": "Bei diesem Kriterium beurteilst du, ob und wieviel allgemeines Krafttraining du machst."
@@ -2462,7 +2462,7 @@
         },
         "type": "leftSided",
         "updated": {
-            "$date": "2014-08-11T17:21:49.892+0200"
+            "$date": 1407770509892
         }
     },
     {
@@ -2475,7 +2475,7 @@
         },
         "category": "musculature",
         "created": {
-            "$date": "2014-08-11T17:21:49.904+0200"
+            "$date": 1407770509904
         },
         "exptextI18n": {
             "de": "Bei diesem Kriterium beurteilst du, ob und wieviel spezielles Muskeltraining du machst."
@@ -2503,7 +2503,7 @@
         },
         "type": "leftSided",
         "updated": {
-            "$date": "2014-08-11T17:21:49.904+0200"
+            "$date": 1407770509904
         }
     },
     {
@@ -2516,7 +2516,7 @@
         },
         "category": "stamina",
         "created": {
-            "$date": "2014-08-11T17:21:49.914+0200"
+            "$date": 1407770509914
         },
         "exptextI18n": {
             "de": "Bei diesem Kriterium beurteilst du, ob und wieviel allgemeines Ausdauertraining du machst."
@@ -2544,7 +2544,7 @@
         },
         "type": "leftSided",
         "updated": {
-            "$date": "2014-08-11T17:21:49.914+0200"
+            "$date": 1407770509914
         }
     },
     {
@@ -2557,7 +2557,7 @@
         },
         "category": "stamina",
         "created": {
-            "$date": "2014-08-11T17:21:49.924+0200"
+            "$date": 1407770509924
         },
         "exptextI18n": {
             "de": "Bei diesem Kriterium beurteilst du, ob und wieviel spezielles Ausdauertraining du machst."
@@ -2585,7 +2585,7 @@
         },
         "type": "leftSided",
         "updated": {
-            "$date": "2014-08-11T17:21:49.924+0200"
+            "$date": 1407770509924
         }
     },
     {
@@ -2598,7 +2598,7 @@
         },
         "category": "agility",
         "created": {
-            "$date": "2014-08-11T17:21:49.931+0200"
+            "$date": 1407770509931
         },
         "exptextI18n": {
             "de": "Bei diesem Kriterium beurteilst du, ob du dich bewusst sicher und koordiniert bewegen kannst, denn Geschicklichkeitstraining hilft, St\u00fcrze zu vermeiden."
@@ -2626,7 +2626,7 @@
         },
         "type": "leftSided",
         "updated": {
-            "$date": "2014-08-11T17:21:49.931+0200"
+            "$date": 1407770509931
         }
     },
     {
@@ -2639,7 +2639,7 @@
         },
         "category": "agility",
         "created": {
-            "$date": "2014-08-11T17:21:49.944+0200"
+            "$date": 1407770509944
         },
         "exptextI18n": {
             "de": "Bei diesem Kriterium beurteilst du, ob und wieviel Schritte du machst."
@@ -2667,7 +2667,7 @@
         },
         "type": "leftSided",
         "updated": {
-            "$date": "2014-08-11T17:21:49.944+0200"
+            "$date": 1407770509944
         }
     },
     {
@@ -2680,7 +2680,7 @@
         },
         "category": "agility",
         "created": {
-            "$date": "2014-08-11T17:21:49.956+0200"
+            "$date": 1407770509956
         },
         "exptextI18n": {
             "de": "Bei diesem Kriterium beurteilst du, ob das total deiner t\u00e4glichen Bewegung ausreichend ist."
@@ -2708,7 +2708,7 @@
         },
         "type": "leftSided",
         "updated": {
-            "$date": "2014-08-11T17:21:49.956+0200"
+            "$date": 1407770509956
         }
     },
     {
@@ -2721,7 +2721,7 @@
         },
         "category": "attitude",
         "created": {
-            "$date": "2014-08-11T17:21:49.981+0200"
+            "$date": 1407770509981
         },
         "exptextI18n": {
             "de": "Bei diesem Kriterium beurteilst du das Verh\u00e4ltnis zwischen deinem Energieverbrauch durch Bewegung und  deiner Kalorienzufuhr."
@@ -2749,7 +2749,7 @@
         },
         "type": "leftSided",
         "updated": {
-            "$date": "2014-08-11T17:21:49.981+0200"
+            "$date": 1407770509981
         }
     },
     {
@@ -2762,7 +2762,7 @@
         },
         "category": "attitude",
         "created": {
-            "$date": "2014-08-11T17:21:49.987+0200"
+            "$date": 1407770509987
         },
         "exptextI18n": {
             "de": "Bei diesem Kriterium beurteilst du, ob du dir bewusst Zeit nimmst, um dich jeden Tag zu bewegen."
@@ -2790,7 +2790,7 @@
         },
         "type": "leftSided",
         "updated": {
-            "$date": "2014-08-11T17:21:49.987+0200"
+            "$date": 1407770509987
         }
     },
     {
@@ -2803,7 +2803,7 @@
         },
         "category": "attitude",
         "created": {
-            "$date": "2014-08-11T17:21:49.992+0200"
+            "$date": 1407770509992
         },
         "exptextI18n": {
             "de": "Bei diesem Kriterium beurteilst du deine pers\u00f6nliche Einsch\u00e4tzung und Motivation, an deiner k\u00f6rperlichen Fitness etwas zu \u00e4ndern und sie zu verbessern."
@@ -2831,7 +2831,7 @@
         },
         "type": "leftSided",
         "updated": {
-            "$date": "2014-08-11T17:21:49.992+0200"
+            "$date": 1407770509992
         }
     },
     {
@@ -2844,7 +2844,7 @@
         },
         "category": "attitude",
         "created": {
-            "$date": "2014-08-11T17:21:49.997+0200"
+            "$date": 1407770509997
         },
         "exptextI18n": {
             "de": "Bei diesem Kriterium beurteilst du deine pers\u00f6nliche Einsch\u00e4tzung und Motivation, zus\u00e4tzlich zur empfohlenen Menge von 1.5 Litern Wasser/Tag, bei starkem Schwitzen im Sommer oder beim Sport sogar noch mehr zu trinken."
@@ -2872,7 +2872,7 @@
         },
         "type": "leftSided",
         "updated": {
-            "$date": "2014-08-11T17:21:49.997+0200"
+            "$date": 1407770509997
         }
     }
 ]

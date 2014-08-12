@@ -98,7 +98,7 @@
             "$oid": "53e8df8d3cca9d19333e73cf"
         },
         "created": {
-            "$date": "2014-08-11T17:21:49.613+0200"
+            "$date": 1407770509613
         },
         "nameI18n": {
             "de": "Beurteile Deinen Ern\u00e4hrung"
@@ -160,7 +160,7 @@
             "$oid": "53b416fba43aac62a2debda2"
         },
         "updated": {
-            "$date": "2014-08-11T17:21:50.004+0200"
+            "$date": 1407770510004
         }
     },
     {
@@ -169,7 +169,7 @@
             "$oid": "53e8df8d3cca9d19333e73d0"
         },
         "created": {
-            "$date": "2014-08-11T17:21:49.621+0200"
+            "$date": 1407770509621
         },
         "nameI18n": {
             "de": "Beurteile Deine Fitness"
@@ -219,7 +219,7 @@
             "$oid": "53b416fba43aac62a2debda3"
         },
         "updated": {
-            "$date": "2014-08-11T17:21:50.014+0200"
+            "$date": 1407770510014
         }
     }
 ]

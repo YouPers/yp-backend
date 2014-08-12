@@ -26,7 +26,7 @@ function _getEvents(activity, ownerId, fromDate) {
         events.push({
             status: 'open',
             start: moment(instance).toDate(),
-            end: moment(instance).add('ms', duration).toDate(),
+            end: moment(instance).add(duration, 'ms').toDate(),
             activity: activity._id,
             idea: activity.idea,
             owner: ownerId,
@@ -202,9 +202,9 @@ function postNewActivity(req, res, next) {
 /**
  * save new activity with a mongoose obj that already has been validated
  *
- * @param plan - activity obj
  * @param req - the request
  * @param cb - callback(err, savedPlan)
+ * @param activity
  */
 function _saveNewActivity(activity, req, cb) {
     var user = req.user;

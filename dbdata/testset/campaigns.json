@@ -4,6 +4,7 @@
         "_id": {
             "$oid": "527916a82079aa8704000006"
         },
+        "avatar": "/assets/img/campaignavatarstress_u10.png",
         "campaignLeads": [
             {
                 "$oid": "52a97f1650fca98c2900000b"
@@ -19,25 +20,25 @@
         "organization": {
             "$oid": "52f0c64e53d523235b07d8d8"
         },
-        "topic": {
-            "$oid": "53b416cfa43aac62a2debda1"
-        },
+        "participants": "alle sind dabei",
         "paymentStatus": "paid",
         "productType": "CampaignProductType1",
-        "participants": "alle sind dabei",
         "relatedService": "YP-Balance",
         "slogan": "Nie zu sp\u00e4t, um den eigenen Stress in den Griff zu kriegen!",
         "start": {
             "$date": 1404314400000
         },
         "title": "Stress Management",
-        "avatar": "/assets/img/campaignavatarstress_u10.png"
+        "topic": {
+            "$oid": "53b416cfa43aac62a2debda1"
+        }
     },
     {
         "__v": 0,
         "_id": {
             "$oid": "527916a82079aa8704000007"
         },
+        "avatar": "/assets/img/campaignavatarstress_u10.png",
         "campaignLeads": [
             {
                 "$oid": "52a97f1650fca98c2900000b"
@@ -53,18 +54,17 @@
         "organization": {
             "$oid": "52f0c64e53d523235b07d8d8"
         },
-        "topic": {
-            "$oid": "53b416fba43aac62a2debda2"
-        },
+        "participants": "alle sind dabei",
         "paymentStatus": "open",
         "productType": "CampaignProductType1",
-        "participants": "alle sind dabei",
         "relatedService": "YP-Balance",
         "slogan": "No (positive) stress, no fun!",
         "start": {
             "$date": 1404324000000
         },
-        "title": "Ernährung am Arbeitsplatz",
-        "avatar": "/assets/img/campaignavatarstress_u10.png"
+        "title": "Ern\u00e4hrung am Arbeitsplatz",
+        "topic": {
+            "$oid": "53b416fba43aac62a2debda2"
+        }
     }
 ]

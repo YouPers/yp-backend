@@ -4,24 +4,24 @@
         "_id": {
             "$oid": "52f0c64e53d523235b07d8d8"
         },
+        "address": {
+            "city": "test city",
+            "street": "test street 1",
+            "zipCode": "012345"
+        },
         "administrators": [
             {
                 "$oid": "52a97f1650fca98c2900000a"
             }
         ],
         "avatar": "assets/img/YouPersAvatar.png",
-        "name": "Test Organization 1",
-        "address": {
-            "street": "test street 1",
-            "zipCode": "012345",
-            "city": "test city"
-        },
-        "sector": "test sector",
         "contact": {
+            "email": "test@youpers.com",
             "firstname": "test contact firstname",
             "lastname": "test contact lastname",
-            "email": "test@youpers.com",
             "phone": "0041 12345678900"
-        }
+        },
+        "name": "Test Organization 1",
+        "sector": "test sector"
     }
 ]

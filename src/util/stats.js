@@ -34,21 +34,21 @@ var statsQueries = function (timeRange, scopeType, scopeId) {
                 year: {$year: '$created'},
                 month: {$month: '$created'},
                 day: {$dayOfMonth: '$created'}
-            },
-            owner: '$owner'
+            }
         }
         },
         {
             $group: {
                 _id: '$date',
-                updatesPerDay: {$sum: 1}
+                count: {$sum: 1}
             }
         },
         {$project: {
             date: '$_id',
             _id: 0,
-            updatesPerDay: 1
-        }}
+            count: 1
+        }},
+        {$sort: {'date.year': -1, 'date.month': -1, 'date.day': -1}}
     );
 
     ///////////////////////////////////////
@@ -173,6 +173,35 @@ var statsQueries = function (timeRange, scopeType, scopeId) {
             activitiesPlannedTotal: 1
         }});
 
+    ///////////////////////////////////////////////////
+    // activitiesPlanned Per Day
+    var actsPlannedPerDayQuery = mongoose.model('Activity').aggregate();
+    if (scopePipelineEntry) {
+        actsPlannedPerDayQuery.append(scopePipelineEntry);
+    }
+    actsPlannedPerDayQuery.append(
+        { $project: {
+            date: {
+                year: {$year: '$created'},
+                month: {$month: '$created'},
+                day: {$dayOfMonth: '$created'}
+            },
+            joiningUsers: '$joiningUsers'
+        }},
+        {
+            $group: {
+                _id: '$date',
+                count: {$sum: {$add: [1, {$size: '$joiningUsers'}]}}
+            }
+        },
+        {$project: {
+            date: '$_id',
+            _id: 0,
+            count: 1
+        }},
+        {$sort: {'date.year': -1, 'date.month': -1, 'date.day': -1}}
+    );
+
     /////////////////////////////////////////////////////
     // ActivityEvents
     var eventsQuery = mongoose.model('ActivityEvent').aggregate();
@@ -199,20 +228,14 @@ var statsQueries = function (timeRange, scopeType, scopeId) {
 
     /////////////////////////////////////////////////////
     // ActivityEvents Total
-    var eventsTotalQuery = mongoose.model('Activity').aggregate();
+    var eventsTotalQuery = mongoose.model('ActivityEvent').aggregate();
     if (scopePipelineEntry) {
         eventsTotalQuery.append(scopePipelineEntry);
     }
-    eventsTotalQuery.append(
-        {$unwind: '$events'}
-    );
     if (timeRangePipelineEntry) {
         eventsTotalQuery.append(timeRangePipelineEntry);
     }
     eventsTotalQuery.append(
-        {$project: {
-            events: 1
-        }},
         {$group: {
             _id: 'Total',
             eventsTotal: {$sum: 1}
@@ -221,6 +244,43 @@ var statsQueries = function (timeRange, scopeType, scopeId) {
             eventsTotal: 1,
             _id: 0
         }}
+    );
+
+
+    /////////////////////////////////////////////////////
+    // ActivityEvents Done Per Day
+    var eventsDonePerDayQuery = mongoose.model('ActivityEvent').aggregate();
+    if (scopePipelineEntry) {
+        eventsDonePerDayQuery.append(scopePipelineEntry);
+    }
+    if (timeRangePipelineEntry) {
+        eventsDonePerDayQuery.append(timeRangePipelineEntry);
+    }
+    eventsDonePerDayQuery.append(
+        { $project: {
+            date: {
+                year: {$year: '$updated'},
+                month: {$month: '$updated'},
+                day: {$dayOfMonth: '$updated'}
+            },
+            status: '$status'
+        }},
+        {
+            $group: {
+                _id: '$date',
+                Done: {$sum: {$cond: {if: {$eq: ['$status', 'done']} , then: 1, else: 0}}},
+                Missed: {$sum: {$cond: {if: {$eq: ['$status', 'missed']} , then: 1, else: 0}}}
+            }
+        },
+        {
+            $project: {
+                date: '$_id',
+                _id: 0,
+                Done: 1,
+                Missed: 1
+            }
+        }
+
     );
 
     /////////////////////////////////////////////////////
@@ -254,7 +314,8 @@ var statsQueries = function (timeRange, scopeType, scopeId) {
         focusSetQuery.append(timeRangePipelineEntry);
     }
     focusSetQuery.append(
-        {$match: {focus: {$ne: []}}},
+        {$match: {'prefs.focus': {$exists: true}}},
+        {$match: {'prefs.focus': {$ne: []}}},
         {$group: {_id: 'total',
                   users: {$sum: 1}}
         },
@@ -272,7 +333,7 @@ var statsQueries = function (timeRange, scopeType, scopeId) {
         usersWithDiaryEntryQuery.append(timeRangePipelineEntry);
     }
     usersWithDiaryEntryQuery.append(
-        {$match: {lastDiaryEntry: {$ne: ''}}},
+        {$match: {'prefs.lastDiaryEntry': {$exists: true}}},
         {$group: {_id: 'total',
             users: {$sum: 1}}
         },
@@ -288,9 +349,11 @@ var statsQueries = function (timeRange, scopeType, scopeId) {
         assTotals: assessmentTotalsQuery,
         topStressors: topStressorsQuery,
         activitiesPlanned: actsPlannedQuery,
+        activitiesPlannedPerDay: actsPlannedPerDayQuery,
         activitiesPlannedTotal: actsPlannedTotalQuery,
         activityEvents: eventsQuery,
         activityEventsTotal: eventsTotalQuery,
+        eventsDonePerDay: eventsDonePerDayQuery,
         usersTotal: usersTotalQuery,
         focusSet: focusSetQuery,
         usersWithDiaryEntry: usersWithDiaryEntryQuery

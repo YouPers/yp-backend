@@ -6,30 +6,40 @@ var stats = require('../util/stats'),
     _ = require('lodash');
 
 var id2humanReadableString = {};
-(function loadIdResolveCache () {
+(function loadIdResolveCache() {
     var cachedModels = ['Idea', 'AssessmentQuestion'];
 
-    async.forEach(cachedModels, function(modelName, done) {
-        mongoose.model(modelName).find().exec(function(err, docs) {
-            _.forEach(docs, function(doc) {
+    async.forEach(cachedModels, function (modelName, done) {
+        mongoose.model(modelName).find().exec(function (err, docs) {
+            _.forEach(docs, function (doc) {
                 id2humanReadableString[doc._id] = doc.getStatsString();
             });
             return done();
         });
-    }, function(err) {
-        if (err) {throw err;}
+    }, function (err) {
+        if (err) {
+            throw err;
+        }
 
     });
-} ());
+}());
 
-function _replaceIdsByString(obj) {
-    _.forEach(obj, function(value, key) {
+function _replaceIdsByString(obj, locale) {
+    _.forEach(obj, function (value, key) {
         if (_.isArray(value)) {
-            _replaceIdsByString(value);
+            _replaceIdsByString(value, locale);
         } else if (value instanceof ObjectId || value instanceof String) {
-            obj[key] =  id2humanReadableString[value] || value;
+            var cachedRepresentation = id2humanReadableString[value];
+
+            if (!cachedRepresentation) {
+                obj[key] = value;
+            } else if (_.isObject(cachedRepresentation)) {
+                obj[key] = cachedRepresentation[locale] || cachedRepresentation['de'] || value;
+            } else {
+                obj[key] = id2humanReadableString[value] || value;
+            }
         } else if (_.isObject(value)) {
-            _replaceIdsByString(value);
+            _replaceIdsByString(value, locale);
 
         } else {
             // do nothing;
@@ -48,27 +58,31 @@ var getStats = function () {
             return next(new error.MissingParameterError({ required: 'type' }));
         }
         var queries;
-        if (type==='all') {
-            queries = stats.queries(req.params.range,req.params.scopeType, req.params.scopeId);
+        if (type === 'all') {
+            queries = stats.queries(req.params.range, req.params.scopeType, req.params.scopeId);
         } else {
             queries = {
-                type: stats.queries(req.params.range,req.params.scopeType, req.params.scopeId)[type]
+                type: stats.queries(req.params.range, req.params.scopeType, req.params.scopeId)[type]
             };
         }
 
 
         var locals = {};
 
-        async.forEach(_.keys(queries), function(queryName, done) {
+        async.forEach(_.keys(queries), function (queryName, done) {
 
             queries[queryName].exec(function (err, result) {
-                if (err) { return error.handleError(err, done); }
-                locals[queryName] = _replaceIdsByString(result);
+                if (err) {
+                    return error.handleError(err, done);
+                }
+                locals[queryName] = _replaceIdsByString(result, req.locale);
                 return done();
             });
 
-        }, function(err) {
-            if (err) {return error.handleError(err, next);}
+        }, function (err) {
+            if (err) {
+                return error.handleError(err, next);
+            }
             res.send([locals]);
             return next();
         });

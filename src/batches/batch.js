@@ -1,7 +1,4 @@
-var env = process.env.NODE_ENV || 'development',
-    config = require('../config/config')[env],
-    Logger = require('bunyan'),
-    log = new Logger(config.loggerOptions),
+var log = require('../util/log').logger,
     mongoose = require('mongoose'),
     db = require('../util/database'),
     async = require('async'),

@@ -4,11 +4,11 @@
 var coachHandlers = require('./../handlers/coach_handlers.js'),
     generic = require('./../handlers/generic');
 
-module.exports = function (swagger, config) {
+module.exports = function (swagger) {
 
     var baseUrl = '/coachmessages';
 
-    swagger.addGet({
+    swagger.addOperation({
             spec: {
                 description: "get current HealthCoach messages for this user ",
                 path: baseUrl,
@@ -39,7 +39,7 @@ module.exports = function (swagger, config) {
         }
     );
 
-    swagger.addGet({
+    swagger.addOperation({
         spec: {
             description: "Operations about ActivityOffers",
             path: '/coachRecommendations',

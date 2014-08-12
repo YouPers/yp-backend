@@ -10,13 +10,13 @@ var mongoose = require('mongoose'),
     common = require('./common');
 
 
-module.exports = function (swagger, config) {
+module.exports = function (swagger) {
 
     var baseUrl = '/campaigns',
         baseUrlWithId = baseUrl + "/{id}";
 
 
-    swagger.addGet({
+    swagger.addOperation({
         spec: {
             description: "Operations about campaigns",
             path: baseUrlWithId + '/offers',
@@ -33,7 +33,7 @@ module.exports = function (swagger, config) {
         action: campaignHandlers.getCampaignOffers
     });
 
-    swagger.addPost({
+    swagger.addOperation({
         spec: {
             description: "avatar image upload",
             path: baseUrlWithId + "/avatar",
@@ -46,7 +46,7 @@ module.exports = function (swagger, config) {
         action: campaignHandlers.avatarImagePostFn(baseUrl)
     });
 
-    swagger.addGet({
+    swagger.addOperation({
         spec: {
             description: "Operations about campaigns",
             path: baseUrlWithId,
@@ -64,7 +64,7 @@ module.exports = function (swagger, config) {
         action: genericHandlers.getByIdFn(baseUrl, Campaign)
     });
 
-    swagger.addGet({
+    swagger.addOperation({
         spec: {
             description: "Operations about campaigns",
             path: baseUrlWithId + '/stats',
@@ -98,7 +98,7 @@ module.exports = function (swagger, config) {
         action: campaignHandlers.getCampaignStats(baseUrl, Campaign)
     });
 
-    swagger.addGet({
+    swagger.addOperation({
         spec: {
             description: "Operations about campaigns",
             path: baseUrl,
@@ -117,7 +117,7 @@ module.exports = function (swagger, config) {
         action: campaignHandlers.getAllForUserFn(baseUrl, Campaign)
     });
 
-    swagger.addPost({
+    swagger.addOperation({
         spec: {
             description: "Operations about campaigns",
             path: baseUrl,
@@ -134,7 +134,7 @@ module.exports = function (swagger, config) {
         action: campaignHandlers.postCampaign(baseUrl)
     });
 
-    swagger.addPost({
+    swagger.addOperation({
         spec: {
             description: "Operations about campaigns",
             path: baseUrlWithId + "/inviteCampaignLeadEmail",
@@ -167,7 +167,7 @@ module.exports = function (swagger, config) {
     }});
 
 
-    swagger.addPost({
+    swagger.addOperation({
         spec: {
             description: "Operations about campaigns",
             path: baseUrlWithId + "/assignCampaignLead",
@@ -192,7 +192,7 @@ module.exports = function (swagger, config) {
     });
 
 
-    swagger.addDelete({
+    swagger.addOperation({
         spec: {
             description: "Operations about campaigns",
             path: baseUrlWithId,
@@ -209,7 +209,7 @@ module.exports = function (swagger, config) {
         action: genericHandlers.deleteByIdFn(baseUrl, Campaign)
     });
 
-    swagger.addDelete({
+    swagger.addOperation({
         spec: {
             description: "Operations about campaigns",
             path: baseUrl,
@@ -226,7 +226,7 @@ module.exports = function (swagger, config) {
     });
 
 
-    swagger.addPut({
+    swagger.addOperation({
         spec: {
             description: "Operations about campaigns",
             path: baseUrlWithId,

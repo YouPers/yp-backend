@@ -169,7 +169,7 @@ module.exports = {
         });
 
         mySchema.methods.getStatsString = function() {
-            return this.title;
+            return this.titleI18n || this.title;
         };
 
         return mySchema;
@@ -191,7 +191,7 @@ module.exports = {
         activityEditable: "editable notEditableJoined notEditablePastEvent".split(' '),
 
         // Assessment related enums
-        questionType: "oneSided twoSided".split(' '),
+        questionType: "twoSided leftSided rightSided".split(' '),
         questionCategory: "generalStresslevel atWork leisureTime stressType stressMeasures".split(' '),
 
         // Profile related enums
@@ -204,6 +204,8 @@ module.exports = {
         calendarNotifications: "none 0 300 600 900 1800 3600 7200 86400 172800".split(' '),
 
         // type of the targeted space for a social interaction
-        targetSpace: "user activity campaign system email".split(' ')
+        targetSpace: "user activity campaign system email".split(' '),
+
+        actionType: "assessment focus".split(' ')
     }
 };

@@ -3,14 +3,48 @@
         "_id": {
             "$oid": "53b416cfa43aac62a2debda1"
         },
-        "name": "Stress Management",
-        "shortDescription": "StressManagement und Burnout Prävention"
+        "nameI18n": {
+            "de": "Stress Management"
+        },
+        "shortDescriptionI18n": {
+            "de": "StressManagement und Burnout Prävention"
+        }
     },
     {
         "_id": {
             "$oid": "53b416fba43aac62a2debda2"
         },
-        "name": "Ern\u00e4hrung am Arbeitsplatz",
-        "shortDescription": "Gesunde Ern\u00e4hrung am Arbeitsplatz"
+        "nameI18n": {
+            "de": "Gesunde Ernährung"
+        },
+        "shortDescriptionI18n": {
+            "de": "Gesunde Ern\u00e4hrung gibt ein gutes Lebensgefühl"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "53b416fba43aac62a2debda3"
+        },
+        "nameI18n": {
+            "de": "Körperliche Fitness"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "53b416fba43aac62a2debda4"
+        },
+        "nameI18n": {
+            "de": "Gesundes Arbeiten"
+        }
+    },
+    {
+        "_id": {
+            "$oid": "53b416fba43aac62a2debda5"
+        },
+        "nameI18n": {
+            "de": "Sicheres Arbeiten"
+        }
     }
+
+
 ]

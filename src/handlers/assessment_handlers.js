@@ -79,17 +79,21 @@ function assessmentResultAnswerPutFn() {
                     assessment: newAnswer.assessment,
                     owner: req.user.id,
                     answers: [],
-                    campaign: req.user.campaign && req.user.campaign.id, // campaign is always populated in the req.user auth.js:149
+                    campaign: req.user.campaign && (req.user.campaign.id || req.user.campaign), // handle empty, populated and unpopulated case
                     topic: req.user.campaign.topic
                 });
 
-
                 // delete id if older than today to save a new result
                 if (result.created < today) {
-                    delete result.id;
-                    delete result.created;
+
+                    // make a copy of the result object by converting it to plan JS and making new mongoose doc.
+                    var oldResultObject = result.toObject();
+                    delete oldResultObject._id;
+                    delete oldResultObject.created;
+
                     // update campaign if user has changed campaign
-                    result.campaign = req.user.campaign && req.user.campaign.id; // campaign is always populated in the req.user auth.js:149
+                    oldResultObject.campaign = req.user.campaign && req.user.campaign.id; // campaign is always populated in the req.user auth.js:149
+                    result = new AssessmentResult(oldResultObject);
                 }
 
                 var answerIndex = _.findIndex(result.answers, function (answer) {

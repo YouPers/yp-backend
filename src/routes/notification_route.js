@@ -3,12 +3,12 @@ var mongoose = require('mongoose'),
     generic = require('./../handlers/generic'),
     notificationHandlers = require('../handlers/notification_handlers');
 
-module.exports = function (swagger, config) {
+module.exports = function (swagger) {
 
     var baseUrl = '/notifications',
         baseUrlWithId = baseUrl + '/{id}';
 
-    swagger.addGet({
+    swagger.addOperation({
         spec: {
             description: "Operations about notifications",
             path: baseUrlWithId,
@@ -25,7 +25,7 @@ module.exports = function (swagger, config) {
         action: generic.getByIdFn(baseUrl, Model)
     });
 
-    swagger.addGet({
+    swagger.addOperation({
         spec: {
             description: "Operations about notifications",
             path: baseUrl,
@@ -45,7 +45,7 @@ module.exports = function (swagger, config) {
         action: notificationHandlers.getAllFn
     });
 
-    swagger.addPost({
+    swagger.addOperation({
         spec: {
             description: "Operations about notifications",
             path: baseUrl,
@@ -61,7 +61,7 @@ module.exports = function (swagger, config) {
         }
     );
 
-    swagger.addDelete({
+    swagger.addOperation({
             spec: {
                 description: "Operations about notifications",
                 path: baseUrlWithId,
@@ -76,7 +76,7 @@ module.exports = function (swagger, config) {
         }
     );
 
-    swagger.addDelete({
+    swagger.addOperation({
             spec: {
                 description: "Operations about notifications",
                 path: baseUrl,

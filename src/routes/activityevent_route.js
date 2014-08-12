@@ -2,12 +2,12 @@ var mongoose = require('mongoose'),
     Model = mongoose.model('ActivityEvent'),
     generic = require('./../handlers/generic');
 
-module.exports = function (swagger, config) {
+module.exports = function (swagger) {
 
     var baseUrl = '/activityevents',
         baseUrlWithId = baseUrl + '/{id}';
 
-    swagger.addGet({
+    swagger.addOperation({
         spec: {
             description: "Operations about activityEvents",
             path: baseUrlWithId,
@@ -24,7 +24,7 @@ module.exports = function (swagger, config) {
         action: generic.getByIdFn(baseUrl, Model)
     });
 
-    swagger.addGet({
+    swagger.addOperation({
         spec: {
             description: "Operations about activityEvents",
             path: baseUrl,
@@ -44,7 +44,7 @@ module.exports = function (swagger, config) {
         action: generic.getAllFn(baseUrl, Model)
     });
 
-    swagger.addPost({
+    swagger.addOperation({
         spec: {
             description: "Operations about activityEvents",
             path: baseUrl,
@@ -60,7 +60,7 @@ module.exports = function (swagger, config) {
         }
     );
 
-    swagger.addPut({
+    swagger.addOperation({
             spec: {
                 description: "Operations about activityEvents",
                 path: baseUrlWithId,
@@ -77,7 +77,7 @@ module.exports = function (swagger, config) {
         }
     );
 
-    swagger.addDelete({
+    swagger.addOperation({
             spec: {
                 description: "Operations about activityEvents",
                 path: baseUrlWithId,
@@ -92,7 +92,7 @@ module.exports = function (swagger, config) {
         }
     );
 
-    swagger.addDelete({
+    swagger.addOperation({
             spec: {
                 description: "Operations about activityEvents",
                 path: baseUrl,

@@ -1,11 +1,8 @@
-var env = process.env.NODE_ENV || 'development',
-    config = require('../config/config')[env],
-    Logger = require('bunyan'),
-    log = new Logger(config.loggerOptions),
+var log = require('./log').logger,
     _ = require('lodash'),
     ical = require('icalendar'),
     moment = require('moment-timezone'),
-
+    config = require('../config/config'),
     CET_TIMEZONE_ID = "Europe/Zurich";
 
 var frequencyMap = {
@@ -129,6 +126,9 @@ function _getRruleSpec(activity) {
 
     var rruleSpec = { FREQ: frequencyMap[activity.mainEvent.frequency] };
     if (rruleSpec.FREQ === 'DAILY') {
+        if (!activity.mainEvent.recurrence.byday) {
+            throw new Error('for daily activities recurrence.byday must be defined.');
+        }
         rruleSpec.BYDAY = activity.mainEvent.recurrence.byday.join(',');
 
         // Outlook Fix: Outlook really does not like it when the startDate is not part of the BYDAY rule.
@@ -171,7 +171,7 @@ function _getTimezone(activity) {
 
 function getOccurrences(activity, fromDate) {
 
-    fromDate = fromDate || moment(activity.mainEvent.start).subtract('day', 1).toDate();
+    fromDate = fromDate || moment(activity.mainEvent.start).subtract( 1, 'day').toDate();
 
     if (activity.mainEvent.frequency === 'once') {
         return [activity.mainEvent.start];

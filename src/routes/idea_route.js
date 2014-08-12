@@ -8,7 +8,7 @@ var mongoose = require('mongoose'),
     generic = require('../handlers/generic'),
     handlers = require('../handlers/idea_handlers');
 
-module.exports = function (swagger, config) {
+module.exports = function (swagger) {
 
     var baseUrl = '/ideas';
     var baseUrlWithId = baseUrl + '/{id}';
@@ -31,7 +31,26 @@ module.exports = function (swagger, config) {
        }
     });
 
-    swagger.addGet({
+    swagger.addOperation({
+        spec: {
+            description: "Operations about Ideas",
+            path: baseUrlWithId + "/usercontext",
+            notes: "returns a usercontext object for the idea with the passed in id. This usercontext object contains all" +
+                "Information for the current user concerning this idea (activities, comments, invitations, recommendations",
+            summary: "returns a usercontext object for the idea with the passed in id",
+            params: [swagger.pathParam("id", "ID of the idea to be fetched", "string"),
+                generic.params.populate],
+            method: "GET",
+            "responseClass": "IdeaUserContext",
+            "nickname": "getIdeaUserContext",
+            accessLevel: 'al_user',
+            beforeCallbacks: []
+        },
+        action: handlers.getUserContextByIdFn
+
+    });
+
+    swagger.addOperation({
         spec: {
             description: "Operations about Ideas",
             path: baseUrlWithId,
@@ -50,7 +69,25 @@ module.exports = function (swagger, config) {
 
     });
 
-    swagger.addGet({
+    swagger.addOperation({
+        spec: {
+            description: "Operations about Ideas",
+            path: baseUrlWithId + '/defaultActivity',
+            notes: "returns the default activity template for this idea",
+            summary: "returns the default activity template for this idea",
+            params: [swagger.pathParam("id", "ID of the idea to be fetched", "string"),
+                generic.params.populate],
+            method: "GET",
+            "responseClass": "Activity",
+            "nickname": "getDefaultActivity",
+            accessLevel: 'al_user',
+            beforeCallbacks: []
+        },
+        action: handlers.getDefaultActivity
+
+    });
+
+    swagger.addOperation({
         spec: {
             description: "Operations about Ideas",
             path: baseUrl,
@@ -72,7 +109,7 @@ module.exports = function (swagger, config) {
     });
 
 
-    swagger.addPost({
+    swagger.addOperation({
         spec: {
             description: "Operations about Ideas",
             path: baseUrl,
@@ -97,7 +134,7 @@ module.exports = function (swagger, config) {
         action: handlers.postIdea
     });
 
-    swagger.addPut({
+    swagger.addOperation({
         spec: {
             description: "Operations about Ideas",
             path: baseUrlWithId,
@@ -114,7 +151,7 @@ module.exports = function (swagger, config) {
         action: handlers.putIdea
     });
 
-    swagger.addDelete({
+    swagger.addOperation({
         spec: {
             description: "Operations about Ideas",
             path: baseUrl,
@@ -129,7 +166,7 @@ module.exports = function (swagger, config) {
         action: generic.deleteAllFn(baseUrl, Idea)
     });
 
-    swagger.addDelete({
+    swagger.addOperation({
         spec: {
             description: "Operations about Ideas",
             path: baseUrlWithId,

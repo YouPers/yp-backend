@@ -7,12 +7,12 @@ var mongoose = require('mongoose'),
     generic = require('./../handlers/generic'),
     handlers = require('../handlers/activity_handlers');
 
-module.exports = function (swagger, config) {
+module.exports = function (swagger) {
 
     var baseUrl = '/activities';
     var baseUrlWithId = baseUrl + '/{id}';
 
-    swagger.addPost({
+    swagger.addOperation({
         spec: {
             description: "Operations about Activities",
             path: baseUrl + "/conflicts",
@@ -46,7 +46,7 @@ module.exports = function (swagger, config) {
         }
     }});
 
-    swagger.addGet({
+    swagger.addOperation({
         spec: {
             description: "Operations about Activities",
             path: baseUrlWithId,
@@ -72,7 +72,7 @@ module.exports = function (swagger, config) {
         action: generic.getByIdFn(baseUrl, Model)
     });
 
-    swagger.addGet({
+    swagger.addOperation({
         spec: {
             description: "Operations about Activities",
             path: baseUrl,
@@ -90,10 +90,10 @@ module.exports = function (swagger, config) {
             accessLevel: 'al_individual',
             beforeCallbacks: []
         },
-        action: generic.getAllFn(baseUrl, Model)
+        action: handlers.getAll
     });
 
-    swagger.addDelete({
+    swagger.addOperation({
         spec: {
             description: "Operations about Activities",
             path: baseUrlWithId,
@@ -117,7 +117,7 @@ module.exports = function (swagger, config) {
         action: handlers.deleteActivity
     });
 
-    swagger.addDelete({
+    swagger.addOperation({
         spec: {
             description: "Operations about Activities",
             path: baseUrl,
@@ -131,7 +131,7 @@ module.exports = function (swagger, config) {
         action: generic.deleteAllFn(baseUrl, Model)
     });
 
-    swagger.addPost({
+    swagger.addOperation({
         spec: {
             description: "Operations about Activities",
             path: baseUrlWithId + "/inviteEmail",
@@ -163,7 +163,7 @@ module.exports = function (swagger, config) {
         }
     }});
 
-    swagger.addPost({
+    swagger.addOperation({
         spec: {
             description: "Operations about Activities",
             path: baseUrlWithId + "/join",
@@ -179,7 +179,7 @@ module.exports = function (swagger, config) {
     });
 
 
-    swagger.addPost({
+    swagger.addOperation({
         spec: {
             description: "Operations about Activities",
             path: baseUrl,
@@ -205,7 +205,7 @@ module.exports = function (swagger, config) {
 
 
 
-    swagger.addPut({
+    swagger.addOperation({
         spec: {
             description: "Operations about Activities",
             path: baseUrlWithId,

@@ -9,11 +9,11 @@ var paymentCodeHandlers = require('./../handlers/paymentcode_handlers'),
     PaymentCode = mongoose.model('PaymentCode'),
     generic = require('./../handlers/generic');
 
-module.exports = function (swagger, config) {
+module.exports = function (swagger) {
 
     var baseUrl = '/paymentcodes';
 
-    swagger.addPost({
+    swagger.addOperation({
         spec: {
             description: "Generates a payment code",
             path: baseUrl + '/generate',
@@ -28,7 +28,7 @@ module.exports = function (swagger, config) {
         },
         action: paymentCodeHandlers.generatePaymentCode()
     });
-    swagger.addGet({
+    swagger.addOperation({
         spec: {
             description: "Get all payment codes",
             path: baseUrl,
@@ -47,7 +47,7 @@ module.exports = function (swagger, config) {
         action: generic.getAllFn(baseUrl, PaymentCode)
     });
 
-    swagger.addPost({
+    swagger.addOperation({
         spec: {
             description: "Validate a payment code",
             path: baseUrl + '/validate',
@@ -62,7 +62,7 @@ module.exports = function (swagger, config) {
         },
         action: paymentCodeHandlers.validatePaymentCode()
     });
-    swagger.addPost({
+    swagger.addOperation({
         spec: {
             description: "Redeem a payment code",
             path: baseUrl + '/redeem',

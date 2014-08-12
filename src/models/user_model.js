@@ -15,6 +15,12 @@ var UserSchema = common.newSchema({
     firstname: { type: String, trim: true, required: true },
     lastname: { type: String, trim: true, required: true },
     fullname: { type: String, trim: true, required: true },
+    accessToken: {type: String, select: false},
+    refreshToken: {type: String, select: false},
+    provider: { type: String},
+    providerId: {type: String},
+    emails: [String],
+    photos: [String],
     email: { type: String, trim: true, lowercase: true, required: true, unique: true, select: false},
     avatar: {type: String},
     emailValidatedFlag: { type: Boolean, default: false, select: false },
@@ -146,9 +152,6 @@ UserSchema.pre('save', function (next) {
                 return error.handleError(err, next);
             }
         });
-        if (!validatePresenceOf(this.password)) {
-            next(new error.MissingParameterError({ required: 'password' }));
-        }
         if (!this.avatar) {
             this.avatar = this.profile.gender === 'male' ? '/assets/img/avatar_man.png' : '/assets/img/avatar_woman.png';
         }
@@ -170,5 +173,7 @@ UserSchema.pre('remove', function (next) {
 
     next();
 });
+
+UserSchema.plugin(require('mongoose-eventify'));
 
 module.exports = mongoose.model('User', UserSchema);

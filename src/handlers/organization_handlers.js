@@ -9,7 +9,8 @@ var error = require('../util/error'),
     email = require('../util/email'),
     async = require('async'),
     _ = require('lodash'),
-    generic = require('./generic');
+    generic = require('./generic'),
+    config = require('../config/config');
 
 
 var getOrganization = function (req, res, next, callback) {
@@ -183,7 +184,7 @@ var assignOrganizationAdminFn = function assignOrganizationAdminFn(req, res, nex
     var tokenElements;
 
     try {
-        tokenElements = email.decryptLinkToken(req.params.token).split(email.linkTokenSeparator);
+        tokenElements = email.decryptLinkToken(req.params.token).split(config.linkTokenEncryption.separator);
     } catch (err) {
         return next(new error.InvalidArgumentError('Invalid token', {
             token: req.params.token

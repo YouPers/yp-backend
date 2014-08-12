@@ -76,7 +76,7 @@ function getActivityConflicts(req, res, next) {
         .find({owner: req.user._id, status: 'open'});
 
     if (sentActivity.id) {
-        q.where({$ne: {activity: mongoose.Types.ObjectId(sentActivity.id)}});
+        q.where({activity: {$ne: mongoose.Types.ObjectId(sentActivity.id)}});
     }
     q.exec(function (err, oldEvents) {
         if (err) {
@@ -190,6 +190,8 @@ function postNewActivity(req, res, next) {
             if (err) {
                 return error.handleError(err, next);
             }
+
+            actMgr.emit('activity:activityCreated', savedActivity);
 
             generic.writeObjCb(req, res, next)(null, savedActivity);
         });
@@ -623,11 +625,29 @@ function putActivity(req, res, next) {
         });
 }
 
+function getAll(req, res, next) {
+
+    if (!req.user || !req.user.id) {
+        return next(new error.NotAuthorizedError('Authentication required for this object'));
+    }
+    var finder = { $or: [
+        { owner: req.user.id },
+        { joiningUsers: req.user.id }
+    ]};
+
+    var dbQuery = Activity.find(finder);
+
+    var op = generic.addStandardQueryOptions(req, dbQuery, Activity);
+    op.exec(generic.sendListCb(req, res, next));
+
+}
+
 module.exports = {
     postNewActivity: postNewActivity,
     postJoinActivityFn: postJoinActivityFn,
     postActivityInvite: postActivityInvite,
     deleteActivity: deleteActivity,
     putActivity: putActivity,
-    getActivityConflicts: getActivityConflicts
+    getActivityConflicts: getActivityConflicts,
+    getAll: getAll
 };

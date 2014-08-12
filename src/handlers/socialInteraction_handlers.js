@@ -1,13 +1,9 @@
 var error = require('../util/error'),
     generic = require('./../handlers/generic'),
     mongoose = require('mongoose'),
-    moment = require('moment'),
     auth = require('../util/auth'),
     SocialInteraction = require('../core/SocialInteraction'),
-    SocialInteractionModel = mongoose.model('SocialInteraction'),
-    SocialInteractionDismissedModel = mongoose.model('SocialInteractionDismissed'),
-    async = require('async'),
-    _ = require('lodash');
+    SocialInteractionModel = mongoose.model('SocialInteraction');
 
 var getByIdFn = function getByIdFn(baseUrl, Model) {
     return function getById(req, res, next) {
@@ -33,71 +29,25 @@ var getByIdFn = function getByIdFn(baseUrl, Model) {
         });
     };
 };
+
 var getAllFn = function getAllFn(baseUrl, Model, fromAllOwners) {
     return function getAll(req, res, next) {
 
         var user = req.user;
+        var adminMode = auth.checkAccess(req.user, auth.accessLevels.al_admin) &&
+            req.params.mode && req.params.mode === 'administrate';
 
-        SocialInteractionDismissedModel.find({ user: user.id }, function(err, sid) {
+        var options = {
+            adminMode: adminMode,
+            refDocId: req.params.refDocId,
+            queryOptions: req.query,
+            locale: req.locale,
+            populateRefDocs: true
+        };
 
-            if(err) {
-                return error.handleError(err, next);
-            }
-
-            var dismissedSocialInteractions = _.map(sid, 'socialInteraction');
-            var now = moment().toDate();
-            var adminMode = auth.checkAccess(req.user, auth.accessLevels.al_admin) &&
-                req.params.mode && req.params.mode === 'administrate';
-
-            var finder = adminMode ? {} : {
-                targetSpaces: { $elemMatch: {
-                    $or: [
-                        { type: 'user', targetId: user._id },
-                        { type: 'campaign', targetId: user.campaign },
-                        { type: 'system' }
-                    ]
-                }}
-//                // TODO: add targetSpaces for activity, get from user doc
-            };
-
-
-            var dbQuery = Model.find(finder);
-
-            if(!adminMode) {
-                dbQuery
-                    .and({_id: { $nin: dismissedSocialInteractions }})
-                    .and({$or: [{publishTo: {$exists: false}}, {publishTo: {$gte: now}}]})
-                    .and({$or: [{publishFrom: {$exists: false}}, {publishFrom: {$lte: now}}]});
-
-                if(user.profile.language) {
-                    dbQuery.and({ $or: [{language: {$exists: false}}, {language: user.profile.language}] });
-                }
-            }
-
-            generic.addStandardQueryOptions(req, dbQuery, Model)
-                .exec(function(err, socialInteractions) {
-
-                    async.each(socialInteractions, function (si, done) {
-
-                        SocialInteraction.populateSocialInteraction(si, null, done);
-
-                    }, function(err, results) {
-                        if(err) {
-                            return error.handleError(err, next);
-                        }
-
-                        return generic.sendListCb(req, res, next)(err, socialInteractions);
-                    });
-
-
-                });
-
-
-        });
+        SocialInteraction.getAllForUser(user, Model, options, generic.sendListCb(req, res, next));
     };
-
 };
-
 
 
 var deleteByIdFn = function (baseUrl, Model) {

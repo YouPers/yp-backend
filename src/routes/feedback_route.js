@@ -4,10 +4,7 @@
  */
 
 var restify = require("restify"),
-    env = process.env.NODE_ENV || 'development',
-    config = require('../config/config')[env],
-    Logger = require('bunyan'),
-    log = new Logger(config.loggerOptions),
+    log = require('../util/log').logger,
     error = require('../util/error'),
     client = restify.createJsonClient({
         url: 'https://youpers.atlassian.net',
@@ -18,12 +15,12 @@ var restify = require("restify"),
     client.basicAuth('feedback', 'lkmanv90e3ionm23k');
 
 
-module.exports = function (swagger, config) {
+module.exports = function (swagger) {
 
     var baseUrl = '/feedback';
 
 
-    swagger.addPost({
+    swagger.addOperation({
         spec: {
             description: "Post feedback",
             path: baseUrl,

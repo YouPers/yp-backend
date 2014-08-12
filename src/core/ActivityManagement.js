@@ -50,41 +50,18 @@ actMgr.defaultActivity = function(idea, user) {
         "allDay": false
     };
     var duration = idea.defaultduration ? idea.defaultduration : 60;
-    if (idea.defaultfrequency === 'week') {
-        mainEvent.start = moment(now).startOf('hour').toDate();
-        mainEvent.end = moment(mainEvent.start).add('m', duration).toDate();
-        mainEvent.frequency = 'week';
-        mainEvent.recurrence = {
-            "endby": {
-                "type": "after",
-                "after": 6
-            },
-            every: 1
-        };
-    } else if (idea.defaultfrequency === 'day') {
-        mainEvent.start = moment(now).add('d', 1).startOf('hour').toDate();
-        mainEvent.end = moment(mainEvent.start).add('m', duration).toDate();
-        mainEvent.frequency = 'day';
-        mainEvent.recurrence = {
-            "endby": {
-                "type": "after",
-                "after": 3
-            },
-            byday: user.profile.prefs.defaultWorkWeek,
-            every: 1
-        };
-    } else { // default is "once"
-        mainEvent.start = moment(now).add('d', 1).startOf('hour').toDate();
-        mainEvent.end = moment(mainEvent.start).add('m', duration).toDate();
-        mainEvent.frequency = 'once';
-        mainEvent.recurrence = {
-            "endby": {
-                "type": "after",
-                "after": 3
-            },
-            every: 1
-        };
-    }
+
+    mainEvent.start = moment(now).add('d', 1).startOf('hour').toDate();
+    mainEvent.end = moment(mainEvent.start).add('m', duration).toDate();
+    mainEvent.frequency = idea.defaultfrequency;
+    mainEvent.recurrence = {
+        "endby": {
+            "type": "after",
+            "after": 3
+        },
+        byday: user.profile.prefs && user.profile.prefs.defaultWorkWeek || undefined,
+        every: 1
+    };
 
     var campaignId = user.campaign._id || user.campaign;
 

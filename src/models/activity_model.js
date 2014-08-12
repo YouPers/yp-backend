@@ -64,10 +64,10 @@ ActivitySchema.virtual('deleteStatus')
 
         var now = moment();
         // check if there are any events in the past, checking the first is enough!
-        var eventsInThePastExist = moment(occurrences[0]).add('ms', duration).isBefore(now);
+        var eventsInThePastExist = moment(occurrences[0]).add(duration, 'ms').isBefore(now);
 
         // check if there are any events in the past, checking whether the last one is already passed is enough!
-        var eventsInTheFutureExist = moment(occurrences[occurrences.length -1]).add('ms', duration).isAfter(now);
+        var eventsInTheFutureExist = moment(occurrences[occurrences.length -1]).add(duration, 'ms').isAfter(now);
 
         if (eventsInThePastExist && eventsInTheFutureExist) {
             return ActivitySchema.statics.activityOnlyFutureEventsDeletable;
@@ -88,7 +88,7 @@ ActivitySchema.virtual('editStatus')
         var now = moment();
 
         // check if there are any events in the past, checking whether the last one is already passed is enough!
-        var eventsInTheFutureExist = moment(occurrences[occurrences.length -1]).add('ms', duration).isAfter(now);
+        var eventsInTheFutureExist = moment(occurrences[occurrences.length -1]).add(duration, 'ms').isAfter(now);
 
         // activity cannot be edited if all events are in the past
         if (!eventsInTheFutureExist) {
@@ -109,7 +109,7 @@ ActivitySchema.virtual('lastEventEnd')
     .get(function lastEventEnd() {
         var occurrences = calendar.getOccurrences(this);
         var duration = moment(this.mainEvent.end).diff(this.mainEvent.start);
-        return moment(occurrences[occurrences.length - 1]).add('ms', duration).toDate();
+        return moment(occurrences[occurrences.length - 1]).add(duration, 'ms').toDate();
     });
 
 ActivitySchema.pre('save', function (next) {

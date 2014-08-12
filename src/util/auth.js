@@ -314,7 +314,7 @@ function _validateBearerToken(token, done) {
 }
 
 function _calculateToken(user) {
-    var expires = moment().add('days', 7).valueOf();
+    var expires = moment().add(7, 'days').valueOf();
 
     return {
         encodedToken: jwt.encode({iss: user.id, exp: expires}, config.accessTokenSecret),

@@ -51,7 +51,7 @@ actMgr.defaultActivity = function(idea, user) {
     };
     var duration = idea.defaultduration ? idea.defaultduration : 60;
 
-    mainEvent.start = moment(now).add('d', 1).startOf('hour').toDate();
+    mainEvent.start = moment(now).add(1, 'd').startOf('hour').toDate();
     mainEvent.end = moment(mainEvent.start).add('m', duration).toDate();
     mainEvent.frequency = idea.defaultfrequency;
     mainEvent.recurrence = {

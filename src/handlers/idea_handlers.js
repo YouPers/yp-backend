@@ -162,7 +162,7 @@ function getDefaultActivity(req, res, next) {
         }
 
         var defaultActivity = ActivityManagement.defaultActivity(idea, req.user);
-        req.log.info(defaultActivity);
+        req.debug.info(defaultActivity);
         defaultActivity._id = undefined;
         res.send(defaultActivity);
         return next();

@@ -140,7 +140,7 @@ module.exports = function (swagger) {
             method: "GET",
             "responseClass": "Array[User]",
             "nickname": "getUsers",
-            accessLevel: 'al_all'
+            accessLevel: 'al_user'
         },
         action: userHandlers.getAllFn(baseUrl)
     });

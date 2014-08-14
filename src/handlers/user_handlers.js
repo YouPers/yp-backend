@@ -234,7 +234,7 @@ var getAllFn = function getAllFn (baseUrl) {
     return function (req, res, next) {
 
         var isAdmin = auth.isAdminForModel(req.user, User);
-        var campaign = req.user.campaign && req.user.campaign.id;
+        var campaign = req.user.campaign && req.user.campaign._id;
 
         // check if this is a "personal" object (i.e. has an "owner" property),
         // if yes only send the objects of the currently logged in user

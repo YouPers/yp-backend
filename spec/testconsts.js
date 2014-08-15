@@ -18,7 +18,8 @@ var self = module.exports  =  {
         test_ind1: {
             id: '52a97f1650fca98c29000006',
             username: 'test_ind1',
-            profile: "5303721a4dba580000000016"
+            profile: "5303721a4dba580000000016",
+            campaign: "527916a82079aa8704000007"
         },
         yphealthcoach: {
             id: '53348c27996c80a534319bda',
@@ -87,8 +88,8 @@ var self = module.exports  =  {
         });
     },
     newUserInNewCampaignApi: function(cb) {
-        var campaignStart = moment({hour: 8, minute: 0, second: 0}).add('days', 10);
-        var campaignEnd = moment({hour: 17, minute: 0, second: 0}).add('weeks', 6).add('days', 10);
+        var campaignStart = moment({hour: 8, minute: 0, second: 0}).add(10, 'days');
+        var campaignEnd = moment({hour: 17, minute: 0, second: 0}).add(6, 'weeks').add(10, 'days');
 
         var testCampaign = {
             "title": "testOrganization's campaign x for testing: " + Math.floor((Math.random() * 10000) + 1),

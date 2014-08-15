@@ -30,15 +30,17 @@ var getByIdFn = function getByIdFn(baseUrl, Model) {
     };
 };
 
-var getAllFn = function getAllFn(baseUrl, Model, fromAllOwners) {
+var getAllFn = function getAllFn(baseUrl, Model) {
     return function getAll(req, res, next) {
 
         var user = req.user;
-        var adminMode = auth.checkAccess(req.user, auth.accessLevels.al_admin) &&
+        var isAdminMode = auth.checkAccess(req.user, auth.accessLevels.al_admin) &&
             req.params.mode && req.params.mode === 'administrate';
-
+        var isCampaignLeadMode = auth.checkAccess(req.user, auth.accessLevels.al_campaignlead) &&
+            req.params.campaign;
         var options = {
-            adminMode: adminMode,
+            mode: isAdminMode ? 'admin' : (isCampaignLeadMode ? 'campaignlead' : 'user'),
+            campaignId: req.params.campaign,
             refDocId: req.params.refDocId,
             queryOptions: req.query,
             locale: req.locale,

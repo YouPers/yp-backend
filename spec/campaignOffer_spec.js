@@ -33,7 +33,7 @@ consts.newUserInNewCampaignApi(
 
                 author: consts.users.test_campaignlead.id,
                 publishFrom: moment(),
-                publishTo: moment().add('hours', 1),
+                publishTo: moment().subtract(1, 'hours'),
 
                 refDocs: [
                     { docId: consts.aloneIdea.id, model: 'Idea'}
@@ -54,8 +54,8 @@ consts.newUserInNewCampaignApi(
                         "campaign": campaign.id,
                         "executionType": "group",
                         "mainEvent": {
-                            "start": moment().add('days', 1),
-                            "end": moment().add('days', 1).add('hours', 2),
+                            "start": moment().subtract(1, 'days'),
+                            "end": moment().subtract(1, 'days').subtract(2, 'hours'),
                             "allDay": false,
                             "frequency": "once"
                         },
@@ -77,7 +77,7 @@ consts.newUserInNewCampaignApi(
 
                                 author: consts.users.test_campaignlead.id,
                                 publishFrom: moment(),
-                                publishTo: moment().add('hours', 1),
+                                publishTo: moment().add(1, 'hours'),
 
                                 refDocs: [
                                     { docId: newPlan.id, model: 'Activity'}

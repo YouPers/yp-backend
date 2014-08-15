@@ -32,8 +32,8 @@ consts.newUserInNewCampaignApi(
                 "campaign": campaign.id,
                 "executionType": "group",
                 "mainEvent": {
-                    "start": moment().add('days', 1),
-                    "end": moment().add('days', 1).add('hours', 2),
+                    "start": moment().add(1, 'days'),
+                    "end": moment().add(1, 'days').add(2, 'hours'),
                     "allDay": false,
                     "frequency": "once"
                 },
@@ -120,8 +120,8 @@ consts.newUserInNewCampaignApi(
                 "campaign": campaign.id,
                 "executionType": "group",
                 "mainEvent": {
-                    "start": moment().add('days', 1),
-                    "end": moment().add('days', 1).add('hours', 2),
+                    "start": moment().add(1, 'days'),
+                    "end": moment().add(1, 'days').add(2, 'hours'),
                     "allDay": false,
                     "frequency": "once"
                 },

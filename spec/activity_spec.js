@@ -13,8 +13,8 @@ frisby.globalSetup({ // globalSetup is for ALL requests
 });
 
 // set the startDate in the future and ensure that it is a Wednesday
-var startDate = moment().add('d', 10).day(4).startOf('hour').toDate();
-var endDate = moment(startDate).add('h', 1).toDate();
+var startDate = moment().add(10, 'd').day(4).startOf('hour').toDate();
+var endDate = moment(startDate).add(1, 'h').toDate();
 
 frisby.create('Activity: plan once activity and check whether event is generated')
     .post(URL + '/activities', {
@@ -203,13 +203,10 @@ frisby.create('Activity: plan daily activity and check whether events are genera
             .auth('test_ind3', 'yp')
             .expectStatus(200)
             .afterJSON(function (events) {
-
-
-
-                console.log(planPost);
-                console.log('start');
-                console.log(moment(events[0].start).format());
-                console.log(moment(startDate).format());
+//                console.log(planPost);
+//                console.log('start');
+//                console.log(moment(events[0].start).format());
+//                console.log(moment(startDate).format());
 
                 expect(events.length).toEqual(6);
                 expect(moment(events[0].start).isSame(moment(startDate))).toBe(true);
@@ -301,8 +298,8 @@ frisby.create('Activity: update user profile preferences to workdays only MO-WE 
                 "campaign": "527916a82079aa8704000006",
                 "executionType": "group",
                 "mainEvent": {
-                    "start": moment().add('w',1).day(2).add('hours', 1).toISOString(),
-                    "end": moment().add('w',1).day(2).add('hours', 2).toISOString(),
+                    "start": moment().add(1, 'w').day(2).add(1, 'hours').toISOString(),
+                    "end": moment().add(1, 'w').day(2).add(2, 'hours').toISOString(),
                     "allDay": false,
                     "frequency": "day",
                     "recurrence": {

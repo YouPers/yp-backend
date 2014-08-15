@@ -109,7 +109,7 @@ describe('HealthCoach Module', function () {
             function (err) {
                         expect(err).toBeUndefined();
                         hc.getCurrentMessages(user, 'home.content', function (err, messages, facts) {
-                            console.log(messages);
+//                            console.log(messages);
                             expect(err).toBeNull();
                             expect(_.isArray(messages));
                             expect(messages.length).toEqual(1);

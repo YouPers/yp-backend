@@ -11,10 +11,10 @@ describe('icalendar module', function() {
         var myEndDate =  moment.utc("2014-11-01T18:00").toDate();
 
 
-        console.log('Begin: ' + myBeginDate);
-        console.log('End: ' + myEndDate);
-        console.log(myBeginDate.getTimezoneOffset());
-        console.log(myEndDate.getTimezoneOffset());
+//        console.log('Begin: ' + myBeginDate);
+//        console.log('End: ' + myEndDate);
+//        console.log(myBeginDate.getTimezoneOffset());
+//        console.log(myEndDate.getTimezoneOffset());
 
 
         var rec = new ical.RRule({FREQ: 'DAILY', COUNT: 4}, myBeginDate);
@@ -27,13 +27,11 @@ describe('icalendar module', function() {
         myCal.addComponent(event);
 
 
-        console.log(myCal.toString());
-
-
-        console.log(rec.nextOccurences(beforeMyBeginDate, 100));
+//        console.log(myCal.toString());
+//        console.log(rec.nextOccurences(beforeMyBeginDate, 100));
 
         expect(event.toString().length).toBeGreaterThan(11);
-        console.log(event.toString());
-        console.log(rec);
+//        console.log(event.toString());
+//        console.log(rec);
     });
 });

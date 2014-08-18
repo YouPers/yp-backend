@@ -242,14 +242,6 @@ SocialInteraction.dismissSocialInteractionById = function dismissSocialInteracti
 
         var userId = (user._id ? user._id : user);
 
-        // just delete the socialInteraction if the only targeted space is the user
-        // -> if there are no other target spaces than for this user
-        if (!_.any(socialInteraction.targetSpaces, function (space) {
-            return space.targetModel !== 'User' || !space.targetId.equals(userId);
-        })) {
-            return socialInteraction.remove(cb);
-        }
-
         var socialInteractionDismissed = new SocialInteractionDismissedModel({
             expiresAt: socialInteraction.publishTo,
             user: userId,
@@ -371,6 +363,16 @@ SocialInteraction.getAllForUser = function (user, model, options, cb) {
             return cb(err);
         }
         log.debug('SocialInteraction.getAllForUser: found sois: ' + socialInteractions.length, socialInteractions);
+
+        if(options.includeDismissed) {
+            _.forEach(socialInteractions, function (si) {
+                si.dismissed = _.any(locals.dismissedSocialInteractions, function(dsi) {
+                    return si._id.equals(dsi);
+                });
+                console.log(si.dismissed);
+            });
+        }
+
         if (populateRefDocs) {
             return async.each(socialInteractions, function (si, done) {
                 SocialInteraction.populateSocialInteraction(si, null, done);
@@ -410,7 +412,6 @@ SocialInteraction.getAllForUser = function (user, model, options, cb) {
                 } : {};
                 var dbQuery = model.find(targetSpaceFinder);
                 dbQuery
-                    .and({_id: { $nin: locals.dismissedSocialInteractions }})
                     .and({$or: [
                         {publishTo: {$exists: false}},
                         {publishTo: {$gte: now}}
@@ -419,6 +420,11 @@ SocialInteraction.getAllForUser = function (user, model, options, cb) {
                         {publishFrom: {$exists: false}},
                         {publishFrom: {$lte: now}}
                     ]});
+
+                if(!options.includeDismissed) {
+                    dbQuery.and({_id: { $nin: locals.dismissedSocialInteractions }});
+                }
+
                 if (user.profile.language) {
                     dbQuery.and({ $or: [
                         {language: {$exists: false}},

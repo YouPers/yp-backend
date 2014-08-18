@@ -4,7 +4,6 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
     ObjectId = Schema.ObjectId,
     Space = mongoose.model('Space'),
-    _ = require('lodash'),
     common = require('./common');
 
 function AbstractSocialInteractionSchema() {
@@ -30,21 +29,5 @@ function AbstractSocialInteractionSchema() {
 util.inherits(AbstractSocialInteractionSchema, Schema);
 
 
-AbstractSocialInteractionSchema.methods = {
-
-    isTargeted: function(user) {
-
-        // TODO: enable targetSpace types [ activity, email ]
-
-        return _.any(this.targetSpaces, function(space) {
-
-            return space.type === 'system' ||
-                space.targetId.equals(user._id) ||
-                space.targetId.equals(user.campaign);
-        });
-
-    }
-
-};
 
 module.exports = AbstractSocialInteractionSchema;

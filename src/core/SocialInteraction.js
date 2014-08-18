@@ -317,10 +317,12 @@ SocialInteraction.populateSocialInteraction = function (socialInteraction, campa
 /**
  * returns all SocialInteractions for the currently logged in user. With the optional options-object several aspects
  * can be configured:
- * options.refDocId: if this is passed, only SOI that reference this Document are returened
- * options.adminMode: if this is "true" SOIs for all users are returned, also the publishFrom/publishTo are ignored.
+ * options.refDocId: if this is passed, only SOI that reference this Document are returned
+ * options.mode: one of "admin", "campaignlead" or "user". Defaults to "user" if missing.
+ * options.campaignId: The Id of the campaign whose sois are to be returned, only considered in campaignlead mode
  * options.queryOptions: the usual queryOptions {limit, sort, populate} fields
  * options.locale: the current locale to be used if i18n-fields are to be loaded
+ * options.populateRefDocs: boolean, true if refDocs are to be populated
  *
  * @param user the user for who the sois are loaded
  * @param model the soi-model to use, can be SocialInteration or one of it subclasses

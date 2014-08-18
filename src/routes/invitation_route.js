@@ -29,7 +29,7 @@ module.exports = function (swagger) {
         spec: {
             description: "Operations about invitations",
             path: baseUrl,
-            notes: "returns all invitations, but limits to 100 entries by default, is not owner-constrained, e.g. it returns invitations" +
+            notes: "returns all invitations, but limits to 100 entries by default, e.g. it returns invitations" +
                 "from several users. Use query params sort:'created:-1' and limit to retrieve the newest invitations",
             summary: "get all invitations",
             method: "GET",
@@ -37,7 +37,12 @@ module.exports = function (swagger) {
                 generic.params.limit,
                 generic.params.filter,
                 generic.params.populate,
-                generic.params.populatedeep],
+                generic.params.populatedeep,
+                swagger.queryParam('administrate', 'flag for admin user to indicate he is acting as an administrator currently',
+                    'Boolean', false, false),
+                swagger.queryParam('campaign', 'the campaignId to be used as filter for a campaignlead to get all sois for a campaign to administrate',
+                    'Boolean', false, false)
+            ],
             "responseClass": "Array[Invitation]",
             "nickname": "getInvitations",
             accessLevel: 'al_individual'

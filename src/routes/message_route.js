@@ -37,7 +37,12 @@ module.exports = function (swagger) {
                 generic.params.limit,
                 generic.params.filter,
                 generic.params.populate,
-                generic.params.populatedeep],
+                generic.params.populatedeep,
+                swagger.queryParam('administrate', 'flag for admin user to indicate he is acting as an administrator currently',
+                    'Boolean', false, false),
+                swagger.queryParam('campaign', 'the campaignId to be used as filter for a campaignlead to get all sois for a campaign to administrate',
+                    'Boolean', false, false)
+            ],
             "responseClass": "Array[Message]",
             "nickname": "getMessages",
             accessLevel: 'al_individual'

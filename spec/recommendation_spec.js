@@ -22,7 +22,7 @@ consts.newUserInNewCampaignApi(
         }
 
 
-        frisby.create('Recommendations: get no recommendations for new user')
+        frisby.create('Recommendations: get recommendations for new user, expect 0')
             .get(URL + '/recommendations')
             .auth(user.username, "yp")
             .expectStatus(200)
@@ -43,7 +43,7 @@ consts.newUserInNewCampaignApi(
                         author: consts.users.test_campaignlead.id,
                         publishFrom: moment(),
                         publishTo: moment().add(1, 'hours'),
-
+                        authorType: 'campaignLead',
                         refDocs: [
                             { docId: consts.aloneIdea.id, model: 'Idea'}
                         ],
@@ -53,7 +53,7 @@ consts.newUserInNewCampaignApi(
                     .expectStatus(201)
                     .afterJSON(function (recommendation) {
 
-                        frisby.create('Recommendations: get no recommendations for new user')
+                        frisby.create('Recommendations: get recommendations for new user, expect 1')
                             .get(URL + '/recommendations')
                             .auth(user.username, "yp")
                             .expectStatus(200)
@@ -62,14 +62,25 @@ consts.newUserInNewCampaignApi(
                                 expect(recs[0].targetSpaces[0].type).toEqual('campaign');
                                 expect(recs[0].targetSpaces[0].targetId).toEqual(campaign.id);
 
-                                frisby.create('Message: delete the recommendation as system admin')
-                                    .delete(URL + '/socialInteractions/' + recs[0].id + '?mode=administrate')
-                                    .auth('test_sysadm', 'yp')
+                                frisby.create('Recommendations: get recs as campaignlead for administration')
+                                    .get(URL + '/recommendations?campaign='+ campaign.id)
+                                    .auth(consts.users.test_campaignlead.username, 'yp')
                                     .expectStatus(200)
-                                    .after(function () {
-                                        cleanupFn();
+                                    .afterJSON(function (recsAsCL) {
+                                        expect(recsAsCL.length).toBe(1);
+
+                                        frisby.create('Message: delete the recommendation as system admin')
+                                            .delete(URL + '/socialInteractions/' + recs[0].id + '?mode=administrate')
+                                            .auth('test_sysadm', 'yp')
+                                            .expectStatus(200)
+                                            .after(function () {
+                                                cleanupFn();
+                                            })
+                                            .toss();
                                     })
                                     .toss();
+
+
 
                             })
                             .toss();

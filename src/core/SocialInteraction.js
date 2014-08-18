@@ -329,7 +329,9 @@ SocialInteraction.populateSocialInteraction = function (socialInteraction, campa
  */
 SocialInteraction.getAllForUser = function (user, model, options, cb) {
     log.debug('SocialInteraction.getAllForUser', {user: user, model: model, options: options});
-    var adminMode = options && options.adminMode;
+    var adminMode = options && options.mode === 'admin';
+    var campaignleadMode = options && options.mode === 'campaignlead';
+    var campaignId = options.campaignId;
     var refDocId = options && options.refDocId;
     var queryOptions = options && options.queryOptions;
     var locale = options && options.locale;
@@ -362,37 +364,49 @@ SocialInteraction.getAllForUser = function (user, model, options, cb) {
         });
     }
 
+    function _soiLoadCb(err, socialInteractions) {
+        if (err) {
+            return cb(err);
+        }
+        log.debug('SocialInteraction.getAllForUser: found sois: ' + socialInteractions.length, socialInteractions);
+        if (populateRefDocs) {
+            return async.each(socialInteractions, function (si, done) {
+                SocialInteraction.populateSocialInteraction(si, null, done);
+            }, function (err) {
+                if (err) {
+                    return cb(err);
+                }
+                return cb(err, socialInteractions);
+            });
+        } else {
+            return cb(err, socialInteractions);
+        }
+    }
 
-    async.parallel([_loadSocialInteractionDismissed, _loadActivities],
-        function (err) {
-            if (err) {
-                return cb(err);
-            }
-
-            var now = moment().toDate();
-
-            var orClauses = [
-                { type: 'user', targetId: user._id },
-                { type: 'system' },
-                { $and: [
-                    {type: 'activity'},
-                    {targetId: {$in: locals.activityIds}}
-                ]}
-            ];
-
-            if (user.campaign) {
-                orClauses.push({ type: 'campaign', targetId: user.campaign._id });
-            }
-
-            var targetSpaceFinder = user ? {
-                targetSpaces: { $elemMatch: {
-                    $or: orClauses
-                }}
-            } : {};
-
-            var dbQuery = model.find(targetSpaceFinder);
-
-            if (!adminMode) {
+    function _loadUserMode() {
+        async.parallel([_loadSocialInteractionDismissed, _loadActivities],
+            function (err) {
+                if (err) {
+                    return cb(err);
+                }
+                var now = moment().toDate();
+                var orClauses = [
+                    { type: 'user', targetId: user._id },
+                    { type: 'system' },
+                    { $and: [
+                        {type: 'activity'},
+                        {targetId: {$in: locals.activityIds}}
+                    ]}
+                ];
+                if (user.campaign) {
+                    orClauses.push({ type: 'campaign', targetId: user.campaign._id });
+                }
+                var targetSpaceFinder = user ? {
+                    targetSpaces: { $elemMatch: {
+                        $or: orClauses
+                    }}
+                } : {};
+                var dbQuery = model.find(targetSpaceFinder);
                 dbQuery
                     .and({_id: { $nin: locals.dismissedSocialInteractions }})
                     .and({$or: [
@@ -403,40 +417,44 @@ SocialInteraction.getAllForUser = function (user, model, options, cb) {
                         {publishFrom: {$exists: false}},
                         {publishFrom: {$lte: now}}
                     ]});
-
                 if (user.profile.language) {
                     dbQuery.and({ $or: [
                         {language: {$exists: false}},
                         {language: user.profile.language}
                     ] });
                 }
+                if (refDocId) {
+                    dbQuery.and({ refDocs: { $elemMatch: {docId: refDocId}}});
+                }
+                generic.processDbQueryOptions(queryOptions, dbQuery, locale, model)
+                    .exec(_soiLoadCb);
             }
+        );
+    }
 
-            if (refDocId) {
-                dbQuery.and({ refDocs: { $elemMatch: {docId: refDocId}}});
-            }
+    function _loadCampaignLeadMode() {
+        var targetSpaceFinder = {
+            targetSpaces: { $elemMatch: { type: 'campaign', targetId: campaignId }}
+        };
+        var dbQuery = model.find(targetSpaceFinder);
+        dbQuery.and({authorType: 'campaignLead'});
+        generic.processDbQueryOptions(queryOptions, dbQuery, locale, model)
+            .exec(_soiLoadCb);
+    }
 
-            generic.processDbQueryOptions(queryOptions, dbQuery, locale, model)
-                .exec(function (err, socialInteractions) {
-                    if (err) {
-                        return cb(err);
-                    }
-                    log.debug('SocialInteraction.getAllForUser: found sois: ' + socialInteractions.length, socialInteractions);
-                    if (populateRefDocs) {
-                        return async.each(socialInteractions, function (si, done) {
-                            SocialInteraction.populateSocialInteraction(si, null, done);
-                        }, function (err) {
-                            if (err) {
-                                return cb(err);
-                            }
-                            return cb(err, socialInteractions);
-                        });
-                    } else {
-                        return cb(err, socialInteractions);
-                    }
-                });
-        }
-    );
+    function _loadAdminMode() {
+        var dbQuery = model.find();
+        generic.processDbQueryOptions(queryOptions, dbQuery, locale, model)
+            .exec(_soiLoadCb);
+    }
+
+    if (adminMode) {
+        _loadAdminMode();
+    } else if (campaignleadMode) {
+        _loadCampaignLeadMode();
+    } else {
+        _loadUserMode();
+    }
 };
 
 module.exports = SocialInteraction;

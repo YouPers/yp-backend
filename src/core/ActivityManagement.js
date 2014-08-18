@@ -3,10 +3,12 @@ var util = require('util');
 var mongoose = require('mongoose');
 var _ = require('lodash');
 var moment = require('moment');
+var calendar = require('../util/calendar');
 var User = mongoose.model('User');
 var Invitation = mongoose.model('Invitation');
 var Idea = mongoose.model('Idea');
 var Activity = mongoose.model('Activity');
+var ActivityEvent = mongoose.model('ActivityEvent');
 var SocialInteraction = require('../core/SocialInteraction');
 var log = require('../util/log').logger;
 var ASSESSMENT_IDEA = "5278c6accdeab69a25000008";
@@ -36,13 +38,51 @@ User.on('change:campaign', function(user) {
         // only plan assessment idea if there is no active activity yet
         if(activities.length === 0) {
             Idea.findById(ASSESSMENT_IDEA, function(err, idea) {
-                handleError(err);
+                if(err) {
+                    return handleError(err);
+                }
                 var assessmentActivity = actMgr.defaultActivity(idea, user);
-                assessmentActivity.save(handleError);
+                assessmentActivity.save(function(err, savedActivity) {
+                    if(err) {
+                        return handleError(err);
+                    }
+                    var events = actMgr.getEvents(savedActivity, user.id);
+                    ActivityEvent.create(events, function (err) {
+                        if(err) {
+                            return handleError(err);
+                        }
+                        actMgr.emit('activity:activityCreated', savedActivity);
+                    });
+                });
+
             });
         }
     });
 });
+
+
+actMgr.getEvents = function getEvents(activity, ownerId, fromDate) {
+
+    var duration = moment(activity.mainEvent.end).diff(activity.mainEvent.start);
+
+    var occurrences = calendar.getOccurrences(activity, fromDate);
+
+    var events = [];
+
+    _.forEach(occurrences, function (instance) {
+        events.push({
+            status: 'open',
+            start: moment(instance).toDate(),
+            end: moment(instance).add(duration, 'ms').toDate(),
+            activity: activity._id,
+            idea: activity.idea,
+            owner: ownerId,
+            campaign: activity.campaign
+        });
+    });
+
+    return events;
+};
 
 actMgr.defaultActivity = function(idea, user) {
     var now = moment();

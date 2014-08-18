@@ -32,9 +32,9 @@ frisby.create('GET ideas with < option')
     .expectStatus(200)
     .expectJSONLength(5)
     .afterJSON(function (ideas) {
-        for (var i = 0; i < ideas.length; i++) {
-            console.log('filtered activiy (=>Act-98): ' + ideas[i].number);
-        }
+//        for (var i = 0; i < ideas.length; i++) {
+//            console.log('filtered activiy (=>Act-98): ' + ideas[i].number);
+//        }
     })
     .toss();
 
@@ -43,9 +43,9 @@ frisby.create('GET ideas with to << options')
     .expectStatus(200)
     .expectJSONLength(4)
     .afterJSON(function (ideas) {
-        for (var i = 0; i < ideas.length; i++) {
-            console.log('filtered activiy (=>>Act-98): ' + ideas[i].number);
-        }
+//        for (var i = 0; i < ideas.length; i++) {
+//            console.log('filtered activiy (=>>Act-98): ' + ideas[i].number);
+//        }
     })
     .toss();
 

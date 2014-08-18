@@ -5,6 +5,7 @@ var email = require('../src/util/email');
 var port = process.env.PORT || 8000;
 var URL = 'http://localhost:' + port;
 var config = require('../src/config/config');
+var consts = require('./testconsts');
 
 frisby.globalSetup({ // globalSetup is for ALL requests
     request: {
@@ -14,11 +15,11 @@ frisby.globalSetup({ // globalSetup is for ALL requests
 });
 
 var testUser = {
-    username: 'new_unittest_user'+Math.floor((Math.random() * 10000) + 1),
+    username: 'new_unittest_user' + Math.floor((Math.random() * 10000) + 1),
     fullname: 'Testing Unittest',
     firstname: 'Testing',
     lastname: 'Unittest',
-    email: 'ypunittest1+newtestuser'+ Math.floor((Math.random() * 10000) + 1) +'@gmail.com',
+    email: 'ypunittest1+newtestuser' + Math.floor((Math.random() * 10000) + 1) + '@gmail.com',
     password: 'nopass'
 };
 
@@ -245,4 +246,60 @@ frisby.create('User: POST validate new user')
             .toss();
     })
     .toss();
+
+// test the security of the getAllUsersCall
+consts.newUserInNewCampaignApi(
+    function (err, user, campaign, cleanupFn) {
+
+        frisby.create('get all users as sysadmin, expect a lot')
+            .get(URL + '/users')
+            .auth('test_sysadm', 'yp')
+            .expectStatus(200)
+            .afterJSON(function (allUsers) {
+                var allUsersCount = allUsers.length;
+                expect(allUsersCount).toBeGreaterThan(5);
+
+                frisby.create('get all users as normal user, expect 1 as this is new user in new campaign')
+                    .get(URL + '/users')
+                    .auth(user.username, 'yp')
+                    .expectStatus(200)
+                    .afterJSON(function (allUsersAsNormal) {
+                        expect(allUsersAsNormal.length).toBe(1);
+
+                        frisby.create('get all users in standard campaign')
+                            .get(URL + '/users')
+                            .auth('test_ind1', 'yp')
+                            .expectStatus(200)
+                            .afterJSON(function (allUsersInStdCampaign) {
+                                var allUsersInStdCampaignCountBefore = allUsersInStdCampaign.length;
+
+                                expect(allUsersInStdCampaign.length).toBeLessThan(allUsersCount);
+
+                                user.campaign = consts.users.test_ind1.campaign;
+                                frisby.create('move user into std campaign')
+                                    .put(URL + '/users/' + user.id, user)
+                                    .auth(user.username, 'yp')
+                                    .expectStatus(200)
+                                    .after(function () {
+                                        frisby.create('get all users in standard campaign, expect one more than before')
+                                            .get(URL + '/users')
+                                            .auth('test_ind1', 'yp')
+                                            .expectStatus(200)
+                                            .afterJSON(function (allUsersInStdCampaignAfter) {
+                                                expect(allUsersInStdCampaignAfter.length).toBe(allUsersInStdCampaignCountBefore + 1);
+                                                cleanupFn();
+                                            })
+                                            .toss();
+
+                                    })
+                                    .toss();
+
+                            })
+                            .toss();
+                    })
+                    .toss();
+
+            })
+            .toss();
+    });
 

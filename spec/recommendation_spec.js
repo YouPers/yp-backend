@@ -42,7 +42,7 @@ consts.newUserInNewCampaignApi(
 
                         author: consts.users.test_campaignlead.id,
                         publishFrom: moment(),
-                        publishTo: moment().add('hours', 1),
+                        publishTo: moment().add(1, 'hours'),
                         authorType: 'campaignLead',
                         refDocs: [
                             { docId: consts.aloneIdea.id, model: 'Idea'}
@@ -159,7 +159,7 @@ consts.newUserInNewCampaignApi(
                                                 "executionType": "group",
                                                 "mainEvent": {
                                                     "start": moment(),
-                                                    "end": moment().add('hours', 2),
+                                                    "end": moment().add(2, 'hours'),
                                                     "allDay": false,
                                                     "frequency": "once"
                                                 },

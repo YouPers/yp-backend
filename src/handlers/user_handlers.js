@@ -6,6 +6,7 @@ var error = require('../util/error'),
     mongoose = require('mongoose'),
     User = mongoose.model('User'),
     _ = require('lodash'),
+    generic = require('./generic'),
     config = require('../config/config');
 
 var postFn = function (baseUrl) {
@@ -229,11 +230,35 @@ var avatarImagePostFn = function(baseUrl) {
     };
 };
 
+var getAllFn = function getAllFn (baseUrl) {
+    return function (req, res, next) {
+
+        var isAdmin = auth.isAdminForModel(req.user, User);
+        var campaign = req.user.campaign && req.user.campaign._id;
+
+        // check if this is a "personal" object (i.e. has an "owner" property),
+        // if yes only send the objects of the currently logged in user
+
+        var dbQuery = User.find();
+
+        if (!isAdmin) {
+            dbQuery.limit(10);
+            if (campaign) {
+                dbQuery.where ({campaign: campaign});
+            }
+        }
+
+        generic.processDbQueryOptions(req, dbQuery, User)
+            .exec(generic.sendListCb(req, res, next));
+    };
+};
+
 module.exports = {
     postFn: postFn,
     validateUserPostFn: validateUserPostFn,
     emailVerificationPostFn: emailVerificationPostFn,
     requestPasswordResetPostFn: requestPasswordResetPostFn,
     passwordResetPostFn: passwordResetPostFn,
-    avatarImagePostFn: avatarImagePostFn
+    avatarImagePostFn: avatarImagePostFn,
+    getAllFn: getAllFn
 };

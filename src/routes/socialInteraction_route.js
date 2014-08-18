@@ -58,7 +58,10 @@ module.exports = function (swagger) {
                 notes: "delete socialInteraction",
                 summary: "Deletes a socialInteraction by id",
                 method: "DELETE",
-                params: [swagger.pathParam("id", "ID of the socialInteraction to be fetched", "string")],
+                params: [
+                    swagger.pathParam("id", "ID of the socialInteraction to be fetched", "string"),
+                    swagger.queryParam('mode', 'expected values: [administrate]', 'String')
+                ],
                 "nickname": "deleteSocialInteraction",
                 accessLevel: 'al_user'
             },

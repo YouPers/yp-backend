@@ -369,7 +369,6 @@ SocialInteraction.getAllForUser = function (user, model, options, cb) {
                 si.dismissed = _.any(locals.dismissedSocialInteractions, function(dsi) {
                     return si._id.equals(dsi);
                 });
-                console.log(si.dismissed);
             });
         }
 

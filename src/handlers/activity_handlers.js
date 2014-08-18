@@ -9,32 +9,12 @@ var calendar = require('../util/calendar'),
     error = require('../util/error'),
     _ = require('lodash'),
     email = require('../util/email'),
-    moment = require('moment'),
     async = require('async'),
     auth = require('../util/auth'),
     handlerUtils = require('./handlerUtils');
 
 function _getEvents(activity, ownerId, fromDate) {
-
-    var duration = moment(activity.mainEvent.end).diff(activity.mainEvent.start);
-
-    var occurrences = calendar.getOccurrences(activity, fromDate);
-
-    var events = [];
-
-    _.forEach(occurrences, function (instance) {
-        events.push({
-            status: 'open',
-            start: moment(instance).toDate(),
-            end: moment(instance).add(duration, 'ms').toDate(),
-            activity: activity._id,
-            idea: activity.idea,
-            owner: ownerId,
-            campaign: activity.campaign
-        });
-    });
-
-    return events;
+    return actMgr.getEvents(activity, ownerId, fromDate);
 }
 
 function getActivityConflicts(req, res, next) {
@@ -649,5 +629,6 @@ module.exports = {
     deleteActivity: deleteActivity,
     putActivity: putActivity,
     getActivityConflicts: getActivityConflicts,
-    getAll: getAll
+    getAll: getAll,
+    getEvents: _getEvents
 };

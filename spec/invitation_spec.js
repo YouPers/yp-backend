@@ -89,6 +89,14 @@ consts.newUserInNewCampaignApi(
                                             .expectStatus(200)
                                             .afterJSON(function (socialInteractions) {
                                                 expect(socialInteractions.length).toEqual(0);
+
+
+                                                frisby.create("Invitation: delete the activity")
+                                                    .delete(URL + '/activities/' + newPlan.id)
+                                                    .auth('test_ind1', 'yp')
+                                                    .expectStatus(200)
+                                                    .toss();
+
                                                 cleanupFn();
                                             })
                                             .toss();

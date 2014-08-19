@@ -90,12 +90,24 @@ consts.newUserInNewCampaignApi(
                                             .afterJSON(function (socialInteractions) {
                                                 expect(socialInteractions.length).toEqual(0);
 
-
-                                                frisby.create("Invitation: delete the activity")
-                                                    .delete(URL + '/activities/' + newPlan.id)
-                                                    .auth('test_ind1', 'yp')
+                                                frisby.create('Invitation: get inbox, will be empty again')
+                                                    .get(URL + '/socialInteractions?includeDismissed=true')
+                                                    .auth(user.username, 'yp')
                                                     .expectStatus(200)
+                                                    .afterJSON(function (socialInteractions) {
+                                                        expect(socialInteractions.length).toEqual(1);
+                                                        expect(socialInteractions[0].dismissed).toBeTruthy();
+
+                                                        frisby.create("Invitation: delete the activity")
+                                                            .delete(URL + '/activities/' + newPlan.id)
+                                                            .auth('test_ind1', 'yp')
+                                                            .expectStatus(200)
+                                                            .toss();
+                                                    })
                                                     .toss();
+
+
+
 
                                                 cleanupFn();
                                             })

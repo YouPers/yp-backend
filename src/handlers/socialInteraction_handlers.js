@@ -44,7 +44,8 @@ var getAllFn = function getAllFn(baseUrl, Model) {
             refDocId: req.params.refDocId,
             queryOptions: req.query,
             locale: req.locale,
-            populateRefDocs: true
+            populateRefDocs: true,
+            includeDismissed: Boolean(req.params.includeDismissed)
         };
 
         SocialInteraction.getAllForUser(user, Model, options, generic.sendListCb(req, res, next));

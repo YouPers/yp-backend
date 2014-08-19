@@ -21,8 +21,7 @@ var SocialInteractionDismissedSchema = common.newSchema({
 
 });
 
-// we only want one dismissal per user and notification, the save method catches the
-// duplicate key errors, see core/Notification.dismissNotification:128
-SocialInteractionDismissedSchema.index({user: 1, notification: 1}, {unique: true});
+// we only want one dismissal per user and notification, the save method catches the duplicate key errors
+SocialInteractionDismissedSchema.index({user: 1, socialInteraction: 1}, {unique: true});
 
 module.exports = mongoose.model('SocialInteractionDismissed', SocialInteractionDismissedSchema);

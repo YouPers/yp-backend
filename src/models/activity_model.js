@@ -45,6 +45,14 @@ var ActivitySchema = common.newSchema({
     }
 });
 
+ActivitySchema.methods = {
+
+    toJsonConfig: {
+        include: ['deleteStatus','editStatus']
+    }
+
+};
+
 ActivitySchema.statics.activityCompletelyDeletable = "deletable";
 ActivitySchema.statics.activityOnlyFutureEventsDeletable = "deletableOnlyFutureEvents";
 ActivitySchema.statics.notDeletableNoFutureEvents = "notDeletableNoFutureEvents";

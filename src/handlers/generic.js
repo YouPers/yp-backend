@@ -257,6 +257,11 @@ var _addFilter = function (queryParams, dbquery, Model) {
 
     _.each(flatten(queryParams.filter), function (v, k) {
         var ret = /^([+,-])?(.*)/.exec(k);
+
+        // translate the 'id' we use clientSide into the '_id' we use serverSide
+        if (ret[2] === 'id') {
+            ret[2] = '_id';
+        }
         var p = Model.schema.path(ret[2]);
         var type = p && p.options && p.options.type;
         var method;
@@ -273,8 +278,13 @@ var _addFilter = function (queryParams, dbquery, Model) {
 
         if (type === ObjectId) {
             var qp = {};
-            qp[ret[2]] = v;
-            dbquery = dbquery.find(qp);
+            var multipleValues = v.split(',');
+            if (multipleValues.length>1) {
+                qp[ret[2]] = {$in: _.map(multipleValues, mongoose.Types.ObjectId)};
+            } else {
+                qp[ret[2]] = v;
+            }
+            dbquery = dbquery[method](qp);
         } else {
 
             dbquery = dbquery[method](ret[2], addOp(v, String === type || 'String' === type, type));

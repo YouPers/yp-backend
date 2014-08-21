@@ -17,7 +17,7 @@ function _getEvents(activity, ownerId, fromDate) {
     return actMgr.getEvents(activity, ownerId, fromDate);
 }
 
-function getActivityConflicts(req, res, next) {
+function validateActivity(req, res, next) {
     var sentActivity = req.body;
 
     // check required Attributes
@@ -87,9 +87,8 @@ function getActivityConflicts(req, res, next) {
             var conflictingEvent = _.find(plannedEvents, function (plannedEvent) {
                 return ((plannedEvent.start < newEvent.end) && (plannedEvent.end > newEvent.start));
             });
-            if (conflictingEvent) {
-                conflicts.push({conflictingNewEvent: newEvent, conflictingSavedEvent: conflictingEvent});
-            }
+
+            conflicts.push({event: newEvent, conflictingEvent: conflictingEvent});
         });
 
         res.send(conflicts);
@@ -628,7 +627,7 @@ module.exports = {
     postActivityInvite: postActivityInvite,
     deleteActivity: deleteActivity,
     putActivity: putActivity,
-    getActivityConflicts: getActivityConflicts,
+    validateActivity: validateActivity,
     getAll: getAll,
     getEvents: _getEvents
 };

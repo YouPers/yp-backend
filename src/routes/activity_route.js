@@ -15,9 +15,8 @@ module.exports = function (swagger) {
     swagger.addOperation({
         spec: {
             description: "Operations about Activities",
-            path: baseUrl + "/conflicts",
-            notes: "Gets the list of conflicting events in case there are any for the activity in the body." +
-                "If there are no conflicts, it returns an emtpy list",
+            path: baseUrl + "/validate",
+            notes: "Validates a new activity, generates the list of events and returns the list of conflicting events in case there are any for the activity in the body.",
             summary: "Validates an activity that a user is about to POST",
             params: [
                 {
@@ -28,21 +27,21 @@ module.exports = function (swagger) {
                     required: true
                 }
             ],
-            responseClass: "SchedulingConflict",
+            responseClass: "ActivityValidationResult",
             method: "POST",
-            "nickname": "getActivityConflicts",
+            "nickname": "validateActivity",
             accessLevel: 'al_individual',
             beforeCallbacks: []
         },
-        action: handlers.getActivityConflicts
+        action: handlers.validateActivity
     });
 
-    swagger.addModels({SchedulingConflict: {
-        id: 'SchedulingConflict',
-        required: ['conflictingNewEvent', 'conflictingSavedEvent'],
+    swagger.addModels({ActivityValidationResult: {
+        id: 'ActivityValidationResult',
+        required: ['event'],
         properties: {
-            conflictingNewEvent: {type: 'ActivityEvent'},
-            conflictingSavedEvent: {type: 'ActivityEvent'}
+            event: {type: 'ActivityEvent'},
+            conflictingEvent: {type: 'ActivityEvent'}
         }
     }});
 

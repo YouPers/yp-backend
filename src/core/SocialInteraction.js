@@ -364,9 +364,9 @@ SocialInteraction.getAllForUser = function (user, model, options, cb) {
         }
         log.debug('SocialInteraction.getAllForUser: found sois: ' + socialInteractions.length, socialInteractions);
 
-        if(options.includeDismissed) {
+        if (options.includeDismissed) {
             _.forEach(socialInteractions, function (si) {
-                si.dismissed = _.any(locals.dismissedSocialInteractions, function(dsi) {
+                si.dismissed = _.any(locals.dismissedSocialInteractions, function (dsi) {
                     return si._id.equals(dsi);
                 });
             });
@@ -393,22 +393,34 @@ SocialInteraction.getAllForUser = function (user, model, options, cb) {
                     return cb(err);
                 }
                 var now = moment().toDate();
-                var orClauses = [
-                    { type: 'user', targetId: user._id },
-                    { type: 'system' },
-                    { $and: [
-                        {type: 'activity'},
-                        {targetId: {$in: locals.activityIds}}
-                    ]}
-                ];
-                if (user.campaign) {
-                    orClauses.push({ type: 'campaign', targetId: user.campaign._id });
+
+                var targetSpaceFinder = {};
+
+                if (options.targetId) {
+                    targetSpaceFinder.targetSpaces = {
+                        $elemMatch: {
+                            targetId: options.targetId
+                        }
+                    };
+                } else if (user) {
+                    var orClauses = [
+                        { type: 'user', targetId: user._id },
+                        { type: 'system' },
+                        { $and: [
+                            {type: 'activity'},
+                            {targetId: {$in: locals.activityIds}}
+                        ]}
+                    ];
+                    if (user.campaign) {
+                        orClauses.push({ type: 'campaign', targetId: user.campaign._id });
+                    }
+
+                    targetSpaceFinder.targetSpaces = {
+                        $elemMatch: {
+                            $or: orClauses
+                        }
+                    };
                 }
-                var targetSpaceFinder = user ? {
-                    targetSpaces: { $elemMatch: {
-                        $or: orClauses
-                    }}
-                } : {};
                 var dbQuery = model.find(targetSpaceFinder);
                 dbQuery
                     .and({$or: [
@@ -420,7 +432,7 @@ SocialInteraction.getAllForUser = function (user, model, options, cb) {
                         {publishFrom: {$lte: now}}
                     ]});
 
-                if(!options.includeDismissed) {
+                if (!options.includeDismissed) {
                     dbQuery.and({_id: { $nin: locals.dismissedSocialInteractions }});
                 }
 

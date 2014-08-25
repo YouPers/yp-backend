@@ -41,6 +41,7 @@ var getAllFn = function getAllFn(baseUrl, Model) {
         var options = {
             mode: isAdminMode ? 'admin' : (isCampaignLeadMode ? 'campaignlead' : 'user'),
             campaignId: req.params.campaign,
+            targetId: req.params.targetId,
             refDocId: req.params.refDocId,
             queryOptions: req.query,
             locale: req.locale,

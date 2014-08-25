@@ -31,7 +31,6 @@ var initialize = function initialize() {
             'user',
             'notification',
             'notificationDismissed',
-            'diaryEntry',
             'topic',
             'space',
             'socialInteraction',

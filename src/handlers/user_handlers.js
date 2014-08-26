@@ -248,7 +248,7 @@ var getAllFn = function getAllFn (baseUrl) {
             }
         }
 
-        generic.processDbQueryOptions(req, dbQuery, User)
+        generic.processDbQueryOptions(req.query, dbQuery, User)
             .exec(generic.sendListCb(req, res, next));
     };
 };

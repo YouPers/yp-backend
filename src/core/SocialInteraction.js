@@ -322,15 +322,11 @@ SocialInteraction.populateSocialInteraction = function (socialInteraction, campa
  * @param cb
  */
 SocialInteraction.getAllForUser = function (user, model, options, cb) {
-    log.debug('SocialInteraction.getAllForUser', {user: user, model: model, options: options});
-    var adminMode = options && options.mode === 'admin';
-    var campaignleadMode = options && options.mode === 'campaignlead';
-    var campaignId = options.campaignId;
-    var refDocId = options && options.refDocId;
-    var queryOptions = options && options.queryOptions;
-    var locale = options && options.locale;
-    var populateRefDocs = (options && options.populateRefDocs) || (queryOptions.populate && queryOptions.populate.indexOf('refDocs' !== -1));
 
+    log.debug('SocialInteraction.getAllForUser', {user: user, model: model, options: options});
+
+    var adminMode = options.mode === 'admin';
+    var locale = options && options.locale;
     var locals = {};
 
     function _loadSocialInteractionDismissed(done) {
@@ -364,14 +360,24 @@ SocialInteraction.getAllForUser = function (user, model, options, cb) {
         }
         log.debug('SocialInteraction.getAllForUser: found sois: ' + socialInteractions.length, socialInteractions);
 
-        if (options.includeDismissed) {
+        if (options.dismissed) {
             _.forEach(socialInteractions, function (si) {
                 si.dismissed = _.any(locals.dismissedSocialInteractions, function (dsi) {
                     return si._id.equals(dsi);
                 });
             });
         }
+        if (options.rejected) {
+            _.forEach(socialInteractions, function (si) {
+                si.rejected = _.any(user.rejectedIdeas, function (idea) {
+                    return _.any(si.refDocs, function(refDoc) {
+                        refDoc.docId.equals(idea);
+                    });
+                });
+            });
+        }
 
+        var populateRefDocs = options.populateRefDocs || (options.queryOptions.populate && options.queryOptions.populate.indexOf('refDocs') !== -1);
         if (populateRefDocs) {
             return async.each(socialInteractions, function (si, done) {
                 SocialInteraction.populateSocialInteraction(si, null, done);
@@ -402,7 +408,7 @@ SocialInteraction.getAllForUser = function (user, model, options, cb) {
                             targetId: options.targetId
                         }
                     };
-                } else if (user) {
+                } else {
                     var orClauses = [
                         { type: 'user', targetId: user._id },
                         { type: 'system' },
@@ -432,8 +438,25 @@ SocialInteraction.getAllForUser = function (user, model, options, cb) {
                         {publishFrom: {$lte: now}}
                     ]});
 
-                if (!options.includeDismissed) {
+                if (options.authorType) {
+                    dbQuery.and({ authorType: options.authorType });
+                }
+                if (!options.dismissed) {
                     dbQuery.and({_id: { $nin: locals.dismissedSocialInteractions }});
+                }
+                if (!options.rejected && user.profile.rejectedIdeas) {
+                    var rejectedIdeas = _.map(user.profile.rejectedIdeas, 'idea');
+                    dbQuery.and({ $or: [
+                        { targetSpaces: { $elemMatch: { type: 'user', targetId: user._id }}}, // personal, target directly to the user
+                        { refDocs: { $elemMatch: { docId: { $nin: rejectedIdeas } } } } // or not rejected
+                    ]});
+                }
+                if (!options.authored) {
+                    dbQuery.and({ author: { $ne: user._id } });
+                }
+
+                if(options.discriminators) {
+                    dbQuery.and({ __t: { $in: options.discriminators } });
                 }
 
                 if (user.profile.language) {
@@ -442,35 +465,23 @@ SocialInteraction.getAllForUser = function (user, model, options, cb) {
                         {language: user.profile.language}
                     ] });
                 }
-                if (refDocId) {
-                    dbQuery.and({ refDocs: { $elemMatch: {docId: refDocId}}});
+                if (options.refDocId) {
+                    dbQuery.and({ refDocs: { $elemMatch: {docId: options.refDocId}}});
                 }
-                generic.processDbQueryOptions(queryOptions, dbQuery, locale, model)
+                generic.processDbQueryOptions(options.queryOptions, dbQuery, locale, model)
                     .exec(_soiLoadCb);
             }
         );
     }
 
-    function _loadCampaignLeadMode() {
-        var targetSpaceFinder = {
-            targetSpaces: { $elemMatch: { type: 'campaign', targetId: campaignId }}
-        };
-        var dbQuery = model.find(targetSpaceFinder);
-        dbQuery.and({authorType: 'campaignLead'});
-        generic.processDbQueryOptions(queryOptions, dbQuery, locale, model)
-            .exec(_soiLoadCb);
-    }
-
     function _loadAdminMode() {
         var dbQuery = model.find();
-        generic.processDbQueryOptions(queryOptions, dbQuery, locale, model)
+        generic.processDbQueryOptions(options.queryOptions, dbQuery, locale, model)
             .exec(_soiLoadCb);
     }
 
     if (adminMode) {
         _loadAdminMode();
-    } else if (campaignleadMode) {
-        _loadCampaignLeadMode();
     } else {
         _loadUserMode();
     }

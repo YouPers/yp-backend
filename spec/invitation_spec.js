@@ -90,8 +90,8 @@ consts.newUserInNewCampaignApi(
                                             .afterJSON(function (socialInteractions) {
                                                 expect(socialInteractions.length).toEqual(0);
 
-                                                frisby.create('Invitation: get inbox, will be empty again')
-                                                    .get(URL + '/socialInteractions?includeDismissed=true')
+                                                frisby.create('Invitation: get inbox, including dismissed')
+                                                    .get(URL + '/socialInteractions?dismissed=true')
                                                     .auth(user.username, 'yp')
                                                     .expectStatus(200)
                                                     .afterJSON(function (socialInteractions) {

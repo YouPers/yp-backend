@@ -7,6 +7,7 @@ module.exports = function (swagger) {
 
     var baseUrl = '/socialInteractions',
         baseUrlWithId = baseUrl + '/{id}';
+    var offersUrl = '/offers';
 
     swagger.addOperation({
         spec: {
@@ -29,10 +30,9 @@ module.exports = function (swagger) {
         spec: {
             description: "Operations about socialInteractions",
             path: baseUrl,
-            notes: "returns all socialInteractions, but limits to 100 entries by default. Use query params sort:'created:-1' and limit to retrieve the newest socialInteractions",
-            summary: "get all socialInteractions, supports three modes: 'user': get all sois relevant for this user (this is default)," +
-                " 'campaignlead': gets all sois a campaignlead may administrate, invoked by role 'campaignlead' and passing campaign='id' as queryparam," +
-                " 'admin': get all sois, invoked by role '[product,system]Admin' and queryParam mode='administrate'",
+            notes: "returns all socialInteractions that are targeted to this user",
+            summary: "get all socialInteractions, supports generic filter, sort and populate options as well as custom filter options" +
+                "admin mode: get all sois, invoked by role '[product,system]Admin' and queryParam mode='administrate'",
             method: "GET",
             params: [
                 generic.params.sort,
@@ -40,15 +40,41 @@ module.exports = function (swagger) {
                 generic.params.filter,
                 generic.params.populate,
                 generic.params.populatedeep,
-                swagger.queryParam('includeDismissed', 'flag to include socialInteractions that have been dismissed', 'Boolean', false, false),
-                swagger.queryParam('mode', 'expected values: [administrate]', 'String'),
-                swagger.queryParam('campaign', 'the campaignId to be used as filter for a campaignlead to get all sois for a campaign to administrate', 'String')
+                swagger.queryParam('dismissed', 'include socialInteractions that have been dismissed', 'Boolean', false, false),
+                swagger.queryParam('rejected', 'include socialInteractions that have been rejected', 'Boolean', false, false),
+                swagger.queryParam('authored', 'include socialInteractions where the user is the author', 'Boolean', false, false),
+                swagger.queryParam('targetId', 'restrict to a targetId, for example an activity or campaign, disables the default target space filter', 'String'),
+                swagger.queryParam('authorType', 'restrict to a authorType, for example only social interactions from a campaignlead', 'String'),
+                swagger.queryParam('discriminators', 'comma separated list of discriminators / model names, for example "Invitation,Recommendation"', 'String'),
+                swagger.queryParam('refDocId', 'restrict to a referenced document id', 'String'),
+                swagger.queryParam('mode', 'expected values: [administrate]', 'String')
             ],
             "responseClass": "Array[SocialInteraction]",
             "nickname": "getSocialInteractions",
             accessLevel: 'al_individual'
         },
         action: handlers.getAllFn(baseUrl, Model)
+    });
+
+    swagger.addOperation({
+        spec: {
+            description: "Operations about socialInteractions",
+            path: offersUrl,
+            notes: "returns all offered Invitations and Recommendations that are targeted to this user, includes dismissed and rejected",
+            summary: "get all socialInteractions, supports generic filter, sort and populate options",
+            method: "GET",
+            params: [
+                generic.params.sort,
+                generic.params.limit,
+                generic.params.filter,
+                generic.params.populate,
+                generic.params.populatedeep
+            ],
+            "responseClass": "Array[SocialInteraction]",
+            "nickname": "getOffers",
+            accessLevel: 'al_individual'
+        },
+        action: handlers.getOffers
     });
 
     swagger.addOperation({

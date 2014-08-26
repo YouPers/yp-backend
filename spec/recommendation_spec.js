@@ -63,7 +63,7 @@ consts.newUserInNewCampaignApi(
                                 expect(recs[0].targetSpaces[0].targetId).toEqual(campaign.id);
 
                                 frisby.create('Recommendations: get recs as campaignlead for administration')
-                                    .get(URL + '/recommendations?campaign='+ campaign.id)
+                                    .get(URL + '/recommendations?targetId='+ campaign.id + '&authorType=campaignLead&authored=true')
                                     .auth(consts.users.test_campaignlead.username, 'yp')
                                     .expectStatus(200)
                                     .afterJSON(function (recsAsCL) {

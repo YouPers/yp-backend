@@ -244,7 +244,7 @@ var assignOrganizationAdminFn = function assignOrganizationAdminFn(req, res, nex
                 });
             }
 
-            SocialInteraction.dismissInvitations(organization, req.user);
+            SocialInteraction.dismissInvitations(organization, req.user, { reason: 'orgadminAccepted' });
 
             res.send(200, organization);
             return next();

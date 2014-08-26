@@ -86,7 +86,8 @@ module.exports = function (swagger) {
                 method: "DELETE",
                 params: [
                     swagger.pathParam("id", "ID of the socialInteraction to be fetched", "string"),
-                    swagger.queryParam('mode', 'expected values: [administrate]', 'String')
+                    swagger.queryParam('mode', 'expected values: [administrate]', 'String'),
+                    swagger.queryParam('reason', 'the reason why the social interaction is dismissed, expected values: [activityScheduled activityJoined activityDeleted denied campaignleadAccepted orgadminAccepted]', 'String')
                 ],
                 "nickname": "deleteSocialInteraction",
                 accessLevel: 'al_user'

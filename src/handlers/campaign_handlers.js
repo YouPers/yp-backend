@@ -419,7 +419,7 @@ var assignCampaignLeadFn = function assignCampaignLeadFn(req, res, next) {
                 });
             }
 
-            SocialInteraction.dismissInvitations(campaign, req.user);
+            SocialInteraction.dismissInvitations(campaign, req.user, { reason: 'campaignleadAccepted' });
 
             res.send(200, campaign);
             return next();

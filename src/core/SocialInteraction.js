@@ -141,15 +141,15 @@ SocialInteraction.on('error', function (err) {
     throw new Error(err);
 });
 
-SocialInteraction.dismissRecommendations = function dismissInvitations(refDoc, users, cb) {
-    SocialInteraction.dismissSocialInteraction(Recommendation, refDoc, users, cb);
+SocialInteraction.dismissRecommendations = function dismissInvitations(refDoc, users, documentTemplate, cb) {
+    SocialInteraction.dismissSocialInteraction(Recommendation, refDoc, users, documentTemplate, cb);
 };
 
-SocialInteraction.dismissInvitations = function dismissInvitations(refDoc, users, cb) {
-    SocialInteraction.dismissSocialInteraction(Invitation, refDoc, users, cb);
+SocialInteraction.dismissInvitations = function dismissInvitations(refDoc, users, documentTemplate, cb) {
+    SocialInteraction.dismissSocialInteraction(Invitation, refDoc, users, documentTemplate, cb);
 };
 
-SocialInteraction.dismissSocialInteraction = function dismissSocialInteraction(model, refDoc, users, cb) {
+SocialInteraction.dismissSocialInteraction = function dismissSocialInteraction(model, refDoc, users, documentTemplate, cb) {
 
     var userIds;
 
@@ -211,7 +211,7 @@ SocialInteraction.dismissSocialInteraction = function dismissSocialInteraction(m
             var dismissals = [];
 
             _.forEach(users, function (user) {
-                dismissals.push(SocialInteraction.dismissSocialInteractionById.bind(null, socialInteraction._id, user));
+                dismissals.push(SocialInteraction.dismissSocialInteractionById.bind(null, socialInteraction._id, user, documentTemplate));
             });
 
             async.parallel(dismissals, function (err) {
@@ -227,7 +227,7 @@ SocialInteraction.dismissSocialInteraction = function dismissSocialInteraction(m
 
 };
 
-SocialInteraction.dismissSocialInteractionById = function dismissSocialInteraction(socialInteractionId, user, cb) {
+SocialInteraction.dismissSocialInteractionById = function dismissSocialInteraction(socialInteractionId, user, documentTemplate, cb) {
 
 
     SocialInteractionModel.findById(socialInteractionId, function (err, socialInteraction) {
@@ -242,11 +242,12 @@ SocialInteraction.dismissSocialInteractionById = function dismissSocialInteracti
 
         var userId = (user._id ? user._id : user);
 
-        var socialInteractionDismissed = new SocialInteractionDismissedModel({
+        var document = _.extend(documentTemplate, {
             expiresAt: socialInteraction.publishTo,
             user: userId,
             socialInteraction: socialInteraction.id
         });
+        var socialInteractionDismissed = new SocialInteractionDismissedModel(document);
 
         return socialInteractionDismissed.save(function (err) {
             // we deliberately want to ignore DuplicateKey Errors, because there is not reason to store the dissmissals more than once
@@ -330,13 +331,24 @@ SocialInteraction.getAllForUser = function (user, model, options, cb) {
     var locals = {};
 
     function _loadSocialInteractionDismissed(done) {
-        SocialInteractionDismissedModel.find({ user: user._id }, function (err, sid) {
+        SocialInteractionDismissedModel.find({ user: user._id }, function (err, results) {
 
             if (err) {
                 return done(err);
             }
 
-            locals.dismissedSocialInteractions = _.map(sid, 'socialInteraction');
+            // needed to set the dismissalReason of a socialInteraction
+            locals.socialInteractionDismissed = results;
+
+            if(options.dismissed && options.dismissalReason) {
+                // all dismissed si's except the ones with the specified reason
+                locals.dismissedSocialInteractions = _.map(_.filter(results, function(sid) {
+                    return sid.reason !== options.dismissalReason;
+                }), 'socialInteraction');
+            } else {
+                locals.dismissedSocialInteractions = _.map(results, 'socialInteraction');
+            }
+
             return done();
         });
     }
@@ -362,9 +374,13 @@ SocialInteraction.getAllForUser = function (user, model, options, cb) {
 
         if (options.dismissed) {
             _.forEach(socialInteractions, function (si) {
-                si.dismissed = _.any(locals.dismissedSocialInteractions, function (dsi) {
-                    return si._id.equals(dsi);
+                var sid = _.find(locals.socialInteractionDismissed, function (dsi) {
+                    return si._id.equals(dsi.socialInteraction);
                 });
+                if(sid) {
+                    si.dismissed = true;
+                    si.dismissalReason = sid.reason;
+                }
             });
         }
         if (options.rejected) {
@@ -441,9 +457,12 @@ SocialInteraction.getAllForUser = function (user, model, options, cb) {
                 if (options.authorType) {
                     dbQuery.and({ authorType: options.authorType });
                 }
-                if (!options.dismissed) {
+
+                // skip if include dismissed and no reason
+                if (!options.dismissed || options.dismissalReason) {
                     dbQuery.and({_id: { $nin: locals.dismissedSocialInteractions }});
                 }
+
                 if (!options.rejected && user.profile.rejectedIdeas) {
                     var rejectedIdeas = _.map(user.profile.rejectedIdeas, 'idea');
                     dbQuery.and({ $or: [

@@ -148,7 +148,7 @@ actMgr.on('activity:activityCreated', function (activity) {
 
     // find and dismiss all health coach recommendations for this idea
     // TODO: only health coach or from all other users as well
-    SocialInteraction.dismissRecommendations(activity.idea, activity.owner);
+    SocialInteraction.dismissRecommendations(activity.idea, activity.owner, { reason: 'activityScheduled'});
 });
 
 actMgr.on('activity:activitySaved', function (activity) {
@@ -158,15 +158,15 @@ actMgr.on('activity:activitySaved', function (activity) {
 
 actMgr.on('activity:activityJoined', function (activity, joinedUser) {
 
-    SocialInteraction.dismissRecommendations(activity.idea, joinedUser, handleError);
-    SocialInteraction.dismissInvitations(activity, joinedUser, handleError);
+    SocialInteraction.dismissRecommendations(activity.idea, joinedUser, { reason: 'activityJoined' }, handleError);
+    SocialInteraction.dismissInvitations(activity, joinedUser, { reason: 'activityJoined' }, handleError);
 
 });
 
 
 actMgr.on('activity:activityDeleted', function (activity) {
 
-    SocialInteraction.dismissInvitations(activity, SocialInteraction.allUsers, handleError);
+    SocialInteraction.dismissInvitations(activity, SocialInteraction.allUsers, { reason: 'activityDeleted' }, handleError);
 });
 
 actMgr.on('activity:activityUpdated', function(updatedActivity) {

@@ -65,9 +65,7 @@ var ProfileSchema = common.newSchema({
             iCalInvites: { type: Boolean, default: true },
             actPlanInvites: { type: Boolean, default: true },
             dailyUserMail: { type: Boolean, default: true }
-        },
-        lastDiaryEntry: {type: Date},
-        doNotAskAgainForDiaryEntry: { type: Boolean, default: false }
+        }
     }
 
 });

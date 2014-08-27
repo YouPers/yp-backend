@@ -485,6 +485,7 @@ SocialInteraction.getAllForUser = function (user, model, options, cb) {
                     var rejectedIdeas = _.map(user.profile.prefs.rejectedIdeas, 'idea');
                     dbQuery.and({ $or: [
                         { targetSpaces: { $elemMatch: { type: 'user', targetId: user._id }}}, // personal, target directly to the user
+                        { refDocs: { $size: 0 } }, // no ref docs, can't be rejected
                         { refDocs: { $elemMatch: { docId: { $nin: rejectedIdeas } } } } // or not rejected
                     ]});
                 }

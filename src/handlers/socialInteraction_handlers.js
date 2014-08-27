@@ -41,6 +41,7 @@ var getAllFn = function getAllFn(baseUrl, Model) {
             mode: isAdminMode ? 'admin' : 'default', // admin mode ignores all filter options except the generic query options
 
             dismissed: Boolean(req.params.dismissed), // include dismissed social interactions
+            dismissalReason: req.params.dismissalReason, // the reason a social interaction has been dismissed
             rejected: Boolean(req.params.rejected), // include social interactions referencing ideas the user has rejected
             authored: Boolean(req.params.authored), // include social interactions where the user is the author
 
@@ -65,6 +66,7 @@ var getOffers = function getAll(req, res, next) {
     var options = {
 
         dismissed: true,
+        dismissalReason: 'denied',
         rejected: true,
 
         discriminators: ['Recommendation', 'Invitation'],
@@ -106,7 +108,8 @@ var deleteByIdFn = function (baseUrl, Model) {
             }
 
             // TODO: add check for Model
-            SocialInteraction.dismissSocialInteractionById(req.params.id, req.user, function(err, socialInteraction) {
+
+            SocialInteraction.dismissSocialInteractionById(req.params.id, req.user, { reason: req.params.reason }, function(err, socialInteraction) {
                 if(err) {
                     return error.handleError(err, next);
                 }

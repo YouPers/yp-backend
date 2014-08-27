@@ -91,12 +91,13 @@ consts.newUserInNewCampaignApi(
                                                 expect(socialInteractions.length).toEqual(0);
 
                                                 frisby.create('Invitation: get inbox, including dismissed')
-                                                    .get(URL + '/socialInteractions?dismissed=true')
+                                                    .get(URL + '/socialInteractions?dismissed=true&dismissalReason=activityJoined')
                                                     .auth(user.username, 'yp')
                                                     .expectStatus(200)
                                                     .afterJSON(function (socialInteractions) {
                                                         expect(socialInteractions.length).toEqual(1);
                                                         expect(socialInteractions[0].dismissed).toBeTruthy();
+                                                        expect(socialInteractions[0].dismissalReason).toEqual('activityJoined');
 
                                                         frisby.create("Invitation: delete the activity")
                                                             .delete(URL + '/activities/' + newPlan.id)

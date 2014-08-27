@@ -15,24 +15,6 @@ module.exports = function (swagger) {
     var baseUrl = '/campaigns',
         baseUrlWithId = baseUrl + "/{id}";
 
-
-    swagger.addOperation({
-        spec: {
-            description: "Operations about campaigns",
-            path: baseUrlWithId + '/offers',
-            notes: "returns invitations and recommendations offered for the specified campaign",
-            summary: "returns invitations and recommendations for this campaign",
-            method: "GET",
-            params: [
-                swagger.pathParam("id", "ID of the campaign", "string")
-            ],
-            "responseClass": "Array[SocialInteraction]",
-            "nickname": "getCampaignOffers",
-            accessLevel: 'al_campaignlead'
-        },
-        action: campaignHandlers.getCampaignOffers
-    });
-
     swagger.addOperation({
         spec: {
             description: "avatar image upload",

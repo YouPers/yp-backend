@@ -249,12 +249,15 @@ SocialInteraction.dismissSocialInteractionById = function dismissSocialInteracti
         });
         var socialInteractionDismissed = new SocialInteractionDismissedModel(document);
 
-        return socialInteractionDismissed.save(function (err) {
+        return socialInteractionDismissed.save(function (err, saved) {
             // we deliberately want to ignore DuplicateKey Errors, because there is not reason to store the dissmissals more than once
             // MONGO Duplicate KeyError code: 11000
             if (err && err.code !== 11000) {
                 return cb(err);
             }
+
+            SocialInteraction.emit('socialInteraction:dismissed', user, socialInteraction, saved);
+
             return cb(null);
         });
 
@@ -372,25 +375,36 @@ SocialInteraction.getAllForUser = function (user, model, options, cb) {
         }
         log.debug('SocialInteraction.getAllForUser: found sois: ' + socialInteractions.length, socialInteractions);
 
-        if (options.dismissed) {
-            _.forEach(socialInteractions, function (si) {
-                var sid = _.find(locals.socialInteractionDismissed, function (dsi) {
-                    return si._id.equals(dsi.socialInteraction);
+        function populateDismissedStatus() {
+
+            if (options.dismissed) {
+                _.forEach(socialInteractions, function (si) {
+                    var sid = _.find(locals.socialInteractionDismissed, function (dsi) {
+                        return si._id.equals(dsi.socialInteraction);
+                    });
+                    if(sid) {
+                        si.dismissed = true;
+                        si.dismissalReason = sid.reason;
+                    }
                 });
-                if(sid) {
-                    si.dismissed = true;
-                    si.dismissalReason = sid.reason;
-                }
-            });
+            }
         }
-        if (options.rejected) {
-            _.forEach(socialInteractions, function (si) {
-                si.rejected = _.any(user.rejectedIdeas, function (idea) {
-                    return _.any(si.refDocs, function(refDoc) {
-                        refDoc.docId.equals(idea);
+        function populateRejectedStatus() {
+            if (options.rejected) {
+
+                if(!options.populateRefDocs) {
+                    throw new Error("can't populate rejected status without populated refDocs");
+                }
+
+                _.forEach(socialInteractions, function (si) {
+                    si.rejected = _.any(user.profile.prefs.rejectedIdeas, function (rejectedIdeaObj) {
+                        return _.any(si.refDocs, function(refDoc) {
+                            return refDoc.docId.equals(rejectedIdeaObj.idea) ||
+                                refDoc.doc && refDoc.doc.idea && refDoc.doc.idea._id.equals(rejectedIdeaObj.idea);
+                        });
                     });
                 });
-            });
+            }
         }
 
         var populateRefDocs = options.populateRefDocs || (options.queryOptions.populate && options.queryOptions.populate.indexOf('refDocs') !== -1);
@@ -401,9 +415,13 @@ SocialInteraction.getAllForUser = function (user, model, options, cb) {
                 if (err) {
                     return cb(err);
                 }
+                populateDismissedStatus();
+                populateRejectedStatus();
                 return cb(err, socialInteractions);
             });
         } else {
+            populateDismissedStatus();
+            populateRejectedStatus();
             return cb(err, socialInteractions);
         }
     }
@@ -463,8 +481,8 @@ SocialInteraction.getAllForUser = function (user, model, options, cb) {
                     dbQuery.and({_id: { $nin: locals.dismissedSocialInteractions }});
                 }
 
-                if (!options.rejected && user.profile.rejectedIdeas) {
-                    var rejectedIdeas = _.map(user.profile.rejectedIdeas, 'idea');
+                if (!options.rejected && user.profile.prefs.rejectedIdeas) {
+                    var rejectedIdeas = _.map(user.profile.prefs.rejectedIdeas, 'idea');
                     dbQuery.and({ $or: [
                         { targetSpaces: { $elemMatch: { type: 'user', targetId: user._id }}}, // personal, target directly to the user
                         { refDocs: { $elemMatch: { docId: { $nin: rejectedIdeas } } } } // or not rejected

@@ -19,7 +19,7 @@ var SocialInteractionSchema = common.newSchema({
 SocialInteractionSchema.methods = {
 
     toJsonConfig: {
-        include: ['dismissed', 'dismissalReason']
+        include: ['rejected', 'dismissed', 'dismissalReason']
     }
 
 };

@@ -13,9 +13,6 @@ var calendar = require('../util/calendar'),
     auth = require('../util/auth'),
     handlerUtils = require('./handlerUtils');
 
-function _getEvents(activity, ownerId, fromDate) {
-    return actMgr.getEvents(activity, ownerId, fromDate);
-}
 
 function validateActivity(req, res, next) {
     var sentActivity = req.body;
@@ -37,7 +34,7 @@ function validateActivity(req, res, next) {
     }
 
     // generate all events from the sentActivity to validate -> sentEvents
-    var newEvents = _getEvents(sentActivity, req.user.id);
+    var newEvents = actMgr.getEvents(sentActivity, req.user.id);
 
     // load all planned events of this user that:
     //     plannedEvent.start before the end of the last sentEvent.end
@@ -163,7 +160,7 @@ function postNewActivity(req, res, next) {
             return error.handleError(err, next);
         }
 
-        var events = _getEvents(savedActivity, req.user.id);
+        var events = actMgr.getEvents(savedActivity, req.user.id);
 
         ActivityEvent.create(events, function (err) {
             if (err) {
@@ -256,7 +253,7 @@ function postJoinActivityFn(req, res, next) {
         }
 
         masterActivity.joiningUsers.push(req.user.id);
-        var events = _getEvents(masterActivity, req.user.id);
+        var events = actMgr.getEvents(masterActivity, req.user.id);
 
         ActivityEvent.create(events, function (err, events) {
             if (err) {
@@ -581,7 +578,7 @@ function putActivity(req, res, next) {
                     var users = [loadedActivity.owner].concat(loadedActivity.joiningUsers);
 
                     return async.forEach(users, function (user, cb) {
-                        var events = _getEvents(loadedActivity, user._id, new Date());
+                        var events = actMgr.getEvents(loadedActivity, user._id, new Date());
                         ActivityEvent.create(events, cb);
                     }, done);
                 } else {
@@ -628,6 +625,5 @@ module.exports = {
     deleteActivity: deleteActivity,
     putActivity: putActivity,
     validateActivity: validateActivity,
-    getAll: getAll,
-    getEvents: _getEvents
+    getAll: getAll
 };

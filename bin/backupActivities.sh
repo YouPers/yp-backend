@@ -1,0 +1,8 @@
+#! /bin/bash
+set -e
+OLD_VERSION=`mongo --version | cut -b 24-`
+brew switch mongo 2.4.9
+
+DATE=$(date +"%Y%m%d%H%M")
+/usr/local/bin/mongoexport --host 10.111.1.70:27017 -u nodeDbAccess -p yp13%mongodb%uat -c ideas -d ypdb --jsonArray > /Users/retoblunschi/Documents/backendBackup/activities_$DATE.json
+brew switch mongo $OLD_VERSION

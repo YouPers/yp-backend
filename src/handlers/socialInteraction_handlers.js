@@ -40,17 +40,20 @@ var getAllFn = function getAllFn(baseUrl, Model) {
         var options = {
             mode: isAdminMode ? 'admin' : 'default', // admin mode ignores all filter options except the generic query options
 
+            targetId: req.params.targetId, // disables the default target space filter, use case: comments targeted to a campaign or activity
+            refDocId: req.params.refDocId, // disables the default target space filter, use case: participants/invitees of an activity
+
+
+            // inclusive filter options: includes results that would be filtered out with the default filter options
+
             dismissed: Boolean(req.params.dismissed), // include dismissed social interactions
             dismissalReason: req.params.dismissalReason, // the reason a social interaction has been dismissed
             rejected: Boolean(req.params.rejected), // include social interactions referencing ideas the user has rejected
             authored: Boolean(req.params.authored), // include social interactions where the user is the author
 
-            targetId: req.params.targetId, // disables the default target space filter
-            authorType: req.params.authorType,
-
+            authorType: req.params.authorType, // if the socialInteraction was posted as user, campaignLead, ...
             // comma separated list of Model names, values: Message, Recommendation or Invitation
             discriminators: req.params.discriminators && req.params.discriminators.split(','),
-            refDocId: req.params.refDocId, // used for idea context
             queryOptions: req.query,
             locale: req.locale,
             populateRefDocs: true

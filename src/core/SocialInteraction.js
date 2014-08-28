@@ -2,6 +2,7 @@ var EventEmitter = require('events').EventEmitter,
     error = require('../util/error'),
     util = require('util'),
     mongoose = require('mongoose'),
+    User = mongoose.model('User'),
     SocialInteractionModel = mongoose.model('SocialInteraction'),
     SocialInteractionDismissedModel = mongoose.model('SocialInteractionDismissed'),
     Invitation = mongoose.model('Invitation'),
@@ -278,33 +279,53 @@ SocialInteraction.dismissSocialInteractionById = function dismissSocialInteracti
  */
 SocialInteraction.populateSocialInteraction = function (socialInteraction, campaignId, cb) {
 
-    async.each(socialInteraction.refDocs, function (refDoc, done) {
-
-        mongoose.model(refDoc.model).findById(refDoc.docId).populate('idea').exec(function (err, document) {
-
-            // store the populated document in the refDoc
-            refDoc.doc = document;
-
-            if (campaignId && refDoc.model === 'Idea') {
-
-                // calculate the count this idea has been planned within the campaign
-                Activity.count({
-                    idea: document._id,
-                    campaign: campaignId
-                }).exec(function (err, count) {
-                    if (err) {
-                        return done(err);
-                    }
-                    log.debug({count: count}, 'plan Count');
-                    socialInteraction.planCount = count;
-                    return done();
-                });
-            } else {
-                return done(err);
-            }
+    function _populateTargetedUsers(donePopulating) {
+        async.each(_.filter(socialInteraction.targetSpaces, { type: 'user'}), function (targetSpace, done) {
+            User.findById(targetSpace.targetId).exec(function(err, user) {
+                if (err) {
+                    return done(err);
+                }
+                targetSpace.user = user;
+                done();
+            });
+        }, function (err, results) {
+            return donePopulating(err);
         });
+    }
 
-    }, function (err, results) {
+    function _populateRefDocs(donePopulating) {
+        async.each(socialInteraction.refDocs, function (refDoc, done) {
+
+            mongoose.model(refDoc.model).findById(refDoc.docId).populate('idea').exec(function (err, document) {
+
+                // store the populated document in the refDoc
+                refDoc.doc = document;
+
+                if (campaignId && refDoc.model === 'Idea') {
+
+                    // calculate the count this idea has been planned within the campaign
+                    Activity.count({
+                        idea: document._id,
+                        campaign: campaignId
+                    }).exec(function (err, count) {
+                        if (err) {
+                            return done(err);
+                        }
+                        log.debug({count: count}, 'plan Count');
+                        socialInteraction.planCount = count;
+                        return done();
+                    });
+                } else {
+                    return done(err);
+                }
+            });
+
+        }, function (err, results) {
+            return donePopulating(err);
+        });
+    }
+
+    async.parallel([_populateTargetedUsers, _populateRefDocs], function(err) {
         return cb(err, socialInteraction);
     });
 
@@ -434,10 +455,10 @@ SocialInteraction.getAllForUser = function (user, model, options, cb) {
                 }
                 var now = moment().toDate();
 
-                var targetSpaceFinder = {};
+                var finder = {};
 
                 if (options.targetId) {
-                    targetSpaceFinder.targetSpaces = {
+                    finder.targetSpaces = {
                         $elemMatch: {
                             targetId: options.targetId
                         }
@@ -455,13 +476,14 @@ SocialInteraction.getAllForUser = function (user, model, options, cb) {
                         orClauses.push({ type: 'campaign', targetId: user.campaign._id });
                     }
 
-                    targetSpaceFinder.targetSpaces = {
+                    finder.targetSpaces = {
                         $elemMatch: {
                             $or: orClauses
                         }
                     };
                 }
-                var dbQuery = model.find(targetSpaceFinder);
+
+                var dbQuery = model.find(finder);
                 dbQuery
                     .and({$or: [
                         {publishTo: {$exists: false}},
@@ -496,15 +518,15 @@ SocialInteraction.getAllForUser = function (user, model, options, cb) {
                 if(options.discriminators) {
                     dbQuery.and({ __t: { $in: options.discriminators } });
                 }
+                if(options.refDocId) {
+                    dbQuery.and({refDocs: { $elemMatch: {docId: options.refDocId}}});
+                }
 
                 if (user.profile.language) {
                     dbQuery.and({ $or: [
                         {language: {$exists: false}},
                         {language: user.profile.language}
                     ] });
-                }
-                if (options.refDocId) {
-                    dbQuery.and({ refDocs: { $elemMatch: {docId: options.refDocId}}});
                 }
                 generic.processDbQueryOptions(options.queryOptions, dbQuery, locale, model)
                     .exec(_soiLoadCb);
@@ -523,6 +545,43 @@ SocialInteraction.getAllForUser = function (user, model, options, cb) {
     } else {
         _loadUserMode();
     }
+};
+
+SocialInteraction.getInvitationStatus = function (activityId, cb) {
+
+    Activity.findById(activityId, function(err, activity) {
+
+        Invitation.find({ refDocs: { $elemMatch: { docId: activity.id }}}).exec(function(err, invitations) {
+            if (err) {
+                return cb(err);
+            }
+
+            SocialInteractionDismissedModel.find({ socialInteraction: { $in: _.map(invitations, '_id') }}).exec(function (err, sidList) {
+                if (err) {
+                    return cb(err);
+                }
+
+                var userResults = [];
+
+                _.each(invitations, function (invitation) {
+
+                    _.each(_.filter(invitation.targetSpaces, { type: 'user'}), function(space) {
+                        var sid = _.find(sidList, { socialInteraction: invitation._id, user: space.targetId });
+
+                        var userResult = {
+                            user: space.targetId,
+                            status: sid ? sid.reason : 'pending'
+                        };
+                        userResults.push(userResult);
+                    });
+
+                });
+
+                mongoose.model('User').populate(userResults, {path: 'user', model: 'User'}, cb);
+            });
+        });
+    });
+
 };
 
 module.exports = SocialInteraction;

@@ -29,7 +29,8 @@ var AssessmentQuestionSchema = common.newSchema({
 });
 
 var AssessmentSchema = common.newSchema({
-    name: {type: String, trim: true, i18n: true},
+    name: {type: String, trim: true, i18n: true, required: true},
+    impactQuestion: {type: String, trim: true, i18n: true, required: true},
     questions: [{type: ObjectId, ref: 'AssessmentQuestion'}],
     topic: {type: ObjectId, ref: 'Topic', required: true}
 });

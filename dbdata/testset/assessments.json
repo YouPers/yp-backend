@@ -8,6 +8,10 @@
             "de": "Beurteile Deinen Stresslevel",
             "en": "Assess your personal Stress Factors"
         },
+        "impactQuestionI18n": {
+            "de": "Stresst Dich das?",
+            "en": "Does this have an impact on you?"
+        },
         "questions": [
             {
                 "$oid": "5278c51a6166f2de240000dd"
@@ -103,6 +107,10 @@
         "nameI18n": {
             "de": "Beurteile Deine Ern\u00e4hrung"
         },
+        "impactQuestionI18n": {
+            "de": "Beeinträchtigt das deine Gesundheit?",
+            "en": "Does this have an impact on you?"
+        },
         "questions": [
             {
                 "$oid": "53e8df8d3cca9d19333e73d1"
@@ -173,6 +181,10 @@
         },
         "nameI18n": {
             "de": "Beurteile Deine Fitness"
+        },
+        "impactQuestionI18n": {
+            "de": "Beeinträchtigt das deine Gesundheit?",
+            "en": "Does this have an impact on you?"
         },
         "questions": [
             {

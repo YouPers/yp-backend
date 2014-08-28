@@ -10,7 +10,15 @@
         },
         "impactQuestionI18n": {
             "de": "Stresst Dich das?",
-            "en": "Does this have an impact on you?"
+            "en": "Does this stress you out?"
+        },
+        "impactQuestionLeftI18n": {
+            "de": "kaum",
+            "en": "hardly"
+        },
+        "impactQuestionRightI18n": {
+            "de": "sehr",
+            "en": "highly"
         },
         "questions": [
             {
@@ -111,6 +119,14 @@
             "de": "Beeinträchtigt das deine Gesundheit?",
             "en": "Does this have an impact on you?"
         },
+        "impactQuestionLeftI18n": {
+            "de": "kaum",
+            "en": "hardly"
+        },
+        "impactQuestionRightI18n": {
+            "de": "sehr",
+            "en": "highly"
+        },
         "questions": [
             {
                 "$oid": "53e8df8d3cca9d19333e73d1"
@@ -185,6 +201,14 @@
         "impactQuestionI18n": {
             "de": "Beeinträchtigt das deine Gesundheit?",
             "en": "Does this have an impact on you?"
+        },
+        "impactQuestionLeftI18n": {
+            "de": "kaum",
+            "en": "hardly"
+        },
+        "impactQuestionRightI18n": {
+            "de": "sehr",
+            "en": "highly"
         },
         "questions": [
             {

@@ -577,9 +577,7 @@ SocialInteraction.getInvitationStatus = function (activityId, cb) {
 
                 });
 
-                mongoose.model('User').populate(userResults, {path: 'user', model: 'User'}, function (err, populatedUsers) {
-                    cb(err, userResults);
-                });
+                mongoose.model('User').populate(userResults, {path: 'user', model: 'User'}, cb);
             });
         });
     });

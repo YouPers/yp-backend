@@ -556,7 +556,7 @@ SocialInteraction.getInvitationStatus = function (activityId, cb) {
                 return cb(err);
             }
 
-            SocialInteractionDismissedModel.find({ _id: { $in: _.map(invitations, '_id') }}).exec(function (err, sidList) {
+            SocialInteractionDismissedModel.find({ socialInteraction: { $in: _.map(invitations, '_id') }}).exec(function (err, sidList) {
                 if (err) {
                     return cb(err);
                 }
@@ -566,7 +566,7 @@ SocialInteraction.getInvitationStatus = function (activityId, cb) {
                 _.each(invitations, function (invitation) {
 
                     _.each(_.filter(invitation.targetSpaces, { type: 'user'}), function(space) {
-                        var sid = _.find(sidList, { socialInteraction: invitation.id, user: space.targetId });
+                        var sid = _.find(sidList, { socialInteraction: invitation._id, user: space.targetId });
 
                         var userResult = {
                             user: space.targetId,
@@ -577,31 +577,11 @@ SocialInteraction.getInvitationStatus = function (activityId, cb) {
 
                 });
 
-                async.each(userResults, function(userResult, done) {
-                    User.findById(userResult.user).select('+profile').populate('profile').exec(function(err, user) {
-                        if (err) {
-                            return cb(err);
-                        }
-
-                        userResult.user = user;
-
-                        var rejected = _.any(user.profile.prefs.rejectedIdeas, function (rejectedIdeaObj) {
-                            return activity.idea.equals(rejectedIdeaObj.idea);
-                        });
-                        if(rejected) {
-                            userResult.status = rejected;
-                        }
-                        done();
-                    });
-                }, function(err, results) {
+                mongoose.model('User').populate(userResults, {path: 'user', model: 'User'}, function (err, populatedUsers) {
                     cb(err, userResults);
                 });
-
             });
-
         });
-
-
     });
 
 };

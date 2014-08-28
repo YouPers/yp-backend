@@ -12,6 +12,41 @@ module.exports = function (swagger) {
     var baseUrl = '/activities';
     var baseUrlWithId = baseUrl + '/{id}';
 
+
+    swagger.addOperation({
+        spec: {
+            description: "Operations about Activities",
+            path: baseUrlWithId + '/invitationStatus',
+            notes: "Returns all Invitations for this activity and a dissmissalReason if the invitation is already dismissed",
+            summary: "Returns all Invitations along with their status",
+            params: [
+                {
+                    paramType: "path",
+                    name: "id",
+                    description: "the id of the activity to fetch ",
+                    dataType: "string",
+                    required: true
+                },
+                generic.params.populate,
+                generic.params.populatedeep
+            ],
+            "responseClass": "ActivityInvitationStatusResult",
+            method: "GET",
+            "nickname": "getActivity",
+            accessLevel: 'al_individual',
+            beforeCallbacks: []
+        },
+        action: handlers.getInvitationStatus
+    });
+
+    swagger.addModels({ActivityInvitationStatusResult: {
+        id: 'ActivityInvitationStatusResult',
+        properties: {
+            user: {type: 'User'},
+            status: {type: 'String'}
+        }
+    }});
+
     swagger.addOperation({
         spec: {
             description: "Operations about Activities",

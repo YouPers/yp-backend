@@ -17,6 +17,12 @@ function _getEvents(activity, ownerId, fromDate) {
     return actMgr.getEvents(activity, ownerId, fromDate);
 }
 
+
+function getInvitationStatus(req, res, next) {
+    SocialInteraction.getInvitationStatus(req.params.id, generic.sendListCb(req, res, next));
+}
+
+
 function validateActivity(req, res, next) {
     var sentActivity = req.body;
 
@@ -627,6 +633,7 @@ module.exports = {
     postActivityInvite: postActivityInvite,
     deleteActivity: deleteActivity,
     putActivity: putActivity,
+    getInvitationStatus: getInvitationStatus,
     validateActivity: validateActivity,
     getAll: getAll,
     getEvents: _getEvents

@@ -463,14 +463,7 @@ SocialInteraction.getAllForUser = function (user, model, options, cb) {
                             targetId: options.targetId
                         }
                     };
-                }
-
-                if (options.refDocId) {
-                    finder.refDocs = { $elemMatch: {docId: options.refDocId}};
-                }
-
-                // only use default target space finder if no targetId or refDocId is provided
-                if(!(options.targetId || options.refDocId)) {
+                } else {
                     var orClauses = [
                         { type: 'user', targetId: user._id },
                         { type: 'system' },
@@ -525,6 +518,9 @@ SocialInteraction.getAllForUser = function (user, model, options, cb) {
                 if(options.discriminators) {
                     dbQuery.and({ __t: { $in: options.discriminators } });
                 }
+                if(options.refDocId) {
+                    dbQuery.and({refDocs: { $elemMatch: {docId: options.refDocId}}});
+                }
 
                 if (user.profile.language) {
                     dbQuery.and({ $or: [
@@ -549,6 +545,65 @@ SocialInteraction.getAllForUser = function (user, model, options, cb) {
     } else {
         _loadUserMode();
     }
+};
+
+SocialInteraction.getInvitationStatus = function (activityId, cb) {
+
+    Activity.findById(activityId, function(err, activity) {
+
+        Invitation.find({ refDocs: { $elemMatch: { docId: activity.id }}}).exec(function(err, invitations) {
+            if (err) {
+                return cb(err);
+            }
+
+            SocialInteractionDismissedModel.find({ _id: { $in: _.map(invitations, '_id') }}).exec(function (err, sidList) {
+                if (err) {
+                    return cb(err);
+                }
+
+                var userResults = [];
+
+                _.each(invitations, function (invitation) {
+
+                    _.each(_.filter(invitation.targetSpaces, { type: 'user'}), function(space) {
+                        var sid = _.find(sidList, { socialInteraction: invitation.id, user: space.targetId });
+
+                        var userResult = {
+                            user: space.targetId,
+                            status: sid ? sid.reason : 'pending'
+                        };
+                        userResults.push(userResult);
+                    });
+
+                });
+
+                async.each(userResults, function(userResult, done) {
+                    User.findById(userResult.user).select('+profile').populate('profile').exec(function(err, user) {
+                        if (err) {
+                            return cb(err);
+                        }
+
+                        userResult.user = user;
+
+                        var rejected = _.any(user.profile.prefs.rejectedIdeas, function (rejectedIdeaObj) {
+                            return activity.idea.equals(rejectedIdeaObj.idea);
+                        });
+                        if(rejected) {
+                            userResult.status = rejected;
+                        }
+                        done();
+                    });
+                }, function(err, results) {
+                    cb(err, userResults);
+                });
+
+            });
+
+        });
+
+
+    });
+
 };
 
 module.exports = SocialInteraction;

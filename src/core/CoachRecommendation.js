@@ -275,6 +275,7 @@ function _updateRecommendations(userId, topic, rejectedIdeas, assessmentResult, 
                                     }
                                 ],
                                 author: HEALTH_COACH_USER_ID,
+                                authorType: 'coach',
                                 refDocs: [
                                     { docId: idea, model: 'Idea' }
                                 ],

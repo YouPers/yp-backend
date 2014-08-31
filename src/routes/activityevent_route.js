@@ -73,7 +73,6 @@ module.exports = function (swagger) {
                 accessLevel: 'al_individual'
             },
             action:  generic.putFn(baseUrl, Model)
-            //TODO: publish event to add a Diary Entry
         }
     );
 

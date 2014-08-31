@@ -162,7 +162,7 @@ function getDefaultActivity(req, res, next) {
         }
 
         var defaultActivity = ActivityManagement.defaultActivity(idea, req.user);
-        req.log.info(defaultActivity);
+        req.log.debug(defaultActivity);
         defaultActivity._id = undefined;
         res.send(defaultActivity);
         return next();
@@ -214,10 +214,12 @@ function getIdeaUserContext(req, res, next) {
         queryOptions.populate = req.query.populate ? 'author ' + req.query.populate : 'author';
 
         var options = {
+
+            authored: true,
+
             refDocId: ideaId,
             locale: req.locale,
-            queryOptions: queryOptions,
-            adminMode: false
+            queryOptions: queryOptions
         };
 
         SocialInteraction.getAllForUser(req.user, mongoose.model('SocialInteraction'), options, function (err, sois) {

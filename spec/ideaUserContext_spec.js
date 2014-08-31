@@ -27,8 +27,8 @@ consts.newUserInNewCampaignApi(
                 "campaign": campaign.id,
                 "executionType": "group",
                 "mainEvent": {
-                    "start": moment().add('days', 1),
-                    "end": moment().add('days', 1).add('hours', 2),
+                    "start": moment().add(1, 'days'),
+                    "end": moment().add(1, 'days').add(2, 'hours'),
                     "allDay": false,
                     "frequency": "once"
                 },
@@ -49,7 +49,7 @@ consts.newUserInNewCampaignApi(
 
                         author: user.id,
                         publishFrom: moment(),
-                        publishTo: moment().add('hours', 1),
+                        publishTo: moment().add(1, 'hours'),
 
                         refDocs: [
                             { docId: consts.groupIdea.id, model: 'Idea'},
@@ -105,7 +105,7 @@ consts.newUserInNewCampaignApi(
 
                 author: consts.users.test_campaignlead.id,
                 publishFrom: moment(),
-                publishTo: moment().add('hours', 1),
+                publishTo: moment().add(1, 'hours'),
 
                 refDocs: [
                     { docId: consts.aloneIdea.id, model: 'Idea'}

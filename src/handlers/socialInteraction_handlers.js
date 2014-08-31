@@ -30,16 +30,30 @@ var getByIdFn = function getByIdFn(baseUrl, Model) {
     };
 };
 
-var getAllFn = function getAllFn(baseUrl, Model, fromAllOwners) {
+var getAllFn = function getAllFn(baseUrl, Model) {
     return function getAll(req, res, next) {
 
         var user = req.user;
-        var adminMode = auth.checkAccess(req.user, auth.accessLevels.al_admin) &&
+        var isAdminMode = auth.checkAccess(req.user, auth.accessLevels.al_admin) &&
             req.params.mode && req.params.mode === 'administrate';
 
         var options = {
-            adminMode: adminMode,
-            refDocId: req.params.refDocId,
+            mode: isAdminMode ? 'admin' : 'default', // admin mode ignores all filter options except the generic query options
+
+            targetId: req.params.targetId, // disables the default target space filter, use case: comments targeted to a campaign or activity
+            refDocId: req.params.refDocId, // disables the default target space filter, use case: participants/invitees of an activity
+
+
+            // inclusive filter options: includes results that would be filtered out with the default filter options
+
+            dismissed: Boolean(req.params.dismissed), // include dismissed social interactions
+            dismissalReason: req.params.dismissalReason, // the reason a social interaction has been dismissed
+            rejected: Boolean(req.params.rejected), // include social interactions referencing ideas the user has rejected
+            authored: Boolean(req.params.authored), // include social interactions where the user is the author
+
+            authorType: req.params.authorType, // if the socialInteraction was posted as user, campaignLead, ...
+            // comma separated list of Model names, values: Message, Recommendation or Invitation
+            discriminators: req.params.discriminators && req.params.discriminators.split(','),
             queryOptions: req.query,
             locale: req.locale,
             populateRefDocs: true
@@ -47,6 +61,25 @@ var getAllFn = function getAllFn(baseUrl, Model, fromAllOwners) {
 
         SocialInteraction.getAllForUser(user, Model, options, generic.sendListCb(req, res, next));
     };
+};
+var getOffers = function getAll(req, res, next) {
+
+    var user = req.user;
+
+    var options = {
+
+        dismissed: true,
+        dismissalReason: 'denied',
+        rejected: true,
+
+        discriminators: ['Recommendation', 'Invitation'],
+
+        queryOptions: req.query,
+        locale: req.locale,
+        populateRefDocs: true
+    };
+
+    SocialInteraction.getAllForUser(user, SocialInteractionModel, options, generic.sendListCb(req, res, next));
 };
 
 
@@ -78,7 +111,8 @@ var deleteByIdFn = function (baseUrl, Model) {
             }
 
             // TODO: add check for Model
-            SocialInteraction.dismissSocialInteractionById(req.params.id, req.user, function(err, socialInteraction) {
+
+            SocialInteraction.dismissSocialInteractionById(req.params.id, req.user, { reason: req.params.reason }, function(err, socialInteraction) {
                 if(err) {
                     return error.handleError(err, next);
                 }
@@ -94,5 +128,6 @@ var deleteByIdFn = function (baseUrl, Model) {
 module.exports = {
     deleteByIdFn: deleteByIdFn,
     getByIdFn: getByIdFn,
-    getAllFn: getAllFn
+    getAllFn: getAllFn,
+    getOffers: getOffers
 };

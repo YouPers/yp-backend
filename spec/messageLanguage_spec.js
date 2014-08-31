@@ -48,7 +48,7 @@ consts.newUserInNewCampaignApi(
                     important: true,
 
                     publishFrom: moment(),
-                    publishTo: moment().add('minutes', 1)
+                    publishTo: moment().add(1, 'minutes')
 
                 };
 
@@ -139,7 +139,7 @@ consts.newUserInNewCampaignApi(
                     language: 'de',
 
                     publishFrom: moment(),
-                    publishTo: moment().add('minutes', 1)
+                    publishTo: moment().add(1, 'minutes')
 
                 };
 

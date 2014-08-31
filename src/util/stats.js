@@ -325,24 +325,6 @@ var statsQueries = function (timeRange, scopeType, scopeId) {
         }}
     );
 
-    var usersWithDiaryEntryQuery = mongoose.model('Profile').aggregate();
-    if (scopePipelineEntry) {
-        usersWithDiaryEntryQuery.append(scopePipelineEntry);
-    }
-    if (timeRangePipelineEntry) {
-        usersWithDiaryEntryQuery.append(timeRangePipelineEntry);
-    }
-    usersWithDiaryEntryQuery.append(
-        {$match: {'prefs.lastDiaryEntry': {$exists: true}}},
-        {$group: {_id: 'total',
-            users: {$sum: 1}}
-        },
-        {$project: {
-            users: 1,
-            _id: 0
-        }}
-    );
-
     return {
         assUpdatesPerDay: assUpdatesPerDayQuery,
         assUpdatesTotal: assUpdatesTotalQuery,
@@ -355,8 +337,7 @@ var statsQueries = function (timeRange, scopeType, scopeId) {
         activityEventsTotal: eventsTotalQuery,
         eventsDonePerDay: eventsDonePerDayQuery,
         usersTotal: usersTotalQuery,
-        focusSet: focusSetQuery,
-        usersWithDiaryEntry: usersWithDiaryEntryQuery
+        focusSet: focusSetQuery
         };
 };
 

@@ -12,12 +12,46 @@ module.exports = function (swagger) {
     var baseUrl = '/activities';
     var baseUrlWithId = baseUrl + '/{id}';
 
+
     swagger.addOperation({
         spec: {
             description: "Operations about Activities",
-            path: baseUrl + "/conflicts",
-            notes: "Gets the list of conflicting events in case there are any for the activity in the body." +
-                "If there are no conflicts, it returns an emtpy list",
+            path: baseUrlWithId + '/invitationStatus',
+            notes: "Returns all Invitations for this activity and a dissmissalReason if the invitation is already dismissed",
+            summary: "Returns all Invitations along with their status",
+            params: [
+                {
+                    paramType: "path",
+                    name: "id",
+                    description: "the id of the activity to fetch ",
+                    dataType: "string",
+                    required: true
+                },
+                generic.params.populate,
+                generic.params.populatedeep
+            ],
+            "responseClass": "ActivityInvitationStatusResult",
+            method: "GET",
+            "nickname": "getActivity",
+            accessLevel: 'al_individual',
+            beforeCallbacks: []
+        },
+        action: handlers.getInvitationStatus
+    });
+
+    swagger.addModels({ActivityInvitationStatusResult: {
+        id: 'ActivityInvitationStatusResult',
+        properties: {
+            user: {type: 'User'},
+            status: {type: 'String'}
+        }
+    }});
+
+    swagger.addOperation({
+        spec: {
+            description: "Operations about Activities",
+            path: baseUrl + "/validate",
+            notes: "Validates a new activity, generates the list of events and returns the list of conflicting events in case there are any for the activity in the body.",
             summary: "Validates an activity that a user is about to POST",
             params: [
                 {
@@ -28,21 +62,21 @@ module.exports = function (swagger) {
                     required: true
                 }
             ],
-            responseClass: "SchedulingConflict",
+            responseClass: "ActivityValidationResult",
             method: "POST",
-            "nickname": "getActivityConflicts",
+            "nickname": "validateActivity",
             accessLevel: 'al_individual',
             beforeCallbacks: []
         },
-        action: handlers.getActivityConflicts
+        action: handlers.validateActivity
     });
 
-    swagger.addModels({SchedulingConflict: {
-        id: 'SchedulingConflict',
-        required: ['conflictingNewEvent', 'conflictingSavedEvent'],
+    swagger.addModels({ActivityValidationResult: {
+        id: 'ActivityValidationResult',
+        required: ['event'],
         properties: {
-            conflictingNewEvent: {type: 'ActivityEvent'},
-            conflictingSavedEvent: {type: 'ActivityEvent'}
+            event: {type: 'ActivityEvent'},
+            conflictingEvent: {type: 'ActivityEvent'}
         }
     }});
 

@@ -7,6 +7,7 @@ module.exports = function (swagger) {
 
     var baseUrl = '/socialInteractions',
         baseUrlWithId = baseUrl + '/{id}';
+    var offersUrl = '/offers';
 
     swagger.addOperation({
         spec: {
@@ -29,19 +30,51 @@ module.exports = function (swagger) {
         spec: {
             description: "Operations about socialInteractions",
             path: baseUrl,
-            notes: "returns all socialInteractions, but limits to 100 entries by default. Use query params sort:'created:-1' and limit to retrieve the newest socialInteractions",
-            summary: "get all socialInteractions",
+            notes: "returns all socialInteractions that are targeted to this user",
+            summary: "get all socialInteractions, supports generic filter, sort and populate options as well as custom filter options" +
+                "admin mode: get all sois, invoked by role '[product,system]Admin' and queryParam mode='administrate'",
             method: "GET",
-            params: [generic.params.sort,
+            params: [
+                generic.params.sort,
                 generic.params.limit,
                 generic.params.filter,
                 generic.params.populate,
-                generic.params.populatedeep],
+                generic.params.populatedeep,
+                swagger.queryParam('dismissed', 'include socialInteractions that have been dismissed', 'Boolean', false, false),
+                swagger.queryParam('rejected', 'include socialInteractions that have been rejected', 'Boolean', false, false),
+                swagger.queryParam('authored', 'include socialInteractions where the user is the author', 'Boolean', false, false),
+                swagger.queryParam('targetId', 'restrict to a targetId, for example an activity or campaign, disables the default target space filter', 'String'),
+                swagger.queryParam('authorType', 'restrict to a authorType, for example only social interactions from a campaignlead', 'String'),
+                swagger.queryParam('discriminators', 'comma separated list of discriminators / model names, for example "Invitation,Recommendation"', 'String'),
+                swagger.queryParam('refDocId', 'restrict to a referenced document id', 'String'),
+                swagger.queryParam('mode', 'expected values: [administrate]', 'String')
+            ],
             "responseClass": "Array[SocialInteraction]",
             "nickname": "getSocialInteractions",
             accessLevel: 'al_individual'
         },
         action: handlers.getAllFn(baseUrl, Model)
+    });
+
+    swagger.addOperation({
+        spec: {
+            description: "Operations about socialInteractions",
+            path: offersUrl,
+            notes: "returns all offered Invitations and Recommendations that are targeted to this user, includes dismissed and rejected",
+            summary: "get all socialInteractions, supports generic filter, sort and populate options",
+            method: "GET",
+            params: [
+                generic.params.sort,
+                generic.params.limit,
+                generic.params.filter,
+                generic.params.populate,
+                generic.params.populatedeep
+            ],
+            "responseClass": "Array[SocialInteraction]",
+            "nickname": "getOffers",
+            accessLevel: 'al_individual'
+        },
+        action: handlers.getOffers
     });
 
     swagger.addOperation({
@@ -51,11 +84,15 @@ module.exports = function (swagger) {
                 notes: "delete socialInteraction",
                 summary: "Deletes a socialInteraction by id",
                 method: "DELETE",
-                params: [swagger.pathParam("id", "ID of the socialInteraction to be fetched", "string")],
+                params: [
+                    swagger.pathParam("id", "ID of the socialInteraction to be fetched", "string"),
+                    swagger.queryParam('mode', 'expected values: [administrate]', 'String'),
+                    swagger.queryParam('reason', 'the reason why the social interaction is dismissed, expected values: [activityScheduled activityJoined activityDeleted denied campaignleadAccepted orgadminAccepted]', 'String')
+                ],
                 "nickname": "deleteSocialInteraction",
                 accessLevel: 'al_user'
             },
-            action:  handlers.deleteByIdFn(baseUrl, Model)
+            action: handlers.deleteByIdFn(baseUrl, Model)
         }
     );
 

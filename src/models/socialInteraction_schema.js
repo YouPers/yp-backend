@@ -4,7 +4,7 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
     ObjectId = Schema.ObjectId,
     Space = mongoose.model('Space'),
-    _ = require('lodash');
+    common = require('./common');
 
 function AbstractSocialInteractionSchema() {
     Schema.apply(this, arguments);
@@ -17,6 +17,7 @@ function AbstractSocialInteractionSchema() {
         publishTo: {type: Date},
 
         author: {type: ObjectId, ref: 'User', required: true},
+        authorType: {type: String, enum: common.enums.authorType, required: true, default: 'user'},
 
         title: {type: String, required: false},
         text: {type: String, required: false},
@@ -28,21 +29,5 @@ function AbstractSocialInteractionSchema() {
 util.inherits(AbstractSocialInteractionSchema, Schema);
 
 
-AbstractSocialInteractionSchema.methods = {
-
-    isTargeted: function(user) {
-
-        // TODO: enable targetSpace types [ activity, email ]
-
-        return _.any(this.targetSpaces, function(space) {
-
-            return space.type === 'system' ||
-                space.targetId.equals(user._id) ||
-                space.targetId.equals(user.campaign);
-        });
-
-    }
-
-};
 
 module.exports = AbstractSocialInteractionSchema;

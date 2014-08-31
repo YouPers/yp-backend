@@ -13,6 +13,7 @@ var mongoose = require('mongoose'),
 var SocialInteractionDismissedSchema = common.newSchema({
     user: {type: ObjectId, ref: 'User', required: true},
     socialInteraction: {type: ObjectId, ref: 'SocialInteraction', required: true},
+    reason: {type: String, enum: common.enums.dismissalReason },
 
     // this (the expires property) creates a mongo TTL-Index, that automatically drops a document
     // whenever the expiresAt is smaller then NOW
@@ -21,8 +22,7 @@ var SocialInteractionDismissedSchema = common.newSchema({
 
 });
 
-// we only want one dismissal per user and notification, the save method catches the
-// duplicate key errors, see core/Notification.dismissNotification:128
-SocialInteractionDismissedSchema.index({user: 1, notification: 1}, {unique: true});
+// we only want one dismissal per user and notification, the save method catches the duplicate key errors
+SocialInteractionDismissedSchema.index({user: 1, socialInteraction: 1}, {unique: true});
 
 module.exports = mongoose.model('SocialInteractionDismissed', SocialInteractionDismissedSchema);

@@ -124,21 +124,6 @@ module.exports = {
                 ret.id = ret._id;
                 delete ret._id;
 
-                // handling virtuals into the JSON
-                // TODO: move the configuration which virtuals to output as JSON into a property of the schema instead of these ifs here
-
-                if (doc.deleteStatus) {
-                    ret.deleteStatus = doc.deleteStatus;
-                }
-
-                if (doc.editStatus) {
-                    ret.editStatus = doc.editStatus;
-                }
-
-                if (doc.sourceType) {
-                    ret.sourceType = doc.sourceType;
-                }
-
                 _.forEach(multilingualValues, function (prop) {
 
                     // enable the virtual
@@ -148,10 +133,22 @@ module.exports = {
                     delete ret[prop + 'I18n'];
                 });
 
-                if (doc.toJsonConfig && doc.toJsonConfig.hide) {
-                    _.forEach(doc.toJsonConfig.hide, function (propertyToHide) {
-                        delete ret[propertyToHide];
-                    });
+                if (doc.toJsonConfig) {
+
+                    // include values from virtuals or manual set flags that are not part of the schema
+                    if(doc.toJsonConfig.include) {
+                        _.forEach(doc.toJsonConfig.include, function(include) {
+                            if (doc[include] !== undefined) {
+                                ret[include] = doc[include];
+                            }
+                        });
+                    }
+
+                    if(doc.toJsonConfig.hide) {
+                        _.forEach(doc.toJsonConfig.hide, function (propertyToHide) {
+                            delete ret[propertyToHide];
+                        });
+                    }
                 }
             }});
 
@@ -205,7 +202,8 @@ module.exports = {
 
         // type of the targeted space for a social interaction
         targetSpace: "user activity campaign system email".split(' '),
-
+        authorType: "user campaignLead productAdmin coach".split(' '),
+        dismissalReason: "activityScheduled activityJoined activityDeleted denied campaignleadAccepted orgadminAccepted".split(' '),
         actionType: "assessment focus".split(' ')
     }
 };

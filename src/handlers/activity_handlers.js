@@ -9,35 +9,18 @@ var calendar = require('../util/calendar'),
     error = require('../util/error'),
     _ = require('lodash'),
     email = require('../util/email'),
-    moment = require('moment'),
     async = require('async'),
     auth = require('../util/auth'),
     handlerUtils = require('./handlerUtils');
 
-function _getEvents(activity, ownerId, fromDate) {
 
-    var duration = moment(activity.mainEvent.end).diff(activity.mainEvent.start);
 
-    var occurrences = calendar.getOccurrences(activity, fromDate);
-
-    var events = [];
-
-    _.forEach(occurrences, function (instance) {
-        events.push({
-            status: 'open',
-            start: moment(instance).toDate(),
-            end: moment(instance).add(duration, 'ms').toDate(),
-            activity: activity._id,
-            idea: activity.idea,
-            owner: ownerId,
-            campaign: activity.campaign
-        });
-    });
-
-    return events;
+function getInvitationStatus(req, res, next) {
+    SocialInteraction.getInvitationStatus(req.params.id, generic.sendListCb(req, res, next));
 }
 
-function getActivityConflicts(req, res, next) {
+
+function validateActivity(req, res, next) {
     var sentActivity = req.body;
 
     // check required Attributes
@@ -57,7 +40,7 @@ function getActivityConflicts(req, res, next) {
     }
 
     // generate all events from the sentActivity to validate -> sentEvents
-    var newEvents = _getEvents(sentActivity, req.user.id);
+    var newEvents = actMgr.getEvents(sentActivity, req.user.id);
 
     // load all planned events of this user that:
     //     plannedEvent.start before the end of the last sentEvent.end
@@ -107,9 +90,8 @@ function getActivityConflicts(req, res, next) {
             var conflictingEvent = _.find(plannedEvents, function (plannedEvent) {
                 return ((plannedEvent.start < newEvent.end) && (plannedEvent.end > newEvent.start));
             });
-            if (conflictingEvent) {
-                conflicts.push({conflictingNewEvent: newEvent, conflictingSavedEvent: conflictingEvent});
-            }
+
+            conflicts.push({event: newEvent, conflictingEvent: conflictingEvent});
         });
 
         res.send(conflicts);
@@ -184,7 +166,7 @@ function postNewActivity(req, res, next) {
             return error.handleError(err, next);
         }
 
-        var events = _getEvents(savedActivity, req.user.id);
+        var events = actMgr.getEvents(savedActivity, req.user.id);
 
         ActivityEvent.create(events, function (err) {
             if (err) {
@@ -277,7 +259,7 @@ function postJoinActivityFn(req, res, next) {
         }
 
         masterActivity.joiningUsers.push(req.user.id);
-        var events = _getEvents(masterActivity, req.user.id);
+        var events = actMgr.getEvents(masterActivity, req.user.id);
 
         ActivityEvent.create(events, function (err, events) {
             if (err) {
@@ -602,7 +584,7 @@ function putActivity(req, res, next) {
                     var users = [loadedActivity.owner].concat(loadedActivity.joiningUsers);
 
                     return async.forEach(users, function (user, cb) {
-                        var events = _getEvents(loadedActivity, user._id, new Date());
+                        var events = actMgr.getEvents(loadedActivity, user._id, new Date());
                         ActivityEvent.create(events, cb);
                     }, done);
                 } else {
@@ -648,6 +630,7 @@ module.exports = {
     postActivityInvite: postActivityInvite,
     deleteActivity: deleteActivity,
     putActivity: putActivity,
-    getActivityConflicts: getActivityConflicts,
+    getInvitationStatus: getInvitationStatus,
+    validateActivity: validateActivity,
     getAll: getAll
 };

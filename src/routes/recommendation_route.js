@@ -37,7 +37,12 @@ module.exports = function (swagger) {
                 generic.params.limit,
                 generic.params.filter,
                 generic.params.populate,
-                generic.params.populatedeep],
+                generic.params.populatedeep,
+                swagger.queryParam('administrate', 'flag for admin user to indicate he is acting as an administrator currently',
+                    'Boolean', false, false),
+                swagger.queryParam('campaign', 'the campaignId to be used as filter for a campaignlead to get all sois for a campaign to administrate',
+                    'Boolean', false, false)
+            ],
             "responseClass": "Array[Recommendation]",
             "nickname": "getRecommendations",
             accessLevel: 'al_individual'
@@ -46,18 +51,18 @@ module.exports = function (swagger) {
     });
 
     swagger.addOperation({
-        spec: {
-            description: "Operations about recommendations",
-            path: baseUrl,
-            notes: "POSTs a new recommendation",
-            summary: "POSTs a new recommendation",
-            method: "POST",
-            params: [swagger.bodyParam("Recommendation", "new Recommendation object", "Recommendation")],
-            "responseClass": "Recommendation",
-            "nickname": "postRecommendations",
-            accessLevel: 'al_individual'
-        },
-        action:  generic.postFn(baseUrl, Model)
+            spec: {
+                description: "Operations about recommendations",
+                path: baseUrl,
+                notes: "POSTs a new recommendation",
+                summary: "POSTs a new recommendation",
+                method: "POST",
+                params: [swagger.bodyParam("Recommendation", "new Recommendation object", "Recommendation")],
+                "responseClass": "Recommendation",
+                "nickname": "postRecommendations",
+                accessLevel: 'al_individual'
+            },
+            action: generic.postFn(baseUrl, Model)
         }
     );
 
@@ -72,7 +77,7 @@ module.exports = function (swagger) {
                 "nickname": "deleteRecommendation",
                 accessLevel: 'al_user'
             },
-            action:  handlers.deleteByIdFn(baseUrl, Model)
+            action: handlers.deleteByIdFn(baseUrl, Model)
         }
     );
 
@@ -86,7 +91,7 @@ module.exports = function (swagger) {
                 "nickname": "deleteRecommendations",
                 accessLevel: 'al_admin'
             },
-            action:  generic.deleteAllFn(baseUrl, Model)
+            action: generic.deleteAllFn(baseUrl, Model)
         }
     );
 

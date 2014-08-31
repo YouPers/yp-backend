@@ -14,8 +14,8 @@ frisby.globalSetup({ // globalSetup is for ALL requests
     }
 });
 
-var campaignStart = moment({hour: 8, minute: 0, second: 0}).add('days', 10);
-var campaignEnd = moment({hour: 17, minute: 0, second: 0}).add('weeks', 6).add('days', 10);
+var campaignStart = moment({hour: 8, minute: 0, second: 0}).add(10, 'days');
+var campaignEnd = moment({hour: 17, minute: 0, second: 0}).add(6, 'weeks').add(10, 'days');
 
 var testCampaign = {
     "title": "testOrganization's campaign 1 for work life balance",

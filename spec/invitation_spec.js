@@ -32,8 +32,8 @@ consts.newUserInNewCampaignApi(
                 "campaign": campaign.id,
                 "executionType": "group",
                 "mainEvent": {
-                    "start": moment().add('days', 1),
-                    "end": moment().add('days', 1).add('hours', 2),
+                    "start": moment().add(1, 'days'),
+                    "end": moment().add(1, 'days').add(2, 'hours'),
                     "allDay": false,
                     "frequency": "once"
                 },
@@ -89,6 +89,27 @@ consts.newUserInNewCampaignApi(
                                             .expectStatus(200)
                                             .afterJSON(function (socialInteractions) {
                                                 expect(socialInteractions.length).toEqual(0);
+
+                                                frisby.create('Invitation: get inbox, including dismissed')
+                                                    .get(URL + '/socialInteractions?dismissed=true&dismissalReason=activityJoined')
+                                                    .auth(user.username, 'yp')
+                                                    .expectStatus(200)
+                                                    .afterJSON(function (socialInteractions) {
+                                                        expect(socialInteractions.length).toEqual(1);
+                                                        expect(socialInteractions[0].dismissed).toBeTruthy();
+                                                        expect(socialInteractions[0].dismissalReason).toEqual('activityJoined');
+
+                                                        frisby.create("Invitation: delete the activity")
+                                                            .delete(URL + '/activities/' + newPlan.id)
+                                                            .auth('test_ind1', 'yp')
+                                                            .expectStatus(200)
+                                                            .toss();
+                                                    })
+                                                    .toss();
+
+
+
+
                                                 cleanupFn();
                                             })
                                             .toss();
@@ -120,8 +141,8 @@ consts.newUserInNewCampaignApi(
                 "campaign": campaign.id,
                 "executionType": "group",
                 "mainEvent": {
-                    "start": moment().add('days', 1),
-                    "end": moment().add('days', 1).add('hours', 2),
+                    "start": moment().add(1, 'days'),
+                    "end": moment().add(1, 'days').add(2, 'hours'),
                     "allDay": false,
                     "frequency": "once"
                 },

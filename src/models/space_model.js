@@ -16,11 +16,17 @@ var SpaceSchema = common.newSchema({
     targetId: {type: ObjectId}
 });
 
-SpaceSchema.methods.typeToModelMap = {
-    'user': 'User',
-    'campaign': 'Campaign',
-    'activity': 'Activity'
+SpaceSchema.methods = {
+    typeToModelMap: {
+        'user': 'User',
+        'campaign': 'Campaign',
+        'activity': 'Activity'
+    },
+    toJsonConfig: {
+        include: ['user']
+    }
 };
+
 
 SpaceSchema.virtual('targetModel')
     .get(function targetModel() {

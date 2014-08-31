@@ -108,8 +108,8 @@ frisby.create('ActivityEdits: create a single activity with a single event')
     .toss();
 
 var activitySingleEventPassed = _.clone(activity, true);
-activitySingleEventPassed.mainEvent.start = moment(initialDateStart).subtract('d', 3).toDate();
-activitySingleEventPassed.mainEvent.end = moment(initialDateEnd).subtract('d', 3).toDate();
+activitySingleEventPassed.mainEvent.start = moment(initialDateStart).subtract(3, 'd').toDate();
+activitySingleEventPassed.mainEvent.end = moment(initialDateEnd).subtract(3, 'd').toDate();
 
 frisby.create('Activity Edits: create single activity with single event in the past')
     .post(URL, activitySingleEventPassed)
@@ -215,9 +215,9 @@ frisby.create('ActivityEdits: create a single activity with a single event to be
     .toss();
 
 var planWeeklyThreeEventsPassed = _.clone(activity, true);
-var initialTime = moment().subtract('w', 3).add('h', 3).toDate();
+var initialTime = moment().subtract(3, 'w').add(3, 'h').toDate();
 planWeeklyThreeEventsPassed.mainEvent.start = initialTime;
-planWeeklyThreeEventsPassed.mainEvent.end = moment(initialTime).add('h', 1).toDate();
+planWeeklyThreeEventsPassed.mainEvent.end = moment(initialTime).add(1, 'h').toDate();
 planWeeklyThreeEventsPassed.mainEvent.frequency = 'week';
 
 frisby.create('ActivityEdits: create a weekly activity with 3 events passed')

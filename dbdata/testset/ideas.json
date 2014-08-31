@@ -3,7 +3,7 @@
         "_id": {
             "$oid": "5278c6accdeab69a25000008"
         },
-        "__v": 12,
+        "__v": 13,
         "action": "assessment",
         "author": {
             "$oid": "52d4f515fac246174c000006"
@@ -33,20 +33,17 @@
         "topics": [
             {
                 "$oid": "53b416cfa43aac62a2debda1"
-            },
-            {
-                "$oid": "53b416fba43aac62a2debda2"
             }
         ],
         "updated": {
-            "$date": 1399277457905
+            "$date": 1409316757829
         }
     },
     {
         "_id": {
             "$oid": "5278c6accdeab69a2500000b"
         },
-        "__v": 6,
+        "__v": 8,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -83,7 +80,7 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": ""
+            "de": "Man kann Positives denken, schwierige Situationen in einem positiven Licht be-trachten und immer aus einer zuversicht-lichen Erwartungshaltung und positiven Einstellung heraus handeln.\n\n5 Tipps für eine positive Einstellung:\n\n1. Diktieren Sie Ihrem Verstand positive Gedanken\n2. Stoppen Sie reflexartiges Jammern\n3. Visualisieren Sie Ihren Erfolg\n4. Öffnen Sie sich für Ihre Mitmenschen\n5. Tun Sie sich selbst etwas Gutes\n\nWeitere Tipps unter:\nhttp://de.wikihow.com/Eine-positive-Lebenseinstellung-bekokmmen"
         },
         "titleI18n": {
             "de": "Buch \"Positive Einstellung\""
@@ -94,14 +91,14 @@
             }
         ],
         "updated": {
-            "$date": 1398443340705
+            "$date": 1409318164345
         }
     },
     {
         "_id": {
             "$oid": "5278c6accdeab69a2500000c"
         },
-        "__v": 5,
+        "__v": 6,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -138,7 +135,7 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": ""
+            "de": "Man kann Positives denken, schwierige Situationen in einem positiven Licht be-trachten und immer aus einer zuversicht-lichen Erwartungshaltung und positiven Einstellung heraus handeln.\n\n5 Tipps für eine positive Einstellung:\n\n1. Diktieren Sie Ihrem Verstand positive Gedanken\n2. Stoppen Sie reflexartiges Jammern\n3. Visualisieren Sie Ihren Erfolg\n4. Öffnen Sie sich für Ihre Mitmenschen\n5. Tun Sie sich selbst etwas Gutes\n\nWeitere Tipps unter:\nhttp://de.wikihow.com/Eine-positive-Lebenseinstellung-bekokmmen"
         },
         "titleI18n": {
             "de": "Seminar \"Positive Einstellung\""
@@ -149,14 +146,14 @@
             }
         ],
         "updated": {
-            "$date": 1399042812817
+            "$date": 1409318188159
         }
     },
     {
         "_id": {
             "$oid": "5278c6accdeab69a2500000d"
         },
-        "__v": 3,
+        "__v": 4,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -193,7 +190,7 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": ""
+            "de": "Man kann Positives denken, schwierige Situationen in einem positiven Licht be-trachten und immer aus einer zuversicht-lichen Erwartungshaltung und positiven Einstellung heraus handeln.\n\n5 Tipps für eine positive Einstellung:\n\n1. Diktieren Sie Ihrem Verstand positive Gedanken\n2. Stoppen Sie reflexartiges Jammern\n3. Visualisieren Sie Ihren Erfolg\n4. Öffnen Sie sich für Ihre Mitmenschen\n5. Tun Sie sich selbst etwas Gutes\n\nWeitere Tipps unter:\nhttp://de.wikihow.com/Eine-positive-Lebenseinstellung-bekokmmen"
         },
         "titleI18n": {
             "de": "Verbesserung der Einstellung"
@@ -204,14 +201,14 @@
             }
         ],
         "updated": {
-            "$date": 1398421028393
+            "$date": 1409318243718
         }
     },
     {
         "_id": {
             "$oid": "5278c6accdeab69a2500000e"
         },
-        "__v": 6,
+        "__v": 7,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -253,7 +250,7 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": ""
+            "de": "Zur Stressbewältigung kann man an drei Bereichen ansetzen:\n\n1. an der Umwelt, indem wir äussere Faktoren, die eine Stressreaktion auslösen können, verringern\n2. an uns selbst, indem wir stresserzeugende Verhaltensweisen abbauen und uns neue Umgangsformen mit den Anforderungen aneignen\n3. an unseren Körperreaktionen, indem wir unsere Anspannung z.B. durch körperliche Bewegung abbauen und/oder uns durch eine Atem- oder Entspannungsübung entspannen."
         },
         "titleI18n": {
             "de": "Buch \"Stressbewältigung\""
@@ -264,14 +261,14 @@
             }
         ],
         "updated": {
-            "$date": 1399276216562
+            "$date": 1409318871247
         }
     },
     {
         "_id": {
             "$oid": "5278c6accdeab69a2500000f"
         },
-        "__v": 3,
+        "__v": 4,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -316,7 +313,7 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": ""
+            "de": "Zur Stressbewältigung kann man an drei Bereichen ansetzen:\n\n1. an der Umwelt, indem wir äussere Faktoren, die eine Stressreaktion auslösen können, verringern\n2. an uns selbst, indem wir stresserzeugende Verhaltensweisen abbauen und uns neue Umgangsformen mit den Anforderungen aneignen\n3. an unseren Körperreaktionen, indem wir unsere Anspannung z.B. durch körperliche Bewegung abbauen und/oder uns durch eine Atem- oder Entspannungsübung entspannen"
         },
         "titleI18n": {
             "de": "Seminar \"Stressbewältigung\""
@@ -327,14 +324,14 @@
             }
         ],
         "updated": {
-            "$date": 1399042859596
+            "$date": 1409318907443
         }
     },
     {
         "_id": {
             "$oid": "5278c6accdeab69a25000010"
         },
-        "__v": 3,
+        "__v": 4,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -379,7 +376,7 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": ""
+            "de": "Zur Stressbewältigung kann man an drei Bereichen ansetzen:\n\n1. an der Umwelt, indem wir äussere Faktoren, die eine Stressreaktion auslösen können, verringern\n2. an uns selbst, indem wir stresserzeugende Verhaltensweisen abbauen und uns neue Umgangsformen mit den Anforderungen aneignen\n3. an unseren Körperreaktionen, indem wir unsere Anspannung z.B. durch körperliche Bewegung abbauen und/oder uns durch eine Atem- oder Entspannungsübung entspannen"
         },
         "titleI18n": {
             "de": "Workshop \"Stressbewältigung\""
@@ -390,14 +387,14 @@
             }
         ],
         "updated": {
-            "$date": 1398420858539
+            "$date": 1409319465669
         }
     },
     {
         "_id": {
             "$oid": "5278c6adcdeab69a25000011"
         },
-        "__v": 8,
+        "__v": 9,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -442,7 +439,7 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": "Persönliche Ressourcen basieren auf persönlichen Merkmalen. Sie beruhen auf der eigenen Identität, dem persönlichen Umfeld und sind individuell unterschiedlich.\n\nMögliche, persönliche Ressourcen:\n\n- Soziales Kapital: Netzwerke, Vorbilder, ...\n- Werte: Ziele, Motivation, Interessen, ...\n- Soziale Identität: Selbstbild, Soziale Rolle, Selbstklarheit, ...\n- Persönlichkeit: Sicherheit, Freiheit, Unabhängigkeit, Zuversicht, Harmonie, ...\n- Physis: Leistungsfähigkeit, Resilienz, ...\n- Skills: Reflexionsfähigkeit, emotionale Intelligenz, ..."
+            "de": "Persönliche Ressourcen basieren auf per&shy;sönlichen Merkmalen. Sie beruhen auf der eigenen Identität, dem persönlichen Um&shy;feld und sind individuell unterschiedlich.\n\nMögliche, persönliche Ressourcen:\n\n- Soziales Kapital: Netzwerke, Vorbilder\n- Werte: Ziele, Motivation, Interessen\n- Soziale Identität: Selbstbild, Soziale Rolle, Selbstklarheit\n- Persönlichkeit: Sicherheit, Freiheit, Unabhängigkeit, Harmonie\n- Physis: Leistungsfähigkeit, Resilienz\n- Skills: Reflexionsfähigkeit, emotionale Intelligenz"
         },
         "titleI18n": {
             "de": "Buch \"Persönliche Ressourcen\""
@@ -453,14 +450,14 @@
             }
         ],
         "updated": {
-            "$date": 1398443399907
+            "$date": 1409319330389
         }
     },
     {
         "_id": {
             "$oid": "5278c6adcdeab69a25000012"
         },
-        "__v": 6,
+        "__v": 7,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -505,7 +502,7 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": "Persönliche Ressourcen basieren auf persönlichen Merkmalen. Sie beruhen auf der eigenen Identität, dem persönlichen Umfeld und sind individuell unterschiedlich.\n\nMögliche, persönliche Ressourcen:\n\n- Soziales Kapital: Netzwerke, Vorbilder, ...\n- Werte: Ziele, Motivation, Interessen, ...\n- Soziale Identität: Selbstbild, Soziale Rolle, Selbstklarheit, ...\n- Persönlichkeit: Sicherheit, Freiheit, Unabhängigkeit, Zuversicht, Harmonie, ...\n- Physis: Leistungsfähigkeit, Resilienz, ...\n- Skills: Reflexionsfähigkeit, emotionale Intelligenz, ..."
+            "de": "Persönliche Ressourcen basieren auf per&shy;sönlichen Merkmalen. Sie beruhen auf der eigenen Identität, dem persönlichen Um&shy;feld und sind individuell unterschiedlich.\n\nMögliche, persönliche Ressourcen:\n\n- Soziales Kapital: Netzwerke, Vorbilder\n- Werte: Ziele, Motivation, Interessen\n- Soziale Identität: Selbstbild, Soziale Rolle, Selbstklarheit\n- Persönlichkeit: Sicherheit, Freiheit, Unabhängigkeit, Harmonie\n- Physis: Leistungsfähigkeit, Resilienz\n- Skills: Reflexionsfähigkeit, emotionale Intelligenz"
         },
         "titleI18n": {
             "de": "Seminar \"Persönliche Ressourcen\""
@@ -516,14 +513,14 @@
             }
         ],
         "updated": {
-            "$date": 1399042905512
+            "$date": 1409319358631
         }
     },
     {
         "_id": {
             "$oid": "5278c6adcdeab69a25000013"
         },
-        "__v": 4,
+        "__v": 5,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -555,7 +552,7 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": ""
+            "de": "Im Vordergrund sämtlicher Bemühungen für berufliche Weiterbildungen stehen sowohl die berufliche und persönliche Entwicklung als auch das Abdecken der Bedürf&shy;nisse der Wirtschaft nach gut qualifizierten Mitarbeitern."
         },
         "titleI18n": {
             "de": "Berufliche Weiterbildung"
@@ -566,14 +563,14 @@
             }
         ],
         "updated": {
-            "$date": 1398420764876
+            "$date": 1409320441192
         }
     },
     {
         "_id": {
             "$oid": "5278c6adcdeab69a25000015"
         },
-        "__v": 2,
+        "__v": 3,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -618,7 +615,7 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": ""
+            "de": "Zur Stressbewältigung kann man an drei Bereichen ansetzen:\n\n1. an der Umwelt, indem wir äussere Faktoren, die eine Stressreaktion auslösen können, verringern\n2. an uns selbst, indem wir stresserzeugende Verhaltensweisen abbauen und uns neue Umgangsformen mit den Anforderungen aneignen\n3. an unseren Körperreaktionen, indem wir unsere Anspannung z.B. durch körperliche Bewegung abbauen und/oder uns durch eine Atem- oder Entspannungsübung entspannen"
         },
         "titleI18n": {
             "de": "Stressberatung für Stressbewältigung"
@@ -629,7 +626,7 @@
             }
         ],
         "updated": {
-            "$date": 1398413889264
+            "$date": 1409318963349
         }
     },
     {
@@ -697,7 +694,7 @@
         "_id": {
             "$oid": "5278c6adcdeab69a25000017"
         },
-        "__v": 6,
+        "__v": 7,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -709,7 +706,7 @@
         "defaultfrequency": "once",
         "defaultvisibility": "private",
         "descriptionI18n": {
-            "de": "Nimm an einem Stress-Immunisierungs-Training, Stress-Management-Training (SMT) bzw. Stress-Resistenz-Training teil."
+            "de": "Nimm an einem Stress-Immuni&shy;sie&shy;rungs-Training, Stress-Management-Training (SMT) bzw. Stress-Resistenz-Training teil."
         },
         "number": "Act-18",
         "qualityFactor": 5,
@@ -737,7 +734,7 @@
         ],
         "source": "youpers",
         "textI18n": {
-            "de": "Reviews und Meta-Analysen belegen gut, dass Stress-Management-Trainings (SMT), einschliesslich Stress-Resistenz-Trainings (stress inoculation trainings), Entspannungs- und Meditations&shy;methoden sowie soziale Kompetenz- und Fitness-Trainings, bezüglich gesundheitlicher Effekte wirksam sind.\n\nWeitere Informationen zum Thema \"Strategien und Interventionen zur Stressbekämpfung\" findest du auf Seite 89 in \n<a href='http://edudoc.ch/record/29554/files/135.pdf#page=89' target='_blank'>Psychische Gesundheit - Stress.</a>"
+            "de": "Reviews und Meta-Analysen belegen gut, dass Stress-Management-Trainings (SMT), einschliesslich Stress-Resistenz-Trainings (stress inoculation trainings), Ent&shy;span&shy;nungs- und Meditations&shy;methoden sowie soziale Kompetenz- und Fitness-Trainings, bezüglich gesundheitlicher Effekte wirk&shy;sam sind.\n\nWeitere Informationen zum Thema \"Strategien und Interventionen zur Stressbekämpfung\" findest du auf Seite 89 in \n<a href='http://edudoc.ch/record/29554/files/135.pdf#page=89' target='_blank'>Psychische Gesundheit - Stress.</a>"
         },
         "titleI18n": {
             "de": "Training zur Stressabwehr"
@@ -748,14 +745,14 @@
             }
         ],
         "updated": {
-            "$date": 1400155551182
+            "$date": 1409320912949
         }
     },
     {
         "_id": {
             "$oid": "5278c6adcdeab69a25000018"
         },
-        "__v": 2,
+        "__v": 4,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -767,7 +764,7 @@
         "defaultfrequency": "once",
         "defaultvisibility": "private",
         "descriptionI18n": {
-            "de": "Lies ein Buch zum Thema „Persönliches Zeitmanagement“ oder erkundige dich darüber im Internet."
+            "de": "Lies ein Buch zum Thema „Persön&shy;liches Zeitmanagement“ oder er&shy;kundige dich darüber im Internet."
         },
         "number": "Act-19",
         "qualityFactor": 5,
@@ -787,7 +784,7 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": ""
+            "de": "Unter Zeitmanagement versteht man mehrere Vorgehensweisen, die dabei helfen sollen, anstehende Aufgaben und Termine innerhalb des zur Verfügung stehenden Zeitraums abzuarbeiten.\n\nEs wird zwischen persönlichem Zeit&shy;management und Zeitwirtschaft unterschieden.\n\nMehr Informationen zu dem Thema findest du <a href='http://de.wikipedia.org/wiki/Zeitmanagement'>hier.</a>"
         },
         "titleI18n": {
             "de": "Buch \"Zeitmanagement\""
@@ -798,14 +795,14 @@
             }
         ],
         "updated": {
-            "$date": 1398443429130
+            "$date": 1409321981535
         }
     },
     {
         "_id": {
             "$oid": "5278c6adcdeab69a25000019"
         },
-        "__v": 4,
+        "__v": 5,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -837,7 +834,7 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": ""
+            "de": "Unter Zeitmanagement versteht man mehrere Vorgehensweisen, die dabei helfen sollen, anstehende Aufgaben und Termine innerhalb des zur Verfügung stehenden Zeitraums abzuarbeiten.\n\nEs wird zwischen persönlichem Zeit&shy;management und Zeitwirtschaft unterschieden.\n\nMehr Informationen zu dem Thema findest du <a href='http://de.wikipedia.org/wiki/Zeitmanagement'>hier.</a>"
         },
         "titleI18n": {
             "de": "Seminar \"Zeitmanagement\""
@@ -848,14 +845,14 @@
             }
         ],
         "updated": {
-            "$date": 1399562542544
+            "$date": 1409322015492
         }
     },
     {
         "_id": {
             "$oid": "5278c6adcdeab69a2500001a"
         },
-        "__v": 2,
+        "__v": 3,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -884,7 +881,7 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": ""
+            "de": "Unter Zeitmanagement versteht man mehrere Vorgehensweisen, die dabei helfen sollen, anstehende Aufgaben und Termine innerhalb des zur Verfügung stehenden Zeitraums abzuarbeiten.\n\nEs wird zwischen persönlichem Zeit&shy;management und Zeitwirtschaft unterschieden.\n\nMehr Informationen zu dem Thema findest du <a href='http://de.wikipedia.org/wiki/Zeitmanagement'>hier.</a>"
         },
         "titleI18n": {
             "de": "Online-Forum \"Zeitmanagement\""
@@ -893,13 +890,19 @@
             {
                 "$oid": "53b416cfa43aac62a2debda1"
             }
-        ]
+        ],
+        "created": {
+            "$date": 1409322060013
+        },
+        "updated": {
+            "$date": 1409322060013
+        }
     },
     {
         "_id": {
             "$oid": "5278c6adcdeab69a2500001b"
         },
-        "__v": 4,
+        "__v": 5,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -931,7 +934,7 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": ""
+            "de": "Unter Zeitmanagement versteht man mehrere Vorgehensweisen, die dabei helfen sollen, anstehende Aufgaben und Termine innerhalb des zur Verfügung stehenden Zeitraums abzuarbeiten.\n\nEs wird zwischen persönlichem Zeit&shy;management und Zeitwirtschaft unterschieden.\n\nMehr Informationen zu dem Thema findest du <a href='http://de.wikipedia.org/wiki/Zeitmanagement'>hier.</a>"
         },
         "titleI18n": {
             "de": "App für Zeitmanagement"
@@ -942,14 +945,14 @@
             }
         ],
         "updated": {
-            "$date": 1398415430630
+            "$date": 1409322101046
         }
     },
     {
         "_id": {
             "$oid": "5278c6adcdeab69a2500001c"
         },
-        "__v": 3,
+        "__v": 5,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -961,7 +964,7 @@
         "defaultfrequency": "once",
         "defaultvisibility": "private",
         "descriptionI18n": {
-            "de": "Führe einen Erfahrungsaustausch mit Arbeitskolleginnen und Arbeitskollegen zum Thema \"Persönliches Zeit&shy;ma&shy;nage&shy;ment\" während der Mittagspause durch."
+            "de": "Führe einen Erfahrungsaustausch mit Arbeitskolleginnen und Arbeits&shy;kol&shy;le&shy;gen zum Thema \"Persönliches Zeit&shy;ma&shy;nage&shy;ment\" während der Mittags&shy;pause durch."
         },
         "number": "Act-23",
         "qualityFactor": 5,
@@ -981,7 +984,7 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": ""
+            "de": "Unter Zeitmanagement versteht man mehrere Vorgehensweisen, die dabei helfen sollen, anstehende Aufgaben und Termine innerhalb des zur Verfügung stehenden Zeitraums abzuarbeiten.\n\nEs wird zwischen persönlichem Zeit&shy;management und Zeitwirtschaft unterschieden.\n\nMehr Informationen zu dem Thema findest du <a href='http://de.wikipedia.org/wiki/Zeitmanagement'>hier.</a>"
         },
         "titleI18n": {
             "de": "Erfahrungsaustausch \"Zeitmanagement\""
@@ -992,14 +995,14 @@
             }
         ],
         "updated": {
-            "$date": 1398415504907
+            "$date": 1409322225025
         }
     },
     {
         "_id": {
             "$oid": "5278c6adcdeab69a2500001d"
         },
-        "__v": 2,
+        "__v": 3,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -1031,7 +1034,7 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": ""
+            "de": "Unter Zeitmanagement versteht man mehrere Vorgehensweisen, die dabei helfen sollen, anstehende Aufgaben und Termine innerhalb des zur Verfügung stehenden Zeitraums abzuarbeiten.\n\nEs wird zwischen persönlichem Zeit&shy;management und Zeitwirtschaft unterschieden.\n\nMehr Informationen zu dem Thema findest du <a href='http://de.wikipedia.org/wiki/Zeitmanagement'>hier.</a>"
         },
         "titleI18n": {
             "de": "Workshop \"Zeitmanagement\""
@@ -1042,7 +1045,7 @@
             }
         ],
         "updated": {
-            "$date": 1398415640443
+            "$date": 1409322256269
         }
     },
     {
@@ -1144,7 +1147,7 @@
         "_id": {
             "$oid": "5278c6adcdeab69a25000020"
         },
-        "__v": 2,
+        "__v": 3,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -1156,7 +1159,7 @@
         "defaultfrequency": "week",
         "defaultvisibility": "private",
         "descriptionI18n": {
-            "de": "Ziehe für eine gewisse Zeit regelmässig (z.B. wöchentlich) einen pro&shy;fes&shy;si&shy;o&shy;nellen Stress&shy;berater hinzu, der dich bei deinem persönlichen Zeit&shy;manage&shy;ment unterstützt."
+            "de": "Ziehe für eine gewisse Zeit regel&shy;mässig (z.B. wöchentlich) einen pro&shy;fes&shy;si&shy;o&shy;nellen Stress&shy;berater hinzu, der dich bei deinem persönlichen Zeit&shy;manage&shy;ment unterstützt."
         },
         "number": "Act-27",
         "qualityFactor": 4,
@@ -1176,7 +1179,7 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": ""
+            "de": "Viele Menschen behaupten, Sie haben keine Zeit! Doch ist das wirklich so?\n \nJa, wir leben in hektischen Zeiten. Aber jedem Menschen stehen jeden Tag 24 Stunden zur Verfügung.\n\nDie Frage ist also: \"Wie voll wollen wir uns die Zeit packen und vor allem womit?\"\n\nUnd wie effektiv sind unsere Arbeits&shy;prozesse?\n\nDiesen Fragen auf den Grund zu gehen, kann sehr hilfreich sein, um sich auf das Wichtige zu konzentrieren und den unnötigen Ballast abzuwerfen."
         },
         "titleI18n": {
             "de": "Stressberatung und Zeitmanagement"
@@ -1187,7 +1190,7 @@
             }
         ],
         "updated": {
-            "$date": 1398417303058
+            "$date": 1409323817557
         }
     },
     {
@@ -1342,7 +1345,7 @@
         "_id": {
             "$oid": "5278c6adcdeab69a25000024"
         },
-        "__v": 3,
+        "__v": 4,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -1354,7 +1357,7 @@
         "defaultfrequency": "once",
         "defaultvisibility": "private",
         "descriptionI18n": {
-            "de": "Führe ein offenes Gespräch mit deiner bzw. deinem Vorgesetzten über deine persönliche Arbeitssituation und Arbeitsgestaltung."
+            "de": "Führe ein offenes Gespräch mit deiner bzw. deinem Vorgesetzten über deine persönliche Arbeits&shysituation und Arbeitsgestaltung."
         },
         "number": "Act-31",
         "qualityFactor": 5,
@@ -1375,7 +1378,7 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": ""
+            "de": "Im Mitarbeitergespräch kannst du deinem Vorgesetzten mitteilen, was dich bei der Arbeit stört und was deine Leistung und dein Befinden verbessern könnte.\n\nDas Mitarbeitergespräch eignet sich gut, auch kleinere Probleme anzusprechen, denn jetzt hast du die ganze Aufmerksam&shy;keit des Vorgesetzten. Frag nach einem neuen Stuhl, einem grösseren Monitor oder einem höhenverstellbaren Tisch.\n\nNotiere dir die Punkte vor dem Gespräch, damit du im Gespräch nichts vergisst."
         },
         "titleI18n": {
             "de": "Vorgesetzter und Arbeitssituation"
@@ -1386,7 +1389,7 @@
             }
         ],
         "updated": {
-            "$date": 1398418339852
+            "$date": 1409325036666
         }
     },
     {
@@ -1583,7 +1586,7 @@
         "_id": {
             "$oid": "5278c6adcdeab69a25000029"
         },
-        "__v": 4,
+        "__v": 5,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -1613,7 +1616,7 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": ""
+            "de": "Im Gespräch mit einer personal&shy;ver&shy;ant&shy;wort&shy;lichen Person kannst du mitteilen, was dich bei der Arbeit stört und was deine Leistung und dein Befinden verbessern könnte.\n\nDas Gespräch eignet sich gut, auch kleinere Probleme anzusprechen, denn jetzt hast du die ganze Aufmerksam&shy;keit einer personal&shy;verantwortlichen Person. Frag nach einem neuen Stuhl, einem grösseren Monitor oder einem höhenverstellbaren Tisch.\n\nNotiere dir die Punkte vor dem Gespräch, damit du im Gespräch nichts vergisst."
         },
         "titleI18n": {
             "de": "HR und Arbeitssituation"
@@ -1624,14 +1627,14 @@
             }
         ],
         "updated": {
-            "$date": 1398418830202
+            "$date": 1409325556012
         }
     },
     {
         "_id": {
             "$oid": "5278c6adcdeab69a2500002a"
         },
-        "__v": 2,
+        "__v": 3,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -1661,7 +1664,7 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": ""
+            "de": "Im Vordergrund sämtlicher Bemühungen für berufliche Weiterbildungen stehen sowohl die berufliche und persönliche Weiterentwicklung als auch das Abdecken der Bedürfnisse der Wirtschaft nach qualifizierten Mitarbeitern."
         },
         "titleI18n": {
             "de": "Sinnvolle Weiterbildung"
@@ -1672,7 +1675,7 @@
             }
         ],
         "updated": {
-            "$date": 1398418874858
+            "$date": 1409320582251
         }
     },
     {
@@ -1905,7 +1908,7 @@
         "_id": {
             "$oid": "5278c6adcdeab69a25000030"
         },
-        "__v": 5,
+        "__v": 6,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -1936,7 +1939,7 @@
         ],
         "source": "youpers",
         "textI18n": {
-            "de": ""
+            "de": "Man kann lernen, Grenzen zu setzen!\n\nStell dir vor, du wärst dein eigener Arbeits&shy;schutzbeauftragter. Deine Aufgabe bestünde darin, dafür zu sorgen, dass du mindestens zweimal pro Woche pünktlich Feierabend machen kannst.\n\nÜberlege dir genau, wie du dich selbst dazu bringen kannst."
         },
         "titleI18n": {
             "de": "Zeitgerechter Feierabend"
@@ -1947,14 +1950,14 @@
             }
         ],
         "updated": {
-            "$date": 1398420220485
+            "$date": 1409326449701
         }
     },
     {
         "_id": {
             "$oid": "5278c6adcdeab69a25000031"
         },
-        "__v": 3,
+        "__v": 5,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -1982,7 +1985,7 @@
         ],
         "source": "youpers",
         "textI18n": {
-            "de": ""
+            "de": "Negativer Stress ist ein Zustand, in dem ein Mensch das Gefühl hat, dass er es aus eigener Kraft nicht schafft, einer bedroh&shy;lichen oder unangenehmen Situation zu entkommen.\n\nFrage heute einmal bewusst NICHT nach und versuche, mit innerer Ruhe und Gelassenheit, die Situation zu akzeptieren."
         },
         "titleI18n": {
             "de": "Keine Fragen"
@@ -1993,14 +1996,14 @@
             }
         ],
         "updated": {
-            "$date": 1398420235976
+            "$date": 1409341456310
         }
     },
     {
         "_id": {
             "$oid": "5278c6adcdeab69a25000032"
         },
-        "__v": 4,
+        "__v": 5,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -2031,7 +2034,7 @@
         ],
         "source": "youpers",
         "textI18n": {
-            "de": ""
+            "de": "Zeitmanagement ist die konsequente und zielorientierte Anwendung praktischer Arbeitstechniken, um sich selbst so zu führen und seine Bedingungen so zu organisieren, dass die zur Verfügung stehende Zeit sinnvoll genutzt wird.\n\nUm dieses persönliche Ziel zu erreichen, sind die Prioritäten richtig zu setzen und es sind zweitrangige Aufgaben an andere Personen zu delegieren.\n\nMit etwas Erfahrung lernt man, welche unwichtigen und/oder zeitunkritischen Pendenzen man von der Tagesplanung streichen kann, ohne grosse Konsequenzen nach sich zu ziehen."
         },
         "titleI18n": {
             "de": "Mut zur Lücke"
@@ -2042,14 +2045,14 @@
             }
         ],
         "updated": {
-            "$date": 1398420255574
+            "$date": 1409327864541
         }
     },
     {
         "_id": {
             "$oid": "5278c6adcdeab69a25000033"
         },
-        "__v": 3,
+        "__v": 4,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -2088,7 +2091,7 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": ""
+            "de": "Um Stress, Überforderung und dem Gefühl des Ausgebranntseins zu ent&shy;kom&shy;men, kann gezielte Entspannung mit deinem Haustier helfen.\n\nDabei spielt dein Haustier den tierischen Entspannungscoach, der mit seiner eige&shy;nen Gelassenheit dazu beiträgt, mehr Ruhe in dein Leben zu bringen und das richtige Verhältnis von Arbeit und Entspannung zu finden."
         },
         "titleI18n": {
             "de": "Tierfreuden"
@@ -2099,14 +2102,14 @@
             }
         ],
         "updated": {
-            "$date": 1398420269245
+            "$date": 1409328671363
         }
     },
     {
         "_id": {
             "$oid": "5278c6adcdeab69a25000034"
         },
-        "__v": 7,
+        "__v": 8,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -2118,7 +2121,7 @@
         "defaultfrequency": "week",
         "defaultvisibility": "private",
         "descriptionI18n": {
-            "de": "Um dein Geltungsbedürfnis und Selbst&shy;bewusstsein zu steigern, hole dir von deiner bzw. deinem Vorgesetzten oder einer Person aus deinem Umfeld eine Anerkennung für eine geleistete Arbeit, indem du auf geleistete Arbeiten bewusst aufmerksam machst."
+            "de": "Um dein Geltungsbedürfnis und Selbst&shy;bewusstsein zu steigern, hole dir von deiner bzw. deinem Vor&shy;ge&shy;setz&shy;ten oder einer Person aus deinem Umfeld Anerkennung für eine geleistete Arbeit."
         },
         "number": "Act-47",
         "qualityFactor": 3,
@@ -2128,7 +2131,7 @@
         ],
         "source": "youpers",
         "textI18n": {
-            "de": "Sei danach auch stolz auf dich für die Erledigung deiner Aufgaben!\n\nDas gibt Selbstvertrauen für die Zukunft!"
+            "de": "Sprich die Person auf deine geleistete Arbeit an und mache sie bewusst darauf aufmerksam.\n\nSei danach auch stolz auf dich für die Erledigung deiner Aufgabe!\n\nDas gibt Selbstvertrauen für die Zukunft!"
         },
         "titleI18n": {
             "de": "Anerkennung einfordern"
@@ -2139,14 +2142,14 @@
             }
         ],
         "updated": {
-            "$date": 1398420377442
+            "$date": 1409329071837
         }
     },
     {
         "_id": {
             "$oid": "5278c6adcdeab69a25000035"
         },
-        "__v": 2,
+        "__v": 3,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -2171,7 +2174,7 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": ""
+            "de": "Jeder Mensch hat Minderwertigkeits&shy;ge&shy;fühle. Viele reagieren darauf mit Resignation und Kompensation.\n\nUm zu einem gesunden Selbstbewusst&shy;sein zu gelangen, musst du deine Schwächen akzeptieren. Dabei kann erhaltene Anerkennung von Vorgesetzten und/oder Kollegen sehr viel helfen.\n\nAchte heute bewusst auf erhaltene Anerkennung, auch wenn es nur kleine Äusserungen sind. Und sei anschliessend ruhig stolz auf dich!"
         },
         "titleI18n": {
             "de": "Achte auf Anerkennung"
@@ -2182,7 +2185,7 @@
             }
         ],
         "updated": {
-            "$date": 1398420358185
+            "$date": 1409330687759
         }
     },
     {
@@ -2229,7 +2232,7 @@
         "_id": {
             "$oid": "5278c6adcdeab69a25000037"
         },
-        "__v": 10,
+        "__v": 11,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -2262,7 +2265,7 @@
         ],
         "source": "youpers",
         "textI18n": {
-            "de": ""
+            "de": "Im Mitarbeitergespräch kannst du deinem Vorgesetzten mitteilen, was dich bei deinen Arbeitsabläufen und Aufgaben stört und was deine Leistung und dein Befinden verbessern könnte.\n\nDas Mitarbeitergespräch eignet sich gut, auch kleinere Probleme anzusprechen, denn jetzt hast du die ganze Aufmerksam&shy;keit des Vorgesetzten.\n\nNotiere dir die Punkte vor dem Gespräch, damit du im Gespräch nichts vergisst."
         },
         "titleI18n": {
             "de": "Arbeitsabläufe und Aufgaben"
@@ -2273,7 +2276,7 @@
             }
         ],
         "updated": {
-            "$date": 1400154961825
+            "$date": 1409330986938
         }
     },
     {
@@ -2370,7 +2373,7 @@
         "_id": {
             "$oid": "5278c6adcdeab69a2500003a"
         },
-        "__v": 6,
+        "__v": 7,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -2401,7 +2404,7 @@
         ],
         "source": "youpers",
         "textI18n": {
-            "de": ""
+            "de": "Im Gespräch mit deiner/deinem Vor&shy;ge&shy;setz&shy;ten oder einer personal&shy;ver&shy;ant&shy;wort&shy;lichen Person kannst du mitteilen, was dich bei der Arbeit stört und was deine Leistung und dein Befinden verbessern könnte.\n\nDas Gespräch eignet sich gut, auch kleinere Probleme anzusprechen, denn jetzt hast du die ganze Aufmerksam&shy;keit des Vorgesetzten oder einer personal&shy;verantwortlichen Person. Frag nach einem neuen Stuhl, einem grösseren Monitor oder einem höhenverstellbaren Tisch.\n\nNotiere dir die Punkte vor dem Gespräch, damit du im Gespräch nichts vergisst."
         },
         "titleI18n": {
             "de": "Einfluss auf Arbeitssituation"
@@ -2412,7 +2415,7 @@
             }
         ],
         "updated": {
-            "$date": 1400155105006
+            "$date": 1409325431129
         }
     },
     {
@@ -9710,7 +9713,7 @@
         "_id": {
             "$oid": "53329bf20f9b32255d2488d7"
         },
-        "__v": 9,
+        "__v": 10,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -9722,7 +9725,7 @@
         "defaultfrequency": "day",
         "defaultvisibility": "private",
         "descriptionI18n": {
-            "de": "Führe für einige Tage dein Stress-Tagebuch, um dir bewusst zu werden, was genau dich stresst, welche Ursachen und Konsequenzen es für dich hat und wie dein Körper darauf reagiert."
+            "de": "Führe für einige Tage ein Stress-Tagebuch, um dir bewusst zu werden, was genau dich stresst, welche Ursachen und Konsequenzen es für dich hat und wie dein Körper darauf reagiert."
         },
         "number": "Act-15",
         "qualityFactor": 10,
@@ -9742,7 +9745,7 @@
             }
         ],
         "updated": {
-            "$date": 1399276420962
+            "$date": 1409230184436
         }
     },
     {
@@ -11117,9 +11120,9 @@
             "$date": 1407915737693
         },
         "updated": {
-            "$date": 1408454943127
+            "$date": 1409295328521
         },
-        "number": "GE-001",
+        "number": "Act-224",
         "source": "community",
         "defaultfrequency": "day",
         "defaultexecutiontype": "self",
@@ -11158,7 +11161,7 @@
                 "$oid": "53b416fba43aac62a2debda2"
             }
         ],
-        "__v": 6,
+        "__v": 7,
         "textI18n": {
             "de": "Damit startest du optimal in den Tag."
         }
@@ -11171,26 +11174,26 @@
             "$date": 1407915993488
         },
         "updated": {
-            "$date": 1409229193122
+            "$date": 1409297440829
         },
-        "number": "KF-001",
+        "number": "Act-264",
         "source": "community",
         "defaultfrequency": "once",
         "defaultexecutiontype": "group",
         "defaultduration": 15,
         "recWeights": [
             [ "53e8df8d3cca9d19333e73e2", 8, 0 ],
-            [ "53e8df8d3cca9d19333e73e3", 6, 0 ],
+            [ "53e8df8d3cca9d19333e73e3", 0, 0 ],
             [ "53e8df8d3cca9d19333e73e4", 0, 0 ],
             [ "53e8df8d3cca9d19333e73e5", 0, 0 ],
             [ "53e8df8d3cca9d19333e73e6", 3, 0 ],
             [ "53e8df8d3cca9d19333e73e7", 0, 0 ],
             [ "53e8df8d3cca9d19333e73e8", 0, 0 ],
-            [ "53e8df8d3cca9d19333e73e9", 6, 0 ],
+            [ "53e8df8d3cca9d19333e73e9", 5, 0 ],
             [ "53e8df8d3cca9d19333e73ea", 0, 0 ],
             [ "53e8df8d3cca9d19333e73eb", 0, 0 ],
-            [ "53e8df8d3cca9d19333e73ec", 6, 0 ],
-            [ "53e8df8d3cca9d19333e73ed", 6, 0 ],
+            [ "53e8df8d3cca9d19333e73ec", 5, 0 ],
+            [ "53e8df8d3cca9d19333e73ed", 3, 0 ],
             [ "53e8df8d3cca9d19333e73ee", 0, 0 ]
         ],
         "qualityFactor": 5,
@@ -11208,7 +11211,7 @@
                 "$oid": "53b416fba43aac62a2debda3"
             }
         ],
-        "__v": 4,
+        "__v": 6,
         "textI18n": {
             "de": "Grundsätzlich wird Ihnen normales Gehen, auch im Falle einer Erkrankung, in einem angepassten Tempo nicht schaden: Der Mensch ist ein Läufer, sein im Vergleich zu den meisten Tieren kleiner Kopf, das schmale Becken und die ausgeprägte Beinmuskulatur zusammen mit dem aufrechten Gang prädisponieren ihn zum Gehen."
         }
@@ -11221,9 +11224,9 @@
             "$date": 1407923283364
         },
         "updated": {
-            "$date": 1408455446845
+            "$date": 1409295429022
         },
-        "number": "GE-002",
+        "number": "Act-225",
         "source": "community",
         "defaultfrequency": "day",
         "defaultexecutiontype": "self",
@@ -11265,7 +11268,7 @@
                 "$oid": "53b416fba43aac62a2debda2"
             }
         ],
-        "__v": 6
+        "__v": 7
     },
     {
         "_id": {
@@ -11275,9 +11278,9 @@
             "$date": 1407928133049
         },
         "updated": {
-            "$date": 1408456124691
+            "$date": 1409295489969
         },
-        "number": "GE-003",
+        "number": "Act-226",
         "source": "community",
         "defaultfrequency": "day",
         "defaultexecutiontype": "self",
@@ -11319,7 +11322,7 @@
                 "$oid": "53b416fba43aac62a2debda2"
             }
         ],
-        "__v": 5
+        "__v": 6
     },
     {
         "_id": {
@@ -11329,9 +11332,9 @@
             "$date": 1407928347266
         },
         "updated": {
-            "$date": 1408455434690
+            "$date": 1409295522800
         },
-        "number": "GE-004",
+        "number": "Act-227",
         "source": "community",
         "defaultfrequency": "day",
         "defaultexecutiontype": "self",
@@ -11373,7 +11376,7 @@
                 "$oid": "53b416fba43aac62a2debda2"
             }
         ],
-        "__v": 3
+        "__v": 4
     },
     {
         "_id": {
@@ -11419,9 +11422,9 @@
             "$date": 1407928918199
         },
         "updated": {
-            "$date": 1408456609506
+            "$date": 1409295573256
         },
-        "number": "GE-005",
+        "number": "Act-228",
         "source": "community",
         "defaultfrequency": "day",
         "defaultexecutiontype": "self",
@@ -11463,7 +11466,7 @@
                 "$oid": "53b416fba43aac62a2debda2"
             }
         ],
-        "__v": 4
+        "__v": 5
     },
     {
         "_id": {
@@ -11473,9 +11476,9 @@
             "$date": 1407930282004
         },
         "updated": {
-            "$date": 1408460078512
+            "$date": 1409295597206
         },
-        "number": "GE-006",
+        "number": "Act-229",
         "source": "community",
         "defaultfrequency": "day",
         "defaultexecutiontype": "self",
@@ -11517,7 +11520,7 @@
                 "$oid": "53b416fba43aac62a2debda2"
             }
         ],
-        "__v": 6
+        "__v": 7
     },
     {
         "_id": {
@@ -11527,9 +11530,9 @@
             "$date": 1407930418081
         },
         "updated": {
-            "$date": 1408460311121
+            "$date": 1409295622456
         },
-        "number": "GE-007",
+        "number": "Act-230",
         "source": "community",
         "defaultfrequency": "once",
         "defaultexecutiontype": "self",
@@ -11571,7 +11574,7 @@
                 "$oid": "53b416fba43aac62a2debda2"
             }
         ],
-        "__v": 6
+        "__v": 7
     },
     {
         "_id": {
@@ -11581,9 +11584,9 @@
             "$date": 1407930853829
         },
         "updated": {
-            "$date": 1408461096321
+            "$date": 1409295652361
         },
-        "number": "GE-008",
+        "number": "Act-231",
         "source": "community",
         "defaultfrequency": "day",
         "defaultexecutiontype": "self",
@@ -11625,7 +11628,7 @@
                 "$oid": "53b416fba43aac62a2debda2"
             }
         ],
-        "__v": 5
+        "__v": 6
     },
     {
         "_id": {
@@ -11635,9 +11638,9 @@
             "$date": 1407933494484
         },
         "updated": {
-            "$date": 1408519854929
+            "$date": 1409295679276
         },
-        "number": "GE-009",
+        "number": "Act-232",
         "source": "community",
         "defaultfrequency": "day",
         "defaultexecutiontype": "self",
@@ -11679,7 +11682,7 @@
                 "$oid": "53b416fba43aac62a2debda2"
             }
         ],
-        "__v": 5
+        "__v": 6
     },
     {
         "_id": {
@@ -11689,9 +11692,9 @@
             "$date": 1407933604165
         },
         "updated": {
-            "$date": 1408520037053
+            "$date": 1409295894316
         },
-        "number": "GE-010",
+        "number": "Act-233",
         "source": "community",
         "defaultfrequency": "day",
         "defaultexecutiontype": "self",
@@ -11733,7 +11736,7 @@
                 "$oid": "53b416fba43aac62a2debda2"
             }
         ],
-        "__v": 5
+        "__v": 6
     },
     {
         "_id": {
@@ -11743,9 +11746,9 @@
             "$date": 1407933626627
         },
         "updated": {
-            "$date": 1408520191955
+            "$date": 1409295920510
         },
-        "number": "GE-011",
+        "number": "Act-234",
         "source": "community",
         "defaultfrequency": "day",
         "defaultexecutiontype": "self",
@@ -11787,7 +11790,7 @@
                 "$oid": "53b416fba43aac62a2debda2"
             }
         ],
-        "__v": 5
+        "__v": 6
     },
     {
         "_id": {
@@ -11797,9 +11800,9 @@
             "$date": 1407933649162
         },
         "updated": {
-            "$date": 1408520290495
+            "$date": 1409295961507
         },
-        "number": "GE-012",
+        "number": "Act-235",
         "source": "community",
         "defaultfrequency": "day",
         "defaultexecutiontype": "self",
@@ -11841,7 +11844,7 @@
                 "$oid": "53b416fba43aac62a2debda2"
             }
         ],
-        "__v": 7
+        "__v": 8
     },
     {
         "_id": {
@@ -11851,9 +11854,9 @@
             "$date": 1407933671806
         },
         "updated": {
-            "$date": 1408520385297
+            "$date": 1409296002460
         },
-        "number": "GE-013",
+        "number": "Act-236",
         "source": "community",
         "defaultfrequency": "day",
         "defaultexecutiontype": "self",
@@ -11895,7 +11898,7 @@
                 "$oid": "53b416fba43aac62a2debda2"
             }
         ],
-        "__v": 5
+        "__v": 6
     },
     {
         "_id": {
@@ -11905,9 +11908,9 @@
             "$date": 1407935633343
         },
         "updated": {
-            "$date": 1408520851503
+            "$date": 1409296036782
         },
-        "number": "GE-014",
+        "number": "Act-237",
         "source": "community",
         "defaultfrequency": "once",
         "defaultexecutiontype": "self",
@@ -11949,7 +11952,7 @@
                 "$oid": "53b416fba43aac62a2debda2"
             }
         ],
-        "__v": 4
+        "__v": 5
     },
     {
         "_id": {
@@ -11959,9 +11962,9 @@
             "$date": 1407935701325
         },
         "updated": {
-            "$date": 1408521097287
+            "$date": 1409296063993
         },
-        "number": "GE-015",
+        "number": "Act-238",
         "source": "community",
         "defaultfrequency": "once",
         "defaultexecutiontype": "self",
@@ -12003,7 +12006,7 @@
                 "$oid": "53b416fba43aac62a2debda2"
             }
         ],
-        "__v": 8
+        "__v": 9
     },
     {
         "_id": {
@@ -12013,9 +12016,9 @@
             "$date": 1407935803032
         },
         "updated": {
-            "$date": 1408521062327
+            "$date": 1409296092018
         },
-        "number": "GE-016",
+        "number": "Act-239",
         "source": "community",
         "defaultfrequency": "once",
         "defaultexecutiontype": "self",
@@ -12057,7 +12060,7 @@
                 "$oid": "53b416fba43aac62a2debda2"
             }
         ],
-        "__v": 1
+        "__v": 2
     },
     {
         "_id": {
@@ -12067,9 +12070,9 @@
             "$date": 1408001558851
         },
         "updated": {
-            "$date": 1408522881290
+            "$date": 1409296115566
         },
-        "number": "GE-017",
+        "number": "Act-240",
         "source": "community",
         "defaultfrequency": "day",
         "defaultexecutiontype": "self",
@@ -12111,7 +12114,7 @@
                 "$oid": "53b416fba43aac62a2debda2"
             }
         ],
-        "__v": 1
+        "__v": 2
     },
     {
         "_id": {
@@ -12121,9 +12124,9 @@
             "$date": 1408001838223
         },
         "updated": {
-            "$date": 1408523064403
+            "$date": 1409296137241
         },
-        "number": "GE-018",
+        "number": "Act-241",
         "source": "community",
         "defaultfrequency": "once",
         "defaultexecutiontype": "self",
@@ -12165,7 +12168,7 @@
                 "$oid": "53b416fba43aac62a2debda2"
             }
         ],
-        "__v": 3
+        "__v": 4
     },
     {
         "_id": {
@@ -12175,9 +12178,9 @@
             "$date": 1408001990589
         },
         "updated": {
-            "$date": 1408523336742
+            "$date": 1409296192993
         },
-        "number": "GE-019",
+        "number": "Act-242",
         "source": "community",
         "defaultfrequency": "week",
         "defaultexecutiontype": "self",
@@ -12219,7 +12222,7 @@
                 "$oid": "53b416fba43aac62a2debda2"
             }
         ],
-        "__v": 1
+        "__v": 3
     },
     {
         "_id": {
@@ -12229,9 +12232,9 @@
             "$date": 1408002093633
         },
         "updated": {
-            "$date": 1408523625635
+            "$date": 1409296359829
         },
-        "number": "GE-020",
+        "number": "Act-243",
         "source": "community",
         "defaultfrequency": "day",
         "defaultexecutiontype": "self",
@@ -12273,7 +12276,7 @@
                 "$oid": "53b416fba43aac62a2debda2"
             }
         ],
-        "__v": 1
+        "__v": 2
     },
     {
         "_id": {
@@ -12283,9 +12286,9 @@
             "$date": 1408002721401
         },
         "updated": {
-            "$date": 1408524576759
+            "$date": 1409296443593
         },
-        "number": "GE-021",
+        "number": "Act-244",
         "source": "community",
         "defaultfrequency": "day",
         "defaultexecutiontype": "self",
@@ -12327,7 +12330,7 @@
                 "$oid": "53b416fba43aac62a2debda2"
             }
         ],
-        "__v": 2
+        "__v": 3
     },
     {
         "_id": {
@@ -12337,9 +12340,9 @@
             "$date": 1408002783525
         },
         "updated": {
-            "$date": 1408525286963
+            "$date": 1409296470367
         },
-        "number": "GE-022",
+        "number": "Act-245",
         "source": "community",
         "defaultfrequency": "day",
         "defaultexecutiontype": "self",
@@ -12381,7 +12384,7 @@
                 "$oid": "53b416fba43aac62a2debda2"
             }
         ],
-        "__v": 5
+        "__v": 6
     },
     {
         "_id": {
@@ -12391,9 +12394,9 @@
             "$date": 1408005460542
         },
         "updated": {
-            "$date": 1408526990157
+            "$date": 1409296508617
         },
-        "number": "GE-023",
+        "number": "Act-246",
         "source": "community",
         "defaultfrequency": "week",
         "defaultexecutiontype": "self",
@@ -12435,7 +12438,7 @@
                 "$oid": "53b416fba43aac62a2debda2"
             }
         ],
-        "__v": 4
+        "__v": 5
     },
     {
         "_id": {
@@ -12445,9 +12448,9 @@
             "$date": 1408005765730
         },
         "updated": {
-            "$date": 1408526985613
+            "$date": 1409296537483
         },
-        "number": "GE-024",
+        "number": "Act-247",
         "source": "community",
         "defaultfrequency": "day",
         "defaultexecutiontype": "self",
@@ -12489,7 +12492,7 @@
                 "$oid": "53b416fba43aac62a2debda2"
             }
         ],
-        "__v": 2
+        "__v": 3
     },
     {
         "_id": {
@@ -12499,9 +12502,9 @@
             "$date": 1408005926467
         },
         "updated": {
-            "$date": 1408527237289
+            "$date": 1409296560618
         },
-        "number": "GE-025",
+        "number": "Act-248",
         "source": "community",
         "defaultfrequency": "day",
         "defaultexecutiontype": "self",
@@ -12543,7 +12546,7 @@
                 "$oid": "53b416fba43aac62a2debda2"
             }
         ],
-        "__v": 1
+        "__v": 2
     },
     {
         "_id": {
@@ -12553,9 +12556,9 @@
             "$date": 1408006131602
         },
         "updated": {
-            "$date": 1408527475786
+            "$date": 1409296594793
         },
-        "number": "GE-026",
+        "number": "Act-249",
         "source": "community",
         "defaultfrequency": "day",
         "defaultexecutiontype": "self",
@@ -12597,7 +12600,7 @@
                 "$oid": "53b416fba43aac62a2debda2"
             }
         ],
-        "__v": 1
+        "__v": 2
     },
     {
         "_id": {
@@ -12607,9 +12610,9 @@
             "$date": 1408006665282
         },
         "updated": {
-            "$date": 1408527722328
+            "$date": 1409296621619
         },
-        "number": "GE-027",
+        "number": "Act-250",
         "source": "community",
         "defaultfrequency": "day",
         "defaultexecutiontype": "self",
@@ -12651,7 +12654,7 @@
                 "$oid": "53b416fba43aac62a2debda2"
             }
         ],
-        "__v": 1
+        "__v": 2
     },
     {
         "_id": {
@@ -12661,9 +12664,9 @@
             "$date": 1408007195329
         },
         "updated": {
-            "$date": 1408528939156
+            "$date": 1409296644443
         },
-        "number": "GE-028",
+        "number": "Act-251",
         "source": "community",
         "defaultfrequency": "day",
         "defaultexecutiontype": "group",
@@ -12705,7 +12708,7 @@
                 "$oid": "53b416fba43aac62a2debda2"
             }
         ],
-        "__v": 1
+        "__v": 2
     },
     {
         "_id": {
@@ -12715,9 +12718,9 @@
             "$date": 1408007331203
         },
         "updated": {
-            "$date": 1408529049803
+            "$date": 1409296666517
         },
-        "number": "GE-029",
+        "number": "Act-252",
         "source": "community",
         "defaultfrequency": "day",
         "defaultexecutiontype": "group",
@@ -12759,7 +12762,7 @@
                 "$oid": "53b416fba43aac62a2debda2"
             }
         ],
-        "__v": 1
+        "__v": 2
     },
     {
         "_id": {
@@ -12769,9 +12772,9 @@
             "$date": 1408007401979
         },
         "updated": {
-            "$date": 1408533985281
+            "$date": 1409296860723
         },
-        "number": "GE-030",
+        "number": "Act-253",
         "source": "community",
         "defaultfrequency": "day",
         "defaultexecutiontype": "group",
@@ -12813,7 +12816,7 @@
                 "$oid": "53b416fba43aac62a2debda2"
             }
         ],
-        "__v": 2
+        "__v": 3
     },
     {
         "_id": {
@@ -12823,9 +12826,9 @@
             "$date": 1408007600462
         },
         "updated": {
-            "$date": 1408534138108
+            "$date": 1409296886915
         },
-        "number": "GE-031",
+        "number": "Act-254",
         "source": "community",
         "defaultfrequency": "day",
         "defaultexecutiontype": "group",
@@ -12867,7 +12870,7 @@
                 "$oid": "53b416fba43aac62a2debda2"
             }
         ],
-        "__v": 2
+        "__v": 3
     },
     {
         "_id": {
@@ -12877,9 +12880,9 @@
             "$date": 1408007705946
         },
         "updated": {
-            "$date": 1408534330904
+            "$date": 1409296911044
         },
-        "number": "GE-032",
+        "number": "Act-255",
         "source": "community",
         "defaultfrequency": "day",
         "defaultexecutiontype": "group",
@@ -12921,7 +12924,7 @@
                 "$oid": "53b416fba43aac62a2debda2"
             }
         ],
-        "__v": 1
+        "__v": 2
     },
     {
         "_id": {
@@ -12931,9 +12934,9 @@
             "$date": 1408007862824
         },
         "updated": {
-            "$date": 1408534555737
+            "$date": 1409296936265
         },
-        "number": "GE-033",
+        "number": "Act-256",
         "source": "community",
         "defaultfrequency": "day",
         "defaultexecutiontype": "group",
@@ -12975,7 +12978,7 @@
                 "$oid": "53b416fba43aac62a2debda2"
             }
         ],
-        "__v": 2
+        "__v": 3
     },
     {
         "_id": {
@@ -12985,9 +12988,9 @@
             "$date": 1408008286098
         },
         "updated": {
-            "$date": 1408535360282
+            "$date": 1409308252948
         },
-        "number": "GE-034",
+        "number": "Act-257",
         "source": "community",
         "defaultfrequency": "once",
         "defaultexecutiontype": "self",
@@ -13022,14 +13025,14 @@
             "de": "Denke über deine Ernährungs-situation und Essgewohnheiten nach und notiere dir alles, was du ändern möchtest."
         },
         "titleI18n": {
-            "de": "Essgewohnheiten"
+            "de": "Essgewohnheiten notieren"
         },
         "topics": [
             {
                 "$oid": "53b416fba43aac62a2debda2"
             }
         ],
-        "__v": 1
+        "__v": 3
     },
     {
         "_id": {
@@ -13039,9 +13042,9 @@
             "$date": 1408008455608
         },
         "updated": {
-            "$date": 1408535730946
+            "$date": 1409308319710
         },
-        "number": "GE-035",
+        "number": "Act-258",
         "source": "community",
         "defaultfrequency": "once",
         "defaultexecutiontype": "self",
@@ -13076,14 +13079,14 @@
             "de": "Denke über deine Ernährungs-situation und Essgewohnheiten nach und ändere gleich heute deine Essgewohnheiten, die dich stören."
         },
         "titleI18n": {
-            "de": "Änderung von Essgewohnheiten"
+            "de": "Essgewohnheiten ändern"
         },
         "topics": [
             {
                 "$oid": "53b416fba43aac62a2debda2"
             }
         ],
-        "__v": 1
+        "__v": 3
     },
     {
         "_id": {
@@ -13093,9 +13096,9 @@
             "$date": 1408008939144
         },
         "updated": {
-            "$date": 1408535868741
+            "$date": 1409297010884
         },
-        "number": "GE-036",
+        "number": "Act-259",
         "source": "community",
         "defaultfrequency": "once",
         "defaultexecutiontype": "self",
@@ -13137,7 +13140,7 @@
                 "$oid": "53b416fba43aac62a2debda2"
             }
         ],
-        "__v": 2
+        "__v": 3
     },
     {
         "_id": {
@@ -13147,9 +13150,9 @@
             "$date": 1408013610145
         },
         "updated": {
-            "$date": 1408536263713
+            "$date": 1409297257417
         },
-        "number": "GE-037",
+        "number": "Act-260",
         "source": "community",
         "defaultfrequency": "once",
         "defaultexecutiontype": "self",
@@ -13191,7 +13194,7 @@
                 "$oid": "53b416fba43aac62a2debda2"
             }
         ],
-        "__v": 1
+        "__v": 3
     },
     {
         "_id": {
@@ -13201,9 +13204,9 @@
             "$date": 1408013685928
         },
         "updated": {
-            "$date": 1408536413291
+            "$date": 1409297289860
         },
-        "number": "GE-038",
+        "number": "Act-261",
         "source": "community",
         "defaultfrequency": "week",
         "defaultexecutiontype": "self",
@@ -13245,7 +13248,7 @@
                 "$oid": "53b416fba43aac62a2debda2"
             }
         ],
-        "__v": 3
+        "__v": 5
     },
     {
         "_id": {
@@ -13255,9 +13258,9 @@
             "$date": 1408013899412
         },
         "updated": {
-            "$date": 1408536636110
+            "$date": 1409297331790
         },
-        "number": "GE-039",
+        "number": "Act-262",
         "source": "community",
         "defaultfrequency": "week",
         "defaultexecutiontype": "group",
@@ -13299,7 +13302,7 @@
                 "$oid": "53b416fba43aac62a2debda2"
             }
         ],
-        "__v": 2
+        "__v": 5
     },
     {
         "_id": {
@@ -13309,9 +13312,9 @@
             "$date": 1408014144077
         },
         "updated": {
-            "$date": 1408536785163
+            "$date": 1409297353068
         },
-        "number": "GE-040",
+        "number": "Act-263",
         "source": "community",
         "defaultfrequency": "day",
         "defaultexecutiontype": "self",
@@ -13353,7 +13356,7 @@
                 "$oid": "53b416fba43aac62a2debda2"
             }
         ],
-        "__v": 1
+        "__v": 3
     },
     {
         "_id": {
@@ -13363,9 +13366,9 @@
             "$date": 1409229319586
         },
         "updated": {
-            "$date": 1409229554251
+            "$date": 1409297467130
         },
-        "number": "KF-002",
+        "number": "Act-265",
         "source": "community",
         "defaultfrequency": "once",
         "defaultexecutiontype": "self",
@@ -13403,6 +13406,406 @@
                 "$oid": "53b416fba43aac62a2debda3"
             }
         ],
-        "__v": 3
+        "__v": 4
+    },
+    {
+        "_id": {
+            "$oid": "53ff23888bda22af0b73bb43"
+        },
+        "created": {
+            "$date": 1409229704500
+        },
+        "updated": {
+            "$date": 1409297494185
+        },
+        "number": "Act-266",
+        "source": "community",
+        "defaultfrequency": "day",
+        "defaultexecutiontype": "group",
+        "defaultduration": 60,
+        "recWeights": [
+            [ "53e8df8d3cca9d19333e73e2", 3, 0 ],
+            [ "53e8df8d3cca9d19333e73e3", 3, 0 ],
+            [ "53e8df8d3cca9d19333e73e4", 3, 0 ],
+            [ "53e8df8d3cca9d19333e73e5", 3, 0 ],
+            [ "53e8df8d3cca9d19333e73e6", 3, 0 ],
+            [ "53e8df8d3cca9d19333e73e7", 3, 0 ],
+            [ "53e8df8d3cca9d19333e73e8", 0, 0 ],
+            [ "53e8df8d3cca9d19333e73e9", 3, 0 ],
+            [ "53e8df8d3cca9d19333e73ea", 0, 0 ],
+            [ "53e8df8d3cca9d19333e73eb", 3, 0 ],
+            [ "53e8df8d3cca9d19333e73ec", 5, 0 ],
+            [ "53e8df8d3cca9d19333e73ed", 5, 0 ],
+            [ "53e8df8d3cca9d19333e73ee", 0, 0 ]
+        ],
+        "qualityFactor": 5,
+        "author": {
+            "$oid": "52d4f515fac246174c000006"
+        },
+        "textI18n": {
+            "de": "Muskelkater ist keine Krankheit und meist auch völlig unproblematisch, nur eben etwas schmerzhaft. Er entsteht durch eine Überforderung der Muskulatur, was nicht nur Anfängern, sondern auch trainierten Sportlern passiert, wenn sie ungewohnte Übungen ausführen. Beim Muskelkater kommt es innerhalb der Muskeln zum Zerreissen kleiner Eiweiss-Strukturen, aus denen die Muskelfasern gebildet werden, der Organismus reagiert mit einer lokalen Entzündung. Daher die Schmerzen. Bewegung hilft eher, als dass sie schadet, da sie die Durchblutung fördert und den Heilungsprozess vorantreibt. Leichte Bewegung ist in Ordnung, nur nicht übertreiben."
+        },
+        "descriptionI18n": {
+            "de": "Bewege dich auch heute, trotz Muskelkater"
+        },
+        "titleI18n": {
+            "de": "Muskelkater"
+        },
+        "topics": [
+            {
+                "$oid": "53b416fba43aac62a2debda3"
+            }
+        ],
+        "__v": 2
+    },
+    {
+        "_id": {
+            "$oid": "53ff2cf58bda22af0b73bbef"
+        },
+        "created": {
+            "$date": 1409232117267
+        },
+        "updated": {
+            "$date": 1409297517306
+        },
+        "number": "Act-267",
+        "source": "community",
+        "defaultfrequency": "week",
+        "defaultexecutiontype": "self",
+        "defaultduration": 60,
+        "recWeights": [
+            [ "53e8df8d3cca9d19333e73e2", 3, 0 ],
+            [ "53e8df8d3cca9d19333e73e3", 3, 0 ],
+            [ "53e8df8d3cca9d19333e73e4", 8, 0 ],
+            [ "53e8df8d3cca9d19333e73e5", 3, 0 ],
+            [ "53e8df8d3cca9d19333e73e6", 0, 0 ],
+            [ "53e8df8d3cca9d19333e73e7", 0, 0 ],
+            [ "53e8df8d3cca9d19333e73e8", 0, 0 ],
+            [ "53e8df8d3cca9d19333e73e9", 0, 0 ],
+            [ "53e8df8d3cca9d19333e73ea", 0, 0 ],
+            [ "53e8df8d3cca9d19333e73eb", 3, 0 ],
+            [ "53e8df8d3cca9d19333e73ec", 3, 0 ],
+            [ "53e8df8d3cca9d19333e73ed", 3, 0 ],
+            [ "53e8df8d3cca9d19333e73ee", 0, 0 ]
+        ],
+        "qualityFactor": 5,
+        "author": {
+            "$oid": "52d4f515fac246174c000006"
+        },
+        "textI18n": {
+            "de": "Es ist leider nicht so einfach möglich, nur Problemzonen zu trainieren. Auch noch so viele Bauchübungen geben keine Garantie, dass man seinen Hüftspeck los wird. Die Verteilung des Körperfettes ist stark genetisch bedingt.\n\nZudem: wer unangenehme Übungen meidet, baut nur weiter seine Stärken aus und trainiert nicht seine Schwächen. So entstehen muskuläre Dysbalancen und man riskiert Haltungsschäden!\n\nAchten Sie darauf, auch immer den Muskel-Gegenspieler zu trainieren: Vorder- und Rückseite der Oberschenkel, Armbeuger (Bizeps) und Armstrecker (Trizeps), Rücken und Bauch."
+        },
+        "descriptionI18n": {
+            "de": "Mache 2-3 Mal wöchentlich allge-meines Krafttraining für deinen ganzen Körper, nicht nur für bestimmte Problemzonen oder einseitiges Training"
+        },
+        "titleI18n": {
+            "de": "Ganzkörper-Krafttraining"
+        },
+        "topics": [
+            {
+                "$oid": "53b416fba43aac62a2debda3"
+            }
+        ],
+        "__v": 1
+    },
+    {
+        "_id": {
+            "$oid": "53ff2dba470a1cae0b0e23e5"
+        },
+        "created": {
+            "$date": 1409232314437
+        },
+        "updated": {
+            "$date": 1409297538883
+        },
+        "number": "Act-268",
+        "source": "community",
+        "defaultfrequency": "week",
+        "defaultexecutiontype": "self",
+        "defaultduration": 60,
+        "recWeights": [
+            [ "53e8df8d3cca9d19333e73e2", 0, 0 ],
+            [ "53e8df8d3cca9d19333e73e3", 0, 0 ],
+            [ "53e8df8d3cca9d19333e73e4", 0, 0 ],
+            [ "53e8df8d3cca9d19333e73e5", 0, 0 ],
+            [ "53e8df8d3cca9d19333e73e6", 0, 0 ],
+            [ "53e8df8d3cca9d19333e73e7", 0, 0 ],
+            [ "53e8df8d3cca9d19333e73e8", 0, 0 ],
+            [ "53e8df8d3cca9d19333e73e9", 0, 0 ],
+            [ "53e8df8d3cca9d19333e73ea", 0, 0 ],
+            [ "53e8df8d3cca9d19333e73eb", 0, 0 ],
+            [ "53e8df8d3cca9d19333e73ec", 0, 0 ],
+            [ "53e8df8d3cca9d19333e73ed", 0, 0 ],
+            [ "53e8df8d3cca9d19333e73ee", 0, 0 ]
+        ],
+        "qualityFactor": 5,
+        "author": {
+            "$oid": "52d4f515fac246174c000006"
+        },
+        "textI18n": {
+            "de": "Das 20 Minuten Power-Training von hepa gliedert sich in 3 Stufen, wobei du zusätzlich ein Theraband und/oder leichtes Gewicht oder das eigene Körpergewicht verwenden kannst:\n\n1. Stufe (einfach): einfach gegen Schwerkraft\n2. Stufe (mittel): mit Theraband oder/und Gewicht\n3. Stufe (fortgeschritten): Körpergewicht"
+        },
+        "descriptionI18n": {
+            "de": "Für eine lang anhaltende Gewichts-reduktion integriere 2-3 Mal wöchent-lich einen speziellen, vorgegebenen Krafttrainingsteil für deine Muskulatur, z.B. Power-Training (mit Übungen gegen die Schwerkraft)"
+        },
+        "titleI18n": {
+            "de": "Spezielles Krafttraining"
+        },
+        "topics": [
+            {
+                "$oid": "53b416fba43aac62a2debda3"
+            }
+        ],
+        "__v": 1
+    },
+    {
+        "_id": {
+            "$oid": "53ff2e478bda22af0b73bbf0"
+        },
+        "created": {
+            "$date": 1409232455505
+        },
+        "updated": {
+            "$date": 1409297561940
+        },
+        "number": "Act-269",
+        "source": "community",
+        "defaultfrequency": "day",
+        "defaultexecutiontype": "self",
+        "defaultduration": 10,
+        "recWeights": [
+            [ "53e8df8d3cca9d19333e73e2", 3, 0 ],
+            [ "53e8df8d3cca9d19333e73e3", 0, 0 ],
+            [ "53e8df8d3cca9d19333e73e4", 0, 0 ],
+            [ "53e8df8d3cca9d19333e73e5", 0, 0 ],
+            [ "53e8df8d3cca9d19333e73e6", 6, 0 ],
+            [ "53e8df8d3cca9d19333e73e7", 0, 0 ],
+            [ "53e8df8d3cca9d19333e73e8", 0, 0 ],
+            [ "53e8df8d3cca9d19333e73e9", 0, 0 ],
+            [ "53e8df8d3cca9d19333e73ea", 0, 0 ],
+            [ "53e8df8d3cca9d19333e73eb", 3, 0 ],
+            [ "53e8df8d3cca9d19333e73ec", 3, 0 ],
+            [ "53e8df8d3cca9d19333e73ed", 3, 0 ],
+            [ "53e8df8d3cca9d19333e73ee", 0, 0 ]
+        ],
+        "qualityFactor": 5,
+        "author": {
+            "$oid": "52d4f515fac246174c000006"
+        },
+        "textI18n": {
+            "de": "Morgens zehn Minuten Gymnastik ist ein guter Start in den Tag. Und das täglich. Wichtig ist Dauerhaftigkeit."
+        },
+        "descriptionI18n": {
+            "de": "Starte jeden Tag mit 10 Minuten Gymnastik"
+        },
+        "titleI18n": {
+            "de": "Gymnastik"
+        },
+        "topics": [
+            {
+                "$oid": "53b416fba43aac62a2debda3"
+            }
+        ],
+        "__v": 1
+    },
+    {
+        "_id": {
+            "$oid": "53ff2f5e470a1cae0b0e23e6"
+        },
+        "created": {
+            "$date": 1409232734873
+        },
+        "updated": {
+            "$date": 1409297582463
+        },
+        "number": "Act-270",
+        "source": "community",
+        "defaultfrequency": "day",
+        "defaultexecutiontype": "group",
+        "defaultduration": 30,
+        "recWeights": [
+            [ "53e8df8d3cca9d19333e73e2", 0, 0 ],
+            [ "53e8df8d3cca9d19333e73e3", 3, 0 ],
+            [ "53e8df8d3cca9d19333e73e4", 0, 0 ],
+            [ "53e8df8d3cca9d19333e73e5", 0, 0 ],
+            [ "53e8df8d3cca9d19333e73e6", 0, 0 ],
+            [ "53e8df8d3cca9d19333e73e7", 6, 0 ],
+            [ "53e8df8d3cca9d19333e73e8", 0, 0 ],
+            [ "53e8df8d3cca9d19333e73e9", 5, 0 ],
+            [ "53e8df8d3cca9d19333e73ea", 0, 0 ],
+            [ "53e8df8d3cca9d19333e73eb", 5, 0 ],
+            [ "53e8df8d3cca9d19333e73ec", 3, 0 ],
+            [ "53e8df8d3cca9d19333e73ed", 3, 0 ],
+            [ "53e8df8d3cca9d19333e73ee", 0, 0 ]
+        ],
+        "qualityFactor": 5,
+        "author": {
+            "$oid": "52d4f515fac246174c000006"
+        },
+        "textI18n": {
+            "de": "Tagsüber einen strammen Spaziergang in der Natur erhöht die Ausdauer. Und das täglich. Wichtig ist Dauerhaftigkeit."
+        },
+        "descriptionI18n": {
+            "de": "Trainiere jeden Tag 20-30 Minuten lang deine Ausdauer mit einem strammen Spaziergang in der Natur"
+        },
+        "titleI18n": {
+            "de": "Strammer Spaziergang"
+        },
+        "topics": [
+            {
+                "$oid": "53b416fba43aac62a2debda3"
+            }
+        ],
+        "__v": 1
+    },
+    {
+        "_id": {
+            "$oid": "53ff32d38bda22af0b73bbf1"
+        },
+        "created": {
+            "$date": 1409233619897
+        },
+        "updated": {
+            "$date": 1409297603777
+        },
+        "number": "Act-271",
+        "source": "community",
+        "defaultfrequency": "week",
+        "defaultexecutiontype": "group",
+        "defaultduration": 60,
+        "recWeights": [
+            [ "53e8df8d3cca9d19333e73e2", 0, 0 ],
+            [ "53e8df8d3cca9d19333e73e3", 3, 0 ],
+            [ "53e8df8d3cca9d19333e73e4", 0, 0 ],
+            [ "53e8df8d3cca9d19333e73e5", 0, 0 ],
+            [ "53e8df8d3cca9d19333e73e6", 0, 0 ],
+            [ "53e8df8d3cca9d19333e73e7", 0, 0 ],
+            [ "53e8df8d3cca9d19333e73e8", 8, 0 ],
+            [ "53e8df8d3cca9d19333e73e9", 0, 0 ],
+            [ "53e8df8d3cca9d19333e73ea", 0, 0 ],
+            [ "53e8df8d3cca9d19333e73eb", 5, 0 ],
+            [ "53e8df8d3cca9d19333e73ec", 3, 0 ],
+            [ "53e8df8d3cca9d19333e73ed", 3, 0 ],
+            [ "53e8df8d3cca9d19333e73ee", 0, 0 ]
+        ],
+        "qualityFactor": 5,
+        "author": {
+            "$oid": "52d4f515fac246174c000006"
+        },
+        "textI18n": {
+            "de": "\"Urban Training\" ist in aller Munde. Man nutz die Stadt als Fitnesscenter zum Training für Koordination und Beweglichkeit.\n\n\"Urban Training\" kann man alleine oder in der Gruppe durchführen. Ideal ist, wenn die vorhandene Infrastruktur für Koordinations- und Dehnübungen genutzt wird.\n\nSo lässt sich in einer Stunde ein gutes Fitnessprogramm absolvieren. Koordination hilft, Stürze zu vermeiden."
+        },
+        "descriptionI18n": {
+            "de": "Plane 2-3 Mal wöchentlich ein \"Urban Training\" (Training in der Stadt) zur Verbesserung deiner Koordination und Geschicklichkeit"
+        },
+        "titleI18n": {
+            "de": "Urban Training"
+        },
+        "topics": [
+            {
+                "$oid": "53b416fba43aac62a2debda3"
+            }
+        ],
+        "__v": 1
+    },
+    {
+        "_id": {
+            "$oid": "53ff33fa8bda22af0b73bbf2"
+        },
+        "created": {
+            "$date": 1409233914489
+        },
+        "updated": {
+            "$date": 1409297626562
+        },
+        "number": "Act-272",
+        "source": "community",
+        "defaultfrequency": "day",
+        "defaultexecutiontype": "self",
+        "defaultduration": 10,
+        "recWeights": [
+            [ "53e8df8d3cca9d19333e73e2", 3, 0 ],
+            [ "53e8df8d3cca9d19333e73e3", 0, 0 ],
+            [ "53e8df8d3cca9d19333e73e4", 0, 0 ],
+            [ "53e8df8d3cca9d19333e73e5", 0, 0 ],
+            [ "53e8df8d3cca9d19333e73e6", 3, 0 ],
+            [ "53e8df8d3cca9d19333e73e7", 0, 0 ],
+            [ "53e8df8d3cca9d19333e73e8", 0, 0 ],
+            [ "53e8df8d3cca9d19333e73e9", 8, 0 ],
+            [ "53e8df8d3cca9d19333e73ea", 0, 0 ],
+            [ "53e8df8d3cca9d19333e73eb", 5, 0 ],
+            [ "53e8df8d3cca9d19333e73ec", 5, 0 ],
+            [ "53e8df8d3cca9d19333e73ed", 3, 0 ],
+            [ "53e8df8d3cca9d19333e73ee", 0, 0 ]
+        ],
+        "qualityFactor": 5,
+        "author": {
+            "$oid": "52d4f515fac246174c000006"
+        },
+        "textI18n": {
+            "de": "Als Durchschnitt wurde in Studien eine Anzahl um 5'000 Schritte festgestellt. Für eine Gewichtsreduktion ist eine lang-fristige Erhöhung auf 10'000 Schritte pro Tag wünschenswert."
+        },
+        "descriptionI18n": {
+            "de": "Lege deinen Schrittzähler (Pedometer) gleich nach dem Aufstehen an, um die Anzahl deiner täglichen Schritte zu zählen"
+        },
+        "titleI18n": {
+            "de": "Schrittzähler"
+        },
+        "topics": [
+            {
+                "$oid": "53b416fba43aac62a2debda3"
+            }
+        ],
+        "__v": 1
+    },
+    {
+        "_id": {
+            "$oid": "53ff35228bda22af0b73bbf3"
+        },
+        "created": {
+            "$date": 1409234210233
+        },
+        "updated": {
+            "$date": 1409297645235
+        },
+        "number": "Act-273",
+        "source": "community",
+        "defaultfrequency": "day",
+        "defaultexecutiontype": "self",
+        "defaultduration": 10,
+        "recWeights": [
+            [ "53e8df8d3cca9d19333e73e2", 5, 0 ],
+            [ "53e8df8d3cca9d19333e73e3", 0, 0 ],
+            [ "53e8df8d3cca9d19333e73e4", 0, 0 ],
+            [ "53e8df8d3cca9d19333e73e5", 0, 0 ],
+            [ "53e8df8d3cca9d19333e73e6", 0, 0 ],
+            [ "53e8df8d3cca9d19333e73e7", 0, 0 ],
+            [ "53e8df8d3cca9d19333e73e8", 0, 0 ],
+            [ "53e8df8d3cca9d19333e73e9", 0, 0 ],
+            [ "53e8df8d3cca9d19333e73ea", 8, 0 ],
+            [ "53e8df8d3cca9d19333e73eb", 5, 0 ],
+            [ "53e8df8d3cca9d19333e73ec", 3, 0 ],
+            [ "53e8df8d3cca9d19333e73ed", 3, 0 ],
+            [ "53e8df8d3cca9d19333e73ee", 0, 0 ]
+        ],
+        "qualityFactor": 5,
+        "author": {
+            "$oid": "52d4f515fac246174c000006"
+        },
+        "textI18n": {
+            "de": "Ein Accelerometer misst die Beschleunigung und rechnet diese je nach Modell um in Gehstrecke, verbrauchte Kalorien oder er gibt Ihnen z.B. mit einem «Smile» an, ob das Total der täglichen Bewegung ausreichend war."
+        },
+        "descriptionI18n": {
+            "de": "Lege deinen Accelerometer gleich nach dem Aufstehen an, um das Total deiner täglichen Bewegung zu messen"
+        },
+        "titleI18n": {
+            "de": "Accelerometer"
+        },
+        "topics": [
+            {
+                "$oid": "53b416fba43aac62a2debda3"
+            }
+        ],
+        "__v": 1
     }
 ]

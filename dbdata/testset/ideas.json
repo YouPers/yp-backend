@@ -1109,7 +1109,7 @@
         "_id": {
             "$oid": "5278c6adcdeab69a2500001f"
         },
-        "__v": 2,
+        "__v": 3,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -1132,7 +1132,7 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": ""
+            "de": "Unter einer Ruhepause versteht man die Unterbrechung der Arbeitszeit zur Erholung. \n\nPlane für deine Arbeitsphasen auch regelmässige, kurze Ruhepausen in deinen Arbeitstag ein. So kann die tägliche Gesamtruhe&shy;zeit auf einzelne, kleinere Ruhepausen verteilt werden."
         },
         "titleI18n": {
             "de": "Ruhepausen"
@@ -1141,7 +1141,13 @@
             {
                 "$oid": "53b416cfa43aac62a2debda1"
             }
-        ]
+        ],
+        "created": {
+            "$date": 1409602923089
+        },
+        "updated": {
+            "$date": 1409602923089
+        }
     },
     {
         "_id": {
@@ -1446,7 +1452,7 @@
         "_id": {
             "$oid": "5278c6adcdeab69a25000026"
         },
-        "__v": 3,
+        "__v": 4,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -1474,7 +1480,7 @@
         ],
         "source": "youpers",
         "textI18n": {
-            "de": ""
+            "de": "Als flexible Arbeitszeit werden Arbeitszeit&shy;lösungen bezeichnet, welche hinsichtlich Lage und Dauer der Arbeitszeit täglich, wöchentlich, monatlich oder anders von der so genannten Normalarbeitszeit abweichen.\n\nDie Bedingungen für flexible Arbeitszeiten sehen meist vor, dass der Arbeitnehmer, sofern er nicht arbeitsunfähig krank ist, bei Arztbesuchen, Behördengänge oder Handwerkerbesuchen die Arbeitszeit selbst ausgleicht.\n\nDa bei weitgehend flexiblen Arbeitszeiten normalerweise kein Anspruch auf bezahlte Freistellung besteht, führen flexible Arbeitszeiten in diesem Sinne zu längeren Arbeitszeiten der Arbeitnehmer."
         },
         "titleI18n": {
             "de": "Flexibel Arbeiten"
@@ -1485,14 +1491,14 @@
             }
         ],
         "updated": {
-            "$date": 1398418755784
+            "$date": 1409604148982
         }
     },
     {
         "_id": {
             "$oid": "5278c6adcdeab69a25000027"
         },
-        "__v": 3,
+        "__v": 4,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -1524,7 +1530,7 @@
         ],
         "source": "youpers",
         "textI18n": {
-            "de": ""
+            "de": "Von den insgesamt 4,5 Millionen Beschäf&shy;tigten in der Schweiz haben 54% aufgrund ihrer Arbeitstätigkeit die Möglichkeit mobil zu arbeiten. Rund ein Viertel oder eine Million Menschen tut dies bereits regel&shy;mässig."
         },
         "titleI18n": {
             "de": "Home Office"
@@ -1535,14 +1541,14 @@
             }
         ],
         "updated": {
-            "$date": 1398418778143
+            "$date": 1409603258876
         }
     },
     {
         "_id": {
             "$oid": "5278c6adcdeab69a25000028"
         },
-        "__v": 4,
+        "__v": 5,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -1568,7 +1574,7 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": ""
+            "de": "Arbeitsplanung dient der Organisation der Arbeit durch gedankliche Vorstrukturierung von Arbeitsaufgaben, Arbeitsvorbereitung und Arbeitsverteilung.\n\nDie Ergebnisse der Arbeits- und Zeit&shy;pla&shy;nung bilden den Hauptbestandteil des Arbeitsplans, der jedoch auch weitere Planungsteilergebnisse enthalten kann, wie etwa die Arbeits&shy;folgeplanung und die Durchlaufzeitenplanung."
         },
         "titleI18n": {
             "de": "Sinnvolle Arbeitsplanung"
@@ -1579,7 +1585,7 @@
             }
         ],
         "updated": {
-            "$date": 1398418803601
+            "$date": 1409604756510
         }
     },
     {
@@ -2283,7 +2289,7 @@
         "_id": {
             "$oid": "5278c6adcdeab69a25000038"
         },
-        "__v": 7,
+        "__v": 8,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -2295,7 +2301,7 @@
         "defaultfrequency": "once",
         "defaultvisibility": "private",
         "descriptionI18n": {
-            "de": "Sprich mit deiner bzw. deinem Vor&shy;ge&shy;setz&shy;ten oder einer personal&shy;ver&shy;ant&shy;wort&shy;lichen Person über eine Veränderung deiner Arbeitsumgebung."
+            "de": "Sprich mit deiner bzw. deinem Vor&shy;ge&shy;setz&shy;ten oder einer personal&shy;ver&shy;ant&shy;wort&shy;lichen Person über eine Ver&shy;än&shy;derung deiner Arbeitsumgebung."
         },
         "number": "Act-51",
         "qualityFactor": 4,
@@ -2309,7 +2315,7 @@
         ],
         "source": "youpers",
         "textI18n": {
-            "de": ""
+            "de": "US-amerikanische Studien zeigen, dass der durchschnittliche Mitarbeiter im Büro&shy;umfeld jeden Monat etwa 40 Stunden in Trainings und Meetings verbringt. In dieser Zeit, die einer kompletten Arbeitswoche entspricht, ist es den Betroffenen häufig nicht möglich, produktiv zu arbeiten.\n\nKomplizierte und unnötige Arbeits&shy;pro&shy;zesse erschweren den Arbeitstag – nicht nur beim selbstständigen Arbeiten, sondern auch beim Teamwork.\n\nAus diesem Grund ist es enorm wichtig, eine produktive Arbeitsumgebung zu schaffen."
         },
         "titleI18n": {
             "de": "Arbeitsumgebung"
@@ -2320,14 +2326,14 @@
             }
         ],
         "updated": {
-            "$date": 1400155035690
+            "$date": 1409562173944
         }
     },
     {
         "_id": {
             "$oid": "5278c6adcdeab69a25000039"
         },
-        "__v": 5,
+        "__v": 7,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -2339,7 +2345,7 @@
         "defaultfrequency": "once",
         "defaultvisibility": "private",
         "descriptionI18n": {
-            "de": "Sprich mit deiner bzw. deinem Vor&shy;ge&shy;setz&shy;ten oder einer personal&shy;ver&shy;ant&shy;wort&shy;lichen Person über die Einführung von flexiblen Arbeitszeiten."
+            "de": "Sprich mit deiner bzw. deinem Vor&shy;ge&shy;setz&shy;ten oder einer personal&shy;ver&shy;ant&shy;wort&shy;lichen Person über die Ein&shy;füh&shy;rung von flexiblen Arbeits&shy;zeiten."
         },
         "number": "Act-52",
         "qualityFactor": 4,
@@ -2355,7 +2361,7 @@
         ],
         "source": "youpers",
         "textI18n": {
-            "de": ""
+            "de": "Gemäss dem Staatssekretariat für Wirtschaft (SECO) finden flexible Arbeits&shy;zeiten in Schweizer Unternehmen und Organisationen eine stark zunehmende Verbreitung. Damit werden die Interessen von Betrieben an flexibler Planung und effizienter Allokation von Arbeitszeiten aufgenommen, aber auch die Interessen von Beschäftigten an einer besseren Work-Life-Balance und einer grösseren Selbstbestimmung im Arbeitsleben berücksichtigt.\n\nBeide Seiten sehen sich allerdings vor der Herausforderung, diese im je konkreten Fall potentiell divergierenden Interessen in eine Balance zu bringen.\n\nMehr Informationen zu flexiblen Arbeitszeiten findest du <a href = http://www.seco.admin.ch/dokumentation/publikation/00008/00022/04953/index.html?lang=de>hier.</a>"
         },
         "titleI18n": {
             "de": "Flexible Arbeitszeiten"
@@ -2366,7 +2372,7 @@
             }
         ],
         "updated": {
-            "$date": 1400155071505
+            "$date": 1409563298915
         }
     },
     {
@@ -2422,7 +2428,7 @@
         "_id": {
             "$oid": "5278c6adcdeab69a2500003b"
         },
-        "__v": 8,
+        "__v": 9,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -2451,7 +2457,7 @@
         ],
         "source": "youpers",
         "textI18n": {
-            "de": ""
+            "de": "Im Vordergrund sämtlicher Bemühungen für Entwicklungsmöglichkeiten stehen sowohl die berufliche und persönliche Entwicklung als auch das Abdecken der Bedürf&shy;nisse der Wirtschaft nach gut qualifizierten Mitarbeitern."
         },
         "titleI18n": {
             "de": "Entwicklungs&shy;möglichkeiten"
@@ -2462,14 +2468,14 @@
             }
         ],
         "updated": {
-            "$date": 1400155136740
+            "$date": 1409563444231
         }
     },
     {
         "_id": {
             "$oid": "5278c6adcdeab69a2500003c"
         },
-        "__v": 6,
+        "__v": 7,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -2497,7 +2503,7 @@
         ],
         "source": "youpers",
         "textI18n": {
-            "de": ""
+            "de": "Der Begriff Zielvereinbarung bezeichnet eine Führungstechnik, bei der sich eine Führungskraft und ihre Mitarbeiter auf die Realisierung von Rollen und Zielen der Organisation einigen.\n\nDie Zielvereinbarung bildet dabei das zentrale Element der Führungsmethode “Management by Objectives” (MbO, Führen mit Zielen)."
         },
         "titleI18n": {
             "de": "Rollen und Ziele"
@@ -2508,14 +2514,14 @@
             }
         ],
         "updated": {
-            "$date": 1400155168636
+            "$date": 1409564138363
         }
     },
     {
         "_id": {
             "$oid": "5278c6adcdeab69a2500003d"
         },
-        "__v": 4,
+        "__v": 5,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -2548,7 +2554,7 @@
         ],
         "source": "youpers",
         "textI18n": {
-            "de": ""
+            "de": "Das Feedback ist eine Gesprächsform, anderen etwas darüber zu sagen, wie ich sie sehe bzw. zu lernen, wie andere mich sehen. Feedback besteht daher aus zwei Komponenten, nämlich dem **Feedback-Geben** und dem **Feedback-Nehmen**.\n\nAllerdings ist es keine einfache Angelegenheit, Feedback zu geben oder zu nehmen.\n\nGutes Feedback bezieht sich immer auf hilfreiche Verhaltensweisen aber auch auf störende. Die **positiven** Wirkungen von Feedback liegen darin, eigene störende Verhaltensweisen zu korrigieren und die Zusammenarbeit effektiver zu gestalten."
         },
         "titleI18n": {
             "de": "Feedback"
@@ -2559,14 +2565,14 @@
             }
         ],
         "updated": {
-            "$date": 1400155350710
+            "$date": 1409565556518
         }
     },
     {
         "_id": {
             "$oid": "5278c6adcdeab69a2500003e"
         },
-        "__v": 4,
+        "__v": 5,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -2598,7 +2604,7 @@
         ],
         "source": "youpers",
         "textI18n": {
-            "de": ""
+            "de": "Unter \"familienfreundlicher Arbeitspolitik\" versteht man seit dem 20. Jahrhundert die Möglichkeit Erwachsener im arbeits&shy;fä&shy;higen Alter, sich zugleich Beruf und Karriere einerseits und dem Leben in der Familie und der Betreuung von Kindern und pflegebedürftigen Personen anderer&shy;seits zu widmen, unter Berück&shy;sichtigung der Schwierigkeiten, die dabei auftreten können.\n\nSind auch Bereiche wie Freundschaften und Hobbys gemeint, wird auch etwas allgemeiner von Vereinbarkeit von Berufs-, Privat- und Familienleben gesprochen."
         },
         "titleI18n": {
             "de": "Familienfreundliche Arbeitspolitik"
@@ -2609,14 +2615,14 @@
             }
         ],
         "updated": {
-            "$date": 1400155378771
+            "$date": 1409566007992
         }
     },
     {
         "_id": {
             "$oid": "5278c6adcdeab69a2500003f"
         },
-        "__v": 4,
+        "__v": 5,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -2628,7 +2634,7 @@
         "defaultfrequency": "once",
         "defaultvisibility": "private",
         "descriptionI18n": {
-            "de": "Sprich mit deiner bzw. deinem Vor&shy;ge&shy;setz&shy;ten oder einer personal&shy;ver&shy;ant&shy;wort&shy;lichen Person über die Möglichkeit einer Umsatz&shy;betei&shy;ligung."
+            "de": "Sprich mit deiner bzw. deinem Vor&shy;ge&shy;setz&shy;ten oder einer personal&shy;ver&shy;ant&shy;wort&shy;lichen Person über die Mög&shy;lich&shy;keit einer Umsatz&shy;betei&shy;ligung."
         },
         "number": "Act-58",
         "qualityFactor": 3,
@@ -2647,7 +2653,7 @@
         ],
         "source": "youpers",
         "textI18n": {
-            "de": ""
+            "de": "Umsatzbeteiligung ist eine Form der Entlohnung von Mitarbeitern eines Unternehmens.\n\nDiese Form der Entlohnung – kombiniert mit einem Fixum – findet man in nahezu allen beratungsintensiven Branchen für Verkäufer."
         },
         "titleI18n": {
             "de": "Erfolgsbeteiligung"
@@ -2658,7 +2664,7 @@
             }
         ],
         "updated": {
-            "$date": 1400155408991
+            "$date": 1409566346720
         }
     },
     {
@@ -2712,7 +2718,7 @@
         "_id": {
             "$oid": "5278c6adcdeab69a25000041"
         },
-        "__v": 2,
+        "__v": 3,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -2745,7 +2751,7 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": ""
+            "de": "Beim Gehen hat man mehr kreative Ideen als im Sitzen. Diese oft berichtete Erfahrung bestätigt jetzt eine amerikanische Studie.\n\nSelbst das gemächliche Gehen auf einem Laufband fördert die Kreativität, wenn auch weniger stark als ein Spaziergang im Freien. Die positive Wirkung war nicht dadurch zu erklären, dass körperliche Aktivität generell Denkleistungen verbessert, berichten die Forscher im \"Journal of Experimental Psychology: Learning, Memory and Cognition\".\n\nEin angeregter Kreislauf, chemische Botenstoffe und eine verbesserte Stimmung könnten dabei eine Rolle spielen."
         },
         "titleI18n": {
             "de": "Pause im Freien"
@@ -2756,7 +2762,7 @@
             }
         ],
         "updated": {
-            "$date": 1398431686535
+            "$date": 1409566594386
         }
     },
     {
@@ -2810,7 +2816,7 @@
         "_id": {
             "$oid": "5278c6adcdeab69a25000043"
         },
-        "__v": 2,
+        "__v": 3,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -2837,7 +2843,7 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": ""
+            "de": "In jeder Organisation, jeder Firma und jedem Menschen steckt ein Potenzial, um leistungsfähig zu sein und zu bleiben, sich weiter zu entwickeln und zu erneuern.\n\nUm dieses Potenzial zu erschliessen und zur Entfaltung zu bringen, benötigen wir regelmässig Frischluft."
         },
         "titleI18n": {
             "de": "Frischluft"
@@ -2848,14 +2854,14 @@
             }
         ],
         "updated": {
-            "$date": 1398431813394
+            "$date": 1409567185541
         }
     },
     {
         "_id": {
             "$oid": "5278c6adcdeab69a25000044"
         },
-        "__v": 5,
+        "__v": 6,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -2893,7 +2899,7 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": ""
+            "de": "Wenn Kinder mit ihren Geschwistern oder mit den Eltern zusammen spielen, ist das\nnatürlich eine besondere Freude für die Kleinen und erst noch sehr \nsinnvoll.\n\nDas gemeinsame Spielen hat eine sozia&shy;lisierende Funktion \nund ist wichtiger als jedes Hochglanzspielzeug."
         },
         "titleI18n": {
             "de": "Kinderfreuden"
@@ -2904,7 +2910,7 @@
             }
         ],
         "updated": {
-            "$date": 1398431864854
+            "$date": 1409571333725
         }
     },
     {
@@ -3121,7 +3127,7 @@
         "_id": {
             "$oid": "5278c6adcdeab69a25000049"
         },
-        "__v": 4,
+        "__v": 6,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -3156,7 +3162,7 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": ""
+            "de": "Untersuchungen haben ergeben, dass wir in der Gesellschaft von Familie und Freunden mehr und besser essen als wenn wir alleine essen.\n\nAbwechslung beim Essen sowie unsere Einstellungen und Angewohnheiten zum Essen entwickeln sich durch die Wechsel&shy;beziehungen zu Freunden und anderen Menschen.\n\nAuch andere ungewohnte Tätigkeiten wie das Ausprobieren eines neuen Restau&shy;rants geben uns im Alltag einen Glücks-Kick."
         },
         "titleI18n": {
             "de": "Ortswechsel"
@@ -3167,14 +3173,14 @@
             }
         ],
         "updated": {
-            "$date": 1398434362629
+            "$date": 1409572969287
         }
     },
     {
         "_id": {
             "$oid": "5278c6adcdeab69a2500004a"
         },
-        "__v": 3,
+        "__v": 5,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -3186,7 +3192,7 @@
         "defaultfrequency": "week",
         "defaultvisibility": "private",
         "descriptionI18n": {
-            "de": "Iss heute über Mittag woanders als sonst (z.B. am See), um der Gewohnheit und Trägheit bzw. dem Alltagstrott zu ent&shy;rin&shy;nen und neue Impulse zu erhalten."
+            "de": "Iss heute über Mittag woanders als sonst (z.B. am See), um der Gewohn&shy;heit und Trägheit bzw. dem Alltags&shy;trott zu ent&shy;rin&shy;nen und neue Impulse zu erhalten."
         },
         "number": "Act-69",
         "qualityFactor": 3,
@@ -3206,7 +3212,7 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": ""
+            "de": "Neue Erfahrungen sind die Quelle von Hochgefühlen, zeigen aktuelle Studien. Wer im Alltag einen Glücks-Kick erleben will, der sollte die Abwechslung suchen. Als Glücksbote wirkt der Neurotransmitter **Dopamin**.\n\nAuch andere ungewohnte Tätigkeiten wie das Ausprobieren neuer Wege, ob zu Fuss oder mit dem Rad, neue Tänze oder das laute Singen im Auto aktivieren Dopamin."
         },
         "titleI18n": {
             "de": "Abwechslung"
@@ -3217,7 +3223,7 @@
             }
         ],
         "updated": {
-            "$date": 1398434375006
+            "$date": 1409573083055
         }
     },
     {
@@ -3277,7 +3283,7 @@
         "_id": {
             "$oid": "5278c6adcdeab69a2500004c"
         },
-        "__v": 4,
+        "__v": 5,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -3306,7 +3312,7 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": ""
+            "de": "Warum die Eile?\n\nWas immer es auch ist, es bringt nichts, aus dem Bett zu springen und den Tag gleich im Hektik-Modus zu starten.\n\nNimm dir stattdessen genügend Zeit, strecke dich in alle Richtungen, atme ruhig und stehe dann langsam auf. Putz dir dann die Zähne, koche Kaffee und plane dann deinen Tagesablauf."
         },
         "titleI18n": {
             "de": "Langsam starten"
@@ -3317,14 +3323,14 @@
             }
         ],
         "updated": {
-            "$date": 1398435402183
+            "$date": 1409575162684
         }
     },
     {
         "_id": {
             "$oid": "5278c6adcdeab69a2500004d"
         },
-        "__v": 4,
+        "__v": 5,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -3350,7 +3356,7 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": ""
+            "de": "Tipps für Autofahrer:\n\n- **Umfahren**: prüfe alternative Routen und ob du den Arbeitsweg allenfalls etwas früher oder später antreten kannst\n\n- **Planen**: informiere dich täglich frühzeitig über die Verkehrslage und plane für die Fahrt genügend Zeit ein\n\n- **Zusammenschliessen**: bilde, wenn möglich, Fahr&shy;gemein&shy;schaf&shy;ten. Dies hat den Vorteil, dass du nicht jedes Mal selber fahren musst und es spart noch Kosten"
         },
         "titleI18n": {
             "de": "Stosszeiten"
@@ -3361,14 +3367,14 @@
             }
         ],
         "updated": {
-            "$date": 1399043113281
+            "$date": 1409575840195
         }
     },
     {
         "_id": {
             "$oid": "5278c6adcdeab69a2500004e"
         },
-        "__v": 3,
+        "__v": 4,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -3403,7 +3409,7 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": ""
+            "de": "In der Zeitschrift \"Nature Neuroscience\" berichtete Valorie Salimpoor von ihrer Studie, welche körperliche Veränderungen durch Musik ausgelöst werden.\n\nEs zeigte sich, dass Musik, die man mag, im Gehirn das Glückshormon **Dopamin** freisetzt. Das heisst, man fühlt sich beim Hören wohl, entspannt und ohne Stress.\n\nFalls du an Stress im Beruf leidest, ist die Mittagspause oder der Arbeitsweg eine gute Möglichkeit, das Belohnungssystem im Körper durch Musik zu aktivieren. Deine Laune steigert sich und deine Anspannung lässt nach."
         },
         "titleI18n": {
             "de": "Entspannung mit Musik"
@@ -3414,14 +3420,14 @@
             }
         ],
         "updated": {
-            "$date": 1398435454677
+            "$date": 1409577829418
         }
     },
     {
         "_id": {
             "$oid": "5278c6adcdeab69a2500004f"
         },
-        "__v": 3,
+        "__v": 4,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -3456,7 +3462,7 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": ""
+            "de": "Das Lesen in der Stille oder das Hören eines Audiobuches auf dem Arbeitsweg bietet viele Vorzüge.\n\nBei gelesenem oder gehörten Text wird die Fantasie angeregt, und es laufen Filme im Kopf, die das Gelesene oder Gehörte verarbeiten. So ist das Gehirn mit seinen inneren Bildern und Filmen ständig beschäftigt und kann real erlebte Situationen gut verarbeiten.\n\nBleibt die Konzentration zeitweilig bei dem eigenen, inneren Film, so kann man das (Hör-)Buch zur Seite legen und sich der Verarbeitung eigener Gedanken hingeben."
         },
         "titleI18n": {
             "de": "Entspannung mit Lesen"
@@ -3467,14 +3473,14 @@
             }
         ],
         "updated": {
-            "$date": 1398435516337
+            "$date": 1409578674380
         }
     },
     {
         "_id": {
             "$oid": "5278c6adcdeab69a25000050"
         },
-        "__v": 3,
+        "__v": 4,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -3511,7 +3517,7 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": ""
+            "de": "Unter Gesellschaftsspiel im weiteren Sinn versteht man alle Spiele, die in der Gemeinschaft und deretwegen gespielt werden.\n\nAlso Spiele, die von mindestens zwei Personen gespielt werden und bei welchen der soziale Aspekt und das Vergnügen im Vordergrund stehen."
         },
         "titleI18n": {
             "de": "Gesellschaftsspiel"
@@ -3522,14 +3528,14 @@
             }
         ],
         "updated": {
-            "$date": 1398435565624
+            "$date": 1409579197415
         }
     },
     {
         "_id": {
             "$oid": "5278c6adcdeab69a25000051"
         },
-        "__v": 4,
+        "__v": 5,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -3567,7 +3573,7 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": ""
+            "de": "Musik wirkt auf das Belohnungssystem im menschlichen Gehirn und lässt Stress verschwinden. \n\nDurch Musik, die man gerne mag, wird das Glückshormon **Dopamin** aus&shy;ge&shy;schüttet. Das heisst, man fühlt sich beim Hören wohl, entspannt und ohne Stress. \n\nAllerdings ist dieser Effekt nur dann da, wenn einem die Musik gefällt. Dies konnten Forscher unlängst nachweisen.\n\nWeitere Informationen zum Thema findest Du unter <a href='http://www.nature.com/neuro/journal/v14/n2/abs/nn.2726.html' target='_blank'>Wirkung von Musik (englisch).</a>"
         },
         "titleI18n": {
             "de": "Musik@home"
@@ -3578,14 +3584,14 @@
             }
         ],
         "updated": {
-            "$date": 1398435618854
+            "$date": 1409578206793
         }
     },
     {
         "_id": {
             "$oid": "5278c6adcdeab69a25000052"
         },
-        "__v": 6,
+        "__v": 7,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -3629,7 +3635,7 @@
         ],
         "source": "youpers",
         "textI18n": {
-            "de": ""
+            "de": "Meditation ist die Hauptursache für **inneren Frieden**. Vom inneren Frieden kommt Entspannung – Entspannung auf einer tiefen Ebene.\n\nSchulungen und Meditationskurse sind immer mit Meditationen verbunden, der Schwerpunkt liegt jedoch mehr auf dem Betrachten von positiven, hilfreichen Themen, die dich inspirieren können, und durch die du Probleme überwinden und deine Lebensqualität verbessern kannst."
         },
         "titleI18n": {
             "de": "Meditationskurs"
@@ -3640,14 +3646,14 @@
             }
         ],
         "updated": {
-            "$date": 1399041998398
+            "$date": 1409580055789
         }
     },
     {
         "_id": {
             "$oid": "5278c6adcdeab69a25000053"
         },
-        "__v": 6,
+        "__v": 7,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -3690,7 +3696,7 @@
         ],
         "source": "youpers",
         "textI18n": {
-            "de": "Yoga ist eine althergebrachte Methode und stammt aus Indien. \n\nUrsprünglich diente Yoga der Er&shy;wei&shy;te&shy;rung des Bewusstseins durch ver&shy;schie&shy;dene Meditationstechniken und be&shy;in&shy;haltete eine philosophische Be&shy;trach&shy;tung der Welt und der Lebensführung. \n\nMit regelmässigen Körper- und Atem&shy;übungen kann man ein nachhaltiges Entspannen erreichen. \n\nAusserdem konnten positive Wirkungen auf die **Psyche** (u.a. weniger Ängstlich&shy;keit und Depressivität, Verbesserung der Kon&shy;zentration) und auf den **Körper** (u.a. tieferer Blutdruck, bessere Durch&shy;blu&shy;tung) nachgewiesen werden.\n\nWeitere Informationen findest du unter <a href='http://www.publicjobs.ch.ch/fileadmin/user/global/docs/Stellen/01_Entspannung.pdf' target='_blank'>Grundlagenpapier Entspannung.</a>"
+            "de": "Ursprünglich diente Yoga der Er&shy;wei&shy;te&shy;rung des Bewusstseins durch ver&shy;schie&shy;dene Meditationstechniken und be&shy;in&shy;haltete eine philosophische Be&shy;trach&shy;tung der Welt und der Lebensführung. \n\nMit regelmässigen Körper- und Atem&shy;übungen kann man ein nachhaltiges Entspannen erreichen. \n\nAusserdem konnten positive Wirkungen auf die **Psyche** (u.a. weniger Ängstlich&shy;keit und Depressivität, Verbesserung der Kon&shy;zentration) und auf den **Körper** (u.a. tieferer Blutdruck, bessere Durch&shy;blu&shy;tung) nachgewiesen werden.\n\nWeitere Informationen findest du unter <a href='http://www.publicjobs.ch.ch/fileadmin/user/global/docs/Stellen/01_Entspannung.pdf' target='_blank'>Grundlagenpapier Entspannung.</a>"
         },
         "titleI18n": {
             "de": "Yoga-Übungen am Abend"
@@ -3701,14 +3707,14 @@
             }
         ],
         "updated": {
-            "$date": 1400067695105
+            "$date": 1409580691161
         }
     },
     {
         "_id": {
             "$oid": "5278c6adcdeab69a25000054"
         },
-        "__v": 11,
+        "__v": 13,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -3720,7 +3726,7 @@
         "defaultfrequency": "day",
         "defaultvisibility": "private",
         "descriptionI18n": {
-            "de": "Führe am Feierabend zur Entspannung eine Meditationsübung durch, indem du einige Minuten bequem und ruhig da sitzt, deine Augen schliesst, deine Gedanken frei machst und dich nur auf deinen Atem konzentrierst."
+            "de": "Führe am Feierabend zur Entspan&shy;nung eine Meditationsübung durch, indem du einige Minuten bequem und ruhig da sitzt, deine Augen schliesst, deine Gedanken frei machst und dich nur auf deinen Atem konzentrierst."
         },
         "number": "Act-80",
         "qualityFactor": 6,
@@ -3751,7 +3757,7 @@
         ],
         "source": "youpers",
         "textI18n": {
-            "de": "Meditative Verfahren haben ihren Ur&shy;sprung in asiatischen Religionen wie Hinduismus und Buddhismus. \n\nDas Ziel der klassischen Meditation besteht in der Förderung spirituellen Wachstums, der Erweiterung des Bewusstseins und in der Aneignung einer tiefen, inneren Ruhe. \n\nStudien belegen positive Aus&shy;wir&shy;kung&shy;en von Meditation auf Stress&shy;be&shy;wälti&shy;gung:  \n* sie lindert Spannungszustände\n* verringert die Atemfrequenz\n* verbessert die Konzentration\n* erhöht die Aufmerksamkeit\n* senkt den Blutdruck\n\nWeitere Informationen unter:\n\n* <a href='http://www1.uni-hamburg.de/psych-3/seminar/toennies/medit.pdf' target='_blank'>Meditative Verfahren</a>\n* <a href='http://www.publicjobs.ch.ch/fileadmin/user/global/docs/Stellen/01_Entspannung.pdf'\ntarget='_blank'>Grundlagenbericht Entspannung</a>\n* <a href='http://wiki.yoga-vidya.de/Wissenschaftliche_Studien_Meditation#Meditation_reduziert_Stress'\ntarget='_blank'>Wissenschaftliche Studien</a>"
+            "de": "Das Ziel der klassischen Meditation besteht in der Förderung spirituellen Wachstums, der Erweiterung des Be&shy;wusstseins und in der Erlangung einer tiefen, inneren Ruhe. \n\nStudien belegen positive Aus&shy;wir&shy;kung&shy;en von Meditation auf Stress&shy;be&shy;wälti&shy;gung:  \n* lindert Spannungszustände\n* verringert die Atemfrequenz\n* verbessert die Konzentration\n* erhöht die Aufmerksamkeit\n* senkt den Blutdruck\n\nWeitere Informationen unter:\n\n* <a href='http://www1.uni-hamburg.de/psych-3/seminar/toennies/medit.pdf' target='_blank'>Meditative Verfahren</a>\n* <a href='http://www.publicjobs.ch.ch/fileadmin/user/global/docs/Stellen/01_Entspannung.pdf'\ntarget='_blank'>Grundlagenbericht Entspannung</a>\n* <a href='http://wiki.yoga-vidya.de/Wissenschaftliche_Studien_Meditation#Meditation_reduziert_Stress'\ntarget='_blank'>Wissenschaftliche Studien</a>"
         },
         "titleI18n": {
             "de": "Meditationsübung"
@@ -3762,7 +3768,7 @@
             }
         ],
         "updated": {
-            "$date": 1400068287386
+            "$date": 1409580612405
         }
     },
     {
@@ -3830,7 +3836,7 @@
         "_id": {
             "$oid": "5278c6adcdeab69a25000056"
         },
-        "__v": 3,
+        "__v": 5,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -3866,7 +3872,7 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": ""
+            "de": "Die Entspannungsmassage mit ihren rhythmischen und langsamen Bewegungen dient ausschliesslich der Erholung und dem Stressabbau.\n\nZum Einen dienen Massagen dazu, gesundheitliche Beschwerden zu lindern und werden auch gezielt als Therapie&shy;methode eingesetzt. Zum Anderen dienen Massagen allein der Entspannung und sind als Mittel zum Wohlfühlen zu verstehen."
         },
         "titleI18n": {
             "de": "Massage"
@@ -3877,14 +3883,14 @@
             }
         ],
         "updated": {
-            "$date": 1398438686505
+            "$date": 1409597999555
         }
     },
     {
         "_id": {
             "$oid": "5278c6adcdeab69a25000057"
         },
-        "__v": 5,
+        "__v": 6,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -3927,7 +3933,7 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": ""
+            "de": "Über 80% der Menschen haben eine falsche Atemtechnik. Das beeinträchtigt die Gesundheit und die Psyche.\n\nSie atmen nur in die Brust. In der Folge gelangt zu wenig Sauerstoff in den Körper und bedingt dadurch, dass die Atmung zu schnell und zu unruhig wird.\n\nBei körperlicher Anstrengung atmen viele durch den Mund statt durch die Nase. Nur bei der Atmung durch die Nase wird die eingeatmete Luft genügend gereinigt, erwärmt und mit Wasser gesättigt."
         },
         "titleI18n": {
             "de": "Seminar \"Atemtechnik\""
@@ -3938,14 +3944,14 @@
             }
         ],
         "updated": {
-            "$date": 1399043255536
+            "$date": 1409598211630
         }
     },
     {
         "_id": {
             "$oid": "5278c6adcdeab69a25000058"
         },
-        "__v": 2,
+        "__v": 3,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -3983,7 +3989,7 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": ""
+            "de": "Zusatzarbeit, Überstunden, ständige Erreichbarkeit: jeder fünfte Arbeitnehmer steht in seinem Job so unter Stress, dass er am Feierabend nichts mehr mit Freunden oder Familie unternehmen mag. Zu diesem Schluss kommt eine repräsentative Studie der deutschen Krankenkassen.\n\nDass auch Schweizer Angestellte von diesem Problem betroffen sind, zeigt eine Studie des Staatssekretariats für Wirtschaft (SECO). Etwa ein Drittel der Schweizer Erwerbsbevölkerung leidet demnach unter permanentem Stress."
         },
         "titleI18n": {
             "de": "AfterWork mit Freunden"
@@ -3994,14 +4000,14 @@
             }
         ],
         "updated": {
-            "$date": 1398438789401
+            "$date": 1409598713482
         }
     },
     {
         "_id": {
             "$oid": "5278c6adcdeab69a25000059"
         },
-        "__v": 3,
+        "__v": 4,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -4039,7 +4045,7 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": ""
+            "de": "Du als gestresste Mutter bzw. Vater weisst, dass es eine Herausforderung darstellen kann, die Bedürfnisse der Kleinen zu befriedigen, insbesondere wenn diese noch im Baby- oder Kleinkindalter sind.\n\nRegelmössige Auszeiten vom Erziehungs&shy;stress kann Wunder wirken, auch wenn es nur für einen freien Abend oder ein freies Wochenende ist."
         },
         "titleI18n": {
             "de": "Organisiere Kinderbetreuung"
@@ -4050,7 +4056,7 @@
             }
         ],
         "updated": {
-            "$date": 1398438817501
+            "$date": 1409599577781
         }
     },
     {
@@ -4110,7 +4116,7 @@
         "_id": {
             "$oid": "5278c6adcdeab69a2500005b"
         },
-        "__v": 3,
+        "__v": 4,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -4147,7 +4153,7 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": ""
+            "de": "Der Besuch einer Sauna dient der körper&shy;lichen Entspannung, der Gesundheit, der Körperreinigung und der Verbesserung des Wohlbefindens.\n\nSaunabaden bzw. der Saunabesuch kann auch ein gesellschaftliches Ereignis sein, man trifft sich in der Sauna. Damit kann der Saunabesuch zum allgemeinen Wohlfühlen beitragen."
         },
         "titleI18n": {
             "de": "Sauna"
@@ -4158,14 +4164,14 @@
             }
         ],
         "updated": {
-            "$date": 1398439019882
+            "$date": 1409599862046
         }
     },
     {
         "_id": {
             "$oid": "5278c6adcdeab69a2500005c"
         },
-        "__v": 5,
+        "__v": 6,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -4196,7 +4202,7 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": ""
+            "de": "Das effektive Herz-Kreislauftraining ist eine der gesündesten Sportarten über&shy;haupt. Doch ohne Schweiss kein Preis?\n\nDas stimmt so nicht! Beim Schwimmen bekommst du eine angenehme Abkühlung und effektives Training zur gleichen Zeit."
         },
         "titleI18n": {
             "de": "Erfrischung"
@@ -4207,7 +4213,7 @@
             }
         ],
         "updated": {
-            "$date": 1399046563813
+            "$date": 1409600341533
         }
     },
     {
@@ -4323,7 +4329,7 @@
         "_id": {
             "$oid": "5278c6adcdeab69a2500005f"
         },
-        "__v": 3,
+        "__v": 4,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -4357,7 +4363,7 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": ""
+            "de": "Der einfachste Wellness-Tipp der Welt: **genug schlafen!** Dann kannst du wach deine Zeit besser nutzen.\n\nZeitgewinn: Wenn du früher ins Bett gehst, verlierst du nur scheinbar Zeit – am nächsten Tag wirst du mit wachem Kopf viel mehr schaffen!"
         },
         "titleI18n": {
             "de": "Ausschlafen"
@@ -4368,14 +4374,14 @@
             }
         ],
         "updated": {
-            "$date": 1398440127697
+            "$date": 1409600716476
         }
     },
     {
         "_id": {
             "$oid": "5278c6adcdeab69a25000060"
         },
-        "__v": 2,
+        "__v": 3,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -4387,7 +4393,7 @@
         "defaultfrequency": "week",
         "defaultvisibility": "private",
         "descriptionI18n": {
-            "de": "Lenke dich von einem konkreten Problem mit einer positiv inspirierenden Ent&shy;span&shy;nungs&shy;aktivität ab."
+            "de": "Lenke dich von einem konkreten Problem mit einer positiv inspirie&shy;renden Ent&shy;span&shy;nungs&shy;aktivität ab."
         },
         "number": "Act-93",
         "qualityFactor": 3,
@@ -4411,7 +4417,7 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": ""
+            "de": "Das Wiederholen von heiligen oder posi&shy;tiven Selbstsuggestionen ist in fast allen spirituellen Disziplinen ein wesentlicher Bestandteil.\n\nDie positive Aussage und die damit ver&shy;bundene Kraft dieses Entschlusses sind mit der Bejahung des eigenen Lebens, der Heilung sowie Entwicklung der körper&shy;lichen und geistigen Konstitution ver&shy;bunden.\n\nVerschiedene wissenschaftliche Studien bestätigen, dass eine fest gefasste Inten&shy;tion oder Absicht nach Aussen strahlt und von anderen Lebewesen empfangen wird."
         },
         "titleI18n": {
             "de": "Ablenkung"
@@ -4422,7 +4428,7 @@
             }
         ],
         "updated": {
-            "$date": 1398440219692
+            "$date": 1409601549771
         }
     },
     {
@@ -4479,7 +4485,7 @@
         "_id": {
             "$oid": "5278c6adcdeab69a25000062"
         },
-        "__v": 2,
+        "__v": 3,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -4515,7 +4521,7 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": ""
+            "de": "Es gibt viele verschiedene Möglichkeiten, dem Alltagstrott zu entfliehen. Wichtig ist dabei nicht die grösstmögliche Entfernung zum Heimatort, sondern Neues zu sehen und den eigenen Horizont zu erweitern, aber auch abschalten und das Leben jenseits von Hausputz, Kreditrückzahlung und Berufsstress zu geniessen."
         },
         "titleI18n": {
             "de": "Kurzferien"
@@ -4526,7 +4532,7 @@
             }
         ],
         "updated": {
-            "$date": 1398441617092
+            "$date": 1409601742908
         }
     },
     {
@@ -4855,7 +4861,7 @@
         "_id": {
             "$oid": "5278c6adcdeab69a25000069"
         },
-        "__v": 2,
+        "__v": 3,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -4884,7 +4890,7 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": ""
+            "de": "Musik wirkt auf das Belohnungssystem im menschlichen Gehirn und lässt Stress verschwinden. \n\nDurch Musik, die man gerne mag, wird das Glückshormon **Dopamin** aus&shy;ge&shy;schüttet. Das heisst, man fühlt sich beim Hören wohl, entspannt und ohne Stress. \n\nAllerdings ist dieser Effekt nur dann da, wenn einem die Musik gefällt. Dies konnten Forscher unlängst nachweisen.\n\nWeitere Informationen zum Thema findest Du unter <a href='http://www.nature.com/neuro/journal/v14/n2/abs/nn.2726.html' target='_blank'>Wirkung von Musik (englisch).</a>"
         },
         "titleI18n": {
             "de": "Musikkonzert"
@@ -4895,7 +4901,7 @@
             }
         ],
         "updated": {
-            "$date": 1399385397795
+            "$date": 1409578269227
         }
     },
     {
@@ -4950,7 +4956,7 @@
         "_id": {
             "$oid": "5278c6adcdeab69a2500006b"
         },
-        "__v": 3,
+        "__v": 4,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -4984,7 +4990,7 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": ""
+            "de": "\"*Ein Sportevent ist an sich nutzlos, aber genau das ist Muße für Ihre Seele*\", so die Meinung von Sportmedizinern.\n\nDie Aufmerksamkeit ist voll auf das Spielgeschehen gelenkt, da werden negative Gedanken überlagert. Der ständige Wechsel von Anspannung und Entspannung fordert Körper und Geist. Die Belastung wechselt dabei ständig.\n\nInsgesamt wird beim Sportevent die Sauerstoffzufuhr sehr stark hochgefahren, der Stoffwechsel angeregt. Und der Körper baut Testosteron ab. Aggressionen sind bald verschwunden, du fühlst dich viel ausgeglichener."
         },
         "titleI18n": {
             "de": "Sportevent"
@@ -4993,13 +4999,19 @@
             {
                 "$oid": "53b416cfa43aac62a2debda1"
             }
-        ]
+        ],
+        "created": {
+            "$date": 1409647564972
+        },
+        "updated": {
+            "$date": 1409647564972
+        }
     },
     {
         "_id": {
             "$oid": "5278c6adcdeab69a2500006c"
         },
-        "__v": 2,
+        "__v": 3,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -5035,7 +5047,7 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": ""
+            "de": "Durch Atemarbeit, Bewegung und Unter&shy;stützung der Stimme kannst du den Körper bewusst wahrnehmen, dich im eigenen Tanz ausdrücken.\n\nBeim Tanzen kannst du deinen Körper sehr bewusst wahrnehmen, was durch die zahlreichen äusserlichen Reize, denen wir im Alltag permanent ausgesetzt sind, oft verloren geht. Wenn du innerlich zu Ruhe kommst, kannst du zu neuer Kraft und Energie finden."
         },
         "titleI18n": {
             "de": "Tanzen"
@@ -5044,7 +5056,13 @@
             {
                 "$oid": "53b416cfa43aac62a2debda1"
             }
-        ]
+        ],
+        "created": {
+            "$date": 1409648020753
+        },
+        "updated": {
+            "$date": 1409648020753
+        }
     },
     {
         "_id": {
@@ -9752,7 +9770,7 @@
         "_id": {
             "$oid": "53329cfb0f9b32255d2488f3"
         },
-        "__v": 2,
+        "__v": 3,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -9781,7 +9799,7 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": ""
+            "de": "Als Ausdrucksformen der Spiritualität konnten, gemäss Arndt Büssing, mit Hilfe von Fragebogen&shy;kon&shy;strukten mindestens sieben Faktoren differenziert werden:\n\n1. Gebet, Gottvertrauen und Geborgenheit\n2. Erkenntnis, Weisheit und Einsicht\n3. Transzendenz-Überzeugung\n4. Mitgefühl, Grosszügigkeit und Toleranz\n5. Bewusster Umgang mit anderen, sich selbst und der Umwelt\n6. Ehrfurcht und Dankbarkeit\n7. Gleichmut und Meditation.\n\nMehr Infos zu Spiritualität findest du im Internet bei <a href = http://de.wikipedia.org/wiki/Spiritualit%C3%A4t>Wikipedia.</a>"
         },
         "titleI18n": {
             "de": "Spirituelle Aktivität"
@@ -9792,14 +9810,14 @@
             }
         ],
         "updated": {
-            "$date": 1398435437040
+            "$date": 1409577191111
         }
     },
     {
         "_id": {
             "$oid": "53329e2b0f9b32255d24890f"
         },
-        "__v": 3,
+        "__v": 4,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -9828,7 +9846,7 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": ""
+            "de": "Das Lesen in der Stille bietet viele Vorzüge.\n\nBei gelesenem Text wird die Fantasie an&shy;geregt, und es laufen Filme im Kopf, die das Gelesene verarbeiten. So ist das Gehirn mit seinen inneren Bildern und Filmen ständig beschäftigt und kann real erlebte Situationen gut verarbeiten.\n\nBleibt die Konzentration zeitweilig bei dem eigenen, inneren Film, so kann man das Buch zur Seite legen und sich der Verarbeitung eigener Gedanken hingeben."
         },
         "titleI18n": {
             "de": "Buch lesen"
@@ -9839,7 +9857,7 @@
             }
         ],
         "updated": {
-            "$date": 1398438770760
+            "$date": 1409602153282
         }
     },
     {

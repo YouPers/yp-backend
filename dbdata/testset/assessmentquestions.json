@@ -1664,7 +1664,7 @@
             "de": "Zu viel"
         },
         "maxtextexampleI18n": {
-            "de": "Ich esse t\u00e4glich ein oder mehrmals Fleisch"
+            "de": "Ich esse t\u00e4glich ein oder mehrmals Fleisch."
         },
         "midtextI18n": {
             "de": "Gen\u00fcgend"
@@ -1910,7 +1910,7 @@
             "de": "Zu viel"
         },
         "maxtextexampleI18n": {
-            "de": "Ich esse t\u00e4glich mehr als 2 Portionen Obst, Fr\u00fcchte oder Beeren"
+            "de": "Ich esse t\u00e4glich mehr als 2 Portionen Obst, Fr\u00fcchte oder Beeren."
         },
         "midtextI18n": {
             "de": "Gen\u00fcgend"
@@ -2701,7 +2701,7 @@
             "de": "Unzureichend"
         },
         "mintextexampleI18n": {
-            "de": "ich bewege mich sicher nicht ausreichend pro Tag"
+            "de": "ich bewege mich sicher nicht ausreichend pro Tag."
         },
         "titleI18n": {
             "de": "Accelerometer/\r\nBeschleunigungsmesser"

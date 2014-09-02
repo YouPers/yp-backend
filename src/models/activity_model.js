@@ -23,7 +23,6 @@ var ActivitySchema = common.newSchema({
     number: {type: String},
     location: {type: String},
     executionType: {type: String, enum: common.enums.executiontype},
-    private: {type: Boolean},
     status: {type: String, enum: common.enums.ActivityStatus},
     campaign: {type: ObjectId, ref: 'Campaign'},
     deletionReason: {type: String},

@@ -27,6 +27,25 @@ var SocialInteraction = new SocialInteraction();
 SocialInteraction.allUsers = 'ALL_USERS';
 
 
+SocialInteraction.on('socialInteraction:dismissed', function (user, socialInteraction, socialInteractionDismissed) {
+
+    // check if a recommendation for an idea is dismissed, add an rejectedIdea to the user profile
+    if(socialInteraction.__t === 'Recommendation' && socialInteractionDismissed.reason === 'denied') {
+        var refDocIdea = _.find(socialInteraction.refDocs, { model: 'Idea'});
+        var profile = user.profile;
+        profile.prefs.rejectedIdeas.push({
+            timestamp: new Date(),
+            idea: refDocIdea.docId
+        });
+        profile.save(function (err) {
+            if(err) {
+                return SocialInteraction.emit('error', err);
+            }
+        });
+    }
+});
+
+
 /**
  *
  * @param to        single or multiple recipients, can either be email addresses or users

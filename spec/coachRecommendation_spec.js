@@ -22,12 +22,13 @@ describe('CoachRecommendation Module', function () {
         };
         var options = {
             topic: consts.topic.id,
-            assessmentResult: assResult
+            assessmentResult: assResult,
+            nrOfRecsToReturn: 5
         };
         CoachRecommendation.generateAndStoreRecommendations(consts.users.test_ind1.id, options, function (err, recs) {
             expect(err).toEqual(null);
-            expect(recs.length).toBeGreaterThan(2);
-            expect(recs.length).toBeLessThan(4);
+            expect(recs.length).toBeGreaterThan(0);
+            expect(recs.length).toBeLessThan(6);
             expect(recs[0].score >= recs[1].score).toBe(true);
             expect(recs[1].score >= recs[2].score).toBe(true);
             return done();

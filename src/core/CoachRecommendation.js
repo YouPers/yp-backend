@@ -202,12 +202,14 @@ function _updateRecommendations(userId, options, cb) {
     _.defaults(options, {rejectedIdeas: [],
                         updateDb: true,
                         isAdmin: false,
-                        keepExisting: false});
+                        keepExisting: false,
+                        nrOfRecsToReturn: NUMBER_OF_COACH_RECS});
 
     var assessmentResult = options.assessmentResult;
     var focus = options.focus;
     var topic = options.topic;
     var rejectedIdeas = options.rejectedIdeas;
+    var nrOfRecsToReturn = options.nrOfRecsToReturn;
 
     // loading the already planned ideas of this user - we do not want to recommend things that this user has already planned
     mongoose.model('Activity').find({$or: [
@@ -264,8 +266,8 @@ function _updateRecommendations(userId, options, cb) {
                             return rec.idea.toString();
                         });
 
-                        var obsoleteIdeas = options.keepExisting ?  [] : _.difference(previousIdeas, allCurrentIdeas.slice(0,NUMBER_OF_COACH_RECS));
-                        var newIdeas = options.keepExisting ? _.difference(allCurrentIdeas, previousIdeas).slice(0,NUMBER_OF_COACH_RECS) : _.difference(allCurrentIdeas.slice(0,NUMBER_OF_COACH_RECS), previousIdeas);
+                        var obsoleteIdeas = options.keepExisting ?  [] : _.difference(previousIdeas, allCurrentIdeas.slice(0,nrOfRecsToReturn));
+                        var newIdeas = options.keepExisting ? _.difference(allCurrentIdeas, previousIdeas).slice(0,nrOfRecsToReturn) : _.difference(allCurrentIdeas.slice(0,nrOfRecsToReturn), previousIdeas);
 
                         // remove recommendation for obsolete ideas
                         var removeRecs = function removeRecs(ideas, done) {
@@ -309,14 +311,14 @@ function _updateRecommendations(userId, options, cb) {
                         });
 
                         async.parallel(updateRecs, function (err, storedRecs) {
-                            return cb(err, newRecs);
+                            return cb(err, newRecs.slice(0,nrOfRecsToReturn));
                         });
 
                     });
 
 
                 } else {
-                    return cb(null, newRecs.slice(0, options.isAdmin ? 1000 : NUMBER_OF_COACH_RECS));
+                    return cb(null, newRecs.slice(0, options.isAdmin ? 1000 : nrOfRecsToReturn));
                 }
 
 

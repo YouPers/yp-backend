@@ -25,6 +25,7 @@ var UserSchema = common.newSchema({
     avatar: {type: String},
     emailValidatedFlag: { type: Boolean, default: false, select: false },
     username: { type: String, trim: true, lowercase: true, required: true, unique: true, select:false },
+    lastLogin: { type: Date},
     roles: {type: [String], select: false},
     hashed_password: { type: String, trim: true, select: false },
     tempPasswordFlag: { type: Boolean, default: false, select: false },

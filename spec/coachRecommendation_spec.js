@@ -20,7 +20,11 @@ describe('CoachRecommendation Module', function () {
                     answered: true}
             ]
         };
-        CoachRecommendation.generateAndStoreRecommendations(consts.users.test_ind1.id, consts.topic.id, [], assResult, null, false, function (err, recs) {
+        var options = {
+            topic: consts.topic.id,
+            assessmentResult: assResult
+        };
+        CoachRecommendation.generateAndStoreRecommendations(consts.users.test_ind1.id, options, function (err, recs) {
             expect(err).toEqual(null);
             expect(recs.length).toBeGreaterThan(2);
             expect(recs.length).toBeLessThan(4);

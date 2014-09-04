@@ -8,7 +8,7 @@ var _ = require('lodash'),
     Profile = mongoose.model('Profile'),
     log = require('../util/log').logger;
 
-var NUMBER_OF_COACH_RECS = 3;
+var NUMBER_OF_COACH_RECS = 1;
 var HEALTH_COACH_USER_ID = '53348c27996c80a534319bda';
 
 Profile.on('change:prefs.focus', function (changedProfile) {
@@ -27,6 +27,28 @@ Profile.on('change:prefs.focus', function (changedProfile) {
 });
 
 /**
+ * if this is the first login of this user today we generate him a new recommendation
+ */
+mongoose.model('User').on('User:firstLoginToday', function(user) {
+
+    if (!user || !user.profile || !user.profile._id) {
+        throw new Error('user must be present and populated with poulated profile for this event listener');
+    }
+    var options = {
+        topic: user.campaign.topic,
+        rejectedIdeas: user.profile.prefs.rejectedIdeas,
+        focus: user.profile.prefs.focus,
+        keepExisting: true
+    };
+
+    _updateRecommendations(user._id, options, function(err, newRecs ) {
+       if (err) {
+           throw new Error(err);
+       }
+    });
+});
+
+/**
  * Evaluate an assessmentResult against a list of ideas and returns a scored list of the ideas
  * that are recommended for someone with this assessmentResult.
  * If no focus are set all available answers are used for scoring, if focus are set only the
@@ -40,12 +62,11 @@ Profile.on('change:prefs.focus', function (changedProfile) {
  * We expect an array of objects with property question: e.g. [{question: "id", timestamp: "ts"}, ...]
  * If this is null or empty array we consider all questions. If it is set to at least one question, we only consider the
  * questions that the user wants to focus on.
- * @param nrOfRecsToReturn
  * @param cb callback function with arguments (err, rec)
  * @returns {*}
  * @private
  */
-function _calculateRecommendations(actList, assResult, focus, nrOfRecsToReturn, cb) {
+function _calculateRecommendations(actList, assResult, focus, cb) {
 
     var indexedAnswers = _.indexBy(assResult.answers, function (answer) {
         return answer.question.toString();
@@ -90,22 +111,16 @@ function _calculateRecommendations(actList, assResult, focus, nrOfRecsToReturn, 
     });
 
     // reset dirty flag for assessment result
-
-    function finalCb() {
-        var limitedRecs = sortedRecs.slice(0, nrOfRecsToReturn);
-        return cb(null, limitedRecs);
-    }
-
     if (assResult.dirty) {
         assResult.dirty = false;
         assResult.save(function (err) {
             if (err) {
                 cb(err);
             }
-            finalCb();
+            cb(null, sortedRecs);
         });
     } else {
-        finalCb();
+        cb(null, sortedRecs);
     }
 
 }
@@ -114,17 +129,17 @@ var locals = {};
 
 /**
  * loads all ideas relevant
- * @param rejectedIdeas
+ * @param excludedIdeas
  * @param done
  * @private
  * @param topic
  */
-function _loadIdeas(topic, rejectedIdeas, done) {
+function _loadIdeas(topic, excludedIdeas, done) {
     // reset
     locals.ideas = undefined;
 
     Idea.find({topics: topic.toString()})
-        .where({_id: {$not: {$in: rejectedIdeas}}})
+        .where({_id: {$not: {$in: excludedIdeas}}})
         .select('recWeights qualityFactor')
         .exec(function (err, ideas) {
             if (err) {
@@ -177,21 +192,22 @@ function _loadAssessmentResult(userId, assessmentResult, topic, done) {
 
 /**
  * updates the coachRecommendations that are currently stored for this user.
- * if the rejectedIdeas, focus and last assessmentResult are not passed in, the method tries to load
- * them from the database
  *
  * @param {ObjectId | string} userId of the user to update the recs for
- * @param {ObjectId[] | string[]} rejectedIdeas the list of rejected ideas as Ids
- * @param {AssessmentResult} assessmentResult
- * @param {ObjectId | ObjectId[] | string | string[] } [focus]
  * @param {cb} cb
- * @param updateDb
- * @param isAdmin
- * @param topic
+ * @param options
  */
-function _updateRecommendations(userId, topic, rejectedIdeas, assessmentResult, focus, updateDb, isAdmin, cb) {
-    // TODO: load focus of this user if not passed in
-    // TODO: load rejectedActs of this user if not passed in
+function _updateRecommendations(userId, options, cb) {
+
+    _.defaults(options, {rejectedIdeas: [],
+                        updateDb: true,
+                        isAdmin: false,
+                        keepExisting: false});
+
+    var assessmentResult = options.assessmentResult;
+    var focus = options.focus;
+    var topic = options.topic;
+    var rejectedIdeas = options.rejectedIdeas;
 
     // loading the already planned ideas of this user - we do not want to recommend things that this user has already planned
     mongoose.model('Activity').find({$or: [
@@ -199,10 +215,12 @@ function _updateRecommendations(userId, topic, rejectedIdeas, assessmentResult, 
         {joiningUsers: userId}
     ]}).select('idea').exec(function (err, plannedIdeas) {
 
-        rejectedIdeas = _.map(rejectedIdeas, 'idea').concat(_.map(plannedIdeas, 'idea'));
+        // we do not want recommendations for this we have already planned or for things that we have rejected in the
+        // User Profile
+        var excludedIdeas = _.map(rejectedIdeas, 'idea').concat(_.map(plannedIdeas, 'idea'));
 
         async.parallel([
-            _loadIdeas.bind(null, topic, rejectedIdeas),
+            _loadIdeas.bind(null, topic, excludedIdeas),
             _loadAssessmentResult.bind(null, userId, assessmentResult, topic)
         ], function (err) {
             if (err) {
@@ -210,8 +228,8 @@ function _updateRecommendations(userId, topic, rejectedIdeas, assessmentResult, 
             }
 
             if (!locals.assResult) {
-                if (!isAdmin) {
-                    // this users has no assessmentResults so we have no recommendations
+                if (!options.isAdmin) {
+                    // this user has no assessmentResults so we have no recommendations
                     return cb(null);
                 } else {
                     // user is admin so we create an empty assResult for him, with this he gets to see the scores of ideas
@@ -220,11 +238,11 @@ function _updateRecommendations(userId, topic, rejectedIdeas, assessmentResult, 
                 }
             }
 
-            _calculateRecommendations(locals.ideas, locals.assResult, focus, isAdmin ? 1000 : NUMBER_OF_COACH_RECS, function (err, newRecs) {
+            _calculateRecommendations(locals.ideas, locals.assResult, focus, function (err, newRecs) {
                 if (err) {
                     return cb(err);
                 }
-                if (updateDb) {
+                if (options.updateDb) {
 
                     // find all health coach recommendations for this user
                     Recommendation.find({
@@ -242,12 +260,12 @@ function _updateRecommendations(userId, topic, rejectedIdeas, assessmentResult, 
                         var previousIdeas = _.map(existingRecs, function (rec) {
                             return rec.idea.toString();
                         });
-                        var currentIdeas = _.map(newRecs, function (rec) {
+                        var allCurrentIdeas = _.map(newRecs, function (rec) {
                             return rec.idea.toString();
                         });
 
-                        var obsoleteIdeas = _.difference(previousIdeas, currentIdeas);
-                        var newIdeas = _.difference(currentIdeas, previousIdeas);
+                        var obsoleteIdeas = options.keepExisting ?  [] : _.difference(previousIdeas, allCurrentIdeas.slice(0,NUMBER_OF_COACH_RECS));
+                        var newIdeas = options.keepExisting ? _.difference(allCurrentIdeas, previousIdeas).slice(0,NUMBER_OF_COACH_RECS) : _.difference(allCurrentIdeas.slice(0,NUMBER_OF_COACH_RECS), previousIdeas);
 
                         // remove recommendation for obsolete ideas
                         var removeRecs = function removeRecs(ideas, done) {
@@ -265,7 +283,7 @@ function _updateRecommendations(userId, topic, rejectedIdeas, assessmentResult, 
                             }).exec(done);
                         };
 
-                        // store recommendation for new ideas
+                        // store a recommendation for one new idea
                         var storeRec = function storeRec(idea, done) {
                             var rec = new Recommendation({
                                 targetSpaces: [
@@ -298,7 +316,7 @@ function _updateRecommendations(userId, topic, rejectedIdeas, assessmentResult, 
 
 
                 } else {
-                    return cb(null, newRecs);
+                    return cb(null, newRecs.slice(0, options.isAdmin ? 1000 : NUMBER_OF_COACH_RECS));
                 }
 
 
@@ -314,29 +332,17 @@ function _updateRecommendations(userId, topic, rejectedIdeas, assessmentResult, 
 /**
  *
  * @param userId
- * @param rejectedIdeas
- * @param assessmentResult
- * @param focus
  * @param cb
- * @param isAdmin
- * @param topic
+ * @param options
  */
-function generateAndStoreRecommendations(userId, topic, rejectedIdeas, assessmentResult, focus, isAdmin, cb) {
-    _updateRecommendations(userId, topic, rejectedIdeas, assessmentResult, focus, true, isAdmin, cb);
+function generateAndStoreRecommendations(userId, options, cb) {
+    options.updateDb = true;
+    _updateRecommendations(userId, options, cb);
 }
 
-/**
- *
- * @param userId
- * @param rejectedIdeas
- * @param assessmentResult
- * @param focus
- * @param cb
- * @param isAdmin
- * @param topic
- */
-function generateRecommendations(userId, topic, rejectedIdeas, assessmentResult, focus, isAdmin, cb) {
-    _updateRecommendations(userId, topic, rejectedIdeas, assessmentResult, focus, false, isAdmin, cb);
+function generateRecommendations(userId, options, cb) {
+    options.updateDb = false;
+    _updateRecommendations(userId, options, cb);
 }
 
 
@@ -378,6 +384,9 @@ var getDefaultRecommendations = function getDefaultRecommendations(campaignId, c
             return cb(null, recs);
         });
 };
+
+
+
 
 module.exports = {
     generateAndStoreRecommendations: generateAndStoreRecommendations,

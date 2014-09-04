@@ -303,6 +303,17 @@ function _validateBearerToken(token, done) {
                 if (!user) {
                     return done(null, false);
                 }
+
+                if (!user.lastLogin) {
+                    user.lastLogin = new Date();
+                    user.save();
+                } else if (user.lastLogin && moment(user.lastLogin).isBefore(moment().startOf('day'))) {
+                    // publish event: first login today
+                    user.lastLogin = new Date();
+                    user.save();
+                    mongoose.model('User').emit('User:firstLoginToday', user);
+                }
+
                 return done(null, user, {scope: 'all', roles: user.roles});
             });
         } catch (err) {

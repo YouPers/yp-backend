@@ -142,7 +142,7 @@ consts.newUserInNewCampaignApi(
                                     .expectStatus(200)
                                     .afterJSON(function (recs) {
 
-                                        expect(recs.length).toEqual(3);
+                                        expect(recs.length).toEqual(1);
 
                                         _.forEach(recs, function (rec) {
                                             expect(rec.author).toEqual(consts.users.yphealthcoach.id);
@@ -175,7 +175,7 @@ consts.newUserInNewCampaignApi(
                                                     .expectStatus(200)
                                                     .afterJSON(function (recsWithoutPlannedIdea) {
 
-                                                        expect(recsWithoutPlannedIdea.length).toEqual(2);
+                                                        expect(recsWithoutPlannedIdea.length).toEqual(0);
 
                                                         _.forEach(recsWithoutPlannedIdea, function (rec) {
                                                             expect(rec.author).toEqual(consts.users.yphealthcoach.id);
@@ -193,7 +193,7 @@ consts.newUserInNewCampaignApi(
                                                                     .expectStatus(200)
                                                                     .afterJSON(function (newRecs) {
 
-                                                                        expect(newRecs.length).toEqual(3);
+                                                                        expect(newRecs.length).toEqual(1);
 //
                                                                         _.forEach(newRecs, function (rec) {
                                                                             expect(rec.idea).not.toEqual(idea);

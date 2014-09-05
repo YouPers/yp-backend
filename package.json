@@ -49,7 +49,7 @@
         "grunt": "0.4.x",
         "frisby": "0.8.x",
         "grunt-nodemon": "~0.3.x",
-        "grunt-concurrent": "~0.5.x",
+        "grunt-concurrent": "~1.0.x",
         "grunt-wait": "~0.1.x",
         "grunt-express-server": "~0.4.x",
         "grunt-curl": "~2.0.x",

@@ -12,7 +12,8 @@
         "restify": "2.8.x",
         "mongoose": "3.8.x",
         "nodemailer": "1.2.x",
-        "email-templates": "1.0.x",
+        "email-templates": "1.1.x",
+        "ejs": "1.0.x",
         "longjohn": "0.2.x",
         "bunyan": "1.0.x",
         "lodash": "2.4.x",
@@ -38,8 +39,8 @@
         "newrelic": "*",
         "nodetime": "*",
         "mongoose-eventify": "0.0.x",
-        "nconf": "~0.6.x"
-
+        "nconf": "~0.6.x",
+        "bunyan-syslog": "0.2.x"
     },
     "devDependencies": {
         "grunt-contrib-jshint": "~0.10.x",

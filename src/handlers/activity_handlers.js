@@ -278,7 +278,7 @@ function postJoinActivityFn(req, res, next) {
 
 
 function postActivityInvite(req, res, next) {
-    if (!req.params || !req.params.id) {
+    if (!req.params || !req.params.id || req.params.id === 'undefined') {
         return next(new error.MissingParameterError({ required: 'id' }));
     }
     if (!req.body || !req.body.email) {

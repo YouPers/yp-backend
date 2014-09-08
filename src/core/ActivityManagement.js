@@ -61,10 +61,11 @@ User.on('change:campaign', function(user) {
 });
 
 /**
- * on Change of an ActivityEvent Status, check whether this was the last open ActivityEvent and if there are no more
- * Events the change the status of the activity to 'old'
+ * on Change of an ActivityEvent Status, check whether this was the last open ActivityEvent
+ * for this activity. If there are no more open Events change the status of the activity to 'old'
  */
 ActivityEvent.on("change:status", function(event) {
+    // we can stop looking, if the event that was changed is still open, e.g. when it is new.
     if (event.status === 'open') {
         return;
     }

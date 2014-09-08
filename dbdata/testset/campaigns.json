@@ -62,7 +62,7 @@
         "start": {
             "$date": 1404324000000
         },
-        "title": "Ern\u00e4hrung am Arbeitsplatz",
+        "title": "Gesunde Ernährung",
         "topic": {
             "$oid": "53b416fba43aac62a2debda2"
         }

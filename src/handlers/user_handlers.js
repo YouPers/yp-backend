@@ -9,8 +9,6 @@ var error = require('../util/error'),
     generic = require('./generic'),
     config = require('../config/config');
 
-require('../core/User');
-
 var postFn = function (baseUrl) {
     return function (req, res, next) {
 

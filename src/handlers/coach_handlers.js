@@ -45,9 +45,13 @@ var getCoachRecommendationsFn = function getCoachRecommendationsFn(req, res, nex
     if (!topic) {
         return next(new error.MissingParameterError('topic must be passed as query param, or the current user must have a campaign set.'));
     }
-
-    CoachRecommendation.generateAndStoreRecommendations(req.user._id, topic,
-        req.user.profile.prefs.rejectedIdeas, null, req.user.profile.prefs.focus, admin, function (err, recs) {
+    var options = {
+        topic: topic,
+        rejectedIdeas: req.user.profile.prefs.rejectedIdeas,
+        focus: req.user.profile.prefs.focus,
+        isAdmin: admin
+    };
+    CoachRecommendation.generateAndStoreRecommendations(req.user._id, options, function (err, recs) {
 
             if (err) {
                 error.handleError(err, next);

@@ -9,7 +9,7 @@ var mongoose = require('mongoose'),
  * ActivityEvent Schema
  * @type {Schema}
  */
-var ActivityEvent = common.newSchema({
+var ActivityEventSchema = common.newSchema({
     owner: {type: ObjectId, ref: 'User'},
     campaign: {type: ObjectId, ref: 'Campaign'},
     idea: {type: ObjectId, ref: 'Idea'},
@@ -21,15 +21,12 @@ var ActivityEvent = common.newSchema({
     feedback: {type: Number},
     comment: {type: String}
 });
+ActivityEventSchema.plugin(require('mongoose-eventify'));
 
-mongoose.model('ActivityEvent', ActivityEvent);
-
-
-ActivityEvent.statics.getFieldDescriptions = function () {
+ActivityEventSchema.statics.getFieldDescriptions = function () {
     return {
         owner: 'The user who owns this ActivityEvent'
     };
 };
 
-
-module.exports = mongoose.model('ActivityEvent', ActivityEvent);
+module.exports = mongoose.model('ActivityEvent', ActivityEventSchema);

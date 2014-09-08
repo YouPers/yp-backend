@@ -60,6 +60,34 @@ User.on('change:campaign', function(user) {
     });
 });
 
+/**
+ * on Change of an ActivityEvent Status, check whether this was the last open ActivityEvent and if there are no more
+ * Events the change the status of the activity to 'old'
+ */
+ActivityEvent.on("change:status", function(event) {
+    if (event.status === 'open') {
+        return;
+    }
+
+    log.debug("checking whether Activity needs to be put to status 'old'");
+    ActivityEvent.count({_id: {$ne: event._id}, status: 'open', activity: event.activity}).exec(function (err, count) {
+        if (err) {
+            log(err);
+            throw err;
+        }
+        log.info("found " + count + " events that are still active");
+        if (count === 0) {
+            Activity.update({_id: event.activity}, {status: 'old'}, function(err, numAffected) {
+                if (err || numAffected > 1) {
+                    log.err(err || "more than one activity changed, should never happen");
+                }
+
+            });
+        }
+    });
+});
+
+
 
 actMgr.getEvents = function getEvents(activity, ownerId, fromDate) {
 

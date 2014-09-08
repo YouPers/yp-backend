@@ -76,7 +76,7 @@ ActivityEvent.on("change:status", function(event) {
             log(err);
             throw err;
         }
-        log.info("found " + count + " events that are still active");
+        log.debug("found " + count + " events that are still active");
         if (count === 0) {
             Activity.update({_id: event.activity}, {status: 'old'}, function(err, numAffected) {
                 if (err || numAffected > 1) {

@@ -65,7 +65,7 @@ function validateActivity(req, res, next) {
         if (err) {
             return error.handleError(err, next);
         }
-        var conflicts = [];
+        var validationResult = [];
 
         // put the events of the loaded plans in an ordered list by beginDate
         var plannedEvents = [];
@@ -91,11 +91,33 @@ function validateActivity(req, res, next) {
                 return ((plannedEvent.start < newEvent.end) && (plannedEvent.end > newEvent.start));
             });
 
-            conflicts.push({event: newEvent, conflictingEvent: conflictingEvent});
+            validationResult.push({event: newEvent, conflictingEvent: conflictingEvent});
         });
 
-        res.send(conflicts);
-        return next();
+
+        // load all activities for the conflicting events to populate them
+        var conflictingEvents = _.compact(_.map(validationResult, 'conflictingEvent'));
+        var conflictingEventActivities = _.map(conflictingEvents, 'activity');
+        Activity.find({ _id: { $in: conflictingEventActivities }}, function (err, activities) {
+            if(err) {
+                return error.handleError(err, next);
+            }
+            var activitiesById = _.indexBy(activities, function(activity) {
+                return activity._id.toString();
+            });
+
+            _.each(validationResult, function(result) {
+                if(result.conflictingEvent) {
+                    var conflictingActivityResult = activitiesById[result.conflictingEvent.activity.toString()];
+                    result.conflictingEvent.activity = conflictingActivityResult;
+                }
+            });
+
+            res.send(validationResult);
+            return next();
+
+        });
+
     });
 }
 

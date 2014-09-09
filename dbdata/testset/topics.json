@@ -8,7 +8,8 @@
         },
         "shortDescriptionI18n": {
             "de": "StressManagement und Burnout Pr\u00e4vention"
-        }
+        },
+        "picture": "/assets/img/stressManagement.jpg"
     },
     {
         "_id": {
@@ -19,7 +20,8 @@
         },
         "shortDescriptionI18n": {
             "de": "Gesunde Ern\u00e4hrung gibt ein gutes Lebensgef\u00fchl"
-        }
+        },
+        "picture": "/assets/actpics/Act-262.jpg"
     },
     {
         "_id": {
@@ -27,7 +29,8 @@
         },
         "nameI18n": {
             "de": "K\u00f6rperliche Fitness"
-        }
+        },
+        "picture": "/assets/actpics/Act-271.jpg"
     },
     {
         "_id": {
@@ -35,7 +38,8 @@
         },
         "nameI18n": {
             "de": "Gesundes Arbeiten"
-        }
+        },
+        "picture": "/assets/actpics/Act-187.jpg"
     },
     {
         "_id": {
@@ -43,6 +47,7 @@
         },
         "nameI18n": {
             "de": "Sicheres Arbeiten"
-        }
+        },
+        "picture": "/assets/actpics/Act-195.jpg"
     }
 ]

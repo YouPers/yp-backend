@@ -7,11 +7,12 @@ var calendar = require('../util/calendar');
 var User = mongoose.model('User');
 var Invitation = mongoose.model('Invitation');
 var Idea = mongoose.model('Idea');
+var Campaign = mongoose.model('Campaign');
+var Assessment = mongoose.model('Assessment');
 var Activity = mongoose.model('Activity');
 var ActivityEvent = mongoose.model('ActivityEvent');
 var SocialInteraction = require('../core/SocialInteraction');
 var log = require('../util/log').logger;
-var ASSESSMENT_IDEA = "5278c6accdeab69a25000008";
 
 function ActivityManagement() {
     EventEmitter.call(this);
@@ -28,35 +29,53 @@ var actMgr = new ActivityManagement();
  */
 
 User.on('change:campaign', function(user) {
-    Activity.find({
-        owner: user._id,
-        idea: ASSESSMENT_IDEA,
-        status: 'active'
-    }).exec(function (err, activities) {
-        handleError(err);
 
-        // only plan assessment idea if there is no active activity yet
-        if(activities.length === 0) {
-            Idea.findById(ASSESSMENT_IDEA, function(err, idea) {
-                if(err) {
-                    return handleError(err);
-                }
-                var assessmentActivity = actMgr.defaultActivity(idea, user);
-                assessmentActivity.save(function(err, savedActivity) {
-                    if(err) {
-                        return handleError(err);
+    Campaign.findById(user.campaign).exec(function (err, campaign) {
+        if(err) { handleError(err); }
+
+        Assessment.find({ topic: campaign.topic }).exec(function (err, assessments) {
+            if(err) { handleError(err); }
+
+            if(assessments.length !== 1) {
+                return actMgr.emit('error', 'assessment for topic not found or not unique');
+            }
+            var assessment = assessments[0];
+            if(assessment.idea) {
+
+                Activity.find({
+                    owner: user._id,
+                    idea: assessment.idea,
+                    status: 'active'
+                }).exec(function (err, activities) {
+                    if(err) { handleError(err); }
+
+                    // only plan assessment idea if there is no active activity yet
+                    if(activities.length === 0) {
+                        Idea.findById(assessment.idea, function(err, idea) {
+                            if(err) {
+                                return handleError(err);
+                            }
+                            var assessmentActivity = actMgr.defaultActivity(idea, user);
+                            assessmentActivity.save(function(err, savedActivity) {
+                                if(err) {
+                                    return handleError(err);
+                                }
+                                var events = actMgr.getEvents(savedActivity, user.id);
+                                ActivityEvent.create(events, function (err) {
+                                    if(err) {
+                                        return handleError(err);
+                                    }
+                                    actMgr.emit('activity:activityCreated', savedActivity);
+                                });
+                            });
+
+                        });
                     }
-                    var events = actMgr.getEvents(savedActivity, user.id);
-                    ActivityEvent.create(events, function (err) {
-                        if(err) {
-                            return handleError(err);
-                        }
-                        actMgr.emit('activity:activityCreated', savedActivity);
-                    });
                 });
 
-            });
-        }
+            }
+        });
+
     });
 });
 

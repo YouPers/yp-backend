@@ -3,7 +3,6 @@
  */
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
-    ObjectId = Schema.ObjectId,
     common = require('./common');
 
 /**
@@ -13,7 +12,7 @@ var mongoose = require('mongoose'),
 var SpaceSchema = common.newSchema({
 
     type: { type: String, enum: common.enums.targetSpace, required: true },
-    targetId: {type: ObjectId}
+    targetId: {type: Schema.Types.Mixed}
 });
 
 SpaceSchema.methods = {

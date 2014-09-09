@@ -99,15 +99,17 @@ function validateActivity(req, res, next) {
         var conflictingEvents = _.compact(_.map(validationResult, 'conflictingEvent'));
         var conflictingEventActivities = _.map(conflictingEvents, 'activity');
         Activity.find({ _id: { $in: conflictingEventActivities }}, function (err, activities) {
-
-            var activitiesById = _.groupBy(activities, function(activity) {
+            if(err) {
+                return error.handleError(err, next);
+            }
+            var activitiesById = _.indexBy(activities, function(activity) {
                 return activity._id.toString();
             });
 
             _.each(validationResult, function(result) {
                 if(result.conflictingEvent) {
                     var conflictingActivityResult = activitiesById[result.conflictingEvent.activity.toString()];
-                    result.conflictingEvent.activity = conflictingActivityResult[0]; // groupBy always creates an array
+                    result.conflictingEvent.activity = conflictingActivityResult;
                 }
             });
 

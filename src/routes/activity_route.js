@@ -43,6 +43,7 @@ module.exports = function (swagger) {
         id: 'ActivityInvitationStatusResult',
         properties: {
             user: {type: 'User'},
+            email: {type: 'String'},
             status: {type: 'String'}
         }
     }});

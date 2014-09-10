@@ -13,7 +13,7 @@
         },
         "defaultduration": 15,
         "defaultexecutiontype": "self",
-        "defaultfrequency": "month",
+        "defaultfrequency": "once",
         "defaultvisibility": "private",
         "descriptionI18n": {
             "de": "Führe monatlich deine <a href=\"#/check\">Stress-Selbst&shy;beurteilung</a> durch und werde dir so bewusst, was deinen Stress ausgelöst oder verstärkt hat und was du nächsten Monat dagegen unternehmen kannst."

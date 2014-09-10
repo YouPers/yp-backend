@@ -34,7 +34,8 @@ var AssessmentSchema = common.newSchema({
     impactQuestionLeft: {type: String, trim: true, i18n: true, required: true},
     impactQuestionRight: {type: String, trim: true, i18n: true, required: true},
     questions: [{type: ObjectId, ref: 'AssessmentQuestion'}],
-    topic: {type: ObjectId, ref: 'Topic', required: true}
+    topic: {type: ObjectId, ref: 'Topic', required: true},
+    idea: {type: ObjectId, ref: 'Idea', required: false}
 });
 
 AssessmentSchema.statics.getSwaggerModel = function () {

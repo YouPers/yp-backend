@@ -3,46 +3,65 @@
         "_id": {
             "$oid": "53b416cfa43aac62a2debda1"
         },
-        "nameI18n": {
-            "de": "Stress Management"
-        },
+        "name": "Stress",
         "shortDescriptionI18n": {
             "de": "StressManagement und Burnout Pr\u00e4vention"
-        }
+        },
+        "textI18n": {
+            "de": "Hier fehlt eine längere Beschreibung des Topics"
+        },
+        "picture": "/assets/img/stressManagement.jpg"
     },
     {
         "_id": {
             "$oid": "53b416fba43aac62a2debda2"
         },
-        "nameI18n": {
+        "name": "Nutrition",
+        "shortDescriptionI18n": {
             "de": "Gesunde Ern\u00e4hrung"
         },
-        "shortDescriptionI18n": {
-            "de": "Gesunde Ern\u00e4hrung gibt ein gutes Lebensgef\u00fchl"
-        }
+        "textI18n": {
+            "de": "Hier fehlt eine längere Beschreibung des Topics"
+        },
+        "picture": "/assets/actpics/Act-262.jpg"
     },
     {
         "_id": {
             "$oid": "53b416fba43aac62a2debda3"
         },
-        "nameI18n": {
-            "de": "K\u00f6rperliche Fitness"
-        }
+        "name": "Fitness",
+        "shortDescriptionI18n": {
+            "de": "Körperliche Fitness"
+        },
+        "textI18n": {
+            "de": "Hier fehlt eine längere Beschreibung des Topics"
+        },
+        "picture": "/assets/actpics/Act-271.jpg"
     },
     {
         "_id": {
             "$oid": "53b416fba43aac62a2debda4"
         },
-        "nameI18n": {
+        "name": "HealthyAtWork",
+        "shortDescriptionI18n": {
             "de": "Gesundes Arbeiten"
-        }
+        },
+        "textI18n": {
+            "de": "Hier fehlt eine längere Beschreibung des Topics"
+        },
+        "picture": "/assets/actpics/Act-187.jpg"
     },
     {
         "_id": {
             "$oid": "53b416fba43aac62a2debda5"
         },
-        "nameI18n": {
-            "de": "Sicheres Arbeiten"
-        }
+        "name": "Safety",
+        "shortDescriptionI18n": {
+            "de": "Gesundes Arbeiten"
+        },
+        "textI18n": {
+            "de": "Hier fehlt eine längere Beschreibung des Topics"
+        },
+        "picture": "/assets/actpics/Act-195.jpg"
     }
 ]

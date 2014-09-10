@@ -4,7 +4,7 @@
         "_id": {
             "$oid": "527916a82079aa8704000006"
         },
-        "avatar": "/assets/img/campaignavatarstress_u10.png",
+        "avatar": "/assets/img/stressManagement.jpg",
         "campaignLeads": [
             {
                 "$oid": "52a97f1650fca98c2900000b"
@@ -28,7 +28,7 @@
         "start": {
             "$date": 1404314400000
         },
-        "title": "Stress Management",
+        "title": "Stress",
         "topic": {
             "$oid": "53b416cfa43aac62a2debda1"
         }
@@ -38,7 +38,7 @@
         "_id": {
             "$oid": "527916a82079aa8704000007"
         },
-        "avatar": "/assets/img/campaignavatarstress_u10.png",
+        "avatar": "/assets/actpics/Act-262.jpg",
         "campaignLeads": [
             {
                 "$oid": "52a97f1650fca98c2900000b"
@@ -62,7 +62,7 @@
         "start": {
             "$date": 1404324000000
         },
-        "title": "Gesunde Ernährung",
+        "title": "Nutrition",
         "topic": {
             "$oid": "53b416fba43aac62a2debda2"
         }

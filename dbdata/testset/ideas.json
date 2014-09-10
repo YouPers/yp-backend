@@ -13,7 +13,7 @@
         },
         "defaultduration": 15,
         "defaultexecutiontype": "self",
-        "defaultfrequency": "month",
+        "defaultfrequency": "once",
         "defaultvisibility": "private",
         "descriptionI18n": {
             "de": "Führe monatlich deine <a href=\"#/check\">Stress-Selbst&shy;beurteilung</a> durch und werde dir so bewusst, was deinen Stress ausgelöst oder verstärkt hat und was du nächsten Monat dagegen unternehmen kannst."
@@ -11412,6 +11412,7 @@
         "updated": {
             "$date": 1409922108207
         },
+        "action": "assessment",
         "number": "Act-274",
         "source": "community",
         "defaultfrequency": "month",
@@ -13842,6 +13843,7 @@
         "updated": {
             "$date": 1409922047834
         },
+        "action": "assessment",
         "number": "Act-275",
         "source": "community",
         "defaultfrequency": "month",
@@ -13878,6 +13880,7 @@
         "updated": {
             "$date": 1409922079837
         },
+        "action": "assessment",
         "number": "Act-276",
         "source": "community",
         "defaultfrequency": "month",
@@ -13914,6 +13917,7 @@
         "updated": {
             "$date": 1409922261707
         },
+        "action": "assessment",
         "number": "Act-277",
         "source": "community",
         "defaultfrequency": "month",

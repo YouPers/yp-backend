@@ -7,9 +7,9 @@ var mongoose = require('mongoose'),
  * Idea Schema
  */
 var TopicSchema = common.newSchema({
-    name: {type: String, trim: true, required: true, i18n: true},
+    name: {type: String, trim: true, required: true},
     shortDescription: {type: String, trim: true, i18n: true},
-    longDescription: {type: String, trim: true, i18n: true},
+    text: {type: String, trim: true, i18n: true},
     picture: {type: String}
 });
 

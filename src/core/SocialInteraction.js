@@ -67,10 +67,10 @@ function _createTargetSpacesFromRecipients(to) {
                 type: 'campaign',
                 targetId: recipient._id
             });
-        } else if (typeof to === 'string') {
+        } else if (typeof recipient === 'string') {
             targetSpaces.push({
                 type: 'email',
-                targetId: recipient
+                targetValue: recipient
             });
         }
     });
@@ -586,7 +586,19 @@ SocialInteraction.getInvitationStatus = function (activityId, cb) {
 
                 var userResults = [];
 
+                var emailResults = [];
+
                 _.each(invitations, function (invitation) {
+
+
+                    _.each(_.filter(invitation.targetSpaces, { type: 'email'}), function(space) {
+
+                        var emailResult = {
+                            email: space.targetValue,
+                            status: 'pending'
+                        };
+                        emailResults.push(emailResult);
+                    });
 
                     _.each(_.filter(invitation.targetSpaces, { type: 'user'}), function(space) {
                         var sid = _.find(sidList, { socialInteraction: invitation._id, user: space.targetId });
@@ -600,7 +612,9 @@ SocialInteraction.getInvitationStatus = function (activityId, cb) {
 
                 });
 
-                mongoose.model('User').populate(userResults, {path: 'user', model: 'User'}, cb);
+                mongoose.model('User').populate(userResults, {path: 'user', model: 'User'}, function(err, userResults) {
+                    cb(err, userResults.concat(emailResults));
+                });
             });
         });
     });

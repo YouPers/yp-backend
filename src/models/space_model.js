@@ -13,7 +13,8 @@ var mongoose = require('mongoose'),
 var SpaceSchema = common.newSchema({
 
     type: { type: String, enum: common.enums.targetSpace, required: true },
-    targetId: {type: ObjectId} // TODO: we need a place to store the email address for invitations, using Schema.Types.Mixed here breaks the tests
+    targetId: {type: ObjectId},
+    targetValue: {type: String}
 });
 
 SpaceSchema.methods = {

@@ -70,7 +70,7 @@ function _createTargetSpacesFromRecipients(to) {
         } else if (typeof recipient === 'string') {
             targetSpaces.push({
                 type: 'email',
-                targetId: recipient
+                targetValue: recipient
             });
         }
     });
@@ -594,7 +594,7 @@ SocialInteraction.getInvitationStatus = function (activityId, cb) {
                     _.each(_.filter(invitation.targetSpaces, { type: 'email'}), function(space) {
 
                         var emailResult = {
-                            email: space.targetId,
+                            email: space.targetValue,
                             status: 'pending'
                         };
                         emailResults.push(emailResult);

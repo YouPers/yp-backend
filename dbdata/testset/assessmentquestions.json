@@ -52,7 +52,7 @@
             "fr": "Alimentation",
             "it": "Ern\u00e4hrung"
         },
-        "type": "oneSided"
+        "type": "leftSided"
     },
     {
         "_id": {
@@ -241,7 +241,7 @@
             "fr": "D\u00e9tente",
             "it": "Entspannung"
         },
-        "type": "oneSided"
+        "type": "leftSided"
     },
     {
         "_id": {
@@ -296,7 +296,7 @@
             "fr": "Sommeil",
             "it": "Schlaf"
         },
-        "type": "oneSided"
+        "type": "leftSided"
     },
     {
         "_id": {
@@ -351,7 +351,7 @@
             "fr": "Pauses",
             "it": "Pausen"
         },
-        "type": "oneSided"
+        "type": "leftSided"
     },
     {
         "_id": {
@@ -808,7 +808,7 @@
             "fr": "Situation financi\u00e8re",
             "it": "Finanzielle Situation"
         },
-        "type": "oneSided"
+        "type": "leftSided"
     },
     {
         "_id": {
@@ -863,7 +863,7 @@
             "fr": "Situation familiale",
             "it": "Famili\u00e4re Situation"
         },
-        "type": "oneSided"
+        "type": "leftSided"
     },
     {
         "_id": {
@@ -985,7 +985,7 @@
             "fr": "S\u00e9curit\u00e9 d'emploi",
             "it": "Arbeitsplatzsicherheit"
         },
-        "type": "oneSided"
+        "type": "leftSided"
     },
     {
         "_id": {
@@ -1375,7 +1375,7 @@
             "fr": "Conditions de travail",
             "it": "Arbeitsbedingungen"
         },
-        "type": "oneSided"
+        "type": "leftSided"
     },
     {
         "_id": {

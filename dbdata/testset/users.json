@@ -18,7 +18,10 @@
             "individual"
         ],
         "tempPasswordFlag": false,
-        "username": "reto"
+        "username": "reto",
+        "created": {
+            "$date": 1407770509621
+        }
     },
     {
         "__v": 0,
@@ -39,7 +42,10 @@
             "individual"
         ],
         "tempPasswordFlag": false,
-        "username": "ivan777"
+        "username": "ivan777",
+        "created": {
+            "$date": 1407770509621
+        }
     },
     {
         "__v": 0,
@@ -60,7 +66,10 @@
             "individual"
         ],
         "tempPasswordFlag": false,
-        "username": "urs"
+        "username": "urs",
+        "created": {
+            "$date": 1407770509621
+        }
     },
     {
         "__v": 0,
@@ -81,7 +90,10 @@
             "productadmin"
         ],
         "tempPasswordFlag": false,
-        "username": "stefan"
+        "username": "stefan",
+        "created": {
+            "$date": 1407770509621
+        }
     },
     {
         "__v": 0,
@@ -102,7 +114,10 @@
             "systemadmin"
         ],
         "tempPasswordFlag": false,
-        "username": "sysadm"
+        "username": "sysadm",
+        "created": {
+            "$date": 1407770509621
+        }
     },
     {
         "__v": 0,
@@ -123,28 +138,10 @@
             "productadmin"
         ],
         "tempPasswordFlag": false,
-        "username": "martin"
-    },
-    {
-        "__v": 0,
-        "_id": {
-            "$oid": "528b227bf70daafada000007"
-        },
-        "avatar": "assets/img/KTLU.jpeg",
-        "email": "bernadette.wuersch@lu.ch",
-        "emailValidatedFlag": true,
-        "firstname": "Bernadette",
-        "fullname": "Bernadette W\u00fcrsch",
-        "hashed_password": "e3e08b2cae8af6e675eacc6c856708f09e741905",
-        "lastname": "W\u00fcrsch",
-        "profile": {
-            "$oid": "5303721a4dba580000000027"
-        },
-        "roles": [
-            "individual"
-        ],
-        "tempPasswordFlag": false,
-        "username": "bernadette"
+        "username": "martin",
+        "created": {
+            "$date": 1407770509621
+        }
     },
     {
         "__v": 1,
@@ -176,7 +173,10 @@
         "updated": {
             "$date": 1407770582291
         },
-        "username": "test_ind1"
+        "username": "test_ind1",
+        "created": {
+            "$date": 1407770509621
+        }
     },
     {
         "__v": 0,
@@ -197,7 +197,10 @@
             "individual"
         ],
         "tempPasswordFlag": false,
-        "username": "test_ind2"
+        "username": "test_ind2",
+        "created": {
+            "$date": 1407770509621
+        }
     },
     {
         "__v": 0,
@@ -219,7 +222,10 @@
             "productadmin"
         ],
         "tempPasswordFlag": false,
-        "username": "test_prodadm"
+        "username": "test_prodadm",
+        "created": {
+            "$date": 1407770509621
+        }
     },
     {
         "__v": 0,
@@ -240,7 +246,10 @@
             "systemadmin"
         ],
         "tempPasswordFlag": false,
-        "username": "test_sysadm"
+        "username": "test_sysadm",
+        "created": {
+            "$date": 1407770509621
+        }
     },
     {
         "__v": 0,
@@ -266,7 +275,10 @@
             "individual"
         ],
         "tempPasswordFlag": false,
-        "username": "test_orgadm"
+        "username": "test_orgadm",
+        "created": {
+            "$date": 1407770509621
+        }
     },
     {
         "__v": 0,
@@ -291,7 +303,10 @@
             "individual"
         ],
         "tempPasswordFlag": false,
-        "username": "test_campaignlead"
+        "username": "test_campaignlead",
+        "created": {
+            "$date": 1407770509621
+        }
     },
     {
         "__v": 0,
@@ -316,7 +331,10 @@
             "individual"
         ],
         "tempPasswordFlag": false,
-        "username": "test_campaignlead2"
+        "username": "test_campaignlead2",
+        "created": {
+            "$date": 1407770509621
+        }
     },
     {
         "__v": 0,
@@ -337,7 +355,10 @@
             "individual"
         ],
         "tempPasswordFlag": false,
-        "username": "test_ind3"
+        "username": "test_ind3",
+        "created": {
+            "$date": 1407770509621
+        }
     },
     {
         "__v": 0,
@@ -358,7 +379,10 @@
             "productadmin"
         ],
         "tempPasswordFlag": false,
-        "username": "helmut"
+        "username": "helmut",
+        "created": {
+            "$date": 1407770509621
+        }
     },
     {
         "__v": 0,
@@ -379,6 +403,9 @@
             "individual"
         ],
         "tempPasswordFlag": false,
-        "username": "yphealthcoach"
+        "username": "yphealthcoach",
+        "created": {
+            "$date": 1407770509621
+        }
     }
 ]

@@ -22,7 +22,7 @@ module.exports = function (swagger, config) {
             authMiddleware: passport.authenticate([ 'basic' ], {session: false}),
             accessLevel: 'al_user'
         },
-        action: auth.loginAndExchangeTokenOauth
+        action: auth.loginAndExchangeTokenAjax
     });
 
     swagger.addOperation({

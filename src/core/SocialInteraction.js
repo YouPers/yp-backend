@@ -377,6 +377,8 @@ SocialInteraction.getAllForUser = function (user, model, options, cb) {
     var locale = options && options.locale;
     var locals = {};
 
+    console.log(options);
+
     function _loadSocialInteractionDismissed(done) {
         SocialInteractionDismissedModel.find({ user: user._id }, function (err, results) {
 
@@ -507,15 +509,23 @@ SocialInteraction.getAllForUser = function (user, model, options, cb) {
                 }
 
                 var dbQuery = model.find(finder);
-                dbQuery
-                    .and({$or: [
-                        {publishTo: {$exists: false}},
-                        {publishTo: {$gte: now}}
-                    ]})
-                    .and({$or: [
-                        {publishFrom: {$exists: false}},
-                        {publishFrom: {$lte: now}}
-                    ]});
+
+                if(options.publishFrom) {
+                    var publishFrom = (typeof options.publishFrom === 'boolean') ? now : moment(options.publishFrom).toDate();
+                    dbQuery
+                        .and({$or: [
+                            {publishFrom: {$exists: false}},
+                            {publishFrom: {$lte: publishFrom}}
+                        ]});
+                }
+                if(options.publishTo) {
+                    var publishTo = (typeof options.publishTo === 'boolean') ? now : moment(options.publishTo).toDate();
+                    dbQuery
+                        .and({$or: [
+                            {publishTo: {$exists: false}},
+                            {publishTo: {$gte: publishTo}}
+                        ]});
+                }
 
                 if (options.authorType) {
                     dbQuery.and({ authorType: options.authorType });

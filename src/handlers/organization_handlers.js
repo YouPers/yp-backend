@@ -48,12 +48,14 @@ var postFn = function (baseUrl) {
                     return error.handleError(err, next);
                 }
 
-
                 // try to save the new organization object
                 obj.save(generic.writeObjCb(req, res, next));
             });
-        }
+        } else {
 
+            // try to save the new organization object
+            obj.save(generic.writeObjCb(req, res, next));
+        }
 
     };
 };

@@ -66,6 +66,24 @@ module.exports = function (swagger) {
         }
     );
 
+
+    swagger.addOperation({
+        spec: {
+            description: "Operations about invitations",
+            path: baseUrlWithId,
+            notes: "update an existing invitation",
+            summary: "Update an invitation",
+            method: "PUT",
+            mobileSDK: "disabled",
+            "responseClass": "Invitation",
+            "nickname": "putInvitation",
+            params: [swagger.pathParam("id", "ID of the invitation to be updated", "string"), swagger.bodyParam("invitation", "invitation to be updated", "Idea")],
+            accessLevel: 'al_user',
+            beforeCallbacks: []
+        },
+        action: generic.putFn(baseUrl, Model)
+    });
+
     swagger.addOperation({
             spec: {
                 description: "Operations about invitations",

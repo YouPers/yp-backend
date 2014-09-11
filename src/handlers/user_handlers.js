@@ -26,6 +26,8 @@ var postFn = function (baseUrl) {
 
         var newUser = new User(req.body);
 
+        newUser.lastLogin = new Date();
+
         // assign default roles
         if (newUser.roles.length === 0) {
             newUser.roles = ['individual'];

@@ -308,14 +308,14 @@ var statsQueries = function (timeRange, scopeType, scopeId) {
 
     /////////////////////////////////////////////////////
     // Users Total
-    var usersPerDayQuery = mongoose.model('User').aggregate();
+    var newUsersPerDayQuery = mongoose.model('User').aggregate();
     if (scopePipelineEntry) {
-        usersPerDayQuery.append(scopePipelineEntry);
+        newUsersPerDayQuery.append(scopePipelineEntry);
     }
     if (timeRangePipelineEntry) {
-        usersPerDayQuery.append(timeRangePipelineEntry);
+        newUsersPerDayQuery.append(timeRangePipelineEntry);
     }
-    usersPerDayQuery.append(
+    newUsersPerDayQuery.append(
         {$project: {
             date: {
                 year: {$year: '$created'},
@@ -369,7 +369,7 @@ var statsQueries = function (timeRange, scopeType, scopeId) {
         activityEventsTotal: eventsTotalQuery,
         eventsDonePerDay: eventsDonePerDayQuery,
         usersTotal: usersTotalQuery,
-        usersPerDay: usersPerDayQuery,
+        newUsersPerDay: newUsersPerDayQuery,
         focusSet: focusSetQuery
         };
 };

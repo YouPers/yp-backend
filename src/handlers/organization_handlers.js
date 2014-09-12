@@ -47,11 +47,15 @@ var postFn = function (baseUrl) {
                 if (err) {
                     return error.handleError(err, next);
                 }
-            });
-        }
 
-        // try to save the new organization object
-        obj.save(generic.writeObjCb(req, res, next));
+                // try to save the new organization object
+                obj.save(generic.writeObjCb(req, res, next));
+            });
+        } else {
+
+            // try to save the new organization object
+            obj.save(generic.writeObjCb(req, res, next));
+        }
 
     };
 };

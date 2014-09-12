@@ -67,6 +67,23 @@ module.exports = function (swagger) {
     );
 
     swagger.addOperation({
+        spec: {
+            description: "Operations about recommendations",
+            path: baseUrlWithId,
+            notes: "update an existing recommendation",
+            summary: "Update an recommendation",
+            method: "PUT",
+            mobileSDK: "disabled",
+            "responseClass": "Recommendation",
+            "nickname": "putRecommendation",
+            params: [swagger.pathParam("id", "ID of the recommendation to be updated", "string"), swagger.bodyParam("recommendation", "recommendation to be updated", "Idea")],
+            accessLevel: 'al_user',
+            beforeCallbacks: []
+        },
+        action: generic.putFn(baseUrl, Model)
+    });
+    
+    swagger.addOperation({
             spec: {
                 description: "Operations about recommendations",
                 path: baseUrlWithId,

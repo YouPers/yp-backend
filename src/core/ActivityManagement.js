@@ -132,7 +132,7 @@ actMgr.getEvents = function getEvents(activity, ownerId, fromDate) {
     return events;
 };
 
-actMgr.defaultActivity = function(idea, user) {
+actMgr.defaultActivity = function(idea, user, campaignId) {
     var now = moment();
     var mainEvent = {
         "allDay": false
@@ -151,16 +151,16 @@ actMgr.defaultActivity = function(idea, user) {
         every: 1
     };
 
-    var campaignId = user.campaign._id || user.campaign;
+    if(!campaignId && user.campaign) {
+        campaignId = user.campaign._id || user.campaign;
+    }
 
     var activity = {
         owner: user._id || user,
         idea: idea,
         status: 'active',
         mainEvent: mainEvent,
-        source: campaignId ? 'campaign' : 'community',
         executionType: idea.defaultexecutiontype,
-        visibility: campaignId ? 'campaign' : idea.defaultvisibility,
         fields: idea.fields,
         topics: idea.topics,
         title: idea.title,

@@ -161,7 +161,7 @@ function getDefaultActivity(req, res, next) {
             return next(new error.ResourceNotFoundError());
         }
 
-        var defaultActivity = ActivityManagement.defaultActivity(idea, req.user);
+        var defaultActivity = ActivityManagement.defaultActivity(idea, req.user, req.params.campaignId);
         req.log.debug(defaultActivity);
         defaultActivity._id = undefined;
         res.send(defaultActivity);

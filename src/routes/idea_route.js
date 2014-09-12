@@ -75,7 +75,9 @@ module.exports = function (swagger) {
             path: baseUrlWithId + '/defaultActivity',
             notes: "returns the default activity template for this idea",
             summary: "returns the default activity template for this idea",
-            params: [swagger.pathParam("id", "ID of the idea to be fetched", "string"),
+            params: [
+                swagger.pathParam("id", "ID of the idea to be fetched", "string"),
+                swagger.queryParam('campaignId', 'optional campaignId used by campaignLead, defaults to the campaign of the authenticated user', 'String'),
                 generic.params.populate],
             method: "GET",
             "responseClass": "Activity",

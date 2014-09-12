@@ -57,15 +57,17 @@ var getStats = function () {
         if (!type) {
             return next(new error.MissingParameterError({ required: 'type' }));
         }
-        var queries;
-        if (type === 'all') {
-            queries = stats.queries(req.params.range, req.params.scopeType, req.params.scopeId);
-        } else {
-            queries = {
-                type: stats.queries(req.params.range, req.params.scopeType, req.params.scopeId)[type]
-            };
+        var queries = {};
+        try {
+            if (type === 'all') {
+                queries = stats.queries(req.params.range, req.params.scopeType, req.params.scopeId);
+            } else {
+                queries[type] = stats.queries(req.params.range, req.params.scopeType, req.params.scopeId)[type];
+            }
+        } catch (err) {
+            req.log.info(err);
+            return next(new error.InvalidArgumentError(err.message));
         }
-
 
         var locals = {};
 

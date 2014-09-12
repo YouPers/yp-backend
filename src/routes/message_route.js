@@ -67,6 +67,23 @@ module.exports = function (swagger) {
     );
 
     swagger.addOperation({
+        spec: {
+            description: "Operations about messages",
+            path: baseUrlWithId,
+            notes: "update an existing message",
+            summary: "Update an message",
+            method: "PUT",
+            mobileSDK: "disabled",
+            "responseClass": "Message",
+            "nickname": "putMessage",
+            params: [swagger.pathParam("id", "ID of the message to be updated", "string"), swagger.bodyParam("message", "message to be updated", "Idea")],
+            accessLevel: 'al_user',
+            beforeCallbacks: []
+        },
+        action: generic.putFn(baseUrl, Model)
+    });
+    
+    swagger.addOperation({
             spec: {
                 description: "Operations about messages",
                 path: baseUrlWithId,

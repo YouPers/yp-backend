@@ -13846,7 +13846,7 @@
         "action": "assessment",
         "number": "Act-275",
         "source": "community",
-        "defaultfrequency": "month",
+        "defaultfrequency": "once",
         "defaultexecutiontype": "self",
         "defaultduration": 15,
         "recWeights": [],
@@ -13867,7 +13867,7 @@
         ],
         "__v": 3,
         "textI18n": {
-            "de": "MISSING TRANSLATION"
+            "de": ""
         }
     },
     {
@@ -13883,7 +13883,7 @@
         "action": "assessment",
         "number": "Act-276",
         "source": "community",
-        "defaultfrequency": "month",
+        "defaultfrequency": "once",
         "defaultexecutiontype": "self",
         "defaultduration": 15,
         "recWeights": [],
@@ -13904,7 +13904,7 @@
         ],
         "__v": 2,
         "textI18n": {
-            "de": "MISSING TRANSLATION"
+            "de": ""
         }
     },
     {
@@ -13920,7 +13920,7 @@
         "action": "assessment",
         "number": "Act-277",
         "source": "community",
-        "defaultfrequency": "month",
+        "defaultfrequency": "once",
         "defaultexecutiontype": "self",
         "defaultduration": 15,
         "recWeights": [],
@@ -13941,7 +13941,7 @@
         ],
         "__v": 2,
         "textI18n": {
-            "de": "MISSING TRANSLATION"
+            "de": ""
         }
     }
 ]

@@ -147,6 +147,10 @@ function getAllIdeas(baseUrl, Model) {
 
         var dbQuery = Model.find(finder);
 
+        if (req.params.topic) {
+            dbQuery.and({topics: req.params.topic});
+        }
+
         generic.addStandardQueryOptions(req, dbQuery, Model)
             .exec(generic.sendListCb(req, res, next));
     };

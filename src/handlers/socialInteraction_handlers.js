@@ -2,6 +2,7 @@ var error = require('../util/error'),
     generic = require('./../handlers/generic'),
     mongoose = require('mongoose'),
     auth = require('../util/auth'),
+    moment = require('moment'),
     SocialInteraction = require('../core/SocialInteraction'),
     SocialInteractionModel = mongoose.model('SocialInteraction');
 
@@ -37,6 +38,25 @@ var getAllFn = function getAllFn(baseUrl, Model) {
         var isAdminMode = auth.checkAccess(req.user, auth.accessLevels.al_admin) &&
             req.params.mode && req.params.mode === 'administrate';
 
+        // use for date filter if it is a valid date
+        // enable or disable date filter if it is a boolean value or not defined
+        function parsePublishDate(parameterName) {
+            var parameter = req.params[parameterName];
+            if(parameter) {
+                var date = moment(parameter);
+                if(date.isValid()) {
+                    return date;
+                } else {
+                    return parameter !== 'false';
+                }
+            } else {
+                return true;
+            }
+        }
+
+        var publishFrom = parsePublishDate('publishFrom');
+        var publishTo = parsePublishDate('publishTo');
+
         var options = {
             mode: isAdminMode ? 'admin' : 'default', // admin mode ignores all filter options except the generic query options
 
@@ -50,6 +70,9 @@ var getAllFn = function getAllFn(baseUrl, Model) {
             dismissalReason: req.params.dismissalReason, // the reason a social interaction has been dismissed
             rejected: Boolean(req.params.rejected), // include social interactions referencing ideas the user has rejected
             authored: Boolean(req.params.authored), // include social interactions where the user is the author
+
+            publishFrom: publishFrom,
+            publishTo: publishTo,
 
             authorType: req.params.authorType, // if the socialInteraction was posted as user, campaignLead, ...
             // comma separated list of Model names, values: Message, Recommendation or Invitation

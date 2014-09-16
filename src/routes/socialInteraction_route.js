@@ -44,6 +44,8 @@ module.exports = function (swagger) {
                 swagger.queryParam('rejected', 'include socialInteractions that have been rejected', 'Boolean', false, false),
                 swagger.queryParam('authored', 'include socialInteractions where the user is the author', 'Boolean', false, false),
                 swagger.queryParam('targetId', 'restrict to a targetId, for example an activity or campaign, disables the default target space filter', 'String'),
+                swagger.queryParam('publishFrom', 'filter by date if a valid date is provided, enable or disable date filter if it is a boolean value or not provided', 'String'),
+                swagger.queryParam('publishTo', 'filter by date if a valid date is provided, enable or disable date filter if it is a boolean value or not provided', 'String'),
                 swagger.queryParam('authorType', 'restrict to a authorType, for example only social interactions from a campaignlead', 'String'),
                 swagger.queryParam('discriminators', 'comma separated list of discriminators / model names, for example "Invitation,Recommendation"', 'String'),
                 swagger.queryParam('refDocId', 'restrict to a referenced document id', 'String'),

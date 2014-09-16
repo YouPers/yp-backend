@@ -20,10 +20,7 @@ var OrganizationSchema = common.newSchema({
     sector: {type: String, trim: true},
 
     contact: {
-        firstname: {type: String, trim: true},
-        lastname: {type: String, trim: true},
         position: {type: String, trim: true},
-        email: {type: String, trim: true},
         phone: {type: String, trim: true}
     },
 

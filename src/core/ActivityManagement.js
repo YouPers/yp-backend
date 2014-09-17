@@ -56,6 +56,8 @@ User.on('change:campaign', function(user) {
                                 return handleError(err);
                             }
                             var assessmentActivity = actMgr.defaultActivity(idea, user);
+                            assessmentActivity.mainEvent.start = new Date();
+                            assessmentActivity.mainEvent.end = moment(assessmentActivity.mainEvent.start).add(15,'m').toDate();
                             assessmentActivity.save(function(err, savedActivity) {
                                 if(err) {
                                     return handleError(err);

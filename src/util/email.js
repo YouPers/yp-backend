@@ -135,13 +135,13 @@ var sendCalInvite = function (toUser, type, iCalString, activity, i18n, reason) 
             {
                 contentType: 'text/calendar; charset="UTF-8"; method=' + method,
                 contentEncoding: '7bit',
-                contents: iCalString
+                content: iCalString
             }
         ],
         attachments: [
             {
-                fileName: 'ical.ics',
-                contents: iCalString,
+                filename: 'ical.ics',
+                content: iCalString,
                 contentType: 'application/ics'
             }
         ]};

@@ -583,7 +583,7 @@ function putActivity(req, res, next) {
             }
 
             function _sendCalendarUpdates(done) {
-                _sendIcalMessages(loadedActivity, null, req, null, 'cancel', done);
+                _sendIcalMessages(loadedActivity, null, req, null, 'update', done);
             }
 
 

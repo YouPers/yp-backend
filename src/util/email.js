@@ -133,18 +133,20 @@ var sendCalInvite = function (toUser, type, iCalString, activity, i18n, reason) 
     var mailExtensions = {
         alternatives: [
             {
-                contentType: 'text/calendar; charset="UTF-8"; method=' + method,
-                contentEncoding: '7bit',
-                content: iCalString
+                contentType: 'text/calendar; charset="utf-8"; method=' + method,
+                content: iCalString,
+                contentDisposition: 'inline'
             }
         ],
-        attachments: [
-            {
-                filename: 'ical.ics',
-                content: iCalString,
-                contentType: 'application/ics'
-            }
-        ]};
+        encoding: 'base64'
+//        attachments: [
+//            {
+//                filename: 'ical.ics',
+//                content: iCalString,
+//                contentType: 'text/calendar'
+//            }
+//        ],
+    };
 
     var subject = i18n.t('email:iCalMail.' + type + '.subject', {reason: reason, activity: activity.toJSON()});
     var locals = {
@@ -155,7 +157,8 @@ var sendCalInvite = function (toUser, type, iCalString, activity, i18n, reason) 
         image: urlComposer.ideaImageUrl(activity.idea.number),
         footer: i18n.t('email:iCalMail.footer'),
         background: urlComposer.mailBackgroundImageUrl(),
-        logo: urlComposer.mailLogoImageUrl()
+        logo: urlComposer.mailLogoImageUrl(),
+        icalUrl: urlComposer.icalUrl(activity.id, type, toUser.id)
     };
 
     sendEmail(fromDefault, toUser.email, subject, 'calendarEventMail', locals, mailExtensions);

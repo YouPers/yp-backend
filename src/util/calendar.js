@@ -2,8 +2,9 @@ var log = require('./log').logger,
     _ = require('lodash'),
     ical = require('icalendar'),
     moment = require('moment-timezone'),
-    config = require('../config/config'),
-    CET_TIMEZONE_ID = "Europe/Zurich";
+    CET_TIMEZONE_ID = "Europe/Zurich",
+    urlComposer = require('./urlcomposer');
+
 
 var frequencyMap = {
     'day': 'DAILY',
@@ -64,7 +65,7 @@ var getIcalObject = function (activity, recipientUser, iCalType, i18n, reason) {
         throw new Error('unknown iCal ObjectType: ' + iCalType);
     }
 
-    var link = config.webclientUrl + "/#/activities/" + activity.idea._id;
+    var link = urlComposer.activityUrl(activity.campaign, activity.idea.id || activity.idea , activity.id);
 
     event.setSummary(i18n.t('ical:' + iCalType + ".summary", {activity: activity.toJSON ? activity.toJSON() : activity, recipient: recipientUser.toJSON()}));
     event.setDescription(i18n.t('ical:' + iCalType + ".description", {activity: activity.toJSON ? activity.toJSON() : activity, recipient: recipientUser.toJSON(), link: link}));

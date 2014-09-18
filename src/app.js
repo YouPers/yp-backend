@@ -36,7 +36,11 @@ var restify = require("restify"),
 var server = restify.createServer({
     name: 'YP Platform Server',
     version: config.version,
-    log: logger
+    log: logger,
+    formatters: {'text/calendar': function(req, res, body) {
+        res.setHeader('Content-Length', Buffer.byteLength(body));
+        return body;
+    }}
 });
 
 // initialize Database

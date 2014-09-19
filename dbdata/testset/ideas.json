@@ -31,9 +31,7 @@
             "de": "Selbstbeurteilung \"Stress Management\""
         },
         "topics": [
-            {
-                "$oid": "53b416cfa43aac62a2debda1"
-            }
+
         ],
         "updated": {
             "$date": 1409922315226
@@ -13861,9 +13859,6 @@
             "de": "Selbstbeurteilung \"Körperliche Fitness\""
         },
         "topics": [
-            {
-                "$oid": "53b416fba43aac62a2debda3"
-            }
         ],
         "__v": 3,
         "textI18n": {
@@ -13898,9 +13893,6 @@
             "de": "Selbstbeurteilung \"Gesundes Arbeiten\""
         },
         "topics": [
-            {
-                "$oid": "53b416fba43aac62a2debda4"
-            }
         ],
         "__v": 2,
         "textI18n": {
@@ -13935,9 +13927,6 @@
             "de": "Selbstbeurteilung \"Sicheres Arbeiten\""
         },
         "topics": [
-            {
-                "$oid": "53b416fba43aac62a2debda5"
-            }
         ],
         "__v": 2,
         "textI18n": {

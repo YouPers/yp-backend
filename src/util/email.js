@@ -133,29 +133,32 @@ var sendCalInvite = function (toUser, type, iCalString, activity, i18n, reason) 
     var mailExtensions = {
         alternatives: [
             {
-                contentType: 'text/calendar; charset="UTF-8"; method=' + method,
-                contentEncoding: '7bit',
-                contents: iCalString
+                contentType: 'text/calendar; charset="utf-8"; method=' + method,
+                content: iCalString,
+                contentDisposition: 'inline'
             }
         ],
-        attachments: [
-            {
-                fileName: 'ical.ics',
-                contents: iCalString,
-                contentType: 'application/ics'
-            }
-        ]};
+        encoding: 'base64'
+//        attachments: [
+//            {
+//                filename: 'ical.ics',
+//                content: iCalString,
+//                contentType: 'text/calendar'
+//            }
+//        ],
+    };
 
     var subject = i18n.t('email:iCalMail.' + type + '.subject', {reason: reason, activity: activity.toJSON()});
     var locals = {
         salutation: i18n.t('email:iCalMail.' + type + '.salutation', {user: toUser.toJSON()}),
-        text: i18n.t('email:iCalMail.' + type + '.text', {activity: activity.toJSON()}),
+        text: i18n.t('email:iCalMail.' + type + '.text', {activity: activity.toJSON(), profileLink: urlComposer.profileUrl()}),
         title: activity.idea.title,
         activity: activity,
         image: urlComposer.ideaImageUrl(activity.idea.number),
         footer: i18n.t('email:iCalMail.footer'),
         background: urlComposer.mailBackgroundImageUrl(),
-        logo: urlComposer.mailLogoImageUrl()
+        logo: urlComposer.mailLogoImageUrl(),
+        icalUrl: urlComposer.icalUrl(activity.id, type, toUser.id)
     };
 
     sendEmail(fromDefault, toUser.email, subject, 'calendarEventMail', locals, mailExtensions);

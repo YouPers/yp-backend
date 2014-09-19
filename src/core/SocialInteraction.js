@@ -377,8 +377,6 @@ SocialInteraction.getAllForUser = function (user, model, options, cb) {
     var locale = options && options.locale;
     var locals = {};
 
-    console.log(options);
-
     function _loadSocialInteractionDismissed(done) {
         SocialInteractionDismissedModel.find({ user: user._id }, function (err, results) {
 

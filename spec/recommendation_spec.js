@@ -169,16 +169,17 @@ consts.newUserInNewCampaignApi(
                                             .expectStatus(201)
                                             .afterJSON(function (newPlan) {
 
-                                                frisby.create('Recommendations: get recommendations without the already planned idea')
+                                                frisby.create('Recommendations: get recommendations without the already planned idea, but with another one')
                                                     .get(URL + '/recommendations')
                                                     .auth(user.username, "yp")
                                                     .expectStatus(200)
                                                     .afterJSON(function (recsWithoutPlannedIdea) {
 
-                                                        expect(recsWithoutPlannedIdea.length).toEqual(0);
+                                                        expect(recsWithoutPlannedIdea.length).toEqual(1);
 
                                                         _.forEach(recsWithoutPlannedIdea, function (rec) {
                                                             expect(rec.author).toEqual(consts.users.yphealthcoach.id);
+                                                            expect(rec.idea).not.toEqual(idea);
                                                         });
 
                                                         frisby.create('Recommendations: regenerate recommendations again, to check whether we do duplicate them')

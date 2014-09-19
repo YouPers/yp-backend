@@ -56,6 +56,8 @@ User.on('change:campaign', function(user) {
                                 return handleError(err);
                             }
                             var assessmentActivity = actMgr.defaultActivity(idea, user);
+                            assessmentActivity.mainEvent.start = new Date();
+                            assessmentActivity.mainEvent.end = moment(assessmentActivity.mainEvent.start).add(15,'m').toDate();
                             assessmentActivity.save(function(err, savedActivity) {
                                 if(err) {
                                     return handleError(err);
@@ -65,7 +67,7 @@ User.on('change:campaign', function(user) {
                                     if(err) {
                                         return handleError(err);
                                     }
-                                    actMgr.emit('activity:activityCreated', savedActivity);
+                                    actMgr.emit('activity:activityCreated', savedActivity, user);
                                 });
                             });
 
@@ -179,7 +181,7 @@ actMgr.defaultActivity = function(idea, user, campaignId) {
 };
 
 
-actMgr.on('activity:activityCreated', function (activity) {
+actMgr.on('activity:activityCreated', function (activity, user) {
 
     if(!activity.private) {
 
@@ -196,7 +198,7 @@ actMgr.on('activity:activityCreated', function (activity) {
 
     // find and dismiss all health coach recommendations for this idea
     // TODO: only health coach or from all other users as well
-    SocialInteraction.dismissRecommendations(activity.idea, activity.owner, { reason: 'activityScheduled'});
+    SocialInteraction.dismissRecommendations(activity.idea, user, { reason: 'activityScheduled'});
 });
 
 actMgr.on('activity:activitySaved', function (activity) {

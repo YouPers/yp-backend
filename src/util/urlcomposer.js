@@ -1,8 +1,9 @@
 var config = require('../config/config'),
-    webclientUrl = config.webclientUrl;
+    webclientUrl = config.webclientUrl,
+    backendUrl = config.backendUrl;
 
-function activityWebClientUrl(activityId) {
-    return webclientUrl + "/#/schedule/" + activityId;
+function activityUrl(campaignId, ideaId, activityId, soiId) {
+    return webclientUrl + "/#/campaign/" + campaignId + '/idea/'+ideaId+ '/activity/' + activityId + '/socialInteraction/' + (soiId || '') + '/';
 }
 function emailVerificationUrl(encryptedEmailAddress) {
     return webclientUrl + "/#/email_verification/" + encryptedEmailAddress;
@@ -35,9 +36,15 @@ function mailFooterImageUrl () {
 function mailBackgroundImageUrl () {
     return webclientUrl + "/assets/img/green_background.jpg";
 }
+function icalUrl(activityId, type, userId) {
+    return backendUrl + "/activities/" + activityId + '/ical?type='+ (type || 'new') + '&user=' + userId;
+}
+function profileUrl () {
+    return webclientUrl + "/#/profile";
+}
 
 module.exports = {
-    activityUrl: activityWebClientUrl,
+    activityUrl: activityUrl,
     emailVerificationUrl: emailVerificationUrl,
     passwordResetUrl: passwordResetUrl,
     activityInviteUrl: activityInviteUrl,
@@ -47,5 +54,7 @@ module.exports = {
     campaignImageUrl: campaignImageUrl,
     mailLogoImageUrl: mailLogoImageUrl,
     mailFooterImageUrl: mailFooterImageUrl,
-    mailBackgroundImageUrl: mailBackgroundImageUrl
+    mailBackgroundImageUrl: mailBackgroundImageUrl,
+    profileUrl: profileUrl,
+    icalUrl: icalUrl
 };

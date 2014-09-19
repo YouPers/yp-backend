@@ -42,19 +42,19 @@
     },
     "iCalMail": {
         "new": {
-            "subject": "YOUPERS: Neuer Kalender-Eintrag für: __plan.title__",
-            "salutation": "Hallo __user__!",
-            "text": "Mit dem Einplanen von <strong>__plan.title__</strong> hast du schon den wichtigsten Schritt erledigt!<br/><br/>Im Anhang findest du die Termine zu deinem Plan, um sie in deinem Kalender einzutragen."
+            "subject": "YOUPERS: Neuer Kalender-Eintrag für: __activity.title__",
+            "salutation": "Hallo __user.firstname__!",
+            "text": "Mit dem Einplanen von <strong>__activity.title__</strong> hast du schon den wichtigsten Schritt erledigt!<br/><br/>Im Anhang findest du die Termine zu deinem Plan, um sie in deinem Kalender einzutragen. <br/><br/>Du kannst weitere solche Emails in deinem <a href='__profileLink__'>Profil</a> ausschalten."
         },
         "update": {
-            "subject": "YOUPERS: Angepasster Kalender-Eintrag für: __plan.title__",
+            "subject": "YOUPERS: Angepasster Kalender-Eintrag für: __activity.title__",
             "salutation": "Hallo __user.firstname__!",
-            "text": "Deine Pläne zur Aktivität <strong>__plan.title__</strong> haben sich inzwischen geändert.<br/>Bitte öffne die folgenden Links um deinen Kalender-Eintrag zu aktualisieren: "
+            "text": "Deine Pläne zur Aktivität <strong>__activity.title__</strong> haben sich inzwischen geändert.<br/>Bitte öffne die folgenden Links um deinen Kalender-Eintrag zu aktualisieren. <br/><br/>Du kannst weitere solche Emails in deinem <a href='__profileLink__'>Profil</a> ausschalten."
         },
         "cancel": {
-            "subject": "YOUPERS: Gelöschter Kalender-Eintrag für: __plan.title__",
+            "subject": "YOUPERS: Gelöschter Kalender-Eintrag für: __activity.title__",
             "salutation": "Hallo __user.firstname__!",
-            "text": "Der Kalendar-Eintrag für die Aktivität <strong>__plan.title__</strong> wurde gelöscht."
+            "text": "Der Kalendar-Eintrag für die Aktivität <strong>__activity.title__</strong> wurde gelöscht. <br/><br/>Du kannst weitere solche Emails in deinem <a href='__profileLink__'>Profil</a> ausschalten."
         }
     }
 

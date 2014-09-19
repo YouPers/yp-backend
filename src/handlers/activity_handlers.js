@@ -195,7 +195,7 @@ function postNewActivity(req, res, next) {
                 return error.handleError(err, next);
             }
 
-            actMgr.emit('activity:activityCreated', savedActivity);
+            actMgr.emit('activity:activityCreated', savedActivity, req.user);
 
             generic.writeObjCb(req, res, next)(null, savedActivity);
         });
@@ -583,7 +583,7 @@ function putActivity(req, res, next) {
             }
 
             function _sendCalendarUpdates(done) {
-                _sendIcalMessages(loadedActivity, null, req, null, 'cancel', done);
+                _sendIcalMessages(loadedActivity, null, req, null, 'update', done);
             }
 
 
@@ -646,6 +646,38 @@ function getAll(req, res, next) {
 
 }
 
+function getIcal(req, res, next) {
+    if (!req.params.id) {
+        return next(new error.MissingParameterError({ required: 'id' }));
+    }
+    if (!req.params.user) {
+        return next(new error.MissingParameterError({ required: 'user' }));
+    }
+    if (!req.params.type) {
+        return next(new error.MissingParameterError({ required: 'type' }));
+    }
+    Activity
+        .findById(req.params.id)
+        .populate('idea')
+        .populate('owner joiningUsers', '+profile +email')
+        .exec(function (err, loadedActivity) {
+            if (err) {
+                return error.handleError(err, next);
+            }
+            mongoose.model('User').findById(req.params.user).select('+email +profile').populate('profile').exec(function (err, user) {
+                if (err) {
+                    return error.handleError(err, next);
+                }
+                var ical = calendar.getIcalObject(loadedActivity, user, req.params.type || 'new', req.i18n).toString();
+                res.contentType = 'text/calendar';
+                res.send(ical);
+                return next();
+
+            });
+        });
+}
+
+
 module.exports = {
     postNewActivity: postNewActivity,
     postJoinActivityFn: postJoinActivityFn,
@@ -654,5 +686,6 @@ module.exports = {
     putActivity: putActivity,
     getInvitationStatus: getInvitationStatus,
     validateActivity: validateActivity,
+    getIcal: getIcal,
     getAll: getAll
 };

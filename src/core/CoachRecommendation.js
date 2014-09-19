@@ -6,7 +6,8 @@ var _ = require('lodash'),
     error = require('../util/error'),
     async = require('async'),
     Profile = mongoose.model('Profile'),
-    log = require('../util/log').logger;
+    log = require('../util/log').logger,
+    SocialInteraction = require('./SocialInteraction');
 
 var NUMBER_OF_COACH_RECS = 1;
 var HEALTH_COACH_USER_ID = '53348c27996c80a534319bda';
@@ -46,6 +47,41 @@ mongoose.model('User').on('User:firstLoginToday', function(user) {
            throw new Error(err);
        }
     });
+});
+
+/**
+ * check whether we need to generate a new recommendation.
+ */
+SocialInteraction.on('socialInteraction:dismissed', function (user, socialInteraction, socialInteractionDismissed) {
+    // if the dismissed one is not from the coach there is nothing to do
+    if (socialInteraction.authorType !== 'coach') {
+        return;
+    }
+
+    if (user instanceof mongoose.Types.ObjectId) {
+        mongoose.model('User').findById(user).select('+profile +campaign').populate('profile campaign').exec(function (err, populatedUser) {
+            if (err) {throw err;}
+            _generateRec(populatedUser);
+        });
+    } else {
+        _generateRec(user);
+    }
+
+
+    function _generateRec(populatedUser) {
+        var options = {
+            keepExisting: true,
+            rejectedIdeas: populatedUser.profile.prefs.rejectedIdeas,
+            topic: populatedUser.campaign.topic
+        };
+        _updateRecommendations(populatedUser._id, options, function (err, newRecs) {
+            if (err) {
+                log.error(err);
+                throw err;
+            }
+        });
+    }
+
 });
 
 /**
@@ -165,7 +201,9 @@ function _loadIdeas(topic, excludedIdeas, done) {
 function _loadAssessmentResult(userId, assessmentResult, topic, done) {
     // reset
     locals.assResult = undefined;
-
+    if (!userId ) {
+        return done(new Error('userId is required'));
+    }
     if (assessmentResult) {
         locals.assResult = assessmentResult;
         return done();
@@ -216,6 +254,9 @@ function _updateRecommendations(userId, options, cb) {
         {owner: userId},
         {joiningUsers: userId}
     ]}).select('idea').exec(function (err, plannedIdeas) {
+        if (err) {
+            return error.handleError(err, cb);
+        }
 
         // we do not want recommendations for this we have already planned or for things that we have rejected in the
         // User Profile

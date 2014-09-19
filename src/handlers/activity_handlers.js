@@ -195,7 +195,7 @@ function postNewActivity(req, res, next) {
                 return error.handleError(err, next);
             }
 
-            actMgr.emit('activity:activityCreated', savedActivity);
+            actMgr.emit('activity:activityCreated', savedActivity, req.user);
 
             generic.writeObjCb(req, res, next)(null, savedActivity);
         });

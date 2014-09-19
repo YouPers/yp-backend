@@ -39,6 +39,9 @@ function mailBackgroundImageUrl () {
 function icalUrl(activityId, type, userId) {
     return backendUrl + "/activities/" + activityId + '/ical?type='+ (type || 'new') + '&user=' + userId;
 }
+function profileUrl () {
+    return webclientUrl + "/profile";
+}
 
 module.exports = {
     activityUrl: activityUrl,
@@ -52,5 +55,6 @@ module.exports = {
     mailLogoImageUrl: mailLogoImageUrl,
     mailFooterImageUrl: mailFooterImageUrl,
     mailBackgroundImageUrl: mailBackgroundImageUrl,
+    profileUrl: profileUrl,
     icalUrl: icalUrl
 };

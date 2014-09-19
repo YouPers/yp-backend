@@ -44,7 +44,7 @@
         "new": {
             "subject": "YOUPERS: Neuer Kalender-Eintrag für: __activity.title__",
             "salutation": "Hallo __user.firstname__!",
-            "text": "Mit dem Einplanen von <strong>__activity.title__</strong> hast du schon den wichtigsten Schritt erledigt!<br/><br/>Im Anhang findest du die Termine zu deinem Plan, um sie in deinem Kalender einzutragen."
+            "text": "Mit dem Einplanen von <strong>__activity.title__</strong> hast du schon den wichtigsten Schritt erledigt!<br/><br/>Im Anhang findest du die Termine zu deinem Plan, um sie in deinem Kalender einzutragen. <br/><br/>Du kannst weitere solche Emails in deinem <a href='__profileLink__'>Profil</a> ausschalten."
         },
         "update": {
             "subject": "YOUPERS: Angepasster Kalender-Eintrag für: __activity.title__",

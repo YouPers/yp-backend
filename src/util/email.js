@@ -158,7 +158,8 @@ var sendCalInvite = function (toUser, type, iCalString, activity, i18n, reason) 
         footer: i18n.t('email:iCalMail.footer'),
         background: urlComposer.mailBackgroundImageUrl(),
         logo: urlComposer.mailLogoImageUrl(),
-        icalUrl: urlComposer.icalUrl(activity.id, type, toUser.id)
+        icalUrl: urlComposer.icalUrl(activity.id, type, toUser.id),
+        profileLink: urlComposer.profileUrl()
     };
 
     sendEmail(fromDefault, toUser.email, subject, 'calendarEventMail', locals, mailExtensions);

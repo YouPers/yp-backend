@@ -151,15 +151,14 @@ var sendCalInvite = function (toUser, type, iCalString, activity, i18n, reason) 
     var subject = i18n.t('email:iCalMail.' + type + '.subject', {reason: reason, activity: activity.toJSON()});
     var locals = {
         salutation: i18n.t('email:iCalMail.' + type + '.salutation', {user: toUser.toJSON()}),
-        text: i18n.t('email:iCalMail.' + type + '.text', {activity: activity.toJSON()}),
+        text: i18n.t('email:iCalMail.' + type + '.text', {activity: activity.toJSON(), profileLink: urlComposer.profileUrl()}),
         title: activity.idea.title,
         activity: activity,
         image: urlComposer.ideaImageUrl(activity.idea.number),
         footer: i18n.t('email:iCalMail.footer'),
         background: urlComposer.mailBackgroundImageUrl(),
         logo: urlComposer.mailLogoImageUrl(),
-        icalUrl: urlComposer.icalUrl(activity.id, type, toUser.id),
-        profileLink: urlComposer.profileUrl()
+        icalUrl: urlComposer.icalUrl(activity.id, type, toUser.id)
     };
 
     sendEmail(fromDefault, toUser.email, subject, 'calendarEventMail', locals, mailExtensions);

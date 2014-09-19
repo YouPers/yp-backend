@@ -40,7 +40,7 @@ function icalUrl(activityId, type, userId) {
     return backendUrl + "/activities/" + activityId + '/ical?type='+ (type || 'new') + '&user=' + userId;
 }
 function profileUrl () {
-    return webclientUrl + "/profile";
+    return webclientUrl + "/#/profile";
 }
 
 module.exports = {

@@ -13,6 +13,23 @@ module.exports = function (swagger) {
         spec: {
             description: "Operations about socialInteractions",
             path: baseUrlWithId,
+            notes: "update an existing socialInteraction",
+            summary: "Update an socialInteraction",
+            method: "PUT",
+            mobileSDK: "disabled",
+            "responseClass": "socialInteraction",
+            "nickname": "putSocialInteraction",
+            params: [swagger.pathParam("id", "ID of the socialInteraction to be updated", "string")],
+            accessLevel: 'al_user',
+            beforeCallbacks: []
+        },
+        action: generic.putFn(baseUrl, Model)
+    });
+
+    swagger.addOperation({
+        spec: {
+            description: "Operations about socialInteractions",
+            path: baseUrlWithId,
             notes: "returns a socialInteraction based on id",
             summary: "find socialInteraction by id",
             method: "GET",

@@ -1,5 +1,5 @@
 {
-    "ActivityPlanInvitation": {
+    "ActivityInvitation": {
         "subject": "YOUPERS: Einladung für eine Gruppen-Aktivität vom __inviting.fullname__",
         "salutation": "Hallo <strong>__invited.firstname__!</strong>",
         "salutationAnonymous": "",

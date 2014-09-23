@@ -1,6 +1,6 @@
 {
 
-    "ActivityPlanInvitation": {
+    "ActivityInvitation": {
         "subject": "YOUPERS: Invitation to join activity from __inviting.fullname__",
         "salutation": "Hello __invited.firstname__!",
         "salutationAnonymous": "",

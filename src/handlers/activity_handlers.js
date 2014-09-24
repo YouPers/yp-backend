@@ -365,7 +365,7 @@ function postActivityInvite(req, res, next) {
                                 recipients.push(emailaddress);
                             }
 
-                            email.sendActivityInvite(emailaddress, req.user, locals.activity, invitedUsers && invitedUsers[0], req.i18n);
+                            // send email moved to SI event consumer
                             return done();
                         });
                 },

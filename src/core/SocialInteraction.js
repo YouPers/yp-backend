@@ -8,10 +8,12 @@ var EventEmitter = require('events').EventEmitter,
     Invitation = mongoose.model('Invitation'),
     Recommendation = mongoose.model('Recommendation'),
     Activity = mongoose.model('Activity'),
+    email = require('../util/email'),
     log = require('../util/log').logger,
     _ = require('lodash'),
     async = require('async'),
     moment = require('moment'),
+    i18n = require('../util/ypi18n').initialize(),
     generic = require('../handlers/generic');
 
 
@@ -87,6 +89,14 @@ function _createTargetSpacesFromRecipients(to) {
  */
 SocialInteraction.on('invitation:activity', function (from, to, activity) {
 
+    // keep email addresses by userId for later use
+    var usersById = {};
+    _.each(to, function (recipient) {
+        if(typeof recipient === 'object' && recipient.constructor.modelName === 'User') {
+            usersById[recipient._id] = recipient;
+        }
+    });
+
     var invitation = new Invitation({
         author: from._id,
         targetSpaces: _createTargetSpacesFromRecipients(to),
@@ -98,6 +108,16 @@ SocialInteraction.on('invitation:activity', function (from, to, activity) {
     });
 
     invitation.save(function (err, inv) {
+
+        _.each(inv.targetSpaces, function (space) {
+
+            if(space.type === 'user' || space.type === 'email') {
+                var emailAddress = space.type === 'user' ? usersById[space.targetId].email : space.targetValue;
+                email.sendActivityInvite(emailAddress, from, activity, usersById[space.targetId], inv._id, i18n);
+            }
+
+        });
+
         if (err) {
             SocialInteraction.emit('error', err);
         }

@@ -165,10 +165,10 @@ var sendCalInvite = function (toUser, type, iCalString, activity, i18n, reason) 
 
 };
 
-var sendActivityInvite = function sendActivityInvite(email, invitingUser, activity, invitedUser, i18n) {
+var sendActivityInvite = function sendActivityInvite(email, invitingUser, activity, invitedUser, invitationId, i18n) {
 
     var localMoment = function localMoment(date) {
-        return moment(date).lang(i18n.language()).tz('Europe/Zurich');
+        return moment(date).lang(i18n.lng()).tz('Europe/Zurich');
     };
 
     var frequency = activity.mainEvent.frequency;
@@ -185,7 +185,7 @@ var sendActivityInvite = function sendActivityInvite(email, invitingUser, activi
     var locals = {
         salutation: i18n.t('email:ActivityInvitation.salutation' + (invitedUser ? '': 'Anonymous'), {invited: invitedUser ? invitedUser.toJSON() : {}}),
         text: i18n.t('email:ActivityInvitation.text', {inviting: invitingUser.toJSON(), activity: activity.toJSON()}),
-        link: urlComposer.activityInviteUrl(activity.idea._id, invitingUser._id),
+        link: urlComposer.activityInviteUrl(invitationId),
         title: activity.idea.title,
         activity: activity,
         eventDate: eventDate,

@@ -29,6 +29,7 @@ var restify = require("restify"),
     auth = require('./util/auth'),
     ypi18n = require('./util/ypi18n'),
     error = require('./util/error'),
+    _ = require('lodash'),
     db = require('./util/database');
 
 
@@ -38,6 +39,13 @@ var server = restify.createServer({
     version: config.version,
     log: logger,
     formatters: {'text/calendar': function(req, res, body) {
+
+
+        // TODO: this is wrong, FIX ME !!!
+
+        if (!_.isString(body)) {
+            body = body.toString();
+        }
         res.setHeader('Content-Length', Buffer.byteLength(body));
         return body;
     }}

@@ -12,8 +12,8 @@ function passwordResetUrl(encryptedToken, firstname, lastname) {
     return webclientUrl + "/#/password_reset/" + encryptedToken + "?firstname=" + firstname + "&lastname=" + lastname;
 }
 
-function activityInviteUrl(planId, invitingUserId) {
-    return webclientUrl + "/#/invite/" + invitingUserId + '/activity/' + planId;
+function activityInviteUrl(invitationId) {
+    return webclientUrl + "/#/invite/" + invitationId;
 }
 function campaignLeadInviteUrl(campaignId, invitingUserId, token) {
     return webclientUrl + "/#/campaigns/" + campaignId + '/becomeCampaignLead?invitingUserId='+invitingUserId+'&token='+token;

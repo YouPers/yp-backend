@@ -38,7 +38,7 @@ module.exports = function (swagger) {
             "responseClass": "SocialInteraction",
             "errorResponses": [swagger.errors.invalid('id'), swagger.errors.notFound("user")],
             "nickname": "getSocialInteractionById",
-            accessLevel: 'al_individual'
+            accessLevel: 'al_all'
         },
         action: handlers.getByIdFn(baseUrl, Model)
     });

@@ -509,6 +509,7 @@ SocialInteraction.getAllForUser = function (user, model, options, cb) {
                 } else {
                     var orClauses = [
                         { type: 'user', targetId: user._id },
+                        { type: 'email', targetValue: user.email },
                         { type: 'system' },
                         { $and: [
                             {type: 'activity'},

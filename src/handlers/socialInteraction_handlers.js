@@ -1,6 +1,6 @@
-var error = require('../util/error'),
+var error = require('ypbackendlib').error,
     generic = require('ypbackendlib').handlers,
-    mongoose = require('mongoose'),
+    mongoose = require('ypbackendlib').mongoose,
     auth = require('ypbackendlib').auth,
     moment = require('moment'),
     SocialInteraction = require('../core/SocialInteraction'),

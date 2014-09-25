@@ -1,7 +1,7 @@
 /**
  * Module dependencies.
  */
-var mongoose = require('mongoose'),
+var mongoose = require('ypbackendlib').mongoose,
     Schema = mongoose.Schema,
     common = require('ypbackendlib').commmonModels,
     AssessmentResultAnswer = mongoose.model('AssessmentResultAnswer'),

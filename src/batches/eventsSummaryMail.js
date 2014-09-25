@@ -1,4 +1,4 @@
-var mongoose = require('mongoose'),
+var mongoose = require('ypbackendlib').mongoose,
     moment = require('moment'),
     email = require('../util/email'),
     batch = require('ypbackendlib').batch;

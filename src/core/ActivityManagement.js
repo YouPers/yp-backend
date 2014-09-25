@@ -1,6 +1,6 @@
 var EventEmitter = require('events').EventEmitter;
 var util = require('util');
-var mongoose = require('mongoose');
+var mongoose = require('ypbackendlib').mongoose;
 var _ = require('lodash');
 var moment = require('moment');
 var calendar = require('../util/calendar');
@@ -13,7 +13,7 @@ var Activity = mongoose.model('Activity');
 var ActivityEvent = mongoose.model('ActivityEvent');
 var SocialInteraction = require('../core/SocialInteraction');
 var config = require('../config/config');
-var log = require('ypbackendlib').getLogger(config);
+var log = require('ypbackendlib').log(config);
 
 function ActivityManagement() {
     EventEmitter.call(this);

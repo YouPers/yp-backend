@@ -1,7 +1,7 @@
-var mongoose = require('mongoose'),
+var mongoose = require('ypbackendlib').mongoose,
     HealthCoach = require('../core/HealthCoach'),
     CoachRecommendation = require('../core/CoachRecommendation'),
-    error = require('../util/error'),
+    error = require('ypbackendlib').error,
     auth = require('ypbackendlib').auth,
     _ = require('lodash');
 

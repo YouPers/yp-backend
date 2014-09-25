@@ -1,10 +1,11 @@
 /**
  * Module dependencies.
  */
-var mongoose = require('mongoose'),
+var mongoose = require('ypbackendlib').mongoose,
     Schema = mongoose.Schema,
     ObjectId = Schema.ObjectId,
-    common = require('./common');
+    common = require('ypbackendlib').commmonModels;
+
 /**
  * ActivityEvent Schema
  * @type {Schema}

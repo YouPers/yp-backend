@@ -1,17 +1,17 @@
 var calendar = require('../util/calendar'),
-    mongoose = require('mongoose'),
+    mongoose = require('ypbackendlib').mongoose,
     Activity = mongoose.model('Activity'),
     Idea = mongoose.model('Idea'),
     ActivityEvent = mongoose.model('ActivityEvent'),
     actMgr = require('../core/ActivityManagement'),
     SocialInteraction = require('../core/SocialInteraction'),
-    generic = require('./generic'),
-    error = require('../util/error'),
+    generic = require('ypbackendlib').handlers,
+    error = require('ypbackendlib').error,
     _ = require('lodash'),
     email = require('../util/email'),
     async = require('async'),
     auth = require('ypbackendlib').auth,
-    handlerUtils = require('./handlerUtils');
+    handlerUtils = require('ypbackendlib').handlerUtils;
 
 
 

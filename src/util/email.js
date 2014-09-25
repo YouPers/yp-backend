@@ -1,5 +1,5 @@
 var config = require('../config/config'),
-    log = require('./log').logger,
+    log = require('ypbackendlib').log(config),
     path = require('path'),
     crypto = require('crypto'),
     _ = require('lodash'),

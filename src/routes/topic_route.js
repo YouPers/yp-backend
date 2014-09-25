@@ -1,4 +1,4 @@
-var mongoose = require('mongoose'),
+var mongoose = require('ypbackendlib').mongoose,
     Model = mongoose.model('Topic'),
     generic = require('ypbackendlib').handlers;
 

@@ -5,7 +5,7 @@
 
 var error = require('ypbackendlib').error;
 var config = require('../config/config');
-var log = require('ypbackendlib').getLogger(config);
+var log = require('ypbackendlib').log(config);
 
 
 module.exports = function (swagger) {

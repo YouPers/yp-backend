@@ -1,4 +1,4 @@
-var mongoose = require('mongoose'),
+var mongoose = require('ypbackendlib').mongoose,
     Model = mongoose.model('Invitation'),
     generic = require('ypbackendlib').handlers,
     handlers = require('../handlers/socialInteraction_handlers');

@@ -1,9 +1,9 @@
 var stats = require('../util/stats'),
-    handlerUtils = require('./handlerUtils'),
+    handlerUtils = require('ypbackendlib').handlerUtils,
     auth = require('ypbackendlib').auth,
     _ = require('lodash'),
-    error = require('../util/error'),
-    mongoose = require('mongoose'),
+    error = require('ypbackendlib').error,
+    mongoose = require('ypbackendlib').mongoose,
     Organization = mongoose.model('Organization'),
     Campaign = mongoose.model('Campaign'),
     SocialInteraction = require('../core/SocialInteraction'),
@@ -11,7 +11,7 @@ var stats = require('../util/stats'),
     email = require('../util/email'),
     image = require('../util/image'),
     moment = require('moment'),
-    generic = require('./generic'),
+    generic = require('ypbackendlib').handlers,
     config = require('../config/config');
 
 var getCampaign = function (id, cb) {

@@ -1,7 +1,7 @@
 /**
  * Module dependencies.
  */
-var mongoose = require('mongoose'),
+var mongoose = require('ypbackendlib').mongoose,
     common = require('ypbackendlib').commmonModels,
     AbstractSocialInteractionSchema = require('./socialInteraction_schema');
 

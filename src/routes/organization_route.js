@@ -2,7 +2,7 @@
  * Organization Routes module
  */
 
-var mongoose = require('mongoose'),
+var mongoose = require('ypbackendlib').mongoose,
     Organization = mongoose.model('Organization'),
     generic = require('ypbackendlib').handlers,
     organizationHandlers = require('./../handlers/organization_handlers.js');

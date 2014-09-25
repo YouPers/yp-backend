@@ -1,5 +1,5 @@
-var config = require('./config/config');
-var auth = require('ypbackendlib').auth.getAuthHandlers(config);
+var config = require('../config/config');
+var auth = require('ypbackendlib').auth.handlers(config);
 var passport = require('passport');
 
 

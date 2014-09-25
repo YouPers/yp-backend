@@ -4,7 +4,7 @@
  * Created by irig on 13.01.14.
  */
 
-var mongoose = require('mongoose'),
+var mongoose = require('ypbackendlib').mongoose,
     Profile = mongoose.model('Profile'),
     generic = require('ypbackendlib').handlers;
 

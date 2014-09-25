@@ -3,7 +3,7 @@
  *    these routes require authenticated users
  */
 
-var mongoose = require('mongoose'),
+var mongoose = require('ypbackendlib').mongoose,
     Assessment = mongoose.model('Assessment'),
     AssessmentResult = mongoose.model('AssessmentResult'),
     AssessmentQuestion = mongoose.model('AssessmentQuestion'),

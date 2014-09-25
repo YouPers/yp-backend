@@ -1,5 +1,5 @@
 var error = require('../util/error'),
-    mongoose = require('mongoose'),
+    mongoose = require('ypbackendlib').mongoose,
     PaymentCode = mongoose.model('PaymentCode'),
     Campaign = mongoose.model('Campaign'),
     couponCode = require('coupon-code'),

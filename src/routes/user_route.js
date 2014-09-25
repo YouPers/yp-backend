@@ -3,7 +3,7 @@
  *    these routes require authenticated users
  */
 
-var mongoose = require('mongoose'),
+var mongoose = require('ypbackendlib').mongoose,
     User = mongoose.model('User'),
     generic = require('ypbackendlib').handlers,
     userHandlers = require('./../handlers/user_handlers.js');

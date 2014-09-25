@@ -1,6 +1,6 @@
-var mongoose = require('mongoose'),
+var mongoose = require('ypbackendlib').mongoose,
     Schema = mongoose.Schema,
-    common = require('./common');
+    common = require('ypbackendlib').commmonModels;
 
 var AssessmentResultAnswerSchema = common.newSchema({
         assessment: {type: Schema.Types.ObjectId, ref: 'Assessment', required: true},

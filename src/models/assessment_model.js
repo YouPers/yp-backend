@@ -1,11 +1,10 @@
 /**
  * Module dependencies.
  */
-var mongoose = require('mongoose'),
+var mongoose = require('ypbackendlib').mongoose,
     common = require('ypbackendlib').commmonModels,
     auth = require('ypbackendlib').auth,
     ObjectId = mongoose.Schema.ObjectId,
-    swaggerAdapter = require('../util/swaggerMongooseAdapter'),
     _ = require('lodash');
 
 /**
@@ -39,7 +38,7 @@ var AssessmentSchema = common.newSchema({
 });
 
 AssessmentSchema.statics.getSwaggerModel = function () {
-    return _.merge(swaggerAdapter.getSwaggerModel(this), swaggerAdapter.getSwaggerModel(mongoose.model('AssessmentQuestion')));
+    return _.merge(common.getSwaggerModel(this), common.getSwaggerModel(mongoose.model('AssessmentQuestion')));
 };
 
 

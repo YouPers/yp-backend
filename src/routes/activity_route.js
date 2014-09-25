@@ -2,7 +2,7 @@
  * User Routes module
  *    these routes require authenticated users
  */
-var mongoose = require('mongoose'),
+var mongoose = require('ypbackendlib').mongoose,
     Model = mongoose.model('Activity'),
     generic = require('ypbackendlib').handlers,
     handlers = require('../handlers/activity_handlers');

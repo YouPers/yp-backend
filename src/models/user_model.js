@@ -1,12 +1,12 @@
 /**
  * Module dependencies.
  */
-var mongoose = require('mongoose'),
+var mongoose = require('ypbackendlib').mongoose,
     Schema = mongoose.Schema,
     ObjectId = Schema.ObjectId,
     crypto = require('crypto'),
     common = require('ypbackendlib').commmonModels,
-    error = require('../util/error'),
+    error = require('ypbackendlib').error,
     Profile = mongoose.model('Profile');
 /**
  * User Schema

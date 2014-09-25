@@ -5,7 +5,7 @@
  * Time: 09:12
  * To change this template use File | Settings | File Templates.
  */
-var  mongoose = require('mongoose');
+var  mongoose = require('ypbackendlib').mongoose;
 
 module.exports = function (swagger) {
 

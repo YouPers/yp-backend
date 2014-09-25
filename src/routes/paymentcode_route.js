@@ -5,7 +5,7 @@
  */
 
 var paymentCodeHandlers = require('./../handlers/paymentcode_handlers'),
-    mongoose = require('mongoose'),
+    mongoose = require('ypbackendlib').mongoose,
     PaymentCode = mongoose.model('PaymentCode'),
     generic = require('ypbackendlib').handlers;
 

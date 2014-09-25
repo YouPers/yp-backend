@@ -1,10 +1,9 @@
-var config = require('../config/config'),
-    mongoose = require('mongoose'),
+var mongoose = require('mongoose'),
     _ = require('lodash'),
     swagger = require("swagger-node-restify");
 
 
-var initialize = function initialize() {
+var initialize = function initialize(config, models) {
 
     if (mongoose.connection.readyState === 0) {
         // Setup Database Connection
@@ -17,28 +16,6 @@ var initialize = function initialize() {
         console.log(connectStr);
         mongoose.connect(connectStr, {server: {auto_reconnect: true}});
 
-        var models = [
-            'idea',
-            'activity',
-            'activityEvent',
-            'assessment',
-            'assessmentResultAnswer',
-            'assessmentResult',
-            'campaign',
-            'organization',
-            'paymentCode',
-            'profile',
-            'user',
-            'notification',
-            'notificationDismissed',
-            'topic',
-            'space',
-            'socialInteraction',
-            'socialInteractionDismissed',
-            'message',
-            'invitation',
-            'recommendation'
-        ];
         _.forEach(models, function (modelName) {
             console.log("Loading model: " + modelName);
             var model = require('../models/' + modelName + '_model');

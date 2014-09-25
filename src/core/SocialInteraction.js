@@ -30,20 +30,25 @@ SocialInteraction.allUsers = 'ALL_USERS';
 
 // when a user signs up, check if there are any invitations for the user's email address and convert them
 User.on('add', function (user) {
-    Invitation.find({
-        targetSpaces: {
-            $elemMatch: {
-                type: email,
-                targetValue: user.email
+
+    Invitation.update(
+        { 'targetSpaces.targetValue': user.email },
+        {
+            $set: {
+                'targetSpaces.$.targetId': user._id,
+                'targetSpaces.$.type': 'user'
+            },
+            $unset: {
+                'targetSpaces.$.targetValue': 1
+            }
+
+        }, function (err, numAffected) {
+            if(err) {
+                return SocialInteraction.emit('error', err);
             }
         }
-    }).exec(function (err, invitations) {
-        if(err) { return SocialInteraction.emit('error', err); }
+    );
 
-        _.each(invitations, function (invitation) {
-            // TODO: convert 'email' target spaces
-        });
-    });
 });
 
 SocialInteraction.on('socialInteraction:dismissed', function (user, socialInteraction, socialInteractionDismissed) {
@@ -89,7 +94,7 @@ function _createTargetSpacesFromRecipients(to) {
         } else if (typeof recipient === 'string') {
             targetSpaces.push({
                 type: 'email',
-                targetValue: recipient
+                targetValue: recipient.toLowerCase()
             });
         }
     });

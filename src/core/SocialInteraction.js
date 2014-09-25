@@ -28,6 +28,23 @@ var SocialInteraction = new SocialInteraction();
 
 SocialInteraction.allUsers = 'ALL_USERS';
 
+// when a user signs up, check if there are any invitations for the user's email address and convert them
+User.on('add', function (user) {
+    Invitation.find({
+        targetSpaces: {
+            $elemMatch: {
+                type: email,
+                targetValue: user.email
+            }
+        }
+    }).exec(function (err, invitations) {
+        if(err) { return SocialInteraction.emit('error', err); }
+
+        _.each(invitations, function (invitation) {
+            // TODO: convert 'email' target spaces
+        });
+    });
+});
 
 SocialInteraction.on('socialInteraction:dismissed', function (user, socialInteraction, socialInteractionDismissed) {
 
@@ -509,7 +526,6 @@ SocialInteraction.getAllForUser = function (user, model, options, cb) {
                 } else {
                     var orClauses = [
                         { type: 'user', targetId: user._id },
-                        { type: 'email', targetValue: user.email },
                         { type: 'system' },
                         { $and: [
                             {type: 'activity'},

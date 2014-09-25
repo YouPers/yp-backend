@@ -451,7 +451,14 @@ module.exports = {
 
     getByIdFn: function (baseUrl, Model) {
         return function (req, res, next) {
-            var dbQuery = Model.findById(req.params.id);
+            var objId;
+            try {
+                objId = new mongoose.Types.ObjectId(req.params.id);
+            } catch (err) {
+                return next(new error.InvalidArgumentError({id: req.params.id}));
+            }
+
+            var dbQuery = Model.findById(objId);
 
             processStandardQueryOptions(req, dbQuery, Model)
                 .exec(function getByIdFnCallback(err, obj) {
@@ -578,6 +585,12 @@ module.exports = {
 
     deleteByIdFn: function (baseUrl, Model) {
         return function (req, res, next) {
+            var objId;
+            try {
+                objId = new mongoose.Types.ObjectId(req.params.id);
+            } catch (err) {
+                return next(new error.InvalidArgumentError({id: req.params.id}));
+            }
             // instead of using Model.remove directly, findOne in combination with obj.remove
             // is used in order to trigger
             // - schema.pre('remove', ... or
@@ -621,7 +634,12 @@ module.exports = {
             if (err) {
                 return error.handleError(err, next);
             }
-
+            var objId;
+            try {
+                objId = new mongoose.Types.ObjectId(req.params.id);
+            } catch (err) {
+                return next(new error.InvalidArgumentError({id: req.params.id}));
+            }
             var sentObj = req.body;
 
             // check whether this is an update for roles and check required privileges
@@ -633,7 +651,7 @@ module.exports = {
                 }
             }
 
-            var q = Model.findById(req.params.id);
+            var q = Model.findById(objId);
 
             // if this Model has privateProperties, include them in the select, so we get the whole object
             // because we need to save it later!

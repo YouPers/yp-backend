@@ -40,10 +40,12 @@ var server = restify.createServer({
     log: logger,
     formatters: {'text/calendar': function(req, res, body) {
 
-
-        // TODO: this is wrong, FIX ME !!!
-
+        // TODO: this is wrong  FIX ME, cannot reliable reproduce why sometimes it goes through this formatter!!!
+        // it seems, that in some error cases restify chooses this formatter to format errors, which does
+        // clearly not make any sense. need to reproduce and trace through the restify code, that chooses the
+        // formatter as soon as we can reliable reproduce.
         if (!_.isString(body)) {
+            console.log("WENT THROUGH THE IMPOSSIBLE PATH in app.js, please FIX ME");
             body = body.toString();
         }
         res.setHeader('Content-Length', Buffer.byteLength(body));

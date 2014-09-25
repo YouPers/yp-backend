@@ -28,7 +28,7 @@
         "icalendar": "git+https://github.com/YouPers/node-icalendar.git",
         "moment": "~2.8.x",
         "moment-timezone": "~0.2.x",
-        "swagger-node-restify": "git+https://github.com/YouPers/swagger-node-restify.git",
+        "swagger-node-restify": "git+https://github.com/YouPers/swagger-node-restify.git#v1.4.0",
         "gm": "~1.16.x",
         "async": "~0.9.x",
         "i18next": "~1.7.4",

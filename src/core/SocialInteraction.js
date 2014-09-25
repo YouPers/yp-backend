@@ -51,6 +51,29 @@ User.on('add', function (user) {
 
 });
 
+
+// send email invitations
+mongoose.model('Invitation').on('add', function(invitation) {
+    var activity = _.find(invitation.refDocs, { model: 'Activity'});
+
+    // invitations for activities
+    if(activity) {
+        Activity.findById(activity.docId).populate('idea').exec(function (err, activity) {
+            var userIds = _.map(_.filter(invitation.targetSpaces, { type: 'user'}), 'targetId');
+            // get author
+            User.findById(invitation.author).exec(function (err, author) {
+                // get all targeted users
+                User.find({ _id: { $in: userIds}}).select('+email').exec(function (err, users) {
+                    _.each(users, function (user) {
+                        email.sendActivityInvite(user.email, author, activity, user, invitation._id, i18n);
+                    });
+                });
+            });
+
+        });
+    }
+});
+
 SocialInteraction.on('socialInteraction:dismissed', function (user, socialInteraction, socialInteractionDismissed) {
 
     // check if a recommendation for an idea is dismissed, add an rejectedIdea to the user profile
@@ -94,7 +117,7 @@ function _createTargetSpacesFromRecipients(to) {
         } else if (typeof recipient === 'string') {
             targetSpaces.push({
                 type: 'email',
-                targetValue: recipient.toLowerCase()
+                targetValue: recipient
             });
         }
     });

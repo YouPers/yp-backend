@@ -122,7 +122,7 @@ preflightEnabler(server);
 auth.setupPassport(passport);
 
 // setup swagger documentation
-swagger.setAppHandler(server);
+swagger.setRestifyServer(server);
 swagger.setAuthorizationMiddleWare(auth.roleBasedAuth);
 swagger.configureSwaggerPaths("", "/api-docs", "");
 

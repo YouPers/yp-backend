@@ -18,5 +18,6 @@ var InvitationSchema = common.newSchema({
 
 }, undefined, AbstractSocialInteractionSchema);
 
+InvitationSchema.plugin(require('mongoose-eventify'));
 
 module.exports = SocialInteraction.discriminator('Invitation', InvitationSchema);

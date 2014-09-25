@@ -117,7 +117,7 @@ function _createTargetSpacesFromRecipients(to) {
         } else if (typeof recipient === 'string') {
             targetSpaces.push({
                 type: 'email',
-                targetValue: recipient
+                targetValue: recipient.toLowerCase()
             });
         }
     });

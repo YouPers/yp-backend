@@ -5,7 +5,7 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
     ObjectId = Schema.ObjectId,
     crypto = require('crypto'),
-    common = require('./common'),
+    common = require('ypbackendlib').commmonModels,
     error = require('../util/error'),
     Profile = mongoose.model('Profile');
 /**
@@ -120,7 +120,7 @@ UserSchema.pre('save', function (next) {
         next(new error.MissingParameterError({ required: 'email' }));
     }
     if (this.email.indexOf('@') <= 0) {
-//    next(new restify.MissingParameterError('Email address must be valid'));
+//    next(new error.MissingParameterError('Email address must be valid'));
     }
 
 

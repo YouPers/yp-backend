@@ -6,7 +6,7 @@
 
 var mongoose = require('mongoose'),
     Profile = mongoose.model('Profile'),
-    generic = require('./../handlers/generic');
+    generic = require('ypbackendlib').handlers;
 
 module.exports = function (swagger) {
 

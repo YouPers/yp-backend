@@ -7,7 +7,7 @@ var mongoose = require('mongoose'),
     Assessment = mongoose.model('Assessment'),
     AssessmentResult = mongoose.model('AssessmentResult'),
     AssessmentQuestion = mongoose.model('AssessmentQuestion'),
-    generic = require('../handlers/generic'),
+    generic = require('ypbackendlib').handlers,
     assessment_handlers = require('../handlers/assessment_handlers.js');
 
 

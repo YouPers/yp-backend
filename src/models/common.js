@@ -1,7 +1,7 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
     _ = require('lodash'),
-    auth = require('../util/auth'),
+    auth = require('ypbackendlib').auth,
     swaggerAdapter = require('../util/swaggerMongooseAdapter');
 var timestamps = require('mongoose-timestamp');
 

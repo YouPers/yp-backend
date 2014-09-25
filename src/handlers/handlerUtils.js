@@ -1,5 +1,5 @@
 var error = require('../util/error'),
-    auth = require('../util/auth'),
+    auth = require('ypbackendlib').auth,
     _ = require('lodash');
 
 function clean(Model, sentJson) {

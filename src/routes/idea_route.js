@@ -5,7 +5,7 @@
 
 var mongoose = require('mongoose'),
     Idea = mongoose.model('Idea'),
-    generic = require('../handlers/generic'),
+    generic = require('ypbackendlib').handlers,
     handlers = require('../handlers/idea_handlers');
 
 module.exports = function (swagger) {

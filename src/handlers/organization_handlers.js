@@ -1,6 +1,6 @@
 var error = require('../util/error'),
     handlerUtils = require('./handlerUtils'),
-    auth = require('../util/auth'),
+    auth = require('ypbackendlib').auth,
     image = require('../util/image'),
     mongoose = require('mongoose'),
     Organization = mongoose.model('Organization'),

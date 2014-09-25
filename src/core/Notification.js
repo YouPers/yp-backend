@@ -5,7 +5,7 @@ var EventEmitter = require('events').EventEmitter,
     NotificationDismissedModel = mongoose.model('NotificationDismissed'),
     ALL_YOUPERS_QUEUE = "AAAAc64e53d523235b07EEEE",
     moment = require('moment'),
-    genericHandlers = require('../handlers/generic'),
+    genericHandlers = require('ypbackendlib').handlers,
     error = require('../util/error'),
     _ = require('lodash');
 

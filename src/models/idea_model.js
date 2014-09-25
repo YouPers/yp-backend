@@ -2,9 +2,9 @@
  * Module dependencies.
  */
 var mongoose = require('mongoose'),
-    common = require('./common'),
+    common = require('ypbackendlib').commmonModels,
     ObjectId = mongoose.Schema.ObjectId,
-    auth = require('../util/auth');
+    auth = require('ypbackendlib').auth;
 
 /**
  * Idea Schema
@@ -36,4 +36,5 @@ IdeaSchema.methods.getPictureUrl = function() {
     return '/assets/actpics/' + this.number + '.jpg';
 };
 
+console.log(IdeaSchema);
 module.exports = mongoose.model('Idea', IdeaSchema);

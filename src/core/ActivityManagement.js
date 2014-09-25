@@ -12,7 +12,8 @@ var Assessment = mongoose.model('Assessment');
 var Activity = mongoose.model('Activity');
 var ActivityEvent = mongoose.model('ActivityEvent');
 var SocialInteraction = require('../core/SocialInteraction');
-var log = require('../util/log').logger;
+var config = require('../config/config');
+var log = require('ypbackendlib').getLogger(config);
 
 function ActivityManagement() {
     EventEmitter.call(this);

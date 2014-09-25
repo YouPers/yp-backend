@@ -4,7 +4,7 @@
 
 var mongoose = require('mongoose'),
     Organization = mongoose.model('Organization'),
-    generic = require('./../handlers/generic'),
+    generic = require('ypbackendlib').handlers,
     organizationHandlers = require('./../handlers/organization_handlers.js');
 
 

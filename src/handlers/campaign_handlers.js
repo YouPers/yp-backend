@@ -1,6 +1,6 @@
 var stats = require('../util/stats'),
     handlerUtils = require('./handlerUtils'),
-    auth = require('../util/auth'),
+    auth = require('ypbackendlib').auth,
     _ = require('lodash'),
     error = require('../util/error'),
     mongoose = require('mongoose'),

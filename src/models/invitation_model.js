@@ -2,7 +2,7 @@
  * Module dependencies.
  */
 var mongoose = require('mongoose'),
-    common = require('./common'),
+    common = require('ypbackendlib').commmonModels,
     Schema = mongoose.Schema,
     ObjectId = Schema.ObjectId,
     SocialInteraction = mongoose.model('SocialInteraction'),

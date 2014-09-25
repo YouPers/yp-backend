@@ -1,6 +1,6 @@
 var mongoose = require('mongoose'),
     Model = mongoose.model('Message'),
-    generic = require('./../handlers/generic'),
+    generic = require('ypbackendlib').handlers,
     handlers = require('../handlers/socialInteraction_handlers');
 
 module.exports = function (swagger) {

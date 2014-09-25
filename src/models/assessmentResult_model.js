@@ -3,7 +3,7 @@
  */
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
-    common = require('./common'),
+    common = require('ypbackendlib').commmonModels,
     AssessmentResultAnswer = mongoose.model('AssessmentResultAnswer'),
     AssessmentQuestion = mongoose.model('AssessmentQuestion'),
     _ = require('lodash');

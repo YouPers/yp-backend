@@ -4,7 +4,7 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
     ObjectId = Schema.ObjectId,
-    common = require('./common'),
+    common = require('ypbackendlib').commmonModels,
     notificationTypes = ['Message', 'Invitation', 'Recommendation'],
     sourceTypes = ['youpers', 'campaign', 'community'];
 

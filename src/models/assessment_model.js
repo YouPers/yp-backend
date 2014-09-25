@@ -2,8 +2,8 @@
  * Module dependencies.
  */
 var mongoose = require('mongoose'),
-    common = require('./common'),
-    auth = require('../util/auth'),
+    common = require('ypbackendlib').commmonModels,
+    auth = require('ypbackendlib').auth,
     ObjectId = mongoose.Schema.ObjectId,
     swaggerAdapter = require('../util/swaggerMongooseAdapter'),
     _ = require('lodash');

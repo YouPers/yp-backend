@@ -10,7 +10,7 @@ var calendar = require('../util/calendar'),
     _ = require('lodash'),
     email = require('../util/email'),
     async = require('async'),
-    auth = require('../util/auth'),
+    auth = require('ypbackendlib').auth,
     handlerUtils = require('./handlerUtils');
 
 

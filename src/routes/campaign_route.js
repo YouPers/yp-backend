@@ -5,7 +5,7 @@
 
 var mongoose = require('mongoose'),
     Campaign = mongoose.model('Campaign'),
-    genericHandlers = require('./../handlers/generic'),
+    genericHandlers = require('ypbackendlib').handlers,
     campaignHandlers = require('./../handlers/campaign_handlers'),
     common = require('./common');
 

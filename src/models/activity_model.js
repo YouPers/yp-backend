@@ -4,7 +4,7 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
     ObjectId = Schema.ObjectId,
-    common = require('./common'),
+    common = require('ypbackendlib').commmonModels,
     calendar = require('../util/calendar'),
     moment = require('moment');
 

@@ -23,7 +23,7 @@ var ypbackendlib = require('ypbackendlib');
 
 
 // Configure the server
-var swaggerServer = ypbackendlib.createServer("HealthCampaignsServer", config);
+var swaggerServer = ypbackendlib.createSwaggeredServer("HealthCampaignsServer", config);
 
 // initialize Database
 var models = [

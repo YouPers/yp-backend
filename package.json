@@ -10,7 +10,7 @@
         "npm": ">=1.3.11"
     },
     "dependencies": {
-        "ypbackendlib": "git+https://github.com/YouPers/backendlib.git",
+        "ypbackendlib": "git+ssh://git@github.com:YouPers/backendlib.git",
         "restify": "2.8.x",
         "mongoose": "3.8.x",
         "nodemailer": "1.2.x",

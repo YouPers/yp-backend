@@ -226,49 +226,76 @@ SocialInteraction.on('error', function (err) {
     throw new Error(err);
 });
 
-SocialInteraction.dismissRecommendations = function dismissInvitations(refDoc, users, documentTemplate, cb) {
-    SocialInteraction.dismissSocialInteraction(Recommendation, refDoc, users, documentTemplate, cb);
+SocialInteraction.dismissRecommendations = function dismissInvitations(refDoc, user, documentTemplate, cb) {
+    SocialInteraction.dismissSocialInteraction(Recommendation, refDoc, user, documentTemplate, cb);
 };
 
-SocialInteraction.dismissInvitations = function dismissInvitations(refDoc, users, documentTemplate, cb) {
-    SocialInteraction.dismissSocialInteraction(Invitation, refDoc, users, documentTemplate, cb);
+SocialInteraction.dismissInvitations = function dismissInvitations(refDoc, user, documentTemplate, cb) {
+    SocialInteraction.dismissSocialInteraction(Invitation, refDoc, user, documentTemplate, cb);
 };
 
-SocialInteraction.dismissSocialInteraction = function dismissSocialInteraction(model, refDoc, users, documentTemplate, cb) {
+SocialInteraction.deleteSocialInteractions = function(refDoc, cb) {
 
-    var userIds;
-
-    var allUsers = users === SocialInteraction.allUsers;
-
-    if (!allUsers) {
-        if (!_.isArray(users)) {
-            userIds = [users];
+    var finder = { refDocs: { $elemMatch: { docId: refDoc._id }}};
+    SocialInteractionModel.remove(finder).exec(function (err, deleted) {
+        if (err) {
+            return error.handleError(err, cb);
         }
+        if(cb){
+            cb();
+        }
+    });
+};
+/**
+ * dismissSocialInteraction
+ *
+ * all parameters except the documentTemplate and the callback are required
+ *
+ * dismiss all social interactions for the specified:
+ *
+ * @param model     one of the social interaction models: Invitation, Recommendation, Message
+ * @param refDoc    the referenced document, one of: Idea, Activity, Campaign, ...
+ *
+ * @param user      single user / all users
+ *                  - user: the user the social interaction is targeted to
+ *                        will not only include the 'user' targetSpace, but all relevant spaces like 'campaign'
+ *                  - allUsers: if the user matches SocialInteraction.allUsers, this filter is deactivated
+ *
+ * @param documentTemplate
+ *                  optional, the template to create the SocialInteractionDismissed document, used to store the reason for a dismissal
+ *
+ * @param cb        optional, callback function
+ */
+SocialInteraction.dismissSocialInteraction = function dismissSocialInteraction(model, refDoc, user, documentTemplate, cb) {
 
-        userIds = _.map(_.clone(userIds), function (user) {
-            if (typeof user === 'object' && user._id) {
-                return user._id;
-            } else if (user instanceof mongoose.Types.ObjectId) {
-                return user;
-            } else {
-                var err = new Error('invalid argument users');
-                if (cb) {
-                    cb(err);
-                } else {
-                    SocialInteraction.emit('error', err);
-                }
-            }
-        });
+    function emitError(parameter) {
+        SocialInteraction.emit('error', 'SocialInteraction.dismissSocialInteraction: parameter \'' + parameter + '\' is missing or not an object');
+    }
+    if(!model || model.name !== 'model') {
+        return emitError('model');
+    }
+    if(!refDoc || typeof refDoc !== 'object') {
+        return emitError('refDoc');
+    }
+    if(!user || typeof user !== 'object' && user !== SocialInteraction.allUsers) {
+        return emitError('user');
     }
 
-    var finder = allUsers ? {} : {
-        targetSpaces: {
-            $elemMatch: {
-                type: 'user',
-                targetId: { $in: userIds }
-            }
+    var allUsers = user === SocialInteraction.allUsers;
+    var finder = {};
+    if(!allUsers) {
+        var targetSpace$or = [ { type: 'user', targetId: user._id } ];
+        if(user.campaign) {
+            targetSpace$or.push({ type: 'campaign', targetId: user.campaign._id || user.campaign });
         }
-    };
+        finder = {
+            targetSpaces: {
+                $elemMatch: {
+                    $or: targetSpace$or
+                }
+            }
+        };
+    }
 
     finder.refDocs = {
         $elemMatch: {
@@ -282,31 +309,18 @@ SocialInteraction.dismissSocialInteraction = function dismissSocialInteraction(m
             return error.handleError(err, cb);
         }
 
-        // for each soi, find all relevant users and dismiss the invitation
-        _.forEach(socialInteractions, function (socialInteraction) {
+        var dismissals = [];
+        _.forEach(socialInteractions, function (si) {
+            dismissals.push(SocialInteraction.dismissSocialInteractionById.bind(null, si._id, user, documentTemplate));
+        });
 
-            var spaces = allUsers ? socialInteraction.targetSpaces : _.filter(socialInteraction.targetSpaces, function (space) {
-                return _.any(userIds, function (user) {
-                    return user.equals(space.targetId);
-                });
-            });
-
-            var users = _.map(spaces, 'targetId');
-
-            var dismissals = [];
-
-            _.forEach(users, function (user) {
-                dismissals.push(SocialInteraction.dismissSocialInteractionById.bind(null, socialInteraction._id, user, documentTemplate));
-            });
-
-            async.parallel(dismissals, function (err) {
-                if (err) {
-                    return error.handleError(err, cb);
-                }
-                if (cb) {
-                    cb();
-                }
-            });
+        async.parallel(dismissals, function (err) {
+            if (err) {
+                return error.handleError(err, cb);
+            }
+            if (cb) {
+                cb();
+            }
         });
     });
 
@@ -327,7 +341,7 @@ SocialInteraction.dismissSocialInteractionById = function dismissSocialInteracti
 
         var userId = (user._id ? user._id : user);
 
-        var document = _.extend(documentTemplate, {
+        var document = _.extend(documentTemplate || {}, {
             expiresAt: socialInteraction.publishTo,
             user: userId,
             socialInteraction: socialInteraction.id
@@ -647,7 +661,7 @@ SocialInteraction.getInvitationStatus = function (activityId, cb) {
 
     Activity.findById(activityId, function(err, activity) {
 
-        Invitation.find({ refDocs: { $elemMatch: { docId: activity.id }}}).exec(function(err, invitations) {
+        Invitation.find({ refDocs: { $elemMatch: { docId: activity._id }}}).exec(function(err, invitations) {
             if (err) {
                 return cb(err);
             }
@@ -673,16 +687,28 @@ SocialInteraction.getInvitationStatus = function (activityId, cb) {
                         emailResults.push(emailResult);
                     });
 
+                    // find all personal pending invitations not yet dismissed
                     _.each(_.filter(invitation.targetSpaces, { type: 'user'}), function(space) {
                         var sid = _.find(sidList, { socialInteraction: invitation._id, user: space.targetId });
 
-                        var userResult = {
-                            user: space.targetId,
-                            status: sid ? sid.reason : 'pending'
-                        };
-                        userResults.push(userResult);
+                        if(!sid) {
+                            var userResult = {
+                                user: space.targetId,
+                                status: 'pending'
+                            };
+                            userResults.push(userResult);
+                        }
                     });
 
+                });
+
+                // add all dismissed invitations, including non-personal
+                _.each(sidList, function (sid) {
+                    var userResult = {
+                        user: sid.user,
+                        status: sid.reason
+                    };
+                    userResults.push(userResult);
                 });
 
                 mongoose.model('User').populate(userResults, {path: 'user', model: 'User'}, function(err, userResults) {

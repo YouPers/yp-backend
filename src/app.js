@@ -26,30 +26,9 @@ var ypbackendlib = require('ypbackendlib');
 var swaggerServer = ypbackendlib.createSwaggeredServer("HealthCampaignsServer", config);
 
 // initialize Database
-var models = [
-    'idea',
-    'activity',
-    'activityEvent',
-    'assessment',
-    'assessmentResultAnswer',
-    'assessmentResult',
-    'campaign',
-    'organization',
-    'paymentCode',
-    'profile',
-    'user',
-    'notification',
-    'notificationDismissed',
-    'topic',
-    'space',
-    'socialInteraction',
-    'socialInteractionDismissed',
-    'message',
-    'invitation',
-    'recommendation'
-];
+var modelNames = require('./models').modelNames;
 
-ypbackendlib.initializeDb(config, models, __dirname + '/models');
+ypbackendlib.initializeDb(config, modelNames, __dirname + '/models');
 
 // setup our routes
 swaggerServer.addRoutes(__dirname + '/routes');

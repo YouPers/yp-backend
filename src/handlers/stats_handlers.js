@@ -1,5 +1,5 @@
 var stats = require('../util/stats'),
-    error = require('../util/error'),
+    error = require('ypbackendlib').error,
     async = require('async'),
     mongoose = require('ypbackendlib').mongoose,
     ObjectId = mongoose.Types.ObjectId,

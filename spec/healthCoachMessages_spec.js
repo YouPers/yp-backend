@@ -1,12 +1,16 @@
-require('../src/util/database').initialize(false);
+var ypbackendlib = require('ypbackendlib');
+var config = require('../src/config/config');
+var modelNames = require('../src/models').modelNames;
+
+ypbackendlib.initializeDb(config, modelNames, __dirname.replace('/spec', '/src/models'));
 
 var HealthCoach = require('../src/core/HealthCoach'),
     consts = require('./testconsts'),
-    mongoose = require('mongoose'),
+    mongoose = ypbackendlib.mongoose,
     _ = require('lodash'),
     moment = require('moment'),
-    log = require('../src/util/log').logger,
-    ypi18n = require('../src/util/ypi18n');
+    log = ypbackendlib.log(config),
+    ypi18n = ypbackendlib.i18n;
 
 
 describe('HealthCoach Module', function () {

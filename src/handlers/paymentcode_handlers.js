@@ -1,9 +1,9 @@
-var error = require('../util/error'),
+var error = require('ypbackendlib').error,
     mongoose = require('ypbackendlib').mongoose,
     PaymentCode = mongoose.model('PaymentCode'),
     Campaign = mongoose.model('Campaign'),
     couponCode = require('coupon-code'),
-    generic = require('./generic');
+    generic = require('ypbackendlib').handlers;
 
 /**
  * @returns {Function}

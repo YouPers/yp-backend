@@ -1,4 +1,4 @@
-var auth = require('../src/util/auth');
+var auth = require('ypbackendlib').auth;
 
 
 describe('Authentication Module', function () {

@@ -1,4 +1,4 @@
-var mongoose = require('mongoose');
+var mongoose = require('ypbackendlib').mongoose;
 var frisby = require('frisby');
 var port = process.env.PORT || 8000;
 var URL = 'http://localhost:' + port;

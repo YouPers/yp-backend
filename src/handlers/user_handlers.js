@@ -1,12 +1,12 @@
-var error = require('../util/error'),
-    handlerUtils = require('./handlerUtils'),
+var error = require('ypbackendlib').error,
+    handlerUtils = require('ypbackendlib').handlerUtils,
     email = require('../util/email'),
     image = require('../util/image'),
     auth = require('ypbackendlib').auth,
     mongoose = require('ypbackendlib').mongoose,
     User = mongoose.model('User'),
     _ = require('lodash'),
-    generic = require('./generic'),
+    generic = require('ypbackendlib').handlers,
     config = require('../config/config');
 
 var postFn = function (baseUrl) {

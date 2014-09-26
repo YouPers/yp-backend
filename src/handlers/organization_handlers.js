@@ -1,5 +1,5 @@
-var error = require('../util/error'),
-    handlerUtils = require('./handlerUtils'),
+var error = require('ypbackendlib').error,
+    handlerUtils = require('ypbackendlib').handlerUtils,
     auth = require('ypbackendlib').auth,
     image = require('../util/image'),
     mongoose = require('ypbackendlib').mongoose,
@@ -9,7 +9,7 @@ var error = require('../util/error'),
     email = require('../util/email'),
     async = require('async'),
     _ = require('lodash'),
-    generic = require('./generic'),
+    generic = require('ypbackendlib').handlers,
     config = require('../config/config');
 
 

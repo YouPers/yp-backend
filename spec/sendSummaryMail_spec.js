@@ -1,20 +1,22 @@
 describe('Send Summary Email', function() {
-
-    var log = require('../src/util/log').logger,
-    mongoose = require('mongoose'),
+    var config = require('../src/config/config');
+    var ypbackendlib = require('ypbackendlib');
+    var log = ypbackendlib.log(config);
+    var mongoose = ypbackendlib.mongoose,
     moment = require('moment'),
-    db = require('../src/util/database'),
     mailBatch = require('../src/batches/eventsSummaryMail');
+    var modelNames = require('../src/models').modelNames;
+
 
     beforeEach(function () {
-        db.initialize(false);
+        ypbackendlib.initializeDb(config, modelNames, __dirname.replace('/spec', '/src/models'));
     });
 
     it('should send an email for the given user', function(done) {
         mailBatch.sendSummaryMail( '52a97f1650fca98c29000007', moment().subtract(1, 'd'), moment().add(1, 'd'), function(err) {
             expect(err).toBeUndefined();
             return done();
-        }, {log: log, i18n: require('i18next')});
+        }, {log: log, i18n: ypbackendlib.i18n.initialize()});
     });
 
     afterEach(function() {

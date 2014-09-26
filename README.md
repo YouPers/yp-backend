@@ -1,4 +1,4 @@
-![Build Status](https://circleci.com/gh/youpers/yp-backend.png?circle-token=:567d4111261733d616e5f398ea7715e098f562b2")
+![Build Status](https://circleci.com/gh/youpers/yp-backend.png?circle-token=567d4111261733d616e5f398ea7715e098f562b2)
 
 # Youpers Backend Platform
 

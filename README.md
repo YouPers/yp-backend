@@ -58,12 +58,12 @@ Detailed doc: https://github.com/jkbr/httpie
 
 ### Continuous Deployment to Heroku:
 
-CircleCI automatically deploys this project to Heroku whenever all Tests pass on the CircleCI Server.
+CircleCI automatically deploys this project to the respective server instance, depending on the branch being built
 
 Heroku uses:
 
-- "ci" environmont (see config.js) for the master branch, deploys to http://yp-backend-ci.herokuapp.com
-- "test" environment (see config.js) for the test branch, deploys to http://yp-backend-test.herokupp.com
+- "ci" environmont (see config.js) for the master branch, deploys to https://cimaster.youpers.com
+- "uat" environment (see config.js) for the uat branch, deploys to https://uat.youpers.com
 
 ## Logging and Debugging
 
@@ -113,4 +113,4 @@ The Documentation site is always using the user: unittest and password: test whe
 _(Nothing yet)_
 
 ## License
-Copyright (c) 2013 YouPers AG
+Copyright (c) 2014 YouPers AG

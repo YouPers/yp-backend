@@ -5,7 +5,7 @@
 
 var // passport = require('passport'),
     handlers = require('../handlers/stats_handlers'),
-    common = require('./common');
+    common = require('ypbackendlib').commmonModels;
 
 // TODO: enable authentication for stats, not everyone should be able to get stats.
 module.exports = function (swagger) {

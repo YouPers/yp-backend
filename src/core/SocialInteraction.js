@@ -26,8 +26,6 @@ util.inherits(SocialInteraction, EventEmitter);
 
 var SocialInteraction = new SocialInteraction();
 
-SocialInteraction.allUsers = 'ALL_USERS';
-
 // when a user signs up, check if there are any invitations for the user's email address and convert them
 User.on('add', function (user) {
 
@@ -256,10 +254,8 @@ SocialInteraction.deleteSocialInteractions = function(refDoc, cb) {
  * @param model     one of the social interaction models: Invitation, Recommendation, Message
  * @param refDoc    the referenced document, one of: Idea, Activity, Campaign, ...
  *
- * @param user      single user / all users
- *                  - user: the user the social interaction is targeted to
+ * @param user      user: the user the social interaction is targeted to
  *                        will not only include the 'user' targetSpace, but all relevant spaces like 'campaign'
- *                  - allUsers: if the user matches SocialInteraction.allUsers, this filter is deactivated
  *
  * @param documentTemplate
  *                  optional, the template to create the SocialInteractionDismissed document, used to store the reason for a dismissal
@@ -277,25 +273,21 @@ SocialInteraction.dismissSocialInteraction = function dismissSocialInteraction(m
     if(!refDoc || typeof refDoc !== 'object') {
         return emitError('refDoc');
     }
-    if(!user || typeof user !== 'object' && user !== SocialInteraction.allUsers) {
+    if(!user || typeof user !== 'object') {
         return emitError('user');
     }
 
-    var allUsers = user === SocialInteraction.allUsers;
-    var finder = {};
-    if(!allUsers) {
-        var targetSpace$or = [ { type: 'user', targetId: user._id } ];
-        if(user.campaign) {
-            targetSpace$or.push({ type: 'campaign', targetId: user.campaign._id || user.campaign });
-        }
-        finder = {
-            targetSpaces: {
-                $elemMatch: {
-                    $or: targetSpace$or
-                }
-            }
-        };
+    var targetSpace$or = [ { type: 'user', targetId: user._id } ];
+    if(user.campaign) {
+        targetSpace$or.push({ type: 'campaign', targetId: user.campaign._id || user.campaign });
     }
+    var finder = {
+        targetSpaces: {
+            $elemMatch: {
+                $or: targetSpace$or
+            }
+        }
+    };
 
     finder.refDocs = {
         $elemMatch: {

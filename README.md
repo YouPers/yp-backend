@@ -8,11 +8,17 @@
 
 ### Prerequisites
 
+#### Local Dependencies
 Installed local mongoDb: http://www.mongodb.org/downloads
-Installed nodejs und npm: http://nodejs.org/
+Installed nodejs und npm: http://nodejs.org/   or via homebrew  or probably best: https://github.com/creationix/nvm
 Installed grunt cli: `npm install -g grunt-cli`
 Install bunyan logger support:  `npm install -g bunyan`
 Install httpie (https://github.com/jkbr/httpie): `easy_install httpie`
+
+#### SSH to get private repositories and private dependencies via git/npm
+- get your ssh keypair (if you do not have an ssh keypair, [create one](https://help.github.com/articles/generating-ssh-keys)
+  or ask reto/boris to help)
+- upload your public key into your github account: [step 3/4 in this guide](https://help.github.com/articles/generating-ssh-keys) 
 
 ### Getting Started
     git clone https://github.com/YouPers/yp-backend.git

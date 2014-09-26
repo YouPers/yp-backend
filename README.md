@@ -1,4 +1,4 @@
-![Build status](https://circleci.com/gh/youpers/yp-backend.png?circle-token=:circle-token)
+<img src="https://circleci.com/gh/youpers/yp-backend.png?circle-token=:circle-token">
 
 # Youpers Backend Platform
 

@@ -55,7 +55,7 @@ consts.newUserInNewCampaignApi(
 
 
 
-                        frisby.create('TestSetup: POST new user')
+                        frisby.create('Invitation: POST new user')
                             .post(URL + '/users', {
                                 username: 'new_unittest_user' + rnd,
                                 fullname: 'Testing Unittest',

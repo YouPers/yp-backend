@@ -4,7 +4,7 @@
         "subject": "YOUPERS: Invitation to join activity from __inviting.fullname__",
         "salutation": "Hello __invited.firstname__!",
         "salutationAnonymous": "",
-        "text": "<b>__inviting.fullname__</b> has invited you the participate in the following activity: <br><br><h3>__plan.title__</h3><br><p>To join click on the following link:</p>",
+        "text": "<b>__inviting.fullname__</b> has invited you the participate in the following activity</p>",
         "header": "Is this email not displayed correctly?",
         "footer": "YOUPERS - Drive Your Health"
     },

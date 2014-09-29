@@ -30,6 +30,16 @@
         "fromString": "YOUPERS Gesundheitscoach <dontreply@youpers.com>"
     },
     "accessTokenSecret": "knfad*ç%&/(&/sdkjfnaklsdnfASDFAS2341",
+    "oauth": {
+        "github": {
+            "clientID": "ddfb0568a53ead210f61",
+            "clientSecret": "ee82f353b27509bb1cb9269b26b02b611e528fe6"
+        },
+        "facebook": {
+            "clientID": "1443351149277228",
+            "clientSecret": "d910fee6236a08c7606069f6bb72f626"
+        }
+    },
     "log": {
         "name": "Main",
         "stdout": "info"

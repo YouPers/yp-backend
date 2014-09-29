@@ -1,6 +1,6 @@
-var mongoose = require('mongoose'),
+var mongoose = require('ypbackendlib').mongoose,
     Model = mongoose.model('Notification'),
-    generic = require('./../handlers/generic'),
+    generic = require('ypbackendlib').handlers,
     notificationHandlers = require('../handlers/notification_handlers');
 
 module.exports = function (swagger) {

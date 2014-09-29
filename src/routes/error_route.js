@@ -3,8 +3,9 @@
  *    log errors posted by the client
  */
 
-var error = require('../util/error');
-var log = require('../util/log').logger;
+var error = require('ypbackendlib').error;
+var config = require('../config/config');
+var log = require('ypbackendlib').log(config);
 
 
 module.exports = function (swagger) {

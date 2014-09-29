@@ -1,9 +1,9 @@
-var generic = require('./generic'),
+var generic = require('ypbackendlib').handlers,
     Notification = require('../core/Notification'),
-    mongoose = require('mongoose'),
+    mongoose = require('ypbackendlib').mongoose,
     NotificationModel = mongoose.model('Notification'),
-    auth = require('../util/auth'),
-    error = require('../util/error');
+    auth = require('ypbackendlib').auth,
+    error = require('ypbackendlib').error;
 
 function getStandardQueryOptions(req) {
     return {

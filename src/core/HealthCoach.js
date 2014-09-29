@@ -1,5 +1,5 @@
 var async = require('async'),
-    mongoose = require('mongoose'),
+    mongoose = require('ypbackendlib').mongoose,
     _ = require('lodash'),
     moment = require('moment'),
     RulesEngine = require('../util/rulesEngine');

@@ -4,8 +4,9 @@
  */
 
 var restify = require("restify"),
-    log = require('../util/log').logger,
-    error = require('../util/error'),
+    error = require('ypbackendlib').error,
+    config = require('../config/config'),
+    log = require('ypbackendlib').log(config),
     client = restify.createJsonClient({
         url: 'https://youpers.atlassian.net',
         version: '*',

@@ -1,8 +1,8 @@
 /**
  * Module dependencies.
  */
-var mongoose = require('mongoose'),
-    common = require('./common');
+var mongoose = require('ypbackendlib').mongoose,
+    common = require('ypbackendlib').commmonModels;
 /**
  * Idea Schema
  */

@@ -1,7 +1,7 @@
-var mongoose = require('mongoose'),
+var mongoose = require('ypbackendlib').mongoose,
     moment = require('moment'),
     email = require('../util/email'),
-    batch = require('./batch');
+    batch = require('ypbackendlib').batch;
 
 /**
  * worker function that sends a DailySummaryMail for one specific user.

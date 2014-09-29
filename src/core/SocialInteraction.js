@@ -1,7 +1,7 @@
 var EventEmitter = require('events').EventEmitter,
-    error = require('../util/error'),
+    error = require('ypbackendlib').error,
     util = require('util'),
-    mongoose = require('mongoose'),
+    mongoose = require('ypbackendlib').mongoose,
     User = mongoose.model('User'),
     SocialInteractionModel = mongoose.model('SocialInteraction'),
     SocialInteractionDismissedModel = mongoose.model('SocialInteractionDismissed'),
@@ -9,12 +9,13 @@ var EventEmitter = require('events').EventEmitter,
     Recommendation = mongoose.model('Recommendation'),
     Activity = mongoose.model('Activity'),
     email = require('../util/email'),
-    log = require('../util/log').logger,
+    config = require('../config/config'),
+    log = require('ypbackendlib').log(config),
     _ = require('lodash'),
     async = require('async'),
     moment = require('moment'),
-    i18n = require('../util/ypi18n').initialize(),
-    generic = require('../handlers/generic');
+    i18n = require('ypbackendlib').i18n.initialize(),
+    generic = require('ypbackendlib').handlers;
 
 
 function SocialInteraction() {

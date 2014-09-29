@@ -2,10 +2,10 @@
  * Created by irig on 13.01.14.
  */
 
-var mongoose = require('mongoose'),
+var mongoose = require('ypbackendlib').mongoose,
     Schema = mongoose.Schema,
     ObjectId = Schema.ObjectId,
-    common = require('./common');
+    common = require('ypbackendlib').commmonModels;
 
 /**
  * Profile Schema

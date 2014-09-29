@@ -1,4 +1,9 @@
-require('../src/util/database').initialize(false);
+var ypbackendlib = require('ypbackendlib');
+var config = require('../src/config/config');
+var modelNames = require('../src/models').modelNames;
+
+ypbackendlib.initializeDb(config, modelNames, __dirname.replace('/spec', '/src/models'));
+
 var CoachRecommendation = require('../src/core/CoachRecommendation');
 var consts = require('./testconsts');
 

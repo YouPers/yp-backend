@@ -1,12 +1,13 @@
 var _ = require('lodash'),
-    mongoose = require('mongoose'),
+    mongoose = require('ypbackendlib').mongoose,
     Idea = mongoose.model('Idea'),
     AssessmentResult = mongoose.model('AssessmentResult'),
     Recommendation = mongoose.model('Recommendation'),
-    error = require('../util/error'),
+    error = require('ypbackendlib').error,
     async = require('async'),
     Profile = mongoose.model('Profile'),
-    log = require('../util/log').logger,
+    config = require('../config/config'),
+    log = require('ypbackendlib').log(config),
     SocialInteraction = require('./SocialInteraction');
 
 var NUMBER_OF_COACH_RECS = 1;

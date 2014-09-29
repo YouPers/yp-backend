@@ -1,4 +1,4 @@
-var mongoose = require('mongoose'),
+var mongoose = require('ypbackendlib').mongoose,
     moment = require('moment'),
     ObjectId = mongoose.Types.ObjectId;
 

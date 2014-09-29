@@ -1,10 +1,10 @@
-var log = require('./log').logger,
+var config = require('../config/config'),
+    log = require('ypbackendlib').log(config),
     _ = require('lodash'),
     ical = require('icalendar'),
     moment = require('moment-timezone'),
     CET_TIMEZONE_ID = "Europe/Zurich",
     urlComposer = require('./urlcomposer');
-
 
 var frequencyMap = {
     'day': 'DAILY',

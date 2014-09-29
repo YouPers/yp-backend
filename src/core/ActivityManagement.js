@@ -215,8 +215,7 @@ actMgr.on('activity:activityJoined', function (activity, joinedUser) {
 
 
 actMgr.on('activity:activityDeleted', function (activity) {
-
-    SocialInteraction.dismissInvitations(activity, SocialInteraction.allUsers, { reason: 'activityDeleted' }, handleError);
+    SocialInteraction.deleteSocialInteractions(activity, handleError);
 });
 
 actMgr.on('activity:activityUpdated', function(updatedActivity) {

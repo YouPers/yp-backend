@@ -3,11 +3,11 @@
  *    these routes require authenticated users
  */
 
-var mongoose = require('mongoose'),
+var mongoose = require('ypbackendlib').mongoose,
     Campaign = mongoose.model('Campaign'),
-    genericHandlers = require('./../handlers/generic'),
+    genericHandlers = require('ypbackendlib').handlers,
     campaignHandlers = require('./../handlers/campaign_handlers'),
-    common = require('./common');
+    common = require('ypbackendlib').commmonModels;
 
 
 module.exports = function (swagger) {

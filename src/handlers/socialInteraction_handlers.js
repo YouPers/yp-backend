@@ -1,7 +1,7 @@
-var error = require('../util/error'),
-    generic = require('./../handlers/generic'),
-    mongoose = require('mongoose'),
-    auth = require('../util/auth'),
+var error = require('ypbackendlib').error,
+    generic = require('ypbackendlib').handlers,
+    mongoose = require('ypbackendlib').mongoose,
+    auth = require('ypbackendlib').auth,
     moment = require('moment'),
     SocialInteraction = require('../core/SocialInteraction'),
     SocialInteractionModel = mongoose.model('SocialInteraction');

@@ -1,15 +1,15 @@
-var error = require('../util/error'),
-    handlerUtils = require('./handlerUtils'),
-    auth = require('../util/auth'),
+var error = require('ypbackendlib').error,
+    handlerUtils = require('ypbackendlib').handlerUtils,
+    auth = require('ypbackendlib').auth,
     image = require('../util/image'),
-    mongoose = require('mongoose'),
+    mongoose = require('ypbackendlib').mongoose,
     Organization = mongoose.model('Organization'),
     Campaign = mongoose.model('Campaign'),
     SocialInteraction = require('../core/SocialInteraction'),
     email = require('../util/email'),
     async = require('async'),
     _ = require('lodash'),
-    generic = require('./generic'),
+    generic = require('ypbackendlib').handlers,
     config = require('../config/config');
 
 

@@ -1,10 +1,10 @@
 /**
  * Module dependencies.
  */
-var mongoose = require('mongoose'),
-    common = require('./common'),
+var mongoose = require('ypbackendlib').mongoose,
+    common = require('ypbackendlib').commmonModels,
     ObjectId = mongoose.Schema.ObjectId,
-    auth = require('../util/auth');
+    auth = require('ypbackendlib').auth;
 
 /**
  * Idea Schema

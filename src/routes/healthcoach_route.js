@@ -2,7 +2,7 @@
  * Organization Routes module
  */
 var coachHandlers = require('./../handlers/coach_handlers.js'),
-    generic = require('./../handlers/generic');
+    generic = require('ypbackendlib').handlers;
 
 module.exports = function (swagger) {
 

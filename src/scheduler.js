@@ -1,7 +1,7 @@
-var cronJob = require('cron').CronJob,
-    _ = require('lodash'),
-    log = require('./util/log').logger,
-    eventsSummaryMail = require('./batches/eventsSummaryMail');
+var eventsSummaryMail = require('./batches/eventsSummaryMail'),
+    config = require('./config/config'),
+    scheduler = require('ypbackendlib').scheduler,
+    logger = require('ypbackendlib').log(config);
 
 /////////////////////////////////////////
 //CRON Syntax to be used to schedule a task
@@ -37,11 +37,5 @@ var jobs = [
 /**
  * launches all jobs defined in the jobs-array above.
  */
-_.forEach(jobs, function scheduleJob(job) {
-    job.context.name = job.name;
-    job.context.description = job.description;
-    job.context.cronTime = job.cronTime;
-    log.info('scheduling Job: "' + job.name + '" with schedule: "' + job.cronTime + '"');
-    new cronJob(job).start();
-});
+scheduler.scheduleJobs(jobs, logger);
 

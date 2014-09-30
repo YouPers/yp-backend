@@ -1,12 +1,12 @@
-var mongoose = require('mongoose'),
+var mongoose = require('ypbackendlib').mongoose,
     Idea = mongoose.model('Idea'),
     ActivityManagement = require('../core/ActivityManagement'),
     Campaign = mongoose.model('Campaign'),
     _ = require('lodash'),
-    auth = require('../util/auth'),
-    error = require('../util/error'),
-    handlerUtils = require('./handlerUtils'),
-    generic = require('./generic'),
+    auth = require('ypbackendlib').auth,
+    error = require('ypbackendlib').error,
+    handlerUtils = require('ypbackendlib').handlerUtils,
+    generic = require('ypbackendlib').handlers,
     async = require('async'),
     SocialInteraction = require('../core/SocialInteraction');
 

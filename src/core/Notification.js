@@ -1,12 +1,12 @@
 var EventEmitter = require('events').EventEmitter,
     util = require('util'),
-    mongoose = require('mongoose'),
+    mongoose = require('ypbackendlib').mongoose,
     NotificationModel = mongoose.model('Notification'),
     NotificationDismissedModel = mongoose.model('NotificationDismissed'),
     ALL_YOUPERS_QUEUE = "AAAAc64e53d523235b07EEEE",
     moment = require('moment'),
-    genericHandlers = require('../handlers/generic'),
-    error = require('../util/error'),
+    genericHandlers = require('ypbackendlib').handlers,
+    error = require('ypbackendlib').error,
     _ = require('lodash');
 
 function Notification(aNotification) {

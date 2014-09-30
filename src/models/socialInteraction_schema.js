@@ -1,10 +1,10 @@
 
-var mongoose = require('mongoose'),
+var mongoose = require('ypbackendlib').mongoose,
     util = require('util'),
     Schema = mongoose.Schema,
     ObjectId = Schema.ObjectId,
     Space = mongoose.model('Space'),
-    common = require('./common');
+    common = require('ypbackendlib').commmonModels;
 
 function AbstractSocialInteractionSchema() {
     Schema.apply(this, arguments);

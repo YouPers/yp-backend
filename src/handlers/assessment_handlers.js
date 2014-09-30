@@ -1,11 +1,11 @@
-var error = require('../util/error'),
-    handlerUtils = require('./handlerUtils'),
-    mongoose = require('mongoose'),
+var error = require('ypbackendlib').error,
+    handlerUtils = require('ypbackendlib').handlerUtils,
+    mongoose = require('ypbackendlib').mongoose,
     _ = require('lodash'),
     AssessmentResult = mongoose.model('AssessmentResult'),
     AssessmentQuestion = mongoose.model('AssessmentQuestion'),
     AssessmentResultAnswer = mongoose.model('AssessmentResultAnswer'),
-    generic = require('./generic');
+    generic = require('ypbackendlib').handlers;
 
 var getNewestResult = function (baseUrl) {
     return function (req, res, next) {

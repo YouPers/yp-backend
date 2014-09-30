@@ -1,12 +1,12 @@
 /**
  * Module dependencies.
  */
-var mongoose = require('mongoose'),
+var mongoose = require('ypbackendlib').mongoose,
     Schema = mongoose.Schema,
     ObjectId = Schema.ObjectId,
     crypto = require('crypto'),
-    common = require('./common'),
-    error = require('../util/error'),
+    common = require('ypbackendlib').commmonModels,
+    error = require('ypbackendlib').error,
     Profile = mongoose.model('Profile');
 /**
  * User Schema
@@ -120,7 +120,7 @@ UserSchema.pre('save', function (next) {
         next(new error.MissingParameterError({ required: 'email' }));
     }
     if (this.email.indexOf('@') <= 0) {
-//    next(new restify.MissingParameterError('Email address must be valid'));
+//    next(new error.MissingParameterError('Email address must be valid'));
     }
 
 

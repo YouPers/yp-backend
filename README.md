@@ -1,4 +1,4 @@
-![Build status](https://circleci.com/gh/youpers/yp-backend.png?circle-token=:circle-token)
+[![Circle CI](https://circleci.com/gh/YouPers/yp-backend.png?style=badge&circle-token=567d4111261733d616e5f398ea7715e098f562b2)](https://circleci.com/gh/YouPers/yp-backend)
 
 # Youpers Backend Platform
 
@@ -8,11 +8,17 @@
 
 ### Prerequisites
 
+#### Local Dependencies
 Installed local mongoDb: http://www.mongodb.org/downloads
-Installed nodejs und npm: http://nodejs.org/
+Installed nodejs und npm: http://nodejs.org/   or via homebrew  or probably best: https://github.com/creationix/nvm
 Installed grunt cli: `npm install -g grunt-cli`
 Install bunyan logger support:  `npm install -g bunyan`
 Install httpie (https://github.com/jkbr/httpie): `easy_install httpie`
+
+#### SSH to get private repositories and private dependencies via git/npm
+- get your ssh keypair (if you do not have an ssh keypair, [create one](https://help.github.com/articles/generating-ssh-keys)
+  or ask reto/boris to help)
+- upload your public key into your github account: [step 3/4 in this guide](https://help.github.com/articles/generating-ssh-keys) 
 
 ### Getting Started
     git clone https://github.com/YouPers/yp-backend.git
@@ -52,12 +58,12 @@ Detailed doc: https://github.com/jkbr/httpie
 
 ### Continuous Deployment to Heroku:
 
-CircleCI automatically deploys this project to Heroku whenever all Tests pass on the CircleCI Server.
+CircleCI automatically deploys this project to the respective server instance, depending on the branch being built
 
 Heroku uses:
 
-- "ci" environmont (see config.js) for the master branch, deploys to http://yp-backend-ci.herokuapp.com
-- "test" environment (see config.js) for the test branch, deploys to http://yp-backend-test.herokupp.com
+- "ci" environmont (see config.js) for the master branch, deploys to https://cimaster.youpers.com
+- "uat" environment (see config.js) for the uat branch, deploys to https://uat.youpers.com
 
 ## Logging and Debugging
 
@@ -107,4 +113,4 @@ The Documentation site is always using the user: unittest and password: test whe
 _(Nothing yet)_
 
 ## License
-Copyright (c) 2013 YouPers AG
+Copyright (c) 2014 YouPers AG

@@ -21,7 +21,7 @@
             "de": "Gesunde Ern\u00e4hrung"
         },
         "textI18n": {
-            "de": "Gesunde Ernährung ist die optimale Ernährungsweise, die dem Organismus das gibt, was er braucht: eine Ernährungsweise, mit der man – wenn man krank ist – gesund wird und – wenn man gesund ist – dauerhaft gesund bleibt.<br>Mehr Informationen findest du <a href='http://www.sge-ssn.ch/de/ich-und-du' target='_blank'>hier.</a>"
+            "de": "Gesunde Ernährung ist die optimale Ernährungsweise, die dem Organismus das gibt, was er braucht: eine Ernährungsweise, mit der man – wenn man krank ist – gesund wird und – wenn man gesund ist – dauerhaft gesund bleibt.<br>Mehr Informationen findest du bei <a href='http://www.sge-ssn.ch/de/ich-und-du' target='_blank'>SGE.</a>"
         },
         "picture": "/assets/img/topic_nutrition.jpg"
     },
@@ -60,7 +60,7 @@
             "de": "Sicheres Arbeiten"
         },
         "textI18n": {
-            "de": "Sicheres Arbeiten soll den Arbeitnehmer vor Berufsunfällen schützen und ihn durch lebenswichtige Regeln, Arbeitsweisen und Präventionsmassnahmen vor lauernden Gefahren warnen.<br>Mehr Informationen findest du bei <a href='http://www.ekas.ch' target='_blank'>EKAS</a> oder <a href='http://www.suva.ch'>suva.</a>"
+            "de": "Sicheres Arbeiten soll den Arbeitnehmer vor Berufsunfällen schützen und ihn durch lebenswichtige Regeln, Arbeitsweisen und Präventionsmassnahmen vor lauernden Gefahren warnen.<br>Mehr Informationen findest du bei <a href='http://www.ekas.ch' target='_blank'>EKAS</a> oder <a href='http://www.suva.ch' target='_blank'>suva</a>."
         },
         "picture": "/assets/img/topic_safety.jpg"
     }

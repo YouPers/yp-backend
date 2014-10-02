@@ -8,7 +8,7 @@
             "de": "Stressmanagement"
         },
         "textI18n": {
-            "de": "Stressmanagement dient der Stärkung der Widerstandsfähigkeit und Selbstheilungskraft des Menschen, um bei inneren und äusseren Belastungen die Leistungsfähigkeit und Gesundheit zu erhalten.<br>Mehr Informationen findest du <a href='http://de.wikipedia.org/wiki/Stressmanagement' target='_blank'>hier.</a>"
+            "de": "Stressmanagement dient der Stärkung der Widerstandsfähigkeit und Selbstheilungskraft des Menschen, um bei inneren und äusseren Belastungen die Leistungsfähigkeit und Gesundheit zu erhalten.<br>Mehr Informationen findest du <a href='http://de.wikipedia.org/wiki/Stressmanagement' target='_blank'>hier</a>."
         },
         "picture": "/assets/img/stressManagement.jpg"
     },
@@ -21,7 +21,7 @@
             "de": "Gesunde Ern\u00e4hrung"
         },
         "textI18n": {
-            "de": "Gesunde Ernährung ist die optimale Ernährungsweise, die dem Organismus das gibt, was er braucht: eine Ernährungsweise, mit der man – wenn man krank ist – gesund wird und – wenn man gesund ist – dauerhaft gesund bleibt.<br>Mehr Informationen findest du bei <a href='http://www.sge-ssn.ch/de/ich-und-du' target='_blank'>SGE.</a>"
+            "de": "Gesunde Ernährung ist die optimale Ernährungsweise, die dem Organismus das gibt, was er braucht: eine Ernährungsweise, mit der man – wenn man krank ist – gesund wird und – wenn man gesund ist – dauerhaft gesund bleibt.<br>Mehr Informationen findest du bei <a href='http://www.sge-ssn.ch/de/ich-und-du' target='_blank'>SGE</a>."
         },
         "picture": "/assets/img/topic_nutrition.jpg"
     },
@@ -34,7 +34,7 @@
             "de": "Körperliche Fitness"
         },
         "textI18n": {
-            "de": "Bewegung bei der Arbeit und im Alltag ist gesund und wirkt sich positiv auf die körperliche Fitness aus. Ausgeglichenheit, Stressresistenz, gemeinsame Erlebnisse mit Kollegen oder aktive Erholung in der Natur sind willkommene Effekte von regelmässiger Bewegung.<br>Mehr Informationen findest du bei <a href='http://www.hepa.ch' target='_blank'>hepa.</a>"
+            "de": "Bewegung bei der Arbeit und im Alltag ist gesund und wirkt sich positiv auf die körperliche Fitness aus. Ausgeglichenheit, Stressresistenz, gemeinsame Erlebnisse mit Kollegen oder aktive Erholung in der Natur sind willkommene Effekte von regelmässiger Bewegung.<br>Mehr Informationen findest du bei <a href='http://www.hepa.ch' target='_blank'>hepa</a>."
         },
         "picture": "/assets/img/topic_fitness.jpg"
     },
@@ -47,7 +47,7 @@
             "de": "Gesundes Arbeiten"
         },
         "textI18n": {
-            "de": "Durch eine ergonomische Arbeitsplatzgestaltung wird gesundes Arbeiten der Arbeitnehmer gefördert und deren Arbeitsergebnisse positiv beeinflusst: sie sind motiviert, loyal, haben mehr Ideen, wollen und können mehr bewegen.<br>Mehr Informationen findest du beim <a href='http://www.bag.admin.ch' target='_blank'>BAG.</a>"
+            "de": "Durch eine ergonomische Arbeitsplatzgestaltung wird gesundes Arbeiten der Arbeitnehmer gefördert und deren Arbeitsergebnisse positiv beeinflusst: sie sind motiviert, loyal, haben mehr Ideen, wollen und können mehr bewegen.<br>Mehr Informationen findest du beim <a href='http://www.bag.admin.ch' target='_blank'>BAG</a>."
         },
         "picture": "/assets/img/topic_ergonomics.jpg"
     },

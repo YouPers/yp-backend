@@ -1,36 +1,9 @@
 var mongoose = require('ypbackendlib').mongoose,
-    HealthCoach = require('../core/HealthCoach'),
     CoachRecommendation = require('../core/CoachRecommendation'),
     error = require('ypbackendlib').error,
     auth = require('ypbackendlib').auth,
     _ = require('lodash');
 
-var hc = new HealthCoach();
-
-
-var getCoachMessagesFn = function getCoachMessagesFn(req, res, next) {
-    if (!req.user) {
-        // use default empty user if not logged in
-    }
-
-    if (!req.params.uistate) {
-        return next(new error.MissingParameterError('uistate is required as a query parameter', { required: 'uistate' }));
-    }
-
-    hc.getCurrentMessages(req.user, req.params.uistate, function (err, messageIds, facts) {
-        if (err) {
-            return error.handleError(err, next);
-        }
-
-        var result = messageIds;
-        if (req.params.debug) {
-            result.push(facts);
-        }
-        res.send(result);
-        return next();
-    });
-
-};
 
 var getCoachRecommendationsFn = function getCoachRecommendationsFn(req, res, next) {
 
@@ -64,6 +37,5 @@ var getCoachRecommendationsFn = function getCoachRecommendationsFn(req, res, nex
 };
 
 module.exports = {
-    getCoachMessagesFn: getCoachMessagesFn,
     getCoachRecommendationsFn: getCoachRecommendationsFn
 };

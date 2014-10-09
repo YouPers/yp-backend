@@ -4811,7 +4811,7 @@
         "_id": {
             "$oid": "5278c6adcdeab69a25000068"
         },
-        "__v": 3,
+        "__v": 4,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -4849,7 +4849,7 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": "Intensives Lachen verbessert die Blut&shy;zirkulation – und natürlich auch die Laune. \n\nZu diesem Ergebnis kommt ein US-Experiment der Universität von Mary&shy;land, bei dem sich die Probanden eine Komödie ansahen. Der positive Effekt hielt bis zu 45 Minuten an."
+            "de": "Intensives Lachen verbessert die Blut&shy;zirkulation – und natürlich auch die Laune. \n\nZu diesem Ergebnis kommt ein US-Experiment der Universität von Mary&shy;land, bei dem sich die Pro&shy;ban&shy;den eine Komödie ansahen. Der positive Effekt hielt bis zu 45 Mi&shy;nu&shy;ten an."
         },
         "titleI18n": {
             "de": "Kino"
@@ -4860,14 +4860,14 @@
             }
         ],
         "updated": {
-            "$date": 1399385331460
+            "$date": 1412080484183
         }
     },
     {
         "_id": {
             "$oid": "5278c6adcdeab69a25000069"
         },
-        "__v": 6,
+        "__v": 7,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -4879,7 +4879,7 @@
         "defaultfrequency": "once",
         "defaultvisibility": "private",
         "descriptionI18n": {
-            "de": "Besuche mit Freunden oder Bekannten am Wochenende ein Musikkonzert."
+            "de": "Besuche mit Freunden oder Be&shy;kannten am Wochenende ein Musikkonzert."
         },
         "number": "Act-102",
         "qualityFactor": 4,
@@ -4907,14 +4907,14 @@
             }
         ],
         "updated": {
-            "$date": 1411992639972
+            "$date": 1412080539314
         }
     },
     {
         "_id": {
             "$oid": "5278c6adcdeab69a2500006a"
         },
-        "__v": 4,
+        "__v": 5,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -4926,7 +4926,7 @@
         "defaultfrequency": "once",
         "defaultvisibility": "private",
         "descriptionI18n": {
-            "de": "Nimm mit Freunden oder Bekannten an einem geselligen, spassigen und unter&shy;halt&shy;samen Gruppen-Event teil (z.B. Gokart, Bowling, Billard, Curling, Golf)."
+            "de": "Nimm mit Freunden oder Be&shy;kann&shy;ten an einem geselligen, spassigen und unter&shy;halt&shy;samen Gruppen-Event teil (z.B. Gokart, Bowling, Billard, Curling, Golf)."
         },
         "number": "Act-103",
         "qualityFactor": 4,
@@ -4955,7 +4955,7 @@
             }
         ],
         "updated": {
-            "$date": 1409651828241
+            "$date": 1412080605189
         }
     },
     {
@@ -5017,7 +5017,7 @@
         "_id": {
             "$oid": "5278c6adcdeab69a2500006c"
         },
-        "__v": 3,
+        "__v": 4,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -5053,7 +5053,7 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": "Durch Atemarbeit, Bewegung und Unter&shy;stützung der Stimme kannst du den Körper bewusst wahrnehmen, dich im eigenen Tanz ausdrücken.\n\nBeim Tanzen kannst du deinen Körper sehr bewusst wahrnehmen, was durch die zahlreichen äusserlichen Reize, denen wir im Alltag permanent ausgesetzt sind, oft verloren geht. Wenn du innerlich zu Ruhe kommst, kannst du zu neuer Kraft und Energie finden."
+            "de": "Durch Atemarbeit, Bewegung und Unter&shy;stützung der Stimme kannst du den Körper bewusst wahrnehmen, dich im eigenen Tanz ausdrücken.\n\nBeim Tanzen kannst du deinen Körper sehr bewusst wahrnehmen, was durch die zahlreichen äus&shy;ser&shy;lichen Reize, denen wir im Alltag permanent ausgesetzt sind, oft verloren geht. Wenn du innerlich zu Ruhe kommst, kannst du zu neuer Kraft und Energie finden."
         },
         "titleI18n": {
             "de": "Tanzen"
@@ -5067,7 +5067,7 @@
             "$date": 1409648020753
         },
         "updated": {
-            "$date": 1409648020753
+            "$date": 1412080672362
         }
     },
     {
@@ -5176,7 +5176,7 @@
         "_id": {
             "$oid": "5278c6adcdeab69a2500006f"
         },
-        "__v": 4,
+        "__v": 5,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -5212,7 +5212,7 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": "Gute Freunde bringen Spass - sie stärken aber auch die Gesundheit und federn Stress ab. Beziehungsforscher finden immer mehr Gründe, warum man Freundschaften pflegen sollte.\n\nMenschen, die ihre Freundschaften pflegen, haben aber nicht nur einen Überlebensvorteil - sie sind unter Umständen auch besser vor psychischen Erkrankungen geschützt.\n\nIm Ausgang mit Freunden kann der Geist von der Aussenwelt abschalten, um anschliessend edle und friedvolle Gedanken zu entwickeln."
+            "de": "Gute Freunde bringen Spass - sie stärken aber auch die Gesundheit und federn Stress ab. Beziehungs&shy;forscher finden immer mehr Gründe, warum man Freundschaften pflegen sollte.\n\nMenschen, die ihre Freundschaften pflegen, haben aber nicht nur einen Überlebensvorteil - sie sind unter Umständen auch besser vor psy&shy;chischen Erkrankungen geschützt.\n\nIm Ausgang mit Freunden kann der Geist von der Aussenwelt ab&shy;schal&shy;ten, um anschliessend edle und friedvolle Gedanken zu entwickeln."
         },
         "titleI18n": {
             "de": "Ausgang"
@@ -5223,7 +5223,7 @@
             }
         ],
         "updated": {
-            "$date": 1409653205229
+            "$date": 1412080974386
         }
     },
     {
@@ -5275,7 +5275,7 @@
         "_id": {
             "$oid": "5278c6adcdeab69a25000071"
         },
-        "__v": 4,
+        "__v": 5,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -5287,7 +5287,7 @@
         "defaultfrequency": "once",
         "defaultvisibility": "private",
         "descriptionI18n": {
-            "de": "Frage bei Überforderung eine Arbeits&shy;kollegin bzw. einen Arbeitskollegen um Unterstützung."
+            "de": "Frage bei Überforderung eine Ar&shy;beits&shy;kollegin bzw. einen Ar&shy;beits&shy;kollegen um Unterstützung."
         },
         "number": "Act-107",
         "qualityFactor": 5,
@@ -5301,7 +5301,7 @@
         ],
         "source": "youpers",
         "textI18n": {
-            "de": "Frage eine Arbeitskollegin bzw. einen Arbeitskollegen nach Informationen oder um Hilfe. \n\nDadurch sinkt deine Arbeitslast und damit der durch den Zeitdruck ver&shy;ur&shy;sach&shy;te Stress."
+            "de": "Frage eine Arbeitskollegin bzw. ei&shy;nen Arbeitskollegen nach In&shy;for&shy;ma&shy;ti&shy;onen oder um Hilfe. \n\nDadurch sinkt deine Arbeitslast und damit der durch den Zeitdruck ver&shy;ur&shy;sach&shy;te Stress."
         },
         "titleI18n": {
             "de": "Unterstützung"
@@ -5312,7 +5312,7 @@
             }
         ],
         "updated": {
-            "$date": 1399385756084
+            "$date": 1412080784686
         }
     },
     {
@@ -5372,7 +5372,7 @@
         "_id": {
             "$oid": "5278c6adcdeab69a25000073"
         },
-        "__v": 5,
+        "__v": 6,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -5410,7 +5410,7 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": "Wenn Freunde zum Essen kommen, ist es immer etwas aufregend für den Gast&shy;geber, denn er möchte natürlich, dass es allen schmeckt und sich alle wohl fühlen.\n\nGenerell gilt aber: etwas spezielles und gesundes zu kochen ist schön, aber es muss nicht in Stress ausarten, wenn Freunde zum Essen kommen.\n\nDass sie gemeinsam eine schöne Zeit verbringen steht im Vorder&shy;grund. Dafür muss kein Sterneessen aufgetischt werden."
+            "de": "Wenn Freunde zum Essen kommen, ist es immer etwas aufregend für den Gast&shy;geber, denn er möchte natürlich, dass es allen schmeckt und sich alle wohl fühlen.\n\nGenerell gilt aber: etwas spezielles und gesundes zu kochen ist schön, aber es muss nicht in Stress aus&shy;ar&shy;ten, wenn Freunde zum Essen kommen.\n\nDass sie gemeinsam eine schöne Zeit verbringen steht im Vorder&shy;grund. Dafür muss kein Sterneessen aufgetischt werden."
         },
         "titleI18n": {
             "de": "Einladung"
@@ -5421,7 +5421,7 @@
             }
         ],
         "updated": {
-            "$date": 1409652287956
+            "$date": 1412081014833
         }
     },
     {
@@ -5470,7 +5470,7 @@
         "_id": {
             "$oid": "5278c6adcdeab69a25000075"
         },
-        "__v": 3,
+        "__v": 4,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -5482,7 +5482,7 @@
         "defaultfrequency": "week",
         "defaultvisibility": "private",
         "descriptionI18n": {
-            "de": "Führe eine neue Freizeitaktivität in einem Verein durch (z.B. Sport- oder Turnverein, kirchliche Organisation, Musikverein, Chor)."
+            "de": "Führe eine neue Freizeitaktivität in einem Verein durch (z.B. Sport- oder Turnverein, kirchliche Or&shy;ga&shy;ni&shy;sa&shy;ti&shy;on, Musikverein, Chor)."
         },
         "number": "Act-111",
         "qualityFactor": 5,
@@ -5499,7 +5499,7 @@
         ],
         "source": "youpers",
         "textI18n": {
-            "de": "Nehme in deiner Freizeit bei Aktivitäten eines Vereins teil. \n\nDer soziale Austausch und die gemein&shy;samen Aktivitäten stärken die Psyche. \n\nSuche gemäss deinen Interessen einen geeigneten Verein (z.B. Sport, Musik, Kunst)."
+            "de": "Nehme in deiner Freizeit bei Akti&shy;vi&shy;täten eines Vereins teil. \n\nDer soziale Austausch und die gemein&shy;samen Aktivitäten stärken die Psyche. \n\nSuche gemäss deinen Interessen einen geeigneten Verein (z.B. Sport, Musik, Kunst)."
         },
         "titleI18n": {
             "de": "Aktivität im Verein"
@@ -5510,7 +5510,7 @@
             }
         ],
         "updated": {
-            "$date": 1399386584942
+            "$date": 1412081085841
         }
     },
     {
@@ -5763,7 +5763,7 @@
         "_id": {
             "$oid": "5278c6adcdeab69a2500007b"
         },
-        "__v": 5,
+        "__v": 6,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -5771,7 +5771,7 @@
             "$date": 1399388444054
         },
         "defaultduration": 15,
-        "defaultexecutiontype": "self",
+        "defaultexecutiontype": "group",
         "defaultfrequency": "day",
         "defaultvisibility": "private",
         "descriptionI18n": {
@@ -5809,7 +5809,7 @@
             }
         ],
         "updated": {
-            "$date": 1411994287806
+            "$date": 1412081238410
         }
     },
     {
@@ -6091,7 +6091,7 @@
         "_id": {
             "$oid": "5278c6adcdeab69a25000081"
         },
-        "__v": 2,
+        "__v": 3,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -6099,11 +6099,11 @@
             "$date": 1399451971336
         },
         "defaultduration": 15,
-        "defaultexecutiontype": "self",
+        "defaultexecutiontype": "group",
         "defaultfrequency": "day",
         "defaultvisibility": "private",
         "descriptionI18n": {
-            "de": "Nimm täglich Milch- oder Milchprodukte als Zwischenmahlzeit zu dir (z.B. Glas Milch, Joghurt, Käse)."
+            "de": "Nimm täglich Milch- oder Milch&shy;pro&shy;dukte als Zwischenmahlzeit zu dir (z.B. Glas Milch, Joghurt, Käse)."
         },
         "number": "Act-132",
         "qualityFactor": 4,
@@ -6129,7 +6129,7 @@
         ],
         "source": "youpers",
         "textI18n": {
-            "de": "Der Mensch braucht täglich 800 bis 900 Milligramm Calcium. Das erreicht man mit einem Glas Buttermilch, einem Becher Joghurt und 3 Scheiben Käse.\nBeachte deine Laktose-Verträglichkeit! Es werden immer mehr laktose&shy;ver&shy;träg&shy;liche Lebensmittel an&shy;ge&shy;boten.\n\nCalcium ist der wichtigste Struktur-Bestand unserer Knochen und Zähne. **Dieser Abbau beginnt übrigens schon um das 30. Lebensjahr!**\n\nCalcium ist im Gehirn auch der *Manager für das Nervensystem*. Daher macht es Sinn, an stressreichen Tagen Milch&shy;pro&shy;dukte in den Speiseplan einzubauen. \n\nSchliesslich liefert Kuhmilch die ganze Palette an **B-Vitaminen** für Nerven, Energie & Schönheit: B1, B2, B6 und B12."
+            "de": "Der Mensch braucht täglich 800 bis 900 mg Calcium. Das er&shy;reicht man mit einem Glas Butter&shy;milch, einem Becher Joghurt und 3 Scheiben Käse.\nBeachte deine Laktose-Verträglichkeit! Es werden immer mehr laktose&shy;ver&shy;träg&shy;liche Lebens&shy;mittel an&shy;ge&shy;boten.\n\nCalcium ist der wichtigste Struktur-Bestand unserer Knochen und Zäh&shy;ne. **Dieser Abbau beginnt üb&shy;ri&shy;gens schon um das 30. Lebens&shy;jahr!**\n\nCalcium ist im Gehirn auch der *Manager für das Nervensystem*. Daher macht es Sinn, an stress&shy;reichen Tagen Milch&shy;pro&shy;dukte in den Speiseplan einzubauen. \n\nSchliesslich liefert Kuhmilch die ganze Palette an **B-Vitaminen** für Nerven, Energie & Schönheit: B1, B2, B6 und B12."
         },
         "titleI18n": {
             "de": "Milchprodukte haben Calcium"
@@ -6140,7 +6140,7 @@
             }
         ],
         "updated": {
-            "$date": 1399452001296
+            "$date": 1412082257699
         }
     },
     {
@@ -6247,7 +6247,7 @@
         "_id": {
             "$oid": "5278c6adcdeab69a25000084"
         },
-        "__v": 4,
+        "__v": 5,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -6311,7 +6311,7 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": "Wer sich mit vegetarischer Ernährung auseinandersetzt, findet leckere Menüs und neue Speisealternativen. Das Aus&shy;probieren macht es aus und wer gerne fein isst, kann darin auch durchaus einen Spass entwickeln."
+            "de": "Wer sich mit vegetarischer Er&shy;näh&shy;rung auseinandersetzt, findet leckere Menüs und neue Speise&shy;alternativen. Das Aus&shy;probieren macht es aus und wer gerne fein isst, kann darin auch durchaus einen Spass entwickeln."
         },
         "titleI18n": {
             "de": "Vegimenü"
@@ -6325,14 +6325,14 @@
             }
         ],
         "updated": {
-            "$date": 1409659448211
+            "$date": 1412081544691
         }
     },
     {
         "_id": {
             "$oid": "5278c6adcdeab69a25000085"
         },
-        "__v": 2,
+        "__v": 3,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -6340,7 +6340,7 @@
             "$date": 1399451318149
         },
         "defaultduration": 30,
-        "defaultexecutiontype": "self",
+        "defaultexecutiontype": "group",
         "defaultfrequency": "day",
         "defaultvisibility": "private",
         "descriptionI18n": {
@@ -6370,7 +6370,7 @@
         ],
         "source": "youpers",
         "textI18n": {
-            "de": "Da **Magnesium** für alle Organismen unentbehrlich ist, gehört es zu den essentiellen Stoffen. Magnesium muss daher dem Körper täglich in aus&shy;rei&shy;chen&shy;der Menge zugeführt werden, um Magnesiummangel vorzubeugen.\n\n**Magnesiummangel** löst beim Menschen Ruhelosigkeit, Nervosität, Reizbarkeit, Kopfschmerzen, Konzentrations&shy;man&shy;gel, Müdigkeit, allgemeines Schwä&shy;che&shy;ge&shy;fühl, Herz&shy;rhyth&shy;mus&shy;stö&shy;rung&shy;en und Muskelkrämpfe aus.\n\nMagnesium kommt in **vielen Lebens&shy;mitteln** vor, insbesondere in Voll&shy;korn&shy;produkten (z.B. Vollkornbrot, Vollkorn&shy;nudeln), Haferflocken, Reis, Cornflakes, Mineralwasser, Geflügel, Fisch, Erd&shy;nüs&shy;sen, Kürbis-/Sonnenblumenkernen, Schokolade, Kartoffeln, Spinat, Kohl&shy;rabi, Beerenobst, Orangen, Bananen, Milch und Milchprodukten."
+            "de": "Da **Magnesium** für alle Organismen unentbehrlich ist, gehört es zu den essentiellen Stoffen. Magnesium muss daher dem Körper täglich in aus&shy;rei&shy;chen&shy;der Menge zugeführt werden, um Magnesiummangel vorzubeugen.\n\n**Magnesiummangel** löst beim Men&shy;schen Ruhelosigkeit, Nervosität, Reizbarkeit, Kopfschmerzen, Kon&shy;zen&shy;tra&shy;ti&shy;ons&shy;man&shy;gel, Müdigkeit, all&shy;gemeines Schwä&shy;che&shy;ge&shy;fühl, Herz&shy;rhyth&shy;mus&shy;stö&shy;rung&shy;en und Muskel&shy;krämpfe aus.\n\nMagnesium kommt in **vielen Lebens&shy;mitteln** vor, u.a. in Voll&shy;korn&shy;pro&shy;duk&shy;ten, Haferflocken, Reis, Mineral&shy;wasser, Geflügel, Fisch, Kartoffeln, Spinat, Milch und Milchprodukten."
         },
         "titleI18n": {
             "de": "Magnesium"
@@ -6381,7 +6381,7 @@
             }
         ],
         "updated": {
-            "$date": 1407931023690
+            "$date": 1412081944810
         }
     },
     {
@@ -6499,7 +6499,7 @@
         "_id": {
             "$oid": "5278c6adcdeab69a25000088"
         },
-        "__v": 10,
+        "__v": 11,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -6523,7 +6523,7 @@
         ],
         "source": "youpers",
         "textI18n": {
-            "de": "Unser Gehirn ist das Organ, das am meisten Energie verbraucht!\n\nUm zu funktionieren müssen dem Gehirn über das Blut jede Menge **Sauerstoff** wie auch die nötige **Energie** (in Form von Eiweiss, Kohlenhydrate und Fett), die wichtigen **Vitamine, Spurenelemente, Mineralien** und **Botenstoffe** zugeführt werden, sonst kann unsere Denkzentrale nicht richtig funktionieren. Die ausreichende Ver&shy;sorgung mit der richtigen Nahrung ist aber genauso wichtig, wie eine ge&shy;nü&shy;gende Flüssigkeitszufuhr.\n\nFisch liefert **Omega-3 Fettsäuren**, die wichtig und essentiell sind für den Aufbau von Gehirnzellen. Und die sollten sich immer wieder regenerieren können!"
+            "de": "Unser Gehirn ist das Organ, das am meisten Energie verbraucht!\n\nUm zu funktionieren müssen dem Gehirn über das Blut jede Menge **Sauerstoff** wie auch die nötige **Energie** (in Form von Eiweiss, Koh&shy;lenhydrate und Fett), die wich&shy;tigen **Vitamine, Spuren&shy;elemente, Mi&shy;ne&shy;ra&shy;lien** und **Botenstoffe** zugeführt werden, sonst kann unsere Denk&shy;zentrale nicht richtig funktionieren. Die ausreichende Ver&shy;sorgung mit der richtigen Nahrung ist aber genauso wichtig, wie eine ge&shy;nü&shy;gende Flüssigkeitszufuhr.\n\nFisch liefert **Omega-3 Fettsäuren**, die wichtig und essentiell sind für den Aufbau von Gehirnzellen. Und die sollten sich immer wieder regenerieren können!"
         },
         "titleI18n": {
             "de": "Fisch für feine Fettsäuren"
@@ -6534,14 +6534,14 @@
             }
         ],
         "updated": {
-            "$date": 1399452163727
+            "$date": 1412082497408
         }
     },
     {
         "_id": {
             "$oid": "5278c6adcdeab69a25000089"
         },
-        "__v": 3,
+        "__v": 4,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -6553,7 +6553,7 @@
         "defaultfrequency": "once",
         "defaultvisibility": "private",
         "descriptionI18n": {
-            "de": "Ziehe bei Bedarf eine Ernährungs&shy;beraterin bzw. einen Ernährungs&shy;berater bei, um gemeinsam einen für dich passenden Ernährungsplan zu erstellen."
+            "de": "Ziehe bei Bedarf eine Ernährungs&shy;beraterin bzw. einen Ernährungs&shy;berater bei, um gemeinsam einen für dich passenden Ernährungs&shy;plan zu erstellen."
         },
         "number": "Act-134",
         "qualityFactor": 3,
@@ -6567,7 +6567,7 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": "Wer oft unter Stress ist, leidet eher unter Müdigkeit, Konzentrationsstörungen sowie Übergewicht und hat ein grösseres Risiko für Herz-Kreislauferkrankungen, Magenübersäuerung, Verstopfung oder Durchfall.\n\nGerade am Arbeitsplatz und während der Arbeitszeit vergessen wir oft alle guten Vorsätze und \"verdrücken\" schnell ein Sandwich, eine Pizza oder geben dem Heisshunger auf Schokolade stetig nach.\n\nDabei spielt eine wirklich gesunde Ernäh&shy;rung gerade dann eine Rolle, wenn wir leistungsfähig sein und bleiben müssen. Statt unseren Körper zu unterstützen, setzen wir ihn oft dem zusätzlichen \"Stress\" durch falsche Ernährung aus."
+            "de": "Wer oft unter Stress ist, leidet eher unter Müdigkeit, Konzentrations&shy;stö&shy;rungen sowie Übergewicht und hat ein grösseres Risiko für Herz-Kreis&shy;lauf&shy;erkrankungen, Magen&shy;über&shy;säu&shy;erung, Verstopfung oder Durchfall.\n\nGerade am Arbeitsplatz und wäh&shy;rend der Arbeitszeit vergessen wir oft alle guten Vorsätze und \"ver&shy;drücken\" schnell ein Sandwich, eine Pizza oder geben dem Heisshunger auf Schokolade stetig nach.\n\nDabei spielt eine wirklich gesunde Ernäh&shy;rung gerade dann eine Rolle, wenn wir leistungsfähig sein und bleiben müssen. Statt unseren Körper zu unterstützen, setzen wir ihn oft dem zusätzlichen \"Stress\" durch falsche Ernährung aus."
         },
         "titleI18n": {
             "de": "Ernährungsberater"
@@ -6578,14 +6578,14 @@
             }
         ],
         "updated": {
-            "$date": 1409689915951
+            "$date": 1412082635920
         }
     },
     {
         "_id": {
             "$oid": "5278c6adcdeab69a2500008a"
         },
-        "__v": 6,
+        "__v": 7,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -6635,14 +6635,14 @@
             }
         ],
         "updated": {
-            "$date": 1409659951516
+            "$date": 1412082665114
         }
     },
     {
         "_id": {
             "$oid": "5278c6adcdeab69a2500008b"
         },
-        "__v": 2,
+        "__v": 3,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -6654,7 +6654,7 @@
         "defaultfrequency": "week",
         "defaultvisibility": "private",
         "descriptionI18n": {
-            "de": "Koche einmal pro Woche am Feierabend zu Hause bewusst etwas Spezielles, das dir schmeckt und gesund ist und höre dazu gute Musik."
+            "de": "Koche einmal pro Woche am Feier&shy;abend zu Hause bewusst etwas Spezielles, das dir schmeckt und gesund ist und höre dazu gute Musik."
         },
         "number": "Act-136",
         "qualityFactor": 4,
@@ -6679,7 +6679,7 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": "Du brauchst weder ein ausgefallenes Rezept noch exotische Zutaten. Nur ein bisschen Aufmerksamkeit und Konzen&shy;tration auf das, was du tust. Und schon hast du nicht nur ein köstliches Gericht gezaubert, sondern dich nebenbei auch noch entspannt.\n\nAuch wenn uns das oft nicht bewusst ist, zum Kochen brauchen wir alle Sinne: **sehen, riechen, tasten, hören** und natürlich **schmecken**."
+            "de": "Du brauchst weder ein aus&shy;ge&shy;fal&shy;le&shy;nes Rezept noch exotische Zutaten. Nur ein bisschen Aufmerksamkeit und Konzen&shy;tration auf das, was du tust. Und schon hast du nicht nur ein köstliches Gericht gezaubert, son&shy;dern dich nebenbei auch noch ent&shy;spannt.\n\nAuch wenn uns das oft nicht be&shy;wusst ist, zum Kochen brauchen wir alle Sinne: **sehen, riechen, tasten, hören** und natürlich **schmecken**."
         },
         "titleI18n": {
             "de": "Entspannen und Kochen"
@@ -6690,14 +6690,14 @@
             }
         ],
         "updated": {
-            "$date": 1409660398805
+            "$date": 1412082747950
         }
     },
     {
         "_id": {
             "$oid": "5278c6adcdeab69a2500008c"
         },
-        "__v": 4,
+        "__v": 5,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -6709,7 +6709,7 @@
         "defaultfrequency": "once",
         "defaultvisibility": "private",
         "descriptionI18n": {
-            "de": "Führe mit deiner Partnerin bzw. deinem Partner ein offenes Gespräch über die Freizeitgestaltung und arbeite ge&shy;mein&shy;same Ziele und Pläne aus."
+            "de": "Führe mit deiner Partnerin bzw. deinem Partner ein offenes Ge&shy;spräch über die Freizeit&shy;gestaltung und arbeite ge&shy;mein&shy;same Ziele und Pläne aus."
         },
         "number": "Act-137",
         "qualityFactor": 5,
@@ -6725,7 +6725,7 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": "Vielbeschäftigte Menschen machten häufig den Fehler, ihren Arbeitsrhythmus auf die Freizeit zu übertragen, sagt der Kölner Diplom-Psychologe Markus Brand.\n\nWichtig sei, in der Freizeit etwas zu machen, was nichts mit dem Beruf zu tun hat, rät Brand. Nur so gewinne man Abstand von der Arbeit.\n\nGut sei zum Beispiel, die Freizeit mit der Familie zu planen und Sport oder Gartenarbeit zu machen - oder mit dem Hund Gassi zu gehen."
+            "de": "Vielbeschäftigte Menschen machten häufig den Fehler, ihren Arbeits&shy;rhyth&shy;mus auf die Freizeit zu über&shy;tragen, sagt der Kölner Diplom-Psychologe Markus Brand.\n\nWichtig sei, in der Freizeit etwas zu machen, was nichts mit dem Beruf zu tun hat, rät Brand. Nur so gewinne man Abstand von der Arbeit.\n\nGut sei zum Beispiel, die Freizeit mit der Familie zu planen und Sport oder Gartenarbeit zu machen - oder mit dem Hund Gassi zu gehen."
         },
         "titleI18n": {
             "de": "Freizeitgestaltung"
@@ -6736,14 +6736,14 @@
             }
         ],
         "updated": {
-            "$date": 1409661082192
+            "$date": 1412082847073
         }
     },
     {
         "_id": {
             "$oid": "5278c6adcdeab69a2500008d"
         },
-        "__v": 4,
+        "__v": 5,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -6755,7 +6755,7 @@
         "defaultfrequency": "week",
         "defaultvisibility": "private",
         "descriptionI18n": {
-            "de": "Plane (evtl. mit deiner Partnerin bzw. dei&shy;nem Partner) die anstehenden Freizeit-Arbeiten der nächsten Woche mit dem Ziel, ausreichend Erholung und Ruhe&shy;pau&shy;sen zu haben."
+            "de": "Plane (evtl. mit deiner Partnerin bzw. dei&shy;nem Partner) die an&shy;ste&shy;hen&shy;den Freizeit-Arbeiten der nächsten Woche mit dem Ziel, ausreichend Erholung und Ruhe&shy;pau&shy;sen zu haben."
         },
         "number": "Act-138",
         "qualityFactor": 5,
@@ -6769,7 +6769,7 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": "Vielbeschäftigte Menschen machten häufig den Fehler, ihren Arbeitsrhythmus auf die Freizeit zu übertragen, sagt der Kölner Diplom-Psychologe Markus Brand.\n\nWichtig sei, in der Freizeit etwas zu machen, was nichts mit dem Beruf zu tun hat, rät Brand. Nur so gewinne man Zeit und Abstand von der Arbeit.\n\nGut sei zum Beispiel, die Freizeit mit der Familie zu planen und Sport oder Gartenarbeit zu machen - oder mit dem Hund Gassi zu gehen."
+            "de": "Vielbeschäftigte Menschen machten häufig den Fehler, ihren Arbeits&shy;rhythmus auf die Freizeit zu über&shy;tragen, sagt der Kölner Diplom-Psychologe Markus Brand.\n\nWichtig sei, in der Freizeit etwas zu machen, was nichts mit dem Beruf zu tun hat, rät Brand. Nur so gewinne man Zeit und Abstand von der Arbeit.\n\nGut sei zum Beispiel, die Freizeit mit der Familie zu planen und Sport oder Gartenarbeit zu machen - oder mit dem Hund Gassi zu gehen."
         },
         "titleI18n": {
             "de": "Freizeit-Wochenplan"
@@ -6780,14 +6780,14 @@
             }
         ],
         "updated": {
-            "$date": 1409661240325
+            "$date": 1412083020329
         }
     },
     {
         "_id": {
             "$oid": "5278c6adcdeab69a2500008e"
         },
-        "__v": 4,
+        "__v": 5,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -6799,7 +6799,7 @@
         "defaultfrequency": "once",
         "defaultvisibility": "private",
         "descriptionI18n": {
-            "de": "Prüfe die Möglichkeit einer Arbeits&shy;ent&shy;las&shy;tung in der Freizeit (z.B. Kinderbetreuung, Haushaltshilfe)."
+            "de": "Prüfe die Möglichkeit einer Arbeits&shy;ent&shy;las&shy;tung in der Freizeit (z.B. Kin&shy;derbetreuung, Haushaltshilfe)."
         },
         "number": "Act-139",
         "qualityFactor": 4,
@@ -6817,7 +6817,7 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": "Die zunehmende Arbeitsbelastung und der unvermeidlich erscheinende Stress werden oft beklagt. Doch im Grunde genommen ist es viel weniger die grosse Belastung,als viel mehr die ungenügende Entlastung, die zu Stress und Burnout führt.\n\nStundenweise Kinderbetreuung ermög&shy;licht unbeschwertes Einkaufen und tem&shy;poräres Abschalten vom Erziehungs&shy;stress. Und die Kinder sind in guten Händen."
+            "de": "Die zunehmende Arbeitsbelastung und der unvermeidlich erscheinende Stress werden oft beklagt. Doch im Grunde genommen ist es viel we&shy;niger die grosse Belastung,als viel mehr die ungenügende Entlastung, die zu Stress und Burnout führt.\n\nStundenweise Kinderbetreuung ermög&shy;licht unbeschwertes Ein&shy;kau&shy;fen und tem&shy;poräres Abschalten vom Erziehungs&shy;stress. Und die Kinder sind in guten Händen."
         },
         "titleI18n": {
             "de": "Arbeitsentlastung"
@@ -6828,14 +6828,14 @@
             }
         ],
         "updated": {
-            "$date": 1409691473522
+            "$date": 1412083094267
         }
     },
     {
         "_id": {
             "$oid": "5278c6adcdeab69a2500008f"
         },
-        "__v": 4,
+        "__v": 5,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -6847,7 +6847,7 @@
         "defaultfrequency": "once",
         "defaultvisibility": "private",
         "descriptionI18n": {
-            "de": "Führe mit deiner Partnerin bzw. deinem Partner ein offenes Gespräch über fa&shy;mi&shy;li&shy;äre Belastungen und Probleme mit dem Ziel, eine gemeinsame Stress&shy;be&shy;wäl&shy;ti&shy;gungs-Strategie zu entwicklen."
+            "de": "Führe mit deiner Partnerin bzw. deinem Partner ein offenes Ge&shy;spräch über fa&shy;mi&shy;li&shy;äre Belastungen und Probleme mit dem Ziel, eine gemeinsame Stress&shy;be&shy;wäl&shy;ti&shy;gungs-Strategie zu entwicklen."
         },
         "number": "Act-140",
         "qualityFactor": 5,
@@ -6866,7 +6866,7 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": "Die WHO empfiehlt Triple P als effektives Programm zur Prävention und Reduktion von Stress sowie zur Stärkung von Schutz&shy;faktoren in der Familie.\n\nDurch die Stärkung der Selbstwirksam&shy;keitsüberzeugung, des Selbstmanage&shy;ments und des Bewältigungsverhaltens der Eltern wird familiärer Stress reduziert und den vielfältigen gesundheitlichen Folgen von chronischem Stress vorgebeugt."
+            "de": "Die WHO empfiehlt Triple P als effektives Programm zur Prävention und Reduktion von Stress sowie zur Stärkung von Schutz&shy;faktoren in der Familie.\n\nDurch die Stärkung der Selbst&shy;wirk&shy;sam&shy;keitsüberzeugung, des Selbst&shy;manage&shy;ments und des Be&shy;wäl&shy;ti&shy;gungs&shy;verhaltens der Eltern wird familiärer Stress reduziert und den vielfältigen gesundheitlichen Folgen von chronischem Stress vorgebeugt."
         },
         "titleI18n": {
             "de": "Familiäre Stressbewältigung"
@@ -6877,14 +6877,14 @@
             }
         ],
         "updated": {
-            "$date": 1409665196451
+            "$date": 1412083196783
         }
     },
     {
         "_id": {
             "$oid": "5278c6adcdeab69a25000090"
         },
-        "__v": 2,
+        "__v": 3,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -6896,7 +6896,7 @@
         "defaultfrequency": "once",
         "defaultvisibility": "private",
         "descriptionI18n": {
-            "de": "Plane deine nächsten mehrwöchigen Ferien in max. 6 Monaten."
+            "de": "Plane deine nächsten mehr&shy;wö&shy;chigen Ferien in max. 6 Monaten."
         },
         "number": "Act-141",
         "qualityFactor": 3,
@@ -6920,7 +6920,7 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": "Es gibt viele verschiedene Möglichkeiten, dem Alltagstrott zu entfliehen. Wichtig ist dabei nicht die grösstmögliche Entfernung zum Heimatort, sondern Neues zu sehen und den eigenen Horizont zu erweitern, aber auch abschalten und das Leben jenseits von Hausputz, Kreditrückzahlung und Berufsstress zu geniessen."
+            "de": "Es gibt viele verschiedene Möglich&shy;keiten, dem Alltagstrott zu ent&shy;flie&shy;hen. Wichtig ist dabei nicht die grösstmögliche Entfernung zum Heimatort, sondern Neues zu sehen und den eigenen Horizont zu erweitern, aber auch abschalten und das Leben jenseits von Hausputz, Kreditrückzahlung und Berufsstress zu geniessen."
         },
         "titleI18n": {
             "de": "Lange Ferien"
@@ -6931,14 +6931,14 @@
             }
         ],
         "updated": {
-            "$date": 1409665287621
+            "$date": 1412085122394
         }
     },
     {
         "_id": {
             "$oid": "5278c6adcdeab69a25000091"
         },
-        "__v": 2,
+        "__v": 3,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -6976,7 +6976,7 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": "Aktive Erholung bedeutet, dass man etwas tut und Spass dabei hat, aber nicht übertreibt.\n\nZum Beispiel wandern oder regelmäs&shy;siges Schwimmen. Verbindet man dies mit entspannenden Tätigkeiten wie Lesen, Museumsbesuchen oder Musik hören, sind das erholsame Ferien."
+            "de": "Aktive Erholung bedeutet, dass man etwas tut und Spass dabei hat, aber nicht übertreibt.\n\nZum Beispiel wandern oder regel&shy;mäs&shy;siges Schwimmen. Verbindet man dies mit entspannenden Tä&shy;tig&shy;keiten wie Lesen, Museums&shy;be&shy;su&shy;chen oder Musik hören, sind das erholsame Ferien."
         },
         "titleI18n": {
             "de": "Erholungsferien"
@@ -6987,14 +6987,14 @@
             }
         ],
         "updated": {
-            "$date": 1409665914342
+            "$date": 1412085180502
         }
     },
     {
         "_id": {
             "$oid": "5278c6adcdeab69a25000092"
         },
-        "__v": 3,
+        "__v": 4,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -7006,7 +7006,7 @@
         "defaultfrequency": "week",
         "defaultvisibility": "private",
         "descriptionI18n": {
-            "de": "Plane für das Wochenende bewusst Zeit&shy;fenster für Erholung und Entspannung ein."
+            "de": "Plane für das Wochenende be&shy;wusst Zeit&shy;fenster für Erholung und Entspannung ein."
         },
         "number": "Act-143",
         "qualityFactor": 5,
@@ -7032,7 +7032,7 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": "Vielbeschäftigte Menschen machten häufig den Fehler, ihren Arbeitsrhythmus auf die Freizeit zu übertragen, sagt der Kölner Diplom-Psychologe Markus Brand.\n\nWichtig sei, in der Freizeit etwas zu machen, was nichts mit dem Beruf zu tun hat, rät Brand. Nur so gewinne man Zeit und Abstand von der Arbeit.\n\nGut sei zum Beispiel, die Freizeit mit der Familie zu planen und Sport oder Gartenarbeit zu machen - oder mit dem Hund Gassi zu gehen."
+            "de": "Vielbeschäftigte Menschen machten häufig den Fehler, ihren Arbeits&shy;rhyth&shy;mus auf die Freizeit zu über&shy;tragen, sagt der Kölner Diplom-Psychologe Markus Brand.\n\nWichtig sei, in der Freizeit etwas zu machen, was nichts mit dem Beruf zu tun hat, rät Brand. Nur so ge&shy;win&shy;ne man Zeit und Abstand von der Arbeit.\n\nGut sei zum Beispiel, die Freizeit mit der Familie zu planen und Sport oder Gartenarbeit zu machen - oder mit dem Hund Gassi zu gehen."
         },
         "titleI18n": {
             "de": "Freiräume"
@@ -7043,7 +7043,7 @@
             }
         ],
         "updated": {
-            "$date": 1409666044032
+            "$date": 1412085288787
         }
     },
     {
@@ -7101,7 +7101,7 @@
         "_id": {
             "$oid": "5278c6adcdeab69a25000094"
         },
-        "__v": 3,
+        "__v": 4,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -7125,7 +7125,7 @@
         ],
         "source": "youpers",
         "textI18n": {
-            "de": "Im Eigelb ist wichtiges **Lecithin**. Das liefert dem Gehirn **Cholin**.\n\nBei Bedarf, z. B. bei einer konzentrierten Tätigkeit, wird das gespeicherte Cholin in **Acetylcholin** umgewandelt, das Ideen ankurbelt. Die Wirkung ist aber oft nur von kurzer Dauer, wenn es am Rohstoff Cholin fehlt. Dies ist typisch für alle Menschen, die sich nur kurzfristig konzentrieren können.\n\nUnsere Leber stellt Cholin aber auch selbst aus den Aminosäuren (Eiweiss­bausteinen) **Methionin** und **Serin** her, die wiederum hauptsächlich in **Fleisch, Eiern, Tofu, Quorn und Käse** enthalten sind."
+            "de": "Im Eigelb ist wichtiges **Lecithin**. Das liefert dem Gehirn **Cholin**.\n\nBei Bedarf, z. B. bei einer kon&shy;zen&shy;triert&shy;en Tätigkeit, wird das ge&shy;spei&shy;cherte Cholin in **Acetylcholin** um&shy;ge&shy;wandelt, das Ideen ankurbelt. Die Wirkung ist aber oft nur von kurzer Dauer, wenn es am Rohstoff Cholin fehlt. Dies ist typisch für alle Men&shy;schen, die sich nur kurzfristig konzentrieren können.\n\nUnsere Leber stellt Cholin aber auch selbst aus den Aminosäuren (Eiweiss­bausteinen) **Methionin** und **Serin** her, die wiederum haupt&shy;säch&shy;lich in **Fleisch, Eiern, Tofu, Quorn und Käse** enthalten sind."
         },
         "titleI18n": {
             "de": "Proteine fürs Gehirn"
@@ -7136,7 +7136,7 @@
             }
         ],
         "updated": {
-            "$date": 1399452975055
+            "$date": 1412085439721
         }
     },
     {
@@ -7185,7 +7185,7 @@
         "_id": {
             "$oid": "5278c6adcdeab69a25000096"
         },
-        "__v": 6,
+        "__v": 7,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -7249,7 +7249,7 @@
         ],
         "source": "youpers",
         "textI18n": {
-            "de": "Eine wiederum psychische Erklärung für den Griff nach Süssigkeiten ist, dass wir uns in stressigen Situationen entspannen und für die erldigte Arbeit belohnen wollen.\n\nAllerdings ist es wissenschaftlich nicht gänzlich belegt, dass Zucker oder Fett Stress wirklich körperlich reduzieren."
+            "de": "Eine wiederum psychische Er&shy;klä&shy;rung für den Griff nach Süssigkeiten ist, dass wir uns in stressigen Si&shy;tu&shy;a&shy;ti&shy;onen entspannen und für die er&shy;ldigte Arbeit belohnen wollen.\n\nAllerdings ist es wissenschaftlich nicht gänzlich belegt, dass Zucker oder Fett Stress wirklich körperlich reduzieren."
         },
         "titleI18n": {
             "de": "Achtung vor Süssem!"
@@ -7263,14 +7263,14 @@
             }
         ],
         "updated": {
-            "$date": 1409687306778
+            "$date": 1412085520782
         }
     },
     {
         "_id": {
             "$oid": "5278c6adcdeab69a25000097"
         },
-        "__v": 4,
+        "__v": 5,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -7326,7 +7326,7 @@
         ],
         "source": "youpers",
         "textI18n": {
-            "de": "Im Gegensatz zum Heisshunger auf Süsses, der sich auf einen sinkenden Blutzucker&shy;spiegel zurückführen lässt, rührt der salzige Heisshunger von einem erhöhten Bedarf an Elektrolyten. \n\nLange Essenspausen, psychische Belastungen, körperliche und geistige Anstrengung sowie Schlafmangel können Ursachen dieser Attacken sein.\n\nMit einer ausgewogenen Ernährung, regelmässigem Essen und bewusstem Geniessen beim Essen lässt sich der Heisshunger austricksen."
+            "de": "Im Gegensatz zum Heisshunger auf Süsses, der sich auf einen sinkenden Blutzucker&shy;spiegel zurückführen lässt, rührt der salzige Heisshunger von einem erhöhten Bedarf an Elektrolyten. \n\nLange Essenspausen, psychische Belastungen, körperliche und geistige Anstrengung sowie Schlafmangel können Ursachen dieser Attacken sein.\n\nMit einer ausgewogenen Ernährung, regelmässigem Essen und be&shy;wusstem Geniessen beim Essen lässt sich der Heisshunger austricksen."
         },
         "titleI18n": {
             "de": "Achtung vor Salzigem!"
@@ -7340,7 +7340,7 @@
             }
         ],
         "updated": {
-            "$date": 1409688763618
+            "$date": 1412085587139
         }
     },
     {
@@ -7601,7 +7601,7 @@
         "_id": {
             "$oid": "5278c6adcdeab69a2500009c"
         },
-        "__v": 5,
+        "__v": 6,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -7613,7 +7613,7 @@
         "defaultfrequency": "day",
         "defaultvisibility": "private",
         "descriptionI18n": {
-            "de": "Führe für einige Tage ein Esstagebuch, indem du deine Beobachtungen zu dei&shy;nem heutigen Essverhalten auf&shy;schreibst."
+            "de": "Führe für einige Tage ein Ess&shy;tagebuch, indem du deine Be&shy;ob&shy;ach&shy;tung&shy;en zu dei&shy;nem heutigen Essverhalten auf&shy;schreibst."
         },
         "number": "Act-153",
         "qualityFactor": 5,
@@ -7650,7 +7650,7 @@
             }
         ],
         "updated": {
-            "$date": 1409947464396
+            "$date": 1412086309174
         }
     },
     {
@@ -7760,7 +7760,7 @@
         "_id": {
             "$oid": "5278c6adcdeab69a2500009f"
         },
-        "__v": 2,
+        "__v": 3,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -7772,7 +7772,7 @@
         "defaultfrequency": "day",
         "defaultvisibility": "private",
         "descriptionI18n": {
-            "de": "Trickse deinen Gluscht (Heisshunger) aus, indem du dich einen Moment lang mit ge&shy;schlossenen Augen auf deine Atmung kon&shy;zentrierst oder zur Überbrückung ein Glas Wasser trinkst."
+            "de": "Trickse deinen Gluscht (Heiss&shy;hun&shy;ger) aus, indem du dich einen Moment lang mit ge&shy;schlossenen Augen auf deine Atmung kon&shy;zen&shy;trierst oder zur Überbrückung ein Glas Wasser trinkst."
         },
         "number": "Act-156",
         "qualityFactor": 3,
@@ -7789,7 +7789,7 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": "Wenn eine Heisshungerattacke naht, solltest du zuerst mal ein grosses Glas Wasser trinken. Der Körper sendet nämlich oft Hungersignale, wenn er eigentlich nur Durst hat."
+            "de": "Wenn eine Heisshungerattacke naht, solltest du zuerst mal ein grosses Glas Wasser trinken. Der Körper sendet nämlich oft Hunger&shy;signale, wenn er eigentlich nur Durst hat."
         },
         "titleI18n": {
             "de": "Heisshunger überlisten"
@@ -7800,14 +7800,14 @@
             }
         ],
         "updated": {
-            "$date": 1409732147197
+            "$date": 1412086468797
         }
     },
     {
         "_id": {
             "$oid": "5278c6adcdeab69a250000a0"
         },
-        "__v": 2,
+        "__v": 3,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -7819,7 +7819,7 @@
         "defaultfrequency": "week",
         "defaultvisibility": "private",
         "descriptionI18n": {
-            "de": "Trinke nach einem stressreichen Arbeits&shy;tag zur Entspannung Beruhigungstee."
+            "de": "Trinke nach einem stressreichen Arbeits&shy;tag zur Entspannung Be&shy;ru&shy;hi&shy;gungs&shy;tee."
         },
         "number": "Act-157",
         "qualityFactor": 3,
@@ -7840,7 +7840,7 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": "Vor allem in unserer schnelllebigen Zeit wird es zunehmend notwendiger einen entspannenden Ausgleich zum oftmals stressigen Alltag zu schaffen. Dieser Stress im Alltag kann auf lange Sicht zu ernsten körperlichen Erkrankungen führen.\n\nEin Beruhigungstee kann hier helfen. Er ist aus Kräutern zusammengesetzt, die eine entspannende Wirkung auf Körper und Seele haben. So kann es möglich werden mit Hilfe eines Beruhigungstees, richtig abzuschalten und den Stress des Alltags auszublenden."
+            "de": "Vor allem in unserer schnelllebigen Zeit wird es zunehmend not&shy;wen&shy;di&shy;ger einen entspannenden Ausgleich zum oftmals stressigen Alltag zu schaffen. Dieser Stress im Alltag kann auf lange Sicht zu ernsten körperlichen Erkrankungen führen.\n\nEin Beruhigungstee kann hier hel&shy;fen. Er ist aus Kräutern zu&shy;sam&shy;men&shy;ge&shy;setzt, die eine entspannende Wirkung auf Körper und Seele haben. So kann es möglich werden mit Hilfe eines Beruhigungstees, richtig abzuschalten und den Stress des Alltags auszublenden."
         },
         "titleI18n": {
             "de": "Beruhigungstee"
@@ -7851,14 +7851,14 @@
             }
         ],
         "updated": {
-            "$date": 1409732369622
+            "$date": 1412086574728
         }
     },
     {
         "_id": {
             "$oid": "5278c6adcdeab69a250000a1"
         },
-        "__v": 4,
+        "__v": 5,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -7894,7 +7894,7 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": "Bewegung ist gesund und verbessert die Lebensqualität. Und gerade weil die Mehrheit der Bevölkerung während der Arbeit stundenlang sitzt, ist Bewegung umso wichtiger, um Rückenproblemen und Haltungsschäden vorzubeugen.\n\nHier empfiehlt es sich zum Beispiel, Bewegung  bereits in den Berufsalltag zu integrieren, indem man den Weg zur Arbeit für das tägliche Training nutzt (z.B. den Weg mit dem Velo oder zu Fuss zurücklegen). Auch die Mittagspause lässt sich nutzen, um eine Trainingseinheit zu absolvieren."
+            "de": "Bewegung ist gesund und ver&shy;bes&shy;sert die Lebensqualität. Und gerade weil die Mehrheit der Bevölkerung während der Arbeit stundenlang sitzt, ist Bewegung umso wichtiger, um Rückenproblemen und Haltungs&shy;schäden vorzubeugen.\n\nHier empfiehlt es sich zum Beispiel, Bewegung  bereits in den Berufs&shy;alltag zu integrieren, indem man den Weg zur Arbeit für das tägliche Training nutzt (z.B. den Weg mit dem Velo oder zu Fuss zu&shy;rück&shy;le&shy;gen). Auch die Mittagspause lässt sich nutzen, um eine Trainings&shy;ein&shy;heit zu absolvieren."
         },
         "titleI18n": {
             "de": "Tägliche Bewegung"
@@ -7905,7 +7905,7 @@
             }
         ],
         "updated": {
-            "$date": 1409733303262
+            "$date": 1412086661918
         }
     },
     {
@@ -7962,7 +7962,7 @@
         "_id": {
             "$oid": "5278c6adcdeab69a250000a3"
         },
-        "__v": 2,
+        "__v": 3,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -7970,11 +7970,11 @@
             "$date": 1399455152558
         },
         "defaultduration": 15,
-        "defaultexecutiontype": "self",
+        "defaultexecutiontype": "group",
         "defaultfrequency": "week",
         "defaultvisibility": "private",
         "descriptionI18n": {
-            "de": "Iss am Tag 1-2 Stunden VOR einer kör&shy;per&shy;lichen Aktivität (z.B. schwere, körperliche Arbeit oder Sport) ein Brot mit Käse, ein paar Nüsse oder Mandeln sowie frische oder getrocknete Früchte."
+            "de": "Iss am Tag 1-2 Stunden VOR einer kör&shy;per&shy;lichen Aktivität (z.B. schwe&shy;re, körperliche Arbeit oder Sport) ein Brot mit Käse, ein paar Nüsse oder Mandeln sowie frische oder getrocknete Früchte."
         },
         "number": "Act-160",
         "qualityFactor": 3,
@@ -7984,7 +7984,7 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": "*\"Die Energie, die wir für körperliche Aktivitäten brauchen, bekommen wir nur durch Kohlenhydrate“*, sagt Ernährungs&shy;experte Sven-David Müller.\n\nEine optimale Kombination vor der Anstrengung ist ein Brot mit Käse und Nüssen. Dieses liefert mit Kohlenhydraten, Eiweissen und Fetten schnelle Energie, regt die Verdauung aber nicht zu stark an.\n\nMit dieser Kombination werden die Kohlenhydrate in die Glykogenspeicher der Muskeln und der Leber eingelagert."
+            "de": "*\"Die Energie, die wir für körperliche Aktivitäten brauchen, bekommen wir nur durch Kohlenhydrate“*, sagt Ernährungs&shy;experte Sven-David Müller.\n\nEine optimale Kombination vor der Anstrengung ist ein Brot mit Käse und Nüssen. Dieses liefert mit Kohlenhydraten, Eiweissen und Fetten schnelle Energie, regt die Verdauung aber nicht zu stark an.\n\nMit dieser Kombination werden die Kohlenhydrate in die Glykogen&shy;spei&shy;cher der Muskeln und der Leber eingelagert."
         },
         "titleI18n": {
             "de": "Vorher essen"
@@ -7995,14 +7995,14 @@
             }
         ],
         "updated": {
-            "$date": 1409734364488
+            "$date": 1412086772662
         }
     },
     {
         "_id": {
             "$oid": "5278c6adcdeab69a250000a4"
         },
-        "__v": 10,
+        "__v": 11,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -8010,7 +8010,7 @@
             "$date": 1399455201329
         },
         "defaultduration": 15,
-        "defaultexecutiontype": "self",
+        "defaultexecutiontype": "group",
         "defaultfrequency": "day",
         "defaultvisibility": "private",
         "descriptionI18n": {
@@ -8043,7 +8043,7 @@
             "de": "Beschreibungen zu möglichen Kraft&shy;übungen für den Morgen findest du \n<a href='http://www.mobilesport.ch/filter/?lang=de#td=757;lm=63' target='_blank'>hier.</a>"
         },
         "titleI18n": {
-            "de": "Kraftübung"
+            "de": "Kraftübungen am Morgen"
         },
         "topics": [
             {
@@ -8051,14 +8051,14 @@
             }
         ],
         "updated": {
-            "$date": 1412001006724
+            "$date": 1412086911696
         }
     },
     {
         "_id": {
             "$oid": "5278c6adcdeab69a250000a5"
         },
-        "__v": 3,
+        "__v": 4,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -8079,7 +8079,7 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": "**Zum Anfangen ist es nie zu spät!**  \nKörperliche Bewegung, Ausdauer- und auch Krafttraining können in jedem Lebensalter begonnen werden und haben einen positiven Einfluss auf Leistungs&shy;fähigkeit, Fitness, Gesundheit und Lebensqualität.\n\n**Höre  auf deinen Körper!**  \nTreibe nur Sport, wenn du dich gesund fühlst.\n\n**Beginne langsam!**  \nStarte mit einer Trainingseinheit von 30 Minuten und steigere dich langsam. Belastungsdauer kommt vor Intensität."
+            "de": "**Zum Anfangen ist es nie zu spät!**  \nKörperliche Bewegung, Ausdauer- und auch Krafttraining können in jedem Lebensalter begonnen werden und haben einen positiven Einfluss auf Leistungs&shy;fähigkeit, Fitness, Gesundheit und Lebens&shy;qualität.\n\n**Höre  auf deinen Körper!**  \nTreibe nur Sport, wenn du dich gesund fühlst.\n\n**Beginne langsam!**  \nStarte mit einer Trainingseinheit von 30 Minuten und steigere dich langsam. Belastungsdauer kommt vor Intensität."
         },
         "titleI18n": {
             "de": "Lockeres Fitnesstraining"
@@ -8090,14 +8090,14 @@
             }
         ],
         "updated": {
-            "$date": 1409735450750
+            "$date": 1412086960644
         }
     },
     {
         "_id": {
             "$oid": "5278c6adcdeab69a250000a6"
         },
-        "__v": 8,
+        "__v": 9,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -8133,7 +8133,7 @@
         ],
         "source": "youpers",
         "textI18n": {
-            "de": "Gemäss Bundesamt für Gesundheit (BAG) ist es erwiesen, dass regel&shy;mässige Bewegung das Risiko, an einer weit ver&shy;breiteten Krankheit, wie Adipositas (Fettleibigkeit), Herz-Kreislauf-Er&shy;kran&shy;kungen, Typ-II-Diabetes, Knochen&shy;schwund (Osteoporose), Rücken&shy;schmer&shy;zen oder an gewissen Krebs&shy;arten zu erkranken, senkt.\n\nZudem wirkt sich Bewegung positiv auf die Hauptrisikofaktoren für nicht über&shy;tragbare Krankheiten wie Blut&shy;hoch&shy;druck, Hypercholesterinämie (zu hoher Cholesterinspiegel im Blut), Über&shy;ge&shy;wicht und sitzende Tätigkeiten aus.\n\nMehr Informationen zur Förderung der Alltagsbewegung findest du <a href='http://www.bag.admin.ch/themen/ernaehrung_bewegung/11660/index.html?lang=de' target='_blank'>hier.</a>"
+            "de": "Gemäss Bundesamt für Gesundheit (BAG) ist es erwiesen, dass regel&shy;mässige Bewegung das Risiko, an einer weit ver&shy;breiteten Krankheit, wie Adipositas (Fettleibigkeit), Herz-Kreislauf-Er&shy;kran&shy;kungen, Typ-II-Diabetes, Knochen&shy;schwund (Osteo&shy;porose), Rücken&shy;schmer&shy;zen oder an gewissen Krebs&shy;arten zu erkranken, senkt.\n\nZudem wirkt sich Bewegung positiv auf die Hauptrisikofaktoren für nicht über&shy;tragbare Krankheiten wie Blut&shy;hoch&shy;druck, Hypercholesterinämie (zu hoher Cholesterinspiegel im Blut), Über&shy;ge&shy;wicht und sitzende Tätigkeiten aus.\n\nMehr Informationen zur Förderung der Alltagsbewegung findest du <a href='http://www.bag.admin.ch/themen/ernaehrung_bewegung/11660/index.html?lang=de' target='_blank'>hier.</a>"
         },
         "titleI18n": {
             "de": "Alltagsbewegung"
@@ -8144,14 +8144,14 @@
             }
         ],
         "updated": {
-            "$date": 1412001255896
+            "$date": 1412087000100
         }
     },
     {
         "_id": {
             "$oid": "5278c6adcdeab69a250000a7"
         },
-        "__v": 12,
+        "__v": 13,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -8163,7 +8163,7 @@
         "defaultfrequency": "week",
         "defaultvisibility": "private",
         "descriptionI18n": {
-            "de": "Absolviere ein regelmässiges Training zur Stärkung deiner Ausdauer, Kraft und/oder Beweglichkeit."
+            "de": "Absolviere ein regelmässiges Trai&shy;ning zur Stärkung deiner Aus&shy;dau&shy;er, Kraft und/oder Beweglichkeit."
         },
         "number": "Act-164",
         "qualityFactor": 4,
@@ -8197,14 +8197,14 @@
             }
         ],
         "updated": {
-            "$date": 1412002597457
+            "$date": 1412087040629
         }
     },
     {
         "_id": {
             "$oid": "5278c6adcdeab69a250000a8"
         },
-        "__v": 2,
+        "__v": 3,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -8216,7 +8216,7 @@
         "defaultfrequency": "day",
         "defaultvisibility": "private",
         "descriptionI18n": {
-            "de": "Gönne dir neben Arbeit und körperlichem Training am Feierabend auch genügend Erholung und Schlaf."
+            "de": "Gönne dir neben Arbeit und kör&shy;per&shy;lichem Training am Feierabend auch genügend Erholung und Schlaf."
         },
         "number": "Act-165",
         "qualityFactor": 4,
@@ -8241,7 +8241,7 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": "Der Begriff **Erholung** stammt ur&shy;sprüng&shy;lich aus der Medizin und be&shy;deutet *„wieder gesund werden“*.\n\nMit Erholung wird allgemein der Vor&shy;gang bezeichnet, wenn sich ein bio&shy;lo&shy;gischer Organismus nach einer an&shy;stren&shy;genden Tätigkeit, nach kör&shy;per&shy;licher Er&shy;mü&shy;dung und geistiger Er&shy;schöp&shy;fung, aber auch von Verletzungen oder Krank&shy;heiten durch eine Ruhephase wieder regeneriert und Kräfte sammelt.\n\nZur Erholung im biologisch-medi&shy;zi&shy;nischen Sinne gehört also haupt&shy;säch&shy;lich der Schlaf, Ruhepausen (Ent&shy;span&shy;nung, Reflexion) und die Re&shy;kon&shy;va&shy;les&shy;zenz im eigentlichen Sinne."
+            "de": "Der Begriff **Erholung** stammt ur&shy;sprüng&shy;lich aus der Medizin und be&shy;deutet *„wieder gesund werden“*.\n\nMit Erholung wird allgemein der Vor&shy;gang bezeichnet, wenn sich ein bio&shy;lo&shy;gischer Organismus nach einer an&shy;stren&shy;genden Tätigkeit, nach kör&shy;per&shy;licher Er&shy;mü&shy;dung und geistiger Er&shy;schöp&shy;fung, aber auch von Ver&shy;letzungen oder Krank&shy;heiten durch eine Ruhephase wieder regeneriert und Kräfte sammelt.\n\nZur Erholung im biologisch-medi&shy;zi&shy;nischen Sinne gehört also haupt&shy;säch&shy;lich der Schlaf, Ruhepausen (Ent&shy;span&shy;nung, Reflexion) und die Re&shy;kon&shy;va&shy;les&shy;zenz im eigentlichen Sinne."
         },
         "titleI18n": {
             "de": "Guter Schlaf"
@@ -8252,14 +8252,14 @@
             }
         ],
         "updated": {
-            "$date": 1399461798482
+            "$date": 1412087089991
         }
     },
     {
         "_id": {
             "$oid": "5278c6adcdeab69a250000a9"
         },
-        "__v": 3,
+        "__v": 4,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -8267,11 +8267,11 @@
             "$date": 1399462258980
         },
         "defaultduration": 60,
-        "defaultexecutiontype": "self",
+        "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "defaultvisibility": "private",
         "descriptionI18n": {
-            "de": "Plane dein Aufbautraining gemäss den Empfehlungen einer Fachspezialistin bzw. eines Fachspezialisten."
+            "de": "Plane dein Aufbautraining gemäss den Empfehlungen einer Fach&shy;spe&shy;zi&shy;a&shy;lis&shy;tin bzw. eines Fach&shy;spe&shy;zi&shy;a&shy;lis&shy;ten."
         },
         "number": "Act-166",
         "qualityFactor": 3,
@@ -8280,7 +8280,7 @@
         ],
         "source": "youpers",
         "textI18n": {
-            "de": "Beachte bei der Planung deines Auf&shy;bau&shy;trainings folgende Reihenfolge:\n\n1. Steigere die Häufigkeit\n2. Steigere die Dauer\n3. Erhöhe die Intensität\n\nFolgende Regeln sind zu beachten:\n\n* Wichtig ist die Belastungsdichte (das Verhältnis von Belastung und Erholung pro Übung)\n* Achte auf das richtige Verhältnis von Intensität und Belastungs&shy;umfang (pro Training)\n* Trainiere kontinuierlich\n* Trainiere nicht zu einseitig\n* Erkenne Leistungsstillstand / Übertraining"
+            "de": "Beachte bei der Planung deines Auf&shy;bau&shy;trainings folgende Reihen&shy;folge:\n\n1. Steigere die Häufigkeit\n2. Steigere die Dauer\n3. Erhöhe die Intensität\n\nFolgende Regeln sind zu beachten:\n\n* Wichtig ist die Belastungs&shy;dichte (das Verhältnis von Belastung und Erholung pro Übung)\n* Achte auf das richtige Ver&shy;hältnis von Intensität und Belastungs&shy;umfang (pro Training)\n* Trainiere kontinuierlich\n* Trainiere nicht zu einseitig\n* Erkenne Leistungsstillstand / Übertraining"
         },
         "titleI18n": {
             "de": "Aufbautraining"
@@ -8291,7 +8291,7 @@
             }
         ],
         "updated": {
-            "$date": 1409949303025
+            "$date": 1412087280392
         }
     },
     {
@@ -8349,7 +8349,7 @@
         "_id": {
             "$oid": "5278c6adcdeab69a250000ab"
         },
-        "__v": 6,
+        "__v": 7,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -8361,7 +8361,7 @@
         "defaultfrequency": "week",
         "defaultvisibility": "private",
         "descriptionI18n": {
-            "de": "Lass dich von einer gut aus&shy;ge&shy;bil&shy;det&shy;en Lehrperson in Yoga in&shy;stru&shy;ier&shy;en."
+            "de": "Lass dich von einer gut aus&shy;ge&shy;bil&shy;de&shy;ten Lehrperson in Yoga in&shy;stru&shy;ier&shy;en."
         },
         "number": "Act-168",
         "qualityFactor": 4,
@@ -8404,14 +8404,14 @@
             }
         ],
         "updated": {
-            "$date": 1412003143934
+            "$date": 1412087401953
         }
     },
     {
         "_id": {
             "$oid": "5278c6adcdeab69a250000ac"
         },
-        "__v": 2,
+        "__v": 3,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -8420,7 +8420,7 @@
         "defaultfrequency": "once",
         "defaultvisibility": "private",
         "descriptionI18n": {
-            "de": "Reduziere dein Stressempfinden durch eine gute, allgemeine Fitness und ein konkretes Fitnessziel und stelle dich im Kopf positiv darauf ein bzw. glaube und erinnere dich regelmässig daran, dass du schaffst, was du dir vornimmst."
+            "de": "Reduziere dein Stressempfinden durch eine gute, allgemeine Fit&shy;ness und ein konkretes Fitnessziel und stelle dich im Kopf positiv da&shy;rauf ein bzw. glaube und erinnere dich regelmässig daran, dass du schaffst, was du dir vornimmst."
         },
         "number": "Act-169",
         "qualityFactor": 3,
@@ -8429,7 +8429,7 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": "Dein Geist ist müde, doch dein Körper ist noch total unausgelastet?  \nDass sich sportliche Betätigung auch positiv auf die Laune auswirkt müssen wir dir ja nicht erst erklären.\n\nDurch intensive Trainings wird das Stress&shy;hormon Cortisol schneller abgebaut und gleichzeitig werden Wachstumshormone vermehrt ausgeschüttet. Weiter trägt die Reduktion von muskulären Verspannung&shy;en durch das Training zum allgemeinen Wohlbefinden bei."
+            "de": "Dein Geist ist müde, doch dein Körper ist noch total unausgelastet?  \nDass sich sportliche Betätigung auch positiv auf die Laune auswirkt müssen wir dir ja nicht erst erklären.\n\nDurch intensive Trainings wird das Stress&shy;hormon Cortisol schneller abgebaut und gleichzeitig werden Wachstumshormone vermehrt ausgeschüttet. Weiter trägt die Reduktion von muskulären Ver&shy;span&shy;nung&shy;en durch das Training zum allgemeinen Wohlbefinden bei."
         },
         "titleI18n": {
             "de": "Fitnessziel"
@@ -8443,14 +8443,14 @@
             "$date": 1409737359799
         },
         "updated": {
-            "$date": 1409737359799
+            "$date": 1412087529199
         }
     },
     {
         "_id": {
             "$oid": "5278c6adcdeab69a250000ad"
         },
-        "__v": 5,
+        "__v": 6,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -8471,7 +8471,7 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": "Eine ausgewogene Ernährung ist die Grundlage für einen gesunden Körper und reduziert die gesundheitlichen Folgen von chronischen Belastungen. Die richtige Auswahl der Lebensmittel macht widerstandsfähiger gegenüber Stress und bringt mehr Gelassenheit ins Leben.\n\nOb bestimmte Lebensmittel Stress direkt reduzieren, ist bisher wissenschaftlich nicht belegt. Dafür ist das Stressgesche&shy;hen zu vielschichtig und zu individuell.\n\nEine insgesamt ausgewogene Ernährung gleicht die stressbedingten Defizite an Mineralstoffen und Vitaminen aus. Sie stärkt die Stressresistenz und kann die Stimmung verbessern."
+            "de": "Eine ausgewogene Ernährung ist die Grundlage für einen gesunden Körper und reduziert die gesund&shy;heitlichen Folgen von chronischen Belastungen. Die richtige Auswahl der Lebensmittel macht wider&shy;stands&shy;fähiger gegenüber Stress und bringt mehr Gelassenheit ins Leben.\n\nOb bestimmte Lebensmittel Stress direkt reduzieren, ist bisher wissen&shy;schaftlich nicht belegt. Dafür ist das Stressgesche&shy;hen zu vielschichtig und zu individuell.\n\nEine insgesamt ausgewogene Er&shy;nährung gleicht die stress&shy;be&shy;ding&shy;ten Defizite an Mineralstoffen und Vi&shy;ta&shy;mi&shy;nen aus. Sie stärkt die Stress&shy;re&shy;si&shy;stenz und kann die Stimmung ver&shy;bes&shy;sern."
         },
         "titleI18n": {
             "de": "Ernährungsziel"
@@ -8482,7 +8482,7 @@
             }
         ],
         "updated": {
-            "$date": 1409743040829
+            "$date": 1412087681329
         }
     },
     {
@@ -8546,7 +8546,7 @@
         "_id": {
             "$oid": "5278c6adcdeab69a250000af"
         },
-        "__v": 2,
+        "__v": 3,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -8558,7 +8558,7 @@
         "defaultfrequency": "day",
         "defaultvisibility": "private",
         "descriptionI18n": {
-            "de": "Verbringe am Feierabend eine halbe Stun&shy;de weniger mit Fernsehen, Internet, etc. und nutze die zusätzliche Zeit bewusst für aktive Entspannung."
+            "de": "Verbringe am Feierabend eine hal&shy;be Stun&shy;de weniger mit Fern&shy;se&shy;hen, Internet, etc. und nutze die zusätz&shy;liche Zeit bewusst für aktive Ent&shy;span&shy;nung."
         },
         "number": "Act-172",
         "qualityFactor": 5,
@@ -8574,7 +8574,7 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": "Wir setzen uns oft vor die Flimmerkiste, wenn wir uns zu nichts anderem mehr aufraffen können und wenn wir keine Energie mehr für irgendetwas anderes haben. So verführt der Fernseher als Mittel zum Abschalten dazu, viel mehr fern zu sehen, als wir eigentlich wollen.\n\nDas Dumme daran ist vor allem, dass das Fernsehen unsere Energiereserven nicht wieder auflädt, wie andere erholsame Tätigkeiten. Und so können wir ein paar Stunden vor dem Fernseher sitzen und sind noch genauso geschafft wie vorher."
+            "de": "Wir setzen uns oft vor die Flimmer&shy;kiste, wenn wir uns zu nichts an&shy;derem mehr aufraffen können und wenn wir keine Energie mehr für irgendetwas anderes haben. So verführt der Fernseher als Mittel zum Abschalten dazu, viel mehr fern zu sehen, als wir eigentlich wollen.\n\nDas Dumme daran ist vor allem, dass das Fernsehen unsere Ener&shy;giereserven nicht wieder auflädt, wie andere erholsame Tätigkeiten. Und so können wir ein paar Stunden vor dem Fernseher sitzen und sind noch genauso geschafft wie vorher."
         },
         "titleI18n": {
             "de": "Entspannen statt fernsehen"
@@ -8585,7 +8585,7 @@
             }
         ],
         "updated": {
-            "$date": 1409743768970
+            "$date": 1412087849355
         }
     },
     {
@@ -8646,7 +8646,7 @@
         "_id": {
             "$oid": "5278c6adcdeab69a250000b1"
         },
-        "__v": 3,
+        "__v": 4,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -8658,7 +8658,7 @@
         "defaultfrequency": "week",
         "defaultvisibility": "private",
         "descriptionI18n": {
-            "de": "Plane und entscheide für kommende Woche bewusst, wofür du deine Energie und Zeit aufwenden möchtest und wofür nicht."
+            "de": "Plane und entscheide für kom&shy;men&shy;de Woche bewusst, wofür du deine Energie und Zeit aufwenden möch&shy;test und wofür nicht."
         },
         "number": "Act-174",
         "qualityFactor": 5,
@@ -8678,7 +8678,7 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": "Rationelle Arbeitstechniken helfen bei der Bewältigung der täglich zu erledigenden Aufgaben und Probleme. Durch eine wirk&shy;same Selbstorganisation kann die eigene Arbeitszeit erheblich besser genutzt werden.\n\nEine bewusste Zeitplanung kann von 1'000 Arbeitsstunden 200 einsparen.\n\nSo wird mehr Zeit für wichtige Aufgaben, eine grössere Arbeitszufriedenheit und mehr freie Zeit gewonnen."
+            "de": "Rationelle Arbeitstechniken helfen bei der Bewältigung der täglich zu erledigenden Aufgaben und Pro&shy;ble&shy;me. Durch eine wirk&shy;same Selbst&shy;or&shy;ga&shy;ni&shy;sa&shy;ti&shy;on kann die eigene Ar&shy;beits&shy;zeit erheblich besser genutzt wer&shy;den.\n\nEine bewusste Zeitplanung kann von 1'000 Arbeitsstunden 200 einsparen.\n\nSo wird mehr Zeit für wichtige Aufgaben, eine grössere Arbeits&shy;zufriedenheit und mehr freie Zeit gewonnen."
         },
         "titleI18n": {
             "de": "Bewusste Zeitplanung"
@@ -8689,14 +8689,14 @@
             }
         ],
         "updated": {
-            "$date": 1409744990255
+            "$date": 1412087981297
         }
     },
     {
         "_id": {
             "$oid": "5278c6adcdeab69a250000b2"
         },
-        "__v": 2,
+        "__v": 3,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -8708,7 +8708,7 @@
         "defaultfrequency": "once",
         "defaultvisibility": "private",
         "descriptionI18n": {
-            "de": "Hinterfrage in der Vergangenheit ge&shy;trof&shy;fene Aktivitäts-Entscheidungen mit dem Ziel, dir mehr Freiheit und Zeit für eine entspannende Lebensführung zu ver&shy;schaf&shy;fen (Selbstreflexion)."
+            "de": "Hinterfrage in der Vergangenheit ge&shy;trof&shy;fene Aktivitäts-Ent&shy;schei&shy;dung&shy;en mit dem Ziel, dir mehr Freiheit und Zeit für eine entspannende Lebensführung zu ver&shy;schaf&shy;fen (Selbstreflexion)."
         },
         "number": "Act-175",
         "qualityFactor": 5,
@@ -8743,14 +8743,14 @@
             }
         ],
         "updated": {
-            "$date": 1409747162009
+            "$date": 1412088031153
         }
     },
     {
         "_id": {
             "$oid": "5278c6adcdeab69a250000b3"
         },
-        "__v": 2,
+        "__v": 3,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -8794,7 +8794,7 @@
             }
         ],
         "updated": {
-            "$date": 1399464973144
+            "$date": 1412088085973
         }
     },
     {
@@ -8848,7 +8848,7 @@
         "_id": {
             "$oid": "5278c6adcdeab69a250000b5"
         },
-        "__v": 2,
+        "__v": 3,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -8877,7 +8877,7 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": "Der menschliche Körper ist zum Bewegen konstruiert. Stundenlanges Sitzen ist für den Rücken Schwerarbeit.\n\nDie Möglichkeiten, sich im Büro Bewegung zu verschaffen, sind begrenzt, doch es gibt sie!"
+            "de": "Der menschliche Körper ist zum Bewegen konstruiert. Stunden&shy;langes Sitzen ist für den Rücken Schwerarbeit.\n\nDie Möglichkeiten, sich im Büro Bewegung zu verschaffen, sind begrenzt, doch es gibt sie!"
         },
         "titleI18n": {
             "de": "Stehend telefonieren"
@@ -8888,14 +8888,14 @@
             }
         ],
         "updated": {
-            "$date": 1409747350155
+            "$date": 1412088122822
         }
     },
     {
         "_id": {
             "$oid": "5278c6adcdeab69a250000b6"
         },
-        "__v": 2,
+        "__v": 3,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -8925,7 +8925,7 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": "Ein Spaziergang ist ein wirkungsvolles Mittel, um Stress abzubauen. Schon ein Spaziergang von fünf Minuten kann einen wieder \"runterbringen\" – selbst wenn man nur zu Fuss von der Arbeit nach Hause geht oder durchs Quartier geht.\n\nWeitere Vorteile eines Spaziergangs:\n- der Kopf wird wieder frei\n- es entstehen neue Ideen\n- man kann sich herrlich entspannen\n- die Gedanken fliessen\n- man kann besser nachdenken\n- es hebt die Stimmung, wenn man mal einen schlechten Tag hat\n- es beruhigt, wenn man aufgewühlt ist"
+            "de": "Ein Spaziergang ist ein wirkungs&shy;volles Mittel, um Stress abzubauen. Schon ein Spaziergang von fünf Minuten kann einen wieder \"runter&shy;bringen\" – selbst wenn man nur zu Fuss von der Arbeit nach Hause geht oder durchs Quartier geht.\n\nWeitere Vorteile eines Spazier&shy;gangs:\n- der Kopf wird wieder frei\n- es entstehen neue Ideen\n- man kann sich herrlich entspannen\n- die Gedanken fliessen\n- man kann besser nachdenken\n- es hebt die Stimmung, wenn man mal einen schlechten Tag hat\n- es beruhigt, wenn man aufgewühlt ist"
         },
         "titleI18n": {
             "de": "Zündende Ideen"
@@ -8936,7 +8936,7 @@
             }
         ],
         "updated": {
-            "$date": 1409748614052
+            "$date": 1412088193607
         }
     },
     {
@@ -9028,7 +9028,7 @@
         "_id": {
             "$oid": "5278c6aecdeab69a250000b9"
         },
-        "__v": 5,
+        "__v": 6,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -9040,7 +9040,7 @@
         "defaultfrequency": "once",
         "defaultvisibility": "private",
         "descriptionI18n": {
-            "de": "Nimm bei persönlichen Problemen, wenn nötig, eine Kurzzeitberatung durch eine Fachperson in Anspruch."
+            "de": "Nimm bei persönlichen Problemen, wenn nötig, eine Kurzzeitberatung durch eine Fachperson in An&shy;spruch."
         },
         "number": "Act-182",
         "qualityFactor": 5,
@@ -9064,7 +9064,7 @@
             }
         ],
         "updated": {
-            "$date": 1412004401889
+            "$date": 1412088266209
         }
     },
     {
@@ -9165,7 +9165,7 @@
         "_id": {
             "$oid": "5278c6aecdeab69a250000bc"
         },
-        "__v": 4,
+        "__v": 5,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -9177,7 +9177,7 @@
         "defaultfrequency": "week",
         "defaultvisibility": "private",
         "descriptionI18n": {
-            "de": "Mache am Freitagnachmittag bewusst etwas früher Feierabend und unternimm als Übergang ins Wochenende etwas Entspannendes mit deinen Ar&shy;beits&shy;kol&shy;le&shy;ginnen bzw. Arbeitskollegen."
+            "de": "Mache am Freitagnachmittag be&shy;wusst etwas früher Feierabend und unternimm als Übergang ins Wo&shy;chenende etwas Entspannendes mit deinen Ar&shy;beits&shy;kol&shy;le&shy;ginnen bzw. Arbeitskollegen."
         },
         "number": "Act-185",
         "qualityFactor": 4,
@@ -9209,14 +9209,14 @@
             }
         ],
         "updated": {
-            "$date": 1409750499681
+            "$date": 1412088377599
         }
     },
     {
         "_id": {
             "$oid": "5278c6aecdeab69a250000bd"
         },
-        "__v": 3,
+        "__v": 4,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -9228,7 +9228,7 @@
         "defaultfrequency": "day",
         "defaultvisibility": "private",
         "descriptionI18n": {
-            "de": "Regeneriere dich täglich 10 Minuten aktiv, indem du bewusst ruhig und tief atmest."
+            "de": "Regeneriere dich täglich 10 Mi&shy;nu&shy;ten aktiv, indem du bewusst ruhig und tief atmest."
         },
         "number": "Act-186",
         "qualityFactor": 5,
@@ -9255,7 +9255,7 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": "Atme tief ein und wieder ruhig aus! Das stimuliert den Parasympathikus (Anteil des autonomen Nervensystems, der für Regeneration sorgt)!\n\nDie Atmung spielt bei der Stress&shy;be&shy;wäl&shy;ti&shy;gung eine zentrale Rolle. Um ruhiger zu werden, sollst du lernen, richtig zu at&shy;men und den Herz&shy;rhythmus mit der Atmung zu koppeln.\n\nOb du dies durch Meditation, Autogenes Training, Yoga oder leichten Dauerlauf erreichst, ist nicht so wichtig: Hauptsache ist, du tust es und atmest bewusst!"
+            "de": "Atme tief ein und wieder ruhig aus! Das stimuliert den Parasympathikus (Anteil des autonomen Nerven&shy;sys&shy;tems, der für Regeneration sorgt)!\n\nDie Atmung spielt bei der Stress&shy;be&shy;wäl&shy;ti&shy;gung eine zentrale Rolle. Um ruhiger zu werden, sollst du lernen, richtig zu at&shy;men und den Herz&shy;rhyth&shy;mus mit der Atmung zu koppeln.\n\nOb du dies durch Meditation, Autogenes Training, Yoga oder leichten Dauerlauf erreichst, ist nicht so wichtig: Hauptsache ist, du tust es und atmest bewusst!"
         },
         "titleI18n": {
             "de": "Bewusstes Atmen"
@@ -9266,14 +9266,14 @@
             }
         ],
         "updated": {
-            "$date": 1409951919837
+            "$date": 1412088475270
         }
     },
     {
         "_id": {
             "$oid": "5278c6aecdeab69a250000be"
         },
-        "__v": 4,
+        "__v": 5,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -9320,7 +9320,7 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": "Herr Dr. Jürg Kuoni (Interview im Tages&shy;anzeiger von 29.10.2013) misst mit seinem Team (Firma Heartcheck.ch) während 24 Stunden die Schwan&shy;kungen des Pulses (bzw. die Herz-Rhythmus-Flexibilität) mittels zweier Elektroden, um mög&shy;lichst viel über das Stressniveau des Patienten zu erfahren."
+            "de": "Herr Dr. Jürg Kuoni (Interview im Tages&shy;anzeiger von 29.10.2013) misst mit seinem Team (Firma Heartcheck.ch) während 24 Stunden die Schwan&shy;kungen des Pulses (bzw. die Herz-Rhythmus-Flexi&shy;bi&shy;li&shy;tät) mittels zweier Elektroden, um mög&shy;lichst viel über das Stressniveau des Patienten zu erfahren."
         },
         "titleI18n": {
             "de": "Messung Stresslevel"
@@ -9331,7 +9331,7 @@
             }
         ],
         "updated": {
-            "$date": 1400751812338
+            "$date": 1412088525492
         }
     },
     {
@@ -9397,7 +9397,7 @@
         "_id": {
             "$oid": "5288a4e54f6d560d0e001107"
         },
-        "__v": 3,
+        "__v": 4,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -9434,7 +9434,7 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": "*\"Wer mit den eigenen Händen etwas schafft, bekommt einen riesigen Selbst&shy;bewusstseinsboost. Dieser Trend ist die zwangsläufige Gegenentwicklung zur Konsumgesellschaft\"*, erklärt die Buchautorin Susanne Klingner aus München.\n\nBeim Selbermachen kann man sich ausleben, verwirklichen und wunderbar entspannen.\n\n*\"Wenn ich am Ende ein fertiges Bild, einen Kissenbezug oder einen Filzeierbecher in den Händen halte, und ich mich komplett auf eine Sache konzentriere, macht mich das glücklich.\"*"
+            "de": "*\"Wer mit den eigenen Händen etwas schafft, bekommt einen riesigen Selbst&shy;bewusstseinsboost. Dieser Trend ist die zwangsläufige Gegen&shy;entwicklung zur Konsum&shy;ge&shy;sell&shy;schaft\"*, erklärt die Buchautorin Susanne Klingner aus München.\n\nBeim Selbermachen kann man sich ausleben, verwirklichen und wunder&shy;bar entspannen.\n\n*\"Wenn ich am Ende ein fertiges Bild, einen Kissenbezug oder einen Filzeierbecher in den Händen halte, und ich mich komplett auf eine Sache konzentriere, macht mich das glücklich.\"*"
         },
         "titleI18n": {
             "de": "Handarbeit"
@@ -9445,14 +9445,14 @@
             }
         ],
         "updated": {
-            "$date": 1409750882663
+            "$date": 1412088609773
         }
     },
     {
         "_id": {
             "$oid": "529f23b3e6d37b8808000973"
         },
-        "__v": 2,
+        "__v": 3,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -9464,7 +9464,7 @@
         "defaultfrequency": "day",
         "defaultvisibility": "private",
         "descriptionI18n": {
-            "de": "Erledige die unangenehmste Aufgabe gleich zu Beginn deiner täglichen Arbeit und belohne dich anschliessend dafür, z.B. mit einer bewussten Pause!"
+            "de": "Erledige die unangenehmste Auf&shy;gabe gleich zu Beginn deiner täg&shy;lichen Arbeit und belohne dich an&shy;schliessend dafür, z.B. mit einer bewussten Pause!"
         },
         "number": "Act-195",
         "qualityFactor": 6,
@@ -9492,14 +9492,14 @@
             }
         ],
         "updated": {
-            "$date": 1399471849771
+            "$date": 1412088921019
         }
     },
     {
         "_id": {
             "$oid": "529f27d5e6d37b88080009e0"
         },
-        "__v": 2,
+        "__v": 3,
         "author": {
             "$oid": "525fb247101e330000000008"
         },
@@ -9511,7 +9511,7 @@
         "defaultfrequency": "day",
         "defaultvisibility": "private",
         "descriptionI18n": {
-            "de": "Arbeite deine täglichen Aufgaben so ab, als wären sie Perlen an einer Kette, und richte deine Konzentration ausschliesslich auf die aktuelle „Perle“."
+            "de": "Arbeite deine täglichen Aufgaben so ab, als wären sie Perlen an einer Kette, und richte deine Kon&shy;zentration ausschliesslich auf die aktuelle „Perle“."
         },
         "number": "Act-190",
         "qualityFactor": 5,
@@ -9525,7 +9525,7 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": "Mithilfe dieser Methode kommst du bei deiner Arbeit schneller voran und der Stress nimmt ab.\n\nGestresst fühlt man sich, wenn die Ge&shy;dan&shy;ken immer um das kreisen, was noch alles zu erledigen ist. Bleibe deshalb mit deinen Gedanken bei der Aufgabe, die du **JETZT** gerade bearbeitest."
+            "de": "Mithilfe dieser Methode kommst du bei deiner Arbeit schneller voran und der Stress nimmt ab.\n\nGestresst fühlt man sich, wenn die Ge&shy;dan&shy;ken immer um das kreisen, was noch alles zu erledigen ist. Bleibe deshalb mit deinen Ge&shy;dan&shy;ken bei der Aufgabe, die du **JETZT** gerade bearbeitest."
         },
         "titleI18n": {
             "de": "Perlenkette"
@@ -9536,14 +9536,14 @@
             }
         ],
         "updated": {
-            "$date": 1399471394022
+            "$date": 1412088731431
         }
     },
     {
         "_id": {
             "$oid": "529f2ab8e6d37b8808000a17"
         },
-        "__v": 2,
+        "__v": 3,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -9572,7 +9572,7 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": "Tipp: Lösche bearbeitete Emails oder verschiebe diese Emails in einen gut strukturierten Archivordner! Verschiebe aber nur solche Emails, von denen du überzeugt bist, dass du sie nicht noch einmal brauchen könntest.\n\nUnd die vielen Emails, die nicht wichtig, aber doch irgendwie interessant sind (z.B. Newsletter, die du abonniert hast)? Lies das Wichtigste und lösche den Rest. **Radikal!**\n\nNimm dir ein paar Stunden Zeit und ent&shy;rümple dein Postfach. Du wirst sehen, das Aufräumen wirkt befreiend, und du kannst dich wieder mit mehr Schwung an die Arbeit machen."
+            "de": "Tipp: Lösche bearbeitete Emails oder verschiebe diese Emails in einen gut strukturierten Archiv&shy;ord&shy;ner! Verschiebe aber nur solche Emails, von denen du überzeugt bist, dass du sie nicht noch einmal brauchen könntest.\n\nUnd die vielen Emails, die nicht wichtig, aber doch irgendwie in&shy;te&shy;res&shy;sant sind (z.B. Newsletter, die du abonniert hast)? Lies das Wichtigste und lösche den Rest. **Radikal!**\n\nNimm dir ein paar Stunden Zeit und ent&shy;rümple dein Postfach. Du wirst sehen, das Aufräumen wirkt be&shy;frei&shy;end, und du kannst dich wieder mit mehr Schwung an die Arbeit machen."
         },
         "titleI18n": {
             "de": "Entrümpeln"
@@ -9583,7 +9583,7 @@
             }
         ],
         "updated": {
-            "$date": 1409752034370
+            "$date": 1412088805657
         }
     },
     {
@@ -9876,7 +9876,7 @@
         "_id": {
             "$oid": "5332a2080f9b32255d248961"
         },
-        "__v": 9,
+        "__v": 10,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -9888,7 +9888,7 @@
         "defaultfrequency": "day",
         "defaultvisibility": "private",
         "descriptionI18n": {
-            "de": "Plane in deinen Tagesablauf Rituale ein, um mehr Zeit und Entspannung für dich zu haben (z.B. Morgenritual mit Ruhe, Kaffee und Lesen, Abendritual mit Bewegung, Meditation und Abendlektüre)."
+            "de": "Plane in deinen Tagesablauf Ri&shy;tu&shy;ale ein, um mehr Zeit und Ent&shy;span&shy;nung für dich zu haben (z.B. Mor&shy;gen&shy;ritual mit Ruhe, Kaffee und Lesen; Abendritual mit Bewegung, Meditation und Abendlektüre)."
         },
         "number": "Act-196",
         "qualityFactor": 6,
@@ -9905,7 +9905,7 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": "Ein **Ritual** ist eine nach vorgegebenen Regeln ablaufende Handlung. Sie wird häufig von bestimmten Wortformeln und Gesten begleitet und kann re&shy;li&shy;giöser oder weltlicher Art sein (z. B. Got&shy;tesdienst, Begrüssung, Familien&shy;zu&shy;sam&shy;menkünfte).\n\nIndem Rituale auf vorgefertigte Hand&shy;lungs&shy;abläufe und bekannte Symbole zurück&shy;grei&shy;fen, vermitteln sie **Halt** und **Orientierung**. Rituale erleichtern den **Umgang mit Stress**, das Treffen von Entscheidungen und das Leben in einer hektischen Welt. \n\nZeitlicher und sozialer Rhythmus:\n\n* zyklisch (z.B. täglich)\n* lebenszyklisch (z.B. Geburt)\n* ereignisbezogen (z.B. Krankheit)"
+            "de": "Ein **Ritual** ist eine nach vor&shy;ge&shy;ge&shy;be&shy;nen Regeln ablaufende Handlung. Sie wird häufig von bestimmten Wortformeln und Gesten begleitet und kann re&shy;li&shy;giöser oder weltlicher Art sein (z. B. Got&shy;tesdienst, Be&shy;grüs&shy;sung, Familien&shy;zu&shy;sam&shy;menkünfte).\n\nIndem Rituale auf vorgefertigte Hand&shy;lungs&shy;abläufe und bekannte Symbole zurück&shy;grei&shy;fen, vermitteln sie **Halt** und **Orientierung**. Rituale erleichtern den **Umgang mit Stress**, das Treffen von Entscheidungen und das Leben in einer hektischen Welt. \n\nZeitlicher und sozialer Rhythmus:\n\n* zyklisch (z.B. täglich)\n* lebenszyklisch (z.B. Geburt)\n* ereignisbezogen (z.B. Krankheit)"
         },
         "titleI18n": {
             "de": "Rituale"
@@ -9916,14 +9916,14 @@
             }
         ],
         "updated": {
-            "$date": 1409952459504
+            "$date": 1412089166734
         }
     },
     {
         "_id": {
             "$oid": "5332a3290f9b32255d24897d"
         },
-        "__v": 5,
+        "__v": 6,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -9935,7 +9935,7 @@
         "defaultfrequency": "day",
         "defaultvisibility": "private",
         "descriptionI18n": {
-            "de": "Verarbeite deinen Arbeitstag, indem du auf dem Arbeitsweg in Ruhe darüber nachdenkst (Selbstreflexion)."
+            "de": "Verarbeite deinen Arbeitstag, in&shy;dem du auf dem Arbeitsweg in Ruhe darüber nachdenkst (Selbstreflexion)."
         },
         "number": "Act-197",
         "qualityFactor": 5,
@@ -9961,7 +9961,7 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": "Der Arbeitstag bestand aus lauter hek&shy;tischen Meetings, dann sasst du noch bis 20 Uhr am Schreibtisch und morgen musst du schon um 7 Uhr wieder raus, weil eine Geschäftsreise ansteht.\n\nWer in so einer Situation versucht, um 22 Uhr ins Bett zu gehen, wird sich wahr&shy;scheinlich nur unruhig hin- und herwälzen. Grund: Körper und Gehirn hatten einfach noch keine Möglichkeit, runterzufahren."
+            "de": "Der Arbeitstag bestand aus lauter hek&shy;tischen Meetings, dann sasst du noch bis 20 Uhr am Schreibtisch und morgen musst du schon um 7 Uhr wieder raus, weil eine Geschäfts&shy;reise ansteht.\n\nWer in so einer Situation versucht, um 22 Uhr ins Bett zu gehen, wird sich wahr&shy;scheinlich nur unruhig hin- und herwälzen. Grund: Körper und Gehirn hatten einfach noch keine Möglichkeit, runterzufahren."
         },
         "titleI18n": {
             "de": "Selbstreflexion Arbeitstag"
@@ -9972,14 +9972,14 @@
             }
         ],
         "updated": {
-            "$date": 1409754096564
+            "$date": 1412089245617
         }
     },
     {
         "_id": {
             "$oid": "5332a3c90f9b32255d2489b4"
         },
-        "__v": 4,
+        "__v": 5,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -10006,7 +10006,7 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": "Unser Berufsleben verändert sich mit zunehmendem Tempo. Es macht deshalb Sinn, sich rechtzeitig diesen Entwicklungen anzupassen. Dies, damit du vorzeitig agieren kannst und nicht zu einem un&shy;passenden Zeitpunkt reagieren musst.\n\nEs geht dabei nicht darum, ob du mit deiner aktuellen beruflichen Situation zufrieden oder unzufrieden bist, sondern darum, dass auch auf dich Veränderungen zukommen könnten, ob du diese willst oder nicht!\n\nÜberprüfe deine berufliche Weiterent&shy;wicklung jetzt, damit du deine berufliche Zukunft selber bestimmen kannst."
+            "de": "Unser Berufsleben verändert sich mit zunehmendem Tempo. Es macht deshalb Sinn, sich rechtzeitig diesen Entwicklungen anzupassen. Dies, damit du vorzeitig agieren kannst und nicht zu einem un&shy;pas&shy;senden Zeitpunkt reagieren musst.\n\nEs geht dabei nicht darum, ob du mit deiner aktuellen beruflichen Si&shy;tuation zufrieden oder unzufrieden bist, sondern darum, dass auch auf dich Veränderungen zukommen könnten, ob du diese willst oder nicht!\n\nÜberprüfe deine berufliche Weiterent&shy;wicklung jetzt, damit du deine berufliche Zukunft selber bestimmen kannst."
         },
         "titleI18n": {
             "de": "Karriereplanung"
@@ -10017,7 +10017,7 @@
             }
         ],
         "updated": {
-            "$date": 1409753331173
+            "$date": 1412089330002
         }
     },
     {
@@ -14022,6 +14022,1412 @@
         "topics": [
             {
                 "$oid": "53b416cfa43aac62a2debda1"
+            }
+        ],
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "542bff5a83943182316d7a9a"
+        },
+        "created": {
+            "$date": 1412169562480
+        },
+        "updated": {
+            "$date": 1412169562480
+        },
+        "number": "Act-109",
+        "source": "campaign",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "group",
+        "defaultduration": 60,
+        "campaign": {
+            "$oid": "542bfb2c83943182316d7a99"
+        },
+        "qualityFactor": 1,
+        "author": {
+            "$oid": "542bee4783943182316d7a92"
+        },
+        "textI18n": {
+            "de": "Ausführliche Beschreibung meiner Testidee."
+        },
+        "descriptionI18n": {
+            "de": "Kurzbeschreibung meiner Testidee"
+        },
+        "titleI18n": {
+            "de": "Testidee"
+        },
+        "topics": [
+            {
+                "$oid": "53b416cfa43aac62a2debda1"
+            }
+        ],
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "543255a183943182316d7b7b"
+        },
+        "created": {
+            "$date": 1412584865149
+        },
+        "updated": {
+            "$date": 1412584891868
+        },
+        "number": "Act-278",
+        "source": "community",
+        "defaultfrequency": "day",
+        "defaultexecutiontype": "self",
+        "defaultduration": 60,
+        "recWeights": [],
+        "qualityFactor": 1,
+        "author": {
+            "$oid": "52d4f515fac246174c000006"
+        },
+        "textI18n": {
+            "de": "Das Erkennen einer Gefährdung/eines Risikos ist die unbedingte Voraussetzung dafür, dass man sich überhaupt Gedanken macht über die Folgen des Verhaltens für die eigene Sicherheit. Der Mensch fühlt sich nur dann gefährdet, wenn er es für wahrscheinlich hält, dass etwas für ihn wirklich Schwerwiegendes passieren kann. Er wiegt sich häufig in falscher Sicherheit und sieht deshalb auch keinen Anlass, sich zu schützen."
+        },
+        "descriptionI18n": {
+            "de": "Halte am Feierabend kurz inne, und überlege dir, welchen Gefahren du heute durch dein vorausschauendes Verhalten aus dem Weg gegangen bist."
+        },
+        "titleI18n": {
+            "de": "Vorausschauendes Verhalten"
+        },
+        "topics": [
+            {
+                "$oid": "53b416fba43aac62a2debda5"
+            }
+        ],
+        "__v": 1
+    },
+    {
+        "_id": {
+            "$oid": "5432561383943182316d7b7f"
+        },
+        "created": {
+            "$date": 1412584979636
+        },
+        "updated": {
+            "$date": 1412584979636
+        },
+        "number": "Act-279",
+        "source": "community",
+        "defaultfrequency": "week",
+        "defaultexecutiontype": "group",
+        "defaultduration": 60,
+        "recWeights": [],
+        "qualityFactor": 1,
+        "author": {
+            "$oid": "52d4f515fac246174c000006"
+        },
+        "textI18n": {
+            "de": "Das Erkennen einer Gefährdung/eines Risikos ist die unbedingte Voraussetzung dafür, dass man sich überhaupt Gedanken macht über die Folgen des Verhaltens für die eigene Sicherheit. Der Mensch fühlt sich nur dann gefährdet, wenn er es für wahrscheinlich hält, dass etwas für ihn wirklich Schwerwiegendes passieren kann. Er wiegt sich häufig in falscher Sicherheit und sieht deshalb auch keinen Anlass, sich zu schützen."
+        },
+        "descriptionI18n": {
+            "de": "Motiviere einmal pro Woche einen Kollegen zu sicherheitsgerechtem Verhalten und belohne ihn bei korrekter und sicherer Ausführung."
+        },
+        "titleI18n": {
+            "de": "Motivierte Kollegen"
+        },
+        "topics": [
+            {
+                "$oid": "53b416fba43aac62a2debda5"
+            }
+        ],
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "543257c283943182316d7b80"
+        },
+        "created": {
+            "$date": 1412585410467
+        },
+        "updated": {
+            "$date": 1412585410467
+        },
+        "number": "Act-280",
+        "source": "community",
+        "defaultfrequency": "day",
+        "defaultexecutiontype": "group",
+        "defaultduration": 60,
+        "recWeights": [],
+        "qualityFactor": 1,
+        "author": {
+            "$oid": "52d4f515fac246174c000006"
+        },
+        "textI18n": {
+            "de": "Verminderte Leistungsfähigkeit von Sinnesorganen, wie Farbenblindheit oder Schwerhörigkeit, Beeinträchti&shy;gungen durch den Konsum von berauschenden Substanzen und Medikamenten, aber auch Ermüdung und Monotonie können die Wahr&shy;neh&shy;mung von Gefahren einschränken."
+        },
+        "descriptionI18n": {
+            "de": "Mache bei verminderter Leistungs&shy;fähigkeit von Sinnesorganen wie Farbenblindheit oder Schwer&shy;hörig&shy;keit  regelmässige Pausen und trinke etwas oder iss eine Frucht, um deine Kon&shy;zen&shy;trationsfähigkeit wieder zu erhöhen."
+        },
+        "titleI18n": {
+            "de": "Verbesserte Wahrnehmungsfähigkeit"
+        },
+        "topics": [
+            {
+                "$oid": "53b416fba43aac62a2debda5"
+            }
+        ],
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "5432584e83943182316d7b81"
+        },
+        "created": {
+            "$date": 1412585550403
+        },
+        "updated": {
+            "$date": 1412585550403
+        },
+        "number": "Act-281",
+        "source": "community",
+        "defaultfrequency": "day",
+        "defaultexecutiontype": "self",
+        "defaultduration": 60,
+        "recWeights": [],
+        "qualityFactor": 1,
+        "author": {
+            "$oid": "52d4f515fac246174c000006"
+        },
+        "textI18n": {
+            "de": "Wir meinen, dass wir alles sehen und hören, wenn wir aufmerksam sind. Das ist leider ein weit verbreiteter Irrtum. Wir können nicht alles wahrnehmen, auch wenn wir sehr aufmerksam sind. Wir treffen zwangsläufig und unmerklich eine Auswahl. Wissen, Erfahrung, aber auch Interesse und Emotionen beeinflussen die Ausrichtung und Auswahl unserer Wahrnehmung:\n\n– Auffallendes, Passendes, Ewünschtes wird eher gesehen, stärker gewichtet und manchmal erfunden\n\n– Unauffälliges, Unerwünschtes, Fehlendes wird leicht übersehen"
+        },
+        "descriptionI18n": {
+            "de": "Mache täglich eine kurze Pause (nur 5 Minuten) und achte ganz bewusst auf das, was deine Sinnesorgane wahrnehmen (Augen, Nase, Ohren, Mund und Haut)."
+        },
+        "titleI18n": {
+            "de": "Beachte Sinnesorgane"
+        },
+        "topics": [
+            {
+                "$oid": "53b416fba43aac62a2debda5"
+            }
+        ],
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "543258eb83943182316d7b82"
+        },
+        "created": {
+            "$date": 1412585707608
+        },
+        "updated": {
+            "$date": 1412585707608
+        },
+        "number": "Act-282",
+        "source": "community",
+        "defaultfrequency": "day",
+        "defaultexecutiontype": "self",
+        "defaultduration": 60,
+        "recWeights": [],
+        "qualityFactor": 1,
+        "author": {
+            "$oid": "52d4f515fac246174c000006"
+        },
+        "textI18n": {
+            "de": "Untersuchungen über das Urteils&shy;ver&shy;halten von Menschen in Gruppen haben gezeigt, dass der Einzelne dazu tendiert, seine richtige Einschätzung derjenigen der Gruppenmehrheit anzupassen, auch wenn diese falsch ist.\n\nDas Wissen um diesen *\"Gruppen&shy;druck\"* kann uns helfen, nicht blind der Gruppenmeinung zu vertrauen."
+        },
+        "descriptionI18n": {
+            "de": "Vertraue auf deine persönliche Einschätzung der Gefahren für anstehende, gefährliche Aufgaben, anstatt blind der Gruppenmeinung zu vertrauen."
+        },
+        "titleI18n": {
+            "de": "Blindes Vertrauen"
+        },
+        "topics": [
+            {
+                "$oid": "53b416fba43aac62a2debda5"
+            }
+        ],
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "54325a595e5d468031039976"
+        },
+        "created": {
+            "$date": 1412586073614
+        },
+        "updated": {
+            "$date": 1412586073614
+        },
+        "number": "Act-283",
+        "source": "community",
+        "defaultfrequency": "day",
+        "defaultexecutiontype": "self",
+        "defaultduration": 60,
+        "recWeights": [],
+        "qualityFactor": 1,
+        "author": {
+            "$oid": "52d4f515fac246174c000006"
+        },
+        "textI18n": {
+            "de": "Normalerweise werden wir durch Erfahrung klug. Beim sicherheitsgerechten Verhalten trifft diese Aussage oft nicht zu, weil Unfälle sehr seltene Ereignisse sind. In 99 von 100 Fällen kann sich der Mensch sicherheitswidrig verhalten, ohne zu verunfallen. Das Ausbleiben des Schadens wird dann häufig fälschlicherweise der eigenen Kompetenz im Umgang mit der Gefahr zugeschrieben. Diese Erfahrung führt zur Illusion, die Gefahr kontrollieren zu können, und verstärkt das sicherheitswidrige Verhalten.\nDer Mensch neigt dazu, die Wahrscheinlichkeit, dass ein Unglück ihn persönlich treffen könnte (z. B. Raucher: Erkrankung an Lungenkrebs), für geringer zu halten, als es gemäss objektiver Statistik tatsächlich ist. Je grösser das potenzielle Schadenausmass ist, desto stärker ausgeprägt ist dieser optimistische Fehlschluss."
+        },
+        "descriptionI18n": {
+            "de": "Mache dir täglich bewusst, dass es unmöglich ist, Gefahren zu kon&shy;trol&shy;lie&shy;ren und dass man nur mit sicher&shy;heitsgerechtem Verhalten die Unfallrisiken oder \"Stolperfallen\" minimieren kann."
+        },
+        "titleI18n": {
+            "de": "Keine Illusion"
+        },
+        "topics": [
+            {
+                "$oid": "53b416fba43aac62a2debda5"
+            }
+        ],
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "54325aac83943182316d7b83"
+        },
+        "created": {
+            "$date": 1412586156943
+        },
+        "updated": {
+            "$date": 1412586156943
+        },
+        "number": "Act-284",
+        "source": "community",
+        "defaultfrequency": "week",
+        "defaultexecutiontype": "group",
+        "defaultduration": 60,
+        "recWeights": [],
+        "qualityFactor": 1,
+        "author": {
+            "$oid": "52d4f515fac246174c000006"
+        },
+        "textI18n": {
+            "de": "Die Distanz von der Tischkante bis zu einem Hindernis oder einem Durchgang sollte mindestens einen Meter betragen.\n\nDa Taschen und Mappen häufig neben dem Arbeitsplatz abgestellt werden, können diese bei engen Verkehrswegen zu gefährlichen Stolperfallen werden."
+        },
+        "descriptionI18n": {
+            "de": "Sorge für genügend Bewegungsraum beim Arbeitsplatz, indem du z.B. Taschen und Mappen in Regale oder Schränke räumst."
+        },
+        "titleI18n": {
+            "de": "Mehr Bewegungsraum"
+        },
+        "topics": [
+            {
+                "$oid": "53b416fba43aac62a2debda5"
+            }
+        ],
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "54325b2c83943182316d7b84"
+        },
+        "created": {
+            "$date": 1412586284157
+        },
+        "updated": {
+            "$date": 1412586284157
+        },
+        "number": "Act-285",
+        "source": "community",
+        "defaultfrequency": "week",
+        "defaultexecutiontype": "group",
+        "defaultduration": 60,
+        "recWeights": [],
+        "qualityFactor": 1,
+        "author": {
+            "$oid": "52d4f515fac246174c000006"
+        },
+        "textI18n": {
+            "de": "Der Zugang zu einem Arbeitsplatz sollte mindestens 80 Zentimeter breit sein. Mit noch mehr Raum sorgst du zusätzlich für Sicherheit.\n\nHauptdurchgangswege sollten noch breiter angelegt werden. Die Breite sollte mindestens 1.2 Meter betragen.\nAus Sicherheitsgründen sollten diese Verkehrswege immer frei und sauber gehalten werden, da sie im Notfall zu Fluchtwegen werden.\n\nInsbesondere sollte auf Treppen kein Material abgestellt und deponiert werden."
+        },
+        "descriptionI18n": {
+            "de": "Mache regelmässig (z.B. jeden Frei&shy;tag) eine Aufräumaktion, indem du die Verkehrswege in deiner Arbeits&shy;umgebung sauber machst, so dass kein Material deponiert oder gelagert ist."
+        },
+        "titleI18n": {
+            "de": "Aufräumaktion"
+        },
+        "topics": [
+            {
+                "$oid": "53b416fba43aac62a2debda5"
+            }
+        ],
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "54325c6283943182316d7b85"
+        },
+        "created": {
+            "$date": 1412586594765
+        },
+        "updated": {
+            "$date": 1412586594765
+        },
+        "number": "Act-286",
+        "source": "community",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "self",
+        "defaultduration": 60,
+        "recWeights": [],
+        "qualityFactor": 1,
+        "author": {
+            "$oid": "52d4f515fac246174c000006"
+        },
+        "textI18n": {
+            "de": "Halte Verkehrswege und insbesondere Fluchtwege konsequent frei! Fluchtwege sind keine Lager- oder Abstellplätze! Türen müssen jederzeit ungehindert und ohne Hilfsmittel in Fluchtrichtung öffnen lassen. Im Notfall – zum Beispiel bei einem Brand – ist das Übereben aller Mitarbeitenden im Gebäude davon abhängig, wie sicher und schnell die Flucht aus dem Gebäude gelingt. Notausgänge sollten nicht verriegelt sein."
+        },
+        "descriptionI18n": {
+            "de": "Sprich mit deiner bzw. deinem Vorgesetzten über deine Sicherheitsbedenken bzgl. der ständig blockierten und immer verstopften Fluchtwege."
+        },
+        "titleI18n": {
+            "de": "Verstopfte Fluchtwege"
+        },
+        "topics": [
+            {
+                "$oid": "53b416fba43aac62a2debda5"
+            }
+        ],
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "54325ce65e5d468031039977"
+        },
+        "created": {
+            "$date": 1412586726940
+        },
+        "updated": {
+            "$date": 1412586726940
+        },
+        "number": "Act-287",
+        "source": "community",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "self",
+        "defaultduration": 60,
+        "recWeights": [],
+        "qualityFactor": 1,
+        "author": {
+            "$oid": "52d4f515fac246174c000006"
+        },
+        "textI18n": {
+            "de": "Glastüren machen Räume zwar hell und freundlich. Oft kommt es aber vor, dass die Glastüre nicht wahrgenommen wird. Die Folgen können sehr schmerzhaft sein und es können Kopf- und Schnittverletzungen durch Hineinlaufen in Glastüren entstehen. \n\nMarkiere deshalb Glastüren mit Bändern, Streifen, Symbolen oder Querbalken."
+        },
+        "descriptionI18n": {
+            "de": "Sprich mit deiner bzw. deinem Vorgesetzten über deine Sicherheitsbedenken bzgl. fehlender Markierung der Glastüren durch Bänder, Streifen, Symbole oder Querstreifen."
+        },
+        "titleI18n": {
+            "de": "Markierung der Glastüren"
+        },
+        "topics": [
+            {
+                "$oid": "53b416fba43aac62a2debda5"
+            }
+        ],
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "54325d5c5e5d468031039978"
+        },
+        "created": {
+            "$date": 1412586844558
+        },
+        "updated": {
+            "$date": 1412586844558
+        },
+        "number": "Act-288",
+        "source": "community",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "self",
+        "defaultduration": 60,
+        "recWeights": [],
+        "qualityFactor": 1,
+        "author": {
+            "$oid": "52d4f515fac246174c000006"
+        },
+        "textI18n": {
+            "de": "Sorge mit rutschhemmenden Belägen und Rutschprofil für einen sicheren Halt – das ist besonders wichtig bei Treppen im Eingangsbereich, wo Nässe und Schmutz die Rutschgefahr stark erhöhen."
+        },
+        "descriptionI18n": {
+            "de": "Sprich mit deiner bzw. deinem Vorgesetzten über deine Sicherheitsbedenken bzgl. der Gefährdung auf Treppen durch fehlende rutschhemmende Beläge und Rutschprofil."
+        },
+        "titleI18n": {
+            "de": "Rutschfeste Treppen"
+        },
+        "topics": [
+            {
+                "$oid": "53b416fba43aac62a2debda5"
+            }
+        ],
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "54325d9083943182316d7b86"
+        },
+        "created": {
+            "$date": 1412586896397
+        },
+        "updated": {
+            "$date": 1412586896397
+        },
+        "number": "Act-289",
+        "source": "community",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "self",
+        "defaultduration": 60,
+        "recWeights": [],
+        "qualityFactor": 1,
+        "author": {
+            "$oid": "52d4f515fac246174c000006"
+        },
+        "textI18n": {
+            "de": "Mit rutschfesten Bodenbelägen sorgst du zudem für mehr Halt und Sicherheit."
+        },
+        "descriptionI18n": {
+            "de": "Verlege rutschhemmende Bodenbeläge zur Sicherung des Arbeitsplatzes."
+        },
+        "titleI18n": {
+            "de": "Rutschfester Bodenbelag"
+        },
+        "topics": [
+            {
+                "$oid": "53b416fba43aac62a2debda5"
+            }
+        ],
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "54325ded83943182316d7b87"
+        },
+        "created": {
+            "$date": 1412586989519
+        },
+        "updated": {
+            "$date": 1412586989519
+        },
+        "number": "Act-290",
+        "source": "community",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "self",
+        "defaultduration": 60,
+        "recWeights": [],
+        "qualityFactor": 1,
+        "author": {
+            "$oid": "52d4f515fac246174c000006"
+        },
+        "textI18n": {
+            "de": "Mit dem Einsatz einer Schmutzschleuse verhinderst du zudem, dass Nässe und Schmutz hineingetragen und im Gebäudeinnern zur Rutschgefahr werden."
+        },
+        "descriptionI18n": {
+            "de": "Verwende zweckmässige Schmutzschleusen bei deiner Arbeit."
+        },
+        "titleI18n": {
+            "de": "Schmutzschleusen"
+        },
+        "topics": [
+            {
+                "$oid": "53b416fba43aac62a2debda5"
+            }
+        ],
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "54325e3b83943182316d7b88"
+        },
+        "created": {
+            "$date": 1412587067543
+        },
+        "updated": {
+            "$date": 1412587067543
+        },
+        "number": "Act-291",
+        "source": "community",
+        "defaultfrequency": "day",
+        "defaultexecutiontype": "group",
+        "defaultduration": 60,
+        "recWeights": [],
+        "qualityFactor": 1,
+        "author": {
+            "$oid": "52d4f515fac246174c000006"
+        },
+        "textI18n": {
+            "de": "Gebäudeeingänge sollten jederzeit gut gereinigt und rutschfrei gehalten werden. Im Aussen- wie auch im Innenbereich!\n\nWische ausgeschüttete Flüssigkeiten rasch wieder auf. Reinige Böden nicht zu Stosszeiten und reinige nur abschnittsweise.\n\nMarkiere die nassen Abschnitte oder sperre diese ganz ab."
+        },
+        "descriptionI18n": {
+            "de": "Halte die Böden immer sauber und trocken, indem du z.B. ausgelaufene Flüssigkeiten sofort wegwischt."
+        },
+        "titleI18n": {
+            "de": "Sauberer Boden"
+        },
+        "topics": [
+            {
+                "$oid": "53b416fba43aac62a2debda5"
+            }
+        ],
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "54325e7d83943182316d7b89"
+        },
+        "created": {
+            "$date": 1412587133715
+        },
+        "updated": {
+            "$date": 1412587133715
+        },
+        "number": "Act-292",
+        "source": "community",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "group",
+        "defaultduration": 60,
+        "recWeights": [],
+        "qualityFactor": 1,
+        "author": {
+            "$oid": "52d4f515fac246174c000006"
+        },
+        "textI18n": {
+            "de": "Falls du die Möglichkeit erhälst, das Regalsystem zu verändern, dann passe es den Sicherheitsrichtlinien an (d.h. lagere schwere Gegenstände nicht auf dem Schrank, sondern immer möglichst weit unten, befestige wackelige und unsichere Regale und Schubladenstöcke an Wand oder Decke und/oder verbinde sie gegenseitig, schreibe die zulässige Belastung für Boden und Regale deutlich an halte sie ein)."
+        },
+        "descriptionI18n": {
+            "de": "Befestige wackelige und unsichere Regale und Schubladenstöcke an Wand oder Decke und/oder verbinde sie gegenseitig."
+        },
+        "titleI18n": {
+            "de": "Wackelige Regale"
+        },
+        "topics": [
+            {
+                "$oid": "53b416fba43aac62a2debda5"
+            }
+        ],
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "54325ef183943182316d7b8a"
+        },
+        "created": {
+            "$date": 1412587249762
+        },
+        "updated": {
+            "$date": 1412587249762
+        },
+        "number": "Act-293",
+        "source": "community",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "group",
+        "defaultduration": 60,
+        "recWeights": [],
+        "qualityFactor": 1,
+        "author": {
+            "$oid": "52d4f515fac246174c000006"
+        },
+        "textI18n": {
+            "de": "Kabelsalat in der Arbeitsumgebung kann zu Verletzungen durch Stolpern und Stürzen und zu Stromschlägen durch herausgerissene Kabel führen. Ausserdem können Geräte beschädigt werden.\n\nEin Drittel aller Unfälle sind Stolper- und Sturzunfälle."
+        },
+        "descriptionI18n": {
+            "de": "Sorge dafür, dass defekte Einrichtungen (defekte Isolation an Kabeln, Steckdosen, Sicherungsverteilern, Schaltern, etc.) repariert werden."
+        },
+        "titleI18n": {
+            "de": "Reparierte Kabel"
+        },
+        "topics": [
+            {
+                "$oid": "53b416fba43aac62a2debda5"
+            }
+        ],
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "54325ffb5e5d468031039979"
+        },
+        "created": {
+            "$date": 1412587515258
+        },
+        "updated": {
+            "$date": 1412587515258
+        },
+        "number": "Act-294",
+        "source": "community",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "group",
+        "defaultduration": 60,
+        "recWeights": [],
+        "qualityFactor": 1,
+        "author": {
+            "$oid": "52d4f515fac246174c000006"
+        },
+        "textI18n": {
+            "de": "Kabelsalat in der Arbeitsumgebung kann zu Verletzungen durch Stolpern und Stürzen und zu Stromschlägen durch herausgerissene Kabel führen. Ausserdem können Geräte beschädigt werden.\n\nEin Drittel aller Unfälle sind Stolper- und Sturzunfälle."
+        },
+        "descriptionI18n": {
+            "de": "Investiere heute 15 Minuten, um den Kabelsalat an deinem Arbeitsplatz in Ordnung zu bringen."
+        },
+        "titleI18n": {
+            "de": "Kabelsalat"
+        },
+        "topics": [
+            {
+                "$oid": "53b416fba43aac62a2debda5"
+            }
+        ],
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "5432605983943182316d7b8b"
+        },
+        "created": {
+            "$date": 1412587609440
+        },
+        "updated": {
+            "$date": 1412587609440
+        },
+        "number": "Act-295",
+        "source": "community",
+        "defaultfrequency": "day",
+        "defaultexecutiontype": "self",
+        "defaultduration": 60,
+        "recWeights": [],
+        "qualityFactor": 1,
+        "author": {
+            "$oid": "52d4f515fac246174c000006"
+        },
+        "textI18n": {
+            "de": "Auf keinen Fall sollten Bürostühle als Steighilfe verwendet werden.\n\nBenutze stattdessen zweckdienliche, auf Sicherheit geprüfte Steighilfen."
+        },
+        "descriptionI18n": {
+            "de": "Halte dich ab heute konsequent an die Regel \"immer sichere Steighilfen verwenden\", auch wenn du nur ein einziges Mal etwas über dir erledigen möchtest."
+        },
+        "titleI18n": {
+            "de": "Sichere Steighilfe"
+        },
+        "topics": [
+            {
+                "$oid": "53b416fba43aac62a2debda5"
+            }
+        ],
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "5432608e5e5d46803103997a"
+        },
+        "created": {
+            "$date": 1412587662282
+        },
+        "updated": {
+            "$date": 1412587662282
+        },
+        "number": "Act-296",
+        "source": "community",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "self",
+        "defaultduration": 60,
+        "recWeights": [],
+        "qualityFactor": 1,
+        "author": {
+            "$oid": "52d4f515fac246174c000006"
+        },
+        "textI18n": {
+            "de": "Um Stolper- und Sturzunfälle zu vermeiden, solltest du unbedingt geeignetes Schuhwerk für deine Arbeit tragen.\n\nEin Drittel aller Unfälle sind Stolper- und Sturzunfälle."
+        },
+        "descriptionI18n": {
+            "de": "Besorge dir gleich heute Abend ein Paar für deine Arbeit angepasste Schuhe."
+        },
+        "titleI18n": {
+            "de": "Angepasste Schuhe"
+        },
+        "topics": [
+            {
+                "$oid": "53b416fba43aac62a2debda5"
+            }
+        ],
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "543261af83943182316d7b8c"
+        },
+        "created": {
+            "$date": 1412587951574
+        },
+        "updated": {
+            "$date": 1412587951574
+        },
+        "number": "Act-297",
+        "source": "community",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "self",
+        "defaultduration": 60,
+        "recWeights": [],
+        "qualityFactor": 1,
+        "author": {
+            "$oid": "52d4f515fac246174c000006"
+        },
+        "textI18n": {
+            "de": "Deine Hände sind für fast alle Aktivitäten im Leben äusserst wichtig und darum schütze sie!!!\nAchte darauf, dass immer geeignete Handschuhe als persönliche Schutzausrüstung am Arbeitsplatz zur Verfügung stehen.\nSie schützen dich bei Allergien oder verhindern Reizungen durch aggressive Reinigungsmittel.\nAusserdem bieten sie Schutz vor Schnitt- und Stichverletzungen und Quetschungen.\nSelbst beim Nachfüllen oder beim Austauschen von Tonerkassetten sollten Einweghandschuhe verwendet werden, um Reizungen der Atemwege oder auf der Haut zu vermeiden."
+        },
+        "descriptionI18n": {
+            "de": "Besorge dir gleich heute Abend geeignete Schutzhandschuhe für deine Arbeiten."
+        },
+        "titleI18n": {
+            "de": "Handschuhe zum Schutz"
+        },
+        "topics": [
+            {
+                "$oid": "53b416fba43aac62a2debda5"
+            }
+        ],
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "543264e483943182316d7b8d"
+        },
+        "created": {
+            "$date": 1412588772089
+        },
+        "updated": {
+            "$date": 1412588772089
+        },
+        "number": "Act-298",
+        "source": "community",
+        "defaultfrequency": "month",
+        "defaultexecutiontype": "self",
+        "defaultduration": 60,
+        "recWeights": [],
+        "qualityFactor": 1,
+        "author": {
+            "$oid": "52d4f515fac246174c000006"
+        },
+        "textI18n": {
+            "de": "Die Körperachse und Bildschirmachse sollten identisch sein. Vermeide ein Verdrehen des Oberkörpers."
+        },
+        "descriptionI18n": {
+            "de": "Platziere deinen Bildschirm gerade vor dir, so dass du deinen Kopf nicht seitlich abdrehen musst und überprüfe die Position regelmässig."
+        },
+        "titleI18n": {
+            "de": "Bildschirm frontal"
+        },
+        "topics": [
+            {
+                "$oid": "53b416fba43aac62a2debda4"
+            }
+        ],
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "5432652883943182316d7b8e"
+        },
+        "created": {
+            "$date": 1412588840433
+        },
+        "updated": {
+            "$date": 1412588840433
+        },
+        "number": "Act-299",
+        "source": "community",
+        "defaultfrequency": "month",
+        "defaultexecutiontype": "self",
+        "defaultduration": 60,
+        "recWeights": [],
+        "qualityFactor": 1,
+        "author": {
+            "$oid": "52d4f515fac246174c000006"
+        },
+        "textI18n": {
+            "de": "Der Abstand zwischen Augen und Bildschirm sollte mindestens eine Armlänge betragen, bei grösseren Monitoren etwas mehr."
+        },
+        "descriptionI18n": {
+            "de": "Setz dich aufrecht vor deinen Bildschirm, so dass du mit ausgestreckter Hand den Bildschirm berühren kannst."
+        },
+        "titleI18n": {
+            "de": "Bildschirm berühren"
+        },
+        "topics": [
+            {
+                "$oid": "53b416fba43aac62a2debda4"
+            }
+        ],
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "5432987683943182316d7b96"
+        },
+        "created": {
+            "$date": 1412601974213
+        },
+        "updated": {
+            "$date": 1412601974213
+        },
+        "number": "Act-300",
+        "source": "community",
+        "defaultfrequency": "week",
+        "defaultexecutiontype": "self",
+        "defaultduration": 60,
+        "recWeights": [],
+        "qualityFactor": 1,
+        "author": {
+            "$oid": "52d4f515fac246174c000006"
+        },
+        "textI18n": {
+            "de": "Die Tastatur sollte gerade vor dir liegen. Der Abstand zur Tischkante sollte 10 bis 15 Zentimeter betragen, damit du deine Handballen locker auf dem Tisch abstützen kannst."
+        },
+        "descriptionI18n": {
+            "de": "Lege die Tastatur mit etwas Abstand zur Tischkante gerade vor dich hin und überprüfe die Position regelmässig."
+        },
+        "titleI18n": {
+            "de": "Tastatur vor Tischkante"
+        },
+        "topics": [
+            {
+                "$oid": "53b416fba43aac62a2debda4"
+            }
+        ],
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "543298a95e5d46803103997f"
+        },
+        "created": {
+            "$date": 1412602025606
+        },
+        "updated": {
+            "$date": 1412602025606
+        },
+        "number": "Act-301",
+        "source": "community",
+        "defaultfrequency": "day",
+        "defaultexecutiontype": "self",
+        "defaultduration": 60,
+        "recWeights": [],
+        "qualityFactor": 1,
+        "author": {
+            "$oid": "52d4f515fac246174c000006"
+        },
+        "textI18n": {
+            "de": "Achte darauf, dass Arbeitsdokumente nicht zwischen dir und Tastatur, sondern zwischen Tastatur und Bildschirm liegen."
+        },
+        "descriptionI18n": {
+            "de": "Lege deine Arbeitsdokumente zwischen Tastatur und Bildschirm."
+        },
+        "titleI18n": {
+            "de": "Dokumente vor Bildschirm"
+        },
+        "topics": [
+            {
+                "$oid": "53b416fba43aac62a2debda4"
+            }
+        ],
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "543298de83943182316d7b97"
+        },
+        "created": {
+            "$date": 1412602078875
+        },
+        "updated": {
+            "$date": 1412602078875
+        },
+        "number": "Act-302",
+        "source": "community",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "self",
+        "defaultduration": 60,
+        "recWeights": [],
+        "qualityFactor": 1,
+        "author": {
+            "$oid": "52d4f515fac246174c000006"
+        },
+        "textI18n": {
+            "de": "Ober- und Unterschenkel sollten einen Winkel von mindestens 90 Grad bilden."
+        },
+        "descriptionI18n": {
+            "de": "Stelle deine Stuhlhöhe so ein, dass deine Ober- und Unterschenkel einen Winkel von mindestens 90 Grad bilden und überprüfe die Position regelmässig."
+        },
+        "titleI18n": {
+            "de": "Passende Stuhlhöhe"
+        },
+        "topics": [
+            {
+                "$oid": "53b416fba43aac62a2debda4"
+            }
+        ],
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "5432990f83943182316d7b98"
+        },
+        "created": {
+            "$date": 1412602127916
+        },
+        "updated": {
+            "$date": 1412602127916
+        },
+        "number": "Act-303",
+        "source": "community",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "self",
+        "defaultduration": 60,
+        "recWeights": [],
+        "qualityFactor": 1,
+        "author": {
+            "$oid": "52d4f515fac246174c000006"
+        },
+        "textI18n": {
+            "de": "Zwischen Sitzfläche und deiner Kniekehle sollte aber ein kleiner Abstand sein, etwa zwei Finger breit."
+        },
+        "descriptionI18n": {
+            "de": "Stelle die Sitzfläche so ein, dass du mit dem Rücken leicht gegen die Stuhllehne drückst."
+        },
+        "titleI18n": {
+            "de": "Optimale Sitzfläche"
+        },
+        "topics": [
+            {
+                "$oid": "53b416fba43aac62a2debda4"
+            }
+        ],
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "5432996b83943182316d7b99"
+        },
+        "created": {
+            "$date": 1412602219643
+        },
+        "updated": {
+            "$date": 1412602219643
+        },
+        "number": "Act-304",
+        "source": "community",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "self",
+        "defaultduration": 60,
+        "recWeights": [],
+        "qualityFactor": 1,
+        "author": {
+            "$oid": "52d4f515fac246174c000006"
+        },
+        "textI18n": {
+            "de": "Wenn du aufrecht auf deinem Stuhl sitzt, sollte die Tischhöhe so eingestellt sein, dass deine Ellbogen locker auf dem Tisch aufliegen, ohne die Schultern anzuheben.\n\nEin Bürotisch sollte im Bereich von 65 bis 85 Zentimeter Höhe verstellbar sein. So kann er auf die individuelle Körpergrösse eines Mitarbeiters oder einer Mitarbeiterin eingestellt werden.\n\nEin nicht richtig eingestellter Arbeits&shy;tisch kann zu Rückenbeschwerden und Ermüdung führen."
+        },
+        "descriptionI18n": {
+            "de": "Stelle deine Tischhöhe so ein, dass du in aufrechter und entspannter Sitzhaltung deine Ellbogen locker auf dem Tisch auflegen kannst, ohne die Schultern anzuheben und überprüfe die Position regelmässig."
+        },
+        "titleI18n": {
+            "de": "Passende Tischhöhe"
+        },
+        "topics": [
+            {
+                "$oid": "53b416fba43aac62a2debda4"
+            }
+        ],
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "543299b083943182316d7b9a"
+        },
+        "created": {
+            "$date": 1412602288383
+        },
+        "updated": {
+            "$date": 1412602288383
+        },
+        "number": "Act-305",
+        "source": "community",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "self",
+        "defaultduration": 60,
+        "recWeights": [],
+        "qualityFactor": 1,
+        "author": {
+            "$oid": "52d4f515fac246174c000006"
+        },
+        "textI18n": {
+            "de": "Wenn du aufrecht auf deinem Stuhl sitzt, sollte die Tischhöhe so eingestellt sein, dass deine Ellbogen locker auf dem Tisch aufliegen, ohne die Schultern anzuheben.\n\nEin Bürotisch sollte im Bereich von 65 bis 85 Zentimeter Höhe verstellbar sein. So kann er auf die individuelle Körpergrösse eines Mitarbeiters oder einer Mitarbeiterin eingestellt werden.\n\nEin nicht richtig eingestellter Arbeitstisch kann zu Rückenbeschwerden und Ermüdung führen."
+        },
+        "descriptionI18n": {
+            "de": "Sprich mit deiner bzw. deinem Vorgesetzten über die Beschaffung eines höhenverstellbaren Tisches."
+        },
+        "titleI18n": {
+            "de": "Höhenverstellbarer Tisch"
+        },
+        "topics": [
+            {
+                "$oid": "53b416fba43aac62a2debda4"
+            }
+        ],
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "54329a0183943182316d7b9b"
+        },
+        "created": {
+            "$date": 1412602369469
+        },
+        "updated": {
+            "$date": 1412602369469
+        },
+        "number": "Act-306",
+        "source": "community",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "self",
+        "defaultduration": 60,
+        "recWeights": [],
+        "qualityFactor": 1,
+        "author": {
+            "$oid": "52d4f515fac246174c000006"
+        },
+        "textI18n": {
+            "de": "Unwohlsein kann durch kalte Tisch&shy;oberflächen (Glas, Stahl, Blech, Stein) ausgelöst werden.\n\nAuch spiegelnde Oberflächen sind zu vermeiden, da sie zu unangenehmen Blendungen führen."
+        },
+        "descriptionI18n": {
+            "de": "Falls du keine Möglichkeit hast, die Tischoberfläche zu ändern, dann lege zum Arbeiten eine Unterlage auf den Tisch."
+        },
+        "titleI18n": {
+            "de": "Tischunterlage"
+        },
+        "topics": [
+            {
+                "$oid": "53b416fba43aac62a2debda4"
+            }
+        ],
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "54329a6483943182316d7b9c"
+        },
+        "created": {
+            "$date": 1412602468718
+        },
+        "updated": {
+            "$date": 1412602468718
+        },
+        "number": "Act-307",
+        "source": "community",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "self",
+        "defaultduration": 60,
+        "recWeights": [],
+        "qualityFactor": 1,
+        "author": {
+            "$oid": "52d4f515fac246174c000006"
+        },
+        "textI18n": {
+            "de": "Mangelnde Beleuchtung belastet deine Augen und ermüdet vorzeitig deine Augen. Die Beleuchtung sollte Sehverhältnisse gewährleisten, die der Art und den Anforderungen der Arbeit angepasst sind. Die allgemeine Ausleuchtung der Büroräumlichkeiten sollte mind. 500 Lux betragen. Da mit zunehmendem Alter der Lichtbedarf steigt, sollten zudem individuell einstellbare Arbeitsplatzleuchten eingesetzt werden.\n\nAchte zudem auf eher neutral-weisses oder warm-weisses Licht im Bereich von 3300 bis 5300 Kelvin (sogenannte Farbtemperatur) für die Bildschirm&shy;arbeiten und auf eine geringe Wäremabgabe."
+        },
+        "descriptionI18n": {
+            "de": "Passe deine Arbeitsplatzleuchte regelmässig für dich an, so dass dein Arbeitsplatz gut ausgeleuchtet ist."
+        },
+        "titleI18n": {
+            "de": "Heller Arbeitsplatz"
+        },
+        "topics": [
+            {
+                "$oid": "53b416fba43aac62a2debda4"
+            }
+        ],
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "54329c9583943182316d7b9d"
+        },
+        "created": {
+            "$date": 1412603029969
+        },
+        "updated": {
+            "$date": 1412603029969
+        },
+        "number": "Act-308",
+        "source": "community",
+        "defaultfrequency": "month",
+        "defaultexecutiontype": "self",
+        "defaultduration": 60,
+        "recWeights": [],
+        "qualityFactor": 1,
+        "author": {
+            "$oid": "52d4f515fac246174c000006"
+        },
+        "textI18n": {
+            "de": "Durch Blendung oder flimmernde Beleuchtungskörper werden deine Augen belastet und ermüden vorzeitig deine Augen.\n\nDie Beleuchtung sollte Sehverhält&shy;nisse gewährleisten, die der Art und den Anforderungen der Arbeit angepasst sind."
+        },
+        "descriptionI18n": {
+            "de": "Überprüfe regelmässig die Raum&shy;beleuchtung an deinem Arbeitsplatz und verhindere blendende oder flimmernde Beleuchtungskörper."
+        },
+        "titleI18n": {
+            "de": "Flimmerlicht"
+        },
+        "topics": [
+            {
+                "$oid": "53b416fba43aac62a2debda4"
+            }
+        ],
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "54329d005e5d468031039980"
+        },
+        "created": {
+            "$date": 1412603136220
+        },
+        "updated": {
+            "$date": 1412603136220
+        },
+        "number": "Act-309",
+        "source": "community",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "self",
+        "defaultduration": 60,
+        "recWeights": [],
+        "qualityFactor": 1,
+        "author": {
+            "$oid": "52d4f515fac246174c000006"
+        },
+        "textI18n": {
+            "de": "Geräusche sind ein grosser Ablenkungsfaktor und können die Arbeitsleistung stark vermindern.\n\nDer maximale Schallpegel für Bürotätigkeit liegt bei 65 Dezibel. Das ist etwa so laut, dass man problemlos miteinander sprechen kann, ohne die Stimme anheben zu müssen. Für Konzentrationsarbeit sollte er 50 Dezibel nicht überschreiten."
+        },
+        "descriptionI18n": {
+            "de": "Vergrössere, falls möglich, die Distanz zwischen den Arbeitsplätzen und verbessere die Geräuschsituation mit schalldämmenden Elementen."
+        },
+        "titleI18n": {
+            "de": "Ruhiger Arbeitsplatz"
+        },
+        "topics": [
+            {
+                "$oid": "53b416fba43aac62a2debda4"
+            }
+        ],
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "54329d6883943182316d7b9e"
+        },
+        "created": {
+            "$date": 1412603240741
+        },
+        "updated": {
+            "$date": 1412603240741
+        },
+        "number": "Act-310",
+        "source": "community",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "self",
+        "defaultduration": 60,
+        "recWeights": [],
+        "qualityFactor": 1,
+        "author": {
+            "$oid": "52d4f515fac246174c000006"
+        },
+        "textI18n": {
+            "de": "Die Temperatur in Büroräumen sollte zwischen 21 und 23°C sein (im Sommer bis 25°C).\n\nFalls du eine Klimaanlage hast, stelle die Kühlung im Sommer so ein, dass die Innentemperatur nicht mehr als 8 °C unterhalb der Aussentemperatur liegt.\n\nZu hohe oder zu niedrige Temperaturen beeinträchtigen das Wohlbefinden und die Leistungsfähigkeit."
+        },
+        "descriptionI18n": {
+            "de": "Stelle regelmässig die Raumtemperatur deines Büros optimal für dich ein (zwischen 21-23°C) und sorge so für ein besseres Wohlbefinden und eine erhöhte Leistungsfähigkeit."
+        },
+        "titleI18n": {
+            "de": "Angenehmes Arbeitszimmer"
+        },
+        "topics": [
+            {
+                "$oid": "53b416fba43aac62a2debda4"
+            }
+        ],
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "54329d9e5e5d468031039981"
+        },
+        "created": {
+            "$date": 1412603294736
+        },
+        "updated": {
+            "$date": 1412603294736
+        },
+        "number": "Act-311",
+        "source": "community",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "self",
+        "defaultduration": 60,
+        "recWeights": [],
+        "qualityFactor": 1,
+        "author": {
+            "$oid": "52d4f515fac246174c000006"
+        },
+        "textI18n": {
+            "de": "Zugluft durch offene Fenster, Klima- und Lüftungsanlagen, Geräte, etc. kann die Anfälligkeit für Erkältungskrankheiten und rheumatische Beschwerden auslösen sowie ein Austrocknen der Augenschleimhäute fördern."
+        },
+        "descriptionI18n": {
+            "de": "Sorge dafür, dass dein Arbeitsplatz keiner Zugluft ausgesetzt ist."
+        },
+        "titleI18n": {
+            "de": "Zugluft schadet"
+        },
+        "topics": [
+            {
+                "$oid": "53b416fba43aac62a2debda4"
+            }
+        ],
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "54329de683943182316d7b9f"
+        },
+        "created": {
+            "$date": 1412603366333
+        },
+        "updated": {
+            "$date": 1412603366333
+        },
+        "number": "Act-312",
+        "source": "community",
+        "defaultfrequency": "day",
+        "defaultexecutiontype": "self",
+        "defaultduration": 60,
+        "recWeights": [],
+        "qualityFactor": 1,
+        "author": {
+            "$oid": "52d4f515fac246174c000006"
+        },
+        "textI18n": {
+            "de": "Schütze dich so vor einer Reizung der Atemwege durch Ozon oder Toner von Fotokopierern und Laserdruckern.\n\nEs kommt deiner Gesundheit zugute, wenn du es dir zur Gewohnheit machen könntest, dich beim Drucken oder Kopieren korrekt zu platzieren."
+        },
+        "descriptionI18n": {
+            "de": "Stelle dich jeweils beim Drucken und Kopieren so zum Gerät, dass die Ablüftung nicht gegen dich gerichtet ist."
+        },
+        "titleI18n": {
+            "de": "Abluft beim Kopieren"
+        },
+        "topics": [
+            {
+                "$oid": "53b416fba43aac62a2debda4"
+            }
+        ],
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "54329e1483943182316d7ba1"
+        },
+        "created": {
+            "$date": 1412603412293
+        },
+        "updated": {
+            "$date": 1412603412293
+        },
+        "number": "Act-313",
+        "source": "community",
+        "defaultfrequency": "day",
+        "defaultexecutiontype": "self",
+        "defaultduration": 60,
+        "recWeights": [],
+        "qualityFactor": 1,
+        "author": {
+            "$oid": "52d4f515fac246174c000006"
+        },
+        "textI18n": {
+            "de": "Achten Sie beim Heben und Tragen von Lasten auf einen geraden Rücken und halten Sie die Last möglichst nahe am Körper. Ihr Rücken sollte nicht gekrümmt und nicht seitlich abgedreht sein!"
+        },
+        "descriptionI18n": {
+            "de": "Halte deinen Rücken flach und gestreckt, wenn du Lasten transportierst."
+        },
+        "titleI18n": {
+            "de": "Gestreckter Rücken"
+        },
+        "topics": [
+            {
+                "$oid": "53b416fba43aac62a2debda4"
+            }
+        ],
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "54329e3e83943182316d7ba2"
+        },
+        "created": {
+            "$date": 1412603454840
+        },
+        "updated": {
+            "$date": 1412603454840
+        },
+        "number": "Act-314",
+        "source": "community",
+        "defaultfrequency": "day",
+        "defaultexecutiontype": "self",
+        "defaultduration": 60,
+        "recWeights": [],
+        "qualityFactor": 1,
+        "author": {
+            "$oid": "52d4f515fac246174c000006"
+        },
+        "textI18n": {
+            "de": "Frage immer, wenn möglich, deine Kollegen, ob sie dir helfen könnten, schwre Lasten zu bewegen, auch wenn es nur kurze Distanzen sind."
+        },
+        "descriptionI18n": {
+            "de": "Trage schwere Lasten immer zu zweit oder zu dritt."
+        },
+        "titleI18n": {
+            "de": "Schwere Lasten"
+        },
+        "topics": [
+            {
+                "$oid": "53b416fba43aac62a2debda4"
+            }
+        ],
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "54329e7483943182316d7ba3"
+        },
+        "created": {
+            "$date": 1412603508560
+        },
+        "updated": {
+            "$date": 1412603508560
+        },
+        "number": "Act-315",
+        "source": "community",
+        "defaultfrequency": "day",
+        "defaultexecutiontype": "self",
+        "defaultduration": 60,
+        "recWeights": [],
+        "qualityFactor": 1,
+        "author": {
+            "$oid": "52d4f515fac246174c000006"
+        },
+        "textI18n": {
+            "de": "Schieben und Ziehen ist immer besser als Heben und Tragen! Mit einem Transportmittel mache dir das Leben leichter und sicherer."
+        },
+        "descriptionI18n": {
+            "de": "Benutze deinem Rücken zuliebe ein rollbares Transportmittel (z.B. Rollwagen) zum Transport von schweren Gewichten."
+        },
+        "titleI18n": {
+            "de": "Rollbarer Transport"
+        },
+        "topics": [
+            {
+                "$oid": "53b416fba43aac62a2debda4"
             }
         ],
         "__v": 0

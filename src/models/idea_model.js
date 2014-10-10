@@ -4,7 +4,8 @@
 var mongoose = require('ypbackendlib').mongoose,
     common = require('ypbackendlib').commmonModels,
     ObjectId = mongoose.Schema.ObjectId,
-    auth = require('ypbackendlib').auth;
+    auth = require('ypbackendlib').auth,
+    enums = require('./enums');
 
 /**
  * Idea Schema
@@ -14,17 +15,17 @@ var IdeaSchema = common.newSchema({
     title: { type: String, trim: true, required: true, i18n: true },
     description: { type: String, trim: true, required: true, i18n: true },
     text: {type: String, trim: true, i18n: true},
-    source: { type: String, enum: common.enums.source},
+    source: { type: String, enum: enums.source},
     author: {type: ObjectId, ref: 'User', required: false},
     campaign: {type: ObjectId, ref: 'Campaign'},
-    defaultfrequency: {type: String, enum: common.enums.activityFrequency},
-    defaultexecutiontype: {type: String, enum: common.enums.executiontype},
+    defaultfrequency: {type: String, enum: enums.activityFrequency},
+    defaultexecutiontype: {type: String, enum: enums.executiontype},
     defaultduration: {type: Number},
     topics: [{type: ObjectId, ref: 'Topic'}],
     qualityFactor: {type: Number, select: false},
     recWeights: {type: mongoose.Schema.Types.Mixed, select: false},
 
-    action: { type: String, enum: common.enums.actionType }
+    action: { type: String, enum: enums.actionType }
 
 });
 

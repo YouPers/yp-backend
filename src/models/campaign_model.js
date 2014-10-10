@@ -4,7 +4,8 @@
 var mongoose = require('ypbackendlib').mongoose,
     common = require('ypbackendlib').commmonModels,
     ObjectId = mongoose.Schema.ObjectId,
-    auth = require('ypbackendlib').auth;
+    auth = require('ypbackendlib').auth,
+    enums = require('./enums');
 
 /**
  * Idea Schema
@@ -19,8 +20,8 @@ var CampaignSchema = common.newSchema({
     location: { type: String, trim: true },
     city: { type: String, trim: true },
     slogan: { type: String, trim: true },
-    paymentStatus: { type: String, trim: true, required: true, enum: common.enums.paymentStatus, default: "open", select: false },
-    productType: { type: String, trim: true, required: true, enum: common.enums.campaignProductType, default: "CampaignProductType1", select: false },
+    paymentStatus: { type: String, trim: true, required: true, enum: enums.paymentStatus, default: "open", select: false },
+    productType: { type: String, trim: true, required: true, enum: enums.campaignProductType, default: "CampaignProductType1", select: false },
     campaignLeads: [
         {type: ObjectId, ref: 'User'}
     ],

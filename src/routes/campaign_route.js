@@ -7,7 +7,7 @@ var mongoose = require('ypbackendlib').mongoose,
     Campaign = mongoose.model('Campaign'),
     genericHandlers = require('ypbackendlib').handlers,
     campaignHandlers = require('./../handlers/campaign_handlers'),
-    common = require('ypbackendlib').commmonModels;
+    enums = require('../models/enums');
 
 
 module.exports = function (swagger) {
@@ -60,7 +60,7 @@ module.exports = function (swagger) {
                     name: "type",
                     description: "the type of statistics to fetch",
                     dataType: "string",
-                    enum: common.enums.statsType,
+                    enum: enums.statsType,
                     required: true
                 },
                 {

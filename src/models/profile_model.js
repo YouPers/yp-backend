@@ -5,14 +5,15 @@
 var mongoose = require('ypbackendlib').mongoose,
     Schema = mongoose.Schema,
     ObjectId = Schema.ObjectId,
-    common = require('ypbackendlib').commmonModels;
+    common = require('ypbackendlib').commmonModels,
+    enums = require('./enums');
 
 /**
  * Profile Schema
  */
 var ProfileSchema = common.newSchema({
     owner: { type: Schema.Types.ObjectId, ref: 'User', required: true },
-    gender: { type: String, enum: common.enums.gender, default: "undefined" },
+    gender: { type: String, enum: enums.gender, default: "undefined" },
     birthDate: { type: Date },
     campaign: {type:  Schema.Types.ObjectId, ref:'Campaign'},
     homeAddress: {
@@ -20,7 +21,7 @@ var ProfileSchema = common.newSchema({
         houseNumber: { type: String, trim: true },
         zipCode: { type: Number },
         city: { type: String, trim: true },
-        country: { type: String, enum: common.enums.country }
+        country: { type: String, enum: enums.country }
     },
     workAddress: {
         street: { type: String, trim: true },
@@ -29,7 +30,7 @@ var ProfileSchema = common.newSchema({
         city: { type: String, trim: true },
         country: { type: String, trim: true }
     },
-    maritalStatus: { type: String, enum: common.enums.maritalStatus, default: "undefined" },
+    maritalStatus: { type: String, enum: enums.maritalStatus, default: "undefined" },
     language: { type: String, trim: true},
     prefs: {
         defaultWorkWeek: {type: [String], default: ['MO', 'TU', 'WE', 'TH', 'FR']},
@@ -60,7 +61,7 @@ var ProfileSchema = common.newSchema({
         ],
         firstDayOfWeek: { type: String, enum: ['SU', 'MO'] },
         timezone: { type: String, trim: true },
-        calendarNotification: {type: String, enum: common.enums.calendarNotifications, default: '900'},
+        calendarNotification: {type: String, enum: enums.calendarNotifications, default: '900'},
         email: {
             iCalInvites: { type: Boolean, default: true },
             actPlanInvites: { type: Boolean, default: true },

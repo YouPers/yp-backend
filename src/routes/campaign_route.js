@@ -140,11 +140,39 @@ module.exports = function (swagger) {
         action: campaignHandlers.postCampaignLeadInvite
     });
 
+    swagger.addOperation({
+        spec: {
+            description: "Operations about campaigns",
+            path: baseUrlWithId + "/inviteParticipantsEmail",
+            notes: "Posts a request for invitations to participate for one or more email-addresses",
+            summary: "Request an invitation to participate in the campaign  to be sent by the backend to the supplied email address(es)",
+            mobileSDK: "disabled",
+            params: [
+                {
+                    paramType: "body",
+                    name: "email",
+                    description: "object with properties: 'email', an email address, or an array of adresses, or a separated String of emails (by ';, ')",
+                    dataType: "EmailObject",
+                    required: true
+                }
+            ],
+            method: "POST",
+            "nickname": "postParticipantsInvite",
+            accessLevel: 'al_campaignlead',
+            beforeCallbacks: []
+        },
+        action: campaignHandlers.postParticipantsInvite
+    });
+
+
+
     swagger.addModels({EmailObject: {
         id: 'EmailObject',
         required: ['email'],
         properties: {
-            email: {type: 'string'}
+            email: {type: 'string'},
+            subject: {type: 'string'},
+            text: {type: 'string'}
         }
     }});
 

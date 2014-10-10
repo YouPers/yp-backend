@@ -210,6 +210,20 @@ var getAllForUserFn = function (baseUrl) {
     };
 };
 
+function _parseMailAdresses(stringToParse) {
+    if (_.isArray(stringToParse)) {
+        return stringToParse;
+    } else if (stringToParse.indexOf(' ') !== -1) {
+        return stringToParse.split(' ');
+    } else if (stringToParse.indexOf(';') !== -1) {
+        return stringToParse.split(';');
+    } else if (stringToParse.indexOf(',') !== -1) {
+        return stringToParse.split(',');
+    } else {
+        return [stringToParse];
+    }
+
+}
 var postCampaignLeadInviteFn = function postCampaignLeadInviteFn(req, res, next) {
     if (!req.params || !req.params.id) {
         return next(new error.MissingParameterError({ required: 'id' }));
@@ -219,18 +233,7 @@ var postCampaignLeadInviteFn = function postCampaignLeadInviteFn(req, res, next)
     }
 
     // split up the email field, in case we got more than one mail
-    var emails;
-    if (_.isArray(req.body.email)) {
-        emails = req.body.email;
-    } else if (req.body.email.indexOf(' ') !== -1) {
-        emails = req.body.email.split(' ');
-    } else if (req.body.email.indexOf(';') !== -1) {
-        emails = req.body.email.split(';');
-    } else if (req.body.email.indexOf(',') !== -1) {
-        emails = req.body.email.split(',');
-    } else {
-        emails = [req.body.email];
-    }
+    var emails = _parseMailAdresses(req.body.email);
 
     var locals = {
     };
@@ -418,5 +421,6 @@ module.exports = {
     getAllForUserFn: getAllForUserFn,
     assignCampaignLead: assignCampaignLeadFn,
     postCampaignLeadInvite: postCampaignLeadInviteFn,
+    postParticipantsInvite: postParticipantsInviteFn,
     avatarImagePostFn: avatarImagePostFn
 };

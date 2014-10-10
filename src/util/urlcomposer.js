@@ -18,14 +18,17 @@ function activityInviteUrl(invitationId) {
 function campaignLeadInviteUrl(campaignId, invitingUserId, token) {
     return webclientUrl + "/#/campaigns/" + campaignId + '/becomeCampaignLead?invitingUserId='+invitingUserId+'&token='+token;
 }
+function campaignWelcomeUrl(campaignId) {
+    return webclientUrl + "/#/welcome/" + campaignId + '/';
+}
 function orgAdminInviteUrl (organizationId, invitingUserId, token) {
     return webclientUrl + "/#/organizations/" + organizationId + '/becomeOrganizationAdmin?invitingUserId='+invitingUserId+'&token='+token;
 }
 function ideaImageUrl (ideaNumber) {
     return webclientUrl + "/assets/actpics/"+ideaNumber + ".jpg";
 }
-function campaignImageUrl () {
-    return webclientUrl + "/assets/img/stressManagement.png";
+function campaignImageUrl (imgPath) {
+    return webclientUrl + imgPath;
 }
 function mailLogoImageUrl () {
     return webclientUrl + "/assets/img/yp_logo_mail.gif";
@@ -49,6 +52,7 @@ module.exports = {
     passwordResetUrl: passwordResetUrl,
     activityInviteUrl: activityInviteUrl,
     campaignLeadInviteUrl: campaignLeadInviteUrl,
+    campaignWelcomeUrl: campaignWelcomeUrl,
     orgAdminInviteUrl: orgAdminInviteUrl,
     ideaImageUrl: ideaImageUrl,
     campaignImageUrl: campaignImageUrl,

@@ -31,9 +31,6 @@
             "de": "Selbstbeurteilung<br>\"Stressmanagement\""
         },
         "topics": [
-            {
-                "$oid": "53b416cfa43aac62a2debda1"
-            }
         ],
         "updated": {
             "$date": 1412060811557
@@ -11439,9 +11436,6 @@
             "de": "Selbstbeurteilung<br>\"Gesunde Ernährung\""
         },
         "topics": [
-            {
-                "$oid": "53b416fba43aac62a2debda2"
-            }
         ],
         "__v": 12
     },
@@ -13867,9 +13861,6 @@
             "de": "Selbstbeurteilung<br>\"Körperliche Fitness\""
         },
         "topics": [
-            {
-                "$oid": "53b416fba43aac62a2debda3"
-            }
         ],
         "__v": 7,
         "textI18n": {
@@ -13904,9 +13895,7 @@
             "de": "Selbstbeurteilung<br>\"Gesundes Arbeiten\""
         },
         "topics": [
-            {
-                "$oid": "53b416fba43aac62a2debda4"
-            }
+
         ],
         "__v": 6,
         "textI18n": {
@@ -13941,9 +13930,6 @@
             "de": "Selbstbeurteilung<br>\"Sicheres Arbeiten\""
         },
         "topics": [
-            {
-                "$oid": "53b416fba43aac62a2debda5"
-            }
         ],
         "__v": 5,
         "textI18n": {

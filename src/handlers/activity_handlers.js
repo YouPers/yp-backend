@@ -237,7 +237,7 @@ function _saveNewActivity(activity, req, cb) {
             // - populate 'idea' so we can get create a nice calendar entry
             // - we need to reload so we get the changes that have been done pre('save') and pre('init')
             //   like updating the joiningUsers Collection
-            Activity.findById(savedActivity._id).populate('idea owner').exec(function (err, reloadedActivity) {
+            Activity.findById(savedActivity._id).populate('owner').populate('idea', mongoose.model('Idea').getI18nPropertySelector(req.locale)).exec(function (err, reloadedActivity) {
                 if (err) {
                     return cb(err);
                 }

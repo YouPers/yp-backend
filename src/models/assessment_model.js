@@ -5,7 +5,8 @@ var mongoose = require('ypbackendlib').mongoose,
     common = require('ypbackendlib').commmonModels,
     auth = require('ypbackendlib').auth,
     ObjectId = mongoose.Schema.ObjectId,
-    _ = require('lodash');
+    _ = require('lodash'),
+    enums = require('./enums');
 
 /**
  * Idea Schema
@@ -15,7 +16,7 @@ var AssessmentQuestionSchema = common.newSchema({
     "category": String,
     "assessment": {type: ObjectId},
     "title": {type: String, required: true, i18n: true},
-    "type": {type: String, enum: common.enums.questionType},
+    "type": {type: String, enum: enums.questionType},
     "mintext": {type: String, i18n: true},
     "mintextexample": {type: String, i18n: true},
     "mintextresult": {type: String, i18n: true},

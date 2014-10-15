@@ -4,7 +4,8 @@
 var mongoose = require('ypbackendlib').mongoose,
     Schema = mongoose.Schema,
     ObjectId = Schema.ObjectId,
-    common = require('ypbackendlib').commmonModels;
+    common = require('ypbackendlib').commmonModels,
+    enums = require('./enums');
 
 /**
  * PaymentCode Schema
@@ -17,7 +18,7 @@ var PaymentCodeSchema = common.newSchema({
     campaign: {type: ObjectId},
 
     topic: { type: ObjectId, ref: 'Topic', required: true },
-    productType: { type: String, enum: common.enums.campaignProductType, required: true },
+    productType: { type: String, enum: enums.campaignProductType, required: true },
     users: { type: Number }
 });
 

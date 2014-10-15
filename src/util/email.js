@@ -208,7 +208,21 @@ var sendCampaignLeadInvite = function sendCampaignLeadInvite(email, invitingUser
             inviting: invitingUser.toJSON(),
             campaign: campaign.toJSON()
         }),
-        image: urlComposer.campaignImageUrl(), // TODO: use avatar from campaign instead of hardcoded stressmanagement image
+        image: urlComposer.campaignImageUrl(campaign.topic.picture),
+        header: i18n.t('email:CampaignLeadInvite.header'),
+        footer: i18n.t('email:CampaignLeadInvite.footer'),
+        logo: urlComposer.mailFooterImageUrl()
+    };
+    sendEmail(fromDefault, email, subject, 'campaignLeadInviteMail', locals);
+};
+
+var sendCampaignParticipantInvite = function sendCampaignParticipantInvite(email, subject, text, invitingUser, campaign, i18n) {
+
+    var locals = {
+        link: urlComposer.campaignWelcomeUrl(campaign._id),
+        salutation: i18n.t('email:CampaignLeadInvite.salutationAnonymous',  {firstname: ''}),
+        text: text,
+        image: urlComposer.campaignImageUrl(campaign.topic.picture),
         header: i18n.t('email:CampaignLeadInvite.header'),
         footer: i18n.t('email:CampaignLeadInvite.footer'),
         logo: urlComposer.mailFooterImageUrl()
@@ -269,6 +283,7 @@ module.exports = {
     sendPasswordResetMail: sendPasswordResetMail,
     sendActivityInvite: sendActivityInvite,
     sendCampaignLeadInvite: sendCampaignLeadInvite,
+    sendCampaignParticipantInvite: sendCampaignParticipantInvite,
     sendOrganizationAdminInvite: sendOrganizationAdminInvite,
     sendDailyEventSummary: sendDailyEventSummary
 };

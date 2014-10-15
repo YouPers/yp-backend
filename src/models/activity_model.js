@@ -6,7 +6,8 @@ var mongoose = require('ypbackendlib').mongoose,
     ObjectId = Schema.ObjectId,
     common = require('ypbackendlib').commmonModels,
     calendar = require('../util/calendar'),
-    moment = require('moment');
+    moment = require('moment'),
+    enums = require('./enums');
 
 
 /**
@@ -22,18 +23,18 @@ var ActivitySchema = common.newSchema({
     text: {type: String},
     number: {type: String},
     location: {type: String},
-    executionType: {type: String, enum: common.enums.executiontype},
-    status: {type: String, enum: common.enums.ActivityStatus},
+    executionType: {type: String, enum: enums.executiontype},
+    status: {type: String, enum: enums.ActivityStatus},
     campaign: {type: ObjectId, ref: 'Campaign'},
     deletionReason: {type: String},
     mainEvent: {
         start: {type: Date},
         end: {type: Date},
         allDay: {type: Boolean},
-        frequency: {type: String, enum: common.enums.activityFrequency},
+        frequency: {type: String, enum: enums.activityFrequency},
         recurrence: {
             'endby': {
-                type: {type: String, enum: common.enums.activityRecurrenceEndByType},
+                type: {type: String, enum: enums.activityRecurrenceEndByType},
                 on: {type: Date},
                 after: Number
             },

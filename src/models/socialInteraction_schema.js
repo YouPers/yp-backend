@@ -4,7 +4,7 @@ var mongoose = require('ypbackendlib').mongoose,
     Schema = mongoose.Schema,
     ObjectId = Schema.ObjectId,
     Space = mongoose.model('Space'),
-    common = require('ypbackendlib').commmonModels;
+    enums = require('./enums');
 
 function AbstractSocialInteractionSchema() {
     Schema.apply(this, arguments);
@@ -17,7 +17,7 @@ function AbstractSocialInteractionSchema() {
         publishTo: {type: Date},
 
         author: {type: ObjectId, ref: 'User', required: true},
-        authorType: {type: String, enum: common.enums.authorType, required: true, default: 'user'},
+        authorType: {type: String, enum: enums.authorType, required: true, default: 'user'},
 
         title: {type: String, required: false},
         text: {type: String, required: false},

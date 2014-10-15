@@ -52,7 +52,7 @@ User.on('change:campaign', function(user) {
 
                     // only plan assessment idea if there is no active activity yet
                     if(activities.length === 0) {
-                        Idea.findById(assessment.idea, function(err, idea) {
+                        Idea.findById(assessment.idea).select(Idea.getI18nPropertySelector(user.profile.language)).exec(function(err, idea) {
                             if(err) {
                                 return handleError(err);
                             }

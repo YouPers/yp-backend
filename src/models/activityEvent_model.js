@@ -4,7 +4,8 @@
 var mongoose = require('ypbackendlib').mongoose,
     Schema = mongoose.Schema,
     ObjectId = Schema.ObjectId,
-    common = require('ypbackendlib').commmonModels;
+    common = require('ypbackendlib').commmonModels,
+    enums = require('./enums');
 
 /**
  * ActivityEvent Schema
@@ -15,7 +16,7 @@ var ActivityEventSchema = common.newSchema({
     campaign: {type: ObjectId, ref: 'Campaign'},
     idea: {type: ObjectId, ref: 'Idea'},
     activity: {type: ObjectId, ref: 'Activity'},
-    status: {type: String, enum: common.enums.activityEventStatus},
+    status: {type: String, enum: enums.activityEventStatus},
     start: {type: Date},
     end: {type: Date},
     doneTs: {type: Date},

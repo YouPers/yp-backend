@@ -3,7 +3,7 @@
         "_id": {
             "$oid": "5278c6accdeab69a25000008"
         },
-        "__v": 22,
+        "__v": 23,
         "action": "assessment",
         "author": {
             "$oid": "52d4f515fac246174c000006"
@@ -16,7 +16,8 @@
         "defaultfrequency": "once",
         "defaultvisibility": "private",
         "descriptionI18n": {
-            "de": "Führe deine Selbstbeurteilung für Stressmanagement durch und werde dir so bewusst, was deinen Stress ausgelöst oder verstärkt hat und was du nächsten Monat dagegen unternehmen kannst."
+            "de": "Führe deine Selbstbeurteilung für Stressmanagement durch und werde dir so bewusst, was deinen Stress ausgelöst oder verstärkt hat und was du nächsten Monat dagegen unternehmen kannst.",
+            "en": "Perform your self-assessment for stress management and become aware what has caused or intensified your stress and what you can do about it next month."
         },
         "number": "Act-03",
         "qualityFactor": 5,
@@ -25,18 +26,16 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": "Mit der Selbstbeurteilung wird der subjektive IST-Zustand der Stress&shy;situation registriert und hat zum Ziel:\n\n* Stressoren und Stressauslö&shy;ser frühzeitig zu erkennen\n* sich der Stressfaktoren bewusst zu werden\n* frühzeitig gegen die Stressfaktoren vorzugehen\n* mit Hilfe der vorgeschlagenen Aktivitäten sein subjektives Stressempfinden zu re&shy;du&shy;zieren\n* langfristig Dauerstress und Überbelastung zu vermeiden"
+            "de": "Mit der Selbstbeurteilung wird der subjektive IST-Zustand der Stress&shy;situation registriert und hat zum Ziel:\n\n* Stressoren und Stressauslö&shy;ser frühzeitig zu erkennen\n* sich der Stressfaktoren bewusst zu werden\n* frühzeitig gegen die Stressfaktoren vorzugehen\n* mit Hilfe der vorgeschlagenen Aktivitäten sein subjektives Stressempfinden zu re&shy;du&shy;zieren\n* langfristig Dauerstress und Überbelastung zu vermeiden",
+            "en": "With the help of the self-assessment, the subjective as-is state of the stress situation is registered and aims:\n\n* to recognize stressors and stress triggers early\n* to be aware of the stress factors\n* to early combat the stress factors\n* to reduce the subjective perception of stress using the proposed activities\n* to avoid constant stress and strain in the long run"
         },
         "titleI18n": {
-            "de": "Selbstbeurteilung<br>\"Stressmanagement\""
+            "de": "Selbstbeurteilung<br>\"Stressmanagement\"",
+            "en": "Self-assessment \"Stress Management\""
         },
-        "topics": [
-            {
-                "$oid": "53b416cfa43aac62a2debda1"
-            }
-        ],
+        "topics": [],
         "updated": {
-            "$date": 1412060811557
+            "$date": 1413282866661
         }
     },
     {
@@ -937,7 +936,8 @@
             "de": "Unter Zeitmanagement versteht man mehrere Vorgehensweisen, die dabei helfen sollen, anstehende Aufgaben und Termine innerhalb des zur Verfügung stehenden Zeitraums abzuarbeiten.\n\nEs wird zwischen persönlichem Zeit&shy;management und Zeitwirtschaft unterschieden.\n\nMehr Informationen zu dem Thema findest du <a href='http://de.wikipedia.org/wiki/Zeitmanagement' target='_blank'>hier.</a>"
         },
         "titleI18n": {
-            "de": "App für Zeitmanagement"
+            "de": "App für Zeitmanagement",
+            "en": "App for time management"
         },
         "topics": [
             {
@@ -1215,7 +1215,8 @@
         "defaultfrequency": "day",
         "defaultvisibility": "private",
         "descriptionI18n": {
-            "de": "Setz heute bewusst Prioritäten bei deiner Tagesplanung (von Arbeit und Freizeit)."
+            "de": "Setz heute bewusst Prioritäten bei deiner Tagesplanung (von Arbeit und Freizeit).",
+            "en": "Prioritize consciously your daily schedule (work and leisure)."
         },
         "number": "Act-28",
         "qualityFactor": 6,
@@ -1237,10 +1238,12 @@
         ],
         "source": "youpers",
         "textI18n": {
-            "de": "Priorisiere und teile deine Aufgaben in **Essenzielle**, **Wichtige** und **Triviale** ein. \n\nUnd lerne, auch mal \"nein\" zu sagen, sowohl zu anderen als auch zu dir selbst – werfe die trivialen Aufgaben in die Ablage „T“. \n\nAndernfalls wirst du auch weiterhin mit Arbeit überhäuft und deine Probleme nicht los."
+            "de": "Priorisiere und teile deine Aufgaben in **Essenzielle**, **Wichtige** und **Triviale** ein. \n\nUnd lerne, auch mal \"nein\" zu sagen, sowohl zu anderen als auch zu dir selbst – werfe die trivialen Aufgaben in die Ablage „T“. \n\nAndernfalls wirst du auch weiterhin mit Arbeit überhäuft und deine Probleme nicht los.",
+            "en": "Prioritize and classify your tasks into **essential**, **important** and **trivial**.\n\nAlso learn to sometimes say \"no\", both to others and to yourself - move the trivial tasks in tray \"T\".\n\nOtherwise, you will continue to be overwhelmed with work and not get rid of your problems."
         },
         "titleI18n": {
-            "de": "Prioritäten bei Tagesplanung"
+            "de": "Prioritäten bei Tagesplanung",
+            "en": "Daily planning"
         },
         "topics": [
             {
@@ -1437,7 +1440,8 @@
             "de": "Ein offenes Gespräch mit der bzw. dem Vorgesetzten kann helfen, die Situation zu klären.\n  \nDer bzw. dem Vorgesetzten ist häufig gar nicht bekannt, wie über&shy;lastet seine Mitarbeitenden sind, weil sich selten jemand beklagt. \n\nEs zeugt von Verantwortungs&shy;be&shy;wusst&shy;sein, wenn nicht mehr Auf&shy;gaben über&shy;nommen werden, als tatsächlich mit der nötigen Sorgfalt bewältigt werden können.\n\nWeitere Informationen:\n* <a href='http://psyga.info/fileadmin/user_upload/PDFs/psyGA_eLearningTool_Booklet.pdf' target='_blank'>Förderung psychischer Gesund&shy;heit als Führungsaufgabe</a>\n* <a href='http://www.medizinfo.de/kopfundseele/stress/stressumgang.htm' target='_blank'>Umgang mit Stress</a>"
         },
         "titleI18n": {
-            "de": "Arbeitsgestaltung"
+            "de": "Arbeitsgestaltung",
+            "en": "Jog design"
         },
         "topics": [
             {
@@ -2140,7 +2144,8 @@
             "de": "Sprich die Person auf deine geleistete Arbeit an und mache sie bewusst darauf aufmerksam.\n\nSei danach auch stolz auf dich für die Erledigung deiner Aufgabe!\n\nDas gibt Selbstvertrauen für die Zukunft!"
         },
         "titleI18n": {
-            "de": "Anerkennung einfordern"
+            "de": "Anerkennung einfordern",
+            "en": "Demand appreciation"
         },
         "topics": [
             {
@@ -2183,7 +2188,8 @@
             "de": "Jeder Mensch hat Min&shy;der&shy;wer&shy;tig&shy;keits&shy;ge&shy;fühle. Viele reagieren darauf mit Resignation und Kompensation.\n\nUm zu einem gesunden Selbst&shy;be&shy;wusst&shy;sein zu gelangen, musst du deine Schwächen akzeptieren. Dabei kann erhaltene Anerkennung von Vorgesetzten und/oder Kollegen sehr viel helfen.\n\nAchte heute bewusst auf erhaltene Anerkennung, auch wenn es nur kleine Äusserungen sind. Und sei anschliessend ruhig stolz auf dich!"
         },
         "titleI18n": {
-            "de": "Achte auf Anerkennung"
+            "de": "Achte auf Anerkennung",
+            "en": "Look for appreciation"
         },
         "topics": [
             {
@@ -2223,7 +2229,8 @@
             "de": "Sprich in regelmässigen Abständen Lob und Anerkennung aus und stelle so die Person \"auf einen Sockel\"!\n\nEin jeder Mensch hat \"recht&shy;mäs&shy;sigen Anspruch auf Achtung von seinen Nebenmenschen, und wechselseitig ist er dazu auch gegen jeden Anderen verbunden\" (Immanuel Kant: Metaphysik der Sitten, TL, Akademie-Ausgabe Band VI, 462)."
         },
         "titleI18n": {
-            "de": "Anerkennung aussprechen"
+            "de": "Anerkennung aussprechen",
+            "en": "Express appreciation"
         },
         "topics": [
             {
@@ -2274,7 +2281,8 @@
             "de": "Im Mitarbeitergespräch kannst du deinem Vorgesetzten mitteilen, was dich bei deinen Arbeitsabläufen und Aufgaben stört und was deine Leistung und dein Befinden verbessern könnte.\n\nDas Mitarbeitergespräch eignet sich gut, auch kleinere Probleme anzusprechen, denn jetzt hast du die ganze Aufmerksam&shy;keit des Vorgesetzten.\n\nNotiere dir die Punkte vor dem Gespräch, damit du im Gespräch nichts vergisst."
         },
         "titleI18n": {
-            "de": "Arbeitsabläufe und Aufgaben"
+            "de": "Arbeitsabläufe und Aufgaben",
+            "en": "Work flows and tasks"
         },
         "topics": [
             {
@@ -2671,7 +2679,7 @@
         "_id": {
             "$oid": "5278c6adcdeab69a25000040"
         },
-        "__v": 6,
+        "__v": 7,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -2683,7 +2691,8 @@
         "defaultfrequency": "day",
         "defaultvisibility": "private",
         "descriptionI18n": {
-            "de": "Stehe heute bewusst in regel&shy;mäs&shy;sigen Arbeitspausen kurz auf, strecke dich, und führe eine Entspannungsübung durch."
+            "de": "Stehe heute bewusst in regel&shy;mäs&shy;sigen Arbeitspausen kurz auf, strecke dich, und führe eine Entspannungs&shy;übung durch.",
+            "en": "Get up regularly and consciously today during work breaks, stretch briefly, and perform a relaxation exercise."
         },
         "number": "Act-59",
         "qualityFactor": 6,
@@ -2700,10 +2709,12 @@
         ],
         "source": "youpers",
         "textI18n": {
-            "de": "Schon ein paar Sekunden können Wunder wirken:  \nÖffne dein Bürofenster und atme dreimal tief durch. Das unterbricht die Stress-Spirale. \n\nDerartige „unproduktive“ Augen&shy;blicke sind nicht etwa vergeudete Zeit, son&shy;dern wichtig für die Re&shy;ge&shy;ne&shy;ra&shy;ti&shy;on. \n\nUnd sind dir gerade in solchen Mo&shy;men&shy;ten nicht auch schon die besten Ideen gekommen?"
+            "de": "Schon ein paar Sekunden können Wunder wirken:  \nÖffne dein Bürofenster und atme dreimal tief durch. Das unterbricht die Stress-Spirale. \n\nDerartige „unproduktive“ Augen&shy;blicke sind nicht etwa vergeudete Zeit, son&shy;dern wichtig für die Re&shy;ge&shy;ne&shy;ra&shy;ti&shy;on. \n\nUnd sind dir gerade in solchen Mo&shy;men&shy;ten nicht auch schon die besten Ideen gekommen?",
+            "en": "Even a few seconds can work wonders: \nOpen your office window and breathe deeply three times. That interrupts the stress spiral.\n\nSuch \"non-productive\" moments are not wasted time, but important for regeneration.\n\nAnd just in such moments, have you not had the the best ideas?"
         },
         "titleI18n": {
-            "de": "Entspannungsübung"
+            "de": "Entspannungsübung",
+            "en": "Relaxation exercise"
         },
         "topics": [
             {
@@ -2711,7 +2722,7 @@
             }
         ],
         "updated": {
-            "$date": 1412070660528
+            "$date": 1413289522015
         }
     },
     {
@@ -2979,7 +2990,8 @@
         "defaultfrequency": "week",
         "defaultvisibility": "private",
         "descriptionI18n": {
-            "de": "Mache einmal pro Woche einen Spazier&shy;gang mit einer Arbeits&shy;kol&shy;le&shy;gin bzw. einem Arbeits&shy;kol&shy;le&shy;gen während der Mittags&shy;pause."
+            "de": "Mache einmal pro Woche einen Spazier&shy;gang mit einer Arbeits&shy;kol&shy;le&shy;gin bzw. einem Arbeits&shy;kol&shy;le&shy;gen während der Mittags&shy;pause.",
+            "en": "Go for a walk with a co-worker during lunch break once a week."
         },
         "number": "Act-65",
         "qualityFactor": 6,
@@ -3001,10 +3013,12 @@
         ],
         "source": "youpers",
         "textI18n": {
-            "de": "Speziell im Herbst und Winter:  \nHalte beim Spaziergang dein Gesicht in die Sonne und mache die Unterarme frei. In geringer Menge ist das UV-Licht gesundheitlich förderlich. Durch Tages&shy;licht kann dein Körper **Vitamin D** bilden. \n\nDaneben tut die Bewegung gut und hat einen weiteren gesundheits&shy;förderlichen Effekt.\n\nWeitere Informationen zum Thema \"Bewegung\" findest du <a href='http://www.hepa.ch/internet/hepa/de/home/dokumentation/grundlagendokumente.parsys.70058.downloadList.12250.DownloadFile.tmp/screendhepagrundlagendokument2013.pdf' target='_blank'>hier.</a>"
+            "de": "Speziell im Herbst und Winter:  \nHalte beim Spaziergang dein Gesicht in die Sonne und mache die Unterarme frei. In geringer Menge ist das UV-Licht gesundheitlich förderlich. Durch Tages&shy;licht kann dein Körper **Vitamin D** bilden. \n\nDaneben tut die Bewegung gut und hat einen weiteren gesundheits&shy;förderlichen Effekt.\n\nWeitere Informationen zum Thema \"Bewegung\" findest du <a href='http://www.hepa.ch/internet/hepa/de/home/dokumentation/grundlagendokumente.parsys.70058.downloadList.12250.DownloadFile.tmp/screendhepagrundlagendokument2013.pdf' target='_blank'>hier.</a>",
+            "en": "Especially during fall and winter:\nHold your face in the sun and make the forearms free while walking. A small quantity of UV light is conducive to health. With the help of daylight your body can develop **vitamin D**.\n\nIn addition, moving feels good and has another health-promoting effect.\n\nMore information on \"movement\" you'll find <a href='http://www.hepa.ch/internet/hepa/de/home/dokumentation/grundlagendokumente.parsys.70058.downloadList.12250.DownloadFile.tmp/screendhepagrundlagendokument2013.pdf' target = '_blank'>here.</a>"
         },
         "titleI18n": {
-            "de": "Mittagsspaziergang"
+            "de": "Mittagsspaziergang",
+            "en": "Lunch stroll"
         },
         "topics": [
             {
@@ -3031,7 +3045,8 @@
         "defaultfrequency": "week",
         "defaultvisibility": "private",
         "descriptionI18n": {
-            "de": "Gehe einmal pro Woche während der Mittagspause mit Arbeits&shy;kol&shy;le&shy;gen oder Freunden joggen."
+            "de": "Gehe einmal pro Woche während der Mittagspause mit Arbeits&shy;kol&shy;le&shy;gen oder Freunden joggen.",
+            "en": "Go jogging once a week during lunch break with work colleagues or friends."
         },
         "number": "Act-66",
         "qualityFactor": 5,
@@ -3056,10 +3071,12 @@
         ],
         "source": "youpers",
         "textI18n": {
-            "de": "Gehe über Mittag mit Kollegen joggen. Plane die Zeit fest in deinem Termin&shy;kalender ein und verabrede dich. So kannst du vom gesund&shy;heit&shy;lichen Nutzen der Bewegung profi&shy;tieren und dazu noch soziale Kon&shy;takte pflegen. \n\nWer sich mit anderen Personen zum Sport verabredet, führt diesen auch öfters durch, da eine andere Person auf dich wartet. Zudem macht ein gemein&shy;sames Sporttreiben oft mehr Spass als beim Joggen alleine zu sein.\n\nWeitere Informationen zum Thema \"Bewegung\" findest du <a href='http://www.hepa.ch/internet/hepa/de/home/dokumentation/grundlagendokumente.parsys.70058.downloadList.12250.DownloadFile.tmp/screendhepagrundlagendokument2013.pdf' target='_blank'>hier.</a>"
+            "de": "Gehe über Mittag mit Kollegen joggen. Plane die Zeit fest in deinem Termin&shy;kalender ein und verabrede dich. So kannst du vom gesund&shy;heit&shy;lichen Nutzen der Bewegung profi&shy;tieren und dazu noch soziale Kon&shy;takte pflegen. \n\nWer sich mit anderen Personen zum Sport verabredet, führt diesen auch öfters durch, da eine andere Person auf dich wartet. Zudem macht ein gemein&shy;sames Sporttreiben oft mehr Spass als beim Joggen alleine zu sein.\n\nWeitere Informationen zum Thema \"Bewegung\" findest du <a href='http://www.hepa.ch/internet/hepa/de/home/dokumentation/grundlagendokumente.parsys.70058.downloadList.12250.DownloadFile.tmp/screendhepagrundlagendokument2013.pdf' target='_blank'>hier.</a>",
+            "en": "Go jogging at lunch time with co-workers. Schedule the time in your agenda and arrange to meet. That way, you can benefit from the exercise and maintain your social contacts.\n\nIf you meet with other people to do sports, you will perform it more often because someone else is waiting for you. Besides that, doing sports activities together is more fun than jogging on your own.\n\nFor more information about \"movement\" you can find <a href='http://www.hepa.ch/internet/hepa/de/home/dokumentation/grundlagendokumente.parsys.70058.downloadList.12250.DownloadFile.tmp/screendhepagrundlagendokument2013.pdf' target = '_blank'>here.</a>"
         },
         "titleI18n": {
-            "de": "Joggen in Mittagspause"
+            "de": "Joggen in Mittagspause",
+            "en": "Jogging at lunch time"
         },
         "topics": [
             {
@@ -3215,7 +3232,8 @@
             "de": "Neue Erfahrungen sind die Quelle von Hochgefühlen, zeigen aktuelle Studien. Wer im Alltag einen Glücks-Kick erleben will, der sollte die Ab&shy;wechslung suchen. Als Glücksbote wirkt der Neurotransmitter **Dopamin**.\n\nAuch andere ungewohnte Tätig&shy;kei&shy;ten wie das Ausprobieren neuer Wege, ob zu Fuss oder mit dem Rad, neue Tänze oder das laute Singen im Auto aktivieren Dopamin."
         },
         "titleI18n": {
-            "de": "Abwechslung"
+            "de": "Abwechslung",
+            "en": "Variety"
         },
         "topics": [
             {
@@ -3787,7 +3805,8 @@
         "defaultfrequency": "day",
         "defaultvisibility": "private",
         "descriptionI18n": {
-            "de": "Führe am Feierabend zur Ent&shy;span&shy;nung autogenes Training durch."
+            "de": "Führe am Feierabend zur Ent&shy;span&shy;nung autogenes Training durch.",
+            "en": "Perform autogenic training for relaxation after work."
         },
         "number": "Act-81",
         "qualityFactor": 5,
@@ -3818,10 +3837,12 @@
         ],
         "source": "youpers",
         "textI18n": {
-            "de": "Autogenes Training (AT) ist ein bekanntes Entspannungsverfahren. Es hat zum Ziel, über Selbst&shy;ent&shy;span&shy;nung zu einer psycho&shy;physio&shy;logischen Umschaltung von einer ak&shy;ti&shy;vi&shy;täts&shy;gerichteten in eine der Erholung dienende  Reaktionslage zu kommen. \n\nAutogenes Training kann über 3 Monate hinweg in 6 Stufen erlernt werden:\n1. Schwereübung\n2. Wärmeübung\n3. Herzübung\n4. Atemübung\n5. Sonnengeflechtübung\n6. Stirnkühleübung\n\nWeitere Informationen zum Thema \"Entspannung\" findest du <a href='http://www.publicjobs.ch.ch/fileadmin/user/global/docs/Stellen/01_Entspannung.pdf' target='_blank'>hier.</a>"
+            "de": "Autogenes Training (AT) ist ein bekanntes Entspannungsverfahren. Es hat zum Ziel, über Selbst&shy;ent&shy;span&shy;nung zu einer psycho&shy;physio&shy;logischen Umschaltung von einer ak&shy;ti&shy;vi&shy;täts&shy;gerichteten in eine der Erholung dienende  Reaktionslage zu kommen. \n\nAutogenes Training kann über 3 Monate hinweg in 6 Stufen erlernt werden:\n1. Schwereübung\n2. Wärmeübung\n3. Herzübung\n4. Atemübung\n5. Sonnengeflechtübung\n6. Stirnkühleübung\n\nWeitere Informationen zum Thema \"Entspannung\" findest du <a href='http://www.publicjobs.ch.ch/fileadmin/user/global/docs/Stellen/01_Entspannung.pdf' target='_blank'>hier.</a>",
+            "en": "Autogenic training (AT) is a known relaxation method. Its goal is to reach a psychophysiological shift from an activity-oriented to a more relaxing response examination by means of self-relaxation.\n\nAutogenic training can be learned over 3 months in 6 steps:\n1. heaviness exercise\n2. heat exercise\n3. cardio exercise\n4. breathing Exercise\n5. solar plexus exercise\n6. forehead coolness exercise\n\nMore information on \"relaxation\" you'll find <a href='http://www.publicjobs.ch.ch/fileadmin/user/global/docs/Stellen/01_Entspannung.pdf' target='_blank'> here. </a>"
         },
         "titleI18n": {
-            "de": "Autogenes Training am Abend"
+            "de": "Autogenes Training am Abend",
+            "en": "Autogenic training in the evening"
         },
         "topics": [
             {
@@ -3963,7 +3984,8 @@
         "defaultfrequency": "month",
         "defaultvisibility": "private",
         "descriptionI18n": {
-            "de": "Gehe mindestens einmal pro Mo&shy;nat mit Freunden oder Bekannten nach der Arbeit etwas trinken."
+            "de": "Gehe mindestens einmal pro Mo&shy;nat mit Freunden oder Bekannten nach der Arbeit etwas trinken.",
+            "en": "Go at least once a month for a drink after work with friends or acquaintances."
         },
         "number": "Act-85",
         "qualityFactor": 4,
@@ -3989,10 +4011,13 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": "Zusatzarbeit, Überstunden, ständige Erreichbarkeit: jeder fünfte Arbeit&shy;nehmer steht in seinem Job so unter Stress, dass er am Feierabend nichts mehr mit Freunden oder Familie unternehmen mag. Zu diesem Schluss kommt eine re&shy;prä&shy;sen&shy;ta&shy;tive Studie der deutschen Krankenkassen.\n\nDass auch Schweizer Angestellte von diesem Problem betroffen sind, zeigt eine Studie des Staats&shy;sek&shy;re&shy;ta&shy;riats für Wirtschaft (SECO). Etwa ein Drittel der Schweizer Erwerbs&shy;be&shy;völ&shy;ke&shy;rung leidet demnach unter perma&shy;nentem Stress."
+            "de": "Zusatzarbeit, Überstunden, ständige Erreichbarkeit: jeder fünfte Arbeit&shy;nehmer steht in seinem Job so unter Stress, dass er am Feierabend nichts mehr mit Freunden oder Familie unternehmen mag. Zu diesem Schluss kommt eine re&shy;prä&shy;sen&shy;ta&shy;tive Studie der deutschen Krankenkassen.\n\nDass auch Schweizer Angestellte von diesem Problem betroffen sind, zeigt eine Studie des Staats&shy;sek&shy;re&shy;ta&shy;riats für Wirtschaft (SECO). Etwa ein Drittel der Schweizer Erwerbs&shy;be&shy;völ&shy;ke&shy;rung leidet demnach unter perma&shy;nentem Stress.",
+            "en": "Additional work, overtime, constant accessibility: one in five employees is so stressed in his job that he does not feel like going in with friends or family after work. This is the conclusion of a representative study of German health insurances.\n\nSwiss employees are also affected by this issue, which shows a study of the State Secretariat for Economic Affairs (SECO). About one third of the Swiss working population suffers accordingly under constant stress."
         },
         "titleI18n": {
-            "de": "AfterWork mit Freunden"
+            "de": "AfterWork mit Freunden",
+            "en": "AfterWork with friends"
+
         },
         "topics": [
             {
@@ -4426,7 +4451,8 @@
             "de": "Das Wiederholen von heiligen oder posi&shy;tiven Selbstsuggestionen ist in fast allen spirituellen Disziplinen ein wesentlicher Bestandteil.\n\nDie positive Aussage und die damit ver&shy;bundene Kraft dieses Ent&shy;schluss&shy;es sind mit der Bejahung des ei&shy;gen&shy;en Lebens, der Heilung sowie Ent&shy;wicklung der körper&shy;lichen und geis&shy;tigen Konstitution ver&shy;bunden.\n\nVerschiedene wissenschaftliche Studien bestätigen, dass eine fest gefasste Inten&shy;tion oder Absicht nach Aussen strahlt und von anderen Lebewesen empfangen wird."
         },
         "titleI18n": {
-            "de": "Ablenkung"
+            "de": "Ablenkung",
+            "en": "Distraction"
         },
         "topics": [
             {
@@ -5502,7 +5528,8 @@
             "de": "Nehme in deiner Freizeit bei Akti&shy;vi&shy;täten eines Vereins teil. \n\nDer soziale Austausch und die gemein&shy;samen Aktivitäten stärken die Psyche. \n\nSuche gemäss deinen Interessen einen geeigneten Verein (z.B. Sport, Musik, Kunst)."
         },
         "titleI18n": {
-            "de": "Aktivität im Verein"
+            "de": "Aktivität im Verein",
+            "en": "Club activity"
         },
         "topics": [
             {
@@ -5910,7 +5937,8 @@
             "de": "In der heutigen Gesellschaft ist die Ausübung von körperlicher Aktivität besonders durch die mangelnde Bewegungssituation, ausgelöst durch Computerarbeitsplatz, Fern&shy;sehen und Autofahren und der&shy;gleichen besonders wichtig. \n\nUm objektive Aussagen zu erhalten, werden mobile Sensorsysteme zur Messung der körperlichen Aktivität genutzt. Während bislang dazu meist einfache elektro&shy;mecha&shy;nische Schrittzähler eingesetzt wurden, werden zukünftig komplexe, mobile Sensorsysteme oder Apps verwendet."
         },
         "titleI18n": {
-            "de": "App für Bewegung"
+            "de": "App für Bewegung",
+            "en": "App for exercise"
         },
         "topics": [
             {
@@ -6232,7 +6260,8 @@
             "de": "Pro Woche gelten 2.5 Stunden Be&shy;we&shy;gung mit mittlerer Intensität als ge&shy;sund&shy;heits&shy;wirk&shy;same Basis&shy;emp&shy;feh&shy;lung. \n\nEs muss jedoch nicht immer Sport sein. Auch andere körperliche Aktivitäten haben ihren Nutzen. \n\nNehme dir am Wochenende Zeit und verrichte eine Stunde körper&shy;liche Ar&shy;beit. Gartenarbeit oder hand&shy;werk&shy;liche Arbeiten bieten sich zum Beispiel an.  \nWichtig ist, dass dir die Arbeit Spass macht!!!\n\nWeitere Informationen zum Thema \"Bewegung\" findest du <a href='http://www.hepa.ch/internet/hepa/de/home/dokumentation/grundlagendokumente.parsys.70058.downloadList.12250.DownloadFile.tmp/screendhepagrundlagendokument2013.pdf' target='_blank'>hier.</a>"
         },
         "titleI18n": {
-            "de": "Arbeit als Ausgleich"
+            "de": "Arbeit als Ausgleich",
+            "en": "Work as balance"
         },
         "topics": [
             {
@@ -6627,7 +6656,8 @@
             "de": "Wer viel Stress am Tag hat und abends nicht gut einschlafen kann, der sollte nach Feierabend noch eine Runde drehen. Die körperliche Bewegung hilft einem dabei \"runter zu kommen\" und dann klappt es auch besser mit dem Einschlafen. Vor allem fühlt man sich morgens auch ausgeruhter."
         },
         "titleI18n": {
-            "de": "Abendspaziergang"
+            "de": "Abendspaziergang",
+            "en": "Evening stroll"
         },
         "topics": [
             {
@@ -6820,7 +6850,8 @@
             "de": "Die zunehmende Arbeitsbelastung und der unvermeidlich erscheinende Stress werden oft beklagt. Doch im Grunde genommen ist es viel we&shy;niger die grosse Belastung,als viel mehr die ungenügende Entlastung, die zu Stress und Burnout führt.\n\nStundenweise Kinderbetreuung ermög&shy;licht unbeschwertes Ein&shy;kau&shy;fen und tem&shy;poräres Abschalten vom Erziehungs&shy;stress. Und die Kinder sind in guten Händen."
         },
         "titleI18n": {
-            "de": "Arbeitsentlastung"
+            "de": "Arbeitsentlastung",
+            "en": "Work relief"
         },
         "topics": [
             {
@@ -7062,7 +7093,8 @@
         "defaultfrequency": "week",
         "defaultvisibility": "private",
         "descriptionI18n": {
-            "de": "Probiere ein neues Hobby aus."
+            "de": "Probiere ein neues Hobby aus.",
+            "en": "Try out a new hobby."
         },
         "number": "Act-144",
         "qualityFactor": 5,
@@ -7083,10 +7115,12 @@
         ],
         "source": "youpers",
         "textI18n": {
-            "de": "Je nach Stressursache ist eine ruhige oder gesellschaftliche Freizeit&shy;be&shy;schäf&shy;ti&shy;gung entspannend und wohltuend, wie z.B. Singen, Turnen, Malen, Foto&shy;gra&shy;fie&shy;ren, Sprachkurs, etc."
+            "de": "Je nach Stressursache ist eine ruhige oder gesellschaftliche Freizeit&shy;be&shy;schäf&shy;ti&shy;gung entspannend und wohltuend, wie z.B. Singen, Turnen, Malen, Foto&shy;gra&shy;fie&shy;ren, Sprachkurs, etc.",
+            "en": "Depending on the cause of stress, a quiet or social leisure activity is relaxing and beneficial such as singing, gymnastics, painting, photograph, language courses, etc."
         },
         "titleI18n": {
-            "de": "Hobby mit Freude"
+            "de": "Hobby mit Freude",
+            "en": "Hobby with joy"
         },
         "topics": [
             {
@@ -7185,7 +7219,7 @@
         "_id": {
             "$oid": "5278c6adcdeab69a25000096"
         },
-        "__v": 7,
+        "__v": 8,
         "author": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -7249,10 +7283,11 @@
         ],
         "source": "youpers",
         "textI18n": {
-            "de": "Eine wiederum psychische Er&shy;klä&shy;rung für den Griff nach Süssigkeiten ist, dass wir uns in stressigen Si&shy;tu&shy;a&shy;ti&shy;onen entspannen und für die er&shy;ldigte Arbeit belohnen wollen.\n\nAllerdings ist es wissenschaftlich nicht gänzlich belegt, dass Zucker oder Fett Stress wirklich körperlich reduzieren."
+            "de": "Eine wiederum psychische Er&shy;klä&shy;rung für den Griff nach Süssigkeiten ist, dass wir uns in stressigen Si&shy;tu&shy;a&shy;ti&shy;onen entspannen und für die er&shy;ledigte Arbeit belohnen wollen.\n\nAllerdings ist es wissenschaftlich nicht gänzlich belegt, dass Zucker oder Fett Stress wirklich körperlich reduzieren."
         },
         "titleI18n": {
-            "de": "Achtung vor Süssem!"
+            "de": "Achtung vor Süssem!",
+            "en": "Reduce sugar"
         },
         "topics": [
             {
@@ -7263,7 +7298,7 @@
             }
         ],
         "updated": {
-            "$date": 1412085520782
+            "$date": 1413278420462
         }
     },
     {
@@ -7329,7 +7364,8 @@
             "de": "Im Gegensatz zum Heisshunger auf Süsses, der sich auf einen sinkenden Blutzucker&shy;spiegel zurückführen lässt, rührt der salzige Heisshunger von einem erhöhten Bedarf an Elektrolyten. \n\nLange Essenspausen, psychische Belastungen, körperliche und geistige Anstrengung sowie Schlafmangel können Ursachen dieser Attacken sein.\n\nMit einer ausgewogenen Ernährung, regelmässigem Essen und be&shy;wusstem Geniessen beim Essen lässt sich der Heisshunger austricksen."
         },
         "titleI18n": {
-            "de": "Achtung vor Salzigem!"
+            "de": "Achtung vor Salzigem!",
+            "en": "Reduce salt"
         },
         "topics": [
             {
@@ -8136,7 +8172,8 @@
             "de": "Gemäss Bundesamt für Gesundheit (BAG) ist es erwiesen, dass regel&shy;mässige Bewegung das Risiko, an einer weit ver&shy;breiteten Krankheit, wie Adipositas (Fettleibigkeit), Herz-Kreislauf-Er&shy;kran&shy;kungen, Typ-II-Diabetes, Knochen&shy;schwund (Osteo&shy;porose), Rücken&shy;schmer&shy;zen oder an gewissen Krebs&shy;arten zu erkranken, senkt.\n\nZudem wirkt sich Bewegung positiv auf die Hauptrisikofaktoren für nicht über&shy;tragbare Krankheiten wie Blut&shy;hoch&shy;druck, Hypercholesterinämie (zu hoher Cholesterinspiegel im Blut), Über&shy;ge&shy;wicht und sitzende Tätigkeiten aus.\n\nMehr Informationen zur Förderung der Alltagsbewegung findest du <a href='http://www.bag.admin.ch/themen/ernaehrung_bewegung/11660/index.html?lang=de' target='_blank'>hier.</a>"
         },
         "titleI18n": {
-            "de": "Alltagsbewegung"
+            "de": "Alltagsbewegung",
+            "en": "Everyday movement"
         },
         "topics": [
             {
@@ -8216,7 +8253,8 @@
         "defaultfrequency": "day",
         "defaultvisibility": "private",
         "descriptionI18n": {
-            "de": "Gönne dir neben Arbeit und kör&shy;per&shy;lichem Training am Feierabend auch genügend Erholung und Schlaf."
+            "de": "Gönne dir neben Arbeit und kör&shy;per&shy;lichem Training am Feierabend auch genügend Erholung und Schlaf.",
+            "en": "Grant yourself enough rest and sleep besides work and exercise after work."
         },
         "number": "Act-165",
         "qualityFactor": 4,
@@ -8241,10 +8279,12 @@
         ],
         "source": "community",
         "textI18n": {
-            "de": "Der Begriff **Erholung** stammt ur&shy;sprüng&shy;lich aus der Medizin und be&shy;deutet *„wieder gesund werden“*.\n\nMit Erholung wird allgemein der Vor&shy;gang bezeichnet, wenn sich ein bio&shy;lo&shy;gischer Organismus nach einer an&shy;stren&shy;genden Tätigkeit, nach kör&shy;per&shy;licher Er&shy;mü&shy;dung und geistiger Er&shy;schöp&shy;fung, aber auch von Ver&shy;letzungen oder Krank&shy;heiten durch eine Ruhephase wieder regeneriert und Kräfte sammelt.\n\nZur Erholung im biologisch-medi&shy;zi&shy;nischen Sinne gehört also haupt&shy;säch&shy;lich der Schlaf, Ruhepausen (Ent&shy;span&shy;nung, Reflexion) und die Re&shy;kon&shy;va&shy;les&shy;zenz im eigentlichen Sinne."
+            "de": "Der Begriff **Erholung** stammt ur&shy;sprüng&shy;lich aus der Medizin und be&shy;deutet *„wieder gesund werden“*.\n\nMit Erholung wird allgemein der Vor&shy;gang bezeichnet, wenn sich ein bio&shy;lo&shy;gischer Organismus nach einer an&shy;stren&shy;genden Tätigkeit, nach kör&shy;per&shy;licher Er&shy;mü&shy;dung und geistiger Er&shy;schöp&shy;fung, aber auch von Ver&shy;letzungen oder Krank&shy;heiten durch eine Ruhephase wieder regeneriert und Kräfte sammelt.\n\nZur Erholung im biologisch-medi&shy;zi&shy;nischen Sinne gehört also haupt&shy;säch&shy;lich der Schlaf, Ruhepausen (Ent&shy;span&shy;nung, Reflexion) und die Re&shy;kon&shy;va&shy;les&shy;zenz im eigentlichen Sinne.",
+            "en": "The term **recovery** originates from medicine and means *\"get healthy again\"*.\n\nRecovery in general refers to the process of regeneration through resting and gathering forces/nof a biological organism after a strenuous activity, after physical and mental fatigue and also after injury or disease.\n\nTo recreation in the biological-medical sense belong mainly sleep, rest (relaxation, reflection) and recovery in the classical sense."
         },
         "titleI18n": {
-            "de": "Guter Schlaf"
+            "de": "Guter Schlaf",
+            "en": "Goodnight sleep"
         },
         "topics": [
             {
@@ -8631,7 +8671,8 @@
             "de": "Eine der wichtigsten kognitiv-behavioralen Techniken ist die Selbstbeobachtung von Aktivitäten, Stimmungen und Gedanken.\n\nDie Technik hilft dir, eine objektivere Sicht deiner durchgeführten Aktivitäten zu erhalten und mögliche Aktivitäten zu finden, die du im Verlauf der nächsten Tage, Wochen oder Monate reduzieren möchtest."
         },
         "titleI18n": {
-            "de": "Aktivitäten-Tagebuch"
+            "de": "Aktivitäten-Tagebuch",
+            "en": "Activity journal"
         },
         "topics": [
             {
@@ -10140,7 +10181,8 @@
             "de": "Mit Arbeitskollegen kann man sich gut aus&shy;tau&shy;schen. Manche Arbeit&shy;nehmer ver&shy;ab&shy;re&shy;den sich deshalb auch nach Feierabend.\n\nFreundschaften am Arbeitsplatz sind keine Seltenheit. Rund jeder dritte Berufstätige (39 Prozent) trifft sich auch privat mit Arbeitskollegen. Das hat eine Umfrage des Markt&shy;for&shy;schungs&shy;ins&shy;ti&shy;tuts BVA im Auftrag einer Personalberatung ergeben. Wer sich mit den Kollegen gut versteht, geht in der Regel gern zur Arbeit."
         },
         "titleI18n": {
-            "de": "AfterWork mit Kollegen"
+            "de": "AfterWork mit Kollegen",
+            "en": "AfterWork with co-workers"
         },
         "topics": [
             {
@@ -10886,7 +10928,8 @@
             "de": "Stressfreier Umgang mit Email, Handy und Smartphone lässt sich realisieren, indem bewusst Zeit&shy;in&shy;seln geschaffen und kommu&shy;niziert werden, während derer das mobile Gerät ausgeschaltet ist und man sich erholen oder ungestört arbeiten kann.\n\nFalls die Erreichbarkeit zwingend nötig ist, sollte eine klar definierte Zeitspanne dafür angeben und kommuniziert und sich auch kon&shy;se&shy;quent daran gehalten werden."
         },
         "titleI18n": {
-            "de": "Abgrenzung"
+            "de": "Abgrenzung",
+            "en": "Set limits"
         },
         "topics": [
             {
@@ -11416,7 +11459,7 @@
             "$date": 1407928827255
         },
         "updated": {
-            "$date": 1411636846214
+            "$date": 1413282878188
         },
         "action": "assessment",
         "number": "Act-274",
@@ -11438,12 +11481,8 @@
         "titleI18n": {
             "de": "Selbstbeurteilung<br>\"Gesunde Ernährung\""
         },
-        "topics": [
-            {
-                "$oid": "53b416fba43aac62a2debda2"
-            }
-        ],
-        "__v": 12
+        "topics": [],
+        "__v": 13
     },
     {
         "_id": {
@@ -13847,7 +13886,7 @@
             "$date": 1409838226994
         },
         "updated": {
-            "$date": 1411637061387
+            "$date": 1413282889482
         },
         "action": "assessment",
         "number": "Act-275",
@@ -13866,12 +13905,8 @@
         "titleI18n": {
             "de": "Selbstbeurteilung<br>\"Körperliche Fitness\""
         },
-        "topics": [
-            {
-                "$oid": "53b416fba43aac62a2debda3"
-            }
-        ],
-        "__v": 7,
+        "topics": [],
+        "__v": 8,
         "textI18n": {
             "de": "Mit der Selbstbeurteilung wird der subjektive IST-Zustand der körper&shy;lichen Fitness registriert und hat zum Ziel:\n\n* Bewegungsdefizite frühzeitig zu erkennen\n* sich der körperlichen Fitness bewusst zu werden\n* frühzeitig gegen schlechte körperliche Fitness vorzugehen\n* mit Hilfe der vorgeschlagenen Aktivitäten und dem Bewe&shy;gungs-Tagebuch sein sub&shy;jektives Wohlbefinden zu verbessern\n* langfristig die körperliche Fitness zu verbessern"
         }
@@ -13884,7 +13919,7 @@
             "$date": 1409838360026
         },
         "updated": {
-            "$date": 1411637298649
+            "$date": 1413282902973
         },
         "action": "assessment",
         "number": "Act-276",
@@ -13903,12 +13938,8 @@
         "titleI18n": {
             "de": "Selbstbeurteilung<br>\"Gesundes Arbeiten\""
         },
-        "topics": [
-            {
-                "$oid": "53b416fba43aac62a2debda4"
-            }
-        ],
-        "__v": 6,
+        "topics": [],
+        "__v": 7,
         "textI18n": {
             "de": "Mit der Selbstbeurteilung wird der subjektive IST-Zustand der Ergo&shy;nomie bei der Arbeit registriert und hat zum Ziel:\n\n* Ergonomiedefizite frühzeitig zu erkennen\n* sich der Auswirkungen bewusst zu werden\n* frühzeitig den Arbeitsplatz ergonomisch zu gestalten\n* mit Hilfe der vorgeschlagenen Aktivitäten und dem Ergo&shy;nomie-Tagebuch gesundes Arbeiten zu erhöhen\n* langfristig nicht ergono&shy;misches Arbeiten zu verhindern"
         }
@@ -13921,7 +13952,7 @@
             "$date": 1409838490275
         },
         "updated": {
-            "$date": 1411637458192
+            "$date": 1413282913657
         },
         "action": "assessment",
         "number": "Act-277",
@@ -13940,12 +13971,8 @@
         "titleI18n": {
             "de": "Selbstbeurteilung<br>\"Sicheres Arbeiten\""
         },
-        "topics": [
-            {
-                "$oid": "53b416fba43aac62a2debda5"
-            }
-        ],
-        "__v": 5,
+        "topics": [],
+        "__v": 6,
         "textI18n": {
             "de": "Mit der Selbstbeurteilung wird der subjektive IST-Zustand der Sicher&shy;heit bei der Arbeit registriert und hat zum Ziel:\n\n* Sicherheitsdefizite frühzeitig zu erkennen\n* sich der Gefahren und Risiken bewusst zu werden\n* frühzeitig gegen Gefahren und Risiken vorzugehen\n* mit Hilfe der vorgeschlagenen Aktivitäten und dem Sicher&shy;heits-Tagebuch sicheres Arbeiten zu erhöhen\n* sich langfristig vor Berufs&shy;unfällen zu schützen"
         }
@@ -14828,7 +14855,7 @@
             "$date": 1412588840433
         },
         "updated": {
-            "$date": 1412588840433
+            "$date": 1412862618960
         },
         "number": "Act-299",
         "source": "community",
@@ -14847,14 +14874,14 @@
             "de": "Setz dich aufrecht vor deinen Bildschirm, so dass du mit ausgestreckter Hand den Bildschirm berühren kannst."
         },
         "titleI18n": {
-            "de": "Bildschirm berühren"
+            "de": "Abstand zu Bildschirm"
         },
         "topics": [
             {
                 "$oid": "53b416fba43aac62a2debda4"
             }
         ],
-        "__v": 0
+        "__v": 1
     },
     {
         "_id": {
@@ -15152,7 +15179,7 @@
             "$date": 1412603029969
         },
         "updated": {
-            "$date": 1412603029969
+            "$date": 1412923946484
         },
         "number": "Act-308",
         "source": "community",
@@ -15171,14 +15198,14 @@
             "de": "Überprüfe regelmässig die Raum&shy;beleuchtung an deinem Arbeitsplatz und verhindere blendende oder flimmernde Beleuchtungskörper."
         },
         "titleI18n": {
-            "de": "Flimmerlicht"
+            "de": "kein Flimmerlicht"
         },
         "topics": [
             {
                 "$oid": "53b416fba43aac62a2debda4"
             }
         ],
-        "__v": 0
+        "__v": 1
     },
     {
         "_id": {
@@ -15428,6 +15455,186 @@
         "topics": [
             {
                 "$oid": "53b416fba43aac62a2debda4"
+            }
+        ],
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "543cf1fffbe3eb646599a525"
+        },
+        "created": {
+            "$date": 1413280255612
+        },
+        "updated": {
+            "$date": 1413280255612
+        },
+        "number": "Act-316",
+        "source": "community",
+        "defaultfrequency": "day",
+        "defaultexecutiontype": "group",
+        "defaultduration": 60,
+        "recWeights": [],
+        "qualityFactor": 1,
+        "author": {
+            "$oid": "52d4f515fac246174c000006"
+        },
+        "textI18n": {
+            "de": "Gefährdungen/Risiken besprechen, wie sie sich beeinflussen lassen und was man dagegen unternehmen könnte.\nWichtig ist, dass du dabei auf Fragen und Einwände eingehst und diese sorgfältig klärst.\nDenn allgemein müssen die Mitarbeitenden zur Überzeugung gelangen, dass die geforderte Sicherheits-Massnahme notwendig ist, sie schützt und in ihrem betrieblichen Alltag durch&shy;führ&shy;bar ist.\nWenn du Kontrolle und Autonomie über deine Arbeit hast, bekommst du das Gefühl, deine Arbeit und die damit verbundenen Gefährdungen beeinflussen zu können. Eine solche Arbeitsgestaltung führt auch zu Kompetenz, was wiederum die Fähigkeit zur Beeinflus&shy;sung von Gefährdungen fördert."
+        },
+        "descriptionI18n": {
+            "de": "Besprich regelmässig vor Beginn deiner Arbeiten mögliche Gefahren und Risiken mit deiner Kollegin bzw. deinem Kollegen."
+        },
+        "titleI18n": {
+            "de": "Gefährliche Arbeiten"
+        },
+        "topics": [
+            {
+                "$oid": "53b416fba43aac62a2debda5"
+            }
+        ],
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "543cf281fbe3eb646599a526"
+        },
+        "created": {
+            "$date": 1413280385701
+        },
+        "updated": {
+            "$date": 1413280385701
+        },
+        "number": "Act-317",
+        "source": "community",
+        "defaultfrequency": "week",
+        "defaultexecutiontype": "group",
+        "defaultduration": 60,
+        "recWeights": [],
+        "qualityFactor": 1,
+        "author": {
+            "$oid": "52d4f515fac246174c000006"
+        },
+        "textI18n": {
+            "de": "Das Beobachten anderer Menschen ist eine der wichtigsten Formen des Lernens im Alltag. Menschen, die Erfolg haben, attraktiv sind und eine gewisse Ähnlichkeit mit einem selbst aufweisen, werden gerne als Vorbild für das eigene Verhalten gewählt. Deshalb ist das sicherheitsgerechte Verhalten der Vorgesetzten und Kollegen von entscheidender Bedeutung."
+        },
+        "descriptionI18n": {
+            "de": "Führe diese Woche einmal deine sicherheitsgerechte Arbeitsweise als Vorbild für deine Kolleginnen und Kollegen aus."
+        },
+        "titleI18n": {
+            "de": "Vorbildliche Arbeit"
+        },
+        "topics": [
+            {
+                "$oid": "53b416fba43aac62a2debda5"
+            }
+        ],
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "543cf41b5c85436365d1b510"
+        },
+        "created": {
+            "$date": 1413280795226
+        },
+        "updated": {
+            "$date": 1413280795226
+        },
+        "number": "Act-318",
+        "source": "community",
+        "defaultfrequency": "week",
+        "defaultexecutiontype": "self",
+        "defaultduration": 60,
+        "recWeights": [],
+        "qualityFactor": 1,
+        "author": {
+            "$oid": "52d4f515fac246174c000006"
+        },
+        "textI18n": {
+            "de": "Wenn wir erwarten, dass die positiven Folgen einer sicherheitsgerechten Arbeitsweise die zu befürchtenden negativen Folgen überwiegen, werden wir diese Arbeitsweise ausprobieren. Beim Abwägen zwischen verschie&shy;denen Handlungsalternativen kommt es sowohl darauf an, wie wichtig die jeweiligen Folgen einer Handlung für uns sind, als auch für wie wahr&shy;schein&shy;lich wir ihr Eintreten halten.\nGute und schlechte Erfahrungen prägen unser Verhalten. Verhaltensweisen, mit denen wir erfolgreich waren, erleben wir als vorteilhaft. Sie werden im Gedächtnis gespeichert und in einer ähnlichen Situation wiederholt. Mit der Zeit entstehen daraus Gewohn&shy;heiten. Bei Misserfolgen passiert das Gegenteil: Situationen und Ver&shy;hal&shy;tens&shy;weisen, die wir als nachteilig erlebt haben, werden in Zukunft gemieden."
+        },
+        "descriptionI18n": {
+            "de": "Achte diese Woche einmal auf positive Erfahrungen deiner Arbeitsweise und nimm sie als Ansporn für die Zukunft."
+        },
+        "titleI18n": {
+            "de": "Positive Wahrnehmung der Arbeit"
+        },
+        "topics": [
+            {
+                "$oid": "53b416fba43aac62a2debda5"
+            }
+        ],
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "543cf518fbe3eb646599a527"
+        },
+        "created": {
+            "$date": 1413281048724
+        },
+        "updated": {
+            "$date": 1413281048724
+        },
+        "number": "Act-319",
+        "source": "community",
+        "defaultfrequency": "week",
+        "defaultexecutiontype": "group",
+        "defaultduration": 60,
+        "recWeights": [],
+        "qualityFactor": 1,
+        "author": {
+            "$oid": "52d4f515fac246174c000006"
+        },
+        "textI18n": {
+            "de": "Mit einer Besprechung der Vor- und Nachteile einer neuen Sicherheits&shy;massnahme mit den Betroffenen kannst du verhindern, dass sich nur die zu erwartenden Nachteile in den Köpfen festsetzen.\nKommuniziere klar und deutlich, welchen Stellenwert du einer sicheren Arbeitsweise beimisst.\nGute und schlechte Erfahrungen prägen unser Verhalten. Verhaltens&shy;weisen, mit denen wir erfolgreich waren, erleben wir als vorteilhaft. Sie werden im Gedächtnis gespeichert und in einer ähnlichen Situation wiederholt. Mit der Zeit entstehen daraus Gewohnheiten. Bei Misser&shy;folgen passiert das Gegenteil: Situ&shy;a&shy;tionen und Verhaltensweisen, die wir als nachteilig erlebt haben, werden in Zukunft gemieden."
+        },
+        "descriptionI18n": {
+            "de": "Besprich die Vor- und Nachteile einer neuen Sicherheitsmassnahme mit deinen Kollegen."
+        },
+        "titleI18n": {
+            "de": "Sicherheitsmassnahme besprechen"
+        },
+        "topics": [
+            {
+                "$oid": "53b416fba43aac62a2debda5"
+            }
+        ],
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "543cf5bc5c85436365d1b511"
+        },
+        "created": {
+            "$date": 1413281213037
+        },
+        "updated": {
+            "$date": 1413281213037
+        },
+        "number": "Act-320",
+        "source": "community",
+        "defaultfrequency": "day",
+        "defaultexecutiontype": "self",
+        "defaultduration": 60,
+        "recWeights": [],
+        "qualityFactor": 1,
+        "author": {
+            "$oid": "52d4f515fac246174c000006"
+        },
+        "textI18n": {
+            "de": "Lob – richtig eingesetzt – ist ein starker Motivator.\nEin Lob motiviert, wenn es Gewicht hat und echt ist. Es bringt zum Ausdruck, dass man das Engagement der betreffenden Person wahrnimmt und schätzt. Ein Lob für Selbstverständlichkeiten oder von Personen, von denen wir nicht bewertet werden wollen, kann hingegen als manipulativ und entwürdigend empfunden werden.\nLob und Anerkennung für sicherheits&shy;gerechtes Verhalten bewirken mehr als Strafen. Trotzdem ist es wichtig, dass sicherheits&shy;widriges Verhalten Nachteile nach sich zieht."
+        },
+        "descriptionI18n": {
+            "de": "Sprich diese Woche einmal jeden Tag ein Lob aus und anerkenne damit das sicherheitsgerechte Verhalten deiner Kollegen."
+        },
+        "titleI18n": {
+            "de": "Lob als Motivator"
+        },
+        "topics": [
+            {
+                "$oid": "53b416fba43aac62a2debda5"
             }
         ],
         "__v": 0

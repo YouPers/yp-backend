@@ -27,7 +27,12 @@ nconf.overrides({});
 
 //
 // 2. `process.env`
+//    the config on real linux pm2 instances is loaded via environment variables in this step
+//    pm2 is started using a processes.json file that configures all needed env variables.
+//
 // 3. `process.argv`
+//     other config could be passed as arguments to the 'node app.js' command line, we do not use this under normal
+//     circonstances.
 //
 nconf.env().argv();
 

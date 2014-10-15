@@ -210,6 +210,58 @@ var getAllForUserFn = function (baseUrl) {
     };
 };
 
+function _parseMailAdresses(stringToParse) {
+    if (_.isArray(stringToParse)) {
+        return stringToParse;
+    } else if (stringToParse.indexOf(' ') !== -1) {
+        return stringToParse.split(' ');
+    } else if (stringToParse.indexOf(';') !== -1) {
+        return stringToParse.split(';');
+    } else if (stringToParse.indexOf(',') !== -1) {
+        return stringToParse.split(',');
+    } else {
+        return [stringToParse];
+    }
+
+}
+
+var postParticipantsInviteFn = function postParticipantsInviteFn(req, res, next) {
+    if (!req.params || !req.params.id) {
+        return next(new error.MissingParameterError({ required: 'id' }));
+    }
+    if (!req.body || !req.body.email) {
+        return next(new error.MissingParameterError({ required: 'email'}));
+    }
+
+    // split up the email field, in case we got more than one mail
+    var emails = _parseMailAdresses(req.body.email);
+
+    Campaign.findById(req.params.id)
+        .populate('organization topic')
+        .exec(function (err, campaign) {
+            if (err) {
+                return next(err);
+            }
+            if (!campaign) {
+                return next(new error.ResourceNotFoundError({ campaignId: req.params.id }));
+            }
+
+            // check whether the posting user is a campaignLead of the campaign
+            if (!_.contains(campaign.campaignLeads.toString(), req.user.id)) {
+                return next(new error.NotAuthorizedError('The user is not a campaignlead of this campaign.', {
+                    userId: req.user.id,
+                    campaignId: campaign.id
+                }));
+            }
+            _.forEach(emails, function (emailaddress) {
+                email.sendCampaignParticipantInvite(emailaddress, req.body.subject, req.body.text, req.user, campaign, req.i18n);
+            });
+        });
+
+    res.send(200);
+    return next();
+};
+
 var postCampaignLeadInviteFn = function postCampaignLeadInviteFn(req, res, next) {
     if (!req.params || !req.params.id) {
         return next(new error.MissingParameterError({ required: 'id' }));
@@ -219,18 +271,7 @@ var postCampaignLeadInviteFn = function postCampaignLeadInviteFn(req, res, next)
     }
 
     // split up the email field, in case we got more than one mail
-    var emails;
-    if (_.isArray(req.body.email)) {
-        emails = req.body.email;
-    } else if (req.body.email.indexOf(' ') !== -1) {
-        emails = req.body.email.split(' ');
-    } else if (req.body.email.indexOf(';') !== -1) {
-        emails = req.body.email.split(';');
-    } else if (req.body.email.indexOf(',') !== -1) {
-        emails = req.body.email.split(',');
-    } else {
-        emails = [req.body.email];
-    }
+    var emails = _parseMailAdresses(req.body.email);
 
     var locals = {
     };
@@ -238,7 +279,7 @@ var postCampaignLeadInviteFn = function postCampaignLeadInviteFn(req, res, next)
         // first load Campaign
         function (done) {
             Campaign.findById(req.params.id)
-                .populate('organization')
+                .populate('organization topic')
                 .exec(function (err, campaign) {
                     if (err) {
                         return done(err);
@@ -418,5 +459,6 @@ module.exports = {
     getAllForUserFn: getAllForUserFn,
     assignCampaignLead: assignCampaignLeadFn,
     postCampaignLeadInvite: postCampaignLeadInviteFn,
+    postParticipantsInvite: postParticipantsInviteFn,
     avatarImagePostFn: avatarImagePostFn
 };

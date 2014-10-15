@@ -16,7 +16,7 @@ function activityInviteUrl(invitationId) {
     return webclientUrl + "/#/invite/" + invitationId;
 }
 function campaignLeadInviteUrl(campaignId, invitingUserId, token) {
-    return webclientUrl + "/#/campaigns/" + campaignId + '/becomeCampaignLead?invitingUserId='+invitingUserId+'&token='+token;
+    return webclientUrl + "/#/campaigns/" + campaignId + '/becomeCampaignLead?invitingUserId='+invitingUserId+'&accessToken='+token;
 }
 function orgAdminInviteUrl (organizationId, invitingUserId, token) {
     return webclientUrl + "/#/organizations/" + organizationId + '/becomeOrganizationAdmin?invitingUserId='+invitingUserId+'&token='+token;

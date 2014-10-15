@@ -389,7 +389,7 @@
         "_id": {
             "$oid": "53348c27996c80a534319bda"
         },
-        "avatar": "/assets/img/coach_avatar_blue.svg",
+        "avatar": "/assets/img/avatar_coach_blue.svg",
         "email": "healthcoach@youpers.com",
         "emailValidatedFlag": true,
         "firstname": "Youpers",

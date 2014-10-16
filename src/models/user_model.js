@@ -109,15 +109,15 @@ UserSchema
 /**
  * Pre-save hook
  */
-UserSchema.pre('save', function (next) {
+UserSchema.pre('save', function (next, req, callback) {
     if (!validatePresenceOf(this.username)) {
-        next(new error.MissingParameterError({ required: 'username' }));
+        return next(new error.MissingParameterError({ required: 'username' }));
     }
     if (!validatePresenceOf(this.roles)) {
-        next(new error.MissingParameterError({ required: 'roles' }));
+        return next(new error.MissingParameterError({ required: 'roles' }));
     }
     if (!validatePresenceOf(this.email)) {
-        next(new error.MissingParameterError({ required: 'email' }));
+        return next(new error.MissingParameterError({ required: 'email' }));
     }
     if (this.email.indexOf('@') <= 0) {
 //    next(new error.MissingParameterError('Email address must be valid'));
@@ -127,7 +127,7 @@ UserSchema.pre('save', function (next) {
     if(!this.hashed_password || (this.password_old && this.hashed_password === this.encryptPassword(this.password_old))) {
         this.hashed_password = this.encryptPassword(this.password);
     } else if(this.password_old) {
-        next(new error.InvalidArgumentError('Invalid password.'));
+        return next(new error.InvalidArgumentError('Invalid password.'));
     }
 
     if (!this.isNew || this.profile) {
@@ -136,17 +136,17 @@ UserSchema.pre('save', function (next) {
                 if (err) {
                     return error.handleError(err, next);
                 }
-                return next();
+                return next(callback);
             });
         } else {
-            return next();
+            return next(callback);
         }
     } else {
         // generate and store new profile id into new user object
         var newProfileId = mongoose.Types.ObjectId();
         this.profile = newProfileId;
 
-        var newProfile = new Profile( { _id: newProfileId, owner: this.id, timestamp: new Date(), campaign: this.campaign } );
+        var newProfile = new Profile( { _id: newProfileId, owner: this.id, timestamp: new Date(), campaign: this.campaign, language: req.locale } );
 
         newProfile.save(function (err) {
             if (err) {
@@ -156,7 +156,7 @@ UserSchema.pre('save', function (next) {
         if (!this.avatar) {
             this.avatar = this.profile.gender === 'male' ? '/assets/img/avatar_man.png' : '/assets/img/avatar_woman.png';
         }
-        next();
+        return next(callback);
 
     }
 });

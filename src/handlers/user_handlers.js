@@ -44,7 +44,7 @@ var postFn = function (baseUrl) {
         req.log.trace(newUser, 'PostFn: Saving new user and profile objects');
 
         // try to save the new user and profile objects
-        newUser.save(function (err) {
+        newUser.save(req, function (err) {
             if (err) { return error.handleError(err, next); }
 
             // send verificationEmail

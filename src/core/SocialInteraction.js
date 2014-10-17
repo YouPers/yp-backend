@@ -372,7 +372,7 @@ SocialInteraction.dismissSocialInteractionById = function dismissSocialInteracti
  * @param campaignId - optional, needed for the count an activity has been planned within a campaign
  * @param cb
  */
-SocialInteraction.populateSocialInteraction = function (socialInteraction, campaignId, cb) {
+SocialInteraction.populateSocialInteraction = function (socialInteraction, campaignId, locale, cb) {
 
     function _populateTargetedUsers(donePopulating) {
         async.each(_.filter(socialInteraction.targetSpaces, { type: 'user'}), function (targetSpace, done) {
@@ -390,8 +390,14 @@ SocialInteraction.populateSocialInteraction = function (socialInteraction, campa
 
     function _populateRefDocs(donePopulating) {
         async.each(socialInteraction.refDocs, function (refDoc, done) {
+            var model = mongoose.model(refDoc.model);
+            var q = model.findById(refDoc.docId).populate('idea', mongoose.model('Idea').getI18nPropertySelector(locale));
 
-            mongoose.model(refDoc.model).findById(refDoc.docId).populate('idea').exec(function (err, document) {
+            if (model.getI18nPropertySelector) {
+                q.select(model.getI18nPropertySelector(locale));
+            }
+
+            q.exec(function (err, document) {
 
                 // store the populated document in the refDoc
                 refDoc.doc = document;
@@ -526,7 +532,7 @@ SocialInteraction.getAllForUser = function (user, model, options, cb) {
         var populateRefDocs = options.populateRefDocs || (options.queryOptions.populate && options.queryOptions.populate.indexOf('refDocs') !== -1);
         if (populateRefDocs) {
             return async.each(socialInteractions, function (si, done) {
-                SocialInteraction.populateSocialInteraction(si, null, done);
+                SocialInteraction.populateSocialInteraction(si, null, locale, done);
             }, function (err) {
                 if (err) {
                     return cb(err);

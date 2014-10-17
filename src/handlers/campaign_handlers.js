@@ -404,6 +404,10 @@ var assignCampaignLeadFn = function assignCampaignLeadFn(req, res, next) {
                 });
             }
 
+
+            SocialInteraction.dismissInvitations(campaign, req.user, { reason: 'campaignleadAccepted' });
+            res.send(200, campaign);
+
             // check whether we need to add the campaignLead role to the user
             if (!_.contains(req.user.roles, auth.roles.campaignlead)) {
                 req.user.roles.push(auth.roles.campaignlead);
@@ -411,13 +415,12 @@ var assignCampaignLeadFn = function assignCampaignLeadFn(req, res, next) {
                     if (err) {
                         return error.handleError(err, next);
                     }
+                    return next();
                 });
+            } else {
+                return next();
             }
 
-            SocialInteraction.dismissInvitations(campaign, req.user, { reason: 'campaignleadAccepted' });
-
-            res.send(200, campaign);
-            return next();
         });
 
 

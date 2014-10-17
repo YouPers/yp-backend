@@ -157,7 +157,7 @@ function getAllIdeas(baseUrl, Model) {
 }
 
 function getDefaultActivity(req, res, next) {
-    Idea.findById(req.params.id).exec(function (err, idea) {
+    Idea.findById(req.params.id).select(Idea.getI18nPropertySelector(req.locale)).exec(function (err, idea) {
         if (err) {
             return error.handleError(err, next);
         }

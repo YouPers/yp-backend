@@ -12,13 +12,13 @@ var mongoose = require('ypbackendlib').mongoose,
  * @type {Schema}
  */
 var ActivityEventSchema = common.newSchema({
-    owner: {type: ObjectId, ref: 'User'},
+    owner: {type: ObjectId, ref: 'User', required: true},
     campaign: {type: ObjectId, ref: 'Campaign'},
-    idea: {type: ObjectId, ref: 'Idea'},
-    activity: {type: ObjectId, ref: 'Activity'},
-    status: {type: String, enum: enums.activityEventStatus},
-    start: {type: Date},
-    end: {type: Date},
+    idea: {type: ObjectId, ref: 'Idea', required: true},
+    activity: {type: ObjectId, ref: 'Activity', required: true},
+    status: {type: String, enum: enums.activityEventStatus, required: true},
+    start: {type: Date, required: true},
+    end: {type: Date, required: true},
     doneTs: {type: Date},
     feedback: {type: Number},
     comment: {type: String}

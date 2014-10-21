@@ -9,8 +9,6 @@ module.exports = {
         'campaign',
         'organization',
         'paymentCode',
-        'notification',
-        'notificationDismissed',
         'topic',
         'space',
         'socialInteraction',

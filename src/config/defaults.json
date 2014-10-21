@@ -26,8 +26,13 @@
             "pass": "3d60c4eca11f1e5112f94503805c0bcd"
         }
     },
+    "user": {
+        "emailVerificationUrl": "/#/email_verification/",
+        "passwordResetUrl": "/#/password_reset/"
+    },
     "email": {
-        "fromString": "YOUPERS Gesundheitscoach <dontreply@youpers.com>"
+        "fromString": "YOUPERS Coach <dontreply@youpers.com>",
+        "templatesDir": "src/util/emailtemplates"
     },
     "accessTokenSecret": "knfad*ç%&/(&/sdkjfnaklsdnfASDFAS2341",
     "oauth": {
@@ -45,3 +50,4 @@
         "stdout": "info"
     }
 }
+

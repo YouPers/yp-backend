@@ -22,7 +22,7 @@ var getByIdFn = function getByIdFn(baseUrl, Model) {
 //                return next(new error.NotAuthorizedError());
 //            }
 
-            SocialInteraction.populateSocialInteraction(socialInteraction, null, function(err, populated) {
+            SocialInteraction.populateSocialInteraction(socialInteraction, null, req.locale, function(err, populated) {
                 res.send(populated);
                 return next();
             });

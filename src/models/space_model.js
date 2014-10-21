@@ -4,7 +4,8 @@
 var mongoose = require('ypbackendlib').mongoose,
     Schema = mongoose.Schema,
     ObjectId = Schema.ObjectId,
-    common = require('ypbackendlib').commmonModels;
+    common = require('ypbackendlib').commmonModels,
+    enums = require('./enums');
 
 /**
  * Space Schema
@@ -12,7 +13,7 @@ var mongoose = require('ypbackendlib').mongoose,
  */
 var SpaceSchema = common.newSchema({
 
-    type: { type: String, enum: common.enums.targetSpace, required: true },
+    type: { type: String, enum: enums.targetSpace, required: true },
     targetId: {type: ObjectId},
     targetValue: {type: String}
 });

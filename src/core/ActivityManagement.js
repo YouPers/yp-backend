@@ -29,48 +29,63 @@ var actMgr = new ActivityManagement();
  *
  */
 
-User.on('change:campaign', function(user) {
+User.on('change:campaign', function (user) {
 
     Campaign.findById(user.campaign).exec(function (err, campaign) {
-        if(err) { handleError(err); }
+        if (err) {
+            handleError(err);
+        }
 
         Assessment.find({ topic: campaign.topic }).exec(function (err, assessments) {
-            if(err) { handleError(err); }
+            if (err) {
+                handleError(err);
+            }
 
-            if(assessments.length !== 1) {
+            if (assessments.length !== 1) {
                 return actMgr.emit('error', 'assessment for topic not found or not unique');
             }
             var assessment = assessments[0];
-            if(assessment.idea) {
+            if (assessment.idea) {
 
                 Activity.find({
                     owner: user._id,
                     idea: assessment.idea,
                     status: 'active'
                 }).exec(function (err, activities) {
-                    if(err) { handleError(err); }
+                    if (err) {
+                        handleError(err);
+                    }
 
                     // only plan assessment idea if there is no active activity yet
-                    if(activities.length === 0) {
-                        Idea.findById(assessment.idea, function(err, idea) {
-                            if(err) {
-                                return handleError(err);
+                    if (activities.length === 0) {
+
+                        mongoose.model('Profile').findById(user.profile).exec(function (err, profile) {
+                            if (err) {
+                                handleError(err);
                             }
-                            var assessmentActivity = actMgr.defaultActivity(idea, user);
-                            assessmentActivity.mainEvent.start = new Date();
-                            assessmentActivity.mainEvent.end = moment(assessmentActivity.mainEvent.start).add(15,'m').toDate();
-                            assessmentActivity.save(function(err, savedActivity) {
-                                if(err) {
+
+                            Idea.findById(assessment.idea).select(Idea.getI18nPropertySelector(profile.language)).exec(function (err, idea) {
+                                if (err) {
                                     return handleError(err);
                                 }
-                                var events = actMgr.getEvents(savedActivity, user.id);
-                                ActivityEvent.create(events, function (err) {
-                                    if(err) {
+                                var assessmentActivity = actMgr.defaultActivity(idea, user);
+                                assessmentActivity.mainEvent.start = new Date();
+                                assessmentActivity.mainEvent.end = moment(assessmentActivity.mainEvent.start).add(15, 'm').toDate();
+                                assessmentActivity.save(function (err, savedActivity) {
+                                    if (err) {
                                         return handleError(err);
                                     }
-                                    actMgr.emit('activity:activityCreated', savedActivity, user);
+                                    var events = actMgr.getEvents(savedActivity, user.id);
+                                    ActivityEvent.create(events, function (err) {
+                                        if (err) {
+                                            return handleError(err);
+                                        }
+                                        actMgr.emit('activity:activityCreated', savedActivity, user);
+                                    });
                                 });
+
                             });
+
 
                         });
                     }
@@ -86,7 +101,7 @@ User.on('change:campaign', function(user) {
  * on Change of an ActivityEvent Status, check whether this was the last open ActivityEvent
  * for this activity. If there are no more open Events change the status of the activity to 'old'
  */
-ActivityEvent.on("change:status", function(event) {
+ActivityEvent.on("change:status", function (event) {
     // we can stop looking, if the event that was changed is still open, e.g. when it is new.
     if (event.status === 'open') {
         return;
@@ -100,7 +115,7 @@ ActivityEvent.on("change:status", function(event) {
         }
         log.debug("found " + count + " events that are still active");
         if (count === 0) {
-            Activity.update({_id: event.activity}, {status: 'old'}, function(err, numAffected) {
+            Activity.update({_id: event.activity}, {status: 'old'}, function (err, numAffected) {
                 if (err || numAffected > 1) {
                     log.err(err || "more than one activity changed, should never happen");
                 }
@@ -109,7 +124,6 @@ ActivityEvent.on("change:status", function(event) {
         }
     });
 });
-
 
 
 actMgr.getEvents = function getEvents(activity, ownerId, fromDate) {
@@ -135,7 +149,7 @@ actMgr.getEvents = function getEvents(activity, ownerId, fromDate) {
     return events;
 };
 
-actMgr.defaultActivity = function(idea, user, campaignId) {
+actMgr.defaultActivity = function (idea, user, campaignId) {
     var now = moment();
     var mainEvent = {
         "allDay": false
@@ -143,7 +157,7 @@ actMgr.defaultActivity = function(idea, user, campaignId) {
     var duration = idea.defaultduration ? idea.defaultduration : 60;
 
     mainEvent.start = moment(now).add(1, 'd').startOf('hour').toDate();
-    mainEvent.end = moment(mainEvent.start).add(duration,'m').toDate();
+    mainEvent.end = moment(mainEvent.start).add(duration, 'm').toDate();
     mainEvent.frequency = idea.defaultfrequency;
     mainEvent.recurrence = {
         "endby": {
@@ -154,7 +168,7 @@ actMgr.defaultActivity = function(idea, user, campaignId) {
         every: 1
     };
 
-    if(!campaignId && user.campaign) {
+    if (!campaignId && user.campaign) {
         campaignId = user.campaign._id || user.campaign;
     }
 
@@ -184,7 +198,7 @@ actMgr.defaultActivity = function(idea, user, campaignId) {
 
 actMgr.on('activity:activityCreated', function (activity, user) {
 
-    if(!activity.private) {
+    if (!activity.private) {
 
         // we need the model for the recipient targetSpace, create pseudo model instead of loading the campaign
 //        var campaign = activity.campaign instanceof mongoose.Types.ObjectId ? {
@@ -219,34 +233,34 @@ actMgr.on('activity:activityDeleted', function (activity) {
     SocialInteraction.deleteSocialInteractions(activity, handleError);
 });
 
-actMgr.on('activity:activityUpdated', function(updatedActivity) {
+actMgr.on('activity:activityUpdated', function (updatedActivity) {
     Invitation.find({
             refDocs: { $elemMatch: { docId: updatedActivity._id, model: 'Activity' }}
         }
     ).exec(function (err, invitations) {
-        _.forEach(invitations, function (invitation) {
-            // The publishTo of the invitation has to be equal or earlier than the last event,
-            // it does not make sense to invite something that has already happened.
-            if (invitation.publishTo > updatedActivity.lastEventEnd) {
-                invitation.publishTo = updatedActivity.lastEventEnd;
-                invitation.save(function (err, saved) {
-                    if (err) {
-                        return actMgr.emit('error', err);
-                    }
-                });
-            }
+            _.forEach(invitations, function (invitation) {
+                // The publishTo of the invitation has to be equal or earlier than the last event,
+                // it does not make sense to invite something that has already happened.
+                if (invitation.publishTo > updatedActivity.lastEventEnd) {
+                    invitation.publishTo = updatedActivity.lastEventEnd;
+                    invitation.save(function (err, saved) {
+                        if (err) {
+                            return actMgr.emit('error', err);
+                        }
+                    });
+                }
+            });
         });
-    });
 
 });
 
 function handleError(err) {
-    if(err) {
+    if (err) {
         return actMgr.emit('error', err);
     }
 }
 
-actMgr.on('error', function(err) {
+actMgr.on('error', function (err) {
     log.error(err);
     throw new Error(err);
 });

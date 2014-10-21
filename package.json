@@ -11,10 +11,6 @@
     "dependencies": {
         "ypbackendlib": "git+ssh://git@github.com:YouPers/backendlib.git",
         "restify": "2.8.x",
-        "mongoose": "3.8.x",
-        "nodemailer": "1.2.x",
-        "email-templates": "1.1.x",
-        "ejs": "1.0.x",
         "lodash": "2.4.x",
         "passport": "0.2.x",
         "icalendar": "git+https://github.com/YouPers/node-icalendar.git",

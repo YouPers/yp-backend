@@ -1,6 +1,6 @@
 var frisby = require('frisby');
 var port = process.env.PORT || 8000;
-var URL = 'http://localhost:' + port + '/activities';
+var URL = 'http://localhost:' + port + '/events';
 var consts = require('./testconsts');
 var moment = require('moment');
 var _ = require('lodash');

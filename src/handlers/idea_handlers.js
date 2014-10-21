@@ -203,11 +203,11 @@ function getIdeaUserContext(req, res, next) {
             .find({idea: ideaId})
             .where(userClause)
             .populate('owner joiningUsers')
-            .exec(function (err, activities) {
+            .exec(function (err, events) {
                 if (err) {
                     return done(err);
                 }
-                ctx.activities = activities;
+                ctx.events = events;
                 return done();
             });
     }

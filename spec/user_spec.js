@@ -164,13 +164,13 @@ frisby.create('User: POST validate new user')
                                                             .afterJSON(function (user2) {
 
                                                                 frisby.create('User: PUT change password / GET test invalid credentials')
-                                                                    .get(URL + '/activities')
+                                                                    .get(URL + '/events')
                                                                     .auth(user.username, "invalid password")
                                                                     .expectStatus(401)
                                                                     .toss();
 
-                                                                frisby.create('User: PUT change password / GET test new credentials, 200 no content for activities')
-                                                                    .get(URL + '/activities')
+                                                                frisby.create('User: PUT change password / GET test new credentials, 200 no content for events')
+                                                                    .get(URL + '/events')
                                                                     .auth(user.username, user.password)
                                                                     .expectStatus(200)// new user, no content yet
                                                                     .expectJSONLength(0)

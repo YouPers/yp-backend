@@ -19,7 +19,7 @@ consts.newUserInNewCampaignApi(
         }
 
         frisby.create('IdeaCtx: plan an event first')
-            .post(URL + '/activities', {
+            .post(URL + '/events', {
                 "owner": user.id,
                 "idea": consts.groupIdea.id,
                 "title": "myTitle",
@@ -65,8 +65,8 @@ consts.newUserInNewCampaignApi(
                             .auth(user.username, 'yp')
                             .expectStatus(200)
                             .afterJSON(function (ctx) {
-                                expect(ctx.activities.length).toEqual(1);
-                                expect(ctx.activities[0].id).toEqual(newEvent.id);
+                                expect(ctx.events.length).toEqual(1);
+                                expect(ctx.events[0].id).toEqual(newEvent.id);
                                 expect(ctx.occurences).toBeDefined();
                                 expect(ctx.occurences.length).toEqual(1);
                                 expect(ctx.socialInteractions).toBeDefined();
@@ -74,7 +74,7 @@ consts.newUserInNewCampaignApi(
                                 expect(ctx.socialInteractions.Message.length).toEqual(1);
                                 expect(ctx.socialInteractions.Message[0].refDocs.length).toEqual(2);
                                 frisby.create('IdeaCtx: delete Event')
-                                    .delete(URL + '/activities/' + newEvent.id)
+                                    .delete(URL + '/events/' + newEvent.id)
                                     .auth(user.username, 'yp')
                                     .expectStatus(200)
                                     .toss();
@@ -120,7 +120,7 @@ consts.newUserInNewCampaignApi(
                     .auth(user.username, 'yp')
                     .expectStatus(200)
                     .afterJSON(function (ctx) {
-                        expect(ctx.activities.length).toEqual(0);
+                        expect(ctx.events.length).toEqual(0);
                         expect(ctx.socialInteractions).toBeDefined();
                         expect(ctx.socialInteractions.Recommendation).toBeDefined();
                         expect(ctx.socialInteractions.Recommendation.length).toEqual(1);

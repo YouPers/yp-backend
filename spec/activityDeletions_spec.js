@@ -9,7 +9,7 @@
 var frisby = require('frisby');
 var port = process.env.PORT || 8000;
 var BASE_URL = 'http://localhost:' + port;
-var URL = BASE_URL + '/activities';
+var URL = BASE_URL + '/events';
 var consts = require('./testconsts');
 var _ = require('lodash');
 var moment = require('moment');

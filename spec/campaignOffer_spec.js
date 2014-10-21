@@ -47,7 +47,7 @@ consts.newUserInNewCampaignApi(
 
 
                 frisby.create('CampaignOffers: plan an event for an invitation')
-                    .post(URL + '/activities', {
+                    .post(URL + '/events', {
                         "owner": consts.users.test_ind1.id,
                         "idea": consts.groupIdea.id,
                         "title": "myTitle",
@@ -110,7 +110,7 @@ consts.newUserInNewCampaignApi(
 
 
                                             frisby.create('CampaignOffers: get offers as user')
-                                                .get(URL + '/offers')
+                                                .get(URL + '/inspirations')
                                                 .auth(user.username, "yp")
                                                 .expectStatus(200)
                                                 .afterJSON(function (offers) {
@@ -124,7 +124,7 @@ consts.newUserInNewCampaignApi(
                                                         .after(function () {
 
                                                             frisby.create('CampaignOffers: get offers as user')
-                                                                .get(URL + '/offers')
+                                                                .get(URL + '/inspirations')
                                                                 .auth(user.username, "yp")
                                                                 .expectStatus(200)
                                                                 .afterJSON(function (offers) {

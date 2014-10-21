@@ -24,7 +24,7 @@ consts.newUserInNewCampaignApi(
         }
 
         frisby.create('Invitation: plan an event first')
-            .post(URL + '/activities', {
+            .post(URL + '/events', {
                 "owner": user.id,
                 "idea": consts.groupIdea.id,
                 "title": "myTitle",
@@ -48,7 +48,7 @@ consts.newUserInNewCampaignApi(
                 console.log(email);
 
                 frisby.create("Invitation: invite user by mail that is not yet signed up")
-                    .post(URL + '/activities/' + newPlan.id + "/inviteEmail", { email: email })
+                    .post(URL + '/events/' + newPlan.id + "/inviteEmail", { email: email })
                     .auth(user.username, 'yp')
                     .expectStatus(200)
                     .after(function () {

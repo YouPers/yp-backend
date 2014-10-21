@@ -9,13 +9,13 @@ var mongoose = require('ypbackendlib').mongoose,
 
 module.exports = function (swagger) {
 
-    var baseUrl = '/activities';
+    var baseUrl = '/events';
     var baseUrlWithId = baseUrl + '/{id}';
 
 
     swagger.addOperation({
         spec: {
-            description: "Operations about Activities",
+            description: "Operations about Events",
             path: baseUrlWithId + '/invitationStatus',
             notes: "Returns all Invitations for this event and a dissmissalReason if the invitation is already dismissed",
             summary: "Returns all Invitations along with their status",
@@ -50,7 +50,7 @@ module.exports = function (swagger) {
 
     swagger.addOperation({
         spec: {
-            description: "Operations about Activities",
+            description: "Operations about Events",
             path: baseUrl + "/validate",
             notes: "Validates a new event, generates the list of occurences and returns the list of conflicting occurences in case there are any for the event in the body.",
             summary: "Validates an event that a user is about to POST",
@@ -83,7 +83,7 @@ module.exports = function (swagger) {
 
     swagger.addOperation({
         spec: {
-            description: "Operations about Activities",
+            description: "Operations about Events",
             path: baseUrlWithId,
             notes: "Returns an event by Id, only returns the event if the current user is the owner of the event",
             summary: "Returns an event by Id",
@@ -109,11 +109,11 @@ module.exports = function (swagger) {
 
     swagger.addOperation({
         spec: {
-            description: "Operations about Activities",
+            description: "Operations about Events",
             path: baseUrl,
-            notes: "only returns Activities of the current user, the API does not allow to retrieve" +
-                "activities owned by other users",
-            summary: "returns all activities of the currently logged in user",
+            notes: "only returns Events of the current user, the API does not allow to retrieve" +
+                "Events owned by other users",
+            summary: "returns all Events of the currently logged in user",
             method: "GET",
             params: [generic.params.sort,
                 generic.params.limit,
@@ -121,7 +121,7 @@ module.exports = function (swagger) {
                 generic.params.populate,
                 generic.params.populatedeep],
             "responseClass": "Array[Event]",
-            "nickname": "getActivities",
+            "nickname": "getEvents",
             accessLevel: 'al_individual',
             beforeCallbacks: []
         },
@@ -130,7 +130,7 @@ module.exports = function (swagger) {
 
     swagger.addOperation({
         spec: {
-            description: "Operations about Activities",
+            description: "Operations about Events",
             path: baseUrlWithId + '/ical',
             notes: "use query param type to get cancel or update, defaults to new.",
             summary: "returns an ical.ics file for the event with the passed id",
@@ -145,7 +145,7 @@ module.exports = function (swagger) {
 
     swagger.addOperation({
         spec: {
-            description: "Operations about Activities",
+            description: "Operations about Events",
             path: baseUrlWithId,
             notes: "Deletes a specific event",
             summary: "Deletes a specific event",
@@ -169,12 +169,12 @@ module.exports = function (swagger) {
 
     swagger.addOperation({
         spec: {
-            description: "Operations about Activities",
+            description: "Operations about Events",
             path: baseUrl,
-            notes: "Deletes all activities",
-            summary: "Deletes all activities",
+            notes: "Deletes all Events",
+            summary: "Deletes all Events",
             method: "DELETE",
-            "nickname": "deleteActivities",
+            "nickname": "deleteEvents",
             accessLevel: 'al_admin',
             beforeCallbacks: []
         },
@@ -183,7 +183,7 @@ module.exports = function (swagger) {
 
     swagger.addOperation({
         spec: {
-            description: "Operations about Activities",
+            description: "Operations about Events",
             path: baseUrlWithId + "/inviteEmail",
             notes: "Posts an invitation for one or more email-addresses",
             summary: "Request an invitation for joining this event to be sent by the backend to the supplied email address(es)",
@@ -215,7 +215,7 @@ module.exports = function (swagger) {
 
     swagger.addOperation({
         spec: {
-            description: "Operations about Activities",
+            description: "Operations about Events",
             path: baseUrlWithId + "/join",
             notes: "Joins an event",
             summary: "Joins an event",
@@ -231,7 +231,7 @@ module.exports = function (swagger) {
 
     swagger.addOperation({
         spec: {
-            description: "Operations about Activities",
+            description: "Operations about Events",
             path: baseUrl,
             notes: "Posts a new event. JoiningUsers property has to be empty - use the event/join API to join an existing event",
             summary: "Posts a new event",
@@ -257,7 +257,7 @@ module.exports = function (swagger) {
 
     swagger.addOperation({
         spec: {
-            description: "Operations about Activities",
+            description: "Operations about Events",
             path: baseUrlWithId,
             notes: "Updates an existing event.",
             summary: "Updates an existing event",

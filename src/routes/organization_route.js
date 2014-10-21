@@ -20,6 +20,7 @@ module.exports = function (swagger) {
             path: baseUrlWithId + "/avatar",
             summary: "avatar image upload",
             method: "POST",
+            hidden: "true",
             "nickname": "avatarImagePost",
             accessLevel: 'al_orgadmin'
         },
@@ -33,6 +34,7 @@ module.exports = function (swagger) {
             notes: "creates an organization and assigns the authenticated user as administrator",
             summary: "creates an organization",
             method: "POST",
+            hidden: "true",
             params: [swagger.bodyParam("organization", "organization object", "Organization")],
             "responseClass": "Organization",
             "errorResponses": [],
@@ -48,6 +50,7 @@ module.exports = function (swagger) {
             notes: "updates an organization",
             summary: "updates an organization",
             method: "PUT",
+            hidden: "true",
             params: [swagger.pathParam("id", "ID of the organization to be updated", "string"), swagger.bodyParam("organization", "organization object", "Organization")],
             "responseClass": "Organization",
             "errorResponses": [],
@@ -64,6 +67,7 @@ module.exports = function (swagger) {
             notes: "returns a organization based on id",
             summary: "find organization by id",
             method: "GET",
+            hidden: "true",
             params: [swagger.pathParam("id", "ID of the organization to be fetched", "string"),
                 generic.params.populate,
                 generic.params.populatedeep],
@@ -81,6 +85,7 @@ module.exports = function (swagger) {
             path: baseUrl,
             notes: "returns all organizations for the authenticated user",
             summary: "returns all organizations for the authenticated user",
+            hidden: "true",
             params: [generic.params.sort,
                 generic.params.limit,
                 generic.params.filter,
@@ -101,6 +106,7 @@ module.exports = function (swagger) {
             notes: "deletes the organization with the passed id",
             summary: "deletes an organization",
             method: "DELETE",
+            hidden: "true",
             params: [swagger.pathParam("id", "ID of the organization to be deleted", "string")],
             "errorResponses": [swagger.errors.invalid('id'), swagger.errors.notFound("organization")],
             "nickname": "deleteOrganization",
@@ -115,6 +121,7 @@ module.exports = function (swagger) {
             path: baseUrlWithId + "/inviteOrganizationAdminEmail",
             notes: "Posts a request for an invitation for one or more email-addresses",
             summary: "Request an invitation for to become organization admin to be sent by the backend to the supplied email address(es)",
+            hidden: "true",
             params: [
                 {
                     paramType: "body",
@@ -138,6 +145,7 @@ module.exports = function (swagger) {
             path: baseUrlWithId + "/assignOrganizationAdmin",
             notes: "Posts a request to add the current user as orgadmin for the organization: special endpoint that can be called without al_orgadmin but needs a token instead for auth",
             summary: "With this endpoint a non-privileged user can assign himself to become organization admin when he has an invitation token.",
+            hidden: "true",
             params: [
                 {
                     paramType: "query",

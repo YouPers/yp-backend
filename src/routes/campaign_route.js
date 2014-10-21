@@ -21,6 +21,7 @@ module.exports = function (swagger) {
             path: baseUrlWithId + "/avatar",
             summary: "avatar image upload",
             mobileSDK: "disabled",
+            hidden: "true",
             method: "POST",
             "nickname": "avatarImagePost",
             accessLevel: 'al_campaignlead'
@@ -34,6 +35,7 @@ module.exports = function (swagger) {
             path: baseUrlWithId,
             notes: "returns a campaign based on id",
             summary: "find campaign by id",
+            hidden: "true",
             method: "GET",
             params: [swagger.pathParam("id", "ID of the campaign to be fetched", "string"),
                 genericHandlers.params.populate,
@@ -52,6 +54,7 @@ module.exports = function (swagger) {
             path: baseUrlWithId + '/stats',
             notes: "returns a campaign statistics of campaign based on id",
             summary: "get campaign statis of campaign with id",
+            hidden: "true",
             method: "GET",
             params: [
                 swagger.pathParam("id", "ID of the campaign to be fetched", "string"),
@@ -86,6 +89,7 @@ module.exports = function (swagger) {
             path: baseUrl,
             notes: "returns all campaigns for the authenticated user",
             summary: "returns all campaigns for the authenticated user",
+            hidden: "true",
             params: [genericHandlers.params.sort,
                 genericHandlers.params.limit,
                 genericHandlers.params.filter,
@@ -106,6 +110,7 @@ module.exports = function (swagger) {
             notes: "creates a campaign and assigns the authenticated user as campaign lead",
             summary: "creates a campaign",
             mobileSDK: "disabled",
+            hidden: "true",
             method: "POST",
             params: [swagger.bodyParam("campaign", "campaign object", "Campaign")],
             "responseClass": "Campaign",
@@ -123,6 +128,7 @@ module.exports = function (swagger) {
             notes: "Posts a request for an invitation for one or more email-addresses",
             summary: "Request an invitation for to become campaign lead to be sent by the backend to the supplied email address(es)",
             mobileSDK: "disabled",
+            hidden: "true",
             params: [
                 {
                     paramType: "body",
@@ -156,6 +162,7 @@ module.exports = function (swagger) {
             notes: "Posts a request to add the current user as campaignLead to this campaign: special endpoint that can be called without al_campaignLead but needs a token instead for auth",
             summary: "With this endpoint a non-privileged user can assign himself to become campaign lead when he has an invitation token.",
             mobileSDK: "disabled",
+            hidden: "true",
             params: [
                 {
                     paramType: "query",
@@ -181,6 +188,7 @@ module.exports = function (swagger) {
             notes: "deletes the campaign with passed id",
             summary: "deletes the campaign with passed id",
             mobileSDK: "disabled",
+            hidden: "true",
             method: "DELETE",
             params: [swagger.pathParam("id", "ID of the user to be deleted", "string")],
             "errorResponses": [swagger.errors.invalid('id'), swagger.errors.notFound("campaign")],
@@ -198,6 +206,7 @@ module.exports = function (swagger) {
             notes: "deletes all campaigns",
             summary: "deletes all campaigns",
             mobileSDK: "disabled",
+            hidden: "true",
             method: "DELETE",
             params: [],
             "errorResponses": [],
@@ -215,6 +224,7 @@ module.exports = function (swagger) {
             notes: "updates the campaign with id id",
             summary: "updates the campaign",
             mobileSDK: "disabled",
+            hidden: "true",
             method: "PUT",
             params: [swagger.pathParam("id", "ID of the campaign to be updated", "string"), swagger.bodyParam("campaign", "campaign object to be updated", "Campaign")],
             "responseClass": "Campaign",

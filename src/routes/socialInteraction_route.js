@@ -7,7 +7,7 @@ module.exports = function (swagger) {
 
     var baseUrl = '/socialInteractions',
         baseUrlWithId = baseUrl + '/{id}';
-    var offersUrl = '/offers';
+    var offersUrl = '/inspirations';
 
     swagger.addOperation({
         spec: {
@@ -80,7 +80,7 @@ module.exports = function (swagger) {
             description: "Operations about socialInteractions",
             path: offersUrl,
             notes: "returns all offered Invitations and Recommendations that are targeted to this user, includes dismissed and rejected",
-            summary: "get all socialInteractions, supports generic filter, sort and populate options",
+            summary: "get both recommendations and invitations for this user",
             method: "GET",
             params: [
                 generic.params.sort,

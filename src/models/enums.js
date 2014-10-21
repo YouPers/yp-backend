@@ -18,10 +18,6 @@ module.exports = {
         questionType: "twoSided leftSided rightSided".split(' '),
         questionCategory: "generalStresslevel atWork leisureTime stressType stressMeasures".split(' '),
 
-        // Profile related enums
-        gender: "undefined female male".split(' '),
-        maritalStatus: "undefined single unmarried married separated divorced widowed".split(' '),
-
         // Campaign related enums
         paymentStatus: "open paid".split(' '),
         campaignProductType: "CampaignProductType1 CampaignProductType2 CampaignProductType3".split(' '),

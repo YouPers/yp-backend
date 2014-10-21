@@ -48,6 +48,12 @@
     "log": {
         "name": "Main",
         "stdout": "info"
+    },
+    "feedback": {
+        "username": "feedback",
+        "password": "lkmanv90e3ionm23k",
+        "url": "https://youpers.atlassian.net",
+        "project": "WL"
     }
 }
 

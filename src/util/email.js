@@ -1,70 +1,9 @@
 var config = require('../config/config'),
-    crypto = require('crypto'),
     moment = require('moment-timezone'),
     urlComposer = require('./urlcomposer'),
     fromDefault = config.email.fromString,
     linkTokenSeparator = config.linkTokenEncryption.separator,
-    emailSender = require('ypbackendlib').emailSender(config, __dirname + '/emailtemplates');
-
-var encryptLinkToken = function (linkToken) {
-
-    var cipher = crypto.createCipher(config.linkTokenEncryption.algorithm, config.linkTokenEncryption.key);
-    return cipher.update(linkToken, 'utf8', 'hex') + cipher.final('hex');
-};
-
-var decryptLinkToken = function (token) {
-    var decipher = crypto.createDecipher(config.linkTokenEncryption.algorithm, config.linkTokenEncryption.key);
-    return decipher.update(token, 'hex', 'utf8') + decipher.final('utf8');
-};
-
-var sendEmailVerification = function (user, i18n) {
-
-    var from = fromDefault;
-    var to = user.email;
-    var subject = i18n.t("email:emailVerification.subject");
-
-    var encryptedEmailAddress = encryptLinkToken(to);
-    var verificationLink = urlComposer.emailVerificationUrl(encryptedEmailAddress);
-
-    var locals = {
-        title: i18n.t('email:emailVerification.title'),
-        salutation: i18n.t('email:emailVerification.salutation', {user: user.toJSON()}),
-        text: i18n.t('email:emailVerification.text', {user: user.toJSON()}),
-        header: i18n.t('email:emailVerification.header'),
-        footer: i18n.t('email:emailVerification.footer'),
-        background: urlComposer.mailBackgroundImageUrl(),
-        logo: urlComposer.mailLogoImageUrl(),
-        link: verificationLink
-    };
-
-    emailSender.sendEmail(from, to, subject, 'genericYouPersMail', locals);
-
-};
-
-var sendPasswordResetMail = function (user,i18n) {
-    var from = fromDefault;
-    var to = user.email;
-    var subject = i18n.t("email:passwordReset.subject");
-
-    var tokenToEncrypt = user.id + linkTokenSeparator + new Date().getMilliseconds();
-    var encryptedToken = encryptLinkToken(tokenToEncrypt);
-    var passwordResetLink = urlComposer.passwordResetUrl(encryptedToken, user.firstname, user.lastname);
-
-    var locals = {
-        title: i18n.t('email:passwordReset.title'),
-        salutation: i18n.t('email:passwordReset.salutation', {user: user.toJSON()}),
-        text: i18n.t('email:passwordReset.text', {user: user.toJSON()}),
-        header: i18n.t('email:passwordReset.header'),
-        footer: i18n.t('email:passwordReset.footer'),
-        logo: urlComposer.mailLogoImageUrl(),
-        background: urlComposer.mailBackgroundImageUrl(),
-        link: passwordResetLink
-    };
-
-    emailSender.sendEmail(from, to, subject, 'genericYouPersMail', locals);
-
-};
-
+    emailSender = require('ypbackendlib').emailSender(config, process.cwd() + '/' + config.email.templatesDir);
 
 var sendCalInvite = function (toUser, type, iCalString, activity, i18n, reason) {
     // default method is request
@@ -100,8 +39,7 @@ var sendCalInvite = function (toUser, type, iCalString, activity, i18n, reason) 
         activity: activity,
         image: urlComposer.ideaImageUrl(activity.idea.number),
         footer: i18n.t('email:iCalMail.footer'),
-        background: urlComposer.mailBackgroundImageUrl(),
-        logo: urlComposer.mailLogoImageUrl(),
+        imgServer: config.webClientUrl,
         icalUrl: urlComposer.icalUrl(activity.id, type, toUser.id)
     };
 
@@ -144,7 +82,7 @@ var sendActivityInvite = function sendActivityInvite(email, invitingUser, activi
 var sendCampaignLeadInvite = function sendCampaignLeadInvite(email, invitingUser, campaign, invitedUser, i18n) {
 
     var subject = i18n.t("email:CampaignLeadInvite.subject", {inviting:  invitingUser.toJSON(), campaign: campaign.toJSON()});
-    var token = encryptLinkToken(campaign._id +linkTokenSeparator + email +  (invitedUser ? linkTokenSeparator + invitedUser._id : ''));
+    var token = emailSender.encryptLinkToken(campaign._id +linkTokenSeparator + email +  (invitedUser ? linkTokenSeparator + invitedUser._id : ''));
     var locals = {
         link: urlComposer.campaignLeadInviteUrl(campaign._id, invitingUser._id, token),
         salutation: i18n.t('email:CampaignLeadInvite.salutation' + invitedUser ? '': 'Anonymous', {invited: invitedUser ? invitedUser.toJSON() : {firstname: ''}}),
@@ -177,7 +115,7 @@ var sendCampaignParticipantInvite = function sendCampaignParticipantInvite(email
 var sendOrganizationAdminInvite = function sendOrganizationAdminInvite(email, invitingUser, organization, invitedUser, i18n) {
 
     var subject = i18n.t("email:OrganizationAdminInvite.subject", {inviting:  invitingUser.toJSON(), organization: organization.toJSON()});
-    var token = encryptLinkToken(organization._id +linkTokenSeparator + email +  (invitedUser ? linkTokenSeparator + invitedUser._id : ''));
+    var token = emailSender.encryptLinkToken(organization._id +linkTokenSeparator + email +  (invitedUser ? linkTokenSeparator + invitedUser._id : ''));
     var locals = {
         title: i18n.t("email:OrganizationAdminInvite.title"),
         link: urlComposer.orgAdminInviteUrl(organization._id, invitingUser._id, token),
@@ -185,8 +123,7 @@ var sendOrganizationAdminInvite = function sendOrganizationAdminInvite(email, in
         text: i18n.t('email:OrganizationAdminInvite.text', {inviting: invitingUser.toJSON(), organization: organization.toJSON()}),
         header: i18n.t('email:OrganizationAdminInvite.header'),
         footer: i18n.t('email:OrganizationAdminInvite.footer'),
-        background: urlComposer.mailBackgroundImageUrl(),
-        logo: urlComposer.mailFooterImageUrl()
+        imgServer: config.webClientUrl
     };
     emailSender.sendEmail(fromDefault, email, subject, 'genericYouPersMail', locals);
 };
@@ -219,11 +156,9 @@ var close = function close() {
 
 module.exports = {
     closeConnection: close,
-    encryptLinkToken: encryptLinkToken,
-    decryptLinkToken: decryptLinkToken,
-    sendEmailVerification: sendEmailVerification,
+    encryptLinkToken: emailSender.encryptLinkToken,
+    decryptLinkToken: emailSender.decryptLinkToken,
     sendCalInvite: sendCalInvite,
-    sendPasswordResetMail: sendPasswordResetMail,
     sendActivityInvite: sendActivityInvite,
     sendCampaignLeadInvite: sendCampaignLeadInvite,
     sendCampaignParticipantInvite: sendCampaignParticipantInvite,

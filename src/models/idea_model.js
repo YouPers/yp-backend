@@ -18,7 +18,7 @@ var IdeaSchema = common.newSchema({
     source: { type: String, enum: enums.source},
     author: {type: ObjectId, ref: 'User', required: false},
     campaign: {type: ObjectId, ref: 'Campaign'},
-    defaultfrequency: {type: String, enum: enums.activityFrequency},
+    defaultfrequency: {type: String, enum: enums.eventFrequency},
     defaultexecutiontype: {type: String, enum: enums.executiontype},
     defaultduration: {type: Number},
     topics: [{type: ObjectId, ref: 'Topic'}],

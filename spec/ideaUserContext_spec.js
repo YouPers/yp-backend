@@ -18,7 +18,7 @@ consts.newUserInNewCampaignApi(
             expect(err).toBeNull();
         }
 
-        frisby.create('IdeaCtx: plan an activity first')
+        frisby.create('IdeaCtx: plan an event first')
             .post(URL + '/activities', {
                 "owner": user.id,
                 "idea": consts.groupIdea.id,
@@ -36,14 +36,14 @@ consts.newUserInNewCampaignApi(
             })
             .auth(user.username, 'yp')
             .expectStatus(201)
-            .afterJSON(function (newActivity) {
+            .afterJSON(function (newEvent) {
                 frisby.create('IdeaCtx: post a message')
                     .post(URL + '/messages', {
 
                         targetSpaces: [
                             {
-                                type: 'activity',
-                                targetId: newActivity.id
+                                type: 'event',
+                                targetId: newEvent.id
                             }
                         ],
 
@@ -53,28 +53,28 @@ consts.newUserInNewCampaignApi(
 
                         refDocs: [
                             { docId: consts.groupIdea.id, model: 'Idea'},
-                            { docId: newActivity.id, model: 'Activity'}
+                            { docId: newEvent.id, model: 'Event'}
                         ],
                         idea: consts.aloneIdea.id
                     })
                     .auth(user.username, 'yp')
                     .expectStatus(201)
                     .afterJSON(function (ctx) {
-                        frisby.create('IdeaCtx: getCtx, assert activity, events and message are in there')
+                        frisby.create('IdeaCtx: getCtx, assert event, events and message are in there')
                             .get(URL + '/ideas/' + consts.groupIdea.id + '/usercontext')
                             .auth(user.username, 'yp')
                             .expectStatus(200)
                             .afterJSON(function (ctx) {
                                 expect(ctx.activities.length).toEqual(1);
-                                expect(ctx.activities[0].id).toEqual(newActivity.id);
-                                expect(ctx.events).toBeDefined();
-                                expect(ctx.events.length).toEqual(1);
+                                expect(ctx.activities[0].id).toEqual(newEvent.id);
+                                expect(ctx.occurences).toBeDefined();
+                                expect(ctx.occurences.length).toEqual(1);
                                 expect(ctx.socialInteractions).toBeDefined();
                                 expect(ctx.socialInteractions.Message).toBeDefined();
                                 expect(ctx.socialInteractions.Message.length).toEqual(1);
                                 expect(ctx.socialInteractions.Message[0].refDocs.length).toEqual(2);
-                                frisby.create('IdeaCtx: delete Activity')
-                                    .delete(URL + '/activities/' + newActivity.id)
+                                frisby.create('IdeaCtx: delete Event')
+                                    .delete(URL + '/activities/' + newEvent.id)
                                     .auth(user.username, 'yp')
                                     .expectStatus(200)
                                     .toss();

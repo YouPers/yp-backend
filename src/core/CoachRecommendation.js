@@ -251,7 +251,7 @@ function _updateRecommendations(userId, options, cb) {
     var nrOfRecsToReturn = options.nrOfRecsToReturn;
 
     // loading the already planned ideas of this user - we do not want to recommend things that this user has already planned
-    mongoose.model('Activity').find({$or: [
+    mongoose.model('Event').find({$or: [
         {owner: userId},
         {joiningUsers: userId}
     ]}).select('idea').exec(function (err, plannedIdeas) {

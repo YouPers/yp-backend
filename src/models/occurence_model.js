@@ -8,27 +8,27 @@ var mongoose = require('ypbackendlib').mongoose,
     enums = require('./enums');
 
 /**
- * ActivityEvent Schema
+ * Occurence Schema
  * @type {Schema}
  */
-var ActivityEventSchema = common.newSchema({
+var OccurenceSchema = common.newSchema({
     owner: {type: ObjectId, ref: 'User'},
     campaign: {type: ObjectId, ref: 'Campaign'},
     idea: {type: ObjectId, ref: 'Idea'},
-    activity: {type: ObjectId, ref: 'Activity'},
-    status: {type: String, enum: enums.activityEventStatus},
+    event: {type: ObjectId, ref: 'Event'},
+    status: {type: String, enum: enums.occurenceStatus},
     start: {type: Date},
     end: {type: Date},
     doneTs: {type: Date},
     feedback: {type: Number},
     comment: {type: String}
 });
-ActivityEventSchema.plugin(require('mongoose-eventify'));
+OccurenceSchema.plugin(require('mongoose-eventify'));
 
-ActivityEventSchema.statics.getFieldDescriptions = function () {
+OccurenceSchema.statics.getFieldDescriptions = function () {
     return {
-        owner: 'The user who owns this ActivityEvent'
+        owner: 'The user who owns this Occurence'
     };
 };
 
-module.exports = mongoose.model('ActivityEvent', ActivityEventSchema);
+module.exports = mongoose.model('Occurence', OccurenceSchema);

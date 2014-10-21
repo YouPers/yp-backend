@@ -9,23 +9,23 @@ var Invitation = mongoose.model('Invitation');
 var Idea = mongoose.model('Idea');
 var Campaign = mongoose.model('Campaign');
 var Assessment = mongoose.model('Assessment');
-var Activity = mongoose.model('Activity');
-var ActivityEvent = mongoose.model('ActivityEvent');
+var Event = mongoose.model('Event');
+var Occurence = mongoose.model('Occurence');
 var SocialInteraction = require('../core/SocialInteraction');
 var config = require('../config/config');
 var log = require('ypbackendlib').log(config);
 
-function ActivityManagement() {
+function EventManagement() {
     EventEmitter.call(this);
 }
 
-util.inherits(ActivityManagement, EventEmitter);
-var actMgr = new ActivityManagement();
+util.inherits(EventManagement, EventEmitter);
+var actMgr = new EventManagement();
 
 /**
  * on change of a user's campaign
  *
- *  - schedule assessment activity
+ *  - schedule assessment event
  *
  */
 
@@ -47,7 +47,7 @@ User.on('change:campaign', function (user) {
             var assessment = assessments[0];
             if (assessment.idea) {
 
-                Activity.find({
+                Event.find({
                     owner: user._id,
                     idea: assessment.idea,
                     status: 'active'
@@ -56,7 +56,7 @@ User.on('change:campaign', function (user) {
                         handleError(err);
                     }
 
-                    // only plan assessment idea if there is no active activity yet
+                    // only plan assessment idea if there is no active event yet
                     if (activities.length === 0) {
 
                         mongoose.model('Profile').findById(user.profile).exec(function (err, profile) {
@@ -68,19 +68,19 @@ User.on('change:campaign', function (user) {
                                 if (err) {
                                     return handleError(err);
                                 }
-                                var assessmentActivity = actMgr.defaultActivity(idea, user);
-                                assessmentActivity.mainEvent.start = new Date();
-                                assessmentActivity.mainEvent.end = moment(assessmentActivity.mainEvent.start).add(15, 'm').toDate();
-                                assessmentActivity.save(function (err, savedActivity) {
+                                var assessmentEvent = actMgr.defaultEvent(idea, user);
+                                assessmentEvent.mainEvent.start = new Date();
+                                assessmentEvent.mainEvent.end = moment(assessmentEvent.mainEvent.start).add(15, 'm').toDate();
+                                assessmentEvent.save(function (err, savedEvent) {
                                     if (err) {
                                         return handleError(err);
                                     }
-                                    var events = actMgr.getEvents(savedActivity, user.id);
-                                    ActivityEvent.create(events, function (err) {
+                                    var occurences = actMgr.getOccurences(savedEvent, user.id);
+                                    Occurence.create(occurences, function (err) {
                                         if (err) {
                                             return handleError(err);
                                         }
-                                        actMgr.emit('activity:activityCreated', savedActivity, user);
+                                        actMgr.emit('event:eventCreated', savedEvent, user);
                                     });
                                 });
 
@@ -98,26 +98,26 @@ User.on('change:campaign', function (user) {
 });
 
 /**
- * on Change of an ActivityEvent Status, check whether this was the last open ActivityEvent
- * for this activity. If there are no more open Events change the status of the activity to 'old'
+ * on Change of an Occurence Status, check whether this was the last open Occurence
+ * for this event. If there are no more open Occurences change the status of the event to 'old'
  */
-ActivityEvent.on("change:status", function (event) {
-    // we can stop looking, if the event that was changed is still open, e.g. when it is new.
-    if (event.status === 'open') {
+Occurence.on("change:status", function (occurence) {
+    // we can stop looking, if the occurence that was changed is still open, e.g. when it is new.
+    if (occurence.status === 'open') {
         return;
     }
 
-    log.debug("checking whether Activity needs to be put to status 'old'");
-    ActivityEvent.count({_id: {$ne: event._id}, status: 'open', activity: event.activity}).exec(function (err, count) {
+    log.debug("checking whether Event needs to be put to status 'old'");
+    Occurence.count({_id: {$ne: occurence._id}, status: 'open', event: occurence.event}).exec(function (err, count) {
         if (err) {
             log(err);
             throw err;
         }
-        log.debug("found " + count + " events that are still active");
+        log.debug("found " + count + " occurences that are still active");
         if (count === 0) {
-            Activity.update({_id: event.activity}, {status: 'old'}, function (err, numAffected) {
+            Event.update({_id: occurence.event}, {status: 'old'}, function (err, numAffected) {
                 if (err || numAffected > 1) {
-                    log.err(err || "more than one activity changed, should never happen");
+                    log.err(err || "more than one event changed, should never happen");
                 }
 
             });
@@ -126,30 +126,30 @@ ActivityEvent.on("change:status", function (event) {
 });
 
 
-actMgr.getEvents = function getEvents(activity, ownerId, fromDate) {
+actMgr.getOccurences = function getOccurences(event, ownerId, fromDate) {
 
-    var duration = moment(activity.mainEvent.end).diff(activity.mainEvent.start);
+    var duration = moment(event.mainEvent.end).diff(event.mainEvent.start);
 
-    var occurrences = calendar.getOccurrences(activity, fromDate);
+    var occurrences = calendar.getOccurrences(event, fromDate);
 
-    var events = [];
+    var occurences = [];
 
     _.forEach(occurrences, function (instance) {
-        events.push({
+        occurences.push({
             status: 'open',
             start: moment(instance).toDate(),
             end: moment(instance).add(duration, 'ms').toDate(),
-            activity: activity._id,
-            idea: activity.idea,
+            event: event._id,
+            idea: event.idea,
             owner: ownerId,
-            campaign: activity.campaign
+            campaign: event.campaign
         });
     });
 
-    return events;
+    return occurences;
 };
 
-actMgr.defaultActivity = function (idea, user, campaignId) {
+actMgr.defaultEvent = function (idea, user, campaignId) {
     var now = moment();
     var mainEvent = {
         "allDay": false
@@ -172,7 +172,7 @@ actMgr.defaultActivity = function (idea, user, campaignId) {
         campaignId = user.campaign._id || user.campaign;
     }
 
-    var activity = {
+    var event = {
         owner: user._id || user,
         idea: idea,
         status: 'active',
@@ -185,64 +185,64 @@ actMgr.defaultActivity = function (idea, user, campaignId) {
     };
 
     if (campaignId) {
-        activity.campaign = campaignId;
+        event.campaign = campaignId;
     }
-    var activityModel = new Activity(activity);
+    var eventModel = new Event(event);
 
     // repopulate idea
-    activityModel.idea = idea;
+    eventModel.idea = idea;
 
-    return  activityModel;
+    return  eventModel;
 };
 
 
-actMgr.on('activity:activityCreated', function (activity, user) {
+actMgr.on('event:eventCreated', function (event, user) {
 
-    if (!activity.private) {
+    if (!event.private) {
 
         // we need the model for the recipient targetSpace, create pseudo model instead of loading the campaign
-//        var campaign = activity.campaign instanceof mongoose.Types.ObjectId ? {
-//            _id: activity.campaign,
+//        var campaign = event.campaign instanceof mongoose.Types.ObjectId ? {
+//            _id: event.campaign,
 //            constructor: { modelName: 'Campaign' }
-//        } : activity.campaign;
+//        } : event.campaign;
 
 
         //TODO: WIP, disabled for now, as it destroys the tests
-//        SocialInteraction.emit('invitation:activity', activity.owner, campaign, activity);
+//        SocialInteraction.emit('invitation:event', event.owner, campaign, event);
     }
 
     // find and dismiss all health coach recommendations for this idea
     // TODO: only health coach or from all other users as well
-    SocialInteraction.dismissRecommendations(activity.idea, user, { reason: 'activityScheduled'});
+    SocialInteraction.dismissRecommendations(event.idea, user, { reason: 'eventScheduled'});
 });
 
-actMgr.on('activity:activitySaved', function (activity) {
+actMgr.on('event:eventSaved', function (event) {
 
-
-});
-
-actMgr.on('activity:activityJoined', function (activity, joinedUser) {
-
-    SocialInteraction.dismissRecommendations(activity.idea, joinedUser, { reason: 'activityJoined' }, handleError);
-    SocialInteraction.dismissInvitations(activity, joinedUser, { reason: 'activityJoined' }, handleError);
 
 });
 
+actMgr.on('event:eventJoined', function (event, joinedUser) {
 
-actMgr.on('activity:activityDeleted', function (activity) {
-    SocialInteraction.deleteSocialInteractions(activity, handleError);
+    SocialInteraction.dismissRecommendations(event.idea, joinedUser, { reason: 'eventJoined' }, handleError);
+    SocialInteraction.dismissInvitations(event, joinedUser, { reason: 'eventJoined' }, handleError);
+
 });
 
-actMgr.on('activity:activityUpdated', function (updatedActivity) {
+
+actMgr.on('event:eventDeleted', function (event) {
+    SocialInteraction.deleteSocialInteractions(event, handleError);
+});
+
+actMgr.on('event:eventUpdated', function (updatedEvent) {
     Invitation.find({
-            refDocs: { $elemMatch: { docId: updatedActivity._id, model: 'Activity' }}
+            refDocs: { $elemMatch: { docId: updatedEvent._id, model: 'Event' }}
         }
     ).exec(function (err, invitations) {
             _.forEach(invitations, function (invitation) {
-                // The publishTo of the invitation has to be equal or earlier than the last event,
+                // The publishTo of the invitation has to be equal or earlier than the last occurence,
                 // it does not make sense to invite something that has already happened.
-                if (invitation.publishTo > updatedActivity.lastEventEnd) {
-                    invitation.publishTo = updatedActivity.lastEventEnd;
+                if (invitation.publishTo > updatedEvent.lastEventEnd) {
+                    invitation.publishTo = updatedEvent.lastEventEnd;
                     invitation.save(function (err, saved) {
                         if (err) {
                             return actMgr.emit('error', err);

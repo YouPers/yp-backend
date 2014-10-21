@@ -1,9 +1,9 @@
 var calendar = require('../util/calendar'),
     mongoose = require('ypbackendlib').mongoose,
-    Activity = mongoose.model('Activity'),
+    Event = mongoose.model('Event'),
     Idea = mongoose.model('Idea'),
-    ActivityEvent = mongoose.model('ActivityEvent'),
-    actMgr = require('../core/ActivityManagement'),
+    Occurence = mongoose.model('Occurence'),
+    actMgr = require('../core/EventManagement'),
     SocialInteraction = require('../core/SocialInteraction'),
     generic = require('ypbackendlib').handlers,
     error = require('ypbackendlib').error,
@@ -20,46 +20,46 @@ function getInvitationStatus(req, res, next) {
 }
 
 
-function validateActivity(req, res, next) {
-    var sentActivity = req.body;
+function validateEvent(req, res, next) {
+    var sentEvent = req.body;
 
     // check required Attributes
-    if (!sentActivity.mainEvent) {
+    if (!sentEvent.mainEvent) {
         return next(new error.MissingParameterError({ required: 'mainEvent' }));
     }
 
-    if (!sentActivity.mainEvent.start) {
+    if (!sentEvent.mainEvent.start) {
         return next(new error.MissingParameterError({ required: 'mainEvent.start' }));
     }
-    if (!sentActivity.mainEvent.end) {
+    if (!sentEvent.mainEvent.end) {
         return next(new error.MissingParameterError({ required: 'mainEvent.end' }));
     }
 
-    if (!sentActivity.mainEvent.recurrence.byday) {
-        sentActivity.mainEvent.recurrence.byday = req.user.profile.prefs.defaultWorkWeek;
+    if (!sentEvent.mainEvent.recurrence.byday) {
+        sentEvent.mainEvent.recurrence.byday = req.user.profile.prefs.defaultWorkWeek;
     }
 
-    // generate all events from the sentActivity to validate -> sentEvents
-    var newEvents = actMgr.getEvents(sentActivity, req.user.id);
+    // generate all occurences from the sentEvent to validate -> sentEvents
+    var newEvents = actMgr.getOccurences(sentEvent, req.user.id);
 
-    // load all planned events of this user that:
+    // load all planned occurences of this user that:
     //     plannedEvent.start before the end of the last sentEvent.end
     // AND
     //     .plannedEventend after the begin of the first sentEvent.start
-    // only these events can have conflicts
+    // only these occurences can have conflicts
 
-    // TODO: improve performance by only loading plans that possibly conflict. This query here uses the status flag which is good enough to filter all old events.
+    // TODO: improve performance by only loading plans that possibly conflict. This query here uses the status flag which is good enough to filter all old occurences.
     // var beginOfFirstNewEvent = newEvents[0].start;
     // var endOfLastNewEvent = newEvents[newEvents.length-1].end;
 
 
-    // if the sentActivity has an id, we want to exclude it from the conflicts-search, because this is an editing of a activity
+    // if the sentEvent has an id, we want to exclude it from the conflicts-search, because this is an editing of a event
     // and conflicts with itself should not be returned.
-    var q = ActivityEvent
+    var q = Occurence
         .find({owner: req.user._id, status: 'open'});
 
-    if (sentActivity.id) {
-        q.where({activity: {$ne: mongoose.Types.ObjectId(sentActivity.id)}});
+    if (sentEvent.id) {
+        q.where({event: {$ne: mongoose.Types.ObjectId(sentEvent.id)}});
     }
     q.exec(function (err, oldEvents) {
         if (err) {
@@ -67,13 +67,13 @@ function validateActivity(req, res, next) {
         }
         var validationResult = [];
 
-        // put the events of the loaded plans in an ordered list by beginDate
+        // put the occurences of the loaded plans in an ordered list by beginDate
         var plannedEvents = [];
 
-        _.forEach(oldEvents, function (event) {
+        _.forEach(oldEvents, function (occurence) {
             // use plain "non-mongoose" object to prevent troubles with serializing the "pseudo attribute" title
-            var plainEventObj = event.toObject();
-            // plainEventObj.title = activity.title;
+            var plainEventObj = occurence.toObject();
+            // plainEventObj.title = event.title;
             delete plainEventObj._id;
             plannedEvents.push(plainEventObj);
         });
@@ -91,25 +91,25 @@ function validateActivity(req, res, next) {
                 return ((plannedEvent.start < newEvent.end) && (plannedEvent.end > newEvent.start));
             });
 
-            validationResult.push({event: newEvent, conflictingEvent: conflictingEvent});
+            validationResult.push({occurence: newEvent, conflictingEvent: conflictingEvent});
         });
 
 
-        // load all activities for the conflicting events to populate them
+        // load all activities for the conflicting occurences to populate them
         var conflictingEvents = _.compact(_.map(validationResult, 'conflictingEvent'));
-        var conflictingEventActivities = _.map(conflictingEvents, 'activity');
-        Activity.find({ _id: { $in: conflictingEventActivities }}, function (err, activities) {
+        var conflictingEventActivities = _.map(conflictingEvents, 'event');
+        Event.find({ _id: { $in: conflictingEventActivities }}, function (err, activities) {
             if(err) {
                 return error.handleError(err, next);
             }
-            var activitiesById = _.indexBy(activities, function(activity) {
-                return activity._id.toString();
+            var activitiesById = _.indexBy(activities, function(event) {
+                return event._id.toString();
             });
 
             _.each(validationResult, function(result) {
                 if(result.conflictingEvent) {
-                    var conflictingActivityResult = activitiesById[result.conflictingEvent.activity.toString()];
-                    result.conflictingEvent.activity = conflictingActivityResult;
+                    var conflictingEventResult = activitiesById[result.conflictingEvent.event.toString()];
+                    result.conflictingEvent.event = conflictingEventResult;
                 }
             });
 
@@ -123,137 +123,137 @@ function validateActivity(req, res, next) {
 
 
 /**
- * handles a POST request to /Activity
- * generates all the ActivityEvents according to the planning options in the activity.
+ * handles a POST request to /Event
+ * generates all the Occurences according to the planning options in the event.
  *
  * @param req
  * @param res
  * @param next
  */
-function postNewActivity(req, res, next) {
-    var sentActivity = req.body;
+function postNewEvent(req, res, next) {
+    var sentEvent = req.body;
 
-    var err = handlerUtils.checkWritingPreCond(sentActivity, req.user, Activity);
+    var err = handlerUtils.checkWritingPreCond(sentEvent, req.user, Event);
     if (err) {
         return error.handleError(err, next);
     }
 
     // check required Attributes
-    if (!sentActivity.mainEvent) {
+    if (!sentEvent.mainEvent) {
         return next(new error.MissingParameterError({ required: 'mainEvent' }));
     }
 
-    if (!sentActivity.mainEvent.start) {
+    if (!sentEvent.mainEvent.start) {
         return next(new error.MissingParameterError({ required: 'mainEvent.start' }));
     }
-    if (!sentActivity.mainEvent.end) {
+    if (!sentEvent.mainEvent.end) {
         return next(new error.MissingParameterError({ required: 'mainEvent.end' }));
     }
 
-    if (!sentActivity.idea) {
+    if (!sentEvent.idea) {
         return next(new error.MissingParameterError('"idea" is a required attribute', { required: 'idea' }));
     }
 
-    if (sentActivity.joiningUsers && sentActivity.joiningUsers.length > 0) {
-        return next(new error.InvalidArgumentError('"joiningUsers" has to be emtpy for new activity, use JOIN Api to join an existing activity'));
+    if (sentEvent.joiningUsers && sentEvent.joiningUsers.length > 0) {
+        return next(new error.InvalidArgumentError('"joiningUsers" has to be emtpy for new event, use JOIN Api to join an existing event'));
     }
 
     // check whether delivered owner is the authenticated user
-    if (sentActivity.owner && (req.user.id !== sentActivity.owner)) {
+    if (sentEvent.owner && (req.user.id !== sentEvent.owner)) {
         return next(new error.NotAuthorizedError({
             userId: req.user.id,
-            owner: sentActivity.owner
+            owner: sentEvent.owner
         }));
     }
 
     // if no owner delivered set to authenticated user
-    if (!sentActivity.owner) {
-        sentActivity.owner = req.user.id;
+    if (!sentEvent.owner) {
+        sentEvent.owner = req.user.id;
     }
 
-    // set the campaign that this activity is part of if it has not been set by the client
-    if (!sentActivity.campaign && req.user.campaign) {
-        sentActivity.campaign = req.user.campaign.id || req.user.campaign; // allow populated and unpopulated campaign
+    // set the campaign that this event is part of if it has not been set by the client
+    if (!sentEvent.campaign && req.user.campaign) {
+        sentEvent.campaign = req.user.campaign.id || req.user.campaign; // allow populated and unpopulated campaign
     }
 
     // set the byday of the mainEvent to the user's default if the client did not do it, only for daily activities
-    if (sentActivity.mainEvent.frequency === 'day' && !sentActivity.mainEvent.recurrence.byday) {
-        sentActivity.mainEvent.recurrence.byday = req.user.profile.prefs.defaultWorkWeek;
+    if (sentEvent.mainEvent.frequency === 'day' && !sentEvent.mainEvent.recurrence.byday) {
+        sentEvent.mainEvent.recurrence.byday = req.user.profile.prefs.defaultWorkWeek;
     }
 
-    var newActivity = new Activity(sentActivity);
+    var newEvent = new Event(sentEvent);
 
-    _saveNewActivity(newActivity, req, function (err, savedActivity) {
+    _saveNewEvent(newEvent, req, function (err, savedEvent) {
         if (err) {
             return error.handleError(err, next);
         }
 
-        var events = actMgr.getEvents(savedActivity, req.user.id);
+        var occurences = actMgr.getOccurences(savedEvent, req.user.id);
 
-        ActivityEvent.create(events, function (err) {
+        Occurence.create(occurences, function (err) {
             if (err) {
                 return error.handleError(err, next);
             }
 
-            actMgr.emit('activity:activityCreated', savedActivity, req.user);
+            actMgr.emit('event:eventCreated', savedEvent, req.user);
 
-            generic.writeObjCb(req, res, next)(null, savedActivity);
+            generic.writeObjCb(req, res, next)(null, savedEvent);
         });
     });
 }
 
 
 /**
- * save new activity with a mongoose obj that already has been validated
+ * save new event with a mongoose obj that already has been validated
  *
  * @param req - the request
  * @param cb - callback(err, savedPlan)
- * @param activity
+ * @param event
  */
-function _saveNewActivity(activity, req, cb) {
+function _saveNewEvent(event, req, cb) {
     var user = req.user;
     var i18n = req.i18n;
 
-    // add fields of idea to the activity
-    Idea.findById(activity.idea).exec(function (err, foundIdea) {
+    // add fields of idea to the event
+    Idea.findById(event.idea).exec(function (err, foundIdea) {
         if (err) {
             return cb(err);
         }
 
         if (!foundIdea) {
-            return cb(new error.InvalidArgumentError('referenced idea not found', { required: 'idea', idea: activity.idea }));
+            return cb(new error.InvalidArgumentError('referenced idea not found', { required: 'idea', idea: event.idea }));
         }
 
-        if (!activity.title) {
-            activity.title = foundIdea.title;
+        if (!event.title) {
+            event.title = foundIdea.title;
         }
 
-        activity.save(function (err, savedActivity) {
+        event.save(function (err, savedEvent) {
             if (err) {
                 return cb(err);
             }
 
-            // we reload Activity for two reasons:
+            // we reload Event for two reasons:
             // - populate 'idea' so we can get create a nice calendar entry
             // - we need to reload so we get the changes that have been done pre('save') and pre('init')
             //   like updating the joiningUsers Collection
-            Activity.findById(savedActivity._id).populate('owner').populate('idea', mongoose.model('Idea').getI18nPropertySelector(req.locale)).exec(function (err, reloadedActivity) {
+            Event.findById(savedEvent._id).populate('owner').populate('idea', mongoose.model('Idea').getI18nPropertySelector(req.locale)).exec(function (err, reloadedEvent) {
                 if (err) {
                     return cb(err);
                 }
 
                 if (user && user.email && user.profile.prefs.email.iCalInvites) {
-                    req.log.debug({start: reloadedActivity.mainEvent.start, end: reloadedActivity.mainEvent.end}, 'Saved New activity');
-                    var myIcalString = calendar.getIcalObject(reloadedActivity, user, 'new', i18n).toString();
-                    email.sendCalInvite(user, 'new', myIcalString, reloadedActivity, i18n);
+                    req.log.debug({start: reloadedEvent.mainEvent.start, end: reloadedEvent.mainEvent.end}, 'Saved New event');
+                    var myIcalString = calendar.getIcalObject(reloadedEvent, user, 'new', i18n).toString();
+                    email.sendCalInvite(user, 'new', myIcalString, reloadedEvent, i18n);
                 }
 
-                actMgr.emit('activity:activitySaved', reloadedActivity);
+                actMgr.emit('event:eventSaved', reloadedEvent);
 
                 // remove the populated idea because the client is not gonna expect it to be populated.
-                reloadedActivity.idea = reloadedActivity.idea._id;
+                reloadedEvent.idea = reloadedEvent.idea._id;
 
-                return cb(null, reloadedActivity);
+                return cb(null, reloadedEvent);
 
             });
 
@@ -262,44 +262,44 @@ function _saveNewActivity(activity, req, cb) {
 }
 
 
-function postJoinActivityFn(req, res, next) {
+function postJoinEventFn(req, res, next) {
 
     if (!req.params || !req.params.id) {
         return next(new error.MissingParameterError({ required: 'id' }));
     }
 
-    Activity.findById(req.params.id).exec(function (err, masterActivity) {
+    Event.findById(req.params.id).exec(function (err, masterEvent) {
 
         if (err) {
             return error.handleError(err, next);
         }
 
-        if (_.any(masterActivity.joiningUsers, function(joinerObjId) {
+        if (_.any(masterEvent.joiningUsers, function(joinerObjId) {
             return joinerObjId.equals(req.user._id);
         })) {
-            return next(new error.InvalidArgumentError('this user has already joined this activity', {user: req.user, activity: masterActivity}));
+            return next(new error.InvalidArgumentError('this user has already joined this event', {user: req.user, event: masterEvent}));
         }
 
-        masterActivity.joiningUsers.push(req.user.id);
-        var events = actMgr.getEvents(masterActivity, req.user.id);
+        masterEvent.joiningUsers.push(req.user.id);
+        var occurences = actMgr.getOccurences(masterEvent, req.user.id);
 
-        ActivityEvent.create(events, function (err, events) {
+        Occurence.create(occurences, function (err, occurences) {
             if (err) {
                 return error.handleError(err, next);
             }
             if (req.user && req.user.email && req.user.profile.prefs.email.iCalInvites) {
-                var myIcalString = calendar.getIcalObject(masterActivity, req.user, 'new', req.i18n).toString();
-                email.sendCalInvite(req.user, 'new', myIcalString, masterActivity, req.i18n);
+                var myIcalString = calendar.getIcalObject(masterEvent, req.user, 'new', req.i18n).toString();
+                email.sendCalInvite(req.user, 'new', myIcalString, masterEvent, req.i18n);
             }
-            masterActivity.save(generic.writeObjCb(req, res, next));
-            actMgr.emit('activity:activityJoined', masterActivity, req.user);
+            masterEvent.save(generic.writeObjCb(req, res, next));
+            actMgr.emit('event:eventJoined', masterEvent, req.user);
         });
     });
 
 }
 
 
-function postActivityInvite(req, res, next) {
+function postEventInvite(req, res, next) {
     if (!req.params || !req.params.id || req.params.id === 'undefined') {
         return next(new error.MissingParameterError({ required: 'id' }));
     }
@@ -324,21 +324,21 @@ function postActivityInvite(req, res, next) {
     var locals = {
     };
     async.series([
-        // first load Activity
+        // first load Event
         function (done) {
-            Activity.findById(req.params.id)
+            Event.findById(req.params.id)
                 .populate('idea')
                 .populate('owner')
-                .exec(function (err, activity) {
+                .exec(function (err, event) {
                     if (err) {
                         return done(err);
                     }
-                    if (!activity) {
-                        return done(new error.ResourceNotFoundError('Activity not found.', {
+                    if (!event) {
+                        return done(new error.ResourceNotFoundError('Event not found.', {
                             id: req.params.id
                         }));
                     }
-                    locals.activity = activity;
+                    locals.event = event;
                     return done();
                 });
         },
@@ -373,7 +373,7 @@ function postActivityInvite(req, res, next) {
                     if (err) {
                         return error.handleError(err, done);
                     }
-                    SocialInteraction.emit('invitation:activity', req.user, recipients, locals.activity);
+                    SocialInteraction.emit('invitation:event', req.user, recipients, locals.event);
                     done();
                 });
         }
@@ -387,29 +387,29 @@ function postActivityInvite(req, res, next) {
 }
 
 
-function _sendIcalMessages(activity, joiner, req, reason, type, done) {
+function _sendIcalMessages(event, joiner, req, reason, type, done) {
     var users;
     if (joiner) {
         users = [joiner];
     } else {
-        users = [activity.owner].concat(activity.joiningUsers);
+        users = [event.owner].concat(event.joiningUsers);
     }
 
     mongoose.model('Profile').populate(users, {path: 'profile', model: 'Profile'}, function (err, populatedUsers) {
         async.forEach(populatedUsers, function (user, next) {
                 if (user.profile.prefs.email.iCalInvites) {
-                    var myIcalString = calendar.getIcalObject(activity, user, type, req.i18n, reason).toString();
-                    email.sendCalInvite(user, type, myIcalString, activity, req.i18n, reason);
+                    var myIcalString = calendar.getIcalObject(event, user, type, req.i18n, reason).toString();
+                    email.sendCalInvite(user, type, myIcalString, event, req.i18n, reason);
                 }
                 return next();
             },
             done);
     });
 }
-function _deleteActivityEvents(activity, joiner, fromDate, done) {
+function _deleteOccurences(event, joiner, fromDate, done) {
 
-    var q = ActivityEvent
-        .remove({activity: activity._id});
+    var q = Occurence
+        .remove({event: event._id});
 
     if (fromDate) {
         q.where({start: {$gte: fromDate}});
@@ -427,81 +427,81 @@ function _deleteActivityEvents(activity, joiner, fromDate, done) {
     });
 }
 
-function deleteActivity(req, res, next) {
+function deleteEvent(req, res, next) {
     if (!req.params || !req.params.id) {
         return next(new error.MissingParameterError({ required: 'id' }));
     }
-    var reason = req.params.reason || 'The organizer Deleted this activity';
+    var reason = req.params.reason || 'The organizer Deleted this event';
 
-    Activity
+    Event
         .findById(req.params.id)
         .populate('idea')
         .populate('owner joiningUsers', '+profile +email')
-        .exec(function (err, activity) {
+        .exec(function (err, event) {
 
             if (err) {
                 return error.handleError(err, next);
             }
-            if (!activity) {
-                return next(new error.ResourceNotFoundError('Activity not found.', {
+            if (!event) {
+                return next(new error.ResourceNotFoundError('Event not found.', {
                     id: req.params.id
                 }));
             }
-            var joiner = _.find(activity.joiningUsers, function (user) {
+            var joiner = _.find(event.joiningUsers, function (user) {
                 return user.equals(req.user);
             });
 
             var sysadmin = auth.checkAccess(req.user, auth.accessLevels.al_systemadmin);
 
-            var owner = activity.owner._id.equals(req.user._id);
+            var owner = event.owner._id.equals(req.user._id);
 
-            // activity can be deleted if user is systemadmin or if it is his own activity or if the user is a joiner
+            // event can be deleted if user is systemadmin or if it is his own event or if the user is a joiner
             if (!(sysadmin || owner || joiner)) {
                 return next(new error.NotAuthorizedError());
             }
 
-            if (activity.deleteStatus === Activity.notDeletableNoFutureEvents && !sysadmin) {
-                // if this is not deletable because of no future events we have in fact
-                // nothing to do, we just pretend that we deleted all future events, by doing nothing
+            if (event.deleteStatus === Event.notDeletableNoFutureEvents && !sysadmin) {
+                // if this is not deletable because of no future occurences we have in fact
+                // nothing to do, we just pretend that we deleted all future occurences, by doing nothing
                 // and signalling success
-                actMgr.emit('activity:activityDeleted', activity);
+                actMgr.emit('event:eventDeleted', event);
                 res.send(200);
                 return next();
             }
 
             function _deleteEvents(done) {
                 if (sysadmin) {
-                    _deleteActivityEvents(activity, joiner, null, done);
+                    _deleteOccurences(event, joiner, null, done);
                 } else {
-                    _deleteActivityEvents(activity, joiner, new Date(), done);
+                    _deleteOccurences(event, joiner, new Date(), done);
                 }
             }
 
             function _sendCalendarCancelMessages(done) {
-                _sendIcalMessages(activity, joiner, req, reason, 'cancel', done);
+                _sendIcalMessages(event, joiner, req, reason, 'cancel', done);
             }
 
-            function _deleteActivity(done) {
+            function _deleteEvent(done) {
 
                 if (joiner) {
-                    activity.joiningUsers.remove(req.user);
-                    activity.save(done);
+                    event.joiningUsers.remove(req.user);
+                    event.save(done);
                 } else {
-                    var deleteStatus = activity.deleteStatus;
+                    var deleteStatus = event.deleteStatus;
                     if (deleteStatus === 'deletable' || sysadmin) {
-                        activity.remove(done);
+                        event.remove(done);
                     } else if (deleteStatus === 'deletableOnlyFutureEvents') {
-                        activity.status = 'old';
-                        if (activity.mainEvent.frequency !== 'once') {
-                            activity.mainEvent.recurrence.on = new Date();
-                            activity.mainEvent.recurrence.after = undefined;
-                            activity.save(done);
+                        event.status = 'old';
+                        if (event.mainEvent.frequency !== 'once') {
+                            event.mainEvent.recurrence.on = new Date();
+                            event.mainEvent.recurrence.after = undefined;
+                            event.save(done);
                         } else {
-                            throw new Error('should never arrive here, it is not possible to have an "once" activity that has ' +
-                                'passed and future events at the same time');
+                            throw new Error('should never arrive here, it is not possible to have an "once" event that has ' +
+                                'passed and future occurences at the same time');
                         }
                     } else {
-                        throw new Error('unknown DeleteStatus: ' + activity.deleteStatus);
+                        throw new Error('unknown DeleteStatus: ' + event.deleteStatus);
                     }
 
                 }
@@ -511,13 +511,13 @@ function deleteActivity(req, res, next) {
             return async.parallel([
                     _sendCalendarCancelMessages,
                     _deleteEvents,
-                    _deleteActivity
+                    _deleteEvent
                 ],
                 function (err) {
                     if (err) {
                         return error.handleError(err, next);
                     }
-                    actMgr.emit('activity:activityDeleted', activity);
+                    actMgr.emit('event:eventDeleted', event);
                     res.send(200);
                     return next();
                 });
@@ -525,65 +525,65 @@ function deleteActivity(req, res, next) {
 }
 
 
-function putActivity(req, res, next) {
-    var sentActivity = req.body;
-    var err = handlerUtils.checkWritingPreCond(sentActivity, req.user, Activity);
+function putEvent(req, res, next) {
+    var sentEvent = req.body;
+    var err = handlerUtils.checkWritingPreCond(sentEvent, req.user, Event);
     if (err) {
         return error.handleError(err, next);
     }
 
     // check required Attributes, if we get a main event, at least from and to must be set
-    if (sentActivity.mainEvent) {
-        if (!sentActivity.mainEvent.start) {
+    if (sentEvent.mainEvent) {
+        if (!sentEvent.mainEvent.start) {
             return next(new error.MissingParameterError({ required: 'mainEvent.start' }));
         }
-        if (!sentActivity.mainEvent.end) {
+        if (!sentEvent.mainEvent.end) {
             return next(new error.MissingParameterError({ required: 'mainEvent.end' }));
         }
     }
 
 
-    Activity
+    Event
         .findById(req.params.id)
         .populate('idea')
         .populate('owner joiningUsers', '+profile +email')
-        .exec(function (err, loadedActivity) {
+        .exec(function (err, loadedEvent) {
             if (err) {
                 return error.handleError(err, next);
             }
-            if (!loadedActivity) {
-                return next(new error.ResourceNotFoundError('Activity not found.', { id: sentActivity.id }));
+            if (!loadedEvent) {
+                return next(new error.ResourceNotFoundError('Event not found.', { id: sentEvent.id }));
             }
 
-            // check to see if received activity is editable
-            if (loadedActivity.editStatus !== "editable") {
-                return next(new error.ConflictError('Error updating in activityPutFn: Not allowed to edit this activity.', {
-                    activityId: sentActivity.id,
-                    editStatus: loadedActivity.editStatus
+            // check to see if received event is editable
+            if (loadedEvent.editStatus !== "editable") {
+                return next(new error.ConflictError('Error updating in eventPutFn: Not allowed to edit this event.', {
+                    eventId: sentEvent.id,
+                    editStatus: loadedEvent.editStatus
                 }));
             }
 
             // we do not allow to update the owner of and the joiningUsers array directly with a put.
-            delete sentActivity.owner;
-            delete sentActivity.joiningUsers;
+            delete sentEvent.owner;
+            delete sentEvent.joiningUsers;
 
-            _.extend(loadedActivity, sentActivity);
+            _.extend(loadedEvent, sentEvent);
 
 
-            function _saveActivity(done) {
-                loadedActivity.save(done);
+            function _saveEvent(done) {
+                loadedEvent.save(done);
             }
 
             function _deleteEventsInFuture(done) {
-                if (sentActivity.mainEvent && !_.isEqual(sentActivity.mainEvent, loadedActivity.mainEvent)) {
-                    return _deleteActivityEvents(loadedActivity, null, new Date(), done);
+                if (sentEvent.mainEvent && !_.isEqual(sentEvent.mainEvent, loadedEvent.mainEvent)) {
+                    return _deleteOccurences(loadedEvent, null, new Date(), done);
                 } else {
                     return done();
                 }
             }
 
             function _sendCalendarUpdates(done) {
-                _sendIcalMessages(loadedActivity, null, req, null, 'update', done);
+                _sendIcalMessages(loadedEvent, null, req, null, 'update', done);
             }
 
 
@@ -592,22 +592,22 @@ function putActivity(req, res, next) {
                     return error.handleError(err, next);
                 }
 
-                loadedActivity.idea = loadedActivity.idea._id;
+                loadedEvent.idea = loadedEvent.idea._id;
 
-                actMgr.emit('activity:activityUpdated', loadedActivity);
+                actMgr.emit('event:eventUpdated', loadedEvent);
 
-                res.send(200, loadedActivity);
+                res.send(200, loadedEvent);
                 return next();
             }
 
 
             function _updateEventsForAllUsers(done) {
-                if (sentActivity.mainEvent && !_.isEqual(sentActivity.mainEvent, loadedActivity.mainEvent)) {
-                    var users = [loadedActivity.owner].concat(loadedActivity.joiningUsers);
+                if (sentEvent.mainEvent && !_.isEqual(sentEvent.mainEvent, loadedEvent.mainEvent)) {
+                    var users = [loadedEvent.owner].concat(loadedEvent.joiningUsers);
 
                     return async.forEach(users, function (user, cb) {
-                        var events = actMgr.getEvents(loadedActivity, user._id, new Date());
-                        ActivityEvent.create(events, cb);
+                        var occurences = actMgr.getOccurences(loadedEvent, user._id, new Date());
+                        Occurence.create(occurences, cb);
                     }, done);
                 } else {
                     return done();
@@ -616,7 +616,7 @@ function putActivity(req, res, next) {
             }
 
             return async.parallel([
-                    _saveActivity,
+                    _saveEvent,
                     _sendCalendarUpdates,
                     function (done) {
                         async.series([
@@ -639,9 +639,9 @@ function getAll(req, res, next) {
         { joiningUsers: req.user.id }
     ]};
 
-    var dbQuery = Activity.find(finder);
+    var dbQuery = Event.find(finder);
 
-    var op = generic.addStandardQueryOptions(req, dbQuery, Activity);
+    var op = generic.addStandardQueryOptions(req, dbQuery, Event);
     op.exec(generic.sendListCb(req, res, next));
 
 }
@@ -656,11 +656,11 @@ function getIcal(req, res, next) {
     if (!req.params.type) {
         return next(new error.MissingParameterError({ required: 'type' }));
     }
-    Activity
+    Event
         .findById(req.params.id)
         .populate('idea')
         .populate('owner joiningUsers', '+profile +email')
-        .exec(function (err, loadedActivity) {
+        .exec(function (err, loadedEvent) {
             if (err) {
                 return error.handleError(err, next);
             }
@@ -668,7 +668,7 @@ function getIcal(req, res, next) {
                 if (err) {
                     return error.handleError(err, next);
                 }
-                var ical = calendar.getIcalObject(loadedActivity, user, req.params.type || 'new', req.i18n).toString();
+                var ical = calendar.getIcalObject(loadedEvent, user, req.params.type || 'new', req.i18n).toString();
                 res.contentType = 'text/calendar';
                 res.send(ical);
                 return next();
@@ -679,13 +679,13 @@ function getIcal(req, res, next) {
 
 
 module.exports = {
-    postNewActivity: postNewActivity,
-    postJoinActivityFn: postJoinActivityFn,
-    postActivityInvite: postActivityInvite,
-    deleteActivity: deleteActivity,
-    putActivity: putActivity,
+    postNewEvent: postNewEvent,
+    postJoinEventFn: postJoinEventFn,
+    postEventInvite: postEventInvite,
+    deleteEvent: deleteEvent,
+    putEvent: putEvent,
     getInvitationStatus: getInvitationStatus,
-    validateActivity: validateActivity,
+    validateEvent: validateEvent,
     getIcal: getIcal,
     getAll: getAll
 };

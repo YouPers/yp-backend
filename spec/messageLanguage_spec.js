@@ -168,7 +168,7 @@ consts.newUserInNewCampaignApi(
                                             "iCalInvites": false
                                         },
                                         rejectedIdeas: [],
-                                        "rejectedActivityPlans": [],
+                                        "rejectedEventPlans": [],
                                         "starredIdeas": []
                                     },
                                     language: "fr"

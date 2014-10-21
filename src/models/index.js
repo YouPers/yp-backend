@@ -1,8 +1,8 @@
 module.exports = {
     modelNames: [
         'idea',
-        'activity',
-        'activityEvent',
+        'event',
+        'occurence',
         'assessment',
         'assessmentResultAnswer',
         'assessmentResult',

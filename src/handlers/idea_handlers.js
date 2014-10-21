@@ -1,6 +1,6 @@
 var mongoose = require('ypbackendlib').mongoose,
     Idea = mongoose.model('Idea'),
-    ActivityManagement = require('../core/ActivityManagement'),
+    EventManagement = require('../core/EventManagement'),
     Campaign = mongoose.model('Campaign'),
     _ = require('lodash'),
     auth = require('ypbackendlib').auth,
@@ -156,7 +156,7 @@ function getAllIdeas(baseUrl, Model) {
     };
 }
 
-function getDefaultActivity(req, res, next) {
+function getDefaultEvent(req, res, next) {
     Idea.findById(req.params.id).select(Idea.getI18nPropertySelector(req.locale)).exec(function (err, idea) {
         if (err) {
             return error.handleError(err, next);
@@ -165,10 +165,10 @@ function getDefaultActivity(req, res, next) {
             return next(new error.ResourceNotFoundError());
         }
 
-        var defaultActivity = ActivityManagement.defaultActivity(idea, req.user, req.params.campaignId);
-        req.log.debug(defaultActivity);
-        defaultActivity._id = undefined;
-        res.send(defaultActivity);
+        var defaultEvent = EventManagement.defaultEvent(idea, req.user, req.params.campaignId);
+        req.log.debug(defaultEvent);
+        defaultEvent._id = undefined;
+        res.send(defaultEvent);
         return next();
     });
 }
@@ -199,7 +199,7 @@ function getIdeaUserContext(req, res, next) {
             { owner: req.user._id },
             { joiningUsers: req.user._id }
         ]};
-        mongoose.model('Activity')
+        mongoose.model('Event')
             .find({idea: ideaId})
             .where(userClause)
             .populate('owner joiningUsers')
@@ -236,11 +236,11 @@ function getIdeaUserContext(req, res, next) {
     }
 
     function _loadEvents(done) {
-        mongoose.model('ActivityEvent').find({owner: req.user._id, idea: ideaId}).exec(function (err, events) {
+        mongoose.model('Occurence').find({owner: req.user._id, idea: ideaId}).exec(function (err, occurences) {
             if (err) {
                 return done(err);
             }
-            ctx.events = events;
+            ctx.occurences = occurences;
             return done();
         });
     }
@@ -259,6 +259,6 @@ module.exports = {
     postIdea: postIdea,
     putIdea: putIdea,
     getAllIdeas: getAllIdeas,
-    getDefaultActivity: getDefaultActivity,
+    getDefaultEvent: getDefaultEvent,
     getUserContextByIdFn: getIdeaUserContext
 };

@@ -8,11 +8,11 @@ module.exports = function (swagger) {
 
     swagger.addOperation({
         spec: {
-            description: "Operations about ActivityOffers",
+            description: "Operations about EventOffers",
             path: '/coachRecommendations',
             notes: "returns the current coachRecommendations for a user",
             method: "GET",
-            "responseClass": "Array[ActivityOffer]",
+            "responseClass": "Array[EventOffer]",
             "nickname": "getCoachRecommendations",
             params: [
                 generic.params.limit,

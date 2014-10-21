@@ -60,8 +60,8 @@ var getAllFn = function getAllFn(baseUrl, Model) {
         var options = {
             mode: isAdminMode ? 'admin' : 'default', // admin mode ignores all filter options except the generic query options
 
-            targetId: req.params.targetId, // disables the default target space filter, use case: comments targeted to a campaign or activity
-            refDocId: req.params.refDocId, // disables the default target space filter, use case: participants/invitees of an activity
+            targetId: req.params.targetId, // disables the default target space filter, use case: comments targeted to a campaign or event
+            refDocId: req.params.refDocId, // disables the default target space filter, use case: participants/invitees of an event
 
 
             // inclusive filter options: includes results that would be filtered out with the default filter options

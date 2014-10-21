@@ -72,20 +72,20 @@ module.exports = function (swagger) {
     swagger.addOperation({
         spec: {
             description: "Operations about Ideas",
-            path: baseUrlWithId + '/defaultActivity',
-            notes: "returns the default activity template for this idea",
-            summary: "returns the default activity template for this idea",
+            path: baseUrlWithId + '/defaultEvent',
+            notes: "returns the default event template for this idea",
+            summary: "returns the default event template for this idea",
             params: [
                 swagger.pathParam("id", "ID of the idea to be fetched", "string"),
                 swagger.queryParam('campaignId', 'optional campaignId used by campaignLead, defaults to the campaign of the authenticated user', 'String'),
                 generic.params.populate],
             method: "GET",
-            "responseClass": "Activity",
-            "nickname": "getDefaultActivity",
+            "responseClass": "Event",
+            "nickname": "getDefaultEvent",
             accessLevel: 'al_user',
             beforeCallbacks: []
         },
-        action: handlers.getDefaultActivity
+        action: handlers.getDefaultEvent
 
     });
 
@@ -117,7 +117,7 @@ module.exports = function (swagger) {
             path: baseUrl,
             notes: "The new idea will get a number 'NEW' for product admins and 'NEW_C' for campaign leads, because we have not yet implemented an " +
                 "autoincrement.",
-            summary: "Posts a new activity",
+            summary: "Posts a new event",
             method: "POST",
             mobileSDK: "disabled",
             "responseClass": "Idea",
@@ -140,7 +140,7 @@ module.exports = function (swagger) {
         spec: {
             description: "Operations about Ideas",
             path: baseUrlWithId,
-            notes: "update an existing activity",
+            notes: "update an existing event",
             summary: "Update an Idea",
             method: "PUT",
             mobileSDK: "disabled",
@@ -172,8 +172,8 @@ module.exports = function (swagger) {
         spec: {
             description: "Operations about Ideas",
             path: baseUrlWithId,
-            notes: "deletes a specific activity",
-            summary: "deletes a specific activity",
+            notes: "deletes a specific event",
+            summary: "deletes a specific event",
             method: "DELETE",
             mobileSDK: "disabled",
             "nickname": "deleteIdea",

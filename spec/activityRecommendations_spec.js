@@ -16,7 +16,7 @@ frisby.globalSetup({ // globalSetup is for ALL requests
 // disabled for now
 return;
 
-frisby.create('ActivityRecommendations: post a first answer for this assessment')
+frisby.create('EventRecommendations: post a first answer for this assessment')
     .post(URL + '/assessments/525faf0ac558d40000000005/results',
     {owner: consts.users.test_ind2.id,
         assessment: '525faf0ac558d40000000005',
@@ -34,13 +34,13 @@ frisby.create('ActivityRecommendations: post a first answer for this assessment'
     .auth('test_ind2', 'yp')
     .expectStatus(201)
     .afterJSON(function (json) {
-        frisby.create('ActivityRecommendations: get recommendations')
+        frisby.create('EventRecommendations: get recommendations')
             .get(URL + '/recommendations')
             .auth('test_ind2', 'yp')
             .expectStatus(200)
             .afterJSON(function(recs) {
                 expect(recs.length).toEqual(10);
-                frisby.create('ActivityRecommendations: reject first recommendation')
+                frisby.create('EventRecommendations: reject first recommendation')
                     .put(URL + '/profiles/'+ consts.users.test_ind2.profile,
                         {
 
@@ -62,7 +62,7 @@ frisby.create('ActivityRecommendations: post a first answer for this assessment'
                     .auth('test_ind2', 'yp')
                     .expectStatus(200)
                     .afterJSON(function(updatedProfile) {
-                        frisby.create('ActivityRecommendations: get recommendations again and check whether old number 2 is now number 1')
+                        frisby.create('EventRecommendations: get recommendations again and check whether old number 2 is now number 1')
                             .get(URL + '/recommendations')
                             .auth('test_ind2', 'yp')
                             .expectStatus(200)
@@ -71,7 +71,7 @@ frisby.create('ActivityRecommendations: post a first answer for this assessment'
                                 expect(newRecs[0].idea).not.toEqual(recs[0].idea);
                                 expect(newRecs[0].idea).toEqual(recs[1].idea);
 
-                                frisby.create('ActivityRecommendations: reset rejectedIdeas on the profile')
+                                frisby.create('EventRecommendations: reset rejectedIdeas on the profile')
                                     .put(URL + '/profiles/' + consts.users.test_ind2.profile,
                                     {
                                         prefs: {
@@ -94,7 +94,7 @@ frisby.create('ActivityRecommendations: post a first answer for this assessment'
                                     })
                                     .toss();
 
-                                frisby.create('ActivityRecommendations: remove AssessmentResults')
+                                frisby.create('EventRecommendations: remove AssessmentResults')
                                     .delete(URL + '/assessments/525faf0ac558d40000000005/results')
                                     .auth('test_ind2', 'yp')
                                     .expectStatus(200)

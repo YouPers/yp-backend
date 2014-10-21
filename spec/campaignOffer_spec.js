@@ -46,7 +46,7 @@ consts.newUserInNewCampaignApi(
             .afterJSON(function (recommendation) {
 
 
-                frisby.create('CampaignOffers: plan an activity for an invitation')
+                frisby.create('CampaignOffers: plan an event for an invitation')
                     .post(URL + '/activities', {
                         "owner": consts.users.test_ind1.id,
                         "idea": consts.groupIdea.id,
@@ -66,7 +66,7 @@ consts.newUserInNewCampaignApi(
                     .expectStatus(201)
                     .afterJSON(function (newPlan) {
 
-                        frisby.create('CampaignOffers: invite users to activity ')
+                        frisby.create('CampaignOffers: invite users to event ')
                             .post(URL + '/invitations', {
 
                                 targetSpaces: [
@@ -82,7 +82,7 @@ consts.newUserInNewCampaignApi(
                                 publishTo: moment().add(1, 'hours'),
 
                                 refDocs: [
-                                    { docId: newPlan.id, model: 'Activity'}
+                                    { docId: newPlan.id, model: 'Event'}
                                 ]
                             })
                             .auth(consts.users.test_campaignlead.username, 'yp')

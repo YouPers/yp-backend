@@ -141,7 +141,7 @@ var statsQueries = function (timeRange, scopeType, scopeId) {
 
     ///////////////////////////////////////////////////
     // activitiesPlanned
-    var actsPlannedQuery = mongoose.model('Activity').aggregate();
+    var actsPlannedQuery = mongoose.model('Event').aggregate();
     if (scopePipelineEntry) {
         actsPlannedQuery.append(scopePipelineEntry);
     }
@@ -159,7 +159,7 @@ var statsQueries = function (timeRange, scopeType, scopeId) {
 
     ///////////////////////////////////////////////////
     // activitiesPlanned Total
-    var actsPlannedTotalQuery = mongoose.model('Activity').aggregate();
+    var actsPlannedTotalQuery = mongoose.model('Event').aggregate();
     if (scopePipelineEntry) {
         actsPlannedTotalQuery.append(scopePipelineEntry);
     }
@@ -175,7 +175,7 @@ var statsQueries = function (timeRange, scopeType, scopeId) {
 
     ///////////////////////////////////////////////////
     // activitiesPlanned Per Day
-    var actsPlannedPerDayQuery = mongoose.model('Activity').aggregate();
+    var actsPlannedPerDayQuery = mongoose.model('Event').aggregate();
     if (scopePipelineEntry) {
         actsPlannedPerDayQuery.append(scopePipelineEntry);
     }
@@ -203,8 +203,8 @@ var statsQueries = function (timeRange, scopeType, scopeId) {
     );
 
     /////////////////////////////////////////////////////
-    // ActivityEvents
-    var eventsQuery = mongoose.model('ActivityEvent').aggregate();
+    // Occurences
+    var eventsQuery = mongoose.model('Occurence').aggregate();
     if (scopePipelineEntry) {
         eventsQuery.append(scopePipelineEntry);
     }
@@ -227,8 +227,8 @@ var statsQueries = function (timeRange, scopeType, scopeId) {
     );
 
     /////////////////////////////////////////////////////
-    // ActivityEvents Total
-    var eventsTotalQuery = mongoose.model('ActivityEvent').aggregate();
+    // Occurences Total
+    var eventsTotalQuery = mongoose.model('Occurence').aggregate();
     if (scopePipelineEntry) {
         eventsTotalQuery.append(scopePipelineEntry);
     }
@@ -248,8 +248,8 @@ var statsQueries = function (timeRange, scopeType, scopeId) {
 
 
     /////////////////////////////////////////////////////
-    // ActivityEvents Done Per Day
-    var eventsDonePerDayQuery = mongoose.model('ActivityEvent').aggregate();
+    // Occurences Done Per Day
+    var eventsDonePerDayQuery = mongoose.model('Occurence').aggregate();
     if (scopePipelineEntry) {
         eventsDonePerDayQuery.append(scopePipelineEntry);
     }
@@ -365,8 +365,8 @@ var statsQueries = function (timeRange, scopeType, scopeId) {
         activitiesPlanned: actsPlannedQuery,
         activitiesPlannedPerDay: actsPlannedPerDayQuery,
         activitiesPlannedTotal: actsPlannedTotalQuery,
-        activityEvents: eventsQuery,
-        activityEventsTotal: eventsTotalQuery,
+        occurences: eventsQuery,
+        occurencesTotal: eventsTotalQuery,
         eventsDonePerDay: eventsDonePerDayQuery,
         usersTotal: usersTotalQuery,
         newUsersPerDay: newUsersPerDayQuery,

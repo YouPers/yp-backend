@@ -27,16 +27,16 @@ var sendSummaryMail = function sendSummaryMail(user, rangeStart, rangeEnd, done,
     log.info('preparing Summary Mail for user: ' + user);
 
     // Query explanation
-    // - Find all Events for this user in our daterange
-    mongoose.model('ActivityEvent').aggregate()
+    // - Find all occurences for this user in our daterange
+    mongoose.model('Occurence').aggregate()
         .append({$match: {owner: user._id || user, end: {$gt: rangeStart.toDate(), $lt: rangeEnd.toDate()
         }}})
-        .exec(function (err, events) {
+        .exec(function (err, occurences) {
             if (err) {
                 log.error(err);
                 return done(err);
             }
-            log.debug({events: events}, 'found events for user: ' + user);
+            log.debug({occurences: occurences}, 'found occurences for user: ' + user);
 
             mongoose.model('User')
                 .findById(user)
@@ -58,9 +58,9 @@ var sendSummaryMail = function sendSummaryMail(user, rangeStart, rangeEnd, done,
                     }
 
                     i18n.setLng(user.profile.language || 'de', function () {
-                        log.info('sending DailySummary Mail to email: ' + user.email + ' with ' + events.length + ' events.');
+                        log.info('sending DailySummary Mail to email: ' + user.email + ' with ' + occurences.length + ' occurences.');
 
-                        email.sendDailyEventSummary.apply(this, [user.email, events, user, i18n]);
+                        email.sendDailyEventSummary.apply(this, [user.email, occurences, user, i18n]);
                         return done();
                     });
                 });
@@ -80,12 +80,12 @@ var feeder = function (callback) {
 
     log.info("Finding all users who had scheduled events ending between: " + rangeStart.format() + " and " + rangeEnd.format());
 
-    var ActivityModel = mongoose.model('Activity');
+    var EventModel = mongoose.model('Event');
 
     // Query documentation:
     // find all users that have at least one event that has its end-date in the rage we are interested in
     // group by user and return an array of objects in the form: [{_id: "qwer32r32r23r"}, {_id: "2342wefwefewf"}, ...]
-    var aggregate = ActivityModel.aggregate();
+    var aggregate = EventModel.aggregate();
     aggregate
         .append({
             $match: {

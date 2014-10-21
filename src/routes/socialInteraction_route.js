@@ -60,7 +60,7 @@ module.exports = function (swagger) {
                 swagger.queryParam('dismissed', 'include socialInteractions that have been dismissed', 'Boolean', false, false),
                 swagger.queryParam('rejected', 'include socialInteractions that have been rejected', 'Boolean', false, false),
                 swagger.queryParam('authored', 'include socialInteractions where the user is the author', 'Boolean', false, false),
-                swagger.queryParam('targetId', 'restrict to a targetId, for example an activity or campaign, disables the default target space filter', 'String'),
+                swagger.queryParam('targetId', 'restrict to a targetId, for example an event or campaign, disables the default target space filter', 'String'),
                 swagger.queryParam('publishFrom', 'filter by date if a valid date is provided, enable or disable date filter if it is a boolean value or not provided', 'String'),
                 swagger.queryParam('publishTo', 'filter by date if a valid date is provided, enable or disable date filter if it is a boolean value or not provided', 'String'),
                 swagger.queryParam('authorType', 'restrict to a authorType, for example only social interactions from a campaignlead', 'String'),
@@ -106,7 +106,7 @@ module.exports = function (swagger) {
                 params: [
                     swagger.pathParam("id", "ID of the socialInteraction to be fetched", "string"),
                     swagger.queryParam('mode', 'expected values: [administrate]', 'String'),
-                    swagger.queryParam('reason', 'the reason why the social interaction is dismissed, expected values: [activityScheduled activityJoined activityDeleted denied campaignleadAccepted orgadminAccepted]', 'String')
+                    swagger.queryParam('reason', 'the reason why the social interaction is dismissed, expected values: [eventScheduled eventJoined eventDeleted denied campaignleadAccepted orgadminAccepted]', 'String')
                 ],
                 "nickname": "deleteSocialInteraction",
                 accessLevel: 'al_user'

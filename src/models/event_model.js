@@ -11,9 +11,9 @@ var mongoose = require('ypbackendlib').mongoose,
 
 
 /**
- * Activity Schema
+ * Event Schema
  */
-var ActivitySchema = common.newSchema({
+var EventSchema = common.newSchema({
     owner: {type: ObjectId, ref: 'User', required: true},
     idea: {type: ObjectId, ref: 'Idea', required: true},
     joiningUsers: [
@@ -24,17 +24,17 @@ var ActivitySchema = common.newSchema({
     number: {type: String},
     location: {type: String},
     executionType: {type: String, enum: enums.executiontype},
-    status: {type: String, enum: enums.ActivityStatus},
+    status: {type: String, enum: enums.EventStatus},
     campaign: {type: ObjectId, ref: 'Campaign'},
     deletionReason: {type: String},
     mainEvent: {
         start: {type: Date},
         end: {type: Date},
         allDay: {type: Boolean},
-        frequency: {type: String, enum: enums.activityFrequency},
+        frequency: {type: String, enum: enums.eventFrequency},
         recurrence: {
             'endby': {
-                type: {type: String, enum: enums.activityRecurrenceEndByType},
+                type: {type: String, enum: enums.eventRecurrenceEndByType},
                 on: {type: Date},
                 after: Number
             },
@@ -45,7 +45,7 @@ var ActivitySchema = common.newSchema({
     }
 });
 
-ActivitySchema.methods = {
+EventSchema.methods = {
 
     toJsonConfig: {
         include: ['deleteStatus','editStatus']
@@ -53,78 +53,78 @@ ActivitySchema.methods = {
 
 };
 
-ActivitySchema.statics.activityCompletelyDeletable = "deletable";
-ActivitySchema.statics.activityOnlyFutureEventsDeletable = "deletableOnlyFutureEvents";
-ActivitySchema.statics.notDeletableNoFutureEvents = "notDeletableNoFutureEvents";
+EventSchema.statics.eventCompletelyDeletable = "deletable";
+EventSchema.statics.eventOnlyFutureEventsDeletable = "deletableOnlyFutureEvents";
+EventSchema.statics.notDeletableNoFutureEvents = "notDeletableNoFutureEvents";
 
-ActivitySchema.statics.activityEditable = "editable";
-ActivitySchema.statics.activityNotEditableJoined = "notEditableJoined";
-ActivitySchema.statics.activityNotEditableAllEventsInThePast = "notEditablePastEvent";
+EventSchema.statics.eventEditable = "editable";
+EventSchema.statics.eventNotEditableJoined = "notEditableJoined";
+EventSchema.statics.eventNotEditableAllEventsInThePast = "notEditablePastEvent";
 
 /**
  * Virtuals
  */
 
-ActivitySchema.virtual('deleteStatus')
+EventSchema.virtual('deleteStatus')
     .get(function getDeleteStatus() {
         var occurrences = calendar.getOccurrences(this);
         var duration = moment(this.mainEvent.end).diff(this.mainEvent.start);
 
         var now = moment();
-        // check if there are any events in the past, checking the first is enough!
+        // check if there are any occurences in the past, checking the first is enough!
         var eventsInThePastExist = moment(occurrences[0]).add(duration, 'ms').isBefore(now);
 
-        // check if there are any events in the past, checking whether the last one is already passed is enough!
+        // check if there are any occurences in the past, checking whether the last one is already passed is enough!
         var eventsInTheFutureExist = moment(occurrences[occurrences.length -1]).add(duration, 'ms').isAfter(now);
 
         if (eventsInThePastExist && eventsInTheFutureExist) {
-            return ActivitySchema.statics.activityOnlyFutureEventsDeletable;
+            return EventSchema.statics.eventOnlyFutureEventsDeletable;
         }
         else if (!eventsInTheFutureExist) {
-            return ActivitySchema.statics.notDeletableNoFutureEvents;
+            return EventSchema.statics.notDeletableNoFutureEvents;
         } else if (!eventsInThePastExist) {
-            return ActivitySchema.statics.activityCompletelyDeletable;
+            return EventSchema.statics.eventCompletelyDeletable;
         } else {
             throw new Error('should not be possible');
         }
     });
 
-ActivitySchema.virtual('editStatus')
+EventSchema.virtual('editStatus')
     .get(function getEditStatus() {
         var occurrences = calendar.getOccurrences(this);
         var duration = moment(this.mainEvent.end).diff(this.mainEvent.start);
         var now = moment();
 
-        // check if there are any events in the past, checking whether the last one is already passed is enough!
+        // check if there are any occurences in the past, checking whether the last one is already passed is enough!
         var eventsInTheFutureExist = moment(occurrences[occurrences.length -1]).add(duration, 'ms').isAfter(now);
 
-        // activity cannot be edited if all events are in the past
+        // event cannot be edited if all occurences are in the past
         if (!eventsInTheFutureExist) {
-            return ActivitySchema.statics.activityNotEditableAllEventsInThePast;
+            return EventSchema.statics.eventNotEditableAllEventsInThePast;
         }
 
         // passed editable tests
-        return ActivitySchema.statics.activityEditable;
+        return EventSchema.statics.eventEditable;
     });
 
 
-ActivitySchema.virtual('firstEventStart')
+EventSchema.virtual('firstEventStart')
     .get(function firstEventStart() {
         return calendar.getOccurrences(this)[0];
     });
 
-ActivitySchema.virtual('lastEventEnd')
+EventSchema.virtual('lastEventEnd')
     .get(function lastEventEnd() {
         var occurrences = calendar.getOccurrences(this);
         var duration = moment(this.mainEvent.end).diff(this.mainEvent.start);
         return moment(occurrences[occurrences.length - 1]).add(duration, 'ms').toDate();
     });
 
-ActivitySchema.pre('save', function (next) {
+EventSchema.pre('save', function (next) {
     // force the internal version key to be incremented in save(), so we can reliably use it
-    // as sequence number of iCal Objects generated for this activity
+    // as sequence number of iCal Objects generated for this event
     this.increment();
     return next();
 });
 
-module.exports = mongoose.model('Activity', ActivitySchema);
+module.exports = mongoose.model('Event', EventSchema);

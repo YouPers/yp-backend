@@ -22,7 +22,7 @@ SpaceSchema.methods = {
     typeToModelMap: {
         'user': 'User',
         'campaign': 'Campaign',
-        'activity': 'Activity'
+        'event': 'Event'
     },
     toJsonConfig: {
         include: ['user']

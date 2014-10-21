@@ -2,10 +2,10 @@ var config = require('../config/config'),
     webclientUrl = config.webclientUrl,
     backendUrl = config.backendUrl;
 
-function activityUrl(campaignId, ideaId, activityId, soiId) {
-    return webclientUrl + "/#/campaign/" + campaignId + '/idea/'+ideaId+ '/activity/' + activityId + '/socialInteraction/' + (soiId || '') + '/';
+function eventUrl(campaignId, ideaId, eventId, soiId) {
+    return webclientUrl + "/#/campaign/" + campaignId + '/idea/'+ideaId+ '/event/' + eventId + '/socialInteraction/' + (soiId || '') + '/';
 }
-function activityInviteUrl(invitationId) {
+function eventInviteUrl(invitationId) {
     return webclientUrl + "/#/invite/" + invitationId;
 }
 function campaignLeadInviteUrl(campaignId, invitingUserId, token) {
@@ -26,16 +26,16 @@ function campaignImageUrl (imgPath) {
 function mailFooterImageUrl () {
     return webclientUrl + "/assets/img/yp_logo_mail_white.gif";
 }
-function icalUrl(activityId, type, userId) {
-    return backendUrl + "/activities/" + activityId + '/ical?type='+ (type || 'new') + '&user=' + userId;
+function icalUrl(eventId, type, userId) {
+    return backendUrl + "/activities/" + eventId + '/ical?type='+ (type || 'new') + '&user=' + userId;
 }
 function profileUrl () {
     return webclientUrl + "/#/profile";
 }
 
 module.exports = {
-    activityUrl: activityUrl,
-    activityInviteUrl: activityInviteUrl,
+    eventUrl: eventUrl,
+    eventInviteUrl: eventInviteUrl,
     campaignLeadInviteUrl: campaignLeadInviteUrl,
     campaignWelcomeUrl: campaignWelcomeUrl,
     orgAdminInviteUrl: orgAdminInviteUrl,

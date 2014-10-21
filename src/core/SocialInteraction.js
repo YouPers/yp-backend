@@ -7,7 +7,7 @@ var EventEmitter = require('events').EventEmitter,
     SocialInteractionDismissedModel = mongoose.model('SocialInteractionDismissed'),
     Invitation = mongoose.model('Invitation'),
     Recommendation = mongoose.model('Recommendation'),
-    Activity = mongoose.model('Activity'),
+    Event = mongoose.model('Event'),
     email = require('../util/email'),
     config = require('../config/config'),
     log = require('ypbackendlib').log(config),
@@ -53,18 +53,18 @@ User.on('add', function (user) {
 
 // send email invitations
 mongoose.model('Invitation').on('add', function(invitation) {
-    var activity = _.find(invitation.refDocs, { model: 'Activity'});
+    var event = _.find(invitation.refDocs, { model: 'Event'});
 
     // invitations for activities
-    if(activity) {
-        Activity.findById(activity.docId).populate('idea').exec(function (err, activity) {
+    if(event) {
+        Event.findById(event.docId).populate('idea').exec(function (err, event) {
             var userIds = _.map(_.filter(invitation.targetSpaces, { type: 'user'}), 'targetId');
             // get author
             User.findById(invitation.author).exec(function (err, author) {
                 // get all targeted users
                 User.find({ _id: { $in: userIds}}).select('+email').exec(function (err, users) {
                     _.each(users, function (user) {
-                        email.sendActivityInvite(user.email, author, activity, user, invitation._id, i18n);
+                        email.sendEventInvite(user.email, author, event, user, invitation._id, i18n);
                     });
                 });
             });
@@ -124,14 +124,14 @@ function _createTargetSpacesFromRecipients(to) {
 }
 
 /**
- * store invitations for an activity
+ * store invitations for an event
  *
  * @param from      inviting user / author
  * @param to        single or multiple recipients, can either be email addresses or users
- * @param activity  the referenced activity
+ * @param event  the referenced event
  *
  */
-SocialInteraction.on('invitation:activity', function (from, to, activity) {
+SocialInteraction.on('invitation:event', function (from, to, event) {
 
     // keep email addresses by userId for later use
     var usersById = {};
@@ -144,11 +144,11 @@ SocialInteraction.on('invitation:activity', function (from, to, activity) {
     var invitation = new Invitation({
         author: from._id,
         targetSpaces: _createTargetSpacesFromRecipients(to),
-        idea: activity.idea,
+        idea: event.idea,
         refDocs: [
-            { docId: activity._id, model: 'Activity'}
+            { docId: event._id, model: 'Event'}
         ],
-        publishTo: activity.lastEventEnd
+        publishTo: event.lastEventEnd
     });
 
     invitation.save(function (err, inv) {
@@ -157,7 +157,7 @@ SocialInteraction.on('invitation:activity', function (from, to, activity) {
 
             if(space.type === 'user' || space.type === 'email') {
                 var emailAddress = space.type === 'user' ? usersById[space.targetId].email : space.targetValue;
-                email.sendActivityInvite(emailAddress, from, activity, usersById[space.targetId], inv._id, i18n);
+                email.sendEventInvite(emailAddress, from, event, usersById[space.targetId], inv._id, i18n);
             }
 
         });
@@ -173,7 +173,7 @@ SocialInteraction.on('invitation:activity', function (from, to, activity) {
  *
  * @param from      inviting user / author
  * @param to        single or multiple recipients, can either be email addresses or users
- * @param activity  the referenced campaign
+ * @param event  the referenced campaign
  *
  */
 SocialInteraction.on('invitation:campaignLead', function (from, to, campaign) {
@@ -199,7 +199,7 @@ SocialInteraction.on('invitation:campaignLead', function (from, to, campaign) {
  *
  * @param from      inviting user / author
  * @param to        single or multiple recipients, can either be email addresses or users
- * @param activity  the referenced organization
+ * @param event  the referenced organization
  *
  */
 SocialInteraction.on('invitation:organizationAdmin', function (from, to, organization) {
@@ -253,7 +253,7 @@ SocialInteraction.deleteSocialInteractions = function(refDoc, cb) {
  * dismiss all social interactions for the specified:
  *
  * @param model     one of the social interaction models: Invitation, Recommendation, Message
- * @param refDoc    the referenced document, one of: Idea, Activity, Campaign, ...
+ * @param refDoc    the referenced document, one of: Idea, Event, Campaign, ...
  *
  * @param user      user: the user the social interaction is targeted to
  *                        will not only include the 'user' targetSpace, but all relevant spaces like 'campaign'
@@ -369,7 +369,7 @@ SocialInteraction.dismissSocialInteractionById = function dismissSocialInteracti
  * NOTE: campaignId is optional!
  *
  * @param socialInteraction
- * @param campaignId - optional, needed for the count an activity has been planned within a campaign
+ * @param campaignId - optional, needed for the count an event has been planned within a campaign
  * @param cb
  */
 SocialInteraction.populateSocialInteraction = function (socialInteraction, campaignId, locale, cb) {
@@ -405,7 +405,7 @@ SocialInteraction.populateSocialInteraction = function (socialInteraction, campa
                 if (campaignId && refDoc.model === 'Idea') {
 
                     // calculate the count this idea has been planned within the campaign
-                    Activity.count({
+                    Event.count({
                         idea: document._id,
                         campaign: campaignId
                     }).exec(function (err, count) {
@@ -479,14 +479,14 @@ SocialInteraction.getAllForUser = function (user, model, options, cb) {
     }
 
     function _loadActivities(done) {
-        mongoose.model('Activity').find({ $or: [
+        mongoose.model('Event').find({ $or: [
             { owner: user._id },
             { joiningUsers: user._id }
         ]}, function (err, activities) {
             if (err) {
                 return done(err);
             }
-            locals.activityIds = _.map(activities, '_id');
+            locals.eventIds = _.map(activities, '_id');
             return done();
         });
     }
@@ -569,8 +569,8 @@ SocialInteraction.getAllForUser = function (user, model, options, cb) {
                         { type: 'user', targetId: user._id },
                         { type: 'system' },
                         { $and: [
-                            {type: 'activity'},
-                            {targetId: {$in: locals.activityIds}}
+                            {type: 'event'},
+                            {targetId: {$in: locals.eventIds}}
                         ]}
                     ];
                     if (user.campaign) {
@@ -656,11 +656,11 @@ SocialInteraction.getAllForUser = function (user, model, options, cb) {
     }
 };
 
-SocialInteraction.getInvitationStatus = function (activityId, cb) {
+SocialInteraction.getInvitationStatus = function (eventId, cb) {
 
-    Activity.findById(activityId, function(err, activity) {
+    Event.findById(eventId, function(err, event) {
 
-        Invitation.find({ refDocs: { $elemMatch: { docId: activity._id }}}).exec(function(err, invitations) {
+        Invitation.find({ refDocs: { $elemMatch: { docId: event._id }}}).exec(function(err, invitations) {
             if (err) {
                 return cb(err);
             }

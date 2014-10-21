@@ -41,14 +41,14 @@ var masterPlan = {
     "status": "active"
 };
 
-frisby.create('Activity Slave: plan weekly activity as a master for a joining test')
+frisby.create('Event Slave: plan weekly event as a master for a joining test')
     .post(URL, masterPlan)
     .auth('test_ind1', 'yp')
     .expectStatus(201)
     .afterJSON(function (masterPlanPostAnswer) {
         expect(masterPlanPostAnswer.id).toBeDefined();
 
-        frisby.create('Activity Slave: join the activity')
+        frisby.create('Event Slave: join the event')
             .post(URL + '/' + masterPlanPostAnswer.id +'/join')
             .auth('test_ind2', 'yp')
             .expectStatus(201)
@@ -59,7 +59,7 @@ frisby.create('Activity Slave: plan weekly activity as a master for a joining te
                 expect(slavePlanPostAnswer.joiningUsers.length).toEqual(1); // owner is nicht im Array
 
 
-                frisby.create('Activity Slave: reload masterPlan')
+                frisby.create('Event Slave: reload masterPlan')
                     .get(URL + '/' + masterPlanPostAnswer.id)
                     .auth('test_ind1', 'yp')
                     .expectStatus(200)
@@ -67,7 +67,7 @@ frisby.create('Activity Slave: plan weekly activity as a master for a joining te
                         expect(masterPlanReloaded.joiningUsers).toContain(consts.users.test_ind2.id);
                         expect(masterPlanReloaded.joiningUsers).not.toContain(masterPlanReloaded.owner.id);
 
-                        frisby.create('Activity Slave: delete activity')
+                        frisby.create('Event Slave: delete event')
                             .delete(URL + '/' + masterPlanPostAnswer.id)
                             .auth('sysadm','backtothefuture')
                             .expectStatus(200)

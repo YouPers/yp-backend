@@ -15,7 +15,7 @@ frisby.globalSetup({ // globalSetup is for ALL requests
     }
 });
 
-// invite user to activity by email, sign up with this user and have an invitation
+// invite user to event by email, sign up with this user and have an invitation
 
 consts.newUserInNewCampaignApi(
     function (err, user, campaign, cleanupFn) {
@@ -23,7 +23,7 @@ consts.newUserInNewCampaignApi(
             expect(err).toBeNull();
         }
 
-        frisby.create('Invitation: plan an activity first')
+        frisby.create('Invitation: plan an event first')
             .post(URL + '/activities', {
                 "owner": user.id,
                 "idea": consts.groupIdea.id,

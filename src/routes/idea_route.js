@@ -13,24 +13,6 @@ module.exports = function (swagger) {
     var baseUrl = '/ideas';
     var baseUrlWithId = baseUrl + '/{id}';
 
-    /**
-     * need to add the Recommendation model here explicitly, because this is a transient class, that does not
-     * exist in the database
-     * TODO: (RBLU) Extract all these models into a single file and provide them to the Code that uses them and also to Swagger.
-     *
-     */
-    swagger.addModels({
-       Recommendation: {
-           id: "Recommendation",
-           required: ['idea'],
-           type: "object",
-           properties: {
-               idea: {type: "Idea"},
-               weight: {type: "double"}
-           }
-       }
-    });
-
     swagger.addOperation({
         spec: {
             description: "Operations about Ideas",

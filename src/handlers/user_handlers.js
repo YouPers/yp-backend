@@ -1,7 +1,7 @@
 var error = require('ypbackendlib').error,
     handlerUtils = require('ypbackendlib').handlerUtils,
     email = require('../util/email'),
-    image = require('../util/image'),
+    image = require('ypbackendlib').image,
     auth = require('ypbackendlib').auth,
     mongoose = require('ypbackendlib').mongoose,
     User = mongoose.model('User'),

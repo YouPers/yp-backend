@@ -1,17 +1,10 @@
 var config = require('../config/config'),
-    log = require('ypbackendlib').log(config),
-    path = require('path'),
     crypto = require('crypto'),
-    _ = require('lodash'),
     moment = require('moment-timezone'),
-    templatesDir = path.join(__dirname, 'emailtemplates'),
-    nodemailer = require('nodemailer'),
-    emailTemplates = require('email-templates'),
-    smtpTransport = nodemailer.createTransport(config.nodemailer),
-    urlComposer = require('./urlcomposer');
-
-var fromDefault = config.email.fromString,
-    linkTokenSeparator = config.linkTokenEncryption.separator;
+    urlComposer = require('./urlcomposer'),
+    fromDefault = config.email.fromString,
+    linkTokenSeparator = config.linkTokenEncryption.separator,
+    emailSender = require('ypbackendlib').emailSender(config, __dirname + '/emailtemplates');
 
 var encryptLinkToken = function (linkToken) {
 
@@ -23,55 +16,6 @@ var decryptLinkToken = function (token) {
     var decipher = crypto.createDecipher(config.linkTokenEncryption.algorithm, config.linkTokenEncryption.key);
     return decipher.update(token, 'hex', 'utf8') + decipher.final('utf8');
 };
-
-var sendEmail = function (from, to, subject, templateName, locals, mailExtensions) {
-
-    log.debug({emailTo: to}, 'loading templates for sending: ' + templateName);
-    emailTemplates(templatesDir, function (err, template) {
-        if (err) {
-            log.error({err: err}, 'error during parsing of all email-templates');
-        } else {
-
-            _.extend(locals, {
-                from: from,
-                to: to,
-                subject: subject
-            });
-
-            log.debug({emailTo: to}, 'templating email: ' + templateName);
-            // Send a single email
-            template(templateName, locals, function (err, html, text) {
-                    if (err) {
-                       log.error({err:err, locals: locals}, "error during email rendering for :" + to + " template: " + templateName);
-                    } else {
-                        var mail = {
-                            from: from || fromDefault, // sender address
-                            to: to, // list of receivers
-                            subject: subject, // Subject line
-                            text: text, // plaintext body
-                            html: html // html body
-                        };
-                        if(mailExtensions) {
-                            _.extend(mail, mailExtensions);
-                        }
-                        log.debug({emailTo: to}, 'trying to send email: ' + templateName);
-                        smtpTransport.sendMail(mail, function (err, responseStatus) {
-                            if (err) {
-                                log.error({err:err, data: err.data}, "error while sending email for: " + to + " template: " + templateName);
-                            } else {
-                                log.info({responseStatus: responseStatus, message: responseStatus.message}, "email sent: " + to + " template: " + templateName);
-                            }
-                        });
-                    }
-
-                }
-            );
-
-
-        }
-    });
-};
-
 
 var sendEmailVerification = function (user, i18n) {
 
@@ -93,7 +37,7 @@ var sendEmailVerification = function (user, i18n) {
         link: verificationLink
     };
 
-    sendEmail(from, to, subject, 'genericYouPersMail', locals);
+    emailSender.sendEmail(from, to, subject, 'genericYouPersMail', locals);
 
 };
 
@@ -117,7 +61,7 @@ var sendPasswordResetMail = function (user,i18n) {
         link: passwordResetLink
     };
 
-    sendEmail(from, to, subject, 'genericYouPersMail', locals);
+    emailSender.sendEmail(from, to, subject, 'genericYouPersMail', locals);
 
 };
 
@@ -161,7 +105,7 @@ var sendCalInvite = function (toUser, type, iCalString, activity, i18n, reason) 
         icalUrl: urlComposer.icalUrl(activity.id, type, toUser.id)
     };
 
-    sendEmail(fromDefault, toUser.email, subject, 'calendarEventMail', locals, mailExtensions);
+    emailSender.sendEmail(fromDefault, toUser.email, subject, 'calendarEventMail', locals, mailExtensions);
 
 };
 
@@ -194,7 +138,7 @@ var sendActivityInvite = function sendActivityInvite(email, invitingUser, activi
         footer: i18n.t('email:ActivityInvitation.footer'),
         logo: urlComposer.mailFooterImageUrl()
     };
-    sendEmail(fromDefault, email, subject, 'activityInviteMail', locals);
+    emailSender.sendEmail(fromDefault, email, subject, 'activityInviteMail', locals);
 };
 
 var sendCampaignLeadInvite = function sendCampaignLeadInvite(email, invitingUser, campaign, invitedUser, i18n) {
@@ -213,7 +157,7 @@ var sendCampaignLeadInvite = function sendCampaignLeadInvite(email, invitingUser
         footer: i18n.t('email:CampaignLeadInvite.footer'),
         logo: urlComposer.mailFooterImageUrl()
     };
-    sendEmail(fromDefault, email, subject, 'campaignLeadInviteMail', locals);
+    emailSender.sendEmail(fromDefault, email, subject, 'campaignLeadInviteMail', locals);
 };
 
 var sendCampaignParticipantInvite = function sendCampaignParticipantInvite(email, subject, text, invitingUser, campaign, i18n) {
@@ -227,7 +171,7 @@ var sendCampaignParticipantInvite = function sendCampaignParticipantInvite(email
         footer: i18n.t('email:CampaignLeadInvite.footer'),
         logo: urlComposer.mailFooterImageUrl()
     };
-    sendEmail(fromDefault, email, subject, 'campaignLeadInviteMail', locals);
+    emailSender.sendEmail(fromDefault, email, subject, 'campaignLeadInviteMail', locals);
 };
 
 var sendOrganizationAdminInvite = function sendOrganizationAdminInvite(email, invitingUser, organization, invitedUser, i18n) {
@@ -244,7 +188,7 @@ var sendOrganizationAdminInvite = function sendOrganizationAdminInvite(email, in
         background: urlComposer.mailBackgroundImageUrl(),
         logo: urlComposer.mailFooterImageUrl()
     };
-    sendEmail(fromDefault, email, subject, 'genericYouPersMail', locals);
+    emailSender.sendEmail(fromDefault, email, subject, 'genericYouPersMail', locals);
 };
 
 /**
@@ -266,18 +210,17 @@ var sendDailyEventSummary = function sendDailyEventSummary(toAddress, events, us
         footer: "myFooter"
     };
 
-    sendEmail(fromDefault, toAddress, subject, 'dailyEventsSummary', locals);
+    emailSender.sendEmail(fromDefault, toAddress, subject, 'dailyEventsSummary', locals);
 };
 
 var close = function close() {
-    smtpTransport.close();
+    emailSender.close();
 };
 
 module.exports = {
     closeConnection: close,
     encryptLinkToken: encryptLinkToken,
     decryptLinkToken: decryptLinkToken,
-    sendEmail: sendEmail,
     sendEmailVerification: sendEmailVerification,
     sendCalInvite: sendCalInvite,
     sendPasswordResetMail: sendPasswordResetMail,

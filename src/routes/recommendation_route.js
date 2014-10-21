@@ -29,8 +29,7 @@ module.exports = function (swagger) {
         spec: {
             description: "Operations about recommendations",
             path: baseUrl,
-            notes: "returns all recommendations, but limits to 100 entries by default, is not owner-constrained, e.g. it returns recommendations" +
-                "from several users. Use query params sort:'created:-1' and limit to retrieve the newest recommendations",
+            notes: "returns all recommendations that are relevant for this user. Use query params sort:'created:-1' and limit to retrieve the newest recommendations",
             summary: "get all recommendations",
             method: "GET",
             params: [generic.params.sort,
@@ -41,7 +40,7 @@ module.exports = function (swagger) {
                 swagger.queryParam('administrate', 'flag for admin user to indicate he is acting as an administrator currently',
                     'Boolean', false, false),
                 swagger.queryParam('campaign', 'the campaignId to be used as filter for a campaignlead to get all sois for a campaign to administrate',
-                    'Boolean', false, false)
+                    'ObjectId', false, false)
             ],
             "responseClass": "Array[Recommendation]",
             "nickname": "getRecommendations",

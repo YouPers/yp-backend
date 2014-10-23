@@ -263,6 +263,9 @@ function _updateRecommendations(userId, options, cb) {
         // User Profile
         var excludedIdeas = _.map(rejectedIdeas, 'idea').concat(_.map(plannedIdeas, 'idea'));
 
+        // reset locals;
+        locals = {};
+
         async.parallel([
             _loadIdeas.bind(null, topic, excludedIdeas),
             _loadAssessmentResult.bind(null, userId, assessmentResult, topic)

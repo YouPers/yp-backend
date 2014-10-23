@@ -15,20 +15,20 @@ frisby.globalSetup({ // globalSetup is for ALL requests
 frisby.create('i18n: GET all ideas, no language given, check default')
     .get(URL + '/ideas')
     .expectStatus(200)
-    .expectJSON('*', {
+    .expectJSONTypes('*', {
         id: String,
-        name: String
+        title: String
     })
     .expectHeader('yp-language', 'de')
     .afterJSON(function (ideas) {
 
         // Use data from previous result in next test
-        frisby.create('i18n: Get one assessment, no language given, check default')
+        frisby.create('i18n: Get one idea, no language given, check default')
             .get(URL + '/ideas/' + ideas[0].id)
             .expectStatus(200)
-            .expectJSON({
+            .expectJSONTypes({
                 id: String,
-                name: String
+                title: String
             })
             .expectHeader('yp-language', 'de')
             .afterJSON(function (idea) {

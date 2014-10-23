@@ -4017,7 +4017,6 @@
         "titleI18n": {
             "de": "AfterWork mit Freunden",
             "en": "AfterWork with friends"
-
         },
         "topics": [
             {
@@ -15467,7 +15466,7 @@
             "$date": 1413280255612
         },
         "updated": {
-            "$date": 1413280255612
+            "$date": 1413877087861
         },
         "number": "Act-316",
         "source": "community",
@@ -15480,7 +15479,7 @@
             "$oid": "52d4f515fac246174c000006"
         },
         "textI18n": {
-            "de": "Gefährdungen/Risiken besprechen, wie sie sich beeinflussen lassen und was man dagegen unternehmen könnte.\nWichtig ist, dass du dabei auf Fragen und Einwände eingehst und diese sorgfältig klärst.\nDenn allgemein müssen die Mitarbeitenden zur Überzeugung gelangen, dass die geforderte Sicherheits-Massnahme notwendig ist, sie schützt und in ihrem betrieblichen Alltag durch&shy;führ&shy;bar ist.\nWenn du Kontrolle und Autonomie über deine Arbeit hast, bekommst du das Gefühl, deine Arbeit und die damit verbundenen Gefährdungen beeinflussen zu können. Eine solche Arbeitsgestaltung führt auch zu Kompetenz, was wiederum die Fähigkeit zur Beeinflus&shy;sung von Gefährdungen fördert."
+            "de": "Wichtig ist, dass du dabei auf Fragen und Einwände eingehst und diese sorgfältig klärst.\nDenn allgemein müs&shy;sen die Mitarbeitenden zur Überzeu&shy;gung gelangen, dass die geforderte Sicherheitsmassnahme notwendig ist, sie schützt und in ihrem betrieblichen Alltag durch&shy;führ&shy;bar ist.\n\nWenn du Kontrolle und Autonomie über deine Arbeit hast, bekommst du das Gefühl, deine Arbeit und die damit verbundenen Gefährdungen beein&shy;flussen zu können. \n\nEine solche Ar&shy;beitsgestaltung führt auch zu Kompe&shy;tenz, was wiederum die Fähigkeit zur Beeinflus&shy;sung von Gefährdungen fördert."
         },
         "descriptionI18n": {
             "de": "Besprich regelmässig vor Beginn deiner Arbeiten mögliche Gefahren und Risiken mit deiner Kollegin bzw. deinem Kollegen."
@@ -15493,7 +15492,7 @@
                 "$oid": "53b416fba43aac62a2debda5"
             }
         ],
-        "__v": 0
+        "__v": 2
     },
     {
         "_id": {
@@ -15503,7 +15502,7 @@
             "$date": 1413280385701
         },
         "updated": {
-            "$date": 1413280385701
+            "$date": 1413878982486
         },
         "number": "Act-317",
         "source": "community",
@@ -15516,7 +15515,7 @@
             "$oid": "52d4f515fac246174c000006"
         },
         "textI18n": {
-            "de": "Das Beobachten anderer Menschen ist eine der wichtigsten Formen des Lernens im Alltag. Menschen, die Erfolg haben, attraktiv sind und eine gewisse Ähnlichkeit mit einem selbst aufweisen, werden gerne als Vorbild für das eigene Verhalten gewählt. Deshalb ist das sicherheitsgerechte Verhalten der Vorgesetzten und Kollegen von entscheidender Bedeutung."
+            "de": "Das Beobachten anderer Menschen ist eine der wichtigsten Formen des Lernens im Alltag.\n\nMenschen, die Erfolg haben, attraktiv sind und eine gewisse Ähnlichkeit mit einem selbst aufweisen, werden gerne als Vorbild für das eigene Verhalten gewählt. Deshalb ist das sicherheits&shy;gerechte Verhalten der Vorgesetzten und Kollegen von entscheidender Bedeutung."
         },
         "descriptionI18n": {
             "de": "Führe diese Woche einmal deine sicherheitsgerechte Arbeitsweise als Vorbild für deine Kolleginnen und Kollegen aus."
@@ -15529,7 +15528,7 @@
                 "$oid": "53b416fba43aac62a2debda5"
             }
         ],
-        "__v": 0
+        "__v": 2
     },
     {
         "_id": {
@@ -15539,7 +15538,7 @@
             "$date": 1413280795226
         },
         "updated": {
-            "$date": 1413280795226
+            "$date": 1413879444849
         },
         "number": "Act-318",
         "source": "community",
@@ -15552,10 +15551,10 @@
             "$oid": "52d4f515fac246174c000006"
         },
         "textI18n": {
-            "de": "Wenn wir erwarten, dass die positiven Folgen einer sicherheitsgerechten Arbeitsweise die zu befürchtenden negativen Folgen überwiegen, werden wir diese Arbeitsweise ausprobieren. Beim Abwägen zwischen verschie&shy;denen Handlungsalternativen kommt es sowohl darauf an, wie wichtig die jeweiligen Folgen einer Handlung für uns sind, als auch für wie wahr&shy;schein&shy;lich wir ihr Eintreten halten.\nGute und schlechte Erfahrungen prägen unser Verhalten. Verhaltensweisen, mit denen wir erfolgreich waren, erleben wir als vorteilhaft. Sie werden im Gedächtnis gespeichert und in einer ähnlichen Situation wiederholt. Mit der Zeit entstehen daraus Gewohn&shy;heiten. Bei Misserfolgen passiert das Gegenteil: Situationen und Ver&shy;hal&shy;tens&shy;weisen, die wir als nachteilig erlebt haben, werden in Zukunft gemieden."
+            "de": "Wenn wir erwarten, dass die positiven Folgen einer sicherheitsgerechten Arbeitsweise die zu befürchtenden negativen Folgen überwiegen, werden wir diese Arbeitsweise ausprobieren.\n\nGute und schlechte Erfahrungen prägen unser Verhalten. Verhaltens&shy;weisen, mit denen wir erfolgreich waren, erleben wir als vorteilhaft.  \nSie werden im Gedächtnis gespeichert und in einer ähnlichen Situation wiederholt. Mit der Zeit entstehen daraus Gewohn&shy;heiten.\n\nBei Misserfolgen passiert das Gegenteil: Situationen und Ver&shy;hal&shy;tens&shy;weisen, die wir als nachteilig erlebt haben, werden in Zukunft gemieden."
         },
         "descriptionI18n": {
-            "de": "Achte diese Woche einmal auf positive Erfahrungen deiner Arbeitsweise und nimm sie als Ansporn für die Zukunft."
+            "de": "Achte diese Woche einmal auf posi&shy;tive Erfahrungen deiner Arbeitsweise und nimm sie als Ansporn für die Zukunft."
         },
         "titleI18n": {
             "de": "Positive Wahrnehmung der Arbeit"
@@ -15565,7 +15564,7 @@
                 "$oid": "53b416fba43aac62a2debda5"
             }
         ],
-        "__v": 0
+        "__v": 2
     },
     {
         "_id": {
@@ -15575,7 +15574,7 @@
             "$date": 1413281048724
         },
         "updated": {
-            "$date": 1413281048724
+            "$date": 1413880091575
         },
         "number": "Act-319",
         "source": "community",
@@ -15588,7 +15587,7 @@
             "$oid": "52d4f515fac246174c000006"
         },
         "textI18n": {
-            "de": "Mit einer Besprechung der Vor- und Nachteile einer neuen Sicherheits&shy;massnahme mit den Betroffenen kannst du verhindern, dass sich nur die zu erwartenden Nachteile in den Köpfen festsetzen.\nKommuniziere klar und deutlich, welchen Stellenwert du einer sicheren Arbeitsweise beimisst.\nGute und schlechte Erfahrungen prägen unser Verhalten. Verhaltens&shy;weisen, mit denen wir erfolgreich waren, erleben wir als vorteilhaft. Sie werden im Gedächtnis gespeichert und in einer ähnlichen Situation wiederholt. Mit der Zeit entstehen daraus Gewohnheiten. Bei Misser&shy;folgen passiert das Gegenteil: Situ&shy;a&shy;tionen und Verhaltensweisen, die wir als nachteilig erlebt haben, werden in Zukunft gemieden."
+            "de": "Mit einer Besprechung der Vor- und Nachteile einer neuen Sicherheits&shy;massnahme mit den Betroffenen kannst du verhindern, dass sich nur die zu erwartenden Nachteile in den Köpfen festsetzen.\n\nKommuniziere klar und deutlich, welchen Stellenwert du einer sicheren Arbeitsweise beimisst. Verhaltens&shy;wei&shy;sen, mit denen wir erfolgreich waren, erleben wir als vorteilhaft. Sie werden im Gedächtnis gespeichert und in einer ähnlichen Situation wiederholt. Mit der Zeit entstehen daraus Gewohnheiten.\n\nBei Misser&shy;folgen passiert das Gegen&shy;teil: Situ&shy;a&shy;tionen und Verhaltens&shy;wei&shy;sen, die wir als nachteilig erlebt ha&shy;ben, werden in Zukunft gemieden."
         },
         "descriptionI18n": {
             "de": "Besprich die Vor- und Nachteile einer neuen Sicherheitsmassnahme mit deinen Kollegen."
@@ -15601,7 +15600,7 @@
                 "$oid": "53b416fba43aac62a2debda5"
             }
         ],
-        "__v": 0
+        "__v": 1
     },
     {
         "_id": {
@@ -15611,7 +15610,7 @@
             "$date": 1413281213037
         },
         "updated": {
-            "$date": 1413281213037
+            "$date": 1413880364731
         },
         "number": "Act-320",
         "source": "community",
@@ -15624,13 +15623,301 @@
             "$oid": "52d4f515fac246174c000006"
         },
         "textI18n": {
-            "de": "Lob – richtig eingesetzt – ist ein starker Motivator.\nEin Lob motiviert, wenn es Gewicht hat und echt ist. Es bringt zum Ausdruck, dass man das Engagement der betreffenden Person wahrnimmt und schätzt. Ein Lob für Selbstverständlichkeiten oder von Personen, von denen wir nicht bewertet werden wollen, kann hingegen als manipulativ und entwürdigend empfunden werden.\nLob und Anerkennung für sicherheits&shy;gerechtes Verhalten bewirken mehr als Strafen. Trotzdem ist es wichtig, dass sicherheits&shy;widriges Verhalten Nachteile nach sich zieht."
+            "de": "Lob – richtig eingesetzt – ist ein starker Motivator.\n\nEin Lob motiviert, wenn es Gewicht hat und echt ist. Es bringt zum Aus&shy;druck, dass man das Engagement der betreffenden Person wahrnimmt und schätzt.\n\nEin Lob für Selbstverständlichkeiten oder von Personen, von denen wir nicht bewertet werden wollen, kann hingegen als manipulativ und ent&shy;würdigend empfunden werden.\n\nLob und Anerkennung für sicherheits&shy;gerechtes Verhalten bewirken mehr als Strafen. Trotzdem ist es wichtig, dass sicherheits&shy;widriges Verhalten Nachteile nach sich zieht."
         },
         "descriptionI18n": {
             "de": "Sprich diese Woche einmal jeden Tag ein Lob aus und anerkenne damit das sicherheitsgerechte Verhalten deiner Kollegen."
         },
         "titleI18n": {
             "de": "Lob als Motivator"
+        },
+        "topics": [
+            {
+                "$oid": "53b416fba43aac62a2debda5"
+            }
+        ],
+        "__v": 1
+    },
+    {
+        "_id": {
+            "$oid": "544530b1b73e77bd231aad9c"
+        },
+        "created": {
+            "$date": 1413820593732
+        },
+        "updated": {
+            "$date": 1413881936402
+        },
+        "number": "Act-321",
+        "source": "community",
+        "defaultfrequency": "day",
+        "defaultexecutiontype": "self",
+        "defaultduration": 60,
+        "recWeights": [],
+        "qualityFactor": 1,
+        "author": {
+            "$oid": "52d4f515fac246174c000006"
+        },
+        "textI18n": {
+            "de": "Bei Ballsportarten (z.B. Fussball, Hand&shy;ball, Volleyball) kommt es jährlich zu 60'000 Unfällen. Davon passieren rund 45'000 auf Schweizer Fussballplätzen. Rund zwei Drittel der Sportunfälle haben Gelenk&shy;ver&shy;let&shy;zungen zur Folge.\nDarum ist wichtig:\n- sich gut aufwärmen\n- sich eine gute Ausrüstung besorgen (z.B. Schienbein&shy;schoner mit Stulpen, Nocken- oder Noppenschuhe)\n- täglich 10 min trainieren (z.B. Sport Basics)\n- mit abwechselnden Übungen die unterschiedlichen Muskelpartien trainieren\n- auf die Qualität der Übungs&shy;ausführung achten"
+        },
+        "descriptionI18n": {
+            "de": "Mache dich mindestens 15 Minuten gut warm (mit leichten Kraft-, Aus&shy;dauer- und Gleichgewichts&shy;übungen und mit Dehnen), bevor du mit dem Ball spielst."
+        },
+        "titleI18n": {
+            "de": "Aufwärmen"
+        },
+        "topics": [
+            {
+                "$oid": "53b416fba43aac62a2debda5"
+            }
+        ],
+        "__v": 1
+    },
+    {
+        "_id": {
+            "$oid": "5445316cb73e77bd231aad9d"
+        },
+        "created": {
+            "$date": 1413820780425
+        },
+        "updated": {
+            "$date": 1413882279689
+        },
+        "number": "Act-322",
+        "source": "community",
+        "defaultfrequency": "day",
+        "defaultexecutiontype": "group",
+        "defaultduration": 60,
+        "recWeights": [],
+        "qualityFactor": 1,
+        "author": {
+            "$oid": "52d4f515fac246174c000006"
+        },
+        "textI18n": {
+            "de": "\"Sport Basics\" ist in erster Linie auf die Ballsportarten ausgerichtet und besteht aus 6 Basisübungen (\"Basics\") und 4 Zusatzübungen (\"Basics plus\").\n\nDie Übungen beugen den häufigsten Verletzungen bei den Ballsportarten und beim Unihockey vor: Verletzungen der Sprunggelenke und Bänder&shy;ver&shy;letzungen im Knie, gefolgt von Rücken- und Schulter&shy;ver&shy;let&shy;zungen.\n\nDie Schwachstellen werden mit den 6 Basisübungen speziell trainiert. Der Schwerpunkt wird auf das Kräftigen und Stabilisieren der betroffenen Körperregionen gelegt.\n\nDie Übungen lassen sich auch zu Hause einfach ausführen."
+        },
+        "descriptionI18n": {
+            "de": "Führe täglich 10 Minuten das Prä&shy;ven&shy;ti&shy;ons&shy;programm \"Sport Basics\" durch, für mehr Leistung und weniger Verletzungen."
+        },
+        "titleI18n": {
+            "de": "\"Sport Basics\" Programm"
+        },
+        "topics": [
+            {
+                "$oid": "53b416fba43aac62a2debda5"
+            }
+        ],
+        "__v": 1
+    },
+    {
+        "_id": {
+            "$oid": "544531c62cccdabf23e4848f"
+        },
+        "created": {
+            "$date": 1413820870044
+        },
+        "updated": {
+            "$date": 1413883297389
+        },
+        "number": "Act-323",
+        "source": "community",
+        "defaultfrequency": "day",
+        "defaultexecutiontype": "self",
+        "defaultduration": 60,
+        "recWeights": [],
+        "qualityFactor": 1,
+        "author": {
+            "$oid": "52d4f515fac246174c000006"
+        },
+        "textI18n": {
+            "de": "Mit einem Velohelm motivierst du deine Mitarbeitenden zum Tragen des Velohelms und machst die Velofahrer auf die täglichen Gefahren im Strassenverkehr aufmerksam.\n\nDie Botschaft wird verstärkt durch den sogenannten \"Spiegelkasten\". Mit ihm lassen sich die gravierenden Handi&shy;caps von hirnverletzen Unfallopfern nachempfinden."
+        },
+        "descriptionI18n": {
+            "de": "Sei Vorbild und trage einen Velohelm sobald du aufs Velo steigst, sei es auf dem Weg zur Arbeit, zum Einkaufen oder zum Sport."
+        },
+        "titleI18n": {
+            "de": "Velohelm"
+        },
+        "topics": [
+            {
+                "$oid": "53b416fba43aac62a2debda5"
+            }
+        ],
+        "__v": 1
+    },
+    {
+        "_id": {
+            "$oid": "54453228b73e77bd231aad9e"
+        },
+        "created": {
+            "$date": 1413820968261
+        },
+        "updated": {
+            "$date": 1413820968261
+        },
+        "number": "Act-324",
+        "source": "community",
+        "defaultfrequency": "once",
+        "defaultexecutiontype": "group",
+        "defaultduration": 60,
+        "recWeights": [],
+        "qualityFactor": 1,
+        "author": {
+            "$oid": "52d4f515fac246174c000006"
+        },
+        "textI18n": {
+            "de": "Ziel ist es, Velo- und Autofahrer auf die Gefahren des \"Toten Winkels\" aufmerksam zu machen und so Unfälle zu vermeiden.\n\nNur 20% aller Verkehrsunfälle sind Kollisionen, 80% sind selbst verursacht."
+        },
+        "descriptionI18n": {
+            "de": "Erlerne in einem Sicherheitstraining, die Geschwindigkeit und Sturzgefahr beim Velofahren richtig einzu&shy;schät&shy;zen."
+        },
+        "titleI18n": {
+            "de": "Sicherheitstraining fürs Velo"
+        },
+        "topics": [
+            {
+                "$oid": "53b416fba43aac62a2debda5"
+            }
+        ],
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "544532c12cccdabf23e48490"
+        },
+        "created": {
+            "$date": 1413821121906
+        },
+        "updated": {
+            "$date": 1413821121906
+        },
+        "number": "Act-325",
+        "source": "community",
+        "defaultfrequency": "week",
+        "defaultexecutiontype": "self",
+        "defaultduration": 60,
+        "recWeights": [],
+        "qualityFactor": 1,
+        "author": {
+            "$oid": "52d4f515fac246174c000006"
+        },
+        "textI18n": {
+            "de": "Jährlich verletzen sich über 66'000 Menschen beim Ski- und Snowboard&shy;fahren. Den Ski- und Snowboard&shy;fah&shy;rern soll mit der Tempomessung bewusst gemacht, wie schnell sie auf der Piste tatsächlich unterwegs sind.\n\nDu erfährst, welch grossen Einfluss die Geschwindigkeit auf den Bremsweg hat."
+        },
+        "descriptionI18n": {
+            "de": "Führe, wo immer möglich, eine Tempomessung auf der Piste durch, um dir bewusst zu machen, wie schnell du unterwegs bist und wie gross die Unfallgefahr ist."
+        },
+        "titleI18n": {
+            "de": "Tempomessung auf der Piste"
+        },
+        "topics": [
+            {
+                "$oid": "53b416fba43aac62a2debda5"
+            }
+        ],
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "5445335ab73e77bd231aad9f"
+        },
+        "created": {
+            "$date": 1413821274958
+        },
+        "updated": {
+            "$date": 1413885334697
+        },
+        "number": "Act-326",
+        "source": "community",
+        "defaultfrequency": "week",
+        "defaultexecutiontype": "group",
+        "defaultduration": 60,
+        "recWeights": [],
+        "qualityFactor": 1,
+        "author": {
+            "$oid": "52d4f515fac246174c000006"
+        },
+        "textI18n": {
+            "de": "Vor und während des Sports sollte unbedingt auf den Konsum von Alkohol verzichtet werden.\n\nMit wenig Aufwand kann man auf die Risiken des Alkoholkonsums aufmerksam machen:\n- während Firmensportanlass\n- Torwandschiessen mit extra Promillebrille (um den Al&shy;ko&shy;hol&shy;konsum zu demonstrieren)"
+        },
+        "descriptionI18n": {
+            "de": "Motiviere deine Kollegen, auf Al&shy;ko&shy;hol während des Sports zu verzich&shy;ten und erst im Anschluss zu feiern."
+        },
+        "titleI18n": {
+            "de": "Erfolg ohne Alkohol"
+        },
+        "topics": [
+            {
+                "$oid": "53b416fba43aac62a2debda5"
+            }
+        ],
+        "__v": 1
+    },
+    {
+        "_id": {
+            "$oid": "54453437b73e77bd231aada0"
+        },
+        "created": {
+            "$date": 1413821495947
+        },
+        "updated": {
+            "$date": 1413821495947
+        },
+        "number": "Act-327",
+        "source": "community",
+        "defaultfrequency": "month",
+        "defaultexecutiontype": "self",
+        "defaultduration": 60,
+        "recWeights": [],
+        "qualityFactor": 1,
+        "author": {
+            "$oid": "52d4f515fac246174c000006"
+        },
+        "textI18n": {
+            "de": "Es ist darauf zu achten, die Sport-, und Schutzausrüstungen für die Freizeit technisch so zu gestalten, dass sich die Schwächen des Menschen beim Ge&shy;brauch nicht negativ auf die Sicherheit auswirken.\n\nDies gilt im Sommer (z.B. Veloausrüs&shy;tung mit guten Bremsen, Pneus mit Luftdruck und Profil, Helm, etc.) wie im Winter (z.B. Skiausrüstung mit ge&shy;schliffenen Kanten, richtig eingestell&shy;ter Bindung, etc.)."
+        },
+        "descriptionI18n": {
+            "de": "Prüfe zu Beginn und während der Velosaison regelmässig dein Velo auf Funktionstüchtigkeit."
+        },
+        "titleI18n": {
+            "de": "Sicher auf dem Velo"
+        },
+        "topics": [
+            {
+                "$oid": "53b416fba43aac62a2debda5"
+            }
+        ],
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "5445348fb73e77bd231aada1"
+        },
+        "created": {
+            "$date": 1413821583771
+        },
+        "updated": {
+            "$date": 1413821583771
+        },
+        "number": "Act-328",
+        "source": "community",
+        "defaultfrequency": "month",
+        "defaultexecutiontype": "self",
+        "defaultduration": 60,
+        "recWeights": [],
+        "qualityFactor": 1,
+        "author": {
+            "$oid": "52d4f515fac246174c000006"
+        },
+        "textI18n": {
+            "de": "Es ist darauf zu achten, die Sport-, und Schutzausrüstungen für die Freizeit technisch so zu gestalten, dass sich die Schwächen des Menschen beim Ge&shy;brauch nicht negativ auf die Sicherheit auswirken.\n\nDies gilt im Sommer (z.B. Veloausrüs&shy;tung mit guten Bremsen, Pneus mit Luftdruck und Profil, Helm, etc.) wie im Winter (z.B. Skiausrüstung mit ge&shy;schliffenen Kanten, richtig eingestell&shy;ter Bindung, etc.)."
+        },
+        "descriptionI18n": {
+            "de": "Um Zeit zu sparen, lass zu Beginn und während der Wintersaison deine Skiausrüstung einmal im Monat fachmännisch prüfen."
+        },
+        "titleI18n": {
+            "de": "Sicher auf den Skiern"
         },
         "topics": [
             {

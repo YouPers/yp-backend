@@ -46,7 +46,7 @@ frisby.create('i18n: GET all ideas, no language given, check default')
                     .afterJSON(function (updatedIdea) {
                         expect(updatedIdea.title).not.toEqual(initialTitleDe);
 
-                        frisby.create('i18n: Get assessment, "en" language given')
+                        frisby.create('i18n: Get idea, "en" language given')
                             .get(URL + '/ideas/' + ideas[0].id)
                             .addHeader('yp-language', 'en')
                             .expectStatus(200)

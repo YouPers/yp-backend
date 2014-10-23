@@ -454,6 +454,7 @@ SocialInteraction.getAllForUser = function (user, model, options, cb) {
     var adminMode = options.mode === 'admin';
     var locale = options && options.locale;
     var locals = {};
+    options.queryOptions = options.queryOptions || {};
 
     function _loadSocialInteractionDismissed(done) {
         SocialInteractionDismissedModel.find({ user: user._id }, function (err, dismissals) {
@@ -645,7 +646,7 @@ SocialInteraction.getAllForUser = function (user, model, options, cb) {
 
     function _loadAdminMode() {
         var dbQuery = model.find();
-        generic.processDbQueryOptions(options.queryOptions, dbQuery, locale, model)
+        generic.processDbQueryOptions(options.queryOptions|| {}, dbQuery, locale, model)
             .exec(_soiLoadCb);
     }
 

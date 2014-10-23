@@ -59,29 +59,43 @@ SocialInteraction.on('socialInteraction:dismissed', function (user, socialIntera
         return;
     }
 
-    if (user instanceof mongoose.Types.ObjectId) {
-        mongoose.model('User').findById(user).select('+profile +campaign').populate('profile campaign').exec(function (err, populatedUser) {
-            if (err) {throw err;}
-            _generateRec(populatedUser);
-        });
-    } else {
-        _generateRec(user);
-    }
+    // check if the user still has non-dismissed coach-recs, only if there are none, we want to create a new one
+    SocialInteraction.getAllForUser(user, Recommendation, {authorType: 'coach'}, function (err, currentCoachRecs) {
+        if (err) {
+            log.error(err);
+            throw err;
+        }
+
+        if (currentCoachRecs.length > 0) {
+            return;
+        }
+
+        if (user instanceof mongoose.Types.ObjectId) {
+            mongoose.model('User').findById(user).select('+profile +campaign').populate('profile campaign').exec(function (err, populatedUser) {
+                if (err) {throw err;}
+                _generateRec(populatedUser);
+            });
+        } else {
+            _generateRec(user);
+        }
 
 
-    function _generateRec(populatedUser) {
-        var options = {
-            keepExisting: true,
-            rejectedIdeas: populatedUser.profile.prefs.rejectedIdeas,
-            topic: populatedUser.campaign.topic
-        };
-        _updateRecommendations(populatedUser._id, options, function (err, newRecs) {
-            if (err) {
-                log.error(err);
-                throw err;
-            }
-        });
-    }
+        function _generateRec(populatedUser) {
+            var options = {
+                keepExisting: true,
+                rejectedIdeas: populatedUser.profile.prefs.rejectedIdeas,
+                topic: populatedUser.campaign.topic
+            };
+            _updateRecommendations(populatedUser._id, options, function (err, newRecs) {
+                if (err) {
+                    log.error(err);
+                    throw err;
+                }
+            });
+        }
+
+    });
+
 
 });
 

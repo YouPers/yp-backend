@@ -99,7 +99,9 @@ var getOffers = function getAll(req, res, next) {
 
         queryOptions: req.query,
         locale: req.locale,
-        populateRefDocs: true
+        populateRefDocs: true,
+        publishFrom: true,
+        publishTo: true
     };
 
     SocialInteraction.getAllForUser(user, SocialInteractionModel, options, generic.sendListCb(req, res, next));

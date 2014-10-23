@@ -454,24 +454,25 @@ SocialInteraction.getAllForUser = function (user, model, options, cb) {
     var adminMode = options.mode === 'admin';
     var locale = options && options.locale;
     var locals = {};
+    options.queryOptions = options.queryOptions || {};
 
     function _loadSocialInteractionDismissed(done) {
-        SocialInteractionDismissedModel.find({ user: user._id }, function (err, results) {
+        SocialInteractionDismissedModel.find({ user: user._id }, function (err, dismissals) {
 
             if (err) {
                 return done(err);
             }
 
             // needed to set the dismissalReason of a socialInteraction
-            locals.socialInteractionDismissed = results;
+            locals.socialInteractionDismissed = dismissals;
 
             if(options.dismissed && options.dismissalReason) {
                 // all dismissed si's except the ones with the specified reason
-                locals.dismissedSocialInteractions = _.map(_.filter(results, function(sid) {
+                locals.dismissedSocialInteractions = _.map(_.filter(dismissals, function(sid) {
                     return sid.reason !== options.dismissalReason;
                 }), 'socialInteraction');
             } else {
-                locals.dismissedSocialInteractions = _.map(results, 'socialInteraction');
+                locals.dismissedSocialInteractions = _.map(dismissals, 'socialInteraction');
             }
 
             return done();
@@ -645,7 +646,7 @@ SocialInteraction.getAllForUser = function (user, model, options, cb) {
 
     function _loadAdminMode() {
         var dbQuery = model.find();
-        generic.processDbQueryOptions(options.queryOptions, dbQuery, locale, model)
+        generic.processDbQueryOptions(options.queryOptions|| {}, dbQuery, locale, model)
             .exec(_soiLoadCb);
     }
 

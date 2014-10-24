@@ -489,19 +489,20 @@ function deleteActivity(req, res, next) {
                 } else {
                     var deleteStatus = activity.deleteStatus;
                     if (deleteStatus === 'deletable' || sysadmin) {
-                        activity.remove(done);
+                        activity.status = 'deleted';
+                        return activity.save(done);
                     } else if (deleteStatus === 'deletableOnlyFutureEvents') {
                         activity.status = 'old';
                         if (activity.mainEvent.frequency !== 'once') {
                             activity.mainEvent.recurrence.on = new Date();
                             activity.mainEvent.recurrence.after = undefined;
-                            activity.save(done);
+                            return activity.save(done);
                         } else {
-                            throw new Error('should never arrive here, it is not possible to have an "once" activity that has ' +
-                                'passed and future events at the same time');
+                            return done(new Error('should never arrive here, it is not possible to have an "once" activity that has ' +
+                                'passed and future events at the same time'));
                         }
                     } else {
-                        throw new Error('unknown DeleteStatus: ' + activity.deleteStatus);
+                        return done(new Error('unknown DeleteStatus: ' + activity.deleteStatus));
                     }
 
                 }
@@ -641,6 +642,8 @@ function getAll(req, res, next) {
 
     var dbQuery = Activity.find(finder);
 
+    dbQuery.where({status: {$ne: 'deleted'}});
+
     var op = generic.addStandardQueryOptions(req, dbQuery, Activity);
     op.exec(generic.sendListCb(req, res, next));
 
@@ -664,9 +667,15 @@ function getIcal(req, res, next) {
             if (err) {
                 return error.handleError(err, next);
             }
+            if (!loadedActivity) {
+                return next(new error.ResourceNotFoundError({activity: req.params.id}));
+            }
             mongoose.model('User').findById(req.params.user).select('+email +profile').populate('profile').exec(function (err, user) {
                 if (err) {
                     return error.handleError(err, next);
+                }
+                if (!user) {
+                    return next(new error.ResourceNotFoundError({user: req.params.user}));
                 }
                 var ical = calendar.getIcalObject(loadedActivity, user, req.params.type || 'new', req.i18n).toString();
                 res.contentType = 'text/calendar';

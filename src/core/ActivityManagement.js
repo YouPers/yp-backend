@@ -198,21 +198,7 @@ actMgr.defaultActivity = function (idea, user, campaignId) {
 
 actMgr.on('activity:activityCreated', function (activity, user) {
 
-    if (!activity.private) {
-
-        // we need the model for the recipient targetSpace, create pseudo model instead of loading the campaign
-//        var campaign = activity.campaign instanceof mongoose.Types.ObjectId ? {
-//            _id: activity.campaign,
-//            constructor: { modelName: 'Campaign' }
-//        } : activity.campaign;
-
-
-        //TODO: WIP, disabled for now, as it destroys the tests
-//        SocialInteraction.emit('invitation:activity', activity.owner, campaign, activity);
-    }
-
-    // find and dismiss all health coach recommendations for this idea
-    // TODO: only health coach or from all other users as well
+    // find and dismiss all recommendations for this idea
     SocialInteraction.dismissRecommendations(activity.idea, user, { reason: 'activityScheduled'});
 });
 

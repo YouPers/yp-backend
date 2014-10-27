@@ -3,6 +3,7 @@ var calendar = require('../util/calendar'),
     Activity = mongoose.model('Activity'),
     Idea = mongoose.model('Idea'),
     ActivityEvent = mongoose.model('ActivityEvent'),
+    SocialInteractionModel = mongoose.model('SocialInteraction'),
     actMgr = require('../core/ActivityManagement'),
     SocialInteraction = require('../core/SocialInteraction'),
     generic = require('ypbackendlib').handlers,
@@ -18,6 +19,61 @@ var calendar = require('../util/calendar'),
 function getInvitationStatus(req, res, next) {
     SocialInteraction.getInvitationStatus(req.params.id, generic.sendListCb(req, res, next));
 }
+
+
+function getActivityLookAheadCounters(req, res, next) {
+
+
+    if (!req.params || !req.params.id) {
+        return next(new error.MissingParameterError({ required: 'id' }));
+    }
+//
+//    if(!req.params.since) {
+//        return next(new error.MissingParameterError({ required: 'since' }));
+//    }
+
+    var lastAccessSince = req.params.since;
+    var locals = {};
+
+    function _newCommentsCount(done) {
+
+        var finder = {
+            __t: 'Message',
+            targetSpaces: {
+                $elemMatch: { targetId: req.params.id }
+            }
+        };
+
+        if(lastAccessSince) {
+            finder.created = {
+                $gt: lastAccessSince
+            };
+        }
+
+        SocialInteractionModel.count(finder).exec(function (err, count) {
+            if (err) {
+                return done(err);
+            }
+            locals.comments = count;
+            done();
+        });
+    }
+
+    async.parallel([
+            _newCommentsCount
+        ],
+        function (err) {
+            if (err) {
+                return error.handleError(err, next);
+            }
+
+            res.send(locals);
+            return next();
+        });
+
+}
+
+
 
 
 function validateActivity(req, res, next) {
@@ -694,6 +750,7 @@ module.exports = {
     deleteActivity: deleteActivity,
     putActivity: putActivity,
     getInvitationStatus: getInvitationStatus,
+    getActivityLookAheadCounters: getActivityLookAheadCounters,
     validateActivity: validateActivity,
     getIcal: getIcal,
     getAll: getAll

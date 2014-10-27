@@ -115,7 +115,10 @@ frisby.create('Activity Deletions: create a master activity for an activity dele
                                                                         frisby.create('Activity Deletions: check whether master gone')
                                                                             .get(URL + '/' + masterPlanReloaded.id)
                                                                             .auth('test_ind1', 'yp')
-                                                                            .expectStatus(404)
+                                                                            .expectStatus(200)
+                                                                            .afterJSON(function (activity) {
+                                                                                expect(activity.status).toEqual('deleted');
+                                                                            })
                                                                             .toss();
                                                                     })
                                                                     .toss();

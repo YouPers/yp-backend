@@ -4,6 +4,7 @@ var calendar = require('../util/calendar'),
     Idea = mongoose.model('Idea'),
     ActivityEvent = mongoose.model('ActivityEvent'),
     SocialInteractionModel = mongoose.model('SocialInteraction'),
+    SocialInteractionDismissedModel = mongoose.model('SocialInteractionDismissed'),
     actMgr = require('../core/ActivityManagement'),
     SocialInteraction = require('../core/SocialInteraction'),
     generic = require('ypbackendlib').handlers,
@@ -59,8 +60,46 @@ function getActivityLookAheadCounters(req, res, next) {
         });
     }
 
+    function _newJoiningUsersCount(done) {
+        var finder = {
+            __t: 'Invitation',
+            refDocs: {
+                $elemMatch: { docId: req.params.id }
+            }
+        };
+
+        // all invitations for this activity
+        SocialInteractionModel.find(finder).exec(function (err, invitations) {
+            if (err) {
+                return done(err);
+            }
+
+            var finder = {
+                socialInteraction: { $in: _.map(invitations, '_id') },
+                reason: 'activityJoined'
+            };
+
+            if(lastAccessSince) {
+                finder.created = {
+                    $gt: lastAccessSince
+                };
+            }
+
+            // all new activityJoined
+            SocialInteractionDismissedModel.count(finder).exec(function (err, count) {
+                if (err) {
+                    return done(err);
+                }
+                locals.joiningUsers = count;
+                done();
+            });
+
+        });
+    }
+
     async.parallel([
-            _newCommentsCount
+            _newCommentsCount,
+            _newJoiningUsersCount
         ],
         function (err) {
             if (err) {

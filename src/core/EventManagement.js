@@ -69,8 +69,8 @@ User.on('change:campaign', function (user) {
                                     return handleError(err);
                                 }
                                 var assessmentEvent = actMgr.defaultEvent(idea, user);
-                                assessmentEvent.mainEvent.start = new Date();
-                                assessmentEvent.mainEvent.end = moment(assessmentEvent.mainEvent.start).add(15, 'm').toDate();
+                                assessmentEvent.start = new Date();
+                                assessmentEvent.end = moment(assessmentEvent.start).add(15, 'm').toDate();
                                 assessmentEvent.save(function (err, savedEvent) {
                                     if (err) {
                                         return handleError(err);
@@ -128,7 +128,7 @@ Occurence.on("change:status", function (occurence) {
 
 actMgr.getOccurences = function getOccurences(event, ownerId, fromDate) {
 
-    var duration = moment(event.mainEvent.end).diff(event.mainEvent.start);
+    var duration = moment(event.end).diff(event.start);
 
     var occurrences = calendar.getOccurrences(event, fromDate);
 
@@ -151,48 +151,49 @@ actMgr.getOccurences = function getOccurences(event, ownerId, fromDate) {
 
 actMgr.defaultEvent = function (idea, user, campaignId) {
     var now = moment();
-    var mainEvent = {
-        "allDay": false
-    };
     var duration = idea.defaultduration ? idea.defaultduration : 60;
 
-    mainEvent.start = moment(now).add(1, 'd').startOf('hour').toDate();
-    mainEvent.end = moment(mainEvent.start).add(duration, 'm').toDate();
-    mainEvent.frequency = idea.defaultfrequency;
-    mainEvent.recurrence = {
-        "endby": {
-            "type": "after",
-            "after": 3
-        },
-        byday: user.profile.prefs && user.profile.prefs.defaultWorkWeek || undefined,
-        every: 1
-    };
 
     if (!campaignId && user.campaign) {
         campaignId = user.campaign._id || user.campaign;
     }
 
+    var start =  moment(now).add(1, 'd').startOf('hour').toDate();
+
+
     var event = {
         owner: user._id || user,
         idea: idea,
         status: 'active',
-        mainEvent: mainEvent,
         executionType: idea.defaultexecutiontype,
         fields: idea.fields,
         topics: idea.topics,
         title: idea.title,
-        number: idea.number
+        number: idea.number,
+        start: start,
+        end: moment(start).add(duration, 'm').toDate(),
+        allDay: false,
+        frequency: idea.defaultfrequency,
+        recurrence: {
+            "endby": {
+                "type": "after",
+                "after": 3
+            },
+            byday: user.profile.prefs && user.profile.prefs.defaultWorkWeek || undefined,
+            every: 1
+        }
     };
+
 
     if (campaignId) {
         event.campaign = campaignId;
     }
-    var eventModel = new Event(event);
+    var eventDoc = new Event(event);
 
     // repopulate idea
-    eventModel.idea = idea;
+    eventDoc.idea = idea;
 
-    return  eventModel;
+    return  eventDoc;
 };
 
 

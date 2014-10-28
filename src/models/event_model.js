@@ -27,28 +27,26 @@ var EventSchema = common.newSchema({
     status: {type: String, enum: enums.EventStatus},
     campaign: {type: ObjectId, ref: 'Campaign'},
     deletionReason: {type: String},
-    mainEvent: {
-        start: {type: Date},
-        end: {type: Date},
-        allDay: {type: Boolean},
-        frequency: {type: String, enum: enums.eventFrequency},
-        recurrence: {
-            'endby': {
-                type: {type: String, enum: enums.eventRecurrenceEndByType},
-                on: {type: Date},
-                after: Number
-            },
-            byday: [String],
-            every: {type: Number},
-            exceptions: [ Date]
-        }
+    start: {type: Date},
+    end: {type: Date},
+    allDay: {type: Boolean},
+    frequency: {type: String, enum: enums.eventFrequency},
+    recurrence: {
+        'endby': {
+            type: {type: String, enum: enums.eventRecurrenceEndByType},
+            on: {type: Date},
+            after: Number
+        },
+        byday: [String],
+        every: {type: Number},
+        exceptions: [ Date]
     }
 });
 
 EventSchema.methods = {
 
     toJsonConfig: {
-        include: ['deleteStatus','editStatus']
+        include: ['deleteStatus', 'editStatus']
     }
 
 };
@@ -68,7 +66,7 @@ EventSchema.statics.eventNotEditableAllEventsInThePast = "notEditablePastEvent";
 EventSchema.virtual('deleteStatus')
     .get(function getDeleteStatus() {
         var occurrences = calendar.getOccurrences(this);
-        var duration = moment(this.mainEvent.end).diff(this.mainEvent.start);
+        var duration = moment(this.end).diff(this.start);
 
         var now = moment();
         // check if there are any occurences in the past, checking the first is enough!
@@ -92,7 +90,7 @@ EventSchema.virtual('deleteStatus')
 EventSchema.virtual('editStatus')
     .get(function getEditStatus() {
         var occurrences = calendar.getOccurrences(this);
-        var duration = moment(this.mainEvent.end).diff(this.mainEvent.start);
+        var duration = moment(this.end).diff(this.start);
         var now = moment();
 
         // check if there are any occurences in the past, checking whether the last one is already passed is enough!
@@ -116,7 +114,7 @@ EventSchema.virtual('firstEventStart')
 EventSchema.virtual('lastEventEnd')
     .get(function lastEventEnd() {
         var occurrences = calendar.getOccurrences(this);
-        var duration = moment(this.mainEvent.end).diff(this.mainEvent.start);
+        var duration = moment(this.end).diff(this.start);
         return moment(occurrences[occurrences.length - 1]).add(duration, 'ms').toDate();
     });
 

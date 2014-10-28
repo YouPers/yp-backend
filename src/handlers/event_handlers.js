@@ -115,19 +115,15 @@ function validateEvent(req, res, next) {
     var sentEvent = req.body;
 
     // check required Attributes
-    if (!sentEvent.mainEvent) {
-        return next(new error.MissingParameterError({ required: 'mainEvent' }));
-    }
-
-    if (!sentEvent.mainEvent.start) {
+    if (!sentEvent.start) {
         return next(new error.MissingParameterError({ required: 'mainEvent.start' }));
     }
-    if (!sentEvent.mainEvent.end) {
+    if (!sentEvent.end) {
         return next(new error.MissingParameterError({ required: 'mainEvent.end' }));
     }
 
-    if (!sentEvent.mainEvent.recurrence.byday) {
-        sentEvent.mainEvent.recurrence.byday = req.user.profile.prefs.defaultWorkWeek;
+    if (!sentEvent.recurrence.byday) {
+        sentEvent.recurrence.byday = req.user.profile.prefs.defaultWorkWeek;
     }
 
     // generate all occurences from the sentEvent to validate -> sentEvents
@@ -230,14 +226,11 @@ function postNewEvent(req, res, next) {
     }
 
     // check required Attributes
-    if (!sentEvent.mainEvent) {
-        return next(new error.MissingParameterError({ required: 'mainEvent' }));
-    }
 
-    if (!sentEvent.mainEvent.start) {
+    if (!sentEvent.start) {
         return next(new error.MissingParameterError({ required: 'mainEvent.start' }));
     }
-    if (!sentEvent.mainEvent.end) {
+    if (!sentEvent.end) {
         return next(new error.MissingParameterError({ required: 'mainEvent.end' }));
     }
 
@@ -268,8 +261,8 @@ function postNewEvent(req, res, next) {
     }
 
     // set the byday of the mainEvent to the user's default if the client did not do it, only for daily activities
-    if (sentEvent.mainEvent.frequency === 'day' && !sentEvent.mainEvent.recurrence.byday) {
-        sentEvent.mainEvent.recurrence.byday = req.user.profile.prefs.defaultWorkWeek;
+    if (sentEvent.frequency === 'day' && !sentEvent.mainEvent.recurrence.byday) {
+        sentEvent.recurrence.byday = req.user.profile.prefs.defaultWorkWeek;
     }
 
     var newEvent = new Event(sentEvent);
@@ -334,7 +327,7 @@ function _saveNewEvent(event, req, cb) {
                 }
 
                 if (user && user.email && user.profile.prefs.email.iCalInvites) {
-                    req.log.debug({start: reloadedEvent.mainEvent.start, end: reloadedEvent.mainEvent.end}, 'Saved New event');
+                    req.log.debug({start: reloadedEvent.start, end: reloadedEvent.end}, 'Saved New event');
                     var myIcalString = calendar.getIcalObject(reloadedEvent, user, 'new', i18n).toString();
                     email.sendCalInvite(user, 'new', myIcalString, reloadedEvent, i18n);
                 }
@@ -584,9 +577,9 @@ function deleteEvent(req, res, next) {
                         return event.save(done);
                     } else if (deleteStatus === 'deletableOnlyFutureEvents') {
                         event.status = 'old';
-                        if (event.mainEvent.frequency !== 'once') {
-                            event.mainEvent.recurrence.on = new Date();
-                            event.mainEvent.recurrence.after = undefined;
+                        if (event.frequency !== 'once') {
+                            event.recurrence.on = new Date();
+                            event.recurrence.after = undefined;
                             event.save(done);
                         } else {
                             return done(new Error('should never arrive here, it is not possible to have an "once" activity that has ' +
@@ -624,17 +617,6 @@ function putEvent(req, res, next) {
         return error.handleError(err, next);
     }
 
-    // check required Attributes, if we get a main event, at least from and to must be set
-    if (sentEvent.mainEvent) {
-        if (!sentEvent.mainEvent.start) {
-            return next(new error.MissingParameterError({ required: 'mainEvent.start' }));
-        }
-        if (!sentEvent.mainEvent.end) {
-            return next(new error.MissingParameterError({ required: 'mainEvent.end' }));
-        }
-    }
-
-
     Event
         .findById(req.params.id)
         .populate('idea')
@@ -666,8 +648,20 @@ function putEvent(req, res, next) {
                 loadedEvent.save(done);
             }
 
+            function _eventsNeedUpdate (loadedAct, sentAct) {
+                if (!sentAct.start && !sentAct.end && !sentAct.frequency && !sentAct.recurrence) {
+                    // nothing relevant sent, so return false;
+                    return false;
+                }
+                // otherwise compare the relevant fields
+                return ((sentAct.start !== loadedAct.start) ||
+                    (sentAct.end !== loadedAct.end) ||
+                    (sentAct.frequency !== loadedAct.frequency) ||
+                    !_.isEqual(sentAct.recurrence, loadedAct.recurrence));
+            }
+
             function _deleteEventsInFuture(done) {
-                if (sentEvent.mainEvent && !_.isEqual(sentEvent.mainEvent, loadedEvent.mainEvent)) {
+                if (_eventsNeedUpdate(sentEvent, loadedEvent)) {
                     return _deleteOccurences(loadedEvent, null, new Date(), done);
                 } else {
                     return done();
@@ -694,7 +688,7 @@ function putEvent(req, res, next) {
 
 
             function _updateEventsForAllUsers(done) {
-                if (sentEvent.mainEvent && !_.isEqual(sentEvent.mainEvent, loadedEvent.mainEvent)) {
+                if (_eventsNeedUpdate(sentEvent, loadedEvent)) {
                     var users = [loadedEvent.owner].concat(loadedEvent.joiningUsers);
 
                     return async.forEach(users, function (user, cb) {

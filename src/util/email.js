@@ -53,13 +53,13 @@ var sendEventInvite = function sendEventInvite(email, invitingUser, event, invit
         return moment(date).lang(i18n.lng()).tz('Europe/Zurich');
     };
 
-    var frequency = event.mainEvent.frequency;
-    var weekday = localMoment(event.mainEvent.start).format("dddd") + (frequency === 'week' ? 's' : '');
-    var date = localMoment(event.mainEvent.start).format("D.M.") +
+    var frequency = event.frequency;
+    var weekday = localMoment(event.start).format("dddd") + (frequency === 'week' ? 's' : '');
+    var date = localMoment(event.start).format("D.M.") +
         frequency === 'once' ? '' :
         localMoment(event.lastEventEnd).format("D.M.YYYY");
 
-    var time = localMoment(event.mainEvent.start).format('HH:mm') + ' - ' + localMoment(event.mainEvent.end).format('HH:mm');
+    var time = localMoment(event.start).format('HH:mm') + ' - ' + localMoment(activity.end).format('HH:mm');
 
     var eventDate = weekday + '<br/>' + time + '<br/>' + date;
 

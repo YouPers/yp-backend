@@ -34,7 +34,6 @@ var event = {
     "visibility": "private",
     "executionType": "self",
     "title": "myTitle",
-    "mainEvent": {
         "start": initialDateStart,
         "end": initialDateEnd,
         "allDay": false,
@@ -46,7 +45,6 @@ var event = {
             },
             "every": 1,
             "exceptions": []
-        }
     },
     "status": "active"
 };
@@ -73,7 +71,7 @@ frisby.create('EventEdits: create a single event with a single event')
                 expect(eventPutAnswer.location).toEqual(editedLocation);
 
                 // now modify it to have more than one event
-                eventPutAnswer.mainEvent.frequency = "week";
+                eventPutAnswer.frequency = "week";
 
                 frisby.create('EventEdits: update event change frequency to "week", id: ' + eventPutAnswer.id)
                     .put(URL + '/' + eventPutAnswer.id, eventPutAnswer)
@@ -108,8 +106,8 @@ frisby.create('EventEdits: create a single event with a single event')
     .toss();
 
 var eventSingleEventPassed = _.clone(event, true);
-eventSingleEventPassed.mainEvent.start = moment(initialDateStart).subtract(3, 'd').toDate();
-eventSingleEventPassed.mainEvent.end = moment(initialDateEnd).subtract(3, 'd').toDate();
+eventSingleEventPassed.start = moment(initialDateStart).subtract(3, 'd').toDate();
+eventSingleEventPassed.end = moment(initialDateEnd).subtract(3, 'd').toDate();
 
 frisby.create('Event Edits: create single event with single event in the past')
     .post(URL, eventSingleEventPassed)
@@ -120,7 +118,7 @@ frisby.create('Event Edits: create single event with single event in the past')
         expect(eventPostAnswer.editStatus).toEqual('notEditablePastEvent');
 
         // now try to modify something even though it is not allowed to update this actvity
-        eventPostAnswer.mainEvent.frequency = "week";
+        eventPostAnswer.frequency = "week";
 
         frisby.create('EventEdits: try to update single event with single event in the past')
             .put(URL + '/' + eventPostAnswer.id, eventPostAnswer)
@@ -155,7 +153,7 @@ frisby.create('EventEdits: create a single event with a single event to be used 
                 expect(slavePlanPostAnswer.owner).not.toEqual(consts.users.test_ind2.id);
 
                 // now try to modify something even though it is not allowed to update this joined event
-                slavePlanPostAnswer.mainEvent.frequency = "week";
+                slavePlanPostAnswer.frequency = "week";
 
                 frisby.create('EventEdits: try to update event as a joiner, 403')
                     .put(URL + '/' + slavePlanPostAnswer.id, slavePlanPostAnswer)
@@ -172,7 +170,7 @@ frisby.create('EventEdits: create a single event with a single event to be used 
                             .afterJSON(function (masterEventReloaded) {
                                 expect(masterEventReloaded.editStatus).toEqual('editable');
 
-                                masterEventReloaded.mainEvent.frequency = "week";
+                                masterEventReloaded.frequency = "week";
 
                                 frisby.create('EventEdits: try to update master event, id: ' + masterEventReloaded.id)
                                     .put(URL + '/' + masterEventReloaded.id, masterEventReloaded)
@@ -186,7 +184,7 @@ frisby.create('EventEdits: create a single event with a single event to be used 
                                             .expectStatus(200)
                                             .afterJSON(function (reloadedSlavePlan) {
 
-                                                expect(reloadedSlavePlan.mainEvent.frequency).toEqual('week');
+                                                expect(reloadedSlavePlan.frequency).toEqual('week');
 
 
                                                 // cleanup joined event
@@ -216,9 +214,9 @@ frisby.create('EventEdits: create a single event with a single event to be used 
 
 var planWeeklyThreeEventsPassed = _.clone(event, true);
 var initialTime = moment().subtract(3, 'w').add(3, 'h').toDate();
-planWeeklyThreeEventsPassed.mainEvent.start = initialTime;
-planWeeklyThreeEventsPassed.mainEvent.end = moment(initialTime).add(1, 'h').toDate();
-planWeeklyThreeEventsPassed.mainEvent.frequency = 'week';
+planWeeklyThreeEventsPassed.start = initialTime;
+planWeeklyThreeEventsPassed.end = moment(initialTime).add(1, 'h').toDate();
+planWeeklyThreeEventsPassed.frequency = 'week';
 
 frisby.create('EventEdits: create a weekly event with 3 events passed')
     .post(URL, planWeeklyThreeEventsPassed)
@@ -244,8 +242,8 @@ frisby.create('EventEdits: create a weekly event with 3 events passed')
 
 
                         var postponedTime = moment(initialTime).add(1, 'h').toDate();
-                        initialEvent.mainEvent.start = postponedTime;
-                        initialEvent.mainEvent.end = moment(postponedTime).add(1, 'h').toDate();
+                        initialEvent.start = postponedTime;
+                        initialEvent.end = moment(postponedTime).add(1, 'h').toDate();
 
                         // delete the Version information, otherwise mongo complains because we have modified the document with the call before...
                         delete initialEvent.__v;

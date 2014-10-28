@@ -31,7 +31,6 @@ var masterPlan = {
     "visibility": "public",
     "executionType": "group",
     "title": "myTitle",
-    "mainEvent": {
         "start": startDate,
         "end": endDate,
         "allDay": false,
@@ -43,7 +42,6 @@ var masterPlan = {
             },
             "every": 1,
             "exceptions": []
-        }
     },
     "status": "active"
 };
@@ -148,9 +146,9 @@ var pastDateEnd = new Date();
 pastDateEnd.setDate(pastDateEnd.getDate() - 1);
 pastDateEnd.setHours(pastDateEnd.getHours() + 1);
 var planOneEventPassed = _.cloneDeep(masterPlan);
-planOneEventPassed.mainEvent.start = pastDateStart;
-planOneEventPassed.mainEvent.end = pastDateEnd;
-planOneEventPassed.mainEvent.frequency = "week";
+planOneEventPassed.start = pastDateStart;
+planOneEventPassed.end = pastDateEnd;
+planOneEventPassed.frequency = "week";
 
 frisby.create('Event Deletions: create event with one event in the past')
     .post(URL, planOneEventPassed)
@@ -192,9 +190,9 @@ earlierDateEnd.setDate(earlierDateEnd.getDate() - 30);
 earlierDateEnd.setHours(earlierDateEnd.getHours() + 1);
 var planAllEventsPassed = _.cloneDeep(masterPlan);
 
-planAllEventsPassed.mainEvent.start = earlierPastDateStart;
-planAllEventsPassed.mainEvent.end = earlierDateEnd;
-planAllEventsPassed.mainEvent.frequency = "day";
+planAllEventsPassed.start = earlierPastDateStart;
+planAllEventsPassed.end = earlierDateEnd;
+planAllEventsPassed.frequency = "day";
 
 frisby.create('Event Deletions: create event with all events in the past')
     .post(URL, planAllEventsPassed)

@@ -49,7 +49,7 @@
         "update": {
             "subject": "YOUPERS: Angepasster Kalender-Eintrag für: __activity.title__",
             "salutation": "Hallo __user.firstname__!",
-            "text": "Deine Pläne zur Aktivität <strong>__activity.title__</strong> haben sich inzwischen geändert.<br/>Bitte öffne die folgenden Links um deinen Kalender-Eintrag zu aktualisieren. <br/><br/>Du kannst weitere solche Emails in deinem <a href='__profileLink__'>Profil</a> ausschalten."
+            "text": "Die Pläne zur Aktivität <strong>__activity.title__</strong> haben sich inzwischen geändert.<br/>Bitte öffne die folgenden Links um deinen Kalender-Eintrag zu aktualisieren. <br/><br/>Du kannst weitere solche Emails in deinem <a href='__profileLink__'>Profil</a> ausschalten."
         },
         "cancel": {
             "subject": "YOUPERS: Gelöschter Kalender-Eintrag für: __activity.title__",

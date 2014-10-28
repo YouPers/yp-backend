@@ -242,6 +242,14 @@ function postNewEvent(req, res, next) {
         return next(new error.InvalidArgumentError('"joiningUsers" has to be emtpy for new event, use JOIN Api to join an existing event'));
     }
 
+    // set defaults
+    if (!sentActivity.frequency) {
+        sentActivity.frequency = 'once';
+    }
+
+    if (!sentActivity.recurrence) {
+        sentActivity.recurrence = {};
+    }
     // check whether delivered owner is the authenticated user
     if (sentEvent.owner && (req.user.id !== sentEvent.owner)) {
         return next(new error.NotAuthorizedError({

@@ -243,12 +243,12 @@ function postNewEvent(req, res, next) {
     }
 
     // set defaults
-    if (!sentActivity.frequency) {
-        sentActivity.frequency = 'once';
+    if (!sentEvent.frequency) {
+        sentEvent.frequency = 'once';
     }
 
-    if (!sentActivity.recurrence) {
-        sentActivity.recurrence = {};
+    if (!sentEvent.recurrence) {
+        sentEvent.recurrence = {};
     }
     // check whether delivered owner is the authenticated user
     if (sentEvent.owner && (req.user.id !== sentEvent.owner)) {

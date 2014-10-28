@@ -593,7 +593,7 @@ function deleteEvent(req, res, next) {
                                 'passed and future events at the same time'));
                         }
                     } else {
-                        return done(new Error('unknown DeleteStatus: ' + activity.deleteStatus));
+                        return done(new Error('unknown DeleteStatus: ' + event.deleteStatus));
                     }
 
                 }
@@ -758,7 +758,7 @@ function getIcal(req, res, next) {
             if (err) {
                 return error.handleError(err, next);
             }
-            if (!loadedActivity) {
+            if (!loadedEvent) {
                 return next(new error.ResourceNotFoundError({activity: req.params.id}));
             }
             mongoose.model('User').findById(req.params.user).select('+email +profile').populate('profile').exec(function (err, user) {

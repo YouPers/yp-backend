@@ -116,10 +116,10 @@ function validateEvent(req, res, next) {
 
     // check required Attributes
     if (!sentEvent.start) {
-        return next(new error.MissingParameterError({ required: 'mainEvent.start' }));
+        return next(new error.MissingParameterError({ required: 'start' }));
     }
     if (!sentEvent.end) {
-        return next(new error.MissingParameterError({ required: 'mainEvent.end' }));
+        return next(new error.MissingParameterError({ required: 'end' }));
     }
 
     if (!sentEvent.recurrence.byday) {
@@ -228,10 +228,10 @@ function postNewEvent(req, res, next) {
     // check required Attributes
 
     if (!sentEvent.start) {
-        return next(new error.MissingParameterError({ required: 'mainEvent.start' }));
+        return next(new error.MissingParameterError({ required: 'start' }));
     }
     if (!sentEvent.end) {
-        return next(new error.MissingParameterError({ required: 'mainEvent.end' }));
+        return next(new error.MissingParameterError({ required: 'end' }));
     }
 
     if (!sentEvent.idea) {
@@ -260,8 +260,8 @@ function postNewEvent(req, res, next) {
         sentEvent.campaign = req.user.campaign.id || req.user.campaign; // allow populated and unpopulated campaign
     }
 
-    // set the byday of the mainEvent to the user's default if the client did not do it, only for daily activities
-    if (sentEvent.frequency === 'day' && !sentEvent.mainEvent.recurrence.byday) {
+    // set the byday to the user's default if the client did not do it, only for daily activities
+    if (sentEvent.frequency === 'day' && !sentEvent.recurrence.byday) {
         sentEvent.recurrence.byday = req.user.profile.prefs.defaultWorkWeek;
     }
 

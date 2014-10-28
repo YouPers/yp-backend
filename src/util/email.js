@@ -59,7 +59,7 @@ var sendEventInvite = function sendEventInvite(email, invitingUser, event, invit
         frequency === 'once' ? '' :
         localMoment(event.lastEventEnd).format("D.M.YYYY");
 
-    var time = localMoment(event.start).format('HH:mm') + ' - ' + localMoment(activity.end).format('HH:mm');
+    var time = localMoment(event.start).format('HH:mm') + ' - ' + localMoment(event.end).format('HH:mm');
 
     var eventDate = weekday + '<br/>' + time + '<br/>' + date;
 

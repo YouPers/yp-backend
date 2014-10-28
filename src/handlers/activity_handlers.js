@@ -245,6 +245,14 @@ function postNewActivity(req, res, next) {
         return next(new error.InvalidArgumentError('"joiningUsers" has to be emtpy for new activity, use JOIN Api to join an existing activity'));
     }
 
+    // set defaults
+    if (!sentActivity.frequency) {
+        sentActivity.frequency = 'once';
+    }
+
+    if (!sentActivity.recurrence) {
+        sentActivity.recurrence = {};
+    }
     // check whether delivered owner is the authenticated user
     if (sentActivity.owner && (req.user.id !== sentActivity.owner)) {
         return next(new error.NotAuthorizedError({

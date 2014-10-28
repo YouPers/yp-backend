@@ -638,7 +638,7 @@ SocialInteraction.getAllForUser = function (user, model, options, cb) {
                         {language: user.profile.language}
                     ] });
                 }
-                generic.processDbQueryOptions(options.queryOptions, dbQuery, locale, model)
+                generic.processDbQueryOptions(options.queryOptions, dbQuery, model, locale)
                     .exec(_soiLoadCb);
             }
         );
@@ -646,7 +646,7 @@ SocialInteraction.getAllForUser = function (user, model, options, cb) {
 
     function _loadAdminMode() {
         var dbQuery = model.find();
-        generic.processDbQueryOptions(options.queryOptions|| {}, dbQuery, locale, model)
+        generic.processDbQueryOptions(options.queryOptions|| {}, dbQuery, model, locale)
             .exec(_soiLoadCb);
     }
 

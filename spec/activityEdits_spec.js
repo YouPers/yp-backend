@@ -34,7 +34,6 @@ var activity = {
     "visibility": "private",
     "executionType": "self",
     "title": "myTitle",
-    "mainEvent": {
         "start": initialDateStart,
         "end": initialDateEnd,
         "allDay": false,
@@ -46,7 +45,6 @@ var activity = {
             },
             "every": 1,
             "exceptions": []
-        }
     },
     "status": "active"
 };
@@ -73,7 +71,7 @@ frisby.create('ActivityEdits: create a single activity with a single event')
                 expect(activityPutAnswer.location).toEqual(editedLocation);
 
                 // now modify it to have more than one event
-                activityPutAnswer.mainEvent.frequency = "week";
+                activityPutAnswer.frequency = "week";
 
                 frisby.create('ActivityEdits: update activity change frequency to "week", id: ' + activityPutAnswer.id)
                     .put(URL + '/' + activityPutAnswer.id, activityPutAnswer)
@@ -108,8 +106,8 @@ frisby.create('ActivityEdits: create a single activity with a single event')
     .toss();
 
 var activitySingleEventPassed = _.clone(activity, true);
-activitySingleEventPassed.mainEvent.start = moment(initialDateStart).subtract(3, 'd').toDate();
-activitySingleEventPassed.mainEvent.end = moment(initialDateEnd).subtract(3, 'd').toDate();
+activitySingleEventPassed.start = moment(initialDateStart).subtract(3, 'd').toDate();
+activitySingleEventPassed.end = moment(initialDateEnd).subtract(3, 'd').toDate();
 
 frisby.create('Activity Edits: create single activity with single event in the past')
     .post(URL, activitySingleEventPassed)
@@ -120,7 +118,7 @@ frisby.create('Activity Edits: create single activity with single event in the p
         expect(activityPostAnswer.editStatus).toEqual('notEditablePastEvent');
 
         // now try to modify something even though it is not allowed to update this actvity
-        activityPostAnswer.mainEvent.frequency = "week";
+        activityPostAnswer.frequency = "week";
 
         frisby.create('ActivityEdits: try to update single activity with single event in the past')
             .put(URL + '/' + activityPostAnswer.id, activityPostAnswer)
@@ -155,7 +153,7 @@ frisby.create('ActivityEdits: create a single activity with a single event to be
                 expect(slavePlanPostAnswer.owner).not.toEqual(consts.users.test_ind2.id);
 
                 // now try to modify something even though it is not allowed to update this joined activity
-                slavePlanPostAnswer.mainEvent.frequency = "week";
+                slavePlanPostAnswer.frequency = "week";
 
                 frisby.create('ActivityEdits: try to update activity as a joiner, 403')
                     .put(URL + '/' + slavePlanPostAnswer.id, slavePlanPostAnswer)
@@ -172,7 +170,7 @@ frisby.create('ActivityEdits: create a single activity with a single event to be
                             .afterJSON(function (masterActivityReloaded) {
                                 expect(masterActivityReloaded.editStatus).toEqual('editable');
 
-                                masterActivityReloaded.mainEvent.frequency = "week";
+                                masterActivityReloaded.frequency = "week";
 
                                 frisby.create('ActivityEdits: try to update master activity, id: ' + masterActivityReloaded.id)
                                     .put(URL + '/' + masterActivityReloaded.id, masterActivityReloaded)
@@ -186,7 +184,7 @@ frisby.create('ActivityEdits: create a single activity with a single event to be
                                             .expectStatus(200)
                                             .afterJSON(function (reloadedSlavePlan) {
 
-                                                expect(reloadedSlavePlan.mainEvent.frequency).toEqual('week');
+                                                expect(reloadedSlavePlan.frequency).toEqual('week');
 
 
                                                 // cleanup joined activity
@@ -216,9 +214,9 @@ frisby.create('ActivityEdits: create a single activity with a single event to be
 
 var planWeeklyThreeEventsPassed = _.clone(activity, true);
 var initialTime = moment().subtract(3, 'w').add(3, 'h').toDate();
-planWeeklyThreeEventsPassed.mainEvent.start = initialTime;
-planWeeklyThreeEventsPassed.mainEvent.end = moment(initialTime).add(1, 'h').toDate();
-planWeeklyThreeEventsPassed.mainEvent.frequency = 'week';
+planWeeklyThreeEventsPassed.start = initialTime;
+planWeeklyThreeEventsPassed.end = moment(initialTime).add(1, 'h').toDate();
+planWeeklyThreeEventsPassed.frequency = 'week';
 
 frisby.create('ActivityEdits: create a weekly activity with 3 events passed')
     .post(URL, planWeeklyThreeEventsPassed)
@@ -244,8 +242,8 @@ frisby.create('ActivityEdits: create a weekly activity with 3 events passed')
 
 
                         var postponedTime = moment(initialTime).add(1, 'h').toDate();
-                        initialActivity.mainEvent.start = postponedTime;
-                        initialActivity.mainEvent.end = moment(postponedTime).add(1, 'h').toDate();
+                        initialActivity.start = postponedTime;
+                        initialActivity.end = moment(postponedTime).add(1, 'h').toDate();
 
                         // delete the Version information, otherwise mongo complains because we have modified the document with the call before...
                         delete initialActivity.__v;

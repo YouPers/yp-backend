@@ -31,12 +31,10 @@ consts.newUserInNewCampaignApi(
                 "visibility": "public",
                 "campaign": campaign.id,
                 "executionType": "group",
-                "mainEvent": {
-                    "start": moment().add(1, 'days'),
-                    "end": moment().add(1, 'days').add(2, 'hours'),
-                    "allDay": false,
-                    "frequency": "once"
-                },
+                "start": moment().add(1, 'days'),
+                "end": moment().add(1, 'days').add(2, 'hours'),
+                "allDay": false,
+                "frequency": "once",
                 "status": "active"
             })
             .auth(user.username, 'yp')
@@ -52,7 +50,6 @@ consts.newUserInNewCampaignApi(
                     .auth(user.username, 'yp')
                     .expectStatus(200)
                     .after(function () {
-
 
 
                         frisby.create('Invitation: POST new user')

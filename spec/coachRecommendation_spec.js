@@ -119,12 +119,10 @@ consts.newUserInNewCampaignApi(
                                                 "campaign": campaign.id,
                                                 "title": "myTitle",
                                                 "executionType": "group",
-                                                "mainEvent": {
-                                                    "start": moment(),
-                                                    "end": moment().add(2, 'hours'),
-                                                    "allDay": false,
-                                                    "frequency": "once"
-                                                },
+                                                "start": moment(),
+                                                "end": moment().add(2, 'hours'),
+                                                "allDay": false,
+                                                "frequency": "once",
                                                 "status": "active"
                                             })
                                             .auth(user.username, 'yp')

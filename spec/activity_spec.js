@@ -76,7 +76,10 @@ frisby.create('Event: plan once event and check whether event is generated')
                                         frisby.create('Event: GET this event by Id again und check whether it is not there anymore')
                                             .get(URL + '/events/' + newPlan.id)
                                             .auth('test_ind1', 'yp')
-                                            .expectStatus(404)
+                                            .expectStatus(200)
+                                            .afterJSON(function (activity) {
+                                                expect(activity.status).toEqual('deleted');
+                                            })
                                             .toss();
 
 

@@ -115,7 +115,10 @@ frisby.create('Event Deletions: create a master event for an event deletion test
                                                                         frisby.create('Event Deletions: check whether master gone')
                                                                             .get(URL + '/' + masterPlanReloaded.id)
                                                                             .auth('test_ind1', 'yp')
-                                                                            .expectStatus(404)
+                                                                            .expectStatus(200)
+                                                                            .afterJSON(function (activity) {
+                                                                                expect(activity.status).toEqual('deleted');
+                                                                            })
                                                                             .toss();
                                                                     })
                                                                     .toss();

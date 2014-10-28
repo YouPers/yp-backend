@@ -198,21 +198,7 @@ actMgr.defaultEvent = function (idea, user, campaignId) {
 
 actMgr.on('event:eventCreated', function (event, user) {
 
-    if (!event.private) {
-
-        // we need the model for the recipient targetSpace, create pseudo model instead of loading the campaign
-//        var campaign = event.campaign instanceof mongoose.Types.ObjectId ? {
-//            _id: event.campaign,
-//            constructor: { modelName: 'Campaign' }
-//        } : event.campaign;
-
-
-        //TODO: WIP, disabled for now, as it destroys the tests
-//        SocialInteraction.emit('invitation:event', event.owner, campaign, event);
-    }
-
-    // find and dismiss all health coach recommendations for this idea
-    // TODO: only health coach or from all other users as well
+    // find and dismiss all recommendations for this idea
     SocialInteraction.dismissRecommendations(event.idea, user, { reason: 'eventScheduled'});
 });
 

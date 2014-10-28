@@ -3,6 +3,8 @@ var calendar = require('../util/calendar'),
     Event = mongoose.model('Event'),
     Idea = mongoose.model('Idea'),
     Occurence = mongoose.model('Occurence'),
+    SocialInteractionModel = mongoose.model('SocialInteraction'),
+    SocialInteractionDismissedModel = mongoose.model('SocialInteractionDismissed'),
     actMgr = require('../core/EventManagement'),
     SocialInteraction = require('../core/SocialInteraction'),
     generic = require('ypbackendlib').handlers,
@@ -19,6 +21,95 @@ function getInvitationStatus(req, res, next) {
     SocialInteraction.getInvitationStatus(req.params.id, generic.sendListCb(req, res, next));
 }
 
+function getActivityLookAheadCounters(req, res, next) {
+
+
+    if (!req.params || !req.params.id) {
+        return next(new error.MissingParameterError({ required: 'id' }));
+    }
+//
+//    if(!req.params.since) {
+//        return next(new error.MissingParameterError({ required: 'since' }));
+//    }
+
+    var lastAccessSince = req.params.since;
+    var locals = {};
+
+    function _newCommentsCount(done) {
+
+        var finder = {
+            __t: 'Message',
+            targetSpaces: {
+                $elemMatch: { targetId: req.params.id }
+            }
+        };
+
+        if(lastAccessSince) {
+            finder.created = {
+                $gt: lastAccessSince
+            };
+        }
+
+        SocialInteractionModel.count(finder).exec(function (err, count) {
+            if (err) {
+                return done(err);
+            }
+            locals.comments = count;
+            done();
+        });
+    }
+
+    function _newJoiningUsersCount(done) {
+        var finder = {
+            __t: 'Invitation',
+            refDocs: {
+                $elemMatch: { docId: req.params.id }
+            }
+        };
+
+        // all invitations for this activity
+        SocialInteractionModel.find(finder).exec(function (err, invitations) {
+            if (err) {
+                return done(err);
+            }
+
+            var finder = {
+                socialInteraction: { $in: _.map(invitations, '_id') },
+                reason: 'activityJoined'
+            };
+
+            if(lastAccessSince) {
+                finder.created = {
+                    $gt: lastAccessSince
+                };
+            }
+
+            // all new activityJoined
+            SocialInteractionDismissedModel.count(finder).exec(function (err, count) {
+                if (err) {
+                    return done(err);
+                }
+                locals.joiningUsers = count;
+                done();
+            });
+
+        });
+    }
+
+    async.parallel([
+            _newCommentsCount,
+            _newJoiningUsersCount
+        ],
+        function (err) {
+            if (err) {
+                return error.handleError(err, next);
+            }
+
+            res.send(locals);
+            return next();
+        });
+
+}
 
 function validateEvent(req, res, next) {
     var sentEvent = req.body;
@@ -489,7 +580,8 @@ function deleteEvent(req, res, next) {
                 } else {
                     var deleteStatus = event.deleteStatus;
                     if (deleteStatus === 'deletable' || sysadmin) {
-                        event.remove(done);
+                        event.status = 'deleted';
+                        return event.save(done);
                     } else if (deleteStatus === 'deletableOnlyFutureEvents') {
                         event.status = 'old';
                         if (event.mainEvent.frequency !== 'once') {
@@ -497,11 +589,11 @@ function deleteEvent(req, res, next) {
                             event.mainEvent.recurrence.after = undefined;
                             event.save(done);
                         } else {
-                            throw new Error('should never arrive here, it is not possible to have an "once" event that has ' +
-                                'passed and future occurences at the same time');
+                            return done(new Error('should never arrive here, it is not possible to have an "once" activity that has ' +
+                                'passed and future events at the same time'));
                         }
                     } else {
-                        throw new Error('unknown DeleteStatus: ' + event.deleteStatus);
+                        return done(new Error('unknown DeleteStatus: ' + activity.deleteStatus));
                     }
 
                 }
@@ -641,6 +733,8 @@ function getAll(req, res, next) {
 
     var dbQuery = Event.find(finder);
 
+    dbQuery.where({status: {$ne: 'deleted'}});
+
     var op = generic.addStandardQueryOptions(req, dbQuery, Event);
     op.exec(generic.sendListCb(req, res, next));
 
@@ -664,9 +758,15 @@ function getIcal(req, res, next) {
             if (err) {
                 return error.handleError(err, next);
             }
+            if (!loadedActivity) {
+                return next(new error.ResourceNotFoundError({activity: req.params.id}));
+            }
             mongoose.model('User').findById(req.params.user).select('+email +profile').populate('profile').exec(function (err, user) {
                 if (err) {
                     return error.handleError(err, next);
+                }
+                if (!user) {
+                    return next(new error.ResourceNotFoundError({user: req.params.user}));
                 }
                 var ical = calendar.getIcalObject(loadedEvent, user, req.params.type || 'new', req.i18n).toString();
                 res.contentType = 'text/calendar';
@@ -686,6 +786,7 @@ module.exports = {
     putEvent: putEvent,
     getInvitationStatus: getInvitationStatus,
     validateEvent: validateEvent,
+    getActivityLookAheadCounters: getActivityLookAheadCounters,
     getIcal: getIcal,
     getAll: getAll
 };

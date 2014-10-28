@@ -51,6 +51,39 @@ module.exports = function (swagger) {
     swagger.addOperation({
         spec: {
             description: "Operations about Events",
+            path: baseUrlWithId + '/lookAheadCounters',
+            notes: "Returns look ahead counters about new comments and joiningUsers since the specified timestamp",
+            summary: "Returns look ahead counters",
+            params: [
+                {
+                    paramType: "path",
+                    name: "id",
+                    description: "the id of the activity to fetch ",
+                    dataType: "string",
+                    required: true
+                }
+            ],
+            "responseClass": "EventLookAheadCounterResult",
+            method: "GET",
+            "nickname": "getActivityLookAheadCounters",
+            accessLevel: 'al_individual',
+            beforeCallbacks: []
+        },
+        action: handlers.getEventLookAheadCounters
+    });
+
+    swagger.addModels({EventLookAheadCounterResult: {
+        id: 'EventLookAheadCounterResult',
+        properties: {
+            comments: {type: 'Number'},
+            joiningUsers: {type: 'Number'}
+        }
+    }});
+
+
+    swagger.addOperation({
+        spec: {
+            description: "Operations about Events",
             path: baseUrl + "/validate",
             notes: "Validates a new event, generates the list of occurences and returns the list of conflicting occurences in case there are any for the event in the body.",
             summary: "Validates an event that a user is about to POST",

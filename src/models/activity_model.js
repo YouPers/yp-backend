@@ -27,8 +27,8 @@ var ActivitySchema = common.newSchema({
     status: {type: String, enum: enums.ActivityStatus},
     campaign: {type: ObjectId, ref: 'Campaign'},
     deletionReason: {type: String},
-    start: {type: Date},
-    end: {type: Date},
+    start: {type: Date, required: true},
+    end: {type: Date, required: true},
     allDay: {type: Boolean},
     frequency: {type: String, enum: enums.activityFrequency},
     recurrence: {

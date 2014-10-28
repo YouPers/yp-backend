@@ -119,19 +119,15 @@ function validateActivity(req, res, next) {
     var sentActivity = req.body;
 
     // check required Attributes
-    if (!sentActivity.mainEvent) {
-        return next(new error.MissingParameterError({ required: 'mainEvent' }));
+    if (!sentActivity.start) {
+        return next(new error.MissingParameterError({ required: 'start' }));
+    }
+    if (!sentActivity.end) {
+        return next(new error.MissingParameterError({ required: 'end' }));
     }
 
-    if (!sentActivity.mainEvent.start) {
-        return next(new error.MissingParameterError({ required: 'mainEvent.start' }));
-    }
-    if (!sentActivity.mainEvent.end) {
-        return next(new error.MissingParameterError({ required: 'mainEvent.end' }));
-    }
-
-    if (!sentActivity.mainEvent.recurrence.byday) {
-        sentActivity.mainEvent.recurrence.byday = req.user.profile.prefs.defaultWorkWeek;
+    if (!sentActivity.recurrence.byday) {
+        sentActivity.recurrence.byday = req.user.profile.prefs.defaultWorkWeek;
     }
 
     // generate all events from the sentActivity to validate -> sentEvents
@@ -234,15 +230,11 @@ function postNewActivity(req, res, next) {
     }
 
     // check required Attributes
-    if (!sentActivity.mainEvent) {
-        return next(new error.MissingParameterError({ required: 'mainEvent' }));
+    if (!sentActivity.start) {
+        return next(new error.MissingParameterError({ required: 'start' }));
     }
-
-    if (!sentActivity.mainEvent.start) {
-        return next(new error.MissingParameterError({ required: 'mainEvent.start' }));
-    }
-    if (!sentActivity.mainEvent.end) {
-        return next(new error.MissingParameterError({ required: 'mainEvent.end' }));
+    if (!sentActivity.end) {
+        return next(new error.MissingParameterError({ required: 'end' }));
     }
 
     if (!sentActivity.idea) {
@@ -271,9 +263,9 @@ function postNewActivity(req, res, next) {
         sentActivity.campaign = req.user.campaign.id || req.user.campaign; // allow populated and unpopulated campaign
     }
 
-    // set the byday of the mainEvent to the user's default if the client did not do it, only for daily activities
-    if (sentActivity.mainEvent.frequency === 'day' && !sentActivity.mainEvent.recurrence.byday) {
-        sentActivity.mainEvent.recurrence.byday = req.user.profile.prefs.defaultWorkWeek;
+    // set the byday to the user's default if the client did not do it, only for daily activities
+    if (sentActivity.frequency === 'day' && !sentActivity.recurrence.byday) {
+        sentActivity.recurrence.byday = req.user.profile.prefs.defaultWorkWeek;
     }
 
     var newActivity = new Activity(sentActivity);
@@ -338,7 +330,7 @@ function _saveNewActivity(activity, req, cb) {
                 }
 
                 if (user && user.email && user.profile.prefs.email.iCalInvites) {
-                    req.log.debug({start: reloadedActivity.mainEvent.start, end: reloadedActivity.mainEvent.end}, 'Saved New activity');
+                    req.log.debug({start: reloadedActivity.start, end: reloadedActivity.end}, 'Saved New activity');
                     var myIcalString = calendar.getIcalObject(reloadedActivity, user, 'new', i18n).toString();
                     email.sendCalInvite(user, 'new', myIcalString, reloadedActivity, i18n);
                 }
@@ -588,9 +580,9 @@ function deleteActivity(req, res, next) {
                         return activity.save(done);
                     } else if (deleteStatus === 'deletableOnlyFutureEvents') {
                         activity.status = 'old';
-                        if (activity.mainEvent.frequency !== 'once') {
-                            activity.mainEvent.recurrence.on = new Date();
-                            activity.mainEvent.recurrence.after = undefined;
+                        if (activity.frequency !== 'once') {
+                            activity.recurrence.on = new Date();
+                            activity.recurrence.after = undefined;
                             return activity.save(done);
                         } else {
                             return done(new Error('should never arrive here, it is not possible to have an "once" activity that has ' +
@@ -628,17 +620,6 @@ function putActivity(req, res, next) {
         return error.handleError(err, next);
     }
 
-    // check required Attributes, if we get a main event, at least from and to must be set
-    if (sentActivity.mainEvent) {
-        if (!sentActivity.mainEvent.start) {
-            return next(new error.MissingParameterError({ required: 'mainEvent.start' }));
-        }
-        if (!sentActivity.mainEvent.end) {
-            return next(new error.MissingParameterError({ required: 'mainEvent.end' }));
-        }
-    }
-
-
     Activity
         .findById(req.params.id)
         .populate('idea')
@@ -670,8 +651,20 @@ function putActivity(req, res, next) {
                 loadedActivity.save(done);
             }
 
+            function _eventsNeedUpdate (loadedAct, sentAct) {
+                if (!sentAct.start && !sentAct.end && !sentAct.frequency && !sentAct.recurrence) {
+                    // nothing relevant sent, so return false;
+                    return false;
+                }
+                // otherwise compare the relevant fields
+                return ((sentAct.start !== loadedAct.start) ||
+                    (sentAct.end !== loadedAct.end) ||
+                    (sentAct.frequency !== loadedAct.frequency) ||
+                    !_.isEqual(sentAct.recurrence, loadedAct.recurrence));
+            }
+
             function _deleteEventsInFuture(done) {
-                if (sentActivity.mainEvent && !_.isEqual(sentActivity.mainEvent, loadedActivity.mainEvent)) {
+                if (_eventsNeedUpdate(sentActivity, loadedActivity)) {
                     return _deleteActivityEvents(loadedActivity, null, new Date(), done);
                 } else {
                     return done();
@@ -698,7 +691,7 @@ function putActivity(req, res, next) {
 
 
             function _updateEventsForAllUsers(done) {
-                if (sentActivity.mainEvent && !_.isEqual(sentActivity.mainEvent, loadedActivity.mainEvent)) {
+                if (_eventsNeedUpdate(sentActivity, loadedActivity)) {
                     var users = [loadedActivity.owner].concat(loadedActivity.joiningUsers);
 
                     return async.forEach(users, function (user, cb) {

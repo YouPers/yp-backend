@@ -69,8 +69,8 @@ User.on('change:campaign', function (user) {
                                     return handleError(err);
                                 }
                                 var assessmentActivity = actMgr.defaultActivity(idea, user);
-                                assessmentActivity.mainEvent.start = new Date();
-                                assessmentActivity.mainEvent.end = moment(assessmentActivity.mainEvent.start).add(15, 'm').toDate();
+                                assessmentActivity.start = new Date();
+                                assessmentActivity.end = moment(assessmentActivity.start).add(15, 'm').toDate();
                                 assessmentActivity.save(function (err, savedActivity) {
                                     if (err) {
                                         return handleError(err);
@@ -128,7 +128,7 @@ ActivityEvent.on("change:status", function (event) {
 
 actMgr.getEvents = function getEvents(activity, ownerId, fromDate) {
 
-    var duration = moment(activity.mainEvent.end).diff(activity.mainEvent.start);
+    var duration = moment(activity.end).diff(activity.start);
 
     var occurrences = calendar.getOccurrences(activity, fromDate);
 
@@ -151,48 +151,50 @@ actMgr.getEvents = function getEvents(activity, ownerId, fromDate) {
 
 actMgr.defaultActivity = function (idea, user, campaignId) {
     var now = moment();
-    var mainEvent = {
-        "allDay": false
-    };
     var duration = idea.defaultduration ? idea.defaultduration : 60;
 
-    mainEvent.start = moment(now).add(1, 'd').startOf('hour').toDate();
-    mainEvent.end = moment(mainEvent.start).add(duration, 'm').toDate();
-    mainEvent.frequency = idea.defaultfrequency;
-    mainEvent.recurrence = {
-        "endby": {
-            "type": "after",
-            "after": 3
-        },
-        byday: user.profile.prefs && user.profile.prefs.defaultWorkWeek || undefined,
-        every: 1
-    };
 
     if (!campaignId && user.campaign) {
         campaignId = user.campaign._id || user.campaign;
     }
 
+    var start =  moment(now).add(1, 'd').startOf('hour').toDate();
+
     var activity = {
-        owner: user._id || user,
+        owner: user
+            .
+            _id || user,
         idea: idea,
         status: 'active',
-        mainEvent: mainEvent,
         executionType: idea.defaultexecutiontype,
         fields: idea.fields,
         topics: idea.topics,
         title: idea.title,
-        number: idea.number
+        number: idea.number,
+        start: start,
+        end: moment(start).add(duration, 'm').toDate(),
+        allDay: false,
+        frequency: idea.defaultfrequency,
+        recurrence: {
+            "endby": {
+                "type": "after",
+                "after": 3
+            },
+            byday: user.profile.prefs && user.profile.prefs.defaultWorkWeek || undefined,
+            every: 1
+        }
     };
+
 
     if (campaignId) {
         activity.campaign = campaignId;
     }
-    var activityModel = new Activity(activity);
+    var activityDoc = new Activity(activity);
 
     // repopulate idea
-    activityModel.idea = idea;
+    activityDoc.idea = idea;
 
-    return  activityModel;
+    return activityDoc;
 };
 
 

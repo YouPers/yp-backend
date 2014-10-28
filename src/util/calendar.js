@@ -89,20 +89,20 @@ var getIcalObject = function (activity, recipientUser, iCalType, i18n, reason) {
     // and our events are off by 1 or 2 hours. Possible reason: the formatting done by event.addProperty() formats
     // it as UTC. The Reason that the two following lines do not work is because the node-iCalender library simply does not
     // support this feature --> see node-icalendar/lib/types.js line 75
-    //event.addProperty('DTSTART',moment(activity.mainEvent.start).tz('Europe/Zurich').format(), {TZID: CET_TIMEZONE_ID} );
-    //event.addProperty('DTEND',moment(activity.mainEvent.end).tz('Europe/Zurich').format(), {TZID: CET_TIMEZONE_ID} );
+    //event.addProperty('DTSTART',moment(activity.start).tz('Europe/Zurich').format(), {TZID: CET_TIMEZONE_ID} );
+    //event.addProperty('DTEND',moment(activity.end).tz('Europe/Zurich').format(), {TZID: CET_TIMEZONE_ID} );
 
-    var fromDate = moment(activity.mainEvent.start).toDate();
-    var toDate = moment(activity.mainEvent.end).toDate();
+    var fromDate = moment(activity.start).toDate();
+    var toDate = moment(activity.end).toDate();
     fromDate.dateTimeMode = 'floating';
     toDate.dateTimeMode = 'floating';
     event.setDate(fromDate, toDate);
-    log.debug("generated ical with From: " + moment(activity.mainEvent.start).toDate());
-    log.debug("generated ical with To: " + moment(activity.mainEvent.end).toDate());
+    log.debug("generated ical with From: " + moment(activity.start).toDate());
+    log.debug("generated ical with To: " + moment(activity.end).toDate());
 
-    if (activity.mainEvent.recurrence && activity.mainEvent.frequency && activity.mainEvent.frequency !== 'once') {
+    if (activity.recurrence && activity.frequency && activity.frequency !== 'once') {
 
-        if (!frequencyMap[activity.mainEvent.frequency]) {
+        if (!frequencyMap[activity.frequency]) {
             throw new Error("unknown recurrence frequency");
         }
 
@@ -125,27 +125,27 @@ function _getRruleSpec(activity) {
         '6': 'SA'
     };
 
-    var rruleSpec = { FREQ: frequencyMap[activity.mainEvent.frequency] };
+    var rruleSpec = { FREQ: frequencyMap[activity.frequency] };
     if (rruleSpec.FREQ === 'DAILY') {
-        if (!activity.mainEvent.recurrence.byday) {
+        if (!activity.recurrence.byday) {
             throw new Error('for daily activities recurrence.byday must be defined.');
         }
-        rruleSpec.BYDAY = activity.mainEvent.recurrence.byday.join(',');
+        rruleSpec.BYDAY = activity.recurrence.byday.join(',');
 
         // Outlook Fix: Outlook really does not like it when the startDate is not part of the BYDAY rule.
         // it simply cannot parse the iCal file anymore
         // so if the DTSTART Date is on a day that is not part of the working-Days we add it specifically
         // for this event.
-        var dayOfWeek = weekdayMap['' + moment(activity.mainEvent.start).day()];
+        var dayOfWeek = weekdayMap['' + moment(activity.start).day()];
         if (!_.contains(rruleSpec.BYDAY, dayOfWeek)) {
             rruleSpec.BYDAY = rruleSpec.BYDAY + ',' + dayOfWeek;
         }
     }
 
-    if (activity.mainEvent.recurrence.endby.type === 'on') {
-        rruleSpec.UNTIL = activity.mainEvent.recurrence.endby.on;
-    } else if (activity.mainEvent.recurrence.endby.type === 'after') {
-        rruleSpec.COUNT = activity.mainEvent.recurrence.endby.after;
+    if (activity.recurrence.endby.type === 'on') {
+        rruleSpec.UNTIL = activity.recurrence.endby.on;
+    } else if (activity.recurrence.endby.type === 'after') {
+        rruleSpec.COUNT = activity.recurrence.endby.after;
     }
     return rruleSpec;
 }
@@ -172,12 +172,12 @@ function _getTimezone(activity) {
 
 function getOccurrences(activity, fromDate) {
 
-    fromDate = fromDate || moment(activity.mainEvent.start).subtract( 1, 'day').toDate();
+    fromDate = fromDate || moment(activity.start).subtract( 1, 'day').toDate();
 
-    if (activity.mainEvent.frequency === 'once') {
-        return [activity.mainEvent.start];
+    if (activity.frequency === 'once') {
+        return [activity.start];
     } else {
-        var rrule = new ical.RRule(_getRruleSpec(activity), moment(activity.mainEvent.start).toDate());
+        var rrule = new ical.RRule(_getRruleSpec(activity), moment(activity.start).toDate());
         return rrule.nextOccurences(fromDate, 100);
     }
 }

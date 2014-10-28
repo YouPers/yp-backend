@@ -24,7 +24,6 @@ var masterPlan = {
     "visibility": "public",
     "executionType": "group",
     "title": "myTitle",
-    "mainEvent": {
         "start": "2014-06-16T12:00:00.000Z",
         "end": "2014-06-16T13:00:00.000Z",
         "allDay": false,
@@ -36,7 +35,6 @@ var masterPlan = {
             },
             "every": 1,
             "exceptions": []
-        }
     },
     "status": "active"
 };

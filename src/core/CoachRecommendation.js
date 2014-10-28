@@ -36,6 +36,10 @@ mongoose.model('User').on('User:firstLoginToday', function(user) {
     if (!user || !user.profile || !user.profile._id) {
         throw new Error('user must be present and populated with poulated profile for this event listener');
     }
+    if (!user.campaign) {
+        // user does not have a campaign and therefore no topic --> nothing to generate.
+        return;
+    }
     var options = {
         topic: user.campaign.topic,
         rejectedIdeas: user.profile.prefs.rejectedIdeas,

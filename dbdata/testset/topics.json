@@ -4,74 +4,74 @@
             "$oid": "53b416cfa43aac62a2debda1"
         },
         "name": "Stress",
+        "picture": "/assets/img/topic/stress.jpg",
         "shortDescriptionI18n": {
             "de": "Stressmanagement",
             "en": "Stress Management"
         },
         "textI18n": {
-            "de": "Stressmanagement dient der Stärkung der Widerstandsfähigkeit und Selbstheilungskraft des Menschen, um bei inneren und äusseren Belastungen die Leistungsfähigkeit und Gesundheit zu erhalten.<br>Mehr Informationen findest du <a href='http://de.wikipedia.org/wiki/Stressmanagement' target='_blank'>hier</a>.",
+            "de": "Stressmanagement dient der St\u00e4rkung der Widerstandsf\u00e4higkeit und Selbstheilungskraft des Menschen, um bei inneren und \u00e4usseren Belastungen die Leistungsf\u00e4higkeit und Gesundheit zu erhalten.<br>Mehr Informationen findest du <a href='http://de.wikipedia.org/wiki/Stressmanagement' target='_blank'>hier</a>.",
             "en": "Stress management serves for strengthening the resilience and self-healing power of humans to maintain the performance and health in case of internal and external stress.<br>More information can be found  <a href='http://en.wikipedia.org/wiki/Stress_management' target='_blank'>here</a>"
-        },
-        "picture": "/assets/img/topic/stress.jpg"
+        }
     },
     {
         "_id": {
             "$oid": "53b416fba43aac62a2debda2"
         },
         "name": "Nutrition",
+        "picture": "/assets/img/topic/nutrition.jpg",
         "shortDescriptionI18n": {
             "de": "Gesunde Ern\u00e4hrung",
             "en": "Healthy Nutrition"
         },
         "textI18n": {
-            "de": "Gesunde Ernährung ist die optimale Ernährungsweise, die dem Organismus das gibt, was er braucht: eine Ernährungsweise, mit der man – wenn man krank ist – gesund wird und – wenn man gesund ist – dauerhaft gesund bleibt.<br>Mehr Informationen findest du bei <a href='http://www.sge-ssn.ch/de/ich-und-du' target='_blank'>SGE</a>.",
-            "en": "Healthy nutrition is the optimal diet that gives the body what it needs: a diet that allows you - if you are sick – to become healthy and - if you are healthy – to remain sustainably healthy.<br>More information can be found at <a href='http://www.sge-ssn.ch/de/ich-und-du' target='_blank'>SGE</a> "
-        },
-        "picture": "/assets/img/topic/nutrition.jpg"
+            "de": "Gesunde Ern\u00e4hrung ist die optimale Ern\u00e4hrungsweise, die dem Organismus das gibt, was er braucht: eine Ern\u00e4hrungsweise, mit der man \u2013 wenn man krank ist \u2013 gesund wird und \u2013 wenn man gesund ist \u2013 dauerhaft gesund bleibt.<br>Mehr Informationen findest du bei <a href='http://www.sge-ssn.ch/de/ich-und-du' target='_blank'>SGE</a>.",
+            "en": "Healthy nutrition is the optimal diet that gives the body what it needs: a diet that allows you - if you are sick \u2013 to become healthy and - if you are healthy \u2013 to remain sustainably healthy.<br>More information can be found at <a href='http://www.sge-ssn.ch/de/ich-und-du' target='_blank'>SGE</a> "
+        }
     },
     {
         "_id": {
             "$oid": "53b416fba43aac62a2debda3"
         },
         "name": "Fitness",
+        "picture": "/assets/img/topic/fitness.jpg",
         "shortDescriptionI18n": {
-            "de": "Körperliche Fitness",
+            "de": "K\u00f6rperliche Fitness",
             "en": "Physical Fitness"
         },
         "textI18n": {
-            "de": "Bewegung bei der Arbeit und im Alltag ist gesund und wirkt sich positiv auf die körperliche Fitness aus. Ausgeglichenheit, Stressresistenz, gemeinsame Erlebnisse mit Kollegen oder aktive Erholung in der Natur sind willkommene Effekte von regelmässiger Bewegung.<br>Mehr Informationen findest du bei <a href='http://www.hepa.ch' target='_blank'>hepa</a>.",
-            "en": "Healthy nutrition is the optimal diet that gives the body what it needs: a diet that allows you - if you are sick – to become healthy and - if you are healthy – to remain sustainably healthy.<br>More information can be found at <a href='http://www.hepa.ch' target='_blank'>hepa</a>"
-        },
-        "picture": "/assets/img/topic/fitness.jpg"
+            "de": "Bewegung bei der Arbeit und im Alltag ist gesund und wirkt sich positiv auf die k\u00f6rperliche Fitness aus. Ausgeglichenheit, Stressresistenz, gemeinsame Erlebnisse mit Kollegen oder aktive Erholung in der Natur sind willkommene Effekte von regelm\u00e4ssiger Bewegung.<br>Mehr Informationen findest du bei <a href='http://www.hepa.ch' target='_blank'>hepa</a>.",
+            "en": "Healthy nutrition is the optimal diet that gives the body what it needs: a diet that allows you - if you are sick \u2013 to become healthy and - if you are healthy \u2013 to remain sustainably healthy.<br>More information can be found at <a href='http://www.hepa.ch' target='_blank'>hepa</a>"
+        }
     },
     {
         "_id": {
             "$oid": "53b416fba43aac62a2debda4"
         },
         "name": "Ergonomics",
+        "picture": "/assets/img/topic/ergonomics.jpg",
         "shortDescriptionI18n": {
             "de": "Gesundes Arbeiten",
             "en": "Ergonomic Working"
         },
         "textI18n": {
-            "de": "Durch eine ergonomische Arbeitsplatzgestaltung wird gesundes Arbeiten der Arbeitnehmer gefördert und deren Arbeitsergebnisse positiv beeinflusst: sie sind motiviert, loyal, haben mehr Ideen, wollen und können mehr bewegen.<br>Mehr Informationen findest du bei <a href=' http://www.suva.ch/startseite-suva/service-suva/lernprogramme-suva/ergonomie-am-bildschirmarbeitsplatz-suva.htm' target='_blank'>suva</a>.",
+            "de": "Durch eine ergonomische Arbeitsplatzgestaltung wird gesundes Arbeiten der Arbeitnehmer gef\u00f6rdert und deren Arbeitsergebnisse positiv beeinflusst: sie sind motiviert, loyal, haben mehr Ideen, wollen und k\u00f6nnen mehr bewegen.<br>Mehr Informationen findest du bei <a href=' http://www.suva.ch/startseite-suva/service-suva/lernprogramme-suva/ergonomie-am-bildschirmarbeitsplatz-suva.htm' target='_blank'>suva</a>.",
             "en": "By ergonomic workplace design healthy work of employees is encouraged and their work results influenced positively: they are motivated, loyal, have more ideas, are willing and able to move more. <br>More information can be found at <a href=' http://www.suva.ch/startseite-suva/service-suva/lernprogramme-suva/ergonomie-am-bildschirmarbeitsplatz-suva.htm' target='_blank'>suva</a>."
-        },
-        "picture": "/assets/img/topic/ergonomics.jpg"
+        }
     },
     {
         "_id": {
             "$oid": "53b416fba43aac62a2debda5"
         },
         "name": "Safety",
+        "picture": "/assets/img/topic/safety.jpg",
         "shortDescriptionI18n": {
             "de": "Sicheres Arbeiten",
             "en": "Safety at work"
         },
         "textI18n": {
-            "de": "Sicheres Arbeiten soll den Arbeitnehmer vor Berufsunfällen schützen und ihn durch lebenswichtige Regeln, Arbeitsweisen und Präventionsmassnahmen vor lauernden Gefahren warnen.<br>Mehr Informationen findest du bei <a href='http://www.ekas.admin.ch/index-de.php?frameset=42' target='_blank'>EKAS</a> oder <a href='http://www.suva.ch/startseite-suva/praevention-suva.htm' target='_blank'>suva</a>.",
+            "de": "Sicheres Arbeiten soll den Arbeitnehmer vor Berufsunf\u00e4llen sch\u00fctzen und ihn durch lebenswichtige Regeln, Arbeitsweisen und Pr\u00e4ventionsmassnahmen vor lauernden Gefahren warnen.<br>Mehr Informationen findest du bei <a href='http://www.ekas.admin.ch/index-de.php?frameset=42' target='_blank'>EKAS</a> oder <a href='http://www.suva.ch/startseite-suva/praevention-suva.htm' target='_blank'>suva</a>.",
             "en": "Working safely serves to protect the employee against occupational accidents and warn him by essential rules, operational procedures and preventive measures against lurking dangers. More information can be found at <a href='http://www.ekas.admin.ch/index-de.php?frameset=42'>EKAS</a> or <a href='http://www.suva.ch/startseite-suva/praevention-suva.htm'>suva</a>."
-        },
-        "picture": "/assets/img/topic/safety.jpg"
+        }
     }
 ]

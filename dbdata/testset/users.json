@@ -5,6 +5,9 @@
             "$oid": "525fb247101e330000000005"
         },
         "avatar": "assets/img/RBLU.jpeg",
+        "created": {
+            "$date": 1407770509621
+        },
         "email": "reto@blunschi.ch",
         "emailValidatedFlag": true,
         "firstname": "Reto",
@@ -18,10 +21,7 @@
             "individual"
         ],
         "tempPasswordFlag": false,
-        "username": "reto",
-        "created": {
-            "$date": 1407770509621
-        }
+        "username": "reto"
     },
     {
         "__v": 0,
@@ -29,6 +29,9 @@
             "$oid": "525fb247101e330000000006"
         },
         "avatar": "assets/img/IRIG.jpeg",
+        "created": {
+            "$date": 1407770509621
+        },
         "email": "ivan@rigamonti.me",
         "emailValidatedFlag": true,
         "firstname": "Ivan",
@@ -42,10 +45,7 @@
             "individual"
         ],
         "tempPasswordFlag": false,
-        "username": "ivan777",
-        "created": {
-            "$date": 1407770509621
-        }
+        "username": "ivan777"
     },
     {
         "__v": 0,
@@ -53,6 +53,9 @@
             "$oid": "525fb247101e330000000007"
         },
         "avatar": "assets/img/UBAU.jpeg",
+        "created": {
+            "$date": 1407770509621
+        },
         "email": "urs@baumeler.com",
         "emailValidatedFlag": true,
         "firstname": "Urs",
@@ -66,10 +69,7 @@
             "individual"
         ],
         "tempPasswordFlag": false,
-        "username": "urs",
-        "created": {
-            "$date": 1407770509621
-        }
+        "username": "urs"
     },
     {
         "__v": 0,
@@ -77,6 +77,9 @@
             "$oid": "525fb247101e330000000008"
         },
         "avatar": "assets/img/SMUE.jpeg",
+        "created": {
+            "$date": 1407770509621
+        },
         "email": "stefan.mueller@romus.ch",
         "emailValidatedFlag": true,
         "firstname": "Stefan",
@@ -90,10 +93,7 @@
             "productadmin"
         ],
         "tempPasswordFlag": false,
-        "username": "stefan",
-        "created": {
-            "$date": 1407770509621
-        }
+        "username": "stefan"
     },
     {
         "__v": 0,
@@ -101,6 +101,9 @@
             "$oid": "525fb247101e3300000010ee"
         },
         "avatar": "assets/img/KTLU.jpeg",
+        "created": {
+            "$date": 1407770509621
+        },
         "email": "webmaster@youpers.com",
         "emailValidatedFlag": true,
         "firstname": "System",
@@ -114,10 +117,7 @@
             "systemadmin"
         ],
         "tempPasswordFlag": false,
-        "username": "sysadm",
-        "created": {
-            "$date": 1407770509621
-        }
+        "username": "sysadm"
     },
     {
         "__v": 0,
@@ -125,6 +125,9 @@
             "$oid": "528b227bf70daafada000006"
         },
         "avatar": "assets/img/KTLU.jpeg",
+        "created": {
+            "$date": 1407770509621
+        },
         "email": "martin.degen@lu.ch",
         "emailValidatedFlag": true,
         "firstname": "Martin",
@@ -138,10 +141,7 @@
             "productadmin"
         ],
         "tempPasswordFlag": false,
-        "username": "martin",
-        "created": {
-            "$date": 1407770509621
-        }
+        "username": "martin"
     },
     {
         "__v": 1,
@@ -153,7 +153,7 @@
             "$oid": "527916a82079aa8704000007"
         },
         "created": {
-            "$date": 1407770582291
+            "$date": 1407770509621
         },
         "email": "ypunittest1+individual1@gmail.com",
         "emailValidatedFlag": true,
@@ -173,10 +173,7 @@
         "updated": {
             "$date": 1407770582291
         },
-        "username": "test_ind1",
-        "created": {
-            "$date": 1407770509621
-        }
+        "username": "test_ind1"
     },
     {
         "__v": 0,
@@ -184,6 +181,9 @@
             "$oid": "52a97f1650fca98c29000007"
         },
         "avatar": "/assets/img/default_avatar_man.svg",
+        "created": {
+            "$date": 1407770509621
+        },
         "email": "ypunittest1+individual2@gmail.com",
         "emailValidatedFlag": true,
         "firstname": "Test",
@@ -197,10 +197,7 @@
             "individual"
         ],
         "tempPasswordFlag": false,
-        "username": "test_ind2",
-        "created": {
-            "$date": 1407770509621
-        }
+        "username": "test_ind2"
     },
     {
         "__v": 0,
@@ -208,6 +205,9 @@
             "$oid": "52a97f1650fca98c29000008"
         },
         "avatar": "/assets/img/default_avatar_man.svg",
+        "created": {
+            "$date": 1407770509621
+        },
         "email": "ypunittest1+productadmin@gmail.com",
         "emailValidatedFlag": true,
         "firstname": "Test",
@@ -222,10 +222,7 @@
             "productadmin"
         ],
         "tempPasswordFlag": false,
-        "username": "test_prodadm",
-        "created": {
-            "$date": 1407770509621
-        }
+        "username": "test_prodadm"
     },
     {
         "__v": 0,
@@ -233,6 +230,9 @@
             "$oid": "52a97f1650fca98c29000009"
         },
         "avatar": "/assets/img/default_avatar_woman.svg",
+        "created": {
+            "$date": 1407770509621
+        },
         "email": "ypunittest1+systemadmin@gmail.com",
         "emailValidatedFlag": true,
         "firstname": "Test",
@@ -246,10 +246,7 @@
             "systemadmin"
         ],
         "tempPasswordFlag": false,
-        "username": "test_sysadm",
-        "created": {
-            "$date": 1407770509621
-        }
+        "username": "test_sysadm"
     },
     {
         "__v": 0,
@@ -259,6 +256,9 @@
         "avatar": "/assets/img/default_avatar_man.svg",
         "campaign": {
             "$oid": "527916a82079aa8704000006"
+        },
+        "created": {
+            "$date": 1407770509621
         },
         "email": "ypunittest1+orgadmin@gmail.com",
         "emailValidatedFlag": true,
@@ -275,10 +275,7 @@
             "individual"
         ],
         "tempPasswordFlag": false,
-        "username": "test_orgadm",
-        "created": {
-            "$date": 1407770509621
-        }
+        "username": "test_orgadm"
     },
     {
         "__v": 0,
@@ -288,6 +285,9 @@
         "avatar": "/assets/img/default_avatar_woman.svg",
         "campaign": {
             "$oid": "527916a82079aa8704000006"
+        },
+        "created": {
+            "$date": 1407770509621
         },
         "email": "ypunittest1+campaignlead@gmail.com",
         "emailValidatedFlag": true,
@@ -303,10 +303,7 @@
             "individual"
         ],
         "tempPasswordFlag": false,
-        "username": "test_campaignlead",
-        "created": {
-            "$date": 1407770509621
-        }
+        "username": "test_campaignlead"
     },
     {
         "__v": 0,
@@ -316,6 +313,9 @@
         "avatar": "/assets/img/default_avatar_woman.svg",
         "campaign": {
             "$oid": "527916a82079aa8704000007"
+        },
+        "created": {
+            "$date": 1407770509621
         },
         "email": "ypunittest1+campaignlead2@gmail.com",
         "emailValidatedFlag": true,
@@ -331,10 +331,7 @@
             "individual"
         ],
         "tempPasswordFlag": false,
-        "username": "test_campaignlead2",
-        "created": {
-            "$date": 1407770509621
-        }
+        "username": "test_campaignlead2"
     },
     {
         "__v": 0,
@@ -342,6 +339,9 @@
             "$oid": "52a97f1650fca98c29000055"
         },
         "avatar": "/assets/img/default_avatar_woman.svg",
+        "created": {
+            "$date": 1407770509621
+        },
         "email": "ypunittest1+individual3@gmail.com",
         "emailValidatedFlag": true,
         "firstname": "Test",
@@ -355,10 +355,7 @@
             "individual"
         ],
         "tempPasswordFlag": false,
-        "username": "test_ind3",
-        "created": {
-            "$date": 1407770509621
-        }
+        "username": "test_ind3"
     },
     {
         "__v": 0,
@@ -366,6 +363,9 @@
             "$oid": "52d4f515fac246174c000006"
         },
         "avatar": "/assets/img/default_avatar_man.svg",
+        "created": {
+            "$date": 1407770509621
+        },
         "email": "helmut.kneer@youpers.com",
         "emailValidatedFlag": true,
         "firstname": "Helmut",
@@ -379,10 +379,7 @@
             "productadmin"
         ],
         "tempPasswordFlag": false,
-        "username": "helmut",
-        "created": {
-            "$date": 1407770509621
-        }
+        "username": "helmut"
     },
     {
         "__v": 0,
@@ -390,6 +387,9 @@
             "$oid": "53348c27996c80a534319bda"
         },
         "avatar": "/assets/img/avatar_coach_blue.svg",
+        "created": {
+            "$date": 1407770509621
+        },
         "email": "healthcoach@youpers.com",
         "emailValidatedFlag": true,
         "firstname": "Youpers",
@@ -403,9 +403,6 @@
             "individual"
         ],
         "tempPasswordFlag": false,
-        "username": "yphealthcoach",
-        "created": {
-            "$date": 1407770509621
-        }
+        "username": "yphealthcoach"
     }
 ]

@@ -27,40 +27,40 @@ var workbook = xlsx.readFile(process.argv[2]);
 
 
 var assessments = {
-    'Gesunde Ernährung': {
-
-//        id: '525faf0ac558d40000000006',
-        nameI18n: {
-            de: 'Beurteile Deinen Ernährung'
-        },
-        topic: '53b416fba43aac62a2debda2',
-        questions: []
-    },
-    'Körperliche Fitness': {
-
-        nameI18n: {
-            de: 'Beurteile Deine Fitness'
-        },
-        topic: '53b416fba43aac62a2debda3',
-        questions: []
-    }
-//    ,
-//    'Gesundes Arbeiten': {
+//    'Gesunde Ernährung': {
 //
+////        id: '525faf0ac558d40000000006',
 //        nameI18n: {
-//            de: 'Beurteile Deine Gesundheit bei der Arbeit'
+//            de: 'Beurteile Deinen Ernährung'
 //        },
-//        topic: '53b416fba43aac62a2debda4',
+//        topic: '53b416fba43aac62a2debda2',
 //        questions: []
 //    },
-//    'Sicheres Arbeiten': {
+//    'Körperliche Fitness': {
 //
 //        nameI18n: {
-//            de: 'Beurteile Deine Sicherheit bei der Arbeit'
+//            de: 'Beurteile Deine Fitness'
 //        },
-//        topic: '53b416fba43aac62a2debda5',
+//        topic: '53b416fba43aac62a2debda3',
 //        questions: []
 //    }
+//    ,
+    'Gesundes Arbeiten': {
+
+        nameI18n: {
+            de: 'Beurteile Deine Gesundheit bei der Arbeit'
+        },
+        topic: '53b416fba43aac62a2debda4',
+        questions: []
+    },
+    'Sicheres Arbeiten': {
+
+        nameI18n: {
+            de: 'Beurteile Deine Sicherheit bei der Arbeit'
+        },
+        topic: '53b416fba43aac62a2debda5',
+        questions: []
+    }
 };
 
 

@@ -98,10 +98,10 @@ var sendCampaignLeadInvite = function sendCampaignLeadInvite(email, invitingUser
     emailSender.sendEmail(fromDefault, email, subject, 'campaignLeadInviteMail', locals);
 };
 
-var sendCampaignParticipantInvite = function sendCampaignParticipantInvite(email, subject, text, invitingUser, campaign, i18n) {
+var sendCampaignParticipantInvite = function sendCampaignParticipantInvite(email, subject, text, invitingUser, campaign, testOnly, i18n) {
 
     var locals = {
-        link: urlComposer.campaignWelcomeUrl(campaign._id),
+        link: testOnly ? '' : urlComposer.campaignWelcomeUrl(campaign._id),
         salutation: i18n.t('email:CampaignLeadInvite.salutationAnonymous',  {firstname: ''}),
         text: text,
         image: urlComposer.campaignImageUrl(campaign.topic.picture),

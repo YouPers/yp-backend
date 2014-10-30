@@ -174,7 +174,7 @@ function getOccurrences(event, fromDate) {
 
     fromDate = fromDate || moment(event.start).subtract( 1, 'day').toDate();
 
-    if (event.frequency === 'once') {
+    if (!event.frequency || (event.frequency === 'once')) {
         return [event.start];
     } else {
         var rrule = new ical.RRule(_getRruleSpec(event), moment(event.start).toDate());

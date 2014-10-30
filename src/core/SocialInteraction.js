@@ -392,6 +392,7 @@ SocialInteraction.populateSocialInteraction = function (socialInteraction, campa
         async.each(socialInteraction.refDocs, function (refDoc, done) {
             var model = mongoose.model(refDoc.model);
             var q = model.findById(refDoc.docId).populate('idea', mongoose.model('Idea').getI18nPropertySelector(locale));
+            q.populate('owner');
 
             if (model.getI18nPropertySelector) {
                 q.select(model.getI18nPropertySelector(locale));

@@ -507,7 +507,7 @@ function _deleteActivityEvents(activity, joiner, fromDate, done) {
         .remove({activity: activity._id});
 
     if (fromDate) {
-        q.where({start: {$gte: fromDate}});
+        q.where({end: {$gte: fromDate}});
     }
 
     if (joiner) {
@@ -661,7 +661,7 @@ function putActivity(req, res, next) {
 
             function _eventsNeedUpdate (loadedAct, sentAct) {
                 if (!sentAct.start && !sentAct.end && !sentAct.frequency && !sentAct.recurrence) {
-                    // nothing relevant sent, so return false;
+                    // nothing relevant for the events sent, so return false;
                     return false;
                 }
                 // otherwise compare the relevant fields

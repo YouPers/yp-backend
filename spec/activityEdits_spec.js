@@ -34,17 +34,17 @@ var activity = {
     "visibility": "private",
     "executionType": "self",
     "title": "myTitle",
-        "start": initialDateStart,
-        "end": initialDateEnd,
-        "allDay": false,
-        "frequency": intialFrequency,
-        "recurrence": {
-            "endby": {
-                "type": "after",
-                "after": 6
-            },
-            "every": 1,
-            "exceptions": []
+    "start": initialDateStart,
+    "end": initialDateEnd,
+    "allDay": false,
+    "frequency": intialFrequency,
+    "recurrence": {
+        "endby": {
+            "type": "after",
+            "after": 6
+        },
+        "every": 1,
+        "exceptions": []
     },
     "status": "active"
 };
@@ -82,11 +82,11 @@ frisby.create('ActivityEdits: create a single activity with a single event')
                         expect(activityPutAnswer2.deleteStatus).toEqual('deletable');
 
                         frisby.create('AcitvityPlanEdits: get Events and check them')
-                            .get(BASE_URL + '/activityevents?filter[activity]='+activityPutAnswer.id)
+                            .get(BASE_URL + '/activityevents?filter[activity]=' + activityPutAnswer.id)
                             .auth('test_ind1', 'yp')
                             .expectStatus(200)
                             .expectJSONLength(6)
-                            .after(function() {
+                            .after(function () {
 
                                 // delete activity
                                 frisby.create('Activity Edits: delete activity')
@@ -146,7 +146,7 @@ frisby.create('ActivityEdits: create a single activity with a single event to be
         expect(activityPostAnswer.editStatus).toEqual('editable');
 
         frisby.create('ActivityEdits: post a join')
-            .post(URL + '/'+activityPostAnswer.id +'/join')
+            .post(URL + '/' + activityPostAnswer.id + '/join')
             .auth('test_ind2', 'yp')
             .expectStatus(201)
             .afterJSON(function (slavePlanPostAnswer) {
@@ -284,5 +284,62 @@ frisby.create('ActivityEdits: create a weekly activity with 3 events passed')
 
             })
             .toss();
+    })
+    .toss();
+
+
+var activityNow = _.clone(activity);
+activityNow.start = moment().subtract(1, 'hour').toString();
+activityNow.end = moment().add(1, 'hour').toString();
+
+frisby.create('ActivityEdits: Right Now, create a single activity with a single event happening')
+    .post(URL, activityNow)
+    .auth('test_ind1', 'yp')
+    .expectStatus(201)
+    .afterJSON(function (activityPostAnswer) {
+        expect(activityPostAnswer.editStatus).toEqual('editable');
+
+        frisby.create('AcitvityPlanEdits: Right Now,get Events and check them')
+            .get(BASE_URL + '/activityevents?filter[activity]=' + activityPostAnswer.id)
+            .auth('test_ind1', 'yp')
+            .expectStatus(200)
+            .expectJSONLength(1)
+            .afterJSON(function (events) {
+                expect(moment(events[0].start).toString()).toEqual(activityNow.start);
+
+                activityPostAnswer.start = moment().subtract(3, 'hours').toString();
+                activityPostAnswer.end = moment().subtract(2, 'hours').toString();
+
+                frisby.create('ActivityEdits: Right Now, update activity with modified past time')
+                    .put(URL + '/' + activityPostAnswer.id, activityPostAnswer)
+                    .auth('test_ind1', 'yp')
+                    .expectStatus(200)
+                    .afterJSON(function (activityPutAnswer) {
+                        expect(moment(activityPutAnswer.start).toString()).toEqual(activityPostAnswer.start);
+
+                        frisby.create('AcitvityPlanEdits: Right Now, get Events after Edit and check them')
+                            .get(BASE_URL + '/activityevents?filter[activity]=' + activityPostAnswer.id)
+                            .auth('test_ind1', 'yp')
+                            .expectStatus(200)
+                            .expectJSONLength(1)
+                            .afterJSON(function (events) {
+                                expect(events[0].start).toEqual(activityPutAnswer.start);
+                                // cleanup joined activity
+                                frisby.create('Activity Edits: cleanup updatedPlan, id: ' + activityPostAnswer.id)
+                                    .delete(URL + '/' + activityPostAnswer.id)
+                                    .auth('sysadm', 'backtothefuture')
+                                    .expectStatus(200)
+                                    .toss();
+
+
+                            })
+                            .toss();
+                    })
+                    .toss();
+
+
+            })
+            .toss();
+
     })
     .toss();

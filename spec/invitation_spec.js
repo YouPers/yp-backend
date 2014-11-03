@@ -89,7 +89,7 @@ consts.newUserInNewCampaignApi(
                                                 expect(result.joiningUsers).toEqual(1);
 
                                                 frisby.create('Invitation: get lookahead counters with timestamp, should contain no new joining user')
-                                                    .get(URL + '/activities/' + joinedPlan.id + '/lookAheadCounters' + '?since=' + moment().toString())
+                                                    .get(URL + '/activities/' + joinedPlan.id + '/lookAheadCounters' + '?since=' + moment().toISOString())
                                                     .auth('test_ind1', 'yp')
                                                     .expectStatus(200)
                                                     .afterJSON(function (result) {

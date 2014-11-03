@@ -622,6 +622,26 @@ SocialInteraction.getAllForUser = function (user, model, options, cb) {
                         { refDocs: { $elemMatch: { docId: { $nin: rejectedIdeas } } } } // or not rejected
                     ]});
                 }
+
+                // filter out invitations the user already participates in
+                dbQuery.and({
+
+                    $or: [
+                        {
+                            __t: { $ne: 'Invitation' }
+                        },
+                        {
+                            refDocs: {
+                                $elemMatch: {
+                                    docId: {
+                                        $nin: locals.activityIds
+                                    }
+                                }
+                            }
+                        }
+                    ]
+                });
+
                 if (!options.authored) {
                     dbQuery.and({ author: { $ne: user._id } });
                 }

@@ -81,6 +81,24 @@ consts.newUserInNewCampaignApi(
                                     .expectStatus(201)
                                     .afterJSON(function (joinedPlan) {
 
+                                        frisby.create('Invitation: get lookahead counters, should contain 1 new joining user')
+                                            .get(URL + '/activities/' + joinedPlan.id + '/lookAheadCounters')
+                                            .auth('test_ind1', 'yp')
+                                            .expectStatus(200)
+                                            .afterJSON(function (result) {
+                                                expect(result.joiningUsers).toEqual(1);
+
+                                                frisby.create('Invitation: get lookahead counters with timestamp, should contain no new joining user')
+                                                    .get(URL + '/activities/' + joinedPlan.id + '/lookAheadCounters' + '?since=' + moment().toString())
+                                                    .auth('test_ind1', 'yp')
+                                                    .expectStatus(200)
+                                                    .afterJSON(function (result) {
+                                                        expect(result.joiningUsers).toEqual(0);
+                                                    })
+                                                    .toss();
+                                            })
+                                            .toss();
+
                                         frisby.create('Invitation: get inbox, will be empty again')
                                             .get(URL + '/socialInteractions')
                                             .auth(user.username, 'yp')

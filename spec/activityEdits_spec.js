@@ -1,11 +1,3 @@
-/**
- * Created with IntelliJ IDEA.
- * User: retoblunschi
- * Date: 28.01.14
- * Time: 14:15
- * To change this template use File | Settings | File Templates.
- */
-
 var frisby = require('frisby');
 var port = process.env.PORT || 8000;
 var BASE_URL = 'http://localhost:' + port;

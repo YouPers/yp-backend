@@ -31,7 +31,7 @@
         "passwordResetUrl": "/#/password_reset/"
     },
     "email": {
-        "fromString": "YOUPERS Coach <dontreply@youpers.com>",
+        "fromString": "YOUPERS <dontreply@youpers.com>",
         "templatesDir": "src/util/emailtemplates"
     },
     "accessTokenSecret": "knfad*ç%&/(&/sdkjfnaklsdnfASDFAS2341",

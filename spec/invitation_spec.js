@@ -93,9 +93,16 @@ consts.newUserInNewCampaignApi(
                                                     .auth(user.username, 'yp')
                                                     .expectStatus(200)
                                                     .afterJSON(function (socialInteractions) {
-                                                        expect(socialInteractions.length).toEqual(1);
-                                                        expect(socialInteractions[0].dismissed).toBeTruthy();
-                                                        expect(socialInteractions[0].dismissalReason).toEqual('activityJoined');
+
+
+                                                        // Invitations for activities the user already participates are NOT returned anymore
+                                                        // see WL-1218
+                                                        expect(socialInteractions.length).toEqual(0);
+
+
+
+//                                                        expect(socialInteractions[0].dismissed).toBeTruthy();
+//                                                        expect(socialInteractions[0].dismissalReason).toEqual('activityJoined');
 
                                                         frisby.create("Invitation: delete the activity")
                                                             .delete(URL + '/activities/' + newPlan.id)

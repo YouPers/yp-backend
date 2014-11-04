@@ -54,8 +54,8 @@
             "en": "Ergonomics"
         },
         "textI18n": {
-            "de": "Durch eine ergonomische Arbeitsplatzgestaltung und optimale Arbeitsbedingungen wird gesundes Arbeiten der Arbeitnehmer gefördert und deren Arbeitsergebnisse positiv beeinflusst: sie sind motiviert, loyal, haben mehr Ideen, wollen und können mehr bewegen.<br>Mehr Informationen findest du bei suva <a href=' http://www.suva.ch/startseite-suva/service-suva/lernprogramme-suva/ergonomie-am-bildschirmarbeitsplatz-suva.htm' target='_blank'>suva</a>.",
-            "en": "With an ergonomic workplace design and optimal working conditions, healthy work of employees is encouraged and their work results influenced positively: they are motivated, loyal, have more ideas, are willing and able to move more.<br>More information can be found at <a href=' http://www.suva.ch/startseite-suva/service-suva/lernprogramme-suva/ergonomie-am-bildschirmarbeitsplatz-suva.htm' target='_blank'>suva</a>."
+            "de": "Durch eine ergonomische Arbeitsplatzgestaltung und optimale Arbeitsbedingungen wird gesundes Arbeiten der Arbeitnehmer gefördert und deren Arbeitsergebnisse positiv beeinflusst: sie sind motiviert, loyal, haben mehr Ideen, wollen und können mehr bewegen.<br>Mehr Informationen findest du bei <a href='http://de.wikipedia.org/wiki/Ergonomie' target='_blank'>hier</a>.",
+            "en": "With an ergonomic workplace design and optimal working conditions, healthy work of employees is encouraged and their work results influenced positively: they are motivated, loyal, have more ideas, are willing and able to move more.<br>More information can be found <a href='http://en.wikipedia.org/wiki/Human_factors_and_ergonomics' target='_blank'>here</a>."
         },
         "picture": "/assets/img/topic/ergonomics.jpg"
     },

@@ -276,7 +276,7 @@ var profileUpdate = {
             "iCalInvites": false
         },
         "rejectedIdeas": [],
-        "rejectedEvents": [],
+        "rejectedActivities": [],
         "starredIdeas": []
     }
 };
@@ -328,7 +328,7 @@ frisby.create('Event: update user profile preferences to workdays only MO-WE and
                             "iCalInvites": false
                         },
                         "rejectedIdeas": [],
-                        "rejectedEvents": [],
+                        "rejectedActivities": [],
                         "starredIdeas": []
                     }
                 };

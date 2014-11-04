@@ -464,7 +464,7 @@ SocialInteraction.populateSocialInteraction = function (socialInteraction, campa
             mongoose.model('Event')
                 .findById(socialInteraction.event)
                 .populate('owner')
-                .exec(function (err, activity) {
+                .exec(function (err, event) {
                     if (err) {
                         return donePopulating(err);
                     }
@@ -481,7 +481,7 @@ SocialInteraction.populateSocialInteraction = function (socialInteraction, campa
     if (_.contains(attrToPopulate, 'idea')) {
         ops.push(_populateIdea);
     }
-    if (_.contains(attrToPopulate, 'activity')) {
+    if (_.contains(attrToPopulate, 'event')) {
         ops.push(_populateEvent);
     }
     if (_.contains(attrToPopulate, 'refDocs')) {

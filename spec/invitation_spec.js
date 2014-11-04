@@ -110,9 +110,6 @@ consts.newUserInNewCampaignApi(
                                                     .auth(user.username, 'yp')
                                                     .expectStatus(200)
                                                     .afterJSON(function (socialInteractions) {
-                                                        expect(socialInteractions.length).toEqual(1);
-                                                        expect(socialInteractions[0].dismissed).toBeTruthy();
-                                                        expect(socialInteractions[0].dismissalReason).toEqual('eventJoined');
 
 
                                                         // Invitations for activities the user already participates are NOT returned anymore

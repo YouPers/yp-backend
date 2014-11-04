@@ -65,7 +65,7 @@ module.exports = function (swagger) {
             ],
             "responseClass": "EventLookAheadCounterResult",
             method: "GET",
-            "nickname": "getActivityLookAheadCounters",
+            "nickname": "getEventLookAheadCounters",
             accessLevel: 'al_individual',
             beforeCallbacks: []
         },

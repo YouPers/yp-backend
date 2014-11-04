@@ -82,7 +82,7 @@ function getEventLookAheadCounters(req, res, next) {
                 };
             }
 
-            // all new activityJoined
+            // all new eventJoined
             SocialInteractionDismissedModel.count(finder).exec(function (err, count) {
                 if (err) {
                     return done(err);

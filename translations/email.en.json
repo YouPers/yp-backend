@@ -20,11 +20,11 @@
     },
     "CampaignLeadInvite": {
         "subject": "YOUPERS: Invitation to become Campaign Lead from __inviting.fullname__",
+        "welcomeHeader": "Welcome als campaign leader",
         "salutation": "Hello __invited.firstname__!",
         "salutationAnonymous": "",
-        "text": "<b>__inviting.fullname__</b> has invited you to become campaign lead for the campaign <b>__campaign.title__</b>  <br/> __campaign.participants__  <br/> __campaign.organization.name__ <br><br>To accept this invitation please click on this link:<br>",
-        "header": "Is this email not displayed correctly?",
-        "footer": "YOUPERS - Drive Your Health"
+        "text": "__inviting.fullname__ has invited you to become campaign lead for the YOUPERS __campaign.title__ HealthCampaign",
+        "linkText": "Show invitation"
     },
     "OrganizationAdminInvite": {
         "subject": "YOUPERS: Invitation to become Organization Administrator from __inviting.fullname__",

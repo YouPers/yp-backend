@@ -63,7 +63,6 @@ var sendActivityInvite = function sendActivityInvite(email, invitingUser, activi
     var localMoment = function localMoment(date) {
         return moment(date).lang(i18n.lng()).tz('Europe/Zurich');
     };
-
     var frequency = activity.frequency;
     var weekday = localMoment(activity.start).format("dddd") + (frequency === 'week' ? 's' : '');
     var date = localMoment(activity.start).format("D.M.") +
@@ -94,20 +93,28 @@ var sendActivityInvite = function sendActivityInvite(email, invitingUser, activi
 
 var sendCampaignLeadInvite = function sendCampaignLeadInvite(email, invitingUser, campaign, invitedUser, i18n) {
 
+    var localMoment = function localMoment(date) {
+        return moment(date).lang(i18n.lng()).tz('Europe/Zurich');
+    };
     var subject = i18n.t("email:CampaignLeadInvite.subject", {inviting:  invitingUser.toJSON(), campaign: campaign.toJSON()});
     var token = emailSender.encryptLinkToken(campaign._id +linkTokenSeparator + email +  (invitedUser ? linkTokenSeparator + invitedUser._id : ''));
+
+    var duration = localMoment(campaign.start).format('D.M.YYYY') + ' - ' + localMoment(campaign.end).format('D.M.YYYY');
+
     var locals = {
         link: urlComposer.campaignLeadInviteUrl(campaign._id, invitingUser._id, token),
+        linkText: i18n.t('email:CampaignLeadInvite.linkText'),
+        welcomeHeader: i18n.t('email:CampaignLeadInvite.welcomeHeader'),
         salutation: i18n.t('email:CampaignLeadInvite.salutation' + invitedUser ? '': 'Anonymous', {invited: invitedUser ? invitedUser.toJSON() : {firstname: ''}}),
         text: i18n.t('email:CampaignLeadInvite.text', {
             inviting: invitingUser.toJSON(),
             campaign: campaign.toJSON()
         }),
-        image: urlComposer.campaignImageUrl(campaign.topic.picture),
-        header: i18n.t('email:CampaignLeadInvite.header'),
-        footer: i18n.t('email:CampaignLeadInvite.footer'),
-        logo: urlComposer.mailFooterImageUrl()
+        campaign: campaign,
+        duration: duration,
+        image: urlComposer.campaignImageUrl(campaign.topic.picture)
     };
+    _.extend(locals, defaultLocals(i18n));
     emailSender.sendEmail(fromDefault, email, subject, 'campaignLeadInviteMail', locals);
 };
 

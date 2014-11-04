@@ -175,5 +175,5 @@ module.exports = {
     postIdea: postIdea,
     putIdea: putIdea,
     getAllIdeas: getAllIdeas,
-    getDefaultActivity: getDefaultActivity
+    getDefaultEvent: getDefaultEvent
 };

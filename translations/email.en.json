@@ -15,9 +15,8 @@
         "subject": "YOUPERS: Invitation to join activity from __inviting.fullname__",
         "salutation": "Hello __invited.firstname__!",
         "salutationAnonymous": "",
-        "text": "<b>__inviting.fullname__</b> has invited you the participate in the following activity</p>",
-        "header": "Is this email not displayed correctly?",
-        "footer": "YOUPERS - Drive Your Health"
+        "text": "__inviting.fullname__ has invited you to participate in a group activity",
+        "linkText": "Show invitation"
     },
     "CampaignLeadInvite": {
         "subject": "YOUPERS: Invitation to become Campaign Lead from __inviting.fullname__",

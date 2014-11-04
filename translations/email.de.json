@@ -12,11 +12,10 @@
 
     "ActivityInvitation": {
         "subject": "YOUPERS: Einladung für eine Gruppen-Aktivität vom __inviting.fullname__",
-        "salutation": "Hallo <strong>__invited.firstname__!</strong>",
+        "salutation": "Hallo __invited.firstname__!",
         "salutationAnonymous": "",
-        "text": "<strong>__inviting.fullname__</strong></string> lädt dich zu dieser Aktivität ein",
-        "header": "Wird diese Email nicht richtig angezeigt?",
-        "footer": "YOUPERS - Drive Your Health"
+        "text": "__inviting.fullname__ hat dich zu einer Aktivität eingeladen.",
+        "linkText": "Einladung anzeigen"
     },
     "CampaignLeadInvite": {
         "subject": "YOUPERS: Einladung zum Kampagnen-Leiter von __inviting.fullname__",

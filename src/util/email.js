@@ -1,9 +1,20 @@
 var config = require('../config/config'),
     moment = require('moment-timezone'),
     urlComposer = require('./urlcomposer'),
+    _ = require('lodash'),
     fromDefault = config.email.fromString,
     linkTokenSeparator = config.linkTokenEncryption.separator,
     emailSender = require('ypbackendlib').emailSender(config, process.cwd() + '/' + config.email.templatesDir);
+
+var defaultLocals = function (i18n) {
+    return {
+        header: i18n.t('email:default.header'),
+        notDisplayedCorrectly: i18n.t('email:default.notDisplayedCorrectly'),
+        notDisplayedCorrectlyLink: i18n.t('email:default.notDisplayedCorrectlyLink'),
+        imgServer: config.webclientUrl,
+        logo: config.webclientUrl + '/assets/img/logo.png'
+    };
+};
 
 var sendCalInvite = function (toUser, type, iCalString, activity, i18n, reason) {
     // default method is request
@@ -101,15 +112,19 @@ var sendCampaignLeadInvite = function sendCampaignLeadInvite(email, invitingUser
 var sendCampaignParticipantInvite = function sendCampaignParticipantInvite(email, subject, text, invitingUser, campaign, testOnly, i18n) {
 
     var locals = {
-        link: testOnly ? '' : urlComposer.campaignWelcomeUrl(campaign._id),
-        salutation: i18n.t('email:CampaignLeadInvite.salutationAnonymous',  {firstname: ''}),
-        text: text,
+        campaign: campaign,
+
+        salutation: i18n.t('email:CampaignParticipantInvite.salutation', { campaign: campaign.toJSON() }),
+        text: i18n.t('email:CampaignParticipantInvite.text', { campaign: campaign.toJSON() }),
         image: urlComposer.campaignImageUrl(campaign.topic.picture),
-        header: i18n.t('email:CampaignLeadInvite.header'),
-        footer: i18n.t('email:CampaignLeadInvite.footer'),
-        logo: urlComposer.mailFooterImageUrl()
+        link: testOnly ? '' : urlComposer.campaignWelcomeUrl(campaign._id),
+        linkText: i18n.t('email:CampaignParticipantInvite.linkText'),
+
+        campaignLeadsHeader: i18n.t('email:CampaignParticipantInvite.campaignLeadsHeader')
+
     };
-    emailSender.sendEmail(fromDefault, email, subject, 'campaignLeadInviteMail', locals);
+    _.extend(locals, defaultLocals(i18n));
+    emailSender.sendEmail(fromDefault, email, subject, 'campaignParticipantInviteMail', locals);
 };
 
 var sendOrganizationAdminInvite = function sendOrganizationAdminInvite(email, invitingUser, organization, invitedUser, i18n) {

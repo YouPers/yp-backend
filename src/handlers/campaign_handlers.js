@@ -237,7 +237,7 @@ var postParticipantsInviteFn = function postParticipantsInviteFn(req, res, next)
     var emails = _parseMailAdresses(req.body.email);
 
     Campaign.findById(req.params.id)
-        .populate('organization topic')
+        .populate('organization topic campaignLeads')
         .exec(function (err, campaign) {
             if (err) {
                 return next(err);

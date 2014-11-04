@@ -1,4 +1,17 @@
 {
+    "default": {
+        "notDisplayedCorrectly": "Wird diese Email nicht richtig angezeigt?",
+        "notDisplayedCorrectlyLink": "Im Browser anzeigen",
+        "header": "HealthCampaign"
+    },
+
+    "CampaignParticipantInvite": {
+        "salutation": "Liebe Mitarbeiterin, lieber Mitarbeiter",
+        "text": "__campaign.organization.name__ lädt Dich ein, an der betrieblichen Gesundheitskampagne zum Thema __campaign.title__ teilzunehmen. Wir führen diese gemeinsam mit unserem Partner YOUPERS AG durch.",
+        "campaignLeadsHeader": "Deine Kampagnenleiter:",
+        "linkText": "Zur Kampagne"
+    },
+
     "ActivityInvitation": {
         "subject": "YOUPERS: Einladung für eine Gruppen-Aktivität vom __inviting.fullname__",
         "salutation": "Hallo <strong>__invited.firstname__!</strong>",

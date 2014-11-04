@@ -145,7 +145,7 @@ SocialInteraction.on('invitation:event', function (from, to, event) {
         author: from._id,
         targetSpaces: _createTargetSpacesFromRecipients(to),
         idea: event.idea,
-        activity: event._id,
+        event: event._id,
         publishTo: event.lastEventEnd
     });
 
@@ -694,7 +694,7 @@ SocialInteraction.getAllForUser = function (user, model, options, cb) {
                         },
                         {
                             activity: {
-                                $nin: locals.activityIds
+                                $nin: locals.eventIds
                             }
                         }
                     ]

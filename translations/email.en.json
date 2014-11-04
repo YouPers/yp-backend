@@ -7,8 +7,6 @@
     },
 
     "CampaignParticipantInvite": {
-        "salutation": "Dear employee",
-        "text": "__campaign.organization.name__ invites you to join the health campaign __campaign.title__.",
         "campaignLeadsHeader": "Your campaign leads:",
         "linkText": "Show campaign"
     },

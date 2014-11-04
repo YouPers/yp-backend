@@ -115,7 +115,7 @@ var sendCampaignParticipantInvite = function sendCampaignParticipantInvite(email
         campaign: campaign,
 
         salutation: i18n.t('email:CampaignParticipantInvite.salutation', { campaign: campaign.toJSON() }),
-        text: i18n.t('email:CampaignParticipantInvite.text', { campaign: campaign.toJSON() }),
+        text: text,
         image: urlComposer.campaignImageUrl(campaign.topic.picture),
         link: testOnly ? '' : urlComposer.campaignWelcomeUrl(campaign._id),
         linkText: i18n.t('email:CampaignParticipantInvite.linkText'),

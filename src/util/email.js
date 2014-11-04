@@ -79,6 +79,7 @@ var sendActivityInvite = function sendActivityInvite(email, invitingUser, activi
         salutation: i18n.t('email:ActivityInvitation.salutation' + (invitedUser ? '': 'Anonymous'), {invited: invitedUser ? invitedUser.toJSON() : {}}),
         text: i18n.t('email:ActivityInvitation.text', {inviting: invitingUser.toJSON(), activity: activity.toJSON()}),
         link: urlComposer.activityInviteUrl(invitationId),
+        linkText: i18n.t('email:ActivityInvitation.linkText'),
         title: activity.idea.title,
         activity: activity,
         eventDate: eventDate,
@@ -87,6 +88,7 @@ var sendActivityInvite = function sendActivityInvite(email, invitingUser, activi
         footer: i18n.t('email:ActivityInvitation.footer'),
         logo: urlComposer.mailFooterImageUrl()
     };
+    _.extend(locals, defaultLocals(i18n));
     emailSender.sendEmail(fromDefault, email, subject, 'activityInviteMail', locals);
 };
 

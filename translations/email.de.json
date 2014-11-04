@@ -6,8 +6,6 @@
     },
 
     "CampaignParticipantInvite": {
-        "salutation": "Liebe Mitarbeiterin, lieber Mitarbeiter",
-        "text": "__campaign.organization.name__ lädt Dich ein, an der betrieblichen Gesundheitskampagne zum Thema __campaign.title__ teilzunehmen. Wir führen diese gemeinsam mit unserem Partner YOUPERS AG durch.",
         "campaignLeadsHeader": "Deine Kampagnenleiter:",
         "linkText": "Zur Kampagne"
     },

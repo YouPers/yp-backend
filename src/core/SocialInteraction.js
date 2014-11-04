@@ -623,27 +623,31 @@ SocialInteraction.getAllForUser = function (user, model, options, cb) {
                     ]});
                 }
 
-                // filter out invitations the user already participates in
-                dbQuery.and({
 
-                    $or: [
-                        {
-                            __t: { $ne: 'Invitation' }
-                        },
-                        {
-                            refDocs: {
-                                $elemMatch: {
-                                    docId: {
-                                        $nin: locals.activityIds
+                if (!options.authored) {
+
+
+                    dbQuery.and({ author: { $ne: user._id } });
+
+                    // filter out invitations the user already participates in only if he does not want the stuff he has
+                    // authored himself
+                    dbQuery.and({
+
+                        $or: [
+                            {
+                                __t: { $ne: 'Invitation' }
+                            },
+                            {
+                                refDocs: {
+                                    $elemMatch: {
+                                        docId: {
+                                            $nin: locals.activityIds
+                                        }
                                     }
                                 }
                             }
-                        }
-                    ]
-                });
-
-                if (!options.authored) {
-                    dbQuery.and({ author: { $ne: user._id } });
+                        ]
+                    });
                 }
 
                 if(options.discriminators) {

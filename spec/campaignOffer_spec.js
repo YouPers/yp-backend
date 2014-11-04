@@ -35,10 +35,6 @@ consts.newUserInNewCampaignApi(
                 authorType: 'campaignLead',
                 publishFrom: moment(),
                 publishTo: moment().add(1, 'hours'),
-
-                refDocs: [
-                    { docId: consts.groupIdea.id, model: 'Idea'}
-                ],
                 idea: consts.groupIdea.id
             })
             .auth(consts.users.test_campaignlead.username, 'yp')
@@ -78,10 +74,8 @@ consts.newUserInNewCampaignApi(
                                 authorType: 'campaignLead',
                                 publishFrom: moment(),
                                 publishTo: moment().add(1, 'hours'),
-
-                                refDocs: [
-                                    { docId: newPlan.id, model: 'Event'}
-                                ]
+                                event: newPlan.id,
+                                idea: newPlan.idea
                             })
                             .auth(consts.users.test_campaignlead.username, 'yp')
                             .expectStatus(201)

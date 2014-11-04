@@ -1,5 +1,16 @@
 {
 
+    "default": {
+        "notDisplayedCorrectly": "Is this mail not displaying correctly?",
+        "notDisplayedCorrectlyLink": "View this email in your browser",
+        "header": "HealthCampaign"
+    },
+
+    "CampaignParticipantInvite": {
+        "campaignLeadsHeader": "Your campaign leads:",
+        "linkText": "Show campaign"
+    },
+
     "ActivityInvitation": {
         "subject": "YOUPERS: Invitation to join activity from __inviting.fullname__",
         "salutation": "Hello __invited.firstname__!",

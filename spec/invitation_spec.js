@@ -57,9 +57,9 @@ consts.newUserInNewCampaignApi(
                                 var invitation = invitations[0];
 
                                 expect(invitation.idea).toBeDefined();
-                                expect(invitation.refDocs.length).toEqual(1);
-                                expect(invitation.refDocs[0].model).toEqual('Event');
-                                expect(invitation.refDocs[0].docId).toEqual(newPlan.id);
+                                expect(invitation.refDocs.length).toEqual(0);
+                                expect(invitation.event).toBeDefined();
+                                expect(invitation.event).toEqual(newPlan.id);
 
 
                                 frisby.create('Invitation: get this single invitation populated with the event')
@@ -68,9 +68,8 @@ consts.newUserInNewCampaignApi(
                                     .expectStatus(200)
                                     .afterJSON(function (invitation) {
 
-                                        expect(invitation.refDocs.length).toEqual(1);
-                                        expect(invitation.refDocs[0].doc).toBeDefined();
-                                        expect(invitation.refDocs[0].doc.id).toEqual(newPlan.id);
+                                        expect(invitation.refDocs.length).toEqual(0);
+                                        expect(invitation.activity).toEqual(newPlan.id);
 
                                     })
                                     .toss();
@@ -80,6 +79,24 @@ consts.newUserInNewCampaignApi(
                                     .auth(user.username, 'yp')
                                     .expectStatus(201)
                                     .afterJSON(function (joinedPlan) {
+
+                                        frisby.create('Invitation: get lookahead counters, should contain 1 new joining user')
+                                            .get(URL + '/activities/' + joinedPlan.id + '/lookAheadCounters')
+                                            .auth('test_ind1', 'yp')
+                                            .expectStatus(200)
+                                            .afterJSON(function (result) {
+                                                expect(result.joiningUsers).toEqual(1);
+
+                                                frisby.create('Invitation: get lookahead counters with timestamp, should contain no new joining user')
+                                                    .get(URL + '/activities/' + joinedPlan.id + '/lookAheadCounters' + '?since=' + moment().toISOString())
+                                                    .auth('test_ind1', 'yp')
+                                                    .expectStatus(200)
+                                                    .afterJSON(function (result) {
+                                                        expect(result.joiningUsers).toEqual(0);
+                                                    })
+                                                    .toss();
+                                            })
+                                            .toss();
 
                                         frisby.create('Invitation: get inbox, will be empty again')
                                             .get(URL + '/socialInteractions')
@@ -95,10 +112,18 @@ consts.newUserInNewCampaignApi(
                                                     .afterJSON(function (socialInteractions) {
                                                         expect(socialInteractions.length).toEqual(1);
                                                         expect(socialInteractions[0].dismissed).toBeTruthy();
-                                                        expect(socialInteractions[0].dismissalReason).toEqual('eventJoined');
+                                                        expect(socialInteractions[0].dismissalReason).toEqual('activityJoined');
 
-                                                        frisby.create("Invitation: delete the event")
-                                                            .delete(URL + '/events/' + newPlan.id)
+
+                                                        // Invitations for activities the user already participates are NOT returned anymore
+                                                        // see WL-1218
+                                                        expect(socialInteractions.length).toEqual(0);
+
+
+
+
+                                                        frisby.create("Invitation: delete the activity")
+                                                            .delete(URL + '/activities/' + newPlan.id)
                                                             .auth('test_ind1', 'yp')
                                                             .expectStatus(200)
                                                             .toss();
@@ -162,8 +187,8 @@ consts.newUserInNewCampaignApi(
                                 var invitation = invitations[0];
 
                                 expect(invitation.refDocs.length).toEqual(1);
-                                expect(invitation.refDocs[0].model).toEqual('Event');
-                                expect(invitation.refDocs[0].docId).toEqual(newEvent.id);
+                                expect(invitation.refDocs[0].model).toEqual('Activity');
+                                expect(invitation.refDocs[0].docId).toEqual(newActivity.id);
 
                                 frisby.create('Invitation: delete the event, will dismiss the invitation')
                                     .delete(URL + '/events/' + newEvent.id)

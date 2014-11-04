@@ -10,7 +10,7 @@
         },
         "textI18n": {
             "de": "Stressmanagement dient der Stärkung der Widerstandsfähigkeit und Selbstheilungskraft des Menschen, um bei inneren und äusseren Belastungen die Leistungsfähigkeit und Gesundheit zu erhalten.<br>Mehr Informationen findest du <a href='http://de.wikipedia.org/wiki/Stressmanagement' target='_blank'>hier</a>.",
-            "en": "Stress management serves for strengthening the resilience and self-healing power of humans to maintain the performance and health in case of internal and external stress.<br>More information can be found  <a href='http://en.wikipedia.org/wiki/Stress_management' target='_blank'>here</a>"
+            "en": "Stress management serves for strengthening the resilience and self-healing power of humans to maintain the performance and health in case of internal and external stress.<br>More information can be found  <a href='http://en.wikipedia.org/wiki/Stress_management' target='_blank'>here</a>."
         },
         "picture": "/assets/img/topic/stress.jpg"
     },
@@ -25,7 +25,7 @@
         },
         "textI18n": {
             "de": "Gesunde Ernährung ist die optimale Ernährungsweise, die dem Organismus das gibt, was er braucht: eine Ernährungsweise, mit der man – wenn man krank ist – gesund wird und – wenn man gesund ist – dauerhaft gesund bleibt.<br>Mehr Informationen findest du bei <a href='http://www.sge-ssn.ch/de/ich-und-du' target='_blank'>SGE</a>.",
-            "en": "Healthy nutrition is the optimal diet that gives the body what it needs: a diet that allows you - if you are sick – to become healthy and - if you are healthy – to remain sustainably healthy.<br>More information can be found at <a href='http://www.sge-ssn.ch/de/ich-und-du' target='_blank'>SGE</a> "
+            "en": "Healthy nutrition is the optimal diet that gives the body what it needs: a diet that allows you - if you are sick – to become healthy and - if you are healthy – to remain sustainably healthy.<br>More information can be found at <a href='http://www.sge-ssn.ch/de/ich-und-du' target='_blank'>SGE</a>."
         },
         "picture": "/assets/img/topic/nutrition.jpg"
     },
@@ -40,7 +40,7 @@
         },
         "textI18n": {
             "de": "Bewegung bei der Arbeit und im Alltag ist gesund und wirkt sich positiv auf die körperliche Fitness aus. Ausgeglichenheit, Stressresistenz, gemeinsame Erlebnisse mit Kollegen oder aktive Erholung in der Natur sind willkommene Effekte von regelmässiger Bewegung.<br>Mehr Informationen findest du bei <a href='http://www.hepa.ch' target='_blank'>hepa</a>.",
-            "en": "Healthy nutrition is the optimal diet that gives the body what it needs: a diet that allows you - if you are sick – to become healthy and - if you are healthy – to remain sustainably healthy.<br>More information can be found at <a href='http://www.hepa.ch' target='_blank'>hepa</a>"
+            "en": "Healthy nutrition is the optimal diet that gives the body what it needs: a diet that allows you - if you are sick – to become healthy and - if you are healthy – to remain sustainably healthy.<br>More information can be found at <a href='http://www.hepa.ch' target='_blank'>hepa</a>."
         },
         "picture": "/assets/img/topic/fitness.jpg"
     },
@@ -50,12 +50,12 @@
         },
         "name": "Ergonomics",
         "shortDescriptionI18n": {
-            "de": "Gesundes Arbeiten",
-            "en": "Ergonomic Working"
+            "de": "Ergonomie",
+            "en": "Ergonomics"
         },
         "textI18n": {
-            "de": "Durch eine ergonomische Arbeitsplatzgestaltung wird gesundes Arbeiten der Arbeitnehmer gefördert und deren Arbeitsergebnisse positiv beeinflusst: sie sind motiviert, loyal, haben mehr Ideen, wollen und können mehr bewegen.<br>Mehr Informationen findest du bei <a href=' http://www.suva.ch/startseite-suva/service-suva/lernprogramme-suva/ergonomie-am-bildschirmarbeitsplatz-suva.htm' target='_blank'>suva</a>.",
-            "en": "By ergonomic workplace design healthy work of employees is encouraged and their work results influenced positively: they are motivated, loyal, have more ideas, are willing and able to move more. <br>More information can be found at <a href=' http://www.suva.ch/startseite-suva/service-suva/lernprogramme-suva/ergonomie-am-bildschirmarbeitsplatz-suva.htm' target='_blank'>suva</a>."
+            "de": "Durch eine ergonomische Arbeitsplatzgestaltung und optimale Arbeitsbedingungen wird gesundes Arbeiten der Arbeitnehmer gefördert und deren Arbeitsergebnisse positiv beeinflusst: sie sind motiviert, loyal, haben mehr Ideen, wollen und können mehr bewegen.<br>Mehr Informationen findest du bei suva <a href=' http://www.suva.ch/startseite-suva/service-suva/lernprogramme-suva/ergonomie-am-bildschirmarbeitsplatz-suva.htm' target='_blank'>suva</a>.",
+            "en": "With an ergonomic workplace design and optimal working conditions, healthy work of employees is encouraged and their work results influenced positively: they are motivated, loyal, have more ideas, are willing and able to move more.<br>More information can be found at <a href=' http://www.suva.ch/startseite-suva/service-suva/lernprogramme-suva/ergonomie-am-bildschirmarbeitsplatz-suva.htm' target='_blank'>suva</a>."
         },
         "picture": "/assets/img/topic/ergonomics.jpg"
     },
@@ -65,12 +65,12 @@
         },
         "name": "Safety",
         "shortDescriptionI18n": {
-            "de": "Sicheres Arbeiten",
-            "en": "Safety at work"
+            "de": "Unfallprävention",
+            "en": "Accident Prevention"
         },
         "textI18n": {
-            "de": "Sicheres Arbeiten soll den Arbeitnehmer vor Berufsunfällen schützen und ihn durch lebenswichtige Regeln, Arbeitsweisen und Präventionsmassnahmen vor lauernden Gefahren warnen.<br>Mehr Informationen findest du bei <a href='http://www.ekas.admin.ch/index-de.php?frameset=42' target='_blank'>EKAS</a> oder <a href='http://www.suva.ch/startseite-suva/praevention-suva.htm' target='_blank'>suva</a>.",
-            "en": "Working safely serves to protect the employee against occupational accidents and warn him by essential rules, operational procedures and preventive measures against lurking dangers. More information can be found at <a href='http://www.ekas.admin.ch/index-de.php?frameset=42'>EKAS</a> or <a href='http://www.suva.ch/startseite-suva/praevention-suva.htm'>suva</a>."
+            "de": "Sicheres Arbeiten und sicheres Freizeitverhalten sollen den Arbeitnehmer vor Unfällen schützen und ihn durch lebenswichtige Regeln, Arbeitsweisen und Präventionsmassnahmen vor lauernden Gefahren warnen.<br>Mehr Informationen findest du bei <a href='http://www.ekas.admin.ch/index-de.php?frameset=42' target='_blank'>EKAS</a> oder <a href='http://www.bfu.ch/de/fuer-fachpersonen/betriebe' target='_blank'>bfu</a>.",
+            "en": "Safe working and safe leisure behavior is supposed to protect the employee against accidents and warn him by essential rules, operational procedures and preventive measures against lurking dangers.<br>More information can be found at <a href='http://www.ekas.admin.ch/index-de.php?frameset=42'  target='_blank'>EKAS</a> or <a href='http://www.bfu.ch/de/fuer-fachpersonen/betriebe' target='_blank'>bfu</a>."
         },
         "picture": "/assets/img/topic/safety.jpg"
     }

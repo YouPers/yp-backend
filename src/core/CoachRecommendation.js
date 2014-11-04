@@ -359,9 +359,6 @@ function _updateRecommendations(userId, options, cb) {
                                 ],
                                 author: HEALTH_COACH_USER_ID,
                                 authorType: 'coach',
-                                refDocs: [
-                                    { docId: idea, model: 'Idea' }
-                                ],
                                 idea: idea
                             });
                             rec.save(done);

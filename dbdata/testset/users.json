@@ -148,7 +148,7 @@
         "_id": {
             "$oid": "52a97f1650fca98c29000006"
         },
-        "avatar": "/assets/img/default_avatar_woman.svg",
+        "avatar": "/assets/img/default_avatar_woman.png",
         "campaign": {
             "$oid": "527916a82079aa8704000007"
         },
@@ -183,7 +183,7 @@
         "_id": {
             "$oid": "52a97f1650fca98c29000007"
         },
-        "avatar": "/assets/img/default_avatar_man.svg",
+        "avatar": "/assets/img/default_avatar_man.png",
         "email": "ypunittest1+individual2@gmail.com",
         "emailValidatedFlag": true,
         "firstname": "Test",
@@ -207,7 +207,7 @@
         "_id": {
             "$oid": "52a97f1650fca98c29000008"
         },
-        "avatar": "/assets/img/default_avatar_man.svg",
+        "avatar": "/assets/img/default_avatar_man.png",
         "email": "ypunittest1+productadmin@gmail.com",
         "emailValidatedFlag": true,
         "firstname": "Test",
@@ -232,7 +232,7 @@
         "_id": {
             "$oid": "52a97f1650fca98c29000009"
         },
-        "avatar": "/assets/img/default_avatar_woman.svg",
+        "avatar": "/assets/img/default_avatar_woman.png",
         "email": "ypunittest1+systemadmin@gmail.com",
         "emailValidatedFlag": true,
         "firstname": "Test",
@@ -256,7 +256,7 @@
         "_id": {
             "$oid": "52a97f1650fca98c2900000a"
         },
-        "avatar": "/assets/img/default_avatar_man.svg",
+        "avatar": "/assets/img/default_avatar_man.png",
         "campaign": {
             "$oid": "527916a82079aa8704000006"
         },
@@ -285,7 +285,7 @@
         "_id": {
             "$oid": "52a97f1650fca98c2900000b"
         },
-        "avatar": "/assets/img/default_avatar_woman.svg",
+        "avatar": "/assets/img/default_avatar_woman.png",
         "campaign": {
             "$oid": "527916a82079aa8704000006"
         },
@@ -313,7 +313,7 @@
         "_id": {
             "$oid": "52a97f1650fca98c2900000c"
         },
-        "avatar": "/assets/img/default_avatar_woman.svg",
+        "avatar": "/assets/img/default_avatar_woman.png",
         "campaign": {
             "$oid": "527916a82079aa8704000007"
         },
@@ -341,7 +341,7 @@
         "_id": {
             "$oid": "52a97f1650fca98c29000055"
         },
-        "avatar": "/assets/img/default_avatar_woman.svg",
+        "avatar": "/assets/img/default_avatar_woman.png",
         "email": "ypunittest1+individual3@gmail.com",
         "emailValidatedFlag": true,
         "firstname": "Test",
@@ -365,7 +365,7 @@
         "_id": {
             "$oid": "52d4f515fac246174c000006"
         },
-        "avatar": "/assets/img/default_avatar_man.svg",
+        "avatar": "/assets/img/default_avatar_man.png",
         "email": "helmut.kneer@youpers.com",
         "emailValidatedFlag": true,
         "firstname": "Helmut",

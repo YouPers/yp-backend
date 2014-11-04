@@ -2874,5 +2874,1522 @@
         "updated": {
             "$date": 1407770509997
         }
+    },
+    {
+        "__v": 0,
+        "_id": {
+            "$oid": "5450c0be3e71cc15a0f7eb76"
+        },
+        "assessment": {
+            "$oid": "5450c0be3e71cc15a0f7eb74"
+        },
+        "category": "seating",
+        "created": {
+            "$date": 1414578366692
+        },
+        "exptextI18n": {
+            "de": "Bei diesem Kriterium beurteilst du, in welchem Masse gesundheitsf\u00f6rderlich dein Stuhl positioniert ist."
+        },
+        "maxtextI18n": {
+            "de": ""
+        },
+        "maxtextexampleI18n": {
+            "de": ""
+        },
+        "midtextI18n": {
+            "de": "Optimal"
+        },
+        "midtextexampleI18n": {
+            "de": "Meine F\u00fcsse stehen flach auf dem Boden und Ober- und Unterschenkel bilden einen Winkel von mindestens 90 Grad."
+        },
+        "mintextI18n": {
+            "de": "Zu wenig"
+        },
+        "mintextexampleI18n": {
+            "de": "Meine Stuhlh\u00f6he ist fix und ich erreiche den Boden nur knapp mit ausgestreckten Zehen bzw. habe den Stuhl so tief, dass meine Knie auf Brusth\u00f6he sind."
+        },
+        "titleI18n": {
+            "de": "Stuhlh\u00f6he"
+        },
+        "type": "leftSided",
+        "updated": {
+            "$date": 1414578366692
+        }
+    },
+    {
+        "__v": 0,
+        "_id": {
+            "$oid": "5450c0be3e71cc15a0f7eb77"
+        },
+        "assessment": {
+            "$oid": "5450c0be3e71cc15a0f7eb74"
+        },
+        "category": "seating",
+        "created": {
+            "$date": 1414578366731
+        },
+        "exptextI18n": {
+            "de": "Bei diesem Kriterium beurteilst du, in welchem Masse gesundheitsf\u00f6rderlich die Gr\u00f6sse deiner Sitzfl\u00e4che ist."
+        },
+        "maxtextI18n": {
+            "de": ""
+        },
+        "maxtextexampleI18n": {
+            "de": ""
+        },
+        "midtextI18n": {
+            "de": "Optimal"
+        },
+        "midtextexampleI18n": {
+            "de": "Meine Sitzfl\u00e4che ist so eingestellt, dass mein R\u00fccken leicht gegen die Stuhllehne dr\u00fcckt und sich ein kleiner Abstand zwischen meinen Kniekehlen und der Sitzfl\u00e4che befindet."
+        },
+        "mintextI18n": {
+            "de": "Zu wenig"
+        },
+        "mintextexampleI18n": {
+            "de": "Meine Sitzfl\u00e4che ist so klein, dass ich ich fast vom Stuhl rutsche, wenn ich sitze."
+        },
+        "titleI18n": {
+            "de": "Sitzfl\u00e4che"
+        },
+        "type": "leftSided",
+        "updated": {
+            "$date": 1414578366731
+        }
+    },
+    {
+        "__v": 0,
+        "_id": {
+            "$oid": "5450c0be3e71cc15a0f7eb78"
+        },
+        "assessment": {
+            "$oid": "5450c0be3e71cc15a0f7eb74"
+        },
+        "category": "workEquipment",
+        "created": {
+            "$date": 1414578366744
+        },
+        "exptextI18n": {
+            "de": "Bei diesem Kriterium beurteilst du, wie zweckm\u00e4ssig dein Bildschirm positioniert ist."
+        },
+        "maxtextI18n": {
+            "de": ""
+        },
+        "maxtextexampleI18n": {
+            "de": ""
+        },
+        "midtextI18n": {
+            "de": "Optimal"
+        },
+        "midtextexampleI18n": {
+            "de": "Mein Bildschirm ist optimal f\u00fcr mich platziert (H\u00f6he und Entfernung zum Auge stimmen)."
+        },
+        "mintextI18n": {
+            "de": "Zu wenig"
+        },
+        "mintextexampleI18n": {
+            "de": "Ich muss meinen Kopf verdrehen und nach oben/unten schauen, um auf den Bildschirm zu sehen."
+        },
+        "titleI18n": {
+            "de": "Bildschirm"
+        },
+        "type": "leftSided",
+        "updated": {
+            "$date": 1414578366744
+        }
+    },
+    {
+        "__v": 0,
+        "_id": {
+            "$oid": "5450c0be3e71cc15a0f7eb79"
+        },
+        "assessment": {
+            "$oid": "5450c0be3e71cc15a0f7eb74"
+        },
+        "category": "workEquipment",
+        "created": {
+            "$date": 1414578366753
+        },
+        "exptextI18n": {
+            "de": "Bei diesem Kriterium beurteilst du, wie zweckm\u00e4ssig deine Tastatur und Maus positioniert sind."
+        },
+        "maxtextI18n": {
+            "de": ""
+        },
+        "maxtextexampleI18n": {
+            "de": ""
+        },
+        "midtextI18n": {
+            "de": "Optimal"
+        },
+        "midtextexampleI18n": {
+            "de": "Meine Tastatur und Maus liegen nebeneinander und optimal vor mir, ca. 15 cm von der Tischkante weg."
+        },
+        "mintextI18n": {
+            "de": "Zu wenig"
+        },
+        "mintextexampleI18n": {
+            "de": "Ich muss mich vorbeugen/drehen, um an meine Tastatur zu kommen bzw. meine Maus zu bedienen."
+        },
+        "titleI18n": {
+            "de": "Tastatur und Maus"
+        },
+        "type": "leftSided",
+        "updated": {
+            "$date": 1414578366753
+        }
+    },
+    {
+        "__v": 0,
+        "_id": {
+            "$oid": "5450c0be3e71cc15a0f7eb7a"
+        },
+        "assessment": {
+            "$oid": "5450c0be3e71cc15a0f7eb74"
+        },
+        "category": "workEquipment",
+        "created": {
+            "$date": 1414578366758
+        },
+        "exptextI18n": {
+            "de": "Bei diesem Kriterium beurteilst du, wie zweckm\u00e4ssig deine Arbeitsdokumente positioniert sind."
+        },
+        "maxtextI18n": {
+            "de": ""
+        },
+        "maxtextexampleI18n": {
+            "de": ""
+        },
+        "midtextI18n": {
+            "de": "Optimal"
+        },
+        "midtextexampleI18n": {
+            "de": "Meine Arbeitsdokumente liegen optimal auf einer Achse zwischen Tastatur und Bildschirm."
+        },
+        "mintextI18n": {
+            "de": "Zu wenig"
+        },
+        "mintextexampleI18n": {
+            "de": "Meine Arbeitsdokumente liegen neben mir, und ich muss mich immer drehen, um sie zu lesen."
+        },
+        "titleI18n": {
+            "de": "Arbeitsdokumente"
+        },
+        "type": "leftSided",
+        "updated": {
+            "$date": 1414578366758
+        }
+    },
+    {
+        "__v": 0,
+        "_id": {
+            "$oid": "5450c0be3e71cc15a0f7eb7b"
+        },
+        "assessment": {
+            "$oid": "5450c0be3e71cc15a0f7eb74"
+        },
+        "category": "seating",
+        "created": {
+            "$date": 1414578366766
+        },
+        "exptextI18n": {
+            "de": "Bei diesem Kriterium beurteilst du, in welchem Masse gesundheitsf\u00f6rderlich dein Tisch positioniert ist."
+        },
+        "maxtextI18n": {
+            "de": ""
+        },
+        "maxtextexampleI18n": {
+            "de": ""
+        },
+        "midtextI18n": {
+            "de": "Optimal"
+        },
+        "midtextexampleI18n": {
+            "de": "Meinen B\u00fcrotisch kann ich optimal auf meine Sitzh\u00f6he anpassen."
+        },
+        "mintextI18n": {
+            "de": "Zu wenig"
+        },
+        "mintextexampleI18n": {
+            "de": "Mein B\u00fcrotisch ist zu hoch/niedrig, so dass ich am Abend jeweils verspannt bin und mir der R\u00fccken weh tut."
+        },
+        "titleI18n": {
+            "de": "Tischh\u00f6he"
+        },
+        "type": "leftSided",
+        "updated": {
+            "$date": 1414578366766
+        }
+    },
+    {
+        "__v": 0,
+        "_id": {
+            "$oid": "5450c0be3e71cc15a0f7eb7c"
+        },
+        "assessment": {
+            "$oid": "5450c0be3e71cc15a0f7eb74"
+        },
+        "category": "seating",
+        "created": {
+            "$date": 1414578366775
+        },
+        "exptextI18n": {
+            "de": "Bei diesem Kriterium beurteilst du, in welchem Masse gesundheitsf\u00f6rderlich die Gr\u00f6sse und Beschaffenheit deines Tisches sind."
+        },
+        "maxtextI18n": {
+            "de": ""
+        },
+        "maxtextexampleI18n": {
+            "de": ""
+        },
+        "midtextI18n": {
+            "de": "Optimal"
+        },
+        "midtextexampleI18n": {
+            "de": "Mein Arbeitstisch ist gross genug (160 x 80 cm) und aus Holz."
+        },
+        "mintextI18n": {
+            "de": "Zu wenig"
+        },
+        "mintextexampleI18n": {
+            "de": "Ich muss auf einem sehr kleinen, spiegelnden Tisch arbeiten, der nicht Platz f\u00fcr alle Arbeitsmittel hat."
+        },
+        "titleI18n": {
+            "de": "Tischplatte"
+        },
+        "type": "leftSided",
+        "updated": {
+            "$date": 1414578366775
+        }
+    },
+    {
+        "__v": 0,
+        "_id": {
+            "$oid": "5450c0be3e71cc15a0f7eb7d"
+        },
+        "assessment": {
+            "$oid": "5450c0be3e71cc15a0f7eb74"
+        },
+        "category": "officeEquipment",
+        "created": {
+            "$date": 1414578366793
+        },
+        "exptextI18n": {
+            "de": "Bei diesem Kriterium beurteilst du, wie gut dein Arbeitsplatz beleuchtet ist und ob allenfalls Tageslicht vorhanden ist."
+        },
+        "maxtextI18n": {
+            "de": ""
+        },
+        "maxtextexampleI18n": {
+            "de": ""
+        },
+        "midtextI18n": {
+            "de": "Optimal"
+        },
+        "midtextexampleI18n": {
+            "de": "Mein Arbeitsplatz ist optimal beleuchtet und es ist Tageslicht und/oder k\u00fcnstliches Licht einer individuell einstellbaren Leuchte vorhanden."
+        },
+        "mintextI18n": {
+            "de": "Zu wenig"
+        },
+        "mintextexampleI18n": {
+            "de": "Mein Arbeitsplatz ist sehr dunkel und ich habe eigentlich nur aufgrund der Beleuchtung meines Bildschirmes etwas k\u00fcnstliches Licht."
+        },
+        "titleI18n": {
+            "de": "Raumbeleuchtung"
+        },
+        "type": "leftSided",
+        "updated": {
+            "$date": 1414578366793
+        }
+    },
+    {
+        "__v": 0,
+        "_id": {
+            "$oid": "5450c0be3e71cc15a0f7eb7e"
+        },
+        "assessment": {
+            "$oid": "5450c0be3e71cc15a0f7eb74"
+        },
+        "category": "officeEquipment",
+        "created": {
+            "$date": 1414578366799
+        },
+        "exptextI18n": {
+            "de": "Bei diesem Kriterium beurteilst du, wie gut dein Arbeitsplatz gegen L\u00e4rm abgeschirmt ist."
+        },
+        "maxtextI18n": {
+            "de": ""
+        },
+        "maxtextexampleI18n": {
+            "de": ""
+        },
+        "midtextI18n": {
+            "de": "Optimal"
+        },
+        "midtextexampleI18n": {
+            "de": "Mein Arbeitsplatz ist ruhig und ich habe kein Problem, mich zu konzentrieren."
+        },
+        "mintextI18n": {
+            "de": "Zu wenig"
+        },
+        "mintextexampleI18n": {
+            "de": "Mein Arbeitsplatz ist sehr laut, ich kann kaum mit meiner Nachbarin reden und f\u00fchle mich in meiner Konzentration gest\u00f6rt."
+        },
+        "titleI18n": {
+            "de": "Schalld\u00e4mmung"
+        },
+        "type": "leftSided",
+        "updated": {
+            "$date": 1414578366799
+        }
+    },
+    {
+        "__v": 0,
+        "_id": {
+            "$oid": "5450c0be3e71cc15a0f7eb7f"
+        },
+        "assessment": {
+            "$oid": "5450c0be3e71cc15a0f7eb74"
+        },
+        "category": "officeEquipment",
+        "created": {
+            "$date": 1414578366808
+        },
+        "exptextI18n": {
+            "de": "Bei diesem Kriterium beurteilst du, wie gut Temperatur und Luftfeuchtigkeit in deiner Arbeitsumgebung eingestellt sind."
+        },
+        "maxtextI18n": {
+            "de": ""
+        },
+        "maxtextexampleI18n": {
+            "de": ""
+        },
+        "midtextI18n": {
+            "de": "Optimal"
+        },
+        "midtextexampleI18n": {
+            "de": "Temperatur und Luftfeuchtigkeit meines B\u00fcroraumes ist optimal eingestellt"
+        },
+        "mintextI18n": {
+            "de": "Zu wenig"
+        },
+        "mintextexampleI18n": {
+            "de": "Bei uns im B\u00fcro ist es eigentlich immer zu kalt oder zu heiss und oft auch dr\u00fcckend feucht."
+        },
+        "titleI18n": {
+            "de": "Raumklima"
+        },
+        "type": "leftSided",
+        "updated": {
+            "$date": 1414578366808
+        }
+    },
+    {
+        "__v": 0,
+        "_id": {
+            "$oid": "5450c0be3e71cc15a0f7eb80"
+        },
+        "assessment": {
+            "$oid": "5450c0be3e71cc15a0f7eb74"
+        },
+        "category": "officeEquipment",
+        "created": {
+            "$date": 1414578366818
+        },
+        "exptextI18n": {
+            "de": "Bei diesem Kriterium beurteilst du, wie sehr du an deinem Arbeitsplatz vor L\u00e4rm und Emissionen gesch\u00fctzt bist (z.B. durch einen separaten Ger\u00e4teraum)."
+        },
+        "maxtextI18n": {
+            "de": ""
+        },
+        "maxtextexampleI18n": {
+            "de": ""
+        },
+        "midtextI18n": {
+            "de": "Optimal"
+        },
+        "midtextexampleI18n": {
+            "de": "Kopierer, Fax und Drucker stehen bei uns in einem separaten Raum, was uns vor L\u00e4rm und Emissionen sch\u00fctzt."
+        },
+        "mintextI18n": {
+            "de": "Zu wenig"
+        },
+        "mintextexampleI18n": {
+            "de": "Bei uns stehen viele Arbeitsger\u00e4te \u00fcberall, st\u00f6ren, lenken ab und produzieren Ger\u00fcche."
+        },
+        "titleI18n": {
+            "de": "Ger\u00e4teraum"
+        },
+        "type": "leftSided",
+        "updated": {
+            "$date": 1414578366818
+        }
+    },
+    {
+        "__v": 0,
+        "_id": {
+            "$oid": "5450c0be3e71cc15a0f7eb81"
+        },
+        "assessment": {
+            "$oid": "5450c0be3e71cc15a0f7eb74"
+        },
+        "category": "transportation",
+        "created": {
+            "$date": 1414578366840
+        },
+        "exptextI18n": {
+            "de": "Bei diesem Kriterium beurteilst du, in welchem Masse gesundheitsf\u00f6rderlich deine Arbeitsweise beim Heben und Tragen ist."
+        },
+        "maxtextI18n": {
+            "de": ""
+        },
+        "maxtextexampleI18n": {
+            "de": ""
+        },
+        "midtextI18n": {
+            "de": "Optimal"
+        },
+        "midtextexampleI18n": {
+            "de": "Ich achte beim Heben und Tragen immer auf meinen R\u00fccken oder auf m\u00f6gliche Verletzungen und frage bitte meine Kollegen immer um Hilfe."
+        },
+        "mintextI18n": {
+            "de": "Zu wenig"
+        },
+        "mintextexampleI18n": {
+            "de": "Ich achte beim Heben und Tragen nie auf meinen R\u00fccken oder auf m\u00f6gliche Verletzungen und trage schwere Lasten auch alleine."
+        },
+        "titleI18n": {
+            "de": "Heben und Tragen"
+        },
+        "type": "leftSided",
+        "updated": {
+            "$date": 1414578366840
+        }
+    },
+    {
+        "__v": 0,
+        "_id": {
+            "$oid": "5450c0be3e71cc15a0f7eb82"
+        },
+        "assessment": {
+            "$oid": "5450c0be3e71cc15a0f7eb74"
+        },
+        "category": "transportation",
+        "created": {
+            "$date": 1414578366855
+        },
+        "exptextI18n": {
+            "de": "Bei diesem Kriterium beurteilst du, in welchem Masse gesundheitsf\u00f6rderlich du Transportmittel bei deiner Arbeit verwendest."
+        },
+        "maxtextI18n": {
+            "de": ""
+        },
+        "maxtextexampleI18n": {
+            "de": ""
+        },
+        "midtextI18n": {
+            "de": "Optimal"
+        },
+        "midtextexampleI18n": {
+            "de": "Ich verwende immer rollbare Transportmittel, wenn ich sie bei der Arbeit brauche."
+        },
+        "mintextI18n": {
+            "de": "Zu wenig"
+        },
+        "mintextexampleI18n": {
+            "de": "Rollbare Transportmittel gibt es bei uns nicht, wir heben und tragen unsere zum Teil auch schweren Lasten selbst."
+        },
+        "titleI18n": {
+            "de": "Transportmittel"
+        },
+        "type": "leftSided",
+        "updated": {
+            "$date": 1414578366855
+        }
+    },
+    {
+        "__v": 0,
+        "_id": {
+            "$oid": "5450c0be3e71cc15a0f7eb83"
+        },
+        "assessment": {
+            "$oid": "5450c0be3e71cc15a0f7eb75"
+        },
+        "category": "risks",
+        "created": {
+            "$date": 1414578366864
+        },
+        "exptextI18n": {
+            "de": "Bei diesem Kriterium beurteilst du, wie bewusst dir m\u00f6gliche Gefahren und Risiken am Arbeitsplatz sind."
+        },
+        "maxtextI18n": {
+            "de": ""
+        },
+        "maxtextexampleI18n": {
+            "de": ""
+        },
+        "midtextI18n": {
+            "de": "Optimal"
+        },
+        "midtextexampleI18n": {
+            "de": "Ich mache mir immer \u00fcber die Gefahren und Folgen meines Verhaltens Gedanken."
+        },
+        "mintextI18n": {
+            "de": "Zu wenig"
+        },
+        "mintextexampleI18n": {
+            "de": "Ich mache mir nie Gedanken \u00fcber das, was durch mein Verhalten passieren k\u00f6nnte."
+        },
+        "titleI18n": {
+            "de": "Bewusstsein"
+        },
+        "type": "leftSided",
+        "updated": {
+            "$date": 1414578366864
+        }
+    },
+    {
+        "__v": 0,
+        "_id": {
+            "$oid": "5450c0be3e71cc15a0f7eb84"
+        },
+        "assessment": {
+            "$oid": "5450c0be3e71cc15a0f7eb75"
+        },
+        "category": "risks",
+        "created": {
+            "$date": 1414578366869
+        },
+        "exptextI18n": {
+            "de": "Bei diesem Kriterium beurteilst du, in welchem Masse du Gefahren wahrnimmst, ohne dich ablenken zu lassen."
+        },
+        "maxtextI18n": {
+            "de": ""
+        },
+        "maxtextexampleI18n": {
+            "de": ""
+        },
+        "midtextI18n": {
+            "de": "Optimal"
+        },
+        "midtextexampleI18n": {
+            "de": "Ich bin immer hellwach bei der Ausf\u00fchrung meiner Arbeiten und nehme unauff\u00e4llige Ger\u00e4usche sofort wahr."
+        },
+        "mintextI18n": {
+            "de": "Zu wenig"
+        },
+        "mintextexampleI18n": {
+            "de": "Meine Wahrnehmung von Gefahren ist eingeschr\u00e4nkt (z.B. durch Probleme mit meinen Sinnesorganen, Erm\u00fcdung, Monotonie, etc.) und ich \u00fcberh\u00f6re oder \u00fcbersehe st\u00e4ndig irgendetwas, auf das mich meine Kollegen im Nachhinein aufmerksam machen."
+        },
+        "titleI18n": {
+            "de": "Wahrnehmungsf\u00e4higkeit"
+        },
+        "type": "leftSided",
+        "updated": {
+            "$date": 1414578366869
+        }
+    },
+    {
+        "__v": 0,
+        "_id": {
+            "$oid": "5450c0be3e71cc15a0f7eb85"
+        },
+        "assessment": {
+            "$oid": "5450c0be3e71cc15a0f7eb75"
+        },
+        "category": "risks",
+        "created": {
+            "$date": 1414578366876
+        },
+        "exptextI18n": {
+            "de": "Bei diesem Kriterium beurteilst du, wie sehr du deiner pers\u00f6nlichen Einsch\u00e4tzung von Gefahren vertraust anstatt dich einer Gruppenmehrheit zu beugen."
+        },
+        "maxtextI18n": {
+            "de": ""
+        },
+        "maxtextexampleI18n": {
+            "de": ""
+        },
+        "midtextI18n": {
+            "de": "Optimal"
+        },
+        "midtextexampleI18n": {
+            "de": "Es ist mir egal, was Andere sagen, ich vertraue auf meine pers\u00f6nliche Einsch\u00e4tzung von Gefahren."
+        },
+        "mintextI18n": {
+            "de": "Zu wenig"
+        },
+        "mintextexampleI18n": {
+            "de": "Ich traue selten meiner pers\u00f6nlichen Einsch\u00e4tzung von Gefahren und richte mich lieber nach der Meinung von Anderen."
+        },
+        "titleI18n": {
+            "de": "Gruppeneinfluss"
+        },
+        "type": "leftSided",
+        "updated": {
+            "$date": 1414578366876
+        }
+    },
+    {
+        "__v": 0,
+        "_id": {
+            "$oid": "5450c0be3e71cc15a0f7eb86"
+        },
+        "assessment": {
+            "$oid": "5450c0be3e71cc15a0f7eb75"
+        },
+        "category": "risks",
+        "created": {
+            "$date": 1414578366883
+        },
+        "exptextI18n": {
+            "de": "Bei diesem Kriterium beurteilst du, wie sehr dir klar ist, dass Gefahren und Risiken \u00fcberall lauern und dass man sich nicht der Illusion hingeben darf, Gefahren kontrollieren zu k\u00f6nnen."
+        },
+        "maxtextI18n": {
+            "de": ""
+        },
+        "maxtextexampleI18n": {
+            "de": ""
+        },
+        "midtextI18n": {
+            "de": "Optimal"
+        },
+        "midtextexampleI18n": {
+            "de": "Ich gebe mich nicht der Illusion hin, dass mir nichts passieren kann, und mir ist klar, dass man Gefahren nicht kontrollieren kann."
+        },
+        "mintextI18n": {
+            "de": "Zu wenig"
+        },
+        "mintextexampleI18n": {
+            "de": "Ich bin \u00fcberzeugt, dass mir nichts passieren kann, weil ich kompetent bin und Gefahren gut einsch\u00e4tzen kann."
+        },
+        "titleI18n": {
+            "de": "Illusionen"
+        },
+        "type": "leftSided",
+        "updated": {
+            "$date": 1414578366883
+        }
+    },
+    {
+        "__v": 0,
+        "_id": {
+            "$oid": "5450c0be3e71cc15a0f7eb87"
+        },
+        "assessment": {
+            "$oid": "5450c0be3e71cc15a0f7eb75"
+        },
+        "category": "workEnvironment",
+        "created": {
+            "$date": 1414578366896
+        },
+        "exptextI18n": {
+            "de": "Bei diesem Kriterium beurteilst du, wie viel Bewegungsraum du bei deinem Arbeitsplatz hast."
+        },
+        "maxtextI18n": {
+            "de": ""
+        },
+        "maxtextexampleI18n": {
+            "de": ""
+        },
+        "midtextI18n": {
+            "de": "Optimal"
+        },
+        "midtextexampleI18n": {
+            "de": "Bei meinem Arbeitsplatz habe ich gen\u00fcgend Bewegungsraum."
+        },
+        "mintextI18n": {
+            "de": "Zu wenig"
+        },
+        "mintextexampleI18n": {
+            "de": "Ich bin ziemlich eingeklemmt an meinem Arbeitsplatz und habe nicht wirklich viel Raum um mich herum."
+        },
+        "titleI18n": {
+            "de": "Arbeitsplatz"
+        },
+        "type": "leftSided",
+        "updated": {
+            "$date": 1414578366896
+        }
+    },
+    {
+        "__v": 0,
+        "_id": {
+            "$oid": "5450c0be3e71cc15a0f7eb88"
+        },
+        "assessment": {
+            "$oid": "5450c0be3e71cc15a0f7eb75"
+        },
+        "category": "workEnvironment",
+        "created": {
+            "$date": 1414578366901
+        },
+        "exptextI18n": {
+            "de": "Bei diesem Kriterium beurteilst du, wie breit und aufger\u00e4umt die Verkehrswege an deinem Arbeitsplatz sind."
+        },
+        "maxtextI18n": {
+            "de": ""
+        },
+        "maxtextexampleI18n": {
+            "de": ""
+        },
+        "midtextI18n": {
+            "de": "Optimal"
+        },
+        "midtextexampleI18n": {
+            "de": "Die Verkehrswege sind bei uns breit und immer frei."
+        },
+        "mintextI18n": {
+            "de": "Zu wenig"
+        },
+        "mintextexampleI18n": {
+            "de": "Die schmalen Verkehrswege werden bei uns immer f\u00fcr das Abstellen oder Deponieren von Material benutzt."
+        },
+        "titleI18n": {
+            "de": "Verkehrswege"
+        },
+        "type": "leftSided",
+        "updated": {
+            "$date": 1414578366901
+        }
+    },
+    {
+        "__v": 0,
+        "_id": {
+            "$oid": "5450c0be3e71cc15a0f7eb89"
+        },
+        "assessment": {
+            "$oid": "5450c0be3e71cc15a0f7eb75"
+        },
+        "category": "workEnvironment",
+        "created": {
+            "$date": 1414578366909
+        },
+        "exptextI18n": {
+            "de": "Bei diesem Kriterium beurteilst du, wie gut Fluchtwege gekennzeichnet und sichtbar sind."
+        },
+        "maxtextI18n": {
+            "de": ""
+        },
+        "maxtextexampleI18n": {
+            "de": ""
+        },
+        "midtextI18n": {
+            "de": "Optimal"
+        },
+        "midtextexampleI18n": {
+            "de": "Die Fluchtwege sind bei uns immer frei und gut gekennzeichnet und beleuchtet."
+        },
+        "mintextI18n": {
+            "de": "Zu wenig"
+        },
+        "mintextexampleI18n": {
+            "de": "Fluchtwege gibt es bei uns nicht, wir nutzen den Platz f\u00fcr das Deponieren von Material und Ger\u00e4ten."
+        },
+        "titleI18n": {
+            "de": "Fluchtwege"
+        },
+        "type": "leftSided",
+        "updated": {
+            "$date": 1414578366909
+        }
+    },
+    {
+        "__v": 0,
+        "_id": {
+            "$oid": "5450c0be3e71cc15a0f7eb8a"
+        },
+        "assessment": {
+            "$oid": "5450c0be3e71cc15a0f7eb75"
+        },
+        "category": "extendedEnvironment",
+        "created": {
+            "$date": 1414578366916
+        },
+        "exptextI18n": {
+            "de": "Bei diesem Kriterium beurteilst du, wie sehr die T\u00fcren (v.a. Glast\u00fcren) markiert sind."
+        },
+        "maxtextI18n": {
+            "de": ""
+        },
+        "maxtextexampleI18n": {
+            "de": ""
+        },
+        "midtextI18n": {
+            "de": "Optimal"
+        },
+        "midtextexampleI18n": {
+            "de": "Bei uns sind sowohl gut markierte Glast\u00fcren als auch atomatische T\u00fcren im Einsatz."
+        },
+        "mintextI18n": {
+            "de": "Zu wenig"
+        },
+        "mintextexampleI18n": {
+            "de": "Bei uns sind die Glast\u00fcren weder markiert noch gibt es automatische T\u00fcren."
+        },
+        "titleI18n": {
+            "de": "T\u00fcren"
+        },
+        "type": "leftSided",
+        "updated": {
+            "$date": 1414578366916
+        }
+    },
+    {
+        "__v": 0,
+        "_id": {
+            "$oid": "5450c0be3e71cc15a0f7eb8b"
+        },
+        "assessment": {
+            "$oid": "5450c0be3e71cc15a0f7eb75"
+        },
+        "category": "extendedEnvironment",
+        "created": {
+            "$date": 1414578366944
+        },
+        "exptextI18n": {
+            "de": "Bei diesem Kriterium beurteilst du, wie gut und sicher die Treppen begehbar sind."
+        },
+        "maxtextI18n": {
+            "de": ""
+        },
+        "maxtextexampleI18n": {
+            "de": ""
+        },
+        "midtextI18n": {
+            "de": "Optimal"
+        },
+        "midtextexampleI18n": {
+            "de": "bei uns sind die Treppen vorschriftsm\u00e4ssig gesichert (d.h. mit Handl\u00e4ufen, Beleuchtung und rutschhemmenden Bel\u00e4gen)"
+        },
+        "mintextI18n": {
+            "de": "Zu wenig"
+        },
+        "mintextexampleI18n": {
+            "de": "Unsere Treppen sind nicht beleuchtet und es ist gef\u00e4hrlich, sich auf der Treppe zu bewegen."
+        },
+        "titleI18n": {
+            "de": "Treppen"
+        },
+        "type": "leftSided",
+        "updated": {
+            "$date": 1414578366944
+        }
+    },
+    {
+        "__v": 0,
+        "_id": {
+            "$oid": "5450c0be3e71cc15a0f7eb8c"
+        },
+        "assessment": {
+            "$oid": "5450c0be3e71cc15a0f7eb75"
+        },
+        "category": "extendedEnvironment",
+        "created": {
+            "$date": 1414578366954
+        },
+        "exptextI18n": {
+            "de": "Bei diesem Kriterium beurteilst du, wie gut und sicher die Bodenbel\u00e4ge in deiner Arbeitsumgebung sind."
+        },
+        "maxtextI18n": {
+            "de": ""
+        },
+        "maxtextexampleI18n": {
+            "de": ""
+        },
+        "midtextI18n": {
+            "de": "Optimal"
+        },
+        "midtextexampleI18n": {
+            "de": "In meiner Arbeitsumgebung sind die B\u00f6den in optimalem Zustand, es gibt keine Boden\u00f6ffnungen und offene Kabelkan\u00e4le."
+        },
+        "mintextI18n": {
+            "de": "Zu wenig"
+        },
+        "mintextexampleI18n": {
+            "de": "In meiner Arbeitsumgebung sind die B\u00f6den uneben und rutschig und bieten gef\u00e4hrliche Stolperfallen."
+        },
+        "titleI18n": {
+            "de": "B\u00f6den"
+        },
+        "type": "leftSided",
+        "updated": {
+            "$date": 1414578366954
+        }
+    },
+    {
+        "__v": 0,
+        "_id": {
+            "$oid": "5450c0be3e71cc15a0f7eb8d"
+        },
+        "assessment": {
+            "$oid": "5450c0be3e71cc15a0f7eb75"
+        },
+        "category": "extendedEnvironment",
+        "created": {
+            "$date": 1414578366964
+        },
+        "exptextI18n": {
+            "de": "Bei diesem Kriterium beurteilst du, wie sicher und sauber die B\u00f6den in deiner Arbeitsumgebung sind."
+        },
+        "maxtextI18n": {
+            "de": ""
+        },
+        "maxtextexampleI18n": {
+            "de": ""
+        },
+        "midtextI18n": {
+            "de": "Optimal"
+        },
+        "midtextexampleI18n": {
+            "de": "Meine Arbeitsumgebung ist aufger\u00e4umt und die B\u00f6den sind immer sauber und trocken."
+        },
+        "mintextI18n": {
+            "de": "Zu wenig"
+        },
+        "mintextexampleI18n": {
+            "de": "Meine Arbeitsumgebung ist dreckig und die B\u00f6den sind meistens feucht oder nass."
+        },
+        "titleI18n": {
+            "de": "Reinigung"
+        },
+        "type": "leftSided",
+        "updated": {
+            "$date": 1414578366964
+        }
+    },
+    {
+        "__v": 0,
+        "_id": {
+            "$oid": "5450c0be3e71cc15a0f7eb8e"
+        },
+        "assessment": {
+            "$oid": "5450c0be3e71cc15a0f7eb75"
+        },
+        "category": "equipment",
+        "created": {
+            "$date": 1414578366973
+        },
+        "exptextI18n": {
+            "de": "Bei diesem Kriterium beurteilst du, wie sicher Regale und Gestelle angebracht sind."
+        },
+        "maxtextI18n": {
+            "de": ""
+        },
+        "maxtextexampleI18n": {
+            "de": ""
+        },
+        "midtextI18n": {
+            "de": "Optimal"
+        },
+        "midtextexampleI18n": {
+            "de": "Regale und Gestelle sind bei uns sicher und stabil installiert."
+        },
+        "mintextI18n": {
+            "de": "Zu wenig"
+        },
+        "mintextexampleI18n": {
+            "de": "Regale und Gestelle sind bei uns wackelig und unsicher montiert."
+        },
+        "titleI18n": {
+            "de": "Lagerung"
+        },
+        "type": "leftSided",
+        "updated": {
+            "$date": 1414578366973
+        }
+    },
+    {
+        "__v": 0,
+        "_id": {
+            "$oid": "5450c0be3e71cc15a0f7eb8f"
+        },
+        "assessment": {
+            "$oid": "5450c0be3e71cc15a0f7eb75"
+        },
+        "category": "equipment",
+        "created": {
+            "$date": 1414578366979
+        },
+        "exptextI18n": {
+            "de": "Bei diesem Kriterium beurteilst du, wie sicher Kabel und Kabelkan\u00e4le in deiner Arbeitsumgebung installiert sind."
+        },
+        "maxtextI18n": {
+            "de": ""
+        },
+        "maxtextexampleI18n": {
+            "de": ""
+        },
+        "midtextI18n": {
+            "de": "Optimal"
+        },
+        "midtextexampleI18n": {
+            "de": "Kabel sind bei uns sicher fixiert und die Kabelkan\u00e4le sind entsprechend markiert."
+        },
+        "mintextI18n": {
+            "de": "Zu wenig"
+        },
+        "mintextexampleI18n": {
+            "de": "Kabel h\u00e4ngen oder liegen bei uns meistens lose herum und es gibt offene und unmarkierte Kabelkan\u00e4le."
+        },
+        "titleI18n": {
+            "de": "Kabel"
+        },
+        "type": "leftSided",
+        "updated": {
+            "$date": 1414578366979
+        }
+    },
+    {
+        "__v": 0,
+        "_id": {
+            "$oid": "5450c0be3e71cc15a0f7eb90"
+        },
+        "assessment": {
+            "$oid": "5450c0be3e71cc15a0f7eb75"
+        },
+        "category": "equipment",
+        "created": {
+            "$date": 1414578366991
+        },
+        "exptextI18n": {
+            "de": "Bei diesem Kriterium beurteilst du, ob Steighilfen vorhanden sind und in welchem Masse du sie verwendest."
+        },
+        "maxtextI18n": {
+            "de": ""
+        },
+        "maxtextexampleI18n": {
+            "de": ""
+        },
+        "midtextI18n": {
+            "de": "Optimal"
+        },
+        "midtextexampleI18n": {
+            "de": "Bei uns sind Steighilfen an einem gut erreichbaren Ort verstaut und ich verwende sie regelm\u00e4ssig."
+        },
+        "mintextI18n": {
+            "de": "Zu wenig"
+        },
+        "mintextexampleI18n": {
+            "de": "Bei uns gibt es keine Steighilfen, ich benutze immer meinen Drehstuhl, wenn ich etwas oberhalb von mir erreichen muss."
+        },
+        "titleI18n": {
+            "de": "Steighilfe"
+        },
+        "type": "leftSided",
+        "updated": {
+            "$date": 1414578366991
+        }
+    },
+    {
+        "__v": 0,
+        "_id": {
+            "$oid": "5450c0be3e71cc15a0f7eb91"
+        },
+        "assessment": {
+            "$oid": "5450c0be3e71cc15a0f7eb75"
+        },
+        "category": "equipment",
+        "created": {
+            "$date": 1414578367002
+        },
+        "exptextI18n": {
+            "de": "Bei diesem Kriterium beurteilst du, ob entsprechende Sicherheitsschuhe und -kleidung vorhanden sind und in welchem Masse du sie verwendest."
+        },
+        "maxtextI18n": {
+            "de": ""
+        },
+        "maxtextexampleI18n": {
+            "de": ""
+        },
+        "midtextI18n": {
+            "de": "Optimal"
+        },
+        "midtextexampleI18n": {
+            "de": "Um einen sicheren Stand zu haben und Sicherheitsrisiken zu umgehen, arbeite ich immer mit geeigneter Schutzkleidung."
+        },
+        "mintextI18n": {
+            "de": "Zu wenig"
+        },
+        "mintextexampleI18n": {
+            "de": "Ich achte nie, ob meine Schuhe und Kleidung angemessen sind und ich habe schon \u00f6fters die falschen Schuhe getragen."
+        },
+        "titleI18n": {
+            "de": "Schuhe und Kleidung"
+        },
+        "type": "leftSided",
+        "updated": {
+            "$date": 1414578367002
+        }
+    },
+    {
+        "__v": 0,
+        "_id": {
+            "$oid": "5450c0bf3e71cc15a0f7eb92"
+        },
+        "assessment": {
+            "$oid": "5450c0be3e71cc15a0f7eb75"
+        },
+        "category": "safetyRelatedWorkBehavior",
+        "created": {
+            "$date": 1414578367012
+        },
+        "exptextI18n": {
+            "de": "Bei diesem Kriterium beurteilst du, wie sehr du dich vor einer Arbeit \u00fcber m\u00f6gliche Gefahren informierst."
+        },
+        "maxtextI18n": {
+            "de": ""
+        },
+        "maxtextexampleI18n": {
+            "de": ""
+        },
+        "midtextI18n": {
+            "de": "Optimal"
+        },
+        "midtextexampleI18n": {
+            "de": "Bei gef\u00e4hrlichen Arbeiten informiere ich mich vorher immer \u00fcber m\u00f6gliche Gefahren und f\u00fchle mich dann sehr sicher bei der Ausf\u00fchrung von gef\u00e4hrlichen Arbeiten."
+        },
+        "mintextI18n": {
+            "de": "Zu wenig"
+        },
+        "mintextexampleI18n": {
+            "de": "Bei gef\u00e4hrlichen Arbeiten fange immer an zu arbeiten, ohne mir vorher \u00fcber m\u00f6gliche Gefahren und Risiken Gedanken zu machen, und ich weiss zu Beginn nie, welche Gefahren auf mich zukommen k\u00f6nnten."
+        },
+        "titleI18n": {
+            "de": "Information zu Gefahren"
+        },
+        "type": "leftSided",
+        "updated": {
+            "$date": 1414578367012
+        }
+    },
+    {
+        "__v": 0,
+        "_id": {
+            "$oid": "5450c0bf3e71cc15a0f7eb93"
+        },
+        "assessment": {
+            "$oid": "5450c0be3e71cc15a0f7eb75"
+        },
+        "category": "safetyRelatedWorkBehavior",
+        "created": {
+            "$date": 1414578367021
+        },
+        "exptextI18n": {
+            "de": "Bei diesem Kriterium beurteilst du, wie sehr du dich bem\u00fchst, durch sicherheitsgerechtes Verhalten ein Vorbild zu sein."
+        },
+        "maxtextI18n": {
+            "de": ""
+        },
+        "maxtextexampleI18n": {
+            "de": ""
+        },
+        "midtextI18n": {
+            "de": "Optimal"
+        },
+        "midtextexampleI18n": {
+            "de": "Ich versuche, durch mein Verhalten meinen Kolleginnen und Kollegen ein gutes Beispiel zu geben."
+        },
+        "mintextI18n": {
+            "de": "Zu wenig"
+        },
+        "mintextexampleI18n": {
+            "de": "Ich f\u00fchre Arbeiten immer so aus, ohne darauf zu achten, ob es f\u00fcr Andere gut ist oder nicht."
+        },
+        "titleI18n": {
+            "de": "Vorbildfunktion"
+        },
+        "type": "leftSided",
+        "updated": {
+            "$date": 1414578367021
+        }
+    },
+    {
+        "__v": 0,
+        "_id": {
+            "$oid": "5450c0bf3e71cc15a0f7eb94"
+        },
+        "assessment": {
+            "$oid": "5450c0be3e71cc15a0f7eb75"
+        },
+        "category": "safetyRelatedWorkBehavior",
+        "created": {
+            "$date": 1414578367027
+        },
+        "exptextI18n": {
+            "de": "Bei diesem Kriterium beurteilst du, wie sehr du positive Erfahrungen deiner sicherheitsgerechten Arbeitsweise als vorteilhaft wahrnimmst und sch\u00e4tzt."
+        },
+        "maxtextI18n": {
+            "de": ""
+        },
+        "maxtextexampleI18n": {
+            "de": ""
+        },
+        "midtextI18n": {
+            "de": "Optimal"
+        },
+        "midtextexampleI18n": {
+            "de": "Ich mache regelm\u00e4ssig positive Erfahrungen mit meiner sicherheitsgerechten Arbeitsweise, und das motiviert mich zum Fortsetzen dieser Arbeitsweise auch in Zukunft."
+        },
+        "mintextI18n": {
+            "de": "Zu wenig"
+        },
+        "mintextexampleI18n": {
+            "de": "Ich habe das Gef\u00fchl, nie positive Erfahrungen mit meiner Arbeitsweise zu machen und bin deshalb oft demotiviert und deprimiert."
+        },
+        "titleI18n": {
+            "de": "Positive Erfahrungen"
+        },
+        "type": "leftSided",
+        "updated": {
+            "$date": 1414578367027
+        }
+    },
+    {
+        "__v": 0,
+        "_id": {
+            "$oid": "5450c0bf3e71cc15a0f7eb95"
+        },
+        "assessment": {
+            "$oid": "5450c0be3e71cc15a0f7eb75"
+        },
+        "category": "safetyRelatedWorkBehavior",
+        "created": {
+            "$date": 1414578367058
+        },
+        "exptextI18n": {
+            "de": "Bei diesem Kriterium beurteilst du, wie h\u00e4ufig du Lob und Anerkennung f\u00fcr sicherheitsgerechtes Verhalten deiner Kollegen bei der Arbeit aussprichst."
+        },
+        "maxtextI18n": {
+            "de": ""
+        },
+        "maxtextexampleI18n": {
+            "de": ""
+        },
+        "midtextI18n": {
+            "de": "Optimal"
+        },
+        "midtextexampleI18n": {
+            "de": "Ich lobe meine Kollegen regelm\u00e4ssig f\u00fcr ihr sicherheitsgerechtes Verhalten, was sie motiviert."
+        },
+        "mintextI18n": {
+            "de": "Zu wenig"
+        },
+        "mintextexampleI18n": {
+            "de": "Ich lobe meine Kollegen nie f\u00fcr ihr sicherheitsgerechtes Verhalten und es ist mir egal, wie sie arbeiten."
+        },
+        "titleI18n": {
+            "de": "Lob und Anerkennung"
+        },
+        "type": "leftSided",
+        "updated": {
+            "$date": 1414578367058
+        }
+    },
+    {
+        "__v": 0,
+        "_id": {
+            "$oid": "5450c0bf3e71cc15a0f7eb96"
+        },
+        "assessment": {
+            "$oid": "5450c0be3e71cc15a0f7eb75"
+        },
+        "category": "safetyRelatedFreetimeBehavior",
+        "created": {
+            "$date": 1414578367071
+        },
+        "exptextI18n": {
+            "de": "Bei diesem Kriterium beurteilst du, wie h\u00e4ufig du Ballsport in deiner Freizeit (z.B. Firmen- und Gr\u00fcmpelturniere) betreibst und wie bewusst dir dabei m\u00f6gliche Verletzungsrisiken sind."
+        },
+        "maxtextI18n": {
+            "de": ""
+        },
+        "maxtextexampleI18n": {
+            "de": ""
+        },
+        "midtextI18n": {
+            "de": "Optimal"
+        },
+        "midtextexampleI18n": {
+            "de": "Ich nehme regelm\u00e4ssig an Firmen- und Gr\u00fcmpelturnieren teil und bereite mich gezielt darauf vor, um das Verletzungsrisiko zu senken."
+        },
+        "mintextI18n": {
+            "de": "Zu wenig"
+        },
+        "mintextexampleI18n": {
+            "de": "Ich nehme ab und zu an Firmen- und Gr\u00fcmpelturnieren teil, ohne mir speziell \u00fcber Verletzungsrisiken Gedanken zu machen. "
+        },
+        "titleI18n": {
+            "de": "Ballsport"
+        },
+        "type": "leftSided",
+        "updated": {
+            "$date": 1414578367071
+        }
+    },
+    {
+        "__v": 0,
+        "_id": {
+            "$oid": "5450c0bf3e71cc15a0f7eb97"
+        },
+        "assessment": {
+            "$oid": "5450c0be3e71cc15a0f7eb75"
+        },
+        "category": "safetyRelatedFreetimeBehavior",
+        "created": {
+            "$date": 1414578367083
+        },
+        "exptextI18n": {
+            "de": "Bei diesem Kriterium beurteilst du, wie h\u00e4ufig du in deiner Freizeit Velo f\u00e4hrst und wie bewusst dir m\u00f6gliche Unfall- oder Sturzgefahren sind."
+        },
+        "maxtextI18n": {
+            "de": ""
+        },
+        "maxtextexampleI18n": {
+            "de": ""
+        },
+        "midtextI18n": {
+            "de": "Optimal"
+        },
+        "midtextexampleI18n": {
+            "de": "Ich fahre regelm\u00e4ssig mit meinem Velo und mir ist bewusst, dass ich Unfall- und Sturzgefahren gerade auch im Strassenverkehr ausgesetzt bin."
+        },
+        "mintextI18n": {
+            "de": "Zu wenig"
+        },
+        "mintextexampleI18n": {
+            "de": "Ich fahre ab und zu Velo ohne mir speziell \u00fcber m\u00f6gliche Unfall- oder Sturzgefahren Gedanken zu machen."
+        },
+        "titleI18n": {
+            "de": "Velofahren"
+        },
+        "type": "leftSided",
+        "updated": {
+            "$date": 1414578367083
+        }
+    },
+    {
+        "__v": 0,
+        "_id": {
+            "$oid": "5450c0bf3e71cc15a0f7eb98"
+        },
+        "assessment": {
+            "$oid": "5450c0be3e71cc15a0f7eb75"
+        },
+        "category": "safetyRelatedFreetimeBehavior",
+        "created": {
+            "$date": 1414578367106
+        },
+        "exptextI18n": {
+            "de": "Bei diesem Kriterium beurteilst du, wie h\u00e4ufig du in deiner Freizeit Ski f\u00e4hrst und wie bewusst dir m\u00f6gliche Unfall- oder Verletzungsrisiken sind."
+        },
+        "maxtextI18n": {
+            "de": ""
+        },
+        "maxtextexampleI18n": {
+            "de": ""
+        },
+        "midtextI18n": {
+            "de": "Optimal"
+        },
+        "midtextexampleI18n": {
+            "de": "Ich fahre regelm\u00e4ssig Ski im Winter und ich bereite mich gezielt schon im Herbst darauf vor, um Unfall- und Verletzungsrisiken zu senken."
+        },
+        "mintextI18n": {
+            "de": "Zu wenig"
+        },
+        "mintextexampleI18n": {
+            "de": "Ich fahre ab und zu Ski im Winter ohne mir speziell \u00fcber Unfall- oder Verletzungsrisiken Gedanken zu machen."
+        },
+        "titleI18n": {
+            "de": "Wintersport"
+        },
+        "type": "leftSided",
+        "updated": {
+            "$date": 1414578367106
+        }
+    },
+    {
+        "__v": 0,
+        "_id": {
+            "$oid": "5450c0bf3e71cc15a0f7eb99"
+        },
+        "assessment": {
+            "$oid": "5450c0be3e71cc15a0f7eb75"
+        },
+        "category": "safetyRelatedFreetimeBehavior",
+        "created": {
+            "$date": 1414578367111
+        },
+        "exptextI18n": {
+            "de": "Bei diesem Kriterium beurteilst du, wie sehr dir bewusst ist, welchen Unfall-, Verletzungs- oder Sturzrisiken man bei Alkoholkonsum bei sportlichen Freizeitaktivit\u00e4ten ausgesetzt ist."
+        },
+        "maxtextI18n": {
+            "de": ""
+        },
+        "maxtextexampleI18n": {
+            "de": ""
+        },
+        "midtextI18n": {
+            "de": "Optimal"
+        },
+        "midtextexampleI18n": {
+            "de": "Ich trinke allgemein wenig Alkohol und bei sportlichen Frreizeitaktivit\u00e4ten sowieso gar nichts, weil mir das Unfall-, Verletzungs- und Sturzrisiko zu gross ist."
+        },
+        "mintextI18n": {
+            "de": "Zu wenig"
+        },
+        "mintextexampleI18n": {
+            "de": "Ich trinke immer bei sportlichen Firmen- oder Freizeitanl\u00e4ssen Alkohol, weil es einfach lustiger ist und mehr Spass macht."
+        },
+        "titleI18n": {
+            "de": "Alkoholeinfluss"
+        },
+        "type": "leftSided",
+        "updated": {
+            "$date": 1414578367111
+        }
+    },
+    {
+        "__v": 0,
+        "_id": {
+            "$oid": "5450c0bf3e71cc15a0f7eb9a"
+        },
+        "assessment": {
+            "$oid": "5450c0be3e71cc15a0f7eb75"
+        },
+        "category": "safetyRelatedFreetimeBehavior",
+        "created": {
+            "$date": 1414578367116
+        },
+        "exptextI18n": {
+            "de": "Bei diesem Kriterium beurteilst du, wie sehr dir bewusst ist, wie wichtig gute Ausr\u00fcstung bei Freizeitaktivit\u00e4ten ist, um das Unfallrisiko so klein wie m\u00f6glich zu halten."
+        },
+        "maxtextI18n": {
+            "de": ""
+        },
+        "maxtextexampleI18n": {
+            "de": ""
+        },
+        "midtextI18n": {
+            "de": "Optimal"
+        },
+        "midtextexampleI18n": {
+            "de": "Ich mache regelm\u00e4ssig einen Check meiner Ausr\u00fcstung und ich \u00fcbe nie eine sportliche Freizeitaktivit\u00e4t aus, wenn meine Ausr\u00fcstung nicht okay ist."
+        },
+        "mintextI18n": {
+            "de": "Zu wenig"
+        },
+        "mintextexampleI18n": {
+            "de": "Ich mache mir nie Gedanken \u00fcber mein Material und meine Ausr\u00fcstung, wenn ich eine sportliche Freizeitaktivit\u00e4t aus\u00fcbe, denn mir ist wichtig, dass ich Spass habe."
+        },
+        "titleI18n": {
+            "de": "Ausr\u00fcstung"
+        },
+        "type": "leftSided",
+        "updated": {
+            "$date": 1414578367116
+        }
     }
 ]

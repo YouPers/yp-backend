@@ -237,7 +237,7 @@ var postParticipantsInviteFn = function postParticipantsInviteFn(req, res, next)
     var emails = _parseMailAdresses(req.body.email);
 
     Campaign.findById(req.params.id)
-        .populate('organization topic')
+        .populate('organization topic campaignLeads')
         .exec(function (err, campaign) {
             if (err) {
                 return next(err);
@@ -254,7 +254,7 @@ var postParticipantsInviteFn = function postParticipantsInviteFn(req, res, next)
                 }));
             }
             _.forEach(emails, function (emailaddress) {
-                email.sendCampaignParticipantInvite(emailaddress, req.body.subject, req.body.text, req.user, campaign, req.i18n);
+                email.sendCampaignParticipantInvite(emailaddress, req.body.subject, req.body.text, req.user, campaign, req.body.testOnly, req.i18n);
             });
         });
 

@@ -459,6 +459,7 @@ SocialInteraction.populateSocialInteraction = function (socialInteraction, campa
         if (socialInteraction.activity) {
             mongoose.model('Activity')
                 .findById(socialInteraction.activity)
+                .populate('owner')
                 .exec(function (err, activity) {
                     if (err) {
                         return donePopulating(err);
@@ -683,50 +684,22 @@ SocialInteraction.getAllForUser = function (user, model, options, cb) {
 
                 if (!options.authored) {
 
-
                     dbQuery.and({ author: { $ne: user._id } });
 
                     // filter out invitations the user already participates in only if he does not want the stuff he has
                     // authored himself
-                    dbQuery.and({
-
-
-                        $or: [
+                    dbQuery.and({$or: [
                         {
                             __t: { $ne: 'Invitation' }
                         },
                         {
                             activity: {
                                 $nin: locals.activityIds
-                if (!options.authored) {
-
-
-                    dbQuery.and({ author: { $ne: user._id } });
-
-                    // filter out invitations the user already participates in only if he does not want the stuff he has
-                    // authored himself
-                    dbQuery.and({
-
-                        $or: [
-                            {
-                                __t: { $ne: 'Invitation' }
-                            },
-                            {
-                                refDocs: {
-                                    $elemMatch: {
-                                        docId: {
-                                            $nin: locals.activityIds
-                                        }
-                                    }
-                                }
                             }
-                        ]
+                        }
+                    ]
                     });
                 }
-            }
-            
-            
-            
 
                 if (options.discriminators) {
                     dbQuery.and({ __t: { $in: options.discriminators } });

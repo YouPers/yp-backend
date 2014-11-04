@@ -57,7 +57,11 @@ mongoose.model('Invitation').on('add', function (invitation) {
 
     // invitations for activities
     if(event) {
-        Event.findById(event.docId).populate('idea').exec(function (err, event) {
+        Event.findById(event._id || event).populate('idea').exec(function (err, event) {
+
+            if (err) {
+                return SocialInteraction.emit('error', err);
+            }
             var userIds = _.map(_.filter(invitation.targetSpaces, { type: 'user'}), 'targetId');
             // get author
             User.findById(invitation.author).exec(function (err, author) {
@@ -238,7 +242,7 @@ SocialInteraction.deleteSocialInteractions = function (refDoc, cb) {
         {refDocs: {$elemMatch: {
             docId: refDoc._id || refDoc
         }}},
-        {activity: refDoc._id || refDoc},
+        {event: refDoc._id || refDoc},
         {idea: refDoc._id || refDoc}
     ]};
 
@@ -304,7 +308,7 @@ SocialInteraction.dismissSocialInteraction = function dismissSocialInteraction(m
         {refDocs: {$elemMatch: {
             docId: refDoc._id || refDoc
         }}},
-        {activity: refDoc._id || refDoc},
+        {event: refDoc._id || refDoc},
         {idea: refDoc._id || refDoc}
     ];
 
@@ -455,16 +459,16 @@ SocialInteraction.populateSocialInteraction = function (socialInteraction, campa
         }
     }
 
-    function _populateActivity(donePopulating) {
-        if (socialInteraction.activity) {
-            mongoose.model('Activity')
-                .findById(socialInteraction.activity)
+    function _populateEvent(donePopulating) {
+        if (socialInteraction.event) {
+            mongoose.model('Event')
+                .findById(socialInteraction.event)
                 .populate('owner')
                 .exec(function (err, activity) {
                     if (err) {
                         return donePopulating(err);
                     }
-                    socialInteraction.setValue('activity', activity);
+                    socialInteraction.setValue('event', event);
                     return donePopulating();
                 });
         } else {
@@ -478,7 +482,7 @@ SocialInteraction.populateSocialInteraction = function (socialInteraction, campa
         ops.push(_populateIdea);
     }
     if (_.contains(attrToPopulate, 'activity')) {
-        ops.push(_populateActivity);
+        ops.push(_populateEvent);
     }
     if (_.contains(attrToPopulate, 'refDocs')) {
         ops.push(_populateRefDocs);
@@ -541,15 +545,15 @@ SocialInteraction.getAllForUser = function (user, model, options, cb) {
         });
     }
 
-    function _loadActivities(done) {
+    function _loadEvents(done) {
         mongoose.model('Event').find({ $or: [
             { owner: user._id },
             { joiningUsers: user._id }
-        ]}, function (err, activities) {
+        ]}, function (err, events) {
             if (err) {
                 return done(err);
             }
-            locals.eventIds = _.map(activities, '_id');
+            locals.eventIds = _.map(events, '_id');
             return done();
         });
     }
@@ -610,7 +614,7 @@ SocialInteraction.getAllForUser = function (user, model, options, cb) {
     }
 
     function _loadUserMode() {
-        async.parallel([_loadSocialInteractionDismissed, _loadActivities],
+        async.parallel([_loadSocialInteractionDismissed, _loadEvents],
             function (err) {
                 if (err) {
                     return cb(err);
@@ -693,7 +697,7 @@ SocialInteraction.getAllForUser = function (user, model, options, cb) {
                             __t: { $ne: 'Invitation' }
                         },
                         {
-                            activity: {
+                            event: {
                                 $nin: locals.eventIds
                             }
                         }
@@ -709,7 +713,7 @@ SocialInteraction.getAllForUser = function (user, model, options, cb) {
                         {refDocs: {$elemMatch: {
                             docId: options.refDocId
                         }}},
-                        {activity: options.refDocId},
+                        {event: options.refDocId},
                         {idea: options.refDocId}
                     ]});
                 }
@@ -722,7 +726,7 @@ SocialInteraction.getAllForUser = function (user, model, options, cb) {
                 }
 
                 // if used model is the parent (SocialInteraction), then the mongoose population mechanism does not work
-                // for properties, that only exist on children (.idea, .activity) because the population code in mongoose
+                // for properties, that only exist on children (.idea, .event) because the population code in mongoose
                 // is not aware of the polymorphism. Therefore we need to take special action here.
                 // 1. remove those attributes from the queryOptions.populate, so the default mongoose population does not mess up.
                 // 2. store them in the 'populateManually' so we can process them manually later
@@ -734,8 +738,8 @@ SocialInteraction.getAllForUser = function (user, model, options, cb) {
                 _.forEach(populateAttrs, function (attrToPopulate) {
                     if (attrToPopulate === 'idea') {
                         populateManually.push('idea');
-                    } else if (attrToPopulate === 'activity') {
-                        populateManually.push('activity');
+                    } else if (attrToPopulate === 'event') {
+                        populateManually.push('event');
                     } else if (attrToPopulate === 'refDocs') {
                         populateManually.push('refDocs');
                     } else {

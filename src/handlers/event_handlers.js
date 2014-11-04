@@ -21,7 +21,7 @@ function getInvitationStatus(req, res, next) {
     SocialInteraction.getInvitationStatus(req.params.id, generic.sendListCb(req, res, next));
 }
 
-function getActivityLookAheadCounters(req, res, next) {
+function getEventLookAheadCounters(req, res, next) {
 
 
     if (!req.params || !req.params.id) {
@@ -62,10 +62,10 @@ function getActivityLookAheadCounters(req, res, next) {
     function _newJoiningUsersCount(done) {
         var finder = {
             __t: 'Invitation',
-            activity: mongoose.Types.ObjectId(req.params.id)
+            event: mongoose.Types.ObjectId(req.params.id)
         };
 
-        // all invitations for this activity
+        // all invitations for this event
         SocialInteractionModel.find(finder).exec(function (err, invitations) {
             if (err) {
                 return done(err);
@@ -73,7 +73,7 @@ function getActivityLookAheadCounters(req, res, next) {
 
             var finder = {
                 socialInteraction: { $in: _.map(invitations, '_id') },
-                reason: 'activityJoined'
+                reason: 'eventJoined'
             };
 
             if(lastAccessSince) {
@@ -182,18 +182,18 @@ function validateEvent(req, res, next) {
 
         // load all activities for the conflicting occurences to populate them
         var conflictingEvents = _.compact(_.map(validationResult, 'conflictingEvent'));
-        var conflictingEventActivities = _.map(conflictingEvents, 'event');
-        Event.find({ _id: { $in: conflictingEventActivities }}, function (err, activities) {
+        var conflictingOccurences = _.map(conflictingEvents, 'event');
+        Event.find({ _id: { $in: conflictingOccurences }}, function (err, events) {
             if(err) {
                 return error.handleError(err, next);
             }
-            var activitiesById = _.indexBy(activities, function(event) {
+            var eventsById = _.indexBy(events, function(event) {
                 return event._id.toString();
             });
 
             _.each(validationResult, function(result) {
                 if(result.conflictingEvent) {
-                    var conflictingEventResult = activitiesById[result.conflictingEvent.event.toString()];
+                    var conflictingEventResult = eventsById[result.conflictingEvent.event.toString()];
                     result.conflictingEvent.event = conflictingEventResult;
                 }
             });
@@ -588,7 +588,7 @@ function deleteEvent(req, res, next) {
                             event.recurrence.after = undefined;
                             event.save(done);
                         } else {
-                            return done(new Error('should never arrive here, it is not possible to have an "once" activity that has ' +
+                            return done(new Error('should never arrive here, it is not possible to have an "once" event that has ' +
                                 'passed and future events at the same time'));
                         }
                     } else {
@@ -759,7 +759,7 @@ function getIcal(req, res, next) {
                 return error.handleError(err, next);
             }
             if (!loadedEvent) {
-                return next(new error.ResourceNotFoundError({activity: req.params.id}));
+                return next(new error.ResourceNotFoundError({event: req.params.id}));
             }
             mongoose.model('User').findById(req.params.user).select('+email +profile').populate('profile').exec(function (err, user) {
                 if (err) {
@@ -786,7 +786,7 @@ module.exports = {
     putEvent: putEvent,
     getInvitationStatus: getInvitationStatus,
     validateEvent: validateEvent,
-    getActivityLookAheadCounters: getActivityLookAheadCounters,
+    getEventLookAheadCounters: getEventLookAheadCounters,
     getIcal: getIcal,
     getAll: getAll
 };

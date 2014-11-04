@@ -69,7 +69,7 @@ consts.newUserInNewCampaignApi(
                                     .afterJSON(function (invitation) {
 
                                         expect(invitation.refDocs.length).toEqual(0);
-                                        expect(invitation.activity).toEqual(newPlan.id);
+                                        expect(invitation.event).toEqual(newPlan.id);
 
                                     })
                                     .toss();
@@ -81,14 +81,14 @@ consts.newUserInNewCampaignApi(
                                     .afterJSON(function (joinedPlan) {
 
                                         frisby.create('Invitation: get lookahead counters, should contain 1 new joining user')
-                                            .get(URL + '/activities/' + joinedPlan.id + '/lookAheadCounters')
+                                            .get(URL + '/events/' + joinedPlan.id + '/lookAheadCounters')
                                             .auth('test_ind1', 'yp')
                                             .expectStatus(200)
                                             .afterJSON(function (result) {
                                                 expect(result.joiningUsers).toEqual(1);
 
                                                 frisby.create('Invitation: get lookahead counters with timestamp, should contain no new joining user')
-                                                    .get(URL + '/activities/' + joinedPlan.id + '/lookAheadCounters' + '?since=' + moment().toISOString())
+                                                    .get(URL + '/events/' + joinedPlan.id + '/lookAheadCounters' + '?since=' + moment().toISOString())
                                                     .auth('test_ind1', 'yp')
                                                     .expectStatus(200)
                                                     .afterJSON(function (result) {
@@ -112,7 +112,7 @@ consts.newUserInNewCampaignApi(
                                                     .afterJSON(function (socialInteractions) {
                                                         expect(socialInteractions.length).toEqual(1);
                                                         expect(socialInteractions[0].dismissed).toBeTruthy();
-                                                        expect(socialInteractions[0].dismissalReason).toEqual('activityJoined');
+                                                        expect(socialInteractions[0].dismissalReason).toEqual('eventJoined');
 
 
                                                         // Invitations for activities the user already participates are NOT returned anymore
@@ -122,8 +122,8 @@ consts.newUserInNewCampaignApi(
 
 
 
-                                                        frisby.create("Invitation: delete the activity")
-                                                            .delete(URL + '/activities/' + newPlan.id)
+                                                        frisby.create("Invitation: delete the event")
+                                                            .delete(URL + '/events/' + newPlan.id)
                                                             .auth('test_ind1', 'yp')
                                                             .expectStatus(200)
                                                             .toss();
@@ -186,9 +186,8 @@ consts.newUserInNewCampaignApi(
 
                                 var invitation = invitations[0];
 
-                                expect(invitation.refDocs.length).toEqual(1);
-                                expect(invitation.refDocs[0].model).toEqual('Activity');
-                                expect(invitation.refDocs[0].docId).toEqual(newActivity.id);
+                                expect(invitation.refDocs.length).toEqual(0);
+                                expect(invitation.event).toEqual(newEvent.id);
 
                                 frisby.create('Invitation: delete the event, will dismiss the invitation')
                                     .delete(URL + '/events/' + newEvent.id)

@@ -58,7 +58,7 @@ module.exports = function (swagger) {
                 {
                     paramType: "path",
                     name: "id",
-                    description: "the id of the activity to fetch ",
+                    description: "the id of the event to fetch ",
                     dataType: "string",
                     required: true
                 }

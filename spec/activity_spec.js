@@ -75,8 +75,8 @@ frisby.create('Event: plan once event and check whether event is generated')
                                             .get(URL + '/events/' + newPlan.id)
                                             .auth('test_ind1', 'yp')
                                             .expectStatus(200)
-                                            .afterJSON(function (activity) {
-                                                expect(activity.status).toEqual('deleted');
+                                            .afterJSON(function (event) {
+                                                expect(event.status).toEqual('deleted');
                                             })
                                             .toss();
 
@@ -276,7 +276,7 @@ var profileUpdate = {
             "iCalInvites": false
         },
         "rejectedIdeas": [],
-        "rejectedActivities": [],
+        "rejectedEvents": [],
         "starredIdeas": []
     }
 };
@@ -328,7 +328,7 @@ frisby.create('Event: update user profile preferences to workdays only MO-WE and
                             "iCalInvites": false
                         },
                         "rejectedIdeas": [],
-                        "rejectedActivities": [],
+                        "rejectedEvents": [],
                         "starredIdeas": []
                     }
                 };

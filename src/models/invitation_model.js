@@ -15,7 +15,7 @@ var mongoose = require('ypbackendlib').mongoose,
 var InvitationSchema = common.newSchema({
 
     idea: {type: ObjectId, ref: 'Idea'},
-    activity: {type: ObjectId, ref: 'Activity'}
+    event: {type: ObjectId, ref: 'Event'}
 
 }, undefined, AbstractSocialInteractionSchema);
 

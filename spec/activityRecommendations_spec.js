@@ -55,7 +55,7 @@ frisby.create('EventRecommendations: post a first answer for this assessment')
                                 rejectedIdeas:
                                     [{idea: recs[0].idea, timestamp: new Date().toISOString()}],
 
-                                "rejectedActivities": [],
+                                "rejectedEvents": [],
                                 "starredIdeas": []
                             }
                         })
@@ -83,7 +83,7 @@ frisby.create('EventRecommendations: post a first answer for this assessment')
                                                 "iCalInvites": false
                                             },
                                             "rejectedIdeas": [],
-                                            "rejectedActivities": [],
+                                            "rejectedEvents": [],
                                             "starredIdeas": []
                                         }
                                     })

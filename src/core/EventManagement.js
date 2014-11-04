@@ -51,13 +51,13 @@ User.on('change:campaign', function (user) {
                     owner: user._id,
                     idea: assessment.idea,
                     status: 'active'
-                }).exec(function (err, activities) {
+                }).exec(function (err, events) {
                     if (err) {
                         handleError(err);
                     }
 
                     // only plan assessment idea if there is no active event yet
-                    if (activities.length === 0) {
+                    if (events.length === 0) {
 
                         mongoose.model('Profile').findById(user.profile).exec(function (err, profile) {
                             if (err) {
@@ -222,7 +222,7 @@ actMgr.on('event:eventDeleted', function (event) {
 
 actMgr.on('event:eventUpdated', function (updatedEvent) {
     Invitation.find({
-            activity: updatedEvent._id
+            event: updatedEvent._id
         }
     ).exec(function (err, invitations) {
             _.forEach(invitations, function (invitation) {

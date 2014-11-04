@@ -63,9 +63,7 @@ function getActivityLookAheadCounters(req, res, next) {
     function _newJoiningUsersCount(done) {
         var finder = {
             __t: 'Invitation',
-            refDocs: {
-                $elemMatch: { docId: req.params.id }
-            }
+            activity: mongoose.Types.ObjectId(req.params.id)
         };
 
         // all invitations for this activity

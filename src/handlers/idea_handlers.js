@@ -6,9 +6,7 @@ var mongoose = require('ypbackendlib').mongoose,
     auth = require('ypbackendlib').auth,
     error = require('ypbackendlib').error,
     handlerUtils = require('ypbackendlib').handlerUtils,
-    generic = require('ypbackendlib').handlers,
-    async = require('async'),
-    SocialInteraction = require('../core/SocialInteraction');
+    generic = require('ypbackendlib').handlers;
 
 
 function _checkIdeaWritePermission(sentIdea, user, cb) {
@@ -173,92 +171,9 @@ function getDefaultActivity(req, res, next) {
     });
 }
 
-
-function getIdeaUserContext(req, res, next) {
-    var ideaId = req.params.id;
-    if (!ideaId) {
-        return next(new error.MissingParameterError('id of idea is required'));
-    }
-    var ctx = {};
-
-    function _loadIdea(done) {
-        Idea.findById(ideaId).exec(function (err, idea) {
-            if (err) {
-                return done(err);
-            }
-            if (!idea) {
-                return done(new error.ResourceNotFoundError('idea not found'));
-            }
-            ctx.idea = idea;
-            return done();
-        });
-    }
-
-    function _loadActivities(done) {
-        var userClause = { $or: [
-            { owner: req.user._id },
-            { joiningUsers: req.user._id }
-        ]};
-        mongoose.model('Activity')
-            .find({idea: ideaId})
-            .where(userClause)
-            .populate('owner joiningUsers')
-            .exec(function (err, activities) {
-                if (err) {
-                    return done(err);
-                }
-                ctx.activities = activities;
-                return done();
-            });
-    }
-
-    function _loadSocialInteractions(done) {
-
-        var queryOptions = req.query;
-        queryOptions.populate = req.query.populate ? 'author ' + req.query.populate : 'author';
-
-        var options = {
-
-            authored: true,
-
-            refDocId: ideaId,
-            locale: req.locale,
-            queryOptions: queryOptions
-        };
-
-        SocialInteraction.getAllForUser(req.user, mongoose.model('SocialInteraction'), options, function (err, sois) {
-            if (err) {
-                return done(err);
-            }
-            ctx.socialInteractions = _.groupBy(sois, '__t');
-            return done();
-        });
-    }
-
-    function _loadEvents(done) {
-        mongoose.model('ActivityEvent').find({owner: req.user._id, idea: ideaId}).exec(function (err, events) {
-            if (err) {
-                return done(err);
-            }
-            ctx.events = events;
-            return done();
-        });
-    }
-
-    async.parallel([_loadIdea, _loadActivities, _loadSocialInteractions, _loadEvents],
-        function (err) {
-            if (err) {
-                return error.handleError(err, next);
-            }
-            res.send(ctx);
-            return next();
-        });
-}
-
 module.exports = {
     postIdea: postIdea,
     putIdea: putIdea,
     getAllIdeas: getAllIdeas,
     getDefaultActivity: getDefaultActivity,
-    getUserContextByIdFn: getIdeaUserContext
 };

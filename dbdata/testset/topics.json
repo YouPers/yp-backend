@@ -70,7 +70,7 @@
         },
         "textI18n": {
             "de": "Sicheres Arbeiten und sicheres Freizeitverhalten sollen den Arbeitnehmer vor Unfällen schützen und ihn durch lebenswichtige Regeln, Arbeitsweisen und Präventionsmassnahmen vor lauernden Gefahren warnen.<br>Mehr Informationen findest du bei <a href='http://www.ekas.admin.ch/index-de.php?frameset=42' target='_blank'>EKAS</a> oder <a href='http://www.bfu.ch/de/fuer-fachpersonen/betriebe' target='_blank'>bfu</a>.",
-            "en": "Safe working and safe leisure behavior is supposed to protect the employee against accidents and warn him by essential rules, operational procedures and preventive measures against lurking dangers. More information can be found at <a href='http://www.ekas.admin.ch/index-de.php?frameset=42'  target='_blank'>EKAS</a> or <a href='http://www.bfu.ch/de/fuer-fachpersonen/betriebe' target='_blank'>bfu</a>."
+            "en": "Safe working and safe leisure behavior is supposed to protect the employee against accidents and warn him by essential rules, operational procedures and preventive measures against lurking dangers.<br>More information can be found at <a href='http://www.ekas.admin.ch/index-de.php?frameset=42'  target='_blank'>EKAS</a> or <a href='http://www.bfu.ch/de/fuer-fachpersonen/betriebe' target='_blank'>bfu</a>."
         },
         "picture": "/assets/img/topic/safety.jpg"
     }

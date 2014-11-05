@@ -223,7 +223,7 @@ actMgr.on('activity:activityDeleted', function (activity) {
 
 actMgr.on('activity:activityUpdated', function (updatedActivity) {
     Invitation.find({
-            refDocs: { $elemMatch: { docId: updatedActivity._id, model: 'Activity' }}
+            activity: updatedActivity._id
         }
     ).exec(function (err, invitations) {
             _.forEach(invitations, function (invitation) {

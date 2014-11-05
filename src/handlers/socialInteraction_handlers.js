@@ -8,26 +8,7 @@ var error = require('ypbackendlib').error,
 
 var getByIdFn = function getByIdFn(baseUrl, Model) {
     return function getById(req, res, next) {
-
-        Model.findById(req.params.id).populate('author').exec(function(err, socialInteraction) {
-
-            if (err) {
-                return error.handleError(err, next);
-            }
-            if (!socialInteraction) {
-                return next(new error.ResourceNotFoundError());
-            }
-// methods are not accessible for discriminators, see https://github.com/LearnBoost/mongoose/issues/2167
-//            if(socialInteraction.isTargeted && !socialInteraction.isTargeted(user)) {
-//                return next(new error.NotAuthorizedError());
-//            }
-
-            SocialInteraction.populateSocialInteraction(socialInteraction, null, req.locale, function(err, populated) {
-                res.send(populated);
-                return next();
-            });
-
-        });
+        return SocialInteraction.getById(req.params.id, Model, req.query, req.locale, generic.writeObjCb(req, res, next));
     };
 };
 
@@ -78,8 +59,7 @@ var getAllFn = function getAllFn(baseUrl, Model) {
             // comma separated list of Model names, values: Message, Recommendation or Invitation
             discriminators: req.params.discriminators && req.params.discriminators.split(','),
             queryOptions: req.query,
-            locale: req.locale,
-            populateRefDocs: true
+            locale: req.locale
         };
 
         SocialInteraction.getAllForUser(user, Model, options, generic.sendListCb(req, res, next));
@@ -99,7 +79,6 @@ var getOffers = function getAll(req, res, next) {
 
         queryOptions: req.query,
         locale: req.locale,
-        populateRefDocs: true,
         publishFrom: true,
         publishTo: true
     };

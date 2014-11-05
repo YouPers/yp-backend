@@ -57,20 +57,19 @@ consts.newUserInNewCampaignApi(
                                 var invitation = invitations[0];
 
                                 expect(invitation.idea).toBeDefined();
-                                expect(invitation.refDocs.length).toEqual(1);
-                                expect(invitation.refDocs[0].model).toEqual('Activity');
-                                expect(invitation.refDocs[0].docId).toEqual(newPlan.id);
+                                expect(invitation.refDocs.length).toEqual(0);
+                                expect(invitation.activity).toBeDefined();
+                                expect(invitation.activity).toEqual(newPlan.id);
 
 
                                 frisby.create('Invitation: get this single invitation populated with the activity')
-                                    .get(URL + '/invitations/' + invitation.id)
+                                    .get(URL + '/invitations/' + invitation.id + "?populate=activity")
                                     .auth(user.username, 'yp')
                                     .expectStatus(200)
                                     .afterJSON(function (invitation) {
 
-                                        expect(invitation.refDocs.length).toEqual(1);
-                                        expect(invitation.refDocs[0].doc).toBeDefined();
-                                        expect(invitation.refDocs[0].doc.id).toEqual(newPlan.id);
+                                        expect(invitation.refDocs.length).toEqual(0);
+                                        expect(invitation.activity.id).toEqual(newPlan.id);
 
                                     })
                                     .toss();
@@ -186,9 +185,8 @@ consts.newUserInNewCampaignApi(
 
                                 var invitation = invitations[0];
 
-                                expect(invitation.refDocs.length).toEqual(1);
-                                expect(invitation.refDocs[0].model).toEqual('Activity');
-                                expect(invitation.refDocs[0].docId).toEqual(newActivity.id);
+                                expect(invitation.refDocs.length).toEqual(0);
+                                expect(invitation.activity).toEqual(newActivity.id);
 
                                 frisby.create('Invitation: delete the activity, will dismiss the invitation')
                                     .delete(URL + '/activities/' + newActivity.id)

@@ -49,24 +49,20 @@
         "new": {
             "subject": "YOUPERS: New Calendar-Entry",
             "salutation": "Hello __user.firstname__!",
-            "text": "<strong>__activity.title__</strong> created",
+            "text": "Congratulations! By scheduling <strong>__activity.title__</strong> you have already accomplished an important step!<br/><br/>You can add the events for this activty to your calendar with the link below.<br/><br/>If you don't want to receive mails like this in the future, you can disable them in your <a href='__profileLink__'>Profile</a>.",
             "linkText": "UPDATE KALENDER"
         },
         "update": {
             "subject": "YOUPERS: Updated Calendar-Entry",
             "salutation": "Hello __user.firstname__!",
-            "text": "<strong>__activity.title__</strong> updated",
+            "text": "The plans for <strong>__activity.title__</strong> have changed in the meantime, you can use the link below to update your calendar.",
             "linkText": "UPDATE KALENDER"
         },
         "cancel": {
             "subject": "YOUPERS: Cancelled Calendar-Entry",
             "salutation": "Hello __user.firstname__!",
-            "text": "<strong>__activity.title__</strong> deleted",
+            "text": "The activity <strong>__activity.title__</strong> has been cancelled, you can use the link below to update your calendar.",
             "linkText": "UPDATE KALENDER"
-        },
-
-        "footer": "YOUPERS - Drive Your Health"
-
+        }
     }
-
 }

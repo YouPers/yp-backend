@@ -376,7 +376,7 @@ SocialInteraction.dismissSocialInteractionById = function dismissSocialInteracti
 
 /**
  *
- * populate the refDocs of a socialInteraction, store them in refDoc.doc
+ * populate the a socialInteraction, store them in refDoc.doc
  *
  * NOTE: campaignId is optional!
  *
@@ -384,7 +384,7 @@ SocialInteraction.dismissSocialInteractionById = function dismissSocialInteracti
  * @param campaignId - optional, needed for the count an activity has been planned within a campaign
  * @param cb
  */
-SocialInteraction.populateSocialInteraction = function (socialInteraction, campaignId, locale, attrToPopulate, cb) {
+function _populateSocialInteraction(socialInteraction, campaignId, locale, attrToPopulate, cb) {
 
     function _populateTargetedUsers(donePopulating) {
         async.each(_.filter(socialInteraction.targetSpaces, { type: 'user'}), function (targetSpace, done) {
@@ -499,7 +499,26 @@ SocialInteraction.populateSocialInteraction = function (socialInteraction, campa
         return cb(err, socialInteraction);
     });
 
+}
+
+SocialInteraction.getById = function (idAsString, Model, queryOptions, locale, cb) {
+    var query = Model.findById(new mongoose.Types.ObjectId(idAsString));
+
+    var attrsToPopulateManually = _extractManualPopulate(queryOptions);
+
+    generic.processDbQueryOptions(queryOptions, query, Model, locale)
+        .exec(function(err, socialInteraction) {
+
+            if (err) {
+                return error.handleError(err, cb);
+            }
+            if (!socialInteraction) {
+                return cb(new error.ResourceNotFoundError());
+            }
+            return _populateSocialInteraction(socialInteraction, null, locale, attrsToPopulateManually, cb);
+        });
 };
+
 
 /**
  * returns all SocialInteractions for the currently logged in user. With the optional options-object several aspects
@@ -509,7 +528,6 @@ SocialInteraction.populateSocialInteraction = function (socialInteraction, campa
  * options.campaignId: The Id of the campaign whose sois are to be returned, only considered in campaignlead mode
  * options.queryOptions: the usual queryOptions {limit, sort, populate} fields
  * options.locale: the current locale to be used if i18n-fields are to be loaded
- * options.populateRefDocs: boolean, true if refDocs are to be populated
  *
  * @param user the user for who the sois are loaded
  * @param model the soi-model to use, can be SocialInteration or one of it subclasses
@@ -596,7 +614,7 @@ SocialInteraction.getAllForUser = function (user, model, options, cb) {
         var manualPopulation = options.populateManually && options.populateManually.length > 0;
         if (manualPopulation) {
             return async.each(socialInteractions, function (si, done) {
-                SocialInteraction.populateSocialInteraction(si, null, locale, options.populateManually, done);
+                _populateSocialInteraction(si, null, locale, options.populateManually, done);
             }, function (err) {
                 if (err) {
                     return cb(err);
@@ -729,26 +747,7 @@ SocialInteraction.getAllForUser = function (user, model, options, cb) {
                 // is not aware of the polymorphism. Therefore we need to take special action here.
                 // 1. remove those attributes from the queryOptions.populate, so the default mongoose population does not mess up.
                 // 2. store them in the 'populateManually' so we can process them manually later
-
-                var populateAttrs = _normalizePopulationAttrs(options.queryOptions && options.queryOptions.populate);
-                var poplulateAuto = [];
-                var populateManually = [];
-
-                _.forEach(populateAttrs, function (attrToPopulate) {
-                    if (attrToPopulate === 'idea') {
-                        populateManually.push('idea');
-                    } else if (attrToPopulate === 'activity') {
-                        populateManually.push('activity');
-                    } else if (attrToPopulate === 'refDocs') {
-                        populateManually.push('refDocs');
-                    } else {
-                        poplulateAuto.push(attrToPopulate);
-                    }
-
-                });
-
-                options.queryOptions.populate = poplulateAuto;
-                options.populateManually = populateManually;
+                options.populateManually = _extractManualPopulate(options.queryOptions);
 
                 generic.processDbQueryOptions(options.queryOptions, dbQuery, model, locale)
                     .exec(_soiLoadCb);
@@ -831,6 +830,29 @@ SocialInteraction.getInvitationStatus = function (activityId, cb) {
     });
 
 };
+
+function _extractManualPopulate(queryOptions) {
+    var normalizedAttrs = _normalizePopulationAttrs(queryOptions.populate);
+
+    var populateAuto = [];
+    var populateManually =  [];
+
+    _.forEach(normalizedAttrs, function (attrToPopulate) {
+        if (attrToPopulate === 'idea') {
+            populateManually.push('idea');
+        } else if (attrToPopulate === 'activity') {
+            populateManually.push('activity');
+        } else if (attrToPopulate === 'refDocs') {
+            populateManually.push('refDocs');
+        } else {
+            populateAuto.push(attrToPopulate);
+        }
+    });
+
+   queryOptions.populate = populateAuto;
+   return populateManually;
+}
+
 
 function _normalizePopulationAttrs(stringOrArray) {
     var output = [];

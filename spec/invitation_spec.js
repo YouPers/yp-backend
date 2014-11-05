@@ -63,7 +63,7 @@ consts.newUserInNewCampaignApi(
 
 
                                 frisby.create('Invitation: get this single invitation populated with the event')
-                                    .get(URL + '/invitations/' + invitation.id)
+                                    .get(URL + '/invitations/' + invitation.id + "?populate=event")
                                     .auth(user.username, 'yp')
                                     .expectStatus(200)
                                     .afterJSON(function (invitation) {

@@ -8,26 +8,7 @@ var error = require('ypbackendlib').error,
 
 var getByIdFn = function getByIdFn(baseUrl, Model) {
     return function getById(req, res, next) {
-
-        Model.findById(req.params.id).populate('author').exec(function(err, socialInteraction) {
-
-            if (err) {
-                return error.handleError(err, next);
-            }
-            if (!socialInteraction) {
-                return next(new error.ResourceNotFoundError());
-            }
-// methods are not accessible for discriminators, see https://github.com/LearnBoost/mongoose/issues/2167
-//            if(socialInteraction.isTargeted && !socialInteraction.isTargeted(user)) {
-//                return next(new error.NotAuthorizedError());
-//            }
-
-            SocialInteraction.populateSocialInteraction(socialInteraction, null, req.locale, ['idea', 'event'], function(err, populated) {
-                res.send(populated);
-                return next();
-            });
-
-        });
+        return SocialInteraction.getById(req.params.id, Model, req.query, req.locale, generic.writeObjCb(req, res, next));
     };
 };
 
@@ -60,8 +41,8 @@ var getAllFn = function getAllFn(baseUrl, Model) {
         var options = {
             mode: isAdminMode ? 'admin' : 'default', // admin mode ignores all filter options except the generic query options
 
-            targetId: req.params.targetId, // disables the default target space filter, use case: comments targeted to a campaign or event
-            refDocId: req.params.refDocId, // disables the default target space filter, use case: participants/invitees of an event
+            targetId: req.params.targetId, // disables the default target space filter, use case: comments targeted to a campaign or activity
+            refDocId: req.params.refDocId, // disables the default target space filter, use case: participants/invitees of an activity
 
 
             // inclusive filter options: includes results that would be filtered out with the default filter options

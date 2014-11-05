@@ -7,7 +7,7 @@
 
     "CampaignParticipantInvite": {
         "campaignLeadsHeader": "Deine Kampagnenleiter:",
-        "linkText": "Zur Kampagne"
+        "linkText": "ZUR KAMPAGNE"
     },
 
     "ActivityInvitation": {
@@ -15,7 +15,7 @@
         "salutation": "Hallo __invited.firstname__!",
         "salutationAnonymous": "",
         "text": "__inviting.fullname__ hat dich zu einer Aktivität eingeladen.",
-        "linkText": "Einladung anzeigen"
+        "linkText": "EINLADUNG ANZEIGEN"
     },
     "CampaignLeadInvite": {
         "subject": "YOUPERS: Einladung zum Kampagnen-Leiter von __inviting.fullname__",
@@ -23,48 +23,42 @@
         "salutation": "Hallo __invited.firstname__!",
         "salutationAnonymous": "",
         "text": "__inviting.fullname__ hat Dich eingeladen Kampagnen-Leiter zu werden der YOUPERS __campaign.title__ HealthCampaign",
-        "linkText": "Einladung anzeigen"
+        "linkText": "EINLADUNG ANZEIGEN"
     },
     "OrganizationAdminInvite": {
         "subject": "YOUPERS: Einladung zum Organisations-Administrator von __inviting.fullname__",
-        "title": "Einladung als Organisations-Administrator",
-        "salutation": "Hallo <strong>__invited.firstname__!</strong>",
+        "salutation": "Hallo __invited.firstname__!",
         "salutationAnonymous": "",
-        "text": "<b>__inviting.fullname__</b> hat Dich eingeladen Organisations-Administrator für <b>__organization.name__</b> zu werden.<br><br>",
-        "header": "Wird diese Email nicht richtig angezeigt?",
-        "footer": "YOUPERS - Drive Your Health"
+        "text": "__inviting.fullname__ hat Dich eingeladen Organisations-Administrator für __organization.name__ zu werden.<br/><br/>",
+        "linkText": "EINLADUNG ANZEIGEN"
     },
     "passwordReset": {
-        "title": "Passwort zurücksetzten",
         "subject": "YOUPERS: Zurücksetzen des Passworts",
-        "salutation": "Hallo <b>__user.firstname__</b>!",
-        "text": "Jemand hat vor kurzem verlangt, dass das Youpers Digital Health Passwort für <b>__user.username__ (__user.email__)</b> zurückgesetzt wird.<br><br>Um es zurückzusetzen klicke auf diesen Link:",
-        "header": "Wird diese Email nicht richtig angezeigt?",
-        "footer": "Wenn Du das Passwort nicht zurücksetzen möchtest oder wenn nicht Du selber diese Anfrage ausgelöst hast, kannst du dieses Email ignorieren. Dein Passwort wird dann nicht geändert.<br><br>Vielen Dank!"
+        "salutation": "Hallo __user.firstname__",
+        "text": "Um dein Passwort zu ändern, klicke auf den untenstehenend Link und folge den Anweisungen.<br/><br/>Vielen Dank<br/><br/>Dein YOUPERS Team",
+        "linkText": "PASSWORT ÄNDERN"
     },
     "emailVerification": {
-        "title": "Email Verifizierung",
         "subject": "YOUPERS: Bitte validiere deine E-Mail-Adresse",
-        "salutation": "Hallo __user.firstname__!",
-        "text": "Wir wollen sichergehen, dass du wirklich __user.username__ mit der Email-Adresse '__user.email__' bist. <br><br>Öffne den folgenden Link, um weiterzumachen:",
-        "header": "Wird diese Email nicht richtig angezeigt?",
-        "footer": "Vielen Dank!"
+        "salutation": "Hallo __user.firstname__",
+        "text": "Danke für deine Registrierung!<br/><br/>Du hast __user.email__ als Email-Addresse angegeben. Wir wollen sicher gehen, das sie auch zu dir gehört. Klicke einfach auf den Link weiter unten, um die Email-Addresse zu verifizieren.<br/><br/>Vielen Dank!<br/><br/>Dein YOUPERS Team",
+        "linkText": "EMAIL-ADDRESSE VERIFIZIERN"
     },
     "iCalMail": {
         "new": {
             "subject": "YOUPERS: Neuer Kalender-Eintrag für: __activity.title__",
             "salutation": "Hallo __user.firstname__!",
-            "text": "Mit dem Einplanen von <strong>__activity.title__</strong> hast du schon den wichtigsten Schritt erledigt!<br/><br/>Im Anhang findest du die Termine zu deinem Plan, um sie in deinem Kalender einzutragen. <br/><br/>Du kannst weitere solche Emails in deinem <a href='__profileLink__'>Profil</a> ausschalten."
+            "text": "Mit dem Einplanen von __activity.title__ hast du schon den wichtigsten Schritt erledigt!<br/><br/>Im Anhang findest du die Termine zu deinem Plan, um sie in deinem Kalender einzutragen. <br/><br/>Du kannst weitere solche Emails in deinem <a href='__profileLink__'>Profil</a> ausschalten."
         },
         "update": {
             "subject": "YOUPERS: Angepasster Kalender-Eintrag für: __activity.title__",
             "salutation": "Hallo __user.firstname__!",
-            "text": "Die Pläne zur Aktivität <strong>__activity.title__</strong> haben sich inzwischen geändert.<br/>Bitte öffne die folgenden Links um deinen Kalender-Eintrag zu aktualisieren. <br/><br/>Du kannst weitere solche Emails in deinem <a href='__profileLink__'>Profil</a> ausschalten."
+            "text": "Die Pläne zur Aktivität __activity.title__ haben sich inzwischen geändert.<br/>Bitte öffne die folgenden Links um deinen Kalender-Eintrag zu aktualisieren. <br/><br/>Du kannst weitere solche Emails in deinem <a href='__profileLink__'>Profil</a> ausschalten."
         },
         "cancel": {
             "subject": "YOUPERS: Gelöschter Kalender-Eintrag für: __activity.title__",
             "salutation": "Hallo __user.firstname__!",
-            "text": "Der Kalendar-Eintrag für die Aktivität <strong>__activity.title__</strong> wurde gelöscht. <br/><br/>Du kannst weitere solche Emails in deinem <a href='__profileLink__'>Profil</a> ausschalten."
+            "text": "Der Kalendar-Eintrag für die Aktivität __activity.title__ wurde gelöscht. <br/><br/>Du kannst weitere solche Emails in deinem <a href='__profileLink__'>Profil</a> ausschalten."
         }
     }
 

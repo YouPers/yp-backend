@@ -82,10 +82,7 @@ var sendActivityInvite = function sendActivityInvite(email, invitingUser, activi
         title: activity.idea.title,
         activity: activity,
         eventDate: eventDate,
-        image: urlComposer.ideaImageUrl(activity.idea.number),
-        header: i18n.t('email:ActivityInvitation.header'),
-        footer: i18n.t('email:ActivityInvitation.footer'),
-        logo: urlComposer.mailFooterImageUrl()
+        image: urlComposer.ideaImageUrl(activity.idea.number)
     };
     _.extend(locals, defaultLocals(i18n));
     emailSender.sendEmail(fromDefault, email, subject, 'activityInviteMail', locals);
@@ -141,13 +138,11 @@ var sendOrganizationAdminInvite = function sendOrganizationAdminInvite(email, in
     var subject = i18n.t("email:OrganizationAdminInvite.subject", {inviting:  invitingUser.toJSON(), organization: organization.toJSON()});
     var token = emailSender.encryptLinkToken(organization._id +linkTokenSeparator + email +  (invitedUser ? linkTokenSeparator + invitedUser._id : ''));
     var locals = {
-        title: i18n.t("email:OrganizationAdminInvite.title"),
         link: urlComposer.orgAdminInviteUrl(organization._id, invitingUser._id, token),
+        linkText: i18n.t("email:OrganizationAdminInvite.linkText"),
         salutation: i18n.t('email:OrganizationAdminInvite.salutation' + invitedUser ? '': 'Anonymous', {invited: invitedUser ? invitedUser.toJSON() : {firstname: ''}}),
-        text: i18n.t('email:OrganizationAdminInvite.text', {inviting: invitingUser.toJSON(), organization: organization.toJSON()}),
-        header: i18n.t('email:OrganizationAdminInvite.header'),
-        footer: i18n.t('email:OrganizationAdminInvite.footer'),
-        imgServer: config.webClientUrl
+        text: i18n.t('email:OrganizationAdminInvite.text', {inviting: invitingUser.toJSON(), organization: organization.toJSON()})
+
     };
     emailSender.sendEmail(fromDefault, email, subject, 'genericYouPersMail', locals);
 };

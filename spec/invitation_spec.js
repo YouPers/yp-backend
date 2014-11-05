@@ -69,7 +69,7 @@ consts.newUserInNewCampaignApi(
                                     .afterJSON(function (invitation) {
 
                                         expect(invitation.refDocs.length).toEqual(0);
-                                        expect(invitation.activity).toEqual(newPlan.id);
+                                        expect(invitation.activity.id).toEqual(newPlan.id);
 
                                     })
                                     .toss();

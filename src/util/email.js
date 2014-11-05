@@ -16,7 +16,7 @@ var defaultLocals = function (i18n) {
     };
 };
 
-var sendCalInvite = function (toUser, type, iCalString, event, i18n, reason) {
+var sendCalInvite = function (toUser, type, iCalString, activity, i18n, reason) {
     // default method is request
     var method = 'REQUEST';
     // for cancellation we use CANCEL
@@ -42,70 +42,79 @@ var sendCalInvite = function (toUser, type, iCalString, event, i18n, reason) {
 //        ],
     };
 
-    var subject = i18n.t('email:iCalMail.' + type + '.subject', {reason: reason, event: event.toJSON()});
+    var subject = i18n.t('email:iCalMail.' + type + '.subject', {reason: reason, activity: activity.toJSON()});
     var locals = {
         salutation: i18n.t('email:iCalMail.' + type + '.salutation', {user: toUser.toJSON()}),
-        text: i18n.t('email:iCalMail.' + type + '.text', {event: event.toJSON(), profileLink: urlComposer.profileUrl()}),
-        title: event.idea.title,
-        event: event,
-        image: urlComposer.ideaImageUrl(event.idea.number),
+        text: i18n.t('email:iCalMail.' + type + '.text', {activity: activity.toJSON(), profileLink: urlComposer.profileUrl()}),
+        title: activity.idea.title,
+        activity: activity,
+        image: urlComposer.ideaImageUrl(activity.idea.number),
         footer: i18n.t('email:iCalMail.footer'),
         imgServer: config.webClientUrl,
-        icalUrl: urlComposer.icalUrl(event.id, type, toUser.id)
+        icalUrl: urlComposer.icalUrl(activity.id, type, toUser.id)
     };
 
     emailSender.sendEmail(fromDefault, toUser.email, subject, 'calendarEventMail', locals, mailExtensions);
 
 };
 
-var sendEventInvite = function sendEventInvite(email, invitingUser, event, invitedUser, invitationId, i18n) {
+var sendActivityInvite = function sendActivityInvite(email, invitingUser, activity, invitedUser, invitationId, i18n) {
 
     var localMoment = function localMoment(date) {
         return moment(date).lang(i18n.lng()).tz('Europe/Zurich');
     };
-
-    var frequency = event.frequency;
-    var weekday = localMoment(event.start).format("dddd") + (frequency === 'week' ? 's' : '');
-    var date = localMoment(event.start).format("D.M.") +
+    var frequency = activity.frequency;
+    var weekday = localMoment(activity.start).format("dddd") + (frequency === 'week' ? 's' : '');
+    var date = localMoment(activity.start).format("D.M.") +
         frequency === 'once' ? '' :
-        localMoment(event.lastEventEnd).format("D.M.YYYY");
+        localMoment(activity.lastEventEnd).format("D.M.YYYY");
 
-    var time = localMoment(event.start).format('HH:mm') + ' - ' + localMoment(event.end).format('HH:mm');
+    var time = localMoment(activity.start).format('HH:mm') + ' - ' + localMoment(activity.end).format('HH:mm');
 
     var eventDate = weekday + '<br/>' + time + '<br/>' + date;
 
-    var subject = i18n.t("email:EventInvitation.subject", {inviting: invitingUser.toJSON(), event: event.toJSON()});
+    var subject = i18n.t("email:ActivityInvitation.subject", {inviting: invitingUser.toJSON(), activity: activity.toJSON()});
     var locals = {
-        salutation: i18n.t('email:EventInvitation.salutation' + (invitedUser ? '': 'Anonymous'), {invited: invitedUser ? invitedUser.toJSON() : {}}),
-        text: i18n.t('email:EventInvitation.text', {inviting: invitingUser.toJSON(), event: event.toJSON()}),
-        link: urlComposer.eventInviteUrl(invitationId),
-        title: event.idea.title,
-        event: event,
+        salutation: i18n.t('email:ActivityInvitation.salutation' + (invitedUser ? '': 'Anonymous'), {invited: invitedUser ? invitedUser.toJSON() : {}}),
+        text: i18n.t('email:ActivityInvitation.text', {inviting: invitingUser.toJSON(), activity: activity.toJSON()}),
+        link: urlComposer.activityInviteUrl(invitationId),
+        linkText: i18n.t('email:ActivityInvitation.linkText'),
+        title: activity.idea.title,
+        activity: activity,
         eventDate: eventDate,
-        image: urlComposer.ideaImageUrl(event.idea.number),
-        header: i18n.t('email:EventInvitation.header'),
-        footer: i18n.t('email:EventInvitation.footer'),
+        image: urlComposer.ideaImageUrl(activity.idea.number),
+        header: i18n.t('email:ActivityInvitation.header'),
+        footer: i18n.t('email:ActivityInvitation.footer'),
         logo: urlComposer.mailFooterImageUrl()
     };
-    emailSender.sendEmail(fromDefault, email, subject, 'eventInviteMail', locals);
+    _.extend(locals, defaultLocals(i18n));
+    emailSender.sendEmail(fromDefault, email, subject, 'activityInviteMail', locals);
 };
 
 var sendCampaignLeadInvite = function sendCampaignLeadInvite(email, invitingUser, campaign, invitedUser, i18n) {
 
+    var localMoment = function localMoment(date) {
+        return moment(date).lang(i18n.lng()).tz('Europe/Zurich');
+    };
     var subject = i18n.t("email:CampaignLeadInvite.subject", {inviting:  invitingUser.toJSON(), campaign: campaign.toJSON()});
     var token = emailSender.encryptLinkToken(campaign._id +linkTokenSeparator + email +  (invitedUser ? linkTokenSeparator + invitedUser._id : ''));
+
+    var duration = localMoment(campaign.start).format('D.M.YYYY') + ' - ' + localMoment(campaign.end).format('D.M.YYYY');
+
     var locals = {
         link: urlComposer.campaignLeadInviteUrl(campaign._id, invitingUser._id, token),
+        linkText: i18n.t('email:CampaignLeadInvite.linkText'),
+        welcomeHeader: i18n.t('email:CampaignLeadInvite.welcomeHeader'),
         salutation: i18n.t('email:CampaignLeadInvite.salutation' + invitedUser ? '': 'Anonymous', {invited: invitedUser ? invitedUser.toJSON() : {firstname: ''}}),
         text: i18n.t('email:CampaignLeadInvite.text', {
             inviting: invitingUser.toJSON(),
             campaign: campaign.toJSON()
         }),
-        image: urlComposer.campaignImageUrl(campaign.topic.picture),
-        header: i18n.t('email:CampaignLeadInvite.header'),
-        footer: i18n.t('email:CampaignLeadInvite.footer'),
-        logo: urlComposer.mailFooterImageUrl()
+        campaign: campaign,
+        duration: duration,
+        image: urlComposer.campaignImageUrl(campaign.topic.picture)
     };
+    _.extend(locals, defaultLocals(i18n));
     emailSender.sendEmail(fromDefault, email, subject, 'campaignLeadInviteMail', locals);
 };
 
@@ -174,7 +183,7 @@ module.exports = {
     encryptLinkToken: emailSender.encryptLinkToken,
     decryptLinkToken: emailSender.decryptLinkToken,
     sendCalInvite: sendCalInvite,
-    sendEventInvite: sendEventInvite,
+    sendActivityInvite: sendActivityInvite,
     sendCampaignLeadInvite: sendCampaignLeadInvite,
     sendCampaignParticipantInvite: sendCampaignParticipantInvite,
     sendOrganizationAdminInvite: sendOrganizationAdminInvite,

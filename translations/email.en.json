@@ -49,17 +49,20 @@
         "new": {
             "subject": "YOUPERS: New Calendar-Entry",
             "salutation": "Hello __user.firstname__!",
-            "text": "__plan.title__ created"
+            "text": "<strong>__activity.title__</strong> created",
+            "linkText": "UPDATE KALENDER"
         },
         "update": {
             "subject": "YOUPERS: Updated Calendar-Entry",
             "salutation": "Hello __user.firstname__!",
-            "text": "__plan.title__ updated"
+            "text": "<strong>__activity.title__</strong> updated",
+            "linkText": "UPDATE KALENDER"
         },
         "cancel": {
             "subject": "YOUPERS: Cancelled Calendar-Entry",
             "salutation": "Hello __user.firstname__!",
-            "text": "__plan.title__ deleted"
+            "text": "<strong>__activity.title__</strong> deleted",
+            "linkText": "UPDATE KALENDER"
         },
 
         "footer": "YOUPERS - Drive Your Health"

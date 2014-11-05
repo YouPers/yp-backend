@@ -430,6 +430,13 @@ SocialInteraction.populateSocialInteraction = function (socialInteraction, campa
                     if (err) {
                         return donePopulating(err);
                     }
+
+                    // using doc.setValue here because of this:
+                    // manually setting a property of type "ref -> Document" to an actual document does not
+                    // work currently, only allows setting to ObjectID. This is being changed in Mongoose,
+                    //
+                    // https://github.com/LearnBoost/mongoose/issues/2370
+
                     socialInteraction.setValue('idea', idea);
 
                     if (campaignId) {
@@ -577,10 +584,6 @@ SocialInteraction.getAllForUser = function (user, model, options, cb) {
 
         function _populateRejectedStatus() {
             if (options.rejected) {
-
-                if (!options.populateRefDocs) {
-                    throw new Error("can't populate rejected status without populated refDocs");
-                }
 
                 _.forEach(socialInteractions, function (si) {
                     si.rejected = _.any(user.profile.prefs.rejectedIdeas, function (rejectedIdeaObj) {

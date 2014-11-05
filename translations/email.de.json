@@ -12,19 +12,18 @@
 
     "ActivityInvitation": {
         "subject": "YOUPERS: Einladung für eine Gruppen-Aktivität vom __inviting.fullname__",
-        "salutation": "Hallo <strong>__invited.firstname__!</strong>",
+        "salutation": "Hallo __invited.firstname__!",
         "salutationAnonymous": "",
-        "text": "<strong>__inviting.fullname__</strong></string> lädt dich zu dieser Aktivität ein",
-        "header": "Wird diese Email nicht richtig angezeigt?",
-        "footer": "YOUPERS - Drive Your Health"
+        "text": "__inviting.fullname__ hat dich zu einer Aktivität eingeladen.",
+        "linkText": "Einladung anzeigen"
     },
     "CampaignLeadInvite": {
         "subject": "YOUPERS: Einladung zum Kampagnen-Leiter von __inviting.fullname__",
-        "salutation": "Hallo <strong>__invited.firstname__!</strong>",
+        "welcomeHeader": "Willkommen als Kampagnen-Leiter",
+        "salutation": "Hallo __invited.firstname__!",
         "salutationAnonymous": "",
-        "text": "<b>__inviting.fullname__</b> hat Dich eingeladen Kampagnen-Leiter zu werden der YOUPERS Kampagne <br/> <h1><b>__campaign.title__</b></h1> <br/> __campaign.participants__ <br/>__campaign.organization.name__ <br><br>",
-        "header": "Wird diese Email nicht richtig angezeigt?",
-        "footer": "YOUPERS - Drive Your Health"
+        "text": "__inviting.fullname__ hat Dich eingeladen Kampagnen-Leiter zu werden der YOUPERS __campaign.title__ HealthCampaign",
+        "linkText": "Einladung anzeigen"
     },
     "OrganizationAdminInvite": {
         "subject": "YOUPERS: Einladung zum Organisations-Administrator von __inviting.fullname__",

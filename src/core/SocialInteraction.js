@@ -605,14 +605,8 @@ SocialInteraction.getAllForUser = function (user, model, options, cb) {
 
                 _.forEach(socialInteractions, function (si) {
                     si.rejected = _.any(user.profile.prefs.rejectedIdeas, function (rejectedIdeaObj) {
-                        if (_.isString(rejectedIdeaObj.idea)) {
-                            rejectedIdeaObj.idea = new mongoose.Types.ObjectId(rejectedIdeaObj.idea);
-                        }
-                        if (si.idea && _.isObject(si.idea)) {
-                            return si.idea.equals(rejectedIdeaObj.idea);
-                        } else {
-                            return false;
-                        }
+                        var _id = si.idea._id || si.idea;
+                        return rejectedIdeaObj.idea.toString() === _id.toString();
                     });
                 });
             }

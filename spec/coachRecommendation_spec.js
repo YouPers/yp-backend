@@ -94,7 +94,7 @@ consts.newUserInNewCampaignApi(
                     .after(function () {
 
                         frisby.create('Recommendations: regenerate recommendations')
-                            .get(URL + '/coachRecommendations')
+                            .get(URL + '/coachRecommendations?store=true')
                             .auth(user.username, "yp")
                             .expectStatus(200)
                             .afterJSON(function (recs) {

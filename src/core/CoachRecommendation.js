@@ -371,7 +371,7 @@ function _updateRecommendations(userId, options, cb) {
                         });
 
                         async.parallel(updateRecs, function (err, storedRecs) {
-                            return cb(err, newRecs.slice(0,nrOfRecsToReturn));
+                            return cb(err, newRecs.slice(0,options.isAdmin ? 1000 : nrOfRecsToReturn));
                         });
 
                     });

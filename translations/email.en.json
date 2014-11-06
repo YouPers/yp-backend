@@ -8,7 +8,7 @@
 
     "CampaignParticipantInvite": {
         "campaignLeadsHeader": "Your campaign leads:",
-        "linkText": "Show campaign"
+        "linkText": "SHOW CAMPAIGN"
     },
 
     "ActivityInvitation": {
@@ -16,7 +16,7 @@
         "salutation": "Hello __invited.firstname__!",
         "salutationAnonymous": "",
         "text": "__inviting.fullname__ has invited you to participate in a group activity",
-        "linkText": "Show invitation"
+        "linkText": "SHOW INVITATION"
     },
     "CampaignLeadInvite": {
         "subject": "YOUPERS: Invitation to become Campaign Lead from __inviting.fullname__",
@@ -24,51 +24,45 @@
         "salutation": "Hello __invited.firstname__!",
         "salutationAnonymous": "",
         "text": "__inviting.fullname__ has invited you to become campaign lead for the YOUPERS __campaign.title__ HealthCampaign",
-        "linkText": "Show invitation"
+        "linkText": "SHOW INVITATION"
     },
     "OrganizationAdminInvite": {
         "subject": "YOUPERS: Invitation to become Organization Administrator from __inviting.fullname__",
         "salutation": "Hello __invited.firstname__!",
         "salutationAnonymous": "",
-        "text": "<b>__inviting.fullname__</b> has invited you to become organization administrator for <b>__organization.name__</b>.<br><br>To accept this invitation please click on this link:<br>",
-        "header": "Is this email not displayed correctly?",
-        "footer": "YOUPERS - Drive Your Health"
+        "text": "__inviting.fullname__ has invited you to become organization administrator for __organization.name__.<br/><br/>To accept this invitation please click on this link:<br/>",
+        "linkText": "SHOW INVITATION"
     },
     "passwordReset": {
-        "title": "Password Reset",
         "subject": "YOUPERS: Password reset requested",
         "salutation": "Hello __user.firstname__!",
-        "text": "Somebody asked to reset the password for  <b>__user.username__ (__user.email__)</b> on the Youpers.com website.<br><br>To reset the password click on the following link:",
-        "header": "Is this email not displayed correctly?",
-        "footer": "If you do not want to reset your password or you have not requested the this reset yourself, you may savely ignore this email. Your password has not been changed."
+        "text": "It's easy to change your password! Simply click on the link below and follow the instructions.<br/><br/>Thank you!<br/><br/>Your YOUPERS Team",
+        "linkText": "CHANGE YOUR PASSWORD"
     },
     "emailVerification": {
-        "title": "Email Verification",
         "subject": "YOUPERS: Please verify your email address",
         "salutation": "Hello __user.firstname__!",
-        "text": "Wir wollen sichergehen, dass du wirklich __user.username__ mit email '__user.email__' bist. <br><br>Öffne den folgenden Link, um weiterzumachen:",
-        "header": "Is this email not displayed correctly?",
-        "footer": "YOUPERS - Drive Your Health"
+        "text": "Thank you for your registration!<br/><br/>You have entered __user.email__ as your contact email address. We want to be sure that this email address belongs to you. Simply click the link below to verify your email address and to sign in.<br/><br/>Thank you!<br/><br/>Your YOUPERS Team",
+        "linkText": "VERIFY YOUR EMAIL ADDRESS"
     },
     "iCalMail": {
         "new": {
             "subject": "YOUPERS: New Calendar-Entry",
             "salutation": "Hello __user.firstname__!",
-            "text": "__plan.title__ created"
+            "text": "Congratulations! By scheduling <strong>__activity.title__</strong> you have already accomplished an important step!<br/><br/>You can add the events for this activty to your calendar with the link below.<br/><br/>If you don't want to receive mails like this in the future, you can disable them in your <a href='__profileLink__'>Profile</a>.",
+            "linkText": "UPDATE KALENDER"
         },
         "update": {
             "subject": "YOUPERS: Updated Calendar-Entry",
             "salutation": "Hello __user.firstname__!",
-            "text": "__plan.title__ updated"
+            "text": "The plans for <strong>__activity.title__</strong> have changed in the meantime, you can use the link below to update your calendar.",
+            "linkText": "UPDATE KALENDER"
         },
         "cancel": {
             "subject": "YOUPERS: Cancelled Calendar-Entry",
             "salutation": "Hello __user.firstname__!",
-            "text": "__plan.title__ deleted"
-        },
-
-        "footer": "YOUPERS - Drive Your Health"
-
+            "text": "The activity <strong>__activity.title__</strong> has been cancelled, you can use the link below to update your calendar.",
+            "linkText": "UPDATE KALENDER"
+        }
     }
-
 }

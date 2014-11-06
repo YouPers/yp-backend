@@ -11,6 +11,8 @@ var getCoachRecommendationsFn = function getCoachRecommendationsFn(req, res, nex
         return next(new error.NotAuthorizedError());
     }
 
+    var dontStore = req.params.dontStore;
+
     var admin = auth.isAdminForModel(req.user, mongoose.model('Idea'));
     var topic = (req.params.topic && mongoose.Types.ObjectId(req.params.topic)) ||
         (req.user.campaign && req.user.campaign.topic);
@@ -24,16 +26,21 @@ var getCoachRecommendationsFn = function getCoachRecommendationsFn(req, res, nex
         focus: req.user.profile.prefs.focus,
         isAdmin: admin
     };
-    CoachRecommendation.generateAndStoreRecommendations(req.user._id, options, function (err, recs) {
 
-            if (err) {
-                error.handleError(err, next);
-            }
-            res.send(_.sortBy(recs, function (rec) {
-                return -rec.score;
-            }) || []);
-            return next();
-        });
+    function _cb(err, recs) {
+        if (err) {
+            error.handleError(err, next);
+        }
+        res.send(_.sortBy(recs, function (rec) {
+            return -rec.score;
+        }) || []);
+        return next();
+    }
+    if (dontStore) {
+        CoachRecommendation.generateRecommendations(req.user._id, options, _cb);
+    } else {
+        CoachRecommendation.generateAndStoreRecommendations(req.user._id, options, _cb);
+    }
 };
 
 module.exports = {

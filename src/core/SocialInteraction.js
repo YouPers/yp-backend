@@ -609,7 +609,8 @@ SocialInteraction.getAllForUser = function (user, model, options, cb) {
 
                 _.forEach(socialInteractions, function (si) {
                     si.rejected = _.any(user.profile.prefs.rejectedIdeas, function (rejectedIdeaObj) {
-                        return si.idea.equals(rejectedIdeaObj.idea);
+                        var _id = si.idea._id || si.idea;
+                        return rejectedIdeaObj.idea.toString() === _id.toString();
                     });
                 });
             }

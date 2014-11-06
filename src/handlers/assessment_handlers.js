@@ -58,6 +58,16 @@ function assessmentResultAnswerPutFn() {
             return error.handleError(err, next);
         }
 
+        var campaignId = req.user.campaign && (req.user.campaign.id || req.user.campaign);
+        var topicId = req.params.topic || (req.user.campaign && req.user.campaign.topic);
+
+        if (!topicId) {
+            return next(new error.MissingParameterError('Need a Topic, either user needs to have campain with topic, or topic needs to be passed as param'));
+        }
+
+        req.body.campaign = campaignId;
+        req.body.topic = topicId;
+
         var newAnswer = new AssessmentResultAnswer(req.body);
 
         // load the today's assessment result or create a new one for today
@@ -79,8 +89,8 @@ function assessmentResultAnswerPutFn() {
                     assessment: newAnswer.assessment,
                     owner: req.user.id,
                     answers: [],
-                    campaign: req.user.campaign && (req.user.campaign.id || req.user.campaign), // handle empty, populated and unpopulated case
-                    topic: req.user.campaign.topic
+                    campaign: campaignId,
+                    topic: topicId
                 });
 
                 // delete id if older than today to save a new result
@@ -92,7 +102,7 @@ function assessmentResultAnswerPutFn() {
                     delete oldResultObject.created;
 
                     // update campaign if user has changed campaign
-                    oldResultObject.campaign = req.user.campaign && req.user.campaign.id; // campaign is always populated in the req.user auth.js:149
+                    oldResultObject.campaign = campaignId; // campaign is always populated in the req.user auth.js:149
                     result = new AssessmentResult(oldResultObject);
                 }
 

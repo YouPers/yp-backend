@@ -46,7 +46,7 @@ var sendCalInvite = function (toUser, type, iCalString, event, i18n, reason) {
     var subject = i18n.t('email:iCalMail.' + type + '.subject', {reason: reason, event: event.toJSON()});
     var locals = {
         salutation: i18n.t('email:iCalMail.' + type + '.salutation', {user: toUser.toJSON()}),
-        text: i18n.t('email:iCalMail.' + type + '.text', {activity: activity.toJSON(), profileLink: urlComposer.profileUrl()}),
+        text: i18n.t('email:iCalMail.' + type + '.text', {event: event.toJSON(), profileLink: urlComposer.profileUrl()}),
         image: urlComposer.ideaImageUrl(event.idea.number),
         imgServer: config.webClientUrl,
         link: urlComposer.icalUrl(event.id, type, toUser.id),

@@ -150,7 +150,7 @@
         },
         "avatar": "/assets/img/default_avatar_woman.png",
         "campaign": {
-            "$oid": "527916a82079aa8704000007"
+            "$oid": "527916a82079aa8704000006"
         },
         "created": {
             "$date": 1407770582291
@@ -315,7 +315,7 @@
         },
         "avatar": "/assets/img/default_avatar_woman.png",
         "campaign": {
-            "$oid": "527916a82079aa8704000007"
+            "$oid": "527916a82079aa8704000006"
         },
         "email": "ypunittest1+campaignlead2@gmail.com",
         "emailValidatedFlag": true,

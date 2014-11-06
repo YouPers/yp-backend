@@ -35,6 +35,10 @@ User.on('change:campaign', function (user) {
         if (err) {
             handleError(err);
         }
+        // the user does not have campaign, or he has set an unknown campaign
+        if (!campaign) {
+            return;
+        }
 
         Assessment.find({ topic: campaign.topic }).exec(function (err, assessments) {
             if (err) {

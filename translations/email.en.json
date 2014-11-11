@@ -20,7 +20,7 @@
     },
     "CampaignLeadInvite": {
         "subject": "YOUPERS: Invitation to become Campaign Lead from __inviting.fullname__",
-        "welcomeHeader": "Welcome als campaign leader",
+        "welcomeHeader": "Welcome as campaign leader",
         "salutation": "Hello __invited.firstname__!",
         "salutationAnonymous": "",
         "text": "__inviting.fullname__ has invited you to become campaign lead for the YOUPERS __campaign.title__ HealthCampaign",

@@ -49,19 +49,19 @@
         "new": {
             "subject": "YOUPERS: New Calendar-Entry for: __activity.title__",
             "salutation": "Hello __user.firstname__!",
-            "text": "Congratulations! By scheduling <strong>__activity.title__</strong> you have already accomplished an important step!<br/><br/>You can add the events for this activty to your calendar with the link below.<br/><br/>If you do not want to receive emails like this in the future, you can disable it in your <a href='__profileLink__'>Profile</a>.",
+            "text": "Congratulations! By scheduling <strong>__activity.title__</strong> you have already accomplished an important step!<br/><br/>You can add the events for this activty to your calendar with the link below.<br/><br/>If you do not want to receive emails like this in the future, you can disable it in your <a href='__profileLink__'>profile</a>.",
             "linkText": "ADD TO CALENDAR"
         },
         "update": {
             "subject": "YOUPERS: Updated Calendar-Entry for: __activity.title__",
             "salutation": "Hello __user.firstname__!",
-            "text": "The plans for <strong>__activity.title__</strong> have changed in the meantime. You can use the link below to update your calendar.",
+            "text": "The plans for <strong>__activity.title__</strong> have changed in the meantime. You can use the link below to update your calendar.<br/><br/>If you do not want to receive emails like this in the future, you can disable it in your <a href='__profileLink__'>profile</a>.",
             "linkText": "UPDATE CALENDAR"
         },
         "cancel": {
             "subject": "YOUPERS: Cancelled Calendar-Entry for: __activity.title__",
             "salutation": "Hello __user.firstname__!",
-            "text": "The activity <strong>__activity.title__</strong> has been cancelled. You can use the link below to update your calendar.",
+            "text": "The activity <strong>__activity.title__</strong> has been cancelled. You can use the link below to update your calendar.<br/><br/>If you do not want to receive emails like this in the future, you can disable it in your <a href='__profileLink__'>profile</a>.",
             "linkText": "REMOVE FROM CALENDAR"
         }
     }

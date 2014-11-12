@@ -351,17 +351,12 @@ SocialInteraction.dismissSocialInteractionById = function dismissSocialInteracti
             user: userId,
             socialInteraction: socialInteraction.id
         });
-        var socialInteractionDismissed = new SocialInteractionDismissedModel(document);
-
-        return socialInteractionDismissed.save(function (err, saved) {
-            // we deliberately want to ignore DuplicateKey Errors, because there is not reason to store the dissmissals more than once
-            // MONGO Duplicate KeyError code: 11000
+        SocialInteractionDismissedModel.update({
+            user: userId,
+            socialInteraction: socialInteraction.id
+        }, document, { upsert: true }, function (err, saved) {
             if (err) {
-                if (err.code !== 11000) {
-                    return cb(err);
-                } else {
-                    return cb(null);
-                }
+                return cb(err); // duplicate key errors will not occur anymore, because of the upsert option
             } else {
                 SocialInteraction.emit('socialInteraction:dismissed', user, socialInteraction, saved);
                 return cb(null);

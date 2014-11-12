@@ -361,7 +361,7 @@ function postJoinActivityFn(req, res, next) {
         return next(new error.MissingParameterError({ required: 'id' }));
     }
 
-    Activity.findById(req.params.id).exec(function (err, masterActivity) {
+    Activity.findById(req.params.id).populate({path: 'owner', select: '+email'}).exec(function (err, masterActivity) {
 
         if (err) {
             return error.handleError(err, next);

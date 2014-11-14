@@ -15,7 +15,7 @@ var getCoachRecommendationsFn = function getCoachRecommendationsFn(req, res, nex
 
     var admin = auth.isAdminForModel(req.user, mongoose.model('Idea'));
     var topic = (req.params.topic && mongoose.Types.ObjectId(req.params.topic)) ||
-        (req.user.campaign && req.user.campaign.topic);
+        (req.user.campaign && (req.user.campaign.topic._id || req.user.campaign.topic));
 
     if (!topic) {
         return next(new error.MissingParameterError('topic must be passed as query param, or the current user must have a campaign set.'));

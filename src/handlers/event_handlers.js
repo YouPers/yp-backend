@@ -300,7 +300,8 @@ function postNewEvent(req, res, next) {
                     idea:  savedEvent.idea,
                     authorType: 'user',
                     __t: 'Invitation',
-                    publishedFrom: new Date()
+                    publishFrom: new Date(),
+                    publishTo: savedEvent.end
                 };
 
                 invitation.targetSpaces = [];

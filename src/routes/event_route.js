@@ -276,6 +276,12 @@ module.exports = function (swagger) {
                     description: "the event to store",
                     dataType: "Event",
                     required: true
+                },
+                {
+                    paramType: "query",
+                    name: "invite",
+                    description: "UserIds to invite, either a single userId or an Array of UserIds",
+                    dataType: "Array[ObjectId]"
                 }
             ],
             method: "POST",

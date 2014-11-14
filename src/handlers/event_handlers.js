@@ -5,6 +5,7 @@ var calendar = require('../util/calendar'),
     Occurence = mongoose.model('Occurence'),
     SocialInteractionModel = mongoose.model('SocialInteraction'),
     SocialInteractionDismissedModel = mongoose.model('SocialInteractionDismissed'),
+    Invitation = mongoose.model('Invitation'),
     actMgr = require('../core/EventManagement'),
     SocialInteraction = require('../core/SocialInteraction'),
     generic = require('ypbackendlib').handlers,
@@ -217,6 +218,11 @@ function validateEvent(req, res, next) {
  */
 function postNewEvent(req, res, next) {
     var sentEvent = req.body;
+    var usersToInvite = req.params.invite;
+
+    if (!_.isArray(usersToInvite)) {
+        usersToInvite = [usersToInvite];
+    }
 
     var err = handlerUtils.checkWritingPreCond(sentEvent, req.user, Event);
     if (err) {
@@ -287,7 +293,39 @@ function postNewEvent(req, res, next) {
 
             actMgr.emit('event:eventCreated', savedEvent, req.user);
 
-            generic.writeObjCb(req, res, next)(null, savedEvent);
+            if (usersToInvite) {
+                var invitation  = {
+                    author: req.user._id,
+                    event: savedEvent._id,
+                    idea:  savedEvent.idea,
+                    authorType: 'user',
+                    __t: 'Invitation',
+                    publishedFrom: new Date()
+                };
+
+                invitation.targetSpaces = [];
+                _.forEach(usersToInvite, function (userId) {
+                    invitation.targetSpaces.push({
+                        type: 'user',
+                        targetId: new mongoose.Types.ObjectId(userId)
+                    });
+                });
+
+                var newInvitationDoc = new Invitation(invitation);
+
+                newInvitationDoc.save(function(err, savedInv) {
+                    if (err) {
+                        return error.handleError(err, next);
+                    }
+
+                    return generic.writeObjCb(req, res, next)(null, savedEvent);
+                });
+
+
+            } else {
+                return generic.writeObjCb(req, res, next)(null, savedEvent);
+            }
+
         });
     });
 }
@@ -327,7 +365,7 @@ function _saveNewEvent(event, req, cb) {
             // - populate 'idea' so we can get create a nice calendar entry
             // - we need to reload so we get the changes that have been done pre('save') and pre('init')
             //   like updating the joiningUsers Collection
-            Event.findById(savedEvent._id).populate('owner', select: '+email').populate('idea', mongoose.model('Idea').getI18nPropertySelector(req.locale)).exec(function (err, reloadedEvent) {
+            Event.findById(savedEvent._id).populate('owner', {select: '+email'}).populate('idea', mongoose.model('Idea').getI18nPropertySelector(req.locale)).exec(function (err, reloadedEvent) {
                 if (err) {
                     return cb(err);
                 }

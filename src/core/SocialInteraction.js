@@ -315,7 +315,7 @@ SocialInteraction.dismissSocialInteraction = function dismissSocialInteraction(m
     // find all soi for this refDoc targeted to one of these users
     model.find(finder).exec(function (err, socialInteractions) {
         if (err) {
-            return error.handleError(err, cb);
+            return SocialInteraction.emit('error', err);
         }
 
         var dismissals = [];
@@ -325,7 +325,7 @@ SocialInteraction.dismissSocialInteraction = function dismissSocialInteraction(m
 
         async.parallel(dismissals, function (err) {
             if (err) {
-                return error.handleError(err, cb);
+                return SocialInteraction.emit('error', err);
             }
             if (cb) {
                 cb();
@@ -335,7 +335,7 @@ SocialInteraction.dismissSocialInteraction = function dismissSocialInteraction(m
 
 };
 
-SocialInteraction.dismissSocialInteractionById = function dismissSocialInteraction(socialInteractionId, user, documentTemplate, cb) {
+SocialInteraction.dismissSocialInteractionById = function dismissSocialInteractionById(socialInteractionId, user, documentTemplate, cb) {
 
 
     SocialInteractionModel.findById(socialInteractionId, function (err, socialInteraction) {
@@ -355,18 +355,23 @@ SocialInteraction.dismissSocialInteractionById = function dismissSocialInteracti
             user: userId,
             socialInteraction: socialInteraction.id
         });
-        var socialInteractionDismissed = new SocialInteractionDismissedModel(document);
 
-        return socialInteractionDismissed.save(function (err, saved) {
-            // we deliberately want to ignore DuplicateKey Errors, because there is not reason to store the dissmissals more than once
-            // MONGO Duplicate KeyError code: 11000
+        // Model.update does not work with undefined values
+        _.each(_.keys(document), function (key) {
+            if(_.isUndefined(document[key])) {
+                delete document[key];
+            }
+        });
+
+        // Model.update does not return the updated SID -> findOneAndUpdate
+        SocialInteractionDismissedModel.findOneAndUpdate({
+            user: userId,
+            socialInteraction: socialInteraction.id
+        }, document, { upsert: true }, function (err, saved) {
             if (err) {
-                if (err.code !== 11000) {
-                    return cb(err);
-                } else {
-                    return cb(null);
-                }
+                return cb(err); // duplicate key errors will not occur anymore, because of the upsert option
             } else {
+
                 SocialInteraction.emit('socialInteraction:dismissed', user, socialInteraction, saved);
                 return cb(null);
             }

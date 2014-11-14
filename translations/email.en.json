@@ -20,7 +20,7 @@
     },
     "CampaignLeadInvite": {
         "subject": "YOUPERS: Invitation to become Campaign Lead from __inviting.fullname__",
-        "welcomeHeader": "Welcome als campaign leader",
+        "welcomeHeader": "Welcome as campaign leader",
         "salutation": "Hello __invited.firstname__!",
         "salutationAnonymous": "",
         "text": "__inviting.fullname__ has invited you to become campaign lead for the YOUPERS __campaign.title__ HealthCampaign",
@@ -47,22 +47,22 @@
     },
     "iCalMail": {
         "new": {
-            "subject": "YOUPERS: New Calendar-Entry",
+            "subject": "YOUPERS: New Calendar-Entry for: __activity.title__",
             "salutation": "Hello __user.firstname__!",
-            "text": "Congratulations! By scheduling <strong>__activity.title__</strong> you have already accomplished an important step!<br/><br/>You can add the events for this activty to your calendar with the link below.<br/><br/>If you don't want to receive mails like this in the future, you can disable them in your <a href='__profileLink__'>Profile</a>.",
-            "linkText": "UPDATE KALENDER"
+            "text": "Congratulations! By scheduling <strong>__activity.title__</strong> you have already accomplished an important step!<br/><br/>You can add the events for this activty to your calendar with the link below.<br/><br/>If you do not want to receive emails like this in the future, you can disable it in your <a href='__profileLink__'>profile</a>.",
+            "linkText": "ADD TO CALENDAR"
         },
         "update": {
-            "subject": "YOUPERS: Updated Calendar-Entry",
+            "subject": "YOUPERS: Updated Calendar-Entry for: __activity.title__",
             "salutation": "Hello __user.firstname__!",
-            "text": "The plans for <strong>__activity.title__</strong> have changed in the meantime, you can use the link below to update your calendar.",
-            "linkText": "UPDATE KALENDER"
+            "text": "The plans for <strong>__activity.title__</strong> have changed in the meantime. You can use the link below to update your calendar.<br/><br/>If you do not want to receive emails like this in the future, you can disable it in your <a href='__profileLink__'>profile</a>.",
+            "linkText": "UPDATE CALENDAR"
         },
         "cancel": {
-            "subject": "YOUPERS: Cancelled Calendar-Entry",
+            "subject": "YOUPERS: Cancelled Calendar-Entry for: __activity.title__",
             "salutation": "Hello __user.firstname__!",
-            "text": "The activity <strong>__activity.title__</strong> has been cancelled, you can use the link below to update your calendar.",
-            "linkText": "UPDATE KALENDER"
+            "text": "The activity <strong>__activity.title__</strong> has been cancelled. You can use the link below to update your calendar.<br/><br/>If you do not want to receive emails like this in the future, you can disable it in your <a href='__profileLink__'>profile</a>.",
+            "linkText": "REMOVE FROM CALENDAR"
         }
     }
 }

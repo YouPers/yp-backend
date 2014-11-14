@@ -327,7 +327,7 @@ function _saveNewEvent(event, req, cb) {
             // - populate 'idea' so we can get create a nice calendar entry
             // - we need to reload so we get the changes that have been done pre('save') and pre('init')
             //   like updating the joiningUsers Collection
-            Event.findById(savedEvent._id).populate('owner').populate('idea', mongoose.model('Idea').getI18nPropertySelector(req.locale)).exec(function (err, reloadedEvent) {
+            Event.findById(savedEvent._id).populate('owner', select: '+email').populate('idea', mongoose.model('Idea').getI18nPropertySelector(req.locale)).exec(function (err, reloadedEvent) {
                 if (err) {
                     return cb(err);
                 }
@@ -358,8 +358,7 @@ function postJoinEventFn(req, res, next) {
         return next(new error.MissingParameterError({ required: 'id' }));
     }
 
-    Event.findById(req.params.id).exec(function (err, masterEvent) {
-
+    Event.findById(req.params.id).populate({path: 'owner', select: '+email'}).exec(function (err, masterEvent) {
         if (err) {
             return error.handleError(err, next);
         }

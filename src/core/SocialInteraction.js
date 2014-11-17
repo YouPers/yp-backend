@@ -53,6 +53,9 @@ User.on('add', function (user) {
 
 // send email invitations
 mongoose.model('Invitation').on('add', function (invitation) {
+
+    log.debug('Invitation:add', invitation);
+
     var activity = invitation.activity;
 
     // invitations for activities
@@ -66,11 +69,15 @@ mongoose.model('Invitation').on('add', function (invitation) {
             }
 
             var userIds = _.map(_.filter(invitation.targetSpaces, { type: 'user'}), 'targetId');
+
+            log.debug('Invitation:add - userIds', userIds);
+
             // get author
             User.findById(invitation.author).exec(function (err, author) {
                 // get all targeted users
                 User.find({ _id: { $in: userIds}}).select('+email').exec(function (err, users) {
                     _.each(users, function (user) {
+                        log.debug('Invitation:add - sendActivityInvite', user.email);
                         email.sendActivityInvite(user.email, author, activity, user, invitation._id, i18n);
                     });
                 });

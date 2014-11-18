@@ -56,12 +56,15 @@ mongoose.model('Invitation').on('add', function (invitation) {
     var event = invitation.event;
 
     // invitations for activities
-    if(event) {
+    if (event) {
         Event.findById(event._id || event).populate('idea').exec(function (err, event) {
-
-            if (err) {
+            if(err) {
                 return SocialInteraction.emit('error', err);
             }
+            if(!event) {
+                return SocialInteraction.emit('error', 'event not found: ' + event._id || event);
+            }
+
             var userIds = _.map(_.filter(invitation.targetSpaces, { type: 'user'}), 'targetId');
             // get author
             User.findById(invitation.author).exec(function (err, author) {

@@ -107,7 +107,7 @@ consts.newUserInNewCampaignApi(
                                                 .expectStatus(200)
                                                 .afterJSON(function (offers) {
 
-                                                expect(offers.length).toEqual(2);
+                                                expect(offers.length).toEqual(5);
 
                                                 frisby.create('CampaignOffers: dismiss the recommendation, all offers for the rejected idea are dismissed')
                                                     .delete(URL + '/socialInteractions/' + recommendation.id + '?reason=denied')
@@ -121,7 +121,7 @@ consts.newUserInNewCampaignApi(
                                                                 .expectStatus(200)
                                                                 .afterJSON(function (offers) {
 
-                                                                expect(offers.length).toEqual(2);
+                                                                expect(offers.length).toEqual(5);
                                                                 expect(_.countBy(offers, 'rejected').true).toEqual(2);
                                                                 expect(_.countBy(offers, 'dismissed').true).toEqual(1);
                                                                 cleanupFn();

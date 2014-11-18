@@ -66,6 +66,9 @@ mongoose.model('Invitation').on('add', function (invitation) {
             }
 
             var userIds = _.map(_.filter(invitation.targetSpaces, { type: 'user'}), 'targetId');
+
+            log.debug('Invitation:add - userIds', userIds);
+
             // get author
             User.findById(invitation.author).exec(function (err, author) {
                 // get all targeted users

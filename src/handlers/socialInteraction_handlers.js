@@ -4,7 +4,8 @@ var error = require('ypbackendlib').error,
     auth = require('ypbackendlib').auth,
     moment = require('moment'),
     SocialInteraction = require('../core/SocialInteraction'),
-    SocialInteractionModel = mongoose.model('SocialInteraction');
+    SocialInteractionModel = mongoose.model('SocialInteraction'),
+    CoachRecommendation = require('../core/CoachRecommendation');
 
 var getByIdFn = function getByIdFn(baseUrl, Model) {
     return function getById(req, res, next) {
@@ -85,7 +86,9 @@ var getOffers = function getAll(req, res, next) {
         publishTo: true
     };
 
-    SocialInteraction.getAllForUser(user, SocialInteractionModel, options, generic.sendListCb(req, res, next));
+    CoachRecommendation.generateAndStoreRecommendations(req.user.id, {}, function(err, recs) {
+        SocialInteraction.getAllForUser(user, SocialInteractionModel, options, generic.sendListCb(req, res, next));
+    });
 };
 
 

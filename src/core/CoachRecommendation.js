@@ -1,7 +1,6 @@
 var _ = require('lodash'),
     mongoose = require('ypbackendlib').mongoose,
     Idea = mongoose.model('Idea'),
-    AssessmentResult = mongoose.model('AssessmentResult'),
     Recommendation = mongoose.model('Recommendation'),
     error = require('ypbackendlib').error,
     async = require('async'),
@@ -10,7 +9,7 @@ var _ = require('lodash'),
     log = require('ypbackendlib').log(config),
     SocialInteraction = require('./SocialInteraction');
 
-var NUMBER_OF_COACH_RECS = 1;
+var NUMBER_OF_COACH_RECS = 3;
 var HEALTH_COACH_USER_ID = '53348c27996c80a534319bda';
 
 Profile.on('change:prefs.focus', function (changedProfile) {
@@ -31,26 +30,21 @@ Profile.on('change:prefs.focus', function (changedProfile) {
 /**
  * if this is the first login of this user today we generate him a new recommendation
  */
-mongoose.model('User').on('User:firstLoginToday', function(user) {
+mongoose.model('User').on('User:firstLoginToday', function (user) {
 
     if (!user || !user.profile || !user.profile._id) {
         throw new Error('user must be present and populated with poulated profile for this event listener');
     }
-    if (!user.campaign) {
-        // user does not have a campaign and therefore no topic --> nothing to generate.
-        return;
-    }
+
     var options = {
-        topic: user.campaign.topic,
         rejectedIdeas: user.profile.prefs.rejectedIdeas,
-        focus: user.profile.prefs.focus,
         keepExisting: true
     };
 
-    _updateRecommendations(user._id, options, function(err, newRecs ) {
-       if (err) {
-           throw new Error(err);
-       }
+    _updateRecommendations(user._id, options, function (err, newRecs) {
+        if (err) {
+            throw new Error(err);
+        }
     });
 });
 
@@ -76,7 +70,9 @@ SocialInteraction.on('socialInteraction:dismissed', function (user, socialIntera
 
         if (user instanceof mongoose.Types.ObjectId) {
             mongoose.model('User').findById(user).select('+profile +campaign').populate('profile campaign').exec(function (err, populatedUser) {
-                if (err) {throw err;}
+                if (err) {
+                    throw err;
+                }
                 _generateRec(populatedUser);
             });
         } else {
@@ -127,17 +123,6 @@ function _calculateRecommendations(actList, assResult, focus, cb) {
         return answer.question.toString();
     });
 
-    if (_.isString(focus) && focus.length > 0) {
-        focus = [focus];
-    } else if (_.isArray(focus) && focus.length > 0 && _.isObject(focus[0])) {
-        // unwrap the focus objects into a simple array of questionIds.
-        focus = _.map(focus, function (goal) {
-            return goal.question.toString();
-        });
-    } else if (_.isArray(focus) && (focus.length = 0)) {
-        focus = undefined;
-    }
-
     // calculate matchValue for each idea and store in object
     var matchValues = [], score;
     _.forEach(actList, function (idea) {
@@ -154,8 +139,8 @@ function _calculateRecommendations(actList, assResult, focus, cb) {
             //          this answer is part of the focus
             if (answerObj && (!focus || focus.length === 0 || (_.contains(focus, answerObj.question.toString())))) {
                 score += (answerObj.answer >= 0) ?
-                    answerObj.answer / 100 * recWeight[2] :
-                    Math.abs(answerObj.answer) / 100 * recWeight[1];
+                answerObj.answer / 100 * recWeight[2] :
+                Math.abs(answerObj.answer) / 100 * recWeight[1];
             }
         });
         matchValues.push({idea: idea._id, score: score * qualityFactor});
@@ -193,7 +178,12 @@ function _loadIdeas(topic, excludedIdeas, done) {
     // reset
     locals.ideas = undefined;
 
-    Idea.find({topics: topic.toString()})
+    var finder = {};
+    if (topic) {
+        finder.topics = topic.toString();
+    }
+
+    Idea.find(finder)
         .where({_id: {$not: {$in: excludedIdeas}}})
         .select('recWeights qualityFactor')
         .exec(function (err, ideas) {
@@ -218,28 +208,8 @@ function _loadIdeas(topic, excludedIdeas, done) {
  * @param topic
  */
 function _loadAssessmentResult(userId, assessmentResult, topic, done) {
-    // reset
-    locals.assResult = undefined;
-    if (!userId ) {
-        return done(new Error('userId is required'));
-    }
-    if (assessmentResult) {
-        locals.assResult = assessmentResult;
-        return done();
-    } else {
-        AssessmentResult.find({owner: userId, topic: topic})
-            .sort({created: -1})
-            .limit(1)
-            .exec(function (err, assResults) {
-                if (err) {
-                    return error.handleError(err, done);
-                }
-                if (assResults && assResults.length > 0) {
-                    locals.assResult = assResults[0];
-                }
-                return done();
-            });
-    }
+    locals.assResult = {answers: []};
+    return done();
 }
 
 /**
@@ -256,11 +226,13 @@ function _loadAssessmentResult(userId, assessmentResult, topic, done) {
  */
 function _updateRecommendations(userId, options, cb) {
 
-    _.defaults(options, {rejectedIdeas: [],
-                        updateDb: true,
-                        isAdmin: false,
-                        keepExisting: false,
-                        nrOfRecsToReturn: NUMBER_OF_COACH_RECS});
+    _.defaults(options, {
+        rejectedIdeas: [],
+        updateDb: true,
+        isAdmin: false,
+        keepExisting: false,
+        nrOfRecsToReturn: NUMBER_OF_COACH_RECS
+    });
 
     var assessmentResult = options.assessmentResult;
     var focus = options.focus;
@@ -269,10 +241,12 @@ function _updateRecommendations(userId, options, cb) {
     var nrOfRecsToReturn = options.nrOfRecsToReturn;
 
     // loading the already planned ideas of this user - we do not want to recommend things that this user has already planned
-    mongoose.model('Event').find({$or: [
-        {owner: userId},
-        {joiningUsers: userId}
-    ]}).select('idea').exec(function (err, plannedIdeas) {
+    mongoose.model('Event').find({
+        $or: [
+            {owner: userId},
+            {joiningUsers: userId}
+        ]
+    }).select('idea').exec(function (err, plannedIdeas) {
         if (err) {
             return error.handleError(err, cb);
         }
@@ -329,8 +303,8 @@ function _updateRecommendations(userId, options, cb) {
                             return rec.idea.toString();
                         });
 
-                        var obsoleteIdeas = options.keepExisting ?  [] : _.difference(previousIdeas, allCurrentIdeas.slice(0,nrOfRecsToReturn));
-                        var newIdeas = options.keepExisting ? _.difference(allCurrentIdeas, previousIdeas).slice(0,nrOfRecsToReturn) : _.difference(allCurrentIdeas.slice(0,nrOfRecsToReturn), previousIdeas);
+                        var obsoleteIdeas = options.keepExisting ? [] : _.difference(previousIdeas, allCurrentIdeas.slice(0, nrOfRecsToReturn));
+                        var newIdeas = options.keepExisting ? _.difference(allCurrentIdeas, previousIdeas).slice(0, nrOfRecsToReturn) : _.difference(allCurrentIdeas.slice(0, nrOfRecsToReturn), previousIdeas);
 
                         // remove recommendation for obsolete ideas
                         var removeRecs = function removeRecs(ideas, done) {
@@ -371,7 +345,7 @@ function _updateRecommendations(userId, options, cb) {
                         });
 
                         async.parallel(updateRecs, function (err, storedRecs) {
-                            return cb(err, newRecs.slice(0,options.isAdmin ? 1000 : nrOfRecsToReturn));
+                            return cb(err, newRecs.slice(0, options.isAdmin ? 1000 : nrOfRecsToReturn));
                         });
 
                     });
@@ -412,7 +386,7 @@ function generateRecommendations(userId, options, cb) {
 var getDefaultRecommendations = function getDefaultRecommendations(campaignId, cb) {
 
     Idea
-        .find({}, {}, { sort: { 'qualityFactor': -1 }, limit: 8 })
+        .find({}, {}, {sort: {'qualityFactor': -1}, limit: 8})
         .exec(function (err, ideas) {
 
             if (err) {
@@ -434,7 +408,7 @@ var getDefaultRecommendations = function getDefaultRecommendations(campaignId, c
                     author: HEALTH_COACH_USER_ID,
 
                     refDocs: [
-                        { docId: campaignId, model: 'Campaign'}
+                        {docId: campaignId, model: 'Campaign'}
                     ],
                     idea: idea._id
                 };
@@ -446,8 +420,6 @@ var getDefaultRecommendations = function getDefaultRecommendations(campaignId, c
             return cb(null, recs);
         });
 };
-
-
 
 
 module.exports = {

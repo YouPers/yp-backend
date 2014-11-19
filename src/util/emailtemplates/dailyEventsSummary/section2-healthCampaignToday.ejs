@@ -1,0 +1,43 @@
+<h2>
+    Section 2 „HealthCampaign Today“
+</h2>
+
+<br/>
+
+<h3>
+    eventsToday: <%- eventsToday.length %>
+</h3>
+
+<% for(var i=0; i<eventsToday.length; i++) {%>
+
+<a href="<%= urlComposer.activityUrl(user.campaign.id, eventsToday[i].activity.idea, eventsToday[i].activity.id) %>">
+
+    <%= eventsToday[i].activity.title %>
+    <%= moment(eventsToday[i].start).format('hh:mm') %>
+    <%- eventsToday[i].activity.location %>
+
+</a>
+
+<br/>
+
+<% } %>
+<br/>
+
+<h3>
+    eventsWithOpenFeedback: <%- eventsWithOpenFeedback.length %>
+</h3>
+
+<% for(var i=0; i<eventsWithOpenFeedback.length; i++) {%>
+
+<a href="<%= urlComposer.activityUrl(user.campaign.id, eventsWithOpenFeedback[i].activity.idea, eventsWithOpenFeedback[i].activity.id) %>">
+
+    <%= eventsWithOpenFeedback[i].activity.title %>
+    <%= moment(eventsWithOpenFeedback[i].start).format('hh:mm') %>
+    <%- eventsWithOpenFeedback[i].activity.location %>
+
+</a>
+
+<br/>
+
+<% } %>
+<br/>

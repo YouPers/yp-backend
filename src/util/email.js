@@ -7,7 +7,16 @@ var config = require('../config/config'),
     emailSender = require('ypbackendlib').emailSender(config, process.cwd() + '/' + config.email.templatesDir);
 
 var defaultLocals = function (i18n) {
+
+    var localMoment = function(date) {
+        return moment(date).lang(i18n.lng()).tz('Europe/Zurich')
+    };
+
     return {
+
+        moment: localMoment,
+        urlComposer: urlComposer,
+
         header: i18n.t('email:default.header'),
         notDisplayedCorrectly: i18n.t('email:default.notDisplayedCorrectly'),
         notDisplayedCorrectlyLink: i18n.t('email:default.notDisplayedCorrectlyLink'),
@@ -51,7 +60,7 @@ var sendCalInvite = function (toUser, type, iCalString, activity, i18n, reason) 
         link: urlComposer.icalUrl(activity.id, type, toUser.id),
         linkText: i18n.t('email:iCalMail.' + type + '.linkText')
     };
-    _.extend(locals, defaultLocals(i18n));
+    _.defaults(locals, defaultLocals(i18n));
     emailSender.sendEmail(fromDefault, toUser.email, subject, 'calendarEventMail', locals, mailExtensions);
 
 };
@@ -82,7 +91,7 @@ var sendActivityInvite = function sendActivityInvite(email, invitingUser, activi
         eventDate: eventDate,
         image: urlComposer.ideaImageUrl(activity.idea.number)
     };
-    _.extend(locals, defaultLocals(i18n));
+    _.defaults(locals, defaultLocals(i18n));
     emailSender.sendEmail(fromDefault, email, subject, 'activityInviteMail', locals);
 };
 
@@ -109,7 +118,7 @@ var sendCampaignLeadInvite = function sendCampaignLeadInvite(email, invitingUser
         duration: duration,
         image: urlComposer.campaignImageUrl(campaign.topic.picture)
     };
-    _.extend(locals, defaultLocals(i18n));
+    _.defaults(locals, defaultLocals(i18n));
     emailSender.sendEmail(fromDefault, email, subject, 'campaignLeadInviteMail', locals);
 };
 
@@ -127,7 +136,7 @@ var sendCampaignParticipantInvite = function sendCampaignParticipantInvite(email
         campaignLeadsHeader: i18n.t('email:CampaignParticipantInvite.campaignLeadsHeader')
 
     };
-    _.extend(locals, defaultLocals(i18n));
+    _.defaults(locals, defaultLocals(i18n));
     emailSender.sendEmail(fromDefault, email, subject, 'campaignParticipantInviteMail', locals);
 };
 
@@ -145,6 +154,16 @@ var sendOrganizationAdminInvite = function sendOrganizationAdminInvite(email, in
     emailSender.sendEmail(fromDefault, email, subject, 'genericYouPersMail', locals);
 };
 
+var getDailyEventSummaryLocals = function getDailyEventSummaryLocals(locals, i18n) {
+    var mailLocals = _.defaults({
+
+        salutation: i18n.t('email:DailyEventsSummary.salutation', locals)
+
+    }, defaultLocals(i18n));
+    _.extend(mailLocals, locals);
+    return mailLocals;
+};
+
 /**
  * sends a dailyPlannedEventsSummary Email.
  * @param toAddress - the address to send the email to
@@ -153,18 +172,12 @@ var sendOrganizationAdminInvite = function sendOrganizationAdminInvite(email, in
  * @param user - a user object with a populated profile.
  * @param i18n - an i18n object to be used to translate the email content
  */
-var sendDailyEventSummary = function sendDailyEventSummary(toAddress, events, user, i18n) {
-    var subject = i18n.t("email:DailyEventSummary.subject", {events: events});
+var sendDailyEventSummary = function sendDailyEventSummary(toAddress, locals, user, i18n) {
+    var subject = i18n.t("email:DailyEventsSummary.subject", locals);
 
-    var locals = {
-        events: events,
-        salutation: i18n.t('email:DailyEventSummary.salutation'),
-        text: "to be written...",
-        link: "mylink",
-        footer: "myFooter"
-    };
-
-    emailSender.sendEmail(fromDefault, toAddress, subject, 'dailyEventsSummary', locals);
+    var mailLocals = getDailyEventSummaryLocals(locals, i18n);
+    _.extend(mailLocals, locals);
+    emailSender.sendEmail(fromDefault, toAddress, subject, 'dailyEventsSummary', mailLocals);
 };
 
 var close = function close() {
@@ -180,5 +193,7 @@ module.exports = {
     sendCampaignLeadInvite: sendCampaignLeadInvite,
     sendCampaignParticipantInvite: sendCampaignParticipantInvite,
     sendOrganizationAdminInvite: sendOrganizationAdminInvite,
-    sendDailyEventSummary: sendDailyEventSummary
+    sendDailyEventSummary: sendDailyEventSummary,
+    getDailyEventSummaryLocals: getDailyEventSummaryLocals,
+    renderEmailTemplate: emailSender.renderEmailTemplate
 };

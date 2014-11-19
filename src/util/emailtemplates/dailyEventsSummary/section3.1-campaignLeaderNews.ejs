@@ -1,0 +1,62 @@
+
+<h2>
+    Section 3.1 – „News from Campaign Leader“
+</h2>
+
+
+<h3>
+    newCampaignMessages: <%- newCampaignMessages.length %>
+</h3>
+
+<% for(var i=0; i<newCampaignMessages.length; i++) {%>
+
+<a href="<%= urlComposer.homeUrl() %>">
+    <%= newCampaignMessages[i].title %>
+</a>
+von
+<%= newCampaignMessages[i].author.fullname %>
+
+<br/>
+
+<% } %>
+<br/>
+
+
+
+<h3>
+    newCampaignActivityInvitations: <%- newCampaignActivityInvitations.length %>
+</h3>
+
+<% for(var i=0; i<newCampaignActivityInvitations.length; i++) {%>
+
+<a href="<%= urlComposer.activityUrl(user.campaign.id, newCampaignActivityInvitations[i].activity.idea, newCampaignActivityInvitations[i].activity.id, newCampaignActivityInvitations[i].id) %>">
+    <%= newCampaignActivityInvitations[i].activity.title %>
+</a>
+von
+<%= newCampaignActivityInvitations[i].author.fullname %>
+
+<br/>
+
+<% } %>
+<br/>
+
+
+
+<h3>
+    newCampaignRecommendations: <%- newCampaignRecommendations.length %>
+</h3>
+
+<% for(var i=0; i<newCampaignRecommendations.length; i++) {%>
+
+<a href="<%= urlComposer.activityUrl(user.campaign.id, newCampaignRecommendations[i].idea.id, '', newCampaignRecommendations[i].id) %>">
+    <%= newCampaignRecommendations[i].idea.title %>
+</a>
+von
+<%= newCampaignRecommendations[i].author.fullname %>
+
+<br/>
+
+<% } %>
+<br/>
+
+

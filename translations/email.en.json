@@ -6,6 +6,10 @@
         "header": "HealthCampaign"
     },
 
+    "DailyEventsSummary": {
+        "salutation": "Hello __user.firstname__"
+    },
+
     "CampaignParticipantInvite": {
         "campaignLeadsHeader": "Your campaign leads:",
         "linkText": "SHOW CAMPAIGN"

@@ -1,0 +1,44 @@
+
+<h2>
+    Section 3.2 – „News from Campaign Participants“
+</h2>
+
+
+<h3>
+    newPersonalInvitations: <%- newPersonalInvitations.length %>
+</h3>
+
+<% for(var i=0; i<newPersonalInvitations.length; i++) {%>
+
+<a href="<%= urlComposer.activityUrl(user.campaign.id, newPersonalInvitations[i].activity.idea, newPersonalInvitations[i].activity.id, newPersonalInvitations[i].id) %>">
+    <%= newPersonalInvitations[i].activity.title %>
+</a>
+von
+<%= newPersonalInvitations[i].author.fullname %>
+
+<br/>
+
+<% } %>
+<br/>
+
+
+
+<h3>
+    newCommentsOnParticipatedActivities: <%- newCommentsOnParticipatedActivities.length %>
+</h3>
+
+
+<% for(var i=0; i<newCommentsOnParticipatedActivities.length; i++) {%>
+
+
+<%= newCommentsOnParticipatedActivities[i].text %>
+
+// TODO: populate the activity of the comment
+
+<br/>
+
+<% } %>
+<br/>
+
+<br/>
+

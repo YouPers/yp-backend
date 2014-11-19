@@ -27,18 +27,8 @@ von
     newCommentsOnParticipatedActivities: <%- newCommentsOnParticipatedActivities.length %>
 </h3>
 
-
-<% for(var i=0; i<newCommentsOnParticipatedActivities.length; i++) {%>
-
-
-<%= newCommentsOnParticipatedActivities[i].text %>
-
-// TODO: populate the activity of the comment
+<a href="<%= urlComposer.homeUrl() %>">
+   Show main screen
+</a>
 
 <br/>
-
-<% } %>
-<br/>
-
-<br/>
-

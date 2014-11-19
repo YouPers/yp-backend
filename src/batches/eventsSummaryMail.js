@@ -106,18 +106,8 @@ var getSummaryMailLocals = function getSummaryMailLocals(user, rangeStart, range
                         $in: activityIds
                     } }},
                     created: { $gt: rangeStart }
-                }).populate('author activity').exec(function (err, messages) {
-                    if(err) { done(err); }
-
-                    // TODO: find a way to populate the activities
-
-                    //_.each(messages, function (message) {
-                    //    var activityId = _.find(message.targetSpaces, { type: 'activity' }).targetId;
-                    //    message.activity = _.find(activities, { _id: activityId });
-                    //});
-                    storeLocals('newCommentsOnParticipatedActivities', done)(err, messages);
-                });
-            })
+                }).populate('author').exec(storeLocals('newCommentsOnParticipatedActivities', done));
+            });
         }
     ];
 

@@ -11,8 +11,12 @@
 <% for(var i=0; i<newPersonalInvitations.length; i++) {%>
 
 <a href="<%= urlComposer.activityUrl(user.campaign.id, newPersonalInvitations[i].activity.idea, newPersonalInvitations[i].activity.id, newPersonalInvitations[i].id) %>">
+    <img width="60" src="<%- urlComposer.homeUrl() + '/assets/actpics/' + newPersonalInvitations[i].activity.number + '.jpg'%>">
     <%= newPersonalInvitations[i].activity.title %>
 </a>
+
+
+<img width="60" src="<%- newPersonalInvitations[i].author.avatar %>">
 von
 <%= newPersonalInvitations[i].author.fullname %>
 

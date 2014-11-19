@@ -11,10 +11,13 @@
 <% for(var i=0; i<newCampaignMessages.length; i++) {%>
 
 <a href="<%= urlComposer.homeUrl() %>">
-    <%= newCampaignMessages[i].title %>
+    <img width="60" src="<%- newCampaignMessages[i].author.avatar %>">
+    <%= newCampaignMessages[i].title %>,
+
+    <%= newCampaignMessages[i].author.fullname %>
 </a>
-von
-<%= newCampaignMessages[i].author.fullname %>
+<br/>
+
 
 <br/>
 
@@ -30,6 +33,7 @@ von
 <% for(var i=0; i<newCampaignActivityInvitations.length; i++) {%>
 
 <a href="<%= urlComposer.activityUrl(user.campaign.id, newCampaignActivityInvitations[i].activity.idea, newCampaignActivityInvitations[i].activity.id, newCampaignActivityInvitations[i].id) %>">
+    <img width="60" src="<%- urlComposer.homeUrl() + '/assets/actpics/' + newCampaignActivityInvitations[i].activity.number + '.jpg'%>">
     <%= newCampaignActivityInvitations[i].activity.title %>
 </a>
 von
@@ -49,6 +53,7 @@ von
 <% for(var i=0; i<newCampaignRecommendations.length; i++) {%>
 
 <a href="<%= urlComposer.activityUrl(user.campaign.id, newCampaignRecommendations[i].idea.id, '', newCampaignRecommendations[i].id) %>">
+    <img width="60" src="<%- urlComposer.homeUrl() + '/assets/actpics/' + newCampaignRecommendations[i].idea.number + '.jpg'%>">
     <%= newCampaignRecommendations[i].idea.title %>
 </a>
 von

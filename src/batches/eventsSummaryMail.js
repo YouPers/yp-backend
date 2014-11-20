@@ -93,21 +93,45 @@ var getSummaryMailLocals = function getSummaryMailLocals(user, rangeStart, range
         function (done) {
             mongoose.model('Activity').find({
                 $or: [
-                    { owner: user },
-                    { joiningUsers: user }
+                    {owner: user},
+                    {joiningUsers: user}
                 ]
-            }, { _id: 1 }).exec(function (err, activities) {
+            }, {_id: 1}).exec(function (err, activities) {
                 var activityIds = _.map(activities, '_id');
 
-                mongoose.model('Message').find({
-                    _id: { $nin: dismissedSocialInteractions },
+                mongoose.model('Message').count({
+                    _id: {$nin: dismissedSocialInteractions},
                     authorType: 'user',
-                    targetSpaces: { $elemMatch: { targetId: {
-                        $in: activityIds
-                    } }},
-                    created: { $gt: rangeStart }
-                }).populate('author').exec(storeLocals('newCommentsOnParticipatedActivities', done));
+                    targetSpaces: {
+                        $elemMatch: {
+                            targetId: {
+                                $in: activityIds
+                            }
+                        }
+                    },
+                    created: {$gt: rangeStart}
+                }).exec(storeLocals('newCommentsOnParticipatedActivities', done));
             });
+        },
+
+        // newPublicInvitations
+        function (done) {
+            mongoose.model('Invitation').count({
+                _id: {$nin: dismissedSocialInteractions},
+                authorType: 'user',
+                targetSpaces: {$elemMatch: {targetId: user.campaign}},
+                created: {$gt: rangeStart}
+            }).exec(storeLocals('newPublicInvitations', done));
+        },
+
+        // newCoachRecommendations
+        function (done) {
+            mongoose.model('Recommendation').count({
+                _id: {$nin: dismissedSocialInteractions},
+                authorType: 'coach',
+                targetSpaces: { $elemMatch: { targetId: user.id }},
+                created: {$gt: rangeStart}
+            }).exec(storeLocals('newCoachRecommendations', done));
         }
     ];
 

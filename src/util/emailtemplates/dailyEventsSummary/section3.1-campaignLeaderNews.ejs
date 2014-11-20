@@ -1,17 +1,17 @@
 
-<h2>
-    Section 3.1 – „News from Campaign Leader“
-</h2>
-
-
 <h3>
-    newCampaignMessages: <%- newCampaignMessages.length %>
+    Section 3.1 – „News from Campaign Leader“
 </h3>
+
+
+<h4>
+    newCampaignMessages: <%- newCampaignMessages.length %>
+</h4>
 
 <% for(var i=0; i<newCampaignMessages.length; i++) {%>
 
 <a href="<%= urlComposer.homeUrl() %>">
-    <img width="60" src="<%- newCampaignMessages[i].author.avatar %>">
+    <img width="30" src="<%- newCampaignMessages[i].author.avatar %>">
     <%= newCampaignMessages[i].title %>,
 
     <%= newCampaignMessages[i].author.fullname %>
@@ -26,9 +26,9 @@
 
 
 
-<h3>
+<h4>
     newCampaignActivityInvitations: <%- newCampaignActivityInvitations.length %>
-</h3>
+</h4>
 
 <% for(var i=0; i<newCampaignActivityInvitations.length; i++) {%>
 
@@ -46,9 +46,9 @@ von
 
 
 
-<h3>
+<h4>
     newCampaignRecommendations: <%- newCampaignRecommendations.length %>
-</h3>
+</h4>
 
 <% for(var i=0; i<newCampaignRecommendations.length; i++) {%>
 

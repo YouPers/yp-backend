@@ -1,12 +1,12 @@
 
-<h2>
-    Section 3.2 – „News from Campaign Participants“
-</h2>
-
-
 <h3>
-    newPersonalInvitations: <%- newPersonalInvitations.length %>
+    Section 3.2 – „News from Campaign Participants“
 </h3>
+
+
+<h4>
+    newPersonalInvitations: <%- newPersonalInvitations.length %>
+</h4>
 
 <% for(var i=0; i<newPersonalInvitations.length; i++) {%>
 
@@ -16,7 +16,7 @@
 </a>
 
 
-<img width="60" src="<%- newPersonalInvitations[i].author.avatar %>">
+<img width="30" src="<%- newPersonalInvitations[i].author.avatar %>">
 von
 <%= newPersonalInvitations[i].author.fullname %>
 
@@ -27,12 +27,44 @@ von
 
 
 
-<h3>
-    newCommentsOnParticipatedActivities: <%- newCommentsOnParticipatedActivities.length %>
-</h3>
+<h4>
+    newCommentsOnParticipatedActivities: <%- newCommentsOnParticipatedActivities %>
+</h4>
 
 <a href="<%= urlComposer.homeUrl() %>">
    Show main screen
 </a>
+
+<br/>
+
+
+
+<h4>
+    newPublicInvitations: <%- newPublicInvitations %>
+</h4>
+
+<a href="<%= urlComposer.homeUrl() %>">
+   Show main screen
+</a>
+
+<br/>
+
+
+<h4>
+
+    <%if (newCoachRecommendations > 0) { %>
+
+    newCoachRecommendations: <%- newCoachRecommendations %>
+
+
+    <% } else { %>
+
+    no newCoachRecommendations, do a self assessment!
+
+    <% } %>
+
+
+
+</h4>
 
 <br/>

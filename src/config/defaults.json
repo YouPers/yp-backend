@@ -54,6 +54,9 @@
         "password": "lkmanv90e3ionm23k",
         "url": "https://youpers.atlassian.net",
         "project": "WL"
+    },
+    "push": {
+        "googlePushApiKey": "AIzaSyCoegQXKQRJC0-dR4PZfKNLKbuL_qQhRrs"
     }
 }
 

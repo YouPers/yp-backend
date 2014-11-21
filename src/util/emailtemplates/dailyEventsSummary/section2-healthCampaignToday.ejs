@@ -14,7 +14,7 @@
 
     <img width="80" src="<%- urlComposer.homeUrl() + '/assets/actpics/' + eventsToday[i].activity.number + '.jpg'%>">
 
-    <%= eventsToday[i].activity.title %>
+    <%- eventsToday[i].activity.title %>
     <%= moment(eventsToday[i].start).format('hh:mm') %>
     <%- eventsToday[i].activity.location %>
 
@@ -36,7 +36,7 @@
 <a href="<%= urlComposer.activityUrl(user.campaign.id, eventsWithOpenFeedback[i].activity.idea, eventsWithOpenFeedback[i].activity.id) %>">
 
     <img width="60" src="<%- urlComposer.homeUrl() + '/assets/actpics/' + eventsWithOpenFeedback[i].activity.number + '.jpg'%>">
-    <%= eventsWithOpenFeedback[i].activity.title %>
+    <%= eventsWithOpenFeedback[i].activity.title.replace(/(<([^>]+)>)/ig, " ") %>
     <%= moment(eventsWithOpenFeedback[i].start).format('hh:mm') %>
     <%- eventsWithOpenFeedback[i].activity.location %>
 

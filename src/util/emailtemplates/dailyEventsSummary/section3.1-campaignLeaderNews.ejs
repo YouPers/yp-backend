@@ -36,8 +36,10 @@
     <img width="60" src="<%- urlComposer.homeUrl() + '/assets/actpics/' + newCampaignActivityInvitations[i].activity.number + '.jpg'%>">
     <%= newCampaignActivityInvitations[i].activity.title %>
 </a>
-von
-<%= newCampaignActivityInvitations[i].author.fullname %>
+<span>
+    von
+    <%= newCampaignActivityInvitations[i].author.fullname %>
+</span>
 
 <br/>
 

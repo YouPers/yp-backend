@@ -9,7 +9,7 @@ var config = require('../config/config'),
 var defaultLocals = function (i18n) {
 
     var localMoment = function(date) {
-        return moment(date).lang(i18n.lng()).tz('Europe/Zurich')
+        return moment(date).lang(i18n.lng()).tz('Europe/Zurich');
     };
 
     return {

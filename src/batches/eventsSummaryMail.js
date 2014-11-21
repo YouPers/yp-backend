@@ -173,11 +173,12 @@ var renderSummaryMail = function (user, rangeStart, rangeEnd, i18n, callback) {
  * worker function that sends a DailySummaryMail for one specific user.
  * @param user an object with a "_id" property containing the id of the user for which to send an email.
  *             can be a full user object or just an object with this "_id" property.
- * @param now
+ * @param rangeStart
+ * @param rangeEnd
  * @param done
  * @param context
  */
-var sendSummaryMail = function sendSummaryMail(user, now, done, context) {
+var sendSummaryMail = function sendSummaryMail(user, rangeStart, rangeEnd, done, context) {
     var log = (context && context.log) || this.log;
     var i18n = (context && context.i18n) || this.i18n;
 
@@ -205,15 +206,22 @@ var sendSummaryMail = function sendSummaryMail(user, now, done, context) {
                 return done(err);
             }
 
-            var rangeStart = moment(user.lastSummaryMail) || moment(user.campaign.start);
-            var rangeEnd = moment(now);
+            var rangeStart = rangeStart ? rangeStart : moment(user.lastSummaryMail) || moment(user.campaign.start);
+            var rangeEnd = rangeEnd ? moment(rangeEnd) : moment();
 
             getSummaryMailLocals(user, rangeStart.toDate(), rangeEnd.toDate(), function (err, locals) {
 
-                i18n.setLng(user.profile.language || 'de', function () {
-                    log.info('sending DailySummary Mail to email: ' + user.email);
+                i18n.setLng(user.profile.language || 'de');
 
-                    email.sendDailyEventSummary.apply(this, [user.email, locals, user, i18n]);
+                log.info('sending DailySummary Mail to email: ' + user.email);
+
+                email.sendDailyEventSummary.apply(this, [user.email, locals, user, i18n]);
+
+                user.lastSummaryMail = rangeEnd.toDate();
+                user.save(function (err) {
+                    if(err) {
+                        return done(err);
+                    }
                     return done();
                 });
             });
@@ -223,7 +231,10 @@ var sendSummaryMail = function sendSummaryMail(user, now, done, context) {
 var feeder = function (callback) {
     var log = this.log;
     var now = moment();
-    this.now = now;
+
+    // use defaults from worker in sendSummaryMail
+    //this.rangeEnd = now;
+    //this.rangeStart = now;
 
     log.info("Finding all users (excl. roles [campaignlead, productadmin], with dailyUserMail=true, and a currently active campaign today: " + now);
 
@@ -244,7 +255,7 @@ var feeder = function (callback) {
 };
 
 var worker = function (owner, done) {
-    return sendSummaryMail.apply(this, [owner, this.now, done]);
+    return sendSummaryMail.apply(this, [owner, this.rangeStart, this.rangeEnd, done]);
 };
 
 var run = function run() {

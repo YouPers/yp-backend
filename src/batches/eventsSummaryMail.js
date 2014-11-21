@@ -32,6 +32,12 @@ var getSummaryMailLocals = function getSummaryMailLocals(user, rangeStart, range
 
     var tasks = [
 
+        // section 1
+
+
+
+        // section 2
+
         // eventsToday
         function (done) {
             mongoose.model('ActivityEvent').find({
@@ -48,6 +54,8 @@ var getSummaryMailLocals = function getSummaryMailLocals(user, rangeStart, range
                 end: { $lt: moment() }
             }).populate('activity').exec(storeLocals('eventsWithOpenFeedback', done));
         },
+
+        // section 3
 
         // newCampaignMessages
         function (done) {

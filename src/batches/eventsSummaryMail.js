@@ -13,7 +13,9 @@ var mongoose = require('ypbackendlib').mongoose,
 var getSummaryMailLocals = function getSummaryMailLocals(user, rangeStart, rangeEnd, callback) {
 
     var locals = {
-        user: user.toJSON()
+        user: user.toJSON(),
+        rangeStart: rangeStart,
+        rangeEnd: rangeEnd
     };
 
     var storeLocals = function (localKey, done) {
@@ -35,6 +37,22 @@ var getSummaryMailLocals = function getSummaryMailLocals(user, rangeStart, range
         // section 1
 
 
+        // personalActivities
+        function (done) {
+            mongoose.model('Activity').count({
+                $or: [
+                    { owner: user._id },
+                    { joiningUsers: user._id }
+                ]
+            }).exec(storeLocals('personalActivities', done));
+        },
+
+        // campaignParticipants
+        function (done) {
+            mongoose.model('User').count({
+                campaign: user.campaign
+            }).exec(storeLocals('campaignParticipants', done));
+        },
 
         // section 2
 

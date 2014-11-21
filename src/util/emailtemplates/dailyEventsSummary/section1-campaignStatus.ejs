@@ -1,0 +1,44 @@
+
+<%  midTermWeek = Math.floor(moment(user.campaign.end).diff(user.campaign.start, 'weeks') / 2) %>
+
+<!-- campaign start, monday, 2nd week -->
+<%if (moment(user.campaign.start).day(1).add(1, 'weeks').diff(rangeEnd, 'days') == 0) { %>
+
+
+    <h3>
+        Section 1.1 campaign start, monday, 2nd week
+    </h3>
+
+    <h4>
+        campaignParticipants: <%- campaignParticipants %>
+    </h4>
+
+    <h4>
+        personalActivities: <%- personalActivities %>
+    </h4>
+
+<!-- campaign mid term, monday, midTermWeek week -->
+<% } else if (moment(user.campaign.start).day(1).add(midTermWeek, 'weeks').diff(rangeEnd, 'days') == 0) { %>
+
+    <h3>
+        Section 1.2 campaign midterm, monday, <%= midTermWeek %>th week
+    </h3>
+
+<!-- campaign last week, monday, last week -->
+<% } else if (moment(user.campaign.end).day(1).diff(rangeEnd, 'days') == 0) { %>
+
+    <h3>
+        Section 1.3 campaign last week
+    </h3>
+
+<!-- campaign last day, last day of campaign -->
+<% } else if (moment(user.campaign.end).diff(rangeEnd, 'days') == 0) { %>
+
+    <h3>
+        Section 1.4 campaign last day
+    </h3>
+
+
+<% } %>
+
+<br/>

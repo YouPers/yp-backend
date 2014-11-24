@@ -5,6 +5,10 @@
         "header": "HealthCampaign"
     },
 
+    "dailySummary": {
+
+    },
+
     "CampaignParticipantInvite": {
         "campaignLeadsHeader": "Deine Kampagnenleiter:",
         "linkText": "ZUR KAMPAGNE"

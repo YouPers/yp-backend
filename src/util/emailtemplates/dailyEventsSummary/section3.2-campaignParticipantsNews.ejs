@@ -1,12 +1,7 @@
 
-<h3>
-    Section 3.2 – „News from Campaign Participants“
-</h3>
+<h3><%= t('email:dailySummary.section3.2.1.header', locals) %></h3>
+<p><%= t('email:dailySummary.section3.2.1.content', { newPersonalInvitations: newPersonalInvitations.length }) %></p>
 
-
-<h4>
-    newPersonalInvitations: <%- newPersonalInvitations.length %>
-</h4>
 
 <% for(var i=0; i<newPersonalInvitations.length; i++) {%>
 
@@ -26,14 +21,12 @@ von
 <br/>
 
 
+<h3><%= t('email:dailySummary.section3.2.2.header', locals) %></h3>
+<p><%- t('email:dailySummary.section3.2.2.content', {
+        newCommentsOnParticipatedActivities: newCommentsOnParticipatedActivities,
+        link: urlComposer.homeUrl()
+    }) %></p>
 
-<h4>
-    newCommentsOnParticipatedActivities: <%- newCommentsOnParticipatedActivities %>
-</h4>
-
-<a href="<%= urlComposer.homeUrl() %>">
-   Show main screen
-</a>
 
 <br/>
 

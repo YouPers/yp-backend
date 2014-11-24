@@ -1,12 +1,7 @@
 
-<h3>
-    Section 3.1 – „News from Campaign Leader“
-</h3>
+<h3><%= t('email:dailySummary.section3.1.1.header', locals) %></h3>
+<p><%= t('email:dailySummary.section3.1.1.content', { newCampaignMessages: newCampaignMessages.length }) %></p>
 
-
-<h4>
-    newCampaignMessages: <%- newCampaignMessages.length %>
-</h4>
 
 <% for(var i=0; i<newCampaignMessages.length; i++) {%>
 
@@ -25,10 +20,9 @@
 <br/>
 
 
+<h3><%= t('email:dailySummary.section3.1.2.header', locals) %></h3>
+<p><%= t('email:dailySummary.section3.1.2.content', { newCampaignActivityInvitations: newCampaignActivityInvitations.length }) %></p>
 
-<h4>
-    newCampaignActivityInvitations: <%- newCampaignActivityInvitations.length %>
-</h4>
 
 <% for(var i=0; i<newCampaignActivityInvitations.length; i++) {%>
 

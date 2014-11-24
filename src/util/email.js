@@ -16,6 +16,7 @@ var defaultLocals = function (i18n) {
 
         moment: localMoment,
         urlComposer: urlComposer,
+        t: i18n.t,
 
         header: i18n.t('email:default.header'),
         notDisplayedCorrectly: i18n.t('email:default.notDisplayedCorrectly'),
@@ -157,10 +158,13 @@ var sendOrganizationAdminInvite = function sendOrganizationAdminInvite(email, in
 var getDailyEventSummaryLocals = function getDailyEventSummaryLocals(locals, i18n) {
     var mailLocals = _.defaults({
 
-        salutation: i18n.t('email:DailyEventsSummary.salutation', locals)
+        salutation: i18n.t('email:dailySummary.salutation', locals)
+
 
     }, defaultLocals(i18n));
     _.extend(mailLocals, locals);
+
+    mailLocals.locals = mailLocals;
     return mailLocals;
 };
 

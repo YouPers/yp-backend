@@ -6,8 +6,61 @@
         "header": "HealthCampaign"
     },
 
-    "DailyEventsSummary": {
-        "salutation": "Hello __user.firstname__"
+
+    "dailySummary": {
+
+        "salutation": "Hello __user.firstname__",
+
+        "section1": {
+            "1": {
+                "header": "Section 1.1 campaign start, monday, 2nd week",
+                "content": "campaignParticipants: __campaignParticipants__ personalActivities: __personalActivities__"
+            },
+            "2": {
+                "header": "Section 1.2 campaign midterm, monday",
+                "content": "campaignParticipants: __campaignParticipants__ personalActivities: __personalActivities__"
+            },
+            "3": {
+                "header": "Section 1.3 campaign last week",
+                "content": "campaignParticipants: __campaignParticipants__ personalActivities: __personalActivities__"
+            },
+            "4": {
+                "header": "Section 1.4 campaign last day",
+                "content": "campaignParticipants: __campaignParticipants__ personalActivities: __personalActivities__"
+            }
+        },
+        "section2": {
+            "1": {
+                "header": "HealthCampaign Today",
+                "content": "eventsToday: __eventsToday__"
+            },
+            "2": {
+                "header": "Open feedback",
+                "content": "eventsWithOpenFeedback: __eventsWithOpenFeedback__"
+            }
+        },
+        "section3": {
+            "1": {
+                "1": {
+                    "header": "News from Campaign Leader",
+                    "content": "newCampaignMessages: __newCampaignMessages__"
+                },
+                "2": {
+                    "header": "New campaign activities",
+                    "content": "There are __newCampaignActivityInvitations__ new invitations for campaign activities"
+                }
+            },
+            "2": {
+                "1": {
+                    "header": "News from Campaign Participants",
+                    "content": "You have __newPersonalInvitations__ new personal invitations."
+                },
+                "2": {
+                    "header": "New campaign activities",
+                    "content": "There are <a href='__link__'>__newCommentsOnParticipatedActivities__ new comments</a> for your activities"
+                }
+            }
+        }
     },
 
     "CampaignParticipantInvite": {

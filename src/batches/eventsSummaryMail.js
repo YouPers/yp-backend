@@ -21,14 +21,14 @@ var getSummaryMailLocals = function getSummaryMailLocals(user, rangeStart, range
     var storeLocals = function (localKey, done) {
         return function (err, result) {
             if(err) { return err; }
-            locals[localKey] = result;
+            locals[localKey] = result.toJSON ? result.toJSON : result;
             done(err, result);
         };
     };
 
-    var now = moment();
-    var startOfDay = moment().startOf('day');
-    var endOfDay = moment().endOf('day');
+    var now = moment(rangeEnd).toDate();
+    var startOfDay = moment(rangeEnd).startOf('day').toDate();
+    var endOfDay = moment(rangeEnd).endOf('day').toDate();
 
     var dismissedSocialInteractions = [];
 
@@ -212,7 +212,7 @@ var sendSummaryMail = function sendSummaryMail(user, rangeStart, rangeEnd, done,
 
     mongoose.model('User')
         .findById(user)
-        .select('+email +profile +campaign')
+        .select('+email +profile +campaign +username')
         .populate('profile campaign')
         .exec(function (err, user) {
             if (err) {
@@ -235,8 +235,12 @@ var sendSummaryMail = function sendSummaryMail(user, rangeStart, rangeEnd, done,
 
                 email.sendDailyEventSummary.apply(this, [user.email, locals, user, i18n]);
 
-                user.lastSummaryMail = rangeEnd.toDate();
-                user.save(function (err) {
+                mongoose.model('User').update({ _id: user._id },
+                    {
+                        $set: {
+                            lastSummaryMail: rangeEnd.toDate()
+                        }
+                    }, function (err) {
                     if(err) {
                         return done(err);
                     }

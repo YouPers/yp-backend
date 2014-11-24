@@ -1,12 +1,7 @@
-<h3>
-    Section 2 „HealthCampaign Today“
-</h3>
 
-<br/>
 
-<h4>
-    eventsToday: <%- eventsToday.length %>
-</h4>
+<h3><%= t('email:dailySummary.section2.1.header', locals) %></h3>
+<p><%= t('email:dailySummary.section2.1.content', { eventsToday: eventsToday.length }) %></p>
 
 <% for(var i=0; i<eventsToday.length; i++) {%>
 
@@ -18,8 +13,6 @@
     <%= moment(eventsToday[i].start).format('hh:mm') %>
     <%- eventsToday[i].activity.location %>
 
-
-
 </a>
 
 <br/>
@@ -27,9 +20,9 @@
 <% } %>
 <br/>
 
-<h4>
-    eventsWithOpenFeedback: <%- eventsWithOpenFeedback.length %>
-</h4>
+
+<h3><%= t('email:dailySummary.section2.2.header', locals) %></h3>
+<p><%= t('email:dailySummary.section2.2.content', { eventsWithOpenFeedback: eventsWithOpenFeedback.length }) %></p>
 
 <% for(var i=0; i<eventsWithOpenFeedback.length; i++) {%>
 

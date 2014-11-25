@@ -47,7 +47,7 @@
                         <table border="0" cellpadding="18" cellspacing="0" class="mcnTextContentContainer" width="100%" style="border:1px double #DEDEDE;border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
                             <tbody><tr>
                                 <td valign="top" class="mcnTextContent" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;color: #606060;font-family: Helvetica;font-size: 15px;line-height: 150%;text-align: left;">
-                                    <img align="none" height="59" src="<%= campaignOffers[i].author.avatar.indexOf('default') > 0 ? urlComposer.homeUrl() + campaignOffers[i].author.avatar : campaignOffers[i].author.avatar %>" style="width: 60px;height: 59px;margin: 0px;border: 0;outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;" width="60">
+                                    <img align="none" height="59" src="<%= campaignOffers[i].author.avatar.indexOf('/') == 0 ? urlComposer.homeUrl() + campaignOffers[i].author.avatar : campaignOffers[i].author.avatar %>" style="width: 60px;height: 59px;margin: 0px;border: 0;outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;" width="60">
 
                                     <%= campaignOffers[i].author.fullname %>
                                     <br>

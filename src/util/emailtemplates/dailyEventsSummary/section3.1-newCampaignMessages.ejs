@@ -52,7 +52,7 @@
 
 
 
-                                    <img alt="" src="<%- newCampaignMessages[i].author.avatar %>" width="60" style="max-width: 60px;border: 0;outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;vertical-align: bottom;" class="mcnImage">
+                                    <img alt="" src="<%- newCampaignMessages[i].author.avatar.indexOf('/') == 0 ? urlComposer.homeUrl() + newCampaignMessages[i].author.avatar : newCampaignMessages[i].author.avatar %>" width="60" style="max-width: 60px;border: 0;outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;vertical-align: bottom;" class="mcnImage">
 
 
 

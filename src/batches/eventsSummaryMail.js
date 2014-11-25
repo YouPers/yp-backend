@@ -15,13 +15,20 @@ var getSummaryMailLocals = function getSummaryMailLocals(user, rangeStart, range
     var locals = {
         user: user.toJSON(),
         rangeStart: rangeStart,
-        rangeEnd: rangeEnd
+        rangeEnd: rangeEnd,
+        campaignOffers: []
     };
 
     var storeLocals = function (localKey, done) {
         return function (err, result) {
             if(err) { return err; }
-            locals[localKey] = result.toJSON ? result.toJSON : result;
+            locals[localKey] = result.toJSON ? result.toJSON() : result;
+            if(_.isArray(result)) {
+                locals[localKey + 'Count'] = result.length;
+                for(var i=0;i<result.length; i++) {
+                    result[i] = result[i].toJSON ? result[i].toJSON() : result[i];
+                }
+            }
             done(err, result);
         };
     };
@@ -122,7 +129,7 @@ var getSummaryMailLocals = function getSummaryMailLocals(user, rangeStart, range
                     {owner: user},
                     {joiningUsers: user}
                 ]
-            }, {_id: 1}).exec(function (err, activities) {
+            }, { _id: 1 }).exec(function (err, activities) {
                 var activityIds = _.map(activities, '_id');
 
                 mongoose.model('Message').count({
@@ -142,22 +149,22 @@ var getSummaryMailLocals = function getSummaryMailLocals(user, rangeStart, range
 
         // newPublicInvitations
         function (done) {
-            mongoose.model('Invitation').count({
+            mongoose.model('Invitation').find({
                 _id: {$nin: dismissedSocialInteractions},
                 authorType: 'user',
                 targetSpaces: {$elemMatch: {targetId: user.campaign}},
                 created: {$gt: rangeStart}
-            }).exec(storeLocals('newPublicInvitations', done));
+            }).populate('author activity').exec(storeLocals('newPublicInvitations', done));
         },
 
         // newCoachRecommendations
         function (done) {
-            mongoose.model('Recommendation').count({
+            mongoose.model('Recommendation').find({
                 _id: {$nin: dismissedSocialInteractions},
                 authorType: 'coach',
                 targetSpaces: { $elemMatch: { targetId: user.id }},
                 created: {$gt: rangeStart}
-            }).exec(storeLocals('newCoachRecommendations', done));
+            }).populate('author idea').exec(storeLocals('newCoachRecommendations', done));
         }
     ];
 
@@ -168,6 +175,15 @@ var getSummaryMailLocals = function getSummaryMailLocals(user, rangeStart, range
             if(err) {
                 return callback(err);
             }
+
+            locals.campaignOffers = [].concat(
+                locals.newCampaignActivityInvitations,
+                locals.newCampaignRecommendations,
+                locals.newPersonalInvitations,
+                locals.newPublicInvitations,
+                locals.newCoachRecommendations
+            );
+
             callback(err, locals);
         });
     });

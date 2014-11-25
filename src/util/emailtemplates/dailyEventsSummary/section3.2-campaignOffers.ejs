@@ -1,0 +1,99 @@
+
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnTextBlock" style="border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+    <tbody class="mcnTextBlockOuter">
+    <tr>
+        <td valign="top" class="mcnTextBlockInner" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+
+            <table align="left" border="0" cellpadding="0" cellspacing="0" width="600" class="mcnTextContentContainer" style="border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+                <tbody><tr>
+
+                    <td valign="top" class="mcnTextContent" style="padding: 9px 18px;line-height: 150%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;color: #606060;font-family: Helvetica;font-size: 15px;text-align: left;">
+
+                        <p style="text-align: left;margin: 1em 0;padding: 0;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;color: #606060;font-family: Helvetica;font-size: 15px;line-height: 150%;"><span style="font-size:16px">
+
+                                                                        <%= t('email:dailySummary.section3.newCampaignOffers') %>
+
+
+                                                                    </span></p>
+
+                    </td>
+                </tr>
+                </tbody></table>
+
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+
+
+<% for(var i=0; i<campaignOffers.length; i++) {%>
+
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnBoxedTextBlock" style="border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+    <tbody class="mcnBoxedTextBlockOuter">
+    <tr>
+        <td valign="top" class="mcnBoxedTextBlockInner" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+
+            <table align="left" border="0" cellpadding="0" cellspacing="0" width="282" class="mcnBoxedTextContentContainer" style="border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+                <tbody><tr>
+
+                    <td class="mcnBoxedTextContentColumn" style="padding-top: 9px;padding-left: 18px;padding-bottom: 9px;padding-right: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+
+                        <table border="0" cellpadding="18" cellspacing="0" class="mcnTextContentContainer" width="100%" style="border:1px double #DEDEDE;border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+                            <tbody><tr>
+                                <td valign="top" class="mcnTextContent" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;color: #606060;font-family: Helvetica;font-size: 15px;line-height: 150%;text-align: left;">
+                                    <img align="none" height="59" src="https://gallery.mailchimp.com/0f1a7dd663e5b1ac99711f7c0/images/4ece09dc-666a-4e08-8cfa-f7c3fe08170f.jpg" style="width: 60px;height: 59px;margin: 0px;border: 0;outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;" width="60">
+
+                                    <%= campaignOffers[i].author.fullname %>
+                                    <br>
+                                    <br>
+
+                                    <%= t('email:dailySummary.campaignOfferPrefix.' + campaignOffers[i].__t) %>
+                                    <br>
+                                    <br>
+
+                                    <a href="<%= urlComposer.activityUrl(user.campaign.id, campaignOffers[i].activity ? campaignOffers[i].activity.idea : campaignOffers[i].idea, campaignOffers[i].activity ? campaignOffers[i].activity.id : '', campaignOffers[i].id) %>" target="_blank" style="word-wrap: break-word;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;color: #03a9f4;font-weight: normal;text-decoration: none;">
+                                        <img align="none"height="200" src="<%- urlComposer.homeUrl() + '/assets/actpics/' + (campaignOffers[i].activity ? campaignOffers[i].activity : campaignOffers[i].idea).number + '.jpg'%>"
+                                             style="width: 225px;height: 150px;margin: 0px;border: 0;outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;" width="300">
+                                    </a>
+
+                                    <br>
+
+                                    <a href="<%= urlComposer.activityUrl(user.campaign.id, campaignOffers[i].activity ? campaignOffers[i].activity.idea : campaignOffers[i].idea, campaignOffers[i].activity ? campaignOffers[i].activity.id : '', campaignOffers[i].id) %>" target="_blank" style="word-wrap: break-word;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;color: #03a9f4;font-weight: normal;text-decoration: none;">
+                                        <%= campaignOffers[i].activity ? campaignOffers[i].activity.title : campaignOffers[i].idea.title %>
+                                    </a>
+                                    <br>
+
+                                    <% if(campaignOffers[i].__t == 'Recommendation') { %>
+
+                                        <%= t('email:dailySummary.frequency.' + campaignOffers[i].idea.defaultfrequency) %>,
+                                        <%= t('email:dailySummary.executionType.' + campaignOffers[i].idea.defaultexecutiontype) %>
+
+                                    <% } else { %>
+
+
+                                    <%= moment(campaignOffers[i].activity.start).format('dddd, MMMM Do YYYY, hh:mm:ss') %>
+
+                                    <%- campaignOffers[i].activity.location ? ',' : '' %>
+                                    <%- campaignOffers[i].activity.location %>
+
+                                    <% } %>
+                                </td>
+                            </tr>
+                            </tbody></table>
+                    </td>
+                </tr>
+                </tbody></table>
+
+
+
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+
+<% } %>
+

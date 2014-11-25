@@ -12,6 +12,7 @@
         "salutation": "Hello __user.firstname__",
 
         "section1": {
+            "default": "Hello __user.firstname__",
             "1": {
                 "header": "Section 1.1 campaign start, monday, 2nd week",
                 "content": "campaignParticipants: __campaignParticipants__ personalActivities: __personalActivities__"

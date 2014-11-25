@@ -164,7 +164,6 @@ var getDailyEventSummaryLocals = function getDailyEventSummaryLocals(locals, i18
     }, defaultLocals(i18n));
     _.extend(mailLocals, locals);
 
-    mailLocals.locals = mailLocals;
     return mailLocals;
 };
 
@@ -177,7 +176,7 @@ var getDailyEventSummaryLocals = function getDailyEventSummaryLocals(locals, i18
  * @param i18n - an i18n object to be used to translate the email content
  */
 var sendDailyEventSummary = function sendDailyEventSummary(toAddress, locals, user, i18n) {
-    var subject = i18n.t("email:DailyEventsSummary.subject", locals);
+    var subject = i18n.t("email:dailySummary.subject", locals);
 
     var mailLocals = getDailyEventSummaryLocals(locals, i18n);
     _.extend(mailLocals, locals);

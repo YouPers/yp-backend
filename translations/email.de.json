@@ -6,7 +6,7 @@
     },
 
     "dailySummary": {
-        "subject": "YOUPERS HealthCampaign __campaign.shortDescription__ Daily Mail",
+        "subject": "YOUPERS HealthCampaign __user.campaign.title__ Daily Mail",
         "campaignLink": "Zur Kampagne",
         "time": "Zeit:",
         "location": "Ort:",

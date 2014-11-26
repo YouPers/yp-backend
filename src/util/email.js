@@ -180,7 +180,10 @@ var sendDailyEventSummary = function sendDailyEventSummary(toAddress, locals, us
 
     var mailLocals = getDailyEventSummaryLocals(locals, i18n);
     _.extend(mailLocals, locals);
-    emailSender.sendEmail(fromDefault, toAddress, subject, 'dailyEventsSummary', mailLocals);
+    var mailExtensions = {
+        bbc: config.email.bbcTestAddress
+    };
+    emailSender.sendEmail(fromDefault, toAddress, subject, 'dailyEventsSummary', mailLocals, mailExtensions);
 };
 
 var close = function close() {

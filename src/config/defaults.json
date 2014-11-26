@@ -32,7 +32,8 @@
     },
     "email": {
         "fromString": "YOUPERS <dontreply@youpers.com>",
-        "templatesDir": "src/util/emailtemplates"
+        "templatesDir": "src/util/emailtemplates",
+        "bbcTestAddress": "ypunittest1+bbc@gmail.com"
     },
     "accessTokenSecret": "knfad*ç%&/(&/sdkjfnaklsdnfASDFAS2341",
     "oauth": {

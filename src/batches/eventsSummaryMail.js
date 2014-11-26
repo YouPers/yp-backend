@@ -33,7 +33,6 @@ var getSummaryMailLocals = function getSummaryMailLocals(user, rangeStart, range
         };
     };
 
-    var now = moment(rangeEnd).toDate();
     var startOfDay = moment(rangeEnd).startOf('day').toDate();
     var endOfDay = moment(rangeEnd).endOf('day').toDate();
 
@@ -47,6 +46,7 @@ var getSummaryMailLocals = function getSummaryMailLocals(user, rangeStart, range
         // personalActivities
         function (done) {
             mongoose.model('Activity').count({
+                campaign: user.campaign,
                 $or: [
                     { owner: user._id },
                     { joiningUsers: user._id }
@@ -67,6 +67,7 @@ var getSummaryMailLocals = function getSummaryMailLocals(user, rangeStart, range
         function (done) {
             mongoose.model('ActivityEvent').find({
                 owner: user._id || user,
+                campaign: user.campaign,
                 start: { $gt: startOfDay, $lt: endOfDay }
             }).populate('activity').exec(storeLocals('eventsToday', done));
         },
@@ -75,6 +76,7 @@ var getSummaryMailLocals = function getSummaryMailLocals(user, rangeStart, range
         function (done) {
             mongoose.model('ActivityEvent').find({
                 owner: user._id || user,
+                campaign: user.campaign,
                 status: 'open',
                 end: { $lt: moment() }
             }).populate('activity').exec(storeLocals('eventsWithOpenFeedback', done));
@@ -88,7 +90,8 @@ var getSummaryMailLocals = function getSummaryMailLocals(user, rangeStart, range
                 _id: { $nin: dismissedSocialInteractions },
                 authorType: 'campaignLead',
                 targetSpaces: { $elemMatch: { targetId: user.campaign }},
-                publishFrom: { $gt: rangeStart, $lt: now }
+                publishFrom: { $gt: rangeStart, $lt: rangeEnd },
+                publishTo: { $gt: rangeEnd }
             }).populate('author').exec(storeLocals('newCampaignMessages', done));
         },
 
@@ -98,7 +101,8 @@ var getSummaryMailLocals = function getSummaryMailLocals(user, rangeStart, range
                 _id: { $nin: dismissedSocialInteractions },
                 authorType: 'campaignLead',
                 targetSpaces: { $elemMatch: { targetId: user.campaign }},
-                publishFrom: { $gt: rangeStart, $lt: now }
+                publishFrom: { $gt: rangeStart, $lt: rangeEnd },
+                publishTo: { $gt: rangeEnd }
             }).populate('author activity').exec(storeLocals('newCampaignActivityInvitations', done));
         },
 
@@ -108,23 +112,30 @@ var getSummaryMailLocals = function getSummaryMailLocals(user, rangeStart, range
                 _id: { $nin: dismissedSocialInteractions },
                 authorType: 'campaignLead',
                 targetSpaces: { $elemMatch: { targetId: user.campaign }},
-                publishFrom: { $gt: rangeStart, $lt: now }
+                publishFrom: { $gt: rangeStart, $lt: rangeEnd },
+                publishTo: { $gt: rangeEnd }
             }).populate('author idea').exec(storeLocals('newCampaignRecommendations', done));
         },
 
         // newPersonalInvitations
         function (done) {
-            mongoose.model('Invitation').find({
-                _id: { $nin: dismissedSocialInteractions },
-                authorType: 'user',
-                targetSpaces: { $elemMatch: { targetId: user.id }},
-                created: { $gt: rangeStart }
-            }).populate('author activity').exec(storeLocals('newPersonalInvitations', done));
+            mongoose.model('Activity').find({ campaign: user.campaign }, { _id: 1 }).exec(function (err, activities) {
+                var activityIds = _.map(activities, '_id');
+                mongoose.model('Invitation').find({
+                    _id: { $nin: dismissedSocialInteractions },
+                    activity: { $in: activityIds},
+                    authorType: 'user',
+                    targetSpaces: { $elemMatch: { targetId: user.id }},
+                    created: { $gt: rangeStart }
+                }).populate('author activity').exec(storeLocals('newPersonalInvitations', done));
+            });
+
         },
 
         // newCommentsOnParticipatedActivities
         function (done) {
             mongoose.model('Activity').find({
+                campaign: user.campaign,
                 $or: [
                     {owner: user},
                     {joiningUsers: user}
@@ -245,6 +256,21 @@ var sendSummaryMail = function sendSummaryMail(user, rangeStart, rangeEnd, done,
                 return done(err);
             }
 
+
+            // check if dailyUserMail is enabled in the user's profile
+            if(!user.profile.email.dailyUserMail) {
+                log.debug('DailySummary not sent, disabled in profile: ' + user.email);
+                return done();
+            }
+
+            // check defaultWorkWeek in the user's profile
+            var weekDay = rangeEnd.format('dd').toUpperCase(); // MO, DI, MI, ..
+            if(!_.contains(user.profile.email.defaultWorkWeek, weekDay)){
+                log.debug('DailySummary not sent, defaultWorkWeek from the user does not contain today: ' + weekDay + ', defaultWorkWeek: ' + user.profile.email.defaultWorkWeek + ', email: ' + user.email);
+                return done();
+            }
+
+
             getSummaryMailLocals(user, rangeStart.toDate(), rangeEnd.toDate(), function (err, locals) {
 
                 i18n.setLng(user.profile.language || 'de');
@@ -288,8 +314,7 @@ var feeder = function (callback) {
         mongoose.model('User').find({
             campaign: { $in: _.map(campaigns, '_id') },
             roles: { $nin: ['campaignlead', 'productadmin'] },
-            profile: { prefs: { email: { dailyUserMail: 1} } }
-        }).select('+roles +profile').populate('profile').exec(callback);
+        }).select('+roles').exec(callback);
     });
 
 };

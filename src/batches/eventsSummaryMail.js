@@ -258,15 +258,16 @@ var sendSummaryMail = function sendSummaryMail(user, rangeStart, rangeEnd, done,
 
 
             // check if dailyUserMail is enabled in the user's profile
-            if(!user.profile.email.dailyUserMail) {
+            if(!user.profile.prefs.email.dailyUserMail) {
                 log.debug('DailySummary not sent, disabled in profile: ' + user.email);
                 return done();
             }
 
             // check defaultWorkWeek in the user's profile
             var weekDay = rangeEnd.format('dd').toUpperCase(); // MO, DI, MI, ..
-            if(!_.contains(user.profile.email.defaultWorkWeek, weekDay)){
-                log.debug('DailySummary not sent, defaultWorkWeek from the user does not contain today: ' + weekDay + ', defaultWorkWeek: ' + user.profile.email.defaultWorkWeek + ', email: ' + user.email);
+            var defaultWorkWeek = user.profile.prefs.email.defaultWorkWeek;
+            if(!_.contains(defaultWorkWeek, weekDay)){
+                log.debug('DailySummary not sent, defaultWorkWeek from the user does not contain today: ' + weekDay + ', defaultWorkWeek: ' + defaultWorkWeek + ', email: ' + user.email);
                 return done();
             }
 

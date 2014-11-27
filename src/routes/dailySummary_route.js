@@ -15,8 +15,8 @@ module.exports = function (swagger) {
             summary: "get daily summary",
             method: "GET",
             params: [
-                swagger.pathParam("rangeStart", "start of the date range, the summary is created for, defaults to one day before now", "string"),
-                swagger.pathParam("rangeEnd", "end of the date range, the summary is created for, defaults to now", "string")
+                swagger.queryParam("rangeStart", "start of the date range, the summary is created for, defaults to one day before now", "string"),
+                swagger.queryParam("rangeEnd", "end of the date range, the summary is created for, defaults to now", "string")
             ],
             "nickname": "getDailySummary",
             accessLevel: 'al_user'
@@ -48,8 +48,8 @@ module.exports = function (swagger) {
             summary: "get daily summary",
             method: "POST",
             params: [
-                swagger.pathParam("rangeStart", "start of the date range, the summary is created for, defaults to one day before now", "string"),
-                swagger.pathParam("rangeEnd", "end of the date range, the summary is created for, defaults to now", "string")
+                swagger.queryParam("rangeStart", "start of the date range, the summary is created for, defaults to one day before now", "string"),
+                swagger.queryParam("rangeEnd", "end of the date range, the summary is created for, defaults to now", "string")
             ],
             "nickname": "sendDailySummary",
             accessLevel: 'al_user'

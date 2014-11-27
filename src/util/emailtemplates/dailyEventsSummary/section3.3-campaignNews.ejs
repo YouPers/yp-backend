@@ -1,0 +1,44 @@
+
+
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnTextBlock" style="border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+    <tbody class="mcnTextBlockOuter">
+    <tr>
+        <td valign="top" class="mcnTextBlockInner" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+
+            <table align="left" border="0" cellpadding="0" cellspacing="0" width="600" class="mcnTextContentContainer" style="border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+                <tbody><tr>
+
+                    <td valign="top" class="mcnTextContent" style="padding: 9px 18px;line-height: 150%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;color: #606060;font-family: Helvetica;font-size: 15px;text-align: left;">
+
+                        <p style="text-align: left;margin: 1em 0;padding: 0;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;color: #606060;font-family: Helvetica;font-size: 15px;line-height: 150%;"><span style="font-size:16px">
+
+
+                                <%= t('email:dailySummary.section3.campaignNews') %>
+
+
+                            </span></p>
+
+                        <ul>
+                            <% if (newCommentsOnParticipatedActivities > 0) { %>
+                                <li style="text-align: left;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+
+
+                                    <%- t('email:dailySummary.section3.newCommentsOnParticipatedActivities', locals) %>
+
+
+                                    <a href="<%= urlComposer.homeUrl() %>" style="line-height: 20.7999992370605px;word-wrap: break-word;-ms-text-size-adjust: 100%;-webkit-text-size-adjust:100%;color: #03a9f4;font-weight: normal;text-decoration: none;" target="_blank">
+                                        <%- t('email:dailySummary.campaignLink') %>
+                                    </a>
+                                </li>
+                            <% } %>
+                        </ul>
+
+                    </td>
+                </tr>
+                </tbody></table>
+
+        </td>
+    </tr>
+    </tbody>
+</table>

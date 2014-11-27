@@ -5,6 +5,65 @@
         "header": "HealthCampaign"
     },
 
+    "dailySummary": {
+        "subject": "YOUPERS HealthCampaign __user.campaign.title__ Daily Mail",
+        "campaignLink": "Zur Kampagne",
+        "time": "Zeit:",
+        "location": "Ort:",
+        "campaignOfferPrefix": {
+            "Recommendation": "empfiehlt dir",
+            "Invitation": "lädt dich ein"
+        },
+        "frequency": {
+            "once": "einmalig",
+            "day": "täglich",
+            "week": "wöchentlich",
+            "month": "monatlich"
+        },
+        "executionType": {
+            "self": "selber",
+            "group": "in der Gruppe"
+        },
+
+
+        "section1": {
+            "default": "Hallo __user.firstname__<br/><br/>Dies ist die tägliche Zusammenfassung mit allem Wissenswerten zu deiner Teilnahme in der betrieblichen Gesundheitskampagne zum Thema Stress.",
+
+            "1": {
+                "header": "Section 1.1 campaign start, monday, 2nd week",
+                "content": "campaignParticipants: __campaignParticipants__ personalActivities: __personalActivities__"
+            },
+            "2": {
+                "header": "Section 1.2 campaign midterm, monday",
+                "content": "campaignParticipants: __campaignParticipants__ personalActivities: __personalActivities__"
+            },
+            "3": {
+                "header": "Section 1.3 campaign last week",
+                "content": "campaignParticipants: __campaignParticipants__ personalActivities: __personalActivities__"
+            },
+            "4": {
+                "header": "Section 1.4 campaign last day",
+                "content": "campaignParticipants: __campaignParticipants__ personalActivities: __personalActivities__"
+            }
+        },
+        "section2": {
+            "header": "Heute",
+
+            "eventsToday": "Deine Aktivitäten für heute",
+            "noEventsToday": "Du hast für heute keine Aktivitäten eingeplant. Schaue dir die neuen Empfehlungen und Einladungen an.",
+
+            "eventsWithOpenFeedback": "Vergangene Aktivitäten ohne Rückmeldung deinerseits"
+        },
+        "section3": {
+            "header": "News zu deiner Kampagnenteilnahme",
+            "newCampaignMessages": "Mitteilungen deines Kampagnenleiters",
+            "newCampaignOffers": "Neue Empfehlungen und persönliche Einladungen für dich",
+            "campaignNews": "Weitere News",
+            "newCommentsOnParticipatedActivities": "Es gibt __newCommentsOnParticipatedActivities__ neue Kommentare zu Aktivitäten, an denen du teilnimmst."
+        }
+
+    },
+
     "CampaignParticipantInvite": {
         "campaignLeadsHeader": "Deine Kampagnenleiter:",
         "linkText": "ZUR KAMPAGNE"

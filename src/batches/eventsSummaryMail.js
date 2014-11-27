@@ -1,7 +1,218 @@
 var mongoose = require('ypbackendlib').mongoose,
     moment = require('moment'),
+    _ = require('lodash'),
+    async = require('async'),
     email = require('../util/email'),
     batch = require('ypbackendlib').batch;
+
+
+
+/*
+ *  gather locals for daily summary mail
+ */
+var getSummaryMailLocals = function getSummaryMailLocals(user, rangeStart, rangeEnd, callback) {
+
+    var locals = {
+        user: user.toJSON(),
+        rangeStart: rangeStart,
+        rangeEnd: rangeEnd,
+        campaignOffers: []
+    };
+
+    var storeLocals = function (localKey, done) {
+        return function (err, result) {
+            if(err) { return err; }
+            locals[localKey] = result.toJSON ? result.toJSON() : result;
+            if(_.isArray(result)) {
+                locals[localKey + 'Count'] = result.length;
+                for(var i=0;i<result.length; i++) {
+                    result[i] = result[i].toJSON ? result[i].toJSON() : result[i];
+                }
+            }
+            done(err, result);
+        };
+    };
+
+    var startOfDay = moment(rangeEnd).startOf('day').toDate();
+    var endOfDay = moment(rangeEnd).endOf('day').toDate();
+
+    var dismissedSocialInteractions = [];
+
+    var tasks = [
+
+        // section 1
+
+
+        // personalActivities
+        function (done) {
+            mongoose.model('Activity').count({
+                campaign: user.campaign,
+                $or: [
+                    { owner: user._id },
+                    { joiningUsers: user._id }
+                ]
+            }).exec(storeLocals('personalActivities', done));
+        },
+
+        // campaignParticipants
+        function (done) {
+            mongoose.model('User').count({
+                campaign: user.campaign
+            }).exec(storeLocals('campaignParticipants', done));
+        },
+
+        // section 2
+
+        // eventsToday
+        function (done) {
+            mongoose.model('ActivityEvent').find({
+                owner: user._id || user,
+                campaign: user.campaign,
+                start: { $gt: startOfDay, $lt: endOfDay }
+            }).populate('activity').exec(storeLocals('eventsToday', done));
+        },
+
+        // eventsWithOpenFeedback
+        function (done) {
+            mongoose.model('ActivityEvent').find({
+                owner: user._id || user,
+                campaign: user.campaign,
+                status: 'open',
+                end: { $lt: moment() }
+            }).populate('activity').exec(storeLocals('eventsWithOpenFeedback', done));
+        },
+
+        // section 3
+
+        // newCampaignMessages
+        function (done) {
+            mongoose.model('Message').find({
+                _id: { $nin: dismissedSocialInteractions },
+                authorType: 'campaignLead',
+                targetSpaces: { $elemMatch: { targetId: user.campaign }},
+                publishFrom: { $gt: rangeStart, $lt: rangeEnd },
+                publishTo: { $gt: rangeEnd }
+            }).populate('author').exec(storeLocals('newCampaignMessages', done));
+        },
+
+        // newCampaignActivityInvitations
+        function (done) {
+            mongoose.model('Invitation').find({
+                _id: { $nin: dismissedSocialInteractions },
+                authorType: 'campaignLead',
+                targetSpaces: { $elemMatch: { targetId: user.campaign }},
+                publishFrom: { $gt: rangeStart, $lt: rangeEnd },
+                publishTo: { $gt: rangeEnd }
+            }).populate('author activity').exec(storeLocals('newCampaignActivityInvitations', done));
+        },
+
+        // newCampaignRecommendations
+        function (done) {
+            mongoose.model('Recommendation').find({
+                _id: { $nin: dismissedSocialInteractions },
+                authorType: 'campaignLead',
+                targetSpaces: { $elemMatch: { targetId: user.campaign }},
+                publishFrom: { $gt: rangeStart, $lt: rangeEnd },
+                publishTo: { $gt: rangeEnd }
+            }).populate('author idea').exec(storeLocals('newCampaignRecommendations', done));
+        },
+
+        // newPersonalInvitations
+        function (done) {
+            mongoose.model('Activity').find({ campaign: user.campaign }, { _id: 1 }).exec(function (err, activities) {
+                var activityIds = _.map(activities, '_id');
+                mongoose.model('Invitation').find({
+                    _id: { $nin: dismissedSocialInteractions },
+                    activity: { $in: activityIds},
+                    authorType: 'user',
+                    targetSpaces: { $elemMatch: { targetId: user.id }},
+                    created: { $gt: rangeStart }
+                }).populate('author activity').exec(storeLocals('newPersonalInvitations', done));
+            });
+
+        },
+
+        // newCommentsOnParticipatedActivities
+        function (done) {
+            mongoose.model('Activity').find({
+                campaign: user.campaign,
+                $or: [
+                    {owner: user},
+                    {joiningUsers: user}
+                ]
+            }, { _id: 1 }).exec(function (err, activities) {
+                var activityIds = _.map(activities, '_id');
+
+                mongoose.model('Message').count({
+                    _id: {$nin: dismissedSocialInteractions},
+                    authorType: 'user',
+                    targetSpaces: {
+                        $elemMatch: {
+                            targetId: {
+                                $in: activityIds
+                            }
+                        }
+                    },
+                    created: {$gt: rangeStart}
+                }).exec(storeLocals('newCommentsOnParticipatedActivities', done));
+            });
+        },
+
+        // newPublicInvitations
+        function (done) {
+            mongoose.model('Invitation').find({
+                _id: {$nin: dismissedSocialInteractions},
+                authorType: 'user',
+                targetSpaces: {$elemMatch: {targetId: user.campaign}},
+                created: {$gt: rangeStart}
+            }).populate('author activity').exec(storeLocals('newPublicInvitations', done));
+        },
+
+        // newCoachRecommendations
+        function (done) {
+            mongoose.model('Recommendation').find({
+                _id: {$nin: dismissedSocialInteractions},
+                authorType: 'coach',
+                targetSpaces: { $elemMatch: { targetId: user.id }},
+                created: {$gt: rangeStart}
+            }).populate('author idea').exec(storeLocals('newCoachRecommendations', done));
+        }
+    ];
+
+    mongoose.model('SocialInteractionDismissed').find({user: user}, {socialInteraction: 1}).exec(function (err, sids) {
+        dismissedSocialInteractions = _.map(sids, 'socialInteraction');
+
+        async.parallel(tasks, function (err) {
+            if(err) {
+                return callback(err);
+            }
+
+            locals.campaignOffers = [].concat(
+                locals.newCampaignActivityInvitations,
+                locals.newCampaignRecommendations,
+                locals.newPersonalInvitations,
+                locals.newPublicInvitations,
+                locals.newCoachRecommendations
+            );
+
+            callback(err, locals);
+        });
+    });
+
+
+};
+
+var renderSummaryMail = function (user, rangeStart, rangeEnd, i18n, callback) {
+
+
+    getSummaryMailLocals(user, rangeStart, rangeEnd, function (err, locals) {
+        if(err) {
+            return callback(err);
+        }
+        var mailLocals = email.getDailyEventSummaryLocals(locals, i18n);
+        email.renderEmailTemplate('dailyEventsSummary', mailLocals, callback);
+    });
+};
 
 /**
  * worker function that sends a DailySummaryMail for one specific user.
@@ -24,79 +235,85 @@ var sendSummaryMail = function sendSummaryMail(user, rangeStart, rangeEnd, done,
     }
     user = user instanceof mongoose.Types.ObjectId ? user : new mongoose.Types.ObjectId(user);
 
+
+    rangeStart = rangeStart ? rangeStart : moment(user.lastSummaryMail) || moment(user.campaign.start);
+    rangeEnd = rangeEnd ? moment(rangeEnd) : moment();
+
+
     log.info('preparing Summary Mail for user: ' + user);
 
-    // Query explanation
-    // - Find all Events for this user in our daterange
-    mongoose.model('ActivityEvent').aggregate()
-        .append({$match: {owner: user._id || user, end: {$gt: rangeStart.toDate(), $lt: rangeEnd.toDate()
-        }}})
-        .exec(function (err, events) {
+    mongoose.model('User')
+        .findById(user)
+        .select('+email +profile +campaign +username')
+        .populate('profile campaign')
+        .exec(function (err, user) {
             if (err) {
-                log.error(err);
+                log.error({error: err}, 'error loading user');
                 return done(err);
             }
-            log.debug({events: events}, 'found events for user: ' + user);
+            if (!user) {
+                log.error({error: err}, 'User not found');
+                return done(err);
+            }
 
-            mongoose.model('User')
-                .findById(user)
-                .select('+email +profile')
-                .populate('profile')
-                .exec(function (err, user) {
-                    if (err) {
-                        log.error({error: err}, 'error loading user');
+
+            // check if dailyUserMail is enabled in the user's profile
+            if(!user.profile.prefs.email.dailyUserMail) {
+                log.debug('DailySummary not sent, disabled in profile: ' + user.email);
+                return done();
+            }
+
+            // check defaultWorkWeek in the user's profile
+            var weekDay = rangeEnd.format('dd').toUpperCase(); // MO, DI, MI, ..
+            var defaultWorkWeek = user.profile.prefs.email.defaultWorkWeek;
+            if(!_.contains(defaultWorkWeek, weekDay)){
+                log.debug('DailySummary not sent, defaultWorkWeek from the user does not contain today: ' + weekDay + ', defaultWorkWeek: ' + defaultWorkWeek + ', email: ' + user.email);
+                return done();
+            }
+
+
+            getSummaryMailLocals(user, rangeStart.toDate(), rangeEnd.toDate(), function (err, locals) {
+
+                i18n.setLng(user.profile.language || 'de');
+
+                log.info('sending DailySummary Mail to email: ' + user.email);
+
+                email.sendDailyEventSummary.apply(this, [user.email, locals, user, i18n]);
+
+                mongoose.model('User').update({ _id: user._id },
+                    {
+                        $set: {
+                            lastSummaryMail: rangeEnd.toDate()
+                        }
+                    }, function (err) {
+                    if(err) {
                         return done(err);
                     }
-                    if (!user) {
-                        log.error({error: err}, 'User not found');
-                        return done(err);
-                    }
-
-                    if (!user.profile.prefs.email.dailyUserMail) {
-                        log.info('sendSummaryMail: User(' + user.username + ':' + user.id + ').profile.prefs.email.dailyUserMail=false');
-                        return done();
-                    }
-
-                    i18n.setLng(user.profile.language || 'de', function () {
-                        log.info('sending DailySummary Mail to email: ' + user.email + ' with ' + events.length + ' events.');
-
-                        email.sendDailyEventSummary.apply(this, [user.email, events, user, i18n]);
-                        return done();
-                    });
+                    return done();
                 });
-
+            });
         });
-
 };
 
 var feeder = function (callback) {
     var log = this.log;
-    var timeFrame = this.timeFrameToFindEvents || 24 * 60 * 60 * 1000;
+    var now = moment();
 
-    var rangeEnd = moment();
-    var rangeStart = moment(rangeEnd).subtract(timeFrame, 'milliseconds');
-    this.rangeStart = rangeStart;
-    this.rangeEnd = rangeEnd;
+    log.info("Finding all users (excl. roles [campaignlead, productadmin], with dailyUserMail=true, and a currently active campaign today: " + now);
 
-    log.info("Finding all users who had scheduled events ending between: " + rangeStart.format() + " and " + rangeEnd.format());
+    mongoose.model('Campaign').find({
+        start: { $lt: now.toDate() },
+        end: { $gt: now.toDate() }
+    }, { _id: 1 }).exec(function (err, campaigns) {
+        if(err) {
+            return callback(err);
+        }
+        mongoose.model('User').find({
+            campaign: { $in: _.map(campaigns, '_id') },
+            roles: { $nin: ['campaignlead', 'productadmin'] },
+        }).select('+roles').exec(callback);
+    });
 
-    var ActivityModel = mongoose.model('Activity');
-
-    // Query documentation:
-    // find all users that have at least one event that has its end-date in the rage we are interested in
-    // group by user and return an array of objects in the form: [{_id: "qwer32r32r23r"}, {_id: "2342wefwefewf"}, ...]
-    var aggregate = ActivityModel.aggregate();
-    aggregate
-        .append({
-            $match: {
-                // TODO: match 'owner.profile.prefs.email.dailyUserMail': true,
-                events: {
-                    $elemMatch: {end: {$gt: rangeStart.toDate(), $lt: rangeEnd.toDate()}}
-                }
-            }
-        })
-        .append({$group: {_id: '$owner'}})
-        .exec(callback);
 };
 
 var worker = function (owner, done) {
@@ -110,5 +327,6 @@ var run = function run() {
 module.exports = {
     run: run,
     feeder: feeder,
-    sendSummaryMail: sendSummaryMail
+    sendSummaryMail: sendSummaryMail,
+    renderSummaryMail: renderSummaryMail
 };

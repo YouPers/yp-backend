@@ -2,8 +2,13 @@ var config = require('../config/config'),
     webclientUrl = config.webclientUrl,
     backendUrl = config.backendUrl;
 
+
+
+function homeUrl() {
+    return webclientUrl;
+}
 function activityUrl(campaignId, ideaId, activityId, soiId) {
-    return webclientUrl + "/#/campaign/" + campaignId + '/idea/'+ideaId+ '/activity/' + activityId + '/socialInteraction/' + (soiId || '') + '/';
+    return webclientUrl + "/#/campaign/" + campaignId + '/idea/'+ideaId+ '/activity/' + activityId + '/socialInteraction/' + (soiId || '');
 }
 function activityInviteUrl(invitationId) {
     return webclientUrl + "/#/invite/" + invitationId;
@@ -34,6 +39,7 @@ function profileUrl () {
 }
 
 module.exports = {
+    homeUrl: homeUrl,
     activityUrl: activityUrl,
     activityInviteUrl: activityInviteUrl,
     campaignLeadInviteUrl: campaignLeadInviteUrl,

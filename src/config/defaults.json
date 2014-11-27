@@ -58,6 +58,16 @@
     },
     "push": {
         "googlePushApiKey": "AIzaSyCoegQXKQRJC0-dR4PZfKNLKbuL_qQhRrs"
+    },
+    "surveyMonkey": {
+        "enabled": false,
+        "apiUrl": "https://api.surveymonkey.net",
+        "createCollectorEndpoint": "/v2/collectors/create_collector",
+        "AccessToken": "paTBz61kMlD0mPWrsaHR3921EuYbHlBvqU0GDZQ.5nahBvB1GbdZpbh2WnOzXY4S6vHq4UBKwHnaltyoKioNNaIKIFkNpxVRaNk1z4M6Y9A=",
+        "api_key": "k7hszceqdnuu5jcv4dc4q5xx",
+        "dcmSurveyId": "58747460",
+        "dhcSurveyId": "58747442"
     }
+
 }
 

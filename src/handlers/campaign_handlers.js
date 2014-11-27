@@ -12,7 +12,8 @@ var stats = require('../util/stats'),
     image = require('ypbackendlib').image,
     moment = require('moment'),
     generic = require('ypbackendlib').handlers,
-    config = require('../config/config');
+    config = require('../config/config'),
+    restify = require("restify");
 
 var getCampaign = function (id, cb) {
 
@@ -22,7 +23,7 @@ var getCampaign = function (id, cb) {
                 return error.handleError(err, cb);
             }
             if (!obj) {
-                return cb(new error.ResourceNotFoundError('Campaign not found', { id: id }));
+                return cb(new error.ResourceNotFoundError('Campaign not found', {id: id}));
             }
 
             cb(null, obj);
@@ -80,7 +81,7 @@ var validateCampaign = function validateCampaign(campaign, userId, type, next) {
 
             if (!orgAdmin && !campaignLead) {
                 return next(new error.NotAuthorizedError('Not authorized to create a campaign, the user is neither ' +
-                    'orgadmin of the organization nor a campaignlead of the campaign.', {
+                'orgadmin of the organization nor a campaignlead of the campaign.', {
                     campaignId: campaign.id,
                     organizationId: org.id,
                     userId: userId
@@ -100,7 +101,7 @@ var validateCampaign = function validateCampaign(campaign, userId, type, next) {
 
         if (campaign.start && campaign.end &&
             (moment(campaign.end).diff(moment(campaign.start), 'weeks') < 1 ||
-                moment(campaign.end).diff(moment(campaign.start), 'weeks') > 26)) {
+            moment(campaign.end).diff(moment(campaign.start), 'weeks') > 26)) {
             return next(new error.InvalidArgumentError('Campaign duration must be between 1 and 26 weeks.', {
                 invalid: ['start', 'end']
             }));
@@ -126,37 +127,109 @@ var postCampaign = function (baseUrl) {
                 return error.handleError(err, next);
             }
 
-            sentCampaign.campaignLeads = [req.user.id];
+            // create and set the ObjectId of the new campaign manually before saving, because we need
+            // it to create the surveyReponseCollectors
+            sentCampaign._id = new mongoose.Types.ObjectId();
 
-            if (!_.contains(req.user.roles, auth.roles.campaignlead)) {
-                req.user.roles.push(auth.roles.campaignlead);
-            }
-
-            // update user with his new role as campaign lead
-
-            req.user.save(function (err) {
+            addSurveyCollectors(sentCampaign, req, function (err) {
                 if (err) {
                     return error.handleError(err, next);
                 }
+                sentCampaign.campaignLeads = [req.user.id];
+
+                if (!_.contains(req.user.roles, auth.roles.campaignlead)) {
+                    req.user.roles.push(auth.roles.campaignlead);
+                }
+
+                // update user with his new role as campaign lead
+
+                req.user.save(function (err) {
+                    if (err) {
+                        return error.handleError(err, next);
+                    }
+                });
+
+                req.log.trace(sentCampaign, 'PostFn: Saving new Campaign object');
+
+                // try to save the new campaign object
+                sentCampaign.save(generic.writeObjCb(req, res, next));
+
             });
-
-
-            req.log.trace(sentCampaign, 'PostFn: Saving new Campaign object');
-
-            // try to save the new campaign object
-            sentCampaign.save(generic.writeObjCb(req, res, next));
 
         });
 
     };
 };
 
+
+function addSurveyCollectors(sentCampaign, req, cb) {
+
+    if (config.surveyMonkey && config.surveyMonkey.enabled) {
+
+
+        var jsonClient = restify.createJsonClient({
+            url: config.surveyMonkey.apiUrl,
+            version: '*',
+            log: req.log,
+            headers: {
+                Authorization: "Bearer " + config.surveyMonkey.AccessToken
+            }
+        });
+
+        var body = {
+            survey_id: config.surveyMonkey.dcmSurveyId,
+            collector: {
+                type: 'weblink',
+                name: sentCampaign.organization.name + ': ' + sentCampaign._id.toString()
+            }
+        };
+
+        jsonClient.post(config.surveyMonkey.createCollectorEndpoint + '?api_key=' + config.surveyMonkey.api_key,
+            body,
+            function (err, request, response, obj) {
+                if (err || obj.status !== 0) {
+                    req.log.error({
+                        path: request.path,
+                        method: request.method,
+                        headers: request._headers
+                    }, 'ERROR posting to SurveyMonkey: request');
+                    req.log.error(obj, 'ERROR posting to SurveyMonkey: response');
+                    return cb(err || new Error(obj));
+                }
+
+                sentCampaign.leaderSurveyCollectorId = obj && obj.data && obj.data.collector.collector_id;
+                sentCampaign.leaderSurveyUrl = obj && obj.data && obj.data.collector.url;
+
+                body.survey_id = config.surveyMonkey.dhcSurveyId;
+
+                jsonClient.post(config.surveyMonkey.createCollectorEndpoint + '?api_key=' + config.surveyMonkey.api_key,
+                    body,
+                    function (err, request, response, obj) {
+                        if (err || obj.status !== 0) {
+                            req.log.error(request, 'ERROR posting to SurveyMonkey: request');
+                            req.log.error(response, 'ERROR posting to SurveyMonkey: response');
+                            return cb(err || new Error(obj));
+                        }
+
+                        sentCampaign.participantSurveyCollectorId = obj && obj.data && obj.data.collector.collector_id;
+                        sentCampaign.participantSurveyUrl = obj && obj.data && obj.data.collector.url;
+
+
+                        return cb(null, sentCampaign);
+                    });
+            });
+    } else {
+        return cb(null, sentCampaign);
+    }
+
+}
+
 function putCampaign(req, res, next) {
 
     req.log.trace({parsedReq: req}, 'Put updated Campaign');
 
     if (!req.body) {
-        return next(new error.MissingParameterError({ required: 'campaign object' }));
+        return next(new error.MissingParameterError({required: 'campaign object'}));
     }
 
     var sentCampaign = req.body;
@@ -169,7 +242,7 @@ function putCampaign(req, res, next) {
             return error.handleError(err, next);
         }
         if (!reloadedCampaign) {
-            return next(new error.ResourceNotFoundError({ id: sentCampaign.id}));
+            return next(new error.ResourceNotFoundError({id: sentCampaign.id}));
         }
 
         _.extend(reloadedCampaign, sentCampaign);
@@ -227,10 +300,10 @@ function _parseMailAdresses(stringToParse) {
 
 var postParticipantsInviteFn = function postParticipantsInviteFn(req, res, next) {
     if (!req.params || !req.params.id) {
-        return next(new error.MissingParameterError({ required: 'id' }));
+        return next(new error.MissingParameterError({required: 'id'}));
     }
     if (!req.body || !req.body.email) {
-        return next(new error.MissingParameterError({ required: 'email'}));
+        return next(new error.MissingParameterError({required: 'email'}));
     }
 
     // split up the email field, in case we got more than one mail
@@ -243,7 +316,7 @@ var postParticipantsInviteFn = function postParticipantsInviteFn(req, res, next)
                 return next(err);
             }
             if (!campaign) {
-                return next(new error.ResourceNotFoundError({ campaignId: req.params.id }));
+                return next(new error.ResourceNotFoundError({campaignId: req.params.id}));
             }
 
             // check whether the posting user is a campaignLead of the campaign
@@ -264,17 +337,16 @@ var postParticipantsInviteFn = function postParticipantsInviteFn(req, res, next)
 
 var postCampaignLeadInviteFn = function postCampaignLeadInviteFn(req, res, next) {
     if (!req.params || !req.params.id) {
-        return next(new error.MissingParameterError({ required: 'id' }));
+        return next(new error.MissingParameterError({required: 'id'}));
     }
     if (!req.body || !req.body.email) {
-        return next(new error.MissingParameterError({ required: 'email'}));
+        return next(new error.MissingParameterError({required: 'email'}));
     }
 
     // split up the email field, in case we got more than one mail
     var emails = _parseMailAdresses(req.body.email);
 
-    var locals = {
-    };
+    var locals = {};
     async.series([
         // first load Campaign
         function (done) {
@@ -285,7 +357,7 @@ var postCampaignLeadInviteFn = function postCampaignLeadInviteFn(req, res, next)
                         return done(err);
                     }
                     if (!campaign) {
-                        return done(new error.ResourceNotFoundError({ campaignId: req.params.id }));
+                        return done(new error.ResourceNotFoundError({campaignId: req.params.id}));
                     }
 
                     // check whether the posting user is a campaignLead of the campaign
@@ -342,10 +414,10 @@ var postCampaignLeadInviteFn = function postCampaignLeadInviteFn(req, res, next)
 
 var assignCampaignLeadFn = function assignCampaignLeadFn(req, res, next) {
     if (!req.params || !req.params.id) {
-        return next(new error.MissingParameterError({ required: 'id' }));
+        return next(new error.MissingParameterError({required: 'id'}));
     }
     if (!req.params.token) {
-        return next(new error.MissingParameterError({ required: 'token' }));
+        return next(new error.MissingParameterError({required: 'token'}));
     }
     if (!req.user) {
         return next(new error.NotAuthorizedError());
@@ -391,7 +463,7 @@ var assignCampaignLeadFn = function assignCampaignLeadFn(req, res, next) {
                 return error.handleError(err, next);
             }
             if (!campaign) {
-                return next(new error.ResourceNotFoundError('Campaign not found', { id: req.params.id }));
+                return next(new error.ResourceNotFoundError('Campaign not found', {id: req.params.id}));
             }
 
             // we check whether we need to update the campaignLeads collection of the campaign
@@ -405,7 +477,7 @@ var assignCampaignLeadFn = function assignCampaignLeadFn(req, res, next) {
             }
 
 
-            SocialInteraction.dismissInvitations(campaign, req.user, { reason: 'campaignleadAccepted' });
+            SocialInteraction.dismissInvitations(campaign, req.user, {reason: 'campaignleadAccepted'});
             res.send(200, campaign);
 
             // check whether we need to add the campaignLead role to the user

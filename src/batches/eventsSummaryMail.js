@@ -299,10 +299,6 @@ var feeder = function (callback) {
     var log = this.log;
     var now = moment();
 
-    // use defaults from worker in sendSummaryMail
-    //this.rangeEnd = now;
-    //this.rangeStart = now;
-
     log.info("Finding all users (excl. roles [campaignlead, productadmin], with dailyUserMail=true, and a currently active campaign today: " + now);
 
     mongoose.model('Campaign').find({

@@ -1,54 +1,46 @@
-var stats = require('../util/stats'),
+var statsQueries = require('../stats/statsQueries'),
     error = require('ypbackendlib').error,
     async = require('async'),
+    moment = require('moment'),
     mongoose = require('ypbackendlib').mongoose,
     ObjectId = mongoose.Types.ObjectId,
     _ = require('lodash');
 
-var id2humanReadableString = {};
-(function loadIdResolveCache() {
-    var cachedModels = ['Idea', 'AssessmentQuestion'];
 
-    async.forEach(cachedModels, function (modelName, done) {
-        mongoose.model(modelName).find().exec(function (err, docs) {
-            _.forEach(docs, function (doc) {
-                id2humanReadableString[doc._id] = doc.getStatsString();
-            });
-            return done();
-        });
-    }, function (err) {
-        if (err) {
-            throw err;
+
+function constructQuery(queryDef, scopeType, scopeId, timeRange) {
+    var pipe = mongoose.model(queryDef.modelName).aggregate();
+
+    if ((scopeType === 'owner') || (scopeType === 'campaign')) {
+        // scope can be 'owner', 'campaign', 'all'
+        if (!scopeId) {
+            throw new Error("Illegal Arguments, when ScopeType == campaign or owner, an id has to be passed");
         }
+        var scopePipelineEntry = {$match: {}};
+        scopePipelineEntry.$match[scopeType] = new ObjectId(scopeId);
+        pipe.append(scopePipelineEntry);
+    } else if (scopeType === 'all') {
+        // do nothing, consider all rows
+    } else {
+        throw new Error('Unknown ScopeType: ' + scopeType);
+    }
 
-    });
-}());
-
-function _replaceIdsByString(obj, locale) {
-    _.forEach(obj, function (value, key) {
-        if (_.isArray(value)) {
-            _replaceIdsByString(value, locale);
-        } else if (value instanceof ObjectId || value instanceof String) {
-            var cachedRepresentation = id2humanReadableString[value];
-
-            if (!cachedRepresentation) {
-                obj[key] = value;
-            } else if (_.isObject(cachedRepresentation)) {
-                obj[key] = cachedRepresentation[locale] || cachedRepresentation['de'] || value;
-            } else {
-                obj[key] = id2humanReadableString[value] || value;
+    if (timeRange && (timeRange !== 'all')) {
+        pipe.append({
+            $match: {
+                'start': {
+                    $gt: moment().startOf(timeRange).toDate(),
+                    $lt: moment().endOf(timeRange).toDate()
+                }
             }
-        } else if (_.isObject(value)) {
-            _replaceIdsByString(value, locale);
-
-        } else {
-            // do nothing;
-        }
+        });
+    }
+    // despite the documentation, aggregate.append() does not like arrays.. so we do it piece per piece
+    _.forEach(queryDef.stages, function (stage) {
+        pipe.append(stage);
     });
-    return obj;
+    return pipe;
 }
-
-
 
 var getStats = function () {
     return function (req, res, next) {
@@ -57,12 +49,16 @@ var getStats = function () {
         if (!type) {
             return next(new error.MissingParameterError({ required: 'type' }));
         }
-        var queries = {};
+        var scopeType = req.params.scopeType || 'all';
+        var scopeId = req.params.scopeId;
+        var timeRange = req. params.timeRange;
+
+        var queryDefs = {};
         try {
             if (type === 'all') {
-                queries = stats.queries(req.params.range, req.params.scopeType, req.params.scopeId);
+                queryDefs = statsQueries;
             } else {
-                queries[type] = stats.queries(req.params.range, req.params.scopeType, req.params.scopeId)[type];
+                queryDefs[type] = statsQueries[type];
             }
         } catch (err) {
             req.log.info(err);
@@ -71,13 +67,30 @@ var getStats = function () {
 
         var locals = {};
 
-        async.forEach(_.keys(queries), function (queryName, done) {
+        async.each(_.keys(queryDefs), function (queryName, done) {
 
-            queries[queryName].exec(function (err, result) {
+            var myWaterFall = [
+                function(cb) {
+                    var q = constructQuery(queryDefs[queryName], scopeType, scopeId, timeRange);
+                    q.exec(function (err, result) {
+                        if (err) {
+                            return error.handleError(err, cb);
+                        }
+                        return cb(null, result, req.locale);
+                    });
+                }
+            ];
+
+            if (queryDefs[queryName].transformers) {
+                var transformers = _.isArray(queryDefs[queryName].transformers) ? queryDefs[queryName].transformers : [queryDefs[queryName].transformers];
+                myWaterFall = myWaterFall.concat(transformers);
+            }
+
+            async.waterfall(myWaterFall, function (err, result) {
                 if (err) {
                     return error.handleError(err, done);
                 }
-                locals[queryName] = _replaceIdsByString(result, req.locale);
+                locals[queryName] = result;
                 return done();
             });
 

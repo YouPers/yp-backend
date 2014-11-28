@@ -1,5 +1,4 @@
-var stats = require('../util/stats'),
-    handlerUtils = require('ypbackendlib').handlerUtils,
+var handlerUtils = require('ypbackendlib').handlerUtils,
     auth = require('ypbackendlib').auth,
     _ = require('lodash'),
     error = require('ypbackendlib').error,
@@ -28,34 +27,6 @@ var getCampaign = function (id, cb) {
 
             cb(null, obj);
         });
-};
-
-var getCampaignStats = function (baseUrl, Model) {
-    return function (req, res, next) {
-        // calculate Assessment stats for this Campaign
-        if (!req.params || !req.params.id) {
-            return next(new error.MissingParameterError({
-                required: 'id'
-            }));
-        }
-        var type = req.params.type;
-        if (!type) {
-            return next(new error.MissingParameterError({
-                required: 'type'
-            }));
-        }
-        var query = stats.queries(req.params.range, 'campaign', req.params.id)[type];
-
-        query.exec(function (err, result) {
-            if (err) {
-                return error.handleError(err, next);
-            }
-            res.send(result);
-            return next();
-        });
-
-
-    };
 };
 
 var validateCampaign = function validateCampaign(campaign, userId, type, next) {
@@ -528,7 +499,6 @@ var avatarImagePostFn = function (baseUrl) {
 };
 
 module.exports = {
-    getCampaignStats: getCampaignStats,
     postCampaign: postCampaign,
     putCampaign: putCampaign,
     getAllForUserFn: getAllForUserFn,

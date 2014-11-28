@@ -1,5 +1,5 @@
     var handlers = require('../handlers/stats_handlers');
-    var stats = require('../util/stats');
+    var statsQueries = require('../stats/statsQueries');
     var _ = require('lodash');
 
 
@@ -24,7 +24,7 @@ module.exports = function (swagger) {
                     name: "type",
                     description: "the type of statistics to fetch",
                     dataType: "string",
-                    enum: _.keys(stats).concat(['all']),
+                    enum: _.keys(statsQueries).concat(['all']),
                     required: true
                 },
                 {

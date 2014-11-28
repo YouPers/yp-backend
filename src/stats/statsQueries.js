@@ -1,56 +1,11 @@
 var mongoose = require('ypbackendlib').mongoose,
-    moment = require('moment'),
     ObjectId = mongoose.Types.ObjectId,
-    _ = require('lodash');
+    transformers = require('./transformers');
 
-
-var statsQueries = function (timeRange, scopeType, scopeId) {
-
-
-    function _constructPipe(modelName, stages) {
-        var pipe = mongoose.model(modelName).aggregate();
-        if (!scopeType) {
-            scopeType = 'all';
-        }
-
-        if ((scopeType === 'owner') || (scopeType === 'campaign')) {
-            // scope can be 'owner', 'campaign', 'all'
-            if (!scopeId) {
-                throw new Error("Illegal Arguments, when ScopeType == campaign or owner, an id has to be passed");
-            }
-            var scopePipelineEntry = {$match: {}};
-            scopePipelineEntry.$match[scopeType] = new ObjectId(scopeId);
-            pipe.append(scopePipelineEntry);
-        } else if (scopeType === 'all') {
-            // do nothing, consider all rows
-        } else {
-            throw new Error('Unknown ScopeType: ' + scopeType);
-        }
-
-        if (timeRange && (timeRange !== 'all')) {
-            pipe.append({
-                $match: {
-                    'start': {
-                        $gt: moment().startOf(timeRange).toDate(),
-                        $lt: moment().endOf(timeRange).toDate()
-                    }
-                }
-            });
-        }
-        // despite the documentation, aggregate.append() does not like arrays.. so we do it piece per piece
-        _.forEach(stages, function (stage) {
-            pipe.append(stage);
-        });
-        return pipe;
-    }
-
-    ////////////////////////////////////////////////
-    // the queries, ready to be executed
-
-    return {
-        assUpdatesPerDay: _constructPipe(
-            'AssessmentResult',
-            [
+module.exports = {
+        assUpdatesPerDay: {
+            modelName: 'AssessmentResult',
+            stages: [
                 {
                     $project: {
                         date: {
@@ -75,10 +30,10 @@ var statsQueries = function (timeRange, scopeType, scopeId) {
                 },
                 {$sort: {'date.year': -1, 'date.month': -1, 'date.day': -1}}
             ]
-        ),
-        assUpdatesTotal: _constructPipe(
-            'AssessmentResult',
-            [
+        },
+        assUpdatesTotal: {
+            modelName: 'AssessmentResult',
+            stages: [
                 {
                     $group: {
                         _id: 'Total',
@@ -90,10 +45,13 @@ var statsQueries = function (timeRange, scopeType, scopeId) {
                         _id: 0,
                         updatesTotal: 1
                     }
-                }]),
-        assTotals: _constructPipe(
-            'AssessmentResult',
-            [{$sort: {created: -1}},
+                }
+            ]
+        },
+        assTotals: {
+            modelName: 'AssessmentResult',
+            stages: [
+                {$sort: {created: -1}},
                 {
                     $group: {
                         _id: '$owner',
@@ -115,59 +73,63 @@ var statsQueries = function (timeRange, scopeType, scopeId) {
                         totalAssessments: 1,
                         avgStress: 1
                     }
-                }]),
-        topStressors: _constructPipe(
-            'AssessmentResult',
-            [{$sort: {created: -1}},
-                {
-                    $group: {
-                        _id: '$owner',
-                        newestAnswer: {$first: '$answers'}
-                    }
-                },
-                {$unwind: '$newestAnswer'},
-                {
-                    $project: {
-                        question: '$newestAnswer.question',
-                        posAnswer: {
-                            $cond: [
-                                {$gt: ['$newestAnswer.answer', 0]},
-                                '$newestAnswer.answer',
-                                0
-                            ]
+                }]
+        },
+        topStressors: {
+            modelName: 'AssessmentResult',
+            stages: [
+                {$sort: {created: -1}},
+                        {
+                            $group: {
+                                _id: '$owner',
+                                newestAnswer: {$first: '$answers'}
+                            }
                         },
-                        negAnswer: {
-                            $cond: [
-                                {$lt: ['$newestAnswer.answer', 0]},
-                                {$multiply: ['$newestAnswer.answer', -1]},
-                                0
-                            ]
-                        }
-                    }
-                },
-                {
-                    $group: {
-                        _id: '$question',
-                        posAvg: {$avg: '$posAnswer'},
-                        negAvg: {$avg: '$negAnswer'},
-                        count: {$sum: 1}
-                    }
-                },
-                {
-                    $project: {
-                        question: '$_id',
-                        _id: 0,
-                        posAvg: 1,
-                        negAvg: 1,
-                        sumAvg: {$add: ['$posAvg', '$negAvg']},
-                        count: 1
-                    }
-                },
-                {$sort: {sumAvg: -1}},
-                {$limit: 3}]),
-        activitiesPlanned: _constructPipe(
-            'Activity',
-            [{
+                        {$unwind: '$newestAnswer'},
+                        {
+                            $project: {
+                                question: '$newestAnswer.question',
+                                posAnswer: {
+                                    $cond: [
+                                        {$gt: ['$newestAnswer.answer', 0]},
+                                        '$newestAnswer.answer',
+                                        0
+                                    ]
+                                },
+                                negAnswer: {
+                                    $cond: [
+                                        {$lt: ['$newestAnswer.answer', 0]},
+                                        {$multiply: ['$newestAnswer.answer', -1]},
+                                        0
+                                    ]
+                                }
+                            }
+                        },
+                        {
+                            $group: {
+                                _id: '$question',
+                                posAvg: {$avg: '$posAnswer'},
+                                negAvg: {$avg: '$negAnswer'},
+                                count: {$sum: 1}
+                            }
+                        },
+                        {
+                            $project: {
+                                question: '$_id',
+                                _id: 0,
+                                posAvg: 1,
+                                negAvg: 1,
+                                sumAvg: {$add: ['$posAvg', '$negAvg']},
+                                count: 1
+                            }
+                        },
+                        {$sort: {sumAvg: -1}},
+                        {$limit: 3}],
+                transformers: transformers.replaceIds
+        },
+        activitiesPlanned: {
+            modelName: 'Activity',
+            stages: [{
                 $group: {
                     _id: '$idea',
                     count: {$sum: 1}
@@ -180,10 +142,12 @@ var statsQueries = function (timeRange, scopeType, scopeId) {
                         _id: 0,
                         count: 1
                     }
-                }]),
-        activitiesPlannedPerDay: _constructPipe(
-            'Activity',
-            [{
+                }],
+            transformers: transformers.replaceIds
+        },
+        activitiesPlannedPerDay:{
+            modelName: 'Activity',
+            stages: [{
                 $project: {
                     date: {
                         year: {$year: '$created'},
@@ -207,10 +171,11 @@ var statsQueries = function (timeRange, scopeType, scopeId) {
                     }
                 },
                 {$sort: {'date.year': -1, 'date.month': -1, 'date.day': -1}}
-            ]),
-        activitiesPlannedTotal: _constructPipe(
-            'Activity',
-            [{
+            ]
+        },
+        activitiesPlannedTotal: {
+            modelName: 'Activity',
+            stages: [{
                 $group: {
                     _id: 'Total',
                     activitiesPlannedTotal: {$sum: 1}
@@ -221,10 +186,10 @@ var statsQueries = function (timeRange, scopeType, scopeId) {
                         _id: 0,
                         activitiesPlannedTotal: 1
                     }
-                }]),
-        activityEvents: _constructPipe(
-            'ActivityEvent',
-            [{
+                }]},
+        activityEvents: {
+            modelName: 'ActivityEvent',
+            stages: [{
                 $project: {
                     status: {$cond: [{$gt: ['$end', new Date()]}, 'future', '$status']}
                 }
@@ -241,13 +206,15 @@ var statsQueries = function (timeRange, scopeType, scopeId) {
                         count: 1,
                         _id: 0
                     }
-                }]),
-        eventsStatusAvg: _constructPipe(
-            'ActivityEvent',
-            []),
-        eventsRatings: _constructPipe(
-            'ActivityEvent',
-            [{
+                }]
+        },
+        eventsStatusAvg: {
+            modelName: 'ActivityEvent',
+            stages: []
+        },
+        eventsRatings: {
+            modelName: 'ActivityEvent',
+            stages: [{
                 $group: {
                     _id: '$feedback',
                     count: {$sum: 1}
@@ -259,10 +226,11 @@ var statsQueries = function (timeRange, scopeType, scopeId) {
                         count: 1,
                         _id: 0
                     }
-                }]),
-        activityEventsTotal: _constructPipe(
-            'ActivityEvent',
-            [{
+                }]
+        },
+        activityEventsTotal: {
+            modelName: 'ActivityEvent',
+            stages: [{
                 $group: {
                     _id: 'Total',
                     eventsTotal: {$sum: 1}
@@ -273,10 +241,10 @@ var statsQueries = function (timeRange, scopeType, scopeId) {
                         eventsTotal: 1,
                         _id: 0
                     }
-                }]),
-        eventsDonePerDay: _constructPipe(
-            'ActivityEvent',
-            [{
+                }]},
+        eventsDonePerDay: {
+            modelName: 'ActivityEvent',
+            stages: [{
                 $project: {
                     date: {
                         year: {$year: '$updated'},
@@ -300,10 +268,10 @@ var statsQueries = function (timeRange, scopeType, scopeId) {
                         Done: 1,
                         Missed: 1
                     }
-                }]),
-        usersTotal: _constructPipe(
-            'AssessmentResult',
-            [{
+                }]},
+        usersTotal: {
+            modelName: 'AssessmentResult',
+            stages: [{
                 $project: {
                     campaign: 1
                 }
@@ -319,10 +287,10 @@ var statsQueries = function (timeRange, scopeType, scopeId) {
                         usersTotal: 1,
                         _id: 0
                     }
-                }]),
-        newUsersPerDay: _constructPipe(
-            'AssessmentResult',
-            [{
+                }]},
+        newUsersPerDay: {
+            modelName: 'AssessmentResult',
+            stages: [{
                 $project: {
                     date: {
                         year: {$year: '$created'},
@@ -344,11 +312,7 @@ var statsQueries = function (timeRange, scopeType, scopeId) {
                         count: 1
                     }
                 },
-                {$sort: {'date.year': -1, 'date.month': -1, 'date.day': -1}}])
+                {$sort: {'date.year': -1, 'date.month': -1, 'date.day': -1}}]
+        }
     };
-};
 
-
-module.exports = {
-    queries: statsQueries
-};

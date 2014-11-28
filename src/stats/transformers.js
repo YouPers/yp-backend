@@ -25,7 +25,7 @@ var id2humanReadableString = {};
 }());
 
 function replaceIdsByString(obj, options, cb) {
-    if (options.doNotReplaceIds) {
+    if (options.dontReplaceIds) {
         return cb(null, obj, options);
     }
     _.forEach(obj, function (value, key) {

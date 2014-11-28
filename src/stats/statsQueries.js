@@ -306,7 +306,7 @@ var queries = {
                 }
             }]
     },
-    activityEvents: {
+    eventsStatus: {
         modelName: 'ActivityEvent',
         stages: _activityEventsStages
     },

@@ -1,7 +1,8 @@
 var _ = require('lodash'),
     async = require('async'),
     mongoose = require('ypbackendlib').mongoose,
-    ObjectId = mongoose.Types.ObjectId;
+    ObjectId = mongoose.Types.ObjectId,
+    error = require('ypbackendlib').error;
 
 
 var id2humanReadableString = {};
@@ -23,30 +24,72 @@ var id2humanReadableString = {};
     });
 }());
 
-function _replaceIdsByString(obj, locale, cb) {
+function replaceIdsByString(obj, options, cb) {
     _.forEach(obj, function (value, key) {
         if (_.isArray(value)) {
-            _replaceIdsByString(value, locale);
+            replaceIdsByString(value, options);
         } else if (value instanceof ObjectId || value instanceof String) {
             var cachedRepresentation = id2humanReadableString[value];
 
             if (!cachedRepresentation) {
                 obj[key] = value;
             } else if (_.isObject(cachedRepresentation)) {
-                obj[key] = cachedRepresentation[locale] || cachedRepresentation['de'] || value;
+                obj[key] = cachedRepresentation[options.locale] || cachedRepresentation['de'] || value;
             } else {
                 obj[key] = id2humanReadableString[value] || value;
             }
         } else if (_.isObject(value)) {
-            _replaceIdsByString(value, locale);
+            replaceIdsByString(value, options);
 
         } else {
             // do nothing;
         }
     });
-    return cb ? cb(null, obj, locale) : obj;
+    return cb ? cb(null, obj, options) : obj;
+}
+
+
+function divideCountAttrByUserCount (obj, options, cb) {
+
+    // we need to divide by the number of users to get the correct average.
+    var queryClause = {};
+
+    if (options.scopeType === 'campaign') {
+        queryClause.campaign = new ObjectId(options.scopeId);
+    } else if (options.scopeType ===  'owner') {
+        // we only have one persons count, just return
+        return cb(null, obj, options);
+    }
+    mongoose.model('User').count(queryClause).exec(function (err, userCount) {
+        if (err) {return error.handleError(err, cb);}
+        if (userCount=== 0) {
+            return cb(new Error("cannot have 0 count"));
+        }
+        var avgObj = _.map(obj, function(elem) {elem.count = elem.count/userCount; return elem;});
+
+        return cb(null, avgObj, options);
+    });
+}
+
+function addPercentagesOfRatingsCount (objs, options, cb) {
+    var totalSumOfCount = _.reduce(objs, function(sum, obj) {
+        if (obj.rating) {
+            return sum + obj.count;
+        } else {
+            return sum;
+        }
+    }, 0);
+
+    var percObjs =  _.map(objs, function(elem) {
+        elem.percentage = elem.count/totalSumOfCount;
+        return elem;
+    });
+    return cb(null, percObjs, options);
+
 }
 
 module.exports = {
-    replaceIds: _replaceIdsByString
+    replaceIds: replaceIdsByString,
+    divideCountAttrByUserCount: divideCountAttrByUserCount,
+    addPercentagesOfRatingsCount: addPercentagesOfRatingsCount
 };

@@ -8,29 +8,32 @@ var statsQueries = require('../stats/statsQueries'),
 
 
 
-function constructQuery(queryDef, scopeType, scopeId, timeRange) {
+function constructQuery(queryDef, options) {
     var pipe = mongoose.model(queryDef.modelName).aggregate();
 
-    if ((scopeType === 'owner') || (scopeType === 'campaign')) {
+    if ((options.scopeType === 'owner') || (options.scopeType === 'campaign')) {
         // scope can be 'owner', 'campaign', 'all'
-        if (!scopeId) {
-            throw new Error("Illegal Arguments, when ScopeType == campaign or owner, an id has to be passed");
+        if (!options.scopeId) {
+            throw new error.MissingParameterError("Illegal Arguments, when ScopeType == campaign or owner, an id has to be passed");
         }
         var scopePipelineEntry = {$match: {}};
-        scopePipelineEntry.$match[scopeType] = new ObjectId(scopeId);
+        scopePipelineEntry.$match[options.scopeType] = new ObjectId(options.scopeId);
         pipe.append(scopePipelineEntry);
-    } else if (scopeType === 'all') {
+    } else if (options.scopeType === 'all') {
         // do nothing, consider all rows
+    } else if (options.scopeType) {
+        // defined but unknown
+        throw new Error('Unknown ScopeType: ' + options.scopeType);
     } else {
-        throw new Error('Unknown ScopeType: ' + scopeType);
+        // we assume 'all' if nothing is passed
     }
 
-    if (timeRange && (timeRange !== 'all')) {
+    if (options.timeRange && (options.timeRange !== 'all')) {
         pipe.append({
             $match: {
                 'start': {
-                    $gt: moment().startOf(timeRange).toDate(),
-                    $lt: moment().endOf(timeRange).toDate()
+                    $gt: moment().startOf(options.timeRange).toDate(),
+                    $lt: moment().endOf(options.timeRange).toDate()
                 }
             }
         });
@@ -44,14 +47,11 @@ function constructQuery(queryDef, scopeType, scopeId, timeRange) {
 
 var getStats = function () {
     return function (req, res, next) {
-        // calculate Assessment stats for this Campaign
+
         var type = req.params.type;
         if (!type) {
             return next(new error.MissingParameterError({ required: 'type' }));
         }
-        var scopeType = req.params.scopeType || 'all';
-        var scopeId = req.params.scopeId;
-        var timeRange = req. params.timeRange;
 
         var queryDefs = {};
         try {
@@ -67,16 +67,19 @@ var getStats = function () {
 
         var locals = {};
 
+        var options = req.params;
+        options.locale = req.locale;
+
         async.each(_.keys(queryDefs), function (queryName, done) {
 
             var myWaterFall = [
                 function(cb) {
-                    var q = constructQuery(queryDefs[queryName], scopeType, scopeId, timeRange);
+                    var q = constructQuery(queryDefs[queryName], options);
                     q.exec(function (err, result) {
                         if (err) {
                             return error.handleError(err, cb);
                         }
-                        return cb(null, result, req.locale);
+                        return cb(null, result, options);
                     });
                 }
             ];
@@ -88,7 +91,7 @@ var getStats = function () {
 
             async.waterfall(myWaterFall, function (err, result) {
                 if (err) {
-                    return error.handleError(err, done);
+                    return done(err);
                 }
                 locals[queryName] = result;
                 return done();

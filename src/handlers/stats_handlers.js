@@ -69,6 +69,9 @@ var getStats = function () {
                 queryDefs = statsQueries;
             } else {
                 queryDefs[type] = statsQueries[type];
+                if (!queryDefs[type])  {
+                    return next(new error.InvalidArgumentError('Unknown Query Type: ' + type));
+                }
             }
         } catch (err) {
             req.log.info(err);

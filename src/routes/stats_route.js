@@ -1,11 +1,7 @@
-/**
- * User Routes module
- *    these routes require authenticated users
- */
+    var handlers = require('../handlers/stats_handlers');
+    var stats = require('../util/stats');
+    var _ = require('lodash');
 
-var // passport = require('passport'),
-    handlers = require('../handlers/stats_handlers'),
-    enums = require('../models/enums');
 
 // TODO: enable authentication for stats, not everyone should be able to get stats.
 module.exports = function (swagger) {
@@ -28,7 +24,7 @@ module.exports = function (swagger) {
                     name: "type",
                     description: "the type of statistics to fetch",
                     dataType: "string",
-                    enum: enums.statsType,
+                    enum: _.keys(stats).concat(['all']),
                     required: true
                 },
                 {

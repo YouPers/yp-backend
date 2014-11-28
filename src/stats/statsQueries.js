@@ -1,6 +1,7 @@
 var mongoose = require('ypbackendlib').mongoose,
     ObjectId = mongoose.Types.ObjectId,
-    transformers = require('./transformers');
+    transformers = require('./transformers'),
+    _ = require('lodash');
 
 // reused Aggregation piplines for multiple queries
 var _activityEventsStages = [
@@ -115,6 +116,82 @@ var queries = {
                     avgStress: 1
                 }
             }]
+    },
+    assessmentResults: {
+        modelName: 'AssessmentResult',
+        stages: [
+            {$sort: {created: -1}},
+            {
+                $group: {
+                    _id: '$owner',
+                    newestAnswer: {$first: '$answers'}
+                }
+            },
+            {$unwind: '$newestAnswer'},
+            {
+                $project: {
+                    question: '$newestAnswer.question',
+                    veryPos: {
+                        $cond: [
+                            {$gt: ['$newestAnswer.answer', 50]},
+                            1,
+                            0
+                        ]
+                    },
+                    pos: {
+                        $cond: [
+                            {$and: [{$gt: ['$newestAnswer.answer', 1]}, {$lt: ['$newestAnswer.answer', 51]}]},
+                            1,
+                            0
+                        ]
+                    },
+                    veryNeg: {
+                        $cond: [
+                            {$lt: ['$newestAnswer.answer', -50]},
+                            1,
+                            0
+                        ]
+                    },
+                    neg: {
+                        $cond: [
+                            {$and: [{$lt: ['$newestAnswer.answer', 0]}, {$gt: ['$newestAnswer.answer', -51]} ]},
+                            1,
+                            0
+                        ]
+                    },
+                    zero: {
+                        $cond: [
+                            {$eq: ['$newestAnswer.answer', 0]},
+                            1,
+                            0
+                        ]
+                    }
+                }
+            },
+            {
+                $group: {
+                    _id: '$question',
+                    veryPos: {$sum: '$veryPos'},
+                    pos: {$sum: '$pos'},
+                    zero: {$sum: '$zero'},
+                    neg: {$sum: '$neg'},
+                    veryNeg: {$sum: '$veryNeg'},
+                    count: {$sum: 1}
+                }
+            },
+            {
+                $project: {
+                    question: '$_id',
+                    veryPos: {$divide: ['$veryPos', '$count']},
+                    pos: {$divide: ['$pos', '$count']},
+                    zero: {$divide: ['$zero', '$count']},
+                    neg: {$divide: ['$neg', '$count']},
+                    veryNeg: {$divide: ['$veryNeg', '$count']},
+                    count: 1,
+                    _id: 0
+                }
+            }],
+        transformers: transformers.replaceIds
     },
     topStressors: {
         modelName: 'AssessmentResult',
@@ -288,24 +365,49 @@ var queries = {
     },
     usersTotal: {
         modelName: 'User',
+        ignoreScope: true,
         stages: [
             {
-                $project: {
-                    campaign: 1
-                }
-            },
-            {
                 $group: {
-                    _id: 'Total',
+                    _id: '$campaign',
                     usersTotal: {$sum: 1}
                 }
             },
             {
                 $project: {
                     usersTotal: 1,
+                    campaign: '$_id',
                     _id: 0
                 }
-            }]
+            }],
+        transformers: function(objs, options, cb) {
+            var nrOfCampaigns = objs.length - 1; // -1 because of the "null" value (users without campaign)
+            var myCampaignId = options.scopeId;
+
+            var totalNrOfUsers = _.reduce(objs, function(sum, obj) {
+                if (obj.campaign) {
+                    return sum + obj.usersTotal;
+                } else {
+                    return sum;
+                }
+
+            }, 0);
+
+            if (myCampaignId) {
+                var myCampaignTotal = _.find(objs, function(obj) {
+                    return obj.campaign && obj.campaign.equals(myCampaignId);
+                });
+
+                return cb(null, {
+                    usersTotal: myCampaignTotal.usersTotal,
+                    usersAvg: totalNrOfUsers / nrOfCampaigns
+                }, options);
+            } else {
+                return cb(null,{
+                    count: totalNrOfUsers
+                }, options);
+            }
+        }
     },
     newUsersPerDay: {
         modelName: 'User',

@@ -11,19 +11,21 @@ var statsQueries = require('../stats/statsQueries'),
 function constructQuery(queryDef, options) {
     var pipe = mongoose.model(queryDef.modelName).aggregate();
 
-    if ((options.scopeType === 'owner') || (options.scopeType === 'campaign')) {
+    if ((options.scopeType === 'owner') || (options.scopeType === 'campaign') || options.scopeType === 'topic') {
         // scope can be 'owner', 'campaign', 'all'
         if (!options.scopeId) {
             throw new error.MissingParameterError("Illegal Arguments, when ScopeType == campaign or owner, an id has to be passed");
         }
         var scopePipelineEntry = {$match: {}};
         scopePipelineEntry.$match[options.scopeType] = new ObjectId(options.scopeId);
-        pipe.append(scopePipelineEntry);
+        if (!queryDef.ignoreScope) {
+            pipe.append(scopePipelineEntry);
+        }
     } else if (options.scopeType === 'all') {
         // do nothing, consider all rows
     } else if (options.scopeType) {
         // defined but unknown
-        throw new Error('Unknown ScopeType: ' + options.scopeType);
+        throw new error.InvalidArgumentError('Unknown ScopeType: ' + options.scopeType);
     } else {
         // we assume 'all' if nothing is passed
     }
@@ -38,6 +40,14 @@ function constructQuery(queryDef, options) {
             }
         });
     }
+    var stages = queryDef.stages;
+
+    // stages can be an array of Aggregation Pipeline Operators,
+    // or a function returning such an array in case the options/params are needed to generate the array
+    if (_.isFunction(stages)) {
+        stages = stages(options);
+    }
+
     // despite the documentation, aggregate.append() does not like arrays.. so we do it piece per piece
     _.forEach(queryDef.stages, function (stage) {
         pipe.append(stage);

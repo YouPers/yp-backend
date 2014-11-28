@@ -91,7 +91,7 @@ module.exports = function (swagger) {
                 notes: "delete invitation",
                 summary: "Deletes a invitation by id",
                 method: "DELETE",
-                params: [swagger.pathParam("id", "ID of the invitation to be fetched", "string")],
+                params: [swagger.pathParam("id", "ID of the invitation to be fetched", "string"), swagger.queryParam("reason", "reason for the delete")],
                 "nickname": "deleteInvitation",
                 accessLevel: 'al_user'
             },

@@ -117,6 +117,31 @@ var queries = {
                 }
             }]
     },
+    needForAction: {
+        modelName: 'AssessmentResult',
+        stages: function(options) {
+
+            var groupClause = {$group: {
+                _id: '1',
+                stressTypus: {$avg: '$nfa.stresstypus'},
+                work: {$avg: '$nfa.work'}
+            }};
+
+
+
+            var myStages = [
+            {$sort: {created: -1}},
+            {
+                $group: {
+                    _id: '$owner',
+                    nfa: {$first: '$needForAction'}
+                }
+            },
+            groupClause
+            ];
+        }
+    },
+
     assessmentResults: {
         modelName: 'AssessmentResult',
         stages: [

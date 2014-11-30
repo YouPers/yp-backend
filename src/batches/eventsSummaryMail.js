@@ -3,9 +3,9 @@ var mongoose = require('ypbackendlib').mongoose,
     _ = require('lodash'),
     async = require('async'),
     email = require('../util/email'),
-    batch = require('ypbackendlib').batch;
-
-
+    batch = require('ypbackendlib').batch,
+    modelNames = require('../models').modelNames,
+    config = require('../config/config');
 
 /*
  *  gather locals for daily summary mail
@@ -264,10 +264,10 @@ var sendSummaryMail = function sendSummaryMail(user, rangeStart, rangeEnd, done,
             }
 
             // check defaultWorkWeek in the user's profile
-            var weekDay = rangeEnd.format('dd').toUpperCase(); // MO, DI, MI, ..
-            var defaultWorkWeek = user.profile.prefs.email.defaultWorkWeek;
+            var weekDay = rangeEnd.format('dd').toUpperCase(); // MO, TU, WE, ..
+            var defaultWorkWeek = user.profile.prefs.defaultWorkWeek || ['MO', 'TU', 'WE', 'TH' , 'FR'];
             if(!_.contains(defaultWorkWeek, weekDay)){
-                log.debug('DailySummary not sent, defaultWorkWeek from the user does not contain today: ' + weekDay + ', defaultWorkWeek: ' + defaultWorkWeek + ', email: ' + user.email);
+                log.debug('DailySummary not sent, defaultWorkWeek from the user does not contain today: ' + weekDay + ', defaultWorkWeek: ' + user.profile.prefs.defaultWorkWeek + ', email: ' + user.email);
                 return done();
             }
 
@@ -299,7 +299,7 @@ var feeder = function (callback) {
     var log = this.log;
     var now = moment();
 
-    log.info("Finding all users (excl. roles [campaignlead, productadmin], with dailyUserMail=true, and a currently active campaign today: " + now);
+    log.debug("Finding all users (excl. roles [campaignlead, productadmin], with dailyUserMail=true, and a currently active campaign today: " + now);
 
     mongoose.model('Campaign').find({
         start: { $lt: now.toDate() },
@@ -310,7 +310,7 @@ var feeder = function (callback) {
         }
         mongoose.model('User').find({
             campaign: { $in: _.map(campaigns, '_id') },
-            roles: { $nin: ['campaignlead', 'productadmin'] },
+            roles: { $nin: ['campaignlead', 'productadmin'] }
         }).select('+roles').exec(callback);
     });
 
@@ -321,6 +321,9 @@ var worker = function (owner, done) {
 };
 
 var run = function run() {
+    require('ypbackendlib').initializeDb(config, modelNames, __dirname + '/../models');
+    this.config = config;
+    this.log = require('ypbackendlib').log(config);
     batch.genericBatch(feeder, worker, this);
 };
 

@@ -46,10 +46,6 @@
             "clientSecret": "d910fee6236a08c7606069f6bb72f626"
         }
     },
-    "log": {
-        "name": "Main",
-        "stdout": "info"
-    },
     "feedback": {
         "username": "feedback",
         "password": "lkmanv90e3ionm23k",

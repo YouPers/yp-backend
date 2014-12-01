@@ -15,7 +15,7 @@ var AssessmentResultSchema = common.newSchema({
     assessment: {type: Schema.Types.ObjectId, ref: 'Assessment', required: true},
     dirty: { type: Boolean },
     answers: [AssessmentResultAnswer.schema],
-    needForAction: {} // using Mixed type because the keys of this object are dynamic (depend on categories of all questions)
+    needForAction: [{category: {type: String}, value: {type: Number}}]
 });
 
 
@@ -149,7 +149,7 @@ AssessmentResultSchema.pre('save', function (next) {
 });
 
 function _caluculateNeedForAction(answers, questionsById) {
-    var needForAction = {};
+    var needForAction = [];
     var answersByCats = _.groupBy(answers, function (answer) {
         return questionsById[answer.question].category;
     });
@@ -175,9 +175,10 @@ function _caluculateNeedForAction(answers, questionsById) {
 
         var needForActionEvalFn = needForActionEvalFns[catName] || needForActionEvalFns["default"];
 
-        needForAction[catName] = needForActionEvalFn(countNormalizedValues['high'],
+        var value = needForActionEvalFn(countNormalizedValues['high'],
             countNormalizedValues['mid'],
             countNormalizedValues['low']);
+        needForAction.push({category: catName, value: value});
     });
 
     return needForAction;

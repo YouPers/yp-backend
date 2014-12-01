@@ -121,6 +121,14 @@ var queries = {
         modelName: 'AssessmentResult',
         stages: function(options) {
 
+            var groupClause = {$group: {
+                _id: '1',
+                stressTypus: {$avg: '$nfa.stresstypus'},
+                work: {$avg: '$nfa.work'}
+            }};
+
+
+
             var myStages = [
             {$sort: {created: -1}},
             {
@@ -129,11 +137,7 @@ var queries = {
                     nfa: {$first: '$needForAction'}
                 }
             },
-                {$group: {
-                    _id: '1',
-                    stressTypus: {$avg: '$nfa.stresstypus'},
-                    work: {$avg: '$nfa.work'}
-                }}
+            groupClause
             ];
 
             return myStages;

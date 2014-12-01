@@ -48,10 +48,11 @@ function constructQuery(queryDef, options) {
         stages = stages(options);
     }
 
-    // despite the documentation, aggregate.append() does not like arrays.. so we do it piece per piece
-    _.forEach(queryDef.stages, function (stage) {
-        pipe.append(stage);
-    });
+        // despite the documentation, aggregate.append() does not like arrays.. so we do it piece per piece
+        _.forEach(queryDef.stages, function (stage) {
+            pipe.append(stage);
+        });
+
     return pipe;
 }
 
@@ -87,18 +88,28 @@ var getStats = function () {
 
             var myWaterFall = [
                 function(cb) {
-                    var q = constructQuery(queryDefs[queryName], options);
-                    q.exec(function (err, result) {
-                        if (err) {
-                            return error.handleError(err, cb);
-                        }
-                        return cb(null, result, options);
-                    });
+
+                    try {
+                        var q = constructQuery(queryDefs[queryName], options);
+
+                        q.exec(function (err, result) {
+                            if (err) {
+                                return error.handleError(err, cb);
+                            }
+                            return cb(null, result, options);
+                        });
+                    } catch (err) {
+                        req.log.error(new Error('Error constructing query for type: ' + queryName, err));
+                        return next(err);
+                    }
                 }
             ];
 
             if (queryDefs[queryName].transformers) {
-                var transformers = _.isArray(queryDefs[queryName].transformers) ? queryDefs[queryName].transformers : [queryDefs[queryName].transformers];
+                var transformers = _.isArray(queryDefs[queryName].transformers) ?
+                    queryDefs[queryName].transformers :
+                    [queryDefs[queryName].transformers];
+
                 myWaterFall = myWaterFall.concat(transformers);
             }
 

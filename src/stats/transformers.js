@@ -66,7 +66,8 @@ function divideCountAttrByUserCount (obj, options, cb) {
     mongoose.model('User').count(queryClause).exec(function (err, userCount) {
         if (err) {return error.handleError(err, cb);}
         if (userCount=== 0) {
-            return cb(new Error("cannot have 0 count"));
+            // we have no users, so there is nothing
+            return cb(null, obj, options);
         }
         var avgObj = _.map(obj, function(elem) {elem.count = elem.count/userCount; return elem;});
 

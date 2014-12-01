@@ -424,7 +424,7 @@ var queries = {
                 });
 
                 return cb(null, {
-                    usersTotal: myCampaignTotal.usersTotal,
+                    usersTotal: myCampaignTotal && myCampaignTotal.usersTotal || 0,
                     usersAvg: totalNrOfUsers / nrOfCampaigns
                 }, options);
             } else {

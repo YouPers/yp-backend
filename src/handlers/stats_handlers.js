@@ -49,8 +49,12 @@ function constructQuery(queryDef, options) {
     }
 
         // despite the documentation, aggregate.append() does not like arrays.. so we do it piece per piece
-        _.forEach(queryDef.stages, function (stage) {
-            pipe.append(stage);
+        _.forEach(stages, function (stage) {
+            try {
+                pipe.append(stage);
+            } catch (err) {
+                throw new Error('Error adding stage: ' + stage + ' from query: ' + queryDef);
+            }
         });
 
     return pipe;

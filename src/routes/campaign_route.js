@@ -6,8 +6,7 @@
 var mongoose = require('ypbackendlib').mongoose,
     Campaign = mongoose.model('Campaign'),
     genericHandlers = require('ypbackendlib').handlers,
-    campaignHandlers = require('./../handlers/campaign_handlers'),
-    enums = require('../models/enums');
+    campaignHandlers = require('./../handlers/campaign_handlers');
 
 
 module.exports = function (swagger) {
@@ -46,39 +45,6 @@ module.exports = function (swagger) {
         action: genericHandlers.getByIdFn(baseUrl, Campaign)
     });
 
-    swagger.addOperation({
-        spec: {
-            description: "Operations about campaigns",
-            path: baseUrlWithId + '/stats',
-            notes: "returns a campaign statistics of campaign based on id",
-            summary: "get campaign statis of campaign with id",
-            method: "GET",
-            params: [
-                swagger.pathParam("id", "ID of the campaign to be fetched", "string"),
-                {
-                    paramType: "query",
-                    name: "type",
-                    description: "the type of statistics to fetch",
-                    dataType: "string",
-                    enum: enums.statsType,
-                    required: true
-                },
-                {
-                    paramType: "query",
-                    name: "range",
-                    description: "The timerange to constrain the stats to",
-                    dataType: "string",
-                    enum: ['day','week','month','year','all'],
-                    default: 'all'
-                }
-            ],
-            "responseClass": "string",
-            "errorResponses": [swagger.errors.invalid('id'), swagger.errors.notFound("campaign")],
-            "nickname": "getCampaignStatsById",
-            accessLevel: 'al_campaignlead'
-        },
-        action: campaignHandlers.getCampaignStats(baseUrl, Campaign)
-    });
 
     swagger.addOperation({
         spec: {

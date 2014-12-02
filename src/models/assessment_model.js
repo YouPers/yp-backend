@@ -47,4 +47,8 @@ AssessmentSchema.statics.adminRoles = [auth.roles.systemadmin, auth.roles.produc
 
 mongoose.model('AssessmentQuestion', AssessmentQuestionSchema);
 
+mongoose.model('AssessmentQuestion').find().exec(function(err, questions) {
+
+});
+
 module.exports = mongoose.model('Assessment', AssessmentSchema);

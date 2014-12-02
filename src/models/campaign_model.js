@@ -25,7 +25,11 @@ var CampaignSchema = common.newSchema({
     campaignLeads: [
         {type: ObjectId, ref: 'User'}
     ],
-    avatar: {type: String}
+    avatar: {type: String},
+    participantSurveyCollectorId: { type: String, trim: true},
+    participantSurveyUrl: { type: String, trim: true},
+    leaderSurveyCollectorId: { type: String, trim: true},
+    leaderSurveyUrl: { type: String, trim: true}
 });
 
 CampaignSchema.statics.adminRoles =  [auth.roles.systemadmin, auth.roles.productadmin, auth.roles.campaignlead, auth.roles.orgadmin];

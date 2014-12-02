@@ -344,6 +344,30 @@ var queries = {
         stages: _eventRatingsStages,
         transformers: transformers.addPercentagesOfRatingsCount
     },
+    eventsPlanned: {
+        modelName: 'ActivityEvent',
+        stages: [
+            {$group: {
+                _id: {
+                    owner: '$owner',
+                    idea: '$idea'
+                },
+                count: {$sum: 1}
+
+
+            }},
+            {$group: {
+                _id: '$_id.idea',
+                plannedCount: {
+                    $sum: '$count'
+                },
+                byUsersCount: {
+                    $sum: 1
+                }
+            }}
+        ],
+        transformers: transformers.replaceIds
+    },
     activityEventsTotal: {
         modelName: 'ActivityEvent',
         stages: [{

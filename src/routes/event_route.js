@@ -280,8 +280,8 @@ module.exports = function (swagger) {
                 {
                     paramType: "query",
                     name: "invite",
-                    description: "UserIds to invite, either a single userId or an Array of UserIds",
-                    dataType: "Array[ObjectId]"
+                    description: "UserIds to invite, either a single userId or a comma separated list of UserIds",
+                    dataType: "ObjectId"
                 }
             ],
             method: "POST",

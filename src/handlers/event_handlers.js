@@ -220,6 +220,10 @@ function postNewEvent(req, res, next) {
     var sentEvent = req.body;
     var usersToInvite = req.params.invite;
 
+    if (_.isString(usersToInvite)) {
+        usersToInvite = usersToInvite.split(',');
+    }
+
     if (!_.isArray(usersToInvite)) {
         usersToInvite = [usersToInvite];
     }

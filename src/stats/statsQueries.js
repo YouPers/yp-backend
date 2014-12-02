@@ -119,17 +119,7 @@ var queries = {
     },
     needForAction: {
         modelName: 'AssessmentResult',
-        stages: function(options) {
-
-            var groupClause = {$group: {
-                _id: '1',
-                stressTypus: {$avg: '$nfa.stresstypus'},
-                work: {$avg: '$nfa.work'}
-            }};
-
-
-
-            var myStages = [
+        stages: [
             {$sort: {created: -1}},
             {
                 $group: {
@@ -137,11 +127,18 @@ var queries = {
                     nfa: {$first: '$needForAction'}
                 }
             },
-            groupClause
-            ];
-
-            return myStages;
-        }
+            {$unwind: '$nfa'},
+                {$group: {
+                    _id: '$nfa.category',
+                    avg: {$avg: '$nfa.value'}
+                }},
+            {$project: {
+                _id: 0,
+                category: '$_id',
+                avg: 1
+                }
+            }
+        ]
     },
 
     assessmentResults: {

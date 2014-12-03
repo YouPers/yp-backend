@@ -23,7 +23,7 @@ module.exports = {
         campaignProductType: "CampaignProductType1 CampaignProductType2 CampaignProductType3".split(' '),
         calendarNotifications: "none 0 300 600 900 1800 3600 7200 86400 172800".split(' '),
         templateCampaignOfferType: "Recommendation Invitation Message".split(' '),
-        templateCampaignOfferWeekday: "MO DI MI DO FR SA SU".split(' '),
+        templateCampaignOfferWeekday: "MO TU WE TH FR SA SU".split(' '),
 
         // type of the targeted space for a social interaction
         targetSpace: "user activity campaign system email".split(' '),

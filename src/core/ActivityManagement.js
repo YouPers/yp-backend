@@ -158,12 +158,16 @@ actMgr.defaultActivity = function (idea, user, campaignId) {
         campaignId = user.campaign._id || user.campaign;
     }
 
-    var start =  moment(now).add(1, 'd').startOf('hour').toDate();
+    var start =  moment(now).add(1, 'd').startOf('hour');
+    if(idea.defaultStartTime) {
+        var defaultStartTime = moment(idea.defaultStartTime);
+        start.hours(defaultStartTime.hours());
+        start.minutes(moment(idea.defaultStartTime).minutes());
+    }
+    start = start.toDate();
 
     var activity = {
-        owner: user
-            .
-            _id || user,
+        owner: user._id || user,
         idea: idea,
         status: 'active',
         executionType: idea.defaultexecutiontype,

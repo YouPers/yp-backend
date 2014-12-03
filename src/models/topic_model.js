@@ -8,9 +8,9 @@ var mongoose = require('ypbackendlib').mongoose,
 
 
 var TemplateCampaignOfferSchema = common.newSchema({
-        idea: {type: ObjectId, ref: 'Idea', required: true},
+        idea: { type: ObjectId, ref: 'Idea', required: true },
         type: { type: String, trim: true, required: true, enum: enums.templateCampaignOfferType },
-        week: {type: Number, required: true },
+        week: { type: Number, required: true },
         weekday: {type: String, required: true, enum: enums.templateCampaignOfferWeekday }
     }
 );

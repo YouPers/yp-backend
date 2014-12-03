@@ -150,7 +150,7 @@ actMgr.getEvents = function getEvents(activity, ownerId, fromDate) {
 };
 
 actMgr.defaultActivity = function (idea, user, campaignId, startDate) {
-    var now = moment();
+
     var duration = idea.defaultduration ? idea.defaultduration : 60;
 
 

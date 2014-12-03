@@ -17,208 +17,196 @@
         "picture": "/assets/img/topic/stress.jpg",
         "templateCampaignOffers": [
             {
-                "week": 1,
+                "week": 0,
                 "weekday": "MO",
                 "type": "Recommendation",
                 "idea": "5278c6adcdeab69a25000041"
             },
             {
-                "week": 1,
+                "week": 0,
                 "weekday": "TU",
                 "type": "Recommendation",
                 "idea": "5278c6adcdeab69a25000088"
             },
             {
-                "week": 1,
+                "week": 0,
                 "weekday": "WE",
                 "type": "Recommendation",
                 "idea": "5278c6adcdeab69a250000a0"
             },
             {
-                "week": 1,
+                "week": 0,
                 "weekday": "WE",
                 "type": "Invitation",
                 "idea": "5278c6adcdeab69a2500001c"
             },
             {
-                "week": 1,
+                "week": 0,
                 "weekday": "TH",
                 "type": "Recommendation",
                 "idea": "5278c6adcdeab69a25000047"
             },
             {
-                "week": 1,
+                "week": 0,
                 "weekday": "TH",
                 "type": "Recommendation",
                 "idea": "5332a3290f9b32255d24897d"
             },
             {
-                "week": 1,
+                "week": 0,
                 "weekday": "FR",
                 "type": "Recommendation",
                 "idea": "5278c6aecdeab69a250000bc"
             },
             {
-                "week": 1,
+                "week": 0,
                 "weekday": "FR",
                 "type": "Recommendation",
                 "idea": "5278c6adcdeab69a2500008d"
             },
+            
             {
                 "week": 1,
-                "weekday": "FR",
-                "type": "Recommendation",
-                "idea": "5278c6adcdeab69a2500008d"
-            },
-
-            {
-                "week": 2,
                 "weekday": "MO",
                 "type": "Recommendation",
                 "idea": "53329bf20f9b32255d2488d7"
             },
             {
-                "week": 2,
+                "week": 1,
                 "weekday": "TU",
                 "type": "Recommendation",
                 "idea": "5278c6adcdeab69a2500006d"
             },
             {
-                "week": 2,
+                "week": 1,
                 "weekday": "WE",
                 "type": "Recommendation",
                 "idea": "5278c6adcdeab69a25000032"
             },
             {
-                "week": 2,
+                "week": 1,
                 "weekday": "WE",
                 "type": "Invitation",
                 "idea": "5278c6adcdeab69a25000046"
             },
             {
-                "week": 2,
+                "week": 1,
                 "weekday": "TH",
                 "type": "Recommendation",
                 "idea": "5278c6adcdeab69a25000076"
             },
             {
-                "week": 2,
+                "week": 1,
                 "weekday": "TH",
                 "type": "Recommendation",
                 "idea": "5278c6adcdeab69a250000af"
             },
             {
-                "week": 2,
-                "weekday": "TH",
-                "type": "Recommendation",
-                "idea": ""
-            },
-            {
-                "week": 2,
+                "week": 1,
                 "weekday": "FR",
                 "type": "Recommendation",
                 "idea": "5278c6adcdeab69a2500004b"
             },
             {
-                "week": 2,
+                "week": 1,
                 "weekday": "FR",
                 "type": "Recommendation",
                 "idea": "5278c6adcdeab69a25000084"
             },
 
             {
-                "week": 3,
+                "week": 2,
                 "weekday": "MO",
                 "type": "Recommendation",
                 "idea": "5278c6aecdeab69a250000bd"
             },
             {
-                "week": 3,
-                "weekday": "DI",
+                "week": 2,
+                "weekday": "TU",
                 "type": "Recommendation",
                 "idea": "5278c6adcdeab69a2500009e"
             },
             {
-                "week": 3,
+                "week": 2,
                 "weekday": "WE",
                 "type": "Recommendation",
                 "idea": "5278c6adcdeab69a2500001e"
             },
             {
-                "week": 3,
+                "week": 2,
                 "weekday": "WE",
                 "type": "Invitation",
                 "idea": "5278c6adcdeab69a25000042"
             },
             {
-                "week": 3,
+                "week": 2,
                 "weekday": "TH",
                 "type": "Recommendation",
                 "idea": "5332a2080f9b32255d248961"
             },
             {
-                "week": 3,
+                "week": 2,
                 "weekday": "TH",
                 "type": "Recommendation",
                 "idea": "5278c6adcdeab69a2500007f"
             },
             {
-                "week": 3,
+                "week": 2,
                 "weekday": "FR",
                 "type": "Recommendation",
                 "idea": "529f2ce6e6d37b8808000a33"
             },
             {
-                "week": 3,
+                "week": 2,
                 "weekday": "FR",
                 "type": "Recommendation",
                 "idea": "5278c6adcdeab69a2500007b"
             },
 
             {
-                "week": 4,
+                "week": 3,
                 "weekday": "MO",
                 "type": "Recommendation",
                 "idea": "5278c6adcdeab69a2500009b"
             },
             {
-                "week": 4,
+                "week": 3,
                 "weekday": "TU",
                 "type": "Recommendation",
                 "idea": "5278c6adcdeab69a25000045"
             },
             {
-                "week": 4,
+                "week": 3,
                 "weekday": "WE",
                 "type": "Recommendation",
                 "idea": "529f27d5e6d37b88080009e0"
             },
             {
-                "week": 4,
+                "week": 3,
                 "weekday": "WE",
                 "type": "Invitation",
                 "idea": "5332a89e0f9b32255d248ae0"
             },
             {
-                "week": 4,
+                "week": 3,
                 "weekday": "TH",
                 "type": "Recommendation",
                 "idea": "5278c6adcdeab69a25000085"
             },
             {
-                "week": 4,
+                "week": 3,
                 "weekday": "TH",
                 "type": "Recommendation",
                 "idea": "5278c6adcdeab69a2500004d"
             },
             {
-                "week": 4,
+                "week": 3,
                 "weekday": "FR",
                 "type": "Recommendation",
                 "idea": "5278c6adcdeab69a25000040"
             },
             {
-                "week": 4,
+                "week": 3,
                 "weekday": "FR",
                 "type": "Recommendation",
                 "idea": "5278c6adcdeab69a250000b4"

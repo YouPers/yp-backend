@@ -149,7 +149,7 @@ actMgr.getEvents = function getEvents(activity, ownerId, fromDate) {
     return events;
 };
 
-actMgr.defaultActivity = function (idea, user, campaignId) {
+actMgr.defaultActivity = function (idea, user, campaignId, startDate) {
     var now = moment();
     var duration = idea.defaultduration ? idea.defaultduration : 60;
 
@@ -158,7 +158,7 @@ actMgr.defaultActivity = function (idea, user, campaignId) {
         campaignId = user.campaign._id || user.campaign;
     }
 
-    var start =  moment(now).add(1, 'd').startOf('hour');
+    var start =  moment(startDate).add(1, 'd').startOf('hour');
     if(idea.defaultStartTime) {
         var defaultStartTime = moment(idea.defaultStartTime);
         start.hours(defaultStartTime.hours());

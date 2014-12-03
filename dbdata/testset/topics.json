@@ -14,7 +14,63 @@
             "en": "Stress management serves for strengthening the resilience and self-healing power of humans to maintain the performance and health in case of internal and external stress.<br>More information can be found  <a href='http://en.wikipedia.org/wiki/Stress_management' target='_blank'>here</a>.",
             "fr": "La gestion du stress sert à renforcer la résilience et le pouvoir d'auto-guérison afin de rester performant et en santé lors d'épreuves internes ou externes. <br> Plus d'informations peuvent être trouvées <a href='http://en.wikipedia.org/wiki/Stress_management' target='_blank'>ici</a>."
         },
-        "picture": "/assets/img/topic/stress.jpg"
+        "picture": "/assets/img/topic/stress.jpg",
+        "templateCampaignOffers": [
+            {
+                "week": 1,
+                "weekday": "MO",
+                "type": "Recommendation",
+                "idea": "5278c6adcdeab69a25000041"
+            },
+            {
+                "week": 1,
+                "weekday": "TU",
+                "type": "Recommendation",
+                "idea": "5278c6adcdeab69a25000088"
+            },
+            {
+                "week": 1,
+                "weekday": "WE",
+                "type": "Recommendation",
+                "idea": "5278c6adcdeab69a250000a0"
+            },
+            {
+                "week": 1,
+                "weekday": "WE",
+                "type": "Invitation",
+                "idea": "5278c6adcdeab69a2500001c"
+            },
+            {
+                "week": 1,
+                "weekday": "TH",
+                "type": "Recommendation",
+                "idea": "5278c6adcdeab69a25000047"
+            },
+            {
+                "week": 1,
+                "weekday": "TH",
+                "type": "Recommendation",
+                "idea": "5332a3290f9b32255d24897d"
+            },
+            {
+                "week": 1,
+                "weekday": "FR",
+                "type": "Recommendation",
+                "idea": "5278c6aecdeab69a250000bc"
+            },
+            {
+                "week": 1,
+                "weekday": "FR",
+                "type": "Recommendation",
+                "idea": "5278c6adcdeab69a2500008d"
+            },
+            {
+                "week": 1,
+                "weekday": "FR",
+                "type": "Recommendation",
+                "idea": "5278c6adcdeab69a2500008d"
+            }
+        ]
     },
     {
         "_id": {

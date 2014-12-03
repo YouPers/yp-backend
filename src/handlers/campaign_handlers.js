@@ -6,6 +6,12 @@ var handlerUtils = require('ypbackendlib').handlerUtils,
     Organization = mongoose.model('Organization'),
     Campaign = mongoose.model('Campaign'),
     SocialInteraction = require('../core/SocialInteraction'),
+    Invitation = mongoose.model('Invitation'),
+    Recommendation = mongoose.model('Recommendation'),
+    Topic = mongoose.model('Topic'),
+    Idea = mongoose.model('Idea'),
+    Activity = mongoose.model('Activity'),
+    ActivityManagement = require('../core/ActivityManagement'),
     async = require('async'),
     email = require('../util/email'),
     image = require('ypbackendlib').image,
@@ -123,7 +129,18 @@ var postCampaign = function (baseUrl) {
                 req.log.trace(sentCampaign, 'PostFn: Saving new Campaign object');
 
                 // try to save the new campaign object
-                sentCampaign.save(generic.writeObjCb(req, res, next));
+                sentCampaign.save(function (err, saved) {
+                    if (err) {
+                        return error.handleError(err, next);
+                    }
+                    createTemplateCampaignOffers(saved, req, function (err) {
+                        if (err) {
+                            return error.handleError(err, next);
+                        }
+                        return generic.writeObjCb(req, res, next)(err, saved);
+                    });
+
+                });
 
             });
 
@@ -132,6 +149,98 @@ var postCampaign = function (baseUrl) {
     };
 };
 
+function createTemplateCampaignOffers(campaign, req, cb) {
+
+    var user = req.user;
+
+    Topic.findById(campaign.topic, function (err, topic) {
+        if (err) {
+            return SocialInteraction.emit('error', err);
+        }
+
+        async.each(topic.templateCampaignOffers, function (offer, done) {
+
+            var day = moment(campaign.start).add(offer.week, 'weeks').day(offer.weekday);
+
+            if(offer.type === 'Recommendation') {
+
+                var recommendation = new Recommendation({
+                    idea: offer.idea,
+
+                    author: user,
+                    authorType: 'campaignLead',
+
+                    targetSpaces: [{
+                        type: 'campaign',
+                        targetId: campaign._id
+                    }],
+
+                    publishFrom: moment(day).startOf('day').toDate(),
+                    publishTo: moment(day).endOf('day').toDate(),
+                    __t: "Recommendation"
+                });
+
+                recommendation.save(function (err, saved) {
+                    if (err) {
+                        done(err);
+                    }
+                    done();
+                });
+
+            } else if(offer.type === 'Invitation') {
+
+                Idea.findById(offer.idea, function (err, idea) {
+                    if(err) {
+                        done(err);
+                    }
+
+                    var defaultActivity = ActivityManagement.defaultActivity(idea, user, campaign._id, day);
+
+                    var activity = new Activity(defaultActivity);
+                    activity.save(function (err, saved) {
+
+                        var publishFrom = moment(day).subtract(2, 'days').startOf('day').toDate();
+                        var publishTo = moment(day).endOf('day').toDate();
+
+                        var invitation = new Invitation({
+                            activity: saved._id,
+
+                            author: user,
+                            authorType: 'campaignLead',
+
+                            targetSpaces: [{
+                                type: 'campaign',
+                                targetId: campaign._id
+                            }],
+
+                            publishFrom: publishFrom,
+                            publishTo: publishTo,
+                            __t: "Invitation"
+                        });
+
+                        invitation.save(function (err, saved) {
+                            if (err) {
+                                done(err);
+                            }
+                            done();
+                        });
+                    });
+                });
+
+            } else {
+                return done('unsupported templateCampaignOffer.type: ' + offer.type);
+            }
+
+        }, function (err) {
+            if (err) {
+                cb(err);
+            }
+            cb();
+        });
+    });
+
+
+}
 
 function addSurveyCollectors(sentCampaign, req, cb) {
 

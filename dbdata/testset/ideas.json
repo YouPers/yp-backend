@@ -641,6 +641,9 @@
     "author": {"$oid": "52d4f515fac246174c000006"},
     "created": {"$date": 1398415504907},
     "defaultduration": 30,
+    "defaultStartTime": {
+      "$date": 1417689000000
+    },
     "defaultexecutiontype": "group",
     "defaultfrequency": "once",
     "defaultvisibility": "private",
@@ -1776,7 +1779,10 @@
     "__v": 3,
     "author": {"$oid": "52d4f515fac246174c000006"},
     "created": {"$date": 1398431797174},
-    "defaultduration": 5,
+    "defaultduration": 30,
+    "defaultStartTime": {
+      "$date": 1417682700000
+    },
     "defaultexecutiontype": "group",
     "defaultfrequency": "day",
     "defaultvisibility": "private",
@@ -1898,7 +1904,10 @@
     "__v": 13,
     "author": {"$oid": "52d4f515fac246174c000006"},
     "created": {"$date": 1398432217333},
-    "defaultduration": 30,
+    "defaultduration": 60,
+    "defaultStartTime": {
+      "$date": 1417694400000
+    },
     "defaultexecutiontype": "group",
     "defaultfrequency": "week",
     "defaultvisibility": "private",
@@ -6510,7 +6519,10 @@
     "__v": 4,
     "author": {"$oid": "52d4f515fac246174c000006"},
     "created": {"$date": 1399472908042},
-    "defaultduration": 120,
+    "defaultduration": 60,
+    "defaultStartTime": {
+      "$date": 1417708800000
+    },
     "defaultexecutiontype": "group",
     "defaultfrequency": "month",
     "defaultvisibility": "private",

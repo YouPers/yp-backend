@@ -364,7 +364,8 @@ var queries = {
                 byUsersCount: {
                     $sum: 1
                 }
-            }}
+            }},
+            {$sort: {plannedCount: -1}}
         ],
         transformers: transformers.replaceIds
     },

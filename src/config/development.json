@@ -1,12 +1,16 @@
 {
-    "log": {
-        "name": "Main",
-        "stdout": "info",
-        "streams": [
-           {
-                "path": "logs/server.log",
-                "level": "debug"
-            }
-        ]
-    }
+  "log": {
+    "name": "Main",
+    "stdout": "info",
+    "streams": [
+      {
+        "path": "logs/server.log",
+        "level": "debug"
+      }
+    ]
+  },
+  "dbdump": {
+    "restoreenabled": "true",
+    "dumpenabled": "true"
+  }
 }

@@ -13,6 +13,13 @@
     "db_host": "localhost",
     "db_port": "27017",
     "db_database": "test_database",
+    "dbdump": {
+        "restoreenabled": "false",
+        "dumpenabled": "false",
+        "mongodumpexe": "/usr/local/bin/mongodump",
+        "mongorestoreexe": "/usr/local/bin/mongorestore",
+        "dumpdir": "/Users/retoblunschi/mongodumps"
+    },
     "linkTokenEncryption": {
         "key": "50126a4a500219238cd678a383cdab197ed5fe42",
         "algorithm": "aes256",

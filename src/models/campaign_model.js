@@ -8,7 +8,7 @@ var mongoose = require('ypbackendlib').mongoose,
     enums = require('./enums');
 
 /**
- * Idea Schema
+ * Campaign Schema
  */
 var CampaignSchema = common.newSchema({
     title: { type: String, trim: true, required: true },

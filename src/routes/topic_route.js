@@ -59,6 +59,21 @@ module.exports = function (swagger) {
         action:  generic.postFn(baseUrl, Model)
         }
     );
+    swagger.addOperation({
+        spec: {
+            description: "Operations about topics",
+            path: baseUrlWithId,
+            notes: "PUTs a new topic",
+            summary: "PUTs a new topic",
+            method: "PUT",
+            params: [swagger.bodyParam("Topic", "updated Topic object", "Topic")],
+            "responseClass": "Topic",
+            "nickname": "putTopics",
+            accessLevel: 'al_productadmin'
+        },
+        action:  generic.putFn(baseUrl, Model)
+        }
+    );
 
     swagger.addOperation({
             spec: {

@@ -15,7 +15,7 @@ var handlerUtils = require('ypbackendlib').handlerUtils,
     async = require('async'),
     email = require('../util/email'),
     image = require('ypbackendlib').image,
-    moment = require('moment'),
+    moment = require('moment-timezone'),
     generic = require('ypbackendlib').handlers,
     config = require('../config/config'),
     restify = require("restify");
@@ -155,15 +155,15 @@ function createTemplateCampaignOffers(campaign, req, cb) {
 
     Topic.findById(campaign.topic, function (err, topic) {
         if (err) {
-            return SocialInteraction.emit('error', err);
+            cb(err);
         }
 
         async.each(topic.templateCampaignOffers, function (offer, done) {
 
             var day = moment(campaign.start).add(offer.week, 'weeks').day(offer.weekday);
 
-            var startOfDay = moment(day).startOf('day');
-            var endOfDay = moment(day).endOf('day');
+            var startOfDay = moment(day).tz('Europe/Zurich').startOf('day');
+            var endOfDay = moment(day).tz('Europe/Zurich').endOf('day');
 
             // check if campaign is still running for this day
             if(startOfDay.isAfter(campaign.end)) {

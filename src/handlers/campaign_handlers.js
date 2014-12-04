@@ -162,6 +162,14 @@ function createTemplateCampaignOffers(campaign, req, cb) {
 
             var day = moment(campaign.start).add(offer.week, 'weeks').day(offer.weekday);
 
+            var startOfDay = moment(day).startOf('day');
+            var endOfDay = moment(day).endOf('day');
+
+            // check if campaign is still running for this day
+            if(startOfDay.isAfter(campaign.end)) {
+                return done();
+            }
+
             if(offer.type === 'Recommendation') {
 
                 var recommendation = new Recommendation({
@@ -175,8 +183,8 @@ function createTemplateCampaignOffers(campaign, req, cb) {
                         targetId: campaign._id
                     }],
 
-                    publishFrom: moment(day).startOf('day').toDate(),
-                    publishTo: moment(day).endOf('day').toDate(),
+                    publishFrom: startOfDay.toDate(),
+                    publishTo: endOfDay.toDate(),
                     __t: "Recommendation"
                 });
 
@@ -199,8 +207,8 @@ function createTemplateCampaignOffers(campaign, req, cb) {
                     var activity = new Activity(defaultActivity);
                     activity.save(function (err, saved) {
 
-                        var publishFrom = moment(day).subtract(2, 'days').startOf('day').toDate();
-                        var publishTo = moment(day).endOf('day').toDate();
+                        var publishFrom = moment(startOfDay).subtract(2, 'days').toDate();
+                        var publishTo = endOfDay.toDate();
 
                         var invitation = new Invitation({
                             activity: saved._id,

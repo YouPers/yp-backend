@@ -162,6 +162,7 @@ function createTemplateCampaignOffers(campaign, req, cb) {
 
             var day = moment(campaign.start).add(offer.week, 'weeks').day(offer.weekday);
 
+            // TODO: use proper timzone here
             var startOfDay = moment(day).tz('Europe/Zurich').startOf('day');
             var endOfDay = moment(day).tz('Europe/Zurich').endOf('day');
 

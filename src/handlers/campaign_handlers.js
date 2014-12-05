@@ -167,7 +167,7 @@ function createTemplateCampaignOffers(campaign, req, cb) {
             var endOfDay = moment(day).tz('Europe/Zurich').endOf('day');
 
             // check if campaign is still running for this day
-            if(startOfDay.isAfter(campaign.end)) {
+            if(startOfDay.isAfter(campaign.end) || startOfDay.isBefore(campaign.start)) {
                 return done();
             }
 
@@ -209,6 +209,9 @@ function createTemplateCampaignOffers(campaign, req, cb) {
                     activity.save(function (err, saved) {
 
                         var publishFrom = moment(startOfDay).subtract(2, 'days').toDate();
+                        if(moment(publishFrom).isBefore(campaign.start)) {
+                            publishFrom = campaign.start;
+                        }
                         var publishTo = endOfDay.toDate();
 
                         var invitation = new Invitation({

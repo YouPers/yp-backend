@@ -20,6 +20,7 @@ var TemplateCampaignOfferSchema = common.newSchema({
  */
 var TopicSchema = common.newSchema({
     name: {type: String, trim: true, required: true},
+    index: {type: Number},
     shortDescription: {type: String, trim: true, i18n: true},
     text: {type: String, trim: true, i18n: true},
     picture: {type: String},

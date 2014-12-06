@@ -4,6 +4,7 @@
             "$oid": "53b416cfa43aac62a2debda1"
         },
         "name": "Stress",
+        "index": 0,
         "shortDescriptionI18n": {
             "de": "Stressmanagement",
             "en": "Stress Management",
@@ -218,6 +219,7 @@
             "$oid": "53b416fba43aac62a2debda2"
         },
         "name": "Nutrition",
+        "index": 1,
         "shortDescriptionI18n": {
             "de": "Gesunde Ernährung",
             "en": "Healthy Nutrition",
@@ -235,6 +237,7 @@
             "$oid": "53b416fba43aac62a2debda3"
         },
         "name": "Fitness",
+        "index": 2,
         "shortDescriptionI18n": {
             "de": "Körperliche Fitness",
             "en": "Physical Fitness",
@@ -252,6 +255,7 @@
             "$oid": "53b416fba43aac62a2debda4"
         },
         "name": "Ergonomics",
+        "index": 3,
         "shortDescriptionI18n": {
             "de": "Ergonomie",
             "en": "Ergonomics",
@@ -269,6 +273,7 @@
             "$oid": "53b416fba43aac62a2debda5"
         },
         "name": "Safety",
+        "index": 4,
         "shortDescriptionI18n": {
             "de": "Unfallprävention",
             "en": "Accident Prevention",

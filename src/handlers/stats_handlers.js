@@ -9,6 +9,8 @@ var statsQueries = require('../stats/statsQueries'),
 
 
 function constructQuery(queryDef, options) {
+    // put the modelName into options, so the transformers can access it
+    options.modelName = queryDef.modelName;
     var pipe = mongoose.model(queryDef.modelName).aggregate();
 
     if ((options.scopeType === 'owner') || (options.scopeType === 'campaign') || options.scopeType === 'topic') {

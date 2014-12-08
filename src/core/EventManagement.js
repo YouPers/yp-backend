@@ -72,6 +72,10 @@ User.on('change:campaign', function (user) {
                                 if (err) {
                                     return handleError(err);
                                 }
+                                // if there is no idea to be planned, just return.
+                                if (!idea) {
+                                    return;
+                                }
                                 var assessmentEvent = actMgr.defaultEvent(idea, user);
                                 assessmentEvent.start = new Date();
                                 assessmentEvent.end = moment(assessmentEvent.start).add(15, 'm').toDate();

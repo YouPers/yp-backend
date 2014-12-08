@@ -1,681 +1,1598 @@
 [
-  {
-    "topics": ["53b416cfa43aac62a2debda1", "53b416fba43aac62a2debda3"],
-    "updated": {"date": 1398338294301},
-    "created": {"date": 1398338294301},
-    "author": {"oid": "52d4f515fac246174c000006"},
-    "defaultduration": 15,
-    "defaultexecutiontype": "self",
-    "defaultfrequency": "once",
-    "number": "INS-1",
-    "titleI18n": {"de": "Gesundes Essen"},
-    "descriptionI18n": {"de": "Bereite mit Freunden ein gesundes und gutes Essen zu."},
-    "textI18n": {},
-    "qualityFactor": 1
-  }, {
-    "topics": ["53b416fba43aac62a2debda3"],
-    "updated": {"date": 1398338294301},
-    "created": {"date": 1398338294301},
-    "author": {"oid": "52d4f515fac246174c000006"},
-    "defaultduration": 15,
-    "defaultexecutiontype": "self",
-    "defaultfrequency": "once",
-    "number": "INS-2",
-    "titleI18n": {"de": "Fussball-Abend"},
-    "descriptionI18n": {"de": "Geniesse mit Freunden einen Fussball-Abend zu Hause vor dem Fernseher."},
-    "qualityFactor": 1,
-    "textI18n": {}
-  }, {
-    "topics": ["53b416fba43aac62a2debda3"],
-    "updated": {"date": 1398338294301},
-    "created": {"date": 1398338294301},
-    "author": {"oid": "52d4f515fac246174c000006"},
-    "defaultduration": 15,
-    "defaultexecutiontype": "self",
-    "defaultfrequency": "once",
-    "number": "INS-3",
-    "titleI18n": {"de": "Heimkino"},
-    "descriptionI18n": {"de": "Lade Freunde ein, um einen Kinofilm vor dem Fernseher zu schauen."},
-    "qualityFactor": 1,
-    "textI18n": {}
-  }, {
-    "topics": [],
-    "updated": {"date": 1398338294301},
-    "created": {"date": 1398338294301},
-    "author": {"oid": "52d4f515fac246174c000006"},
-    "defaultduration": 15,
-    "defaultexecutiontype": "self",
-    "defaultfrequency": "once",
-    "number": "INS-4",
-    "titleI18n": {"de": "Kino"},
-    "descriptionI18n": {"de": "Schau dir einen Film im Kino an, der dir gefällt und Freude bereitet."},
-    "qualityFactor": 1,
-    "textI18n": {}
-  }, {
-    "topics": ["53b416fba43aac62a2debda3", "53b416fba43aac62a2debda2"],
-    "updated": {"date": 1398338294301},
-    "created": {"date": 1398338294301},
-    "author": {"oid": "52d4f515fac246174c000006"},
-    "defaultduration": 15,
-    "defaultexecutiontype": "self",
-    "defaultfrequency": "once",
-    "number": "INS-5",
-    "titleI18n": {"de": "Kunstgalerie"},
-    "descriptionI18n": {"de": "Besuche eine Ausstellung eines berühmten Künstlers."},
-    "qualityFactor": 1,
-    "textI18n": {}
-  }, {
-    "topics": ["53b416fba43aac62a2debda3", "53b416fba43aac62a2debda2"],
-    "updated": {"date": 1398338294301},
-    "created": {"date": 1398338294301},
-    "author": {"oid": "52d4f515fac246174c000006"},
-    "defaultduration": 15,
-    "defaultexecutiontype": "self",
-    "defaultfrequency": "once",
-    "number": "INS-6",
-    "titleI18n": {"de": "Oper"},
-    "descriptionI18n": {"de": "Schau dir mit Freunden eine Oper an."},
-    "qualityFactor": 1,
-    "textI18n": {}
-  }, {
-    "topics": ["53b416fba43aac62a2debda3", "53b416fba43aac62a2debda2"],
-    "updated": {"date": 1398338294301},
-    "created": {"date": 1398338294301},
-    "author": {"oid": "52d4f515fac246174c000006"},
-    "defaultduration": 15,
-    "defaultexecutiontype": "self",
-    "defaultfrequency": "once",
-    "number": "INS-7",
-    "titleI18n": {"de": "Klassische Musik"},
-    "descriptionI18n": {"de": "Besuche mit Freunden ein klassisches Konzert."},
-    "qualityFactor": 1,
-    "textI18n": {}
-  }, {
-    "topics": ["53b416fba43aac62a2debda3", "53b416fba43aac62a2debda2"],
-    "updated": {"date": 1398338294301},
-    "created": {"date": 1398338294301},
-    "author": {"oid": "52d4f515fac246174c000006"},
-    "defaultduration": 15,
-    "defaultexecutiontype": "self",
-    "defaultfrequency": "once",
-    "number": "INS-8",
-    "titleI18n": {"de": "Ausflug"},
-    "descriptionI18n": {"de": "Mache mit Freunden einen Ausflug ins Blaue."},
-    "qualityFactor": 1,
-    "textI18n": {"de": "Benutze dabei Öffentliche Verkehrsmittel."}
-  }, {
-    "topics": ["53b416cfa43aac62a2debda1", "53b416fba43aac62a2debda3"],
-    "updated": {"date": 1398338294301},
-    "created": {"date": 1398338294301},
-    "author": {"oid": "52d4f515fac246174c000006"},
-    "defaultduration": 15,
-    "defaultexecutiontype": "self",
-    "defaultfrequency": "once",
-    "number": "INS-9",
-    "titleI18n": {"de": "Kaffee und Kuchen"},
-    "descriptionI18n": {"de": "Triff dich mit Freunden zum Kaffeetrinken und Kuchenessen und geniesse die Gesellschaft."},
-    "qualityFactor": 1,
-    "textI18n": {}
-  }, {
-    "topics": ["53b416fba43aac62a2debda3", "53b416fba43aac62a2debda2"],
-    "updated": {"date": 1398338294301},
-    "created": {"date": 1398338294301},
-    "author": {"oid": "52d4f515fac246174c000006"},
-    "defaultduration": 15,
-    "defaultexecutiontype": "self",
-    "defaultfrequency": "once",
-    "number": "INS-10",
-    "titleI18n": {"de": "Wandern"},
-    "descriptionI18n": {"de": "Gehe mit Freunden zum Wandern."},
-    "qualityFactor": 1,
-    "textI18n": {}
-  }, {
-    "topics": ["53b416fba43aac62a2debda3", "53b416fba43aac62a2debda2"],
-    "updated": {"date": 1398338294301},
-    "created": {"date": 1398338294301},
-    "author": {"oid": "52d4f515fac246174c000006"},
-    "defaultduration": 15,
-    "defaultexecutiontype": "self",
-    "defaultfrequency": "once",
-    "number": "INS-11",
-    "titleI18n": {"de": "Stadtspaziergang"},
-    "descriptionI18n": {"de": "Mache mit Freunden einen Spaziergang durch einen Ort nach Wahl."},
-    "qualityFactor": 1,
-    "textI18n": {"de": "Besuche mit Freunden einen Ort nach Wahl und schaue dir verschiedene Bauten, Skulupturen, Brücken, Gärten und Plätze an und betrachte die Architektur und das Umfeld und lass das Bild auf dich wirken."}
-  }, {
-    "topics": ["53b416fba43aac62a2debda3", "53b416fba43aac62a2debda2"],
-    "updated": {"date": 1398338294301},
-    "created": {"date": 1398338294301},
-    "author": {"oid": "52d4f515fac246174c000006"},
-    "defaultduration": 15,
-    "defaultexecutiontype": "self",
-    "defaultfrequency": "once",
-    "number": "INS-12",
-    "titleI18n": {"de": "Kegeln"},
-    "descriptionI18n": {"de": "Gehe mit Freunden zum Kegeln oder Bowling."},
-    "qualityFactor": 1,
-    "textI18n": {"de": "Aus dem Kegeln (9 Kegel im Quadrat auf der Spitze stehend) hervorgegangen und daher eng mit ihm verwandt ist das Bowling, bei dem zehn Kegel (Pins) in Form eines gleichseitigen Dreiecks aufgestellt werden."}
-  }, {
-    "topics": ["53b416cfa43aac62a2debda1", "53b416fba43aac62a2debda3"],
-    "updated": {"date": 1398338294301},
-    "created": {"date": 1398338294301},
-    "author": {"oid": "52d4f515fac246174c000006"},
-    "defaultduration": 15,
-    "defaultexecutiontype": "self",
-    "defaultfrequency": "once",
-    "number": "INS-13",
-    "titleI18n": {"de": "Nachtessen"},
-    "descriptionI18n": {"de": "Lade Freunde ein zum Nachtessen."},
-    "qualityFactor": 1,
-    "textI18n": {}
-  }, {
-    "topics": ["53b416fba43aac62a2debda3", "53b416fba43aac62a2debda2"],
-    "updated": {"date": 1398338294301},
-    "created": {"date": 1398338294301},
-    "author": {"oid": "52d4f515fac246174c000006"},
-    "defaultduration": 15,
-    "defaultexecutiontype": "self",
-    "defaultfrequency": "once",
-    "number": "INS-14",
-    "titleI18n": {"de": "Jassen"},
-    "descriptionI18n": {"de": "Veranstalte mit Freunden einen Jass-Abend."},
-    "qualityFactor": 1,
-    "textI18n": {}
-  }, {
-    "topics": ["53b416fba43aac62a2debda2"],
-    "updated": {"date": 1398338294301},
-    "created": {"date": 1398338294301},
-    "author": {"oid": "52d4f515fac246174c000006"},
-    "defaultduration": 15,
-    "defaultexecutiontype": "self",
-    "defaultfrequency": "once",
-    "number": "INS-15",
-    "titleI18n": {"de": "(Sprach)Kurs"},
-    "descriptionI18n": {"de": "Nimm an einem Sprachkurs teil, um eine Sprache zu erlernen oder zu verbessern."},
-    "qualityFactor": 1,
-    "textI18n": {"de": "Sprachen verbinden und öffnen neue Horizonte. Sie lernen auf genussvolle, ganzheitliche Art und Weise die Sprache oder können Ihre Vorkenntnisse auffrischen. Sie erwerben entweder die ersten Grundlagen, um sich mündlich und schriftlich auszudrücken. Sie können einfache Informationen austauschen, z.B. eine Mahlzeit bestellen oder einfach Texte lesen und übersetzen. Sie können sich fliessender ausdrücken und finden sich auf Reisen zurecht. Sie können Gespräche im Freundeskreis führen. Sie sprechen in vielen Situationen fliessend."}
-  }, {
-    "topics": ["53b416fba43aac62a2debda2"],
-    "updated": {"date": 1398338294301},
-    "created": {"date": 1398338294301},
-    "author": {"oid": "52d4f515fac246174c000006"},
-    "defaultduration": 15,
-    "defaultexecutiontype": "self",
-    "defaultfrequency": "once",
-    "number": "INS-16",
-    "titleI18n": {"de": "Ganzkörper-Fitness-Training"},
-    "descriptionI18n": {"de": "Mache einen Fitness-Kurs oder trainiere deine Fitness, um in Bewegung zu bleiben."},
-    "qualityFactor": 1,
-    "textI18n": {"de": "Ein abwechslungsreiches Ganzkörpertraining umfasst Gymnastik, Krafttraining, Ausdauer, Beweglichkeit, Koordination, Reaktion, Konzentration, Balance. Bei vielfältigen Fitnessaktivitäten wird der Schwerpunkt auf Belastung und Entspannung gelegt und dabei auf eine individuelle Dosierung geachtet. Die Spanne reicht von Aerobic, Krafttraining bis zur progressiven Muskelentspannung nach Jacobson."}
-  }, {
-    "topics": ["53b416fba43aac62a2debda2"],
-    "updated": {"date": 1398338294301},
-    "created": {"date": 1398338294301},
-    "author": {"oid": "52d4f515fac246174c000006"},
-    "defaultduration": 15,
-    "defaultexecutiontype": "self",
-    "defaultfrequency": "once",
-    "number": "INS-17",
-    "titleI18n": {"de": "Wasser-Fitness"},
-    "descriptionI18n": {"de": "Gehe ins Wasserfitness-Training."},
-    "qualityFactor": 1,
-    "textI18n": {"de": "Das ideale Bewegungstraining im Wasser. Mit Wasserrfitness werden die wichtigen Konditionsfaktoren wie Beweglichkeit, Kraft und Ausdauer wirkungsvoll trainiert. Dies ist entspannend und nirgends so schonend möglich wie im Wasser. Die abwechslungsreichen Übungen werden im brusttiefen Wasser ausgeführt, deshalb eignen sie sich auch für Nichtschwimmerinnen und Nichtschwimmer."}
-  }, {
-    "topics": ["53b416fba43aac62a2debda2"],
-    "updated": {"date": 1398338294301},
-    "created": {"date": 1398338294301},
-    "author": {"oid": "52d4f515fac246174c000006"},
-    "defaultduration": 15,
-    "defaultexecutiontype": "self",
-    "defaultfrequency": "once",
-    "number": "INS-18",
-    "titleI18n": {"de": "Wassergymnastik"},
-    "descriptionI18n": {"de": "Mache regelmässig Wassergymnastik."},
-    "qualityFactor": 1,
-    "textI18n": {"de": "Gymnastik im warmen Wasser fördert die Beweglichkeit, entlastet die Gelenke, kräftigt die Muskulatur, lindert rheumatische Beschwerden, regt den Blutkreislauf an und wirkt überdies wohltuend und entspannend.\n"}
-  }, {
-    "topics": ["53b416fba43aac62a2debda3", "53b416fba43aac62a2debda2"],
-    "updated": {"date": 1398338294301},
-    "created": {"date": 1398338294301},
-    "author": {"oid": "52d4f515fac246174c000006"},
-    "defaultduration": 15,
-    "defaultexecutiontype": "self",
-    "defaultfrequency": "once",
-    "number": "INS-19",
-    "titleI18n": {"de": "Schwimmen"},
-    "descriptionI18n": {"de": "Triff dich mit Freunden zum Schwimmen."},
-    "qualityFactor": 1,
-    "textI18n": {"de": "In der Badi, im Fluss oder im See."}
-  }, {
-    "topics": ["53b416fba43aac62a2debda2"],
-    "updated": {"date": 1398338294301},
-    "created": {"date": 1398338294301},
-    "author": {"oid": "52d4f515fac246174c000006"},
-    "defaultduration": 15,
-    "defaultexecutiontype": "self",
-    "defaultfrequency": "once",
-    "number": "INS-20",
-    "titleI18n": {"de": "Nordic-Walking"},
-    "descriptionI18n": {"de": "Mache regelmässig Nordic-Walking."},
-    "qualityFactor": 1,
-    "textI18n": {"de": "Nordic Walking ist ein Gesundheitstraining. Es fordert und fördert die ganzheitliche Bewegung mit aktiver Armarbeit durch den Einsatz von Walking-Stöcken. Trotz höherem Bewegungsengagement reduziert Nordic Walking die Belastung der Knie- und Hüftgelenke und entlastet die Wirbelsäule. Sie lernen beim entspannten Training kontinuierlich Ihre Ausdauer zu steigern."}
-  }, {
-    "topics": ["53b416fba43aac62a2debda3", "53b416fba43aac62a2debda2"],
-    "updated": {"date": 1398338294301},
-    "created": {"date": 1398338294301},
-    "author": {"oid": "52d4f515fac246174c000006"},
-    "defaultduration": 15,
-    "defaultexecutiontype": "self",
-    "defaultfrequency": "once",
-    "number": "INS-21",
-    "titleI18n": {"de": "Volkstanzkurs"},
-    "descriptionI18n": {"de": "Besuche mit Freunden einen Volkstanzkurs."},
-    "qualityFactor": 1,
-    "textI18n": {"de": "Sie haben Freude an Musik und Bewegung und möchten etwas für Körper und Geist tun? Mit internationalen Volkstänzen können Sie Koordination, Reaktion und Konzentration in ungezwungener, fröhlicher Atmosphäre üben und trainieren. Unter Aufsicht von Tanzleiterinnen lernen Sie sich in der Gruppe zur Musik zu bewegen."}
-  }, {
-    "topics": ["53b416fba43aac62a2debda3", "53b416fba43aac62a2debda2"],
-    "updated": {"date": 1398338294301},
-    "created": {"date": 1398338294301},
-    "author": {"oid": "52d4f515fac246174c000006"},
-    "defaultduration": 15,
-    "defaultexecutiontype": "self",
-    "defaultfrequency": "once",
-    "number": "INS-22",
-    "titleI18n": {"de": "Standardtanzkurs"},
-    "descriptionI18n": {"de": "Besuche mit einer Partnerin bzw. einem Partner einen Standardtanzkurs."},
-    "qualityFactor": 1,
-    "textI18n": {"de": "In ungezwungener Atmosphäre lernen Sie zum Beispiel Standardtänze und lateinamerikanischen Tänze. Der Spass am Tanzen und an der Bewegung steht im Vordergrund."}
-  }, {
-    "topics": ["53b416fba43aac62a2debda3", "53b416fba43aac62a2debda2"],
-    "updated": {"date": 1398338294301},
-    "created": {"date": 1398338294301},
-    "author": {"oid": "52d4f515fac246174c000006"},
-    "defaultduration": 15,
-    "defaultexecutiontype": "self",
-    "defaultfrequency": "once",
-    "number": "INS-23",
-    "titleI18n": {"de": "Männerturnen"},
-    "descriptionI18n": {"de": "Gehe mit männlichen Freunden ins Männerturnen."},
-    "qualityFactor": 1,
-    "textI18n": {"de": "In den Fitness- und Gymnastik-Lektionen werden Beweglichkeit, Kraft, Ausdauer und Koordination trainiert. Das gemeinsame Erleben der Bewegung steht im Mittelpunkt."}
-  }, {
-    "topics": ["53b416fba43aac62a2debda2"],
-    "updated": {"date": 1398338294301},
-    "created": {"date": 1398338294301},
-    "author": {"oid": "52d4f515fac246174c000006"},
-    "defaultduration": 15,
-    "defaultexecutiontype": "self",
-    "defaultfrequency": "once",
-    "number": "INS-24",
-    "titleI18n": {"de": "Musik und Bewegung"},
-    "descriptionI18n": {"de": "Mache regelmässiges Training mit Bewegung zur Musik."},
-    "qualityFactor": 1,
-    "textI18n": {"de": "Trainieren Sie Bewegung zur Musik mit Aufwärmtraining, Schrittkombinationen, Muskel- und Beweglichkeitstraining und Koordinationselementen, mal mit und mal ohne Handgeräte. Wichtig ist die Freude an rhythmischer Bewegung."}
-  }, {
-    "topics": ["53b416fba43aac62a2debda2"],
-    "updated": {"date": 1398338294301},
-    "created": {"date": 1398338294301},
-    "author": {"oid": "52d4f515fac246174c000006"},
-    "defaultduration": 15,
-    "defaultexecutiontype": "self",
-    "defaultfrequency": "once",
-    "number": "INS-25",
-    "titleI18n": {"de": "Kreatives tanzen und bewegen"},
-    "descriptionI18n": {"de": "Mache regelmässiges, kreatives Tanzen mit Bewegung."},
-    "qualityFactor": 1,
-    "textI18n": {"de": "Mit Bewegungs-, Atem- und Wahrnehmungsübungen, sowie Entspannung und spielerischem Tanz kannst du dich auf Entdeckungsreise begeben."}
-  }, {
-    "topics": ["53b416fba43aac62a2debda2"],
-    "updated": {"date": 1398338294301},
-    "created": {"date": 1398338294301},
-    "author": {"oid": "52d4f515fac246174c000006"},
-    "defaultduration": 15,
-    "defaultexecutiontype": "self",
-    "defaultfrequency": "once",
-    "number": "INS-26",
-    "titleI18n": {"de": "Yoga"},
-    "descriptionI18n": {"de": "Mache Yoga als ganzheitliches Training."},
-    "qualityFactor": 1,
-    "textI18n": {"de": "Yoga als ganzheitliches Training für bessere Stabilität, Haltung und Entspannung."}
-  }, {
-    "topics": ["53b416fba43aac62a2debda3", "53b416fba43aac62a2debda2"],
-    "updated": {"date": 1398338294301},
-    "created": {"date": 1398338294301},
-    "author": {"oid": "52d4f515fac246174c000006"},
-    "defaultduration": 15,
-    "defaultexecutiontype": "self",
-    "defaultfrequency": "once",
-    "number": "INS-27",
-    "titleI18n": {"de": "Schachspielen"},
-    "descriptionI18n": {"de": "Triff dich mit Freunden zum Schachspielen."},
-    "qualityFactor": 1,
-    "textI18n": {"de": "Der Treffpunkt für alle Schach-Interessierten Sie spielen gerne Schach und möchten sich mit Gleichgesinnten regelmässig zu einer Partie treffen? In einer gemütlichen\nSpielrunde treffen Sie auf interessante Gegner. Keine Anmeldung nötig! Ein Einstieg ist jederzeit möglich."}
-  }, {
-    "topics": ["53b416fba43aac62a2debda2"],
-    "updated": {"date": 1398338294301},
-    "created": {"date": 1398338294301},
-    "author": {"oid": "52d4f515fac246174c000006"},
-    "defaultduration": 15,
-    "defaultexecutiontype": "self",
-    "defaultfrequency": "once",
-    "number": "INS-28",
-    "titleI18n": {"de": "Pilates"},
-    "descriptionI18n": {"de": "Gehe ins Pilates-Training und stärke dadurch deine Stützmuskulatur."},
-    "qualityFactor": 1,
-    "textI18n": {"de": "Pilates kräftigt und stabilisiert Ihr Körperzentrum. Es soll für eine korrekte und gesunde Körperhaltung sorgen. Ziel ist die Stärkung der Muskulatur, besonders der Stützmuskulatur, die Verbesserung von Kondition und Bewegungskoordination, die Anregung des Kreislaufes und eine erhöhte Körperwahrnehmung. Es entsteht eine Balance zwischen Körper und Geist und Seele."}
-  }, {
-    "topics": ["53b416fba43aac62a2debda2"],
-    "updated": {"date": 1398338294301},
-    "created": {"date": 1398338294301},
-    "author": {"oid": "52d4f515fac246174c000006"},
-    "defaultduration": 15,
-    "defaultexecutiontype": "self",
-    "defaultfrequency": "once",
-    "number": "INS-29",
-    "titleI18n": {"de": "Tai Chi - Qi Gong"},
-    "descriptionI18n": {"de": "Mache Tai Chi und/oder Qi Gong zur Meditation und Erhaltung der Gesundheit."},
-    "qualityFactor": 1,
-    "textI18n": {"de": "Tai Ji ist eine alte chinesische Kunst der Meditation in Bewegung. Inneres und Äusseres, Ruhe und Bewegung, Kraft und Weichheit, Anspannung und Entspannung sind untrennbar miteinander verbunden. T'ai Ji üben heisst, die Polarität und den steten Wandel im Leben zu erkennen. Die Tai-Ji ähnlichen Qi Gong-Übungen wurde von Meister Lin Hou Sheng entwickelt und sind leicht zu erlernen und sehr wirksam zur Erhaltung der Gesundheit und Vorbeugung gegen Erkrankungen."}
-  }, {
-    "topics": ["53b416fba43aac62a2debda3", "53b416fba43aac62a2debda2"],
-    "updated": {"date": 1398338294301},
-    "created": {"date": 1398338294301},
-    "author": {"oid": "52d4f515fac246174c000006"},
-    "defaultduration": 15,
-    "defaultexecutiontype": "self",
-    "defaultfrequency": "once",
-    "number": "INS-30",
-    "titleI18n": {"de": "Denk-Fitness"},
-    "descriptionI18n": {"de": "Trainiere in Gemeinschaft deine Gehirnleistung mit Hilfe von Denksport-Aufgaben (z.B. Memory, Sudoku, o.ä.)."},
-    "qualityFactor": 1,
-    "textI18n": {"de": "In anregender Gemeinschaft trainieren Sie Konzentration, Wortfindung, Kurz- und Langzeitgedächtnis, logisches und bildhaftes Denken. Indem wir mehr Denkbahnen aktivieren und verknüpfen, erreichen Sie ein besseres Lebensgefühl."}
-  }, {
-    "topics": ["53b416fba43aac62a2debda2"],
-    "updated": {"date": 1398338294301},
-    "created": {"date": 1398338294301},
-    "author": {"oid": "52d4f515fac246174c000006"},
-    "defaultduration": 15,
-    "defaultexecutiontype": "self",
-    "defaultfrequency": "once",
-    "number": "INS-31",
-    "titleI18n": {"de": "Rückentraining"},
-    "descriptionI18n": {"de": "Mache regelmässiges, ganzheitliches Rückentraining."},
-    "qualityFactor": 1,
-    "textI18n": {"de": "Durch gezielte Übungen in den Bereichen Wahrnehmung, Beweglichkeit, Kraft, Stabilisation, Muskeldehnung, Atmung und Entspannung helfen Sie Ihrem Rücken, fit zu bleiben."}
-  }, {
-    "topics": ["53b416fba43aac62a2debda2"],
-    "updated": {"date": 1398338294301},
-    "created": {"date": 1398338294301},
-    "author": {"oid": "52d4f515fac246174c000006"},
-    "defaultduration": 15,
-    "defaultexecutiontype": "self",
-    "defaultfrequency": "once",
-    "number": "INS-32",
-    "titleI18n": {"de": "Feldenkrais"},
-    "descriptionI18n": {"de": "Trainiere regelmässig nach der Feldenkrais-Methode."},
-    "qualityFactor": 1,
-    "textI18n": {"de": "Mit der Feldenkrais-Methode lernen Sie, bewusster und achtsamer mit Ihrem Körper umzugehen, Verspannungen und Schmerzen sanft aufzulösen und zu Bewegungsfreude und Lebendigkeit im Alltag zurückzufinden. Feldenkrais ist eine umfassende Lernmethode und keine eigentliche Therapieform."}
-  }, {
-    "topics": ["53b416fba43aac62a2debda2"],
-    "updated": {"date": 1398338294301},
-    "created": {"date": 1398338294301},
-    "author": {"oid": "52d4f515fac246174c000006"},
-    "defaultduration": 15,
-    "defaultexecutiontype": "self",
-    "defaultfrequency": "once",
-    "number": "INS-33",
-    "titleI18n": {"de": "Computerkurs"},
-    "descriptionI18n": {"de": "Mache einen Computer-Kurs und lerne, besser mit dem Computer umzugehen."},
-    "qualityFactor": 1,
-    "textI18n": {"de": "Den Computer und seine Anwendungen Schritt für Schritt kennen lernen. Es soll die Angst genommen werden, mit einem Computer umzugehen, das richtige Ein- und Ausschalten, den Umgang mit Maus und Tastatur sowie das Kennenlernen von Startmenü und Desktopoberfläche. Sie schreiben erste Texte, verändern und speichern diese."}
-  }, {
-    "topics": ["53b416fba43aac62a2debda2"],
-    "updated": {"date": 1398338294301},
-    "created": {"date": 1398338294301},
-    "author": {"oid": "52d4f515fac246174c000006"},
-    "defaultduration": 15,
-    "defaultexecutiontype": "self",
-    "defaultfrequency": "once",
-    "number": "INS-34",
-    "titleI18n": {"de": "Zeichnen und Malen"},
-    "descriptionI18n": {"de": "Sei kreativ und übe dich in bildnerischem Gestalten."},
-    "qualityFactor": 1,
-    "textI18n": {"de": "Gestalten Sie je nach Wunsch Kompositionen in Kohle, Bleistift, Farbstift, Kreide, Aquarell oder Acryl. Experimentieren Sie, Möglichkeiten malerisch festzuhalten und eigene Wirklichkeiten abzubilden. Sie entdecken Ihre Kreativität und können diese mit wesentlichen Grundlagen des bildnerischen Gestalten kombinieren."}
-  }, {
-    "topics": ["53b416fba43aac62a2debda2"],
-    "updated": {"date": 1398338294301},
-    "created": {"date": 1398338294301},
-    "author": {"oid": "52d4f515fac246174c000006"},
-    "defaultduration": 15,
-    "defaultexecutiontype": "self",
-    "defaultfrequency": "once",
-    "number": "INS-35",
-    "titleI18n": {"de": "Malkurs"},
-    "descriptionI18n": {"de": "Besuche einen Malkurs und übe dich im Darstellen deiner Eindrücke."},
-    "qualityFactor": 1,
-    "textI18n": {"de": "Ohne Leistungsdruck malen Sie das, was Sie bewegt. Sie vergessen Raum und Zeit und tauchen ein in eine besondere Stimmung aus Licht und Farben. Dafür ist keine Malerfahrung notwendig und gemalt wird auf klein- oder grossformatigem Papier."}
-  }, {
-    "topics": ["53b416fba43aac62a2debda2"],
-    "updated": {"date": 1398338294301},
-    "created": {"date": 1398338294301},
-    "author": {"oid": "52d4f515fac246174c000006"},
-    "defaultduration": 15,
-    "defaultexecutiontype": "self",
-    "defaultfrequency": "once",
-    "number": "INS-36",
-    "titleI18n": {"de": "Smartphone"},
-    "descriptionI18n": {"de": "Mache einen Smartphone-Kurs und lerne, besser dein Smartphone einzusetzen."},
-    "qualityFactor": 1,
-    "textI18n": {"de": "Das iPhone ist mehr als nur ein Telefon. Lerne im Kurs die vielfältigen Möglichkeiten kennen, die Ihnen das iPhone bietet. Die Themen: wichtige Grundeinstellungen kennenlernen, telefonieren, Adressen und Telefonnummern im Adressbuch abspeichern, SMS, usw."}
-  }, {
-    "topics": ["53b416cfa43aac62a2debda1", "53b416fba43aac62a2debda3"],
-    "updated": {"date": 1398338294301},
-    "created": {"date": 1398338294301},
-    "author": {"oid": "52d4f515fac246174c000006"},
-    "defaultduration": 15,
-    "defaultexecutiontype": "self",
-    "defaultfrequency": "once",
-    "number": "INS-37",
-    "titleI18n": {"de": "Kochen"},
-    "descriptionI18n": {"de": "Mache einen Kochkurs und knüpfe dort neue, interessante Kontakte."},
-    "qualityFactor": 1,
-    "textI18n": {"de": "In entspannter und motivierender Atmosphäre werden köstliche Menüs zubereitet. Ob Sie bereits Erfahrung mitbringen oder in der Küche Neuland betreten, spielt keine Rolle. Lassen Sie sich von unseren neuen Menükreationen verzaubern!"}
-  }, {
-    "topics": ["53b416fba43aac62a2debda2"],
-    "updated": {"date": 1398338294301},
-    "created": {"date": 1398338294301},
-    "author": {"oid": "52d4f515fac246174c000006"},
-    "defaultduration": 15,
-    "defaultexecutiontype": "self",
-    "defaultfrequency": "once",
-    "number": "INS-38",
-    "titleI18n": {"de": "iPad"},
-    "descriptionI18n": {"de": "Mache einen Kurs für den richtigen Umgang mit dem iPad."},
-    "qualityFactor": 1,
-    "textI18n": {"de": "Das iPad ist der perfekte Begleiter in der digitalen Welt. Auf ein Symbol klicken und online gehen. Es werden diverse Nutzungsmöglichkeiten des Gerätes aufgezeigt."}
-  }, {
-    "topics": ["53b416fba43aac62a2debda2"],
-    "updated": {"date": 1398338294301},
-    "created": {"date": 1398338294301},
-    "author": {"oid": "52d4f515fac246174c000006"},
-    "defaultduration": 15,
-    "defaultexecutiontype": "self",
-    "defaultfrequency": "once",
-    "number": "INS-39",
-    "titleI18n": {"de": "Autogenes Training"},
-    "descriptionI18n": {"de": "Mache regelmässig Autogenes Training zur Entspannung."},
-    "qualityFactor": 1,
-    "textI18n": {}
-  }, {
-    "topics": ["53b416fba43aac62a2debda2"],
-    "updated": {"date": 1398338294301},
-    "created": {"date": 1398338294301},
-    "author": {"oid": "52d4f515fac246174c000006"},
-    "defaultduration": 15,
-    "defaultexecutiontype": "self",
-    "defaultfrequency": "once",
-    "number": "INS-40",
-    "titleI18n": {"de": "Sauna"},
-    "descriptionI18n": {"de": "Gehe regelmässig in die Sauna zur Entspannung."},
-    "qualityFactor": 1,
-    "textI18n": {}
-  }, {
-    "topics": ["53b416fba43aac62a2debda2"],
-    "updated": {"date": 1398338294301},
-    "created": {"date": 1398338294301},
-    "author": {"oid": "52d4f515fac246174c000006"},
-    "defaultduration": 15,
-    "defaultexecutiontype": "self",
-    "defaultfrequency": "once",
-    "number": "INS-41",
-    "titleI18n": {"de": "Massage"},
-    "descriptionI18n": {"de": "Lass dich regelmässig massieren und geniesse das wohltuende Gefühl der Entspannung."},
-    "qualityFactor": 1,
-    "textI18n": {}
-  }, {
-    "topics": ["53b416fba43aac62a2debda2"],
-    "updated": {"date": 1398338294301},
-    "created": {"date": 1398338294301},
-    "author": {"oid": "52d4f515fac246174c000006"},
-    "defaultduration": 15,
-    "defaultexecutiontype": "self",
-    "defaultfrequency": "once",
-    "number": "INS-42",
-    "titleI18n": {"de": "Wellness"},
-    "descriptionI18n": {"de": "Mache ab und zu ein Wellness-Weekend und leiste dir Entspannung, Ruhe und Wohlgefühl."},
-    "qualityFactor": 1,
-    "textI18n": {}
-  }, {
-    "topics": ["53b416fba43aac62a2debda2"],
-    "updated": {"date": 1398338294301},
-    "created": {"date": 1398338294301},
-    "author": {"oid": "52d4f515fac246174c000006"},
-    "defaultduration": 15,
-    "defaultexecutiontype": "self",
-    "defaultfrequency": "once",
-    "number": "INS-43",
-    "titleI18n": {"de": "Einkaufshilfe"},
-    "descriptionI18n": {"de": "Leiste Freiwilligenarbeit und erledige für eine hilfsbedürftige Person den Einkauf."},
-    "qualityFactor": 1,
-    "textI18n": {"de": "Freiwilligenarbeit ist nicht selbstverständlich. In Zukunft wird es mehr freiwillige Mitarbeitende brauchen. Warum es sich lohnt, sich freiwillig zu engagieren? Es ist die stete Nachfrage "}
-  }, {
-    "topics": ["53b416fba43aac62a2debda3", "53b416fba43aac62a2debda2"],
-    "updated": {"date": 1398338294301},
-    "created": {"date": 1398338294301},
-    "author": {"oid": "52d4f515fac246174c000006"},
-    "defaultduration": 15,
-    "defaultexecutiontype": "self",
-    "defaultfrequency": "once",
-    "number": "INS-44",
-    "titleI18n": {"de": "Betreuungshilfe"},
-    "descriptionI18n": {"de": "Leiste Freiwilligenarbeit und betreue einen Nachmittag lang eine alleinstehende Person zu Hause."},
-    "qualityFactor": 1,
-    "textI18n": {"de": "Freiwilligenarbeit ist nicht selbstverständlich. In Zukunft wird es mehr freiwillige Mitarbeitende brauchen. Warum es sich lohnt, sich freiwillig zu engagieren? Es ist die stete Nachfrage "}
-  }, {
-    "topics": ["53b416fba43aac62a2debda3", "53b416fba43aac62a2debda2"],
-    "updated": {"date": 1398338294301},
-    "created": {"date": 1398338294301},
-    "author": {"oid": "52d4f515fac246174c000006"},
-    "defaultduration": 15,
-    "defaultexecutiontype": "self",
-    "defaultfrequency": "once",
-    "number": "INS-45",
-    "titleI18n": {"de": "Kinderhüten"},
-    "descriptionI18n": {"de": "Leiste Freiwilligenarbeit und betreue einen Nachmittag lang Nachbarskinder."},
-    "qualityFactor": 1,
-    "textI18n": {"de": "Freiwilligenarbeit ist nicht selbstverständlich. In Zukunft wird es mehr freiwillige Mitarbeitende brauchen. Warum es sich lohnt, sich freiwillig zu engagieren? Es ist die stete Nachfrage "}
-  }, {
-    "topics": ["53b416fba43aac62a2debda3", "53b416fba43aac62a2debda2"],
-    "updated": {"date": 1398338294301},
-    "created": {"date": 1398338294301},
-    "author": {"oid": "52d4f515fac246174c000006"},
-    "defaultduration": 15,
-    "defaultexecutiontype": "self",
-    "defaultfrequency": "once",
-    "number": "INS-46",
-    "titleI18n": {"de": "Begleithilfe"},
-    "descriptionI18n": {"de": "Leiste Freiwilligenarbeit und begleite eine Person zu einem wichtigen Termin."},
-    "qualityFactor": 1,
-    "textI18n": {"de": "Freiwilligenarbeit ist nicht selbstverständlich. In Zukunft wird es mehr freiwillige Mitarbeitende brauchen. Warum es sich lohnt, sich freiwillig zu engagieren? Es ist die stete Nachfrage "}
-  }, {
-    "topics": ["53b416fba43aac62a2debda2"],
-    "updated": {"date": 1398338294301},
-    "created": {"date": 1398338294301},
-    "author": {"oid": "52d4f515fac246174c000006"},
-    "defaultduration": 15,
-    "defaultexecutiontype": "self",
-    "defaultfrequency": "once",
-    "number": "INS-47",
-    "titleI18n": {"de": "Reisebericht"},
-    "descriptionI18n": {"de": "Besuche eine interessante Veranstaltung zur Präsentation eines Reiseberichts."},
-    "qualityFactor": 1,
-    "textI18n": {"de": "Viele Erlebnisse, Erfahrungen und Sehenswürdigkeiten auf zahlreichen Reisen können in aussagekräftigen Multivisions-Shows zusammengefasst werden und vermittel damit, was Reisen in Menschen auslösen und bewirken kann."}
-  }, {
-    "topics": ["53b416fba43aac62a2debda2"],
-    "updated": {"date": 1398338294301},
-    "created": {"date": 1398338294301},
-    "author": {"oid": "52d4f515fac246174c000006"},
-    "defaultduration": 15,
-    "defaultexecutiontype": "self",
-    "defaultfrequency": "once",
-    "number": "INS-48",
-    "titleI18n": {"de": "Bundeshausführung"},
-    "descriptionI18n": {"de": "Nimm an einer Führung durch das Bundeshaus teil."},
-    "qualityFactor": 1,
-    "textI18n": {"de": "Während der Führung erhalten Sie Einblick in die Baugeschichte und die Architektur des Gebäudes sowie in die Arbeitsweise und Zusammensetzung des Parlamentes. Sie können das neue Medienzentrum des Bundeshauses mit all seinen technischen Möglichkeiten eines modernen Fernsehstudios sehen. Sie erhalten zudem die Möglichkeit, den Pressekonferenzsaal des Bundesrates zu besuchen."}
-  }, {
-    "topics": ["53b416fba43aac62a2debda2"],
-    "updated": {"date": 1398338294301},
-    "created": {"date": 1398338294301},
-    "author": {"oid": "52d4f515fac246174c000006"},
-    "defaultduration": 15,
-    "defaultexecutiontype": "self",
-    "defaultfrequency": "once",
-    "number": "INS-49",
-    "titleI18n": {"de": "Molkereiführung"},
-    "descriptionI18n": {"de": "Nimm an einer Führung durch eine Molkerei/Käserei teil."},
-    "qualityFactor": 1,
-    "textI18n": {}
-  }, {
-    "topics": ["53b416fba43aac62a2debda3", "53b416fba43aac62a2debda2"],
-    "updated": {"date": 1398338294301},
-    "created": {"date": 1398338294301},
-    "author": {"oid": "52d4f515fac246174c000006"},
-    "defaultduration": 15,
-    "defaultexecutiontype": "self",
-    "defaultfrequency": "once",
-    "number": "INS-50",
-    "titleI18n": {"de": "Spitalbesuch"},
-    "descriptionI18n": {"de": "Besuche eine fremde Person in einem Spital und bereite ihr so eine Freude."},
-    "qualityFactor": 1,
-    "textI18n": {}
-  }, {
-    "topics": ["53b416fba43aac62a2debda3", "53b416fba43aac62a2debda2"],
-    "updated": {"date": 1398338294301},
-    "created": {"date": 1398338294301},
-    "author": {"oid": "52d4f515fac246174c000006"},
-    "defaultduration": 15,
-    "defaultexecutiontype": "self",
-    "defaultfrequency": "once",
-    "number": "INS-51",
-    "titleI18n": {"de": "Pflegeheimbesuch"},
-    "descriptionI18n": {"de": "Mache einen Besuch in einem Pflegeheim und leiste der Person Gesellschaft."},
-    "qualityFactor": 1,
-    "textI18n": {}
-  }, {
-    "topics": ["53b416fba43aac62a2debda3", "53b416fba43aac62a2debda2"],
-    "updated": {"date": 1398338294301},
-    "created": {"date": 1398338294301},
-    "author": {"oid": "52d4f515fac246174c000006"},
-    "defaultduration": 15,
-    "defaultexecutiontype": "self",
-    "defaultfrequency": "once",
-    "number": "INS-52",
-    "titleI18n": {"de": "Verwandtenbesuch"},
-    "descriptionI18n": {"de": "Besuche Verwandte, die du schon länger nicht mehr gesehen hast."},
-    "qualityFactor": 1,
-    "textI18n": {}
-  }
+    {
+        "_id": {
+            "$oid": "54860a9fb6953fc567e3e126"
+        },
+        "author": {
+            "oid": "52d4f515fac246174c000006"
+        },
+        "created": {
+            "date": 1398338294301
+        },
+        "defaultduration": 15,
+        "defaultexecutiontype": "self",
+        "defaultfrequency": "once",
+        "descriptionI18n": {
+            "de": "Bereite mit Freunden ein gesundes und gutes Essen zu."
+        },
+        "number": "INS-1",
+        "qualityFactor": 1,
+        "textI18n": {},
+        "titleI18n": {
+            "de": "Gesundes Essen"
+        },
+        "topics": [
+            "53b416cfa43aac62a2debda1",
+            "53b416fba43aac62a2debda3"
+        ],
+        "updated": {
+            "date": 1398338294301
+        }
+    },
+    {
+        "_id": {
+            "$oid": "54860a9fb6953fc567e3e127"
+        },
+        "author": {
+            "oid": "52d4f515fac246174c000006"
+        },
+        "created": {
+            "date": 1398338294301
+        },
+        "defaultduration": 15,
+        "defaultexecutiontype": "self",
+        "defaultfrequency": "once",
+        "descriptionI18n": {
+            "de": "Geniesse mit Freunden einen Fussball-Abend zu Hause vor dem Fernseher."
+        },
+        "number": "INS-2",
+        "qualityFactor": 1,
+        "textI18n": {},
+        "titleI18n": {
+            "de": "Fussball-Abend"
+        },
+        "topics": [
+            "53b416fba43aac62a2debda3"
+        ],
+        "updated": {
+            "date": 1398338294301
+        }
+    },
+    {
+        "_id": {
+            "$oid": "54860a9fb6953fc567e3e128"
+        },
+        "author": {
+            "oid": "52d4f515fac246174c000006"
+        },
+        "created": {
+            "date": 1398338294301
+        },
+        "defaultduration": 15,
+        "defaultexecutiontype": "self",
+        "defaultfrequency": "once",
+        "descriptionI18n": {
+            "de": "Lade Freunde ein, um einen Kinofilm vor dem Fernseher zu schauen."
+        },
+        "number": "INS-3",
+        "qualityFactor": 1,
+        "textI18n": {},
+        "titleI18n": {
+            "de": "Heimkino"
+        },
+        "topics": [
+            "53b416fba43aac62a2debda3"
+        ],
+        "updated": {
+            "date": 1398338294301
+        }
+    },
+    {
+        "_id": {
+            "$oid": "54860a9fb6953fc567e3e129"
+        },
+        "author": {
+            "oid": "52d4f515fac246174c000006"
+        },
+        "created": {
+            "date": 1398338294301
+        },
+        "defaultduration": 15,
+        "defaultexecutiontype": "self",
+        "defaultfrequency": "once",
+        "descriptionI18n": {
+            "de": "Schau dir einen Film im Kino an, der dir gef\u00e4llt und Freude bereitet."
+        },
+        "number": "INS-4",
+        "qualityFactor": 1,
+        "textI18n": {},
+        "titleI18n": {
+            "de": "Kino"
+        },
+        "topics": [],
+        "updated": {
+            "date": 1398338294301
+        }
+    },
+    {
+        "_id": {
+            "$oid": "54860a9fb6953fc567e3e12a"
+        },
+        "author": {
+            "oid": "52d4f515fac246174c000006"
+        },
+        "created": {
+            "date": 1398338294301
+        },
+        "defaultduration": 15,
+        "defaultexecutiontype": "self",
+        "defaultfrequency": "once",
+        "descriptionI18n": {
+            "de": "Besuche eine Ausstellung eines ber\u00fchmten K\u00fcnstlers."
+        },
+        "number": "INS-5",
+        "qualityFactor": 1,
+        "textI18n": {},
+        "titleI18n": {
+            "de": "Kunstgalerie"
+        },
+        "topics": [
+            "53b416fba43aac62a2debda3",
+            "53b416fba43aac62a2debda2"
+        ],
+        "updated": {
+            "date": 1398338294301
+        }
+    },
+    {
+        "_id": {
+            "$oid": "54860a9fb6953fc567e3e12b"
+        },
+        "author": {
+            "oid": "52d4f515fac246174c000006"
+        },
+        "created": {
+            "date": 1398338294301
+        },
+        "defaultduration": 15,
+        "defaultexecutiontype": "self",
+        "defaultfrequency": "once",
+        "descriptionI18n": {
+            "de": "Schau dir mit Freunden eine Oper an."
+        },
+        "number": "INS-6",
+        "qualityFactor": 1,
+        "textI18n": {},
+        "titleI18n": {
+            "de": "Oper"
+        },
+        "topics": [
+            "53b416fba43aac62a2debda3",
+            "53b416fba43aac62a2debda2"
+        ],
+        "updated": {
+            "date": 1398338294301
+        }
+    },
+    {
+        "_id": {
+            "$oid": "54860a9fb6953fc567e3e12c"
+        },
+        "author": {
+            "oid": "52d4f515fac246174c000006"
+        },
+        "created": {
+            "date": 1398338294301
+        },
+        "defaultduration": 15,
+        "defaultexecutiontype": "self",
+        "defaultfrequency": "once",
+        "descriptionI18n": {
+            "de": "Besuche mit Freunden ein klassisches Konzert."
+        },
+        "number": "INS-7",
+        "qualityFactor": 1,
+        "textI18n": {},
+        "titleI18n": {
+            "de": "Klassische Musik"
+        },
+        "topics": [
+            "53b416fba43aac62a2debda3",
+            "53b416fba43aac62a2debda2"
+        ],
+        "updated": {
+            "date": 1398338294301
+        }
+    },
+    {
+        "_id": {
+            "$oid": "54860a9fb6953fc567e3e12d"
+        },
+        "author": {
+            "oid": "52d4f515fac246174c000006"
+        },
+        "created": {
+            "date": 1398338294301
+        },
+        "defaultduration": 15,
+        "defaultexecutiontype": "self",
+        "defaultfrequency": "once",
+        "descriptionI18n": {
+            "de": "Mache mit Freunden einen Ausflug ins Blaue."
+        },
+        "number": "INS-8",
+        "qualityFactor": 1,
+        "textI18n": {
+            "de": "Benutze dabei \u00d6ffentliche Verkehrsmittel."
+        },
+        "titleI18n": {
+            "de": "Ausflug"
+        },
+        "topics": [
+            "53b416fba43aac62a2debda3",
+            "53b416fba43aac62a2debda2"
+        ],
+        "updated": {
+            "date": 1398338294301
+        }
+    },
+    {
+        "_id": {
+            "$oid": "54860a9fb6953fc567e3e12e"
+        },
+        "author": {
+            "oid": "52d4f515fac246174c000006"
+        },
+        "created": {
+            "date": 1398338294301
+        },
+        "defaultduration": 15,
+        "defaultexecutiontype": "self",
+        "defaultfrequency": "once",
+        "descriptionI18n": {
+            "de": "Triff dich mit Freunden zum Kaffeetrinken und Kuchenessen und geniesse die Gesellschaft."
+        },
+        "number": "INS-9",
+        "qualityFactor": 1,
+        "textI18n": {},
+        "titleI18n": {
+            "de": "Kaffee und Kuchen"
+        },
+        "topics": [
+            "53b416cfa43aac62a2debda1",
+            "53b416fba43aac62a2debda3"
+        ],
+        "updated": {
+            "date": 1398338294301
+        }
+    },
+    {
+        "_id": {
+            "$oid": "54860a9fb6953fc567e3e12f"
+        },
+        "author": {
+            "oid": "52d4f515fac246174c000006"
+        },
+        "created": {
+            "date": 1398338294301
+        },
+        "defaultduration": 15,
+        "defaultexecutiontype": "self",
+        "defaultfrequency": "once",
+        "descriptionI18n": {
+            "de": "Gehe mit Freunden zum Wandern."
+        },
+        "number": "INS-10",
+        "qualityFactor": 1,
+        "textI18n": {},
+        "titleI18n": {
+            "de": "Wandern"
+        },
+        "topics": [
+            "53b416fba43aac62a2debda3",
+            "53b416fba43aac62a2debda2"
+        ],
+        "updated": {
+            "date": 1398338294301
+        }
+    },
+    {
+        "_id": {
+            "$oid": "54860a9fb6953fc567e3e130"
+        },
+        "author": {
+            "oid": "52d4f515fac246174c000006"
+        },
+        "created": {
+            "date": 1398338294301
+        },
+        "defaultduration": 15,
+        "defaultexecutiontype": "self",
+        "defaultfrequency": "once",
+        "descriptionI18n": {
+            "de": "Mache mit Freunden einen Spaziergang durch einen Ort nach Wahl."
+        },
+        "number": "INS-11",
+        "qualityFactor": 1,
+        "textI18n": {
+            "de": "Besuche mit Freunden einen Ort nach Wahl und schaue dir verschiedene Bauten, Skulupturen, Br\u00fccken, G\u00e4rten und Pl\u00e4tze an und betrachte die Architektur und das Umfeld und lass das Bild auf dich wirken."
+        },
+        "titleI18n": {
+            "de": "Stadtspaziergang"
+        },
+        "topics": [
+            "53b416fba43aac62a2debda3",
+            "53b416fba43aac62a2debda2"
+        ],
+        "updated": {
+            "date": 1398338294301
+        }
+    },
+    {
+        "_id": {
+            "$oid": "54860a9fb6953fc567e3e131"
+        },
+        "author": {
+            "oid": "52d4f515fac246174c000006"
+        },
+        "created": {
+            "date": 1398338294301
+        },
+        "defaultduration": 15,
+        "defaultexecutiontype": "self",
+        "defaultfrequency": "once",
+        "descriptionI18n": {
+            "de": "Gehe mit Freunden zum Kegeln oder Bowling."
+        },
+        "number": "INS-12",
+        "qualityFactor": 1,
+        "textI18n": {
+            "de": "Aus dem Kegeln (9 Kegel im Quadrat auf der Spitze stehend) hervorgegangen und daher eng mit ihm verwandt ist das Bowling, bei dem zehn Kegel (Pins) in Form eines gleichseitigen Dreiecks aufgestellt werden."
+        },
+        "titleI18n": {
+            "de": "Kegeln"
+        },
+        "topics": [
+            "53b416fba43aac62a2debda3",
+            "53b416fba43aac62a2debda2"
+        ],
+        "updated": {
+            "date": 1398338294301
+        }
+    },
+    {
+        "_id": {
+            "$oid": "54860a9fb6953fc567e3e132"
+        },
+        "author": {
+            "oid": "52d4f515fac246174c000006"
+        },
+        "created": {
+            "date": 1398338294301
+        },
+        "defaultduration": 15,
+        "defaultexecutiontype": "self",
+        "defaultfrequency": "once",
+        "descriptionI18n": {
+            "de": "Lade Freunde ein zum Nachtessen."
+        },
+        "number": "INS-13",
+        "qualityFactor": 1,
+        "textI18n": {},
+        "titleI18n": {
+            "de": "Nachtessen"
+        },
+        "topics": [
+            "53b416cfa43aac62a2debda1",
+            "53b416fba43aac62a2debda3"
+        ],
+        "updated": {
+            "date": 1398338294301
+        }
+    },
+    {
+        "_id": {
+            "$oid": "54860a9fb6953fc567e3e133"
+        },
+        "author": {
+            "oid": "52d4f515fac246174c000006"
+        },
+        "created": {
+            "date": 1398338294301
+        },
+        "defaultduration": 15,
+        "defaultexecutiontype": "self",
+        "defaultfrequency": "once",
+        "descriptionI18n": {
+            "de": "Veranstalte mit Freunden einen Jass-Abend."
+        },
+        "number": "INS-14",
+        "qualityFactor": 1,
+        "textI18n": {},
+        "titleI18n": {
+            "de": "Jassen"
+        },
+        "topics": [
+            "53b416fba43aac62a2debda3",
+            "53b416fba43aac62a2debda2"
+        ],
+        "updated": {
+            "date": 1398338294301
+        }
+    },
+    {
+        "_id": {
+            "$oid": "54860a9fb6953fc567e3e134"
+        },
+        "author": {
+            "oid": "52d4f515fac246174c000006"
+        },
+        "created": {
+            "date": 1398338294301
+        },
+        "defaultduration": 15,
+        "defaultexecutiontype": "self",
+        "defaultfrequency": "once",
+        "descriptionI18n": {
+            "de": "Nimm an einem Sprachkurs teil, um eine Sprache zu erlernen oder zu verbessern."
+        },
+        "number": "INS-15",
+        "qualityFactor": 1,
+        "textI18n": {
+            "de": "Sprachen verbinden und \u00f6ffnen neue Horizonte. Sie lernen auf genussvolle, ganzheitliche Art und Weise die Sprache oder k\u00f6nnen Ihre Vorkenntnisse auffrischen. Sie erwerben entweder die ersten Grundlagen, um sich m\u00fcndlich und schriftlich auszudr\u00fccken. Sie k\u00f6nnen einfache Informationen austauschen, z.B. eine Mahlzeit bestellen oder einfach Texte lesen und \u00fcbersetzen. Sie k\u00f6nnen sich fliessender ausdr\u00fccken und finden sich auf Reisen zurecht. Sie k\u00f6nnen Gespr\u00e4che im Freundeskreis f\u00fchren. Sie sprechen in vielen Situationen fliessend."
+        },
+        "titleI18n": {
+            "de": "(Sprach)Kurs"
+        },
+        "topics": [
+            "53b416fba43aac62a2debda2"
+        ],
+        "updated": {
+            "date": 1398338294301
+        }
+    },
+    {
+        "_id": {
+            "$oid": "54860a9fb6953fc567e3e135"
+        },
+        "author": {
+            "oid": "52d4f515fac246174c000006"
+        },
+        "created": {
+            "date": 1398338294301
+        },
+        "defaultduration": 15,
+        "defaultexecutiontype": "self",
+        "defaultfrequency": "once",
+        "descriptionI18n": {
+            "de": "Mache einen Fitness-Kurs oder trainiere deine Fitness, um in Bewegung zu bleiben."
+        },
+        "number": "INS-16",
+        "qualityFactor": 1,
+        "textI18n": {
+            "de": "Ein abwechslungsreiches Ganzk\u00f6rpertraining umfasst Gymnastik, Krafttraining, Ausdauer, Beweglichkeit, Koordination, Reaktion, Konzentration, Balance. Bei vielf\u00e4ltigen Fitnessaktivit\u00e4ten wird der Schwerpunkt auf Belastung und Entspannung gelegt und dabei auf eine individuelle Dosierung geachtet. Die Spanne reicht von Aerobic, Krafttraining bis zur progressiven Muskelentspannung nach Jacobson."
+        },
+        "titleI18n": {
+            "de": "Ganzk\u00f6rper-Fitness-Training"
+        },
+        "topics": [
+            "53b416fba43aac62a2debda2"
+        ],
+        "updated": {
+            "date": 1398338294301
+        }
+    },
+    {
+        "_id": {
+            "$oid": "54860a9fb6953fc567e3e136"
+        },
+        "author": {
+            "oid": "52d4f515fac246174c000006"
+        },
+        "created": {
+            "date": 1398338294301
+        },
+        "defaultduration": 15,
+        "defaultexecutiontype": "self",
+        "defaultfrequency": "once",
+        "descriptionI18n": {
+            "de": "Gehe ins Wasserfitness-Training."
+        },
+        "number": "INS-17",
+        "qualityFactor": 1,
+        "textI18n": {
+            "de": "Das ideale Bewegungstraining im Wasser. Mit Wasserrfitness werden die wichtigen Konditionsfaktoren wie Beweglichkeit, Kraft und Ausdauer wirkungsvoll trainiert. Dies ist entspannend und nirgends so schonend m\u00f6glich wie im Wasser. Die abwechslungsreichen \u00dcbungen werden im brusttiefen Wasser ausgef\u00fchrt, deshalb eignen sie sich auch f\u00fcr Nichtschwimmerinnen und Nichtschwimmer."
+        },
+        "titleI18n": {
+            "de": "Wasser-Fitness"
+        },
+        "topics": [
+            "53b416fba43aac62a2debda2"
+        ],
+        "updated": {
+            "date": 1398338294301
+        }
+    },
+    {
+        "_id": {
+            "$oid": "54860a9fb6953fc567e3e137"
+        },
+        "author": {
+            "oid": "52d4f515fac246174c000006"
+        },
+        "created": {
+            "date": 1398338294301
+        },
+        "defaultduration": 15,
+        "defaultexecutiontype": "self",
+        "defaultfrequency": "once",
+        "descriptionI18n": {
+            "de": "Mache regelm\u00e4ssig Wassergymnastik."
+        },
+        "number": "INS-18",
+        "qualityFactor": 1,
+        "textI18n": {
+            "de": "Gymnastik im warmen Wasser f\u00f6rdert die Beweglichkeit, entlastet die Gelenke, kr\u00e4ftigt die Muskulatur, lindert rheumatische Beschwerden, regt den Blutkreislauf an und wirkt \u00fcberdies wohltuend und entspannend.\n"
+        },
+        "titleI18n": {
+            "de": "Wassergymnastik"
+        },
+        "topics": [
+            "53b416fba43aac62a2debda2"
+        ],
+        "updated": {
+            "date": 1398338294301
+        }
+    },
+    {
+        "_id": {
+            "$oid": "54860a9fb6953fc567e3e138"
+        },
+        "author": {
+            "oid": "52d4f515fac246174c000006"
+        },
+        "created": {
+            "date": 1398338294301
+        },
+        "defaultduration": 15,
+        "defaultexecutiontype": "self",
+        "defaultfrequency": "once",
+        "descriptionI18n": {
+            "de": "Triff dich mit Freunden zum Schwimmen."
+        },
+        "number": "INS-19",
+        "qualityFactor": 1,
+        "textI18n": {
+            "de": "In der Badi, im Fluss oder im See."
+        },
+        "titleI18n": {
+            "de": "Schwimmen"
+        },
+        "topics": [
+            "53b416fba43aac62a2debda3",
+            "53b416fba43aac62a2debda2"
+        ],
+        "updated": {
+            "date": 1398338294301
+        }
+    },
+    {
+        "_id": {
+            "$oid": "54860a9fb6953fc567e3e139"
+        },
+        "author": {
+            "oid": "52d4f515fac246174c000006"
+        },
+        "created": {
+            "date": 1398338294301
+        },
+        "defaultduration": 15,
+        "defaultexecutiontype": "self",
+        "defaultfrequency": "once",
+        "descriptionI18n": {
+            "de": "Mache regelm\u00e4ssig Nordic-Walking."
+        },
+        "number": "INS-20",
+        "qualityFactor": 1,
+        "textI18n": {
+            "de": "Nordic Walking ist ein Gesundheitstraining. Es fordert und f\u00f6rdert die ganzheitliche Bewegung mit aktiver Armarbeit durch den Einsatz von Walking-St\u00f6cken. Trotz h\u00f6herem Bewegungsengagement reduziert Nordic Walking die Belastung der Knie- und H\u00fcftgelenke und entlastet die Wirbels\u00e4ule. Sie lernen beim entspannten Training kontinuierlich Ihre Ausdauer zu steigern."
+        },
+        "titleI18n": {
+            "de": "Nordic-Walking"
+        },
+        "topics": [
+            "53b416fba43aac62a2debda2"
+        ],
+        "updated": {
+            "date": 1398338294301
+        }
+    },
+    {
+        "_id": {
+            "$oid": "54860a9fb6953fc567e3e13a"
+        },
+        "author": {
+            "oid": "52d4f515fac246174c000006"
+        },
+        "created": {
+            "date": 1398338294301
+        },
+        "defaultduration": 15,
+        "defaultexecutiontype": "self",
+        "defaultfrequency": "once",
+        "descriptionI18n": {
+            "de": "Besuche mit Freunden einen Volkstanzkurs."
+        },
+        "number": "INS-21",
+        "qualityFactor": 1,
+        "textI18n": {
+            "de": "Sie haben Freude an Musik und Bewegung und m\u00f6chten etwas f\u00fcr K\u00f6rper und Geist tun? Mit internationalen Volkst\u00e4nzen k\u00f6nnen Sie Koordination, Reaktion und Konzentration in ungezwungener, fr\u00f6hlicher Atmosph\u00e4re \u00fcben und trainieren. Unter Aufsicht von Tanzleiterinnen lernen Sie sich in der Gruppe zur Musik zu bewegen."
+        },
+        "titleI18n": {
+            "de": "Volkstanzkurs"
+        },
+        "topics": [
+            "53b416fba43aac62a2debda3",
+            "53b416fba43aac62a2debda2"
+        ],
+        "updated": {
+            "date": 1398338294301
+        }
+    },
+    {
+        "_id": {
+            "$oid": "54860a9fb6953fc567e3e13b"
+        },
+        "author": {
+            "oid": "52d4f515fac246174c000006"
+        },
+        "created": {
+            "date": 1398338294301
+        },
+        "defaultduration": 15,
+        "defaultexecutiontype": "self",
+        "defaultfrequency": "once",
+        "descriptionI18n": {
+            "de": "Besuche mit einer Partnerin bzw. einem Partner einen Standardtanzkurs."
+        },
+        "number": "INS-22",
+        "qualityFactor": 1,
+        "textI18n": {
+            "de": "In ungezwungener Atmosph\u00e4re lernen Sie zum Beispiel Standardt\u00e4nze und lateinamerikanischen T\u00e4nze. Der Spass am Tanzen und an der Bewegung steht im Vordergrund."
+        },
+        "titleI18n": {
+            "de": "Standardtanzkurs"
+        },
+        "topics": [
+            "53b416fba43aac62a2debda3",
+            "53b416fba43aac62a2debda2"
+        ],
+        "updated": {
+            "date": 1398338294301
+        }
+    },
+    {
+        "_id": {
+            "$oid": "54860a9fb6953fc567e3e13c"
+        },
+        "author": {
+            "oid": "52d4f515fac246174c000006"
+        },
+        "created": {
+            "date": 1398338294301
+        },
+        "defaultduration": 15,
+        "defaultexecutiontype": "self",
+        "defaultfrequency": "once",
+        "descriptionI18n": {
+            "de": "Gehe mit m\u00e4nnlichen Freunden ins M\u00e4nnerturnen."
+        },
+        "number": "INS-23",
+        "qualityFactor": 1,
+        "textI18n": {
+            "de": "In den Fitness- und Gymnastik-Lektionen werden Beweglichkeit, Kraft, Ausdauer und Koordination trainiert. Das gemeinsame Erleben der Bewegung steht im Mittelpunkt."
+        },
+        "titleI18n": {
+            "de": "M\u00e4nnerturnen"
+        },
+        "topics": [
+            "53b416fba43aac62a2debda3",
+            "53b416fba43aac62a2debda2"
+        ],
+        "updated": {
+            "date": 1398338294301
+        }
+    },
+    {
+        "_id": {
+            "$oid": "54860a9fb6953fc567e3e13d"
+        },
+        "author": {
+            "oid": "52d4f515fac246174c000006"
+        },
+        "created": {
+            "date": 1398338294301
+        },
+        "defaultduration": 15,
+        "defaultexecutiontype": "self",
+        "defaultfrequency": "once",
+        "descriptionI18n": {
+            "de": "Mache regelm\u00e4ssiges Training mit Bewegung zur Musik."
+        },
+        "number": "INS-24",
+        "qualityFactor": 1,
+        "textI18n": {
+            "de": "Trainieren Sie Bewegung zur Musik mit Aufw\u00e4rmtraining, Schrittkombinationen, Muskel- und Beweglichkeitstraining und Koordinationselementen, mal mit und mal ohne Handger\u00e4te. Wichtig ist die Freude an rhythmischer Bewegung."
+        },
+        "titleI18n": {
+            "de": "Musik und Bewegung"
+        },
+        "topics": [
+            "53b416fba43aac62a2debda2"
+        ],
+        "updated": {
+            "date": 1398338294301
+        }
+    },
+    {
+        "_id": {
+            "$oid": "54860a9fb6953fc567e3e13e"
+        },
+        "author": {
+            "oid": "52d4f515fac246174c000006"
+        },
+        "created": {
+            "date": 1398338294301
+        },
+        "defaultduration": 15,
+        "defaultexecutiontype": "self",
+        "defaultfrequency": "once",
+        "descriptionI18n": {
+            "de": "Mache regelm\u00e4ssiges, kreatives Tanzen mit Bewegung."
+        },
+        "number": "INS-25",
+        "qualityFactor": 1,
+        "textI18n": {
+            "de": "Mit Bewegungs-, Atem- und Wahrnehmungs\u00fcbungen, sowie Entspannung und spielerischem Tanz kannst du dich auf Entdeckungsreise begeben."
+        },
+        "titleI18n": {
+            "de": "Kreatives tanzen und bewegen"
+        },
+        "topics": [
+            "53b416fba43aac62a2debda2"
+        ],
+        "updated": {
+            "date": 1398338294301
+        }
+    },
+    {
+        "_id": {
+            "$oid": "54860a9fb6953fc567e3e13f"
+        },
+        "author": {
+            "oid": "52d4f515fac246174c000006"
+        },
+        "created": {
+            "date": 1398338294301
+        },
+        "defaultduration": 15,
+        "defaultexecutiontype": "self",
+        "defaultfrequency": "once",
+        "descriptionI18n": {
+            "de": "Mache Yoga als ganzheitliches Training."
+        },
+        "number": "INS-26",
+        "qualityFactor": 1,
+        "textI18n": {
+            "de": "Yoga als ganzheitliches Training f\u00fcr bessere Stabilit\u00e4t, Haltung und Entspannung."
+        },
+        "titleI18n": {
+            "de": "Yoga"
+        },
+        "topics": [
+            "53b416fba43aac62a2debda2"
+        ],
+        "updated": {
+            "date": 1398338294301
+        }
+    },
+    {
+        "_id": {
+            "$oid": "54860a9fb6953fc567e3e140"
+        },
+        "author": {
+            "oid": "52d4f515fac246174c000006"
+        },
+        "created": {
+            "date": 1398338294301
+        },
+        "defaultduration": 15,
+        "defaultexecutiontype": "self",
+        "defaultfrequency": "once",
+        "descriptionI18n": {
+            "de": "Triff dich mit Freunden zum Schachspielen."
+        },
+        "number": "INS-27",
+        "qualityFactor": 1,
+        "textI18n": {
+            "de": "Der Treffpunkt f\u00fcr alle Schach-Interessierten Sie spielen gerne Schach und m\u00f6chten sich mit Gleichgesinnten regelm\u00e4ssig zu einer Partie treffen? In einer gem\u00fctlichen\nSpielrunde treffen Sie auf interessante Gegner. Keine Anmeldung n\u00f6tig! Ein Einstieg ist jederzeit m\u00f6glich."
+        },
+        "titleI18n": {
+            "de": "Schachspielen"
+        },
+        "topics": [
+            "53b416fba43aac62a2debda3",
+            "53b416fba43aac62a2debda2"
+        ],
+        "updated": {
+            "date": 1398338294301
+        }
+    },
+    {
+        "_id": {
+            "$oid": "54860a9fb6953fc567e3e141"
+        },
+        "author": {
+            "oid": "52d4f515fac246174c000006"
+        },
+        "created": {
+            "date": 1398338294301
+        },
+        "defaultduration": 15,
+        "defaultexecutiontype": "self",
+        "defaultfrequency": "once",
+        "descriptionI18n": {
+            "de": "Gehe ins Pilates-Training und st\u00e4rke dadurch deine St\u00fctzmuskulatur."
+        },
+        "number": "INS-28",
+        "qualityFactor": 1,
+        "textI18n": {
+            "de": "Pilates kr\u00e4ftigt und stabilisiert Ihr K\u00f6rperzentrum. Es soll f\u00fcr eine korrekte und gesunde K\u00f6rperhaltung sorgen. Ziel ist die St\u00e4rkung der Muskulatur, besonders der St\u00fctzmuskulatur, die Verbesserung von Kondition und Bewegungskoordination, die Anregung des Kreislaufes und eine erh\u00f6hte K\u00f6rperwahrnehmung. Es entsteht eine Balance zwischen K\u00f6rper und Geist und Seele."
+        },
+        "titleI18n": {
+            "de": "Pilates"
+        },
+        "topics": [
+            "53b416fba43aac62a2debda2"
+        ],
+        "updated": {
+            "date": 1398338294301
+        }
+    },
+    {
+        "_id": {
+            "$oid": "54860a9fb6953fc567e3e142"
+        },
+        "author": {
+            "oid": "52d4f515fac246174c000006"
+        },
+        "created": {
+            "date": 1398338294301
+        },
+        "defaultduration": 15,
+        "defaultexecutiontype": "self",
+        "defaultfrequency": "once",
+        "descriptionI18n": {
+            "de": "Mache Tai Chi und/oder Qi Gong zur Meditation und Erhaltung der Gesundheit."
+        },
+        "number": "INS-29",
+        "qualityFactor": 1,
+        "textI18n": {
+            "de": "Tai Ji ist eine alte chinesische Kunst der Meditation in Bewegung. Inneres und \u00c4usseres, Ruhe und Bewegung, Kraft und Weichheit, Anspannung und Entspannung sind untrennbar miteinander verbunden. T'ai Ji \u00fcben heisst, die Polarit\u00e4t und den steten Wandel im Leben zu erkennen. Die Tai-Ji \u00e4hnlichen Qi Gong-\u00dcbungen wurde von Meister Lin Hou Sheng entwickelt und sind leicht zu erlernen und sehr wirksam zur Erhaltung der Gesundheit und Vorbeugung gegen Erkrankungen."
+        },
+        "titleI18n": {
+            "de": "Tai Chi - Qi Gong"
+        },
+        "topics": [
+            "53b416fba43aac62a2debda2"
+        ],
+        "updated": {
+            "date": 1398338294301
+        }
+    },
+    {
+        "_id": {
+            "$oid": "54860a9fb6953fc567e3e143"
+        },
+        "author": {
+            "oid": "52d4f515fac246174c000006"
+        },
+        "created": {
+            "date": 1398338294301
+        },
+        "defaultduration": 15,
+        "defaultexecutiontype": "self",
+        "defaultfrequency": "once",
+        "descriptionI18n": {
+            "de": "Trainiere in Gemeinschaft deine Gehirnleistung mit Hilfe von Denksport-Aufgaben (z.B. Memory, Sudoku, o.\u00e4.)."
+        },
+        "number": "INS-30",
+        "qualityFactor": 1,
+        "textI18n": {
+            "de": "In anregender Gemeinschaft trainieren Sie Konzentration, Wortfindung, Kurz- und Langzeitged\u00e4chtnis, logisches und bildhaftes Denken. Indem wir mehr Denkbahnen aktivieren und verkn\u00fcpfen, erreichen Sie ein besseres Lebensgef\u00fchl."
+        },
+        "titleI18n": {
+            "de": "Denk-Fitness"
+        },
+        "topics": [
+            "53b416fba43aac62a2debda3",
+            "53b416fba43aac62a2debda2"
+        ],
+        "updated": {
+            "date": 1398338294301
+        }
+    },
+    {
+        "_id": {
+            "$oid": "54860a9fb6953fc567e3e144"
+        },
+        "author": {
+            "oid": "52d4f515fac246174c000006"
+        },
+        "created": {
+            "date": 1398338294301
+        },
+        "defaultduration": 15,
+        "defaultexecutiontype": "self",
+        "defaultfrequency": "once",
+        "descriptionI18n": {
+            "de": "Mache regelm\u00e4ssiges, ganzheitliches R\u00fcckentraining."
+        },
+        "number": "INS-31",
+        "qualityFactor": 1,
+        "textI18n": {
+            "de": "Durch gezielte \u00dcbungen in den Bereichen Wahrnehmung, Beweglichkeit, Kraft, Stabilisation, Muskeldehnung, Atmung und Entspannung helfen Sie Ihrem R\u00fccken, fit zu bleiben."
+        },
+        "titleI18n": {
+            "de": "R\u00fcckentraining"
+        },
+        "topics": [
+            "53b416fba43aac62a2debda2"
+        ],
+        "updated": {
+            "date": 1398338294301
+        }
+    },
+    {
+        "_id": {
+            "$oid": "54860a9fb6953fc567e3e145"
+        },
+        "author": {
+            "oid": "52d4f515fac246174c000006"
+        },
+        "created": {
+            "date": 1398338294301
+        },
+        "defaultduration": 15,
+        "defaultexecutiontype": "self",
+        "defaultfrequency": "once",
+        "descriptionI18n": {
+            "de": "Trainiere regelm\u00e4ssig nach der Feldenkrais-Methode."
+        },
+        "number": "INS-32",
+        "qualityFactor": 1,
+        "textI18n": {
+            "de": "Mit der Feldenkrais-Methode lernen Sie, bewusster und achtsamer mit Ihrem K\u00f6rper umzugehen, Verspannungen und Schmerzen sanft aufzul\u00f6sen und zu Bewegungsfreude und Lebendigkeit im Alltag zur\u00fcckzufinden. Feldenkrais ist eine umfassende Lernmethode und keine eigentliche Therapieform."
+        },
+        "titleI18n": {
+            "de": "Feldenkrais"
+        },
+        "topics": [
+            "53b416fba43aac62a2debda2"
+        ],
+        "updated": {
+            "date": 1398338294301
+        }
+    },
+    {
+        "_id": {
+            "$oid": "54860a9fb6953fc567e3e146"
+        },
+        "author": {
+            "oid": "52d4f515fac246174c000006"
+        },
+        "created": {
+            "date": 1398338294301
+        },
+        "defaultduration": 15,
+        "defaultexecutiontype": "self",
+        "defaultfrequency": "once",
+        "descriptionI18n": {
+            "de": "Mache einen Computer-Kurs und lerne, besser mit dem Computer umzugehen."
+        },
+        "number": "INS-33",
+        "qualityFactor": 1,
+        "textI18n": {
+            "de": "Den Computer und seine Anwendungen Schritt f\u00fcr Schritt kennen lernen. Es soll die Angst genommen werden, mit einem Computer umzugehen, das richtige Ein- und Ausschalten, den Umgang mit Maus und Tastatur sowie das Kennenlernen von Startmen\u00fc und Desktopoberfl\u00e4che. Sie schreiben erste Texte, ver\u00e4ndern und speichern diese."
+        },
+        "titleI18n": {
+            "de": "Computerkurs"
+        },
+        "topics": [
+            "53b416fba43aac62a2debda2"
+        ],
+        "updated": {
+            "date": 1398338294301
+        }
+    },
+    {
+        "_id": {
+            "$oid": "54860a9fb6953fc567e3e147"
+        },
+        "author": {
+            "oid": "52d4f515fac246174c000006"
+        },
+        "created": {
+            "date": 1398338294301
+        },
+        "defaultduration": 15,
+        "defaultexecutiontype": "self",
+        "defaultfrequency": "once",
+        "descriptionI18n": {
+            "de": "Sei kreativ und \u00fcbe dich in bildnerischem Gestalten."
+        },
+        "number": "INS-34",
+        "qualityFactor": 1,
+        "textI18n": {
+            "de": "Gestalten Sie je nach Wunsch Kompositionen in Kohle, Bleistift, Farbstift, Kreide, Aquarell oder Acryl. Experimentieren Sie, M\u00f6glichkeiten malerisch festzuhalten und eigene Wirklichkeiten abzubilden. Sie entdecken Ihre Kreativit\u00e4t und k\u00f6nnen diese mit wesentlichen Grundlagen des bildnerischen Gestalten kombinieren."
+        },
+        "titleI18n": {
+            "de": "Zeichnen und Malen"
+        },
+        "topics": [
+            "53b416fba43aac62a2debda2"
+        ],
+        "updated": {
+            "date": 1398338294301
+        }
+    },
+    {
+        "_id": {
+            "$oid": "54860a9fb6953fc567e3e148"
+        },
+        "author": {
+            "oid": "52d4f515fac246174c000006"
+        },
+        "created": {
+            "date": 1398338294301
+        },
+        "defaultduration": 15,
+        "defaultexecutiontype": "self",
+        "defaultfrequency": "once",
+        "descriptionI18n": {
+            "de": "Besuche einen Malkurs und \u00fcbe dich im Darstellen deiner Eindr\u00fccke."
+        },
+        "number": "INS-35",
+        "qualityFactor": 1,
+        "textI18n": {
+            "de": "Ohne Leistungsdruck malen Sie das, was Sie bewegt. Sie vergessen Raum und Zeit und tauchen ein in eine besondere Stimmung aus Licht und Farben. Daf\u00fcr ist keine Malerfahrung notwendig und gemalt wird auf klein- oder grossformatigem Papier."
+        },
+        "titleI18n": {
+            "de": "Malkurs"
+        },
+        "topics": [
+            "53b416fba43aac62a2debda2"
+        ],
+        "updated": {
+            "date": 1398338294301
+        }
+    },
+    {
+        "_id": {
+            "$oid": "54860a9fb6953fc567e3e149"
+        },
+        "author": {
+            "oid": "52d4f515fac246174c000006"
+        },
+        "created": {
+            "date": 1398338294301
+        },
+        "defaultduration": 15,
+        "defaultexecutiontype": "self",
+        "defaultfrequency": "once",
+        "descriptionI18n": {
+            "de": "Mache einen Smartphone-Kurs und lerne, besser dein Smartphone einzusetzen."
+        },
+        "number": "INS-36",
+        "qualityFactor": 1,
+        "textI18n": {
+            "de": "Das iPhone ist mehr als nur ein Telefon. Lerne im Kurs die vielf\u00e4ltigen M\u00f6glichkeiten kennen, die Ihnen das iPhone bietet. Die Themen: wichtige Grundeinstellungen kennenlernen, telefonieren, Adressen und Telefonnummern im Adressbuch abspeichern, SMS, usw."
+        },
+        "titleI18n": {
+            "de": "Smartphone"
+        },
+        "topics": [
+            "53b416fba43aac62a2debda2"
+        ],
+        "updated": {
+            "date": 1398338294301
+        }
+    },
+    {
+        "_id": {
+            "$oid": "54860a9fb6953fc567e3e14a"
+        },
+        "author": {
+            "oid": "52d4f515fac246174c000006"
+        },
+        "created": {
+            "date": 1398338294301
+        },
+        "defaultduration": 15,
+        "defaultexecutiontype": "self",
+        "defaultfrequency": "once",
+        "descriptionI18n": {
+            "de": "Mache einen Kochkurs und kn\u00fcpfe dort neue, interessante Kontakte."
+        },
+        "number": "INS-37",
+        "qualityFactor": 1,
+        "textI18n": {
+            "de": "In entspannter und motivierender Atmosph\u00e4re werden k\u00f6stliche Men\u00fcs zubereitet. Ob Sie bereits Erfahrung mitbringen oder in der K\u00fcche Neuland betreten, spielt keine Rolle. Lassen Sie sich von unseren neuen Men\u00fckreationen verzaubern!"
+        },
+        "titleI18n": {
+            "de": "Kochen"
+        },
+        "topics": [
+            "53b416cfa43aac62a2debda1",
+            "53b416fba43aac62a2debda3"
+        ],
+        "updated": {
+            "date": 1398338294301
+        }
+    },
+    {
+        "_id": {
+            "$oid": "54860a9fb6953fc567e3e14b"
+        },
+        "author": {
+            "oid": "52d4f515fac246174c000006"
+        },
+        "created": {
+            "date": 1398338294301
+        },
+        "defaultduration": 15,
+        "defaultexecutiontype": "self",
+        "defaultfrequency": "once",
+        "descriptionI18n": {
+            "de": "Mache einen Kurs f\u00fcr den richtigen Umgang mit dem iPad."
+        },
+        "number": "INS-38",
+        "qualityFactor": 1,
+        "textI18n": {
+            "de": "Das iPad ist der perfekte Begleiter in der digitalen Welt. Auf ein Symbol klicken und online gehen. Es werden diverse Nutzungsm\u00f6glichkeiten des Ger\u00e4tes aufgezeigt."
+        },
+        "titleI18n": {
+            "de": "iPad"
+        },
+        "topics": [
+            "53b416fba43aac62a2debda2"
+        ],
+        "updated": {
+            "date": 1398338294301
+        }
+    },
+    {
+        "_id": {
+            "$oid": "54860a9fb6953fc567e3e14c"
+        },
+        "author": {
+            "oid": "52d4f515fac246174c000006"
+        },
+        "created": {
+            "date": 1398338294301
+        },
+        "defaultduration": 15,
+        "defaultexecutiontype": "self",
+        "defaultfrequency": "once",
+        "descriptionI18n": {
+            "de": "Mache regelm\u00e4ssig Autogenes Training zur Entspannung."
+        },
+        "number": "INS-39",
+        "qualityFactor": 1,
+        "textI18n": {},
+        "titleI18n": {
+            "de": "Autogenes Training"
+        },
+        "topics": [
+            "53b416fba43aac62a2debda2"
+        ],
+        "updated": {
+            "date": 1398338294301
+        }
+    },
+    {
+        "_id": {
+            "$oid": "54860a9fb6953fc567e3e14d"
+        },
+        "author": {
+            "oid": "52d4f515fac246174c000006"
+        },
+        "created": {
+            "date": 1398338294301
+        },
+        "defaultduration": 15,
+        "defaultexecutiontype": "self",
+        "defaultfrequency": "once",
+        "descriptionI18n": {
+            "de": "Gehe regelm\u00e4ssig in die Sauna zur Entspannung."
+        },
+        "number": "INS-40",
+        "qualityFactor": 1,
+        "textI18n": {},
+        "titleI18n": {
+            "de": "Sauna"
+        },
+        "topics": [
+            "53b416fba43aac62a2debda2"
+        ],
+        "updated": {
+            "date": 1398338294301
+        }
+    },
+    {
+        "_id": {
+            "$oid": "54860a9fb6953fc567e3e14e"
+        },
+        "author": {
+            "oid": "52d4f515fac246174c000006"
+        },
+        "created": {
+            "date": 1398338294301
+        },
+        "defaultduration": 15,
+        "defaultexecutiontype": "self",
+        "defaultfrequency": "once",
+        "descriptionI18n": {
+            "de": "Lass dich regelm\u00e4ssig massieren und geniesse das wohltuende Gef\u00fchl der Entspannung."
+        },
+        "number": "INS-41",
+        "qualityFactor": 1,
+        "textI18n": {},
+        "titleI18n": {
+            "de": "Massage"
+        },
+        "topics": [
+            "53b416fba43aac62a2debda2"
+        ],
+        "updated": {
+            "date": 1398338294301
+        }
+    },
+    {
+        "_id": {
+            "$oid": "54860a9fb6953fc567e3e14f"
+        },
+        "author": {
+            "oid": "52d4f515fac246174c000006"
+        },
+        "created": {
+            "date": 1398338294301
+        },
+        "defaultduration": 15,
+        "defaultexecutiontype": "self",
+        "defaultfrequency": "once",
+        "descriptionI18n": {
+            "de": "Mache ab und zu ein Wellness-Weekend und leiste dir Entspannung, Ruhe und Wohlgef\u00fchl."
+        },
+        "number": "INS-42",
+        "qualityFactor": 1,
+        "textI18n": {},
+        "titleI18n": {
+            "de": "Wellness"
+        },
+        "topics": [
+            "53b416fba43aac62a2debda2"
+        ],
+        "updated": {
+            "date": 1398338294301
+        }
+    },
+    {
+        "_id": {
+            "$oid": "54860a9fb6953fc567e3e150"
+        },
+        "author": {
+            "oid": "52d4f515fac246174c000006"
+        },
+        "created": {
+            "date": 1398338294301
+        },
+        "defaultduration": 15,
+        "defaultexecutiontype": "self",
+        "defaultfrequency": "once",
+        "descriptionI18n": {
+            "de": "Leiste Freiwilligenarbeit und erledige f\u00fcr eine hilfsbed\u00fcrftige Person den Einkauf."
+        },
+        "number": "INS-43",
+        "qualityFactor": 1,
+        "textI18n": {
+            "de": "Freiwilligenarbeit ist nicht selbstverst\u00e4ndlich. In Zukunft wird es mehr freiwillige Mitarbeitende brauchen. Warum es sich lohnt, sich freiwillig zu engagieren? Es ist die stete Nachfrage "
+        },
+        "titleI18n": {
+            "de": "Einkaufshilfe"
+        },
+        "topics": [
+            "53b416fba43aac62a2debda2"
+        ],
+        "updated": {
+            "date": 1398338294301
+        }
+    },
+    {
+        "_id": {
+            "$oid": "54860a9fb6953fc567e3e151"
+        },
+        "author": {
+            "oid": "52d4f515fac246174c000006"
+        },
+        "created": {
+            "date": 1398338294301
+        },
+        "defaultduration": 15,
+        "defaultexecutiontype": "self",
+        "defaultfrequency": "once",
+        "descriptionI18n": {
+            "de": "Leiste Freiwilligenarbeit und betreue einen Nachmittag lang eine alleinstehende Person zu Hause."
+        },
+        "number": "INS-44",
+        "qualityFactor": 1,
+        "textI18n": {
+            "de": "Freiwilligenarbeit ist nicht selbstverst\u00e4ndlich. In Zukunft wird es mehr freiwillige Mitarbeitende brauchen. Warum es sich lohnt, sich freiwillig zu engagieren? Es ist die stete Nachfrage "
+        },
+        "titleI18n": {
+            "de": "Betreuungshilfe"
+        },
+        "topics": [
+            "53b416fba43aac62a2debda3",
+            "53b416fba43aac62a2debda2"
+        ],
+        "updated": {
+            "date": 1398338294301
+        }
+    },
+    {
+        "_id": {
+            "$oid": "54860a9fb6953fc567e3e152"
+        },
+        "author": {
+            "oid": "52d4f515fac246174c000006"
+        },
+        "created": {
+            "date": 1398338294301
+        },
+        "defaultduration": 15,
+        "defaultexecutiontype": "self",
+        "defaultfrequency": "once",
+        "descriptionI18n": {
+            "de": "Leiste Freiwilligenarbeit und betreue einen Nachmittag lang Nachbarskinder."
+        },
+        "number": "INS-45",
+        "qualityFactor": 1,
+        "textI18n": {
+            "de": "Freiwilligenarbeit ist nicht selbstverst\u00e4ndlich. In Zukunft wird es mehr freiwillige Mitarbeitende brauchen. Warum es sich lohnt, sich freiwillig zu engagieren? Es ist die stete Nachfrage "
+        },
+        "titleI18n": {
+            "de": "Kinderh\u00fcten"
+        },
+        "topics": [
+            "53b416fba43aac62a2debda3",
+            "53b416fba43aac62a2debda2"
+        ],
+        "updated": {
+            "date": 1398338294301
+        }
+    },
+    {
+        "_id": {
+            "$oid": "54860a9fb6953fc567e3e153"
+        },
+        "author": {
+            "oid": "52d4f515fac246174c000006"
+        },
+        "created": {
+            "date": 1398338294301
+        },
+        "defaultduration": 15,
+        "defaultexecutiontype": "self",
+        "defaultfrequency": "once",
+        "descriptionI18n": {
+            "de": "Leiste Freiwilligenarbeit und begleite eine Person zu einem wichtigen Termin."
+        },
+        "number": "INS-46",
+        "qualityFactor": 1,
+        "textI18n": {
+            "de": "Freiwilligenarbeit ist nicht selbstverst\u00e4ndlich. In Zukunft wird es mehr freiwillige Mitarbeitende brauchen. Warum es sich lohnt, sich freiwillig zu engagieren? Es ist die stete Nachfrage "
+        },
+        "titleI18n": {
+            "de": "Begleithilfe"
+        },
+        "topics": [
+            "53b416fba43aac62a2debda3",
+            "53b416fba43aac62a2debda2"
+        ],
+        "updated": {
+            "date": 1398338294301
+        }
+    },
+    {
+        "_id": {
+            "$oid": "54860a9fb6953fc567e3e154"
+        },
+        "author": {
+            "oid": "52d4f515fac246174c000006"
+        },
+        "created": {
+            "date": 1398338294301
+        },
+        "defaultduration": 15,
+        "defaultexecutiontype": "self",
+        "defaultfrequency": "once",
+        "descriptionI18n": {
+            "de": "Besuche eine interessante Veranstaltung zur Pr\u00e4sentation eines Reiseberichts."
+        },
+        "number": "INS-47",
+        "qualityFactor": 1,
+        "textI18n": {
+            "de": "Viele Erlebnisse, Erfahrungen und Sehensw\u00fcrdigkeiten auf zahlreichen Reisen k\u00f6nnen in aussagekr\u00e4ftigen Multivisions-Shows zusammengefasst werden und vermittel damit, was Reisen in Menschen ausl\u00f6sen und bewirken kann."
+        },
+        "titleI18n": {
+            "de": "Reisebericht"
+        },
+        "topics": [
+            "53b416fba43aac62a2debda2"
+        ],
+        "updated": {
+            "date": 1398338294301
+        }
+    },
+    {
+        "_id": {
+            "$oid": "54860a9fb6953fc567e3e155"
+        },
+        "author": {
+            "oid": "52d4f515fac246174c000006"
+        },
+        "created": {
+            "date": 1398338294301
+        },
+        "defaultduration": 15,
+        "defaultexecutiontype": "self",
+        "defaultfrequency": "once",
+        "descriptionI18n": {
+            "de": "Nimm an einer F\u00fchrung durch das Bundeshaus teil."
+        },
+        "number": "INS-48",
+        "qualityFactor": 1,
+        "textI18n": {
+            "de": "W\u00e4hrend der F\u00fchrung erhalten Sie Einblick in die Baugeschichte und die Architektur des Geb\u00e4udes sowie in die Arbeitsweise und Zusammensetzung des Parlamentes. Sie k\u00f6nnen das neue Medienzentrum des Bundeshauses mit all seinen technischen M\u00f6glichkeiten eines modernen Fernsehstudios sehen. Sie erhalten zudem die M\u00f6glichkeit, den Pressekonferenzsaal des Bundesrates zu besuchen."
+        },
+        "titleI18n": {
+            "de": "Bundeshausf\u00fchrung"
+        },
+        "topics": [
+            "53b416fba43aac62a2debda2"
+        ],
+        "updated": {
+            "date": 1398338294301
+        }
+    },
+    {
+        "_id": {
+            "$oid": "54860a9fb6953fc567e3e156"
+        },
+        "author": {
+            "oid": "52d4f515fac246174c000006"
+        },
+        "created": {
+            "date": 1398338294301
+        },
+        "defaultduration": 15,
+        "defaultexecutiontype": "self",
+        "defaultfrequency": "once",
+        "descriptionI18n": {
+            "de": "Nimm an einer F\u00fchrung durch eine Molkerei/K\u00e4serei teil."
+        },
+        "number": "INS-49",
+        "qualityFactor": 1,
+        "textI18n": {},
+        "titleI18n": {
+            "de": "Molkereif\u00fchrung"
+        },
+        "topics": [
+            "53b416fba43aac62a2debda2"
+        ],
+        "updated": {
+            "date": 1398338294301
+        }
+    },
+    {
+        "_id": {
+            "$oid": "54860a9fb6953fc567e3e157"
+        },
+        "author": {
+            "oid": "52d4f515fac246174c000006"
+        },
+        "created": {
+            "date": 1398338294301
+        },
+        "defaultduration": 15,
+        "defaultexecutiontype": "self",
+        "defaultfrequency": "once",
+        "descriptionI18n": {
+            "de": "Besuche eine fremde Person in einem Spital und bereite ihr so eine Freude."
+        },
+        "number": "INS-50",
+        "qualityFactor": 1,
+        "textI18n": {},
+        "titleI18n": {
+            "de": "Spitalbesuch"
+        },
+        "topics": [
+            "53b416fba43aac62a2debda3",
+            "53b416fba43aac62a2debda2"
+        ],
+        "updated": {
+            "date": 1398338294301
+        }
+    },
+    {
+        "_id": {
+            "$oid": "54860a9fb6953fc567e3e158"
+        },
+        "author": {
+            "oid": "52d4f515fac246174c000006"
+        },
+        "created": {
+            "date": 1398338294301
+        },
+        "defaultduration": 15,
+        "defaultexecutiontype": "self",
+        "defaultfrequency": "once",
+        "descriptionI18n": {
+            "de": "Mache einen Besuch in einem Pflegeheim und leiste der Person Gesellschaft."
+        },
+        "number": "INS-51",
+        "qualityFactor": 1,
+        "textI18n": {},
+        "titleI18n": {
+            "de": "Pflegeheimbesuch"
+        },
+        "topics": [
+            "53b416fba43aac62a2debda3",
+            "53b416fba43aac62a2debda2"
+        ],
+        "updated": {
+            "date": 1398338294301
+        }
+    },
+    {
+        "_id": {
+            "$oid": "54860a9fb6953fc567e3e159"
+        },
+        "author": {
+            "oid": "52d4f515fac246174c000006"
+        },
+        "created": {
+            "date": 1398338294301
+        },
+        "defaultduration": 15,
+        "defaultexecutiontype": "self",
+        "defaultfrequency": "once",
+        "descriptionI18n": {
+            "de": "Besuche Verwandte, die du schon l\u00e4nger nicht mehr gesehen hast."
+        },
+        "number": "INS-52",
+        "qualityFactor": 1,
+        "textI18n": {},
+        "titleI18n": {
+            "de": "Verwandtenbesuch"
+        },
+        "topics": [
+            "53b416fba43aac62a2debda3",
+            "53b416fba43aac62a2debda2"
+        ],
+        "updated": {
+            "date": 1398338294301
+        }
+    }
 ]
-
-

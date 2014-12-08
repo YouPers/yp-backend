@@ -20,8 +20,11 @@ var generatePaymentCode = function generatePaymentCode() {
             ]}));
         }
 
+        var code = couponCode.generate();
+
         var paymentCode = new PaymentCode({
-            code: couponCode.generate(),
+            code: code,
+            strippedCode: _stripCode(code),
             topic: values.topic,
             productType: values.productType,
             users: values.users
@@ -31,6 +34,12 @@ var generatePaymentCode = function generatePaymentCode() {
 
     };
 };
+
+function _stripCode(code) {
+
+    return code.toLowerCase().replace(/\W/g, '').toLowerCase();
+}
+
 
 /**
  * @returns {Function}
@@ -44,13 +53,26 @@ var validatePaymentCode = function validatePaymentCode() {
             return next(new error.MissingParameterError({required: 'code'}));
         }
 
-        PaymentCode.findOne({ code: code, campaign: { $exists: false } }).exec(function (err, paymentCode) {
+        PaymentCode.findOne({ strippedCode: _stripCode(code), campaign: { $exists: false } }).exec(function (err, paymentCode) {
             if(err) {
                 return error.handleError(err, next);
             }
 
             if (!paymentCode) {
                 return next(new error.ResourceNotFoundError({ code: code}));
+            }
+
+            if(paymentCode.topic) {
+
+                if(!req.body.topic) {
+                    return next(new error.MissingParameterError({required: 'topic'}));
+                }
+
+                var topic = paymentCode.topic.toString();
+                if(topic !== req.body.topic) {
+                    return next(new error.InvalidArgumentError({invalid: 'topic', expected: topic}));
+                }
+
             }
 
             res.send(200, paymentCode);
@@ -78,7 +100,7 @@ var redeemPaymentCode = function redeemPaymentCode() {
 
         try {
 
-            PaymentCode.findOne({ code: code , campaign: {$exists: false} }).exec(function (err, paymentCode) {
+            PaymentCode.findOne({ strippedCode: _stripCode(code) , campaign: {$exists: false} }).exec(function (err, paymentCode) {
                 if(err) {
                     return error.handleError(err, next);
                 }

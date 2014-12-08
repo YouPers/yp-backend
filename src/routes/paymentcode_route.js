@@ -54,11 +54,11 @@ module.exports = function (swagger) {
             notes: "Validate a payment code",
             summary: "Validate a payment code",
             method: "POST",
-            params: [swagger.bodyParam("value", "payment code", "string")],
+            params: [swagger.bodyParam("paymentCode", "payment code", "PaymentCode")],
             "responseClass": "string",
             "errorResponses": [],
             "nickname": "validatePaymentCode",
-            accessLevel: 'al_orgadmin'
+            accessLevel: 'al_user'
         },
         action: paymentCodeHandlers.validatePaymentCode()
     });
@@ -69,7 +69,9 @@ module.exports = function (swagger) {
             notes: "Validate a payment code",
             summary: "Validate a payment code",
             method: "POST",
-            params: [swagger.bodyParam("code", "payment code", "string")],
+            params: [
+                swagger.bodyParam("paymentCode", "payment code", "PaymentCode")
+            ],
             "responseClass": "string",
             "errorResponses": [],
             "nickname": "redeemPaymentCode",

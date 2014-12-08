@@ -14,6 +14,7 @@ var mongoose = require('ypbackendlib').mongoose,
 var PaymentCodeSchema = common.newSchema({
 
     code: {type: String},
+    strippedCode: {type: String},
 
     campaign: {type: ObjectId},
 

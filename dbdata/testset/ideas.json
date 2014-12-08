@@ -10,7 +10,7 @@
             "date": 1398338294301
         },
         "defaultduration": 15,
-        "defaultexecutiontype": "self",
+        "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "descriptionI18n": {
             "de": "Bereite mit Freunden ein gesundes und gutes Essen zu."
@@ -40,7 +40,7 @@
             "date": 1398338294301
         },
         "defaultduration": 15,
-        "defaultexecutiontype": "self",
+        "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "descriptionI18n": {
             "de": "Geniesse mit Freunden einen Fussball-Abend zu Hause vor dem Fernseher."
@@ -69,7 +69,7 @@
             "date": 1398338294301
         },
         "defaultduration": 15,
-        "defaultexecutiontype": "self",
+        "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "descriptionI18n": {
             "de": "Lade Freunde ein, um einen Kinofilm vor dem Fernseher zu schauen."
@@ -98,7 +98,7 @@
             "date": 1398338294301
         },
         "defaultduration": 15,
-        "defaultexecutiontype": "self",
+        "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "descriptionI18n": {
             "de": "Schau dir einen Film im Kino an, der dir gef\u00e4llt und Freude bereitet."
@@ -125,7 +125,7 @@
             "date": 1398338294301
         },
         "defaultduration": 15,
-        "defaultexecutiontype": "self",
+        "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "descriptionI18n": {
             "de": "Besuche eine Ausstellung eines ber\u00fchmten K\u00fcnstlers."
@@ -155,7 +155,7 @@
             "date": 1398338294301
         },
         "defaultduration": 15,
-        "defaultexecutiontype": "self",
+        "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "descriptionI18n": {
             "de": "Schau dir mit Freunden eine Oper an."
@@ -185,7 +185,7 @@
             "date": 1398338294301
         },
         "defaultduration": 15,
-        "defaultexecutiontype": "self",
+        "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "descriptionI18n": {
             "de": "Besuche mit Freunden ein klassisches Konzert."
@@ -215,7 +215,7 @@
             "date": 1398338294301
         },
         "defaultduration": 15,
-        "defaultexecutiontype": "self",
+        "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "descriptionI18n": {
             "de": "Mache mit Freunden einen Ausflug ins Blaue."
@@ -247,7 +247,7 @@
             "date": 1398338294301
         },
         "defaultduration": 15,
-        "defaultexecutiontype": "self",
+        "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "descriptionI18n": {
             "de": "Triff dich mit Freunden zum Kaffeetrinken und Kuchenessen und geniesse die Gesellschaft."
@@ -277,7 +277,7 @@
             "date": 1398338294301
         },
         "defaultduration": 15,
-        "defaultexecutiontype": "self",
+        "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "descriptionI18n": {
             "de": "Gehe mit Freunden zum Wandern."
@@ -307,7 +307,7 @@
             "date": 1398338294301
         },
         "defaultduration": 15,
-        "defaultexecutiontype": "self",
+        "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "descriptionI18n": {
             "de": "Mache mit Freunden einen Spaziergang durch einen Ort nach Wahl."
@@ -339,7 +339,7 @@
             "date": 1398338294301
         },
         "defaultduration": 15,
-        "defaultexecutiontype": "self",
+        "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "descriptionI18n": {
             "de": "Gehe mit Freunden zum Kegeln oder Bowling."
@@ -371,7 +371,7 @@
             "date": 1398338294301
         },
         "defaultduration": 15,
-        "defaultexecutiontype": "self",
+        "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "descriptionI18n": {
             "de": "Lade Freunde ein zum Nachtessen."
@@ -401,7 +401,7 @@
             "date": 1398338294301
         },
         "defaultduration": 15,
-        "defaultexecutiontype": "self",
+        "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "descriptionI18n": {
             "de": "Veranstalte mit Freunden einen Jass-Abend."
@@ -431,7 +431,7 @@
             "date": 1398338294301
         },
         "defaultduration": 15,
-        "defaultexecutiontype": "self",
+        "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "descriptionI18n": {
             "de": "Nimm an einem Sprachkurs teil, um eine Sprache zu erlernen oder zu verbessern."
@@ -493,7 +493,7 @@
             "date": 1398338294301
         },
         "defaultduration": 15,
-        "defaultexecutiontype": "self",
+        "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "descriptionI18n": {
             "de": "Gehe ins Wasserfitness-Training."
@@ -524,7 +524,7 @@
             "date": 1398338294301
         },
         "defaultduration": 15,
-        "defaultexecutiontype": "self",
+        "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "descriptionI18n": {
             "de": "Mache regelm\u00e4ssig Wassergymnastik."
@@ -555,7 +555,7 @@
             "date": 1398338294301
         },
         "defaultduration": 15,
-        "defaultexecutiontype": "self",
+        "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "descriptionI18n": {
             "de": "Triff dich mit Freunden zum Schwimmen."
@@ -587,7 +587,7 @@
             "date": 1398338294301
         },
         "defaultduration": 15,
-        "defaultexecutiontype": "self",
+        "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "descriptionI18n": {
             "de": "Mache regelm\u00e4ssig Nordic-Walking."
@@ -618,7 +618,7 @@
             "date": 1398338294301
         },
         "defaultduration": 15,
-        "defaultexecutiontype": "self",
+        "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "descriptionI18n": {
             "de": "Besuche mit Freunden einen Volkstanzkurs."
@@ -650,7 +650,7 @@
             "date": 1398338294301
         },
         "defaultduration": 15,
-        "defaultexecutiontype": "self",
+        "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "descriptionI18n": {
             "de": "Besuche mit einer Partnerin bzw. einem Partner einen Standardtanzkurs."
@@ -682,7 +682,7 @@
             "date": 1398338294301
         },
         "defaultduration": 15,
-        "defaultexecutiontype": "self",
+        "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "descriptionI18n": {
             "de": "Gehe mit m\u00e4nnlichen Freunden ins M\u00e4nnerturnen."
@@ -714,7 +714,7 @@
             "date": 1398338294301
         },
         "defaultduration": 15,
-        "defaultexecutiontype": "self",
+        "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "descriptionI18n": {
             "de": "Mache regelm\u00e4ssiges Training mit Bewegung zur Musik."
@@ -745,7 +745,7 @@
             "date": 1398338294301
         },
         "defaultduration": 15,
-        "defaultexecutiontype": "self",
+        "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "descriptionI18n": {
             "de": "Mache regelm\u00e4ssiges, kreatives Tanzen mit Bewegung."
@@ -776,7 +776,7 @@
             "date": 1398338294301
         },
         "defaultduration": 15,
-        "defaultexecutiontype": "self",
+        "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "descriptionI18n": {
             "de": "Mache Yoga als ganzheitliches Training."
@@ -807,7 +807,7 @@
             "date": 1398338294301
         },
         "defaultduration": 15,
-        "defaultexecutiontype": "self",
+        "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "descriptionI18n": {
             "de": "Triff dich mit Freunden zum Schachspielen."
@@ -839,7 +839,7 @@
             "date": 1398338294301
         },
         "defaultduration": 15,
-        "defaultexecutiontype": "self",
+        "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "descriptionI18n": {
             "de": "Gehe ins Pilates-Training und st\u00e4rke dadurch deine St\u00fctzmuskulatur."
@@ -870,7 +870,7 @@
             "date": 1398338294301
         },
         "defaultduration": 15,
-        "defaultexecutiontype": "self",
+        "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "descriptionI18n": {
             "de": "Mache Tai Chi und/oder Qi Gong zur Meditation und Erhaltung der Gesundheit."
@@ -901,7 +901,7 @@
             "date": 1398338294301
         },
         "defaultduration": 15,
-        "defaultexecutiontype": "self",
+        "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "descriptionI18n": {
             "de": "Trainiere in Gemeinschaft deine Gehirnleistung mit Hilfe von Denksport-Aufgaben (z.B. Memory, Sudoku, o.\u00e4.)."
@@ -933,7 +933,7 @@
             "date": 1398338294301
         },
         "defaultduration": 15,
-        "defaultexecutiontype": "self",
+        "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "descriptionI18n": {
             "de": "Mache regelm\u00e4ssiges, ganzheitliches R\u00fcckentraining."
@@ -964,7 +964,7 @@
             "date": 1398338294301
         },
         "defaultduration": 15,
-        "defaultexecutiontype": "self",
+        "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "descriptionI18n": {
             "de": "Trainiere regelm\u00e4ssig nach der Feldenkrais-Methode."
@@ -995,7 +995,7 @@
             "date": 1398338294301
         },
         "defaultduration": 15,
-        "defaultexecutiontype": "self",
+        "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "descriptionI18n": {
             "de": "Mache einen Computer-Kurs und lerne, besser mit dem Computer umzugehen."
@@ -1026,7 +1026,7 @@
             "date": 1398338294301
         },
         "defaultduration": 15,
-        "defaultexecutiontype": "self",
+        "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "descriptionI18n": {
             "de": "Sei kreativ und \u00fcbe dich in bildnerischem Gestalten."
@@ -1057,7 +1057,7 @@
             "date": 1398338294301
         },
         "defaultduration": 15,
-        "defaultexecutiontype": "self",
+        "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "descriptionI18n": {
             "de": "Besuche einen Malkurs und \u00fcbe dich im Darstellen deiner Eindr\u00fccke."
@@ -1088,7 +1088,7 @@
             "date": 1398338294301
         },
         "defaultduration": 15,
-        "defaultexecutiontype": "self",
+        "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "descriptionI18n": {
             "de": "Mache einen Smartphone-Kurs und lerne, besser dein Smartphone einzusetzen."
@@ -1119,7 +1119,7 @@
             "date": 1398338294301
         },
         "defaultduration": 15,
-        "defaultexecutiontype": "self",
+        "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "descriptionI18n": {
             "de": "Mache einen Kochkurs und kn\u00fcpfe dort neue, interessante Kontakte."
@@ -1151,7 +1151,7 @@
             "date": 1398338294301
         },
         "defaultduration": 15,
-        "defaultexecutiontype": "self",
+        "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "descriptionI18n": {
             "de": "Mache einen Kurs f\u00fcr den richtigen Umgang mit dem iPad."
@@ -1182,7 +1182,7 @@
             "date": 1398338294301
         },
         "defaultduration": 15,
-        "defaultexecutiontype": "self",
+        "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "descriptionI18n": {
             "de": "Mache regelm\u00e4ssig Autogenes Training zur Entspannung."
@@ -1211,7 +1211,7 @@
             "date": 1398338294301
         },
         "defaultduration": 15,
-        "defaultexecutiontype": "self",
+        "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "descriptionI18n": {
             "de": "Gehe regelm\u00e4ssig in die Sauna zur Entspannung."
@@ -1240,7 +1240,7 @@
             "date": 1398338294301
         },
         "defaultduration": 15,
-        "defaultexecutiontype": "self",
+        "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "descriptionI18n": {
             "de": "Lass dich regelm\u00e4ssig massieren und geniesse das wohltuende Gef\u00fchl der Entspannung."
@@ -1269,7 +1269,7 @@
             "date": 1398338294301
         },
         "defaultduration": 15,
-        "defaultexecutiontype": "self",
+        "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "descriptionI18n": {
             "de": "Mache ab und zu ein Wellness-Weekend und leiste dir Entspannung, Ruhe und Wohlgef\u00fchl."
@@ -1298,7 +1298,7 @@
             "date": 1398338294301
         },
         "defaultduration": 15,
-        "defaultexecutiontype": "self",
+        "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "descriptionI18n": {
             "de": "Leiste Freiwilligenarbeit und erledige f\u00fcr eine hilfsbed\u00fcrftige Person den Einkauf."
@@ -1329,7 +1329,7 @@
             "date": 1398338294301
         },
         "defaultduration": 15,
-        "defaultexecutiontype": "self",
+        "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "descriptionI18n": {
             "de": "Leiste Freiwilligenarbeit und betreue einen Nachmittag lang eine alleinstehende Person zu Hause."
@@ -1361,7 +1361,7 @@
             "date": 1398338294301
         },
         "defaultduration": 15,
-        "defaultexecutiontype": "self",
+        "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "descriptionI18n": {
             "de": "Leiste Freiwilligenarbeit und betreue einen Nachmittag lang Nachbarskinder."
@@ -1393,7 +1393,7 @@
             "date": 1398338294301
         },
         "defaultduration": 15,
-        "defaultexecutiontype": "self",
+        "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "descriptionI18n": {
             "de": "Leiste Freiwilligenarbeit und begleite eine Person zu einem wichtigen Termin."
@@ -1425,7 +1425,7 @@
             "date": 1398338294301
         },
         "defaultduration": 15,
-        "defaultexecutiontype": "self",
+        "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "descriptionI18n": {
             "de": "Besuche eine interessante Veranstaltung zur Pr\u00e4sentation eines Reiseberichts."
@@ -1456,7 +1456,7 @@
             "date": 1398338294301
         },
         "defaultduration": 15,
-        "defaultexecutiontype": "self",
+        "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "descriptionI18n": {
             "de": "Nimm an einer F\u00fchrung durch das Bundeshaus teil."
@@ -1487,7 +1487,7 @@
             "date": 1398338294301
         },
         "defaultduration": 15,
-        "defaultexecutiontype": "self",
+        "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "descriptionI18n": {
             "de": "Nimm an einer F\u00fchrung durch eine Molkerei/K\u00e4serei teil."
@@ -1516,7 +1516,7 @@
             "date": 1398338294301
         },
         "defaultduration": 15,
-        "defaultexecutiontype": "self",
+        "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "descriptionI18n": {
             "de": "Besuche eine fremde Person in einem Spital und bereite ihr so eine Freude."
@@ -1546,7 +1546,7 @@
             "date": 1398338294301
         },
         "defaultduration": 15,
-        "defaultexecutiontype": "self",
+        "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "descriptionI18n": {
             "de": "Mache einen Besuch in einem Pflegeheim und leiste der Person Gesellschaft."
@@ -1576,7 +1576,7 @@
             "date": 1398338294301
         },
         "defaultduration": 15,
-        "defaultexecutiontype": "self",
+        "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "descriptionI18n": {
             "de": "Besuche Verwandte, die du schon l\u00e4nger nicht mehr gesehen hast."

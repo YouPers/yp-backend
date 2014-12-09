@@ -2,7 +2,6 @@ var frisby = require('frisby'),
     port = process.env.PORT || 8000,
     URL = 'http://localhost:' + port,
     _ = require('lodash'),
-    async = require('async'),
     consts = require('./testconsts'),
     moment = require('moment');
 
@@ -101,7 +100,7 @@ consts.newUserInNewCampaignApi(
                                     .afterJSON(function (user2) {
 
 
-                                            frisby.create('CampaignOffers: get offers as user')
+                                            frisby.create('CampaignOffers: get offers as user 1')
                                                 .get(URL + '/inspirations')
                                                 .auth(user.username, "yp")
                                                 .expectStatus(200)
@@ -115,7 +114,7 @@ consts.newUserInNewCampaignApi(
                                                     .expectStatus(200)
                                                     .after(function () {
 
-                                                            frisby.create('CampaignOffers: get offers as user')
+                                                            frisby.create('CampaignOffers: get offers as user again')
                                                                 .get(URL + '/inspirations')
                                                                 .auth(user.username, "yp")
                                                                 .expectStatus(200)

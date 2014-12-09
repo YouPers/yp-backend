@@ -46,6 +46,8 @@ var EventSchema = common.newSchema({
     }
 });
 
+EventSchema.index({loc: '2dsphere'});
+
 EventSchema.methods = {
 
     toJsonConfig: {

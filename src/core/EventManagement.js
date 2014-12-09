@@ -221,6 +221,13 @@ actMgr.on('event:eventJoined', function (event, joinedUser) {
     SocialInteraction.dismissRecommendations(event.idea, joinedUser, { reason: 'eventJoined' }, handleError);
     SocialInteraction.dismissInvitations(event, joinedUser, { reason: 'eventJoined' }, handleError);
 
+    // check whether we have reached the maxParticipants of this event
+    if (event.joiningUsers && event.joiningUsers.length >= event.maxParticipants) {
+        // we need to dismiss any public invitations, since we have reached the max of allowed people
+
+        // TODO: IN-76 do not really delete, but mark as deleted
+        SocialInteraction.deleteSocialInteractions(event, handleError );
+    }
 });
 
 

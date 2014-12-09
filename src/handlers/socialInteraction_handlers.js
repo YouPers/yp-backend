@@ -73,10 +73,6 @@ var getOffers = function getAll(req, res, next) {
 
     var options = {
 
-        dismissed: true,
-        dismissalReason: 'denied',
-        rejected: true,
-
         discriminators: ['Recommendation', 'Invitation'],
 
         queryOptions: req.query,

@@ -120,9 +120,9 @@ consts.newUserInNewCampaignApi(
                                                                 .expectStatus(200)
                                                                 .afterJSON(function (offers) {
 
-                                                                expect(offers.length).toEqual(5);
-                                                                expect(_.countBy(offers, 'rejected').true).toEqual(2);
-                                                                expect(_.countBy(offers, 'dismissed').true).toEqual(1);
+                                                                expect(offers.length).toEqual(4);
+                                                                expect(_.countBy(offers, 'rejected').true).toBeUndefined();
+                                                                expect(_.countBy(offers, 'dismissed').true).toBeUndefined();
                                                                 cleanupFn();
                                                             })
                                                             .toss();

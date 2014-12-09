@@ -31,6 +31,9 @@ var EventSchema = common.newSchema({
     end: {type: Date, required: true},
     allDay: {type: Boolean},
     frequency: {type: String, enum: enums.eventFrequency},
+    minParticipants: {type: Number, required: false},
+    maxParticipants: {type: Number, required: false},
+    loc: {type: { type: { type: String }, coordinates: []}}, // geoJSON object representing a POINT
     recurrence: {
         'endby': {
             type: {type: String, enum: enums.eventRecurrenceEndByType},

@@ -46,7 +46,12 @@ var EventSchema = common.newSchema({
     }
 });
 
-EventSchema.index({loc: '2dsphere'});
+// need to figure out how missing attributes are treated, see here:
+// http://stackoverflow.com/questions/16388836/does-applying-a-2dsphere-index-on-a-mongoose-schema-force-the-location-field-to
+// https://github.com/LearnBoost/mongoose/issues/1668
+// https://github.com/LearnBoost/mongoose/commit/6d69fea155449ceab4281bf474a7ed7ea0430f78
+
+// EventSchema.index({loc: '2dsphere'});
 
 EventSchema.methods = {
 

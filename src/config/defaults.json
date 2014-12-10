@@ -18,7 +18,8 @@
         "dumpenabled": "false",
         "mongodumpexe": "/usr/local/bin/mongodump",
         "mongorestoreexe": "/usr/local/bin/mongorestore",
-        "dumpdir": "/Users/retoblunschi/mongodumps"
+        "dumpdir": "/Users/retoblunschi/mongodumps",
+        "excludedCollections": "ideas,topics,assessmentquestions,assessments"
     },
     "linkTokenEncryption": {
         "key": "50126a4a500219238cd678a383cdab197ed5fe42",

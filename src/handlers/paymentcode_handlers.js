@@ -84,7 +84,7 @@ var validatePaymentCode = function validatePaymentCode() {
 /**
  * @returns {Function}
  */
-var redeemPaymentCode = function redeemPaymentCode() {
+var redeemPaymentCodeFn = function redeemPaymentCodeFn() {
     return function (req, res, next) {
 
         var code = req.body.code;
@@ -108,6 +108,7 @@ var redeemPaymentCode = function redeemPaymentCode() {
                     return next(new error.ResourceNotFoundError({ code: code}));
                 }
 
+
                 Campaign.findById(campaignId).select('+paymentStatus').exec(function (err, campaign) {
                     if (err) {
                         return error.errorHandler(err, next);
@@ -115,6 +116,14 @@ var redeemPaymentCode = function redeemPaymentCode() {
                     if (!campaign) {
                         return next(new error.ResourceNotFoundError('Campaign not found.', { id: campaignId }));
                     }
+
+                    if(paymentCode.topic && paymentCode.topic !== campaign.topic) {
+                        return next(new error.InvalidArgumentError('Invalid topic', {
+                            expected: paymentCode.topic,
+                            campaignTopic: campaign.topic
+                        }));
+                    }
+
 
                     if(campaign.paymentStatus === 'paid') {
                         return next(new error.BadMethodError('Campaign is already paid.'));
@@ -148,5 +157,5 @@ var redeemPaymentCode = function redeemPaymentCode() {
 module.exports = {
     generatePaymentCode: generatePaymentCode,
     validatePaymentCode: validatePaymentCode,
-    redeemPaymentCode: redeemPaymentCode
+    redeemPaymentCode: redeemPaymentCodeFn
 };

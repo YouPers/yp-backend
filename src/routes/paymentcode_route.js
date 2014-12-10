@@ -74,10 +74,10 @@ module.exports = function (swagger) {
             ],
             "responseClass": "string",
             "errorResponses": [],
-            "nickname": "redeemPaymentCode",
+            "nickname": "redeemPaymentCodeFn",
             accessLevel: 'al_orgadmin'
         },
-        action: paymentCodeHandlers.redeemPaymentCode()
+        action: paymentCodeHandlers.redeemPaymentCodeFn()
     });
 
 

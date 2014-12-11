@@ -1,0 +1,114 @@
+{
+  "default": {
+    "notDisplayedCorrectly": null,
+    "notDisplayedCorrectlyLink": null,
+    "header": null
+  },
+  "CampaignParticipantInvite": {
+    "campaignLeadsHeader": null,
+    "linkText": null
+  },
+  "ActivityInvitation": {
+    "subject": null,
+    "salutation": null,
+    "salutationAnonymous": null,
+    "text": null,
+    "linkText": null
+  },
+  "CampaignLeadInvite": {
+    "subject": null,
+    "welcomeHeader": null,
+    "salutation": null,
+    "salutationAnonymous": null,
+    "text": null,
+    "linkText": null
+  },
+  "OrganizationAdminInvite": {
+    "subject": null,
+    "salutation": null,
+    "salutationAnonymous": null,
+    "text": null,
+    "linkText": null
+  },
+  "passwordReset": {
+    "subject": null,
+    "salutation": null,
+    "text": null,
+    "linkText": null
+  },
+  "emailVerification": {
+    "subject": null,
+    "salutation": null,
+    "text": null,
+    "linkText": null
+  },
+  "iCalMail": {
+    "new": {
+      "subject": null,
+      "salutation": null,
+      "text": null,
+      "linkText": null
+    },
+    "update": {
+      "subject": null,
+      "salutation": null,
+      "text": null,
+      "linkText": null
+    },
+    "cancel": {
+      "subject": null,
+      "salutation": null,
+      "text": null,
+      "linkText": null
+    }
+  },
+  "dailySummary": {
+    "campaignLink": null,
+    "campaignOfferPrefix": {
+      "Invitation": null,
+      "Recommendation": null
+    },
+    "coach": null,
+    "executionType": {
+      "group": null,
+      "self": null
+    },
+    "frequency": {
+      "day": null,
+      "month": null,
+      "once": null,
+      "week": null
+    },
+    "location": null,
+    "section1": {
+      "1": {
+        "content": null
+      },
+      "2": {
+        "content": null
+      },
+      "3": {
+        "content": null
+      },
+      "4": {
+        "content": null
+      },
+      "default": null
+    },
+    "section2": {
+      "eventsToday": null,
+      "eventsWithOpenFeedback": null,
+      "header": null,
+      "noEventsToday": null
+    },
+    "section3": {
+      "campaignNews": null,
+      "header": null,
+      "newCampaignMessages": null,
+      "newCampaignOffers": null,
+      "newCommentsOnParticipatedActivities": null
+    },
+    "subject": null,
+    "time": null
+  }
+}

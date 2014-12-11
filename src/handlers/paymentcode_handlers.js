@@ -20,8 +20,11 @@ var generatePaymentCode = function generatePaymentCode() {
             ]}));
         }
 
+        var code = couponCode.generate();
+
         var paymentCode = new PaymentCode({
-            code: couponCode.generate(),
+            code: code,
+            strippedCode: _stripCode(code),
             topic: values.topic,
             productType: values.productType,
             users: values.users
@@ -31,6 +34,12 @@ var generatePaymentCode = function generatePaymentCode() {
 
     };
 };
+
+function _stripCode(code) {
+
+    return code.toLowerCase().replace(/\W/g, '').toLowerCase();
+}
+
 
 /**
  * @returns {Function}
@@ -44,13 +53,26 @@ var validatePaymentCode = function validatePaymentCode() {
             return next(new error.MissingParameterError({required: 'code'}));
         }
 
-        PaymentCode.findOne({ code: code, campaign: { $exists: false } }).exec(function (err, paymentCode) {
+        PaymentCode.findOne({ strippedCode: _stripCode(code), campaign: { $exists: false } }).exec(function (err, paymentCode) {
             if(err) {
                 return error.handleError(err, next);
             }
 
             if (!paymentCode) {
                 return next(new error.ResourceNotFoundError({ code: code}));
+            }
+
+            if(paymentCode.topic) {
+
+                if(!req.body.topic) {
+                    return next(new error.MissingParameterError({required: 'topic'}));
+                }
+
+                var topic = paymentCode.topic.toString();
+                if(topic !== req.body.topic) {
+                    return next(new error.InvalidArgumentError({invalid: 'topic', expected: topic}));
+                }
+
             }
 
             res.send(200, paymentCode);
@@ -62,7 +84,7 @@ var validatePaymentCode = function validatePaymentCode() {
 /**
  * @returns {Function}
  */
-var redeemPaymentCode = function redeemPaymentCode() {
+var redeemPaymentCodeFn = function redeemPaymentCodeFn() {
     return function (req, res, next) {
 
         var code = req.body.code;
@@ -78,13 +100,14 @@ var redeemPaymentCode = function redeemPaymentCode() {
 
         try {
 
-            PaymentCode.findOne({ code: code , campaign: {$exists: false} }).exec(function (err, paymentCode) {
+            PaymentCode.findOne({ strippedCode: _stripCode(code) , campaign: {$exists: false} }).exec(function (err, paymentCode) {
                 if(err) {
                     return error.handleError(err, next);
                 }
                 if (!paymentCode) {
                     return next(new error.ResourceNotFoundError({ code: code}));
                 }
+
 
                 Campaign.findById(campaignId).select('+paymentStatus').exec(function (err, campaign) {
                     if (err) {
@@ -93,6 +116,14 @@ var redeemPaymentCode = function redeemPaymentCode() {
                     if (!campaign) {
                         return next(new error.ResourceNotFoundError('Campaign not found.', { id: campaignId }));
                     }
+
+                    if(paymentCode.topic && paymentCode.topic !== campaign.topic) {
+                        return next(new error.InvalidArgumentError('Invalid topic', {
+                            expected: paymentCode.topic,
+                            campaignTopic: campaign.topic
+                        }));
+                    }
+
 
                     if(campaign.paymentStatus === 'paid') {
                         return next(new error.BadMethodError('Campaign is already paid.'));
@@ -126,5 +157,5 @@ var redeemPaymentCode = function redeemPaymentCode() {
 module.exports = {
     generatePaymentCode: generatePaymentCode,
     validatePaymentCode: validatePaymentCode,
-    redeemPaymentCode: redeemPaymentCode
+    redeemPaymentCode: redeemPaymentCodeFn
 };

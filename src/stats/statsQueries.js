@@ -215,7 +215,7 @@ var queries = {
                     _id: 0
                 }
             }],
-        transformers: transformers.replaceIds
+        transformers: transformers.replaceIds('AssessmentQuestion')
     },
     topStressors: {
         modelName: 'AssessmentResult',
@@ -267,7 +267,7 @@ var queries = {
             },
             {$sort: {sumAvg: -1}},
             {$limit: 3}],
-        transformers: transformers.replaceIds
+        transformers: transformers.replaceIds('AssessmentQuestion')
     },
     activitiesPlanned: {
         modelName: 'Activity',
@@ -285,7 +285,7 @@ var queries = {
                     count: 1
                 }
             }],
-        transformers: transformers.replaceIds
+        transformers: transformers.replaceIds('Idea')
     },
     activitiesPlannedPerDay: {
         modelName: 'Activity',
@@ -367,7 +367,7 @@ var queries = {
             }},
             {$sort: {plannedCount: -1}}
         ],
-        transformers: transformers.replaceIds
+        transformers: transformers.replaceIds('Idea')
     },
     activityEventsTotal: {
         modelName: 'ActivityEvent',

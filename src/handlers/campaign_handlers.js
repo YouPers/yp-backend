@@ -216,7 +216,7 @@ function createTemplateCampaignOffers(campaign, req, cb) {
 
                         var invitation = new Invitation({
                             activity: saved._id,
-
+                            idea: idea._id,
                             author: user,
                             authorType: 'campaignLead',
 

@@ -77,7 +77,7 @@ module.exports = function (swagger) {
             "nickname": "redeemPaymentCodeFn",
             accessLevel: 'al_orgadmin'
         },
-        action: paymentCodeHandlers.redeemPaymentCodeFn()
+        action: paymentCodeHandlers.redeemPaymentCode()
     });
 
 

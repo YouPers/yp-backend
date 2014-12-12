@@ -5,22 +5,22 @@
 <!-- campaign start, monday, 2nd week -->
 <%if (moment(user.campaign.start).day(1).add(1, 'weeks').diff(rangeEnd, 'days') == 0) { %>
 
-    <p><%= t('email:dailySummary.section1.1.content', locals) %></p>
+    <p><%- t('email:dailySummary.section1.1.content', locals) %></p>
 
 <!-- campaign mid term, monday, midTermWeek week -->
 <% } else if (moment(user.campaign.start).day(1).add(midTermWeek, 'weeks').diff(rangeEnd, 'days') == 0) { %>
 
-    <p><%= t('email:dailySummary.section1.2.content', locals) %></p>
+    <p><%- t('email:dailySummary.section1.2.content', locals) %></p>
 
 <!-- campaign last week, monday, last week -->
 <% } else if (moment(user.campaign.end).day(1).diff(rangeEnd, 'days') == 0) { %>
 
-    <p><%= t('email:dailySummary.section1.3.content', locals) %></p>
+    <p><%- t('email:dailySummary.section1.3.content', locals) %></p>
 
 <!-- campaign last day, last day of campaign -->
 <% } else if (moment(user.campaign.end).diff(rangeEnd, 'days') == 0) { %>
 
-    <p><%= t('email:dailySummary.section1.4.content', locals) %></p>
+    <p><%- t('email:dailySummary.section1.4.content', locals) %></p>
 
 <% } else { %>
 

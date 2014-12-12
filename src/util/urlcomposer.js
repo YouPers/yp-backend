@@ -7,6 +7,7 @@ function homeUrl() {
     return webclientUrl;
 }
 function activityUrl(campaignId, ideaId, activityId, soiId, actionType) {
+    console.log("making activityUrl: " + ideaId + " / action: "+ actionType + " soi: " + soiId) ;
     if (actionType === 'assessment') {
         return webclientUrl + "/#/campaign/" + campaignId + '/check';
     } else {

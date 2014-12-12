@@ -69,7 +69,7 @@ var getSummaryMailLocals = function getSummaryMailLocals(user, rangeStart, range
                 owner: user._id || user,
                 campaign: user.campaign,
                 start: { $gt: startOfDay, $lt: endOfDay }
-            }).populate('activity').exec(storeLocals('eventsToday', done));
+            }).populate('activity').populate('idea').exec(storeLocals('eventsToday', done));
         },
 
         // eventsWithOpenFeedback
@@ -194,7 +194,6 @@ var getSummaryMailLocals = function getSummaryMailLocals(user, rangeStart, range
                 locals.newPublicInvitations,
                 locals.newCoachRecommendations
             );
-
             callback(err, locals);
         });
     });
@@ -202,14 +201,15 @@ var getSummaryMailLocals = function getSummaryMailLocals(user, rangeStart, range
 
 };
 
-var renderSummaryMail = function (user, rangeStart, rangeEnd, i18n, callback) {
-
+var renderSummaryMail = function (user, rangeStart, rangeEnd, req, callback) {
 
     getSummaryMailLocals(user, rangeStart, rangeEnd, function (err, locals) {
         if(err) {
             return callback(err);
         }
-        var mailLocals = email.getDailyEventSummaryLocals(locals, i18n);
+
+        var mailLocals = email.getDailyEventSummaryLocals(locals, req.i18n);
+        req.log.info(mailLocals, "using these Locals for dailySummary");
         email.renderEmailTemplate('dailyEventsSummary', mailLocals, callback);
     });
 };

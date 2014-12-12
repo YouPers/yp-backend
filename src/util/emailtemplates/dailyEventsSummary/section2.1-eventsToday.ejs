@@ -24,7 +24,7 @@
                                     style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
 
 
-                                    <a href="<%= urlComposer.activityUrl(user.campaign.id, eventsToday[i].activity.idea, eventsToday[i].activity.id) %>" title="" class="" target="_blank"
+                                    <a href="<%= urlComposer.activityUrl(user.campaign.id, eventsToday[i].activity.idea, eventsToday[i].activity.id, null, eventsToday[i].idea.action) %>" title="" class="" target="_blank"
                                        style="word-wrap: break-word;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
 
 
@@ -49,7 +49,7 @@
                                     style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;color: #606060;font-family: Helvetica;font-size: 15px;line-height: 150%;text-align: left;">
                                     <div style="text-align: left;">
 
-                                        <a href="<%= urlComposer.activityUrl(user.campaign.id, eventsToday[i].activity.idea, eventsToday[i].activity.id) %>" target="_blank"
+                                        <a href="<%= urlComposer.activityUrl(user.campaign.id, eventsToday[i].activity.idea, eventsToday[i].activity.id, null,  eventsToday[i].idea.action) %>" target="_blank"
                                                                       style="word-wrap: break-word;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;color: #03a9f4;font-weight: normal;text-decoration: none;">
 
                                             <%- eventsToday[i].activity.title %>

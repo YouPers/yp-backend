@@ -79,7 +79,7 @@ var getSummaryMailLocals = function getSummaryMailLocals(user, rangeStart, range
                 campaign: user.campaign,
                 status: 'open',
                 end: { $lt: moment() }
-            }).populate('activity').exec(storeLocals('eventsWithOpenFeedback', done));
+            }).populate('activity').populate('idea').exec(storeLocals('eventsWithOpenFeedback', done));
         },
 
         // section 3

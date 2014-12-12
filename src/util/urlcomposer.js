@@ -3,12 +3,15 @@ var config = require('../config/config'),
     backendUrl = config.backendUrl;
 
 
-
 function homeUrl() {
     return webclientUrl;
 }
-function activityUrl(campaignId, ideaId, activityId, soiId) {
-    return webclientUrl + "/#/campaign/" + campaignId + '/idea/'+ideaId+ '/activity/' + activityId + '/socialInteraction/' + (soiId || '');
+function activityUrl(campaignId, ideaId, activityId, soiId, actionType) {
+    if (actionType === 'assessment') {
+        return webclientUrl + "/#/campaign/" + campaignId + '/check';
+    } else {
+        return webclientUrl + "/#/campaign/" + campaignId + '/idea/'+ideaId+ '/activity/' + activityId + '/socialInteraction/' + (soiId || '');
+    }
 }
 function activityInviteUrl(invitationId) {
     return webclientUrl + "/#/invite/" + invitationId;

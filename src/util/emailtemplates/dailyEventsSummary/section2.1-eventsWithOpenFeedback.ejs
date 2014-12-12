@@ -17,7 +17,7 @@
                                 <td class="mcnCaptionRightImageContent" valign="top" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
 
 
-                                    <a href="<%= urlComposer.activityUrl(user.campaign.id, eventsWithOpenFeedback[i].activity.idea, eventsWithOpenFeedback[i].activity.id) %>" title="" class="" target="_blank" style="word-wrap: break-word;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+                                    <a href="<%= urlComposer.activityUrl(user.campaign.id, eventsWithOpenFeedback[i].activity.idea, eventsWithOpenFeedback[i].activity.id, undefined, eventsWithOpenFeedback[i].idea.action) %>" title="" class="" target="_blank" style="word-wrap: break-word;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
 
 
                                         <img alt="" src="<%- urlComposer.homeUrl() + '/assets/actpics/' + eventsWithOpenFeedback[i].activity.number + '.jpg'%>" width="132" style="max-width: 424px;border: 0;outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;vertical-align: bottom;" class="mcnImage">
@@ -32,7 +32,7 @@
                                 <td valign="top" class="mcnTextContent" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;color: #606060;font-family: Helvetica;font-size: 15px;line-height: 150%;text-align: left;">
                                     <div style="text-align: left;">
 
-                                        <a href="<%= urlComposer.activityUrl(user.campaign.id, eventsWithOpenFeedback[i].activity.idea, eventsWithOpenFeedback[i].activity.id) %>" target="_blank" style="word-wrap: break-word;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;color: #03a9f4;font-weight: normal;text-decoration: none;">
+                                        <a href="<%= urlComposer.activityUrl(user.campaign.id, eventsWithOpenFeedback[i].activity.idea, eventsWithOpenFeedback[i].activity.id, null, eventsWithOpenFeedback[i].idea.action) %>" target="_blank" style="word-wrap: break-word;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;color: #03a9f4;font-weight: normal;text-decoration: none;">
 
                                             <%= eventsWithOpenFeedback[i].activity.title.replace(/(<([^>]+)>)/ig, " ") %>
 

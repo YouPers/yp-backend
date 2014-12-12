@@ -77,7 +77,7 @@
                                     <% } else { %>
 
 
-                                    <%= moment(campaignOffers[i].activity.start).format('dddd, MMMM Do YYYY, hh:mm') %>
+                                    <%= moment(campaignOffers[i].activity.start).format('LLLL') %>
 
                                     <%- campaignOffers[i].activity.location ? ',' : '' %>
                                     <%- campaignOffers[i].activity.location %>

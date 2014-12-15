@@ -69,6 +69,7 @@
       "Recommendation": "empfiehlt dir"
     },
     "coach": "YOUPERS Coach",
+    "coachRecommendationFindOut": "Schaue auf der <a href='__link__'>Hauptseite</a> nach",
     "executionType": {
       "group": "in der Gruppe",
       "self": "selber"

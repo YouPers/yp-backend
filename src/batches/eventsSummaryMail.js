@@ -126,7 +126,8 @@ var getSummaryMailLocals = function getSummaryMailLocals(user, rangeStart, range
                     activity: { $in: activityIds},
                     authorType: 'user',
                     targetSpaces: { $elemMatch: { targetId: user.id }},
-                    created: { $gt: rangeStart }
+                    publishFrom: { $gt: rangeStart, $lt: rangeEnd },
+                    publishTo: { $gt: rangeEnd }
                 }).populate('author activity').exec(storeLocals('newPersonalInvitations', done));
             });
 

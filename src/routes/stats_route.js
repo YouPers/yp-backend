@@ -31,7 +31,7 @@ module.exports = function (swagger) {
                     paramType: "query",
                     name: "scopeType",
                     description: "The type of the scope to which the stats should be constrained, can be used to get " +
-                        "stats about a campaign or a specific user",
+                        "stats about a campaign or a specific user, or a topic",
                     dataType: "string",
                     enum: ['all','campaign','owner'],
                     default: 'all'

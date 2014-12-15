@@ -65,7 +65,7 @@ var getIcalObject = function (activity, recipientUser, iCalType, i18n, reason) {
         throw new Error('unknown iCal ObjectType: ' + iCalType);
     }
 
-    var link = urlComposer.activityUrl(activity.campaign, activity.idea.id || activity.idea , activity.id);
+    var link = urlComposer.activityUrl(activity.campaign, activity.idea.id || activity.idea.toString() , activity.id);
 
     event.setSummary(i18n.t('ical:' + iCalType + ".summary", {activity: activity.toJSON ? activity.toJSON() : activity, recipient: recipientUser.toJSON()}));
     event.setDescription(i18n.t('ical:' + iCalType + ".description", {activity: activity.toJSON ? activity.toJSON() : activity, recipient: recipientUser.toJSON(), link: link}));

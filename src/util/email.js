@@ -131,7 +131,9 @@ var sendCampaignParticipantInvite = function sendCampaignParticipantInvite(email
         salutation: i18n.t('email:CampaignParticipantInvite.salutation', { campaign: campaign.toJSON() }),
         text: text,
         image: urlComposer.campaignImageUrl(campaign.topic.picture),
-        link: testOnly ? '' : urlComposer.campaignWelcomeUrl(campaign._id),
+        // ignoring testOnly here, reason: Feedback Helmut/Stefan
+        //link: testOnly ? '' : urlComposer.campaignWelcomeUrl(campaign._id),
+        link: urlComposer.campaignWelcomeUrl(campaign._id),
         linkText: i18n.t('email:CampaignParticipantInvite.linkText'),
 
         campaignLeadsHeader: i18n.t('email:CampaignParticipantInvite.campaignLeadsHeader')

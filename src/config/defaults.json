@@ -39,7 +39,7 @@
         "passwordResetUrl": "/#/password_reset/"
     },
     "email": {
-        "fromString": "YOUPERS <dontreply@youpers.com>",
+        "fromString": "HealthCampaign <dontreply@youpers.com>",
         "templatesDir": "src/util/emailtemplates",
         "bcc": {
             "dailyEventsSummary": "ypunittest1+bbc@gmail.com"

@@ -37,7 +37,7 @@
     "linkText": "PASSWORT ÄNDERN"
   },
   "emailVerification": {
-    "subject": "YOUPERS: Bitte validiere deine E-Mail-Adresse",
+    "subject": "YOUPERS: Bitte verifiziere deine Email-Adresse",
     "salutation": "Hallo __user.firstname__",
     "text": "Danke für deine Registrierung!<br/><br/>Du hast __user.email__ als Email-Adresse angegeben. Wir wollen sichergehen, dass sie auch zu dir gehört. Klicke einfach auf den Link weiter unten, um deine Email-Adresse zu verifizieren.<br/><br/>Vielen Dank!<br/><br/>Dein YOUPERS-Team",
     "linkText": "EMAIL-ADRESSE VERIFIZIEREN"

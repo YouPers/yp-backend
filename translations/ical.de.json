@@ -1,17 +1,17 @@
 {
-    "new": {
-        "summary": "YouPers: __activity.title__",
-        "description": "YouPers Aktivität: __activity.title__, \n\n__activity.text__\n\n__link__",
-        "htmlDescription": "<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 3.2//EN'>\n<HTML><head></head><body><b>YouPers</b> Aktivität: __activity.title__, <br><br>__activity.text__<br><br><a href='__link__'>__link__</a></body></HTML>"
-    },
-    "update": {
-        "summary": "YouPers: __activity.title__",
-        "description": "YouPers Aktivität: __activity.title__\n\n__activity.text__\n\n__link__",
-        "htmlDescription": "<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 3.2//EN'>\n<HTML><head></head><body><b>YouPers</b> Aktivität: __activity.title__, <br><br>__activity.text__<br><br><a href='__link__'>__link__</a></body></HTML>"
-    },
-    "cancel": {
-        "summary": "YouPers: __activity.title__",
-        "description": "YouPers Aktivität: __activity.title__\n\n__activity.text__\n\n__link__",
-        "htmlDescription": "<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 3.2//EN'>\n<HTML><head></head><body><b>YouPers</b> Aktivität: __activity.title__, <br><br>__activity.text__<br><br><a href='__link__'>__link__</a></body></HTML>"
-    }
+  "new": {
+    "summary": "YouPers: __activity.title__",
+    "description": "YouPers Aktivität: __activity.title__, \n\n__activity.text__\n\n__link__",
+    "htmlDescription": "<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 3.2//EN'>\n<HTML><head></head><body><b>YouPers</b> Aktivität: __activity.title__, <br><br>__activity.text__<br><br><a href='__link__'>__link__</a></body></HTML>"
+  },
+  "update": {
+    "summary": "YouPers: __activity.title__",
+    "description": "YouPers Aktivität: __activity.title__\n\n__activity.text__\n\n__link__",
+    "htmlDescription": "<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 3.2//EN'>\n<HTML><head></head><body><b>YouPers</b> Aktivität: __activity.title__, <br><br>__activity.text__<br><br><a href='__link__'>__link__</a></body></HTML>"
+  },
+  "cancel": {
+    "summary": "YouPers: __activity.title__",
+    "description": "YouPers Aktivität: __activity.title__\n\n__activity.text__\n\n__link__",
+    "htmlDescription": "<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 3.2//EN'>\n<HTML><head></head><body><b>YouPers</b> Aktivität: __activity.title__, <br><br>__activity.text__<br><br><a href='__link__'>__link__</a></body></HTML>"
+  }
 }

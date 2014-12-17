@@ -69,6 +69,7 @@
       "Recommendation": null
     },
     "coach": null,
+    "coachRecommendationFindOut": null,
     "executionType": {
       "group": null,
       "self": null

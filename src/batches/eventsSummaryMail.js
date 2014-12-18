@@ -237,10 +237,6 @@ var sendSummaryMail = function sendSummaryMail(user, rangeStart, rangeEnd, done,
     user = user instanceof mongoose.Types.ObjectId ? user : new mongoose.Types.ObjectId(user);
 
 
-    rangeStart = rangeStart ? rangeStart : moment(user.lastSummaryMail) || moment(user.campaign.start);
-    rangeEnd = rangeEnd ? moment(rangeEnd) : moment();
-
-
     log.info('preparing Summary Mail for user: ' + user);
 
     mongoose.model('User')
@@ -256,6 +252,9 @@ var sendSummaryMail = function sendSummaryMail(user, rangeStart, rangeEnd, done,
                 log.error({error: err}, 'User not found');
                 return done(err);
             }
+
+            rangeStart = rangeStart ? rangeStart : moment(user.lastSummaryMail) || moment(user.campaign.start);
+            rangeEnd = rangeEnd ? moment(rangeEnd) : moment();
 
 
             // check if dailyUserMail is enabled in the user's profile

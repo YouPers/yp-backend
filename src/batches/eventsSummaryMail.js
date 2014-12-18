@@ -253,6 +253,7 @@ var sendSummaryMail = function sendSummaryMail(user, rangeStart, rangeEnd, done,
                 return done(err);
             }
 
+            // if no rangeStart is provided, use the date the last mail was sent, or the start of the campaign
             rangeStart = rangeStart ? rangeStart : moment(user.lastSummaryMail) || moment(user.campaign.start);
             rangeEnd = rangeEnd ? moment(rangeEnd) : moment();
 

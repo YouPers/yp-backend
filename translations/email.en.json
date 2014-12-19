@@ -11,7 +11,7 @@
   "ActivityInvitation": {
     "subject": "YOUPERS: Invitation to join activity from __inviting.fullname__",
     "salutation": "Hello __invited.firstname__!",
-    "salutationAnonymous": null,
+    "salutationAnonymous": "Hello!",
     "text": "__inviting.fullname__ has invited you to participate in a group activity",
     "linkText": "SHOW INVITATION"
   },
@@ -19,14 +19,14 @@
     "subject": "YOUPERS: Invitation from __inviting.fullname__ to become campaign leader",
     "welcomeHeader": "Welcome as campaign leader",
     "salutation": "Hello __invited.firstname__!",
-    "salutationAnonymous": "CampaignLeadInvite.salutationAnonymous",
+    "salutationAnonymous": "Hello!",
     "text": "__inviting.fullname__ has invited you to become campaign leader for the YOUPERS __campaign.title__ HealthCampaign.",
     "linkText": "SHOW INVITATION"
   },
   "OrganizationAdminInvite": {
     "subject": "YOUPERS: Invitation to become Organization Administrator from __inviting.fullname__",
     "salutation": "Hello __invited.firstname__!",
-    "salutationAnonymous": null,
+    "salutationAnonymous": "Hello!",
     "text": "__inviting.fullname__ has invited you to become organization administrator for __organization.name__.<br/><br/>To accept this invitation please click on this link:<br/>",
     "linkText": "SHOW INVITATION"
   },
@@ -44,19 +44,19 @@
   },
   "iCalMail": {
     "new": {
-      "subject": "YOUPERS: New Calendar-Entry for: __activity.title__",
+      "subject": "New Calendar-Entry for: __activity.title__",
       "salutation": "Hello __user.firstname__!",
       "text": "Congratulations! By scheduling <strong>__activity.title__</strong> you have already accomplished an important step!<br/><br/>You can add the events for this activity to your calendar with the link below.<br/><br/>If you do not want to receive emails like this in the future, you can disable it in your <a href='__profileLink__'>profile</a>.",
       "linkText": "ADD TO CALENDAR"
     },
     "update": {
-      "subject": "YOUPERS: Updated Calendar-Entry for: __activity.title__",
+      "subject": "Updated Calendar-Entry for: __activity.title__",
       "salutation": "Hello __user.firstname__!",
       "text": "The plans for <strong>__activity.title__</strong> have changed in the meantime. You can use the link below to update your calendar.<br/><br/>If you do not want to receive emails like this in the future, you can disable it in your <a href='__profileLink__'>profile</a>.",
       "linkText": "UPDATE CALENDAR"
     },
     "cancel": {
-      "subject": "YOUPERS: Cancelled Calendar-Entry for: __activity.title__",
+      "subject": "Cancelled Calendar-Entry for: __activity.title__",
       "salutation": "Hello __user.firstname__!",
       "text": "The activity <strong>__activity.title__</strong> has been cancelled. You can use the link below to update your calendar.<br/><br/>If you do not want to receive emails like this in the future, you can disable it in your <a href='__profileLink__'>profile</a>.",
       "linkText": "REMOVE FROM CALENDAR"

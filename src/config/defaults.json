@@ -18,6 +18,7 @@
         "dumpenabled": "false",
         "mongodumpexe": "/usr/local/bin/mongodump",
         "mongorestoreexe": "/usr/local/bin/mongorestore",
+        "mongoexe": "/usr/local/bin/mongo",
         "dumpdir": "/Users/retoblunschi/mongodumps",
         "excludedCollections": "ideas,topics,assessmentquestions,assessments"
     },

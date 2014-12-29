@@ -5,11 +5,13 @@ var mongoose = require('ypbackendlib').mongoose,
 
 // reused Aggregation piplines for multiple queries
 var _activityEventsStages = [
-    {
-        $project: {
-            status: {$cond: [{$gt: ['$end', new Date()]}, 'future', '$status']}
-        }
-    },
+    // does not work reliably, don't know why. Instead of producing totally wrong stats we just
+    // count the future ones as open, this is much better: see WL-1506
+    //{
+    //    $project: {
+    //        status: {$cond: [{$gt: ['$end', new Date()]}, 'future', '$status']}
+    //    }
+    //},
     {
         $group: {
             _id: '$status',

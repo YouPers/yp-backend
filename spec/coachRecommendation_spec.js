@@ -1,8 +1,15 @@
 var ypbackendlib = require('ypbackendlib');
 var config = require('../src/config/config');
 var modelNames = require('../src/models').modelNames;
+var _ = require('lodash');
 
-ypbackendlib.initializeDb(config, modelNames, __dirname.replace('/spec', '/src/models'));
+var schemaNames = ['user']; // schema names to be extended
+var modelPath = __dirname + '/../src/models'; // path the schema extensions are located
+var schemaExtensions = {};
+_.forEach(schemaNames, function (name) {
+    schemaExtensions[name] = require(modelPath + '/' + name + '_schema');
+});
+ypbackendlib.initializeDb(config, modelNames, modelPath, undefined, undefined, schemaExtensions);
 
 var CoachRecommendation = require('../src/core/CoachRecommendation');
 var consts = require('./testconsts');

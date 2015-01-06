@@ -160,9 +160,9 @@ function createTemplateCampaignOffers(campaign, req, cb) {
 
         async.each(topic.templateCampaignOffers, function (offer, done) {
 
-            var day = moment(campaign.start).add(offer.week, 'weeks').day(offer.weekday);
+            var day = moment(campaign.start).tz('Europe/Zurich').add(offer.week, 'weeks').day(offer.weekday);
 
-            // TODO: use proper timzone here
+            // TODO: use proper timezone of the campaignlead user here
             var startOfDay = moment(day).tz('Europe/Zurich').startOf('day');
             var endOfDay = moment(day).tz('Europe/Zurich').endOf('day');
 

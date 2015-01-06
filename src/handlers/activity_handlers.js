@@ -611,7 +611,11 @@ function deleteActivity(req, res, next) {
                     if (err) {
                         return error.handleError(err, next);
                     }
-                    actMgr.emit('activity:activityDeleted', activity);
+                    if (joiner) {
+                        actMgr.emit('activity:participationCancelled', activity, req.user);
+                    } else {
+                        actMgr.emit('activity:activityDeleted', activity);
+                    }
                     res.send(200);
                     return next();
                 });

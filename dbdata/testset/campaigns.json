@@ -14,7 +14,7 @@
             }
         ],
         "end": {
-            "$date": 1420046400000
+            "$date": 1440046400000
         },
         "location": "Zug",
         "organization": {
@@ -26,7 +26,7 @@
         "relatedService": "YP-Balance",
         "slogan": "Nie zu sp\u00e4t, um den eigenen Stress in den Griff zu kriegen!",
         "start": {
-            "$date": 1404314400000
+            "$date": 1420046400000
         },
         "title": "Stress",
         "topic": {
@@ -48,7 +48,7 @@
             }
         ],
         "end": {
-            "$date": 1420026000000
+            "$date": 1440026000000
         },
         "location": "Z\u00fcrich",
         "organization": {
@@ -60,7 +60,7 @@
         "relatedService": "YP-Balance",
         "slogan": "No (positive) stress, no fun!",
         "start": {
-            "$date": 1404324000000
+            "$date": 1420026000000
         },
         "title": "Nutrition",
         "topic": {

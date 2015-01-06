@@ -248,6 +248,28 @@ SocialInteraction.dismissInvitations = function dismissInvitations(refDoc, user,
     SocialInteraction.dismissSocialInteraction(Invitation, refDoc, user, documentTemplate, cb);
 };
 
+SocialInteraction.removeDismissals = function (refDoc, user, cb) {
+
+    Invitation.find({ activity: refDoc._id }).exec(function (err, invitations) {
+        if (err) {
+            return cb(err);
+        }
+
+        SocialInteractionDismissedModel.find(
+            {
+                socialInteraction: {$in: _.map(invitations, '_id')},
+                user: user._id
+            }
+        ).remove(function (err) {
+                if (err) {
+                    return cb(err);
+                }
+
+            });
+    });
+
+};
+
 SocialInteraction.deleteSocialInteractions = function (refDoc, cb) {
 
     var finder =

@@ -1,5 +1,5 @@
 var mongoose = require('ypbackendlib').mongoose,
-    moment = require('moment'),
+    moment = require('moment-timezone'),
     _ = require('lodash'),
     async = require('async'),
     email = require('../util/email'),
@@ -33,8 +33,9 @@ var getSummaryMailLocals = function getSummaryMailLocals(user, rangeStart, range
         };
     };
 
-    var startOfDay = moment(rangeEnd).startOf('day').toDate();
-    var endOfDay = moment(rangeEnd).endOf('day').toDate();
+    // TODO: use proper timezone of the user here
+    var startOfDay = moment(rangeEnd).tz('Europe/Zurich').startOf('day').toDate();
+    var endOfDay = moment(rangeEnd).tz('Europe/Zurich').endOf('day').toDate();
 
     var dismissedSocialInteractions = [];
 

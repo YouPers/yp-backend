@@ -3,7 +3,8 @@
  */
 
 // Load configuration
-var config = require('./config/config');
+var config = require('./config/config'),
+    _ = require('lodash');
 
 if (config.NEW_RELIC_ENABLED) {
     console.log("Enabling new relic: " + config.NEW_RELIC_ENABLED);
@@ -28,7 +29,13 @@ var swaggerServer = ypbackendlib.createSwaggeredServer("HealthCampaignsServer", 
 // initialize Database
 var modelNames = require('./models').modelNames;
 
-ypbackendlib.initializeDb(config, modelNames, __dirname + '/models');
+var schemaNames = ['user']; // schema names to be extended
+var modelPath = __dirname + '/models'; // path the schema extensions are located
+var schemaExtensions = {};
+_.forEach(schemaNames, function (name) {
+    schemaExtensions[name] = require(modelPath + '/' + name + '_schema');
+});
+ypbackendlib.initializeDb(config, modelNames, modelPath, undefined, undefined, schemaExtensions);
 
 // setup our routes
 swaggerServer.addRoutes(__dirname + '/routes');

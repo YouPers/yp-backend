@@ -1,7 +1,8 @@
 var mongoose = require('ypbackendlib').mongoose,
     ObjectId = mongoose.Types.ObjectId,
     transformers = require('./transformers'),
-    _ = require('lodash');
+    _ = require('lodash'),
+    stats = require('ypbackendlib').stats;
 
 // reused Aggregation piplines for multiple queries
 var _activityEventsStages = [
@@ -488,4 +489,4 @@ var queries = {
     }
 };
 
-module.exports = queries;
+stats.registerQueries(queries);

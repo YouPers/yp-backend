@@ -37,6 +37,9 @@ _.forEach(schemaNames, function (name) {
 });
 ypbackendlib.initializeDb(config, modelNames, modelPath, undefined, undefined, schemaExtensions);
 
+// initialize stats
+require('./stats/statsQueries');
+
 // setup our routes
 swaggerServer.addRoutes(__dirname + '/routes');
 

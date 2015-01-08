@@ -650,7 +650,11 @@ function deleteEvent(req, res, next) {
                     if (err) {
                         return error.handleError(err, next);
                     }
-                    actMgr.emit('event:eventDeleted', event);
+                    if (joiner) {
+                        actMgr.emit('event:participationCancelled', event, req.user);
+                    } else {
+                        actMgr.emit('event:eventDeleted', event);
+                    }
                     res.send(200);
                     return next();
                 });

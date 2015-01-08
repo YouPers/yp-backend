@@ -235,6 +235,10 @@ actMgr.on('event:eventDeleted', function (event) {
     SocialInteraction.deleteSocialInteractions(event, handleError);
 });
 
+actMgr.on('event:participationCancelled', function(event, user) {
+   SocialInteraction.removeDismissals(event, user, handleError);
+});
+
 actMgr.on('event:eventUpdated', function (updatedEvent) {
     Invitation.find({
             event: updatedEvent._id

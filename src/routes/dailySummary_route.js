@@ -15,8 +15,8 @@ module.exports = function (swagger) {
             summary: "get daily summary",
             method: "GET",
             params: [
-                swagger.queryParam("rangeStart", "start of the date range, the summary is created for, defaults to one day before now", "string"),
-                swagger.queryParam("rangeEnd", "end of the date range, the summary is created for, defaults to now", "string")
+                swagger.queryParam("lastSentMailDate", "start of the date range, the summary is created for, defaults to one day before now", "string"),
+                swagger.queryParam("currentDate", "end of the date range, the summary is created for, defaults to now", "string")
             ],
             "nickname": "getDailySummary",
             accessLevel: 'al_user'
@@ -25,10 +25,10 @@ module.exports = function (swagger) {
 
             var user = req.user; // TODO: select user for admin mode by path parameter
 
-            var rangeEnd = req.params.rangeEnd ? moment(req.params.rangeEnd) : moment();
-            var rangeStart = req.params.rangeStart ? moment(req.params.rangeStart) : rangeEnd.subtract(1, 'days');
+            var currentDate = req.params.currentDate ? moment(req.params.currentDate) : moment();
+            var lastSentMailDate = req.params.lastSentMailDate ? moment(req.params.lastSentMailDate) : currentDate.subtract(1, 'days');
             
-            eventsSummaryMail.renderSummaryMail(user, rangeStart.toDate(), rangeEnd.toDate(), req, function (err, html) {
+            eventsSummaryMail.renderSummaryMail(user, lastSentMailDate.toDate(), currentDate.toDate(), req, function (err, html) {
 
                 if (err) {
                     return error.handleError(err, next);
@@ -48,8 +48,8 @@ module.exports = function (swagger) {
             summary: "get daily summary",
             method: "POST",
             params: [
-                swagger.queryParam("rangeStart", "start of the date range, the summary is created for, defaults to one day before now", "string"),
-                swagger.queryParam("rangeEnd", "end of the date range, the summary is created for, defaults to now", "string")
+                swagger.queryParam("lastSentMailDate", "start of the date range, the summary is created for, defaults to one day before now", "string"),
+                swagger.queryParam("currentDate", "end of the date range, the summary is created for, defaults to now", "string")
             ],
             "nickname": "sendDailySummary",
             accessLevel: 'al_user'
@@ -58,10 +58,10 @@ module.exports = function (swagger) {
 
             var user = req.user; // TODO: select user for admin mode by path parameter
 
-            var rangeEnd = req.params.rangeEnd ? moment(req.params.rangeEnd) : moment();
-            var rangeStart = req.params.rangeStart ? moment(req.params.rangeStart) : rangeEnd.subtract(1, 'days');
+            var currentDate = req.params.currentDate ? moment(req.params.currentDate) : moment();
+            var lastSentMailDate = req.params.lastSentMailDate ? moment(req.params.lastSentMailDate) : currentDate.subtract(1, 'days');
 
-            eventsSummaryMail.sendSummaryMail(user, rangeStart, rangeEnd, function (err) {
+            eventsSummaryMail.sendSummaryMail(user, lastSentMailDate, currentDate, function (err) {
 
                 if (err) {
                     return error.handleError(err, next);

@@ -10,12 +10,12 @@ var mongoose = require('ypbackendlib').mongoose,
 /*
  *  gather locals for daily summary mail
  */
-var getSummaryMailLocals = function getSummaryMailLocals(user, rangeStart, rangeEnd, callback) {
+var getSummaryMailLocals = function getSummaryMailLocals(user, lastSentMailDate, currentDate, callback) {
 
     var locals = {
         user: user.toJSON(),
-        rangeStart: rangeStart,
-        rangeEnd: rangeEnd,
+        lastSentMailDate: lastSentMailDate,
+        currentDate: currentDate,
         campaignOffers: []
     };
 
@@ -34,8 +34,8 @@ var getSummaryMailLocals = function getSummaryMailLocals(user, rangeStart, range
     };
 
     // TODO: use proper timezone of the user here
-    var startOfDay = moment(rangeEnd).tz('Europe/Zurich').startOf('day').toDate();
-    var endOfDay = moment(rangeEnd).tz('Europe/Zurich').endOf('day').toDate();
+    var startOfDay = moment(currentDate).tz('Europe/Zurich').startOf('day').toDate();
+    var endOfDay = moment(currentDate).tz('Europe/Zurich').endOf('day').toDate();
 
     var dismissedSocialInteractions = [];
 
@@ -91,8 +91,8 @@ var getSummaryMailLocals = function getSummaryMailLocals(user, rangeStart, range
                 _id: { $nin: dismissedSocialInteractions },
                 authorType: 'campaignLead',
                 targetSpaces: { $elemMatch: { targetId: user.campaign }},
-                publishFrom: { $gt: rangeStart, $lt: rangeEnd },
-                publishTo: { $gt: rangeEnd }
+                publishFrom: { $gt: lastSentMailDate, $lt: currentDate },
+                publishTo: { $gt: currentDate }
             }).populate('author').exec(storeLocals('newCampaignMessages', done));
         },
 
@@ -102,8 +102,8 @@ var getSummaryMailLocals = function getSummaryMailLocals(user, rangeStart, range
                 _id: { $nin: dismissedSocialInteractions },
                 authorType: 'campaignLead',
                 targetSpaces: { $elemMatch: { targetId: user.campaign }},
-                publishFrom: { $gt: rangeStart, $lt: rangeEnd },
-                publishTo: { $gt: rangeEnd }
+                publishFrom: { $gt: lastSentMailDate, $lt: currentDate },
+                publishTo: { $gt: currentDate }
             }).populate('author activity').exec(storeLocals('newCampaignActivityInvitations', done));
         },
 
@@ -113,8 +113,8 @@ var getSummaryMailLocals = function getSummaryMailLocals(user, rangeStart, range
                 _id: { $nin: dismissedSocialInteractions },
                 authorType: 'campaignLead',
                 targetSpaces: { $elemMatch: { targetId: user.campaign }},
-                publishFrom: { $gt: rangeStart, $lt: rangeEnd },
-                publishTo: { $gt: rangeEnd }
+                publishFrom: { $gt: lastSentMailDate, $lt: currentDate },
+                publishTo: { $gt: currentDate }
             }).populate('author idea').exec(storeLocals('newCampaignRecommendations', done));
         },
 
@@ -127,8 +127,8 @@ var getSummaryMailLocals = function getSummaryMailLocals(user, rangeStart, range
                     activity: { $in: activityIds},
                     authorType: 'user',
                     targetSpaces: { $elemMatch: { targetId: user.id }},
-                    publishFrom: { $gt: rangeStart, $lt: rangeEnd },
-                    publishTo: { $gt: rangeEnd }
+                    publishFrom: { $gt: lastSentMailDate, $lt: currentDate },
+                    publishTo: { $gt: currentDate }
                 }).populate('author activity').exec(storeLocals('newPersonalInvitations', done));
             });
 
@@ -155,7 +155,7 @@ var getSummaryMailLocals = function getSummaryMailLocals(user, rangeStart, range
                             }
                         }
                     },
-                    created: {$gt: rangeStart}
+                    created: {$gt: lastSentMailDate}
                 }).exec(storeLocals('newCommentsOnParticipatedActivities', done));
             });
         },
@@ -166,7 +166,7 @@ var getSummaryMailLocals = function getSummaryMailLocals(user, rangeStart, range
                 _id: {$nin: dismissedSocialInteractions},
                 authorType: 'user',
                 targetSpaces: {$elemMatch: {targetId: user.campaign}},
-                created: {$gt: rangeStart}
+                created: {$gt: lastSentMailDate}
             }).populate('author activity').exec(storeLocals('newPublicInvitations', done));
         },
 
@@ -176,7 +176,7 @@ var getSummaryMailLocals = function getSummaryMailLocals(user, rangeStart, range
                 _id: {$nin: dismissedSocialInteractions},
                 authorType: 'coach',
                 targetSpaces: { $elemMatch: { targetId: user.id }},
-                created: {$gt: rangeStart}
+                created: {$gt: lastSentMailDate}
             }).populate('author idea').exec(storeLocals('newCoachRecommendations', done));
         }
     ];
@@ -203,15 +203,15 @@ var getSummaryMailLocals = function getSummaryMailLocals(user, rangeStart, range
 
 };
 
-var renderSummaryMail = function (user, rangeStart, rangeEnd, req, callback) {
+var renderSummaryMail = function (user, lastSentMailDate, currentDate, req, callback) {
 
-    getSummaryMailLocals(user, rangeStart, rangeEnd, function (err, locals) {
+    getSummaryMailLocals(user, lastSentMailDate, currentDate, function (err, locals) {
         if(err) {
             return callback(err);
         }
 
         var mailLocals = email.getDailyEventSummaryLocals(locals, req.i18n);
-        req.log.info(mailLocals, "using these Locals for dailySummary");
+        req.log.debug(mailLocals, "using these Locals for dailySummary");
         email.renderEmailTemplate('dailyEventsSummary', mailLocals, callback);
     });
 };
@@ -220,12 +220,12 @@ var renderSummaryMail = function (user, rangeStart, rangeEnd, req, callback) {
  * worker function that sends a DailySummaryMail for one specific user.
  * @param user an object with a "_id" property containing the id of the user for which to send an email.
  *             can be a full user object or just an object with this "_id" property.
- * @param rangeStart
- * @param rangeEnd
+ * @param lastSentMailDate
+ * @param currentDate
  * @param done
  * @param context
  */
-var sendSummaryMail = function sendSummaryMail(user, rangeStart, rangeEnd, done, context) {
+var sendSummaryMail = function sendSummaryMail(user, lastSentMailDate, currentDate, done, context) {
     var log = (context && context.log) || this.log;
     var i18n = (context && context.i18n) || this.i18n;
 
@@ -254,9 +254,9 @@ var sendSummaryMail = function sendSummaryMail(user, rangeStart, rangeEnd, done,
                 return done(err);
             }
 
-            // if no rangeStart is provided, use the date the last mail was sent, or the start of the campaign
-            rangeStart = rangeStart ? rangeStart : moment(user.lastSummaryMail) || moment(user.campaign.start);
-            rangeEnd = rangeEnd ? moment(rangeEnd) : moment();
+            // if no lastSentMailDate is provided, use the date the last mail was sent stored at the user, or the start of the campaign
+            lastSentMailDate = lastSentMailDate ? lastSentMailDate : moment(user.lastSummaryMail) || moment(user.campaign.start);
+            currentDate = currentDate ? moment(currentDate) : moment();
 
 
             // check if dailyUserMail is enabled in the user's profile
@@ -266,7 +266,7 @@ var sendSummaryMail = function sendSummaryMail(user, rangeStart, rangeEnd, done,
             }
 
             // check defaultWorkWeek in the user's profile
-            var weekDay = rangeEnd.format('dd').toUpperCase(); // MO, TU, WE, ..
+            var weekDay = currentDate.format('dd').toUpperCase(); // MO, TU, WE, ..
             var defaultWorkWeek = user.profile.prefs.defaultWorkWeek || ['MO', 'TU', 'WE', 'TH' , 'FR'];
             if(!_.contains(defaultWorkWeek, weekDay)){
                 log.debug('DailySummary not sent, defaultWorkWeek from the user does not contain today: ' + weekDay + ', defaultWorkWeek: ' + user.profile.prefs.defaultWorkWeek + ', email: ' + user.email);
@@ -274,7 +274,7 @@ var sendSummaryMail = function sendSummaryMail(user, rangeStart, rangeEnd, done,
             }
 
 
-            getSummaryMailLocals(user, rangeStart.toDate(), rangeEnd.toDate(), function (err, locals) {
+            getSummaryMailLocals(user, lastSentMailDate.toDate(), currentDate.toDate(), function (err, locals) {
 
                 i18n.setLng(user.profile.language || 'de');
 
@@ -285,7 +285,7 @@ var sendSummaryMail = function sendSummaryMail(user, rangeStart, rangeEnd, done,
                 mongoose.model('User').update({ _id: user._id },
                     {
                         $set: {
-                            lastSummaryMail: rangeEnd.toDate()
+                            lastSummaryMail: currentDate.toDate()
                         }
                     }, function (err) {
                     if(err) {
@@ -319,7 +319,7 @@ var feeder = function (callback) {
 };
 
 var worker = function (owner, done) {
-    return sendSummaryMail.apply(this, [owner, this.rangeStart, this.rangeEnd, done]);
+    return sendSummaryMail.apply(this, [owner, this.lastSentMailDate, this.currentDate, done]);
 };
 
 var run = function run() {

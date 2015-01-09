@@ -36,4 +36,6 @@ CampaignSchema.statics.adminRoles =  [auth.roles.systemadmin, auth.roles.product
 
 CampaignSchema.statics.adminAttrsSelector = '+productType +paymentStatus';
 
+CampaignSchema.plugin(require('mongoose-eventify'));
+
 module.exports = mongoose.model('Campaign', CampaignSchema);

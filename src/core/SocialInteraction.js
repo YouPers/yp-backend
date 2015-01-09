@@ -106,6 +106,26 @@ SocialInteraction.on('socialInteraction:dismissed', function (user, socialIntera
 });
 
 
+mongoose.model('Campaign').on('remove', function (campaign) {
+    var finder = {
+        targetSpaces: {
+            $elemMatch: { type: 'campaign', targetId: campaign._id }
+            }
+    };
+
+    SocialInteractionModel.find(finder).exec(function _removeAll(err, objs) {
+        async.forEach(objs, function (obj, cb) {
+            obj.remove(cb);
+        }, function(err) {
+            if (err) {
+                log.error(err);
+                throw err;
+            }
+        });
+    });
+});
+
+
 /**
  *
  * @param to        single or multiple recipients, can either be email addresses or users

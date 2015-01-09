@@ -14,6 +14,7 @@ var ActivityEvent = mongoose.model('ActivityEvent');
 var SocialInteraction = require('../core/SocialInteraction');
 var config = require('../config/config');
 var log = require('ypbackendlib').log(config);
+var async = require('async');
 
 function ActivityManagement() {
     EventEmitter.call(this);
@@ -123,6 +124,26 @@ ActivityEvent.on("change:status", function (event) {
             });
         }
     });
+});
+
+/**
+ * On Campaign delete, check whether there are activities and activityEvents in this campaign, and remove them too.
+ */
+Campaign.on('remove', function (campaign) {
+
+    function _removeAll(err, objs) {
+        async.forEach(objs, function (obj, cb) {
+            obj.remove(cb);
+        }, function(err) {
+            if (err) {
+                log.error(err);
+                throw err;
+            }
+        });
+    }
+
+    Activity.find({campaign: campaign._id}).exec(_removeAll);
+    ActivityEvent.find({campaign: campaign._id}).exec(_removeAll);
 });
 
 

@@ -167,11 +167,11 @@ function createTemplateCampaignOffers(campaign, req, cb) {
             var endOfDay = moment(day).tz('Europe/Zurich').endOf('day');
 
             // check if campaign is still running for this day
-            if(startOfDay.isAfter(campaign.end) || startOfDay.isBefore(campaign.start)) {
+            if (startOfDay.isAfter(campaign.end) || startOfDay.isBefore(campaign.start)) {
                 return done();
             }
 
-            if(offer.type === 'Recommendation') {
+            if (offer.type === 'Recommendation') {
 
                 var recommendation = new Recommendation({
                     idea: offer.idea,
@@ -196,10 +196,10 @@ function createTemplateCampaignOffers(campaign, req, cb) {
                     done();
                 });
 
-            } else if(offer.type === 'Invitation') {
+            } else if (offer.type === 'Invitation') {
 
                 Idea.findById(offer.idea, function (err, idea) {
-                    if(err) {
+                    if (err) {
                         done(err);
                     }
 
@@ -209,7 +209,7 @@ function createTemplateCampaignOffers(campaign, req, cb) {
                     activity.save(function (err, saved) {
 
                         var publishFrom = moment(startOfDay).subtract(2, 'days').toDate();
-                        if(moment(publishFrom).isBefore(campaign.start)) {
+                        if (moment(publishFrom).isBefore(campaign.start)) {
                             publishFrom = campaign.start;
                         }
                         var publishTo = endOfDay.toDate();
@@ -315,7 +315,6 @@ function addSurveyCollectors(sentCampaign, req, cb) {
                             return cb(null, sentCampaign);
                         });
                 });
-
 
 
         });
@@ -629,9 +628,69 @@ var avatarImagePostFn = function (baseUrl) {
     };
 };
 
+var deleteByIdFn = function deleteByIdFn(baseUrl, Model) {
+    return function (req, res, next) {
+        var objId;
+        try {
+            objId = new mongoose.Types.ObjectId(req.params.id);
+        } catch (err) {
+            return next(new error.InvalidArgumentError({id: req.params.id}));
+        }
+        // instead of using Model.remove directly, findOne in combination with obj.remove
+        // is used in order to trigger
+        // - schema.pre('remove', ... or
+        // - schema.pre('remove', ...
+        // see user_model.js for an example
+
+        // check if this is a "personal" object (i.e. has an "owner" property),
+        // if yes only delete the objects of the currently logged in user
+        var finder = {_id: req.params.id};
+
+        if (!req.user || !req.user.id) {
+            return next(new error.NotAuthorizedError('Authentication required for this object'));
+        }
+
+        Model.findOne(finder).exec(function (err, campaign) {
+            if (err) {
+                return error.handleError(err, next);
+            }
+            if (!campaign) {
+                req.log.error(finder);
+                return next(new error.ResourceNotFoundError());
+            }
+            var isSysadmin = auth.checkAccess(req.user, 'al_systemadmin');
+            var isCampaignLead = _.find(campaign.campaignLeads, function (user) {
+                return user.equals(req.user._id);
+            });
+
+            if (!isSysadmin && !isCampaignLead ) {
+                return next(new error.NotAuthorizedError('Not authorized to delete this campaign, must have role campaignlead or sysadmin.'));
+            }
+
+            // check whether there are users in the campaign
+            mongoose.model('User').find({campaign: campaign._id}).count(function (err, count) {
+                if (err) {
+                    return error.handleError(err, next);
+                }
+
+                if (count > 0 && !isSysadmin) {
+                    return next(new error.NotAuthorizedError('Cannot delete this campaign, ' + count + ' users have already joined.'));
+                }
+
+                campaign.remove(function (err) {
+                    res.send(200);
+                    return next();
+                });
+            });
+
+        });
+    };
+};
+
 module.exports = {
     postCampaign: postCampaign,
     putCampaign: putCampaign,
+    deleteByIdFn: deleteByIdFn,
     getAllForUserFn: getAllForUserFn,
     assignCampaignLead: assignCampaignLeadFn,
     postCampaignLeadInvite: postCampaignLeadInviteFn,

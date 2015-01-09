@@ -149,7 +149,7 @@ actMgr.getEvents = function getEvents(activity, ownerId, fromDate) {
     return events;
 };
 
-actMgr.defaultActivity = function (idea, user, campaignId, startDate) {
+actMgr.defaultActivity = function (idea, user, campaignId, startDateParam) {
 
     var duration = idea.defaultduration ? idea.defaultduration : 60;
 
@@ -158,12 +158,27 @@ actMgr.defaultActivity = function (idea, user, campaignId, startDate) {
         campaignId = user.campaign._id || user.campaign;
     }
 
-    var start =  moment(startDate).add(1, 'd').startOf('hour');
-    if(idea.defaultStartTime) {
-        var defaultStartTime = moment(idea.defaultStartTime);
-        start.hours(defaultStartTime.hours());
-        start.minutes(moment(idea.defaultStartTime).minutes());
+    var start =  startDateParam ? moment(startDateParam)  : moment().add(1, 'd');
+
+    // check if the organizer is working on this day by checking the default work days in his calendar, if not push
+    // back by one day and repeat
+
+    function _isWorkingOn(user, date) {
+        var workWeek = user.profile.prefs.defaultWorkWeek || ['MO', 'TU', 'WE', 'TH', 'FR'];
+        var dayStringOfThisDate = ['SU', 'MO', 'TU', 'WE', 'TH', 'FR', 'SA'][date.day()];
+
+        return _.contains(workWeek, dayStringOfThisDate);
     }
+
+    while(!_isWorkingOn(user, start)) {
+        start = start.add(1, 'day');
+    }
+
+    // time of the event is either defined on the idea, or we take the begin of the current hour
+    var startTime = idea.defaultStartTime ? moment(idea.defaultStartTime) : moment().startOf('hour');
+
+    start.hours(startTime.hours());
+    start.minutes(startTime.minutes());
     start = start.toDate();
 
     var activity = {

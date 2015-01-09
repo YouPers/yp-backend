@@ -272,44 +272,54 @@ function addSurveyCollectors(sentCampaign, req, cb) {
             survey_id: config.surveyMonkey.dcmSurveyId,
             collector: {
                 type: 'weblink',
-                name: sentCampaign.organization.name + ': ' + sentCampaign._id.toString()
+                name: sentCampaign.organization.name + '/ ' + sentCampaign.participants + '/' + sentCampaign.location
             }
         };
 
-        jsonClient.post(config.surveyMonkey.createCollectorEndpoint + '?api_key=' + config.surveyMonkey.api_key,
-            body,
-            function (err, request, response, obj) {
-                if (err || obj.status !== 0) {
-                    req.log.error({
-                        path: request.path,
-                        method: request.method,
-                        headers: request._headers
-                    }, 'ERROR posting to SurveyMonkey: request');
-                    req.log.error(obj, 'ERROR posting to SurveyMonkey: response');
-                    return cb(err || new Error(obj));
-                }
+        mongoose.model('Organization').findById(sentCampaign.organization).exec(function (err, org) {
+            if (err) {
+                error.handleError(err, cb);
+            }
 
-                sentCampaign.leaderSurveyCollectorId = obj && obj.data && obj.data.collector.collector_id;
-                sentCampaign.leaderSurveyUrl = obj && obj.data && obj.data.collector.url;
+            jsonClient.post(config.surveyMonkey.createCollectorEndpoint + '?api_key=' + config.surveyMonkey.api_key,
+                body,
+                function (err, request, response, obj) {
+                    if (err || obj.status !== 0) {
+                        req.log.error({
+                            path: request.path,
+                            method: request.method,
+                            headers: request._headers
+                        }, 'ERROR posting to SurveyMonkey: request');
+                        req.log.error(obj, 'ERROR posting to SurveyMonkey: response');
+                        return cb(err || new Error(obj));
+                    }
 
-                body.survey_id = config.surveyMonkey.dhcSurveyId;
+                    sentCampaign.leaderSurveyCollectorId = obj && obj.data && obj.data.collector.collector_id;
+                    sentCampaign.leaderSurveyUrl = obj && obj.data && obj.data.collector.url;
 
-                jsonClient.post(config.surveyMonkey.createCollectorEndpoint + '?api_key=' + config.surveyMonkey.api_key,
-                    body,
-                    function (err, request, response, obj) {
-                        if (err || obj.status !== 0) {
-                            req.log.error(request, 'ERROR posting to SurveyMonkey: request');
-                            req.log.error(response, 'ERROR posting to SurveyMonkey: response');
-                            return cb(err || new Error(obj));
-                        }
+                    body.survey_id = config.surveyMonkey.dhcSurveyId;
 
-                        sentCampaign.participantSurveyCollectorId = obj && obj.data && obj.data.collector.collector_id;
-                        sentCampaign.participantSurveyUrl = obj && obj.data && obj.data.collector.url;
+                    jsonClient.post(config.surveyMonkey.createCollectorEndpoint + '?api_key=' + config.surveyMonkey.api_key,
+                        body,
+                        function (err, request, response, respObj) {
+                            if (err || respObj.status !== 0) {
+                                req.log.error(request, 'ERROR posting to SurveyMonkey: request');
+                                req.log.error(response, 'ERROR posting to SurveyMonkey: response');
+                                return cb(err || new Error(respObj));
+                            }
+
+                            sentCampaign.participantSurveyCollectorId = respObj && respObj.data && respObj.data.collector.collector_id;
+                            sentCampaign.participantSurveyUrl = respObj && respObj.data && respObj.data.collector.url;
 
 
-                        return cb(null, sentCampaign);
-                    });
-            });
+                            return cb(null, sentCampaign);
+                        });
+                });
+
+
+
+        });
+
     } else {
         return cb(null, sentCampaign);
     }

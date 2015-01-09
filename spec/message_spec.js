@@ -1,7 +1,6 @@
 var frisby = require('frisby'),
     port = process.env.PORT || 8000,
     URL = 'http://localhost:' + port,
-    _ = require('lodash'),
     consts = require('./testconsts'),
     moment = require('moment');
 
@@ -81,7 +80,7 @@ consts.newUserInNewCampaignApi(
                     })
                     .toss();
             })
-            .toss()
+            .toss();
     });
 
 
@@ -252,6 +251,6 @@ consts.newUserInNewCampaignApi(
                     })
                     .toss();
             })
-            .toss()
+            .toss();
     });
 

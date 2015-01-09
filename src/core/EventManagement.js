@@ -237,6 +237,8 @@ actMgr.on('event:eventDeleted', function (event) {
 
 actMgr.on('event:participationCancelled', function(event, user) {
    SocialInteraction.removeDismissals(event, user, handleError);
+
+    // TODO: IN-76: check whether we need to resurrect an already filled up public invitation
 });
 
 actMgr.on('event:eventUpdated', function (updatedEvent) {

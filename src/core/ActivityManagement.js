@@ -164,7 +164,7 @@ actMgr.defaultActivity = function (idea, user, campaignId, startDateParam) {
     // back by one day and repeat
 
     function _isWorkingOn(user, date) {
-        var workWeek = user.profile.prefs.defaultWorkWeek || ['MO', 'TU', 'WE', 'TH', 'FR'];
+        var workWeek = user.profile.prefs ? user.profile.prefs.defaultWorkWeek : ['MO', 'TU', 'WE', 'TH', 'FR'];
         var dayStringOfThisDate = ['SU', 'MO', 'TU', 'WE', 'TH', 'FR', 'SA'][date.day()];
 
         return _.contains(workWeek, dayStringOfThisDate);

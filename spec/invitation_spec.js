@@ -125,12 +125,15 @@ consts.newUserInNewCampaignApi(
                                                             .delete(URL + '/activities/' + newPlan.id)
                                                             .auth('test_ind1', 'yp')
                                                             .expectStatus(200)
+                                                            .after(function () {
+                                                                cleanupFn();
+                                                            })
                                                             .toss();
                                                     })
                                                     .toss();
 
 
-                                                cleanupFn();
+
                                             })
                                             .toss();
                                     })

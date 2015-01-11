@@ -24,7 +24,7 @@ frisby.create('GET ideas with filter option returning several results')
 frisby.create('GET ideas with two ANDed options')
     .get(URL + '/ideas?filter[source]=youpers&filter[number]=Act-17')
     .expectStatus(200)
-    .expectJSONLength(4)
+    .expectJSONLength(11)
     .toss();
 
 frisby.create('GET ideas with < option')

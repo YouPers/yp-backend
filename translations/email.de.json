@@ -10,7 +10,7 @@
   },
   "ActivityInvitation": {
     "subject": "YOUPERS: Einladung für eine Gruppen-Aktivität vom __inviting.fullname__",
-    "salutation": "Hallo __invited.firstname__!",
+    "salutation": "Hallo __invited.firstname__",
     "salutationAnonymous": "Hallo!",
     "text": "__inviting.fullname__ hat dich zu einer Aktivität eingeladen.",
     "linkText": "EINLADUNG ANZEIGEN"
@@ -18,46 +18,46 @@
   "CampaignLeadInvite": {
     "subject": "YOUPERS: Einladung von __inviting.fullname__ zum Kampagnenleiter",
     "welcomeHeader": "Willkommen als Kampagnenleiter",
-    "salutation": "Hallo __invited.firstname__!",
+    "salutation": "Hallo __invited.firstname__",
     "salutationAnonymous": "Hallo!",
     "text": "__inviting.fullname__ hat Dich eingeladen, Kampagnenleiter der YOUPERS __campaign.title__ HealthCampaign zu werden.",
     "linkText": "EINLADUNG ANZEIGEN"
   },
   "OrganizationAdminInvite": {
     "subject": "YOUPERS: Einladung zum Organisations-Administrator von __inviting.fullname__",
-    "salutation": "Hallo __invited.firstname__!",
+    "salutation": "Hallo __invited.firstname__",
     "salutationAnonymous": "Hallo!",
     "text": "__inviting.fullname__ hat Dich eingeladen, Organisations-Administrator für __organization.name__ zu werden.<br/><br/>",
     "linkText": "EINLADUNG ANZEIGEN"
   },
   "passwordReset": {
     "subject": "YOUPERS: Zurücksetzen des Passworts",
-    "salutation": "Hallo __user.firstname__!",
+    "salutation": "Hallo __user.firstname__",
     "text": "Um dein Passwort zu ändern, klicke auf den untenstehenend Link und folge den Anweisungen.<br/><br/>Vielen Dank<br/><br/>Dein YOUPERS Team",
     "linkText": "PASSWORT ÄNDERN"
   },
   "emailVerification": {
     "subject": "YOUPERS: Bitte verifiziere deine Email-Adresse",
-    "salutation": "Hallo __user.firstname__!",
+    "salutation": "Hallo __user.firstname__",
     "text": "Danke für deine Registrierung!<br/><br/>Du hast __user.email__ als Email-Adresse angegeben. Wir wollen sichergehen, dass sie auch zu dir gehört. Klicke einfach auf den Link weiter unten, um deine Email-Adresse zu verifizieren.<br/><br/>Vielen Dank!<br/><br/>Dein YOUPERS-Team",
     "linkText": "EMAIL-ADRESSE VERIFIZIEREN"
   },
   "iCalMail": {
     "new": {
       "subject": "Neuer Kalender-Eintrag für: __activity.title__",
-      "salutation": "Hallo __user.firstname__!",
+      "salutation": "Hallo __user.firstname__",
       "text": "Mit dem Einplanen von <strong>__activity.title__</strong> hast du schon den wichtigsten Schritt erledigt!<br/><br/>Im Anhang findest du die Termine zu deinem Plan, um sie in deinem Kalender einzutragen. <br/><br/>Du kannst weitere solche Emails in deinem <a href='__profileLink__'>Profil</a> ausschalten.",
       "linkText": "ZU KALENDER HINZUFÜGEN"
     },
     "update": {
       "subject": "Angepasster Kalender-Eintrag für: __activity.title__",
-      "salutation": "Hallo __user.firstname__!",
+      "salutation": "Hallo __user.firstname__",
       "text": "Die Pläne zur Aktivität <strong>__activity.title__</strong> haben sich inzwischen geändert.<br/>Bitte öffne die folgenden Links um deinen Kalender-Eintrag zu aktualisieren. <br/><br/>Du kannst weitere solche Emails in deinem <a href='__profileLink__'>Profil</a> ausschalten.",
       "linkText": "KALENDER AKTUALISIEREN"
     },
     "cancel": {
       "subject": "Gelöschter Kalender-Eintrag für: __activity.title__",
-      "salutation": "Hallo __user.firstname__!",
+      "salutation": "Hallo __user.firstname__",
       "text": "Der Kalendar-Eintrag für die Aktivität <strong>__activity.title__</strong> wurde gelöscht. <br/><br/>Du kannst weitere solche Emails in deinem <a href='__profileLink__'>Profil</a> ausschalten.",
       "linkText": "AUS KALENDER ENTFERNEN"
     }
@@ -83,18 +83,18 @@
     "location": "Ort:",
     "section1": {
       "1": {
-        "content": "Hallo __user.firstname__<br/><br/>Dies ist die tägliche Zusammenfassung mit allem Wissenswerten zu deiner Teilnahme in der betrieblichen Gesundheitskampagne zum Thema __user.campaign.title__. <br/><br/> Falls du die kurze Selbstbeurteilung (ca. 10 Minuten) noch nicht durchgeführt hast, empfehle ich dir, dies nun <strong>zu Beginn der zweiten Kampagnen-Woche</strong> zu tun, damit ich dir unter \"Angebotene Aktivitäten\" täglich eine möglichst passende Aktivitäts-Empfehlungskarte anzeigen kann. <br/><br/> Du findest die Selbstbeurteilungs-Karte auf der Kampagnen Hauptseite unter \"Eingeplante Aktivitäten\", falls du diese noch nicht durchgeführt oder abgeschlossen hast. Klicke auf die Karte, um auf die Selbstbeurteilungs-Seite zu gelangen."
+        "content": "Hallo __user.firstname__<br/><br/>Dies ist die tägliche Zusammenfassung mit allem Wissenswerten zu deiner Teilnahme an der betrieblichen Gesundheitskampagne zum Thema __user.campaign.title__.<br/><br/>Falls du die kurze Selbstbeurteilung (ca. 10 Minuten) noch nicht durchgeführt hast, empfehle ich dir, dies nun <strong>zu Beginn der zweiten Kampagnenwoche</strong> zu tun, damit ich dir unter \"Angebotene Aktivitäten\" täglich eine möglichst passende Aktivitäts-Empfehlungskarte anzeigen kann.<br/><br/>Du findest die Selbstbeurteilungskarte auf der Kampagnenhauptseite unter \"Eingeplante Aktivitäten\", falls du diese noch nicht durchgeführt oder abgeschlossen hast. Klicke auf die Karte, um auf die Selbstbeurteilungsseite zu gelangen."
       },
       "2": {
-        "content": "Hallo __user.firstname__<br/><br/>Dies ist die tägliche Zusammenfassung mit allem Wissenswerten zu deiner Teilnahme in der betrieblichen Gesundheitskampagne zum Thema __user.campaign.title__. <br/><br/> Schaue dir die Aktivitäts-Empfehlungen vom Kampagnen-Leiter und mir an, um dir für <strong>die zweite Hälfte der Kampagne</strong> weitere Aktivitäten einzuplanen.  <br/><br/> Plane dir zum Beispiel eine Gruppenaktivität ein und lade andere Kampagnen-Teilnehmer ein, an deiner Gruppenaktivität teilzunehmen. "
+        "content": "Hallo __user.firstname__<br/><br/>Dies ist die tägliche Zusammenfassung mit allem Wissenswerten zu deiner Teilnahme an der betrieblichen Gesundheitskampagne zum Thema __user.campaign.title__.<br/><br/>Schaue dir die Aktivitätsempfehlungen vom Kampagnenleiter und mir an, um dir für <strong>die zweite Hälfte der Kampagne</strong> weitere Aktivitäten einzuplanen.<br/><br/>Plane dir zum Beispiel eine Gruppenaktivität ein und lade andere Kampagnenteilnehmer ein, an deiner Gruppenaktivität teilzunehmen."
       },
       "3": {
-        "content": "Hallo __user.firstname__<br/><br/>Dies ist die tägliche Zusammenfassung mit allem Wissenswerten zu deiner Teilnahme in der betrieblichen Gesundheitskampagne zum Thema __user.campaign.title__. <br/><br/> Gesundheits-Aktivitäten in der Gruppe durchzuführen macht mehr Spass. Schaue dir deshalb die Aktivitäts-Einladungen vom Kampagnen-Leiter und den Kampagnen-Teilnehmern an und nutze die Gelegenheit, dich in <strong>der letzten Kampagne-Woche</strong> noch an einer angebotenen Gruppenaktivität zu beteiligen. "
+        "content": "Hallo __user.firstname__<br/><br/>Dies ist die tägliche Zusammenfassung mit allem Wissenswerten zu deiner Teilnahme an der betrieblichen Gesundheitskampagne zum Thema __user.campaign.title__.<br/><br/>Gesundheitsaktivitäten in der Gruppe durchzuführen macht mehr Spass! Schaue dir deshalb die Aktivitätseinladungen vom Kampagnenleiter und den Kampagnenteilnehmern an und nutze die Gelegenheit, dich in <strong>der letzten Kampagnenwoche</strong> noch an einer angebotenen Gruppenaktivität zu beteiligen."
       },
       "4": {
-        "content": "Hallo __user.firstname__<br/><br/>Heute ist bereits **der letzte Tag der Kampagne!** Vielen Dank, dass du an der betrieblichen Gesundheitskampagne zum Thema __user.campaign.title__ teilgenommen hast. <br/><br/> Gehe heute noch einmal in die Kampagne und schaue Dir deine persönlichen Kampagnen-Ergebnisse an. Nutze dabei auch die Gelegenheit, uns in einer kurzen Online-Umfrage dein Feedback zu geben. Herzlichen Dank!"
+        "content": "Hallo __user.firstname__<br/><br/>Heute ist bereits <strong>der letzte Tag der Kampagne!</strong> Vielen Dank, dass du an der betrieblichen Gesundheitskampagne zum Thema __user.campaign.title__ teilgenommen hast. <br/><br/>Besuche heute noch einmal die Kampagnenseite und schaue Dir deine persönlichen Kampagnenergebnisse an. Nutze dabei auch die Gelegenheit, uns in einer kurzen Online-Umfrage dein Feedback mitzuteilen. Herzlichen Dank!"
       },
-      "default": "Hallo __user.firstname__<br/><br/>Dies ist die tägliche Zusammenfassung mit allem Wissenswerten zu deiner Teilnahme in der betrieblichen Gesundheitskampagne zum Thema __user.campaign.title__."
+      "default": "Hallo __user.firstname__<br/><br/>Dies ist die tägliche Zusammenfassung mit allem Wissenswerten zu deiner Teilnahme an der betrieblichen Gesundheitskampagne zum Thema __user.campaign.title__."
     },
     "section2": {
       "eventsToday": "Deine Aktivitäten für heute",
@@ -107,9 +107,9 @@
       "header": "News zu deiner Kampagnenteilnahme",
       "newCampaignMessages": "Mitteilungen deines Kampagnenleiters",
       "newCampaignOffers": "Neue Empfehlungen und persönliche Einladungen für dich",
-      "newCommentsOnParticipatedActivities": "Es gibt __newCommentsOnParticipatedActivities__ neue Kommentare zu Aktivitäten, an denen du teilnimmst."
+      "newCommentsOnParticipatedActivities": "Es gibt __newCommentsOnParticipatedActivities__ neue Kommentare zu Aktivitäten, an denen du teilnimmst.\n"
     },
-    "subject": "YOUPERS HealthCampaign __user.campaign.title__ Daily Mail",
+    "subject": "YOUPERS HealthCampaign \"__user.campaign.title__\" - Daily Mail",
     "time": "Zeit:"
   }
 }

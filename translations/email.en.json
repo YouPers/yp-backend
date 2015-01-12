@@ -10,7 +10,7 @@
   },
   "ActivityInvitation": {
     "subject": "YOUPERS: Invitation to join activity from __inviting.fullname__",
-    "salutation": "Hello __invited.firstname__!",
+    "salutation": "Hello __invited.firstname__",
     "salutationAnonymous": "Hello!",
     "text": "__inviting.fullname__ has invited you to participate in a group activity",
     "linkText": "SHOW INVITATION"
@@ -18,98 +18,98 @@
   "CampaignLeadInvite": {
     "subject": "YOUPERS: Invitation from __inviting.fullname__ to become campaign leader",
     "welcomeHeader": "Welcome as campaign leader",
-    "salutation": "Hello __invited.firstname__!",
+    "salutation": "Hello __invited.firstname__",
     "salutationAnonymous": "Hello!",
     "text": "__inviting.fullname__ has invited you to become campaign leader for the YOUPERS __campaign.title__ HealthCampaign.",
     "linkText": "SHOW INVITATION"
   },
   "OrganizationAdminInvite": {
     "subject": "YOUPERS: Invitation to become Organization Administrator from __inviting.fullname__",
-    "salutation": "Hello __invited.firstname__!",
+    "salutation": "Hello __invited.firstname__",
     "salutationAnonymous": "Hello!",
     "text": "__inviting.fullname__ has invited you to become organization administrator for __organization.name__.<br/><br/>To accept this invitation please click on this link:<br/>",
     "linkText": "SHOW INVITATION"
   },
   "passwordReset": {
     "subject": "YOUPERS: Password reset requested",
-    "salutation": "Hello __user.firstname__!",
+    "salutation": "Hello __user.firstname__",
     "text": "It's easy to change your password! Simply click on the link below and follow the instructions.<br/><br/>Thank you!<br/><br/>Your YOUPERS Team",
     "linkText": "CHANGE YOUR PASSWORD"
   },
   "emailVerification": {
     "subject": "YOUPERS: Please verify your email address",
-    "salutation": "Hello __user.firstname__!",
+    "salutation": "Hello __user.firstname__",
     "text": "Thank you for your registration!<br/><br/>You have entered __user.email__ as your contact email address. We want to be sure, this email address belongs to you. Just click on the link below to verify your email address.<br/><br/>Thank you!<br/><br/>Your YOUPERS Team",
     "linkText": "VERIFY YOUR EMAIL ADDRESS"
   },
   "iCalMail": {
     "new": {
       "subject": "New Calendar-Entry for: __activity.title__",
-      "salutation": "Hello __user.firstname__!",
+      "salutation": "Hello __user.firstname__",
       "text": "Congratulations! By scheduling <strong>__activity.title__</strong> you have already accomplished an important step!<br/><br/>You can add the events for this activity to your calendar with the link below.<br/><br/>If you do not want to receive emails like this in the future, you can disable it in your <a href='__profileLink__'>profile</a>.",
       "linkText": "ADD TO CALENDAR"
     },
     "update": {
       "subject": "Updated Calendar-Entry for: __activity.title__",
-      "salutation": "Hello __user.firstname__!",
+      "salutation": "Hello __user.firstname__",
       "text": "The plans for <strong>__activity.title__</strong> have changed in the meantime. You can use the link below to update your calendar.<br/><br/>If you do not want to receive emails like this in the future, you can disable it in your <a href='__profileLink__'>profile</a>.",
       "linkText": "UPDATE CALENDAR"
     },
     "cancel": {
       "subject": "Cancelled Calendar-Entry for: __activity.title__",
-      "salutation": "Hello __user.firstname__!",
+      "salutation": "Hello __user.firstname__",
       "text": "The activity <strong>__activity.title__</strong> has been cancelled. You can use the link below to update your calendar.<br/><br/>If you do not want to receive emails like this in the future, you can disable it in your <a href='__profileLink__'>profile</a>.",
       "linkText": "REMOVE FROM CALENDAR"
     }
   },
   "dailySummary": {
-    "campaignLink": null,
+    "campaignLink": "To campaign",
     "campaignOfferPrefix": {
-      "Invitation": null,
-      "Recommendation": null
+      "Invitation": "invites you",
+      "Recommendation": "is recommended by"
     },
-    "coach": null,
-    "coachRecommendationFindOut": null,
+    "coach": "YOUPERS Coach",
+    "coachRecommendationFindOut": "Check on the <a href='__link__'>main page",
     "executionType": {
-      "group": null,
-      "self": null
+      "group": "in the group",
+      "self": "alone"
     },
     "frequency": {
-      "day": null,
-      "month": null,
-      "once": null,
-      "week": null
+      "day": "daily",
+      "month": "monthly",
+      "once": "once",
+      "week": "weekly"
     },
-    "location": null,
+    "location": "Location:",
     "section1": {
       "1": {
-        "content": null
+        "content": "Hello __user.firstname__<br/><br/>This is the daily summary with all there is to know about your participation in the in-house health campaign on __user.campaign.title__.<br/><br/>In case you have not executed the short self-assessment (about 10 minutes), I recommend you do it now <strong>at the beginning of the second campaign week</ strong>, so that I can provide every day a suitable activity card under \"Offered Activities\" for you.<br/><br/>You find the self-assessment card on the campaign main page under \"Running Activities\", if you have not executed or completed it. Click on the map to go to the self-assessment page."
       },
       "2": {
-        "content": null
+        "content": "Hello __user.firstname__<br/><br/>This is the daily summary with all there is to know about your participation in the in-house health campaign on __user.campaign.title__.<br/><br/>Look at the activity recommendations from the campaign leader and from me to schedule other activities for <strong>the second half of the campaign</strong>.<br/><br/>Schedule a group activity for example and invite other campaign participants to participate in your group activity."
       },
       "3": {
-        "content": null
+        "content": "Hello __user.firstname__<br/><br/>This is the daily summary with all there is to know about your participation in the in-house health campaign on __user.campaign.title__.<br/><br/>Carry out health activities in the group is more fun! Therefore, look at the activity recommendations of the campaign leader and the campaign participants and take the opportunity yet to participate in an offered group activity in <strong>the last campaign week</strong>."
       },
       "4": {
-        "content": null
+        "content": "Hello __user.firstname__<br/><br/>Today is already <strong>the last day of the campaign!</strong> Thank you very much for participating in the in-house health campaign on __user.campaign.title__.<br/><br/>Once again, go to the campaign page today and have a look at your personal campaign results. And yet use the opportunity to give us feedback in a short online survey. Thank you very much!"
       },
-      "default": null
+      "default": "Hello __user.firstname__<br/><br/>This is the daily summary with all there is to know about your participation in the in-house health campaign on __user.campaign.title__."
     },
     "section2": {
-      "eventsToday": null,
-      "eventsWithOpenFeedback": null,
-      "header": null,
-      "noEventsToday": null
+      "eventsToday": "Your activities for today",
+      "eventsWithOpenFeedback": "Past activities without feedback on your part",
+      "header": "Today",
+      "noEventsToday": "You have no activities scheduled for today. Have a look at the new recommendations and invitations."
     },
     "section3": {
-      "campaignNews": null,
-      "header": null,
-      "newCampaignMessages": null,
-      "newCampaignOffers": null,
-      "newCommentsOnParticipatedActivities": null
+      "campaignNews": "More news",
+      "header": "News to your campaign participation",
+      "newCampaignMessages": "Messages from your campaign leader",
+      "newCampaignOffers": "New recommendations and personal invitations for you",
+      "newCommentsOnParticipatedActivities": "There are __newCommentsOnParticipatedActivities__ new comments on activities, in which you participate.\n"
     },
-    "subject": null,
-    "time": null
+    "subject": "YOUPERS HealthCampaign \"__user.campaign.title__\" - Daily Mail",
+    "time": "Time:"
   }
 }

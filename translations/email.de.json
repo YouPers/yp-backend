@@ -9,14 +9,14 @@
     "linkText": "ZUR KAMPAGNE"
   },
   "ActivityInvitation": {
-    "subject": "YOUPERS: Einladung für eine Gruppen-Aktivität vom __inviting.fullname__",
+    "subject": "HealthCampaign: Einladung für eine Gruppen-Aktivität vom __inviting.fullname__",
     "salutation": "Hallo __invited.firstname__",
     "salutationAnonymous": "Hallo!",
     "text": "__inviting.fullname__ hat dich zu einer Aktivität eingeladen.",
     "linkText": "EINLADUNG ANZEIGEN"
   },
   "CampaignLeadInvite": {
-    "subject": "YOUPERS: Einladung von __inviting.fullname__ zum Kampagnenleiter",
+    "subject": "HealthCampaign: Einladung von __inviting.fullname__ zum Kampagnenleiter",
     "welcomeHeader": "Willkommen als Kampagnenleiter",
     "salutation": "Hallo __invited.firstname__",
     "salutationAnonymous": "Hallo!",
@@ -24,20 +24,20 @@
     "linkText": "EINLADUNG ANZEIGEN"
   },
   "OrganizationAdminInvite": {
-    "subject": "YOUPERS: Einladung zum Organisations-Administrator von __inviting.fullname__",
+    "subject": "HealthCampaign: Einladung zum Organisations-Administrator von __inviting.fullname__",
     "salutation": "Hallo __invited.firstname__",
     "salutationAnonymous": "Hallo!",
     "text": "__inviting.fullname__ hat Dich eingeladen, Organisations-Administrator für __organization.name__ zu werden.<br/><br/>",
     "linkText": "EINLADUNG ANZEIGEN"
   },
   "passwordReset": {
-    "subject": "YOUPERS: Zurücksetzen des Passworts",
+    "subject": "HealthCampaign: Zurücksetzen des Passworts",
     "salutation": "Hallo __user.firstname__",
     "text": "Um dein Passwort zu ändern, klicke auf den untenstehenend Link und folge den Anweisungen.<br/><br/>Vielen Dank<br/><br/>Dein YOUPERS Team",
     "linkText": "PASSWORT ÄNDERN"
   },
   "emailVerification": {
-    "subject": "YOUPERS: Bitte verifiziere deine Email-Adresse",
+    "subject": "HealthCampaign: Bitte verifiziere deine Email-Adresse",
     "salutation": "Hallo __user.firstname__",
     "text": "Danke für deine Registrierung!<br/><br/>Du hast __user.email__ als Email-Adresse angegeben. Wir wollen sichergehen, dass sie auch zu dir gehört. Klicke einfach auf den Link weiter unten, um deine Email-Adresse zu verifizieren.<br/><br/>Vielen Dank!<br/><br/>Dein YOUPERS-Team",
     "linkText": "EMAIL-ADRESSE VERIFIZIEREN"

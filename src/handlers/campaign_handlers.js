@@ -216,11 +216,11 @@ function createTemplateCampaignOffers(campaign, req, cb) {
                         }
 
 
-                        var publishFrom = moment(startOfDay).subtract(2, 'days').toDate();
-                        if (moment(publishFrom).isBefore(campaign.start)) {
+                        var publishFrom = moment(saved.start).subtract(2, 'days').tz('Europe/Zurich').startOf('day').toDate();
+                        if (moment(publishFrom).isBefore(moment(campaign.start))) {
                             publishFrom = campaign.start;
                         }
-                        var publishTo = endOfDay.toDate();
+                        var publishTo = saved.start;
 
                         var invitation = new Invitation({
                             activity: saved._id,

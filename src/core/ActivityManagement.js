@@ -179,7 +179,7 @@ actMgr.defaultActivity = function (idea, user, campaignId, startDateParam) {
         campaignId = user.campaign._id || user.campaign;
     }
 
-    var start =  startDateParam ? moment(startDateParam).tz('UTC')  : moment().add(1, 'd').tz('UTC');
+    var start =  startDateParam ? moment(startDateParam).tz('Europe/Zurich')  : moment().add(1, 'd').tz('Europe/Zurich');
 
     // check if the organizer is working on this day by checking the default work days in his calendar, if not push
     // back by one day and repeat
@@ -198,7 +198,7 @@ actMgr.defaultActivity = function (idea, user, campaignId, startDateParam) {
     // time of the event is either defined on the idea, or we take the begin of the current hour
     var startTime = idea.defaultStartTime ? moment(idea.defaultStartTime) : moment().startOf('hour');
 
-    start.hours(startTime.hours());
+    start.hours(startTime.tz('Europe/Zurich').hours());
     start.minutes(startTime.minutes());
     start = start.toDate();
 

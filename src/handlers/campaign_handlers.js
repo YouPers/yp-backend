@@ -18,7 +18,8 @@ var handlerUtils = require('ypbackendlib').handlerUtils,
     moment = require('moment-timezone'),
     generic = require('ypbackendlib').handlers,
     config = require('../config/config'),
-    restify = require("restify");
+    restify = require('restify'),
+    calendar = require('../util/calendar');
 
 var getCampaign = function (id, cb) {
 
@@ -207,6 +208,13 @@ function createTemplateCampaignOffers(campaign, req, cb) {
 
                     var activity = new Activity(defaultActivity);
                     activity.save(function (err, saved) {
+
+                        if (user && user.email && user.profile.prefs.email.iCalInvites) {
+                            req.log.debug({start: saved.start, end: saved.end}, 'Saved New activity');
+                            var myIcalString = calendar.getIcalObject(saved, user, 'new', req.i18n).toString();
+                            email.sendCalInvite(user, 'new', myIcalString, saved, req.i18n);
+                        }
+
 
                         var publishFrom = moment(startOfDay).subtract(2, 'days').toDate();
                         if (moment(publishFrom).isBefore(campaign.start)) {

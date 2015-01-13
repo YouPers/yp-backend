@@ -4,7 +4,6 @@ var mongoose = require('ypbackendlib').mongoose,
     async = require('async'),
     email = require('../util/email'),
     batch = require('ypbackendlib').batch,
-    modelNames = require('../models').modelNames,
     config = require('../config/config');
 
 /*
@@ -323,7 +322,7 @@ var worker = function (owner, done) {
 };
 
 var run = function run() {
-    require('ypbackendlib').initializeDb(config, modelNames, __dirname + '/../models');
+    require('../util/database').initializeDb();
     this.config = config;
     this.log = require('ypbackendlib').log(config);
     batch.genericBatch(feeder, worker, this);

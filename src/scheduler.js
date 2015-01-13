@@ -24,7 +24,7 @@ var jobs = [
     {
         name: 'DailyEventSummary',
         description: 'sends a daily email to users who had events with end dates in the specified time range',
-        cronTime: '00 15 05 * * *',
+        cronTime: '00 * * * * *',
         onTick: eventsSummaryMail.run,
         start: true,
         context: {

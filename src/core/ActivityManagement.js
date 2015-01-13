@@ -2,7 +2,7 @@ var EventEmitter = require('events').EventEmitter;
 var util = require('util');
 var mongoose = require('ypbackendlib').mongoose;
 var _ = require('lodash');
-var moment = require('moment');
+var moment = require('moment-timezone');
 var calendar = require('../util/calendar');
 var User = mongoose.model('User');
 var Invitation = mongoose.model('Invitation');
@@ -179,7 +179,7 @@ actMgr.defaultActivity = function (idea, user, campaignId, startDateParam) {
         campaignId = user.campaign._id || user.campaign;
     }
 
-    var start =  startDateParam ? moment(startDateParam)  : moment().add(1, 'd');
+    var start =  startDateParam ? moment(startDateParam).tz('UTC')  : moment().add(1, 'd').tz('UTC');
 
     // check if the organizer is working on this day by checking the default work days in his calendar, if not push
     // back by one day and repeat

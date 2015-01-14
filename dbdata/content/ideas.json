@@ -659,7 +659,7 @@
     },
     {
         "_id": {"$oid": "5278c6adcdeab69a2500001c"},
-        "__v": 9,
+        "__v": 10,
         "author": {"$oid": "52d4f515fac246174c000006"},
         "created": {"$date": 1398415504907},
         "defaultduration": 30,
@@ -669,7 +669,7 @@
         "defaultvisibility": "private",
         "descriptionI18n": {"de": "Führe einen Erfahrungsaustausch mit Arbeitskolleginnen und Arbeits&shy;kol&shy;le&shy;gen zum Thema \"Persönliches Zeit&shy;ma&shy;nage&shy;ment\" während der Mittags&shy;pause durch."},
         "number": "Act-23",
-        "qualityFactor": 5,
+        "qualityFactor": 4,
         "recWeights": [
             ["5278c51a6166f2de240000df", 0, 5],
             ["5278c51a6166f2de240000dd", 0, 5],
@@ -688,7 +688,7 @@
         "textI18n": {"de": "Unter Zeitmanagement versteht man mehrere Vorgehensweisen, die dabei helfen sollen, anstehende Aufgaben und Termine innerhalb des zur Ver&shy;fü&shy;gung stehenden Zeitraums ab&shy;zu&shy;ar&shy;bei&shy;ten.\n\nEs wird zwischen persönlichem Zeit&shy;management und Zeitwirtschaft unterschieden.\n\nMehr Informationen findest du <a href='http://de.wikipedia.org/wiki/Zeitmanagement' target='_blank'>hier.</a>"},
         "titleI18n": {"de": "Erfahrungsaustausch \"Zeitmanagement\""},
         "topics": [{"$oid": "53b416cfa43aac62a2debda1"}],
-        "updated": {"$date": 1420987047495}
+        "updated": {"$date": 1421247808838}
     },
     {
         "_id": {"$oid": "5278c6adcdeab69a2500001d"},
@@ -725,7 +725,7 @@
     },
     {
         "_id": {"$oid": "5278c6adcdeab69a2500001e"},
-        "__v": 14,
+        "__v": 15,
         "author": {"$oid": "52d4f515fac246174c000006"},
         "created": {"$date": 1398416782965},
         "defaultduration": 15,
@@ -734,7 +734,7 @@
         "defaultvisibility": "private",
         "descriptionI18n": {"de": "Beginne jeden Arbeitstag mit einer realistischen Tagesplanung, indem du deine Aufgaben einplanst, dir realistische Ziele setzt und so Zeit gewinnst und Stress verhinderst."},
         "number": "Act-25",
-        "qualityFactor": 5,
+        "qualityFactor": 4,
         "recWeights": [
             ["5278c51a6166f2de240000df", 0, 10],
             ["5278c51a6166f2de240000dd", 0, 8],
@@ -760,7 +760,7 @@
         "textI18n": {"de": "**Zeitmanagement** kann weder den Tag verlängern, noch Aufgaben durch irgendwelche Tricks ver&shy;schwinden lassen. Jeder hat 24 Stunden Zeit!\n\nAm Wichtigsten beim Zeit&shy;manage&shy;ment sind **Planung**, **Organisation** und **Struktur**. Es ist wichtig, den Tag im Voraus zu planen - am besten den Abend zuvor. Dabei ist es nötig, die vorgesehene Zeit für die Er&shy;le&shy;di&shy;gung der Aufgaben einzuplanen. Aus&shy;ser&shy;dem kommen immer un&shy;ge&shy;plante Dinge da&shy;zwischen. Deshalb sollte man immer **Puffer&shy;zeiten** in den Zeitplan in&shy;te&shy;grie&shy;ren - so kommst du nicht in Stress.\n\nWeitere Informationen findest Du <a href='http://typischich.at/home/gesundheit/psyche/1268713/Zeitmanagement_Gegen-Stress?gal=1268713&index=1&direct=&_vl_backlink=&popup=#frame' target='_blank'>hier.</a>"},
         "titleI18n": {"de": "Realistische Tagesplanung"},
         "topics": [{"$oid": "53b416cfa43aac62a2debda1"}],
-        "updated": {"$date": 1420988764053},
+        "updated": {"$date": 1421248605865},
         "defaultStartTime": {"$date": 1420614000000}
     },
     {
@@ -1342,7 +1342,7 @@
     },
     {
         "_id": {"$oid": "5278c6adcdeab69a25000032"},
-        "__v": 10,
+        "__v": 11,
         "author": {"$oid": "52d4f515fac246174c000006"},
         "created": {"$date": 1398420255574},
         "defaultduration": 10,
@@ -1351,7 +1351,7 @@
         "defaultvisibility": "private",
         "descriptionI18n": {"de": "Streiche heute einmal bewusst eine Pendenz aus deiner Tages&shy;planung."},
         "number": "Act-45",
-        "qualityFactor": 4,
+        "qualityFactor": 3,
         "recWeights": [
             ["5278c51a6166f2de240000df", 0, 3],
             ["5278c51a6166f2de240000dd", 0, 7],
@@ -1369,7 +1369,7 @@
         "textI18n": {"de": "Zeitmanagement ist die kon&shy;se&shy;quente und zielorientierte An&shy;wen&shy;dung prak&shy;tischer Arbeitstechniken, um sich selbst so zu führen und seine Be&shy;din&shy;gungen so zu or&shy;ga&shy;ni&shy;sie&shy;ren, dass die zur Verfügung ste&shy;hen&shy;de Zeit sinnvoll genutzt wird.\n\nUm dieses persönliche Ziel zu er&shy;rei&shy;chen, sind die Prioritäten richtig zu setzen und es sind zweitrangige Auf&shy;ga&shy;ben an andere Personen zu de&shy;le&shy;gie&shy;ren.\n\nMit etwas Erfahrung lernt man, welche unwichtigen und/oder zeitun&shy;kri&shy;ti&shy;schen Pendenzen man von der Tages&shy;planung streichen kann, ohne grosse Kon&shy;se&shy;quen&shy;zen nach sich zu ziehen."},
         "titleI18n": {"de": "Mut zur Lücke"},
         "topics": [{"$oid": "53b416cfa43aac62a2debda1"}],
-        "updated": {"$date": 1420987858635},
+        "updated": {"$date": 1421248417036},
         "defaultStartTime": {"$date": 1420786800000}
     },
     {
@@ -1760,7 +1760,7 @@
     },
     {
         "_id": {"$oid": "5278c6adcdeab69a25000040"},
-        "__v": 16,
+        "__v": 17,
         "author": {"$oid": "52d4f515fac246174c000006"},
         "created": {"$date": 1398431539125},
         "defaultduration": 5,
@@ -1769,7 +1769,7 @@
         "defaultvisibility": "private",
         "descriptionI18n": {"de": "Stehe heute bewusst in regel&shy;mäs&shy;sigen Arbeitspausen kurz auf, strecke dich, und führe eine Entspannungs&shy;übung durch."},
         "number": "Act-59",
-        "qualityFactor": 6,
+        "qualityFactor": 4,
         "recWeights": [
             ["5278c51a6166f2de240000df", 0, 5],
             ["5278c51a6166f2de240000dd", 0, 5],
@@ -1785,12 +1785,12 @@
         "textI18n": {"de": "Eine mögliche Übung:\n\nSetz dich bequem und aufrecht auf den Stuhl, schliess deine Augen, leg die Hände mit den Handflächen nach unten auf die Oberschenkel, lass den Kopf entspannt auf die Brust sinken und atme dreimal tief durch.  \nDas unterbricht die Stress-Spirale. \n\nDerartige „unproduktive“ Augen&shy;blicke sind nicht etwa vergeudete Zeit, son&shy;dern wichtig für die Re&shy;ge&shy;ne&shy;ra&shy;ti&shy;on. \n\nUnd sind dir gerade in solchen Mo&shy;men&shy;ten nicht auch schon die besten Ideen gekommen?\n\nEin Übungsvideo findest du <a href = 'https://www.youtube.com/watch?v=cd5EWLA8ew8', target='_blank'>hier.</a>"},
         "titleI18n": {"de": "Entspannungsübung"},
         "topics": [{"$oid": "53b416cfa43aac62a2debda1"}],
-        "updated": {"$date": 1420989836577},
+        "updated": {"$date": 1421248885916},
         "defaultStartTime": {"$date": 1420549200000}
     },
     {
         "_id": {"$oid": "5278c6adcdeab69a25000041"},
-        "__v": 22,
+        "__v": 23,
         "author": {"$oid": "52d4f515fac246174c000006"},
         "created": {"$date": 1398431686535},
         "defaultduration": 15,
@@ -1799,7 +1799,7 @@
         "defaultvisibility": "private",
         "descriptionI18n": {"de": "Gehe in deiner Arbeitspause für einen kurzen Spaziergang nach draussen an die frische Luft."},
         "number": "Act-60",
-        "qualityFactor": 4,
+        "qualityFactor": 3,
         "recWeights": [
             ["5278c51a6166f2de240000df", 0, 3],
             ["5278c51a6166f2de240000dd", 0, 3],
@@ -1819,22 +1819,22 @@
         "textI18n": {"de": "Beim Gehen hat man mehr kreative Ideen als im Sitzen. Diese oft be&shy;rich&shy;te&shy;te Erfahrung bestätigt jetzt eine amerikanische Studie.\n\nSelbst das gemächliche Gehen auf einem Laufband fördert die Krea&shy;ti&shy;vi&shy;tät, wenn auch weniger stark als ein Spaziergang im Freien. Dies be&shy;richten Forscher im *\"Journal of Experimental Psychology: Learning, Memory and Cognition\"*.\n\nEin angeregter Kreislauf, chemische Botenstoffe und eine verbesserte Stimmung könnten dabei eine Rolle spielen."},
         "titleI18n": {"de": "Pause im Freien"},
         "topics": [{"$oid": "53b416cfa43aac62a2debda1"}],
-        "updated": {"$date": 1420986714946},
+        "updated": {"$date": 1421248125804},
         "defaultStartTime": {"$date": 1420534800000}
     },
     {
         "_id": {"$oid": "5278c6adcdeab69a25000042"},
-        "__v": 10,
+        "__v": 13,
         "author": {"$oid": "52d4f515fac246174c000006"},
         "created": {"$date": 1398431797174},
-        "defaultduration": 10,
+        "defaultduration": 15,
         "defaultStartTime": {"$date": 1417683600000},
         "defaultexecutiontype": "group",
         "defaultfrequency": "day",
         "defaultvisibility": "private",
         "descriptionI18n": {"de": "Führe während der Arbeitspause Dehn&shy;übungen für Rücken, Schulter und Nacken durch."},
         "number": "Act-61",
-        "qualityFactor": 5,
+        "qualityFactor": 4,
         "recWeights": [
             ["5278c51a6166f2de240000df", 0, 5],
             ["5278c51a6166f2de240000dd", 0, 5],
@@ -1850,7 +1850,7 @@
         "textI18n": {"de": "Langes Sitzen kann zu gesund&shy;heit&shy;lichen Problemen führen. \n\nMache regelmässige Pausen mit Dehn- und Lockerungs&shy;übungen für den Rücken, die Schultern und den Nacken.\n\nEin Übungsvideo findest du <a href = 'https://www.youtube.com/watch?v=TLgJxNA1BAg', target='_blank'>hier.</a>"},
         "titleI18n": {"de": "Dehnübungen"},
         "topics": [{"$oid": "53b416cfa43aac62a2debda1"}],
-        "updated": {"$date": 1420988870387}
+        "updated": {"$date": 1421247934929}
     },
     {
         "_id": {"$oid": "5278c6adcdeab69a25000043"},
@@ -1921,7 +1921,7 @@
     },
     {
         "_id": {"$oid": "5278c6adcdeab69a25000045"},
-        "__v": 12,
+        "__v": 13,
         "author": {"$oid": "52d4f515fac246174c000006"},
         "created": {"$date": 1398431966506},
         "defaultduration": 10,
@@ -1930,7 +1930,7 @@
         "defaultvisibility": "private",
         "descriptionI18n": {"de": "Nutze die Pause um 10 Minuten Musik zu hören, die dir gefällt."},
         "number": "Act-64",
-        "qualityFactor": 5,
+        "qualityFactor": 4,
         "recWeights": [
             ["5278c51a6166f2de240000df", 2, 5],
             ["5278c51a6166f2de240000dd", 2, 5],
@@ -1949,12 +1949,12 @@
         "textI18n": {"de": "Musik wirkt auf das Belohnungs&shy;system im menschlichen Gehirn und lässt Stress verschwinden. \n\nDurch Musik, die man gerne mag, wird das Glückshormon **Dopamin** aus&shy;ge&shy;schüttet. Das heisst, man fühlt sich beim Hören wohl, entspannt und ohne Stress. \n\nAllerdings ist dieser Effekt nur dann da, wenn einem die Musik gefällt.  \nDies konnten Forscher unlängst nachweisen.\n\nWeitere Informationen findest Du <a href='http://www.nature.com/neuro/journal/v14/n2/abs/nn.2726.html' target='_blank'>hier (nur in englisch).</a>"},
         "titleI18n": {"de": "Musik in Pause"},
         "topics": [{"$oid": "53b416cfa43aac62a2debda1"}],
-        "updated": {"$date": 1420989426955},
+        "updated": {"$date": 1421248768860},
         "defaultStartTime": {"$date": 1420552800000}
     },
     {
         "_id": {"$oid": "5278c6adcdeab69a25000046"},
-        "__v": 20,
+        "__v": 21,
         "author": {"$oid": "52d4f515fac246174c000006"},
         "created": {"$date": 1398432217333},
         "defaultduration": 30,
@@ -1964,7 +1964,7 @@
         "defaultvisibility": "private",
         "descriptionI18n": {"de": "Mache einmal pro Woche einen Spazier&shy;gang mit einer Arbeits&shy;kol&shy;le&shy;gin bzw. einem Arbeits&shy;kol&shy;le&shy;gen während der Mittags&shy;pause."},
         "number": "Act-65",
-        "qualityFactor": 6,
+        "qualityFactor": 4,
         "recWeights": [
             ["5278c51a6166f2de240000df", 2, 4],
             ["5278c51a6166f2de240000dd", 0, 4],
@@ -1985,11 +1985,11 @@
         "textI18n": {"de": "Speziell im Herbst und Winter:  \nHalte beim Spaziergang dein Gesicht in die Sonne und mache die Unter&shy;ar&shy;me frei. In geringer Menge ist das UV-Licht gesundheitlich förderlich. Durch Tages&shy;licht kann dein Körper **Vitamin D** bilden. \n\nDaneben tut die Bewegung gut und hat einen weiteren gesundheits&shy;för&shy;der&shy;lichen Effekt.\n\nWeitere Informationen findest du <a href='http://www.hepa.ch/internet/hepa/de/home/dokumentation/grundlagendokumente.parsys.70058.downloadList.12250.DownloadFile.tmp/screendhepagrundlagendokument2013.pdf' target='_blank'>hier.</a>"},
         "titleI18n": {"de": "Mittagsspaziergang"},
         "topics": [{"$oid": "53b416cfa43aac62a2debda1"}],
-        "updated": {"$date": 1420987947890}
+        "updated": {"$date": 1421247859437}
     },
     {
         "_id": {"$oid": "5278c6adcdeab69a25000047"},
-        "__v": 18,
+        "__v": 19,
         "author": {"$oid": "52d4f515fac246174c000006"},
         "created": {"$date": 1398432727944},
         "defaultduration": 30,
@@ -1998,7 +1998,7 @@
         "defaultvisibility": "private",
         "descriptionI18n": {"de": "Gehe einmal pro Woche während der Mittagspause mit Arbeits&shy;kol&shy;le&shy;gen oder Freunden joggen."},
         "number": "Act-66",
-        "qualityFactor": 5,
+        "qualityFactor": 4,
         "recWeights": [
             ["5278c51a6166f2de240000df", 4, 4],
             ["5278c51a6166f2de240000dd", 4, 0],
@@ -2022,7 +2022,7 @@
         "textI18n": {"de": "Gehe über Mittag mit Kollegen joggen. Plane die Zeit fest in deinem Termin&shy;kalender ein und verabrede dich. So kannst du vom gesund&shy;heit&shy;lichen Nutzen der Bewegung profi&shy;tieren und dazu noch soziale Kon&shy;takte pflegen. \n\nWer sich mit anderen Personen zum Sport verabredet, führt diesen auch öfters durch, da eine andere Person auf dich wartet. Zudem macht ein gemein&shy;sames Sporttreiben oft mehr Spass als beim Joggen alleine zu sein.\n\nWeitere Informationen findest du <a href='http://www.hepa.ch/internet/hepa/de/home/dokumentation/grundlagendokumente.parsys.70058.downloadList.12250.DownloadFile.tmp/screendhepagrundlagendokument2013.pdf' target='_blank'>hier.</a>"},
         "titleI18n": {"de": "Joggen in Mittagspause"},
         "topics": [{"$oid": "53b416cfa43aac62a2debda1"}],
-        "updated": {"$date": 1420987141646},
+        "updated": {"$date": 1421248235097},
         "defaultStartTime": {"$date": 1420542000000}
     },
     {
@@ -2132,7 +2132,7 @@
     },
     {
         "_id": {"$oid": "5278c6adcdeab69a2500004b"},
-        "__v": 16,
+        "__v": 17,
         "author": {"$oid": "52d4f515fac246174c000006"},
         "created": {"$date": 1398435118384},
         "defaultduration": 5,
@@ -2141,7 +2141,7 @@
         "defaultvisibility": "private",
         "descriptionI18n": {"de": "Wende in der Arbeitspause eine Ima&shy;gi&shy;na&shy;tionstechnik an (z.B. Gute-Laune-Bilder, Ferien&shy;er&shy;in&shy;ner&shy;ung, Phantasie&shy;reise)."},
         "number": "Act-70",
-        "qualityFactor": 5,
+        "qualityFactor": 4,
         "recWeights": [
             ["5278c51a6166f2de240000df", 3, 5],
             ["5278c51a6166f2de240000dd", 3, 5],
@@ -2163,7 +2163,7 @@
         "textI18n": {"de": "Imagination ist eine Ent&shy;span&shy;nungs&shy;übung, die dir helfen kann, dich zu entspannen und Stress zu lösen:\n\n* stell dir eine friedliche, ent&shy;span&shy;nen&shy;de Situation vor (z.B. ein Bild deiner letzten Ferien)\n* suche einen ruhigen Ort, an dem du dich ungestört ent&shy;span&shy;nen kannst\n* setz oder leg dich bequem hin\n* schliess deine Augen und atme tief und langsam\n* stell dir einen paradiesischen Ort vor und dazu alle Sehens&shy;würdigkeiten, Geräusche und Gerüche dieses Ortes\n\nWeitere Informationen findest du <a href='http://psylex.de/psychische-probleme/stress/gelenkte-imagination.html' target='_blank'>hier.</a>"},
         "titleI18n": {"de": "Vorstellungskraft"},
         "topics": [{"$oid": "53b416cfa43aac62a2debda1"}],
-        "updated": {"$date": 1420988355469},
+        "updated": {"$date": 1421248516780},
         "defaultStartTime": {"$date": 1420637400000}
     },
     {
@@ -2198,7 +2198,7 @@
     },
     {
         "_id": {"$oid": "5278c6adcdeab69a2500004d"},
-        "__v": 12,
+        "__v": 13,
         "author": {"$oid": "52d4f515fac246174c000006"},
         "created": {"$date": 1398435418975},
         "defaultduration": 30,
@@ -2207,7 +2207,7 @@
         "defaultvisibility": "private",
         "descriptionI18n": {"de": "Pendle morgen einmal ausserhalb der Stosszeiten zwischen Wohnort und Arbeitsplatz."},
         "number": "Act-72",
-        "qualityFactor": 4,
+        "qualityFactor": 3,
         "recWeights": [
             ["5278c51a6166f2de240000df", 0, 3],
             ["5278c51a6166f2de240000dc", 0, 3],
@@ -2220,7 +2220,7 @@
         "textI18n": {"de": "Tipps für Autofahrer:\n\n- **Umfahren**: prüfe alternative Routen und ob du den Arbeitsweg allenfalls etwas früher oder später antreten kannst\n\n- **Planen**: informiere dich täglich frühzeitig über die Verkehrs&shy;lage und plane für die Fahrt genügend Zeit ein\n\n- **Zusammenschliessen**: bilde, wenn möglich, Fahr&shy;gemein&shy;schaf&shy;ten. Dies hat den Vorteil, dass du nicht jedes Mal selber fahren musst und es spart noch Kosten"},
         "titleI18n": {"de": "Stosszeiten"},
         "topics": [{"$oid": "53b416cfa43aac62a2debda1"}],
-        "updated": {"$date": 1420989746508},
+        "updated": {"$date": 1421248852804},
         "defaultStartTime": {"$date": 1420608600000}
     },
     {
@@ -3688,7 +3688,7 @@
     },
     {
         "_id": {"$oid": "5278c6adcdeab69a25000076"},
-        "__v": 9,
+        "__v": 10,
         "author": {"$oid": "52d4f515fac246174c000006"},
         "created": {"$date": 1399386868811},
         "defaultduration": 5,
@@ -3697,7 +3697,7 @@
         "defaultvisibility": "private",
         "descriptionI18n": {"de": "Nimm am Morgen die Treppe zum Arbeits&shy;platz anstatt den Lift."},
         "number": "Act-112",
-        "qualityFactor": 4,
+        "qualityFactor": 3,
         "recWeights": [
             ["5278c51a6166f2de240000df", 4, 4],
             ["5278c51a6166f2de240000dd", 3, 4],
@@ -3713,7 +3713,7 @@
         "textI18n": {"de": "Beginne deinen Arbeitstag mit etwas Bewegung, indem du die Treppe statt des Liftes nimmst. \n\nSport und Bewegung wirken sich positiv auf Physis und Psyche aus. \n\nDie Basisempfehlung für gesund&shy;heits&shy;wirk&shy;same Bewegung liegt bei 2.5 Stun&shy;den pro Woche mit mitt&shy;lerer In&shy;ten&shy;si&shy;tät. Dabei sollte die Be&shy;we&shy;gung über die ganze Woche verteilt werden. \n\nDurch das Treppensteigen deckst du bereits einen kleinen Teil dieser emp&shy;foh&shy;lenen Zeit ab.\n\nWeitere Informationen findest du <a href='http://www.hepa.ch/internet/hepa/de/home/dokumentation/grundlagendokumente.parsys.70058.downloadList.12250.DownloadFile.tmp/screendhepagrundlagendokument2013.pdf' target='_blank'>hier.</a>"},
         "titleI18n": {"de": "Treppe zum Arbeitsplatz"},
         "topics": [{"$oid": "53b416cfa43aac62a2debda1"}],
-        "updated": {"$date": 1420988032350},
+        "updated": {"$date": 1421248456981},
         "defaultStartTime": {"$date": 1420700400000}
     },
     {
@@ -3838,7 +3838,7 @@
     },
     {
         "_id": {"$oid": "5278c6adcdeab69a2500007b"},
-        "__v": 10,
+        "__v": 11,
         "author": {"$oid": "52d4f515fac246174c000006"},
         "created": {"$date": 1399388444054},
         "defaultduration": 30,
@@ -3847,7 +3847,7 @@
         "defaultvisibility": "private",
         "descriptionI18n": {"de": "Steig heute auf deinem Hinweg zum Ar&shy;beits&shy;ort bzw. auf dem Rückweg vom Ar&shy;beitsort eine Haltestelle früher aus und gehe den Rest zu Fuss."},
         "number": "Act-117",
-        "qualityFactor": 5,
+        "qualityFactor": 4,
         "recWeights": [
             ["5278c51a6166f2de240000df", 5, 5],
             ["5278c51a6166f2de240000dd", 3, 3],
@@ -3869,7 +3869,7 @@
         "textI18n": {"de": "Du musst nicht immer mit dem Bus oder dem Tram bis vor die Tür deines Arbeitsortes fahren. \n\nSteig eine Station früher aus, leg den Rest des Weges zu Fuss zurück und tue somit etwas für deine Gesundheit.\n\nWeitere Informationen findest du <a href='http://www.hepa.ch/internet/hepa/de/home/dokumentation/grundlagendokumente.parsys.70058.downloadList.12250.DownloadFile.tmp/screendhepagrundlagendokument2013.pdf' target='_blank'>hier.</a>"},
         "titleI18n": {"de": "Arbeitsweg zu Fuss"},
         "topics": [{"$oid": "53b416cfa43aac62a2debda1"}],
-        "updated": {"$date": 1420989254935},
+        "updated": {"$date": 1421248723276},
         "defaultStartTime": {"$date": 1420698600000}
     },
     {
@@ -3989,7 +3989,7 @@
     },
     {
         "_id": {"$oid": "5278c6adcdeab69a2500007f"},
-        "__v": 11,
+        "__v": 12,
         "author": {"$oid": "52d4f515fac246174c000006"},
         "created": {"$date": 1399448710750},
         "defaultduration": 5,
@@ -3998,7 +3998,7 @@
         "defaultvisibility": "private",
         "descriptionI18n": {"de": "Beginne gleich heute damit und trin&shy;ke täglich über den ganzen Tag ver&shy;teilt 1 - 2 Liter Wasser (z.B. 6-mal täglich 1 Glas oder eine Tasse)."},
         "number": "Act-127",
-        "qualityFactor": 4,
+        "qualityFactor": 3,
         "recWeights": [
             ["5278c51a6166f2de240000d8", 0, 2],
             ["5278c51a6166f2de240000c6", 4, 0],
@@ -4011,7 +4011,7 @@
         "textI18n": {"de": "Wasser ist der beste Durstlöscher. \n\nSüssgetränke enthalten oft sehr viel Zucker und können je nach Menge zu Übergewicht führen. \n\nTrinke mehrmals täglich ein Glas Was&shy;ser. Hahnenwasser ist fast kos&shy;ten&shy;los, überall erhältlich und hy&shy;gi&shy;en&shy;isch einwandfrei. \n\nWeitere Informationen findest du hier:  \n\n* <a href='http://hahnenburger.ch/startseite.html' target='_blank'>Wasser trinken</a>\n* <a href='http://www.gesundheit.lu.ch/broschuere_was_essen_und_trinken._pdf.pdf' target='_blank'>Informationen und praktische Tipps für Berufstätige</a>"},
         "titleI18n": {"de": "Wasserglas"},
         "topics": [{"$oid": "53b416cfa43aac62a2debda1"}, {"$oid": "53b416fba43aac62a2debda2"}],
-        "updated": {"$date": 1420989138425},
+        "updated": {"$date": 1421248666051},
         "defaultStartTime": {"$date": 1420707600000}
     },
     {
@@ -4193,7 +4193,7 @@
     },
     {
         "_id": {"$oid": "5278c6adcdeab69a25000085"},
-        "__v": 6,
+        "__v": 7,
         "author": {"$oid": "52d4f515fac246174c000006"},
         "created": {"$date": 1399451318149},
         "defaultduration": 30,
@@ -4202,7 +4202,7 @@
         "defaultvisibility": "private",
         "descriptionI18n": {"de": "Iss täglich magnesiumreiche Kost zum Abbau von Stresshormonen (z.B. Vollkornprodukte, Reis, Gurke, Cashew-Nüsse, Banane, Schokolade)."},
         "number": "Act-131",
-        "qualityFactor": 4,
+        "qualityFactor": 3,
         "recWeights": [
             ["5278c51a6166f2de240000df", 2, 3],
             ["5278c51a6166f2de240000dd", 0, 3],
@@ -4227,7 +4227,7 @@
         "textI18n": {"de": "Da **Magnesium** für alle Organismen unentbehrlich ist, gehört es zu den essentiellen Stoffen. Magnesium muss daher dem Körper täglich in aus&shy;rei&shy;chen&shy;der Menge zugeführt werden, um Magnesiummangel vorzubeugen.\n\n**Magnesiummangel** löst beim Men&shy;schen Ruhelosigkeit, Nervosität, Reiz&shy;barkeit, Kopfschmerzen, Kon&shy;zen&shy;tra&shy;ti&shy;ons&shy;man&shy;gel, Müdigkeit, all&shy;gemeines Schwä&shy;che&shy;ge&shy;fühl, Herz&shy;rhyth&shy;mus&shy;stö&shy;rung&shy;en und Muskel&shy;krämpfe aus.\n\nMagnesium kommt in **vielen Lebens&shy;mitteln** vor, u.a. in Voll&shy;korn&shy;pro&shy;duk&shy;ten, Haferflocken, Reis, Mineral&shy;wasser, Geflügel, Fisch, Kartoffeln, Spinat, Milch und Milchprodukten."},
         "titleI18n": {"de": "Magnesium"},
         "topics": [{"$oid": "53b416cfa43aac62a2debda1"}],
-        "updated": {"$date": 1420989628860},
+        "updated": {"$date": 1421248825563},
         "defaultStartTime": {"$date": 1420704000000}
     },
     {
@@ -4296,7 +4296,7 @@
     },
     {
         "_id": {"$oid": "5278c6adcdeab69a25000088"},
-        "__v": 13,
+        "__v": 14,
         "author": {"$oid": "52d4f515fac246174c000006"},
         "created": {"$date": 1399042509046},
         "defaultduration": 30,
@@ -4305,7 +4305,7 @@
         "defaultvisibility": "private",
         "descriptionI18n": {"de": "Iss einmal pro Woche Fisch."},
         "number": "Act-133",
-        "qualityFactor": 4,
+        "qualityFactor": 3,
         "recWeights": [
             ["5278c51a6166f2de240000df", 2, 2],
             ["5278c51a6166f2de240000dd", 2, 2],
@@ -4316,7 +4316,7 @@
         "textI18n": {"de": "Unser Gehirn ist das Organ, das am meisten Energie verbraucht!\n\nUm zu funktionieren müssen dem Gehirn über das Blut **Sauerstoff**, **Energie** (in Form von Eiweiss, Koh&shy;lenhydrate und Fett), wich&shy;tige **Vitamine**, **Spuren&shy;elemente**, **Mi&shy;ne&shy;ra&shy;lien** und **Botenstoffe** zugeführt wer&shy;den. Sonst kann unsere Denk&shy;zentrale nicht richtig funktionieren.\n\nFisch liefert **Omega-3 Fettsäuren**, die wichtig und essentiell sind für den Aufbau von Gehirnzellen. Und die sollten sich immer wieder regenerieren können!"},
         "titleI18n": {"de": "Fisch für feine Fettsäuren"},
         "topics": [{"$oid": "53b416cfa43aac62a2debda1"}],
-        "updated": {"$date": 1420986837877},
+        "updated": {"$date": 1421248159697},
         "defaultStartTime": {"$date": 1420714800000}
     },
     {
@@ -4454,7 +4454,7 @@
     },
     {
         "_id": {"$oid": "5278c6adcdeab69a2500008d"},
-        "__v": 7,
+        "__v": 8,
         "author": {"$oid": "52d4f515fac246174c000006"},
         "created": {"$date": 1399452361548},
         "defaultduration": 30,
@@ -4463,7 +4463,7 @@
         "defaultvisibility": "private",
         "descriptionI18n": {"de": "Plane nach Feierabend (evtl. mit deiner Partnerin bzw. dei&shy;nem Part&shy;ner) die an&shy;ste&shy;hen&shy;den Freizeit&shy;ar&shy;bei&shy;ten der nächsten Woche mit dem Ziel, ausreichend Erholung und Ruhe&shy;pau&shy;sen zu haben."},
         "number": "Act-138",
-        "qualityFactor": 5,
+        "qualityFactor": 4,
         "recWeights": [
             ["5278c51a6166f2de240000df", 0, 3],
             ["5278c51a6166f2de240000d4", 0, 3],
@@ -4476,7 +4476,7 @@
         "textI18n": {"de": "Vielbeschäftigte Menschen machten häufig den Fehler, ihren Arbeits&shy;rhythmus auf die Freizeit zu über&shy;tragen, sagt der Kölner Diplom-Psychologe Markus Brand.\n\nWichtig sei, in der Freizeit etwas zu machen, was nichts mit dem Beruf zu tun hat, rät Brand. Nur so gewinne man Zeit und Abstand von der Arbeit.\n\nGut sei zum Beispiel, die Freizeit mit der Familie zu planen und Sport oder Gartenarbeit zu machen - oder mit dem Hund Gassi zu gehen."},
         "titleI18n": {"de": "Freizeit-Wochenplan"},
         "topics": [{"$oid": "53b416cfa43aac62a2debda1"}],
-        "updated": {"$date": 1420987433121},
+        "updated": {"$date": 1421248346154},
         "defaultStartTime": {"$date": 1420736400000}
     },
     {
@@ -5602,7 +5602,7 @@
     },
     {
         "_id": {"$oid": "5278c6adcdeab69a250000af"},
-        "__v": 5,
+        "__v": 6,
         "author": {"$oid": "52d4f515fac246174c000006"},
         "created": {"$date": 1399464257461},
         "defaultduration": 30,
@@ -5611,7 +5611,7 @@
         "defaultvisibility": "private",
         "descriptionI18n": {"de": "Verbringe am Feierabend eine hal&shy;be Stun&shy;de weniger mit Fern&shy;se&shy;hen oder Internet und nutze die gewonnene Zeit bewusst zur Ent&shy;span&shy;nung."},
         "number": "Act-172",
-        "qualityFactor": 5,
+        "qualityFactor": 4,
         "recWeights": [
             ["5278c51a6166f2de240000df", 2, 3],
             ["5278c51a6166f2de240000dd", 2, 3],
@@ -5626,7 +5626,7 @@
         "textI18n": {"de": "Wir setzen uns oft vor die Flimmer&shy;kis&shy;te, wenn wir uns zu nichts an&shy;derem mehr aufraffen können und wenn wir keine Energie mehr für irgendetwas anderes haben. So verführt der Fern&shy;seher als Mittel zum Abschalten dazu, viel mehr fern zu sehen, als wir ei&shy;gent&shy;lich wollen.\n\nDas Dumme daran ist vor allem, dass das Fernsehen unsere Ener&shy;gie&shy;re&shy;ser&shy;ven nicht wieder auflädt, wie andere er&shy;hol&shy;same Tätigkeiten. Und so kön&shy;nen wir ein paar Stunden vor dem Fernseher sitzen und sind noch ge&shy;nau&shy;so ge&shy;schafft wie vorher."},
         "titleI18n": {"de": "Entspannen statt fernsehen"},
         "topics": [{"$oid": "53b416cfa43aac62a2debda1"}],
-        "updated": {"$date": 1420988230597},
+        "updated": {"$date": 1421248488443},
         "defaultStartTime": {"$date": 1420822800000}
     },
     {
@@ -5772,7 +5772,7 @@
     },
     {
         "_id": {"$oid": "5278c6adcdeab69a250000b4"},
-        "__v": 11,
+        "__v": 12,
         "author": {"$oid": "52d4f515fac246174c000006"},
         "created": {"$date": 1399465508733},
         "defaultduration": 30,
@@ -5781,7 +5781,7 @@
         "defaultvisibility": "private",
         "descriptionI18n": {"de": "Erledige täglich einige Büro&shy;ar&shy;bei&shy;ten im Stehen anstatt im Sitzen."},
         "number": "Act-177",
-        "qualityFactor": 4,
+        "qualityFactor": 3,
         "recWeights": [
             ["5278c51a6166f2de240000df", 3, 3],
             ["5278c51a6166f2de240000dd", 0, 3],
@@ -5797,7 +5797,7 @@
         "textI18n": {"de": "Wenn du im Stehen arbeitest, bist du öfters in Bewegung und deine Wirbel&shy;säule und deine Rücken-, Schulter- und Nackenmuskeln werden es dir danken! Zudem erhälst du beim An&shy;passen des Tisches eine kurze Pause :-)\n\nDer menschliche Körper ist nicht dafür gemacht, den ganzen Tag still auf der Stelle zu stehen. Ist jedoch genau dies am Arbeitsplatz gefordert, kann es zu Muskel&shy;ver&shy;krampf&shy;ungen, Fehl&shy;hal&shy;tun&shy;gen, geschwollenen Beinen bis hin zum Bandscheibenvorfall kommen."},
         "titleI18n": {"de": "Stehend arbeiten"},
         "topics": [{"$oid": "53b416cfa43aac62a2debda1"}],
-        "updated": {"$date": 1420989976046},
+        "updated": {"$date": 1421248921658},
         "defaultStartTime": {"$date": 1420794000000}
     },
     {
@@ -6000,7 +6000,7 @@
     },
     {
         "_id": {"$oid": "5278c6aecdeab69a250000bc"},
-        "__v": 7,
+        "__v": 8,
         "author": {"$oid": "52d4f515fac246174c000006"},
         "created": {"$date": 1399468341697},
         "defaultduration": 60,
@@ -6009,7 +6009,7 @@
         "defaultvisibility": "private",
         "descriptionI18n": {"de": "Mache am Freitagnachmittag be&shy;wusst etwas früher Feierabend und unternimm als Übergang ins Wo&shy;chenende etwas Entspannendes mit deinen Ar&shy;beits&shy;kol&shy;le&shy;ginnen bzw. Arbeitskollegen."},
         "number": "Act-185",
-        "qualityFactor": 4,
+        "qualityFactor": 3,
         "recWeights": [
             ["5278c51a6166f2de240000df", 3, 3],
             ["5278c51a6166f2de240000dd", 3, 3],
@@ -6029,12 +6029,12 @@
         "textI18n": {"de": "Was das ideale Wochenabschluss&shy;ritual ist, bleibt jedem selbst über&shy;lassen. Sei es eine sportliche Gruppen&shy;aktivität, ein Spiel, ein Restaurant&shy;besuch, ein Afterwork-Drink oder aber Tanzen mit den Arbeits&shy;kol&shy;le&shy;gin&shy;nen und -kollegen – Hauptsache, du vergisst die Arbeit und schaltest ab."},
         "titleI18n": {"de": "Übergang ins Wochenende"},
         "topics": [{"$oid": "53b416cfa43aac62a2debda1"}],
-        "updated": {"$date": 1420987260452},
+        "updated": {"$date": 1421248310171},
         "defaultStartTime": {"$date": 1420815600000}
     },
     {
         "_id": {"$oid": "5278c6aecdeab69a250000bd"},
-        "__v": 9,
+        "__v": 10,
         "author": {"$oid": "52d4f515fac246174c000006"},
         "created": {"$date": 1399469876941},
         "defaultduration": 10,
@@ -6043,7 +6043,7 @@
         "defaultvisibility": "private",
         "descriptionI18n": {"de": "Regeneriere dich täglich 10 Mi&shy;nu&shy;ten aktiv, indem du bewusst ruhig und tief atmest."},
         "number": "Act-186",
-        "qualityFactor": 5,
+        "qualityFactor": 4,
         "recWeights": [
             ["5278c51a6166f2de240000df", 3, 3],
             ["5278c51a6166f2de240000dd", 3, 3],
@@ -6069,7 +6069,7 @@
         "textI18n": {"de": "Atme tief ein und wieder ruhig aus! Das stimuliert den Parasympathikus (Anteil des autonomen Nerven&shy;sys&shy;tems, der für Regeneration sorgt)!\n\nDie Atmung spielt bei der Stress&shy;be&shy;wäl&shy;ti&shy;gung eine zentrale Rolle. Um ruhiger zu werden, sollst du lernen, richtig zu at&shy;men und den Herz&shy;rhyth&shy;mus mit der Atmung zu koppeln.\n\nOb du dies durch Meditation, Auto&shy;genes Training, Yoga oder leichten Dauerlauf erreichst, ist nicht so wich&shy;tig: Hauptsache ist, du tust es und atmest bewusst!\n\nEin Übungsvideo findest du <a href='https://www.youtube.com/watch?v=5Ph5GxNJ1ns' target='_blank'>hier.</a>"},
         "titleI18n": {"de": "Bewusstes Atmen"},
         "topics": [{"$oid": "53b416cfa43aac62a2debda1"}],
-        "updated": {"$date": 1420988605325},
+        "updated": {"$date": 1421248560198},
         "defaultStartTime": {"$date": 1420808400000}
     },
     {
@@ -6226,7 +6226,7 @@
     },
     {
         "_id": {"$oid": "529f27d5e6d37b88080009e0"},
-        "__v": 5,
+        "__v": 6,
         "author": {"$oid": "525fb247101e330000000008"},
         "created": {"$date": 1399471394022},
         "defaultduration": 30,
@@ -6235,7 +6235,7 @@
         "defaultvisibility": "private",
         "descriptionI18n": {"de": "Arbeite deine täglichen Aufgaben so ab, als wären sie Perlen an einer Ket&shy;te, und richte deine Kon&shy;zen&shy;tra&shy;ti&shy;on ausschliesslich auf die aktuelle Perle."},
         "number": "Act-190",
-        "qualityFactor": 5,
+        "qualityFactor": 4,
         "recWeights": [
             ["5278c51a6166f2de240000df", 0, 5],
             ["5278c51a6166f2de240000dd", 0, 7],
@@ -6248,7 +6248,7 @@
         "textI18n": {"de": "Mithilfe dieser Methode kommst du bei deiner Arbeit schneller voran und der Stress nimmt ab.\n\nGestresst fühlt man sich, wenn die Ge&shy;dan&shy;ken immer um das kreisen, was noch alles zu erledigen ist. Bleibe des&shy;halb mit deinen Ge&shy;dan&shy;ken bei der Auf&shy;gabe, die du **JETZT** gerade bearbeitest."},
         "titleI18n": {"de": "Perlenkette"},
         "topics": [{"$oid": "53b416cfa43aac62a2debda1"}],
-        "updated": {"$date": 1420989481948},
+        "updated": {"$date": 1421248797569},
         "defaultStartTime": {"$date": 1420794000000}
     },
     {
@@ -6283,7 +6283,7 @@
     },
     {
         "_id": {"$oid": "529f2ce6e6d37b8808000a33"},
-        "__v": 3,
+        "__v": 4,
         "author": {"$oid": "52d4f515fac246174c000006"},
         "created": {"$date": 1399471495444},
         "defaultduration": 5,
@@ -6292,7 +6292,7 @@
         "defaultvisibility": "private",
         "descriptionI18n": {"de": "Schalte nach der Arbeit um, indem du zum Beispiel beim Verlassen der Arbeitsstelle eine virtuelle Linie überschreitest."},
         "number": "Act-192",
-        "qualityFactor": 4,
+        "qualityFactor": 3,
         "recWeights": [
             ["5278c51a6166f2de240000df", 3, 3],
             ["5278c51a6166f2de240000dd", 3, 3],
@@ -6314,7 +6314,7 @@
         "textI18n": {"de": "Versuche, es dir zur Gewohnheit zu machen, **umzuschalten**:  \n\nSobald du eine virtuelle Linie passiert hast, ist die Arbeit und alle Gedanken daran abgehakt, bis du die Linie das näch&shy;ste Mal wieder passierst. So lässt du das „alte“ Feld hinter dir, wenn du in eine andere Umgebung wechselst."},
         "titleI18n": {"de": "Umschalten nach Dienstschluss"},
         "topics": [{"$oid": "53b416cfa43aac62a2debda1"}],
-        "updated": {"$date": 1420989187840},
+        "updated": {"$date": 1421248692540},
         "defaultStartTime": {"$date": 1420819200000}
     },
     {
@@ -6493,7 +6493,7 @@
     },
     {
         "_id": {"$oid": "5332a2080f9b32255d248961"},
-        "__v": 12,
+        "__v": 13,
         "author": {"$oid": "52d4f515fac246174c000006"},
         "created": {"$date": 1399472540688},
         "defaultduration": 15,
@@ -6502,7 +6502,7 @@
         "defaultvisibility": "private",
         "descriptionI18n": {"de": "Plane in deinen Tagesablauf Ri&shy;tu&shy;ale ein, um mehr Zeit und Ent&shy;span&shy;nung für dich zu haben (z.B. Mor&shy;gen&shy;ritual mit Ruhe, Kaffee und Lesen oder Abend&shy;ritual mit Bewegung, Me&shy;di&shy;ta&shy;ti&shy;on und Abendlektüre)."},
         "number": "Act-196",
-        "qualityFactor": 6,
+        "qualityFactor": 4,
         "recWeights": [
             ["5278c51a6166f2de240000df", 3, 3],
             ["5278c51a6166f2de240000dd", 0, 3],
@@ -6518,12 +6518,12 @@
         "textI18n": {"de": "Ein **Ritual** ist eine nach vor&shy;ge&shy;ge&shy;be&shy;nen Regeln ablaufende Handlung. Sie wird häufig von bestimmten Worten und Gesten begleitet und kann re&shy;li&shy;giöser oder weltlicher Art sein (z. B. Got&shy;tes&shy;dienst, Familien&shy;zu&shy;sam&shy;menkünfte).\n\nIndem Rituale auf vorgefertigte Hand&shy;lungs&shy;abläufe und Symbole zurück&shy;grei&shy;fen, vermitteln sie **Halt** und **Ori&shy;en&shy;tie&shy;rung**. Rituale erleichtern den **Um&shy;gang mit Stress**, das Treffen von Entscheidungen und das Leben in einer hektischen Welt. \n\nRituale dienen auch der Rhyth&shy;mi&shy;sie&shy;rung. So gibt es zyklische, lebens&shy;zyk&shy;lische (z.B. Geburt) oder ereignis&shy;be&shy;zo&shy;gene (z.B. Krankheit) Abläufe."},
         "titleI18n": {"de": "Rituale"},
         "topics": [{"$oid": "53b416cfa43aac62a2debda1"}],
-        "updated": {"$date": 1420988922861},
+        "updated": {"$date": 1421248637177},
         "defaultStartTime": {"$date": 1420786800000}
     },
     {
         "_id": {"$oid": "5332a3290f9b32255d24897d"},
-        "__v": 8,
+        "__v": 9,
         "author": {"$oid": "52d4f515fac246174c000006"},
         "created": {"$date": 1399472564408},
         "defaultduration": 30,
@@ -6532,7 +6532,7 @@
         "defaultvisibility": "private",
         "descriptionI18n": {"de": "Verarbeite deinen Arbeitstag, in&shy;dem du auf dem Arbeitsweg in Ruhe da&shy;rüber nachdenkst (Selbstreflexion)."},
         "number": "Act-197",
-        "qualityFactor": 5,
+        "qualityFactor": 4,
         "recWeights": [
             ["5278c51a6166f2de240000df", 3, 3],
             ["5278c51a6166f2de240000dd", 3, 3],
@@ -6557,7 +6557,7 @@
         "textI18n": {"de": "Der Arbeitstag bestand aus lauter hek&shy;tischen Meetings, dann sasst du noch bis 20 Uhr am Schreibtisch und morgen musst du schon um 7 Uhr wieder raus, weil eine Geschäfts&shy;reise ansteht.\n\nWer in so einer Situation versucht, um 22 Uhr ins Bett zu gehen, wird sich wahr&shy;scheinlich nur unruhig hin- und herwälzen. Grund: Körper und Gehirn hatten einfach noch keine Möglichkeit, runterzufahren."},
         "titleI18n": {"de": "Selbstreflexion Arbeitstag"},
         "topics": [{"$oid": "53b416cfa43aac62a2debda1"}],
-        "updated": {"$date": 1420987208032},
+        "updated": {"$date": 1421248271046},
         "defaultStartTime": {"$date": 1420819200000}
     },
     {
@@ -6630,17 +6630,17 @@
     },
     {
         "_id": {"$oid": "5332a89e0f9b32255d248ae0"},
-        "__v": 9,
+        "__v": 10,
         "author": {"$oid": "52d4f515fac246174c000006"},
         "created": {"$date": 1399472908042},
         "defaultduration": 60,
-        "defaultStartTime": {"$date": 1417712400000},
+        "defaultStartTime": {"$date": 1417710600000},
         "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "defaultvisibility": "private",
         "descriptionI18n": {"de": "Gehe heute einmal mit Arbeits&shy;kol&shy;le&shy;ginnen bzw. Arbeitskollegen nach der Arbeit etwas trinken."},
         "number": "Act-201",
-        "qualityFactor": 5,
+        "qualityFactor": 4,
         "recWeights": [
             ["5278c51a6166f2de240000df", 3, 3],
             ["5278c51a6166f2de240000dd", 2, 3],
@@ -6662,7 +6662,7 @@
         "textI18n": {"de": "Mit Arbeitskollegen kann man sich gut aus&shy;tau&shy;schen. Manche Arbeit&shy;nehmer ver&shy;ab&shy;re&shy;den sich deshalb auch nach Feierabend.\n\nFreundschaften am Arbeitsplatz sind keine Seltenheit. Rund jeder dritte Berufstätige (39 Prozent) trifft sich auch privat mit Arbeitskollegen. Das hat eine Umfrage des Markt&shy;for&shy;schungs&shy;ins&shy;ti&shy;tuts BVA im Auftrag einer Personalberatung ergeben. Wer sich mit den Kollegen gut versteht, geht in der Regel gern zur Arbeit."},
         "titleI18n": {"de": "AfterWork mit Kollegen"},
         "topics": [{"$oid": "53b416cfa43aac62a2debda1"}],
-        "updated": {"$date": 1420989557353}
+        "updated": {"$date": 1421248066679}
     },
     {
         "_id": {"$oid": "5332aa540f9b32255d248b68"},

@@ -211,6 +211,9 @@ function createTemplateCampaignOffers(campaign, req, cb) {
 
                         if (user && user.email && user.profile.prefs.email.iCalInvites) {
                             req.log.debug({start: saved.start, end: saved.end}, 'Saved New activity');
+
+                            // populate the owner, because the getIcalObject requires the owner to be populated.
+                            activity.setValue('owner', user);
                             var myIcalString = calendar.getIcalObject(saved, user, 'new', req.i18n).toString();
                             email.sendCalInvite(user, 'new', myIcalString, saved, req.i18n);
                         }

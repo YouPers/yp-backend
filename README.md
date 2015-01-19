@@ -56,15 +56,6 @@ Detailed doc: https://github.com/jkbr/httpie
     http -v GET localhost:8000/activities
     http -a username:password -v POST localhost:8000/users username=newusername password=newpassword fullname=Reto Blunschi
 
-### Continuous Deployment to Heroku:
-
-CircleCI automatically deploys this project to the respective server instance, depending on the branch being built
-
-Heroku uses:
-
-- "ci" environmont (see config.js) for the master branch, deploys to https://cimaster.youpers.com
-- "uat" environment (see config.js) for the uat branch, deploys to https://uat.youpers.com
-
 ## Logging and Debugging
 
 The backend server uses the restify/bunyan integration for logging. These logs provide information that

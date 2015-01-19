@@ -36,6 +36,12 @@ var getIcalObject = function (activity, recipientUser, iCalType, i18n, reason) {
 
         // Organizer and attendees are only relevant for group plans
         var organizer = activity.owner;
+
+        // make sure owner is populated, other crash fast and hard
+        if (!organizer.email || !organizer.fullname) {
+            throw new Error('unpopulated owner not allowed on activity when creating iCalObjects');
+        }
+
         var targetAttendee = recipientUser;
         var otherAttendees = activity.joiningUsers.slice(1);
 

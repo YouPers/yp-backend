@@ -12,7 +12,10 @@ var mongoose = require('ypbackendlib').mongoose,
 
 
 module.exports = {
-
-    campaign: {type: ObjectId, ref: 'Campaign', select: false}
-
+    properties: {
+        campaign: {type: ObjectId, ref: 'Campaign', select: false}
+    },
+    statics: {
+        privatePropertiesSelector: '+email +roles +emailValidatedFlag +hashed_password +tempPasswordFlag +profile +username +campaign'
+    }
 };

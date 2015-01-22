@@ -152,8 +152,8 @@ var sendOrganizationAdminInvite = function sendOrganizationAdminInvite(email, in
         linkText: i18n.t("email:OrganizationAdminInvite.linkText"),
         salutation: i18n.t('email:OrganizationAdminInvite.salutation' + invitedUser ? '': 'Anonymous', {invited: invitedUser ? invitedUser.toJSON() : {firstname: ''}}),
         text: i18n.t('email:OrganizationAdminInvite.text', {inviting: invitingUser.toJSON(), organization: organization.toJSON()})
-
     };
+    _.defaults(locals, defaultLocals(i18n));
     emailSender.sendEmail(fromDefault, email, subject, 'genericYouPersMail', locals);
 };
 

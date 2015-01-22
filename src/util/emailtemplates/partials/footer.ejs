@@ -41,14 +41,14 @@
                                             <td valign="top" class="mcnTextContent"
                                                 style="line-height: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;color: #ffffff;font-family: Helvetica;font-size: 14px;text-align: right;">
                                                 <br />
-
+                                                <%if (urlComposer) { %>
                                                 <span style="line-height:14px">
                                                     <a href='<%- urlComposer.profileUrl() %>'>
                                                         <%- t('email:default.configureEmailSettings') %>
                                                     </a>
 
                                                 </span>
-
+                                                <% } %>
 
                                             </td>
 

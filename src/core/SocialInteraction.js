@@ -597,7 +597,7 @@ SocialInteraction.getById = function (idAsString, Model, queryOptions, locale, c
  */
 SocialInteraction.getAllForUser = function (user, model, options, cb) {
 
-    log.debug('SocialInteraction.getAllForUser', {user: user, model: model, options: options});
+    log.trace('SocialInteraction.getAllForUser', {user: user, model: model, options: options});
 
     var adminMode = options.mode === 'admin';
     var locale = options && options.locale;

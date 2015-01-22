@@ -2,7 +2,8 @@
   "default": {
     "notDisplayedCorrectly": "Wird diese Email nicht richtig angezeigt?",
     "notDisplayedCorrectlyLink": "Im Browser anzeigen",
-    "header": "HealthCampaign"
+    "header": "HealthCampaign",
+    "configureEmailSettings": "Email-Einstellungen ändern"
   },
   "CampaignParticipantInvite": {
     "campaignLeadsHeader": "Deine Kampagnenleiter:",

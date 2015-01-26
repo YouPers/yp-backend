@@ -45,19 +45,19 @@
   },
   "iCalMail": {
     "new": {
-      "subject": "Neuer Kalender-Eintrag für: __activity.title__",
+      "subject": "__activity.title__",
       "salutation": "Hallo __user.firstname__",
       "text": "Mit dem Einplanen von <strong>__activity.title__</strong> hast du schon den wichtigsten Schritt erledigt!<br/><br/>Im Anhang findest du die Termine zu deinem Plan, um sie in deinem Kalender einzutragen. <br/><br/>Du kannst weitere solche Emails in deinem <a href='__profileLink__'>Profil</a> ausschalten.",
       "linkText": "ZU KALENDER HINZUFÜGEN"
     },
     "update": {
-      "subject": "Angepasster Kalender-Eintrag für: __activity.title__",
+      "subject": "__activity.title__",
       "salutation": "Hallo __user.firstname__",
       "text": "Die Pläne zur Aktivität <strong>__activity.title__</strong> haben sich inzwischen geändert.<br/>Bitte öffne die folgenden Links um deinen Kalender-Eintrag zu aktualisieren. <br/><br/>Du kannst weitere solche Emails in deinem <a href='__profileLink__'>Profil</a> ausschalten.",
       "linkText": "KALENDER AKTUALISIEREN"
     },
     "cancel": {
-      "subject": "Gelöschter Kalender-Eintrag für: __activity.title__",
+      "subject": "__activity.title__",
       "salutation": "Hallo __user.firstname__",
       "text": "Der Kalendar-Eintrag für die Aktivität <strong>__activity.title__</strong> wurde gelöscht. <br/><br/>Du kannst weitere solche Emails in deinem <a href='__profileLink__'>Profil</a> ausschalten.",
       "linkText": "AUS KALENDER ENTFERNEN"

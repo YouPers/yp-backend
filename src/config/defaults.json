@@ -74,6 +74,14 @@
         "api_key": "k7hszceqdnuu5jcv4dc4q5xx",
         "dcmSurveyId": "58747442",
         "dhcSurveyId": "58747460"
+    },
+    "AWS": {
+        "defaultRegion": "eu-central-1",
+        "accessKeyId": "AKIAID5NWWQYCVJ6BDCQ",
+        "secretAccessKey": "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",
+        "fileupload": {
+            "bucketName": "hc-fileuploads-test"
+        }
     }
 
 }

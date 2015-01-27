@@ -69,7 +69,7 @@ var getSummaryMailLocals = function getSummaryMailLocals(user, lastSentMailDate,
                 owner: user._id || user,
                 campaign: user.campaign,
                 start: { $gt: startOfDay, $lt: endOfDay }
-            }).populate('activity').populate('idea').exec(storeLocals('eventsToday', done));
+            }).sort({ start: 1 }).populate('activity').populate('idea').exec(storeLocals('eventsToday', done));
         },
 
         // eventsWithOpenFeedback

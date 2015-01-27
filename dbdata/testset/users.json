@@ -257,9 +257,6 @@
             "$oid": "52a97f1650fca98c2900000a"
         },
         "avatar": "/assets/img/default_avatar_man.png",
-        "campaign": {
-            "$oid": "527916a82079aa8704000006"
-        },
         "email": "ypunittest1+orgadmin@gmail.com",
         "emailValidatedFlag": true,
         "firstname": "Test",
@@ -286,9 +283,6 @@
             "$oid": "52a97f1650fca98c2900000b"
         },
         "avatar": "/assets/img/default_avatar_woman.png",
-        "campaign": {
-            "$oid": "527916a82079aa8704000006"
-        },
         "email": "ypunittest1+campaignlead@gmail.com",
         "emailValidatedFlag": true,
         "firstname": "Test",
@@ -314,9 +308,6 @@
             "$oid": "52a97f1650fca98c2900000c"
         },
         "avatar": "/assets/img/default_avatar_woman.png",
-        "campaign": {
-            "$oid": "527916a82079aa8704000007"
-        },
         "email": "ypunittest1+campaignlead2@gmail.com",
         "emailValidatedFlag": true,
         "firstname": "Test",

@@ -79,7 +79,7 @@ var getSummaryMailLocals = function getSummaryMailLocals(user, lastSentMailDate,
                 campaign: user.campaign,
                 status: 'open',
                 end: { $lt: moment() }
-            }).populate('activity').populate('idea').exec(storeLocals('eventsWithOpenFeedback', done));
+            }).sort({ start: 1 }).populate('activity').populate('idea').exec(storeLocals('eventsWithOpenFeedback', done));
         },
 
         // section 3
@@ -92,7 +92,7 @@ var getSummaryMailLocals = function getSummaryMailLocals(user, lastSentMailDate,
                 targetSpaces: { $elemMatch: { targetId: user.campaign }},
                 publishFrom: { $gt: lastSentMailDate, $lt: currentDate },
                 publishTo: { $gt: currentDate }
-            }).populate('author').exec(storeLocals('newCampaignMessages', done));
+            }).sort({ publishFrom: 1 }).populate('author').exec(storeLocals('newCampaignMessages', done));
         },
 
         // newCampaignActivityInvitations
@@ -103,7 +103,7 @@ var getSummaryMailLocals = function getSummaryMailLocals(user, lastSentMailDate,
                 targetSpaces: { $elemMatch: { targetId: user.campaign }},
                 publishFrom: { $gt: lastSentMailDate, $lt: currentDate },
                 publishTo: { $gt: currentDate }
-            }).populate('author activity').exec(storeLocals('newCampaignActivityInvitations', done));
+            }).sort({ publishFrom: 1 }).populate('author activity').exec(storeLocals('newCampaignActivityInvitations', done));
         },
 
         // newCampaignRecommendations
@@ -114,7 +114,7 @@ var getSummaryMailLocals = function getSummaryMailLocals(user, lastSentMailDate,
                 targetSpaces: { $elemMatch: { targetId: user.campaign }},
                 publishFrom: { $gt: lastSentMailDate, $lt: currentDate },
                 publishTo: { $gt: currentDate }
-            }).populate('author idea').exec(storeLocals('newCampaignRecommendations', done));
+            }).sort({ publishFrom: 1 }).populate('author idea').exec(storeLocals('newCampaignRecommendations', done));
         },
 
         // newPersonalInvitations
@@ -128,7 +128,7 @@ var getSummaryMailLocals = function getSummaryMailLocals(user, lastSentMailDate,
                     targetSpaces: { $elemMatch: { targetId: user.id }},
                     publishFrom: { $gt: lastSentMailDate, $lt: currentDate },
                     publishTo: { $gt: currentDate }
-                }).populate('author activity').exec(storeLocals('newPersonalInvitations', done));
+                }).sort({ publishFrom: 1 }).populate('author activity').exec(storeLocals('newPersonalInvitations', done));
             });
 
         },
@@ -166,7 +166,7 @@ var getSummaryMailLocals = function getSummaryMailLocals(user, lastSentMailDate,
                 authorType: 'user',
                 targetSpaces: {$elemMatch: {targetId: user.campaign}},
                 created: {$gt: lastSentMailDate}
-            }).populate('author activity').exec(storeLocals('newPublicInvitations', done));
+            }).sort({ created: 1 }).populate('author activity').exec(storeLocals('newPublicInvitations', done));
         },
 
         // newCoachRecommendations
@@ -176,7 +176,7 @@ var getSummaryMailLocals = function getSummaryMailLocals(user, lastSentMailDate,
                 authorType: 'coach',
                 targetSpaces: { $elemMatch: { targetId: user.id }},
                 created: {$gt: lastSentMailDate}
-            }).populate('author idea').exec(storeLocals('newCoachRecommendations', done));
+            }).sort({ created: 1 }).populate('author idea').exec(storeLocals('newCoachRecommendations', done));
         }
     ];
 

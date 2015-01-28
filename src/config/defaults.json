@@ -44,6 +44,9 @@
         "templatesDir": "src/util/emailtemplates",
         "bcc": {
             "dailyEventsSummary": "ypunittest1+bbc@gmail.com"
+        },
+        "tracking": {
+            "enabled": "false"
         }
     },
     "accessTokenSecret": "knfad*ç%&/(&/sdkjfnaklsdnfASDFAS2341",

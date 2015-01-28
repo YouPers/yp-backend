@@ -123,13 +123,15 @@ var sendCampaignLeadInvite = function sendCampaignLeadInvite(email, invitingUser
     emailSender.sendEmail(fromDefault, email, subject, 'campaignLeadInviteMail', locals);
 };
 
-var sendCampaignParticipantInvite = function sendCampaignParticipantInvite(email, subject, text, invitingUser, campaign, testOnly, i18n) {
+var sendCampaignParticipantInvite = function sendCampaignParticipantInvite(email, invitingUser, campaign, testOnly, i18n) {
+
+    var subject = i18n.t("email:CampaignParticipantInvite.subject", {inviting:  invitingUser.toJSON(), campaign: campaign.toJSON()});
+
 
     var locals = {
         campaign: campaign,
-
         salutation: i18n.t('email:CampaignParticipantInvite.salutation', { campaign: campaign.toJSON() }),
-        text: text,
+        text: i18n.t('email:CampaignParticipantInvite.text', { campaign: campaign.toJSON(), link: urlComposer.campaignWelcomeUrl(campaign._id)}),
         image: urlComposer.campaignImageUrl(campaign.topic.picture),
         // ignoring testOnly here, reason: Feedback Helmut/Stefan
         //link: testOnly ? '' : urlComposer.campaignWelcomeUrl(campaign._id),

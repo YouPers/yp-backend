@@ -7,7 +7,9 @@
   },
   "CampaignParticipantInvite": {
     "campaignLeadsHeader": "Deine Kampagnenleiter:",
-    "linkText": "ZUR KAMPAGNE"
+    "linkText": "ZUR KAMPAGNE",
+    "subject": "__campaign.organization.name__ Kampagne __campaign.title__: Persönliche Einladung",
+    "text": "Liebe Mitarbeiterin, lieber Mitarbeiter<br><br>__campaign.organization.name__ lädt Dich ein, an der betrieblichen Gesundheitskampagne zum Thema __campaign.topic.shortDescription__  teilzunehmen. Wir führen diese gemeinsam mit unserem Partner YOUPERS durch."
   },
   "ActivityInvitation": {
     "subject": "HealthCampaign: Einladung für eine Gruppen-Aktivität vom __inviting.fullname__",
@@ -21,7 +23,7 @@
     "welcomeHeader": "Willkommen als Kampagnenleiter",
     "salutation": "Hallo __invited.firstname__",
     "salutationAnonymous": "Hallo!",
-    "text": "__inviting.fullname__ hat Dich eingeladen, Kampagnenleiter der YOUPERS __campaign.title__ HealthCampaign zu werden.",
+    "text": "__inviting.fullname__ hat Dich eingeladen, Kampagnenleiter der __campaign.title__ HealthCampaign zu werden.",
     "linkText": "EINLADUNG ANZEIGEN"
   },
   "OrganizationAdminInvite": {
@@ -34,13 +36,13 @@
   "passwordReset": {
     "subject": "HealthCampaign: Zurücksetzen des Passworts",
     "salutation": "Hallo __user.firstname__",
-    "text": "Um dein Passwort zu ändern, klicke auf den untenstehenend Link und folge den Anweisungen.<br/><br/>Vielen Dank<br/><br/>Dein YOUPERS Team",
+    "text": "Um dein Passwort zu ändern, klicke auf den untenstehenend Link und folge den Anweisungen.<br/><br/>Vielen Dank<br/><br/>Dein HealthCampaign Team",
     "linkText": "PASSWORT ÄNDERN"
   },
   "emailVerification": {
     "subject": "HealthCampaign: Bitte verifiziere deine Email-Adresse",
     "salutation": "Hallo __user.firstname__",
-    "text": "Danke für deine Registrierung!<br/><br/>Du hast __user.email__ als Email-Adresse angegeben. Wir wollen sichergehen, dass sie auch zu dir gehört. Klicke einfach auf den Link weiter unten, um deine Email-Adresse zu verifizieren.<br/><br/>Vielen Dank!<br/><br/>Dein YOUPERS-Team",
+    "text": "Danke für deine Registrierung!<br/><br/>Du hast __user.email__ als Email-Adresse angegeben. Wir wollen sichergehen, dass sie auch zu dir gehört. Klicke einfach auf den Link weiter unten, um deine Email-Adresse zu verifizieren.<br/><br/>Vielen Dank!<br/><br/>Dein HealthCampaign Team",
     "linkText": "EMAIL-ADRESSE VERIFIZIEREN"
   },
   "iCalMail": {
@@ -110,7 +112,7 @@
       "newCampaignOffers": "Neue Empfehlungen und persönliche Einladungen für dich",
       "newCommentsOnParticipatedActivities": "Es gibt __newCommentsOnParticipatedActivities__ neue Kommentare zu Aktivitäten, an denen du teilnimmst.\n"
     },
-    "subject": "YOUPERS HealthCampaign \"__user.campaign.title__\" - Daily Mail",
+    "subject": "HealthCampaign \"__user.campaign.title__\" - Daily Mail",
     "time": "Zeit:"
   }
 }

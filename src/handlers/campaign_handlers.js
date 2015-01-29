@@ -279,18 +279,19 @@ function addSurveyCollectors(sentCampaign, req, cb) {
             }
         });
 
-        var body = {
-            survey_id: config.surveyMonkey.dcmSurveyId,
-            collector: {
-                type: 'weblink',
-                name: sentCampaign.organization.name + '/ ' + sentCampaign.participants + '/' + sentCampaign.location
-            }
-        };
 
         mongoose.model('Organization').findById(sentCampaign.organization).exec(function (err, org) {
             if (err) {
                 error.handleError(err, cb);
             }
+
+            var body = {
+                survey_id: config.surveyMonkey.dcmSurveyId,
+                collector: {
+                    type: 'weblink',
+                    name: org.name + '/ ' + sentCampaign.participants + '/' + sentCampaign.location
+                }
+            };
 
             jsonClient.post(config.surveyMonkey.createCollectorEndpoint + '?api_key=' + config.surveyMonkey.api_key,
                 body,

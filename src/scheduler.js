@@ -1,5 +1,4 @@
-var eventsSummaryMail = require('./batches/eventsSummaryMail'),
-    config = require('./config/config'),
+var config = require('./config/config'),
     scheduler = require('ypbackendlib').scheduler,
     logger = require('ypbackendlib').log(config);
 
@@ -21,17 +20,7 @@ var eventsSummaryMail = require('./batches/eventsSummaryMail'),
 // for more complex scheduling see syntax here: http://en.wikipedia.org/wiki/Cron
 //
 var jobs = [
-    {
-        name: 'DailyEventSummary',
-        description: 'sends a daily email to users who had events with end dates in the specified time range',
-        cronTime: '00 00 18 * * *',
-        onTick: eventsSummaryMail.run,
-        start: true,
-        context: {
-            timeFrameToFindEvents: 24 * 60 * 60 * 1000,
-            concurrency: 2
-        }
-    }
+
 ];
 
 /**

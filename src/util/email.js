@@ -3,11 +3,20 @@ var config = require('../config/config'),
     urlComposer = require('./urlcomposer'),
     _ = require('lodash'),
     fromDefault = config.email.fromString,
-    linkTokenSeparator = config.linkTokenEncryption.separator,
     emailSender = require('ypbackendlib').emailSender(config, process.cwd() + '/' + config.email.templatesDir);
 
 var defaultLocals = function (i18n) {
+
+    var localMoment = function(date) {
+        return moment(date).lang(i18n.lng()).tz('Europe/Zurich');
+    };
+
     return {
+
+        moment: localMoment,
+        urlComposer: urlComposer,
+        t: i18n.t,
+
         header: i18n.t('email:default.header'),
         notDisplayedCorrectly: i18n.t('email:default.notDisplayedCorrectly'),
         notDisplayedCorrectlyLink: i18n.t('email:default.notDisplayedCorrectlyLink'),
@@ -28,7 +37,6 @@ var sendCalInvite = function (toUser, type, iCalString, event, i18n, reason) {
         alternatives: [
             {
                 contentType: 'text/calendar; charset="utf-8"; method=' + method,
-
                 content: iCalString,
                 contentDisposition: 'inline'
             }
@@ -52,7 +60,7 @@ var sendCalInvite = function (toUser, type, iCalString, event, i18n, reason) {
         link: urlComposer.icalUrl(event.id, type, toUser.id),
         linkText: i18n.t('email:iCalMail.' + type + '.linkText')
     };
-    _.extend(locals, defaultLocals(i18n));
+    _.defaults(locals, defaultLocals(i18n));
     emailSender.sendEmail(fromDefault, toUser.email, subject, 'calendarEventMail', locals, mailExtensions);
 
 };
@@ -83,67 +91,20 @@ var sendEventInvite = function sendEventInvite(email, invitingUser, event, invit
         eventDate: eventDate,
         image: urlComposer.ideaImageUrl(event.idea.number)
     };
-    _.extend(locals, defaultLocals(i18n));
+    _.defaults(locals, defaultLocals(i18n));
     emailSender.sendEmail(fromDefault, email, subject, 'eventInviteMail', locals);
 };
 
-var sendCampaignLeadInvite = function sendCampaignLeadInvite(email, invitingUser, campaign, invitedUser, i18n) {
+var getDailyEventSummaryLocals = function getDailyEventSummaryLocals(locals, i18n) {
+    var mailLocals = _.defaults({
 
-    var localMoment = function localMoment(date) {
-        return moment(date).lang(i18n.lng()).tz('Europe/Zurich');
-    };
-    var subject = i18n.t("email:CampaignLeadInvite.subject", {inviting:  invitingUser.toJSON(), campaign: campaign.toJSON()});
-    var token = emailSender.encryptLinkToken(campaign._id +linkTokenSeparator + email +  (invitedUser ? linkTokenSeparator + invitedUser._id : ''));
+        salutation: i18n.t('email:dailySummary.salutation', locals)
 
-    var duration = localMoment(campaign.start).format('D.M.YYYY') + ' - ' + localMoment(campaign.end).format('D.M.YYYY');
 
-    var locals = {
-        link: urlComposer.campaignLeadInviteUrl(campaign._id, invitingUser._id, token),
-        linkText: i18n.t('email:CampaignLeadInvite.linkText'),
-        welcomeHeader: i18n.t('email:CampaignLeadInvite.welcomeHeader'),
-        salutation: i18n.t('email:CampaignLeadInvite.salutation' + invitedUser ? '': 'Anonymous', {invited: invitedUser ? invitedUser.toJSON() : {firstname: ''}}),
-        text: i18n.t('email:CampaignLeadInvite.text', {
-            inviting: invitingUser.toJSON(),
-            campaign: campaign.toJSON()
-        }),
-        campaign: campaign,
-        duration: duration,
-        image: urlComposer.campaignImageUrl(campaign.topic.picture)
-    };
-    _.extend(locals, defaultLocals(i18n));
-    emailSender.sendEmail(fromDefault, email, subject, 'campaignLeadInviteMail', locals);
-};
+    }, defaultLocals(i18n));
+    _.extend(mailLocals, locals);
 
-var sendCampaignParticipantInvite = function sendCampaignParticipantInvite(email, subject, text, invitingUser, campaign, testOnly, i18n) {
-
-    var locals = {
-        campaign: campaign,
-
-        salutation: i18n.t('email:CampaignParticipantInvite.salutation', { campaign: campaign.toJSON() }),
-        text: text,
-        image: urlComposer.campaignImageUrl(campaign.topic.picture),
-        link: testOnly ? '' : urlComposer.campaignWelcomeUrl(campaign._id),
-        linkText: i18n.t('email:CampaignParticipantInvite.linkText'),
-
-        campaignLeadsHeader: i18n.t('email:CampaignParticipantInvite.campaignLeadsHeader')
-
-    };
-    _.extend(locals, defaultLocals(i18n));
-    emailSender.sendEmail(fromDefault, email, subject, 'campaignParticipantInviteMail', locals);
-};
-
-var sendOrganizationAdminInvite = function sendOrganizationAdminInvite(email, invitingUser, organization, invitedUser, i18n) {
-
-    var subject = i18n.t("email:OrganizationAdminInvite.subject", {inviting:  invitingUser.toJSON(), organization: organization.toJSON()});
-    var token = emailSender.encryptLinkToken(organization._id +linkTokenSeparator + email +  (invitedUser ? linkTokenSeparator + invitedUser._id : ''));
-    var locals = {
-        link: urlComposer.orgAdminInviteUrl(organization._id, invitingUser._id, token),
-        linkText: i18n.t("email:OrganizationAdminInvite.linkText"),
-        salutation: i18n.t('email:OrganizationAdminInvite.salutation' + invitedUser ? '': 'Anonymous', {invited: invitedUser ? invitedUser.toJSON() : {firstname: ''}}),
-        text: i18n.t('email:OrganizationAdminInvite.text', {inviting: invitingUser.toJSON(), organization: organization.toJSON()})
-
-    };
-    emailSender.sendEmail(fromDefault, email, subject, 'genericYouPersMail', locals);
+    return mailLocals;
 };
 
 /**
@@ -154,18 +115,17 @@ var sendOrganizationAdminInvite = function sendOrganizationAdminInvite(email, in
  * @param user - a user object with a populated profile.
  * @param i18n - an i18n object to be used to translate the email content
  */
-var sendDailyEventSummary = function sendDailyEventSummary(toAddress, events, user, i18n) {
-    var subject = i18n.t("email:DailyEventSummary.subject", {events: events});
+var sendDailyEventSummary = function sendDailyEventSummary(toAddress, locals, user, i18n) {
+    var subject = i18n.t("email:dailySummary.subject", locals);
 
-    var locals = {
-        events: events,
-        salutation: i18n.t('email:DailyEventSummary.salutation'),
-        text: "to be written...",
-        link: "mylink",
-        footer: "myFooter"
-    };
+    var mailLocals = getDailyEventSummaryLocals(locals, i18n);
+    _.extend(mailLocals, locals);
 
-    emailSender.sendEmail(fromDefault, toAddress, subject, 'dailyEventsSummary', locals);
+    var mailExtensions = {};
+    if(config.email.bcc && config.email.bcc.dailyEventsSummary) {
+        mailExtensions.bcc = config.email.bcc.dailyEventsSummary;
+    }
+    emailSender.sendEmail(fromDefault, toAddress, subject, 'dailyEventsSummary', mailLocals, mailExtensions);
 };
 
 var close = function close() {
@@ -178,8 +138,5 @@ module.exports = {
     decryptLinkToken: emailSender.decryptLinkToken,
     sendCalInvite: sendCalInvite,
     sendEventInvite: sendEventInvite,
-    sendCampaignLeadInvite: sendCampaignLeadInvite,
-    sendCampaignParticipantInvite: sendCampaignParticipantInvite,
-    sendOrganizationAdminInvite: sendOrganizationAdminInvite,
     sendDailyEventSummary: sendDailyEventSummary
 };

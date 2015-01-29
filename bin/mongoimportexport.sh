@@ -96,7 +96,7 @@ if $LOADING ; then
     for path in *.json; do
         collection=${path%.json}
         echo "Loading into $DB/$collection from $path"
-        mongoimport $ARGS -h $HOST -d $DB -c $collection $path --jsonArray
+        mongoimport $ARGS -h $HOST -d $DB --drop -c $collection $path --jsonArray
     done
  
     popd >/dev/null

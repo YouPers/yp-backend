@@ -15,19 +15,6 @@ module.exports = function (swagger) {
     var baseUrl = '/campaigns',
         baseUrlWithId = baseUrl + "/{id}";
 
-    swagger.addOperation({
-        spec: {
-            description: "avatar image upload",
-            path: baseUrlWithId + "/avatar",
-            summary: "avatar image upload",
-            mobileSDK: "disabled",
-            hidden: "true",
-            method: "POST",
-            "nickname": "avatarImagePost",
-            accessLevel: 'al_campaignlead'
-        },
-        action: campaignHandlers.avatarImagePostFn(baseUrl)
-    });
 
     swagger.addOperation({
         spec: {
@@ -119,65 +106,6 @@ module.exports = function (swagger) {
             accessLevel: 'al_orgadmin'
         },
         action: campaignHandlers.postCampaign(baseUrl)
-    });
-
-    swagger.addOperation({
-        spec: {
-            description: "Operations about campaigns",
-            path: baseUrlWithId + "/inviteCampaignLeadEmail",
-            notes: "Posts a request for an invitation for one or more email-addresses",
-            summary: "Request an invitation for to become campaign lead to be sent by the backend to the supplied email address(es)",
-            mobileSDK: "disabled",
-            hidden: "true",
-            params: [
-                {
-                    paramType: "body",
-                    name: "email",
-                    description: "object with one property: 'email', an email address, or an array of adresses, or a separated String of emails (by ';, ')",
-                    dataType: "EmailObject",
-                    required: true
-                }
-            ],
-            method: "POST",
-            "nickname": "postCampaignLeadPlanInvite",
-            accessLevel: 'al_campaignlead',
-            beforeCallbacks: []
-        },
-        action: campaignHandlers.postCampaignLeadInvite
-    });
-
-    swagger.addModels({EmailObject: {
-        id: 'EmailObject',
-        required: ['email'],
-        properties: {
-            email: {type: 'string'}
-        }
-    }});
-
-
-    swagger.addOperation({
-        spec: {
-            description: "Operations about campaigns",
-            path: baseUrlWithId + "/assignCampaignLead",
-            notes: "Posts a request to add the current user as campaignLead to this campaign: special endpoint that can be called without al_campaignLead but needs a token instead for auth",
-            summary: "With this endpoint a non-privileged user can assign himself to become campaign lead when he has an invitation token.",
-            mobileSDK: "disabled",
-            hidden: "true",
-            params: [
-                {
-                    paramType: "query",
-                    name: "token",
-                    description: "the authtoken the user has gotten with his invitation email",
-                    dataType: "string",
-                    required: true
-                }
-            ],
-            method: "POST",
-            "nickname": "assignCampaignLead",
-            accessLevel: 'al_user',
-            beforeCallbacks: []
-        },
-        action: campaignHandlers.assignCampaignLead
     });
 
 

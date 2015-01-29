@@ -4,11 +4,7 @@ var mongoose = require('ypbackendlib').mongoose;
 var _ = require('lodash');
 var moment = require('moment');
 var calendar = require('../util/calendar');
-var User = mongoose.model('User');
 var Invitation = mongoose.model('Invitation');
-var Idea = mongoose.model('Idea');
-var Campaign = mongoose.model('Campaign');
-var Assessment = mongoose.model('Assessment');
 var Event = mongoose.model('Event');
 var Occurence = mongoose.model('Occurence');
 var SocialInteraction = require('../core/SocialInteraction');
@@ -29,81 +25,7 @@ var actMgr = new EventManagement();
  *
  */
 
-User.on('change:campaign', function (user) {
 
-    Campaign.findById(user.campaign).exec(function (err, campaign) {
-        if (err) {
-            handleError(err);
-        }
-        // the user does not have campaign, or he has set an unknown campaign
-        if (!campaign) {
-            return;
-        }
-
-        Assessment.find({ topic: campaign.topic }).exec(function (err, assessments) {
-            if (err) {
-                handleError(err);
-            }
-
-            if (assessments.length !== 1) {
-                return actMgr.emit('error', 'assessment for topic not found or not unique');
-            }
-            var assessment = assessments[0];
-            if (assessment.idea) {
-
-                Event.find({
-                    owner: user._id,
-                    idea: assessment.idea,
-                    status: 'active'
-                }).exec(function (err, events) {
-                    if (err) {
-                        handleError(err);
-                    }
-
-                    // only plan assessment idea if there is no active event yet
-                    if (events.length === 0) {
-
-                        mongoose.model('Profile').findById(user.profile).exec(function (err, profile) {
-                            if (err) {
-                                handleError(err);
-                            }
-
-                            Idea.findById(assessment.idea).select(Idea.getI18nPropertySelector(profile.language)).exec(function (err, idea) {
-                                if (err) {
-                                    return handleError(err);
-                                }
-                                // if there is no idea to be planned, just return.
-                                if (!idea) {
-                                    return;
-                                }
-                                var assessmentEvent = actMgr.defaultEvent(idea, user);
-                                assessmentEvent.start = new Date();
-                                assessmentEvent.end = moment(assessmentEvent.start).add(15, 'm').toDate();
-                                assessmentEvent.save(function (err, savedEvent) {
-                                    if (err) {
-                                        return handleError(err);
-                                    }
-                                    var occurences = actMgr.getOccurences(savedEvent, user.id);
-                                    Occurence.create(occurences, function (err) {
-                                        if (err) {
-                                            return handleError(err);
-                                        }
-                                        actMgr.emit('event:eventCreated', savedEvent, user);
-                                    });
-                                });
-
-                            });
-
-
-                        });
-                    }
-                });
-
-            }
-        });
-
-    });
-});
 
 /**
  * on Change of an Occurence Status, check whether this was the last open Occurence

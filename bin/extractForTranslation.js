@@ -12,7 +12,7 @@ require('../src/util/database').initializeDb();
 
 program
     .version('0.0.1')
-    .usage('<locale> <objname>')
+    .usage('')
 //    .option('-p, --peppers', 'Add peppers')
 //    .option('-P, --pineapple', 'Add pineapple')
     //  .option('-b, --bbq', 'Add bbq sauce')

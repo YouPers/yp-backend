@@ -2,11 +2,14 @@
   "default": {
     "notDisplayedCorrectly": null,
     "notDisplayedCorrectlyLink": null,
-    "header": null
+    "header": null,
+    "configureEmailSettings": null
   },
   "CampaignParticipantInvite": {
     "campaignLeadsHeader": null,
-    "linkText": null
+    "linkText": null,
+    "subject": null,
+    "text": null
   },
   "ActivityInvitation": {
     "subject": null,

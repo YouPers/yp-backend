@@ -39,7 +39,7 @@
         "passwordResetUrl": "/#/password_reset/"
     },
     "email": {
-        "fromString": "YOUPERS <dontreply@youpers.com>",
+        "fromString": "INSPIRATION <dontreply@youpers.com>",
         "templatesDir": "src/util/emailtemplates"
     },
     "accessTokenSecret": "knfad*ç%&/(&/sdkjfnaklsdnfASDFAS2341",
@@ -65,6 +65,14 @@
     },
     "push": {
         "googlePushApiKey": "AIzaSyCT7aKgfGdT9NFvZlRZRRcq9IwV9r5A0Ng"
+    },
+    "AWS": {
+        "defaultRegion": "eu-central-1",
+        "accessKeyId": "AKIAID5NWWQYCVJ6BDCQ",
+        "secretAccessKey": "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",
+        "fileupload": {
+            "bucketName": "insp-fileuploads-test"
+        }
     }
 }
 

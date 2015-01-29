@@ -21,12 +21,12 @@ var IdeaSchema = common.newSchema({
     defaultfrequency: {type: String, enum: enums.eventFrequency},
     defaultexecutiontype: {type: String, enum: enums.executiontype},
     defaultduration: {type: Number},
+    defaultStartTime: { type: Date },
     topics: [{type: ObjectId, ref: 'Topic'}],
     qualityFactor: {type: Number, select: false},
     recWeights: {type: mongoose.Schema.Types.Mixed, select: false},
-
+    picture: {type: String},
     action: { type: String, enum: enums.actionType }
-
 });
 
 IdeaSchema.statics.adminAttrsSelector =  '+recWeights +qualityFactor';

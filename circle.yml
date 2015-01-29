@@ -5,13 +5,9 @@ database:
   post:
    - bin/resettestdb.sh
 deployment:
-  uat:
-    branch: uat
-    commands:
-    - ssh youpers@uat.youpers.com 'bash -s' < bin/deploy.sh uat uat
   ci:
-    branch: master
+    branch: insp
     commands:
-    - ssh youpers@cimaster.youpers.com 'bash -s' < bin/deploy.sh master cimaster
+    - ssh youpers@insp-ci.youpers.com 'bash -s' < bin/deploy.sh insp insp-ci
 
 

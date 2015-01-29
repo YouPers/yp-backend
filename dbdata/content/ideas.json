@@ -1,1598 +1,1882 @@
 [
     {
+        "__v": 0,
         "_id": {
-            "$oid": "54860a9fb6953fc567e3e126"
+            "$oid": "54ca2fc88c0832450f0e1aa2"
         },
-        "author": {
-            "$oid": "52d4f515fac246174c000006"
-        },
+        "categories": [
+            "healthy",
+            "smallGroups"
+        ],
         "created": {
-            "$date": 1398338294301
+            "$date": 1422536648470
         },
-        "defaultduration": 15,
+        "defaultduration": 150,
         "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "descriptionI18n": {
-            "de": "Bereite mit Freunden ein gesundes und gutes Essen zu."
+            "de": "Bereiten Sie mit Freunden ein gesundes Essen.",
+            "en": "Prepare a Healthy meal with friends"
         },
         "number": "INS-1",
-        "qualityFactor": 1,
-        "textI18n": {},
+        "picture": "https://insp-content-assets.s3.amazonaws.com/Act-129-fotolia-17589641_XS.jpg",
+        "qualityFactor": 5,
         "titleI18n": {
-            "de": "Gesundes Essen"
+            "de": "Gesundes Essen",
+            "en": "Healthy Diet"
         },
         "topics": [
-            "53b416cfa43aac62a2debda1",
-            "53b416fba43aac62a2debda3"
+            {
+                "$oid": "53b416cfa43aac62a2debda1"
+            },
+            {
+                "$oid": "53b416fba43aac62a2debda3"
+            }
         ],
         "updated": {
-            "$date": 1398338294301
+            "$date": 1422536648470
         }
     },
     {
+        "__v": 0,
         "_id": {
-            "$oid": "54860a9fb6953fc567e3e127"
+            "$oid": "54ca2fc88c0832450f0e1aa3"
         },
-        "author": {
-            "$oid": "52d4f515fac246174c000006"
-        },
+        "categories": [
+            "sportive",
+            "smallGroups"
+        ],
         "created": {
-            "$date": 1398338294301
+            "$date": 1422536648477
         },
-        "defaultduration": 15,
+        "defaultduration": 60,
         "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "descriptionI18n": {
-            "de": "Geniesse mit Freunden einen Fussball-Abend zu Hause vor dem Fernseher."
+            "de": "Treffen Sie sich mit Freunden zum Schwimmen.",
+            "en": "Meet with friends to go swimming"
+        },
+        "number": "INS-52",
+        "picture": "",
+        "qualityFactor": 5,
+        "titleI18n": {
+            "de": "Schwimmen",
+            "en": "Swimming"
+        },
+        "topics": [
+            {
+                "$oid": "53b416fba43aac62a2debda3"
+            },
+            {
+                "$oid": "53b416fba43aac62a2debda2"
+            }
+        ],
+        "updated": {
+            "$date": 1422536648477
+        }
+    },
+    {
+        "__v": 0,
+        "_id": {
+            "$oid": "54ca2fc88c0832450f0e1aa4"
+        },
+        "categories": [
+            "smallGroups",
+            "relaxing",
+            "sportive"
+        ],
+        "created": {
+            "$date": 1422536648481
+        },
+        "defaultduration": 150,
+        "defaultexecutiontype": "group",
+        "defaultfrequency": "once",
+        "descriptionI18n": {
+            "de": "Geniessen Sie Fussball mit Freunden",
+            "en": "Enjoy watching soccer with friends"
         },
         "number": "INS-2",
-        "qualityFactor": 1,
-        "textI18n": {},
+        "picture": "https://insp-content-assets.s3.amazonaws.com/Act-326_123RF_16292983_s.jpg",
+        "qualityFactor": 5,
         "titleI18n": {
-            "de": "Fussball-Abend"
+            "de": "TV-Fussball-Abend",
+            "en": "TV-Soccer-Night"
         },
         "topics": [
-            "53b416fba43aac62a2debda3"
+            {
+                "$oid": "53b416fba43aac62a2debda3"
+            }
         ],
         "updated": {
-            "$date": 1398338294301
+            "$date": 1422536648481
         }
     },
     {
+        "__v": 0,
         "_id": {
-            "$oid": "54860a9fb6953fc567e3e128"
+            "$oid": "54ca2fc88c0832450f0e1aa5"
         },
-        "author": {
-            "$oid": "52d4f515fac246174c000006"
-        },
+        "categories": [
+            "smallGroups",
+            "relaxing",
+            "cultural"
+        ],
         "created": {
-            "$date": 1398338294301
+            "$date": 1422536648486
         },
-        "defaultduration": 15,
+        "defaultduration": 150,
         "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "descriptionI18n": {
-            "de": "Lade Freunde ein, um einen Kinofilm vor dem Fernseher zu schauen."
+            "de": "Laden Sie Freunde ein und schauen Sie einen Film.",
+            "en": "Invite friends to watch a movie"
         },
         "number": "INS-3",
-        "qualityFactor": 1,
-        "textI18n": {},
+        "picture": "https://insp-content-assets.s3.amazonaws.com/Act-101-123RF-13962383_s.jpg",
+        "qualityFactor": 5,
         "titleI18n": {
-            "de": "Heimkino"
+            "de": "Heimkino",
+            "en": "Home Cinema"
         },
         "topics": [
-            "53b416fba43aac62a2debda3"
+            {
+                "$oid": "53b416fba43aac62a2debda3"
+            },
+            {
+                "$oid": "53b416fba43aac62a2debda2"
+            }
         ],
         "updated": {
-            "$date": 1398338294301
+            "$date": 1422536648486
         }
     },
     {
+        "__v": 0,
         "_id": {
-            "$oid": "54860a9fb6953fc567e3e129"
+            "$oid": "54ca2fc88c0832450f0e1aa6"
         },
-        "author": {
-            "$oid": "52d4f515fac246174c000006"
-        },
+        "categories": [
+            "smallGroups",
+            "cultural",
+            "relaxing"
+        ],
         "created": {
-            "$date": 1398338294301
+            "$date": 1422536648492
         },
-        "defaultduration": 15,
+        "defaultduration": 150,
         "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "descriptionI18n": {
-            "de": "Schau dir einen Film im Kino an, der dir gef\u00e4llt und Freude bereitet."
+            "de": "Schauen Sie sich mit Freunden einen Film im Kino an.",
+            "en": "Watch a movie at the cinema"
         },
         "number": "INS-4",
-        "qualityFactor": 1,
-        "textI18n": {},
+        "picture": "https://insp-content-assets.s3.amazonaws.com/Act-101-123RF-13962383_s.jpg",
+        "qualityFactor": 5,
         "titleI18n": {
-            "de": "Kino"
+            "de": "Kino",
+            "en": "Cinema"
         },
-        "topics": [],
+        "topics": [
+            {
+                "$oid": "53b416fba43aac62a2debda3"
+            }
+        ],
         "updated": {
-            "$date": 1398338294301
+            "$date": 1422536648492
         }
     },
     {
+        "__v": 0,
         "_id": {
-            "$oid": "54860a9fb6953fc567e3e12a"
+            "$oid": "54ca2fc88c0832450f0e1aa7"
         },
-        "author": {
-            "$oid": "52d4f515fac246174c000006"
-        },
+        "categories": [
+            "cultural",
+            "meetNewPeople"
+        ],
         "created": {
-            "$date": 1398338294301
+            "$date": 1422536648495
         },
-        "defaultduration": 15,
+        "defaultduration": 150,
         "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "descriptionI18n": {
-            "de": "Besuche eine Ausstellung eines ber\u00fchmten K\u00fcnstlers."
+            "de": "Besuchen Sie mit Freunden eine Ausstellung.",
+            "en": "Visit an exhibition of a famous artist"
         },
         "number": "INS-5",
-        "qualityFactor": 1,
-        "textI18n": {},
+        "picture": "https://insp-content-assets.s3.amazonaws.com/Act-150-fotolia-38772043_XS.jpg",
+        "qualityFactor": 5,
         "titleI18n": {
-            "de": "Kunstgalerie"
+            "de": "Kunstgalerie",
+            "en": "Art Gallery"
         },
         "topics": [
-            "53b416fba43aac62a2debda3",
-            "53b416fba43aac62a2debda2"
+            {
+                "$oid": "53b416fba43aac62a2debda3"
+            }
         ],
         "updated": {
-            "$date": 1398338294301
+            "$date": 1422536648495
         }
     },
     {
+        "__v": 0,
         "_id": {
-            "$oid": "54860a9fb6953fc567e3e12b"
+            "$oid": "54ca2fc88c0832450f0e1aa8"
         },
-        "author": {
-            "$oid": "52d4f515fac246174c000006"
-        },
+        "categories": [
+            "cultural",
+            "publicEvents"
+        ],
         "created": {
-            "$date": 1398338294301
+            "$date": 1422536648502
         },
-        "defaultduration": 15,
+        "defaultduration": 150,
         "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "descriptionI18n": {
-            "de": "Schau dir mit Freunden eine Oper an."
+            "de": "Besuchen Sie mit Freunden eine Oper.",
+            "en": "Visit an opera with friends"
         },
         "number": "INS-6",
-        "qualityFactor": 1,
-        "textI18n": {},
+        "picture": "https://insp-content-assets.s3.amazonaws.com/Act-208-123RF-7796348.jpg",
+        "qualityFactor": 5,
         "titleI18n": {
-            "de": "Oper"
+            "de": "Oper",
+            "en": "Opera"
         },
         "topics": [
-            "53b416fba43aac62a2debda3",
-            "53b416fba43aac62a2debda2"
+            {
+                "$oid": "53b416fba43aac62a2debda3"
+            }
         ],
         "updated": {
-            "$date": 1398338294301
+            "$date": 1422536648502
         }
     },
     {
+        "__v": 0,
         "_id": {
-            "$oid": "54860a9fb6953fc567e3e12c"
+            "$oid": "54ca2fc88c0832450f0e1aa9"
         },
-        "author": {
-            "$oid": "52d4f515fac246174c000006"
-        },
+        "categories": [
+            "cultural",
+            "publicEvents"
+        ],
         "created": {
-            "$date": 1398338294301
+            "$date": 1422536648521
         },
-        "defaultduration": 15,
+        "defaultduration": 150,
         "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "descriptionI18n": {
-            "de": "Besuche mit Freunden ein klassisches Konzert."
+            "de": "Besuchen Sie mit Freunden ein klassisches Konzert.",
+            "en": "Visit a classical concert with friends"
         },
         "number": "INS-7",
-        "qualityFactor": 1,
-        "textI18n": {},
+        "picture": "https://insp-content-assets.s3.amazonaws.com/Act-208-123RF-7796348.jpg",
+        "qualityFactor": 5,
         "titleI18n": {
-            "de": "Klassische Musik"
+            "de": "Klassische Musik",
+            "en": "Classical Music"
         },
         "topics": [
-            "53b416fba43aac62a2debda3",
-            "53b416fba43aac62a2debda2"
+            {
+                "$oid": "53b416fba43aac62a2debda3"
+            }
         ],
         "updated": {
-            "$date": 1398338294301
+            "$date": 1422536648521
         }
     },
     {
+        "__v": 0,
         "_id": {
-            "$oid": "54860a9fb6953fc567e3e12d"
+            "$oid": "54ca2fc88c0832450f0e1aaa"
         },
-        "author": {
-            "$oid": "52d4f515fac246174c000006"
-        },
+        "categories": [
+            "relaxing",
+            "smallGroups"
+        ],
         "created": {
-            "$date": 1398338294301
+            "$date": 1422536648533
         },
-        "defaultduration": 15,
+        "defaultduration": 150,
         "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "descriptionI18n": {
-            "de": "Mache mit Freunden einen Ausflug ins Blaue."
+            "de": "Machen Sie mit Freunden einen Ausflug ins Blaue.",
+            "en": "Make a spontaneous trip with friends"
         },
         "number": "INS-8",
-        "qualityFactor": 1,
-        "textI18n": {
-            "de": "Benutze dabei \u00d6ffentliche Verkehrsmittel."
-        },
+        "picture": "https://insp-content-assets.s3.amazonaws.com/Act-089-123RF-24433598_s.jpg",
+        "qualityFactor": 5,
         "titleI18n": {
-            "de": "Ausflug"
+            "de": "Ausflug",
+            "en": "Excursion"
         },
         "topics": [
-            "53b416fba43aac62a2debda3",
-            "53b416fba43aac62a2debda2"
+            {
+                "$oid": "53b416fba43aac62a2debda3"
+            },
+            {
+                "$oid": "53b416fba43aac62a2debda2"
+            }
         ],
         "updated": {
-            "$date": 1398338294301
+            "$date": 1422536648533
         }
     },
     {
+        "__v": 0,
         "_id": {
-            "$oid": "54860a9fb6953fc567e3e12e"
+            "$oid": "54ca2fc88c0832450f0e1aab"
         },
-        "author": {
-            "$oid": "52d4f515fac246174c000006"
-        },
+        "categories": [
+            "relaxing",
+            "tradKitchen",
+            "smallGroups"
+        ],
         "created": {
-            "$date": 1398338294301
+            "$date": 1422536648540
         },
-        "defaultduration": 15,
+        "defaultduration": 90,
         "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "descriptionI18n": {
-            "de": "Triff dich mit Freunden zum Kaffeetrinken und Kuchenessen und geniesse die Gesellschaft."
+            "de": "Treffen Sie Freunde zum Kaffee & Kuchen.",
+            "en": "Meet friends for coffee and cookies"
         },
         "number": "INS-9",
-        "qualityFactor": 1,
-        "textI18n": {},
+        "picture": "https://insp-content-assets.s3.amazonaws.com/Act-147-fotolia-29463209_XS.jpg",
+        "qualityFactor": 5,
         "titleI18n": {
-            "de": "Kaffee und Kuchen"
+            "de": "Kaffee und Kuchen",
+            "en": "Coffee & Cookies"
         },
         "topics": [
-            "53b416cfa43aac62a2debda1",
-            "53b416fba43aac62a2debda3"
+            {
+                "$oid": "53b416cfa43aac62a2debda1"
+            },
+            {
+                "$oid": "53b416fba43aac62a2debda3"
+            }
         ],
         "updated": {
-            "$date": 1398338294301
+            "$date": 1422536648540
         }
     },
     {
+        "__v": 0,
         "_id": {
-            "$oid": "54860a9fb6953fc567e3e12f"
+            "$oid": "54ca2fc88c0832450f0e1aac"
         },
-        "author": {
-            "$oid": "52d4f515fac246174c000006"
-        },
+        "categories": [
+            "relaxing",
+            "smallGroups"
+        ],
         "created": {
-            "$date": 1398338294301
+            "$date": 1422536648548
         },
-        "defaultduration": 15,
+        "defaultduration": 240,
         "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "descriptionI18n": {
-            "de": "Gehe mit Freunden zum Wandern."
+            "de": "Gehen Sie mit Freunden zum Wandern.",
+            "en": "Go hiking with friends"
         },
         "number": "INS-10",
-        "qualityFactor": 1,
-        "textI18n": {},
+        "picture": "https://insp-content-assets.s3.amazonaws.com/Act-121-123RF-8232129_s.jpg",
+        "qualityFactor": 5,
         "titleI18n": {
-            "de": "Wandern"
+            "de": "Wandern",
+            "en": "Hiking"
         },
         "topics": [
-            "53b416fba43aac62a2debda3",
-            "53b416fba43aac62a2debda2"
+            {
+                "$oid": "53b416fba43aac62a2debda3"
+            },
+            {
+                "$oid": "53b416fba43aac62a2debda2"
+            }
         ],
         "updated": {
-            "$date": 1398338294301
+            "$date": 1422536648548
         }
     },
     {
+        "__v": 0,
         "_id": {
-            "$oid": "54860a9fb6953fc567e3e130"
+            "$oid": "54ca2fc88c0832450f0e1aad"
         },
-        "author": {
-            "$oid": "52d4f515fac246174c000006"
-        },
+        "categories": [
+            "relaxing",
+            "smallGroups"
+        ],
         "created": {
-            "$date": 1398338294301
+            "$date": 1422536648556
         },
-        "defaultduration": 15,
+        "defaultduration": 150,
         "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "descriptionI18n": {
-            "de": "Mache mit Freunden einen Spaziergang durch einen Ort nach Wahl."
+            "de": "Machen Sie mit Freunden einen Spaziergang.",
+            "en": "Take a walk with friends"
         },
         "number": "INS-11",
-        "qualityFactor": 1,
-        "textI18n": {
-            "de": "Besuche mit Freunden einen Ort nach Wahl und schaue dir verschiedene Bauten, Skulupturen, Br\u00fccken, G\u00e4rten und Pl\u00e4tze an und betrachte die Architektur und das Umfeld und lass das Bild auf dich wirken."
-        },
+        "picture": "https://insp-content-assets.s3.amazonaws.com/Act-065-fotolia-39765463_XS.jpg",
+        "qualityFactor": 5,
         "titleI18n": {
-            "de": "Stadtspaziergang"
+            "de": "Stadtspaziergang",
+            "en": "City Stroll"
         },
         "topics": [
-            "53b416fba43aac62a2debda3",
-            "53b416fba43aac62a2debda2"
+            {
+                "$oid": "53b416fba43aac62a2debda3"
+            },
+            {
+                "$oid": "53b416fba43aac62a2debda2"
+            }
         ],
         "updated": {
-            "$date": 1398338294301
+            "$date": 1422536648556
         }
     },
     {
+        "__v": 0,
         "_id": {
-            "$oid": "54860a9fb6953fc567e3e131"
+            "$oid": "54ca2fc88c0832450f0e1aae"
         },
-        "author": {
-            "$oid": "52d4f515fac246174c000006"
-        },
+        "categories": [
+            "relaxing",
+            "tradKitchen",
+            "smallGroups"
+        ],
         "created": {
-            "$date": 1398338294301
+            "$date": 1422536648561
         },
-        "defaultduration": 15,
+        "defaultduration": 150,
         "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "descriptionI18n": {
-            "de": "Gehe mit Freunden zum Kegeln oder Bowling."
+            "de": "Laden Sie Freunde zum Nachtessen ein.",
+            "en": "Invite friends for dinner"
         },
         "number": "INS-12",
-        "qualityFactor": 1,
-        "textI18n": {
-            "de": "Aus dem Kegeln (9 Kegel im Quadrat auf der Spitze stehend) hervorgegangen und daher eng mit ihm verwandt ist das Bowling, bei dem zehn Kegel (Pins) in Form eines gleichseitigen Dreiecks aufgestellt werden."
-        },
+        "picture": "https://insp-content-assets.s3.amazonaws.com/Act-254-123RF-11190585_s.jpg",
+        "qualityFactor": 5,
         "titleI18n": {
-            "de": "Kegeln"
+            "de": "Nachtessen",
+            "en": "Dinner"
         },
         "topics": [
-            "53b416fba43aac62a2debda3",
-            "53b416fba43aac62a2debda2"
+            {
+                "$oid": "53b416cfa43aac62a2debda1"
+            },
+            {
+                "$oid": "53b416fba43aac62a2debda3"
+            }
         ],
         "updated": {
-            "$date": 1398338294301
+            "$date": 1422536648561
         }
     },
     {
+        "__v": 0,
         "_id": {
-            "$oid": "54860a9fb6953fc567e3e132"
+            "$oid": "54ca2fc88c0832450f0e1aaf"
         },
-        "author": {
-            "$oid": "52d4f515fac246174c000006"
-        },
+        "categories": [
+            "mental",
+            "relaxing"
+        ],
         "created": {
-            "$date": 1398338294301
+            "$date": 1422536648564
         },
-        "defaultduration": 15,
+        "defaultduration": 150,
         "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "descriptionI18n": {
-            "de": "Lade Freunde ein zum Nachtessen."
+            "de": "Veranstalten Sie mit Freunden einen Jass-Abend.",
+            "en": "Organize an evening of card games for friends"
         },
         "number": "INS-13",
-        "qualityFactor": 1,
-        "textI18n": {},
+        "picture": "https://insp-content-assets.s3.amazonaws.com/Act-076-123RF-13202946_s.jpg",
+        "qualityFactor": 5,
         "titleI18n": {
-            "de": "Nachtessen"
+            "de": "Jassen",
+            "en": "Card Game"
         },
         "topics": [
-            "53b416cfa43aac62a2debda1",
-            "53b416fba43aac62a2debda3"
+            {
+                "$oid": "53b416fba43aac62a2debda3"
+            },
+            {
+                "$oid": "53b416fba43aac62a2debda2"
+            }
         ],
         "updated": {
-            "$date": 1398338294301
+            "$date": 1422536648564
         }
     },
     {
+        "__v": 0,
         "_id": {
-            "$oid": "54860a9fb6953fc567e3e133"
+            "$oid": "54ca2fc88c0832450f0e1ab0"
         },
-        "author": {
-            "$oid": "52d4f515fac246174c000006"
-        },
-        "created": {
-            "$date": 1398338294301
-        },
-        "defaultduration": 15,
-        "defaultexecutiontype": "group",
-        "defaultfrequency": "once",
-        "descriptionI18n": {
-            "de": "Veranstalte mit Freunden einen Jass-Abend."
-        },
-        "number": "INS-14",
-        "qualityFactor": 1,
-        "textI18n": {},
-        "titleI18n": {
-            "de": "Jassen"
-        },
-        "topics": [
-            "53b416fba43aac62a2debda3",
-            "53b416fba43aac62a2debda2"
+        "categories": [
+            "publicEvents",
+            "cultural",
+            "meetNewPeople"
         ],
-        "updated": {
-            "$date": 1398338294301
-        }
-    },
-    {
-        "_id": {
-            "$oid": "54860a9fb6953fc567e3e134"
-        },
-        "author": {
-            "$oid": "52d4f515fac246174c000006"
-        },
         "created": {
-            "$date": 1398338294301
+            "$date": 1422536648567
         },
-        "defaultduration": 15,
-        "defaultexecutiontype": "group",
-        "defaultfrequency": "once",
-        "descriptionI18n": {
-            "de": "Nimm an einem Sprachkurs teil, um eine Sprache zu erlernen oder zu verbessern."
-        },
-        "number": "INS-15",
-        "qualityFactor": 1,
-        "textI18n": {
-            "de": "Sprachen verbinden und \u00f6ffnen neue Horizonte. Sie lernen auf genussvolle, ganzheitliche Art und Weise die Sprache oder k\u00f6nnen Ihre Vorkenntnisse auffrischen. Sie erwerben entweder die ersten Grundlagen, um sich m\u00fcndlich und schriftlich auszudr\u00fccken. Sie k\u00f6nnen einfache Informationen austauschen, z.B. eine Mahlzeit bestellen oder einfach Texte lesen und \u00fcbersetzen. Sie k\u00f6nnen sich fliessender ausdr\u00fccken und finden sich auf Reisen zurecht. Sie k\u00f6nnen Gespr\u00e4che im Freundeskreis f\u00fchren. Sie sprechen in vielen Situationen fliessend."
-        },
-        "titleI18n": {
-            "de": "(Sprach)Kurs"
-        },
-        "topics": [
-            "53b416fba43aac62a2debda2"
-        ],
-        "updated": {
-            "$date": 1398338294301
-        }
-    },
-    {
-        "_id": {
-            "$oid": "54860a9fb6953fc567e3e135"
-        },
-        "author": {
-            "$oid": "52d4f515fac246174c000006"
-        },
-        "created": {
-            "$date": 1398338294301
-        },
-        "defaultduration": 15,
+        "defaultduration": 120,
         "defaultexecutiontype": "self",
         "defaultfrequency": "once",
         "descriptionI18n": {
-            "de": "Mache einen Fitness-Kurs oder trainiere deine Fitness, um in Bewegung zu bleiben."
+            "de": "Nehmen Sie an einem Sprachkurs teil.",
+            "en": "Take part in language learning course"
+        },
+        "number": "INS-14",
+        "picture": "https://insp-content-assets.s3.amazonaws.com/Act-013-123RF-24447320_s.jpg",
+        "qualityFactor": 5,
+        "titleI18n": {
+            "de": "Sprachkurs",
+            "en": "Language Course"
+        },
+        "topics": [
+            {
+                "$oid": "53b416fba43aac62a2debda3"
+            },
+            {
+                "$oid": "53b416fba43aac62a2debda2"
+            }
+        ],
+        "updated": {
+            "$date": 1422536648567
+        }
+    },
+    {
+        "__v": 0,
+        "_id": {
+            "$oid": "54ca2fc88c0832450f0e1ab1"
+        },
+        "categories": [
+            "physFitness"
+        ],
+        "created": {
+            "$date": 1422536648571
+        },
+        "defaultduration": 60,
+        "defaultexecutiontype": "self",
+        "defaultfrequency": "once",
+        "descriptionI18n": {
+            "de": "Trainieren Sie Ihren K\u00f6rper, um in Bewegung zu bleiben.",
+            "en": "Participate in a fitness training course"
+        },
+        "number": "INS-15",
+        "picture": "https://insp-content-assets.s3.amazonaws.com/Act-123-fotolia-54516748_XS.jpg",
+        "qualityFactor": 5,
+        "titleI18n": {
+            "de": "Ganzk\u00f6rper-Fitnesstraining",
+            "en": "Fitness Training"
+        },
+        "topics": [
+            {
+                "$oid": "53b416fba43aac62a2debda2"
+            }
+        ],
+        "updated": {
+            "$date": 1422536648571
+        }
+    },
+    {
+        "__v": 0,
+        "_id": {
+            "$oid": "54ca2fc88c0832450f0e1ab2"
+        },
+        "categories": [
+            "physFitness"
+        ],
+        "created": {
+            "$date": 1422536648575
+        },
+        "defaultduration": 150,
+        "defaultexecutiontype": "group",
+        "defaultfrequency": "once",
+        "descriptionI18n": {
+            "de": "Machen Sie regelm\u00e4ssig Nordic-Walking.",
+            "en": "Go Nordic Walking regularly"
         },
         "number": "INS-16",
-        "qualityFactor": 1,
-        "textI18n": {
-            "de": "Ein abwechslungsreiches Ganzk\u00f6rpertraining umfasst Gymnastik, Krafttraining, Ausdauer, Beweglichkeit, Koordination, Reaktion, Konzentration, Balance. Bei vielf\u00e4ltigen Fitnessaktivit\u00e4ten wird der Schwerpunkt auf Belastung und Entspannung gelegt und dabei auf eine individuelle Dosierung geachtet. Die Spanne reicht von Aerobic, Krafttraining bis zur progressiven Muskelentspannung nach Jacobson."
-        },
+        "picture": "https://insp-content-assets.s3.amazonaws.com/Act-270-123RF-11529823_s.jpg",
+        "qualityFactor": 5,
         "titleI18n": {
-            "de": "Ganzk\u00f6rper-Fitness-Training"
+            "de": "Nordic-Walking",
+            "en": "Nordic Walking"
         },
         "topics": [
-            "53b416fba43aac62a2debda2"
+            {
+                "$oid": "53b416fba43aac62a2debda2"
+            }
         ],
         "updated": {
-            "$date": 1398338294301
+            "$date": 1422536648575
         }
     },
     {
+        "__v": 0,
         "_id": {
-            "$oid": "54860a9fb6953fc567e3e136"
+            "$oid": "54ca2fc88c0832450f0e1ab3"
         },
-        "author": {
-            "$oid": "52d4f515fac246174c000006"
-        },
+        "categories": [
+            "publicEvents",
+            "cultural",
+            "meetNewPeople"
+        ],
         "created": {
-            "$date": 1398338294301
+            "$date": 1422536648578
         },
-        "defaultduration": 15,
+        "defaultduration": 150,
         "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "descriptionI18n": {
-            "de": "Gehe ins Wasserfitness-Training."
+            "de": "Besuche mit Freunden einen Volkstanzkurs.",
+            "en": "Learn a folk dance with friends"
         },
         "number": "INS-17",
-        "qualityFactor": 1,
-        "textI18n": {
-            "de": "Das ideale Bewegungstraining im Wasser. Mit Wasserrfitness werden die wichtigen Konditionsfaktoren wie Beweglichkeit, Kraft und Ausdauer wirkungsvoll trainiert. Dies ist entspannend und nirgends so schonend m\u00f6glich wie im Wasser. Die abwechslungsreichen \u00dcbungen werden im brusttiefen Wasser ausgef\u00fchrt, deshalb eignen sie sich auch f\u00fcr Nichtschwimmerinnen und Nichtschwimmer."
-        },
+        "picture": "https://insp-content-assets.s3.amazonaws.com/Act-105-fotolia-57474054_XS.jpg",
+        "qualityFactor": 5,
         "titleI18n": {
-            "de": "Wasser-Fitness"
+            "de": "Volkstanzkurs",
+            "en": "Folk Dance"
         },
         "topics": [
-            "53b416fba43aac62a2debda2"
+            {
+                "$oid": "53b416fba43aac62a2debda3"
+            },
+            {
+                "$oid": "53b416fba43aac62a2debda2"
+            }
         ],
         "updated": {
-            "$date": 1398338294301
+            "$date": 1422536648578
         }
     },
     {
+        "__v": 0,
         "_id": {
-            "$oid": "54860a9fb6953fc567e3e137"
+            "$oid": "54ca2fc88c0832450f0e1ab4"
         },
-        "author": {
-            "$oid": "52d4f515fac246174c000006"
-        },
+        "categories": [
+            "sportive",
+            "cultural",
+            "meetNewPeople"
+        ],
         "created": {
-            "$date": 1398338294301
+            "$date": 1422536648582
         },
-        "defaultduration": 15,
+        "defaultduration": 150,
         "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "descriptionI18n": {
-            "de": "Mache regelm\u00e4ssig Wassergymnastik."
+            "de": "Frischen Sie Ihre Tanzschritte wieder auf.",
+            "en": "Take part in a dance class with a partner"
         },
         "number": "INS-18",
-        "qualityFactor": 1,
-        "textI18n": {
-            "de": "Gymnastik im warmen Wasser f\u00f6rdert die Beweglichkeit, entlastet die Gelenke, kr\u00e4ftigt die Muskulatur, lindert rheumatische Beschwerden, regt den Blutkreislauf an und wirkt \u00fcberdies wohltuend und entspannend.\n"
-        },
+        "picture": "https://insp-content-assets.s3.amazonaws.com/Act-105-fotolia-57474054_XS.jpg",
+        "qualityFactor": 5,
         "titleI18n": {
-            "de": "Wassergymnastik"
+            "de": "Standardtanzkurs",
+            "en": "Standard Dance"
         },
         "topics": [
-            "53b416fba43aac62a2debda2"
+            {
+                "$oid": "53b416fba43aac62a2debda3"
+            },
+            {
+                "$oid": "53b416fba43aac62a2debda2"
+            }
         ],
         "updated": {
-            "$date": 1398338294301
+            "$date": 1422536648582
         }
     },
     {
+        "__v": 0,
         "_id": {
-            "$oid": "54860a9fb6953fc567e3e138"
+            "$oid": "54ca2fc88c0832450f0e1ab5"
         },
-        "author": {
-            "$oid": "52d4f515fac246174c000006"
-        },
+        "categories": [
+            "publicEvents",
+            "sportive",
+            "meetNewPeople"
+        ],
         "created": {
-            "$date": 1398338294301
+            "$date": 1422536648587
         },
-        "defaultduration": 15,
+        "defaultduration": 60,
         "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "descriptionI18n": {
-            "de": "Triff dich mit Freunden zum Schwimmen."
+            "de": "Gehen Sie mit Freunden ins Turnen.",
+            "en": "Join a gymnastics group with friends"
         },
         "number": "INS-19",
-        "qualityFactor": 1,
-        "textI18n": {
-            "de": "In der Badi, im Fluss oder im See."
-        },
+        "picture": "https://insp-content-assets.s3.amazonaws.com/Act-111-fotolia-54569177_XS.jpg",
+        "qualityFactor": 5,
         "titleI18n": {
-            "de": "Schwimmen"
+            "de": "Gymnastik",
+            "en": "Gymnastics"
         },
         "topics": [
-            "53b416fba43aac62a2debda3",
-            "53b416fba43aac62a2debda2"
+            {
+                "$oid": "53b416fba43aac62a2debda3"
+            },
+            {
+                "$oid": "53b416fba43aac62a2debda2"
+            }
         ],
         "updated": {
-            "$date": 1398338294301
+            "$date": 1422536648587
         }
     },
     {
+        "__v": 0,
         "_id": {
-            "$oid": "54860a9fb6953fc567e3e139"
+            "$oid": "54ca2fc88c0832450f0e1ab6"
         },
-        "author": {
-            "$oid": "52d4f515fac246174c000006"
-        },
+        "categories": [
+            "physFitness",
+            "Music"
+        ],
         "created": {
-            "$date": 1398338294301
+            "$date": 1422536648591
         },
-        "defaultduration": 15,
+        "defaultduration": 60,
         "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "descriptionI18n": {
-            "de": "Mache regelm\u00e4ssig Nordic-Walking."
+            "de": "Machen Sie regelm\u00e4ssiges Training zur Musik.",
+            "en": "Exercise regularly with music"
         },
         "number": "INS-20",
-        "qualityFactor": 1,
-        "textI18n": {
-            "de": "Nordic Walking ist ein Gesundheitstraining. Es fordert und f\u00f6rdert die ganzheitliche Bewegung mit aktiver Armarbeit durch den Einsatz von Walking-St\u00f6cken. Trotz h\u00f6herem Bewegungsengagement reduziert Nordic Walking die Belastung der Knie- und H\u00fcftgelenke und entlastet die Wirbels\u00e4ule. Sie lernen beim entspannten Training kontinuierlich Ihre Ausdauer zu steigern."
-        },
+        "picture": "https://insp-content-assets.s3.amazonaws.com/Act-184-fotolia-63133004_XS.jpg",
+        "qualityFactor": 5,
         "titleI18n": {
-            "de": "Nordic-Walking"
+            "de": "Musik und Bewegung",
+            "en": "Music & Exercise"
         },
         "topics": [
-            "53b416fba43aac62a2debda2"
+            {
+                "$oid": "53b416fba43aac62a2debda2"
+            }
         ],
         "updated": {
-            "$date": 1398338294301
+            "$date": 1422536648591
         }
     },
     {
+        "__v": 0,
         "_id": {
-            "$oid": "54860a9fb6953fc567e3e13a"
+            "$oid": "54ca2fc88c0832450f0e1ab7"
         },
-        "author": {
-            "$oid": "52d4f515fac246174c000006"
-        },
+        "categories": [
+            "physFitness",
+            "Dance",
+            "Music"
+        ],
         "created": {
-            "$date": 1398338294301
+            "$date": 1422536648616
         },
-        "defaultduration": 15,
+        "defaultduration": 60,
         "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "descriptionI18n": {
-            "de": "Besuche mit Freunden einen Volkstanzkurs."
+            "de": "Machen Sie regelm\u00e4ssig kreatives Tanzen.",
+            "en": "Go creative dancing regularly"
         },
         "number": "INS-21",
-        "qualityFactor": 1,
-        "textI18n": {
-            "de": "Sie haben Freude an Musik und Bewegung und m\u00f6chten etwas f\u00fcr K\u00f6rper und Geist tun? Mit internationalen Volkst\u00e4nzen k\u00f6nnen Sie Koordination, Reaktion und Konzentration in ungezwungener, fr\u00f6hlicher Atmosph\u00e4re \u00fcben und trainieren. Unter Aufsicht von Tanzleiterinnen lernen Sie sich in der Gruppe zur Musik zu bewegen."
-        },
+        "picture": "https://insp-content-assets.s3.amazonaws.com/Act-099-123RF-9765614_s.jpg",
+        "qualityFactor": 5,
         "titleI18n": {
-            "de": "Volkstanzkurs"
+            "de": "Kreatives Tanzen",
+            "en": "Creative Dance"
         },
         "topics": [
-            "53b416fba43aac62a2debda3",
-            "53b416fba43aac62a2debda2"
+            {
+                "$oid": "53b416fba43aac62a2debda2"
+            }
         ],
         "updated": {
-            "$date": 1398338294301
+            "$date": 1422536648616
         }
     },
     {
+        "__v": 0,
         "_id": {
-            "$oid": "54860a9fb6953fc567e3e13b"
+            "$oid": "54ca2fc88c0832450f0e1ab8"
         },
-        "author": {
-            "$oid": "52d4f515fac246174c000006"
-        },
+        "categories": [
+            "physFitness",
+            "posture"
+        ],
         "created": {
-            "$date": 1398338294301
+            "$date": 1422536648620
         },
-        "defaultduration": 15,
-        "defaultexecutiontype": "group",
+        "defaultduration": 60,
+        "defaultexecutiontype": "self",
         "defaultfrequency": "once",
         "descriptionI18n": {
-            "de": "Besuche mit einer Partnerin bzw. einem Partner einen Standardtanzkurs."
+            "de": "Machen Sie Yoga als ganzheitliches Training.",
+            "en": "Practice yoga as a workout for relaxation"
         },
         "number": "INS-22",
-        "qualityFactor": 1,
-        "textI18n": {
-            "de": "In ungezwungener Atmosph\u00e4re lernen Sie zum Beispiel Standardt\u00e4nze und lateinamerikanischen T\u00e4nze. Der Spass am Tanzen und an der Bewegung steht im Vordergrund."
-        },
+        "picture": "https://insp-content-assets.s3.amazonaws.com/Act-083-123RF-9108666_s.jpg",
+        "qualityFactor": 5,
         "titleI18n": {
-            "de": "Standardtanzkurs"
+            "de": "Yoga",
+            "en": "Yoga"
         },
         "topics": [
-            "53b416fba43aac62a2debda3",
-            "53b416fba43aac62a2debda2"
+            {
+                "$oid": "53b416fba43aac62a2debda2"
+            }
         ],
         "updated": {
-            "$date": 1398338294301
+            "$date": 1422536648620
         }
     },
     {
+        "__v": 0,
         "_id": {
-            "$oid": "54860a9fb6953fc567e3e13c"
+            "$oid": "54ca2fc88c0832450f0e1ab9"
         },
-        "author": {
-            "$oid": "52d4f515fac246174c000006"
-        },
+        "categories": [
+            "physFitness",
+            "posture"
+        ],
         "created": {
-            "$date": 1398338294301
+            "$date": 1422536648624
         },
-        "defaultduration": 15,
-        "defaultexecutiontype": "group",
+        "defaultduration": 60,
+        "defaultexecutiontype": "self",
         "defaultfrequency": "once",
         "descriptionI18n": {
-            "de": "Gehe mit m\u00e4nnlichen Freunden ins M\u00e4nnerturnen."
+            "de": "Gehen Sie ins Pilates-Training und st\u00e4rken Sie Ihre Muskulatur.",
+            "en": "Practice Pilates to strengthen your muscles"
         },
         "number": "INS-23",
-        "qualityFactor": 1,
-        "textI18n": {
-            "de": "In den Fitness- und Gymnastik-Lektionen werden Beweglichkeit, Kraft, Ausdauer und Koordination trainiert. Das gemeinsame Erleben der Bewegung steht im Mittelpunkt."
-        },
+        "picture": "https://insp-content-assets.s3.amazonaws.com/Act-184-fotolia-63133004_XS.jpg",
+        "qualityFactor": 5,
         "titleI18n": {
-            "de": "M\u00e4nnerturnen"
+            "de": "Pilates",
+            "en": "Pilates"
         },
         "topics": [
-            "53b416fba43aac62a2debda3",
-            "53b416fba43aac62a2debda2"
+            {
+                "$oid": "53b416fba43aac62a2debda2"
+            }
         ],
         "updated": {
-            "$date": 1398338294301
+            "$date": 1422536648624
         }
     },
     {
+        "__v": 0,
         "_id": {
-            "$oid": "54860a9fb6953fc567e3e13d"
+            "$oid": "54ca2fc88c0832450f0e1aba"
         },
-        "author": {
-            "$oid": "52d4f515fac246174c000006"
-        },
+        "categories": [
+            "physFitness",
+            "posture"
+        ],
         "created": {
-            "$date": 1398338294301
+            "$date": 1422536648627
         },
-        "defaultduration": 15,
-        "defaultexecutiontype": "group",
+        "defaultduration": 60,
+        "defaultexecutiontype": "self",
         "defaultfrequency": "once",
         "descriptionI18n": {
-            "de": "Mache regelm\u00e4ssiges Training mit Bewegung zur Musik."
+            "de": "Machen Sie Tai Chi oder Qi Gong zur Meditation und Gesundheit.",
+            "en": "Do Tai Chi or Qi Gong for maintaining health"
         },
         "number": "INS-24",
-        "qualityFactor": 1,
-        "textI18n": {
-            "de": "Trainieren Sie Bewegung zur Musik mit Aufw\u00e4rmtraining, Schrittkombinationen, Muskel- und Beweglichkeitstraining und Koordinationselementen, mal mit und mal ohne Handger\u00e4te. Wichtig ist die Freude an rhythmischer Bewegung."
-        },
+        "picture": "https://insp-content-assets.s3.amazonaws.com/Act-269-Fotolia-51330801_XS.jpg",
+        "qualityFactor": 5,
         "titleI18n": {
-            "de": "Musik und Bewegung"
+            "de": "Tai Chi - Qi Gong",
+            "en": "Tai Chi - Qi Gong"
         },
         "topics": [
-            "53b416fba43aac62a2debda2"
+            {
+                "$oid": "53b416fba43aac62a2debda2"
+            }
         ],
         "updated": {
-            "$date": 1398338294301
+            "$date": 1422536648627
         }
     },
     {
+        "__v": 0,
         "_id": {
-            "$oid": "54860a9fb6953fc567e3e13e"
+            "$oid": "54ca2fc88c0832450f0e1abb"
         },
-        "author": {
-            "$oid": "52d4f515fac246174c000006"
-        },
+        "categories": [
+            "mental"
+        ],
         "created": {
-            "$date": 1398338294301
+            "$date": 1422536648631
         },
-        "defaultduration": 15,
-        "defaultexecutiontype": "group",
+        "defaultduration": 60,
+        "defaultexecutiontype": "self",
         "defaultfrequency": "once",
         "descriptionI18n": {
-            "de": "Mache regelm\u00e4ssiges, kreatives Tanzen mit Bewegung."
+            "de": "Trainieren Sie Ihre Gehirnleistung mit Memory und Sudoku.",
+            "en": "Train your brain with Memory or Sudoku"
         },
         "number": "INS-25",
-        "qualityFactor": 1,
-        "textI18n": {
-            "de": "Mit Bewegungs-, Atem- und Wahrnehmungs\u00fcbungen, sowie Entspannung und spielerischem Tanz kannst du dich auf Entdeckungsreise begeben."
-        },
+        "picture": "https://insp-content-assets.s3.amazonaws.com/Act-325_123RF_13765416_s.jpg",
+        "qualityFactor": 5,
         "titleI18n": {
-            "de": "Kreatives tanzen und bewegen"
+            "de": "Denk-Fitness",
+            "en": "Mind Training"
         },
         "topics": [
-            "53b416fba43aac62a2debda2"
+            {
+                "$oid": "53b416fba43aac62a2debda2"
+            }
         ],
         "updated": {
-            "$date": 1398338294301
+            "$date": 1422536648631
         }
     },
     {
+        "__v": 0,
         "_id": {
-            "$oid": "54860a9fb6953fc567e3e13f"
+            "$oid": "54ca2fc88c0832450f0e1abc"
         },
-        "author": {
-            "$oid": "52d4f515fac246174c000006"
-        },
+        "categories": [
+            "physFitness",
+            "posture"
+        ],
         "created": {
-            "$date": 1398338294301
+            "$date": 1422536648635
         },
-        "defaultduration": 15,
-        "defaultexecutiontype": "group",
+        "defaultduration": 60,
+        "defaultexecutiontype": "self",
         "defaultfrequency": "once",
         "descriptionI18n": {
-            "de": "Mache Yoga als ganzheitliches Training."
+            "de": "Trainieren Sie regelm\u00e4ssig nach der Feldenkrais-Methode.",
+            "en": "Work out regularly according to Feldenkrais"
         },
         "number": "INS-26",
-        "qualityFactor": 1,
-        "textI18n": {
-            "de": "Yoga als ganzheitliches Training f\u00fcr bessere Stabilit\u00e4t, Haltung und Entspannung."
-        },
+        "picture": "https://insp-content-assets.s3.amazonaws.com/Act-168-fotolia-55593971_XS.jpg",
+        "qualityFactor": 5,
         "titleI18n": {
-            "de": "Yoga"
+            "de": "Feldenkrais",
+            "en": "Feldenkrais"
         },
         "topics": [
-            "53b416fba43aac62a2debda2"
+            {
+                "$oid": "53b416fba43aac62a2debda2"
+            }
         ],
         "updated": {
-            "$date": 1398338294301
+            "$date": 1422536648635
         }
     },
     {
+        "__v": 0,
         "_id": {
-            "$oid": "54860a9fb6953fc567e3e140"
+            "$oid": "54ca2fc88c0832450f0e1abd"
         },
-        "author": {
-            "$oid": "52d4f515fac246174c000006"
-        },
+        "categories": [
+            "mental",
+            "meetNewPeople"
+        ],
         "created": {
-            "$date": 1398338294301
+            "$date": 1422536648639
         },
-        "defaultduration": 15,
-        "defaultexecutiontype": "group",
+        "defaultduration": 120,
+        "defaultexecutiontype": "self",
         "defaultfrequency": "once",
         "descriptionI18n": {
-            "de": "Triff dich mit Freunden zum Schachspielen."
+            "de": "Lernen Sie, besser mit dem Computer umzugehen.",
+            "en": "Improve your computer skills"
         },
         "number": "INS-27",
-        "qualityFactor": 1,
-        "textI18n": {
-            "de": "Der Treffpunkt f\u00fcr alle Schach-Interessierten Sie spielen gerne Schach und m\u00f6chten sich mit Gleichgesinnten regelm\u00e4ssig zu einer Partie treffen? In einer gem\u00fctlichen\nSpielrunde treffen Sie auf interessante Gegner. Keine Anmeldung n\u00f6tig! Ein Einstieg ist jederzeit m\u00f6glich."
-        },
+        "picture": "https://insp-content-assets.s3.amazonaws.com/Act-021-123RF-11010571_s.jpg",
+        "qualityFactor": 5,
         "titleI18n": {
-            "de": "Schachspielen"
+            "de": "Computerkurs",
+            "en": "Computer Course"
         },
         "topics": [
-            "53b416fba43aac62a2debda3",
-            "53b416fba43aac62a2debda2"
+            {
+                "$oid": "53b416fba43aac62a2debda3"
+            },
+            {
+                "$oid": "53b416fba43aac62a2debda2"
+            }
         ],
         "updated": {
-            "$date": 1398338294301
+            "$date": 1422536648639
         }
     },
     {
+        "__v": 0,
         "_id": {
-            "$oid": "54860a9fb6953fc567e3e141"
+            "$oid": "54ca2fc88c0832450f0e1abe"
         },
-        "author": {
-            "$oid": "52d4f515fac246174c000006"
-        },
+        "categories": [
+            "Culture"
+        ],
         "created": {
-            "$date": 1398338294301
+            "$date": 1422536648645
         },
-        "defaultduration": 15,
-        "defaultexecutiontype": "group",
+        "defaultduration": 150,
+        "defaultexecutiontype": "self",
         "defaultfrequency": "once",
         "descriptionI18n": {
-            "de": "Gehe ins Pilates-Training und st\u00e4rke dadurch deine St\u00fctzmuskulatur."
+            "de": "Seien Sie kreativ und \u00fcben Sie sich im Gestalten.",
+            "en": "Be creative and express yourself"
         },
         "number": "INS-28",
-        "qualityFactor": 1,
-        "textI18n": {
-            "de": "Pilates kr\u00e4ftigt und stabilisiert Ihr K\u00f6rperzentrum. Es soll f\u00fcr eine korrekte und gesunde K\u00f6rperhaltung sorgen. Ziel ist die St\u00e4rkung der Muskulatur, besonders der St\u00fctzmuskulatur, die Verbesserung von Kondition und Bewegungskoordination, die Anregung des Kreislaufes und eine erh\u00f6hte K\u00f6rperwahrnehmung. Es entsteht eine Balance zwischen K\u00f6rper und Geist und Seele."
-        },
+        "picture": "https://insp-content-assets.s3.amazonaws.com/Act-150-fotolia-38772043_XS.jpg",
+        "qualityFactor": 5,
         "titleI18n": {
-            "de": "Pilates"
+            "de": "Zeichnen und Malen",
+            "en": "Draw and Paint"
         },
         "topics": [
-            "53b416fba43aac62a2debda2"
+            {
+                "$oid": "53b416fba43aac62a2debda2"
+            }
         ],
         "updated": {
-            "$date": 1398338294301
+            "$date": 1422536648645
         }
     },
     {
+        "__v": 0,
         "_id": {
-            "$oid": "54860a9fb6953fc567e3e142"
+            "$oid": "54ca2fc88c0832450f0e1abf"
         },
-        "author": {
-            "$oid": "52d4f515fac246174c000006"
-        },
+        "categories": [
+            "mental",
+            "cultural",
+            "publicEvents"
+        ],
         "created": {
-            "$date": 1398338294301
+            "$date": 1422536648651
         },
-        "defaultduration": 15,
-        "defaultexecutiontype": "group",
+        "defaultduration": 150,
+        "defaultexecutiontype": "self",
         "defaultfrequency": "once",
         "descriptionI18n": {
-            "de": "Mache Tai Chi und/oder Qi Gong zur Meditation und Erhaltung der Gesundheit."
+            "de": "Besuchen Sie einen Kurs und dr\u00fccken Sich sich bildlich aus.",
+            "en": "Attend an art course to improve your skills"
         },
         "number": "INS-29",
-        "qualityFactor": 1,
-        "textI18n": {
-            "de": "Tai Ji ist eine alte chinesische Kunst der Meditation in Bewegung. Inneres und \u00c4usseres, Ruhe und Bewegung, Kraft und Weichheit, Anspannung und Entspannung sind untrennbar miteinander verbunden. T'ai Ji \u00fcben heisst, die Polarit\u00e4t und den steten Wandel im Leben zu erkennen. Die Tai-Ji \u00e4hnlichen Qi Gong-\u00dcbungen wurde von Meister Lin Hou Sheng entwickelt und sind leicht zu erlernen und sehr wirksam zur Erhaltung der Gesundheit und Vorbeugung gegen Erkrankungen."
-        },
+        "picture": "https://insp-content-assets.s3.amazonaws.com/Act-150-fotolia-38772043_XS.jpg",
+        "qualityFactor": 5,
         "titleI18n": {
-            "de": "Tai Chi - Qi Gong"
+            "de": "Malkurs",
+            "en": "Painting Course"
         },
         "topics": [
-            "53b416fba43aac62a2debda2"
+            {
+                "$oid": "53b416fba43aac62a2debda3"
+            },
+            {
+                "$oid": "53b416fba43aac62a2debda2"
+            }
         ],
         "updated": {
-            "$date": 1398338294301
+            "$date": 1422536648651
         }
     },
     {
+        "__v": 0,
         "_id": {
-            "$oid": "54860a9fb6953fc567e3e143"
+            "$oid": "54ca2fc88c0832450f0e1ac0"
         },
-        "author": {
-            "$oid": "52d4f515fac246174c000006"
-        },
+        "categories": [
+            "mental",
+            "meetNewPeople"
+        ],
         "created": {
-            "$date": 1398338294301
+            "$date": 1422536648656
         },
-        "defaultduration": 15,
-        "defaultexecutiontype": "group",
+        "defaultduration": 150,
+        "defaultexecutiontype": "self",
         "defaultfrequency": "once",
         "descriptionI18n": {
-            "de": "Trainiere in Gemeinschaft deine Gehirnleistung mit Hilfe von Denksport-Aufgaben (z.B. Memory, Sudoku, o.\u00e4.)."
+            "de": "Lernen Sie Ihr Smartphone besser einzusetzen.",
+            "en": "Take a course to get familiar with your phone"
         },
         "number": "INS-30",
-        "qualityFactor": 1,
-        "textI18n": {
-            "de": "In anregender Gemeinschaft trainieren Sie Konzentration, Wortfindung, Kurz- und Langzeitged\u00e4chtnis, logisches und bildhaftes Denken. Indem wir mehr Denkbahnen aktivieren und verkn\u00fcpfen, erreichen Sie ein besseres Lebensgef\u00fchl."
-        },
+        "picture": "https://insp-content-assets.s3.amazonaws.com/Act-122-123RF-17421718_s.jpg",
+        "qualityFactor": 5,
         "titleI18n": {
-            "de": "Denk-Fitness"
+            "de": "Smartphone",
+            "en": "Smartphone"
         },
         "topics": [
-            "53b416fba43aac62a2debda3",
-            "53b416fba43aac62a2debda2"
+            {
+                "$oid": "53b416fba43aac62a2debda3"
+            },
+            {
+                "$oid": "53b416fba43aac62a2debda2"
+            }
         ],
         "updated": {
-            "$date": 1398338294301
+            "$date": 1422536648656
         }
     },
     {
+        "__v": 0,
         "_id": {
-            "$oid": "54860a9fb6953fc567e3e144"
+            "$oid": "54ca2fc88c0832450f0e1ac1"
         },
-        "author": {
-            "$oid": "52d4f515fac246174c000006"
-        },
+        "categories": [
+            "exoticKitchen",
+            "tradKitchen",
+            "publicEvents"
+        ],
         "created": {
-            "$date": 1398338294301
+            "$date": 1422536648675
         },
-        "defaultduration": 15,
+        "defaultduration": 150,
         "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "descriptionI18n": {
-            "de": "Mache regelm\u00e4ssiges, ganzheitliches R\u00fcckentraining."
+            "de": "Belegen Sie einen Kurs und kn\u00fcpfen dort neue Kontakte.",
+            "en": "Take a cooking class to make new friends"
         },
         "number": "INS-31",
-        "qualityFactor": 1,
-        "textI18n": {
-            "de": "Durch gezielte \u00dcbungen in den Bereichen Wahrnehmung, Beweglichkeit, Kraft, Stabilisation, Muskeldehnung, Atmung und Entspannung helfen Sie Ihrem R\u00fccken, fit zu bleiben."
-        },
+        "picture": "https://insp-content-assets.s3.amazonaws.com/Act-236-fotolia-52952267_XS.jpg",
+        "qualityFactor": 5,
         "titleI18n": {
-            "de": "R\u00fcckentraining"
+            "de": "Kochen",
+            "en": "Cooking"
         },
         "topics": [
-            "53b416fba43aac62a2debda2"
+            {
+                "$oid": "53b416cfa43aac62a2debda1"
+            },
+            {
+                "$oid": "53b416fba43aac62a2debda3"
+            },
+            {
+                "$oid": "53b416fba43aac62a2debda2"
+            }
         ],
         "updated": {
-            "$date": 1398338294301
+            "$date": 1422536648675
         }
     },
     {
+        "__v": 0,
         "_id": {
-            "$oid": "54860a9fb6953fc567e3e145"
+            "$oid": "54ca2fc88c0832450f0e1ac2"
         },
-        "author": {
-            "$oid": "52d4f515fac246174c000006"
-        },
+        "categories": [
+            "Mental Fitness"
+        ],
         "created": {
-            "$date": 1398338294301
+            "$date": 1422536648679
         },
-        "defaultduration": 15,
+        "defaultduration": 150,
         "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "descriptionI18n": {
-            "de": "Trainiere regelm\u00e4ssig nach der Feldenkrais-Methode."
+            "de": "Lernen Sie Ihr Tablet besser kennen",
+            "en": "Take an iPad handling course"
         },
         "number": "INS-32",
-        "qualityFactor": 1,
-        "textI18n": {
-            "de": "Mit der Feldenkrais-Methode lernen Sie, bewusster und achtsamer mit Ihrem K\u00f6rper umzugehen, Verspannungen und Schmerzen sanft aufzul\u00f6sen und zu Bewegungsfreude und Lebendigkeit im Alltag zur\u00fcckzufinden. Feldenkrais ist eine umfassende Lernmethode und keine eigentliche Therapieform."
-        },
+        "picture": "https://insp-content-assets.s3.amazonaws.com/Act-122-123RF-17421718_s.jpg",
+        "qualityFactor": 5,
         "titleI18n": {
-            "de": "Feldenkrais"
+            "de": "Tablet",
+            "en": "iPad"
         },
         "topics": [
-            "53b416fba43aac62a2debda2"
+            {
+                "$oid": "53b416fba43aac62a2debda2"
+            }
         ],
         "updated": {
-            "$date": 1398338294301
+            "$date": 1422536648679
         }
     },
     {
+        "__v": 0,
         "_id": {
-            "$oid": "54860a9fb6953fc567e3e146"
+            "$oid": "54ca2fc88c0832450f0e1ac3"
         },
-        "author": {
-            "$oid": "52d4f515fac246174c000006"
-        },
+        "categories": [
+            "Relaxation"
+        ],
         "created": {
-            "$date": 1398338294301
+            "$date": 1422536648690
         },
-        "defaultduration": 15,
-        "defaultexecutiontype": "group",
+        "defaultduration": 60,
+        "defaultexecutiontype": "self",
         "defaultfrequency": "once",
         "descriptionI18n": {
-            "de": "Mache einen Computer-Kurs und lerne, besser mit dem Computer umzugehen."
+            "de": "Machen Sie regelm\u00e4ssig Autogenes Training zur Entspannung.",
+            "en": "Practice Autogenic Training for relaxation"
         },
         "number": "INS-33",
-        "qualityFactor": 1,
-        "textI18n": {
-            "de": "Den Computer und seine Anwendungen Schritt f\u00fcr Schritt kennen lernen. Es soll die Angst genommen werden, mit einem Computer umzugehen, das richtige Ein- und Ausschalten, den Umgang mit Maus und Tastatur sowie das Kennenlernen von Startmen\u00fc und Desktopoberfl\u00e4che. Sie schreiben erste Texte, ver\u00e4ndern und speichern diese."
-        },
+        "picture": "https://insp-content-assets.s3.amazonaws.com/Act-018-fotolia-27336210_XS.jpg",
+        "qualityFactor": 5,
         "titleI18n": {
-            "de": "Computerkurs"
+            "de": "Autogenes Training",
+            "en": "Autogenic Training"
         },
         "topics": [
-            "53b416fba43aac62a2debda2"
+            {
+                "$oid": "53b416fba43aac62a2debda2"
+            }
         ],
         "updated": {
-            "$date": 1398338294301
+            "$date": 1422536648690
         }
     },
     {
+        "__v": 0,
         "_id": {
-            "$oid": "54860a9fb6953fc567e3e147"
+            "$oid": "54ca2fc88c0832450f0e1ac4"
         },
-        "author": {
-            "$oid": "52d4f515fac246174c000006"
-        },
+        "categories": [
+            "Relaxation"
+        ],
         "created": {
-            "$date": 1398338294301
+            "$date": 1422536648694
         },
-        "defaultduration": 15,
-        "defaultexecutiontype": "group",
+        "defaultduration": 60,
+        "defaultexecutiontype": "self",
         "defaultfrequency": "once",
         "descriptionI18n": {
-            "de": "Sei kreativ und \u00fcbe dich in bildnerischem Gestalten."
+            "de": "Lassen Sie sich massieren und geniessen Sie die Entspannung.",
+            "en": "Enjoy a relaxing massage"
         },
         "number": "INS-34",
-        "qualityFactor": 1,
-        "textI18n": {
-            "de": "Gestalten Sie je nach Wunsch Kompositionen in Kohle, Bleistift, Farbstift, Kreide, Aquarell oder Acryl. Experimentieren Sie, M\u00f6glichkeiten malerisch festzuhalten und eigene Wirklichkeiten abzubilden. Sie entdecken Ihre Kreativit\u00e4t und k\u00f6nnen diese mit wesentlichen Grundlagen des bildnerischen Gestalten kombinieren."
-        },
+        "picture": "https://insp-content-assets.s3.amazonaws.com/Act-082-fotolia-63176422_XS.jpg",
+        "qualityFactor": 5,
         "titleI18n": {
-            "de": "Zeichnen und Malen"
+            "de": "Massage",
+            "en": "Massage"
         },
         "topics": [
-            "53b416fba43aac62a2debda2"
+            {
+                "$oid": "53b416fba43aac62a2debda2"
+            }
         ],
         "updated": {
-            "$date": 1398338294301
+            "$date": 1422536648694
         }
     },
     {
+        "__v": 0,
         "_id": {
-            "$oid": "54860a9fb6953fc567e3e148"
+            "$oid": "54ca2fc88c0832450f0e1ac5"
         },
-        "author": {
-            "$oid": "52d4f515fac246174c000006"
-        },
+        "categories": [
+            "Relaxation"
+        ],
         "created": {
-            "$date": 1398338294301
+            "$date": 1422536648697
         },
-        "defaultduration": 15,
+        "defaultduration": 600,
         "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "descriptionI18n": {
-            "de": "Besuche einen Malkurs und \u00fcbe dich im Darstellen deiner Eindr\u00fccke."
+            "de": "Leisten Sie sich Entspannung und machen ein Wellness Weekend.",
+            "en": "Organize a wellness weekend"
         },
         "number": "INS-35",
-        "qualityFactor": 1,
-        "textI18n": {
-            "de": "Ohne Leistungsdruck malen Sie das, was Sie bewegt. Sie vergessen Raum und Zeit und tauchen ein in eine besondere Stimmung aus Licht und Farben. Daf\u00fcr ist keine Malerfahrung notwendig und gemalt wird auf klein- oder grossformatigem Papier."
-        },
+        "picture": "https://insp-content-assets.s3.amazonaws.com/Act-087-fotolia-57235991_XS.jpg",
+        "qualityFactor": 5,
         "titleI18n": {
-            "de": "Malkurs"
+            "de": "Wellness",
+            "en": "Wellness"
         },
         "topics": [
-            "53b416fba43aac62a2debda2"
+            {
+                "$oid": "53b416fba43aac62a2debda2"
+            }
         ],
         "updated": {
-            "$date": 1398338294301
+            "$date": 1422536648697
         }
     },
     {
+        "__v": 0,
         "_id": {
-            "$oid": "54860a9fb6953fc567e3e149"
+            "$oid": "54ca2fc88c0832450f0e1ac6"
         },
-        "author": {
-            "$oid": "52d4f515fac246174c000006"
-        },
+        "categories": [
+            "meetNewPeople"
+        ],
         "created": {
-            "$date": 1398338294301
+            "$date": 1422536648700
         },
-        "defaultduration": 15,
-        "defaultexecutiontype": "group",
+        "defaultduration": 60,
+        "defaultexecutiontype": "self",
         "defaultfrequency": "once",
         "descriptionI18n": {
-            "de": "Mache einen Smartphone-Kurs und lerne, besser dein Smartphone einzusetzen."
+            "de": "Erledigen Sie f\u00fcr eine hilfsbed\u00fcrftige Person den Einkauf.",
+            "en": "Provide shopping help for a needy person"
         },
         "number": "INS-36",
-        "qualityFactor": 1,
-        "textI18n": {
-            "de": "Das iPhone ist mehr als nur ein Telefon. Lerne im Kurs die vielf\u00e4ltigen M\u00f6glichkeiten kennen, die Ihnen das iPhone bietet. Die Themen: wichtige Grundeinstellungen kennenlernen, telefonieren, Adressen und Telefonnummern im Adressbuch abspeichern, SMS, usw."
-        },
+        "picture": "https://insp-content-assets.s3.amazonaws.com/Act-274-fotolia-69948594_XS.jpg",
+        "qualityFactor": 5,
         "titleI18n": {
-            "de": "Smartphone"
+            "de": "Einkaufshilfe",
+            "en": "Shopping Help"
         },
         "topics": [
-            "53b416fba43aac62a2debda2"
+            {
+                "$oid": "53b416fba43aac62a2debda3"
+            }
         ],
         "updated": {
-            "$date": 1398338294301
+            "$date": 1422536648700
         }
     },
     {
+        "__v": 0,
         "_id": {
-            "$oid": "54860a9fb6953fc567e3e14a"
+            "$oid": "54ca2fc88c0832450f0e1ac7"
         },
-        "author": {
-            "$oid": "52d4f515fac246174c000006"
-        },
+        "categories": [
+            "meetNewPeople"
+        ],
         "created": {
-            "$date": 1398338294301
+            "$date": 1422536648704
         },
-        "defaultduration": 15,
-        "defaultexecutiontype": "group",
+        "defaultduration": 60,
+        "defaultexecutiontype": "self",
         "defaultfrequency": "once",
         "descriptionI18n": {
-            "de": "Mache einen Kochkurs und kn\u00fcpfe dort neue, interessante Kontakte."
+            "de": "Betreuen Sie einen Nachmittag lang eine alleinstehende Person.",
+            "en": "Provide voluntary help for a person at home"
         },
         "number": "INS-37",
-        "qualityFactor": 1,
-        "textI18n": {
-            "de": "In entspannter und motivierender Atmosph\u00e4re werden k\u00f6stliche Men\u00fcs zubereitet. Ob Sie bereits Erfahrung mitbringen oder in der K\u00fcche Neuland betreten, spielt keine Rolle. Lassen Sie sich von unseren neuen Men\u00fckreationen verzaubern!"
-        },
+        "picture": "https://insp-content-assets.s3.amazonaws.com/Act-210-123RF-14597497_s.jpg",
+        "qualityFactor": 5,
         "titleI18n": {
-            "de": "Kochen"
+            "de": "Betreuungshilfe",
+            "en": "Support Help"
         },
         "topics": [
-            "53b416cfa43aac62a2debda1",
-            "53b416fba43aac62a2debda3"
+            {
+                "$oid": "53b416fba43aac62a2debda3"
+            }
         ],
         "updated": {
-            "$date": 1398338294301
+            "$date": 1422536648704
         }
     },
     {
+        "__v": 0,
         "_id": {
-            "$oid": "54860a9fb6953fc567e3e14b"
+            "$oid": "54ca2fc88c0832450f0e1ac8"
         },
-        "author": {
-            "$oid": "52d4f515fac246174c000006"
-        },
+        "categories": [
+            "meetNewPeople"
+        ],
         "created": {
-            "$date": 1398338294301
+            "$date": 1422536648708
         },
-        "defaultduration": 15,
-        "defaultexecutiontype": "group",
+        "defaultduration": 240,
+        "defaultexecutiontype": "self",
         "defaultfrequency": "once",
         "descriptionI18n": {
-            "de": "Mache einen Kurs f\u00fcr den richtigen Umgang mit dem iPad."
+            "de": "Betreuen Sie einen Nachmittag lang Nachbarskinder.",
+            "en": "Look after children for an afternoon"
         },
         "number": "INS-38",
-        "qualityFactor": 1,
-        "textI18n": {
-            "de": "Das iPad ist der perfekte Begleiter in der digitalen Welt. Auf ein Symbol klicken und online gehen. Es werden diverse Nutzungsm\u00f6glichkeiten des Ger\u00e4tes aufgezeigt."
-        },
+        "picture": "https://insp-content-assets.s3.amazonaws.com/Act-202-123RF-5395796_s.jpg",
+        "qualityFactor": 5,
         "titleI18n": {
-            "de": "iPad"
+            "de": "Kinderh\u00fcten",
+            "en": "Babysitting"
         },
         "topics": [
-            "53b416fba43aac62a2debda2"
+            {
+                "$oid": "53b416fba43aac62a2debda3"
+            }
         ],
         "updated": {
-            "$date": 1398338294301
+            "$date": 1422536648708
         }
     },
     {
+        "__v": 0,
         "_id": {
-            "$oid": "54860a9fb6953fc567e3e14c"
+            "$oid": "54ca2fc88c0832450f0e1ac9"
         },
-        "author": {
-            "$oid": "52d4f515fac246174c000006"
-        },
+        "categories": [
+            "meetNewPeople"
+        ],
         "created": {
-            "$date": 1398338294301
+            "$date": 1422536648711
         },
-        "defaultduration": 15,
-        "defaultexecutiontype": "group",
+        "defaultduration": 150,
+        "defaultexecutiontype": "self",
         "defaultfrequency": "once",
         "descriptionI18n": {
-            "de": "Mache regelm\u00e4ssig Autogenes Training zur Entspannung."
+            "de": "Begleiten Sie eine Person zu einem wichtigen Termin.",
+            "en": "Accompany a person to an important event"
         },
         "number": "INS-39",
-        "qualityFactor": 1,
-        "textI18n": {},
+        "picture": "https://insp-content-assets.s3.amazonaws.com/Act-210-123RF-14597497_s.jpg",
+        "qualityFactor": 5,
         "titleI18n": {
-            "de": "Autogenes Training"
+            "de": "Begleithilfe",
+            "en": "Attendance Help"
         },
         "topics": [
-            "53b416fba43aac62a2debda2"
+            {
+                "$oid": "53b416fba43aac62a2debda3"
+            }
         ],
         "updated": {
-            "$date": 1398338294301
+            "$date": 1422536648711
         }
     },
     {
+        "__v": 0,
         "_id": {
-            "$oid": "54860a9fb6953fc567e3e14d"
+            "$oid": "54ca2fc88c0832450f0e1aca"
         },
-        "author": {
-            "$oid": "52d4f515fac246174c000006"
-        },
+        "categories": [
+            "publicEvents",
+            "cultural",
+            "relaxing"
+        ],
         "created": {
-            "$date": 1398338294301
+            "$date": 1422536648714
         },
-        "defaultduration": 15,
+        "defaultduration": 150,
         "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "descriptionI18n": {
-            "de": "Gehe regelm\u00e4ssig in die Sauna zur Entspannung."
+            "de": "Tauchen Sie in die Geschichten ferner L\u00e4nder ein.",
+            "en": "Attend a seminar of a travelogue"
         },
         "number": "INS-40",
-        "qualityFactor": 1,
-        "textI18n": {},
+        "picture": "https://insp-content-assets.s3.amazonaws.com/Act-097-fotolia-49397052_XS.jpg",
+        "qualityFactor": 5,
         "titleI18n": {
-            "de": "Sauna"
+            "de": "Reisepr\u00e4sentation",
+            "en": "Travel Seminar"
         },
         "topics": [
-            "53b416fba43aac62a2debda2"
+            {
+                "$oid": "53b416fba43aac62a2debda3"
+            }
         ],
         "updated": {
-            "$date": 1398338294301
+            "$date": 1422536648714
         }
     },
     {
+        "__v": 0,
         "_id": {
-            "$oid": "54860a9fb6953fc567e3e14e"
+            "$oid": "54ca2fc88c0832450f0e1acb"
         },
-        "author": {
-            "$oid": "52d4f515fac246174c000006"
-        },
+        "categories": [
+            "publicEvents",
+            "cultural",
+            "relaxing"
+        ],
         "created": {
-            "$date": 1398338294301
+            "$date": 1422536648717
         },
-        "defaultduration": 15,
+        "defaultduration": 120,
         "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "descriptionI18n": {
-            "de": "Lass dich regelm\u00e4ssig massieren und geniesse das wohltuende Gef\u00fchl der Entspannung."
+            "de": "Nehmen Sie an einer F\u00fchrung teil.",
+            "en": "Take a guided tour of Parliamental buildings"
         },
         "number": "INS-41",
-        "qualityFactor": 1,
-        "textI18n": {},
+        "picture": "https://insp-content-assets.s3.amazonaws.com/bundeshaus.jpg",
+        "qualityFactor": 5,
         "titleI18n": {
-            "de": "Massage"
+            "de": "Bundeshausf\u00fchrung",
+            "en": "Governmental Tour"
         },
         "topics": [
-            "53b416fba43aac62a2debda2"
+            {
+                "$oid": "53b416fba43aac62a2debda3"
+            }
         ],
         "updated": {
-            "$date": 1398338294301
+            "$date": 1422536648717
         }
     },
     {
+        "__v": 0,
         "_id": {
-            "$oid": "54860a9fb6953fc567e3e14f"
+            "$oid": "54ca2fc88c0832450f0e1acc"
         },
-        "author": {
-            "$oid": "52d4f515fac246174c000006"
-        },
+        "categories": [
+            "meetNewPeople"
+        ],
         "created": {
-            "$date": 1398338294301
+            "$date": 1422536648721
         },
-        "defaultduration": 15,
-        "defaultexecutiontype": "group",
+        "defaultduration": 120,
+        "defaultexecutiontype": "self",
         "defaultfrequency": "once",
         "descriptionI18n": {
-            "de": "Mache ab und zu ein Wellness-Weekend und leiste dir Entspannung, Ruhe und Wohlgef\u00fchl."
+            "de": "Besuchen Sie eine Person im Spital und bereiten ihr so eine Freude.",
+            "en": "Visit someone in hospital"
         },
         "number": "INS-42",
-        "qualityFactor": 1,
-        "textI18n": {},
+        "picture": "https://insp-content-assets.s3.amazonaws.com/Act-187-fotolia-50296476_XS.jpg",
+        "qualityFactor": 5,
         "titleI18n": {
-            "de": "Wellness"
+            "de": "Spitalbesuch",
+            "en": "Hospital Visit"
         },
         "topics": [
-            "53b416fba43aac62a2debda2"
+            {
+                "$oid": "53b416fba43aac62a2debda3"
+            }
         ],
         "updated": {
-            "$date": 1398338294301
+            "$date": 1422536648721
         }
     },
     {
+        "__v": 0,
         "_id": {
-            "$oid": "54860a9fb6953fc567e3e150"
+            "$oid": "54ca2fc88c0832450f0e1acd"
         },
-        "author": {
-            "$oid": "52d4f515fac246174c000006"
-        },
+        "categories": [
+            "meetNewPeople"
+        ],
         "created": {
-            "$date": 1398338294301
+            "$date": 1422536648726
         },
-        "defaultduration": 15,
-        "defaultexecutiontype": "group",
+        "defaultduration": 120,
+        "defaultexecutiontype": "self",
         "defaultfrequency": "once",
         "descriptionI18n": {
-            "de": "Leiste Freiwilligenarbeit und erledige f\u00fcr eine hilfsbed\u00fcrftige Person den Einkauf."
+            "de": "Leisten Sie jemanden Gesellschaft.",
+            "en": "Visit nursing home to keep someone company"
         },
         "number": "INS-43",
-        "qualityFactor": 1,
-        "textI18n": {
-            "de": "Freiwilligenarbeit ist nicht selbstverst\u00e4ndlich. In Zukunft wird es mehr freiwillige Mitarbeitende brauchen. Warum es sich lohnt, sich freiwillig zu engagieren? Es ist die stete Nachfrage "
-        },
+        "picture": "https://insp-content-assets.s3.amazonaws.com/Act-220-123RF-17222171_s.jpg",
+        "qualityFactor": 5,
         "titleI18n": {
-            "de": "Einkaufshilfe"
+            "de": "Pflegeheimbesuch",
+            "en": "Nursing Home Visit"
         },
         "topics": [
-            "53b416fba43aac62a2debda2"
+            {
+                "$oid": "53b416fba43aac62a2debda3"
+            }
         ],
         "updated": {
-            "$date": 1398338294301
+            "$date": 1422536648726
         }
     },
     {
+        "__v": 0,
         "_id": {
-            "$oid": "54860a9fb6953fc567e3e151"
+            "$oid": "54ca2fc88c0832450f0e1ace"
         },
-        "author": {
-            "$oid": "52d4f515fac246174c000006"
-        },
+        "categories": [
+            "smallGroups",
+            "relaxing"
+        ],
         "created": {
-            "$date": 1398338294301
+            "$date": 1422536648733
         },
-        "defaultduration": 15,
-        "defaultexecutiontype": "group",
+        "defaultduration": 150,
+        "defaultexecutiontype": "self",
         "defaultfrequency": "once",
         "descriptionI18n": {
-            "de": "Leiste Freiwilligenarbeit und betreue einen Nachmittag lang eine alleinstehende Person zu Hause."
+            "de": "Besuchen Sie Verwandte, die Sie schon l\u00e4nger nicht mehr gesehen haben.",
+            "en": "Visit relatives you have not seen for a while"
         },
         "number": "INS-44",
-        "qualityFactor": 1,
-        "textI18n": {
-            "de": "Freiwilligenarbeit ist nicht selbstverst\u00e4ndlich. In Zukunft wird es mehr freiwillige Mitarbeitende brauchen. Warum es sich lohnt, sich freiwillig zu engagieren? Es ist die stete Nachfrage "
-        },
+        "picture": "https://insp-content-assets.s3.amazonaws.com/Act-137-123RF-7475933_s.jpg",
+        "qualityFactor": 5,
         "titleI18n": {
-            "de": "Betreuungshilfe"
+            "de": "Verwandtenbesuch",
+            "en": "Relatives Visit"
         },
         "topics": [
-            "53b416fba43aac62a2debda3",
-            "53b416fba43aac62a2debda2"
+            {
+                "$oid": "53b416fba43aac62a2debda3"
+            }
         ],
         "updated": {
-            "$date": 1398338294301
+            "$date": 1422536648733
         }
     },
     {
+        "__v": 0,
         "_id": {
-            "$oid": "54860a9fb6953fc567e3e152"
+            "$oid": "54ca2fc88c0832450f0e1acf"
         },
-        "author": {
-            "$oid": "52d4f515fac246174c000006"
-        },
+        "categories": [
+            "relaxing",
+            "meetNewPeople",
+            "smallGroups"
+        ],
         "created": {
-            "$date": 1398338294301
+            "$date": 1422536648738
         },
-        "defaultduration": 15,
+        "defaultduration": 150,
         "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "descriptionI18n": {
-            "de": "Leiste Freiwilligenarbeit und betreue einen Nachmittag lang Nachbarskinder."
+            "de": "Gehen Sie mit Freunden zum Kegeln oder Bowling.",
+            "en": "Go bowling with friends"
         },
         "number": "INS-45",
-        "qualityFactor": 1,
-        "textI18n": {
-            "de": "Freiwilligenarbeit ist nicht selbstverst\u00e4ndlich. In Zukunft wird es mehr freiwillige Mitarbeitende brauchen. Warum es sich lohnt, sich freiwillig zu engagieren? Es ist die stete Nachfrage "
-        },
+        "picture": "",
+        "qualityFactor": 5,
         "titleI18n": {
-            "de": "Kinderh\u00fcten"
+            "de": "Kegeln",
+            "en": "Bowling"
         },
         "topics": [
-            "53b416fba43aac62a2debda3",
-            "53b416fba43aac62a2debda2"
+            {
+                "$oid": "53b416fba43aac62a2debda3"
+            },
+            {
+                "$oid": "53b416fba43aac62a2debda2"
+            }
         ],
         "updated": {
-            "$date": 1398338294301
+            "$date": 1422536648738
         }
     },
     {
+        "__v": 0,
         "_id": {
-            "$oid": "54860a9fb6953fc567e3e153"
+            "$oid": "54ca2fc88c0832450f0e1ad0"
         },
-        "author": {
-            "$oid": "52d4f515fac246174c000006"
-        },
+        "categories": [
+            "publicEvents",
+            "smallGroups"
+        ],
         "created": {
-            "$date": 1398338294301
+            "$date": 1422536648762
         },
-        "defaultduration": 15,
+        "defaultduration": 120,
         "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "descriptionI18n": {
-            "de": "Leiste Freiwilligenarbeit und begleite eine Person zu einem wichtigen Termin."
+            "de": "Nehmen Sie an einer F\u00fchrung durch eine K\u00e4serei teil.",
+            "en": "Participate in a tour of a cheese factory"
         },
         "number": "INS-46",
-        "qualityFactor": 1,
-        "textI18n": {
-            "de": "Freiwilligenarbeit ist nicht selbstverst\u00e4ndlich. In Zukunft wird es mehr freiwillige Mitarbeitende brauchen. Warum es sich lohnt, sich freiwillig zu engagieren? Es ist die stete Nachfrage "
-        },
+        "picture": "",
+        "qualityFactor": 5,
         "titleI18n": {
-            "de": "Begleithilfe"
+            "de": "Molkereif\u00fchrung",
+            "en": "Dairy Tour"
         },
         "topics": [
-            "53b416fba43aac62a2debda3",
-            "53b416fba43aac62a2debda2"
+            {
+                "$oid": "53b416fba43aac62a2debda3"
+            }
         ],
         "updated": {
-            "$date": 1398338294301
+            "$date": 1422536648762
         }
     },
     {
+        "__v": 0,
         "_id": {
-            "$oid": "54860a9fb6953fc567e3e154"
+            "$oid": "54ca2fc88c0832450f0e1ad1"
         },
-        "author": {
-            "$oid": "52d4f515fac246174c000006"
-        },
+        "categories": [
+            "Relaxation"
+        ],
         "created": {
-            "$date": 1398338294301
+            "$date": 1422536648765
         },
-        "defaultduration": 15,
-        "defaultexecutiontype": "group",
+        "defaultduration": 60,
+        "defaultexecutiontype": "self",
         "defaultfrequency": "once",
         "descriptionI18n": {
-            "de": "Besuche eine interessante Veranstaltung zur Pr\u00e4sentation eines Reiseberichts."
+            "de": "Gehen Sie regelm\u00e4ssig in die Sauna zur Entspannung.",
+            "en": "Make regular trips to the sauna to relax"
         },
         "number": "INS-47",
-        "qualityFactor": 1,
-        "textI18n": {
-            "de": "Viele Erlebnisse, Erfahrungen und Sehensw\u00fcrdigkeiten auf zahlreichen Reisen k\u00f6nnen in aussagekr\u00e4ftigen Multivisions-Shows zusammengefasst werden und vermittel damit, was Reisen in Menschen ausl\u00f6sen und bewirken kann."
-        },
+        "picture": "",
+        "qualityFactor": 5,
         "titleI18n": {
-            "de": "Reisebericht"
+            "de": "Sauna",
+            "en": "Sauna"
         },
         "topics": [
-            "53b416fba43aac62a2debda2"
+            {
+                "$oid": "53b416fba43aac62a2debda2"
+            }
         ],
         "updated": {
-            "$date": 1398338294301
+            "$date": 1422536648765
         }
     },
     {
+        "__v": 0,
         "_id": {
-            "$oid": "54860a9fb6953fc567e3e155"
+            "$oid": "54ca2fc88c0832450f0e1ad2"
         },
-        "author": {
-            "$oid": "52d4f515fac246174c000006"
-        },
+        "categories": [
+            "physFitness",
+            "posture"
+        ],
         "created": {
-            "$date": 1398338294301
+            "$date": 1422536648768
         },
-        "defaultduration": 15,
-        "defaultexecutiontype": "group",
+        "defaultduration": 60,
+        "defaultexecutiontype": "self",
         "defaultfrequency": "once",
         "descriptionI18n": {
-            "de": "Nimm an einer F\u00fchrung durch das Bundeshaus teil."
+            "de": "Machen Sie regelm\u00e4ssiges R\u00fcckentraining.",
+            "en": "Practice regular back training"
         },
         "number": "INS-48",
-        "qualityFactor": 1,
-        "textI18n": {
-            "de": "W\u00e4hrend der F\u00fchrung erhalten Sie Einblick in die Baugeschichte und die Architektur des Geb\u00e4udes sowie in die Arbeitsweise und Zusammensetzung des Parlamentes. Sie k\u00f6nnen das neue Medienzentrum des Bundeshauses mit all seinen technischen M\u00f6glichkeiten eines modernen Fernsehstudios sehen. Sie erhalten zudem die M\u00f6glichkeit, den Pressekonferenzsaal des Bundesrates zu besuchen."
-        },
+        "picture": "",
+        "qualityFactor": 5,
         "titleI18n": {
-            "de": "Bundeshausf\u00fchrung"
+            "de": "R\u00fcckentraining",
+            "en": "Back Training"
         },
         "topics": [
-            "53b416fba43aac62a2debda2"
+            {
+                "$oid": "53b416fba43aac62a2debda2"
+            }
         ],
         "updated": {
-            "$date": 1398338294301
+            "$date": 1422536648768
         }
     },
     {
+        "__v": 0,
         "_id": {
-            "$oid": "54860a9fb6953fc567e3e156"
+            "$oid": "54ca2fc88c0832450f0e1ad3"
         },
-        "author": {
-            "$oid": "52d4f515fac246174c000006"
-        },
+        "categories": [
+            "mental",
+            "smallGroups"
+        ],
         "created": {
-            "$date": 1398338294301
+            "$date": 1422536648770
         },
-        "defaultduration": 15,
+        "defaultduration": 150,
         "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "descriptionI18n": {
-            "de": "Nimm an einer F\u00fchrung durch eine Molkerei/K\u00e4serei teil."
+            "de": "Treffen Sie sich mit Freunden zum Schachspielen.",
+            "en": "Gather with friends to play chess"
         },
         "number": "INS-49",
-        "qualityFactor": 1,
-        "textI18n": {},
+        "picture": "",
+        "qualityFactor": 5,
         "titleI18n": {
-            "de": "Molkereif\u00fchrung"
+            "de": "Schachspiel",
+            "en": "Chess Game"
         },
         "topics": [
-            "53b416fba43aac62a2debda2"
+            {
+                "$oid": "53b416fba43aac62a2debda3"
+            },
+            {
+                "$oid": "53b416fba43aac62a2debda2"
+            }
         ],
         "updated": {
-            "$date": 1398338294301
+            "$date": 1422536648770
         }
     },
     {
+        "__v": 0,
         "_id": {
-            "$oid": "54860a9fb6953fc567e3e157"
+            "$oid": "54ca2fc88c0832450f0e1ad4"
         },
-        "author": {
-            "$oid": "52d4f515fac246174c000006"
-        },
+        "categories": [
+            "physFitness",
+            "water"
+        ],
         "created": {
-            "$date": 1398338294301
+            "$date": 1422536648773
         },
-        "defaultduration": 15,
-        "defaultexecutiontype": "group",
+        "defaultduration": 60,
+        "defaultexecutiontype": "self",
         "defaultfrequency": "once",
         "descriptionI18n": {
-            "de": "Besuche eine fremde Person in einem Spital und bereite ihr so eine Freude."
+            "de": "Gehen Sie ins Wasserfitness-Training.",
+            "en": "Attend water fitness training"
         },
         "number": "INS-50",
-        "qualityFactor": 1,
-        "textI18n": {},
+        "picture": "",
+        "qualityFactor": 5,
         "titleI18n": {
-            "de": "Spitalbesuch"
+            "de": "Wasser-Fitness",
+            "en": "Water Fitness"
         },
         "topics": [
-            "53b416fba43aac62a2debda3",
-            "53b416fba43aac62a2debda2"
+            {
+                "$oid": "53b416fba43aac62a2debda2"
+            }
         ],
         "updated": {
-            "$date": 1398338294301
+            "$date": 1422536648773
         }
     },
     {
+        "__v": 0,
         "_id": {
-            "$oid": "54860a9fb6953fc567e3e158"
+            "$oid": "54ca2fc88c0832450f0e1ad5"
         },
-        "author": {
-            "$oid": "52d4f515fac246174c000006"
-        },
+        "categories": [
+            "physFitness",
+            "water"
+        ],
         "created": {
-            "$date": 1398338294301
+            "$date": 1422536648776
         },
-        "defaultduration": 15,
-        "defaultexecutiontype": "group",
+        "defaultduration": 60,
+        "defaultexecutiontype": "self",
         "defaultfrequency": "once",
         "descriptionI18n": {
-            "de": "Mache einen Besuch in einem Pflegeheim und leiste der Person Gesellschaft."
+            "de": "Machen Sie regelm\u00e4ssig Wassergymnastik.",
+            "en": "Practice water gymnastics regularly"
         },
         "number": "INS-51",
-        "qualityFactor": 1,
-        "textI18n": {},
+        "picture": "",
+        "qualityFactor": 5,
         "titleI18n": {
-            "de": "Pflegeheimbesuch"
+            "de": "Wassergymnastik",
+            "en": "Water Gymnastics"
         },
         "topics": [
-            "53b416fba43aac62a2debda3",
-            "53b416fba43aac62a2debda2"
+            {
+                "$oid": "53b416fba43aac62a2debda2"
+            }
         ],
         "updated": {
-            "$date": 1398338294301
-        }
-    },
-    {
-        "_id": {
-            "$oid": "54860a9fb6953fc567e3e159"
-        },
-        "author": {
-            "$oid": "52d4f515fac246174c000006"
-        },
-        "created": {
-            "$date": 1398338294301
-        },
-        "defaultduration": 15,
-        "defaultexecutiontype": "group",
-        "defaultfrequency": "once",
-        "descriptionI18n": {
-            "de": "Besuche Verwandte, die du schon l\u00e4nger nicht mehr gesehen hast."
-        },
-        "number": "INS-52",
-        "qualityFactor": 1,
-        "textI18n": {},
-        "titleI18n": {
-            "de": "Verwandtenbesuch"
-        },
-        "topics": [
-            "53b416fba43aac62a2debda3",
-            "53b416fba43aac62a2debda2"
-        ],
-        "updated": {
-            "$date": 1398338294301
+            "$date": 1422536648776
         }
     }
 ]

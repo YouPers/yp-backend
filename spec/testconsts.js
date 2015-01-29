@@ -6,13 +6,13 @@ var moment = require('moment');
 
 var self = module.exports  =  {
     groupIdea: {
-        id: '54860a9fb6953fc567e3e126'
+        id: '54ca2fc88c0832450f0e1aa2'
     },
     groupIdea2: {
-        id: '54860a9fb6953fc567e3e127'
+        id: '54ca2fc88c0832450f0e1aa3'
     },
     aloneIdea: {
-        id: "54860a9fb6953fc567e3e135"
+        id: '54ca2fc88c0832450f0e1abb'
     },
     users: {
         test_ind1: {

@@ -26,7 +26,8 @@ var IdeaSchema = common.newSchema({
     qualityFactor: {type: Number, select: false},
     recWeights: {type: mongoose.Schema.Types.Mixed, select: false},
     picture: {type: String},
-    action: { type: String, enum: enums.actionType }
+    action: { type: String, enum: enums.actionType },
+    categories: [{type: String}]
 });
 
 IdeaSchema.statics.adminAttrsSelector =  '+recWeights +qualityFactor';

@@ -22,7 +22,7 @@ frisby.create('GET ideas with filter option returning several results')
     .toss();
 
 frisby.create('GET ideas with to << options')
-    .get(URL + '/ideas?filter[id]=54860a9fb6953fc567e3e126')
+    .get(URL + '/ideas?filter[id]=54ca2fc88c0832450f0e1aa2')
     .expectStatus(200)
     .expectJSONLength(1)
     .afterJSON(function (ideas) {
@@ -30,7 +30,7 @@ frisby.create('GET ideas with to << options')
     .toss();
 
 frisby.create('GET ideas with to << options')
-    .get(URL + '/ideas?filter[id]=54860a9fb6953fc567e3e126,54860a9fb6953fc567e3e127')
+    .get(URL + '/ideas?filter[id]=54ca2fc88c0832450f0e1aa2,54ca2fc88c0832450f0e1aa3')
     .expectStatus(200)
     .expectJSONLength(2)
     .afterJSON(function (ideas) {

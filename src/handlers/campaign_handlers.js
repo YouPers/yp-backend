@@ -109,38 +109,50 @@ var postCampaign = function (baseUrl) {
             // it to create the surveyReponseCollectors
             sentCampaign._id = new mongoose.Types.ObjectId();
 
-            addSurveyCollectors(sentCampaign, req, function (err) {
+            sentCampaign.campaignLeads = [req.user.id];
+
+            if (!_.contains(req.user.roles, auth.roles.campaignlead)) {
+                req.user.roles.push(auth.roles.campaignlead);
+            }
+
+            // update user with his new role as campaign lead
+
+            req.user.save(function (err) {
                 if (err) {
                     return error.handleError(err, next);
                 }
-                sentCampaign.campaignLeads = [req.user.id];
+            });
 
-                if (!_.contains(req.user.roles, auth.roles.campaignlead)) {
-                    req.user.roles.push(auth.roles.campaignlead);
+            req.log.trace(sentCampaign, 'PostFn: Saving new Campaign object');
+
+            // try to save the new campaign object
+            sentCampaign.save(function (err, saved) {
+                if (err) {
+                    return error.handleError(err, next);
                 }
-
-                // update user with his new role as campaign lead
-
-                req.user.save(function (err) {
+                createTemplateCampaignOffers(saved, req, function (err) {
                     if (err) {
                         return error.handleError(err, next);
                     }
-                });
 
-                req.log.trace(sentCampaign, 'PostFn: Saving new Campaign object');
+                    // the campaign has been saved and all template offer have been generated
+                    // talking to SurveyMonkey API often takes a few seconds, to avoid
+                    // timeouting our response we do the SurveyMonkey API Call async after we
+                    // signal success to the browser
+                    if (config.surveyMonkey && config.surveyMonkey.enabled) {
+                        addSurveyCollectors(saved, req, function (err) {
+                            if (err) {
+                                req.log.error(err, "error while talking asynchronosouly to SurveyMonkey.");
+                            }
+                            saved.save(function(err, savedAgain) {
+                                if (err) {
+                                    req.log.error(err, "error while saving the SurveyUrls on the campaign");
+                                }
+                            });
 
-                // try to save the new campaign object
-                sentCampaign.save(function (err, saved) {
-                    if (err) {
-                        return error.handleError(err, next);
+                        });
                     }
-                    createTemplateCampaignOffers(saved, req, function (err) {
-                        if (err) {
-                            return error.handleError(err, next);
-                        }
-                        return generic.writeObjCb(req, res, next)(err, saved);
-                    });
-
+                    return generic.writeObjCb(req, res, next)(err, saved);
                 });
 
             });
@@ -265,76 +277,69 @@ function createTemplateCampaignOffers(campaign, req, cb) {
 
 }
 
-function addSurveyCollectors(sentCampaign, req, cb) {
-
-    if (config.surveyMonkey && config.surveyMonkey.enabled) {
+function addSurveyCollectors(campaign, req, cb) {
 
 
-        var jsonClient = restify.createJsonClient({
-            url: config.surveyMonkey.apiUrl,
-            version: '*',
-            log: req.log,
-            headers: {
-                Authorization: "Bearer " + config.surveyMonkey.AccessToken
+    var jsonClient = restify.createJsonClient({
+        url: config.surveyMonkey.apiUrl,
+        version: '*',
+        log: req.log,
+        headers: {
+            Authorization: "Bearer " + config.surveyMonkey.AccessToken
+        }
+    });
+
+
+    mongoose.model('Organization').findById(campaign.organization).exec(function (err, org) {
+        if (err) {
+            error.handleError(err, cb);
+        }
+
+        var body = {
+            survey_id: config.surveyMonkey.dcmSurveyId,
+            collector: {
+                type: 'weblink',
+                name: org.name + '/ ' + campaign.participants + '/' + campaign.location
             }
-        });
+        };
 
-
-        mongoose.model('Organization').findById(sentCampaign.organization).exec(function (err, org) {
-            if (err) {
-                error.handleError(err, cb);
-            }
-
-            var body = {
-                survey_id: config.surveyMonkey.dcmSurveyId,
-                collector: {
-                    type: 'weblink',
-                    name: org.name + '/ ' + sentCampaign.participants + '/' + sentCampaign.location
+        jsonClient.post(config.surveyMonkey.createCollectorEndpoint + '?api_key=' + config.surveyMonkey.api_key,
+            body,
+            function (err, request, response, obj) {
+                if (err || obj.status !== 0) {
+                    req.log.error({
+                        path: request.path,
+                        method: request.method,
+                        headers: request._headers
+                    }, 'ERROR posting to SurveyMonkey: request');
+                    req.log.error(obj, 'ERROR posting to SurveyMonkey: response');
+                    return cb(err || new Error(obj));
                 }
-            };
 
-            jsonClient.post(config.surveyMonkey.createCollectorEndpoint + '?api_key=' + config.surveyMonkey.api_key,
-                body,
-                function (err, request, response, obj) {
-                    if (err || obj.status !== 0) {
-                        req.log.error({
-                            path: request.path,
-                            method: request.method,
-                            headers: request._headers
-                        }, 'ERROR posting to SurveyMonkey: request');
-                        req.log.error(obj, 'ERROR posting to SurveyMonkey: response');
-                        return cb(err || new Error(obj));
-                    }
+                campaign.leaderSurveyCollectorId = obj && obj.data && obj.data.collector.collector_id;
+                campaign.leaderSurveyUrl = obj && obj.data && obj.data.collector.url;
 
-                    sentCampaign.leaderSurveyCollectorId = obj && obj.data && obj.data.collector.collector_id;
-                    sentCampaign.leaderSurveyUrl = obj && obj.data && obj.data.collector.url;
+                body.survey_id = config.surveyMonkey.dhcSurveyId;
 
-                    body.survey_id = config.surveyMonkey.dhcSurveyId;
+                jsonClient.post(config.surveyMonkey.createCollectorEndpoint + '?api_key=' + config.surveyMonkey.api_key,
+                    body,
+                    function (err, request, response, respObj) {
+                        if (err || respObj.status !== 0) {
+                            req.log.error(request, 'ERROR posting to SurveyMonkey: request');
+                            req.log.error(response, 'ERROR posting to SurveyMonkey: response');
+                            return cb(err || new Error(respObj));
+                        }
 
-                    jsonClient.post(config.surveyMonkey.createCollectorEndpoint + '?api_key=' + config.surveyMonkey.api_key,
-                        body,
-                        function (err, request, response, respObj) {
-                            if (err || respObj.status !== 0) {
-                                req.log.error(request, 'ERROR posting to SurveyMonkey: request');
-                                req.log.error(response, 'ERROR posting to SurveyMonkey: response');
-                                return cb(err || new Error(respObj));
-                            }
-
-                            sentCampaign.participantSurveyCollectorId = respObj && respObj.data && respObj.data.collector.collector_id;
-                            sentCampaign.participantSurveyUrl = respObj && respObj.data && respObj.data.collector.url;
+                        campaign.participantSurveyCollectorId = respObj && respObj.data && respObj.data.collector.collector_id;
+                        campaign.participantSurveyUrl = respObj && respObj.data && respObj.data.collector.url;
 
 
-                            return cb(null, sentCampaign);
-                        });
-                });
+                        return cb(null, campaign);
+                    });
+            });
 
 
-        });
-
-    } else {
-        return cb(null, sentCampaign);
-    }
-
+    });
 }
 
 function putCampaign(req, res, next) {
@@ -675,7 +680,7 @@ var deleteByIdFn = function deleteByIdFn(baseUrl, Model) {
                 return user.equals(req.user._id);
             });
 
-            if (!isSysadmin && !isCampaignLead ) {
+            if (!isSysadmin && !isCampaignLead) {
                 return next(new error.NotAuthorizedError('Not authorized to delete this campaign, must have role campaignlead or sysadmin.'));
             }
 

@@ -30,13 +30,13 @@ consts.newUserInNewCampaignApi(
                     }
                 ],
 
-                author: consts.users.test_campaignlead.id,
+                author: consts.users.test_orgadm.id,
                 authorType: 'campaignLead',
                 publishFrom: moment(),
                 publishTo: moment().add(1, 'hours'),
                 idea: consts.groupIdea.id
             })
-            .auth(consts.users.test_campaignlead.username, 'yp')
+            .auth(consts.users.test_orgadm.username, 'yp')
             .expectStatus(201)
             .afterJSON(function (recommendation) {
 
@@ -69,20 +69,20 @@ consts.newUserInNewCampaignApi(
                                     }
                                 ],
 
-                                author: consts.users.test_campaignlead.id,
+                                author: consts.users.test_orgadm.id,
                                 authorType: 'campaignLead',
                                 publishFrom: moment(),
                                 publishTo: moment().add(1, 'hours'),
                                 event: newPlan.id,
                                 idea: newPlan.idea
                             })
-                            .auth(consts.users.test_campaignlead.username, 'yp')
+                            .auth(consts.users.test_orgadm.username, 'yp')
                             .expectStatus(201)
                             .afterJSON(function (invitation) {
 
                                 frisby.create('CampaignOffers: get current campaign offers as campaignLead')
                                     .get(URL + '/socialInteractions?targetId=' + campaign.id + '&authorType=campaignLead&authored=true')
-                                    .auth(consts.users.test_campaignlead.username, "yp")
+                                    .auth(consts.users.test_orgadm.username, "yp")
                                     .expectStatus(200)
                                     .afterJSON(function (campaignOffers) {
 

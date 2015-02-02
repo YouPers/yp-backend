@@ -38,7 +38,7 @@ consts.newUserInNewCampaignApi(
                             }
                         ],
 
-                        author: consts.users.test_campaignlead.id,
+                        author: consts.users.test_orgadm.id,
                         publishFrom: moment(),
                         publishTo: moment().add(1, 'hours'),
                         authorType: 'campaignLead',
@@ -47,7 +47,7 @@ consts.newUserInNewCampaignApi(
                         ],
                         idea: consts.aloneIdea.id
                     })
-                    .auth(consts.users.test_campaignlead.username, 'yp')
+                    .auth(consts.users.test_orgadm.username, 'yp')
                     .expectStatus(201)
                     .afterJSON(function (recommendation) {
 
@@ -62,7 +62,7 @@ consts.newUserInNewCampaignApi(
 
                                 frisby.create('Recommendations: get recs as campaignlead for administration')
                                     .get(URL + '/recommendations?targetId='+ campaign.id + '&authorType=campaignLead&authored=true')
-                                    .auth(consts.users.test_campaignlead.username, 'yp')
+                                    .auth(consts.users.test_orgadm.username, 'yp')
                                     .expectStatus(200)
                                     .afterJSON(function (recsAsCL) {
                                         expect(recsAsCL.length).toBe(1);

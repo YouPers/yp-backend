@@ -37,7 +37,7 @@ frisby.create('i18n: GET all ideas, no language given, check default')
 
                 frisby.create('i18n: Put an Update to simple i18nString, defaultLanguage')
                     .put(URL + '/ideas/' + idea.id, {title: newTitleDe})
-                    .auth('stefan', 'stefan')
+                    .auth('helmut', 'helmut')
                     .expectStatus(200)
                     .expectHeader('yp-language', 'de')
                     .expectJSON({
@@ -60,7 +60,7 @@ frisby.create('i18n: GET all ideas, no language given, check default')
 
                                 frisby.create('i18n: Put an Update to i18nString to resetLanguage, defaultLanguage')
                                     .put(URL + '/ideas/' + idea.id, {title: initialTitleDe})
-                                    .auth('stefan', 'stefan')
+                                    .auth('helmut', 'helmut')
                                     .expectStatus(200)
                                     .expectHeader('yp-language', 'de')
                                     .expectJSON({

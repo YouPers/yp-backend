@@ -11,6 +11,8 @@ var SocialInteraction = require('../core/SocialInteraction');
 var config = require('../config/config');
 var log = require('ypbackendlib').log(config);
 
+var INSPIRATION_CAMPAIGN_ID = '527916a82079aa8704000006';
+
 function EventManagement() {
     EventEmitter.call(this);
 }
@@ -168,19 +170,53 @@ actMgr.on('event:eventUpdated', function (updatedEvent) {
             event: updatedEvent._id
         }
     ).exec(function (err, invitations) {
+
+            var publicInvitationFound = false;
+
             _.forEach(invitations, function (invitation) {
 
-                // The publishTo of the invitation has to be equal or earlier than the last occurence,
-                // it does not make sense to invite something that has already happened.
-                if (invitation.publishTo > updatedEvent.lastEventEnd) {
-                    invitation.publishTo = updatedEvent.lastEventEnd;
-                    invitation.save(function (err, saved) {
-                        if (err) {
-                            return actMgr.emit('error', err);
-                        }
-                    });
+                // if the flag "inviteOther" is not set and we find an existing public invitation
+                // it needs to be removed
+                if (invitation.targetSpaces[0].type === 'campaign' && !updatedEvent.inviteOthers) {
+                    invitation.remove();
+                } else {
+
+                    // check whether this is the public invitation we need to assure that exists
+                    if (invitation.targetSpaces[0].type === 'campaign') {
+                        publicInvitationFound = true;
+                    }
+
+                    // The publishTo of the invitation has to be equal or earlier than the last occurence,
+                    // it does not make sense to invite something that has already happened.
+                    if (invitation.publishTo > updatedEvent.lastEventEnd) {
+                        invitation.publishTo = updatedEvent.lastEventEnd;
+                        invitation.save(function (err, saved) {
+                            if (err) {
+                                return actMgr.emit('error', err);
+                            }
+                        });
+                    }
                 }
             });
+
+            if (updatedEvent.inviteOthers && !publicInvitationFound) {
+                var publicInvitation  = {
+                    author: updatedEvent.owner,
+                    event: updatedEvent._id,
+                    idea:  updatedEvent.idea,
+                    authorType: 'user',
+                    __t: 'Invitation',
+                    publishFrom: new Date(),
+                    publishTo: updatedEvent.end,
+                    targetSpaces: [{
+                        type: 'campaign',
+                        targetId: INSPIRATION_CAMPAIGN_ID
+                    }]
+                };
+                new mongoose.model('Invitation')(publicInvitation).save(function (err) {
+                    return actMgr.emit('error', err);
+                });
+            }
         });
 
 });

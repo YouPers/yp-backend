@@ -216,6 +216,32 @@
     {
         "__v": 0,
         "_id": {
+            "$oid": "52a97f1650fca98c2900000a"
+        },
+        "avatar": "/assets/img/default_avatar_man.png",
+        "email": "ypunittest1+orgadmin@gmail.com",
+        "emailValidatedFlag": true,
+        "firstname": "Test",
+        "fullname": "Test OrgAdmin",
+        "hashed_password": "27cda6e3a674d8e474ede20146d253de82f41ac4",
+        "lastname": "OrgAdmin",
+        "profile": {
+            "$oid": "5303721a4dba580000000021"
+        },
+        "roles": [
+            "orgadmin",
+            "campaignlead",
+            "individual"
+        ],
+        "tempPasswordFlag": false,
+        "username": "test_orgadm",
+        "created": {
+            "$date": 1407770509621
+        }
+    },
+    {
+        "__v": 0,
+        "_id": {
             "$oid": "53348c27996c80a534319bda"
         },
         "avatar": "/assets/img/avatar_coach_blue.svg",

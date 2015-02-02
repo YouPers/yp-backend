@@ -38,7 +38,7 @@ frisby.create('Idea: post a new idea as a campaign lead without a valid campaign
         "text": "New Test Campaign Idea Text",
         "number": "UnitTest"
     })
-    .auth('test_campaignlead', 'yp')
+    .auth('test_orgadm', 'yp')
     .expectStatus(409)
 
     .toss();
@@ -50,7 +50,7 @@ frisby.create('Idea: post a new idea as a campaign lead of another campaign')
         "campaign": "527916a82079aa8704000006",
         "number": "UnitTest"
     })
-    .auth('test_campaignlead2', 'yp')
+    .auth('test_orgadm', 'yp')
     .expectStatus(403)
 
     .toss();
@@ -62,7 +62,7 @@ frisby.create('Idea: post a new idea as a campaign lead with a valid campaign id
         "campaign": "527916a82079aa8704000006",
         "number": "UnitTest"
     })
-    .auth('test_campaignlead', 'yp')
+    .auth('test_orgadm', 'yp')
     .expectStatus(201)
     .afterJSON(function (newIdea) {
 

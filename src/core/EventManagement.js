@@ -169,6 +169,7 @@ actMgr.on('event:eventUpdated', function (updatedEvent) {
         }
     ).exec(function (err, invitations) {
             _.forEach(invitations, function (invitation) {
+
                 // The publishTo of the invitation has to be equal or earlier than the last occurence,
                 // it does not make sense to invite something that has already happened.
                 if (invitation.publishTo > updatedEvent.lastEventEnd) {

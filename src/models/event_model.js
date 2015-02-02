@@ -56,7 +56,7 @@ var EventSchema = common.newSchema({
 EventSchema.methods = {
 
     toJsonConfig: {
-        include: ['deleteStatus', 'editStatus']
+        include: ['deleteStatus', 'editStatus', 'inviteOthers']
     }
 
 };
@@ -133,6 +133,22 @@ EventSchema.pre('save', function (next) {
     // as sequence number of iCal Objects generated for this event
     this.increment();
     return next();
+});
+
+
+EventSchema.pre('init', function(next, data) {
+    // check whether this event is shared to others and set the flag if yes
+    mongoose.model('Invitation')
+        .find({event: data._id, targetSpaces: {$elemMatch: {type: 'campaign'}}})
+        .exec(function (err, invs) {
+            if (err) {
+                return next(err);
+            }
+            if (invs && invs.length === 1) {
+                data.inviteOthers = true;
+            }
+            return next();
+        });
 });
 
 module.exports = mongoose.model('Event', EventSchema);

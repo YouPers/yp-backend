@@ -16,7 +16,7 @@ var calendar = require('../util/calendar'),
     auth = require('ypbackendlib').auth,
     handlerUtils = require('ypbackendlib').handlerUtils;
 
-
+var INSPIRATION_CAMPAIGN_ID = '527916a82079aa8704000006';
 
 function getInvitationStatus(req, res, next) {
     SocialInteraction.getInvitationStatus(req.params.id, generic.sendListCb(req, res, next));
@@ -218,6 +218,8 @@ function validateEvent(req, res, next) {
  */
 function postNewEvent(req, res, next) {
     var sentEvent = req.body;
+
+    // check wether there are direct invitations to create, parse and keep them
     var usersToInvite = req.params.invite;
 
     if (_.isString(usersToInvite)) {
@@ -227,6 +229,9 @@ function postNewEvent(req, res, next) {
     if (!_.isArray(usersToInvite)) {
         usersToInvite = [usersToInvite];
     }
+
+    // check whether the flag "inviteOthers has been set
+    var inviteOthers = sentEvent.inviteOthers;
 
     var err = handlerUtils.checkWritingPreCond(sentEvent, req.user, Event);
     if (err) {
@@ -297,6 +302,7 @@ function postNewEvent(req, res, next) {
 
             actMgr.emit('event:eventCreated', savedEvent, req.user);
 
+            // if needed we generate the personal invitations
             if (usersToInvite) {
                 var invitation  = {
                     author: req.user._id,
@@ -320,17 +326,40 @@ function postNewEvent(req, res, next) {
 
                 newInvitationDoc.save(function(err, savedInv) {
                     if (err) {
-                        return error.handleError(err, next);
+                        req.log.error({err: err, inv: invitation}, "Error in async task, event_handlers.js:329");
                     }
 
-                    return generic.writeObjCb(req, res, next)(null, savedEvent);
                 });
-
-
-            } else {
-                return generic.writeObjCb(req, res, next)(null, savedEvent);
             }
 
+            // if needed we generate the public invitation
+            if (inviteOthers) {
+                var publicInvitation  = {
+                    author: req.user._id,
+                    event: savedEvent._id,
+                    idea:  savedEvent.idea,
+                    authorType: 'user',
+                    __t: 'Invitation',
+                    publishFrom: new Date(),
+                    publishTo: savedEvent.end,
+                    targetSpaces: [{
+                        type: 'campaign',
+                        targetId: INSPIRATION_CAMPAIGN_ID
+                    }]
+                };
+                req.log.debug({invitation: publicInvitation}, "saving public invitation for event with event.inviteOther==true");
+
+                new Invitation(publicInvitation).save(function (err, savedInv) {
+                    if (err) {
+                        req.log.error({err: err, inv: publicInvitation}, "Error in async task, event_handlers.js:353");
+                    }
+                });
+            }
+            if (inviteOthers) {
+                savedEvent.inviteOthers = inviteOthers;
+            }
+
+            return generic.writeObjCb(req, res, next)(null, savedEvent);
         });
     });
 }

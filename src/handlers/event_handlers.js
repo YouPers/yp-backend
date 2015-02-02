@@ -16,8 +16,6 @@ var calendar = require('../util/calendar'),
     auth = require('ypbackendlib').auth,
     handlerUtils = require('ypbackendlib').handlerUtils;
 
-var INSPIRATION_CAMPAIGN_ID = '527916a82079aa8704000006';
-
 function getInvitationStatus(req, res, next) {
     SocialInteraction.getInvitationStatus(req.params.id, generic.sendListCb(req, res, next));
 }
@@ -226,7 +224,7 @@ function postNewEvent(req, res, next) {
         usersToInvite = usersToInvite.split(',');
     }
 
-    if (!_.isArray(usersToInvite)) {
+    if (usersToInvite && !_.isArray(usersToInvite)) {
         usersToInvite = [usersToInvite];
     }
 
@@ -303,7 +301,7 @@ function postNewEvent(req, res, next) {
             actMgr.emit('event:eventCreated', savedEvent, req.user);
 
             // if needed we generate the personal invitations
-            if (usersToInvite) {
+            if (usersToInvite && usersToInvite.length >0) {
                 var invitation  = {
                     author: req.user._id,
                     event: savedEvent._id,
@@ -344,7 +342,7 @@ function postNewEvent(req, res, next) {
                     publishTo: savedEvent.end,
                     targetSpaces: [{
                         type: 'campaign',
-                        targetId: INSPIRATION_CAMPAIGN_ID
+                        targetId: savedEvent.campaign
                     }]
                 };
                 req.log.debug({invitation: publicInvitation}, "saving public invitation for event with event.inviteOther==true");

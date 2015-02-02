@@ -21,15 +21,6 @@ util.inherits(EventManagement, EventEmitter);
 var actMgr = new EventManagement();
 
 /**
- * on change of a user's campaign
- *
- *  - schedule assessment event
- *
- */
-
-
-
-/**
  * on Change of an Occurence Status, check whether this was the last open Occurence
  * for this event. If there are no more open Occurences change the status of the event to 'old'
  */

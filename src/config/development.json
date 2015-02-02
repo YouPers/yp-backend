@@ -2,15 +2,12 @@
   "log": {
     "name": "Main",
     "stdout": "info"
-//
-// uncomment this part to enable debug logging into a file on your local dev machine
-//
-//  ,"streams": [
-//      {
-//        "path": "logs/server.log",
-//        "level": "debug"  // or "trace"
-//      }
-//    ]
+  ,"streams": [
+      {
+        "path": "logs/server.log",
+        "level": "error"
+      }
+    ]
   },
   "dbdump": {
     "restoreenabled": "true",

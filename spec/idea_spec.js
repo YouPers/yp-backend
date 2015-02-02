@@ -43,18 +43,6 @@ frisby.create('Idea: post a new idea as a campaign lead without a valid campaign
 
     .toss();
 
-frisby.create('Idea: post a new idea as a campaign lead of another campaign')
-    .post(URL + '/ideas', {
-        "title": "Test Campaign Idea for wrong campaign",
-        "text": "New Test Campaign Idea Text",
-        "campaign": "527916a82079aa8704000006",
-        "number": "UnitTest"
-    })
-    .auth('test_orgadm', 'yp')
-    .expectStatus(403)
-
-    .toss();
-
 frisby.create('Idea: post a new idea as a campaign lead with a valid campaign id')
     .post(URL + '/ideas', {
         "title": "Test Campaign Idea",

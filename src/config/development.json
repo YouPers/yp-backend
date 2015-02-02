@@ -1,13 +1,16 @@
 {
   "log": {
     "name": "Main",
-    "stdout": "info",
-    "streams": [
-      {
-        "path": "logs/server.log",
-        "level": "debug"
-      }
-    ]
+    "stdout": "info"
+//
+// uncomment this part to enable debug logging into a file on your local dev machine
+//
+//  ,"streams": [
+//      {
+//        "path": "logs/server.log",
+//        "level": "debug"  // or "trace"
+//      }
+//    ]
   },
   "dbdump": {
     "restoreenabled": "true",

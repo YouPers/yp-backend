@@ -54,7 +54,7 @@
                                     <br>
 
                                     <a href="<%= urlComposer.activityUrl(user.campaign.id, campaignOffers[i].activity ? campaignOffers[i].activity.idea : campaignOffers[i].idea.id, campaignOffers[i].activity ? campaignOffers[i].activity.id : '', campaignOffers[i].id) %>" target="_blank" style="word-wrap: break-word;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;color: #03a9f4;font-weight: normal;text-decoration: none;">
-                                        <img align="none"height="200" src="<%- urlComposer.homeUrl() + '/assets/actpics/' + (campaignOffers[i].activity ? campaignOffers[i].activity : campaignOffers[i].idea).number + '.jpg'%>"
+                                        <img align="none"height="200" src="<%- campaignOffers[i].idea.picture %>"
                                              style="width: 225px;height: 150px;margin: 0px;border: 0;outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;" width="300">
                                     </a>
 

@@ -10,7 +10,6 @@ var URL = 'http://localhost:'+ port;
 
 frisby.globalSetup({ // globalSetup is for ALL requests
     request: {
-        json:true,
         headers: {}
     }
 });
@@ -44,7 +43,7 @@ var userProfile = {
     }
 };
 
-frisby.create('POST new user')
+frisby.create('Profile: POST new user')
     .post(URL + '/users', {
         username: 'XXX_profile_unittest_user',
         fullname:'Profile Unittest',
@@ -55,13 +54,13 @@ frisby.create('POST new user')
     .expectStatus(201)
     .afterJSON(function(newUser) {
         var owner = newUser.id;
-        frisby.create('retrieve user profile by authentication')
+        frisby.create('Profile: retrieve user profile by authentication')
             .get(URL + '/profiles')
             .auth('XXX_profile_unittest_user', 'nopass')
             .expectStatus(200)
             .afterJSON(function (profileArray) {
                 var profileUrl = URL + '/profiles/' + profileArray[0].id;
-                frisby.create('update user profile using its id')
+                frisby.create('Profile: update user profile using its id')
                     .put(profileUrl, userProfile)
                     .auth('xxx_profile_unittest_user', 'nopass')
                     .expectStatus(200)
@@ -70,9 +69,8 @@ frisby.create('POST new user')
                         birthDate: String,
                         maritalStatus: String
                     })
-                    .expectJSON(userProfile)
                     .afterJSON(function(updatedProfile) {
-                        frisby.create('DELETE our testuser')
+                        frisby.create('Profile: DELETE our testuser')
                             .delete(URL+ '/users/' + owner)
                             .auth('sysadm', 'backtothefuture')
                             .expectStatus(200)

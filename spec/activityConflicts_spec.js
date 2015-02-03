@@ -7,7 +7,6 @@ var _ = require('lodash');
 
 frisby.globalSetup({ // globalSetup is for ALL requests
     request: {
-        json: true,
         headers: {}
     }
 });

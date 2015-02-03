@@ -88,8 +88,8 @@ var self = module.exports  =  {
         });
     },
     newUserInNewCampaignApi: function(cb) {
-        var campaignStart = moment({hour: 8, minute: 0, second: 0}).add(10, 'days');
-        var campaignEnd = moment({hour: 17, minute: 0, second: 0}).add(6, 'weeks').add(10, 'days');
+        var campaignStart = moment({hour: 8, minute: 0, second: 0}).add(10, 'days').toDate();
+        var campaignEnd = moment({hour: 17, minute: 0, second: 0}).add(6, 'weeks').add(10, 'days').toDate();
 
         var testCampaign = {
             "title": "testOrganization's campaign x for testing: " + Math.floor((Math.random() * 10000) + 1),

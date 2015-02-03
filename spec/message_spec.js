@@ -7,7 +7,6 @@ var frisby = require('frisby'),
 
 frisby.globalSetup({ // globalSetup is for ALL requests
     request: {
-        json: true,
         headers: {}
     }
 });
@@ -221,8 +220,8 @@ consts.newUserInNewCampaignApi(
                     text: 'Welcome to our terrific campaign!',
                     refDocs: [{ docId: campaign.id, model: 'Campaign'}],
 
-                    publishFrom: moment().add(1, 'minutes'),
-                    publishTo: moment().add(2, 'minutes')
+                    publishFrom: moment().add(1, 'minutes').toDate(),
+                    publishTo: moment().add(2, 'minutes').toDate()
 
                 };
 
@@ -252,6 +251,6 @@ consts.newUserInNewCampaignApi(
                     })
                     .toss();
             })
-            .toss()
+            .toss();
     });
 

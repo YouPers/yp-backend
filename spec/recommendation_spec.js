@@ -6,7 +6,6 @@ var frisby = require('frisby'),
 
 frisby.globalSetup({ // globalSetup is for ALL requests
     request: {
-        json: true,
         headers: {}
     }
 });
@@ -67,7 +66,7 @@ consts.newUserInNewCampaignApi(
                                     .afterJSON(function (recsAsCL) {
                                         expect(recsAsCL.length).toBe(1);
 
-                                        frisby.create('Message: delete the recommendation as system admin')
+                                        frisby.create('Recommendations: delete the recommendation as system admin')
                                             .delete(URL + '/socialInteractions/' + recs[0].id + '?mode=administrate')
                                             .auth('test_sysadm', 'yp')
                                             .expectStatus(200)

@@ -16,7 +16,6 @@ var moment = require('moment');
 
 frisby.globalSetup({ // globalSetup is for ALL requests
     request: {
-        json: true,
         headers: {}
     }
 });

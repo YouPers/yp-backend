@@ -8,7 +8,6 @@ var     config = require('../src/config/config');
 
 frisby.globalSetup({ // globalSetup is for ALL requests
     request: {
-        json: true,
         headers: {}
     }
 });

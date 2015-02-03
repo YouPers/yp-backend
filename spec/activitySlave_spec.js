@@ -13,11 +13,9 @@ var consts = require('./testconsts');
 
 frisby.globalSetup({ // globalSetup is for ALL requests
     request: {
-        json:true,
         headers: {}
     }
 });
-
 var masterPlan = {
     "owner": consts.users.test_ind1.id,
     "idea": consts.groupIdea.id,

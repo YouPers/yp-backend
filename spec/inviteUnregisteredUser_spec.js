@@ -10,12 +10,11 @@ var frisby = require('frisby'),
 
 frisby.globalSetup({ // globalSetup is for ALL requests
     request: {
-        json: true,
         headers: {}
     }
 });
 
-// invite user to activity by email, sign up with this user and have an invitation
+// invite user to event by email, sign up with this user and have an invitation
 
 consts.newUserInNewCampaignApi(
     function (err, user, campaign, cleanupFn) {
@@ -23,7 +22,7 @@ consts.newUserInNewCampaignApi(
             expect(err).toBeNull();
         }
 
-        frisby.create('Invitation: plan an activity first')
+        frisby.create('InviteUnregisteredUser: plan an event first')
             .post(URL + '/activities', {
                 "owner": user.id,
                 "idea": consts.groupIdea.id,
@@ -31,8 +30,8 @@ consts.newUserInNewCampaignApi(
                 "visibility": "public",
                 "campaign": campaign.id,
                 "executionType": "group",
-                "start": moment().add(1, 'days'),
-                "end": moment().add(1, 'days').add(2, 'hours'),
+                "start": moment().add(1, 'days').toDate(),
+                "end": moment().add(1, 'days').add(2, 'hours').toDate(),
                 "allDay": false,
                 "frequency": "once",
                 "status": "active"

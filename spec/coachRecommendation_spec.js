@@ -24,7 +24,6 @@ var frisby = require('frisby'),
 
 frisby.globalSetup({ // globalSetup is for ALL requests
     request: {
-        json: true,
         headers: {}
     }
 });
@@ -119,15 +118,15 @@ consts.newUserInNewCampaignApi(
 
                                         var idea = recs[0].idea;
 
-                                        frisby.create('Recommendations: plan a recommended activity')
+                                        frisby.create('CoachRecommendations: plan a recommended activity')
                                             .post(URL + '/activities', {
                                                 "owner": user,
                                                 "idea": idea,
                                                 "campaign": campaign.id,
                                                 "title": "myTitle",
                                                 "executionType": "group",
-                                                "start": moment(),
-                                                "end": moment().add(2, 'hours'),
+                                                "start": moment().toDate(),
+                                                "end": moment().add(2, 'hours').toDate(),
                                                 "allDay": false,
                                                 "frequency": "once",
                                                 "status": "active"

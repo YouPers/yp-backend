@@ -8,13 +8,12 @@ var moment = require('moment');
 
 frisby.globalSetup({ // globalSetup is for ALL requests
     request: {
-        json:true,
         headers: {}
     }
 });
 
-var campaignStart = moment({hour: 8, minute: 0, second: 0}).add(10, 'days');
-var campaignEnd = moment({hour: 17, minute: 0, second: 0}).add(6,'weeks').add(10,'days');
+var campaignStart = moment({hour: 8, minute: 0, second: 0}).add(10, 'days').toDate();
+var campaignEnd = moment({hour: 17, minute: 0, second: 0}).add(6,'weeks').add(10,'days').toDate();
 
 consts.newUserInNewCampaignApi(
     function (err, user, campaign, cleanupFn) {
@@ -33,8 +32,8 @@ consts.newUserInNewCampaignApi(
 
                 expect(reloadedCampaign1.title).toEqual("new title for this campaign");
 
-                campaignStart = moment({hour: 8, minute: 0, second: 0}).add(10,'days');
-                campaignEnd = moment({hour: 17, minute: 0, second: 0}).add(27,'weeks').add(10,'days');
+                campaignStart = moment({hour: 8, minute: 0, second: 0}).add(10,'days').toDate();
+                campaignEnd = moment({hour: 17, minute: 0, second: 0}).add(27,'weeks').add(10,'days').toDate();
 
 
 

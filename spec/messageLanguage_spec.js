@@ -7,7 +7,6 @@ var frisby = require('frisby'),
 
 frisby.globalSetup({ // globalSetup is for ALL requests
     request: {
-        json: true,
         headers: {}
     }
 });

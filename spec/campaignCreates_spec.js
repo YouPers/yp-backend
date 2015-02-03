@@ -7,13 +7,12 @@ var moment = require('moment');
 
 frisby.globalSetup({ // globalSetup is for ALL requests
     request: {
-        json:true,
         headers: {}
     }
 });
 
-var campaignStart = moment({hour: 8, minute: 0, second: 0}).add(10, 'days');
-var campaignEnd = moment({hour: 17, minute: 0, second: 0}).add(6, 'weeks').add(10, 'days');
+var campaignStart = moment({hour: 8, minute: 0, second: 0}).add(10, 'days').toDate();
+var campaignEnd = moment({hour: 17, minute: 0, second: 0}).add(6, 'weeks').add(10, 'days').toDate();
 
 var testCampaign = {
     "title": "testOrganization's campaign 1 for work life balance",

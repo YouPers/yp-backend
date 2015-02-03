@@ -142,6 +142,7 @@ var postCampaign = function (baseUrl) {
                     req.log.info({"surveyMonkeyEnabled": config.surveyMonkey && config.surveyMonkey.enabled}, "surveyMonkeyConfig enabled?");
                     if (config.surveyMonkey && config.surveyMonkey.enabled) {
                         addSurveyCollectors(saved, req, function (err) {
+                            req.log.info("surveyMonkeyConfig enabled IS enabled");
                             if (err) {
                                 req.log.error(err, "error while talking asynchronosouly to SurveyMonkey.");
                             }

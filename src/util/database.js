@@ -6,7 +6,7 @@ function initializeDb () {
     // initialize Database
     var modelNames = require('../models').modelNames;
 
-    var schemaNames = ['user']; // schema names to be extended
+    var schemaNames = ['user','profile']; // schema names to be extended
     var modelPath = __dirname + '/../models'; // path the schema extensions are located
     var schemaExtensions = {};
     _.forEach(schemaNames, function (name) {

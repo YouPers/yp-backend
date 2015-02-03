@@ -25,8 +25,8 @@ function campaignWelcomeUrl(campaignId) {
 function orgAdminInviteUrl (organizationId, invitingUserId, token) {
     return webclientUrl + "/#/organizations/" + organizationId + '/becomeOrganizationAdmin?invitingUserId='+invitingUserId+'&token='+token;
 }
-function ideaImageUrl (ideaNumber) {
-    return webclientUrl + "/assets/actpics/"+ideaNumber + ".jpg";
+function ideaImageUrl (idea) {
+    return idea.picture;
 }
 function campaignImageUrl (imgPath) {
     return webclientUrl + imgPath;

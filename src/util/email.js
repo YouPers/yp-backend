@@ -56,7 +56,7 @@ var sendCalInvite = function (toUser, type, iCalString, activity, i18n, reason) 
     var locals = {
         salutation: i18n.t('email:iCalMail.' + type + '.salutation', {user: toUser.toJSON()}),
         text: i18n.t('email:iCalMail.' + type + '.text', {activity: activity.toJSON(), profileLink: urlComposer.profileUrl()}),
-        image: urlComposer.ideaImageUrl(activity.idea.number),
+        image: urlComposer.ideaImageUrl(activity.idea),
         imgServer: config.webClientUrl,
         link: urlComposer.icalUrl(activity.id, type, toUser.id),
         linkText: i18n.t('email:iCalMail.' + type + '.linkText')
@@ -90,7 +90,7 @@ var sendActivityInvite = function sendActivityInvite(email, invitingUser, activi
         title: activity.idea.title,
         activity: activity,
         eventDate: eventDate,
-        image: urlComposer.ideaImageUrl(activity.idea.number)
+        image: urlComposer.ideaImageUrl(activity.idea)
     };
     _.defaults(locals, defaultLocals(i18n));
     emailSender.sendEmail(fromDefault, email, subject, 'activityInviteMail', locals);

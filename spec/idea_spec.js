@@ -5,7 +5,6 @@ var URL = 'http://localhost:'+ port;
 
 frisby.globalSetup({ // globalSetup is for ALL requests
     request: {
-        json:true,
         headers: {}
     }
 });

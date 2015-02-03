@@ -7,7 +7,6 @@ var frisby = require('frisby'),
 
 frisby.globalSetup({ // globalSetup is for ALL requests
     request: {
-        json: true,
         headers: {}
     }
 });
@@ -49,8 +48,8 @@ consts.newUserInNewCampaignApi(
                         "visibility": "public",
                         "campaign": campaign.id,
                         "executionType": "group",
-                        "start": moment().subtract(1, 'days'),
-                        "end": moment().add(1, 'days').subtract(2, 'hours'),
+                        "start": moment().subtract(1, 'days').toDate(),
+                        "end": moment().add(1, 'days').subtract(2, 'hours').toDate(),
                         "allDay": false,
                         "frequency": "once",
                         "status": "active"

@@ -4,12 +4,19 @@ var URL = 'http://localhost:' + port;
 var consts = require('./testconsts');
 var moment = require('moment');
 
+frisby.globalSetup({ // globalSetup is for ALL requests
+    request: {
+        headers: {}
+    }
+});
+
 
 consts.newUserInNewCampaignApi(function (err, user, campaign, cleanupFn) {
     var rnd = Math.floor((Math.random() * 10000) + 1);
+    var username2 = 'testuser2' + rnd;
     frisby.create('ActivityInvite: POST 2nd new user')
         .post(URL + '/users', {
-            username: 'testuser2',
+            username: username2,
             fullname: 'Testing Unittest',
             campaign: campaign.id,
             firstname: 'Testing',
@@ -29,8 +36,8 @@ consts.newUserInNewCampaignApi(function (err, user, campaign, cleanupFn) {
                     "title": "myTitle",
                     "campaign": campaign.id,
                     "executionType": "group",
-                    "start": moment().add(1, 'w').day(2).add(1, 'hours').toISOString(),
-                    "end": moment().add(1, 'w').day(2).add(2, 'hours').toISOString(),
+                    "start": moment().add(1, 'w').day(2).add(1, 'hours').toDate(),
+                    "end": moment().add(1, 'w').day(2).add(2, 'hours').toDate(),
                     "allDay": false,
                     "frequency": "once",
                     "status": "active"
@@ -41,7 +48,7 @@ consts.newUserInNewCampaignApi(function (err, user, campaign, cleanupFn) {
 
                     frisby.create('ActivityInvite: get Invitations to see whether testuser2 is invited')
                         .get(URL + '/invitations')
-                        .auth('testuser2', 'yp')
+                        .auth(username2, 'yp')
                         .expectStatus(200)
                         .afterJSON(function (invitations) {
                             expect(invitations.length).toEqual(1);

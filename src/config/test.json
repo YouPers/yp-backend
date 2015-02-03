@@ -1,6 +1,6 @@
 {
     "log": {
         "name": "Main",
-        "stdout": "info"
+        "stdout": "error"
     }
 }

@@ -25,13 +25,13 @@
         "nconf": "~0.7.x"
     },
     "devDependencies": {
-        "grunt-contrib-jshint": "~0.10.x",
+        "grunt-contrib-jshint": "~0.11.x",
         "grunt-contrib-watch": "~0.6.x",
         "grunt-jasmine-node": "0.2.x",
         "grunt": "0.4.x",
         "frisby": "*",
-        "request": "~2.51",
-        "grunt-nodemon": "~0.3.x",
+        "request": "~2.x",
+        "grunt-nodemon": "~0.4.x",
         "grunt-concurrent": "~1.0.x",
         "grunt-wait": "~0.1.x",
         "grunt-express-server": "~0.4.x",

@@ -5,12 +5,12 @@
 // Load configuration
 var config = require('./config/config');
 
-if (config.NEW_RELIC_ENABLED) {
+if (config.NEW_RELIC_ENABLED === "enabled") {
     console.log("Enabling new relic: " + config.NEW_RELIC_ENABLED);
     require('newrelic');
 }
 
-if (config.NODE_TIME_ENABLED && config.NODE_TIME_KEY) {
+if (config.NODE_TIME_ENABLED === "enabled" && config.NODE_TIME_KEY) {
     console.log("Enabling Nodetime: " + config.NODE_TIME_ENABLED);
     require('nodetime').profile({
         accountKey: config.NODE_TIME_KEY,

@@ -14,8 +14,8 @@
     "db_port": "27017",
     "db_database": "test_database",
     "dbdump": {
-        "restoreenabled": "false",
-        "dumpenabled": "false",
+        "restoreenabled": "disabled",
+        "dumpenabled": "disabled",
         "mongodumpexe": "/usr/local/bin/mongodump",
         "mongorestoreexe": "/usr/local/bin/mongorestore",
         "mongoexe": "/usr/local/bin/mongo",
@@ -46,7 +46,7 @@
             "dailyEventsSummary": "ypunittest1+bbc@gmail.com"
         },
         "tracking": {
-            "enabled": "false"
+            "enabled": "disabled"
         }
     },
     "accessTokenSecret": "knfad*ç%&/(&/sdkjfnaklsdnfASDFAS2341",
@@ -70,7 +70,7 @@
         "googlePushApiKey": "AIzaSyCoegQXKQRJC0-dR4PZfKNLKbuL_qQhRrs"
     },
     "surveyMonkey": {
-        "enabled": false,
+        "enabled": "enabled",
         "apiUrl": "https://api.surveymonkey.net",
         "createCollectorEndpoint": "/v2/collectors/create_collector",
         "AccessToken": "paTBz61kMlD0mPWrsaHR3921EuYbHlBvqU0GDZQ.5nahBvB1GbdZpbh2WnOzXY4S6vHq4UBKwHnaltyoKioNNaIKIFkNpxVRaNk1z4M6Y9A=",

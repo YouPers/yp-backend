@@ -12,41 +12,12 @@ var _ = require('lodash'),
 var NUMBER_OF_COACH_RECS = 3;
 var HEALTH_COACH_USER_ID = '53348c27996c80a534319bda';
 
-Profile.on('change:prefs.focus', function (changedProfile) {
+Profile.on('change:selectedCategories', onProfileChange);
+Profile.on('change:coach', onProfileChange);
 
-    mongoose.model('User').findById(changedProfile.owner).select('campaign').populate('campaign').exec(function (err, user) {
-        if (err || !user) {
-            log.error(err || "owner of profile not found: " + changedProfile.owner);
-            return;
-        }
-        generateAndStoreRecommendations(changedProfile.owner, user.campaign.topic, changedProfile.prefs.rejectedIdeas, null, changedProfile.prefs.focus, false, function (err, recs) {
-            if (err) {
-                log.error(err);
-            }
-        });
-    });
-});
-
-/**
- * if this is the first login of this user today we generate him a new recommendation
- */
-mongoose.model('User').on('User:firstLoginToday', function (user) {
-
-    if (!user || !user.profile || !user.profile._id) {
-        throw new Error('user must be present and populated with poulated profile for this event listener');
-    }
-
-    var options = {
-        rejectedIdeas: user.profile.prefs.rejectedIdeas,
-        keepExisting: true
-    };
-
-    _updateRecommendations(user._id, options, function (err, newRecs) {
-        if (err) {
-            throw new Error(err);
-        }
-    });
-});
+function onProfileChange(changedProfile) {
+    // tODO: missing implementation
+}
 
 /**
  * check whether we need to generate a new recommendation.
@@ -100,14 +71,45 @@ SocialInteraction.on('socialInteraction:dismissed', function (user, socialIntera
 });
 
 /**
- * Evaluate an assessmentResult against a list of ideas and returns a scored list of the ideas
- * that are recommended for someone with this assessmentResult.
- * If no focus are set all available answers are used for scoring, if focus are set only the
- * corresponding answers are used for scoring.
  *
- * The resulting array is ordered by descending score, so the "best" recommendation comes first.
+ * -------------
+ * Inspirations for this user.
+ * goal: interesting inspirations for this user.
  *
- * @param actList the list of ideas to score
+ * 1. get all possible inspirations
+ *      - (a) all personal invitations,
+ *          - sort by ideaMatchScore (see below)
+ *      - (b) all public invitations (where Inspiration finds people, inviteOthers)
+ *          - limit to 30km distance:  event.location to user.profile.location
+ *          - sort  by ideaMatchScore (see below)
+ *      - (c) current recommendations (see below)
+ * 2. sort and limit:
+ *      if possible return one of each type (a) (b),(c), otherwise fill up with what we have
+ *      limit to 3 (or more?)
+ *
+ * --------
+ * Recommendations for the current user:
+ *
+ * Simple Algorithm:
+ *
+ * 1. score all available ideas by
+ *
+ * ideaMatchScore  = qualityFactor * coachMatch * categoryMatch * planningMatch where
+ *
+ * - qualityFactor = fixed configured number between 1-10 that allows us to favor some 'good' ideas over others we consider less "demonstratable"
+ * - coachMatch = 1 or 2, depending whether the user's chosen coach promotes the topic of this idea
+ * - categoryMatch = 1 or 2, depending whether the user has set the idea's categories as 'favoured' in his profile.
+ * - planningMatch = 0: if the user has already planned this idea to execute in his agenda or has a current "invitation"
+ *                      for it (Personal or Public)
+ *                   1: if the user has never done that idea
+ *                   2: if the user has done this before (and "liked it", as soon as we get this data ;-)
+ *
+ * 2. rank all ideas by score
+ * 3. generate recommendations for the top X (configurable)
+ *
+ *
+
+ * @param ideaList the list of ideas to score
  * @param assResult the assessmentResult to score against
  * @param focus an array of focus-questions corresponding to _ids of assessmentQuestions the user wants to focus on.
  * We expect an array of objects with property question: e.g. [{question: "id", timestamp: "ts"}, ...]
@@ -117,32 +119,16 @@ SocialInteraction.on('socialInteraction:dismissed', function (user, socialIntera
  * @returns {*}
  * @private
  */
-function _calculateRecommendations(actList, assResult, focus, cb) {
-
-    var indexedAnswers = _.indexBy(assResult.answers, function (answer) {
-        return answer.question.toString();
-    });
+function _calculateRecommendations(ideaList, coach, selectedCats, cb) {
 
     // calculate matchValue for each idea and store in object
     var matchValues = [], score;
-    _.forEach(actList, function (idea) {
+    _.forEach(ideaList, function (idea) {
         var qualityFactor = idea.qualityFactor || 1;
         score = 1;
-        _.forEach(idea.recWeights, function (recWeight) {
-            var answerObj = indexedAnswers[recWeight[0].toString()];
 
-            // add score only if
-            //     we have an answer for this weight
-            //     AND
-            //          there are no focus
-            //            OR
-            //          this answer is part of the focus
-            if (answerObj && (!focus || focus.length === 0 || (_.contains(focus, answerObj.question.toString())))) {
-                score += (answerObj.answer >= 0) ?
-                answerObj.answer / 100 * recWeight[2] :
-                Math.abs(answerObj.answer) / 100 * recWeight[1];
-            }
-        });
+
+
         matchValues.push({idea: idea._id, score: score * qualityFactor});
     });
 
@@ -150,19 +136,7 @@ function _calculateRecommendations(actList, assResult, focus, cb) {
         return -matchValue.score;
     });
 
-    // reset dirty flag for assessment result
-    if (assResult.dirty) {
-        assResult.dirty = false;
-        assResult.save(function (err) {
-            if (err) {
-                cb(err);
-            }
-            cb(null, sortedRecs);
-        });
-    } else {
-        cb(null, sortedRecs);
-    }
-
+    cb(null, sortedRecs);
 }
 
 var locals = {};

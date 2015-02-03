@@ -95,7 +95,7 @@
         "content": "Hallo __user.firstname__<br/><br/>Dies ist die tägliche Zusammenfassung mit allem Wissenswerten zu deiner Teilnahme an der betrieblichen Gesundheitskampagne zum Thema __user.campaign.title__.<br/><br/>Gesundheitsaktivitäten in der Gruppe durchzuführen macht mehr Spass! Schaue dir deshalb die Aktivitätseinladungen vom Kampagnenleiter und den Kampagnenteilnehmern an und nutze die Gelegenheit, dich in <strong>der letzten Kampagnenwoche</strong> noch an einer angebotenen Gruppenaktivität zu beteiligen."
       },
       "4": {
-        "content": "Hallo __user.firstname__<br/><br/>Heute ist bereits <strong>der letzte Tag der Kampagne!</strong> Vielen Dank, dass du an der betrieblichen Gesundheitskampagne zum Thema __user.campaign.title__ teilgenommen hast. <br/><br/>Besuche heute noch einmal die Kampagnenseite und schaue Dir deine persönlichen Kampagnenergebnisse an. Nutze dabei auch die Gelegenheit, uns in einer kurzen Online-Umfrage dein Feedback mitzuteilen. Herzlichen Dank!"
+        "content": "Hallo __user.firstname__<br/><br/>Die Kampagne endet.</strong> Vielen Dank, dass du an der betrieblichen Gesundheitskampagne zum Thema __user.campaign.title__ teilgenommen hast. <br/><br/>Besuche heute noch einmal die Kampagnenseite und schaue Dir deine persönlichen Kampagnenergebnisse an. Nutze dabei auch die Gelegenheit, uns in einer kurzen Online-Umfrage dein Feedback mitzuteilen. Herzlichen Dank!"
       },
       "default": "Hallo __user.firstname__<br/><br/>Dies ist die tägliche Zusammenfassung mit allem Wissenswerten zu deiner Teilnahme an der betrieblichen Gesundheitskampagne zum Thema __user.campaign.title__."
     },

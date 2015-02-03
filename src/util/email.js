@@ -9,11 +9,11 @@ var config = require('../config/config'),
 var defaultLocals = function (i18n) {
 
     var localMoment = function(date) {
+        require('./moment-business').addBusinessMethods(moment);
         return moment(date).lang(i18n.lng()).tz('Europe/Zurich');
     };
 
     return {
-
         moment: localMoment,
         urlComposer: urlComposer,
         t: i18n.t,

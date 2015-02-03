@@ -31,6 +31,6 @@ var IdeaSchema = common.newSchema({
 
 IdeaSchema.statics.adminAttrsSelector =  '+recWeights +qualityFactor';
 
-IdeaSchema.statics.adminRoles = [auth.roles.systemadmin, auth.roles.productadmin];§
+IdeaSchema.statics.adminRoles = [auth.roles.systemadmin, auth.roles.productadmin];
 
 module.exports = mongoose.model('Idea', IdeaSchema);

@@ -313,8 +313,8 @@ function addSurveyCollectors(campaign, req, cb) {
                         method: request.method,
                         headers: request._headers
                     }, 'ERROR posting to SurveyMonkey: request');
-                    req.log.error(obj, 'ERROR posting to SurveyMonkey: response');
-                    return cb(err || new Error(obj));
+                    req.log.error({res: response}, 'ERROR posting to SurveyMonkey: response');
+                    return cb(err || new Error("error creating surveyMonkey collector:" + obj.status) );
                 }
 
                 campaign.leaderSurveyCollectorId = obj && obj.data && obj.data.collector.collector_id;
@@ -326,9 +326,13 @@ function addSurveyCollectors(campaign, req, cb) {
                     body,
                     function (err, request, response, respObj) {
                         if (err || respObj.status !== 0) {
-                            req.log.error(request, 'ERROR posting to SurveyMonkey: request');
-                            req.log.error(response, 'ERROR posting to SurveyMonkey: response');
-                            return cb(err || new Error(respObj));
+                            req.log.error({
+                                path: request.path,
+                                method: request.method,
+                                headers: request._headers
+                            }, 'ERROR posting to SurveyMonkey: request');
+                            req.log.error({res: response}, 'ERROR posting to SurveyMonkey: response');
+                            return cb(err || new Error("error creating surveyMonkey collector:" + obj.status) );
                         }
 
                         campaign.participantSurveyCollectorId = respObj && respObj.data && respObj.data.collector.collector_id;

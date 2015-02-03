@@ -37,7 +37,8 @@
         "grunt-express-server": "~0.4.x",
         "grunt-curl": "~2.1.x",
         "node-rest-client": "~1.4.x",
-        "commander": "~2.6.x"
+        "commander": "~2.6.x",
+        "request-json": "*"
     },
     "scripts": {
         "test": "grunt test",

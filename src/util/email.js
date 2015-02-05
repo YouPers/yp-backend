@@ -22,7 +22,7 @@ var defaultLocals = function (i18n) {
         notDisplayedCorrectly: i18n.t('email:default.notDisplayedCorrectly'),
         notDisplayedCorrectlyLink: i18n.t('email:default.notDisplayedCorrectlyLink'),
         imgServer: config.webclientUrl,
-        logo: config.webclientUrl + '/assets/img/logo.png'
+        logo: config.webclientUrl + '/assets/img/avatar_coach_blue_60.png'
     };
 };
 

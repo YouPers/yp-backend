@@ -4,10 +4,11 @@ var _ = require('lodash'),
     Recommendation = mongoose.model('Recommendation'),
     error = require('ypbackendlib').error,
     async = require('async'),
-    Profile = mongoose.model('Profile'),
     config = require('../config/config'),
     log = require('ypbackendlib').log(config),
     SocialInteraction = require('./SocialInteraction');
+
+var HEALTH_COACH_USER_ID = '53348c27996c80a534319bda';
 
 
 var coach2Topic = {
@@ -105,15 +106,15 @@ function getIdeaMatchScore(idea, userCoach, userCats, userEvents, userInvitation
 
 
 /**
- * @param ideaList the list of ideas to score
- * @param assResult the assessmentResult to score against
- * @param focus an array of focus-questions corresponding to _ids of assessmentQuestions the user wants to focus on.
  * We expect an array of objects with property question: e.g. [{question: "id", timestamp: "ts"}, ...]
  * If this is null or empty array we consider all questions. If it is set to at least one question, we only consider the
  * questions that the user wants to focus on.
- * @param cb callback function with arguments (err, rec)
  * @returns {*}
  * @private
+ * @param user
+ * @param invitations
+ * @param dismissals
+ * @param done
  */
 
 function getIdeaMatchScores(user, invitations, dismissals, done) {
@@ -161,7 +162,7 @@ function getIdeaMatchScores(user, invitations, dismissals, done) {
             _.forEach(locals.ideas,
                 function(idea, cb) {
 
-                    var ideaFilter = function(obj) {return obj.idea.toString() === idea._id.toString();}
+                    var ideaFilter = function(obj) {return obj.idea.toString() === idea._id.toString();};
                     var events = _.filter(locals.events, ideaFilter);
                     var invitations = _.filter(invitations, ideaFilter);
                     var dismissals = _.filter(dismissals, ideaFilter);
@@ -218,7 +219,19 @@ function getInspirations(user, done) {
 
             var scoredIdeaIndex = scoredIdeas.length -1;
             while (inspirations.length < 3) {
-                inspirations.push(scoredIdeas[scoredIdeaIndex--]);
+                var rec = new Recommendation({
+                    targetSpaces: [
+                        {
+                            type: 'user',
+                            targetId: user._id
+                        }
+                    ],
+                    author: HEALTH_COACH_USER_ID,
+                    authorType: 'coach',
+                    idea: scoredIdeas[scoredIdeaIndex--]._id
+                });
+
+                inspirations.push(rec);
             }
             return done(null, inspirations);
 

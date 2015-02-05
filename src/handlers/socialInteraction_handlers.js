@@ -67,7 +67,7 @@ var getAllFn = function getAllFn(baseUrl, Model) {
         SocialInteraction.getAllForUser(user, Model, options, generic.sendListCb(req, res, next));
     };
 };
-var getOffers = function getAll(req, res, next) {
+var getInspirations = function getAll(req, res, next) {
 
     var user = req.user;
 
@@ -134,5 +134,5 @@ module.exports = {
     deleteByIdFn: deleteByIdFn,
     getByIdFn: getByIdFn,
     getAllFn: getAllFn,
-    getOffers: getOffers
+    getInspirations: getInspirations
 };

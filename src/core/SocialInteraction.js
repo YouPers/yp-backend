@@ -56,7 +56,7 @@ User.on('add', function (user) {
 mongoose.model('Invitation').on('add', function (invitation) {
     var event = invitation.event;
 
-    // invitations for activities
+    // invitations for events
     if (event) {
         Event.findById(event._id || event).populate('idea').exec(function (err, event) {
             if(err) {
@@ -248,9 +248,9 @@ SocialInteraction.dismissInvitations = function dismissInvitations(refDoc, user,
     SocialInteraction.dismissSocialInteraction(Invitation, refDoc, user, documentTemplate, cb);
 };
 
-SocialInteraction.removeDismissals = function (refDoc, user, cb) {
+SocialInteraction.removeDismissals = function (event, user, cb) {
 
-    Invitation.find({ activity: refDoc._id }).exec(function (err, invitations) {
+    Invitation.find({ event: event._id }).exec(function (err, invitations) {
         if (err) {
             return cb(err);
         }
@@ -580,7 +580,7 @@ SocialInteraction.getById = function (idAsString, Model, queryOptions, locale, c
  */
 SocialInteraction.getAllForUser = function (user, model, options, cb) {
 
-    log.debug('SocialInteraction.getAllForUser', {user: user, model: model, options: options});
+    log.debug('SocialInteraction.getAllForUser', {user: user.fullname, model: model.modelName, options: options});
 
     var adminMode = options.mode === 'admin';
     var locale = options && options.locale;

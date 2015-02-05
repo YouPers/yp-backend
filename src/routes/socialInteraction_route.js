@@ -93,7 +93,7 @@ module.exports = function (swagger) {
             "nickname": "getOffers",
             accessLevel: 'al_individual'
         },
-        action: handlers.getOffers
+        action: handlers.getInspirations
     });
 
     swagger.addOperation({

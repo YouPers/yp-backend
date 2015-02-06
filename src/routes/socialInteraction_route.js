@@ -97,6 +97,22 @@ module.exports = function (swagger) {
     });
 
     swagger.addOperation({
+        spec: {
+            description: "Operations about socialInteractions",
+            path: offersUrl+'New',
+            notes: "returns the 3 best inspirations for this user",
+            summary: "get both recommendations and invitations for this user",
+            method: "GET",
+            params: [
+            ],
+            "responseClass": "Array[SocialInteraction]",
+            "nickname": "getInspirationsNew",
+            accessLevel: 'al_individual'
+        },
+        action: handlers.getInspirationsNew
+    });
+
+    swagger.addOperation({
             spec: {
                 description: "Operations about socialInteractions",
                 path: baseUrlWithId,

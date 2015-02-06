@@ -4,6 +4,7 @@ var error = require('ypbackendlib').error,
     auth = require('ypbackendlib').auth,
     moment = require('moment'),
     SocialInteraction = require('../core/SocialInteraction'),
+    Inspiration = require('../core/Inspiration'),
     SocialInteractionModel = mongoose.model('SocialInteraction'),
     CoachRecommendation = require('../core/CoachRecommendation');
 
@@ -130,9 +131,14 @@ var deleteByIdFn = function (baseUrl, Model) {
     };
 };
 
+var getInspirationsNew = function(req, res, next) {
+    Inspiration.getInspirations(req.user, generic.sendListCb(req, res, next));
+};
+
 module.exports = {
     deleteByIdFn: deleteByIdFn,
     getByIdFn: getByIdFn,
     getAllFn: getAllFn,
-    getInspirations: getInspirations
+    getInspirations: getInspirations,
+    getInspirationsNew: getInspirationsNew
 };

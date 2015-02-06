@@ -919,4 +919,46 @@ function _normalizePopulationAttrs(stringOrArray) {
     return output;
 }
 
+
+SocialInteraction.createNewInvitation = function createNewInvitation(invitor, event, usersToInvite, cb) {
+    var isPersonal = usersToInvite && usersToInvite.length > 0;
+
+    var invitation  = {
+        author: invitor._id,
+        event: event._id,
+        idea:  event.idea,
+        authorType: 'user',
+        __t: 'Invitation',
+        publishFrom: new Date(),
+        publishTo: event.end
+    };
+
+    invitation.targetSpaces = [];
+    if (isPersonal) {
+        _.forEach(usersToInvite, function (userId) {
+            invitation.targetSpaces.push({
+                type: 'user',
+                targetId: userId
+            });
+        });
+    } else {
+       invitation.targetSpaces.push({
+            type: 'campaign',
+            targetId: event.campaign
+        });
+    }
+
+    var newInvitationDoc = new Invitation(invitation);
+
+    return newInvitationDoc.save(cb);
+};
+
+SocialInteraction.createNewPublicInvitation = function createNewPublicInvitation(invitor, event, cb) {
+    SocialInteraction.createNewInvitation(invitor, event, null, cb);
+};
+
+SocialInteraction.createNewPersonalInvitation = function createNewPersonalInvitation(invitor, event, usersToInvite, cb) {
+    SocialInteraction.createNewInvitation(invitor, event, usersToInvite, cb);
+};
+
 module.exports = SocialInteraction;

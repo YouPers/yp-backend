@@ -209,6 +209,7 @@ function getInspirations(user, done) {
                 return done(err);
             }
             var inspirations = [];
+            var recsToSave = [];
 
             if (result.publicInvitations.length > 0) {
                 inspirations.push(result.publicInvitations[0]);
@@ -230,11 +231,17 @@ function getInspirations(user, done) {
                     authorType: 'coach',
                     idea: scoredIdeas[scoredIdeaIndex--]._id
                 });
-
+                recsToSave.push(rec);
                 inspirations.push(rec);
             }
-            return done(null, inspirations);
-
+            async.forEach(recsToSave, function(rec, cb) {
+                rec.save(cb);
+            }, function(err) {
+                if (err) {
+                    return done(err);
+                }
+                return done(null, inspirations);
+            });
         });
     });
 

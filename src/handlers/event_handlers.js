@@ -302,58 +302,22 @@ function postNewEvent(req, res, next) {
 
             // if needed we generate the personal invitations
             if (usersToInvite && usersToInvite.length >0) {
-                var invitation  = {
-                    author: req.user._id,
-                    event: savedEvent._id,
-                    idea:  savedEvent.idea,
-                    authorType: 'user',
-                    __t: 'Invitation',
-                    publishFrom: new Date(),
-                    publishTo: savedEvent.end
-                };
-
-                invitation.targetSpaces = [];
-                _.forEach(usersToInvite, function (userId) {
-                    invitation.targetSpaces.push({
-                        type: 'user',
-                        targetId: new mongoose.Types.ObjectId(userId)
-                    });
-                });
-
-                var newInvitationDoc = new Invitation(invitation);
-
-                newInvitationDoc.save(function(err, savedInv) {
+                SocialInteraction.createNewPersonalInvitation(req.user, savedEvent, usersToInvite, function (err, savedInv) {
                     if (err) {
-                        req.log.error({err: err, inv: invitation}, "Error in async task, event_handlers.js:329");
+                        req.log.error({err: err, inv: savedInv.toObject()}, "Error in async task, event_handlers.js:307");
                     }
-
                 });
             }
 
             // if needed we generate the public invitation
             if (inviteOthers) {
-                var publicInvitation  = {
-                    author: req.user._id,
-                    event: savedEvent._id,
-                    idea:  savedEvent.idea,
-                    authorType: 'user',
-                    __t: 'Invitation',
-                    publishFrom: new Date(),
-                    publishTo: savedEvent.end,
-                    targetSpaces: [{
-                        type: 'campaign',
-                        targetId: savedEvent.campaign
-                    }]
-                };
-                req.log.debug({invitation: publicInvitation}, "saving public invitation for event with event.inviteOther==true");
-
-                new Invitation(publicInvitation).save(function (err, savedInv) {
+                SocialInteraction.createNewPublicInvitation(req.user, savedEvent, function (err, savedInv) {
                     if (err) {
-                        req.log.error({err: err, inv: publicInvitation}, "Error in async task, event_handlers.js:353");
+                        req.log.error({err: err, inv: savedInv.toObject()}, "Error in async task, event_handlers.js:316");
                     }
                 });
-            }
-            if (inviteOthers) {
+                // set the inviteOthers Flag manually again: because we wrote the public invitation async it was not in the DB
+                // while the event was saved and reloaded.
                 savedEvent.inviteOthers = inviteOthers;
             }
 

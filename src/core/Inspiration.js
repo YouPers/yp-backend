@@ -91,7 +91,7 @@ function getIdeaMatchScore(idea, userCoach, userCats, userEvents, userInvitation
     var dismissalFactor = Math.pow(0.3, (userDismissals && userDismissals.length) || 0);
 
     var ideaScore = qf * coachMatch * categoryMatch * planningMatch * dismissalFactor;
-    log.info({
+    log.trace({
         idea: idea.titleI18n.de,
         qf: qf,
         coachMatch: coachMatch,

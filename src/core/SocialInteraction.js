@@ -627,7 +627,7 @@ SocialInteraction.getAllForUser = function (user, model, options, cb) {
         if (err) {
             return cb(err);
         }
-        log.debug('SocialInteraction.getAllForUser: found sois: ' + socialInteractions.length, socialInteractions);
+        log.debug({number: socialInteractions.length}, 'SocialInteraction.getAllForUser: executed');
 
         function _populateDismissedStatus() {
 

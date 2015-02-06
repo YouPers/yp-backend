@@ -2,6 +2,7 @@ var lib = require('ypbackendlib'),
     db = require('../src/util/database'),
     mongoose = lib.mongoose,
     _ = require('lodash'),
+    async = require('async'),
     Inspiration, user, user2, profile, SocialInteraction, EventMgr;
 
 beforeEach(function (done) {
@@ -24,7 +25,7 @@ beforeEach(function (done) {
             if (err) {
                 return done(err);
             }
-            UserModel.findById(savedUser._id).select('+profile').populate('profile').exec(function (err, loadedUser) {
+            UserModel.findById(savedUser._id).select('+profile +campaign').populate('profile campaign').exec(function (err, loadedUser) {
                 if (err) {
                     return done(err);
                 }
@@ -49,6 +50,7 @@ beforeEach(function (done) {
 });
 
 describe('inspirations recommender module', function () {
+
     it('needs to get 3 recs as inspirations', function (done) {
         Inspiration.getInspirations(user, function (err, insps) {
             if (err) {
@@ -62,7 +64,7 @@ describe('inspirations recommender module', function () {
                 expect(insp.targetSpaces.length).toEqual(1);
                 expect(insp.targetSpaces[0].type).toEqual('user');
             });
-            return done();
+            return _deleteObjs(insps, done);
         });
     });
 
@@ -80,7 +82,7 @@ describe('inspirations recommender module', function () {
                     _.forEach(newInsps, function (newInsp) {
                         expect(newInsp._id.toString()).not.toEqual(insps[0]._id.toString());
                     });
-                    return done();
+                    return _deleteObjs(newInsps.concat(insps), done);
                 });
             });
         });
@@ -104,8 +106,7 @@ describe('inspirations recommender module', function () {
                                 insp.idea.toString() === ideaId;
                         })).toBeDefined();
 
-
-                        return done();
+                        return _deleteObjs(insps, done);
                     });
                 });
             });
@@ -132,8 +133,7 @@ describe('inspirations recommender module', function () {
                                 insp.idea.toString() === ideaId;
                         })).toBeDefined();
 
-
-                        return done();
+                        return _deleteObjs(insps, done);
                     });
                 });
             });
@@ -143,6 +143,11 @@ describe('inspirations recommender module', function () {
 
 });
 
+function _deleteObjs (sois, done) {
+    async.forEach(sois, function(soi, next) {
+        soi.remove(next);
+    }, done);
+}
 
 afterEach(function (done) {
 

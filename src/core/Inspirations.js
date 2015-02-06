@@ -244,4 +244,4 @@ module.exports = {
     getInspirations: getInspirations,
     getIdeaMatchScore: getIdeaMatchScore,
     getIdeaMatchScores: getIdeaMatchScores
-}
+};

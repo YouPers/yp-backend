@@ -142,7 +142,7 @@ function getIdeaMatchScores(user, invitations, dismissals, done) {
             },
             function loadIdeas(cb) {
                 Idea.find()
-                    .select('qualityFactor')
+                    .select('+qualityFactor')
                     .exec(function (err, ideas) {
                         if (err) {
                             return error.handleError(err, cb);
@@ -166,7 +166,7 @@ function getIdeaMatchScores(user, invitations, dismissals, done) {
                     var events = _.filter(locals.events, ideaFilter);
                     var invitations = _.filter(invitations, ideaFilter);
                     var dismissals = _.filter(dismissals, ideaFilter);
-                    idea.ideaScore = getIdeaMatchScore(idea, userCats, coach, events, invitations, dismissals);
+                    idea.ideaScore = getIdeaMatchScore(idea, coach, userCats, events, invitations, dismissals);
                 });
             return done(null, _.sortBy(locals.ideas, 'ideaScore'));
         });
@@ -229,7 +229,7 @@ function getInspirations(user, done) {
                     ],
                     author: HEALTH_COACH_USER_ID,
                     authorType: 'coach',
-                    idea: scoredIdeas[scoredIdeaIndex--]._id
+                    idea: scoredIdeas[scoredIdeaIndex--]
                 });
                 recsToSave.push(rec);
                 inspirations.push(rec);
@@ -240,7 +240,11 @@ function getInspirations(user, done) {
                 if (err) {
                     return done(err);
                 }
-                return done(null, inspirations);
+
+                // repopulate ideas on saved recs)
+                Idea.populate(recsToSave, {path: "idea"}, function (err) {
+                    return done(null, inspirations);
+                });
             });
         });
     });

@@ -150,11 +150,5 @@ function _deleteObjs (sois, done) {
 }
 
 afterEach(function (done) {
-
-    user.remove(function (err) {
-        user2.remove(function (err) {
-            return done();
-        });
-    });
-
+    _deleteObjs([user, user2], done);
 });

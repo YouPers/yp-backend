@@ -43,17 +43,6 @@ var getSummaryMailLocals = function getSummaryMailLocals(user, lastSentMailDate,
         // section 1
 
 
-        // personalActivities
-        function (done) {
-            mongoose.model('Activity').count({
-                campaign: user.campaign,
-                $or: [
-                    { owner: user._id },
-                    { joiningUsers: user._id }
-                ]
-            }).exec(storeLocals('personalActivities', done));
-        },
-
         // campaignParticipants
         function (done) {
             mongoose.model('User').count({
@@ -163,6 +152,7 @@ var getSummaryMailLocals = function getSummaryMailLocals(user, lastSentMailDate,
         function (done) {
             mongoose.model('Invitation').find({
                 _id: {$nin: dismissedSocialInteractions},
+                activity: {$nin: locals.activities},
                 authorType: 'user',
                 targetSpaces: {$elemMatch: {targetId: user.campaign}},
                 created: {$gt: lastSentMailDate}
@@ -183,19 +173,31 @@ var getSummaryMailLocals = function getSummaryMailLocals(user, lastSentMailDate,
     mongoose.model('SocialInteractionDismissed').find({user: user}, {socialInteraction: 1}).exec(function (err, sids) {
         dismissedSocialInteractions = _.map(sids, 'socialInteraction');
 
-        async.parallel(tasks, function (err) {
-            if(err) {
-                return callback(err);
-            }
+        mongoose.model('Activity').find({
+            campaign: user.campaign,
+            $or: [
+                { owner: user._id },
+                { joiningUsers: user._id }
+            ]
+        }).select('_id').exec(function (err, ids) {
 
-            locals.campaignOffers = [].concat(
-                locals.newCampaignActivityInvitations,
-                locals.newCampaignRecommendations,
-                locals.newPersonalInvitations,
-                locals.newPublicInvitations,
-                locals.newCoachRecommendations
-            );
-            callback(err, locals);
+            locals.activities = _.map(ids, '_id');
+            locals.personalActivities = ids.length;
+
+            async.parallel(tasks, function (err) {
+                if(err) {
+                    return callback(err);
+                }
+
+                locals.campaignOffers = [].concat(
+                    locals.newCampaignActivityInvitations,
+                    locals.newCampaignRecommendations,
+                    locals.newPersonalInvitations,
+                    locals.newPublicInvitations,
+                    locals.newCoachRecommendations
+                );
+                callback(err, locals);
+            });
         });
     });
 

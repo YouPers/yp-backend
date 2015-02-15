@@ -381,12 +381,12 @@
             "$oid": "53348c27996c80a534319bda"
         },
         "avatar": "/assets/img/avatar_coach_blue.svg",
-        "email": "healthcoach@youpers.com",
+        "email": "digitalcoach@youpers.com",
         "emailValidatedFlag": true,
-        "firstname": "Youpers",
+        "firstname": "Digital",
         "fullname": "Digital Coach",
         "hashed_password": "5106764862fe0a566950e9ceac3cf48f032f8d14",
-        "lastname": "Health Coach",
+        "lastname": "Coach",
         "profile": {
             "$oid": "533d4045a771f4000092f31b"
         },
@@ -394,7 +394,7 @@
             "individual"
         ],
         "tempPasswordFlag": false,
-        "username": "yphealthcoach",
+        "username": "digitalcoach",
         "created": {
             "$date": 1407770509621
         }

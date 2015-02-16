@@ -79,27 +79,6 @@ module.exports = function (swagger) {
         spec: {
             description: "Operations about socialInteractions",
             path: offersUrl,
-            notes: "returns all offered Invitations and Recommendations that are targeted to this user, includes dismissed and rejected",
-            summary: "get both recommendations and invitations for this user",
-            method: "GET",
-            params: [
-                generic.params.sort,
-                generic.params.limit,
-                generic.params.filter,
-                generic.params.populate,
-                generic.params.populatedeep
-            ],
-            "responseClass": "Array[SocialInteraction]",
-            "nickname": "getOffers",
-            accessLevel: 'al_individual'
-        },
-        action: handlers.getInspirations
-    });
-
-    swagger.addOperation({
-        spec: {
-            description: "Operations about socialInteractions",
-            path: offersUrl+'New',
             notes: "returns the 3 best inspirations for this user",
             summary: "get both recommendations and invitations for this user",
             method: "GET",

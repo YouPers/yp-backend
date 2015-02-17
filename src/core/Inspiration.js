@@ -12,10 +12,10 @@ var HEALTH_COACH_USER_ID = '53348c27996c80a534319bda';
 
 
 var coach2Topic = {
-    'freddy': ['53b416cfa43aac62a2debda1'], // food
-    'susan': ['53b416fba43aac62a2debda3'],  // social
-    'adam': ['53b416fba43aac62a2debda2'], //
-    'allison': ['53b416cfa43aac62a2debda1', '53b416fba43aac62a2debda3', '53b416fba43aac62a2debda2']
+    'alex': ['53b416cfa43aac62a2debda1'], // food
+    'lisa': ['53b416fba43aac62a2debda3'],  // social
+    'marco': ['53b416fba43aac62a2debda2'], // activity
+    'nora': ['53b416cfa43aac62a2debda1', '53b416fba43aac62a2debda3', '53b416fba43aac62a2debda2']
 };
 
 /**

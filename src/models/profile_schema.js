@@ -8,6 +8,5 @@ module.exports = {
         selectedCategories: [{type: String}]
     },
     statics: {
-        privatePropertiesSelector: '+email +roles +emailValidatedFlag +hashed_password +tempPasswordFlag +profile +username +campaign'
     }
 };

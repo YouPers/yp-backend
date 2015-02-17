@@ -141,8 +141,8 @@ describe('inspirations recommender module', function () {
     });
 
 
-    it('should respect the coach choice: Freddy Food', function (done) {
-        profile.coach = 'freddy';
+    it('should respect the coach choice: Alex Food', function (done) {
+        profile.coach = 'alex';
         profile
             .save(function (err, savedProfile) {
                 user.profile = savedProfile;
@@ -164,8 +164,8 @@ describe('inspirations recommender module', function () {
             });
     });
 
-    it('should respect the coach choice: Susan Social', function (done) {
-        profile.coach = 'susan';
+    it('should respect the coach choice: Lisa Social', function (done) {
+        profile.coach = 'lisa';
         profile
             .save(function (err, savedProfile) {
                 user.profile = savedProfile;

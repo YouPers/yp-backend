@@ -417,6 +417,28 @@ var queries = {
                 }
             }]
     },
+    newestPlans: {
+        modelName: 'ActivityEvent',
+        stages: [
+            {
+                $group: {
+                    _id: '$idea',
+                    count: {$sum: 1},
+                    newest: {$max: '$created'}
+                }
+            },
+            {
+                $sort: {'newest': -1}
+            },
+            {
+                $project: {
+                    idea: '$_id',
+                    _id: 0,
+                    count: 1,
+                    planned: '$newest'
+                }
+            }]
+    },
     usersTotal: {
         modelName: 'User',
         ignoreScope: true,

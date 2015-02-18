@@ -392,9 +392,9 @@ var queries = {
         stages: [{
             $project: {
                 date: {
-                    year: {$year: '$updated'},
-                    month: {$month: '$updated'},
-                    day: {$dayOfMonth: '$updated'}
+                    year: {$year: '$start'},
+                    month: {$month: '$start'},
+                    day: {$dayOfMonth: '$start'}
                 },
                 status: '$status'
             }

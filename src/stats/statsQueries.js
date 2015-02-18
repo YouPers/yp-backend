@@ -403,7 +403,8 @@ var queries = {
                 $group: {
                     _id: '$date',
                     Done: {$sum: {$cond: {if: {$eq: ['$status', 'done']}, then: 1, else: 0}}},
-                    Missed: {$sum: {$cond: {if: {$eq: ['$status', 'missed']}, then: 1, else: 0}}}
+                    Missed: {$sum: {$cond: {if: {$eq: ['$status', 'missed']}, then: 1, else: 0}}},
+                    Open: {$sum: {$cond: {if: {$eq: ['$status', 'open']}, then: 1, else: 0}}}
                 }
             },
             {
@@ -411,7 +412,30 @@ var queries = {
                     date: '$_id',
                     _id: 0,
                     Done: 1,
-                    Missed: 1
+                    Missed: 1,
+                    Open: 1
+                }
+            }]
+    },
+    newestPlans: {
+        modelName: 'ActivityEvent',
+        stages: [
+            {
+                $group: {
+                    _id: '$idea',
+                    count: {$sum: 1},
+                    newest: {$max: '$created'}
+                }
+            },
+            {
+                $sort: {'newest': -1}
+            },
+            {
+                $project: {
+                    idea: '$_id',
+                    _id: 0,
+                    count: 1,
+                    planned: '$newest'
                 }
             }]
     },

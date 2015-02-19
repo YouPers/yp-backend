@@ -3,13 +3,16 @@
 /**
  * Module dependencies.
  */
-
 var program = require('commander');
 var _ = require('lodash');
+var mongoose = require('ypbackendlib').mongoose;
+
+require('../src/util/database').initializeDb();
+var Idea = mongoose.model('Idea');
 
 program
     .version('0.0.1')
-    .usage('<translationfile.json> <dbfile.json> <locale> <objname>')
+    .usage('<translationfile.json>')
 //    .option('-p, --peppers', 'Add peppers')
 //    .option('-P, --pineapple', 'Add pineapple')
   //  .option('-b, --bbq', 'Add bbq sauce')
@@ -17,30 +20,25 @@ program
     .parse(process.argv);
 
 var transObjs = require(program.args[0]);
-var dbObjects = require(program.args[1]);
-var locale = program.args[2];
-var objName = program.args[3];
 
+console.log('found translated objs: ' + transObjs.length);
 
-_.forEach(dbObjects, function(dbObj) {
-    var id = dbObj._id.$oid;
-
-    _.forOwn(dbObj, function(val, key) {
-        if (key.indexOf('I18n') !== -1) {
-            // we have an i18n key, now we find the translation for it
-
-            // the translations for this obj
-            var translatedObj = transObjs[objName][id];
-            var translatedSegment = '';
-            if (translatedObj) {
-                translatedSegment = translatedObj[key.substring(0,key.length-4)];
-            } else {
-                console.error("no translations found for obj: " + id + ", key: " + key);
-            }
-
-            dbObj[key][locale] = translatedSegment;
+_.forEach(transObjs, function(transObj) {
+    var id = transObj.id;
+    Idea.findById(id).exec(function (err, idea) {
+        if (err) {
+            console.log(err);
+            process.exit(1);
         }
+        console.log('processing id: ' + idea.id);
+        _.forEach(_.keys(transObj), function (prop) {
+            if (prop !== 'id') {
+                console.log('property: ' + prop);
+                _.forEach(_.keys(transObj[prop]), function (locale) {
+                    idea[prop][locale] = transObj[prop][locale];
+                    idea.save();
+                });
+            }
+        });
     });
 });
-
-console.log(JSON.stringify(dbObjects, null, 2));

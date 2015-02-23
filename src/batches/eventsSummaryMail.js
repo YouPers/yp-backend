@@ -135,6 +135,7 @@ var getSummaryMailLocals = function getSummaryMailLocals(user, lastSentMailDate,
 
                 mongoose.model('Message').count({
                     _id: {$nin: dismissedSocialInteractions},
+                    author: { $ne: user },
                     authorType: 'user',
                     targetSpaces: {
                         $elemMatch: {

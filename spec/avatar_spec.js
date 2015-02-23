@@ -3,7 +3,7 @@ var port = process.env.PORT || 8000,
     consts = require('./testconsts'),
     request = require('request-json');
 
-var client = request.newClient(URL);
+var client = request.createClient(URL);
 
 
 describe("Saving avatar to existing user", function () {

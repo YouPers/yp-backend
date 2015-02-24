@@ -41,30 +41,29 @@ var getIcalObject = function (activity, recipientUser, iCalType, i18n, reason) {
     }
     event.addProperty("ORGANIZER", "MAILTO:" + organizer.email, {CN: organizer.fullname});
 
-    if (isGroupPlan) {
-
-
-        var targetAttendee = recipientUser;
-        var otherAttendees = activity.joiningUsers.slice(1);
-
-
-        event.addProperty("ATTENDEE",
-                "MAILTO:" + targetAttendee.email,
-            {CUTYPE: "INDIVIDUAL", RSVP: "TRUE", ROLE: "REQ-PARTICIPANT", PARTSTAT: "NEEDS-ACTION", CN: "You", "X-NUM-GUESTS": 0 });
-
-        _.forEach(otherAttendees, function (attendee) {
-            // make sure we only add the guy receiving this iCal one time
-            if (attendee.email !== organizer.email && attendee.email !== targetAttendee.email) {
-                event.addProperty("ATTENDEE",
-                        "MAILTO:" + attendee.email,
-                    {CUTYPE: "INDIVIDUAL", ROLE: "REQ-PARTICIPANT", PARTSTAT: "ACCEPTED", CN: attendee.fullname, "X-NUM-GUESTS": 0 });
-            }
-        });
-    }
+    //if (isGroupPlan) {
+    //
+    //
+    //    var targetAttendee = recipientUser;
+    //    var otherAttendees = activity.joiningUsers.slice(1);
+    //
+    //
+    //    event.addProperty("ATTENDEE",
+    //            "MAILTO:" + targetAttendee.email,
+    //        {CUTYPE: "INDIVIDUAL", RSVP: "TRUE", ROLE: "REQ-PARTICIPANT", PARTSTAT: "NEEDS-ACTION", CN: "You", "X-NUM-GUESTS": 0 });
+    //
+    //    _.forEach(otherAttendees, function (attendee) {
+    //        // make sure we only add the guy receiving this iCal one time
+    //        if (attendee.email !== organizer.email && attendee.email !== targetAttendee.email) {
+    //            event.addProperty("ATTENDEE",
+    //                    "MAILTO:" + attendee.email,
+    //                {CUTYPE: "INDIVIDUAL", ROLE: "REQ-PARTICIPANT", PARTSTAT: "ACCEPTED", CN: attendee.fullname, "X-NUM-GUESTS": 0 });
+    //        }
+    //    });
+    //}
 
     if (iCalType === 'new' || iCalType === 'update') {
-        myCal.addProperty("METHOD", "REQUEST");
-        event.addProperty("STATUS", "CONFIRMED");
+        myCal.addProperty("METHOD", "PUBLISH");
     } else if (iCalType === 'cancel') {
         myCal.addProperty("METHOD", "CANCEL");
         event.addProperty("STATUS", "CANCELLED");

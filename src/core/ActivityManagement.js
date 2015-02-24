@@ -200,7 +200,7 @@ actMgr.defaultActivity = function (idea, user, campaignId, startDateParam) {
 
     start.hours(startTime.tz('Europe/Zurich').hours());
     start.minutes(startTime.minutes());
-    start = start.toDate();
+    start = start.startOf('minute').toDate();
 
     var activity = {
         owner: user._id || user,

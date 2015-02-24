@@ -32,20 +32,21 @@ var getIcalObject = function (activity, recipientUser, iCalType, i18n, reason) {
     var sequence = activity.__v;
     event.addProperty("SEQUENCE", sequence);
 
+    // Organizer and attendees are only relevant for group plans
+    var organizer = activity.owner;
+
+    // make sure owner is populated, other crash fast and hard
+    if (!organizer.email || !organizer.fullname) {
+        throw new Error('unpopulated owner not allowed on activity when creating iCalObjects');
+    }
+    event.addProperty("ORGANIZER", "MAILTO:" + organizer.email, {CN: organizer.fullname});
+
     if (isGroupPlan) {
 
-        // Organizer and attendees are only relevant for group plans
-        var organizer = activity.owner;
-
-        // make sure owner is populated, other crash fast and hard
-        if (!organizer.email || !organizer.fullname) {
-            throw new Error('unpopulated owner not allowed on activity when creating iCalObjects');
-        }
 
         var targetAttendee = recipientUser;
         var otherAttendees = activity.joiningUsers.slice(1);
 
-        event.addProperty("ORGANIZER", "MAILTO:" + organizer.email, {CN: organizer.fullname});
 
         event.addProperty("ATTENDEE",
                 "MAILTO:" + targetAttendee.email,

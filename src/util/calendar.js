@@ -20,7 +20,7 @@ var getIcalObject = function (activity, recipientUser, iCalType, i18n, reason) {
         activity.text = "";
     }
 
-    var isGroupPlan = activity.executionType === 'group';
+    // var isGroupPlan = activity.executionType === 'group';
 
     var myCal = new ical.iCalendar();
     myCal.addProperty("CALSCALE", "GREGORIAN");

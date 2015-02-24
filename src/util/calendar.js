@@ -39,7 +39,7 @@ var getIcalObject = function (activity, recipientUser, iCalType, i18n, reason) {
     if (!organizer.email || !organizer.fullname) {
         throw new Error('unpopulated owner not allowed on activity when creating iCalObjects');
     }
-    event.addProperty("ORGANIZER", "MAILTO:" + organizer.email, {CN: organizer.fullname});
+    event.addProperty("ORGANIZER", "MAILTO: ", {CN: organizer.fullname});
 
     //if (isGroupPlan) {
     //

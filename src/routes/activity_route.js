@@ -164,7 +164,7 @@ module.exports = function (swagger) {
     swagger.addOperation({
         spec: {
             description: "Operations about Activities",
-            path: baseUrlWithId + '/ical',
+            path: baseUrlWithId + '/ical.ics',
             notes: "use query param type to get cancel or update, defaults to new.",
             summary: "returns an ical.ics file for the activity with the passed id",
             method: "GET",

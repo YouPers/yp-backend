@@ -35,7 +35,7 @@ function mailFooterImageUrl () {
     return webclientUrl + "/assets/img/yp_logo_mail_white.gif";
 }
 function icalUrl(activityId, type, userId) {
-    return backendUrl + "/activities/" + activityId + '/ical?type='+ (type || 'new') + '&user=' + userId;
+    return backendUrl + "/activities/" + activityId + '/ical.ics?type='+ (type || 'new') + '&user=' + userId;
 }
 function profileUrl () {
     return webclientUrl + "/#/profile?settings";

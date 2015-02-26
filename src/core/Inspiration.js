@@ -177,6 +177,17 @@ function getIdeaMatchScores(user, allInvitations, allDismissals, done) {
 
 function getInspirations(user, queryOptions, locale, done) {
 
+    if (_.isUndefined(done)) {
+        done = locale;
+    }
+    if (_.isUndefined(locale)) {
+        done = queryOptions;
+    }
+    if (_.isUndefined(done) || _.isFunction(done)) {
+        throw new error.MissingParameterError('parameters user and callback are required');
+    }
+
+
     function _loadSocialInteractions(queryOptions, cb) {
         SocialInteraction.getAllForUser(user, mongoose.model('SocialInteraction'), {dismissed: true, queryOptions: queryOptions, locale: locale}, function (err, sois) {
             if (err) {

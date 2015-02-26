@@ -58,7 +58,7 @@
         },
         "number": "INS-52",
         "picture": "",
-        "qualityFactor": 5,
+        "qualityFactor": 2,
         "titleI18n": {
             "de": "Schwimmen",
             "en": "Swimming"
@@ -1650,7 +1650,7 @@
         },
         "number": "INS-45",
         "picture": "",
-        "qualityFactor": 5,
+        "qualityFactor": 2,
         "titleI18n": {
             "de": "Kegeln",
             "en": "Bowling"
@@ -1688,7 +1688,7 @@
         },
         "number": "INS-46",
         "picture": "",
-        "qualityFactor": 5,
+        "qualityFactor": 2,
         "titleI18n": {
             "de": "Molkereif\u00fchrung",
             "en": "Dairy Tour"
@@ -1722,7 +1722,7 @@
         },
         "number": "INS-47",
         "picture": "",
-        "qualityFactor": 5,
+        "qualityFactor": 2,
         "titleI18n": {
             "de": "Sauna",
             "en": "Sauna"
@@ -1757,7 +1757,7 @@
         },
         "number": "INS-48",
         "picture": "",
-        "qualityFactor": 5,
+        "qualityFactor": 2,
         "titleI18n": {
             "de": "R\u00fcckentraining",
             "en": "Back Training"
@@ -1792,7 +1792,7 @@
         },
         "number": "INS-49",
         "picture": "",
-        "qualityFactor": 5,
+        "qualityFactor": 2,
         "titleI18n": {
             "de": "Schachspiel",
             "en": "Chess Game"
@@ -1830,7 +1830,7 @@
         },
         "number": "INS-50",
         "picture": "",
-        "qualityFactor": 5,
+        "qualityFactor": 2,
         "titleI18n": {
             "de": "Wasser-Fitness",
             "en": "Water Fitness"
@@ -1865,7 +1865,7 @@
         },
         "number": "INS-51",
         "picture": "",
-        "qualityFactor": 5,
+        "qualityFactor": 2,
         "titleI18n": {
             "de": "Wassergymnastik",
             "en": "Water Gymnastics"

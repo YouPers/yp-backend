@@ -132,7 +132,7 @@ var deleteByIdFn = function (baseUrl, Model) {
 };
 
 var getInspirationsNew = function(req, res, next) {
-    Inspiration.getInspirations(req.user, req.query, generic.sendListCb(req, res, next));
+    Inspiration.getInspirations(req.user, req.query, req.locale, generic.sendListCb(req, res, next));
 };
 
 module.exports = {

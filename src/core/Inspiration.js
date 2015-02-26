@@ -88,7 +88,7 @@ function getIdeaMatchScore(idea, userCoach, userCats, userEvents, userInvitation
         planningMatch = 2;
     }
 
-    var dismissalFactor = Math.pow(0.3, (userDismissals && userDismissals.length) || 0);
+    var dismissalFactor = Math.pow(0.1, (userDismissals && userDismissals.length) || 0);
 
     var ideaScore = qf * coachMatch * categoryMatch * planningMatch * dismissalFactor;
     log.trace({
@@ -112,12 +112,12 @@ function getIdeaMatchScore(idea, userCoach, userCats, userEvents, userInvitation
  * @returns {*}
  * @private
  * @param user
- * @param invitations
- * @param dismissals
+ * @param allInvitations
+ * @param allDismissals
  * @param done
  */
 
-function getIdeaMatchScores(user, invitations, dismissals, done) {
+function getIdeaMatchScores(user, allInvitations, allDismissals, done) {
     // load all the stuff we need
     var locals = {
 
@@ -164,8 +164,8 @@ function getIdeaMatchScores(user, invitations, dismissals, done) {
 
                     var ideaFilter = function(obj) {return obj.idea.toString() === idea._id.toString();};
                     var events = _.filter(locals.events, ideaFilter);
-                    var invitations = _.filter(invitations, ideaFilter);
-                    var dismissals = _.filter(dismissals, ideaFilter);
+                    var invitations = _.filter(allInvitations, ideaFilter);
+                    var dismissals = _.filter(allDismissals, ideaFilter);
                     idea.ideaScore = getIdeaMatchScore(idea, coach, userCats, events, invitations, dismissals);
                 });
             return done(null, _.sortBy(locals.ideas, 'ideaScore'));

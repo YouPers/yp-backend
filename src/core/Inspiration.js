@@ -183,7 +183,7 @@ function getInspirations(user, queryOptions, locale, done) {
     if (_.isUndefined(locale)) {
         done = queryOptions;
     }
-    if (_.isUndefined(done) || _.isFunction(done)) {
+    if (_.isUndefined(done) || !_.isFunction(done)) {
         throw new error.MissingParameterError('parameters user and callback are required');
     }
 

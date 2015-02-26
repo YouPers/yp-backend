@@ -1,11 +1,11 @@
 {
   "log": {
     "name": "Main",
-    "stdout": "debug",
+    "stdout": "info",
     "streams": [
       {
         "path": "logs/server.log",
-        "level": "debug"
+        "level": "error"
       }
     ]
   },

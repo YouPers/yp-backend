@@ -178,7 +178,7 @@ function getIdeaMatchScores(user, allInvitations, allDismissals, done) {
 function getInspirations(user, done) {
 
     function _loadSocialInteractions(cb) {
-        SocialInteraction.getAllForUser(user, mongoose.model('SocialInteraction'), {dismissed: true}, function (err, sois) {
+        SocialInteraction.getAllForUser(user, mongoose.model('SocialInteraction'), {dismissed: true, queryOptions: {populate: 'idea'}}, function (err, sois) {
             if (err) {
                 return cb(err);
             }

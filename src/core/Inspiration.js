@@ -175,10 +175,10 @@ function getIdeaMatchScores(user, allInvitations, allDismissals, done) {
 }
 
 
-function getInspirations(user, done) {
+function getInspirations(user, queryOptions, done) {
 
-    function _loadSocialInteractions(cb) {
-        SocialInteraction.getAllForUser(user, mongoose.model('SocialInteraction'), {dismissed: true, queryOptions: {populate: 'idea'}}, function (err, sois) {
+    function _loadSocialInteractions(queryOptions, cb) {
+        SocialInteraction.getAllForUser(user, mongoose.model('SocialInteraction'), {dismissed: true, queryOptions: queryOptions}, function (err, sois) {
             if (err) {
                 return cb(err);
             }
@@ -202,7 +202,7 @@ function getInspirations(user, done) {
         });
     }
 
-    _loadSocialInteractions(function(err, result) {
+    _loadSocialInteractions(queryOptions, function(err, result) {
         if (err) {
             return done(err);
         }

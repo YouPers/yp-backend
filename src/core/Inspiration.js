@@ -58,7 +58,13 @@ var coach2Topic = {
  *
  * @param
  */
-function getIdeaMatchScore(idea, userCoach, userCats, userEvents, userInvitations, userDismissals) {
+function getIdeaMatchScore(idea, parameters) {
+    var userCoach = parameters.userCoach;
+    var userCats = parameters.userCats;
+    var futurePlanCount = parameters.futurePlanCount || 0;
+    var pastPlanCount = parameters.pastPlanCount || 0;
+    var openInvitationCount = parameters.openInvitationCount || 0;
+    var dismissalsCount = parameters.dismissalsCount || 0;
 
     var qf = idea.qualityFactor;
 
@@ -69,39 +75,27 @@ function getIdeaMatchScore(idea, userCoach, userCats, userEvents, userInvitation
 
     var categoryMatch = 1 + _.intersection(userCats, idea.categories).length;
 
-    // calculating planningMatch
-    var now = new Date();
-
-    var hasFuturePlan = _.find(userEvents, function (event) {
-        return event.start > now;
-    });
-    var hasInvitation = userInvitations && userInvitations.length >= 1;
-    var hasEverPlanned = _.find(userEvents, function (event) {
-        return event.start < now;
-    });
 
     var planningMatch = 1;
-    if (hasFuturePlan || hasInvitation) {
+    if (futurePlanCount > 0 || openInvitationCount > 0) {
         planningMatch = 0.1;
     }
-    if (hasEverPlanned) {
-        planningMatch = 2;
+    if (pastPlanCount > 0) {
+        planningMatch = 2 * planningMatch;
     }
 
-//    var dismissalFactor =  Math.pow(0.1, (userDismissals && userDismissals.length) || 0);
-
-    var dismissalFactor = (userDismissals && userDismissals.length > 0) ? 0 : 1;
+    var dismissalFactor = Math.pow(0.05, dismissalsCount);
 
     var ideaScore = qf * coachMatch * categoryMatch * planningMatch * dismissalFactor;
     log.trace({
-        idea: idea.titleI18n.de,
+        idea: idea.titleI18n.en,
         qf: qf,
         coachMatch: coachMatch,
         categoryMatch: categoryMatch,
         planningMatch: planningMatch,
         dismissalFactor: dismissalFactor,
         ideaScore: ideaScore
-    });
+    }, 'scored idea: ' + idea.number);
 
     return ideaScore;
 }
@@ -119,14 +113,41 @@ function getIdeaMatchScore(idea, userCoach, userCats, userEvents, userInvitation
  * @param done
  */
 
-function getIdeaMatchScores(user, allInvitations, allDismissals, done) {
-    // load all the stuff we need
-    var locals = {
+function getIdeaMatchScores(user, ideas, userData, done) {
 
-    };
+            _.forEach(ideas,
+                function(idea, cb) {
 
+                    var params = {
+                        userCoach:user.profile.coach,
+                        userCats: user.profile.categories,
+                        futurePlanCount: userData.eventCountByIdeaAndNow[idea._id.toString() + 'future'],
+                        pastPlanCount: userData.eventCountByIdeaAndNow[idea._id.toString() + 'past'],
+                        openInvitationCount: userData.invitationCountByIdea[idea._id.toString()],
+                        dismissalsCount: userData.dismissalCountByIdea[idea._id.toString()]
+                    };
 
-    async.parallel([
+                    idea.ideaScore = getIdeaMatchScore(idea, params);
+                });
+            return done(null, _.sortBy(ideas, 'ideaScore'));
+}
+
+function loadScoringData(user, queryOptions, locale, done) {
+
+    if (_.isUndefined(done)) {
+        done = locale;
+    }
+    if (_.isUndefined(locale)) {
+        done = queryOptions;
+    }
+    if (_.isUndefined(done) || !_.isFunction(done)) {
+        throw new error.MissingParameterError('parameters user and callback are required');
+    }
+
+    var locals = {userData: {}};
+
+    async.parallel(
+        [
             // loading the already planned events of this user - we do not want to recommend things that this user has already planned
             function loadEvents(cb) {
                 mongoose.model('Event').find({
@@ -138,7 +159,12 @@ function getIdeaMatchScores(user, allInvitations, allDismissals, done) {
                     if (err) {
                         return cb(err);
                     }
-                    locals.events = plannedEvents;
+                    var now = new Date();
+                    var eventCountByIdeaAndNow = _.countBy(plannedEvents, function (event) {
+                        return event.idea.toString() + (event.start > now ? 'future' : 'past');
+                    });
+
+                    locals.userData.eventCountByIdeaAndNow = eventCountByIdeaAndNow;
                     return cb();
                 });
             },
@@ -152,40 +178,17 @@ function getIdeaMatchScores(user, allInvitations, allDismissals, done) {
                         locals.ideas = ideas;
                         return cb();
                     });
-            }],
-        function (err) {
+            }, function loadSois (cb) {
+            return _loadSocialInteractions(queryOptions, cb);
+        }
+        ], function (err) {
             if (err) {
                 return done(err);
             }
 
-            var userCats = user.profile.categories;
-            var coach = user.profile.coach;
+            return done(null, locals);
 
-            _.forEach(locals.ideas,
-                function(idea, cb) {
-
-                    var ideaFilter = function(obj) {return obj.idea.toString() === idea._id.toString();};
-                    var events = _.filter(locals.events, ideaFilter);
-                    var invitations = _.filter(allInvitations, ideaFilter);
-                    var dismissals = _.filter(allDismissals, ideaFilter);
-                    idea.ideaScore = getIdeaMatchScore(idea, coach, userCats, events, invitations, dismissals);
-                });
-            return done(null, _.sortBy(locals.ideas, 'ideaScore'));
         });
-}
-
-
-function getInspirations(user, queryOptions, locale, done) {
-
-    if (_.isUndefined(done)) {
-        done = locale;
-    }
-    if (_.isUndefined(locale)) {
-        done = queryOptions;
-    }
-    if (_.isUndefined(done) || !_.isFunction(done)) {
-        throw new error.MissingParameterError('parameters user and callback are required');
-    }
 
 
     function _loadSocialInteractions(queryOptions, cb) {
@@ -194,41 +197,60 @@ function getInspirations(user, queryOptions, locale, done) {
                 return cb(err);
             }
 
-            var locals = {};
-
             // TODO: sort invitations by distance to user's home
-            locals.publicInvitations = _.filter(sois, function (soi) {
+            locals.userData.publicInvitations = _.filter(sois, function (soi) {
                 return soi.__t === 'Invitation' && !soi.dismissed && soi.targetSpaces[0].type==='campaign';
             });
 
             // TODO: sort invitations by distance to user's home
-            locals.personalInvitations = _.filter(sois, function (soi) {
+            locals.userData.personalInvitations = _.filter(sois, function (soi) {
                 return soi.__t === 'Invitation' && !soi.dismissed && soi.targetSpaces[0].type==='user';
             });
 
-            locals.dismissals = _.filter(sois, function (soi) {
+            locals.userData.dismissals = _.filter(sois, function (soi) {
                 return soi.dismissed;
             });
+
+            locals.userData.invitationCountByIdea = _.countBy(locals.userData.publicInvitations.concat(locals.userData.personalInvitations), 'idea');
+            locals.userData.dismissalCountByIdea = _.countBy(locals.userData.dismissals, 'idea');
+
             return cb(null, locals);
         });
     }
 
-    _loadSocialInteractions(queryOptions, function(err, result) {
+}
+
+
+function getInspirations(user, queryOptions, locale, finalDone) {
+    if (_.isUndefined(finalDone)) {
+        finalDone = locale;
+        locale = 'en';
+    }
+    if (_.isUndefined(finalDone)) {
+        finalDone = queryOptions;
+        queryOptions = {};
+    }
+    if (_.isUndefined(finalDone) || !_.isFunction(finalDone)) {
+        throw new error.MissingParameterError('parameters user and callback are required');
+    }
+
+    loadScoringData(user, queryOptions, locale, function(err, result) {
         if (err) {
-            return done(err);
+            return finalDone(err);
         }
-        getIdeaMatchScores(user, result.publicInvitations.concat(result.personalInvitations), result.dismissals, function(err, scoredIdeas) {
+
+        getIdeaMatchScores(user, result.ideas, result.userData, function(err, scoredIdeas) {
             if (err) {
-                return done(err);
+                return finalDone(err);
             }
             var inspirations = [];
             var recsToSave = [];
 
-            if (result.publicInvitations.length > 0) {
-                inspirations.push(result.publicInvitations[0]);
+            if (result.userData.publicInvitations.length > 0) {
+                inspirations.push(result.userData.publicInvitations[0]);
             }
-            if (result.personalInvitations.length > 0) {
-                inspirations.push(result.personalInvitations[0]);
+            if (result.userData.personalInvitations.length > 0) {
+                inspirations.push(result.userData.personalInvitations[0]);
             }
 
             var scoredIdeaIndex = scoredIdeas.length -1;
@@ -251,12 +273,12 @@ function getInspirations(user, queryOptions, locale, done) {
                 rec.save(cb);
             }, function(err) {
                 if (err) {
-                    return done(err);
+                    return finalDone(err);
                 }
 
                 // repopulate ideas on saved recs)
                 Idea.populate(recsToSave, {path: "idea"}, function (err) {
-                    return done(null, inspirations);
+                    return finalDone(null, inspirations);
                 });
             });
         });
@@ -267,5 +289,6 @@ function getInspirations(user, queryOptions, locale, done) {
 module.exports = {
     getInspirations: getInspirations,
     getIdeaMatchScore: getIdeaMatchScore,
-    getIdeaMatchScores: getIdeaMatchScores
+    getIdeaMatchScores: getIdeaMatchScores,
+    loadScoringData: loadScoringData
 };

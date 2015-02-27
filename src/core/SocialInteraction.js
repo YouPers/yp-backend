@@ -76,11 +76,10 @@ mongoose.model('Invitation').on('add', function (invitation) {
                 User.find({ _id: { $in: userIds}}).select('+email +profile').populate('profile').exec(function (err, users) {
                     _.each(users, function (user) {
                         email.sendEventInvite(user.email, author, event, user, invitation._id, i18n);
-                        push.sendPush(user, {event: invitation.event, idea: invitation.idea, author: invitation.author}, null, function (err, result) {
+                        push.sendPush(user, {type: 'newPersonalInvitation', title: 'New Invitation for ' + event.title , text: author.fullname +'has invited you to join him', event: invitation.event, idea: invitation.idea, author: invitation.author}, 'newPersonalInvitation', function (err, result) {
                             if (err) {
                                 return SocialInteraction.emit('error', err);
                             }
-                            log.debug(result, 'sent push message to: ' + user.fullname + ' ' + user.id);
                         });
                     });
                 });

@@ -1,0 +1,51 @@
+[
+    {
+        "__v": 0,
+        "_id": {
+            "$oid": "54ef37f0dd1f434db7724fcf"
+        },
+        "allDay": false,
+        "campaign": {
+            "$oid": "527916a82079aa8704000006"
+        },
+        "created": {
+            "$date": 1424963568606
+        },
+        "end": {
+            "$date": 1425034800000
+        },
+        "executionType": "group",
+        "frequency": "week",
+        "idea": {
+            "$oid": "5278c6adcdeab69a2500007c"
+        },
+        "joiningUsers": [],
+        "number": "Act-119",
+        "owner": {
+            "$oid": "52a97f1650fca98c2900000a"
+        },
+        "recurrence": {
+            "byday": [
+                "MO",
+                "TU",
+                "WE",
+                "TH",
+                "FR"
+            ],
+            "endby": {
+                "after": 3,
+                "type": "after"
+            },
+            "every": 1,
+            "exceptions": []
+        },
+        "start": {
+            "$date": 1425031200000
+        },
+        "status": "active",
+        "title": "Vitaparcours",
+        "updated": {
+            "$date": 1424963568606
+        }
+    }
+]

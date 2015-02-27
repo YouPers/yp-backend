@@ -66,13 +66,14 @@ consts.newUserInNewCampaignApi(function (err, user, campaign, cleanupFn) {
                                     expect(invitations.length).toEqual(1);
                                     expect(invitations[0].event).toEqual(reloadedEvent.id);
 
+                                    newPlan.inviteOthers = false;
 
-                                    frisby.create('Event: delete the event again')
-                                        .delete(URL + '/events/' + newPlan.id)
+                                    frisby.create('Event: unset inviteOthers Flag and see whether its gone')
+                                        .put(URL + '/events/' + newPlan.id, newPlan)
                                         .auth(user.username, 'yp')
                                         .expectStatus(200)
-                                        .after(function () {
-
+                                        .afterJSON(function (updatedPlan) {
+                                            expect(updatedPlan.inviteOthers).toEqual(false);
 
                                             frisby.create('Event: get Invitations to see whether ind2 is not invited anymore')
                                                 .get(URL + '/invitations')
@@ -80,9 +81,28 @@ consts.newUserInNewCampaignApi(function (err, user, campaign, cleanupFn) {
                                                 .expectStatus(200)
                                                 .afterJSON(function (invitations) {
                                                     expect(invitations.length).toEqual(0);
-                                                    cleanupFn();
 
 
+                                                    frisby.create('Event: delete the event again')
+                                                        .delete(URL + '/events/' + newPlan.id)
+                                                        .auth(user.username, 'yp')
+                                                        .expectStatus(200)
+                                                        .after(function () {
+
+
+                                                            frisby.create('Event: get Invitations to see whether ind2 is not invited anymore')
+                                                                .get(URL + '/invitations')
+                                                                .auth(username2, 'yp')
+                                                                .expectStatus(200)
+                                                                .afterJSON(function (invitations) {
+                                                                    expect(invitations.length).toEqual(0);
+                                                                    cleanupFn();
+
+                                                                })
+                                                                .toss();
+
+                                                        })
+                                                        .toss();
 
                                                 })
                                                 .toss();

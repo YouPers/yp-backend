@@ -654,6 +654,8 @@ function deleteEvent(req, res, next) {
 
 function putEvent(req, res, next) {
     var sentEvent = req.body;
+
+    sentEvent.inviteOthers = sentEvent.inviteOthers === 'true' ? true : false;
     var err = handlerUtils.checkWritingPreCond(sentEvent, req.user, Event);
     if (err) {
         return error.handleError(err, next);
@@ -721,6 +723,10 @@ function putEvent(req, res, next) {
                 }
 
                 loadedEvent.idea = loadedEvent.idea._id;
+
+                // set the inviteOthers Flag manually again: because we wrote the public invitation async it was not in the DB
+                // while the event was saved and reloaded.
+                loadedEvent.inviteOthers = sentEvent.inviteOthers;
 
                 actMgr.emit('event:eventUpdated', loadedEvent);
 

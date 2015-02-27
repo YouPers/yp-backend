@@ -68,18 +68,37 @@ mongoose.model('Invitation').on('add', function (invitation) {
 
             var userIds = _.map(_.filter(invitation.targetSpaces, { type: 'user'}), 'targetId');
 
-            log.debug('Invitation:add - userIds', userIds);
+            log.debug({userIds: userIds}, 'Invitation:add for these users');
 
             // get author
             User.findById(invitation.author).exec(function (err, author) {
+
+                if (err) {
+                    return log.error({err: err, invitation: invitation}, 'error in evenHandler: invitation:add');
+                }
                 // get all targeted users
                 User.find({ _id: { $in: userIds}}).select('+email +profile').populate('profile').exec(function (err, users) {
+                    if (err) {
+                        return log.error({err: err, invitation: invitation}, 'error in evenHandler: invitation:add');
+                    }
+
                     _.each(users, function (user) {
                         email.sendEventInvite(user.email, author, event, user, invitation._id, i18n);
-                        push.sendPush(user, {type: 'newPersonalInvitation', title: 'New Invitation for ' + event.title , text: author.fullname +'has invited you to join him', event: invitation.event, idea: invitation.idea, author: invitation.author}, 'newPersonalInvitation', function (err, result) {
+
+                        var pushData = {
+                            type: 'newPersonalInvitation',
+                            title: 'New Invitation for Event' + event.title ,
+                            text: author.fullname +' has invited you to join',
+                            event: invitation.event,
+                            idea: invitation.idea,
+                            author: invitation.author};
+                        log.trace({recipient: user.id, data: pushData}, "sending push now");
+
+                        push.sendPush(user, pushData, 'newPersonalInvitation', function (err, result) {
                             if (err) {
                                 return SocialInteraction.emit('error', err);
                             }
+                            log.info({result: result, user: user.id, data:  pushData}, "sent push notification");
                         });
                     });
                 });

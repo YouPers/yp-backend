@@ -17,7 +17,8 @@ module.exports = function (swagger) {
         baseUrlWithId = baseUrl + "/{id}";
     var resultsUrl = baseUrl + '/{assessmentId}/results';
     var answerUrl = baseUrl + '/{assessmentId}/answers/{questionId}';
-    var questionUrl = baseUrl + '/{assessmentId}/questions';
+    var questionUrl = baseUrl + '/{assessmentId}/questions/';
+    var questionWithIdUrl = baseUrl + '/{assessmentId}/questions/{id}';
 
     swagger.addOperation({
         spec: {
@@ -242,6 +243,38 @@ module.exports = function (swagger) {
         },
         action: generic.postFn(baseUrl, AssessmentQuestion)
     });
+    swagger.addOperation({
+        spec: {
+            description: "Operations about assessments",
+            path: questionWithIdUrl,
+            notes: "put a new assessment question",
+            summary: "stores a new question for an assessment",
+            method: "PUT",
+            params: [swagger.bodyParam("assessmentQuestion", "The question to store", "AssessmentQuestion")],
+            "responseMessages": [],
+            "nickname": "putAssessmentQuestion",
+            accessLevel: 'al_productadmin',
+            beforeCallbacks: []
+        },
+        action: generic.putFn(questionWithIdUrl, AssessmentQuestion)
+    });
+
+    swagger.addOperation({
+            spec: {
+                description: "Operations about assessments",
+                path: questionWithIdUrl,
+                notes: "can only delete the question for one specific assessement",
+                summary: "deletes one specific question for the current user and the assessment with id assessmentId",
+                method: "DELETE",
+                params: [swagger.pathParam("assessmentId", "ID of the assessment for which to store a result", "string"),
+                    swagger.pathParam("id", "ID of the result to delete", "string")],
+                "nickname": "deleteAssessmentQuestion",
+                accessLevel: 'al_user',
+                beforeCallbacks: []
+            },
+            action: generic.deleteByIdFn(questionWithIdUrl, AssessmentQuestion)
+        }
+    );
 
     swagger.addOperation({
             spec: {

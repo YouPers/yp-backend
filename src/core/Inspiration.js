@@ -60,7 +60,7 @@ var coach2Topic = {
  */
 function getIdeaMatchScore(idea, parameters) {
     var userCoach = parameters.userCoach;
-    var userCats = parameters.userCats;
+    var userCats = parameters.userCats || [];
     var futurePlanCount = parameters.futurePlanCount || 0;
     var pastPlanCount = parameters.pastPlanCount || 0;
     var openInvitationCount = parameters.openInvitationCount || 0;
@@ -69,9 +69,12 @@ function getIdeaMatchScore(idea, parameters) {
     var qf = idea.qualityFactor;
 
     // coachMatch = 1 + number of intersecting topics between user's coach's topics and idea's topics
-    var coachMatch = 1 + _.intersection(coach2Topic[userCoach], _.map(idea.topics, function (topic) {
+    var coachMatch = 1;
+    if (userCoach && userCoach !== '') {
+        coachMatch = 1 + _.intersection(coach2Topic[userCoach], _.map(idea.topics, function (topic) {
             return topic.toString();
         })).length;
+    }
 
     var categoryMatch = 1 + _.intersection(userCats, idea.categories).length;
 
@@ -193,6 +196,8 @@ function loadScoringData(user, queryOptions, locale, done) {
 
 
     function _loadSocialInteractions(queryOptions, cb) {
+        var ideaPopulated = queryOptions.populate && queryOptions.populate.indexOf('idea') !== -1;
+
         SocialInteraction.getAllForUser(user, mongoose.model('SocialInteraction'), {
             dismissed: true,
             queryOptions: queryOptions,
@@ -220,8 +225,12 @@ function loadScoringData(user, queryOptions, locale, done) {
                 return !soi.dismissed && soi.__t === 'Recommendation';
             });
 
-            locals.userData.invitationCountByIdea = _.countBy(locals.userData.publicInvitations.concat(locals.userData.personalInvitations), 'idea');
-            locals.userData.dismissalCountByIdea = _.countBy(locals.userData.dismissals, 'idea');
+            locals.userData.invitationCountByIdea = _.countBy(locals.userData.publicInvitations.concat(locals.userData.personalInvitations), function(soi) {
+                return (soi.idea._id && soi.idea._id.toString()) || soi.idea.toString();
+            });
+            locals.userData.dismissalCountByIdea = _.countBy(locals.userData.dismissals, function(soi) {
+                return (soi.idea._id && soi.idea._id.toString()) || soi.idea.toString();
+            });
 
             return cb(null, locals);
         });

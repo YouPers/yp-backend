@@ -323,6 +323,11 @@ describe('inspirations recommender module', function () {
                 if (err) {
                     return done(err);
                 }
+                for (var i = 0; i < insps.length; i++) {
+                    expect(insps[i].idea.id).toEqual(newInsps[i].idea.id);
+                    expect(insps[i].id).toEqual(newInsps[i].id);
+                }
+
                 _.forEach(newInsps, function (newInsp) {
                     var matchingId = _.find(insps, function (oldInsp) {
                         return oldInsp.id === newInsp.id;
@@ -557,8 +562,64 @@ describe('inspirations recommender module', function () {
             });
     });
 
-});
+    it('should return the same thing whether populated or not', function (done) {
+        Inspiration.getInspirations(user, function (err, insps) {
+            if (err) {
+                return done(err);
+            }
+            Inspiration.getInspirations(user, {
+                populate: 'idea event',
+                populatedeep: 'event.idea idea.topics'
+            }, 'en', function (err, newInsps) {
+                if (err) {
+                    return done(err);
+                }
+                for (var i = 0; i < insps.length; i++) {
+                    expect(insps[i].idea.id).toEqual(newInsps[i].idea.id);
+                    expect(insps[i].id).toEqual(newInsps[i].id);
+                }
 
+
+                return _deleteObjs(newInsps.concat(newInsps), done);
+
+            });
+        });
+    });
+
+
+    it('should return the same thing whether populated or not, even after dismissing a rec', function (done) {
+        Inspiration.getInspirations(user, function (err, oldinsps) {
+            if (err) {
+                return done(err);
+            }
+            SocialInteraction.dismissSocialInteractionById(oldinsps[0]._id, user, {reason: 'reason'}, function (err) {
+                if (err) {
+                    return done(err);
+                }
+                Inspiration.getInspirations(user, function (err, insps) {
+                    if (err) {
+                        return done(err);
+                    }
+                    Inspiration.getInspirations(user, {
+                        populate: 'idea event',
+                        populatedeep: 'event.idea idea.topics'
+                    }, 'en', function (err, newInsps) {
+                        if (err) {
+                            return done(err);
+                        }
+                        for (var i = 0; i < insps.length; i++) {
+                            expect(insps[i].idea.id).toEqual(newInsps[i].idea.id);
+                            expect(insps[i].id).toEqual(newInsps[i].id);
+                        }
+
+                        return _deleteObjs(newInsps.concat(newInsps), done);
+                    });
+                });
+            });
+        });
+    });
+
+});
 function _deleteObjs(sois, done) {
     async.forEach(sois, function (soi, next) {
         soi.remove(next);

@@ -129,15 +129,8 @@ function getIdeaMatchScores(user, ideas, userData, done) {
 
             idea.ideaScore = getIdeaMatchScore(idea, params);
         });
-    function pad(str, max) {
-        str = str.toString();
-        return str.length < max ? pad("0" + str, max) : str;
-    }
 
-    return done(null, _.sortBy(ideas, function (idea) {
-
-        return pad(idea.ideaScore.toFixed(5), 15) + idea.id;
-    }));
+    return done(null, _.chain(ideas).sortBy('id').sortBy('ideaScore').value());
 }
 
 function loadScoringData(user, queryOptions, locale, done) {

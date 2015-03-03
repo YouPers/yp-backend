@@ -346,8 +346,11 @@ actMgr.on('event:eventUpdated', function (updatedEvent) {
                         targetId: INSPIRATION_CAMPAIGN_ID
                     }]
                 };
-                new mongoose.model('Invitation')(publicInvitation).save(function (err) {
-                    return actMgr.emit('error', err);
+                new Invitation(publicInvitation).save(function (err) {
+                    if (err) {
+                        log.error({err: err}, 'error saving invitation');
+                        return actMgr.emit('error', err);
+                    }
                 });
             }
         });

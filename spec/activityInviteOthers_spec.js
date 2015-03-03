@@ -75,20 +75,24 @@ consts.newUserInNewCampaignApi(function (err, user, campaign, cleanupFn) {
                                         .afterJSON(function (updatedPlan) {
                                             expect(updatedPlan.inviteOthers).toEqual(false);
 
-                                            frisby.create('Event: get Invitations to see whether ind2 is not invited anymore')
-                                                .get(URL + '/invitations')
-                                                .auth(username2, 'yp')
+
+                                            updatedPlan.inviteOthers = true;
+
+                                            frisby.create('Event: set inviteOthers Flag again and see whether its there')
+                                                .put(URL + '/events/' + newPlan.id, updatedPlan)
+                                                .auth(user.username, 'yp')
                                                 .expectStatus(200)
-                                                .afterJSON(function (invitations) {
-                                                    expect(invitations.length).toEqual(0);
+                                                .afterJSON(function (updatedPlan2) {
+                                                    expect(updatedPlan2.inviteOthers).toEqual(true);
 
+                                                    updatedPlan2.inviteOthers = true;
 
-                                                    frisby.create('Event: delete the event again')
-                                                        .delete(URL + '/events/' + newPlan.id)
+                                                    frisby.create('Event: unset inviteOthers Flag again and see whether its gone')
+                                                        .put(URL + '/events/' + newPlan.id, updatedPlan2)
                                                         .auth(user.username, 'yp')
                                                         .expectStatus(200)
-                                                        .after(function () {
-
+                                                        .afterJSON(function (updatedPlan3) {
+                                                            expect(updatedPlan3.inviteOthers).toEqual(true);
 
                                                             frisby.create('Event: get Invitations to see whether ind2 is not invited anymore')
                                                                 .get(URL + '/invitations')
@@ -96,11 +100,31 @@ consts.newUserInNewCampaignApi(function (err, user, campaign, cleanupFn) {
                                                                 .expectStatus(200)
                                                                 .afterJSON(function (invitations) {
                                                                     expect(invitations.length).toEqual(0);
-                                                                    cleanupFn();
+
+
+                                                                    frisby.create('Event: delete the event again')
+                                                                        .delete(URL + '/events/' + newPlan.id)
+                                                                        .auth(user.username, 'yp')
+                                                                        .expectStatus(200)
+                                                                        .after(function () {
+
+
+                                                                            frisby.create('Event: get Invitations to see whether ind2 is not invited anymore')
+                                                                                .get(URL + '/invitations')
+                                                                                .auth(username2, 'yp')
+                                                                                .expectStatus(200)
+                                                                                .afterJSON(function (invitations) {
+                                                                                    expect(invitations.length).toEqual(0);
+                                                                                    cleanupFn();
+
+                                                                                })
+                                                                                .toss();
+
+                                                                        })
+                                                                        .toss();
 
                                                                 })
                                                                 .toss();
-
                                                         })
                                                         .toss();
 

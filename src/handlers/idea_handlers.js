@@ -119,6 +119,7 @@ function putIdea(req, res, next) {
             if (!reloadedIdea) {
                 return next(new error.ResourceNotFoundError({ id: sentIdea.id}));
             }
+            reloadedIdea.locale = req.locale;
 
             _.extend(reloadedIdea, sentIdea);
 

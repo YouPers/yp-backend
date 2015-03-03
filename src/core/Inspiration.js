@@ -115,23 +115,29 @@ function getIdeaMatchScore(idea, parameters) {
 
 function getIdeaMatchScores(user, ideas, userData, done) {
 
-            _.forEach(ideas,
-                function(idea, cb) {
+    _.forEach(ideas,
+        function (idea, cb) {
 
-                    var params = {
-                        userCoach:user.profile.coach,
-                        userCats: user.profile.categories,
-                        futurePlanCount: userData.eventCountByIdeaAndNow[idea._id.toString() + 'future'],
-                        pastPlanCount: userData.eventCountByIdeaAndNow[idea._id.toString() + 'past'],
-                        openInvitationCount: userData.invitationCountByIdea[idea._id.toString()],
-                        dismissalsCount: userData.dismissalCountByIdea[idea._id.toString()]
-                    };
+            var params = {
+                userCoach: user.profile.coach,
+                userCats: user.profile.categories,
+                futurePlanCount: userData.eventCountByIdeaAndNow[idea._id.toString() + 'future'],
+                pastPlanCount: userData.eventCountByIdeaAndNow[idea._id.toString() + 'past'],
+                openInvitationCount: userData.invitationCountByIdea[idea._id.toString()],
+                dismissalsCount: userData.dismissalCountByIdea[idea._id.toString()]
+            };
 
-                    idea.ideaScore = getIdeaMatchScore(idea, params);
-                });
-            return done(null, _.sortBy(ideas, function(idea) {
-                return idea.ideaScore + idea.number;
-            }));
+            idea.ideaScore = getIdeaMatchScore(idea, params);
+        });
+    function pad(str, max) {
+        str = str.toString();
+        return str.length < max ? pad("0" + str, max) : str;
+    }
+
+    return done(null, _.sortBy(ideas, function (idea) {
+
+        return pad(idea.ideaScore.toFixed(5), 15) + idea.number;
+    }));
 }
 
 function loadScoringData(user, queryOptions, locale, done) {
@@ -180,7 +186,7 @@ function loadScoringData(user, queryOptions, locale, done) {
                         locals.ideas = ideas;
                         return cb();
                     });
-            }, function loadSois (cb) {
+            }, function loadSois(cb) {
             return _loadSocialInteractions(queryOptions, cb);
         }
         ], function (err) {
@@ -194,27 +200,31 @@ function loadScoringData(user, queryOptions, locale, done) {
 
 
     function _loadSocialInteractions(queryOptions, cb) {
-        SocialInteraction.getAllForUser(user, mongoose.model('SocialInteraction'), {dismissed: true, queryOptions: queryOptions, locale: locale}, function (err, sois) {
+        SocialInteraction.getAllForUser(user, mongoose.model('SocialInteraction'), {
+            dismissed: true,
+            queryOptions: queryOptions,
+            locale: locale
+        }, function (err, sois) {
             if (err) {
                 return cb(err);
             }
 
             // TODO: sort invitations by distance to user's home
             locals.userData.publicInvitations = _.filter(sois, function (soi) {
-                return soi.__t === 'Invitation' && !soi.dismissed && soi.targetSpaces[0].type==='campaign';
+                return soi.__t === 'Invitation' && !soi.dismissed && soi.targetSpaces[0].type === 'campaign';
             });
 
             // TODO: sort invitations by distance to user's home
             locals.userData.personalInvitations = _.filter(sois, function (soi) {
-                return soi.__t === 'Invitation' && !soi.dismissed && soi.targetSpaces[0].type==='user';
+                return soi.__t === 'Invitation' && !soi.dismissed && soi.targetSpaces[0].type === 'user';
             });
 
             locals.userData.dismissals = _.filter(sois, function (soi) {
                 return soi.dismissed;
             });
 
-            locals.userData.activeRecommendations = _.filter(sois, function(soi) {
-               return !soi.dismissed && soi.__t === 'Recommendation';
+            locals.userData.activeRecommendations = _.filter(sois, function (soi) {
+                return !soi.dismissed && soi.__t === 'Recommendation';
             });
 
             locals.userData.invitationCountByIdea = _.countBy(locals.userData.publicInvitations.concat(locals.userData.personalInvitations), 'idea');
@@ -240,12 +250,12 @@ function getInspirations(user, queryOptions, locale, finalDone) {
         throw new error.MissingParameterError('parameters user and callback are required');
     }
 
-    loadScoringData(user, queryOptions, locale, function(err, result) {
+    loadScoringData(user, queryOptions, locale, function (err, result) {
         if (err) {
             return finalDone(err);
         }
 
-        getIdeaMatchScores(user, result.ideas, result.userData, function(err, scoredIdeas) {
+        getIdeaMatchScores(user, result.ideas, result.userData, function (err, scoredIdeas) {
             if (err) {
                 return finalDone(err);
             }
@@ -261,17 +271,17 @@ function getInspirations(user, queryOptions, locale, finalDone) {
 
             var existingActiveRecs = result.userData.activeRecommendations;
 
-            var scoredIdeaIndex = scoredIdeas.length -1;
+            var scoredIdeaIndex = scoredIdeas.length - 1;
 
             while (inspirations.length < 3) {
 
-                var ideaToRec =  scoredIdeas[scoredIdeaIndex--];
+                var ideaToRec = scoredIdeas[scoredIdeaIndex--];
 
                 // check whether we already have an active rec for this idea:
 
                 /* jshint loopfunc: true */
-                var recs = _.remove(existingActiveRecs, function _ideaIdComparator (activeRec) {
-                    return (activeRec.idea.id || activeRec.idea.toString()) === ideaToRec.id;
+                var recs = _.remove(existingActiveRecs, function _ideaIdComparator(activeRec) {
+                    return ((activeRec.idea._id && activeRec.idea._id.toString()) || activeRec.idea.toString()) === ideaToRec.id;
                 });
 
                 if (recs.length > 1) {
@@ -279,7 +289,7 @@ function getInspirations(user, queryOptions, locale, finalDone) {
                 }
                 var rec;
 
-                if (recs.length ===1) {
+                if (recs.length === 1) {
                     rec = recs[0];
                 } else {
                     rec = new Recommendation({
@@ -297,15 +307,15 @@ function getInspirations(user, queryOptions, locale, finalDone) {
                 }
                 inspirations.push(rec);
             }
-            async.forEach(recsToSave, function(rec, cb) {
+            async.forEach(recsToSave, function (rec, cb) {
                 rec.save(cb);
-            }, function(err) {
+            }, function (err) {
                 if (err) {
                     return finalDone(err);
                 }
 
-                if (existingActiveRecs.length > 0 ){
-                    async.forEach(existingActiveRecs, function(rec, cb) {
+                if (existingActiveRecs.length > 0) {
+                    async.forEach(existingActiveRecs, function (rec, cb) {
                         rec.remove(cb);
                     });
                 }

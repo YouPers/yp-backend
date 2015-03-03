@@ -1,0 +1,49 @@
+[
+    {
+        "__t": "Invitation",
+        "__v": 0,
+        "_id": {
+            "$oid": "54ef37f0dd1f434db7724fd3"
+        },
+        "activity": {
+            "$oid": "54ef37f0dd1f434db7724fcf"
+        },
+        "author": {
+            "$oid": "52a97f1650fca98c2900000a"
+        },
+        "authorType": "campaignLead",
+        "created": {
+            "$date": 1424963568660
+        },
+        "idea": {
+            "$oid": "5278c6adcdeab69a2500007c"
+        },
+        "publishFrom": {
+            "$date": 1424963568625
+        },
+        "publishTo": {
+            "$date": 1435701599999
+        },
+        "refDocs": [],
+        "targetSpaces": [
+            {
+                "_id": {
+                    "$oid": "54ef37f0dd1f434db7724fd4"
+                },
+                "created": {
+                    "$date": 1424963568659
+                },
+                "targetId": {
+                    "$oid": "527916a82079aa8704000006"
+                },
+                "type": "campaign",
+                "updated": {
+                    "$date": 1424963568659
+                }
+            }
+        ],
+        "updated": {
+            "$date": 1424963568660
+        }
+    }
+]

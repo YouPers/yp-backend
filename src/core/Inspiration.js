@@ -129,7 +129,9 @@ function getIdeaMatchScores(user, ideas, userData, done) {
 
                     idea.ideaScore = getIdeaMatchScore(idea, params);
                 });
-            return done(null, _.sortBy(ideas, 'ideaScore'));
+            return done(null, _.sortBy(ideas, function(idea) {
+                return idea.ideaScore + idea.number;
+            }));
 }
 
 function loadScoringData(user, queryOptions, locale, done) {
@@ -261,10 +263,6 @@ function getInspirations(user, queryOptions, locale, finalDone) {
 
             var scoredIdeaIndex = scoredIdeas.length -1;
 
-
-
-
-
             while (inspirations.length < 3) {
 
                 var ideaToRec =  scoredIdeas[scoredIdeaIndex--];
@@ -273,7 +271,7 @@ function getInspirations(user, queryOptions, locale, finalDone) {
 
                 /* jshint loopfunc: true */
                 var recs = _.remove(existingActiveRecs, function _ideaIdComparator (activeRec) {
-                    return activeRec.idea.toString() === ideaToRec.id;
+                    return (activeRec.idea.id || activeRec.idea.toString()) === ideaToRec.id;
                 });
 
                 if (recs.length > 1) {

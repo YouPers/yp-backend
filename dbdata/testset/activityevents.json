@@ -1,0 +1,95 @@
+[
+    {
+        "__v": 0,
+        "_id": {
+            "$oid": "54ef37f0dd1f434db7724fd0"
+        },
+        "activity": {
+            "$oid": "54ef37f0dd1f434db7724fcf"
+        },
+        "campaign": {
+            "$oid": "527916a82079aa8704000006"
+        },
+        "created": {
+            "$date": 1424963568619
+        },
+        "end": {
+            "$date": 1425034800000
+        },
+        "idea": {
+            "$oid": "5278c6adcdeab69a2500007c"
+        },
+        "owner": {
+            "$oid": "52a97f1650fca98c2900000a"
+        },
+        "start": {
+            "$date": 1425031200000
+        },
+        "status": "open",
+        "updated": {
+            "$date": 1424963568619
+        }
+    },
+    {
+        "__v": 0,
+        "_id": {
+            "$oid": "54ef37f0dd1f434db7724fd1"
+        },
+        "activity": {
+            "$oid": "54ef37f0dd1f434db7724fcf"
+        },
+        "campaign": {
+            "$oid": "527916a82079aa8704000006"
+        },
+        "created": {
+            "$date": 1424963568620
+        },
+        "end": {
+            "$date": 1425639600000
+        },
+        "idea": {
+            "$oid": "5278c6adcdeab69a2500007c"
+        },
+        "owner": {
+            "$oid": "52a97f1650fca98c2900000a"
+        },
+        "start": {
+            "$date": 1425636000000
+        },
+        "status": "open",
+        "updated": {
+            "$date": 1424963568620
+        }
+    },
+    {
+        "__v": 0,
+        "_id": {
+            "$oid": "54ef37f0dd1f434db7724fd2"
+        },
+        "activity": {
+            "$oid": "54ef37f0dd1f434db7724fcf"
+        },
+        "campaign": {
+            "$oid": "527916a82079aa8704000006"
+        },
+        "created": {
+            "$date": 1424963568620
+        },
+        "end": {
+            "$date": 1426244400000
+        },
+        "idea": {
+            "$oid": "5278c6adcdeab69a2500007c"
+        },
+        "owner": {
+            "$oid": "52a97f1650fca98c2900000a"
+        },
+        "start": {
+            "$date": 1426240800000
+        },
+        "status": "open",
+        "updated": {
+            "$date": 1424963568620
+        }
+    }
+]

@@ -136,7 +136,7 @@ function getIdeaMatchScores(user, ideas, userData, done) {
 
     return done(null, _.sortBy(ideas, function (idea) {
 
-        return pad(idea.ideaScore.toFixed(5), 15) + idea.number;
+        return pad(idea.ideaScore.toFixed(5), 15) + idea.id;
     }));
 }
 

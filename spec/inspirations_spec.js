@@ -308,7 +308,7 @@ describe('inspirations recommender module', function () {
                     _.forEach(newInsps, function (newInsp) {
                         expect(newInsp.idea._id.toString()).not.toEqual(insps[0].idea._id.toString());
                     });
-                    return _deleteObjs(newInsps.concat(insps), done);
+                    return _deleteObjs(newInsps.concat(newInsps), done);
                 });
             });
         });

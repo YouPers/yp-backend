@@ -314,6 +314,28 @@ describe('inspirations recommender module', function () {
         });
     });
 
+    it('should return the same inspirations with same rec.id on two succeeding calls', function (done) {
+        Inspiration.getInspirations(user, function (err, insps) {
+            if (err) {
+                return done(err);
+            }
+            Inspiration.getInspirations(user, function (err, newInsps) {
+                if (err) {
+                    return done(err);
+                }
+                _.forEach(newInsps, function (newInsp) {
+                    var matchingId = _.find(insps, function (oldInsp) {
+                        return oldInsp.id === newInsp.id;
+                    });
+                    expect(matchingId).toBeDefined();
+                });
+
+                return _deleteObjs(newInsps.concat(newInsps), done);
+            });
+        });
+    });
+
+
     it('should include a personal invitation in the list of inspirations', function (done) {
         var ideaId = '54ca2fc88c0832450f0e1aaf';
         mongoose.model('Idea').findById(ideaId).exec(function (err, idea) {
@@ -329,7 +351,7 @@ describe('inspirations recommender module', function () {
                         expect(_.find(insps, function (insp) {
                             return insp.__t === 'Invitation' &&
                                 insp.targetSpaces[0].type === 'user' &&
-                                insp.idea.toString() === ideaId;
+                                insp.idea.id === ideaId;
                         })).toBeDefined();
 
                         return _deleteObjs(insps, done);
@@ -356,7 +378,7 @@ describe('inspirations recommender module', function () {
                         var myInv = _.find(insps, function (insp) {
                             return insp.__t === 'Invitation' &&
                                 insp.targetSpaces[0].type === 'user' &&
-                                insp.idea.toString() === ideaId;
+                                insp.idea.id === ideaId;
                         });
                         expect(myInv).toBeDefined();
 
@@ -368,7 +390,7 @@ describe('inspirations recommender module', function () {
                                 var myInv2 = _.find(insps, function (insp) {
                                     return insp.__t === 'Invitation' &&
                                         insp.targetSpaces[0].type === 'user' &&
-                                        insp.idea.toString() === ideaId;
+                                        insp.idea.id === ideaId;
                                 });
                                 expect(myInv2).toBeUndefined();
                                 return _deleteObjs(insps, done);
@@ -397,11 +419,11 @@ describe('inspirations recommender module', function () {
                         var myInv = _.find(insps, function (insp) {
                             return insp.__t === 'Invitation' &&
                                 insp.targetSpaces[0].type === 'user' &&
-                                insp.idea.toString() === ideaId;
+                                insp.idea.id === ideaId;
                         });
                         expect(myInv).toBeDefined();
 
-                        EventMgr.deleteEvent(savedEvent.id, user2, i18n, function(err) {
+                        EventMgr.deleteEvent(savedEvent.id, user2, i18n, function (err) {
                             expect(err).toBeUndefined();
 
                             Inspiration.getInspirations(user, function (err, insps) {
@@ -437,7 +459,7 @@ describe('inspirations recommender module', function () {
                         expect(_.find(insps, function (insp) {
                             return insp.__t === 'Invitation' &&
                                 insp.targetSpaces[0].type === 'campaign' &&
-                                insp.idea.toString() === ideaId;
+                                insp.idea.id === ideaId;
                         })).toBeDefined();
 
                         return _deleteObjs(insps, done);

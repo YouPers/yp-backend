@@ -211,6 +211,10 @@ function loadScoringData(user, queryOptions, locale, done) {
                 return soi.dismissed;
             });
 
+            locals.userData.activeRecommendations = _.filter(sois, function(soi) {
+               return !soi.dismissed && soi.__t === 'Recommendation';
+            });
+
             locals.userData.invitationCountByIdea = _.countBy(locals.userData.publicInvitations.concat(locals.userData.personalInvitations), 'idea');
             locals.userData.dismissalCountByIdea = _.countBy(locals.userData.dismissals, 'idea');
 
@@ -253,20 +257,46 @@ function getInspirations(user, queryOptions, locale, finalDone) {
                 inspirations.push(result.userData.personalInvitations[0]);
             }
 
+            var existingActiveRecs = result.userData.activeRecommendations;
+
             var scoredIdeaIndex = scoredIdeas.length -1;
+
+
+
+
+
             while (inspirations.length < 3) {
-                var rec = new Recommendation({
-                    targetSpaces: [
-                        {
-                            type: 'user',
-                            targetId: user._id
-                        }
-                    ],
-                    author: HEALTH_COACH_USER_ID,
-                    authorType: 'coach',
-                    idea: scoredIdeas[scoredIdeaIndex--]
+
+                var ideaToRec =  scoredIdeas[scoredIdeaIndex--];
+
+                // check whether we already have an active rec for this idea:
+
+                /* jshint loopfunc: true */
+                var recs = _.remove(existingActiveRecs, function _ideaIdComparator (activeRec) {
+                    return activeRec.idea.toString() === ideaToRec.id;
                 });
-                recsToSave.push(rec);
+
+                if (recs.length > 1) {
+                    throw new Error('should never happen');
+                }
+                var rec;
+
+                if (recs.length ===1) {
+                    rec = recs[0];
+                } else {
+                    rec = new Recommendation({
+                        targetSpaces: [
+                            {
+                                type: 'user',
+                                targetId: user._id
+                            }
+                        ],
+                        author: HEALTH_COACH_USER_ID,
+                        authorType: 'coach',
+                        idea: ideaToRec
+                    });
+                    recsToSave.push(rec);
+                }
                 inspirations.push(rec);
             }
             async.forEach(recsToSave, function(rec, cb) {
@@ -276,8 +306,13 @@ function getInspirations(user, queryOptions, locale, finalDone) {
                     return finalDone(err);
                 }
 
+                if (existingActiveRecs.length > 0 ){
+                    async.forEach(existingActiveRecs, function(rec, cb) {
+                        rec.remove(cb);
+                    });
+                }
                 // repopulate ideas on saved recs)
-                Idea.populate(recsToSave, {path: "idea"}, function (err) {
+                Idea.populate(inspirations, {path: "idea"}, function (err) {
                     return finalDone(null, inspirations);
                 });
             });

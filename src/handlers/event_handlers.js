@@ -569,7 +569,7 @@ function deleteEvent(req, res, next) {
 function putEvent(req, res, next) {
     var sentEvent = req.body;
 
-    sentEvent.inviteOthers = sentEvent.inviteOthers === 'true' ? true : false;
+    sentEvent.inviteOthers = (sentEvent.inviteOthers === true || sentEvent.inviteOthers === 'true') ? true : false;
     var err = handlerUtils.checkWritingPreCond(sentEvent, req.user, Event);
     if (err) {
         return error.handleError(err, next);
@@ -583,6 +583,7 @@ function putEvent(req, res, next) {
             if (err) {
                 return error.handleError(err, next);
             }
+
             if (!loadedEvent) {
                 return next(new error.ResourceNotFoundError('Event not found.', { id: sentEvent.id }));
             }

@@ -88,7 +88,11 @@ function postIdea(req, res, next) {
             return error.handleError(err, next);
         }
 
-        var newIdea = new Idea(sentIdea);
+        // split instnciating of doc from setting of attributes,
+        // we need to set the $locale, so it is accessible in virtuals
+        var newIdea = new Idea();
+        newIdea.$locale = req.locale;
+        newIdea.set(sentIdea);
 
         // try to save the new object
         newIdea.save(generic.writeObjCb(req, res, next));
@@ -119,7 +123,8 @@ function putIdea(req, res, next) {
             if (!reloadedIdea) {
                 return next(new error.ResourceNotFoundError({ id: sentIdea.id}));
             }
-            reloadedIdea.locale = req.locale;
+
+            reloadedIdea.$locale = req.locale;
 
             _.extend(reloadedIdea, sentIdea);
 

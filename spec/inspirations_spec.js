@@ -4,6 +4,7 @@ var lib = require('ypbackendlib'),
     _ = require('lodash'),
     async = require('async'),
     moment = require('moment'),
+    i18n = lib.i18n.initialize(),
     user, user2, profile;
 
 db.initializeDb();
@@ -336,6 +337,88 @@ describe('inspirations recommender module', function () {
                 });
             });
 
+        });
+    });
+
+    it('should not include a personal invitation that has been dismissed', function (done) {
+        var ideaId = '54ca2fc88c0832450f0e1aaf';
+        mongoose.model('Idea').findById(ideaId).exec(function (err, idea) {
+            EventMgr.defaultEvent(idea, user2, user.campaign).save(function (er, savedEvent) {
+                if (err) {
+                    return done(err);
+                }
+                SocialInteraction.createNewPersonalInvitation(user2, savedEvent, [user._id.toString()], function (err, inv) {
+                    if (err) {
+                        return done(err);
+                    }
+                    Inspiration.getInspirations(user, function (err, insps) {
+
+                        var myInv = _.find(insps, function (insp) {
+                            return insp.__t === 'Invitation' &&
+                                insp.targetSpaces[0].type === 'user' &&
+                                insp.idea.toString() === ideaId;
+                        });
+                        expect(myInv).toBeDefined();
+
+                        SocialInteraction.dismissSocialInteractionById(myInv, user, {reason: 'denied'}, function (err) {
+                            expect(err).toBeNull();
+
+                            Inspiration.getInspirations(user, function (err, insps) {
+
+                                var myInv2 = _.find(insps, function (insp) {
+                                    return insp.__t === 'Invitation' &&
+                                        insp.targetSpaces[0].type === 'user' &&
+                                        insp.idea.toString() === ideaId;
+                                });
+                                expect(myInv2).toBeUndefined();
+                                return _deleteObjs(insps, done);
+
+                            });
+                        });
+                    });
+                });
+            });
+        });
+    });
+
+    it('should not include a personal invitation of a deleted event', function (done) {
+        var ideaId = '54ca2fc88c0832450f0e1aaf';
+        mongoose.model('Idea').findById(ideaId).exec(function (err, idea) {
+            EventMgr.defaultEvent(idea, user2, user.campaign).save(function (er, savedEvent) {
+                if (err) {
+                    return done(err);
+                }
+                SocialInteraction.createNewPersonalInvitation(user2, savedEvent, [user._id.toString()], function (err, inv) {
+                    if (err) {
+                        return done(err);
+                    }
+                    Inspiration.getInspirations(user, function (err, insps) {
+
+                        var myInv = _.find(insps, function (insp) {
+                            return insp.__t === 'Invitation' &&
+                                insp.targetSpaces[0].type === 'user' &&
+                                insp.idea.toString() === ideaId;
+                        });
+                        expect(myInv).toBeDefined();
+
+                        EventMgr.deleteEvent(savedEvent.id, user2, i18n, function(err) {
+                            expect(err).toBeUndefined();
+
+                            Inspiration.getInspirations(user, function (err, insps) {
+
+                                var myInv2 = _.find(insps, function (insp) {
+                                    return insp.__t === 'Invitation' &&
+                                        insp.targetSpaces[0].type === 'user' &&
+                                        insp.idea.toString() === ideaId;
+                                });
+                                expect(myInv2).toBeUndefined();
+                                return _deleteObjs(insps, done);
+
+                            });
+                        });
+                    });
+                });
+            });
         });
     });
 

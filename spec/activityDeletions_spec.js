@@ -139,83 +139,83 @@ frisby.create('Event Deletions: create a master event for an event deletion test
 
     .toss();
 
-var pastDateStart = new Date();
-pastDateStart.setDate(pastDateStart.getDate() - 1);
-var pastDateEnd = new Date();
-pastDateEnd.setDate(pastDateEnd.getDate() - 1);
-pastDateEnd.setHours(pastDateEnd.getHours() + 1);
-var planOneEventPassed = _.cloneDeep(masterPlan);
-planOneEventPassed.start = pastDateStart;
-planOneEventPassed.end = pastDateEnd;
-planOneEventPassed.frequency = "week";
-
-frisby.create('Event Deletions: create event with one event in the past')
-    .post(URL, planOneEventPassed)
-    .auth('test_ind1', 'yp')
-    .expectStatus(201)
-    .afterJSON(function (masterPlanPostAnswer) {
-
-                expect(masterPlanPostAnswer.deleteStatus).toEqual('deletableOnlyFutureEvents');
-
-                // delete by removing future events
-                frisby.create('Event Deletions: delete future events')
-                    .delete(URL + '/' + masterPlanPostAnswer.id)
-                    .auth('test_ind1', 'yp')
-                    .expectStatus(200)
-                    .toss();
-
-                frisby.create('Event Deletions: reload masterEvent')
-                    .get(URL + '/' + masterPlanPostAnswer.id)
-                    .auth('test_ind1', 'yp')
-                    .expectStatus(200)
-                    .afterJSON(function (masterPlanReloaded) {
-
-                        // clean up database by removing the plan
-                        frisby.create('Event Deletions: remove event')
-                            .delete(URL + '/' + masterPlanPostAnswer.id)
-                            .auth('sysadm', 'backtothefuture')
-                            .expectStatus(200)
-                            .toss();
-
-                    }).toss();
-    })
-    .toss();
-
-
-var earlierPastDateStart = new Date();
-earlierPastDateStart.setDate(earlierPastDateStart.getDate() - 30);
-var earlierDateEnd = new Date();
-earlierDateEnd.setDate(earlierDateEnd.getDate() - 30);
-earlierDateEnd.setHours(earlierDateEnd.getHours() + 1);
-var planAllEventsPassed = _.cloneDeep(masterPlan);
-
-planAllEventsPassed.start = earlierPastDateStart;
-planAllEventsPassed.end = earlierDateEnd;
-planAllEventsPassed.frequency = "day";
-
-frisby.create('Event Deletions: create event with all events in the past')
-    .post(URL, planAllEventsPassed)
-    .auth('test_ind1', 'yp')
-    .expectStatus(201)
-    .afterJSON(function (masterPlanPostAnswer) {
-
-        expect(masterPlanPostAnswer.deleteStatus).toEqual('notDeletableNoFutureEvents');
-
-        // try deleting undeletable event
-        frisby.create('Event Deletions: try delete Event with No Future Events, SUCCESS (but actually nothing is done) ')
-            .delete(URL + '/' + masterPlanPostAnswer.id)
-            .auth('test_ind1', 'yp')
-            .expectStatus(200)
-            .after(function() {
-
-                // now really delete it with admin priv
-                frisby.create('Event Deletions: try delete Event with No Future Events ')
-                    .delete(URL + '/' + masterPlanPostAnswer.id)
-                    .auth('test_sysadm', 'yp')
-                    .expectStatus(200)
-                    .toss();
-
-            })
-            .toss();
-
-    }).toss();
+//var pastDateStart = new Date();
+//pastDateStart.setDate(pastDateStart.getDate() - 1);
+//var pastDateEnd = new Date();
+//pastDateEnd.setDate(pastDateEnd.getDate() - 1);
+//pastDateEnd.setHours(pastDateEnd.getHours() + 1);
+//var planOneEventPassed = _.cloneDeep(masterPlan);
+//planOneEventPassed.start = pastDateStart;
+//planOneEventPassed.end = pastDateEnd;
+//planOneEventPassed.frequency = "week";
+//
+//frisby.create('Event Deletions: create event with one event in the past')
+//    .post(URL, planOneEventPassed)
+//    .auth('test_ind1', 'yp')
+//    .expectStatus(201)
+//    .afterJSON(function (masterPlanPostAnswer) {
+//
+//                expect(masterPlanPostAnswer.deleteStatus).toEqual('deletableOnlyFutureEvents');
+//
+//                // delete by removing future events
+//                frisby.create('Event Deletions: delete future events')
+//                    .delete(URL + '/' + masterPlanPostAnswer.id)
+//                    .auth('test_ind1', 'yp')
+//                    .expectStatus(200)
+//                    .toss();
+//
+//                frisby.create('Event Deletions: reload masterEvent')
+//                    .get(URL + '/' + masterPlanPostAnswer.id)
+//                    .auth('test_ind1', 'yp')
+//                    .expectStatus(200)
+//                    .afterJSON(function (masterPlanReloaded) {
+//
+//                        // clean up database by removing the plan
+//                        frisby.create('Event Deletions: remove event')
+//                            .delete(URL + '/' + masterPlanPostAnswer.id)
+//                            .auth('sysadm', 'backtothefuture')
+//                            .expectStatus(200)
+//                            .toss();
+//
+//                    }).toss();
+//    })
+//    .toss();
+//
+//
+//var earlierPastDateStart = new Date();
+//earlierPastDateStart.setDate(earlierPastDateStart.getDate() - 30);
+//var earlierDateEnd = new Date();
+//earlierDateEnd.setDate(earlierDateEnd.getDate() - 30);
+//earlierDateEnd.setHours(earlierDateEnd.getHours() + 1);
+//var planAllEventsPassed = _.cloneDeep(masterPlan);
+//
+//planAllEventsPassed.start = earlierPastDateStart;
+//planAllEventsPassed.end = earlierDateEnd;
+//planAllEventsPassed.frequency = "day";
+//
+//frisby.create('Event Deletions: create event with all events in the past')
+//    .post(URL, planAllEventsPassed)
+//    .auth('test_ind1', 'yp')
+//    .expectStatus(201)
+//    .afterJSON(function (masterPlanPostAnswer) {
+//
+//        expect(masterPlanPostAnswer.deleteStatus).toEqual('notDeletableNoFutureEvents');
+//
+//        // try deleting undeletable event
+//        frisby.create('Event Deletions: try delete Event with No Future Events, SUCCESS (but actually nothing is done) ')
+//            .delete(URL + '/' + masterPlanPostAnswer.id)
+//            .auth('test_ind1', 'yp')
+//            .expectStatus(200)
+//            .after(function() {
+//
+//                // now really delete it with admin priv
+//                frisby.create('Event Deletions: try delete Event with No Future Events ')
+//                    .delete(URL + '/' + masterPlanPostAnswer.id)
+//                    .auth('test_sysadm', 'yp')
+//                    .expectStatus(200)
+//                    .toss();
+//
+//            })
+//            .toss();
+//
+//    }).toss();

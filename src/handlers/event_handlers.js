@@ -12,7 +12,6 @@ var calendar = require('../util/calendar'),
     _ = require('lodash'),
     email = require('../util/email'),
     async = require('async'),
-    auth = require('ypbackendlib').auth,
     handlerUtils = require('ypbackendlib').handlerUtils;
 
 function getInvitationStatus(req, res, next) {
@@ -528,6 +527,8 @@ function _sendIcalMessages(event, joiner, req, reason, type, done) {
             done);
     });
 }
+
+
 function _deleteOccurences(event, joiner, fromDate, done) {
 
     var q = Occurence
@@ -553,102 +554,15 @@ function deleteEvent(req, res, next) {
     if (!req.params || !req.params.id) {
         return next(new error.MissingParameterError({ required: 'id' }));
     }
-    var reason = req.params.reason || 'The organizer Deleted this event';
 
-    Event
-        .findById(req.params.id)
-        .populate('idea')
-        .populate('owner joiningUsers', '+profile +email')
-        .exec(function (err, event) {
+    actMgr.deleteEvent(req.params.id, req.user, req.id, function(err) {
+        if (err) {
+            return error.handleError(err, next);
+        }
+        res.send(200);
+        return next();
 
-            if (err) {
-                return error.handleError(err, next);
-            }
-            if (!event) {
-                return next(new error.ResourceNotFoundError('Event not found.', {
-                    id: req.params.id
-                }));
-            }
-            var joiner = _.find(event.joiningUsers, function (user) {
-                return user.equals(req.user);
-            });
-
-            var sysadmin = auth.checkAccess(req.user, auth.accessLevels.al_systemadmin);
-
-            var owner = event.owner._id.equals(req.user._id);
-
-            // event can be deleted if user is systemadmin or if it is his own event or if the user is a joiner
-            if (!(sysadmin || owner || joiner)) {
-                return next(new error.NotAuthorizedError());
-            }
-
-            if (event.deleteStatus === Event.notDeletableNoFutureEvents && !sysadmin) {
-                // if this is not deletable because of no future occurences we have in fact
-                // nothing to do, we just pretend that we deleted all future occurences, by doing nothing
-                // and signalling success
-                actMgr.emit('event:eventDeleted', event);
-                res.send(200);
-                return next();
-            }
-
-            function _deleteEvents(done) {
-                if (sysadmin) {
-                    _deleteOccurences(event, joiner, null, done);
-                } else {
-                    _deleteOccurences(event, joiner, new Date(), done);
-                }
-            }
-
-            function _sendCalendarCancelMessages(done) {
-                _sendIcalMessages(event, joiner, req, reason, 'cancel', done);
-            }
-
-            function _deleteEvent(done) {
-
-                if (joiner) {
-                    event.joiningUsers.remove(req.user);
-                    event.save(done);
-                } else {
-                    var deleteStatus = event.deleteStatus;
-                    if (deleteStatus === 'deletable' || sysadmin) {
-                        event.status = 'deleted';
-                        return event.save(done);
-                    } else if (deleteStatus === 'deletableOnlyFutureEvents') {
-                        event.status = 'old';
-                        if (event.frequency !== 'once') {
-                            event.recurrence.on = new Date();
-                            event.recurrence.after = undefined;
-                            event.save(done);
-                        } else {
-                            return done(new Error('should never arrive here, it is not possible to have an "once" event that has ' +
-                                'passed and future events at the same time'));
-                        }
-                    } else {
-                        return done(new Error('unknown DeleteStatus: ' + event.deleteStatus));
-                    }
-
-                }
-
-            }
-
-            return async.parallel([
-                    _sendCalendarCancelMessages,
-                    _deleteEvents,
-                    _deleteEvent
-                ],
-                function (err) {
-                    if (err) {
-                        return error.handleError(err, next);
-                    }
-                    if (joiner) {
-                        actMgr.emit('event:participationCancelled', event, req.user);
-                    } else {
-                        actMgr.emit('event:eventDeleted', event);
-                    }
-                    res.send(200);
-                    return next();
-                });
-        });
+    });
 }
 
 

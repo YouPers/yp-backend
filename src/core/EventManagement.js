@@ -10,6 +10,11 @@ var Occurence = mongoose.model('Occurence');
 var SocialInteraction = require('../core/SocialInteraction');
 var config = require('../config/config');
 var log = require('ypbackendlib').log(config);
+var error = require('ypbackendlib').error;
+var auth = require('ypbackendlib').auth;
+var async = require('async');
+var email = require('../util/email');
+
 
 var INSPIRATION_CAMPAIGN_ID = '527916a82079aa8704000006';
 
@@ -118,6 +123,143 @@ actMgr.defaultEvent = function (idea, user, campaignId) {
 
     return  eventDoc;
 };
+
+
+actMgr.deleteEvent = function(eventId, user, i18n, cb) {
+    Event
+        .findById(eventId)
+        .populate('idea')
+        .populate('owner joiningUsers', '+profile +email')
+        .exec(function (err, event) {
+
+            if (err) {
+                return cb(err);
+            }
+            if (!event) {
+                return cb(new error.ResourceNotFoundError('Event not found.', {
+                    id: eventId
+                }));
+            }
+            var joiner = _.find(event.joiningUsers, function (joiningUser) {
+                return joiningUser.equals(user);
+            });
+
+            var sysadmin = auth.checkAccess(user, auth.accessLevels.al_systemadmin);
+
+            var owner = event.owner._id.equals(user._id);
+
+            // event can be deleted if user is systemadmin or if it is his own event or if the user is a joiner
+            if (!(sysadmin || owner || joiner)) {
+                return cb(new error.NotAuthorizedError());
+            }
+
+            if (event.deleteStatus === Event.notDeletableNoFutureEvents && !sysadmin) {
+                // if this is not deletable because of no future occurences we have in fact
+                // nothing to do, we just pretend that we deleted all future occurences, by doing nothing
+                // and signalling success
+                actMgr.emit('event:eventDeleted', event);
+                return cb();
+            }
+
+            function _deleteEvents(done) {
+                if (sysadmin) {
+                    _deleteOccurences(event, joiner, null, done);
+                } else {
+                    _deleteOccurences(event, joiner, new Date(), done);
+                }
+            }
+
+            function _sendCalendarCancelMessages(done) {
+                _sendIcalMessages(event, joiner, i18n, 'event cancelled', 'cancel', done);
+            }
+
+            function _deleteEvent(done) {
+
+                if (joiner) {
+                    event.joiningUsers.remove(user);
+                    event.save(done);
+                } else {
+                    var deleteStatus = event.deleteStatus;
+                    if (deleteStatus === 'deletable' || sysadmin) {
+                        event.status = 'deleted';
+                        return event.save(done);
+                    } else if (deleteStatus === 'deletableOnlyFutureEvents') {
+                        event.status = 'old';
+                        if (event.frequency !== 'once') {
+                            event.recurrence.on = new Date();
+                            event.recurrence.after = undefined;
+                            event.save(done);
+                        } else {
+                            return done(new Error('should never arrive here, it is not possible to have an "once" event that has ' +
+                            'passed and future events at the same time'));
+                        }
+                    } else {
+                        return done(new Error('unknown DeleteStatus: ' + event.deleteStatus));
+                    }
+
+                }
+
+            }
+
+            return async.parallel([
+                    _sendCalendarCancelMessages,
+                    _deleteEvents,
+                    _deleteEvent
+                ],
+                function (err) {
+                    if (err) {
+                        return error.handleError(err, cb);
+                    }
+                    if (joiner) {
+                        actMgr.emit('event:participationCancelled', event, user);
+                    } else {
+                        actMgr.emit('event:eventDeleted', event);
+                    }
+                    return cb();
+                });
+        });
+};
+
+function _deleteOccurences(event, joiner, fromDate, done) {
+
+    var q = Occurence
+        .remove({event: event._id});
+
+    if (fromDate) {
+        q.where({end: {$gte: fromDate}});
+    }
+
+    if (joiner) {
+        q.where({owner: joiner._id});
+    }
+
+    q.exec(function (err, count) {
+        if (err) {
+            return done(err);
+        }
+        return done(null);
+    });
+}
+
+function _sendIcalMessages(event, joiner, i18n, reason, type, done) {
+    var users;
+    if (joiner) {
+        users = [joiner];
+    } else {
+        users = [event.owner].concat(event.joiningUsers);
+    }
+
+    mongoose.model('Profile').populate(users, {path: 'profile', model: 'Profile'}, function (err, populatedUsers) {
+        async.forEach(populatedUsers, function (user, next) {
+                if (user.profile.prefs.email.iCalInvites) {
+                    var myIcalString = calendar.getIcalObject(event, user, type, i18n, reason).toString();
+                    email.sendCalInvite(user, type, myIcalString, event, i18n, reason);
+                }
+                return next();
+            },
+            done);
+    });
+}
 
 
 actMgr.on('event:eventCreated', function (event, user) {

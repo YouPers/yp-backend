@@ -14,7 +14,9 @@
   "proto": true,
     "globals": {
         "describe": false,
+        "ddescribe": false,
         "it": false,
+        "iit": false,
         "beforeEach": false,
         "afterEach": false,
         "expect": false,

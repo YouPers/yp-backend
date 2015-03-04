@@ -374,19 +374,24 @@ function postJoinActivityFn(req, res, next) {
         }
 
         masterActivity.joiningUsers.push(req.user.id);
-        var events = actMgr.getEvents(masterActivity, req.user.id);
+        masterActivity.save(function (err, activity) {
 
-        ActivityEvent.create(events, function (err, events) {
-            if (err) {
-                return error.handleError(err, next);
-            }
-            if (req.user && req.user.email && req.user.profile.prefs.email.iCalInvites) {
-                var myIcalString = calendar.getIcalObject(masterActivity, req.user, 'new', req.i18n).toString();
-                email.sendCalInvite(req.user, 'new', myIcalString, masterActivity, req.i18n);
-            }
-            masterActivity.save(generic.writeObjCb(req, res, next));
-            actMgr.emit('activity:activityJoined', masterActivity, req.user);
+            var events = actMgr.getEvents(masterActivity, req.user.id);
+
+            ActivityEvent.create(events, function (err, events) {
+                if (err) {
+                    return error.handleError(err, next);
+                }
+                if (req.user && req.user.email && req.user.profile.prefs.email.iCalInvites) {
+                    var myIcalString = calendar.getIcalObject(masterActivity, req.user, 'new', req.i18n).toString();
+                    email.sendCalInvite(req.user, 'new', myIcalString, masterActivity, req.i18n);
+                }
+
+                generic.writeObjCb(req, res, next)(err, activity);
+                actMgr.emit('activity:activityJoined', masterActivity, req.user);
+            });
         });
+
     });
 
 }

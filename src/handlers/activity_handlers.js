@@ -373,8 +373,10 @@ function postJoinActivityFn(req, res, next) {
             return next(new error.InvalidArgumentError('this user has already joined this activity', {user: req.user, activity: masterActivity}));
         }
 
-        masterActivity.joiningUsers.push(req.user.id);
-        masterActivity.save(function (err, activity) {
+        Activity.findByIdAndUpdate(req.params.id, { $push: { joiningUsers: req.user.id } }, function (err, updated) {
+            if (err) {
+                return error.handleError(err, next);
+            }
 
             var events = actMgr.getEvents(masterActivity, req.user.id);
 
@@ -386,8 +388,7 @@ function postJoinActivityFn(req, res, next) {
                     var myIcalString = calendar.getIcalObject(masterActivity, req.user, 'new', req.i18n).toString();
                     email.sendCalInvite(req.user, 'new', myIcalString, masterActivity, req.i18n);
                 }
-
-                generic.writeObjCb(req, res, next)(err, activity);
+                generic.writeObjCb(req, res, next)(err, updated);
                 actMgr.emit('activity:activityJoined', masterActivity, req.user);
             });
         });

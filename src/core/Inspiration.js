@@ -196,7 +196,6 @@ function loadScoringData(user, queryOptions, locale, done) {
 
 
     function _loadSocialInteractions(queryOptions, cb) {
-        var ideaPopulated = queryOptions.populate && queryOptions.populate.indexOf('idea') !== -1;
 
         SocialInteraction.getAllForUser(user, mongoose.model('SocialInteraction'), {
             dismissed: true,
@@ -287,7 +286,7 @@ function getInspirations(user, queryOptions, locale, finalDone) {
                 });
 
                 if (recs.length > 1) {
-                    throw new Error('should never happen');
+                   log.error({idea: ideaToRec.id, foundRecs: recs}, 'found more than 1 existing rec for this idea: ' );
                 }
                 var rec;
 

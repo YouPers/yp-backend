@@ -31,9 +31,6 @@ function ideaImageUrl (idea) {
 function campaignImageUrl (imgPath) {
     return webclientUrl + imgPath;
 }
-function mailFooterImageUrl () {
-    return webclientUrl + "/assets/img/yp_logo_mail_white.gif";
-}
 function icalUrl(activityId, type, userId) {
     return backendUrl + "/activities/" + activityId + '/ical.ics?type='+ (type || 'new') + '&user=' + userId;
 }
@@ -50,7 +47,6 @@ module.exports = {
     orgAdminInviteUrl: orgAdminInviteUrl,
     ideaImageUrl: ideaImageUrl,
     campaignImageUrl: campaignImageUrl,
-    mailFooterImageUrl: mailFooterImageUrl,
     profileUrl: profileUrl,
     icalUrl: icalUrl
 };

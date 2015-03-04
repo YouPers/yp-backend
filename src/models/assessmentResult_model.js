@@ -34,18 +34,12 @@ var needForActionEvalFns = {
 
     "default": function(high, mid, low) {
         var need = 0;
-        if (high >= 2) {
+        if (high >= 1) {
             need = 10;
-        } else if (high >= 1 || mid >= 3) {
-            need = 9;
-        } else if (mid >= 2) {
-            need = 2;
-        } else if (mid >= 1 || low >= 3) {
+        } else if (mid >= 1) {
             need = 6;
-        } else if (low >= 2) {
-            need = 2;
         } else if (low >= 1) {
-            need = 2;
+            need = 3;
         } else {
             need = 1;
         }
@@ -128,63 +122,86 @@ var needForActionEvalFns = {
     }
 };
 
-var questionsByIdCache;
+var questionsByIdCache = {};
 
-AssessmentResultSchema.pre('save', function (next) {
-    var self = this;
-    if (!questionsByIdCache) {
-        AssessmentQuestion.find()
-            .exec(function (err, questions) {
-                if (err) {
-                    return next(err);
-                }
-                questionsByIdCache = _.indexBy(questions, 'id');
-                self.needForAction = _caluculateNeedForAction(self.answers, questionsByIdCache);
-                return next();
-            });
-    } else {
-        this.needForAction = _caluculateNeedForAction(this.answers, questionsByIdCache);
-        return next();
-    }
-});
 
-function _caluculateNeedForAction(answers, questionsById) {
-    var needForAction = [];
-    var answersByCats = _.groupBy(answers, function (answer) {
-        return questionsById[answer.question].category;
-    });
-
-    _.forEach(answersByCats, function (answers, catName) {
-
-        var countNormalizedValues = _.countBy(answers, function (answerObj) {
-            var normalizedValue = null;
-            if (Math.abs(answerObj.answer) >= 90) {
-                normalizedValue = 'high';
-            } else if (Math.abs(answerObj.answer) >= 40) {
-                normalizedValue = 'mid';
-            } else if (Math.abs(answerObj.answer) >= 1) {
-                normalizedValue = 'low';
-            } else if (answerObj.answer === 0) {
-                normalizedValue = 'none';
-            } else {
-                throw new Error('should never arrive here');
+function _updateQuestionsCache(cb) {
+    AssessmentQuestion.find()
+        .exec(function (err, questions) {
+            if (err) {
+                return cb(err);
             }
-            return normalizedValue;
+            questionsByIdCache = _.indexBy(questions, 'id');
+            return cb();
         });
-
-
-        var needForActionEvalFn = needForActionEvalFns[catName] || needForActionEvalFns["default"];
-
-        var value = needForActionEvalFn(countNormalizedValues['high'],
-            countNormalizedValues['mid'],
-            countNormalizedValues['low']);
-        needForAction.push({category: catName, value: value});
-    });
-
-    return needForAction;
 }
 
 
-AssessmentResultSchema.calcNeedForActionFn = _caluculateNeedForAction;
+
+AssessmentResultSchema.pre('save', function (next) {
+    var self = this;
+    _calculateNeedForAction(this.answers, function (err, result) {
+        self.needForAction = result;
+        return next();
+    });
+});
+
+function _getAnswersByCats(answers, cb) {
+    try {
+        var answersByCats = _.groupBy(answers, function (answer) {
+            return questionsByIdCache[answer.question].category;
+        });
+        return cb(null, answersByCats);
+        // if a question is not yet existing we will get an Error, we catch it
+        // reload the cache and try again.
+    } catch (err) {
+        _updateQuestionsCache(function (err) {
+            if (err) {
+                return cb(err);
+            }
+            var answersByCats = _.groupBy(answers, function (answer) {
+                return questionsByIdCache[answer.question].category;
+            });
+            return cb(null, answersByCats);
+
+        });
+    }
+}
+
+function _calculateNeedForAction(answers, cb) {
+    var needForAction = [];
+
+    _getAnswersByCats(answers, function (err, answersByCats) {
+        _.forEach(answersByCats, function (answers, catName) {
+
+            var countNormalizedValues = _.countBy(answers, function (answerObj) {
+                var normalizedValue = null;
+                if (Math.abs(answerObj.answer) >= 90) {
+                    normalizedValue = 'high';
+                } else if (Math.abs(answerObj.answer) >= 40) {
+                    normalizedValue = 'mid';
+                } else if (Math.abs(answerObj.answer) >= 1) {
+                    normalizedValue = 'low';
+                } else if (answerObj.answer === 0) {
+                    normalizedValue = 'none';
+                } else {
+                    throw new Error('should never arrive here');
+                }
+                return normalizedValue;
+            });
+
+            var needForActionEvalFn = needForActionEvalFns[catName] || needForActionEvalFns["default"];
+
+            var value = needForActionEvalFn(countNormalizedValues['high'],
+                countNormalizedValues['mid'],
+                countNormalizedValues['low']);
+            needForAction.push({category: catName, value: value});
+        });
+
+        return cb(null, needForAction);
+    });
+}
+
+AssessmentResultSchema.calcNeedForActionFn = _calculateNeedForAction;
 
 module.exports = mongoose.model('AssessmentResult', AssessmentResultSchema);

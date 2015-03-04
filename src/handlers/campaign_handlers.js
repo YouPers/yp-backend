@@ -299,7 +299,7 @@ function addSurveyCollectors(campaign, req, cb) {
         }
 
         var body = {
-            survey_id: config.surveyMonkey.dcmSurveyId,
+            survey_id: config.surveyMonkey.dcmSurveyId[req.locale],
             collector: {
                 type: 'weblink',
                 name: org.name + '/ ' + campaign.participants + '/' + campaign.location
@@ -322,7 +322,7 @@ function addSurveyCollectors(campaign, req, cb) {
                 campaign.leaderSurveyCollectorId = obj && obj.data && obj.data.collector.collector_id;
                 campaign.leaderSurveyUrl = obj && obj.data && obj.data.collector.url;
 
-                body.survey_id = config.surveyMonkey.dhcSurveyId;
+                body.survey_id = config.surveyMonkey.dhcSurveyId[req.locale];
 
                 jsonClient.post(config.surveyMonkey.createCollectorEndpoint + '?api_key=' + config.surveyMonkey.api_key,
                     body,

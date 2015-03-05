@@ -321,7 +321,7 @@ function getInspirations(user, queryOptions, locale, finalDone) {
                     });
                 }
                 // repopulate ideas on saved recs)
-                Idea.populate(inspirations, {path: "idea"}, function (err) {
+                Idea.populate(inspirations, {path: "idea", select: Idea.getI18nPropertySelector(locale)}, function (err) {
                     return finalDone(null, inspirations);
                 });
             });

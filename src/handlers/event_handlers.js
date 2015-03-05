@@ -637,7 +637,10 @@ function putEvent(req, res, next) {
                     return error.handleError(err, next);
                 }
 
-                loadedEvent.idea = loadedEvent.idea._id;
+                // remove the population, it is not expected as a result of a PUT/POST
+                if (loadedEvent.idea._id) {
+                    loadedEvent.idea = loadedEvent.idea._id;
+                }
 
                 // set the inviteOthers Flag manually again: because we wrote the public invitation async it was not in the DB
                 // while the event was saved and reloaded.

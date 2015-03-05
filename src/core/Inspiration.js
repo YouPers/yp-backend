@@ -123,7 +123,7 @@ function getIdeaMatchScores(user, ideas, userData, done) {
 
             var params = {
                 userCoach: user.profile.coach,
-                userCats: user.profile.categories,
+                userCats: user.profile.selectedCategories,
                 futurePlanCount: userData.eventCountByIdeaAndNow[idea._id.toString() + 'future'],
                 pastPlanCount: userData.eventCountByIdeaAndNow[idea._id.toString() + 'past'],
                 openInvitationCount: userData.invitationCountByIdea[idea._id.toString()],

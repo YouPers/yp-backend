@@ -752,7 +752,7 @@
         },
         "categories": [
             "physFitness",
-            "Music"
+            "cultural"
         ],
         "created": {
             "$date": 1422536648591
@@ -762,7 +762,7 @@
         "defaultfrequency": "once",
         "descriptionI18n": {
             "de": "Machen Sie regelm\u00e4ssiges Training zur Musik.",
-            "en": "Exercise regularly with music"
+            "en": "Exercise regularly with cultural"
         },
         "number": "INS-20",
         "picture": "https://insp-content-assets.s3.amazonaws.com/Act-184-fotolia-63133004_XS.jpg",
@@ -788,7 +788,7 @@
         "categories": [
             "physFitness",
             "Dance",
-            "Music"
+            "cultural"
         ],
         "created": {
             "$date": 1422536648616
@@ -1187,7 +1187,7 @@
             "$oid": "54ca2fc88c0832450f0e1ac2"
         },
         "categories": [
-            "Mental Fitness"
+            "mental"
         ],
         "created": {
             "$date": 1422536648679
@@ -1221,7 +1221,7 @@
             "$oid": "54ca2fc88c0832450f0e1ac3"
         },
         "categories": [
-            "Relaxation"
+            "relaxing"
         ],
         "created": {
             "$date": 1422536648690
@@ -1255,7 +1255,7 @@
             "$oid": "54ca2fc88c0832450f0e1ac4"
         },
         "categories": [
-            "Relaxation"
+            "relaxing"
         ],
         "created": {
             "$date": 1422536648694
@@ -1289,7 +1289,7 @@
             "$oid": "54ca2fc88c0832450f0e1ac5"
         },
         "categories": [
-            "Relaxation"
+            "relaxing"
         ],
         "created": {
             "$date": 1422536648697
@@ -1708,7 +1708,7 @@
             "$oid": "54ca2fc88c0832450f0e1ad1"
         },
         "categories": [
-            "Relaxation"
+            "relaxing"
         ],
         "created": {
             "$date": 1422536648765

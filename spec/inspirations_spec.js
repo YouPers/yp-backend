@@ -522,7 +522,7 @@ describe('inspirations recommender module', function () {
 
 
     it('should respect the category choice: publicEvents', function (done) {
-        profile.categories = ['publicEvents'];
+        profile.selectedCategories = ['publicEvents'];
         profile
             .save(function (err, savedProfile) {
                 user.profile = savedProfile;
@@ -543,7 +543,7 @@ describe('inspirations recommender module', function () {
 
 
     it('should respect the category choice: cultural', function (done) {
-        profile.categories = ['cultural'];
+        profile.selectedCategories = ['cultural'];
         profile
             .save(function (err, savedProfile) {
                 user.profile = savedProfile;

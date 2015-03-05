@@ -951,6 +951,10 @@ SocialInteraction.createNewInvitation = function createNewInvitation(invitor, ev
         publishTo: event.end
     };
 
+    if (!invitation.idea) {
+        throw new Error("no idea on new invitation");
+    }
+
     invitation.targetSpaces = [];
     if (isPersonal) {
         _.forEach(usersToInvite, function (userId) {

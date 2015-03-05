@@ -346,6 +346,11 @@ actMgr.on('event:eventUpdated', function (updatedEvent) {
                         targetId: INSPIRATION_CAMPAIGN_ID
                     }]
                 };
+
+                if (!publicInvitation.idea) {
+                    throw new Error("no idea on new invitation");
+                }
+
                 new Invitation(publicInvitation).save(function (err) {
                     if (err) {
                         log.error({err: err}, 'error saving invitation');

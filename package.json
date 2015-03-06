@@ -11,32 +11,32 @@
     "dependencies": {
         "ypbackendlib": "git+ssh://git@github.com:YouPers/backendlib.git",
         "restify": "2.8.x",
-        "lodash": "2.4.x",
+        "lodash": "3.3.x",
         "passport": "0.2.x",
         "icalendar": "git+https://github.com/YouPers/node-icalendar.git",
-        "moment": "~2.8.x",
-        "moment-timezone": "~0.2.x",
+        "moment": "~2.9.x",
+        "moment-timezone": "~0.3.x",
         "async": "~0.9.x",
         "shortid": "~2.1.x",
         "coupon-code": "~0.3.x",
         "newrelic": "*",
         "nodetime": "*",
         "mongoose-eventify": "0.0.x",
-        "nconf": "~0.6.x"
+        "nconf": "~0.7.x"
     },
     "devDependencies": {
-        "grunt-contrib-jshint": "~0.10.x",
+        "grunt-contrib-jshint": "~0.11.x",
         "grunt-contrib-watch": "~0.6.x",
         "grunt-jasmine-node": "0.2.x",
         "grunt": "0.4.x",
         "frisby": "0.8.x",
-        "grunt-nodemon": "~0.3.x",
+        "grunt-nodemon": "~0.4.x",
         "grunt-concurrent": "~1.0.x",
         "grunt-wait": "~0.1.x",
         "grunt-express-server": "~0.4.x",
-        "grunt-curl": "~2.0.x",
+        "grunt-curl": "~2.1.x",
         "node-rest-client": "~1.4.x",
-        "commander": "~2.5.x"
+        "commander": "~2.6.x"
     },
     "scripts": {
         "test": "grunt test",

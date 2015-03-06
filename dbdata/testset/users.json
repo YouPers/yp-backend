@@ -118,22 +118,21 @@
         "_id": {
             "$oid": "52a97f1650fca98c29000008"
         },
-        "avatar": "/assets/img/default_avatar_man.png",
-        "email": "ypunittest1+productadmin@gmail.com",
+        "avatar": "https://insp-content-assets.s3.amazonaws.com/lisa.jpg",
+        "email": "lisa@youpers.com",
         "emailValidatedFlag": true,
-        "firstname": "Test",
-        "fullname": "Test ProductAdmin",
+        "firstname": "Lisa",
+        "fullname": "Lisa Laughlin",
         "hashed_password": "24d07d5338ecd9c107cdafb08ec83a821dce6a91",
-        "lastname": "ProductAdmin",
+        "lastname": "Laughlin",
         "profile": {
             "$oid": "5303721a4dba580000000019"
         },
         "roles": [
-            "individual",
-            "productadmin"
+            "individual"
         ],
         "tempPasswordFlag": false,
-        "username": "test_prodadm",
+        "username": "lisa",
         "created": {
             "$date": 1407770509621
         }
@@ -167,16 +166,16 @@
         "_id": {
             "$oid": "52a97f1650fca98c29000055"
         },
-        "avatar": "/assets/img/default_avatar_woman.png",
+        "avatar": "https://insp-content-assets.s3.amazonaws.com/john.jpg",
         "campaign": {
             "$oid": "527916a82079aa8704000006"
         },
-        "email": "ypunittest1+individual3@gmail.com",
+        "email": "john@youpers.com",
         "emailValidatedFlag": true,
-        "firstname": "Test",
-        "fullname": "Test Individual 3",
+        "firstname": "John",
+        "fullname": "John Jackson",
         "hashed_password": "b5cfc711e9cc780c50a8e05e3b52f88ceccda08e",
-        "lastname": "Individual 3",
+        "lastname": "Jackson",
         "profile": {
             "$oid": "5303721a4dba580000000018"
         },
@@ -184,7 +183,7 @@
             "individual"
         ],
         "tempPasswordFlag": false,
-        "username": "test_ind3",
+        "username": "john",
         "created": {
             "$date": 1407770509621
         }
@@ -218,23 +217,21 @@
         "_id": {
             "$oid": "52a97f1650fca98c2900000a"
         },
-        "avatar": "/assets/img/default_avatar_man.png",
-        "email": "ypunittest1+orgadmin@gmail.com",
+        "avatar": "https://insp-content-assets.s3.amazonaws.com/mary.jpg",
+        "email": "mary@youpers.com",
         "emailValidatedFlag": true,
-        "firstname": "Test",
-        "fullname": "Test OrgAdmin",
+        "firstname": "Mary",
+        "fullname": "Mary McKenzie",
         "hashed_password": "27cda6e3a674d8e474ede20146d253de82f41ac4",
-        "lastname": "OrgAdmin",
+        "lastname": "McKenzie",
         "profile": {
             "$oid": "5303721a4dba580000000021"
         },
         "roles": [
-            "orgadmin",
-            "campaignlead",
             "individual"
         ],
         "tempPasswordFlag": false,
-        "username": "test_orgadm",
+        "username": "mary",
         "created": {
             "$date": 1407770509621
         }

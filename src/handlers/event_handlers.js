@@ -302,7 +302,7 @@ function postNewEvent(req, res, next) {
             if (usersToInvite && usersToInvite.length >0) {
                 SocialInteraction.createNewPersonalInvitation(req.user, savedEvent, usersToInvite, function (err, savedInv) {
                     if (err) {
-                        req.log.error({err: err, inv: savedInv.toObject()}, "Error in async task, event_handlers.js:307");
+                        req.log.error({err: err, inv: savedInv && savedInv.toObject()}, "Error in async task, event_handlers.js:307");
                     }
                 });
             }

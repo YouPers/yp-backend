@@ -119,6 +119,9 @@
             "$oid": "52a97f1650fca98c29000008"
         },
         "avatar": "https://insp-content-assets.s3.amazonaws.com/lisa.jpg",
+        "campaign": {
+          "$oid": "527916a82079aa8704000006"
+        },
         "email": "lisa@youpers.com",
         "emailValidatedFlag": true,
         "firstname": "Lisa",
@@ -218,6 +221,9 @@
             "$oid": "52a97f1650fca98c2900000a"
         },
         "avatar": "https://insp-content-assets.s3.amazonaws.com/mary.jpg",
+        "campaign": {
+          "$oid": "527916a82079aa8704000006"
+        },
         "email": "mary@youpers.com",
         "emailValidatedFlag": true,
         "firstname": "Mary",

@@ -12,5 +12,8 @@
   "dbdump": {
     "restoreenabled": "enabled",
     "dumpenabled": "enabled"
+  },
+  "email": {
+    "enabled": "disabled"
   }
 }

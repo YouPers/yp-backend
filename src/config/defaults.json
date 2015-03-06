@@ -40,6 +40,7 @@
         "passwordResetUrl": "/#/password_reset/"
     },
     "email": {
+        "enabled": "enabled",
         "fromString": "HealthCampaign <dontreply@youpers.com>",
         "templatesDir": "src/util/emailtemplates",
         "bcc": {

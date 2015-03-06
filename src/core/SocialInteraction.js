@@ -863,7 +863,9 @@ SocialInteraction.getInvitationStatus = function (eventId, cb) {
 
                     // find all personal pending invitations not yet dismissed
                     _.each(_.filter(invitation.targetSpaces, 'type','user'), function (space) {
-                        var sid = _.find(sidList, { socialInteraction: invitation._id, user: space.targetId });
+                        var sid = _.find(sidList, function(sid) {
+                            return sid.socialInteraction.equals(invitation._id) && space.targetId.equals(sid.user);
+                        });
 
                         if (!sid) {
                             var userResult = {

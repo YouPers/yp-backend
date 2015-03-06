@@ -5,11 +5,11 @@
             "$oid": "5303721a4dba580000000016"
         },
         "campaign": {
-            "$oid": "527916a82079aa8704000007"
+            "$oid": "527916a82079aa8704000006"
         },
         "gender": "undefined",
-        "maritalStatus": "undefined",
         "language": "de",
+        "maritalStatus": "undefined",
         "owner": {
             "$oid": "52a97f1650fca98c29000006"
         },
@@ -38,8 +38,8 @@
             "$oid": "5303721a4dba580000000017"
         },
         "gender": "undefined",
-        "maritalStatus": "undefined",
         "language": "de",
+        "maritalStatus": "undefined",
         "owner": {
             "$oid": "52a97f1650fca98c29000007"
         },
@@ -67,9 +67,12 @@
         "_id": {
             "$oid": "5303721a4dba580000000018"
         },
+        "campaign": {
+            "$oid": "527916a82079aa8704000006"
+        },
         "gender": "undefined",
-        "maritalStatus": "undefined",
         "language": "de",
+        "maritalStatus": "undefined",
         "owner": {
             "$oid": "52a97f1650fca98c29000055"
         },
@@ -98,8 +101,8 @@
             "$oid": "5303721a4dba580000000019"
         },
         "gender": "undefined",
-        "maritalStatus": "undefined",
         "language": "de",
+        "maritalStatus": "undefined",
         "owner": {
             "$oid": "52a97f1650fca98c29000008"
         },
@@ -128,8 +131,8 @@
             "$oid": "5303721a4dba580000000020"
         },
         "gender": "undefined",
-        "maritalStatus": "undefined",
         "language": "de",
+        "maritalStatus": "undefined",
         "owner": {
             "$oid": "52a97f1650fca98c29000009"
         },
@@ -158,8 +161,8 @@
             "$oid": "5303721a4dba580000000021"
         },
         "gender": "undefined",
-        "maritalStatus": "undefined",
         "language": "de",
+        "maritalStatus": "undefined",
         "owner": {
             "$oid": "52a97f1650fca98c2900000a"
         },
@@ -188,8 +191,8 @@
             "$oid": "5303721a4dba580000000022"
         },
         "gender": "undefined",
-        "maritalStatus": "undefined",
         "language": "de",
+        "maritalStatus": "undefined",
         "owner": {
             "$oid": "52a97f1650fca98c2900000b"
         },
@@ -218,8 +221,8 @@
             "$oid": "5303721a4dba580000000023"
         },
         "gender": "undefined",
-        "maritalStatus": "undefined",
         "language": "de",
+        "maritalStatus": "undefined",
         "owner": {
             "$oid": "52a97f1650fca98c2900000c"
         },
@@ -248,8 +251,8 @@
             "$oid": "5303721a4dba580000000024"
         },
         "gender": "undefined",
-        "maritalStatus": "undefined",
         "language": "de",
+        "maritalStatus": "undefined",
         "owner": {
             "$oid": "528b227bf70daafada000006"
         },
@@ -278,8 +281,8 @@
             "$oid": "5303721a4dba580000000025"
         },
         "gender": "undefined",
-        "maritalStatus": "undefined",
         "language": "de",
+        "maritalStatus": "undefined",
         "owner": {
             "$oid": "525fb247101e330000000005"
         },
@@ -308,8 +311,8 @@
             "$oid": "5303721a4dba580000000026"
         },
         "gender": "undefined",
-        "maritalStatus": "undefined",
         "language": "de",
+        "maritalStatus": "undefined",
         "owner": {
             "$oid": "525fb247101e330000000006"
         },
@@ -338,8 +341,8 @@
             "$oid": "5303721a4dba580000000027"
         },
         "gender": "undefined",
-        "maritalStatus": "undefined",
         "language": "de",
+        "maritalStatus": "undefined",
         "owner": {
             "$oid": "528b227bf70daafada000007"
         },
@@ -368,8 +371,8 @@
             "$oid": "5303721a4dba580000000028"
         },
         "gender": "undefined",
-        "maritalStatus": "undefined",
         "language": "de",
+        "maritalStatus": "undefined",
         "owner": {
             "$oid": "525fb247101e330000000007"
         },
@@ -398,8 +401,8 @@
             "$oid": "5303721a4dba580000000029"
         },
         "gender": "undefined",
-        "maritalStatus": "undefined",
         "language": "de",
+        "maritalStatus": "undefined",
         "owner": {
             "$oid": "525fb247101e330000000008"
         },
@@ -428,8 +431,8 @@
             "$oid": "5303721a4dba580000000030"
         },
         "gender": "undefined",
-        "maritalStatus": "undefined",
         "language": "de",
+        "maritalStatus": "undefined",
         "owner": {
             "$oid": "52d4f515fac246174c000006"
         },
@@ -458,8 +461,8 @@
             "$oid": "533d4045a771f4000092f31a"
         },
         "gender": "undefined",
-        "maritalStatus": "undefined",
         "language": "de",
+        "maritalStatus": "undefined",
         "owner": {
             "$oid": "525fb247101e3300000010ee"
         },
@@ -491,8 +494,8 @@
             "$oid": "533d4045a771f4000092f31b"
         },
         "gender": "undefined",
-        "maritalStatus": "undefined",
         "language": "de",
+        "maritalStatus": "undefined",
         "owner": {
             "$oid": "53348c27996c80a534319bda"
         },
@@ -516,6 +519,123 @@
         },
         "timestamp": {
             "$date": 1396523077464
+        }
+    },
+    {
+        "__v": 0,
+        "_id": {
+            "$oid": "54f9fdc256a0e289af61bbac"
+        },
+        "created": {
+            "$date": 1425669570903
+        },
+        "devices": [],
+        "gender": "undefined",
+        "language": "de",
+        "maritalStatus": "undefined",
+        "owner": {
+            "$oid": "54f9fdc256a0e289af61bbab"
+        },
+        "prefs": {
+            "calendarNotification": "900",
+            "defaultWorkWeek": [
+                "MO",
+                "TU",
+                "WE",
+                "TH",
+                "FR"
+            ],
+            "email": {
+                "actPlanInvites": true,
+                "dailyUserMail": true,
+                "iCalInvites": false
+            },
+            "focus": [],
+            "rejectedActivities": [],
+            "rejectedIdeas": [],
+            "starredIdeas": []
+        },
+        "selectedCategories": [],
+        "updated": {
+            "$date": 1425669570903
+        }
+    },
+    {
+        "__v": 0,
+        "_id": {
+            "$oid": "54f9fded56a0e289af61bbae"
+        },
+        "created": {
+            "$date": 1425669613165
+        },
+        "devices": [],
+        "gender": "undefined",
+        "language": "de",
+        "maritalStatus": "undefined",
+        "owner": {
+            "$oid": "54f9fded56a0e289af61bbad"
+        },
+        "prefs": {
+            "calendarNotification": "900",
+            "defaultWorkWeek": [
+                "MO",
+                "TU",
+                "WE",
+                "TH",
+                "FR"
+            ],
+            "email": {
+                "actPlanInvites": true,
+                "dailyUserMail": true,
+                "iCalInvites": false
+            },
+            "focus": [],
+            "rejectedActivities": [],
+            "rejectedIdeas": [],
+            "starredIdeas": []
+        },
+        "selectedCategories": [],
+        "updated": {
+            "$date": 1425669613165
+        }
+    },
+    {
+        "__v": 0,
+        "_id": {
+            "$oid": "54f9fe2f56a0e289af61bbb0"
+        },
+        "created": {
+            "$date": 1425669679496
+        },
+        "devices": [],
+        "gender": "undefined",
+        "language": "de",
+        "maritalStatus": "undefined",
+        "owner": {
+            "$oid": "54f9fe2f56a0e289af61bbaf"
+        },
+        "prefs": {
+            "calendarNotification": "900",
+            "defaultWorkWeek": [
+                "MO",
+                "TU",
+                "WE",
+                "TH",
+                "FR"
+            ],
+            "email": {
+                "actPlanInvites": true,
+                "dailyUserMail": true,
+                "iCalInvites": false
+            },
+            "focus": [],
+            "rejectedActivities": [],
+            "rejectedIdeas": [],
+            "starredIdeas": []
+        },
+        "selectedCategories": [],
+        "updated": {
+            "$date": 1425669679496
         }
     }
 ]

@@ -31,19 +31,15 @@ var self = module.exports  =  {
             profile: "5303721a4dba580000000017"
         },
         test_ind3: {
-            id: '52a97f1650fca98c29000055',
-            username: 'username'
-        },
-        test_campaignlead: {
-            id: '52a97f1650fca98c2900000b',
-            username: 'test_campaignlead'
+            id: '54f9fdc256a0e289af61bbab',
+            username: 'test_ind3'
         },
         test_orgadm: {
-            id: '52a97f1650fca98c2900000a',
+            id: '54f9fded56a0e289af61bbad',
             username: 'test_orgadm'
         },
         test_prodadm: {
-            id: '52a97f1650fca98c29000008',
+            id: '54f9fe2f56a0e289af61bbaf',
             username: 'test_prodadm'
         }
     },
@@ -100,7 +96,7 @@ var self = module.exports  =  {
             "slogan": "It's never too late!",
             "paymentStatus": "open",
             "productType": "CampaignProductType1",
-            "campaignLeads": [self.users.test_campaignlead.id]
+            "campaignLeads": [self.users.test_orgadm.id]
         };
 
 

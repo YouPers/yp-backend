@@ -8,6 +8,9 @@
         "campaign": {
             "$oid": "527916a82079aa8704000006"
         },
+        "created": {
+            "$date": 1407770509621
+        },
         "email": "reto@blunschi.ch",
         "emailValidatedFlag": true,
         "firstname": "Reto",
@@ -21,18 +24,17 @@
             "individual"
         ],
         "tempPasswordFlag": false,
-        "username": "reto",
-        "created": {
-            "$date": 1407770509621
-        }
+        "username": "reto"
     },
-
     {
         "__v": 0,
         "_id": {
             "$oid": "525fb247101e3300000010ee"
         },
         "avatar": "assets/img/KTLU.jpeg",
+        "created": {
+            "$date": 1407770509621
+        },
         "email": "webmaster@youpers.com",
         "emailValidatedFlag": true,
         "firstname": "System",
@@ -46,10 +48,7 @@
             "systemadmin"
         ],
         "tempPasswordFlag": false,
-        "username": "sysadm",
-        "created": {
-            "$date": 1407770509621
-        }
+        "username": "sysadm"
     },
     {
         "__v": 1,
@@ -61,7 +60,7 @@
             "$oid": "527916a82079aa8704000006"
         },
         "created": {
-            "$date": 1407770582291
+            "$date": 1407770509621
         },
         "email": "ypunittest1+individual1@gmail.com",
         "emailValidatedFlag": true,
@@ -69,6 +68,9 @@
         "firstname": "Test",
         "fullname": "Test Individual 1",
         "hashed_password": "e743e3b15009853c8447923c6334ad8af4b19945",
+        "lastLogin": {
+            "$date": 1425657561705
+        },
         "lastname": "Individual 1",
         "photos": [],
         "profile": {
@@ -79,12 +81,9 @@
         ],
         "tempPasswordFlag": false,
         "updated": {
-            "$date": 1407770582291
+            "$date": 1425657561710
         },
-        "username": "test_ind1",
-        "created": {
-            "$date": 1407770509621
-        }
+        "username": "test_ind1"
     },
     {
         "__v": 0,
@@ -94,6 +93,9 @@
         "avatar": "/assets/img/default_avatar_man.png",
         "campaign": {
             "$oid": "527916a82079aa8704000006"
+        },
+        "created": {
+            "$date": 1407770509621
         },
         "email": "ypunittest1+individual2@gmail.com",
         "emailValidatedFlag": true,
@@ -108,10 +110,7 @@
             "individual"
         ],
         "tempPasswordFlag": false,
-        "username": "test_ind2",
-        "created": {
-            "$date": 1407770509621
-        }
+        "username": "test_ind2"
     },
     {
         "__v": 0,
@@ -119,14 +118,17 @@
             "$oid": "52a97f1650fca98c29000008"
         },
         "avatar": "https://insp-content-assets.s3.amazonaws.com/lisa.jpg",
-        "campaign": {
-          "$oid": "527916a82079aa8704000006"
+        "created": {
+            "$date": 1407770509621
         },
         "email": "lisa@youpers.com",
         "emailValidatedFlag": true,
         "firstname": "Lisa",
         "fullname": "Lisa Laughlin",
         "hashed_password": "24d07d5338ecd9c107cdafb08ec83a821dce6a91",
+        "lastLogin": {
+            "$date": 1425657305488
+        },
         "lastname": "Laughlin",
         "profile": {
             "$oid": "5303721a4dba580000000019"
@@ -135,10 +137,10 @@
             "individual"
         ],
         "tempPasswordFlag": false,
-        "username": "lisa",
-        "created": {
-            "$date": 1407770509621
-        }
+        "updated": {
+            "$date": 1425657305492
+        },
+        "username": "lisa"
     },
     {
         "__v": 0,
@@ -146,6 +148,9 @@
             "$oid": "52a97f1650fca98c29000009"
         },
         "avatar": "/assets/img/default_avatar_woman.png",
+        "created": {
+            "$date": 1407770509621
+        },
         "email": "ypunittest1+systemadmin@gmail.com",
         "emailValidatedFlag": true,
         "firstname": "Test",
@@ -159,10 +164,37 @@
             "systemadmin"
         ],
         "tempPasswordFlag": false,
-        "username": "test_sysadm",
+        "username": "test_sysadm"
+    },
+    {
+        "__v": 0,
+        "_id": {
+            "$oid": "52a97f1650fca98c2900000a"
+        },
+        "avatar": "https://insp-content-assets.s3.amazonaws.com/mary.jpg",
         "created": {
             "$date": 1407770509621
-        }
+        },
+        "email": "mary@youpers.com",
+        "emailValidatedFlag": true,
+        "firstname": "Mary",
+        "fullname": "Mary McKenzie",
+        "hashed_password": "27cda6e3a674d8e474ede20146d253de82f41ac4",
+        "lastLogin": {
+            "$date": 1425657228217
+        },
+        "lastname": "McKenzie",
+        "profile": {
+            "$oid": "5303721a4dba580000000021"
+        },
+        "roles": [
+            "individual"
+        ],
+        "tempPasswordFlag": false,
+        "updated": {
+            "$date": 1425657228225
+        },
+        "username": "mary"
     },
     {
         "__v": 0,
@@ -173,11 +205,17 @@
         "campaign": {
             "$oid": "527916a82079aa8704000006"
         },
+        "created": {
+            "$date": 1407770509621
+        },
         "email": "john@youpers.com",
         "emailValidatedFlag": true,
         "firstname": "John",
         "fullname": "John Jackson",
         "hashed_password": "b5cfc711e9cc780c50a8e05e3b52f88ceccda08e",
+        "lastLogin": {
+            "$date": 1425657213373
+        },
         "lastname": "Jackson",
         "profile": {
             "$oid": "5303721a4dba580000000018"
@@ -186,10 +224,10 @@
             "individual"
         ],
         "tempPasswordFlag": false,
-        "username": "john",
-        "created": {
-            "$date": 1407770509621
-        }
+        "updated": {
+            "$date": 1425657213379
+        },
+        "username": "john"
     },
     {
         "__v": 0,
@@ -197,6 +235,9 @@
             "$oid": "52d4f515fac246174c000006"
         },
         "avatar": "/assets/img/default_avatar_man.png",
+        "created": {
+            "$date": 1407770509621
+        },
         "email": "helmut.kneer@youpers.com",
         "emailValidatedFlag": true,
         "firstname": "Helmut",
@@ -210,37 +251,7 @@
             "productadmin"
         ],
         "tempPasswordFlag": false,
-        "username": "helmut",
-        "created": {
-            "$date": 1407770509621
-        }
-    },
-    {
-        "__v": 0,
-        "_id": {
-            "$oid": "52a97f1650fca98c2900000a"
-        },
-        "avatar": "https://insp-content-assets.s3.amazonaws.com/mary.jpg",
-        "campaign": {
-          "$oid": "527916a82079aa8704000006"
-        },
-        "email": "mary@youpers.com",
-        "emailValidatedFlag": true,
-        "firstname": "Mary",
-        "fullname": "Mary McKenzie",
-        "hashed_password": "27cda6e3a674d8e474ede20146d253de82f41ac4",
-        "lastname": "McKenzie",
-        "profile": {
-            "$oid": "5303721a4dba580000000021"
-        },
-        "roles": [
-            "individual"
-        ],
-        "tempPasswordFlag": false,
-        "username": "mary",
-        "created": {
-            "$date": 1407770509621
-        }
+        "username": "helmut"
     },
     {
         "__v": 0,
@@ -248,6 +259,9 @@
             "$oid": "53348c27996c80a534319bda"
         },
         "avatar": "/assets/img/avatar_coach_blue.svg",
+        "created": {
+            "$date": 1407770509621
+        },
         "email": "healthcoach@youpers.com",
         "emailValidatedFlag": true,
         "firstname": "Youpers",
@@ -261,9 +275,105 @@
             "individual"
         ],
         "tempPasswordFlag": false,
-        "username": "yphealthcoach",
+        "username": "yphealthcoach"
+    },
+    {
+        "__v": 0,
+        "_id": {
+            "$oid": "54f9fdc256a0e289af61bbab"
+        },
+        "avatar": "/assets/img/default_avatar_woman.png",
         "created": {
-            "$date": 1407770509621
-        }
+            "$date": 1425669570860
+        },
+        "email": "ypunittest1+individual3@gmail.com",
+        "emailValidatedFlag": false,
+        "emails": [],
+        "firstname": "Test",
+        "fullname": "Test Individual 3",
+        "hashed_password": "bcrypt:$2a$08$cF62XMqptwdcPOYFP852OuGVpmrEiTw2YkAaBcGqNdFbk3wdqC7h.",
+        "lastLogin": {
+            "$date": 1425669570854
+        },
+        "lastname": "Individual3",
+        "photos": [],
+        "profile": {
+            "$oid": "54f9fdc256a0e289af61bbac"
+        },
+        "roles": [
+            "individual"
+        ],
+        "tempPasswordFlag": false,
+        "updated": {
+            "$date": 1425669570860
+        },
+        "username": "test_ind3"
+    },
+    {
+        "__v": 0,
+        "_id": {
+            "$oid": "54f9fded56a0e289af61bbad"
+        },
+        "avatar": "/assets/img/default_avatar_woman.png",
+        "created": {
+            "$date": 1425669613139
+        },
+        "email": "ypunittest1+orgadm@gmail.com",
+        "emailValidatedFlag": false,
+        "emails": [],
+        "firstname": "Test",
+        "fullname": "Test Org Admin",
+        "hashed_password": "bcrypt:$2a$08$Yl7g/tM8XLeU5U2p31mmDO4nxA3K.wqAtGYrjbJLonULN8FjTZmA6",
+        "lastLogin": {
+            "$date": 1425669613136
+        },
+        "lastname": "Org Admin",
+        "photos": [],
+        "profile": {
+            "$oid": "54f9fded56a0e289af61bbae"
+        },
+        "roles": [
+          "orgadmin",
+          "campaignlead",
+            "individual"
+        ],
+        "tempPasswordFlag": false,
+        "updated": {
+            "$date": 1425669613139
+        },
+        "username": "test_orgadm"
+    },
+    {
+        "__v": 0,
+        "_id": {
+            "$oid": "54f9fe2f56a0e289af61bbaf"
+        },
+        "avatar": "/assets/img/default_avatar_woman.png",
+        "created": {
+            "$date": 1425669679472
+        },
+        "email": "ypunittest1+prodadm@gmail.com",
+        "emailValidatedFlag": false,
+        "emails": [],
+        "firstname": "Test",
+        "fullname": "Test Product Admin",
+        "hashed_password": "bcrypt:$2a$08$.UDK6zWgh9r5H4.PA8AiwuwKBy/.CVx7Qsu1sZADA61veYUQKXS9S",
+        "lastLogin": {
+            "$date": 1425669679470
+        },
+        "lastname": "Product Admin",
+        "photos": [],
+        "profile": {
+            "$oid": "54f9fe2f56a0e289af61bbb0"
+        },
+        "roles": [
+            "individual",
+          "productadmin"
+        ],
+        "tempPasswordFlag": false,
+        "updated": {
+            "$date": 1425669679472
+        },
+        "username": "test_prodadm"
     }
 ]

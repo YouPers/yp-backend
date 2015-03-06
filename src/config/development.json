@@ -10,7 +10,10 @@
     ]
   },
   "dbdump": {
-    "restoreenabled": "true",
-    "dumpenabled": "true"
+    "restoreenabled": "enabled",
+    "dumpenabled": "enabled"
+  },
+  "email": {
+    "enabled": "disabled"
   }
 }

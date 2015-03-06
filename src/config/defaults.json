@@ -14,8 +14,8 @@
     "db_port": "27017",
     "db_database": "test_database",
     "dbdump": {
-        "restoreenabled": "false",
-        "dumpenabled": "false",
+        "restoreenabled": "disabled",
+        "dumpenabled": "disabled",
         "mongodumpexe": "/usr/local/bin/mongodump",
         "mongorestoreexe": "/usr/local/bin/mongorestore",
         "mongoexe": "/usr/local/bin/mongo",
@@ -39,8 +39,12 @@
         "passwordResetUrl": "/#/password_reset/"
     },
     "email": {
+        "enabled": "enabled",
         "fromString": "INSPIRATION <dontreply@youpers.com>",
-        "templatesDir": "src/util/emailtemplates"
+        "templatesDir": "src/util/emailtemplates",
+        "tracking": {
+          "enabled": "disabled"
+        }
     },
     "accessTokenSecret": "knfad*ç%&/(&/sdkjfnaklsdnfASDFAS2341",
     "oauth": {

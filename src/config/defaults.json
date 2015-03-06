@@ -39,7 +39,7 @@
         "passwordResetUrl": "/#/password_reset/"
     },
     "email": {
-        "enabled": "enabled",
+        "enabled": "disabled",
         "fromString": "INSPIRATION <dontreply@youpers.com>",
         "templatesDir": "src/util/emailtemplates",
         "tracking": {

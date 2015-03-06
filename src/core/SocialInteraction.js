@@ -66,7 +66,7 @@ mongoose.model('Invitation').on('add', function (invitation) {
                 return SocialInteraction.emit('error', 'event not found: ' + event._id || event);
             }
 
-            var userIds = _.map(_.filter(invitation.targetSpaces, { type: 'user'}), 'targetId');
+            var userIds = _.map(_.filter(invitation.targetSpaces, 'type', 'user'), 'targetId');
 
             log.debug({userIds: userIds}, 'Invitation:add for these users');
 
@@ -449,7 +449,7 @@ SocialInteraction.dismissSocialInteractionById = function dismissSocialInteracti
 function _populateSocialInteraction(socialInteraction, campaignId, locale, attrToPopulate, cb) {
 
     function _populateTargetedUsers(donePopulating) {
-        async.each(_.filter(socialInteraction.targetSpaces, { type: 'user'}), function (targetSpace, done) {
+        async.each(_.filter(socialInteraction.targetSpaces, 'type', 'user'), function (targetSpace, done) {
             User.findById(targetSpace.targetId).exec(function (err, user) {
                 if (err) {
                     return done(err);
@@ -852,7 +852,7 @@ SocialInteraction.getInvitationStatus = function (eventId, cb) {
                 _.each(invitations, function (invitation) {
 
 
-                    _.each(_.filter(invitation.targetSpaces, { type: 'email'}), function (space) {
+                    _.each(_.filter(invitation.targetSpaces, 'type', 'email'), function (space) {
 
                         var emailResult = {
                             email: space.targetValue,
@@ -862,7 +862,7 @@ SocialInteraction.getInvitationStatus = function (eventId, cb) {
                     });
 
                     // find all personal pending invitations not yet dismissed
-                    _.each(_.filter(invitation.targetSpaces, { type: 'user'}), function (space) {
+                    _.each(_.filter(invitation.targetSpaces, 'type','user'), function (space) {
                         var sid = _.find(sidList, { socialInteraction: invitation._id, user: space.targetId });
 
                         if (!sid) {

@@ -109,7 +109,8 @@ var postCampaign = function (baseUrl) {
             // it to create the surveyReponseCollectors
             sentCampaign._id = new mongoose.Types.ObjectId();
 
-            sentCampaign.campaignLeads = [req.user.id];
+            sentCampaign.campaignLeads = sentCampaign.campaignLeads && sentCampaign.campaignLeads.length > 0 ?
+                sentCampaign.campaignLeads : [req.user.id];
 
             if (!_.contains(req.user.roles, auth.roles.campaignlead)) {
                 req.user.roles.push(auth.roles.campaignlead);
@@ -398,13 +399,24 @@ var getAllForUserFn = function (baseUrl) {
 
         var userId = req.user.id;
 
-        var admin = auth.checkAccess(req.user, auth.accessLevels.al_admin);
-        var listall = req.params.listall;
-        var match = (admin || listall) ? {} : {campaignLeads: userId};
+        Organization.find({administrators: userId}).select('_id').exec(function (err, organizations) {
 
-        var dbQuery = Campaign.find(match);
-        generic.addStandardQueryOptions(req, dbQuery, Campaign)
-            .exec(generic.writeObjCb(req, res, next));
+            var admin = auth.checkAccess(req.user, auth.accessLevels.al_admin);
+            var listall = req.params.listall;
+            var match = (admin || listall) ? {} :
+            {
+                $or: [
+                    { campaignLeads: userId },
+                    { organization: { $in: organizations } }
+                ]
+            };
+
+            var dbQuery = Campaign.find(match);
+            generic.addStandardQueryOptions(req, dbQuery, Campaign)
+                .exec(generic.writeObjCb(req, res, next));
+
+        });
+
     };
 };
 

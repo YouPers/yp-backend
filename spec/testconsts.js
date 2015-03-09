@@ -45,6 +45,10 @@ var self = module.exports  =  {
         test_prodadm: {
             id: '52a97f1650fca98c29000008',
             username: 'test_prodadm'
+        },
+        reto: {
+            id: '525fb247101e330000000005',
+            username: 'reto'
         }
     },
     assessment: {

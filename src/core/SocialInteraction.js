@@ -844,9 +844,12 @@ SocialInteraction.getInvitationStatus = function (activityId, cb) {
                     return cb(err);
                 }
 
-                var userResults = [];
-
-                var emailResults = [];
+                // using an object keyed by user.id to ensure we only have one entry per user
+                // when a user has multiple invitations and then joins we have multiple dismissed invs afterwords
+                // but a user either joins or not, so only one answer per user. Last one wins, until we need a smarter
+                // algo...
+                var userResults = {};
+                var emailResults = {};
 
                 _.each(invitations, function (invitation) {
 
@@ -857,7 +860,7 @@ SocialInteraction.getInvitationStatus = function (activityId, cb) {
                             email: space.targetValue,
                             status: 'pending'
                         };
-                        emailResults.push(emailResult);
+                        emailResults[emailResult.email] = emailResult;
                     });
 
                     // find all personal pending invitations not yet dismissed
@@ -871,7 +874,7 @@ SocialInteraction.getInvitationStatus = function (activityId, cb) {
                                 user: space.targetId,
                                 status: 'pending'
                             };
-                            userResults.push(userResult);
+                            userResults[userResult.user] = userResult;
                         }
                     });
 
@@ -883,11 +886,13 @@ SocialInteraction.getInvitationStatus = function (activityId, cb) {
                         user: sid.user,
                         status: sid.reason
                     };
-                    userResults.push(userResult);
+                    userResults[userResult.user] = userResult;
                 });
 
+                userResults = _.values(userResults);
+
                 mongoose.model('User').populate(userResults, {path: 'user', model: 'User'}, function (err, userResults) {
-                    cb(err, userResults.concat(emailResults));
+                    cb(err, userResults.concat(_.values(emailResults)));
                 });
             });
         });

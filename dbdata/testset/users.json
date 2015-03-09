@@ -9,6 +9,9 @@
         "emailValidatedFlag": true,
         "firstname": "Reto",
         "fullname": "Reto Blunschi",
+        "campaign": {
+          "$oid": "527916a82079aa8704000007"
+        },
         "hashed_password": "cc92b76ae74392ba23606345757ad5514715ed4a",
         "lastname": "Blunschi",
         "profile": {

@@ -15,6 +15,7 @@ module.exports = {
         'socialInteractionDismissed',
         'message',
         'invitation',
-        'recommendation'
+        'recommendation',
+        'marketPartner'
     ]
 };

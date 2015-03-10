@@ -23,6 +23,12 @@ function ActivityManagement() {
 util.inherits(ActivityManagement, EventEmitter);
 var actMgr = new ActivityManagement();
 
+
+//////////////////////////////////////////////////////////
+// event handlers
+/////////////////////////////////////////////////////////
+
+
 /**
  * on change of a user's campaign
  *
@@ -34,12 +40,12 @@ User.on('change:campaign', function (user) {
 
     Campaign.findById(user.campaign).exec(function (err, campaign) {
         if (err) {
-            handleError(err);
+            return _handleError(err);
         }
 
         Assessment.find({ topic: campaign.topic }).exec(function (err, assessments) {
             if (err) {
-                handleError(err);
+                return _handleError(err);
             }
 
             if (assessments.length !== 1) {
@@ -54,7 +60,7 @@ User.on('change:campaign', function (user) {
                     status: 'active'
                 }).exec(function (err, activities) {
                     if (err) {
-                        handleError(err);
+                        return _handleError(err);
                     }
 
                     // only plan assessment idea if there is no active activity yet
@@ -62,24 +68,24 @@ User.on('change:campaign', function (user) {
 
                         mongoose.model('Profile').findById(user.profile).exec(function (err, profile) {
                             if (err) {
-                                handleError(err);
+                                return _handleError(err);
                             }
 
                             Idea.findById(assessment.idea).select(Idea.getI18nPropertySelector(profile.language)).exec(function (err, idea) {
                                 if (err) {
-                                    return handleError(err);
+                                    return _handleError(err);
                                 }
                                 var assessmentActivity = actMgr.defaultActivity(idea, user);
                                 assessmentActivity.start = new Date();
                                 assessmentActivity.end = moment(assessmentActivity.start).add(15, 'm').toDate();
                                 assessmentActivity.save(function (err, savedActivity) {
                                     if (err) {
-                                        return handleError(err);
+                                        return _handleError(err);
                                     }
                                     var events = actMgr.getEvents(savedActivity, user.id);
                                     ActivityEvent.create(events, function (err) {
                                         if (err) {
-                                            return handleError(err);
+                                            return _handleError(err);
                                         }
                                         actMgr.emit('activity:activityCreated', savedActivity, user);
                                     });
@@ -147,6 +153,76 @@ Campaign.on('remove', function (campaign) {
 });
 
 
+
+actMgr.on('activity:activityCreated', function (activity, user) {
+
+    // find and dismiss all recommendations for this idea
+    SocialInteraction.dismissRecommendations(activity.idea, user, { reason: 'activityScheduled'});
+});
+
+actMgr.on('activity:activitySaved', function (activity) {
+
+
+});
+
+actMgr.on('activity:activityJoined', function (activity, joinedUser) {
+
+    SocialInteraction.dismissRecommendations(activity.idea, joinedUser, { reason: 'activityJoined' }, _handleError);
+    SocialInteraction.dismissInvitations(activity, joinedUser, { reason: 'activityJoined' }, _handleError);
+
+});
+
+
+actMgr.on('activity:activityDeleted', function (activity) {
+    SocialInteraction.deleteSocialInteractions(activity, _handleError);
+});
+
+actMgr.on('activity:participationCancelled', function(activity, user) {
+    SocialInteraction.removeDismissals(activity, user, _handleError);
+});
+
+actMgr.on('activity:activityUpdated', function (updatedActivity) {
+    Invitation.find({
+            activity: updatedActivity._id
+        }
+    ).exec(function (err, invitations) {
+            _.forEach(invitations, function (invitation) {
+                // The publishTo of the invitation has to be equal or earlier than the last event,
+                // it does not make sense to invite something that has already happened.
+                if (invitation.publishTo > updatedActivity.lastEventEnd) {
+                    invitation.publishTo = updatedActivity.lastEventEnd;
+                    invitation.save(function (err, saved) {
+                        if (err) {
+                            return actMgr.emit('error', err);
+                        }
+                    });
+                }
+            });
+        });
+
+});
+
+
+/////////////////////////////////////////
+// internal methods
+/////////////////////////////////////////
+
+function _handleError(err) {
+    if (err) {
+        return actMgr.emit('error', err);
+    }
+}
+
+actMgr.on('error', function (err) {
+    log.error(err);
+    throw new Error(err);
+});
+
+
+///////////////////////////////////////////////////////////////////
+// public methods
+///////////////////////////////////////////////////////////////////
+
 actMgr.getEvents = function getEvents(activity, ownerId, fromDate) {
 
     var duration = moment(activity.end).diff(activity.start);
@@ -169,6 +245,7 @@ actMgr.getEvents = function getEvents(activity, ownerId, fromDate) {
 
     return events;
 };
+
 
 actMgr.defaultActivity = function (idea, user, campaignId, startDateParam) {
 
@@ -236,66 +313,5 @@ actMgr.defaultActivity = function (idea, user, campaignId, startDateParam) {
 
     return activityDoc;
 };
-
-
-actMgr.on('activity:activityCreated', function (activity, user) {
-
-    // find and dismiss all recommendations for this idea
-    SocialInteraction.dismissRecommendations(activity.idea, user, { reason: 'activityScheduled'});
-});
-
-actMgr.on('activity:activitySaved', function (activity) {
-
-
-});
-
-actMgr.on('activity:activityJoined', function (activity, joinedUser) {
-
-    SocialInteraction.dismissRecommendations(activity.idea, joinedUser, { reason: 'activityJoined' }, handleError);
-    SocialInteraction.dismissInvitations(activity, joinedUser, { reason: 'activityJoined' }, handleError);
-
-});
-
-
-actMgr.on('activity:activityDeleted', function (activity) {
-    SocialInteraction.deleteSocialInteractions(activity, handleError);
-});
-
-actMgr.on('activity:participationCancelled', function(activity, user) {
-   SocialInteraction.removeDismissals(activity, user, handleError);
-});
-
-actMgr.on('activity:activityUpdated', function (updatedActivity) {
-    Invitation.find({
-            activity: updatedActivity._id
-        }
-    ).exec(function (err, invitations) {
-            _.forEach(invitations, function (invitation) {
-                // The publishTo of the invitation has to be equal or earlier than the last event,
-                // it does not make sense to invite something that has already happened.
-                if (invitation.publishTo > updatedActivity.lastEventEnd) {
-                    invitation.publishTo = updatedActivity.lastEventEnd;
-                    invitation.save(function (err, saved) {
-                        if (err) {
-                            return actMgr.emit('error', err);
-                        }
-                    });
-                }
-            });
-        });
-
-});
-
-function handleError(err) {
-    if (err) {
-        return actMgr.emit('error', err);
-    }
-}
-
-actMgr.on('error', function (err) {
-    log.error(err);
-    throw new Error(err);
-});
-
 
 module.exports = actMgr;

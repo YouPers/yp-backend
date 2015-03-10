@@ -1,7 +1,6 @@
 var calendar = require('../util/calendar'),
     mongoose = require('ypbackendlib').mongoose,
     Activity = mongoose.model('Activity'),
-    Idea = mongoose.model('Idea'),
     ActivityEvent = mongoose.model('ActivityEvent'),
     SocialInteractionModel = mongoose.model('SocialInteraction'),
     SocialInteractionDismissedModel = mongoose.model('SocialInteractionDismissed'),
@@ -243,117 +242,8 @@ function postNewActivity(req, res, next) {
         return next(new error.InvalidArgumentError('"joiningUsers" has to be emtpy for new activity, use JOIN Api to join an existing activity'));
     }
 
-    // set defaults
-    if (!sentActivity.frequency) {
-        sentActivity.frequency = 'once';
-    }
-
-    if (!sentActivity.recurrence) {
-        sentActivity.recurrence = {};
-    }
-    // check whether delivered owner is the authenticated user
-    if (sentActivity.owner && (req.user.id !== sentActivity.owner)) {
-        return next(new error.NotAuthorizedError({
-            userId: req.user.id,
-            owner: sentActivity.owner
-        }));
-    }
-
-    // if no owner delivered set to authenticated user
-    if (!sentActivity.owner) {
-        sentActivity.owner = req.user.id;
-    }
-
-    // set the campaign that this activity is part of if it has not been set by the client
-    if (!sentActivity.campaign && req.user.campaign) {
-        sentActivity.campaign = req.user.campaign.id || req.user.campaign; // allow populated and unpopulated campaign
-    }
-
-    // set the byday to the user's default if the client did not do it, only for daily activities
-    if (sentActivity.frequency === 'day' && !sentActivity.recurrence.byday) {
-        sentActivity.recurrence.byday = req.user.profile.prefs.defaultWorkWeek;
-    }
-
-    var newActivity = new Activity(sentActivity);
-
-    _saveNewActivity(newActivity, req, function (err, savedActivity) {
-        if (err) {
-            return error.handleError(err, next);
-        }
-
-        var events = actMgr.getEvents(savedActivity, req.user.id);
-
-        ActivityEvent.create(events, function (err) {
-            if (err) {
-                return error.handleError(err, next);
-            }
-
-            actMgr.emit('activity:activityCreated', savedActivity, req.user);
-
-            generic.writeObjCb(req, res, next)(null, savedActivity);
-        });
-    });
+    actMgr.saveNewActivity(sentActivity, req.user, req.locale, generic.writeObjCb(req, res, next));
 }
-
-
-/**
- * save new activity with a mongoose obj that already has been validated
- *
- * @param req - the request
- * @param cb - callback(err, savedPlan)
- * @param activity
- */
-function _saveNewActivity(activity, req, cb) {
-    var user = req.user;
-    var i18n = req.i18n;
-
-    // add fields of idea to the activity
-    Idea.findById(activity.idea).exec(function (err, foundIdea) {
-        if (err) {
-            return cb(err);
-        }
-
-        if (!foundIdea) {
-            return cb(new error.InvalidArgumentError('referenced idea not found', { required: 'idea', idea: activity.idea }));
-        }
-
-        if (!activity.title) {
-            activity.title = foundIdea.title;
-        }
-
-        activity.save(function (err, savedActivity) {
-            if (err) {
-                return cb(err);
-            }
-
-            // we reload Activity for two reasons:
-            // - populate 'idea' so we can get create a nice calendar entry
-            // - we need to reload so we get the changes that have been done pre('save') and pre('init')
-            //   like updating the joiningUsers Collection
-            Activity.findById(savedActivity._id).populate({path: 'owner', select: '+email'}).populate('idea', mongoose.model('Idea').getI18nPropertySelector(req.locale)).exec(function (err, reloadedActivity) {
-                if (err) {
-                    return cb(err);
-                }
-
-                if (user && user.email && user.profile.prefs.email.iCalInvites) {
-                    req.log.debug({start: reloadedActivity.start, end: reloadedActivity.end}, 'Saved New activity');
-                    var myIcalString = calendar.getIcalObject(reloadedActivity, user, 'new', i18n).toString();
-                    email.sendCalInvite(user, 'new', myIcalString, reloadedActivity, i18n);
-                }
-
-                actMgr.emit('activity:activitySaved', reloadedActivity);
-
-                // remove the populated idea because the client is not gonna expect it to be populated.
-                reloadedActivity.idea = reloadedActivity.idea._id;
-
-                return cb(null, reloadedActivity);
-
-            });
-
-        });
-    });
-}
-
 
 function postJoinActivityFn(req, res, next) {
 

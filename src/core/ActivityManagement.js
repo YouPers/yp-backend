@@ -2,6 +2,7 @@ var EventEmitter = require('events').EventEmitter;
 var util = require('util');
 var mongoose = require('ypbackendlib').mongoose;
 var _ = require('lodash');
+_.mixin(require("lodash-deep"));
 var moment = require('moment-timezone');
 var calendar = require('../util/calendar');
 var User = mongoose.model('User');
@@ -15,6 +16,12 @@ var SocialInteraction = require('../core/SocialInteraction');
 var config = require('../config/config');
 var log = require('ypbackendlib').log(config);
 var async = require('async');
+var error = require('ypbackendlib').error;
+var i18n = require('ypbackendlib').i18n.initialize();
+var email = require('../util/email');
+
+
+var DEFAULT_WORK_WEEK = ['MO', 'TU', 'WE', 'TH', 'FR'];
 
 function ActivityManagement() {
     EventEmitter.call(this);
@@ -43,7 +50,7 @@ User.on('change:campaign', function (user) {
             return _handleError(err);
         }
 
-        Assessment.find({ topic: campaign.topic }).exec(function (err, assessments) {
+        Assessment.find({topic: campaign.topic}).exec(function (err, assessments) {
             if (err) {
                 return _handleError(err);
             }
@@ -140,7 +147,7 @@ Campaign.on('remove', function (campaign) {
     function _removeAll(err, objs) {
         async.forEach(objs, function (obj, cb) {
             obj.remove(cb);
-        }, function(err) {
+        }, function (err) {
             if (err) {
                 log.error(err);
                 throw err;
@@ -153,22 +160,16 @@ Campaign.on('remove', function (campaign) {
 });
 
 
-
 actMgr.on('activity:activityCreated', function (activity, user) {
 
     // find and dismiss all recommendations for this idea
-    SocialInteraction.dismissRecommendations(activity.idea, user, { reason: 'activityScheduled'});
-});
-
-actMgr.on('activity:activitySaved', function (activity) {
-
-
+    SocialInteraction.dismissRecommendations(activity.idea, user, {reason: 'activityScheduled'});
 });
 
 actMgr.on('activity:activityJoined', function (activity, joinedUser) {
 
-    SocialInteraction.dismissRecommendations(activity.idea, joinedUser, { reason: 'activityJoined' }, _handleError);
-    SocialInteraction.dismissInvitations(activity, joinedUser, { reason: 'activityJoined' }, _handleError);
+    SocialInteraction.dismissRecommendations(activity.idea, joinedUser, {reason: 'activityJoined'}, _handleError);
+    SocialInteraction.dismissInvitations(activity, joinedUser, {reason: 'activityJoined'}, _handleError);
 
 });
 
@@ -177,7 +178,7 @@ actMgr.on('activity:activityDeleted', function (activity) {
     SocialInteraction.deleteSocialInteractions(activity, _handleError);
 });
 
-actMgr.on('activity:participationCancelled', function(activity, user) {
+actMgr.on('activity:participationCancelled', function (activity, user) {
     SocialInteraction.removeDismissals(activity, user, _handleError);
 });
 
@@ -219,6 +220,67 @@ actMgr.on('error', function (err) {
 });
 
 
+/**
+ * save new activity with a mongoose obj that already has been validated
+ *
+ * @param req - the request
+ * @param cb - callback(err, savedPlan)
+ * @param activity
+ */
+function _saveNewActivity(activity, user, locale, cb) {
+
+    // add fields of idea to the activity
+    Idea.findById(activity.idea, mongoose.model('Idea').getI18nPropertySelector(locale)).exec(function (err, foundIdea) {
+        if (err) {
+            return cb(err);
+        }
+
+        if (!foundIdea) {
+            return cb(new error.InvalidArgumentError('referenced idea not found', {
+                required: 'idea',
+                idea: activity.idea
+            }));
+        }
+
+        if (!activity.title) {
+            activity.title = foundIdea.title;
+        }
+
+        activity.save(function (err, savedActivity) {
+            if (err) {
+                return cb(err);
+            }
+
+            // we reload Activity for two reasons:
+            // - populate 'idea' so we can get create a nice calendar entry
+            // - we need to reload so we get the changes that have been done pre('save') and pre('init')
+            //   like updating the joiningUsers Collection
+            Activity.findById(savedActivity._id)
+                .populate({path: 'owner', select: '+email'})
+                .populate('idea', mongoose.model('Idea').getI18nPropertySelector(locale))
+                .exec(function (err, reloadedActivity) {
+                    if (err) {
+                        return cb(err);
+                    }
+
+                    if (user && user.email && user.profile.prefs.email.iCalInvites) {
+                        log.debug({start: reloadedActivity.start, end: reloadedActivity.end}, 'Saved New activity');
+                        var myIcalString = calendar.getIcalObject(reloadedActivity, user, 'new', i18n).toString();
+                        email.sendCalInvite(user, 'new', myIcalString, reloadedActivity, i18n);
+                    }
+
+                    // remove the populated idea because the client is not gonna expect it to be populated.
+                    reloadedActivity.idea = reloadedActivity.idea._id;
+
+                    return cb(null, reloadedActivity);
+
+                });
+
+        });
+    });
+}
+
+
 ///////////////////////////////////////////////////////////////////
 // public methods
 ///////////////////////////////////////////////////////////////////
@@ -256,19 +318,19 @@ actMgr.defaultActivity = function (idea, user, campaignId, startDateParam) {
         campaignId = user.campaign._id || user.campaign;
     }
 
-    var start =  startDateParam ? moment(startDateParam).tz('Europe/Zurich')  : moment().add(1, 'd').tz('Europe/Zurich');
+    var start = startDateParam ? moment(startDateParam).tz('Europe/Zurich') : moment().add(1, 'd').tz('Europe/Zurich');
 
     // check if the organizer is working on this day by checking the default work days in his calendar, if not push
     // back by one day and repeat
 
     function _isWorkingOn(user, date) {
-        var workWeek = user.profile.prefs ? user.profile.prefs.defaultWorkWeek : ['MO', 'TU', 'WE', 'TH', 'FR'];
+        var workWeek = user.profile.prefs ? user.profile.prefs.defaultWorkWeek : DEFAULT_WORK_WEEK;
         var dayStringOfThisDate = ['SU', 'MO', 'TU', 'WE', 'TH', 'FR', 'SA'][date.day()];
 
         return _.contains(workWeek, dayStringOfThisDate);
     }
 
-    while(!_isWorkingOn(user, start)) {
+    while (!_isWorkingOn(user, start)) {
         start = start.add(1, 'day');
     }
 
@@ -312,6 +374,44 @@ actMgr.defaultActivity = function (idea, user, campaignId, startDateParam) {
     activityDoc.idea = idea;
 
     return activityDoc;
+};
+
+
+actMgr.saveNewActivity = function postNewActivity(sentActivity, user, locale, cb) {
+
+    if (!sentActivity.recurrence) {
+        sentActivity.recurrence = {};
+    }
+
+    // set the campaign that this activity is part of if it has not been set by the client
+    if (!sentActivity.campaign && user.campaign) {
+        sentActivity.campaign = user.campaign.id || user.campaign; // allow populated and unpopulated campaign
+    }
+
+    // set the byday to the user's default if the client did not do it, only for daily activities
+    if (sentActivity.frequency === 'day' && !sentActivity.recurrence.byday) {
+        sentActivity.recurrence.byday = _.deepGet(user, 'profile.prefs.defaultWorkWeek') || DEFAULT_WORK_WEEK;
+    }
+
+    var newActivity = new Activity(sentActivity);
+
+    _saveNewActivity(newActivity, user, locale, function (err, savedActivity) {
+        if (err) {
+            return error.handleError(err, cb);
+        }
+
+        var events = actMgr.getEvents(savedActivity, user.id);
+
+        ActivityEvent.create(events, function (err) {
+            if (err) {
+                return error.handleError(err, cb);
+            }
+
+            actMgr.emit('activity:activityCreated', savedActivity, user);
+
+            return cb(null, savedActivity);
+        });
+    });
 };
 
 module.exports = actMgr;

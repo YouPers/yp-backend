@@ -686,5 +686,65 @@ actMgr.postJoinActivityFn = function (actIdToJoin, joiningUser, i18n, cb) {
     });
 };
 
+actMgr.postActivityInvite = function (actId, postingUser, emails, i18n, cb ) {
+    var locals = {
+    };
+    async.series([
+        // first load Activity
+        function (done) {
+            Activity.findById(actId)
+                .populate('idea')
+                .populate('owner')
+                .exec(function (err, activity) {
+                    if (err) {
+                        return done(err);
+                    }
+                    if (!activity) {
+                        return done(new error.ResourceNotFoundError('Activity not found.', {
+                            id: actId
+                        }));
+                    }
+                    locals.activity = activity;
+                    return done();
+                });
+        },
+        // for each email try whether we have a user in the Db with this email address and, if yes, load the user
+        // to personalize the email
+        // then send the invitation mails
+        function (done) {
+
+            // collect known users for storing invitations
+            var recipients = [];
+
+            async.forEach(emails,
+                function (emailaddress, done) {
+                    mongoose.model('User')
+                        .find({email: emailaddress})
+                        .exec(function (err, invitedUsers) {
+                            if (err) {
+                                return done(err);
+                            }
+
+                            if (invitedUsers && invitedUsers.length === 1) {
+                                recipients.push(invitedUsers[0]);
+                            } else {
+                                recipients.push(emailaddress);
+                            }
+
+                            // send email moved to SI event consumer
+                            return done();
+                        });
+                },
+                function (err) {
+                    if (err) {
+                        return error.handleError(err, done);
+                    }
+                    SocialInteraction.emit('invitation:activity', postingUser, recipients, locals.activity);
+                    done();
+                });
+        }
+    ], cb);
+};
+
 
 module.exports = actMgr;

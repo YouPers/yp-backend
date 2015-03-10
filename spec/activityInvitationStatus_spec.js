@@ -34,13 +34,13 @@ frisby.create('Invitation: plan an activity first')
     .expectStatus(201)
     .afterJSON(function (newPlan) {
 
-        frisby.create("Invitation: invite user by email to this activity")
+        frisby.create("ActInvitationStatus: invite user by email to this activity")
             .post(URL + '/activities/' + newPlan.id + "/inviteEmail", {email: "anyemail@mal.com"})
             .auth('test_ind1', 'yp')
-            .expectStatus(200)
+            .expectStatus(201)
             .after(function () {
 
-                frisby.create("Invitation: check invitation status, expect pending")
+                frisby.create("ActInvitationStatus: check invitation status, expect pending")
                     .get(URL + '/activities/' + newPlan.id + "/invitationStatus")
                     .auth('test_ind1', 'yp')
                     .expectStatus(200)
@@ -48,7 +48,7 @@ frisby.create('Invitation: plan an activity first')
                         expect(result.length).toEqual(1);
                         expect(result[0].status).toEqual('pending');
 
-                        frisby.create("Invitation: invite user directly to this activity")
+                        frisby.create("ActInvitationStatus: invite user directly to this activity")
                             .post(URL + '/invitations', {
                                 idea: newPlan.idea,
                                 activity: newPlan.id,
@@ -57,7 +57,7 @@ frisby.create('Invitation: plan an activity first')
                             .auth('test_ind1', 'yp')
                             .expectStatus(201)
                             .afterJSON(function (invitation) {
-                                frisby.create("Invitation: check invitation status, expect pending")
+                                frisby.create("ActInvitationStatus: check invitation status, expect pending")
                                     .get(URL + '/activities/' + newPlan.id + "/invitationStatus")
                                     .auth('test_ind1', 'yp')
                                     .expectStatus(200)
@@ -66,12 +66,12 @@ frisby.create('Invitation: plan an activity first')
                                         expect(result[0].status).toEqual('pending');
                                         expect(result[1].status).toEqual('pending');
 
-                                        frisby.create("Invitation: join it")
+                                        frisby.create("ActInvitationStatus: join it")
                                             .post(URL + '/activities/' + newPlan.id + "/join")
                                             .auth('test_ind2', 'yp')
                                             .expectStatus(201)
                                             .afterJSON(function (result) {
-                                                frisby.create("Invitation: check invitation status, expect pending")
+                                                frisby.create("ActInvitationStatus: check invitation status, expect pending")
                                                     .get(URL + '/activities/' + newPlan.id + "/invitationStatus")
                                                     .auth('test_ind1', 'yp')
                                                     .expectStatus(200)
@@ -81,7 +81,7 @@ frisby.create('Invitation: plan an activity first')
                                                         expect(result.length).toEqual(2);
                                                         expect(_.map(result, 'status')).toContain('pending');
                                                         expect(_.map(result, 'status')).toContain('activityJoined');
-                                                        frisby.create("Invitation: post public invitations for this activity")
+                                                        frisby.create("ActInvitationStatus: post public invitations for this activity")
                                                             .post(URL + '/invitations', {
                                                                 idea: newPlan.idea,
                                                                 activity: newPlan.id,
@@ -93,7 +93,7 @@ frisby.create('Invitation: plan an activity first')
                                                             .auth('test_ind1', 'yp')
                                                             .expectStatus(201)
                                                             .afterJSON(function (publicInv) {
-                                                                frisby.create("Invitation: check invitation status, no difference because public invitations are not shown on status")
+                                                                frisby.create("ActInvitationStatus: check invitation status, no difference because public invitations are not shown on status")
                                                                     .get(URL + '/activities/' + newPlan.id + "/invitationStatus")
                                                                     .auth('test_ind1', 'yp')
                                                                     .expectStatus(200)
@@ -102,7 +102,7 @@ frisby.create('Invitation: plan an activity first')
                                                                         expect(_.map(result, 'status')).toContain('pending');
                                                                         expect(_.map(result, 'status')).toContain('activityJoined');
 
-                                                                        frisby.create("Invitation: invite reto user directly to this activity")
+                                                                        frisby.create("ActInvitationStatus: invite reto user directly to this activity")
                                                                             .post(URL + '/invitations', {
                                                                                 idea: newPlan.idea,
                                                                                 activity: newPlan.id,
@@ -115,7 +115,7 @@ frisby.create('Invitation: plan an activity first')
                                                                             .expectStatus(201)
                                                                             .afterJSON(function (invitation2) {
 
-                                                                                frisby.create("Invitation: check invitation status, no difference because public invitations are not shown on status")
+                                                                                frisby.create("ActInvitationStatus: check invitation status, no difference because public invitations are not shown on status")
                                                                                     .get(URL + '/activities/' + newPlan.id + "/invitationStatus")
                                                                                     .auth('test_ind1', 'yp')
                                                                                     .expectStatus(200)
@@ -123,12 +123,12 @@ frisby.create('Invitation: plan an activity first')
                                                                                         expect(result.length).toEqual(3);
                                                                                         expect(_.map(result, 'status')).toContain('pending');
                                                                                         expect(_.map(result, 'status')).toContain('activityJoined');
-                                                                                        frisby.create("Invitation: join it")
+                                                                                        frisby.create("ActInvitationStatus: join it")
                                                                                             .post(URL + '/activities/' + newPlan.id + "/join")
                                                                                             .auth('reto', 'reto')
                                                                                             .expectStatus(201)
                                                                                             .afterJSON(function (result) {
-                                                                                                frisby.create("Invitation: check invitation status, expect 1 pending")
+                                                                                                frisby.create("ActInvitationStatus: check invitation status, expect 1 pending")
                                                                                                     .get(URL + '/activities/' + newPlan.id + "/invitationStatus")
                                                                                                     .auth('test_ind1', 'yp')
                                                                                                     .expectStatus(200)

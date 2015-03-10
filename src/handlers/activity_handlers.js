@@ -19,7 +19,7 @@ function _hasValidPathId(req) {
 
 function getInvitationStatus(req, res, next) {
     if (!_hasValidPathId(req)) {
-        return next(new error.InvalidArgumentError('no valid id found: ' + req.params && req.params.id));
+        return next(new error.InvalidArgumentError('no valid id found', {id: req.params && req.params.id}));
     }
     SocialInteraction.getInvitationStatus(req.params.id, generic.sendListCb(req, res, next));
 }
@@ -62,7 +62,7 @@ function postNewActivity(req, res, next) {
 
 function deleteActivity(req, res, next) {
     if (!_hasValidPathId(req)) {
-        return next(new error.InvalidArgumentError('no valid id found: ' + req.params && req.params.id));
+        return next(new error.InvalidArgumentError('no valid id found', {id: req.params && req.params.id}));
     }
 
     var reason = req.params.reason || 'The organizer Deleted this activity';
@@ -73,7 +73,7 @@ function deleteActivity(req, res, next) {
 
 function putActivity(req, res, next) {
     if (!_hasValidPathId(req)) {
-        return next(new error.InvalidArgumentError('no valid id found: ' + req.params && req.params.id));
+        return next(new error.InvalidArgumentError('no valid id found', {id: req.params && req.params.id}));
     }
     var sentActivity = req.body;
     var err = handlerUtils.checkWritingPreCond(sentActivity, req.user, Activity);
@@ -92,7 +92,7 @@ function putActivity(req, res, next) {
 
 function postJoinActivityFn(req, res, next) {
     if (!_hasValidPathId(req)) {
-        return next(new error.InvalidArgumentError('no valid id found: ' + req.params && req.params.id));
+        return next(new error.InvalidArgumentError('no valid id found', {id: req.params && req.params.id}));
     }
    actMgr.postJoinActivityFn(req.params.id, req.user, req.i18n,generic.writeObjCb(req, res, next));
 }
@@ -100,7 +100,7 @@ function postJoinActivityFn(req, res, next) {
 
 function postActivityInvite(req, res, next) {
     if (!_hasValidPathId(req)) {
-        return next(new error.InvalidArgumentError('no valid id found: ' + req.params && req.params.id));
+        return next(new error.InvalidArgumentError('no valid id found', {id: req.params && req.params.id}));
     }
 
     if (!req.body || !req.body.email) {
@@ -121,69 +121,7 @@ function postActivityInvite(req, res, next) {
         emails = [req.body.email];
     }
 
-    var locals = {
-    };
-    async.series([
-        // first load Activity
-        function (done) {
-            Activity.findById(req.params.id)
-                .populate('idea')
-                .populate('owner')
-                .exec(function (err, activity) {
-                    if (err) {
-                        return done(err);
-                    }
-                    if (!activity) {
-                        return done(new error.ResourceNotFoundError('Activity not found.', {
-                            id: req.params.id
-                        }));
-                    }
-                    locals.activity = activity;
-                    return done();
-                });
-        },
-        // for each email try whether we have a user in the Db with this email address and, if yes, load the user
-        // to personalize the email
-        // then send the invitation mails
-        function (done) {
-
-            // collect known users for storing invitations
-            var recipients = [];
-
-            async.forEach(emails,
-                function (emailaddress, done) {
-                    mongoose.model('User')
-                        .find({email: emailaddress})
-                        .exec(function (err, invitedUsers) {
-                            if (err) {
-                                return done(err);
-                            }
-
-                            if (invitedUsers && invitedUsers.length === 1) {
-                                recipients.push(invitedUsers[0]);
-                            } else {
-                                recipients.push(emailaddress);
-                            }
-
-                            // send email moved to SI event consumer
-                            return done();
-                        });
-                },
-                function (err) {
-                    if (err) {
-                        return error.handleError(err, done);
-                    }
-                    SocialInteraction.emit('invitation:activity', req.user, recipients, locals.activity);
-                    done();
-                });
-        }
-    ], function (err) {
-        if (err) {
-            return error.handleError(err, next);
-        }
-        res.send(200);
-        return next();
-    });
+    actMgr.postActivityInvite(req.params.id, req.user, emails, req.i18n, generic.writeObjCb(req, res, next));
 }
 
 

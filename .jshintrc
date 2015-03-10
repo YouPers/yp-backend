@@ -16,6 +16,7 @@
         "describe": false,
         "it": false,
         "expect": false,
-        "process": false
+        "process": false,
+        "module": false
     }
 }

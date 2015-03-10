@@ -17,8 +17,8 @@ var config = require('../config/config');
 var log = require('ypbackendlib').log(config);
 var async = require('async');
 var error = require('ypbackendlib').error;
-var i18n = require('ypbackendlib').i18n.initialize();
 var email = require('../util/email');
+var auth = require('ypbackendlib').auth;
 
 
 var DEFAULT_WORK_WEEK = ['MO', 'TU', 'WE', 'TH', 'FR'];
@@ -227,10 +227,10 @@ actMgr.on('error', function (err) {
  * @param cb - callback(err, savedPlan)
  * @param activity
  */
-function _saveNewActivity(activity, user, locale, cb) {
+function _saveNewActivity(activity, user, i18n, cb) {
 
     // add fields of idea to the activity
-    Idea.findById(activity.idea, mongoose.model('Idea').getI18nPropertySelector(locale)).exec(function (err, foundIdea) {
+    Idea.findById(activity.idea, mongoose.model('Idea').getI18nPropertySelector(i18n.locale())).exec(function (err, foundIdea) {
         if (err) {
             return cb(err);
         }
@@ -257,7 +257,7 @@ function _saveNewActivity(activity, user, locale, cb) {
             //   like updating the joiningUsers Collection
             Activity.findById(savedActivity._id)
                 .populate({path: 'owner', select: '+email'})
-                .populate('idea', mongoose.model('Idea').getI18nPropertySelector(locale))
+                .populate('idea', mongoose.model('Idea').getI18nPropertySelector(i18n.locale()))
                 .exec(function (err, reloadedActivity) {
                     if (err) {
                         return cb(err);
@@ -277,6 +277,48 @@ function _saveNewActivity(activity, user, locale, cb) {
                 });
 
         });
+    });
+}
+
+
+function _sendIcalMessages(activity, recepient, reason, type, i18n, done) {
+    var users;
+    if (recepient) {
+        users = [recepient];
+    } else {
+        users = [activity.owner].concat(activity.joiningUsers);
+    }
+
+    mongoose.model('Profile').populate(users, {path: 'profile', model: 'Profile'}, function (err, populatedUsers) {
+        async.forEach(populatedUsers, function (user, next) {
+                if (user.profile.prefs.email.iCalInvites) {
+                    var myIcalString = calendar.getIcalObject(activity, user, type, i18n, reason).toString();
+                    email.sendCalInvite(user, type, myIcalString, activity, i18n, reason);
+                }
+                return next();
+            },
+            done);
+    });
+}
+
+function _deleteActivityEvents(activity, ofUser, fromDate, done) {
+
+    var q = ActivityEvent
+        .remove({activity: activity._id});
+
+    if (fromDate) {
+        q.where({end: {$gte: fromDate}});
+    }
+
+    if (ofUser) {
+        q.where({owner: ofUser._id});
+    }
+
+    q.exec(function (err, count) {
+        if (err) {
+            return done(err);
+        }
+        return done(null, count);
     });
 }
 
@@ -377,7 +419,7 @@ actMgr.defaultActivity = function (idea, user, campaignId, startDateParam) {
 };
 
 
-actMgr.saveNewActivity = function postNewActivity(sentActivity, user, locale, cb) {
+actMgr.saveNewActivity = function postNewActivity(sentActivity, user, i18n, cb) {
 
     if (!sentActivity.recurrence) {
         sentActivity.recurrence = {};
@@ -395,7 +437,7 @@ actMgr.saveNewActivity = function postNewActivity(sentActivity, user, locale, cb
 
     var newActivity = new Activity(sentActivity);
 
-    _saveNewActivity(newActivity, user, locale, function (err, savedActivity) {
+    _saveNewActivity(newActivity, user, i18n, function (err, savedActivity) {
         if (err) {
             return error.handleError(err, cb);
         }
@@ -413,5 +455,236 @@ actMgr.saveNewActivity = function postNewActivity(sentActivity, user, locale, cb
         });
     });
 };
+
+
+actMgr.putChangedActivity = function putActivity(idToUpdate, sentActivity, user, i18n, cb) {
+
+    Activity
+        .findById(idToUpdate)
+        .populate('idea')
+        .populate('owner joiningUsers', '+profile +email')
+        .exec(function (err, loadedActivity) {
+            if (err) {
+                return error.handleError(err, cb);
+            }
+            if (!loadedActivity) {
+                return cb(new error.ResourceNotFoundError('Activity not found.', {id: idToUpdate}));
+            }
+
+            // check to see if received activity is editable
+            if (loadedActivity.editStatus !== "editable") {
+                return cb(new error.ConflictError('Error updating in activityPutFn: Not allowed to edit this activity.', {
+                    activityId: idToUpdate.id,
+                    editStatus: loadedActivity.editStatus
+                }));
+            }
+
+            // we do not allow to update the owner of and the joiningUsers array directly with a put.
+            delete sentActivity.owner;
+            delete sentActivity.joiningUsers;
+
+            loadedActivity.set(sentActivity);
+
+            function _saveActivity(done) {
+                loadedActivity.save(done);
+            }
+
+            function _timeOrFrequencyChanged(loadedAct, sentAct) {
+                if (!sentAct.start && !sentAct.end && !sentAct.frequency && !sentAct.recurrence) {
+                    // nothing relevant for the events sent, so return false;
+                    return false;
+                }
+                // otherwise compare the relevant fields
+                return ((sentAct.start !== loadedAct.start) ||
+                (sentAct.end !== loadedAct.end) ||
+                (sentAct.frequency !== loadedAct.frequency) || !_.isEqual(sentAct.recurrence, loadedAct.recurrence));
+            }
+
+
+            function _sendCalendarUpdates(done) {
+                var reason = '';
+                _sendIcalMessages(loadedActivity, null, reason, 'update', i18n, done);
+            }
+
+            function _deleteFutureEventsForAllUsers(done) {
+                return _deleteActivityEvents(loadedActivity, null, new Date(), done);
+            }
+
+            function _createFutureEventsForAllUsers(done) {
+                var users = [loadedActivity.owner].concat(loadedActivity.joiningUsers);
+
+                return async.forEach(users, function (user, asyncCb) {
+                    var events = actMgr.getEvents(loadedActivity, user._id, new Date());
+                    ActivityEvent.create(events, asyncCb);
+                }, done);
+            }
+
+            var parallelTasks = [_saveActivity, _sendCalendarUpdates];
+
+            if (_timeOrFrequencyChanged(loadedActivity, sentActivity)) {
+                parallelTasks.push(
+                    function (done) {
+                        async.series([
+                            _deleteFutureEventsForAllUsers,
+                            _createFutureEventsForAllUsers
+                        ], done);
+                    });
+            }
+
+            function finalCb(err) {
+                if (err) {
+                    return error.handleError(err, cb);
+                }
+
+                loadedActivity.idea = loadedActivity.idea._id;
+
+                actMgr.emit('activity:activityUpdated', loadedActivity);
+                return cb(null, loadedActivity);
+            }
+
+            return async.parallel(parallelTasks, finalCb);
+        });
+};
+
+actMgr.deleteActivity = function deleteActivity(idToDelete, requestingUser, reason, i18n, cb) {
+
+    Activity
+        .findById(idToDelete)
+        .populate('idea')
+        .populate('owner joiningUsers', '+profile +email')
+        .exec(function (err, activity) {
+
+            if (err) {
+                return error.handleError(err, cb);
+            }
+            if (!activity) {
+                return cb(new error.ResourceNotFoundError('Activity not found.', {
+                    id: idToDelete
+                }));
+            }
+            var joiner = _.find(activity.joiningUsers, function (user) {
+                return user.equals(requestingUser);
+            });
+
+            var sysadmin = auth.checkAccess(requestingUser, auth.accessLevels.al_systemadmin);
+
+            var owner = activity.owner._id.equals(requestingUser._id);
+
+            // activity can be deleted if user is systemadmin or if it is his own activity or if the user is a joiner
+            if (!(sysadmin || owner || joiner)) {
+                return cb(new error.NotAuthorizedError());
+            }
+
+            if (activity.deleteStatus === Activity.notDeletableNoFutureEvents && !sysadmin) {
+                // if this is not deletable because of no future events we have in fact
+                // nothing to do, we just pretend that we deleted all future events, by doing nothing
+                // and signalling success
+                actMgr.emit('activity:activityDeleted', activity);
+                return cb();
+            }
+
+            function _deleteEvents(done) {
+                if (owner) {
+                    // the event is cancelled, delete events of everybody that are not passed already
+                    _deleteActivityEvents(activity, null, new Date(), done);
+                } else if (sysadmin) {
+                    // the event is deleted by a sysadmin, delete all related events
+                    _deleteActivityEvents(activity, null, null, done);
+                } else if (joiner) {
+                    // joiner, delete this users future events.
+                    _deleteActivityEvents(activity, joiner, new Date(), done);
+                } else {
+                    throw new Error('this should not be possible');
+                }
+
+            }
+
+            function _sendCalendarCancelMessages(done) {
+                _sendIcalMessages(activity, joiner, reason, 'cancel', i18n, done);
+            }
+
+            function _deleteActivity(done) {
+
+                if (joiner) {
+                    activity.joiningUsers.remove(requestingUser);
+                    activity.save(done);
+                } else {
+                    var deleteStatus = activity.deleteStatus;
+                    if (deleteStatus === 'deletable' || sysadmin) {
+                        activity.status = 'deleted';
+                        return activity.save(done);
+                    } else if (deleteStatus === 'deletableOnlyFutureEvents') {
+                        activity.status = 'old';
+                        if (activity.frequency !== 'once') {
+                            activity.recurrence.on = new Date();
+                            activity.recurrence.after = undefined;
+                            return activity.save(done);
+                        } else {
+                            return done(new Error('should never arrive here, it is not possible to have an "once" activity that has ' +
+                            'passed and future events at the same time'));
+                        }
+                    } else {
+                        return done(new Error('unknown DeleteStatus: ' + activity.deleteStatus));
+                    }
+
+                }
+
+            }
+
+            return async.parallel([
+                    _sendCalendarCancelMessages,
+                    _deleteEvents,
+                    _deleteActivity
+                ],
+                function (err) {
+                    if (err) {
+                        return error.handleError(err, cb);
+                    }
+                    if (joiner) {
+                        actMgr.emit('activity:participationCancelled', activity, requestingUser);
+                    } else {
+                        actMgr.emit('activity:activityDeleted', activity);
+                    }
+                    return cb(null);
+                });
+        });
+};
+
+actMgr.postJoinActivityFn = function (actIdToJoin, joiningUser, i18n, cb) {
+    Activity.findById(actIdToJoin).populate({path: 'owner', select: '+email'}).exec(function (err, masterActivity) {
+
+        if (err) {
+            return error.handleError(err, cb);
+        }
+
+        if (_.any(masterActivity.joiningUsers, function(joinerObjId) {
+                return joinerObjId.equals(joiningUser._id);
+            })) {
+            return cb(new error.InvalidArgumentError('this user has already joined this activity', {user: joiningUser, activity: masterActivity}));
+        }
+
+        Activity.findByIdAndUpdate(actIdToJoin, { $push: { joiningUsers: joiningUser._id } }, function (err, updated) {
+            if (err) {
+                return error.handleError(err, cb);
+            }
+
+            var events = actMgr.getEvents(masterActivity, joiningUser.id);
+
+            ActivityEvent.create(events, function (err, events) {
+                if (err) {
+                    return error.handleError(err, cb);
+                }
+                if (joiningUser && joiningUser.email && joiningUser.profile.prefs.email.iCalInvites) {
+                    var myIcalString = calendar.getIcalObject(masterActivity, joiningUser, 'new', i18n).toString();
+                    email.sendCalInvite(joiningUser, 'new', myIcalString, masterActivity, i18n);
+                }
+                actMgr.emit('activity:activityJoined', masterActivity, joiningUser);
+                return cb(null, updated);
+            });
+        });
+
+    });
+};
+
 
 module.exports = actMgr;

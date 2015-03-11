@@ -102,13 +102,11 @@ var sendCampaignLeadInvite = function sendCampaignLeadInvite(email, invitingUser
         return moment(date).lang(i18n.lng()).tz('Europe/Zurich');
     };
     var subject = i18n.t("email:CampaignLeadInvite.subject", {inviting:  invitingUser.toJSON(), campaign: campaign.toJSON()});
-    var token = emailSender.encryptLinkToken(campaign._id +linkTokenSeparator + email +  (invitedUser ? linkTokenSeparator + invitedUser._id : ''));
 
     var duration = localMoment(campaign.start).format('D.M.YYYY') + ' - ' + localMoment(campaign.end).format('D.M.YYYY');
 
-    var link = invitedUser && invitedUser.tempPasswordFlag ?
-        urlComposer.campaignLeadInviteAndResetPasswordUrl(campaign._id, invitingUser._id, token) :
-        urlComposer.campaignLeadInviteUrl(campaign._id, invitingUser._id, token);
+    var token = emailSender.encryptLinkToken(invitedUser.id + linkTokenSeparator + new Date().getMilliseconds());
+    var link = urlComposer.campaignLeadInviteAndResetPasswordUrl(campaign._id, invitingUser._id, invitedUser._id, invitedUser.username, token);
 
     var locals = {
         link: link,

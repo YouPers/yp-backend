@@ -85,30 +85,6 @@ module.exports = function (swagger) {
     swagger.addOperation({
         spec: {
             description: "Operations about campaigns",
-            path: baseUrlWithId + "/inviteCampaignLeadEmail",
-            notes: "Posts a request for an invitation for one or more email-addresses",
-            summary: "Request an invitation for to become campaign lead to be sent by the backend to the supplied email address(es)",
-            mobileSDK: "disabled",
-            params: [
-                {
-                    paramType: "body",
-                    name: "email",
-                    description: "object with one property: 'email', an email address, or an array of adresses, or a separated String of emails (by ';, ')",
-                    dataType: "EmailObject",
-                    required: true
-                }
-            ],
-            method: "POST",
-            "nickname": "postCampaignLeadPlanInvite",
-            accessLevel: 'al_campaignlead',
-            beforeCallbacks: []
-        },
-        action: campaignHandlers.postCampaignLeadInvite
-    });
-
-    swagger.addOperation({
-        spec: {
-            description: "Operations about campaigns",
             path: baseUrlWithId + "/inviteParticipantsEmail",
             notes: "Posts a request for invitations to participate for one or more email-addresses",
             summary: "Request an invitation to participate in the campaign  to be sent by the backend to the supplied email address(es)",
@@ -141,32 +117,6 @@ module.exports = function (swagger) {
             text: {type: 'string'}
         }
     }});
-
-
-    swagger.addOperation({
-        spec: {
-            description: "Operations about campaigns",
-            path: baseUrlWithId + "/assignCampaignLead",
-            notes: "Posts a request to add the current user as campaignLead to this campaign: special endpoint that can be called without al_campaignLead but needs a token instead for auth",
-            summary: "With this endpoint a non-privileged user can assign himself to become campaign lead when he has an invitation token.",
-            mobileSDK: "disabled",
-            params: [
-                {
-                    paramType: "query",
-                    name: "token",
-                    description: "the authtoken the user has gotten with his invitation email",
-                    dataType: "string",
-                    required: true
-                }
-            ],
-            method: "POST",
-            "nickname": "assignCampaignLead",
-            accessLevel: 'al_user',
-            beforeCallbacks: []
-        },
-        action: campaignHandlers.assignCampaignLead
-    });
-
 
     swagger.addOperation({
         spec: {

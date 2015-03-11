@@ -15,7 +15,6 @@ var PaymentCodeSchema = common.newSchema({
 
     code: {type: String},
     strippedCode: {type: String},
-
     campaign: {type: ObjectId, ref: 'Campaign'},
 
     topic: { type: ObjectId, ref: 'Topic', required: true },
@@ -23,7 +22,7 @@ var PaymentCodeSchema = common.newSchema({
     users: { type: Number },
     author: {type: ObjectId, ref: 'User', required: true},
     marketPartner: {type: ObjectId, ref: 'MarketPartner'},
-    endorsementType: {type: String, enum: ["sponsored", "presented"]},
+    endorsementType: {type: String, enum: enums.endorsementType},
     orderNumber: {type: String}
 });
 

@@ -31,7 +31,7 @@ var CampaignSchema = common.newSchema({
     leaderSurveyCollectorId: { type: String, trim: true},
     leaderSurveyUrl: { type: String, trim: true},
     endorsementLogo: {type: String},
-    endorsementType: {type: String, enum: []},
+    endorsementType: {type: String, enum: enums.endorsementType},
     endorsementByline: {type: String}
 });
 

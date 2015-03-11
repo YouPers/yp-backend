@@ -27,7 +27,11 @@ var generatePaymentCode = function generatePaymentCode() {
             strippedCode: _stripCode(code),
             topic: values.topic,
             productType: values.productType,
-            users: values.users
+            users: values.users,
+            author: req.user._id,
+            endorsementType: values.endorsementType,
+            marketPartner: values.marketPartner,
+            orderNumber: values.orderNumber
         });
 
         paymentCode.save(generic.writeObjCb(req, res, next));
@@ -36,7 +40,6 @@ var generatePaymentCode = function generatePaymentCode() {
 };
 
 function _stripCode(code) {
-
     return code.toLowerCase().replace(/\W/g, '').toLowerCase();
 }
 

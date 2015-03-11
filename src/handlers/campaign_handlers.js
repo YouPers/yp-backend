@@ -8,6 +8,7 @@ var handlerUtils = require('ypbackendlib').handlerUtils,
     SocialInteraction = require('../core/SocialInteraction'),
     Invitation = mongoose.model('Invitation'),
     Recommendation = mongoose.model('Recommendation'),
+    PaymentCode = mongoose.model('PaymentCode'),
     Topic = mongoose.model('Topic'),
     Idea = mongoose.model('Idea'),
     Activity = mongoose.model('Activity'),
@@ -36,14 +37,14 @@ var getCampaign = function (id, cb) {
         });
 };
 
-var validateCampaign = function validateCampaign(campaign, userId, type, next) {
+function _validateCampaign(campaign, userId, type, cb) {
     // check if posting user is an org admin of the organization this new campaign belongs to
     Organization.find({administrators: userId}).exec(function (err, organizations) {
         if (err) {
-            return error.handleError(err, next);
+            return error.handleError(err, cb);
         }
         if (!organizations || organizations.length !== 1) {
-            return next(new error.ConflictError("user is administrator for more than one organization", {
+            return cb(new error.ConflictError("user is administrator for more than one organization", {
                 organizations: organizations
             }));
         }
@@ -58,7 +59,7 @@ var validateCampaign = function validateCampaign(campaign, userId, type, next) {
             var campaignLead = _.contains(campaign.campaignLeads.toString(), userId);
 
             if (!orgAdmin && !campaignLead) {
-                return next(new error.NotAuthorizedError('Not authorized to create a campaign, the user is neither ' +
+                return cb(new error.NotAuthorizedError('Not authorized to create a campaign, the user is neither ' +
                 'orgadmin of the organization nor a campaignlead of the campaign.', {
                     campaignId: campaign.id,
                     organizationId: org.id,
@@ -68,7 +69,7 @@ var validateCampaign = function validateCampaign(campaign, userId, type, next) {
         } else {
 
             if (!orgAdmin) {
-                return next(new error.NotAuthorizedError('Not authorized to create a campaign, this orgadmin does not belong to this organization.', {
+                return cb(new error.NotAuthorizedError('Not authorized to create a campaign, this orgadmin does not belong to this organization.', {
                     organizationId: org.id,
                     userId: userId
                 }));
@@ -80,14 +81,14 @@ var validateCampaign = function validateCampaign(campaign, userId, type, next) {
         if (campaign.start && campaign.end &&
             (moment(campaign.end).diff(moment(campaign.start), 'weeks') < 1 ||
             moment(campaign.end).diff(moment(campaign.start), 'weeks') > 26)) {
-            return next(new error.InvalidArgumentError('Campaign duration must be between 1 and 26 weeks.', {
+            return cb(new error.InvalidArgumentError('Campaign duration must be between 1 and 26 weeks.', {
                 invalid: ['start', 'end']
             }));
         }
-        return next();
+        return cb();
     });
 
-};
+}
 
 var postCampaign = function (baseUrl) {
     return function (req, res, next) {
@@ -97,67 +98,81 @@ var postCampaign = function (baseUrl) {
         if (err) {
             return error.handleError(err, next);
         }
-
+        var paymentCode = req.body.paymentCode;
+        if (!paymentCode) {
+            return error.handleError(new error.MissingParmeterError({required: 'paymentCode'}, "need a paymentCode to create a campaign"), next);
+        }
         var sentCampaign = new Campaign(req.body);
 
-        validateCampaign(sentCampaign, req.user.id, "POST", function (err) {
+        _validateCampaign(sentCampaign, req.user.id, "POST", function (err) {
             if (err) {
                 return error.handleError(err, next);
             }
 
-            // create and set the ObjectId of the new campaign manually before saving, because we need
-            // it to create the surveyReponseCollectors
-            sentCampaign._id = new mongoose.Types.ObjectId();
-
-            sentCampaign.campaignLeads = [req.user.id];
-
-            if (!_.contains(req.user.roles, auth.roles.campaignlead)) {
-                req.user.roles.push(auth.roles.campaignlead);
-            }
-
-            // update user with his new role as campaign lead
-
-            req.user.save(function (err) {
+            PaymentCode.find({code: paymentCode}).exec(function (err, loadedCodes) {
                 if (err) {
                     return error.handleError(err, next);
                 }
-            });
 
-            req.log.trace(sentCampaign, 'PostFn: Saving new Campaign object');
-
-            // try to save the new campaign object
-            sentCampaign.save(function (err, saved) {
-                if (err) {
-                    return error.handleError(err, next);
+                if (!loadedCodes || loadedCodes.length !== 1) {
+                    return error.handleError(new Error({code: paymentCode}, 'invalid code'), next);
                 }
-                createTemplateCampaignOffers(saved, req, function (err) {
+                var code = loadedCodes[0];
+
+                sentCampaign.marketPartner = code.marketPartner;
+                sentCampaign.endorsementType = code.endorsementType;
+                sentCampaign.endorsementLogo = code.endorsementLogo;
+                sentCampaign.
+                sentCampaign.campaignLeads = [req.user.id];
+
+                if (!_.contains(req.user.roles, auth.roles.campaignlead)) {
+                    req.user.roles.push(auth.roles.campaignlead);
+                }
+
+                // update user with his new role as campaign lead
+
+                req.user.save(function (err) {
                     if (err) {
                         return error.handleError(err, next);
                     }
+                });
 
-                    // the campaign has been saved and all template offer have been generated
-                    // talking to SurveyMonkey API often takes a few seconds, to avoid
-                    // timeouting our response we do the SurveyMonkey API Call async after we
-                    // signal success to the browser
-                    req.log.debug({"surveyMonkeyEnabled": config.surveyMonkey && config.surveyMonkey.enabled}, "surveyMonkeyConfig enabled?");
-                    if (config.surveyMonkey && config.surveyMonkey.enabled === "enabled") {
-                        addSurveyCollectors(saved, req, function (err) {
-                            if (err) {
-                                req.log.error(err, "error while talking asynchronosouly to SurveyMonkey.");
-                            }
-                            saved.save(function(err, savedAgain) {
-                                if (err) {
-                                    req.log.error(err, "error while saving the SurveyUrls on the campaign");
-                                }
-                            });
+                req.log.trace(sentCampaign, 'PostFn: Saving new Campaign object');
 
-                        });
+                // try to save the new campaign object
+                sentCampaign.save(function (err, saved) {
+                    if (err) {
+                        return error.handleError(err, next);
                     }
-                    return generic.writeObjCb(req, res, next)(err, saved);
+                    createTemplateCampaignOffers(saved, req, function (err) {
+                        if (err) {
+                            return error.handleError(err, next);
+                        }
+
+                        // the campaign has been saved and all template offer have been generated
+                        // talking to SurveyMonkey API often takes a few seconds, to avoid
+                        // timeouting our response we do the SurveyMonkey API Call async after we
+                        // signal success to the browser
+                        req.log.debug({"surveyMonkeyEnabled": config.surveyMonkey && config.surveyMonkey.enabled}, "surveyMonkeyConfig enabled?");
+                        if (config.surveyMonkey && config.surveyMonkey.enabled === "enabled") {
+                            addSurveyCollectors(saved, req, function (err) {
+                                if (err) {
+                                    req.log.error(err, "error while talking asynchronosouly to SurveyMonkey.");
+                                }
+                                saved.save(function (err, savedAgain) {
+                                    if (err) {
+                                        req.log.error(err, "error while saving the SurveyUrls on the campaign");
+                                    }
+                                });
+
+                            });
+                        }
+                        return generic.writeObjCb(req, res, next)(err, saved);
+                    });
+
                 });
 
             });
-
         });
 
     };
@@ -225,12 +240,12 @@ function createTemplateCampaignOffers(campaign, req, cb) {
                         // as part of WL-1637 we decided to send those ical files always as long as
                         // we do not have better have.
                         // if (user && user.email && user.profile.prefs.email.iCalInvites) {
-                            req.log.debug({start: saved.start, end: saved.end}, 'Saved New activity');
+                        req.log.debug({start: saved.start, end: saved.end}, 'Saved New activity');
 
-                            // populate the owner, because the getIcalObject requires the owner to be populated.
-                            activity.setValue('owner', user);
-                            var myIcalString = calendar.getIcalObject(saved, user, 'new', req.i18n).toString();
-                            email.sendCalInvite(user, 'new', myIcalString, saved, req.i18n);
+                        // populate the owner, because the getIcalObject requires the owner to be populated.
+                        activity.setValue('owner', user);
+                        var myIcalString = calendar.getIcalObject(saved, user, 'new', req.i18n).toString();
+                        email.sendCalInvite(user, 'new', myIcalString, saved, req.i18n);
                         // }
 
 
@@ -316,7 +331,7 @@ function addSurveyCollectors(campaign, req, cb) {
                         headers: request._headers
                     }, 'ERROR posting to SurveyMonkey: request');
                     req.log.error({res: response}, 'ERROR posting to SurveyMonkey: response');
-                    return cb(err || new Error("error creating surveyMonkey collector:" + obj.status) );
+                    return cb(err || new Error("error creating surveyMonkey collector:" + obj.status));
                 }
 
                 campaign.leaderSurveyCollectorId = obj && obj.data && obj.data.collector.collector_id;
@@ -334,7 +349,7 @@ function addSurveyCollectors(campaign, req, cb) {
                                 headers: request._headers
                             }, 'ERROR posting to SurveyMonkey: request');
                             req.log.error({res: response}, 'ERROR posting to SurveyMonkey: response');
-                            return cb(err || new Error("error creating surveyMonkey collector:" + obj.status) );
+                            return cb(err || new Error("error creating surveyMonkey collector:" + obj.status));
                         }
 
                         campaign.participantSurveyCollectorId = respObj && respObj.data && respObj.data.collector.collector_id;
@@ -372,7 +387,7 @@ function putCampaign(req, res, next) {
 
         _.extend(reloadedCampaign, sentCampaign);
 
-        validateCampaign(reloadedCampaign, req.user.id, "PUT", function (err) {
+        _validateCampaign(reloadedCampaign, req.user.id, "PUT", function (err) {
             if (err) {
                 return error.handleError(err, next);
             }

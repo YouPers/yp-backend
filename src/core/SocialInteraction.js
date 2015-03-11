@@ -987,7 +987,7 @@ SocialInteraction.createNewInvitation = function createNewInvitation(invitor, ev
         authorType: 'user',
         __t: 'Invitation',
         publishFrom: new Date(),
-        publishTo: event.end
+        publishTo: event.start
     };
 
     if (!invitation.idea) {

@@ -200,7 +200,8 @@ function loadScoringData(user, queryOptions, locale, done) {
         SocialInteraction.getAllForUser(user, mongoose.model('SocialInteraction'), {
             dismissed: true,
             queryOptions: queryOptions,
-            locale: locale
+            locale: locale,
+            publishTo: true
         }, function (err, sois) {
             if (err) {
                 return cb(err);

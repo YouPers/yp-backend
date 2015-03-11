@@ -225,11 +225,12 @@ describe('scoring data loading module', function () {
         });
     });
 
-    it('should not count a personal invitation of an event that is over already', function (done) {
+    it('should not count a personal invitation of an event that is running right now', function (done) {
         var ideaId = '54ca2fc88c0832450f0e1aaf';
         mongoose.model('Idea').findById(ideaId).exec(function (err, idea) {
             var myEvent = EventMgr.defaultEvent(idea, user2, user.campaign);
-                myEvent.start = new Date();
+                myEvent.start = moment().subtract(1, 'hour').toDate();
+                myEvent.end = moment().add(1,'hour').toDate();
                 myEvent.save(function (er, savedEvent) {
                 if (err) {
                     return done(err);
@@ -239,7 +240,31 @@ describe('scoring data loading module', function () {
                         return done(err);
                     }
                     Inspiration.loadScoringData(user, function (err, result) {
-                        expect(result.userData.invitationCountByIdea[ideaId]).toEqual(1);
+                        expect(result.userData.invitationCountByIdea[ideaId]).toBeUndefined();
+                        return _deleteObjs([savedEvent, inv], done);
+                    });
+                });
+            });
+
+        });
+    });
+
+    it('should not count a personal invitation of an event that is over already', function (done) {
+        var ideaId = '54ca2fc88c0832450f0e1aaf';
+        mongoose.model('Idea').findById(ideaId).exec(function (err, idea) {
+            var myEvent = EventMgr.defaultEvent(idea, user2, user.campaign);
+            myEvent.start = moment().subtract(2, 'hour').toDate();
+            myEvent.end = moment().subtract(1,'hour').toDate();
+            myEvent.save(function (er, savedEvent) {
+                if (err) {
+                    return done(err);
+                }
+                SocialInteraction.createNewPersonalInvitation(user2, savedEvent, [user._id.toString()], function (err, inv) {
+                    if (err) {
+                        return done(err);
+                    }
+                    Inspiration.loadScoringData(user, function (err, result) {
+                        expect(result.userData.invitationCountByIdea[ideaId]).toBeUndefined();
                         return _deleteObjs([savedEvent, inv], done);
                     });
                 });

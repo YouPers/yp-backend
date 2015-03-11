@@ -37,57 +37,69 @@ var getCampaign = function (id, cb) {
         });
 };
 
-var validateCampaign = function validateCampaign(campaign, userId, type, next) {
-    // check if posting user is an org admin of the organization this new campaign belongs to
-    Organization.find({administrators: userId}).exec(function (err, organizations) {
-        if (err) {
-            return error.handleError(err, next);
-        }
-        if (!organizations || organizations.length !== 1) {
-            return next(new error.ConflictError("user is administrator for more than one organization", {
-                organizations: organizations
-            }));
-        }
-        var org = organizations[0];
+var validateCampaign = function validateCampaign(campaign, user, type, done) {
 
-        campaign.organization = org;
-
-        var orgAdmin = _.contains(org.administrators.toString(), userId);
-
-        if (type === "PUT") {
-
-            var campaignLead = _.contains(campaign.campaignLeads.toString(), userId);
-
-            if (!orgAdmin && !campaignLead) {
-                return next(new error.NotAuthorizedError('Not authorized to create a campaign, the user is neither ' +
-                'orgadmin of the organization nor a campaignlead of the campaign.', {
-                    campaignId: campaign.id,
-                    organizationId: org.id,
-                    userId: userId
-                }));
+    if(!campaign.organization) {
+        Organization.findOne({ administrators: user.id }).exec(function (err, organization) {
+            if (err) {
+                return done(err);
             }
-        } else {
+            campaign.organization = organization;
+            validate();
+        });
+    } else {
+        validate();
+    }
 
-            if (!orgAdmin) {
-                return next(new error.NotAuthorizedError('Not authorized to create a campaign, this orgadmin does not belong to this organization.', {
-                    organizationId: org.id,
-                    userId: userId
-                }));
+    function validate() {
+
+        campaign.validate(function (err) {
+            if (err) {
+                return done(err);
             }
-        }
 
-        // check if campaing start/end timespan is between 1 week and a half year, might have to be adapted later on
+            Organization.findById(campaign.organization).exec(function (err, organization) {
+                if (err) {
+                    return done(err);
+                }
 
-        if (campaign.start && campaign.end &&
-            (moment(campaign.end).diff(moment(campaign.start), 'weeks') < 1 ||
-            moment(campaign.end).diff(moment(campaign.start), 'weeks') > 26)) {
-            return next(new error.InvalidArgumentError('Campaign duration must be between 1 and 26 weeks.', {
-                invalid: ['start', 'end']
-            }));
-        }
-        return next();
-    });
+                var isOrganizationAdmin = _.contains(user.roles, 'orgadmin') && _.contains(organization.administrators.toString(), user.id);
+                if(isOrganizationAdmin && _.isEmpty(campaign.campaignLeads)) {
+                    campaign.campaignLeads = [user.id];
+                }
 
+                if (type === "PUT") {
+
+                    var isCampaignLead = _.contains(user.roles, 'campaignlead') && _.contains(campaign.campaignLeads.toString(), user.id);
+
+                    if (!isOrganizationAdmin && !isCampaignLead) {
+                        return done(new error.NotAuthorizedError('Not authorized to create a campaign, the user is neither ' +
+                        'orgadmin of the organization nor a campaignlead of the campaign.', {
+                            campaignId: campaign.id,
+                            organizationId: organization.id,
+                            userId: user.id
+                        }));
+                    }
+                } else {
+
+                    if (!isOrganizationAdmin) {
+                        return done(new error.NotAuthorizedError('Not authorized to create a campaign, not an orgadmin.', {
+                            organizationId: organization.id,
+                            userId: user.id
+                        }));
+                    }
+                }
+
+                if (campaign.start && campaign.end &&
+                    (moment(campaign.end).diff(moment(campaign.start), 'weeks') < 1)) {
+                    return done(new error.InvalidArgumentError('Campaign duration must be at least 1 week', {
+                        invalid: ['start', 'end']
+                    }));
+                }
+                return done();
+            });
+        });
+    }
 };
 
 var postCampaign = function (baseUrl) {
@@ -101,7 +113,7 @@ var postCampaign = function (baseUrl) {
 
         var sentCampaign = new Campaign(req.body);
 
-        validateCampaign(sentCampaign, req.user.id, "POST", function (err) {
+        validateCampaign(sentCampaign, req.user, "POST", function (err) {
             if (err) {
                 return error.handleError(err, next);
             }
@@ -405,7 +417,7 @@ function putCampaign(req, res, next) {
 
         _.extend(reloadedCampaign, sentCampaign);
 
-        validateCampaign(reloadedCampaign, req.user.id, "PUT", function (err) {
+        validateCampaign(reloadedCampaign, req.user, "PUT", function (err) {
             if (err) {
                 return error.handleError(err, next);
             }

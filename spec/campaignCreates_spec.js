@@ -54,8 +54,8 @@ frisby.create('Campaigns Creates: POST new campaign to existing organization')
                             .expectStatus(200)
                             .toss();
 
-                        campaignStart = moment({hour: 8, minute: 0, second: 0}).add(10, 'days');
-                        campaignEnd = moment({hour: 17, minute: 0, second: 0}).add(27, 'weeks').add(10, 'days');
+                        campaignStart = moment({hour: 8, minute: 0, second: 0}).add(10, 'days').toDate();
+                        campaignEnd = moment({hour: 17, minute: 0, second: 0}).add(12, 'days').toDate();
 
                         testCampaign = {
                             "title": "testOrganization's campaign 2 for work life balance",

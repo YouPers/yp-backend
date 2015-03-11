@@ -100,7 +100,8 @@ var self = module.exports  =  {
             "slogan": "It's never too late!",
             "paymentStatus": "open",
             "productType": "CampaignProductType1",
-            "campaignLeads": [self.users.test_campaignlead.id]
+            "campaignLeads": [self.users.test_campaignlead.id],
+            "organization": "52f0c64e53d523235b07d8d8"
         };
 
 

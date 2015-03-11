@@ -33,7 +33,7 @@ consts.newUserInNewCampaignApi(
                 expect(reloadedCampaign1.title).toEqual("new title for this campaign");
 
                 campaignStart = moment({hour: 8, minute: 0, second: 0}).add(10,'days').toDate();
-                campaignEnd = moment({hour: 17, minute: 0, second: 0}).add(27,'weeks').add(10,'days').toDate();
+                campaignEnd = moment({hour: 17, minute: 0, second: 0}).add(12,'days').toDate();
 
 
 

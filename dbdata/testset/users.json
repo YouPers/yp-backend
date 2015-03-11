@@ -124,10 +124,10 @@
         "campaign": {
           "$oid": "527916a82079aa8704000006"
         },
-        "email": "lisa@youpers.com",
+        "email": "cindy@youpers.com",
         "emailValidatedFlag": true,
-        "firstname": "Lisa",
-        "fullname": "Lisa Laughlin",
+        "firstname": "Cindy",
+        "fullname": "Cindy Campbell",
         "hashed_password": "24d07d5338ecd9c107cdafb08ec83a821dce6a91",
         "lastLogin": {
             "$date": 1425657305488
@@ -143,7 +143,7 @@
         "updated": {
             "$date": 1425657305492
         },
-        "username": "lisa"
+        "username": "cindy"
     },
     {
         "__v": 0,

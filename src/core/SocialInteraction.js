@@ -32,7 +32,7 @@ var SocialInteraction = new SocialInteraction();
 User.on('add', function (user) {
 
     Invitation.update(
-        { 'targetSpaces.targetValue': user.email },
+        {'targetSpaces.targetValue': user.email},
         {
             $set: {
                 'targetSpaces.$.targetId': user._id,
@@ -59,10 +59,10 @@ mongoose.model('Invitation').on('add', function (invitation) {
     // invitations for events
     if (event) {
         Event.findById(event._id || event).populate('idea').exec(function (err, event) {
-            if(err) {
+            if (err) {
                 return SocialInteraction.emit('error', err);
             }
-            if(!event) {
+            if (!event) {
                 return SocialInteraction.emit('error', 'event not found: ' + event._id || event);
             }
 
@@ -77,7 +77,7 @@ mongoose.model('Invitation').on('add', function (invitation) {
                     return log.error({err: err, invitation: invitation}, 'error in evenHandler: invitation:add');
                 }
                 // get all targeted users
-                User.find({ _id: { $in: userIds}}).select('+email +profile').populate('profile').exec(function (err, users) {
+                User.find({_id: {$in: userIds}}).select('+email +profile').populate('profile').exec(function (err, users) {
                     if (err) {
                         return log.error({err: err, invitation: invitation}, 'error in evenHandler: invitation:add');
                     }
@@ -87,18 +87,19 @@ mongoose.model('Invitation').on('add', function (invitation) {
 
                         var pushData = {
                             type: 'newPersonalInvitation',
-                            title: 'New Invitation for Event' + event.title ,
-                            text: author.fullname +' has invited you to join',
+                            title: 'New Invitation for Event' + event.title,
+                            text: author.fullname + ' has invited you to join',
                             event: invitation.event,
                             idea: invitation.idea,
-                            author: invitation.author};
+                            author: invitation.author
+                        };
                         log.trace({recipient: user.id, data: pushData}, "sending push now");
 
                         push.sendPush(user, pushData, 'newPersonalInvitation', function (err, result) {
                             if (err) {
                                 return SocialInteraction.emit('error', err);
                             }
-                            log.info({result: result, user: user.id, data:  pushData}, "sent push notification");
+                            log.info({result: result, user: user.id, data: pushData}, "sent push notification");
                         });
                     });
                 });
@@ -215,7 +216,7 @@ SocialInteraction.on('invitation:campaignLead', function (from, to, campaign) {
         author: from._id,
         targetSpaces: _createTargetSpacesFromRecipients(to),
         refDocs: [
-            { docId: campaign._id, model: 'Campaign'}
+            {docId: campaign._id, model: 'Campaign'}
         ],
         publishTo: campaign.end
     });
@@ -241,7 +242,7 @@ SocialInteraction.on('invitation:organizationAdmin', function (from, to, organiz
         author: from._id,
         targetSpaces: _createTargetSpacesFromRecipients(to),
         refDocs: [
-            { docId: organization._id, model: 'Organization'}
+            {docId: organization._id, model: 'Organization'}
         ]
     });
 
@@ -268,7 +269,7 @@ SocialInteraction.dismissInvitations = function dismissInvitations(refDoc, user,
 
 SocialInteraction.removeDismissals = function (event, user, cb) {
 
-    Invitation.find({ event: event._id }).exec(function (err, invitations) {
+    Invitation.find({event: event._id}).exec(function (err, invitations) {
         if (err) {
             return cb(err);
         }
@@ -291,13 +292,19 @@ SocialInteraction.removeDismissals = function (event, user, cb) {
 SocialInteraction.deleteSocialInteractions = function (refDoc, cb) {
 
     var finder =
-    {$or: [
-        {refDocs: {$elemMatch: {
-            docId: refDoc._id || refDoc
-        }}},
-        {event: refDoc._id || refDoc},
-        {idea: refDoc._id || refDoc}
-    ]};
+    {
+        $or: [
+            {
+                refDocs: {
+                    $elemMatch: {
+                        docId: refDoc._id || refDoc
+                    }
+                }
+            },
+            {event: refDoc._id || refDoc},
+            {idea: refDoc._id || refDoc}
+        ]
+    };
 
 
     SocialInteractionModel.remove(finder).exec(function (err, deleted) {
@@ -339,28 +346,31 @@ SocialInteraction.dismissSocialInteraction = function dismissSocialInteraction(m
     if (!refDoc || typeof refDoc !== 'object') {
         return emitError('refDoc');
     }
-    if (!user || typeof user !== 'object') {
-        return emitError('user');
-    }
+    var finder = {};
 
-    var targetSpace$or = [
-        { type: 'user', targetId: user._id }
-    ];
-    if (user.campaign) {
-        targetSpace$or.push({ type: 'campaign', targetId: user.campaign._id || user.campaign });
-    }
-    var finder = {
-        targetSpaces: {
-            $elemMatch: {
-                $or: targetSpace$or
-            }
+    if (user) {
+        var targetSpace$or = [
+            {type: 'user', targetId: user._id}
+        ];
+        if (user.campaign) {
+            targetSpace$or.push({type: 'campaign', targetId: user.campaign._id || user.campaign});
+
+            finder.targetSpaces = {
+                $elemMatch: {
+                    $or: targetSpace$or
+                }
+            };
         }
-    };
+    }
 
     finder.$or = [
-        {refDocs: {$elemMatch: {
-            docId: refDoc._id || refDoc
-        }}},
+        {
+            refDocs: {
+                $elemMatch: {
+                    docId: refDoc._id || refDoc
+                }
+            }
+        },
         {event: refDoc._id || refDoc},
         {idea: refDoc._id || refDoc}
     ];
@@ -411,7 +421,7 @@ SocialInteraction.dismissSocialInteractionById = function dismissSocialInteracti
 
         // Model.update does not work with undefined values
         _.each(_.keys(document), function (key) {
-            if(_.isUndefined(document[key])) {
+            if (_.isUndefined(document[key])) {
                 delete document[key];
             }
         });
@@ -420,7 +430,7 @@ SocialInteraction.dismissSocialInteractionById = function dismissSocialInteracti
         SocialInteractionDismissedModel.findOneAndUpdate({
             user: userId,
             socialInteraction: socialInteraction.id
-        }, document, { upsert: true }, function (err, saved) {
+        }, document, {upsert: true}, function (err, saved) {
             if (err) {
                 return cb(err); // duplicate key errors will not occur anymore, because of the upsert option
             } else {
@@ -569,7 +579,7 @@ SocialInteraction.getById = function (idAsString, Model, queryOptions, locale, c
     var attrsToPopulateManually = _extractManualPopulate(queryOptions);
 
     generic.processDbQueryOptions(queryOptions, query, Model, locale)
-        .exec(function(err, socialInteraction) {
+        .exec(function (err, socialInteraction) {
 
             if (err) {
                 return error.handleError(err, cb);
@@ -606,7 +616,7 @@ SocialInteraction.getAllForUser = function (user, model, options, cb) {
     options.queryOptions = options.queryOptions || {};
 
     function _loadSocialInteractionDismissed(done) {
-        SocialInteractionDismissedModel.find({ user: user._id }, function (err, dismissals) {
+        SocialInteractionDismissedModel.find({user: user._id}, function (err, dismissals) {
 
             if (err) {
                 return done(err);
@@ -629,10 +639,12 @@ SocialInteraction.getAllForUser = function (user, model, options, cb) {
     }
 
     function _loadEvents(done) {
-        mongoose.model('Event').find({ $or: [
-            { owner: user._id },
-            { joiningUsers: user._id }
-        ]}, function (err, events) {
+        mongoose.model('Event').find({
+            $or: [
+                {owner: user._id},
+                {joiningUsers: user._id}
+            ]
+        }, function (err, events) {
             if (err) {
                 return done(err);
             }
@@ -711,15 +723,17 @@ SocialInteraction.getAllForUser = function (user, model, options, cb) {
                     };
                 } else {
                     var orClauses = [
-                        { type: 'user', targetId: user._id },
-                        { type: 'system' },
-                        { $and: [
-                            {type: 'event'},
-                            {targetId: {$in: locals.eventIds}}
-                        ]}
+                        {type: 'user', targetId: user._id},
+                        {type: 'system'},
+                        {
+                            $and: [
+                                {type: 'event'},
+                                {targetId: {$in: locals.eventIds}}
+                            ]
+                        }
                     ];
                     if (user.campaign) {
-                        orClauses.push({ type: 'campaign', targetId: user.campaign._id });
+                        orClauses.push({type: 'campaign', targetId: user.campaign._id});
                     }
 
                     finder.targetSpaces = {
@@ -734,75 +748,90 @@ SocialInteraction.getAllForUser = function (user, model, options, cb) {
                 if (options.publishFrom) {
                     var publishFrom = (typeof options.publishFrom === 'boolean') ? now : moment(options.publishFrom).toDate();
                     dbQuery
-                        .and({$or: [
-                            {publishFrom: {$exists: false}},
-                            {publishFrom: {$lte: publishFrom}}
-                        ]});
+                        .and({
+                            $or: [
+                                {publishFrom: {$exists: false}},
+                                {publishFrom: {$lte: publishFrom}}
+                            ]
+                        });
                 }
                 if (options.publishTo) {
                     var publishTo = (typeof options.publishTo === 'boolean') ? now : moment(options.publishTo).toDate();
                     dbQuery
-                        .and({$or: [
-                            {publishTo: {$exists: false}},
-                            {publishTo: {$gte: publishTo}}
-                        ]});
+                        .and({
+                            $or: [
+                                {publishTo: {$exists: false}},
+                                {publishTo: {$gte: publishTo}}
+                            ]
+                        });
                 }
 
                 if (options.authorType) {
-                    dbQuery.and({ authorType: options.authorType });
+                    dbQuery.and({authorType: options.authorType});
                 }
 
                 // skip if include dismissed and no reason
                 if (!options.dismissed || options.dismissalReason) {
-                    dbQuery.and({_id: { $nin: locals.dismissedSocialInteractions }});
+                    dbQuery.and({_id: {$nin: locals.dismissedSocialInteractions}});
                 }
 
                 if (!options.rejected && user.profile.prefs.rejectedIdeas) {
                     var rejectedIdeas = _.map(user.profile.prefs.rejectedIdeas, 'idea');
-                    dbQuery.and({ $or: [
-                        { targetSpaces: { $elemMatch: { type: 'user', targetId: user._id }}}, // personal, target directly to the user
-                        { refDocs: { $size: 0 } }, // no ref docs, can't be rejected
-                        { refDocs: { $elemMatch: { docId: { $nin: rejectedIdeas } } } } // or not rejected
-                    ]});
+                    dbQuery.and({
+                        $or: [
+                            {targetSpaces: {$elemMatch: {type: 'user', targetId: user._id}}}, // personal, target directly to the user
+                            {refDocs: {$size: 0}}, // no ref docs, can't be rejected
+                            {refDocs: {$elemMatch: {docId: {$nin: rejectedIdeas}}}} // or not rejected
+                        ]
+                    });
                 }
 
                 if (!options.authored) {
 
-                    dbQuery.and({ author: { $ne: user._id } });
+                    dbQuery.and({author: {$ne: user._id}});
 
                     // filter out invitations the user already participates in only if he does not want the stuff he has
                     // authored himself
-                    dbQuery.and({$or: [
-                        {
-                            __t: { $ne: 'Invitation' }
-                        },
-                        {
-                            event: {
-                                $nin: locals.eventIds
+                    dbQuery.and({
+                        $or: [
+                            {
+                                __t: {$ne: 'Invitation'}
+                            },
+                            {
+                                event: {
+                                    $nin: locals.eventIds
+                                }
                             }
-                        }
-                    ]
+                        ]
                     });
                 }
 
                 if (options.discriminators) {
-                    dbQuery.and({ __t: { $in: options.discriminators } });
+                    dbQuery.and({__t: {$in: options.discriminators}});
                 }
                 if (options.refDocId) {
-                    dbQuery.and({$or: [
-                        {refDocs: {$elemMatch: {
-                            docId: options.refDocId
-                        }}},
-                        {event: options.refDocId},
-                        {idea: options.refDocId}
-                    ]});
+                    dbQuery.and({
+                        $or: [
+                            {
+                                refDocs: {
+                                    $elemMatch: {
+                                        docId: options.refDocId
+                                    }
+                                }
+                            },
+                            {event: options.refDocId},
+                            {idea: options.refDocId}
+                        ]
+                    });
                 }
 
                 if (user.profile.language) {
-                    dbQuery.and({ $or: [
-                        {language: {$exists: false}},
-                        {language: user.profile.language}
-                    ] });
+                    dbQuery.and({
+                        $or: [
+                            {language: {$exists: false}},
+                            {language: user.profile.language}
+                        ]
+                    });
                 }
 
                 // if used model is the parent (SocialInteraction), then the mongoose population mechanism does not work
@@ -833,14 +862,14 @@ SocialInteraction.getAllForUser = function (user, model, options, cb) {
 
 SocialInteraction.getInvitationStatus = function (eventId, cb) {
 
-    Event.findById(eventId, function(err, event) {
+    Event.findById(eventId, function (err, event) {
 
-        Invitation.find({ event: event._id }).exec(function (err, invitations) {
+        Invitation.find({event: event._id}).exec(function (err, invitations) {
             if (err) {
                 return cb(err);
             }
 
-            SocialInteractionDismissedModel.find({ socialInteraction: { $in: _.map(invitations, '_id') }}).exec(function (err, sidList) {
+            SocialInteractionDismissedModel.find({socialInteraction: {$in: _.map(invitations, '_id')}}).exec(function (err, sidList) {
                 if (err) {
                     return cb(err);
                 }
@@ -865,8 +894,8 @@ SocialInteraction.getInvitationStatus = function (eventId, cb) {
                     });
 
                     // find all personal pending invitations not yet dismissed
-                    _.each(_.filter(invitation.targetSpaces, 'type','user'), function (space) {
-                        var sid = _.find(sidList, function(sid) {
+                    _.each(_.filter(invitation.targetSpaces, 'type', 'user'), function (space) {
+                        var sid = _.find(sidList, function (sid) {
                             return sid.socialInteraction.equals(invitation._id) && space.targetId.equals(sid.user);
                         });
 
@@ -892,7 +921,10 @@ SocialInteraction.getInvitationStatus = function (eventId, cb) {
 
                 userResults = _.values(userResults);
 
-                mongoose.model('User').populate(userResults, {path: 'user', model: 'User'}, function (err, userResults) {
+                mongoose.model('User').populate(userResults, {
+                    path: 'user',
+                    model: 'User'
+                }, function (err, userResults) {
                     cb(err, userResults.concat(_.values(emailResults)));
                 });
             });
@@ -905,7 +937,7 @@ function _extractManualPopulate(queryOptions) {
     var normalizedAttrs = _normalizePopulationAttrs(queryOptions.populate);
 
     var populateAuto = [];
-    var populateManually =  [];
+    var populateManually = [];
 
     _.forEach(normalizedAttrs, function (attrToPopulate) {
         if (attrToPopulate === 'idea') {
@@ -919,8 +951,8 @@ function _extractManualPopulate(queryOptions) {
         }
     });
 
-   queryOptions.populate = populateAuto;
-   return populateManually;
+    queryOptions.populate = populateAuto;
+    return populateManually;
 }
 
 
@@ -948,10 +980,10 @@ function _normalizePopulationAttrs(stringOrArray) {
 SocialInteraction.createNewInvitation = function createNewInvitation(invitor, event, usersToInvite, cb) {
     var isPersonal = usersToInvite && usersToInvite.length > 0;
 
-    var invitation  = {
+    var invitation = {
         author: invitor._id,
         event: event._id,
-        idea:  event.idea,
+        idea: event.idea,
         authorType: 'user',
         __t: 'Invitation',
         publishFrom: new Date(),
@@ -971,7 +1003,7 @@ SocialInteraction.createNewInvitation = function createNewInvitation(invitor, ev
             });
         });
     } else {
-       invitation.targetSpaces.push({
+        invitation.targetSpaces.push({
             type: 'campaign',
             targetId: event.campaign
         });

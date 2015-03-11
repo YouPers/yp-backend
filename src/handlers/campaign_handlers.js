@@ -3,6 +3,7 @@ var handlerUtils = require('ypbackendlib').handlerUtils,
     _ = require('lodash'),
     error = require('ypbackendlib').error,
     mongoose = require('ypbackendlib').mongoose,
+    User = mongoose.model('User'),
     Organization = mongoose.model('Organization'),
     Campaign = mongoose.model('Campaign'),
     SocialInteraction = require('../core/SocialInteraction'),
@@ -12,6 +13,7 @@ var handlerUtils = require('ypbackendlib').handlerUtils,
     Idea = mongoose.model('Idea'),
     Activity = mongoose.model('Activity'),
     ActivityManagement = require('../core/ActivityManagement'),
+    crypto = require('crypto'),
     async = require('async'),
     email = require('../util/email'),
     image = require('ypbackendlib').image,
@@ -106,55 +108,49 @@ var postCampaign = function (baseUrl) {
             }
 
             // create and set the ObjectId of the new campaign manually before saving, because we need
-            // it to create the surveyReponseCollectors
+            // it to create the surveyResponseCollectors
             sentCampaign._id = new mongoose.Types.ObjectId();
 
-            sentCampaign.campaignLeads = sentCampaign.campaignLeads && sentCampaign.campaignLeads.length > 0 ?
-                sentCampaign.campaignLeads : [req.user.id];
-
-            if (!_.contains(req.user.roles, auth.roles.campaignlead)) {
-                req.user.roles.push(auth.roles.campaignlead);
-            }
-
-            // update user with his new role as campaign lead
-
-            req.user.save(function (err) {
+            createNewCampaignLeadUsers(sentCampaign, req, function (err) {
                 if (err) {
                     return error.handleError(err, next);
                 }
-            });
 
-            req.log.trace(sentCampaign, 'PostFn: Saving new Campaign object');
+                req.log.trace(sentCampaign, 'PostFn: Saving new Campaign object');
 
-            // try to save the new campaign object
-            sentCampaign.save(function (err, saved) {
-                if (err) {
-                    return error.handleError(err, next);
-                }
-                createTemplateCampaignOffers(saved, req, function (err) {
+                // try to save the new campaign object
+                sentCampaign.save(function (err, savedCampaign) {
                     if (err) {
                         return error.handleError(err, next);
                     }
 
-                    // the campaign has been saved and all template offer have been generated
-                    // talking to SurveyMonkey API often takes a few seconds, to avoid
-                    // timeouting our response we do the SurveyMonkey API Call async after we
-                    // signal success to the browser
-                    req.log.debug({"surveyMonkeyEnabled": config.surveyMonkey && config.surveyMonkey.enabled}, "surveyMonkeyConfig enabled?");
-                    if (config.surveyMonkey && config.surveyMonkey.enabled === "enabled") {
-                        addSurveyCollectors(saved, req, function (err) {
-                            if (err) {
-                                req.log.error(err, "error while talking asynchronosouly to SurveyMonkey.");
-                            }
-                            saved.save(function(err, savedAgain) {
-                                if (err) {
-                                    req.log.error(err, "error while saving the SurveyUrls on the campaign");
-                                }
-                            });
+                    createTemplateCampaignOffers(savedCampaign, req, function (err) {
+                        if (err) {
+                            return error.handleError(err, next);
+                        }
 
-                        });
-                    }
-                    return generic.writeObjCb(req, res, next)(err, saved);
+                        // the campaign has been saved and all template offer have been generated
+                        // talking to SurveyMonkey API often takes a few seconds, to avoid
+                        // timeouting our response we do the SurveyMonkey API Call async after we
+                        // signal success to the browser
+                        req.log.debug({"surveyMonkeyEnabled": config.surveyMonkey && config.surveyMonkey.enabled}, "surveyMonkeyConfig enabled?");
+                        if (config.surveyMonkey && config.surveyMonkey.enabled === "enabled") {
+                            addSurveyCollectors(savedCampaign, req, function (err) {
+                                if (err) {
+                                    req.log.error(err, "error while talking asynchronously to SurveyMonkey.");
+                                }
+                                savedCampaign.save(function(err, savedAgain) {
+                                    if (err) {
+                                        req.log.error(err, "error while saving the SurveyUrls on the campaign");
+                                    }
+                                });
+
+                            });
+                        }
+                        return generic.writeObjCb(req, res, next)(err, savedCampaign);
+                    });
+
+
                 });
 
             });
@@ -163,6 +159,43 @@ var postCampaign = function (baseUrl) {
 
     };
 };
+
+function createNewCampaignLeadUsers(campaign, req, done) {
+
+    async.each(campaign.newCampaignLeads, function (campaignLead, cb) {
+
+        // random password
+        crypto.randomBytes(16, function(err, random) {
+            if(err) {
+                return cb(err);
+            }
+
+            campaignLead.password = random;
+            campaignLead.tempPasswordFlag = true; // used to determine the campaign lead invite url
+            campaignLead.roles = ['individual', 'campaignlead'];
+
+            var user = new User(campaignLead);
+            user.save(function (err, savedUser) {
+                if (err) { return cb(err); }
+
+                campaign.campaignLeads.push(savedUser._id);
+
+                Topic.populate(campaign, { path: 'topic' }, function (err, campaign) {
+                    if (err) { return cb(err); }
+                    email.sendCampaignLeadInvite(campaignLead.email, req.user, campaign, savedUser, req.i18n);
+                    cb(null, savedUser);
+                });
+            });
+        });
+
+    }, function (err) {
+        if (err) {
+            return done(err);
+        }
+        campaign.newCampaignLeads = [];
+        done();
+    });
+}
 
 function createTemplateCampaignOffers(campaign, req, cb) {
 
@@ -377,13 +410,15 @@ function putCampaign(req, res, next) {
             if (err) {
                 return error.handleError(err, next);
             }
-
-            req.log.trace(reloadedCampaign, 'PutFn: Updating existing Object');
-
-            reloadedCampaign.save(generic.writeObjCb(req, res, next));
+            createNewCampaignLeadUsers(reloadedCampaign, req, function (err) {
+                if (err) {
+                    return error.handleError(err, next);
+                }
+                req.log.trace(reloadedCampaign, 'PutFn: Updating existing Object');
+                reloadedCampaign.save(generic.writeObjCb(req, res, next));
+            });
         });
     });
-
 }
 
 

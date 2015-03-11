@@ -106,8 +106,12 @@ var sendCampaignLeadInvite = function sendCampaignLeadInvite(email, invitingUser
 
     var duration = localMoment(campaign.start).format('D.M.YYYY') + ' - ' + localMoment(campaign.end).format('D.M.YYYY');
 
+    var link = invitedUser && invitedUser.tempPasswordFlag ?
+        urlComposer.campaignLeadInviteAndResetPasswordUrl(campaign._id, invitingUser._id, token) :
+        urlComposer.campaignLeadInviteUrl(campaign._id, invitingUser._id, token);
+
     var locals = {
-        link: urlComposer.campaignLeadInviteUrl(campaign._id, invitingUser._id, token),
+        link: link,
         linkText: i18n.t('email:CampaignLeadInvite.linkText'),
         welcomeHeader: i18n.t('email:CampaignLeadInvite.welcomeHeader'),
         salutation: i18n.t('email:CampaignLeadInvite.salutation' + invitedUser ? '': 'Anonymous', {invited: invitedUser ? invitedUser.toJSON() : {firstname: ''}}),

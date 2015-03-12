@@ -101,7 +101,7 @@ var postCampaign = function (baseUrl) {
         var paymentCode = req.body.paymentCode;
         if (!paymentCode && config.paymentCodeChecking === 'enabled') {
             return error.handleError(new error.MissingParmeterError({required: 'paymentCode'}, "need a paymentCode to create a campaign"), next);
-        } else if (config.paymentCodeChecking === 'disabled') {
+        } else if (!paymentCode && config.paymentCodeChecking === 'disabled') {
             paymentCode = {code: "testcode"};
         }
         var sentCampaign = new Campaign(req.body);
@@ -119,7 +119,9 @@ var postCampaign = function (baseUrl) {
                     if (!loadedCodes || loadedCodes.length !== 1) {
                         return error.handleError(new error.InvalidArgumentError({code: paymentCode}, 'invalid code'), next);
                     }
-                    var code = loadedCodes[0] || {};
+                }
+                var code = loadedCodes[0];
+                if (code) {
                     sentCampaign.marketPartner = code.marketPartner && code.marketPartner.id;
                     sentCampaign.endorsementType = code.endorsementType;
                 }
@@ -144,7 +146,7 @@ var postCampaign = function (baseUrl) {
                     if (err) {
                         return error.handleError(err, next);
                     }
-                    if (config.paymentCodeChecking === 'enabled') {
+                    if (code) {
                         code.campaign = saved._id;
                         code.save();
                     }

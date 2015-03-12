@@ -109,20 +109,20 @@ var postCampaign = function (baseUrl) {
                 return error.handleError(err, next);
             }
 
-            PaymentCode.find({code: paymentCode}).exec(function (err, loadedCodes) {
+            PaymentCode.find({code: paymentCode.code || paymentCode}).populate('marketPartner').exec(function (err, loadedCodes) {
                 if (err) {
                     return error.handleError(err, next);
                 }
 
                 if (!loadedCodes || loadedCodes.length !== 1) {
-                    return error.handleError(new Error({code: paymentCode}, 'invalid code'), next);
+                    return error.handleError(new error.InvalidArgumentError({code: paymentCode}, 'invalid code'), next);
                 }
                 var code = loadedCodes[0];
-
-                sentCampaign.marketPartner = code.marketPartner;
+                sentCampaign.marketPartner = code.marketPartner && code.marketPartner.id;
                 sentCampaign.endorsementType = code.endorsementType;
-                sentCampaign.endorsementLogo = code.endorsementLogo;
-                sentCampaign.
+                sentCampaign.endorsementLogo = code.marketPartner && code.marketPartner.logo;
+                sentCampaign.endorsementByline = code.marketPartner && code.marketPartner.byline;
+
                 sentCampaign.campaignLeads = [req.user.id];
 
                 if (!_.contains(req.user.roles, auth.roles.campaignlead)) {
@@ -144,6 +144,10 @@ var postCampaign = function (baseUrl) {
                     if (err) {
                         return error.handleError(err, next);
                     }
+
+                    code.campaign = saved._id;
+                    code.save();
+
                     createTemplateCampaignOffers(saved, req, function (err) {
                         if (err) {
                             return error.handleError(err, next);

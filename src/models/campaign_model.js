@@ -32,7 +32,8 @@ var CampaignSchema = common.newSchema({
     leaderSurveyUrl: { type: String, trim: true},
     endorsementLogo: {type: String},
     endorsementType: {type: String, enum: enums.endorsementType},
-    endorsementByline: {type: String}
+    endorsementByline: {type: String},
+    marketPartner: {type: ObjectId, ref: 'MarketPartner'}
 });
 
 CampaignSchema.statics.adminRoles =  [auth.roles.systemadmin, auth.roles.productadmin, auth.roles.campaignlead, auth.roles.orgadmin];

@@ -29,11 +29,15 @@ var generatePaymentCode = function generatePaymentCode() {
             productType: values.productType,
             users: values.users,
             author: req.user._id,
-            endorsementType: values.endorsementType,
-            marketPartner: values.marketPartner,
             orderNumber: values.orderNumber
         });
 
+        if (values.endorsementType) {
+            paymentCode.endorsementType = values.endorsementType;
+        }
+        if (values.marketPartner) {
+            paymentCode.marketPartner = values.marketPartner;
+        }
         paymentCode.save(generic.writeObjCb(req, res, next));
 
     };

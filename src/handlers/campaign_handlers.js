@@ -120,9 +120,6 @@ var postCampaign = function (baseUrl) {
                 var code = loadedCodes[0];
                 sentCampaign.marketPartner = code.marketPartner && code.marketPartner.id;
                 sentCampaign.endorsementType = code.endorsementType;
-                sentCampaign.endorsementLogo = code.marketPartner && code.marketPartner.logo;
-                sentCampaign.endorsementByline = code.marketPartner && code.marketPartner.byline;
-
                 sentCampaign.campaignLeads = [req.user.id];
 
                 if (!_.contains(req.user.roles, auth.roles.campaignlead)) {

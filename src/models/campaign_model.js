@@ -30,9 +30,7 @@ var CampaignSchema = common.newSchema({
     participantSurveyUrl: { type: String, trim: true},
     leaderSurveyCollectorId: { type: String, trim: true},
     leaderSurveyUrl: { type: String, trim: true},
-    endorsementLogo: {type: String},
     endorsementType: {type: String, enum: enums.endorsementType},
-    endorsementByline: {type: String},
     marketPartner: {type: ObjectId, ref: 'MarketPartner'}
 });
 

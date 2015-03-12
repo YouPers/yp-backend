@@ -30,7 +30,7 @@ var ActivitySchema = common.newSchema({
     start: {type: Date, required: true},
     end: {type: Date, required: true},
     allDay: {type: Boolean},
-    frequency: {type: String, enum: enums.activityFrequency},
+    frequency: {type: String, enum: enums.activityFrequency, default: 'once'},
     recurrence: {
         'endby': {
             type: {type: String, enum: enums.activityRecurrenceEndByType},

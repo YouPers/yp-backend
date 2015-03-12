@@ -12,6 +12,7 @@
         "ypbackendlib": "git+ssh://git@github.com:YouPers/backendlib.git#v1.8.2",
         "restify": "2.8.x",
         "lodash": "3.3.x",
+        "lodash-deep": "1.5.x",
         "passport": "0.2.x",
         "icalendar": "git+https://github.com/YouPers/node-icalendar.git",
         "moment": "~2.9.x",

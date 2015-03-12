@@ -43,7 +43,7 @@ consts.newUserInNewCampaignApi(
                 frisby.create("Invitation: invite user to this activity")
                     .post(URL + '/activities/' + newPlan.id + "/inviteEmail", { email: user.email })
                     .auth('test_ind1', 'yp')
-                    .expectStatus(200)
+                    .expectStatus(201)
                     .after(function () {
 
                         frisby.create('Invitation: get invitations, will contain 1 invitation')
@@ -175,7 +175,7 @@ consts.newUserInNewCampaignApi(
                 frisby.create("Invitation: invite user to this activity")
                     .post(URL + '/activities/' + newActivity.id + "/inviteEmail", { email: user.email })
                     .auth('test_ind1', 'yp')
-                    .expectStatus(200)
+                    .expectStatus(201)
                     .after(function () {
 
                         frisby.create('Invitation: get invitations, will contain 1 invitation')

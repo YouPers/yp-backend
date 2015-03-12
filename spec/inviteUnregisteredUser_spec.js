@@ -47,7 +47,7 @@ consts.newUserInNewCampaignApi(
                 frisby.create("Invitation: invite user by mail that is not yet signed up")
                     .post(URL + '/activities/' + newPlan.id + "/inviteEmail", { email: email })
                     .auth(user.username, 'yp')
-                    .expectStatus(200)
+                    .expectStatus(201)
                     .after(function () {
 
 

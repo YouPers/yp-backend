@@ -135,7 +135,14 @@ var postCampaign = function (baseUrl) {
                         return error.handleError(err, next);
                     }
 
-                    createTemplateCampaignOffers(savedCampaign, req, function (err) {
+                    if(req.params.defaultCampaignLead) { // move to front
+                        var index = _.findIndex(savedCampaign.campaignLeads, 'username', req.params.defaultCampaignLead);
+                        if(index > 0) {
+                            savedCampaign.campaignLeads.unshift(savedCampaign.campaignLeads.splice(index, 1));
+                        }
+                    }
+
+                    createTemplateCampaignOffers(savedCampaign, savedCampaign.campaignLeads[0], req, function (err) {
                         if (err) {
                             return error.handleError(err, next);
                         }
@@ -208,121 +215,119 @@ function createNewCampaignLeadUsers(campaign, req, done) {
     });
 }
 
-function createTemplateCampaignOffers(campaign, req, cb) {
-
-    var user = req.user;
+function createTemplateCampaignOffers(campaign, user, req, cb) {
 
     Topic.findById(campaign.topic, function (err, topic) {
         if (err) {
             cb(err);
         }
 
-        async.each(topic.templateCampaignOffers, function (offer, done) {
+        User.findById(user._id || user).select('+profile +email').populate('profile').exec(function (err, user) {
+            async.each(topic.templateCampaignOffers, function (offer, done) {
 
-            var day = moment(campaign.start).tz('Europe/Zurich').add(offer.week, 'weeks').day(offer.weekday);
+                var day = moment(campaign.start).tz('Europe/Zurich').add(offer.week, 'weeks').day(offer.weekday);
 
-            // TODO: use proper timezone of the user here
-            var startOfDay = moment(day).tz('Europe/Zurich').startOf('day');
-            var endOfDay = moment(day).tz('Europe/Zurich').endOf('day');
+                // TODO: use proper timezone of the user here
+                var startOfDay = moment(day).tz('Europe/Zurich').startOf('day');
+                var endOfDay = moment(day).tz('Europe/Zurich').endOf('day');
 
-            // check if campaign is still running for this day
-            if (startOfDay.isAfter(campaign.end) || startOfDay.isBefore(campaign.start)) {
-                return done();
-            }
+                // check if campaign is still running for this day
+                if (startOfDay.isAfter(campaign.end) || startOfDay.isBefore(campaign.start)) {
+                    return done();
+                }
 
-            if (offer.type === 'Recommendation') {
+                if (offer.type === 'Recommendation') {
 
-                var recommendation = new Recommendation({
-                    idea: offer.idea,
+                    var recommendation = new Recommendation({
+                        idea: offer.idea,
 
-                    author: user,
-                    authorType: 'campaignLead',
+                        author: user,
+                        authorType: 'campaignLead',
 
-                    targetSpaces: [{
-                        type: 'campaign',
-                        targetId: campaign._id
-                    }],
+                        targetSpaces: [{
+                            type: 'campaign',
+                            targetId: campaign._id
+                        }],
 
-                    publishFrom: startOfDay.toDate(),
-                    publishTo: endOfDay.toDate(),
-                    __t: "Recommendation"
-                });
+                        publishFrom: startOfDay.toDate(),
+                        publishTo: endOfDay.toDate(),
+                        __t: "Recommendation"
+                    });
 
-                recommendation.save(function (err, saved) {
-                    if (err) {
-                        done(err);
-                    }
-                    done();
-                });
+                    recommendation.save(function (err, saved) {
+                        if (err) {
+                            done(err);
+                        }
+                        done();
+                    });
 
-            } else if (offer.type === 'Invitation') {
+                } else if (offer.type === 'Invitation') {
 
-                Idea.findById(offer.idea, function (err, idea) {
-                    if (err) {
-                        done(err);
-                    }
+                    Idea.findById(offer.idea, function (err, idea) {
+                        if (err) {
+                            done(err);
+                        }
 
-                    var defaultActivity = ActivityManagement.defaultActivity(idea, user, campaign._id, day);
+                        var defaultActivity = ActivityManagement.defaultActivity(idea, user, campaign._id, day);
 
-                    var activity = new Activity(defaultActivity);
-                    activity.save(function (err, saved) {
+                        var activity = new Activity(defaultActivity);
+                        activity.save(function (err, saved) {
 
-                        // as part of WL-1637 we decided to send those ical files always as long as
-                        // we do not have better have.
-                        // if (user && user.email && user.profile.prefs.email.iCalInvites) {
+                            // as part of WL-1637 we decided to send those ical files always as long as
+                            // we do not have better have.
+                            // if (user && user.email && user.profile.prefs.email.iCalInvites) {
                             req.log.debug({start: saved.start, end: saved.end}, 'Saved New activity');
 
                             // populate the owner, because the getIcalObject requires the owner to be populated.
                             activity.setValue('owner', user);
                             var myIcalString = calendar.getIcalObject(saved, user, 'new', req.i18n).toString();
                             email.sendCalInvite(user, 'new', myIcalString, saved, req.i18n);
-                        // }
+                            // }
 
 
-                        var publishFrom = moment(saved.start).subtract(2, 'days').tz('Europe/Zurich').startOf('day').toDate();
-                        if (moment(publishFrom).isBefore(moment(campaign.start))) {
-                            publishFrom = campaign.start;
-                        }
-                        var publishTo = saved.start;
-
-                        var invitation = new Invitation({
-                            activity: saved._id,
-                            idea: idea._id,
-                            author: user,
-                            authorType: 'campaignLead',
-
-                            targetSpaces: [{
-                                type: 'campaign',
-                                targetId: campaign._id
-                            }],
-
-                            publishFrom: publishFrom,
-                            publishTo: publishTo,
-                            __t: "Invitation"
-                        });
-
-                        invitation.save(function (err, saved) {
-                            if (err) {
-                                done(err);
+                            var publishFrom = moment(saved.start).subtract(2, 'days').tz('Europe/Zurich').startOf('day').toDate();
+                            if (moment(publishFrom).isBefore(moment(campaign.start))) {
+                                publishFrom = campaign.start;
                             }
-                            done();
+                            var publishTo = saved.start;
+
+                            var invitation = new Invitation({
+                                activity: saved._id,
+                                idea: idea._id,
+                                author: user,
+                                authorType: 'campaignLead',
+
+                                targetSpaces: [{
+                                    type: 'campaign',
+                                    targetId: campaign._id
+                                }],
+
+                                publishFrom: publishFrom,
+                                publishTo: publishTo,
+                                __t: "Invitation"
+                            });
+
+                            invitation.save(function (err, saved) {
+                                if (err) {
+                                    done(err);
+                                }
+                                done();
+                            });
                         });
                     });
-                });
 
-            } else {
-                return done('unsupported templateCampaignOffer.type: ' + offer.type);
-            }
+                } else {
+                    return done('unsupported templateCampaignOffer.type: ' + offer.type);
+                }
 
-        }, function (err) {
-            if (err) {
-                cb(err);
-            }
-            cb();
+            }, function (err) {
+                if (err) {
+                    cb(err);
+                }
+                cb();
+            });
         });
     });
-
-
 }
 
 function addSurveyCollectors(campaign, req, cb) {
@@ -459,7 +464,14 @@ var getAllForUserFn = function (baseUrl) {
 
             var dbQuery = Campaign.find(match);
             generic.addStandardQueryOptions(req, dbQuery, Campaign)
-                .exec(generic.writeObjCb(req, res, next));
+                .exec(function (err, campaigns) {
+                    User.populate(campaigns, {
+                        path: 'campaignLeads',
+                        select: '+emailValidatedFlag'
+                    }, function (err, campaigns) {
+                        generic.writeObjCb(req, res, next)(err, campaigns);
+                    });
+                });
 
         });
 

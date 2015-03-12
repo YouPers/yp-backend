@@ -15,5 +15,6 @@
   },
   "email": {
     "enabled": "disabled"
-  }
+  },
+  "paymentCodeChecking": "disabled"
 }

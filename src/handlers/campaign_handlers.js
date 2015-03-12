@@ -99,8 +99,10 @@ var postCampaign = function (baseUrl) {
             return error.handleError(err, next);
         }
         var paymentCode = req.body.paymentCode;
-        if (!paymentCode) {
+        if (!paymentCode && config.paymentCodeChecking === 'enabled') {
             return error.handleError(new error.MissingParmeterError({required: 'paymentCode'}, "need a paymentCode to create a campaign"), next);
+        } else if (config.paymentCodeChecking === 'disabled') {
+            paymentCode = {code: "testcode"};
         }
         var sentCampaign = new Campaign(req.body);
 
@@ -113,13 +115,14 @@ var postCampaign = function (baseUrl) {
                 if (err) {
                     return error.handleError(err, next);
                 }
-
-                if (!loadedCodes || loadedCodes.length !== 1) {
-                    return error.handleError(new error.InvalidArgumentError({code: paymentCode}, 'invalid code'), next);
+                if (config.paymentCodeChecking === 'enabled') {
+                    if (!loadedCodes || loadedCodes.length !== 1) {
+                        return error.handleError(new error.InvalidArgumentError({code: paymentCode}, 'invalid code'), next);
+                    }
+                    var code = loadedCodes[0] || {};
+                    sentCampaign.marketPartner = code.marketPartner && code.marketPartner.id;
+                    sentCampaign.endorsementType = code.endorsementType;
                 }
-                var code = loadedCodes[0];
-                sentCampaign.marketPartner = code.marketPartner && code.marketPartner.id;
-                sentCampaign.endorsementType = code.endorsementType;
                 sentCampaign.campaignLeads = [req.user.id];
 
                 if (!_.contains(req.user.roles, auth.roles.campaignlead)) {
@@ -141,9 +144,10 @@ var postCampaign = function (baseUrl) {
                     if (err) {
                         return error.handleError(err, next);
                     }
-
-                    code.campaign = saved._id;
-                    code.save();
+                    if (config.paymentCodeChecking === 'enabled') {
+                        code.campaign = saved._id;
+                        code.save();
+                    }
 
                     createTemplateCampaignOffers(saved, req, function (err) {
                         if (err) {

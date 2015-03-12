@@ -92,7 +92,8 @@
         "fileupload": {
             "bucketName": "hc-fileuploads-test"
         }
-    }
+    },
+    "paymentCodeChecking": "enabled"
 
 }
 

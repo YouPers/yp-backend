@@ -115,7 +115,7 @@ var postCampaign = function (baseUrl) {
                 if (err) {
                     return error.handleError(err, next);
                 }
-                if (config.paymentCodeChecking === 'enabled') {
+                if (config.paymentCodeChecking !== 'disabled') {
                     if (!loadedCodes || loadedCodes.length !== 1) {
                         return error.handleError(new error.InvalidArgumentError({code: paymentCode}, 'invalid code'), next);
                     }

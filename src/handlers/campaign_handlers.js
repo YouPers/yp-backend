@@ -8,6 +8,7 @@ var handlerUtils = require('ypbackendlib').handlerUtils,
     Campaign = mongoose.model('Campaign'),
     Invitation = mongoose.model('Invitation'),
     Recommendation = mongoose.model('Recommendation'),
+    PaymentCode = mongoose.model('PaymentCode'),
     Topic = mongoose.model('Topic'),
     Idea = mongoose.model('Idea'),
     Activity = mongoose.model('Activity'),
@@ -37,7 +38,7 @@ var getCampaign = function (id, cb) {
         });
 };
 
-var validateCampaign = function validateCampaign(campaign, user, type, done) {
+function _validateCampaign(campaign, user, type, done) {
 
     if(!campaign.organization) {
         Organization.findOne({ administrators: user.id }).exec(function (err, organization) {
@@ -100,7 +101,7 @@ var validateCampaign = function validateCampaign(campaign, user, type, done) {
             });
         });
     }
-};
+}
 
 var postCampaign = function (baseUrl) {
     return function (req, res, next) {
@@ -111,75 +112,103 @@ var postCampaign = function (baseUrl) {
             return error.handleError(err, next);
         }
 
+        var paymentCode = req.body.paymentCode;
+        if (!paymentCode && config.paymentCodeChecking === 'enabled') {
+            return error.handleError(new error.MissingParmeterError({required: 'paymentCode'}, "need a paymentCode to create a campaign"), next);
+        } else if (!paymentCode && config.paymentCodeChecking === 'disabled') {
+            paymentCode = {code: "testcode"};
+        }
         var sentCampaign = new Campaign(req.body);
 
-        validateCampaign(sentCampaign, req.user, "POST", function (err) {
+        _validateCampaign(sentCampaign, req.user, "POST", function (err) {
             if (err) {
                 return error.handleError(err, next);
             }
 
-            // create and set the ObjectId of the new campaign manually before saving, because we need
-            // it to create the surveyResponseCollectors
-            sentCampaign._id = new mongoose.Types.ObjectId();
-
-            createNewCampaignLeadUsers(sentCampaign, req, function (err) {
+            PaymentCode.find({code: paymentCode.code || paymentCode}).populate('marketPartner').exec(function (err, loadedCodes) {
                 if (err) {
                     return error.handleError(err, next);
                 }
+                if (config.paymentCodeChecking !== 'disabled') {
+                    if (!loadedCodes || loadedCodes.length !== 1) {
+                        return error.handleError(new error.InvalidArgumentError({code: paymentCode}, 'invalid code'), next);
+                    }
+                }
+                var code = loadedCodes[0];
+                if (code) {
+                    sentCampaign.marketPartner = code.marketPartner && code.marketPartner.id;
+                    sentCampaign.endorsementType = code.endorsementType;
+                }
 
-                Campaign.populate(sentCampaign, {path: 'campaignLeads', select: '+username'}, function (err, campaign) {
+                // create and set the ObjectId of the new campaign manually before saving, because we need
+                // it to send the campaign lead invitations for newCampaignLeads
+                sentCampaign._id = new mongoose.Types.ObjectId();
+
+                createNewCampaignLeadUsers(sentCampaign, req, function (err) {
                     if (err) {
                         return error.handleError(err, next);
                     }
 
-                    if(req.params.defaultCampaignLead) { // move to front
-                        var campaignLead = _.remove(campaign.campaignLeads, 'username', req.params.defaultCampaignLead);
-                        if(campaignLead.length > 0) {
-                            campaign.campaignLeads.unshift(campaignLead[0]);
-                        }
-                    }
-
-                    req.log.trace(campaign, 'PostFn: Saving new Campaign object');
-
-                    // try to save the new campaign object
-                    campaign.save(function (err, savedCampaign) {
+                    Campaign.populate(sentCampaign, {
+                        path: 'campaignLeads',
+                        select: '+username'
+                    }, function (err, campaign) {
                         if (err) {
                             return error.handleError(err, next);
                         }
 
-                        createTemplateCampaignOffers(savedCampaign, savedCampaign.campaignLeads[0], req, function (err) {
+                        if (req.params.defaultCampaignLead) { // move to front
+                            var campaignLead = _.remove(campaign.campaignLeads, 'username', req.params.defaultCampaignLead);
+                            if (campaignLead.length > 0) {
+                                campaign.campaignLeads.unshift(campaignLead[0]);
+                            }
+                        }
+
+                        req.log.trace(campaign, 'PostFn: Saving new Campaign object');
+
+                        // try to save the new campaign object
+                        campaign.save(function (err, savedCampaign) {
                             if (err) {
                                 return error.handleError(err, next);
                             }
-
-                            // the campaign has been saved and all template offer have been generated
-                            // talking to SurveyMonkey API often takes a few seconds, to avoid
-                            // timeouting our response we do the SurveyMonkey API Call async after we
-                            // signal success to the browser
-                            req.log.debug({"surveyMonkeyEnabled": config.surveyMonkey && config.surveyMonkey.enabled}, "surveyMonkeyConfig enabled?");
-                            if (config.surveyMonkey && config.surveyMonkey.enabled === "enabled") {
-                                addSurveyCollectors(savedCampaign, req, function (err) {
-                                    if (err) {
-                                        req.log.error(err, "error while talking asynchronously to SurveyMonkey.");
-                                    }
-                                    savedCampaign.save(function(err, savedAgain) {
-                                        if (err) {
-                                            req.log.error(err, "error while saving the SurveyUrls on the campaign");
-                                        }
-                                    });
-
-                                });
+                            if (code) {
+                                code.campaign = savedCampaign._id;
+                                code.save();
                             }
-                            return generic.writeObjCb(req, res, next)(err, savedCampaign);
-                        });
 
+                            createTemplateCampaignOffers(savedCampaign, savedCampaign.campaignLeads[0], req, function (err) {
+                                if (err) {
+                                    return error.handleError(err, next);
+                                }
+
+                                // the campaign has been saved and all template offer have been generated
+                                // talking to SurveyMonkey API often takes a few seconds, to avoid
+                                // timeouting our response we do the SurveyMonkey API Call async after we
+                                // signal success to the browser
+                                req.log.debug({"surveyMonkeyEnabled": config.surveyMonkey && config.surveyMonkey.enabled}, "surveyMonkeyConfig enabled?");
+                                if (config.surveyMonkey && config.surveyMonkey.enabled === "enabled") {
+                                    addSurveyCollectors(savedCampaign, req, function (err) {
+                                        if (err) {
+                                            req.log.error(err, "error while talking asynchronously to SurveyMonkey.");
+                                        }
+                                        savedCampaign.save(function (err, savedAgain) {
+                                            if (err) {
+                                                req.log.error(err, "error while saving the SurveyUrls on the campaign");
+                                            }
+                                        });
+
+                                    });
+                                }
+                                return generic.writeObjCb(req, res, next)(err, savedCampaign);
+                            });
+
+                        });
                     });
+
                 });
 
             });
-
         });
-
     };
 };
 
@@ -371,7 +400,7 @@ function addSurveyCollectors(campaign, req, cb) {
                         headers: request._headers
                     }, 'ERROR posting to SurveyMonkey: request');
                     req.log.error({res: response}, 'ERROR posting to SurveyMonkey: response');
-                    return cb(err || new Error("error creating surveyMonkey collector:" + obj.status) );
+                    return cb(err || new Error("error creating surveyMonkey collector:" + obj.status));
                 }
 
                 campaign.leaderSurveyCollectorId = obj && obj.data && obj.data.collector.collector_id;
@@ -389,7 +418,7 @@ function addSurveyCollectors(campaign, req, cb) {
                                 headers: request._headers
                             }, 'ERROR posting to SurveyMonkey: request');
                             req.log.error({res: response}, 'ERROR posting to SurveyMonkey: response');
-                            return cb(err || new Error("error creating surveyMonkey collector:" + obj.status) );
+                            return cb(err || new Error("error creating surveyMonkey collector:" + obj.status));
                         }
 
                         campaign.participantSurveyCollectorId = respObj && respObj.data && respObj.data.collector.collector_id;
@@ -427,7 +456,7 @@ function putCampaign(req, res, next) {
 
         _.extend(reloadedCampaign, sentCampaign);
 
-        validateCampaign(reloadedCampaign, req.user, "PUT", function (err) {
+        _validateCampaign(reloadedCampaign, req.user, "PUT", function (err) {
             if (err) {
                 return error.handleError(err, next);
             }

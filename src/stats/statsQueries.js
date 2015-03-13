@@ -510,6 +510,24 @@ var queries = {
                 }
             },
             {$sort: {'date.year': -1, 'date.month': -1, 'date.day': -1}}]
+    },
+    usersPerCampaign: {
+        modelName: 'User',
+        ignoreScope: true,
+        stages: [
+            {
+                $group: {
+                    _id: '$campaign',
+                    usersTotal: {$sum: 1}
+                }
+            },
+            {
+                $project: {
+                    usersTotal: 1,
+                    campaign: '$_id',
+                    _id: 0
+                }
+            }]
     }
 };
 

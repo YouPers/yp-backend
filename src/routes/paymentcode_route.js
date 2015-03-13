@@ -15,8 +15,25 @@ module.exports = function (swagger) {
 
     swagger.addOperation({
         spec: {
+            description: "Validate a payment code",
+            path: baseUrl + '/validate',
+            notes: "Validate a payment code",
+            summary: "Validate a payment code",
+            method: "POST",
+            params: [swagger.bodyParam("paymentCode", "payment code", "PaymentCode")],
+            "responseClass": "string",
+            "errorResponses": [],
+            "nickname": "validatePaymentCode",
+            accessLevel: 'al_user'
+        },
+        action: paymentCodeHandlers.validatePaymentCode()
+    });
+
+
+    swagger.addOperation({
+        spec: {
             description: "Generates a payment code",
-            path: baseUrl + '/generate',
+            path: baseUrl,
             notes: "Generates a payment code",
             summary: "Generates a payment code",
             method: "POST",
@@ -49,19 +66,33 @@ module.exports = function (swagger) {
 
     swagger.addOperation({
         spec: {
-            description: "Validate a payment code",
-            path: baseUrl + '/validate',
-            notes: "Validate a payment code",
-            summary: "Validate a payment code",
-            method: "POST",
-            params: [swagger.bodyParam("paymentCode", "payment code", "PaymentCode")],
-            "responseClass": "string",
-            "errorResponses": [],
-            "nickname": "validatePaymentCode",
-            accessLevel: 'al_user'
+            description: "Deletes a payment codes",
+            path: baseUrl + '/{id}',
+            notes: "deletes a payment code",
+            summary: "deletes a payment code",
+
+            method: "DELETE",
+            "nickname": "deletePaymentCode",
+            accessLevel: 'al_productadmin'
         },
-        action: paymentCodeHandlers.validatePaymentCode()
+        action: generic.deleteByIdFn(baseUrl, PaymentCode)
     });
+
+    swagger.addOperation({
+        spec: {
+            description: "Puts a payment codes",
+            path: baseUrl + '/{id}',
+            notes: "puts a payment code",
+            summary: "puts a payment code",
+
+            method: "PUT",
+            "nickname": "putPaymentCode",
+            accessLevel: 'al_productadmin'
+        },
+        action: generic.putFn(baseUrl, PaymentCode)
+    });
+
+
     swagger.addOperation({
         spec: {
             description: "Redeem a payment code",

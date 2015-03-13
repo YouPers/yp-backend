@@ -16,8 +16,12 @@ function activityUrl(campaignId, ideaId, activityId, soiId, actionType) {
 function activityInviteUrl(invitationId) {
     return webclientUrl + "/#/invite/" + invitationId;
 }
-function campaignLeadInviteUrl(campaignId, invitingUserId, token) {
-    return webclientUrl + "/#/campaigns/" + campaignId + '/becomeCampaignLead?invitingUserId='+invitingUserId+'&accessToken='+token;
+function campaignLeadInviteAndResetPasswordUrl(campaignId, invitingUserId, invitedUserId, username, token) {
+    return webclientUrl + "/#/campaigns/" + campaignId + '/campaignLeadResetPassword' +
+        '?invitingUserId=' + invitingUserId +
+        '&invitedUserId=' + invitedUserId +
+        '&username=' + encodeURIComponent(username) +
+        '&accessToken=' + token;
 }
 function campaignWelcomeUrl(campaignId) {
     return webclientUrl + "/#/welcome/" + campaignId + '/';
@@ -42,7 +46,7 @@ module.exports = {
     homeUrl: homeUrl,
     activityUrl: activityUrl,
     activityInviteUrl: activityInviteUrl,
-    campaignLeadInviteUrl: campaignLeadInviteUrl,
+    campaignLeadInviteAndResetPasswordUrl: campaignLeadInviteAndResetPasswordUrl,
     campaignWelcomeUrl: campaignWelcomeUrl,
     orgAdminInviteUrl: orgAdminInviteUrl,
     ideaImageUrl: ideaImageUrl,

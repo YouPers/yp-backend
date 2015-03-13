@@ -3,9 +3,9 @@ var handlerUtils = require('ypbackendlib').handlerUtils,
     _ = require('lodash'),
     error = require('ypbackendlib').error,
     mongoose = require('ypbackendlib').mongoose,
+    User = mongoose.model('User'),
     Organization = mongoose.model('Organization'),
     Campaign = mongoose.model('Campaign'),
-    SocialInteraction = require('../core/SocialInteraction'),
     Invitation = mongoose.model('Invitation'),
     Recommendation = mongoose.model('Recommendation'),
     PaymentCode = mongoose.model('PaymentCode'),
@@ -13,6 +13,7 @@ var handlerUtils = require('ypbackendlib').handlerUtils,
     Idea = mongoose.model('Idea'),
     Activity = mongoose.model('Activity'),
     ActivityManagement = require('../core/ActivityManagement'),
+    crypto = require('crypto'),
     async = require('async'),
     email = require('../util/email'),
     image = require('ypbackendlib').image,
@@ -37,57 +38,69 @@ var getCampaign = function (id, cb) {
         });
 };
 
-function _validateCampaign(campaign, userId, type, cb) {
-    // check if posting user is an org admin of the organization this new campaign belongs to
-    Organization.find({administrators: userId}).exec(function (err, organizations) {
-        if (err) {
-            return error.handleError(err, cb);
-        }
-        if (!organizations || organizations.length !== 1) {
-            return cb(new error.ConflictError("user is administrator for more than one organization", {
-                organizations: organizations
-            }));
-        }
-        var org = organizations[0];
+function _validateCampaign(campaign, user, type, done) {
 
-        campaign.organization = org;
-
-        var orgAdmin = _.contains(org.administrators.toString(), userId);
-
-        if (type === "PUT") {
-
-            var campaignLead = _.contains(campaign.campaignLeads.toString(), userId);
-
-            if (!orgAdmin && !campaignLead) {
-                return cb(new error.NotAuthorizedError('Not authorized to create a campaign, the user is neither ' +
-                'orgadmin of the organization nor a campaignlead of the campaign.', {
-                    campaignId: campaign.id,
-                    organizationId: org.id,
-                    userId: userId
-                }));
+    if(!campaign.organization) {
+        Organization.findOne({ administrators: user.id }).exec(function (err, organization) {
+            if (err) {
+                return done(err);
             }
-        } else {
+            campaign.organization = organization;
+            validate();
+        });
+    } else {
+        validate();
+    }
 
-            if (!orgAdmin) {
-                return cb(new error.NotAuthorizedError('Not authorized to create a campaign, this orgadmin does not belong to this organization.', {
-                    organizationId: org.id,
-                    userId: userId
-                }));
+    function validate() {
+
+        campaign.validate(function (err) {
+            if (err) {
+                return done(err);
             }
-        }
 
-        // check if campaing start/end timespan is between 1 week and a half year, might have to be adapted later on
+            Organization.findById(campaign.organization).exec(function (err, organization) {
+                if (err) {
+                    return done(err);
+                }
 
-        if (campaign.start && campaign.end &&
-            (moment(campaign.end).diff(moment(campaign.start), 'weeks') < 1 ||
-            moment(campaign.end).diff(moment(campaign.start), 'weeks') > 26)) {
-            return cb(new error.InvalidArgumentError('Campaign duration must be between 1 and 26 weeks.', {
-                invalid: ['start', 'end']
-            }));
-        }
-        return cb();
-    });
+                var isOrganizationAdmin = _.contains(user.roles, 'orgadmin') && _.contains(organization.administrators.toString(), user.id);
+                if(isOrganizationAdmin && _.isEmpty(campaign.campaignLeads)) {
+                    campaign.campaignLeads = [user.id];
+                }
 
+                if (type === "PUT") {
+
+                    var isCampaignLead = _.contains(user.roles, 'campaignlead') && _.contains(campaign.campaignLeads.toString(), user.id);
+
+                    if (!isOrganizationAdmin && !isCampaignLead) {
+                        return done(new error.NotAuthorizedError('Not authorized to create a campaign, the user is neither ' +
+                        'orgadmin of the organization nor a campaignlead of the campaign.', {
+                            campaignId: campaign.id,
+                            organizationId: organization.id,
+                            userId: user.id
+                        }));
+                    }
+                } else {
+
+                    if (!isOrganizationAdmin) {
+                        return done(new error.NotAuthorizedError('Not authorized to create a campaign, not an orgadmin.', {
+                            organizationId: organization.id,
+                            userId: user.id
+                        }));
+                    }
+                }
+
+                if (campaign.start && campaign.end &&
+                    (moment(campaign.end).diff(moment(campaign.start), 'weeks') < 1)) {
+                    return done(new error.InvalidArgumentError('Campaign duration must be at least 1 week', {
+                        invalid: ['start', 'end']
+                    }));
+                }
+                return done();
+            });
+        });
+    }
 }
 
 var postCampaign = function (baseUrl) {
@@ -98,6 +111,7 @@ var postCampaign = function (baseUrl) {
         if (err) {
             return error.handleError(err, next);
         }
+
         var paymentCode = req.body.paymentCode;
         if (!paymentCode && config.paymentCodeChecking === 'enabled') {
             return error.handleError(new error.MissingParmeterError({required: 'paymentCode'}, "need a paymentCode to create a campaign"), next);
@@ -106,7 +120,7 @@ var postCampaign = function (baseUrl) {
         }
         var sentCampaign = new Campaign(req.body);
 
-        _validateCampaign(sentCampaign, req.user.id, "POST", function (err) {
+        _validateCampaign(sentCampaign, req.user, "POST", function (err) {
             if (err) {
                 return error.handleError(err, next);
             }
@@ -125,181 +139,229 @@ var postCampaign = function (baseUrl) {
                     sentCampaign.marketPartner = code.marketPartner && code.marketPartner.id;
                     sentCampaign.endorsementType = code.endorsementType;
                 }
-                sentCampaign.campaignLeads = [req.user.id];
 
-                if (!_.contains(req.user.roles, auth.roles.campaignlead)) {
-                    req.user.roles.push(auth.roles.campaignlead);
-                }
+                // create and set the ObjectId of the new campaign manually before saving, because we need
+                // it to send the campaign lead invitations for newCampaignLeads
+                sentCampaign._id = new mongoose.Types.ObjectId();
 
-                // update user with his new role as campaign lead
-
-                req.user.save(function (err) {
+                createNewCampaignLeadUsers(sentCampaign, req, function (err) {
                     if (err) {
                         return error.handleError(err, next);
                     }
-                });
 
-                req.log.trace(sentCampaign, 'PostFn: Saving new Campaign object');
-
-                // try to save the new campaign object
-                sentCampaign.save(function (err, saved) {
-                    if (err) {
-                        return error.handleError(err, next);
-                    }
-                    if (code) {
-                        code.campaign = saved._id;
-                        code.save();
-                    }
-
-                    createTemplateCampaignOffers(saved, req, function (err) {
+                    Campaign.populate(sentCampaign, {
+                        path: 'campaignLeads',
+                        select: '+username'
+                    }, function (err, campaign) {
                         if (err) {
                             return error.handleError(err, next);
                         }
 
-                        // the campaign has been saved and all template offer have been generated
-                        // talking to SurveyMonkey API often takes a few seconds, to avoid
-                        // timeouting our response we do the SurveyMonkey API Call async after we
-                        // signal success to the browser
-                        req.log.debug({"surveyMonkeyEnabled": config.surveyMonkey && config.surveyMonkey.enabled}, "surveyMonkeyConfig enabled?");
-                        if (config.surveyMonkey && config.surveyMonkey.enabled === "enabled") {
-                            addSurveyCollectors(saved, req, function (err) {
-                                if (err) {
-                                    req.log.error(err, "error while talking asynchronosouly to SurveyMonkey.");
-                                }
-                                saved.save(function (err, savedAgain) {
-                                    if (err) {
-                                        req.log.error(err, "error while saving the SurveyUrls on the campaign");
-                                    }
-                                });
-
-                            });
+                        if (req.params.defaultCampaignLead) { // move to front
+                            var campaignLead = _.remove(campaign.campaignLeads, 'username', req.params.defaultCampaignLead);
+                            if (campaignLead.length > 0) {
+                                campaign.campaignLeads.unshift(campaignLead[0]);
+                            }
                         }
-                        return generic.writeObjCb(req, res, next)(err, saved);
+
+                        req.log.trace(campaign, 'PostFn: Saving new Campaign object');
+
+                        // try to save the new campaign object
+                        campaign.save(function (err, savedCampaign) {
+                            if (err) {
+                                return error.handleError(err, next);
+                            }
+                            if (code) {
+                                code.campaign = savedCampaign._id;
+                                code.save();
+                            }
+
+                            createTemplateCampaignOffers(savedCampaign, savedCampaign.campaignLeads[0], req, function (err) {
+                                if (err) {
+                                    return error.handleError(err, next);
+                                }
+
+                                // the campaign has been saved and all template offer have been generated
+                                // talking to SurveyMonkey API often takes a few seconds, to avoid
+                                // timeouting our response we do the SurveyMonkey API Call async after we
+                                // signal success to the browser
+                                req.log.debug({"surveyMonkeyEnabled": config.surveyMonkey && config.surveyMonkey.enabled}, "surveyMonkeyConfig enabled?");
+                                if (config.surveyMonkey && config.surveyMonkey.enabled === "enabled") {
+                                    addSurveyCollectors(savedCampaign, req, function (err) {
+                                        if (err) {
+                                            req.log.error(err, "error while talking asynchronously to SurveyMonkey.");
+                                        }
+                                        savedCampaign.save(function (err, savedAgain) {
+                                            if (err) {
+                                                req.log.error(err, "error while saving the SurveyUrls on the campaign");
+                                            }
+                                        });
+
+                                    });
+                                }
+                                return generic.writeObjCb(req, res, next)(err, savedCampaign);
+                            });
+
+                        });
                     });
 
                 });
 
             });
         });
-
     };
 };
 
-function createTemplateCampaignOffers(campaign, req, cb) {
+function createNewCampaignLeadUsers(campaign, req, done) {
 
-    var user = req.user;
+    async.each(campaign.newCampaignLeads, function (campaignLead, cb) {
+
+        // random password
+        crypto.randomBytes(16, function(err, random) {
+            if(err) {
+                return cb(err);
+            }
+
+            campaignLead.password = random;
+            campaignLead.tempPasswordFlag = true; // used to determine the campaign lead invite url
+            campaignLead.roles = ['individual', 'campaignlead'];
+
+            var user = new User(campaignLead);
+            user.save(function (err, savedUser) {
+                if (err) { return cb(err); }
+
+                campaign.campaignLeads.push(savedUser._id);
+
+                Topic.populate(campaign, { path: 'topic' }, function (err, campaign) {
+                    if (err) { return cb(err); }
+                    email.sendCampaignLeadInvite(campaignLead.email, req.user, campaign, savedUser, req.i18n);
+                    cb(null, savedUser);
+                });
+            });
+        });
+
+    }, function (err) {
+        if (err) {
+            return done(err);
+        }
+        campaign.newCampaignLeads = [];
+        done();
+    });
+}
+
+function createTemplateCampaignOffers(campaign, user, req, cb) {
 
     Topic.findById(campaign.topic, function (err, topic) {
         if (err) {
             cb(err);
         }
 
-        async.each(topic.templateCampaignOffers, function (offer, done) {
+        User.findById(user._id || user).select('+profile +email').populate('profile').exec(function (err, user) {
+            async.each(topic.templateCampaignOffers, function (offer, done) {
 
-            var day = moment(campaign.start).tz('Europe/Zurich').add(offer.week, 'weeks').day(offer.weekday);
+                var day = moment(campaign.start).tz('Europe/Zurich').add(offer.week, 'weeks').day(offer.weekday);
 
-            // TODO: use proper timezone of the user here
-            var startOfDay = moment(day).tz('Europe/Zurich').startOf('day');
-            var endOfDay = moment(day).tz('Europe/Zurich').endOf('day');
+                // TODO: use proper timezone of the user here
+                var startOfDay = moment(day).tz('Europe/Zurich').startOf('day');
+                var endOfDay = moment(day).tz('Europe/Zurich').endOf('day');
 
-            // check if campaign is still running for this day
-            if (startOfDay.isAfter(campaign.end) || startOfDay.isBefore(campaign.start)) {
-                return done();
-            }
+                // check if campaign is still running for this day
+                if (startOfDay.isAfter(campaign.end) || startOfDay.isBefore(campaign.start)) {
+                    return done();
+                }
 
-            if (offer.type === 'Recommendation') {
+                if (offer.type === 'Recommendation') {
 
-                var recommendation = new Recommendation({
-                    idea: offer.idea,
+                    var recommendation = new Recommendation({
+                        idea: offer.idea,
 
-                    author: user,
-                    authorType: 'campaignLead',
+                        author: user,
+                        authorType: 'campaignLead',
 
-                    targetSpaces: [{
-                        type: 'campaign',
-                        targetId: campaign._id
-                    }],
+                        targetSpaces: [{
+                            type: 'campaign',
+                            targetId: campaign._id
+                        }],
 
-                    publishFrom: startOfDay.toDate(),
-                    publishTo: endOfDay.toDate(),
-                    __t: "Recommendation"
-                });
+                        publishFrom: startOfDay.toDate(),
+                        publishTo: endOfDay.toDate(),
+                        __t: "Recommendation"
+                    });
 
-                recommendation.save(function (err, saved) {
-                    if (err) {
-                        done(err);
-                    }
-                    done();
-                });
-
-            } else if (offer.type === 'Invitation') {
-
-                Idea.findById(offer.idea, function (err, idea) {
-                    if (err) {
-                        done(err);
-                    }
-
-                    var defaultActivity = ActivityManagement.defaultActivity(idea, user, campaign._id, day);
-
-                    var activity = new Activity(defaultActivity);
-                    activity.save(function (err, saved) {
-
-                        // as part of WL-1637 we decided to send those ical files always as long as
-                        // we do not have better have.
-                        // if (user && user.email && user.profile.prefs.email.iCalInvites) {
-                        req.log.debug({start: saved.start, end: saved.end}, 'Saved New activity');
-
-                        // populate the owner, because the getIcalObject requires the owner to be populated.
-                        activity.setValue('owner', user);
-                        var myIcalString = calendar.getIcalObject(saved, user, 'new', req.i18n).toString();
-                        email.sendCalInvite(user, 'new', myIcalString, saved, req.i18n);
-                        // }
-
-
-                        var publishFrom = moment(saved.start).subtract(2, 'days').tz('Europe/Zurich').startOf('day').toDate();
-                        if (moment(publishFrom).isBefore(moment(campaign.start))) {
-                            publishFrom = campaign.start;
+                    recommendation.save(function (err, saved) {
+                        if (err) {
+                            done(err);
                         }
-                        var publishTo = saved.start;
+                        done();
+                    });
 
-                        var invitation = new Invitation({
-                            activity: saved._id,
-                            idea: idea._id,
-                            author: user,
-                            authorType: 'campaignLead',
+                } else if (offer.type === 'Invitation') {
 
-                            targetSpaces: [{
-                                type: 'campaign',
-                                targetId: campaign._id
-                            }],
+                    Idea.findById(offer.idea, function (err, idea) {
+                        if (err) {
+                            done(err);
+                        }
 
-                            publishFrom: publishFrom,
-                            publishTo: publishTo,
-                            __t: "Invitation"
-                        });
+                        var defaultActivity = ActivityManagement.defaultActivity(idea, user, campaign._id, day);
 
-                        invitation.save(function (err, saved) {
-                            if (err) {
-                                done(err);
+                        var activity = new Activity(defaultActivity);
+                        activity.save(function (err, saved) {
+
+                            // as part of WL-1637 we decided to send those ical files always as long as
+                            // we do not have better have.
+                            // if (user && user.email && user.profile.prefs.email.iCalInvites) {
+                            req.log.debug({start: saved.start, end: saved.end}, 'Saved New activity');
+
+                            // populate the owner, because the getIcalObject requires the owner to be populated.
+                            activity.setValue('owner', user);
+                            var myIcalString = calendar.getIcalObject(saved, user, 'new', req.i18n).toString();
+                            email.sendCalInvite(user, 'new', myIcalString, saved, req.i18n);
+                            // }
+
+
+                            var publishFrom = moment(saved.start).subtract(2, 'days').tz('Europe/Zurich').startOf('day').toDate();
+                            if (moment(publishFrom).isBefore(moment(campaign.start))) {
+                                publishFrom = campaign.start;
                             }
-                            done();
+                            var publishTo = saved.start;
+
+                            var invitation = new Invitation({
+                                activity: saved._id,
+                                idea: idea._id,
+                                author: user,
+                                authorType: 'campaignLead',
+
+                                targetSpaces: [{
+                                    type: 'campaign',
+                                    targetId: campaign._id
+                                }],
+
+                                publishFrom: publishFrom,
+                                publishTo: publishTo,
+                                __t: "Invitation"
+                            });
+
+                            invitation.save(function (err, saved) {
+                                if (err) {
+                                    done(err);
+                                }
+                                done();
+                            });
                         });
                     });
-                });
 
-            } else {
-                return done('unsupported templateCampaignOffer.type: ' + offer.type);
-            }
+                } else {
+                    return done('unsupported templateCampaignOffer.type: ' + offer.type);
+                }
 
-        }, function (err) {
-            if (err) {
-                cb(err);
-            }
-            cb();
+            }, function (err) {
+                if (err) {
+                    cb(err);
+                }
+                cb();
+            });
         });
     });
-
-
 }
 
 function addSurveyCollectors(campaign, req, cb) {
@@ -394,17 +456,19 @@ function putCampaign(req, res, next) {
 
         _.extend(reloadedCampaign, sentCampaign);
 
-        _validateCampaign(reloadedCampaign, req.user.id, "PUT", function (err) {
+        _validateCampaign(reloadedCampaign, req.user, "PUT", function (err) {
             if (err) {
                 return error.handleError(err, next);
             }
-
-            req.log.trace(reloadedCampaign, 'PutFn: Updating existing Object');
-
-            reloadedCampaign.save(generic.writeObjCb(req, res, next));
+            createNewCampaignLeadUsers(reloadedCampaign, req, function (err) {
+                if (err) {
+                    return error.handleError(err, next);
+                }
+                req.log.trace(reloadedCampaign, 'PutFn: Updating existing Object');
+                reloadedCampaign.save(generic.writeObjCb(req, res, next));
+            });
         });
     });
-
 }
 
 
@@ -420,13 +484,31 @@ var getAllForUserFn = function (baseUrl) {
 
         var userId = req.user.id;
 
-        var admin = auth.checkAccess(req.user, auth.accessLevels.al_admin);
-        var listall = req.params.listall;
-        var match = (admin || listall) ? {} : {campaignLeads: userId};
+        Organization.find({administrators: userId}).select('_id').exec(function (err, organizations) {
 
-        var dbQuery = Campaign.find(match);
-        generic.addStandardQueryOptions(req, dbQuery, Campaign)
-            .exec(generic.writeObjCb(req, res, next));
+            var admin = auth.checkAccess(req.user, auth.accessLevels.al_admin);
+            var listall = req.params.listall;
+            var match = (admin || listall) ? {} :
+            {
+                $or: [
+                    { campaignLeads: userId },
+                    { organization: { $in: organizations } }
+                ]
+            };
+
+            var dbQuery = Campaign.find(match);
+            generic.addStandardQueryOptions(req, dbQuery, Campaign)
+                .exec(function (err, campaigns) {
+                    User.populate(campaigns, {
+                        path: 'campaignLeads',
+                        select: '+emailValidatedFlag'
+                    }, function (err, campaigns) {
+                        generic.writeObjCb(req, res, next)(err, campaigns);
+                    });
+                });
+
+        });
+
     };
 };
 
@@ -480,169 +562,6 @@ var postParticipantsInviteFn = function postParticipantsInviteFn(req, res, next)
 
     res.send(200);
     return next();
-};
-
-var postCampaignLeadInviteFn = function postCampaignLeadInviteFn(req, res, next) {
-    if (!req.params || !req.params.id) {
-        return next(new error.MissingParameterError({required: 'id'}));
-    }
-    if (!req.body || !req.body.email) {
-        return next(new error.MissingParameterError({required: 'email'}));
-    }
-
-    // split up the email field, in case we got more than one mail
-    var emails = _parseMailAdresses(req.body.email);
-
-    var locals = {};
-    async.series([
-        // first load Campaign
-        function (done) {
-            Campaign.findById(req.params.id)
-                .populate('organization topic')
-                .exec(function (err, campaign) {
-                    if (err) {
-                        return done(err);
-                    }
-                    if (!campaign) {
-                        return done(new error.ResourceNotFoundError({campaignId: req.params.id}));
-                    }
-
-                    // check whether the posting user is a campaignLead of the campaign
-                    if (!_.contains(campaign.campaignLeads.toString(), req.user.id)) {
-                        return done(new error.NotAuthorizedError('The user is not a campaignlead of this campaign.', {
-                            userId: req.user.id,
-                            campaignId: campaign.id
-                        }));
-                    }
-                    locals.campaign = campaign;
-                    return done();
-                });
-        },
-        // for each email try whether we have a user in the Db with this email address and, if yes, load the user
-        // to personalize the email then send the invitation mail
-        // if we do not find a user for this email we send the same email but without personalization.
-        function (done) {
-
-            // collect known users for storing invitations
-            var recipients = [];
-
-            async.forEach(emails,
-                function (emailaddress, done) {
-                    mongoose.model('User')
-                        .find({email: emailaddress})
-                        .exec(function (err, invitedUsers) {
-                            if (err) {
-                                return done(err);
-                            }
-
-                            if (invitedUsers && invitedUsers.length === 1) {
-                                recipients.push(invitedUsers[0]);
-                            } else {
-                                recipients.push(emailaddress);
-                            }
-
-                            email.sendCampaignLeadInvite(emailaddress, req.user, locals.campaign, invitedUsers && invitedUsers[0], req.i18n);
-                            return done();
-                        });
-                },
-                function (err) {
-                    done();
-                    SocialInteraction.emit('invitation:campaignLead', req.user, recipients, locals.campaign);
-                });
-        }
-    ], function (err) {
-        if (err) {
-            return error.handleError(err, next);
-        }
-        res.send(200);
-        return next();
-    });
-};
-
-var assignCampaignLeadFn = function assignCampaignLeadFn(req, res, next) {
-    if (!req.params || !req.params.id) {
-        return next(new error.MissingParameterError({required: 'id'}));
-    }
-    if (!req.params.token) {
-        return next(new error.MissingParameterError({required: 'token'}));
-    }
-    if (!req.user) {
-        return next(new error.NotAuthorizedError());
-    }
-
-    var tokenElements;
-
-    try {
-        tokenElements = email.decryptLinkToken(req.params.token).split(config.linkTokenEncryption.separator);
-    } catch (err) {
-        return next(new error.InvalidArgumentError('Invalid token', {
-            token: req.params.token
-        }));
-    }
-
-    // tokenElements[0] must be the campaignId
-    if (tokenElements[0] !== req.params.id) {
-        return next(new error.InvalidArgumentError('Invalid token / campaignId', {
-            token: req.params.token,
-            campaignId: req.params.id
-        }));
-    }
-
-    // tokenElements[1] should be the email-address that was invited
-    if (tokenElements[1] !== req.user.email) {
-        return next(new error.InvalidArgumentError('Invalid token / email', {
-            token: req.params.token,
-            email: req.user.email
-        }));
-    }
-
-    // tokenElements[2], if it is defined should be the user id of the invited user
-    if (tokenElements[2] && (tokenElements[2] !== req.user.id)) {
-        return next(new error.InvalidArgumentError('Invalid token / userId', {
-            token: req.params.token,
-            userId: req.user.id
-        }));
-    }
-
-    Campaign.findById(req.params.id)
-        .exec(function (err, campaign) {
-            if (err) {
-                return error.handleError(err, next);
-            }
-            if (!campaign) {
-                return next(new error.ResourceNotFoundError('Campaign not found', {id: req.params.id}));
-            }
-
-            // we check whether we need to update the campaignLeads collection of the campaign
-            if (!_.contains(campaign.campaignLeads.toString(), req.user.id)) {
-                campaign.campaignLeads.push(req.user._id);
-                campaign.save(function (err) {
-                    if (err) {
-                        return error.handleError(err, next);
-                    }
-                });
-            }
-
-
-            SocialInteraction.dismissInvitations(campaign, req.user, {reason: 'campaignleadAccepted'});
-            res.send(200, campaign);
-
-            // check whether we need to add the campaignLead role to the user
-            if (!_.contains(req.user.roles, auth.roles.campaignlead)) {
-                req.user.roles.push(auth.roles.campaignlead);
-                req.user.save(function (err) {
-                    if (err) {
-                        return error.handleError(err, next);
-                    }
-                    return next();
-                });
-            } else {
-                return next();
-            }
-
-        });
-
-
 };
 
 var avatarImagePostFn = function (baseUrl) {
@@ -738,8 +657,6 @@ module.exports = {
     putCampaign: putCampaign,
     deleteByIdFn: deleteByIdFn,
     getAllForUserFn: getAllForUserFn,
-    assignCampaignLead: assignCampaignLeadFn,
-    postCampaignLeadInvite: postCampaignLeadInviteFn,
     postParticipantsInvite: postParticipantsInviteFn,
     avatarImagePostFn: avatarImagePostFn
 };

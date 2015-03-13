@@ -216,66 +216,6 @@ consts.newUserInNewCampaignApi(
     });
 
 
-// invite user to be campaign lead
-
-consts.newUserInNewCampaignApi(
-    function (err, user, campaign, cleanupFn) {
-        if (err) {
-            expect(err).toBeNull();
-        }
-
-        frisby.create("Invitation: invite user to be campaign lead")
-            .post(URL + '/campaigns/' + campaign.id + "/inviteCampaignLeadEmail", { email: user.email })
-            .auth(consts.users.test_orgadm.username, 'yp')
-            .expectStatus(200)
-            .after(function () {
-
-                frisby.create('Invitation: get invitations, will contain 1 invitation')
-                    .get(URL + '/invitations')
-                    .auth(user.username, 'yp')
-                    .expectStatus(200)
-                    .afterJSON(function (invitations) {
-                        expect(invitations.length).toEqual(1);
-
-                        var invitation = invitations[0];
-
-                        expect(invitation.refDocs.length).toEqual(1);
-                        expect(invitation.refDocs[0].model).toEqual('Campaign');
-                        expect(invitation.refDocs[0].docId).toEqual(campaign.id);
-
-                        // we need to create the token ourselves, because we cannot get the email in this test
-                        var token = email.encryptLinkToken(campaign.id +
-                                config.linkTokenEncryption.separator +
-                                user.email +
-                                config.linkTokenEncryption.separator +
-                                user.id
-                        );
-
-                        frisby.create('Invitation: accept invitation for campaign lead')
-                            .post(URL + '/campaigns/' + campaign.id + '/assignCampaignLead?token=' + token)
-                            .auth(user.username, 'yp')
-                            .expectStatus(200)
-                            .afterJSON(function (campaign) {
-                                expect(campaign.campaignLeads.length).toEqual(2);
-                                expect(campaign.campaignLeads).toContain(user.id);
-
-                                frisby.create('Invitation: get inbox, will be empty again')
-                                    .get(URL + '/socialInteractions')
-                                    .auth(user.username, 'yp')
-                                    .expectStatus(200)
-                                    .afterJSON(function (socialInteractions) {
-                                        expect(socialInteractions.length).toEqual(0);
-                                        cleanupFn();
-                                    })
-                                    .toss();
-                            })
-                            .toss();
-                    })
-                    .toss();
-            })
-            .toss();
-
-    });
 // invite user to be organization admin
 
 consts.newUserInNewCampaignApi(

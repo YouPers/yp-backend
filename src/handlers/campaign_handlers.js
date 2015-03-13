@@ -127,48 +127,53 @@ var postCampaign = function (baseUrl) {
                     return error.handleError(err, next);
                 }
 
-                req.log.trace(sentCampaign, 'PostFn: Saving new Campaign object');
-
-                // try to save the new campaign object
-                sentCampaign.save(function (err, savedCampaign) {
+                Campaign.populate(sentCampaign, {path: 'campaignLeads', select: '+username'}, function (err, campaign) {
                     if (err) {
                         return error.handleError(err, next);
                     }
 
                     if(req.params.defaultCampaignLead) { // move to front
-                        var index = _.findIndex(savedCampaign.campaignLeads, 'username', req.params.defaultCampaignLead);
-                        if(index > 0) {
-                            savedCampaign.campaignLeads.unshift(savedCampaign.campaignLeads.splice(index, 1));
+                        var campaignLead = _.remove(campaign.campaignLeads, 'username', req.params.defaultCampaignLead);
+                        if(campaignLead.length > 0) {
+                            campaign.campaignLeads.unshift(campaignLead[0]);
                         }
                     }
 
-                    createTemplateCampaignOffers(savedCampaign, savedCampaign.campaignLeads[0], req, function (err) {
+                    req.log.trace(campaign, 'PostFn: Saving new Campaign object');
+
+                    // try to save the new campaign object
+                    campaign.save(function (err, savedCampaign) {
                         if (err) {
                             return error.handleError(err, next);
                         }
 
-                        // the campaign has been saved and all template offer have been generated
-                        // talking to SurveyMonkey API often takes a few seconds, to avoid
-                        // timeouting our response we do the SurveyMonkey API Call async after we
-                        // signal success to the browser
-                        req.log.debug({"surveyMonkeyEnabled": config.surveyMonkey && config.surveyMonkey.enabled}, "surveyMonkeyConfig enabled?");
-                        if (config.surveyMonkey && config.surveyMonkey.enabled === "enabled") {
-                            addSurveyCollectors(savedCampaign, req, function (err) {
-                                if (err) {
-                                    req.log.error(err, "error while talking asynchronously to SurveyMonkey.");
-                                }
-                                savedCampaign.save(function(err, savedAgain) {
+                        createTemplateCampaignOffers(savedCampaign, savedCampaign.campaignLeads[0], req, function (err) {
+                            if (err) {
+                                return error.handleError(err, next);
+                            }
+
+                            // the campaign has been saved and all template offer have been generated
+                            // talking to SurveyMonkey API often takes a few seconds, to avoid
+                            // timeouting our response we do the SurveyMonkey API Call async after we
+                            // signal success to the browser
+                            req.log.debug({"surveyMonkeyEnabled": config.surveyMonkey && config.surveyMonkey.enabled}, "surveyMonkeyConfig enabled?");
+                            if (config.surveyMonkey && config.surveyMonkey.enabled === "enabled") {
+                                addSurveyCollectors(savedCampaign, req, function (err) {
                                     if (err) {
-                                        req.log.error(err, "error while saving the SurveyUrls on the campaign");
+                                        req.log.error(err, "error while talking asynchronously to SurveyMonkey.");
                                     }
+                                    savedCampaign.save(function(err, savedAgain) {
+                                        if (err) {
+                                            req.log.error(err, "error while saving the SurveyUrls on the campaign");
+                                        }
+                                    });
+
                                 });
+                            }
+                            return generic.writeObjCb(req, res, next)(err, savedCampaign);
+                        });
 
-                            });
-                        }
-                        return generic.writeObjCb(req, res, next)(err, savedCampaign);
                     });
-
-
                 });
 
             });

@@ -501,7 +501,7 @@ var getAllForUserFn = function (baseUrl) {
                         path: 'campaignLeads',
                         select: '+emailValidatedFlag'
                     }, function (err, campaigns) {
-                        generic.writeObjCb(req, res, next)(err, campaigns);
+                        generic.sendListCb(req, res, next)(err, campaigns);
                     });
                 });
 

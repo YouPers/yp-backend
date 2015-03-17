@@ -307,16 +307,14 @@ function createTemplateCampaignOffers(campaign, user, req, cb) {
                         var activity = new Activity(defaultActivity);
                         activity.save(function (err, saved) {
 
-                            // as part of WL-1637 we decided to send those ical files always as long as
-                            // we do not have better have.
-                            // if (user && user.email && user.profile.prefs.email.iCalInvites) {
-                            req.log.debug({start: saved.start, end: saved.end}, 'Saved New activity');
+                            if (user && user.email && user.profile.prefs.email.iCalInvites) {
+                                req.log.debug({start: saved.start, end: saved.end}, 'Saved New activity');
 
-                            // populate the owner, because the getIcalObject requires the owner to be populated.
-                            activity.setValue('owner', user);
-                            var myIcalString = calendar.getIcalObject(saved, user, 'new', req.i18n).toString();
-                            email.sendCalInvite(user, 'new', myIcalString, saved, req.i18n);
-                            // }
+                                // populate the owner, because the getIcalObject requires the owner to be populated.
+                                activity.setValue('owner', user);
+                                var myIcalString = calendar.getIcalObject(saved, user, 'new', req.i18n).toString();
+                                email.sendCalInvite(user, 'new', myIcalString, saved, req.i18n);
+                            }
 
 
                             var publishFrom = moment(saved.start).subtract(2, 'days').tz('Europe/Zurich').startOf('day').toDate();

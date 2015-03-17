@@ -19,7 +19,6 @@ var CampaignSchema = common.newSchema({
     participants: { type: String, trim: true},
     location: { type: String, trim: true },
     city: { type: String, trim: true },
-    slogan: { type: String, trim: true },
     paymentStatus: { type: String, trim: true, required: true, enum: enums.paymentStatus, default: "open", select: false },
     productType: { type: String, trim: true, required: true, enum: enums.campaignProductType, default: "CampaignProductType1", select: false },
     campaignLeads: [
@@ -32,7 +31,8 @@ var CampaignSchema = common.newSchema({
     leaderSurveyCollectorId: { type: String, trim: true},
     leaderSurveyUrl: { type: String, trim: true},
     endorsementType: {type: String, enum: enums.endorsementType},
-    marketPartner: {type: ObjectId, ref: 'MarketPartner'}
+    marketPartner: {type: ObjectId, ref: 'MarketPartner'},
+    preparationComplete: {type: Boolean, default: false}
 });
 
 CampaignSchema.statics.adminRoles =  [auth.roles.systemadmin, auth.roles.productadmin, auth.roles.campaignlead, auth.roles.orgadmin];

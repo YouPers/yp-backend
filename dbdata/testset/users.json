@@ -288,20 +288,24 @@
         "_id": {
             "$oid": "54f9fdc256a0e289af61bbab"
         },
-        "avatar": "https://insp-ci.youpers.com/assets/img/default_avatar_woman.png",
+        "avatar": "https://insp-content-assets.s3.amazonaws.com/annita.jpg",
         "created": {
             "$date": 1425669570860
         },
+        "campaign": {
+           "$oid": "527916a82079aa8704000006"
+        },
+
         "email": "ypunittest1+individual3@gmail.com",
         "emailValidatedFlag": false,
         "emails": [],
-        "firstname": "Test",
-        "fullname": "Test Individual 3",
+        "firstname": "Annita",
+        "fullname": "Annita Beysen",
         "hashed_password": "bcrypt:$2a$08$cF62XMqptwdcPOYFP852OuGVpmrEiTw2YkAaBcGqNdFbk3wdqC7h.",
         "lastLogin": {
             "$date": 1425669570854
         },
-        "lastname": "Individual3",
+        "lastname": "Beysen",
         "photos": [],
         "profile": {
             "$oid": "54f9fdc256a0e289af61bbac"
@@ -313,7 +317,7 @@
         "updated": {
             "$date": 1425669570860
         },
-        "username": "test_ind3"
+        "username": "annita"
     },
     {
         "__v": 0,

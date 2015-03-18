@@ -36,13 +36,6 @@ consts.newUserInNewCampaignApi(
                 campaignEnd = moment({hour: 17, minute: 0, second: 0}).add(12,'days').toDate();
 
 
-
-                frisby.create('Campaigns Edits: PUT changed campaign to existing organization with wrong start/end dates')
-                    .put(URL + '/campaigns/' + campaignId, {"start": campaignStart, "end": campaignEnd})
-                    .auth('test_orgadm', 'yp')
-                    .expectStatus(409)
-                    .toss();
-
                 frisby.create('Campaigns Edits: PUT changed campaign to existing organization as campaign lead not listed as campaign lead on this campaign')
                     .put(URL + '/campaigns/' + campaignId, {"title": "new title for this campaign"})
                     .auth('test_ind2', 'yp')

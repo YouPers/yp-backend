@@ -91,12 +91,6 @@ function _validateCampaign(campaign, user, type, done) {
                     }
                 }
 
-                if (campaign.start && campaign.end &&
-                    (moment(campaign.end).diff(moment(campaign.start), 'weeks') < 1)) {
-                    return done(new error.InvalidArgumentError('Campaign duration must be at least 1 week', {
-                        invalid: ['start', 'end']
-                    }));
-                }
                 return done();
             });
         });

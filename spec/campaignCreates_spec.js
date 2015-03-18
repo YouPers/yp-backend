@@ -54,24 +54,6 @@ frisby.create('Campaigns Creates: POST new campaign to existing organization')
                             .expectStatus(200)
                             .toss();
 
-                        campaignStart = moment({hour: 8, minute: 0, second: 0}).add(10, 'days').toDate();
-                        campaignEnd = moment({hour: 17, minute: 0, second: 0}).add(12, 'days').toDate();
-
-                        testCampaign = {
-                            "title": "testOrganization's campaign 2 for work life balance",
-                            "start": campaignStart,
-                            "end": campaignEnd,
-                            "topic": "53b416cfa43aac62a2debda1",
-                            "location": "Los Feliz",
-                            "slogan": "It's never too late!",
-                            "productType": "CampaignProductType1"
-                        };
-
-                        frisby.create('Campaigns Creates: POST new campaign to existing organization with wrong start/end dates')
-                            .post(URL + '/campaigns', testCampaign)
-                            .auth('test_orgadm', 'yp')
-                            .expectStatus(409)
-                            .toss();
 
                     })
                     .toss();

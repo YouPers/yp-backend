@@ -1830,7 +1830,7 @@
         },
         "number": "INS-50",
         "picture": "https://insp-content-assets.s3.amazonaws.com/No-licence-50.jpg",
-        "qualityFactor": 5,
+        "qualityFactor": 4,
         "titleI18n": {
             "de": "Wasser-Fitness",
             "en": "Water Fitness"

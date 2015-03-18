@@ -132,7 +132,7 @@
         "lastLogin": {
             "$date": 1425657305488
         },
-        "lastname": "Laughlin",
+        "lastname": "Campbell",
         "profile": {
             "$oid": "5303721a4dba580000000019"
         },

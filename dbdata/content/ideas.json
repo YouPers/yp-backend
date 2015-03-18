@@ -20,7 +20,7 @@
         },
         "number": "INS-1",
         "picture": "https://insp-content-assets.s3.amazonaws.com/Act-129-fotolia-17589641_XS.jpg",
-        "qualityFactor": 5,
+        "qualityFactor": 7,
         "titleI18n": {
             "de": "Gesundes Essen",
             "en": "Healthy Diet"
@@ -351,7 +351,7 @@
         },
         "number": "INS-9",
         "picture": "https://insp-content-assets.s3.amazonaws.com/Act-147-fotolia-29463209_XS.jpg",
-        "qualityFactor": 5,
+        "qualityFactor": 3,
         "titleI18n": {
             "de": "Kaffee und Kuchen",
             "en": "Coffee & Cookies"

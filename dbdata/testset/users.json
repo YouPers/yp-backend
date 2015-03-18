@@ -295,7 +295,6 @@
         "campaign": {
            "$oid": "527916a82079aa8704000006"
         },
-
         "email": "ypunittest1+individual3@gmail.com",
         "emailValidatedFlag": false,
         "emails": [],
@@ -358,27 +357,29 @@
         "_id": {
             "$oid": "54f9fe2f56a0e289af61bbaf"
         },
-        "avatar": "https://insp-ci.youpers.com/assets/img/default_avatar_woman.png",
+        "avatar": "https://insp-content-assets.s3.amazonaws.com/paul.jpg",
         "created": {
             "$date": 1425669679472
+        },
+        "campaign": {
+           "$oid": "527916a82079aa8704000006"
         },
         "email": "ypunittest1+prodadm@gmail.com",
         "emailValidatedFlag": false,
         "emails": [],
-        "firstname": "Test",
-        "fullname": "Test Product Admin",
+        "firstname": "Paul",
+        "fullname": "Paul Schmieder",
         "hashed_password": "bcrypt:$2a$08$.UDK6zWgh9r5H4.PA8AiwuwKBy/.CVx7Qsu1sZADA61veYUQKXS9S",
         "lastLogin": {
             "$date": 1425669679470
         },
-        "lastname": "Product Admin",
+        "lastname": "Schmieder",
         "photos": [],
         "profile": {
             "$oid": "54f9fe2f56a0e289af61bbb0"
         },
         "roles": [
-            "individual",
-          "productadmin"
+            "individual"
         ],
         "tempPasswordFlag": false,
         "updated": {

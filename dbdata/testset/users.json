@@ -117,7 +117,7 @@
         "_id": {
             "$oid": "52a97f1650fca98c29000008"
         },
-        "avatar": "https://insp-content-assets.s3.amazonaws.com/lisa.jpg",
+        "avatar": "https://insp-content-assets.s3.amazonaws.com/cindy.jpg",
         "created": {
             "$date": 1407770509621
         },
@@ -207,7 +207,7 @@
         "_id": {
             "$oid": "52a97f1650fca98c29000055"
         },
-        "avatar": "https://insp-content-assets.s3.amazonaws.com/john.jpg",
+        "avatar": "https://insp-content-assets.s3.amazonaws.com/john2.jpg",
         "campaign": {
             "$oid": "527916a82079aa8704000006"
         },

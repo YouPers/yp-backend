@@ -55,7 +55,7 @@
         "_id": {
             "$oid": "52a97f1650fca98c29000006"
         },
-        "avatar": "https://insp-ci.youpers.com/assets/img/default_avatar_woman.png",
+        "avatar": "https://insp-content-assets.s3.amazonaws.com/No-licence-tom.jpg",
         "campaign": {
             "$oid": "527916a82079aa8704000006"
         },
@@ -65,13 +65,13 @@
         "email": "ypunittest1+individual1@gmail.com",
         "emailValidatedFlag": true,
         "emails": [],
-        "firstname": "Test",
-        "fullname": "Test Individual 1",
+        "firstname": "Tom",
+        "fullname": "Tom Indone",
         "hashed_password": "e743e3b15009853c8447923c6334ad8af4b19945",
         "lastLogin": {
             "$date": 1425657561705
         },
-        "lastname": "Individual 1",
+        "lastname": "Indone",
         "photos": [],
         "profile": {
             "$oid": "5303721a4dba580000000016"
@@ -90,7 +90,7 @@
         "_id": {
             "$oid": "52a97f1650fca98c29000007"
         },
-        "avatar": "https://insp-ci.youpers.com/assets/img/default_avatar_man.png",
+        "avatar": "https://insp-content-assets.s3.amazonaws.com/No-licence-tara.jpg",
         "campaign": {
             "$oid": "527916a82079aa8704000006"
         },
@@ -99,10 +99,10 @@
         },
         "email": "ypunittest1+individual2@gmail.com",
         "emailValidatedFlag": true,
-        "firstname": "Test",
-        "fullname": "Test Individual 2",
+        "firstname": "Tara",
+        "fullname": "Tara Twolly",
         "hashed_password": "6024007bc505bcb13801c73b2ad6278920134a05",
-        "lastname": "Individual 2",
+        "lastname": "Twolly",
         "profile": {
             "$oid": "5303721a4dba580000000017"
         },

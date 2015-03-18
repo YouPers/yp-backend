@@ -57,8 +57,8 @@
             "en": "Meet with friends to go swimming"
         },
         "number": "INS-52",
-        "picture": "",
-        "qualityFactor": 2,
+        "picture": "https://insp-content-assets.s3.amazonaws.com/No-licence-52.jpg",
+        "qualityFactor": 5,
         "titleI18n": {
             "de": "Schwimmen",
             "en": "Swimming"
@@ -1649,8 +1649,8 @@
             "en": "Go bowling with friends"
         },
         "number": "INS-45",
-        "picture": "",
-        "qualityFactor": 2,
+        "picture": "https://insp-content-assets.s3.amazonaws.com/No-licence-45.jpg",
+        "qualityFactor": 5,
         "titleI18n": {
             "de": "Kegeln",
             "en": "Bowling"
@@ -1687,8 +1687,8 @@
             "en": "Participate in a tour of a cheese factory"
         },
         "number": "INS-46",
-        "picture": "",
-        "qualityFactor": 2,
+        "picture": "https://insp-content-assets.s3.amazonaws.com/No-licence-46.jpg",
+        "qualityFactor": 5,
         "titleI18n": {
             "de": "Molkereif\u00fchrung",
             "en": "Dairy Tour"
@@ -1721,8 +1721,8 @@
             "en": "Make regular trips to the sauna to relax"
         },
         "number": "INS-47",
-        "picture": "",
-        "qualityFactor": 2,
+        "picture": "https://insp-content-assets.s3.amazonaws.com/No-licence-47.jpg",
+        "qualityFactor": 5,
         "titleI18n": {
             "de": "Sauna",
             "en": "Sauna"
@@ -1756,8 +1756,8 @@
             "en": "Practice regular back training"
         },
         "number": "INS-48",
-        "picture": "",
-        "qualityFactor": 2,
+        "picture": "https://insp-content-assets.s3.amazonaws.com/No-licence-48.jpg",
+        "qualityFactor": 5,
         "titleI18n": {
             "de": "R\u00fcckentraining",
             "en": "Back Training"
@@ -1791,8 +1791,8 @@
             "en": "Gather with friends to play chess"
         },
         "number": "INS-49",
-        "picture": "",
-        "qualityFactor": 2,
+        "picture": "https://insp-content-assets.s3.amazonaws.com/No-licence-49.jpg",
+        "qualityFactor": 5,
         "titleI18n": {
             "de": "Schachspiel",
             "en": "Chess Game"
@@ -1829,8 +1829,8 @@
             "en": "Attend water fitness training"
         },
         "number": "INS-50",
-        "picture": "",
-        "qualityFactor": 2,
+        "picture": "https://insp-content-assets.s3.amazonaws.com/No-licence-50.jpg",
+        "qualityFactor": 5,
         "titleI18n": {
             "de": "Wasser-Fitness",
             "en": "Water Fitness"
@@ -1864,8 +1864,8 @@
             "en": "Practice water gymnastics regularly"
         },
         "number": "INS-51",
-        "picture": "",
-        "qualityFactor": 2,
+        "picture": "https://insp-content-assets.s3.amazonaws.com/No-licence-51.jpg",
+        "qualityFactor": 5,
         "titleI18n": {
             "de": "Wassergymnastik",
             "en": "Water Gymnastics"

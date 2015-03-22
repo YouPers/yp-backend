@@ -155,7 +155,10 @@ var postCampaign = function (baseUrl) {
                             }
                         }
 
-                        req.log.trace(campaign, 'PostFn: Saving new Campaign object');
+                        // check whether we have minimum 1 campaignlead, if not, make the current user a campaignlead
+                        if (campaign.campaignLeads.length === 0) {
+                            campaign.campaignLeads.push(req.user._id);
+                        }
 
                         // try to save the new campaign object
                         campaign.save(function (err, savedCampaign) {

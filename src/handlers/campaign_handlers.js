@@ -65,9 +65,6 @@ function _validateCampaign(campaign, user, type, done) {
                 }
 
                 var isOrganizationAdmin = _.contains(user.roles, 'orgadmin') && _.contains(organization.administrators.toString(), user.id);
-                if(isOrganizationAdmin && _.isEmpty(campaign.campaignLeads)) {
-                    campaign.campaignLeads = [user.id];
-                }
 
                 if (type === "PUT") {
 

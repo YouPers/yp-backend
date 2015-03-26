@@ -179,7 +179,7 @@ var postCampaign = function (baseUrl) {
                                 // talking to SurveyMonkey API often takes a few seconds, to avoid
                                 // timeouting our response we do the SurveyMonkey API Call async after we
                                 // signal success to the browser
-                                req.log.debug({"surveyMonkeyEnabled": config.surveyMonkey && config.surveyMonkey.enabled}, "surveyMonkeyConfig enabled?");
+                                req.log.debug({"surveyMonkeyEnabled": config.surveyMonkey && config.surveyMonkey.enabled === "enabled"}, "surveyMonkeyConfig enabled?");
                                 if (config.surveyMonkey && config.surveyMonkey.enabled === "enabled") {
                                     addSurveyCollectors(savedCampaign, req, function (err) {
                                         if (err) {

@@ -1,4 +1,0 @@
-<%- salutation %>
-<%- text %>
-<%= linkText %>
-<%= link %>

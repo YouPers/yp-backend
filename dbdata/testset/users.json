@@ -379,7 +379,8 @@
             "$oid": "54f9fe2f56a0e289af61bbb0"
         },
         "roles": [
-            "individual"
+            "individual",
+            "productadmin"
         ],
         "tempPasswordFlag": false,
         "updated": {

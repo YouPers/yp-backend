@@ -53,7 +53,8 @@ mongoose.model('Message').on('add', function (newMessage) {
                         type: 'eventComment',
                         event: event.id,
                         message: 'New comment on Event: ' + event.title,
-                        title: 'New Comment: ' + newMessage.text
+                        title: 'New Comment: ' + newMessage.text,
+                        messageId: newMessage.id
                     };
 
                     push.sendPush(user, data, 'eventComment', function(err, result) {

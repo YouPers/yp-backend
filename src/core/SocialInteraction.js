@@ -91,7 +91,8 @@ mongoose.model('Invitation').on('add', function (invitation) {
                             text: author.fullname + ' has invited you to join',
                             event: invitation.event,
                             idea: invitation.idea,
-                            author: invitation.author
+                            author: invitation.author,
+                            invitation: invitation.id
                         };
                         log.trace({recipient: user.id, data: pushData}, "sending push now");
 

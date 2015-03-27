@@ -39,14 +39,14 @@ var ActivitySchema = common.newSchema({
         },
         byday: [String],
         every: {type: Number},
-        exceptions: [ Date]
+        exceptions: [Date]
     }
 });
 
 ActivitySchema.methods = {
 
     toJsonConfig: {
-        include: ['deleteStatus', 'editStatus']
+        include: ['deleteStatus', 'editStatus', 'rrule']
     }
 
 };
@@ -116,6 +116,11 @@ ActivitySchema.virtual('lastEventEnd')
         var occurrences = calendar.getOccurrences(this);
         var duration = moment(this.end).diff(this.start);
         return moment(occurrences[occurrences.length - 1]).add(duration, 'ms').toDate();
+    });
+
+ActivitySchema.virtual('rrule')
+    .get(function getRrrule() {
+        return calendar.getRrule(this);
     });
 
 ActivitySchema.pre('save', function (next) {

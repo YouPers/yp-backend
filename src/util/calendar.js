@@ -190,5 +190,8 @@ function getOccurrences(activity, fromDate) {
 
 module.exports = {
     getIcalObject: getIcalObject,
-    getOccurrences: getOccurrences
+    getOccurrences: getOccurrences,
+    getRrule: function(activity) {
+        return new ical.RRule(_getRruleSpec(activity)).toString();
+    }
 };

@@ -11,7 +11,6 @@ var handlerUtils = require('ypbackendlib').handlerUtils,
     PaymentCode = mongoose.model('PaymentCode'),
     Topic = mongoose.model('Topic'),
     Idea = mongoose.model('Idea'),
-    Activity = mongoose.model('Activity'),
     ActivityManagement = require('../core/ActivityManagement'),
     crypto = require('crypto'),
     async = require('async'),
@@ -20,8 +19,7 @@ var handlerUtils = require('ypbackendlib').handlerUtils,
     moment = require('moment-timezone'),
     generic = require('ypbackendlib').handlers,
     config = require('../config/config'),
-    restify = require('restify'),
-    calendar = require('../util/calendar');
+    restify = require('restify');
 
 var getCampaign = function (id, cb) {
 
@@ -40,8 +38,8 @@ var getCampaign = function (id, cb) {
 
 function _validateCampaign(campaign, user, type, done) {
 
-    if(!campaign.organization) {
-        Organization.findOne({ administrators: user.id }).exec(function (err, organization) {
+    if (!campaign.organization) {
+        Organization.findOne({administrators: user.id}).exec(function (err, organization) {
             if (err) {
                 return done(err);
             }
@@ -135,6 +133,22 @@ var postCampaign = function (baseUrl) {
                 // it to send the campaign lead invitations for newCampaignLeads
                 sentCampaign._id = new mongoose.Types.ObjectId();
 
+                // set the campaign attribute on all existing campaignleads
+                async.forEach(sentCampaign.campaignLeads, function (cl, done) {
+                    User.findById(cl._id || cl).select(User.privatePropertiesSelector).exec(function (err, user) {
+                        if (err) {
+                            return done(err);
+                        }
+                        user.campaign = sentCampaign._id;
+                        user.save(done);
+                    });
+                }, function (err) {
+                    if (err) {
+                        return next(err);
+                    }
+                    // don't do anything as we do this async
+                });
+
                 createNewCampaignLeadUsers(sentCampaign, req, function (err) {
                     if (err) {
                         return error.handleError(err, next);
@@ -211,23 +225,28 @@ function createNewCampaignLeadUsers(campaign, req, done) {
     async.each(campaign.newCampaignLeads, function (campaignLead, cb) {
 
         // random password
-        crypto.randomBytes(16, function(err, random) {
-            if(err) {
+        crypto.randomBytes(16, function (err, random) {
+            if (err) {
                 return cb(err);
             }
 
             campaignLead.password = random;
             campaignLead.tempPasswordFlag = true; // used to determine the campaign lead invite url
             campaignLead.roles = ['individual', 'campaignlead'];
+            campaignLead.campaign = campaign._id;
 
             var user = new User(campaignLead);
             user.save(function (err, savedUser) {
-                if (err) { return cb(err); }
+                if (err) {
+                    return cb(err);
+                }
 
                 campaign.campaignLeads.push(savedUser._id);
 
-                Topic.populate(campaign, { path: 'topic' }, function (err, campaign) {
-                    if (err) { return cb(err); }
+                Topic.populate(campaign, {path: 'topic'}, function (err, campaign) {
+                    if (err) {
+                        return cb(err);
+                    }
                     email.sendCampaignLeadInvite(campaignLead.email, req.user, campaign, savedUser, req.i18n);
                     cb(null, savedUser);
                 });
@@ -297,49 +316,38 @@ function createTemplateCampaignOffers(campaign, user, req, cb) {
                         }
 
                         var defaultActivity = ActivityManagement.defaultActivity(idea, user, campaign._id, day);
+                        ActivityManagement.saveNewActivity(defaultActivity, user, req.i18n,
+                            function (err, saved) {
 
-                        var activity = new Activity(defaultActivity);
-                        activity.save(function (err, saved) {
-
-                            if (user && user.email && user.profile.prefs.email.iCalInvites) {
-                                req.log.debug({start: saved.start, end: saved.end}, 'Saved New activity');
-
-                                // populate the owner, because the getIcalObject requires the owner to be populated.
-                                activity.setValue('owner', user);
-                                var myIcalString = calendar.getIcalObject(saved, user, 'new', req.i18n).toString();
-                                email.sendCalInvite(user, 'new', myIcalString, saved, req.i18n);
-                            }
-
-
-                            var publishFrom = moment(saved.start).subtract(2, 'days').tz('Europe/Zurich').startOf('day').toDate();
-                            if (moment(publishFrom).isBefore(moment(campaign.start))) {
-                                publishFrom = campaign.start;
-                            }
-                            var publishTo = saved.start;
-
-                            var invitation = new Invitation({
-                                activity: saved._id,
-                                idea: idea._id,
-                                author: user,
-                                authorType: 'campaignLead',
-
-                                targetSpaces: [{
-                                    type: 'campaign',
-                                    targetId: campaign._id
-                                }],
-
-                                publishFrom: publishFrom,
-                                publishTo: publishTo,
-                                __t: "Invitation"
-                            });
-
-                            invitation.save(function (err, saved) {
-                                if (err) {
-                                    done(err);
+                                var publishFrom = moment(saved.start).subtract(2, 'days').tz('Europe/Zurich').startOf('day').toDate();
+                                if (moment(publishFrom).isBefore(moment(campaign.start))) {
+                                    publishFrom = campaign.start;
                                 }
-                                done();
+                                var publishTo = saved.start;
+
+                                var invitation = new Invitation({
+                                    activity: saved._id,
+                                    idea: idea._id,
+                                    author: user,
+                                    authorType: 'campaignLead',
+
+                                    targetSpaces: [{
+                                        type: 'campaign',
+                                        targetId: campaign._id
+                                    }],
+
+                                    publishFrom: publishFrom,
+                                    publishTo: publishTo,
+                                    __t: "Invitation"
+                                });
+
+                                invitation.save(function (err, saved) {
+                                    if (err) {
+                                        done(err);
+                                    }
+                                    done();
+                                });
                             });
-                        });
                     });
 
                 } else {
@@ -483,8 +491,8 @@ var getAllForUserFn = function (baseUrl) {
             var match = (admin || listall) ? {} :
             {
                 $or: [
-                    { campaignLeads: userId },
-                    { organization: { $in: organizations } }
+                    {campaignLeads: userId},
+                    {organization: {$in: organizations}}
                 ]
             };
 
@@ -630,7 +638,7 @@ var deleteByIdFn = function deleteByIdFn(baseUrl, Model) {
                     return error.handleError(err, next);
                 }
 
-                if (count > 0 && !isSysadmin) {
+                if (count > campaign.campaignLeads.length && !isSysadmin) {
                     return next(new error.NotAuthorizedError('Cannot delete this campaign, ' + count + ' users have already joined.'));
                 }
 

@@ -13,11 +13,13 @@ var generatePaymentCode = function generatePaymentCode() {
 
         var values = req.body;
 
-        if(!values || !values.productType || !values.topic) {
-            return next(new error.MissingParameterError({required: [
-                'productType',
-                'topic'
-            ]}));
+        if (!values || !values.productType || !values.topic) {
+            return next(new error.MissingParameterError({
+                required: [
+                    'productType',
+                    'topic'
+                ]
+            }));
         }
 
         var code = couponCode.generate();
@@ -56,31 +58,38 @@ var validatePaymentCode = function validatePaymentCode() {
 
         var code = req.body.code;
 
-        if(!code) {
+        if (!code) {
             return next(new error.MissingParameterError({required: 'code'}));
         }
 
-        PaymentCode.findOne({ strippedCode: _stripCode(code), campaign: { $exists: false } }).exec(function (err, paymentCode) {
-            if(err) {
+        PaymentCode.findOne({
+            strippedCode: _stripCode(code),
+            campaign: {$exists: false}
+        }).exec(function (err, paymentCode) {
+            if (err) {
                 return error.handleError(err, next);
             }
 
             if (!paymentCode) {
-                return next(new error.ResourceNotFoundError({ code: code}));
+                return next(new error.ResourceNotFoundError({code: code}));
             }
 
-            if(paymentCode.topic) {
+            if (paymentCode.topic) {
 
-                if(!req.body.topic) {
+                if (!req.body.topic) {
                     return next(new error.MissingParameterError({required: 'topic'}));
                 }
 
                 var topic = paymentCode.topic.toString();
-                if(topic !== req.body.topic) {
+                if (topic !== req.body.topic) {
                     return next(new error.InvalidArgumentError({invalid: 'topic', expected: topic}));
                 }
-
             }
+
+            if (paymentCode.campaign) {
+                return next(new error.InvalidArgumentError({code: 'already used'}));
+            }
+
 
             res.send(200, paymentCode);
             return next();
@@ -97,22 +106,25 @@ var redeemPaymentCodeFn = function redeemPaymentCodeFn() {
         var code = req.body.code;
         var campaignId = req.body.campaign;
 
-        if(!code) {
+        if (!code) {
             return next(new error.MissingParameterError({required: 'code'}));
         }
 
-        if(!campaignId) {
+        if (!campaignId) {
             return next(new error.MissingParameterError({required: 'campaign'}));
         }
 
         try {
 
-            PaymentCode.findOne({ strippedCode: _stripCode(code) , campaign: {$exists: false} }).exec(function (err, paymentCode) {
-                if(err) {
+            PaymentCode.findOne({
+                strippedCode: _stripCode(code),
+                campaign: {$exists: false}
+            }).exec(function (err, paymentCode) {
+                if (err) {
                     return error.handleError(err, next);
                 }
                 if (!paymentCode) {
-                    return next(new error.ResourceNotFoundError({ code: code}));
+                    return next(new error.ResourceNotFoundError({code: code}));
                 }
 
 
@@ -121,10 +133,10 @@ var redeemPaymentCodeFn = function redeemPaymentCodeFn() {
                         return error.errorHandler(err, next);
                     }
                     if (!campaign) {
-                        return next(new error.ResourceNotFoundError('Campaign not found.', { id: campaignId }));
+                        return next(new error.ResourceNotFoundError('Campaign not found.', {id: campaignId}));
                     }
 
-                    if(paymentCode.topic && paymentCode.topic !== campaign.topic) {
+                    if (paymentCode.topic && paymentCode.topic !== campaign.topic) {
                         return next(new error.InvalidArgumentError('Invalid topic', {
                             expected: paymentCode.topic,
                             campaignTopic: campaign.topic
@@ -132,7 +144,7 @@ var redeemPaymentCodeFn = function redeemPaymentCodeFn() {
                     }
 
 
-                    if(campaign.paymentStatus === 'paid') {
+                    if (campaign.paymentStatus === 'paid') {
                         return next(new error.BadMethodError('Campaign is already paid.'));
                     }
 
@@ -140,8 +152,8 @@ var redeemPaymentCodeFn = function redeemPaymentCodeFn() {
 
                     campaign.productType = paymentCode.productType;
 
-                    campaign.save(function(err) {
-                        if(err) {
+                    campaign.save(function (err) {
+                        if (err) {
                             return error.handleError(err, next);
                         }
 
@@ -153,8 +165,7 @@ var redeemPaymentCodeFn = function redeemPaymentCodeFn() {
             });
 
 
-
-        } catch(e) {
+        } catch (e) {
             return next(new error.InvalidArgumentError('Invalid token'));
         }
     };

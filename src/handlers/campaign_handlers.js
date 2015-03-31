@@ -622,7 +622,7 @@ var deleteByIdFn = function deleteByIdFn(baseUrl, Model) {
 
             var isOrgAdmin = _.find(campaign.organization.administrators, function(adm) {
                 return adm.equals(req.user._id);
-            })
+            });
 
             if (!isSysadmin && !isCampaignLead && !isOrgAdmin) {
                 return next(new error.NotAuthorizedError('Not authorized to delete this campaign, must have role campaignlead or sysadmin.'));

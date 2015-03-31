@@ -607,7 +607,7 @@ var deleteByIdFn = function deleteByIdFn(baseUrl, Model) {
             return next(new error.NotAuthorizedError('Authentication required for this object'));
         }
 
-        Model.findOne(finder).exec(function (err, campaign) {
+        Model.findOne(finder).populate('organization').exec(function (err, campaign) {
             if (err) {
                 return error.handleError(err, next);
             }
@@ -620,7 +620,11 @@ var deleteByIdFn = function deleteByIdFn(baseUrl, Model) {
                 return user.equals(req.user._id);
             });
 
-            if (!isSysadmin && !isCampaignLead) {
+            var isOrgAdmin = _.find(campaign.organization.administrators, function(adm) {
+                return adm.equals(req.user._id);
+            })
+
+            if (!isSysadmin && !isCampaignLead && !isOrgAdmin) {
                 return next(new error.NotAuthorizedError('Not authorized to delete this campaign, must have role campaignlead or sysadmin.'));
             }
 
@@ -630,7 +634,7 @@ var deleteByIdFn = function deleteByIdFn(baseUrl, Model) {
                     return error.handleError(err, next);
                 }
 
-                if (count > 0 && !isSysadmin) {
+                if (count > 1 && !isSysadmin) {
                     return next(new error.NotAuthorizedError('Cannot delete this campaign, ' + count + ' users have already joined.'));
                 }
 

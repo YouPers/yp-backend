@@ -65,10 +65,9 @@ function _validateCampaign(campaign, user, type, done) {
                 }
 
                 var isOrganizationAdmin = _.contains(user.roles, 'orgadmin') && _.contains(organization.administrators.toString(), user.id);
+                var isCampaignLead = _.contains(user.roles, 'campaignlead') && _.contains(campaign.campaignLeads.toString(), user.id);
 
                 if (type === "PUT") {
-
-                    var isCampaignLead = _.contains(user.roles, 'campaignlead') && _.contains(campaign.campaignLeads.toString(), user.id);
 
                     if (!isOrganizationAdmin && !isCampaignLead) {
                         return done(new error.NotAuthorizedError('Not authorized to create a campaign, the user is neither ' +
@@ -80,7 +79,7 @@ function _validateCampaign(campaign, user, type, done) {
                     }
                 } else {
 
-                    if (!isOrganizationAdmin) {
+                    if (!isOrganizationAdmin && !isCampaignLead) {
                         return done(new error.NotAuthorizedError('Not authorized to create a campaign, not an orgadmin.', {
                             organizationId: organization.id,
                             userId: user.id

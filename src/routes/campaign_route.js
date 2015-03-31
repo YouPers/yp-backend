@@ -77,7 +77,7 @@ module.exports = function (swagger) {
             "responseClass": "Campaign",
             "errorResponses": [],
             "nickname": "postCampaign",
-            accessLevel: 'al_orgadmin'
+            accessLevel: 'al_campaignlead'
         },
         action: campaignHandlers.postCampaign(baseUrl)
     });

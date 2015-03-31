@@ -8,9 +8,6 @@
         "campaignLeads": [
             {
                 "$oid": "52a97f1650fca98c2900000b"
-            },
-            {
-                "$oid": "52a97f1650fca98c2900000a"
             }
         ],
         "end": {
@@ -40,9 +37,6 @@
         },
         "avatar": "/assets/img/topic/nutrition.jpg",
         "campaignLeads": [
-            {
-                "$oid": "52a97f1650fca98c2900000b"
-            },
             {
                 "$oid": "52a97f1650fca98c2900000a"
             }

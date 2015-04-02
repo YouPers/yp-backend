@@ -104,7 +104,7 @@ var postCampaign = function (baseUrl) {
 
         var paymentCode = req.body.paymentCode;
         if (!paymentCode && config.paymentCodeChecking === 'enabled') {
-            return error.handleError(new error.MissingParmeterError({required: 'paymentCode'}, "need a paymentCode to create a campaign"), next);
+            return error.handleError(new error.MissingParameterError({required: 'paymentCode'}, "need a paymentCode to create a campaign"), next);
         } else if (!paymentCode && config.paymentCodeChecking === 'disabled') {
             paymentCode = {code: "testcode"};
         }
@@ -638,8 +638,23 @@ var deleteByIdFn = function deleteByIdFn(baseUrl, Model) {
                 }
 
                 campaign.remove(function (err) {
-                    res.send(200);
-                    return next();
+
+                    // update the paymentcode if there is one that belonged to this campaign:
+                    PaymentCode.find({campaign: req.params.id}).exec(function (err, codes) {
+                        if (err) {
+                            error.handleError(err, next);
+                        }
+                        if (codes && codes.length >0) {
+                            codes[0].campaign = undefined;
+                            codes[0].save(function (err, saved) {
+                                res.send({code: codes[0].code});
+                                return next();
+                            });
+                        } else {
+                            res.send(200);
+                            return next();
+                        }
+                    });
                 });
             });
 

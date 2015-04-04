@@ -63,10 +63,9 @@ function _validateCampaign(campaign, user, type, done) {
                 }
 
                 var isOrganizationAdmin = _.contains(user.roles, 'orgadmin') && _.contains(organization.administrators.toString(), user.id);
+                var isCampaignLead = _.contains(user.roles, 'campaignlead') && _.contains(campaign.campaignLeads.toString(), user.id);
 
                 if (type === "PUT") {
-
-                    var isCampaignLead = _.contains(user.roles, 'campaignlead') && _.contains(campaign.campaignLeads.toString(), user.id);
 
                     if (!isOrganizationAdmin && !isCampaignLead) {
                         return done(new error.NotAuthorizedError('Not authorized to create a campaign, the user is neither ' +
@@ -78,7 +77,7 @@ function _validateCampaign(campaign, user, type, done) {
                     }
                 } else {
 
-                    if (!isOrganizationAdmin) {
+                    if (!isOrganizationAdmin && !isCampaignLead) {
                         return done(new error.NotAuthorizedError('Not authorized to create a campaign, not an orgadmin.', {
                             organizationId: organization.id,
                             userId: user.id
@@ -103,7 +102,7 @@ var postCampaign = function (baseUrl) {
 
         var paymentCode = req.body.paymentCode;
         if (!paymentCode && config.paymentCodeChecking === 'enabled') {
-            return error.handleError(new error.MissingParmeterError({required: 'paymentCode'}, "need a paymentCode to create a campaign"), next);
+            return error.handleError(new error.MissingParameterError({required: 'paymentCode'}, "need a paymentCode to create a campaign"), next);
         } else if (!paymentCode && config.paymentCodeChecking === 'disabled') {
             paymentCode = {code: "testcode"};
         }
@@ -615,7 +614,7 @@ var deleteByIdFn = function deleteByIdFn(baseUrl, Model) {
             return next(new error.NotAuthorizedError('Authentication required for this object'));
         }
 
-        Model.findOne(finder).exec(function (err, campaign) {
+        Model.findOne(finder).populate('organization').exec(function (err, campaign) {
             if (err) {
                 return error.handleError(err, next);
             }
@@ -628,7 +627,11 @@ var deleteByIdFn = function deleteByIdFn(baseUrl, Model) {
                 return user.equals(req.user._id);
             });
 
-            if (!isSysadmin && !isCampaignLead) {
+            var isOrgAdmin = _.find(campaign.organization.administrators, function(adm) {
+                return adm.equals(req.user._id);
+            });
+
+            if (!isSysadmin && !isCampaignLead && !isOrgAdmin) {
                 return next(new error.NotAuthorizedError('Not authorized to delete this campaign, must have role campaignlead or sysadmin.'));
             }
 
@@ -643,8 +646,23 @@ var deleteByIdFn = function deleteByIdFn(baseUrl, Model) {
                 }
 
                 campaign.remove(function (err) {
-                    res.send(200);
-                    return next();
+
+                    // update the paymentcode if there is one that belonged to this campaign:
+                    PaymentCode.find({campaign: req.params.id}).exec(function (err, codes) {
+                        if (err) {
+                            error.handleError(err, next);
+                        }
+                        if (codes && codes.length >0) {
+                            codes[0].campaign = undefined;
+                            codes[0].save(function (err, saved) {
+                                res.send({code: codes[0].code});
+                                return next();
+                            });
+                        } else {
+                            res.send(200);
+                            return next();
+                        }
+                    });
                 });
             });
 

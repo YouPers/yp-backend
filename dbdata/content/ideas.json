@@ -167,7 +167,7 @@
   },
   {
     "_id": {"$oid": "5278c6accdeab69a2500000e"},
-    "__v": 15,
+    "__v": 17,
     "author": {"$oid": "52d4f515fac246174c000006"},
     "created": {"$date": 1398420981700},
     "defaultStartTime": {"$date": 1420830000000},
@@ -208,15 +208,15 @@
     ],
     "source": "youpers",
     "textI18n": {
-      "de": "Zur Stressbewältigung kann man an drei Bereichen ansetzen:\n\n1. an der Umwelt, indem wir äussere Faktoren, die eine Stressreaktion auslösen können, verringern\n2. an uns selbst, indem wir stresserzeugende Verhaltens&shy;weisen abbauen und uns neue Umgangsformen mit den Anforderungen aneignen\n3. an unseren Körperreaktionen, indem wir unsere An&shy;span&shy;nung z.B. durch körperliche Be&shy;we&shy;gung abbauen und/oder uns durch eine Atem- oder Ent&shy;spannungsübung ent&shy;span&shy;nen.",
-      "en": "Stress management can begin in three areas:\n\n1. in our environment by reducing external factors that can trigger stress responses\n2. in ourselves, by trying to reduce our stress-generating behaviors and learning new ways of dealing with demands\n3. in our physical responses by eliminating tension, e.g. with physical activity and / or by relaxing with breathing or relaxation exercises."
+      "de": "Zur Stressbewältigung kann man an drei Bereichen ansetzen:\n\n1. an der Umwelt, indem wir äussere, stressauslösende Faktoren verringern\n2. an uns selbst, indem wir stress&shy;erzeugende Verhaltens&shy;weisen abbauen und neue Umgangs&shy;formen mit Stress erlernen\n3. an unseren Körperreaktionen, indem wir An&shy;span&shy;nung, z.B. durch körperliche Be&shy;we&shy;gung und/oder durch Atem- oder Ent&shy;spannungsübungen abbauen.\n\nMehr Informationen findest du in <a href='http://www.v-r.de/pdf/titel_inhalt_und_leseprobe/1008810/inhaltundleseprobe_978-3-647-49104-2.pdf' target='_blank'>Stressbewältigung am Arbeitsplatz</a> oder in <a href='http://www.mbsr-luzern.ch/app/download/10420856399/fitness_fuer_geist_und_seele.pdf?t=1427312133' target='_blank'>Fitness für Geist und Seele.",
+      "en": "Stress management can begin in three areas:\n\n1. in our environment by reducing external factors that can trigger stress responses\n2. in ourselves, by trying to reduce our stress-generating behaviors and learning new ways of dealing with demands\n3. in our physical responses by eliminating tension, e.g. with physical activity and / or by relaxing with breathing or relaxation exercises.\n\nMore information can be found in <a href='http://www.v-r.de/pdf/titel_inhalt_und_leseprobe/1008810/inhaltundleseprobe_978-3-647-49104-2.pdf' target='_blank'>Stressbewältigung am Arbeitsplatz</a> or in <a href='http://www.mbsr-luzern.ch/app/download/10420856399/fitness_fuer_geist_und_seele.pdf?t=1427312133' target='_blank'>Fitness für Geist und Seele."
     },
     "titleI18n": {
       "de": "Fachartikel \"Stressbewältigung\"",
       "en": "Specialist article on &quot;stress management&quot;"
     },
     "topics": [{"$oid": "53b416cfa43aac62a2debda1"}],
-    "updated": {"$date": 1424349819974}
+    "updated": {"$date": 1428397396124}
   },
   {
     "_id": {"$oid": "5278c6accdeab69a2500000f"},
@@ -332,7 +332,7 @@
   },
   {
     "_id": {"$oid": "5278c6adcdeab69a25000011"},
-    "__v": 14,
+    "__v": 16,
     "author": {"$oid": "52d4f515fac246174c000006"},
     "created": {"$date": 1398413313806},
     "defaultStartTime": {"$date": 1418929200000},
@@ -376,15 +376,15 @@
     ],
     "source": "youpers",
     "textI18n": {
-      "de": "Persönliche Ressourcen basieren auf individuell, unterschiedlichen Merk&shy;ma&shy;len, auf der eigenen Identität und dem persönlichen Um&shy;feld.\n\nMögliche, persönliche Ressourcen:\n\n- Soziales Kapital: Netzwerke, Vorbilder\n- Werte: Ziele, Motivation, Interessen\n- Soziale Identität: Selbstbild, Soziale Rolle, Selbstklarheit\n- Persönlichkeit: Sicherheit, Freiheit, Unabhängigkeit\n- Physis: Leistungsfähigkeit, Resilienz\n- Skills: Reflexionsfähigkeit, emotionale Intelligenz.",
-      "en": "Personal resources are based on individual, different personal features, on your identity and personal environment.\n\nPotential, personal resources:\n\n- Social capital: Networks, role models\n- Values: Goals, motivation, interests\n- Social identity: Self-image, social role, self-clarity\n- Personality: Safety, freedom, independence\n- Physical condition: Performance, resilience\n- Skills: Ability to reflect, emotional intelligence."
+      "de": "Persönliche Ressourcen basieren auf individuell, unterschiedlichen Merk&shy;ma&shy;len, auf der eigenen Identität und dem persönlichen Um&shy;feld.\n\nMögliche, persönliche Ressourcen:\n\n- Werte: Ziele, Motivation, Interessen\n- Soziale Identität: Selbstbild, Soziale Rolle, Selbstklarheit\n- Persönlichkeit: Sicherheit, Freiheit, Unabhängigkeit\n- Physis: Leistungsfähigkeit, Resilienz\n- Skills: Reflexionsfähigkeit, emotionale Intelligenz.\n\nMehr Informationen findest du <a href='https://www.bgw-online.de/SharedDocs/Downloads/DE/Medientypen/bgw-themen/TP-PRs-Persoenliche-Ressourcen-staerken_Download.pdf?__blob=publicationFile' target='_blank'>hier.</a>",
+      "en": "Personal resources are based on individual, different personal features, on your identity and personal environment.\n\nPotential, personal resources:\n\n- Values: Goals, motivation, interests\n- Social identity: Self-image, social role, self-clarity\n- Personality: Safety, freedom, independence\n- Physical condition: Performance, resilience\n- Skills: Ability to reflect, emotional intelligence.\n\nMore information can be found <a href='https://www.bgw-online.de/SharedDocs/Downloads/DE/Medientypen/bgw-themen/TP-PRs-Persoenliche-Ressourcen-staerken_Download.pdf?__blob=publicationFile' target='_blank'>here.</a>"
     },
     "titleI18n": {
       "de": "Fachartikel \"Persönliche Ressourcen\"",
       "en": "Specialist article on &quot;personal resources&quot;"
     },
     "topics": [{"$oid": "53b416cfa43aac62a2debda1"}],
-    "updated": {"$date": 1424349819078}
+    "updated": {"$date": 1428398719924}
   },
   {
     "_id": {"$oid": "5278c6adcdeab69a25000012"},

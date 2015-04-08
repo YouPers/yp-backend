@@ -83,6 +83,10 @@ var getOffers = function getAll(req, res, next) {
         publishTo: true
     };
 
+    if (req.params.authored) {
+        options.authored = req.params.authored;
+    }
+
     SocialInteraction.getAllForUser(user, SocialInteractionModel, options, generic.sendListCb(req, res, next));
 };
 

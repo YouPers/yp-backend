@@ -44,71 +44,7 @@ var actMgr = new ActivityManagement();
  */
 
 User.on('change:campaign', function (user) {
-
-    Campaign.findById(user.campaign).exec(function (err, campaign) {
-        if (err) {
-            return _handleError(err);
-        }
-
-        Assessment.find({topic: campaign.topic}).exec(function (err, assessments) {
-            if (err) {
-                return _handleError(err);
-            }
-
-            if (assessments.length !== 1) {
-                return actMgr.emit('error', 'assessment for topic not found or not unique');
-            }
-            var assessment = assessments[0];
-            if (assessment.idea) {
-
-                Activity.find({
-                    owner: user._id,
-                    idea: assessment.idea,
-                    status: 'active'
-                }).exec(function (err, activities) {
-                    if (err) {
-                        return _handleError(err);
-                    }
-
-                    // only plan assessment idea if there is no active activity yet
-                    if (activities.length === 0) {
-
-                        mongoose.model('Profile').findById(user.profile).exec(function (err, profile) {
-                            if (err) {
-                                return _handleError(err);
-                            }
-
-                            Idea.findById(assessment.idea).select(Idea.getI18nPropertySelector(profile.language)).exec(function (err, idea) {
-                                if (err) {
-                                    return _handleError(err);
-                                }
-                                var assessmentActivity = actMgr.defaultActivity(idea, user);
-                                assessmentActivity.start = new Date();
-                                assessmentActivity.end = moment(assessmentActivity.start).add(15, 'm').toDate();
-                                assessmentActivity.save(function (err, savedActivity) {
-                                    if (err) {
-                                        return _handleError(err);
-                                    }
-                                    var events = actMgr.getEvents(savedActivity, user.id);
-                                    ActivityEvent.create(events, function (err) {
-                                        if (err) {
-                                            return _handleError(err);
-                                        }
-                                        actMgr.emit('activity:activityCreated', savedActivity, user);
-                                    });
-                                });
-
-                            });
-
-
-                        });
-                    }
-                });
-
-            }
-        });
-
-    });
+    return actMgr.createAssessmentActivity(user);
 });
 
 /**
@@ -746,5 +682,73 @@ actMgr.postActivityInvite = function (actId, postingUser, emails, i18n, cb ) {
     ], cb);
 };
 
+/**
+ * checks whether the user has an active activity to perform the assessment and if not creates it.
+ * start will be max(today, campaign.start), end will be 15 minutes later.
+ *
+ * @param user
+ */
+actMgr.createAssessmentActivity = function(user) {
+    Campaign.findById(user.campaign).exec(function (err, campaign) {
+        if (err) {
+            return _handleError(err);
+        }
+
+        Assessment.find({topic: campaign.topic}).exec(function (err, assessments) {
+            if (err) {
+                return _handleError(err);
+            }
+
+            if (assessments.length !== 1) {
+                return actMgr.emit('error', 'assessment for topic not found or not unique');
+            }
+            var assessment = assessments[0];
+            if (assessment.idea) {
+
+                Activity.find({
+                    owner: user._id,
+                    idea: assessment.idea,
+                    status: 'active'
+                }).exec(function (err, activities) {
+                    if (err) {
+                        return _handleError(err);
+                    }
+
+                    // only plan assessment idea if there is no active activity yet
+                    if (activities.length === 0) {
+
+                        mongoose.model('Profile').findById(user.profile).exec(function (err, profile) {
+                            if (err) {
+                                return _handleError(err);
+                            }
+
+                            Idea.findById(assessment.idea).select(Idea.getI18nPropertySelector(profile.language)).exec(function (err, idea) {
+                                if (err) {
+                                    return _handleError(err);
+                                }
+                                var assessmentActivity = actMgr.defaultActivity(idea, user);
+                                assessmentActivity.start = moment.max(moment(campaign.start), moment()).toDate();
+                                assessmentActivity.end = moment(assessmentActivity.start).add(15, 'm').toDate();
+                                assessmentActivity.save(function (err, savedActivity) {
+                                    if (err) {
+                                        return _handleError(err);
+                                    }
+                                    var events = actMgr.getEvents(savedActivity, user.id);
+                                    ActivityEvent.create(events, function (err) {
+                                        if (err) {
+                                            return _handleError(err);
+                                        }
+                                        actMgr.emit('activity:activityCreated', savedActivity, user);
+                                    });
+                                });
+                            });
+                        });
+                    }
+                });
+            }
+        });
+
+    });
+};
 
 module.exports = actMgr;

@@ -259,6 +259,9 @@
         "_id": {
             "$oid": "52a97f1650fca98c2900000a"
         },
+        "campaign": {
+            "$oid": "527916a82079aa8704000007"
+        },
         "avatar": "/assets/img/default_avatar_man.png",
         "email": "ypunittest1+orgadmin@gmail.com",
         "emailValidatedFlag": true,
@@ -284,6 +287,9 @@
         "__v": 0,
         "_id": {
             "$oid": "52a97f1650fca98c2900000b"
+        },
+        "campaign": {
+            "$oid": "527916a82079aa8704000006"
         },
         "avatar": "/assets/img/default_avatar_woman.png",
         "email": "ypunittest1+campaignlead@gmail.com",

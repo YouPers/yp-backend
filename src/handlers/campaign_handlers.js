@@ -139,6 +139,9 @@ var postCampaign = function (baseUrl) {
                             return done(err);
                         }
                         user.campaign = sentCampaign._id;
+                        if (!_.contains(user.roles, 'campaignlead')) {
+                            user.roles.push('campaignlead');
+                        }
                         user.save(done);
                     });
                 }, function (err) {

@@ -132,25 +132,6 @@ var postCampaign = function (baseUrl) {
                 // it to send the campaign lead invitations for newCampaignLeads
                 sentCampaign._id = new mongoose.Types.ObjectId();
 
-                // set the campaign attribute on all existing campaignleads
-                async.forEach(sentCampaign.campaignLeads, function (cl, done) {
-                    User.findById(cl._id || cl).select(User.privatePropertiesSelector).exec(function (err, user) {
-                        if (err) {
-                            return done(err);
-                        }
-                        user.campaign = sentCampaign._id;
-                        if (!_.contains(user.roles, 'campaignlead')) {
-                            user.roles.push('campaignlead');
-                        }
-                        user.save(done);
-                    });
-                }, function (err) {
-                    if (err) {
-                        return next(err);
-                    }
-                    // don't do anything as we do this async
-                });
-
                 createNewCampaignLeadUsers(sentCampaign, req, function (err) {
                     if (err) {
                         return error.handleError(err, next);
@@ -181,6 +162,27 @@ var postCampaign = function (baseUrl) {
                             if (err) {
                                 return error.handleError(err, next);
                             }
+
+                            // set the campaign attribute on all existing campaign leads,
+                            // the campaign has to be already saved, in order to have the resulting change:campaign listener work properly
+                            async.forEach(savedCampaign.campaignLeads, function (cl, done) {
+                                User.findById(cl._id || cl).select(User.privatePropertiesSelector).exec(function (err, user) {
+                                    if (err) {
+                                        return done(err);
+                                    }
+                                    user.campaign = savedCampaign._id;
+                                    if (!_.contains(user.roles, 'campaignlead')) {
+                                        user.roles.push('campaignlead');
+                                    }
+                                    user.save(done);
+                                });
+                            }, function (err) {
+                                if (err) {
+                                    return next(err);
+                                }
+                                // don't do anything as we do this async
+                            });
+
                             if (code) {
                                 code.campaign = savedCampaign._id;
                                 code.save();
@@ -235,7 +237,6 @@ function createNewCampaignLeadUsers(campaign, req, done) {
             campaignLead.password = random;
             campaignLead.tempPasswordFlag = true; // used to determine the campaign lead invite url
             campaignLead.roles = ['individual', 'campaignlead'];
-            campaignLead.campaign = campaign._id;
 
             var user = new User(campaignLead);
             user.save(function (err, savedUser) {

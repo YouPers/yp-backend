@@ -130,7 +130,8 @@ var postCampaign = function (baseUrl) {
 
                 // create and set the ObjectId of the new campaign manually before saving, because we need
                 // it to send the campaign lead invitations for newCampaignLeads
-                sentCampaign._id = new mongoose.Types.ObjectId();
+                // use campaignId from request parameters if defined
+                sentCampaign._id = new mongoose.Types.ObjectId(req.params.campaignId || undefined);
 
                 createNewCampaignLeadUsers(sentCampaign, req, function (err) {
                     if (err) {

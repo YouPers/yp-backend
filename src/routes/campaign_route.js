@@ -107,6 +107,31 @@ module.exports = function (swagger) {
     });
 
 
+    swagger.addOperation({
+        spec: {
+            description: "Operations about campaigns",
+            path: baseUrlWithId + "/resendCampaignLeadEmail",
+            notes: "Posts a request to resend an invitation email to a campaignlead",
+            summary: "Posts a request to resend an invitation email to a campaignlead",
+            mobileSDK: "disabled",
+            params: [
+                {
+                    paramType: "body",
+                    name: "campaignLeadId",
+                    description: "object with properties: 'campaignLeadId",
+                    dataType: "ClObject",
+                    required: true
+                }
+            ],
+            method: "POST",
+            "nickname": "resendClInvite",
+            accessLevel: 'al_campaignlead',
+            beforeCallbacks: []
+        },
+        action: campaignHandlers.postCampaignLeadInvite
+    });
+
+
 
     swagger.addModels({EmailObject: {
         id: 'EmailObject',

@@ -663,11 +663,55 @@ var deleteByIdFn = function deleteByIdFn(baseUrl, Model) {
     };
 };
 
+var postCampaignLeadInviteFn = function postCampaignLeadInviteFn(req, res, next) {
+    if (!req.params || !req.params.id) {
+        return next(new error.MissingParameterError({required: 'id'}));
+    }
+    if (!req.body || !req.body.campaignLeadId) {
+        return next(new error.MissingParameterError({required: 'campaignLeadId'}));
+    }
+
+    Campaign.findById(req.params.id)
+        .populate('organization topic campaignLeads')
+        .exec(function (err, campaign) {
+            if (err) {
+                return error.handleError(err, next);
+            }
+            if (!campaign) {
+                return next(new error.ResourceNotFoundError({campaignId: req.params.id}));
+            }
+
+            // check whether the posting user is a orgadmin of the campaigns organization
+            if (!_.contains(campaign.organization.administrators.toString(), req.user.id)) {
+                return next(new error.NotAuthorizedError('The user is not a orgadmin for this campaign.', {
+                    userId: req.user.id,
+                    campaignId: campaign.id
+                }));
+            }
+
+            User.findById(req.body.campaignLeadId).select('+email +username').exec(function (err, cl) {
+                if (err) {
+                    return error.handleError(err, next);
+                }
+                if (!cl) {
+                    return next(new error.InvalidArgumentError("campaignlead not found"));
+                }
+                if (!_.contains(campaign.campaignLeads.toString(), req.body.campaignLeadId)) {
+                    return next(new error.InvalidArgumentError("this campaignleadId is not valid for this campaign"));
+                }
+                email.sendCampaignLeadInvite(cl.email, req.user, campaign, cl, req.i18n);
+                res.send(200);
+                return next();
+            });
+        });
+};
+
 module.exports = {
     postCampaign: postCampaign,
     putCampaign: putCampaign,
     deleteByIdFn: deleteByIdFn,
     getAllForUserFn: getAllForUserFn,
     postParticipantsInvite: postParticipantsInviteFn,
+    postCampaignLeadInvite: postCampaignLeadInviteFn,
     avatarImagePostFn: avatarImagePostFn
 };

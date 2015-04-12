@@ -113,7 +113,7 @@ var deleteByIdFn = function (baseUrl, Model) {
             // system admins can delete any socialInteraction, with the 'administrate' flag set
             var adminMode = auth.checkAccess(req.user, 'al_admin') &&
                 req.params.mode && req.params.mode === 'administrate';
-            if (req.user._id.equals(socialInteraction.author) || adminMode
+            if ((req.user._id.equals(socialInteraction.author) && req.params.mode !== 'participate') || adminMode
                 ) {
                 return generic.deleteByIdFn(baseUrl, SocialInteractionModel)(req, res, next);
             }

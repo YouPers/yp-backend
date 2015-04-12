@@ -262,7 +262,7 @@
         "campaign": {
             "$oid": "527916a82079aa8704000007"
         },
-        "avatar": "/assets/img/default_avatar_man.png",
+        "avatar": "/assets/img/YouPersAvatar.png",
         "email": "ypunittest1+orgadmin@gmail.com",
         "emailValidatedFlag": true,
         "firstname": "Test",
@@ -291,7 +291,7 @@
         "campaign": {
             "$oid": "527916a82079aa8704000006"
         },
-        "avatar": "/assets/img/default_avatar_woman.png",
+        "avatar": "/assets/img/YouPersAvatar.png",
         "email": "ypunittest1+campaignlead@gmail.com",
         "emailValidatedFlag": true,
         "firstname": "Test",

@@ -251,8 +251,18 @@ function createNewCampaignLeadUsers(campaign, req, done) {
                     if (err) {
                         return cb(err);
                     }
-                    email.sendCampaignLeadInvite(campaignLead.email, req.user, campaign, savedUser, req.i18n);
-                    cb(null, savedUser);
+
+                    // get Organization
+                    Organization.findById(campaign.organization).exec(function (err, org) {
+                        if (err) {
+                            return cb(err);
+                        }
+                        if (!org) {
+                            return cb(new Error('cannot load org'));
+                        }
+                        email.sendCampaignLeadInvite(campaignLead.email, req.user, campaign, org, savedUser, req.i18n);
+                        cb(null, savedUser);
+                    });
                 });
             });
         });
@@ -711,7 +721,7 @@ var postCampaignLeadInviteFn = function postCampaignLeadInviteFn(req, res, next)
                 if (!_.contains(campaign.campaignLeads.toString(), req.body.campaignLeadId)) {
                     return next(new error.InvalidArgumentError("this campaignleadId is not valid for this campaign"));
                 }
-                email.sendCampaignLeadInvite(cl.email, req.user, campaign, cl, req.i18n);
+                email.sendCampaignLeadInvite(cl.email, req.user, campaign, campaign.organization, cl, req.i18n);
                 res.send(200);
                 return next();
             });

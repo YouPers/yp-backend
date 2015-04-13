@@ -96,7 +96,7 @@ var sendActivityInvite = function sendActivityInvite(email, invitingUser, activi
     emailSender.sendEmail(fromDefault, email, subject, 'activityInviteMail', locals);
 };
 
-var sendCampaignLeadInvite = function sendCampaignLeadInvite(email, invitingUser, campaign, invitedUser, i18n) {
+var sendCampaignLeadInvite = function sendCampaignLeadInvite(email, invitingUser, campaign, organization, invitedUser, i18n) {
 
     var localMoment = function localMoment(date) {
         return moment(date).lang(i18n.lng()).tz('Europe/Zurich');
@@ -115,7 +115,8 @@ var sendCampaignLeadInvite = function sendCampaignLeadInvite(email, invitingUser
         salutation: i18n.t('email:CampaignLeadInvite.salutation' + invitedUser ? '': 'Anonymous', {invited: invitedUser ? invitedUser.toJSON() : {firstname: ''}}),
         text: i18n.t('email:CampaignLeadInvite.text', {
             inviting: invitingUser.toJSON(),
-            campaign: campaign.toJSON()
+            campaign: campaign.toJSON(),
+            organization: organization.toJSON()
         }),
         campaign: campaign,
         duration: duration,

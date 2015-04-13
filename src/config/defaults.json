@@ -12,7 +12,7 @@
     "db_prefix": "mongodb",
     "db_host": "localhost",
     "db_port": "27017",
-    "db_database": "ypdb",
+    "db_database": "test_database",
     "dbdump": {
         "restoreenabled": "disabled",
         "dumpenabled": "disabled",

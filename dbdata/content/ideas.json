@@ -2378,13 +2378,13 @@
   },
   {
     "_id": {"$oid": "5278c6adcdeab69a25000042"},
-    "__v": 13,
+    "__v": 14,
     "author": {"$oid": "52d4f515fac246174c000006"},
     "created": {"$date": 1398431797174},
     "defaultStartTime": {"$date": 1417683600000},
     "defaultduration": 15,
     "defaultexecutiontype": "group",
-    "defaultfrequency": "day",
+    "defaultfrequency": "once",
     "defaultvisibility": "private",
     "descriptionI18n": {
       "de": "Führe während der Arbeitspause Dehn&shy;übungen für Rücken, Schulter und Nacken durch.",
@@ -2414,7 +2414,7 @@
       "en": "Stretching exercises"
     },
     "topics": [{"$oid": "53b416cfa43aac62a2debda1"}],
-    "updated": {"$date": 1424349820075}
+    "updated": {"$date": 1428562096373}
   },
   {
     "_id": {"$oid": "5278c6adcdeab69a25000043"},
@@ -2548,13 +2548,13 @@
   },
   {
     "_id": {"$oid": "5278c6adcdeab69a25000046"},
-    "__v": 22,
+    "__v": 23,
     "author": {"$oid": "52d4f515fac246174c000006"},
     "created": {"$date": 1398432217333},
     "defaultStartTime": {"$date": 1417692600000},
     "defaultduration": 30,
     "defaultexecutiontype": "group",
-    "defaultfrequency": "week",
+    "defaultfrequency": "once",
     "defaultvisibility": "private",
     "descriptionI18n": {
       "de": "Mache einmal pro Woche einen Spazier&shy;gang mit einer Arbeits&shy;kol&shy;le&shy;gin bzw. einem Arbeits&shy;kol&shy;le&shy;gen während der Mittags&shy;pause.",
@@ -2602,7 +2602,7 @@
       "en": "Midday walk"
     },
     "topics": [{"$oid": "53b416cfa43aac62a2debda1"}],
-    "updated": {"$date": 1428489388895}
+    "updated": {"$date": 1428562142637}
   },
   {
     "_id": {"$oid": "5278c6adcdeab69a25000047"},
@@ -5859,7 +5859,7 @@
   },
   {
     "_id": {"$oid": "5278c6adcdeab69a25000087"},
-    "__v": 13,
+    "__v": 15,
     "author": {"$oid": "52d4f515fac246174c000006"},
     "created": {"$date": 1399450667723},
     "defaultStartTime": {"$date": 1420704000000},
@@ -5868,8 +5868,8 @@
     "defaultfrequency": "day",
     "defaultvisibility": "private",
     "descriptionI18n": {
-      "de": "Iss täglich 2 Portionen Obst (z.B. eine Frucht zum Znüni und ein Frucht&shy;dessert oder Fruchtsaft am Abend).",
-      "en": "Eat 2 servings of fruit a day (e.g. one piece of fruit for your mid-morning snack and one fruit dessert or fruit juice in the evening)."
+      "de": "Iss täglich 2 Portionen Obst, Früchte oder Beeren (z.B. eine Frucht zum Znüni und ein Frucht&shy;dessert oder Fruchtsaft am Abend).",
+      "en": "Eat 2 servings of fruit or berry a day (e.g. one piece of fruit for your mid-morning snack and one fruit dessert or fruit juice in the evening)."
     },
     "number": "Act-130",
     "picture": "https://dxjlk9p2h4a7j.cloudfront.net/ideas/Act-130.jpg",
@@ -5924,7 +5924,7 @@
       {"$oid": "53b416fba43aac62a2debda2"},
       {"$oid": "53b416fba43aac62a2debda3"}
     ],
-    "updated": {"$date": 1428486416004}
+    "updated": {"$date": 1428672182630}
   },
   {
     "_id": {"$oid": "5278c6adcdeab69a25000088"},
@@ -13457,7 +13457,7 @@
   {
     "_id": {"$oid": "54f58ef53a0e763f094b2744"},
     "created": {"$date": 1425379061510},
-    "updated": {"$date": 1428496844997},
+    "updated": {"$date": 1428563016220},
     "number": "Act-298",
     "source": "youpers",
     "defaultfrequency": "week",
@@ -13469,10 +13469,10 @@
     "picture": "https://hc-fileuploads-test.s3.amazonaws.com/5505899eaddd396d7960e045.jpg",
     "author": {"$oid": "52d4f515fac246174c000006"},
     "textI18n": {"de": "Die Idee von firmeneigenen Fitness- und Wellnessangeboten stammt ur&shy;sprünglich aus den USA.\n\nIn den 80er Jahren entwickelte sich auch in der Schweiz ein Boom:  \nviele Grossunternehmen bauten ihre ei&shy;ge&shy;nen Sportanlagen. Dieser Boom wurde in den 90er Jahren durch die Rezession gedämpft.\n\nHeute ist wieder vermehrt ein Trend zur Gesundheits- und Sportförderung der Unternehmungen zu erkennen. In vielen Unternehmen animieren firmen&shy;eigene Fitnessstudios zu kurzen Trai&shy;nings&shy;einheiten.\n\nMehr Informationen findest du <a href='http://www.handelszeitung.ch/unternehmen/firmensport-vom-buerostuhl-ins-fitnessstudio' target='_blank'>hier.</a>"},
-    "descriptionI18n": {"de": "Absolviere jede Woche (ohne Aus&shy;nah&shy;me) eine kurze Trainingseinheit in einem Fitnessstudio."},
+    "descriptionI18n": {"de": "Absolviere jede Woche (ohne Aus&shy;nah&shy;me!) eine kurze Trainingseinheit in einem (firmeneigenen) Fitnessstudio."},
     "titleI18n": {"de": "Fitnessstudio"},
     "topics": [{"$oid": "53b416fba43aac62a2debda3"}],
-    "__v": 3
+    "__v": 4
   },
   {
     "_id": {"$oid": "54f58f35608f3f3d095243c3"},
@@ -13857,7 +13857,7 @@
   {
     "_id": {"$oid": "54f813b98e7a489f23d3baf5"},
     "created": {"$date": 1425544121701},
-    "updated": {"$date": 1428478447580},
+    "updated": {"$date": 1428595759923},
     "number": "Act-318",
     "source": "youpers",
     "defaultfrequency": "week",
@@ -13866,13 +13866,13 @@
     "defaultStartTime": {"$date": 1425574800000},
     "recWeights": [],
     "qualityFactor": 5,
-    "picture": "https://hc-fileuploads-test.s3.amazonaws.com/55058cba8e21d16779c38e84.jpg",
+    "picture": "https://hc-fileuploads-test.s3.amazonaws.com/5526a421b2d1b8de4f1ff781.jpg",
     "author": {"$oid": "52d4f515fac246174c000006"},
     "textI18n": {"de": "Im Grundlagentraining ist es wichtig, die Ausdauer möglichst vielfältig und sportartübergreifend zu trainieren: zu Fuss, auf dem Velo, Nordic Walking, Schwimmen, auf dem Mountain Bike, mit den Inline-Skates, im Winter auf Langlaufskiern, mit Schneeschuhen oder bei Skitouren.\n\nWer über eine gute Grund&shy;lagen&shy;aus&shy;dauer verfügt, der kann:\n- seine Bewegungsqualität über längere Zeit aufrechterhalten\n- sich länger konzentrieren, antizipieren und reagieren\n- sich in Pausen rascher erholen\n- das Unfallrisiko reduzieren\n- sich rascher regenerieren und damit effizienter trainieren"},
     "descriptionI18n": {"de": "Verbessere deine Grund&shy;lagen&shy;aus&shy;dau&shy;er, indem du 1 Mal pro Woche be&shy;we&shy;gungs- und sport&shy;art&shy;übergreifende Übungen aus&shy;übst, z.B. zu Fuss, mit dem Velo, im Was&shy;ser, mit den Inline-Skates oder auf Skiern."},
     "titleI18n": {"de": "Grundlagenausdauer"},
     "topics": [{"$oid": "53b416fba43aac62a2debda3"}],
-    "__v": 4
+    "__v": 5
   },
   {
     "_id": {"$oid": "54f814f4cf36a19323e0c04b"},
@@ -13917,22 +13917,22 @@
   {
     "_id": {"$oid": "54f815d9cf36a19323e0c04d"},
     "created": {"$date": 1425544665058},
-    "updated": {"$date": 1427647294694},
-    "number": "DEL",
+    "updated": {"$date": 1428594581603},
+    "number": "Act-322",
     "source": "youpers",
-    "defaultfrequency": "once",
-    "defaultexecutiontype": "self",
-    "defaultduration": 30,
-    "defaultStartTime": {"$date": 1425571200000},
+    "defaultfrequency": "day",
+    "defaultexecutiontype": "group",
+    "defaultduration": 10,
+    "defaultStartTime": {"$date": 1425564000000},
     "recWeights": [],
     "qualityFactor": 5,
-    "picture": "https://hc-fileuploads-test.s3.amazonaws.com/55058e7aaddd396d7960e054.jpg",
+    "picture": "https://hc-fileuploads-test.s3.amazonaws.com/55269f84b2d1b8de4f1ff77c.jpg",
     "author": {"$oid": "52d4f515fac246174c000006"},
-    "textI18n": {"de": "Wasserfeste Sonnencreme, Sonnen&shy;brille und Hut gehören auf jeden Fall dazu, wenn du im Sommer Sport treibst.\n\nTrage leichte und möglichst atmungs&shy;aktive, helle Kleidung. Auch wenn du die intensivsten Sonnenstunden zwi&shy;schen 11 und 15 Uhr meidest, ist der Schutz vor der Sonne ein Muss."},
-    "descriptionI18n": {"de": "Bei Ausdauertraining im Sommer, trainiere 20-30 Minuten lang deine Ausdauer mit Sonnenschutz."},
-    "titleI18n": {"de": "Training mit Sonnenschutz"},
-    "topics": [],
-    "__v": 3
+    "textI18n": {"de": "Aufstehen wird unterschätzt: wenn du dich von einer sitzenden in eine ste&shy;hen&shy;de Tätigkeit begibst, läuft eine kom&shy;plexe Muskelreaktion ab, die den ganzen Körper belebt und erfrischt.\n\nRegelmässige Pausen sind wichtig für einen produktiven Arbeitstag. Doch in der Pause solltest du nicht nur \"auf&shy;hö&shy;ren zu arbeiten\", sondern bewusst et&shy;was ganz anderes tun.\n\nAlso körperliche Bewegung statt geis&shy;tiger Arbeit, Ruhe statt Kom&shy;mu&shy;ni&shy;ka&shy;ti&shy;on, Entspannung statt Konzentration, Aufmerksamkeit im Hier und Jetzt statt Planung und Organisation.\n\nMehr Informationen findest du <a href='http://www.netdoktor.de/Gesund-Leben/Sport+Fitness/Sportarten/Fuenf-Minuten-Buerogymnastik-2223.html' target='_blank'>hier.</a>"},
+    "descriptionI18n": {"de": "Motiviere deine Arbeitskolleginnen und -kollegen und mache täglich in der Pause mit ihnen Bürogymnastik zur Förderung der Alltagsbewegung."},
+    "titleI18n": {"de": "Bürogymnastik"},
+    "topics": [{"$oid": "53b416fba43aac62a2debda3"}],
+    "__v": 8
   },
   {
     "_id": {"$oid": "54f8163ccf36a19323e0c04e"},
@@ -14117,22 +14117,22 @@
   {
     "_id": {"$oid": "54f81ce0cf36a19323e0c055"},
     "created": {"$date": 1425546464704},
-    "updated": {"$date": 1427457464445},
+    "updated": {"$date": 1428591704569},
     "number": "Act-333",
     "source": "youpers",
-    "defaultfrequency": "week",
+    "defaultfrequency": "day",
     "defaultexecutiontype": "group",
-    "defaultduration": 15,
-    "defaultStartTime": {"$date": 1425574800000},
+    "defaultduration": 10,
+    "defaultStartTime": {"$date": 1425564000000},
     "recWeights": [],
     "qualityFactor": 5,
     "picture": "https://hc-fileuploads-test.s3.amazonaws.com/55059036addd396d7960e05c.jpg",
     "author": {"$oid": "52d4f515fac246174c000006"},
-    "textI18n": {"de": "Gemäss der **Schweizerischen Gesund&shy;heitsförderung durch Bewegung und Sport (hepa)**, sollten Erwachsene min&shy;destens 2-3 Mal pro Woche Stretching&shy;übungen zur Verbesserung der Be&shy;weg&shy;lich&shy;keit absolvieren.\n\nJede Übung wird für 10-30 Sekunden gehalten und 2-4 Mal wiederholt. Wer beweglich bleiben will, dehnt bis an seine Grenzen, bis es leicht zieht oder wippt vorsichtig in den Grenzbereich der Beweglichkeit hinein.\n\nStatisches, dynamisches oder be&shy;weg&shy;tes Stretching sind alle effektiv. Ein Be&shy;weglichkeitstraining ist am ef&shy;fek&shy;tiv&shy;sten, wenn der Muskel aufgewärmt ist, also nach einer leichten Aktivität."},
-    "descriptionI18n": {"de": "Führe 1 Mal pro Woche, als Er&shy;gän&shy;zung zum Krafttraining, Gymnastik- oder Dehnübungen durch, um deine Beweglichkeit zu verbessern."},
+    "textI18n": {"de": "Gemäss der **Schweizerischen Gesund&shy;heitsförderung durch Bewegung und Sport (hepa)**, sollten Erwachsene min&shy;destens 2-3 Mal pro Woche Stretching&shy;übungen zur Verbesserung der Be&shy;weg&shy;lich&shy;keit absolvieren.\n\nStatisches, dynamisches oder be&shy;weg&shy;tes Stretching sind am ef&shy;fek&shy;tiv&shy;sten, wenn der Muskel aufgewärmt ist, also nach einer leichten Aktivität.\n\nJede Übung wird für 10-30 Sekunden gehalten und 2-4 Mal wiederholt. Man kann dehnen, bis es leicht zieht oder wippt vorsichtig in den Grenzbereich der Beweglichkeit hinein.\n\nMehr Informationen findest du <a href='https://www.youtube.com/watch?v=4AhvMlCt7hM' target='_blank'>hier.</a>"},
+    "descriptionI18n": {"de": "Führe täglich in der Pause mit deinen Arbeitskolleginnen und -kollegen Dehn&shy;übun&shy;gen am Arbeitsplatz durch, um die Beweglichkeit zu ver&shy;bes&shy;sern und die Muskulatur zu lockern."},
     "titleI18n": {"de": "Dehnübungen"},
     "topics": [{"$oid": "53b416fba43aac62a2debda3"}],
-    "__v": 3
+    "__v": 7
   },
   {
     "_id": {"$oid": "54f81d6fcf36a19323e0c056"},
@@ -14177,7 +14177,7 @@
   {
     "_id": {"$oid": "54f81de58e7a489f23d3baf8"},
     "created": {"$date": 1425546725189},
-    "updated": {"$date": 1427474961576},
+    "updated": {"$date": 1428568423535},
     "number": "Act-336",
     "source": "youpers",
     "defaultfrequency": "week",
@@ -14188,11 +14188,11 @@
     "qualityFactor": 5,
     "picture": "https://hc-fileuploads-test.s3.amazonaws.com/55059079addd396d7960e05f.jpg",
     "author": {"$oid": "52d4f515fac246174c000006"},
-    "textI18n": {"de": "Ein **neuromotorisches Training** (man&shy;chmal auch *\"functional fitness trai&shy;ning\"* genannt) wird an 2-3 Tagen in der Woche empfohlen (gemäss der **Schweizerischen Gesund&shy;heits&shy;för&shy;de&shy;rung durch Bewegung und Sport (hepa)**).\n\nDurch neuromotorische Übungen wer&shy;den die motorischen Fähigkeiten (Gleichgewicht, Beweglichkeit, Koordination und Gangsicherheit) entwickelt und trainiert.\n\nDie Übungen sollten **propriozeptive** Reize und facettenreiche Aktivitäten (Thai-Chi und Yoga) beinhalten, um die physischen Funktionen zu verbessern und Stürze zu vermeiden."},
+    "textI18n": {"de": "Ein **neuromotorisches Training** (auch *\"functional fitness trai&shy;ning\"* genannt) wird an 2-3 Tagen in der Woche emp&shy;foh&shy;len (gemäss der **Schweizerischen Gesund&shy;heits&shy;för&shy;de&shy;rung durch Be&shy;we&shy;gung und Sport (hepa)**).\n\nDurch neuromotorische Übungen wer&shy;den die motorischen Fähigkeiten (Gleichgewicht, Beweglichkeit, Ko&shy;or&shy;di&shy;na&shy;ti&shy;on und Gangsicherheit) entwickelt und trainiert.\n\nDie facettenreichen Übungen setzen **propriozeptive** Reize, um die phy&shy;sischen Funktionen zu verbessern und Stürze zu vermeiden.\n\nMehr Informationen findest du <a href='https://www.youtube.com/watch?v=6CrZmU4hUWE' target='_blank'>hier.</a>"},
     "descriptionI18n": {"de": "Mache 1 Mal pro Woche nach dem Aufwärmen neuromotorische Übun&shy;gen, um deine motorischen Fähig&shy;kei&shy;ten zu trainieren."},
     "titleI18n": {"de": "Neuromotorische Übungen"},
     "topics": [{"$oid": "53b416fba43aac62a2debda3"}],
-    "__v": 3
+    "__v": 4
   },
   {
     "_id": {"$oid": "54f81f54cf36a19323e0c058"},
@@ -14277,7 +14277,7 @@
   {
     "_id": {"$oid": "54f82940cf36a19323e0c05c"},
     "created": {"$date": 1425549632813},
-    "updated": {"$date": 1427470263486},
+    "updated": {"$date": 1428565896936},
     "number": "Act-344",
     "source": "youpers",
     "defaultfrequency": "week",
@@ -14288,16 +14288,16 @@
     "qualityFactor": 5,
     "picture": "https://hc-fileuploads-test.s3.amazonaws.com/5505b937addd396d7960e064.jpg",
     "author": {"$oid": "52d4f515fac246174c000006"},
-    "textI18n": {"de": "Wenn man seinem Körper mehr Ener&shy;gie zuführt als der Körper verbrauchen kann, nimmt man an Gewicht zu:  \nder Körper speichert diesen Nah&shy;rungs&shy;mittelüberschuss in Form von Fett&shy;re&shy;ser&shy;ven.\n\nWenn mehr Energie verbraucht wird (Grundumsatz und Leistungsumsatz z.B. durch Bewegung oder Sport), als über die Nahrung zugeführt wird, ver&shy;liert man an Gewicht:  \nUm den Energieverbrauch zu decken, bedient sich der Körper seiner Fett&shy;re&shy;serven.\n\nMehr Informationen findest du <a href='http://www.sportunterricht.ch/Theorie/Energie/energiebilanz.php' target='_blank'>hier.</a>"},
+    "textI18n": {"de": "Wenn man seinem Körper mehr Ener&shy;gie zuführt als der Körper verbrauchen kann, nimmt man an Gewicht zu:  \nder Körper speichert diesen Nah&shy;rungs&shy;mittelüberschuss in Form von Fett&shy;re&shy;ser&shy;ven.\n\nWenn mehr Energie verbraucht wird (Grundumsatz und Leistungsumsatz z.B. durch Bewegung oder Sport), als über die Nahrung zugeführt wird, ver&shy;liert man an Gewicht:  \nUm den Energieverbrauch zu decken, bedient sich der Körper seiner Fett&shy;re&shy;serven.\n\nMehr Informationen findest du  bei der <a href='http://gesundheitsfoerderung.ch/bevoelkerung/produkte-und-dienstleistungen/ernaehrung-und-bewegung/rechner-energieverbrauch.html' target='_blank'>Gesundheitsförderung Schweiz</a> oder <a href='http://www.sportunterricht.ch/Theorie/Energie/energiebilanz.php' target='_blank'>hier.</a>"},
     "descriptionI18n": {"de": "Um deine Energiebilanz ausgeglichen zu halten, plane wöchentlich, nur an deinem Trai&shy;nings&shy;tag mehr Kalorien zu dir zu neh&shy;men als sonst."},
     "titleI18n": {"de": "Gezielte Energiezufuhr"},
     "topics": [{"$oid": "53b416fba43aac62a2debda3"}],
-    "__v": 3
+    "__v": 4
   },
   {
     "_id": {"$oid": "54f8297ccf36a19323e0c05d"},
     "created": {"$date": 1425549692656},
-    "updated": {"$date": 1427474695597},
+    "updated": {"$date": 1428565775841},
     "number": "Act-345",
     "source": "youpers",
     "defaultfrequency": "day",
@@ -14308,11 +14308,11 @@
     "qualityFactor": 5,
     "picture": "https://hc-fileuploads-test.s3.amazonaws.com/5505b94faddd396d7960e065.jpg",
     "author": {"$oid": "52d4f515fac246174c000006"},
-    "textI18n": {"de": "Die Energiebilanz hat nach den Stan&shy;dard&shy;lehrwerken der Ernährungslehre wesentlichen Einfluss auf die Ent&shy;wick&shy;lung des Körpergewichts:  \nsoll eine Gewichtsreduktion erreicht werden, ist das Erzielen einer ne&shy;ga&shy;ti&shy;ven Energiebilanz entscheidend.\n\nErnährungsexperten kritisieren einen starken Rückgang der körperlichen Bewegung und somit ein zu&shy;neh&shy;men&shy;des Risiko für Übergewicht.\n\nMehr Informationen findest du <a href='http://de.wikipedia.org/wiki/Energiebilanz_(Ern%C3%A4hrung)' target='_blank'>hier.</a>"},
+    "textI18n": {"de": "Die Energiebilanz hat nach den Stan&shy;dard&shy;lehrwerken der Ernährungslehre wesentlichen Einfluss auf die Ent&shy;wick&shy;lung des Körpergewichts:  \nsoll eine Gewichtsreduktion erreicht werden, ist das Erzielen einer ne&shy;ga&shy;ti&shy;ven Energiebilanz entscheidend.\n\nErnährungsexperten kritisieren einen starken Rückgang der körperlichen Bewegung und somit ein zu&shy;neh&shy;men&shy;des Risiko für Übergewicht.\n\nMehr Informationen findest du  bei der <a href='http://gesundheitsfoerderung.ch/bevoelkerung/produkte-und-dienstleistungen/ernaehrung-und-bewegung/rechner-energieverbrauch.html' target='_blank'>Gesundheitsförderung Schweiz</a> oder bei <a href='http://de.wikipedia.org/wiki/Energiebilanz_(Ern%C3%A4hrung)' target='_blank'>Wikipedia.</a>"},
     "descriptionI18n": {"de": "Um Gewicht zu verlieren, prüfe täg&shy;lich am Feierabend, ob deine Ener&shy;gie&shy;bi&shy;lanz negativ ist, d.h. ob du mehr Energie durch Bewegung oder geis&shy;tige Aktivitäten verbraucht hast als durch Nahrung aufgenommen."},
     "titleI18n": {"de": "Negative Energiebilanz"},
     "topics": [{"$oid": "53b416fba43aac62a2debda3"}],
-    "__v": 3
+    "__v": 4
   },
   {
     "_id": {"$oid": "54f82a00cf36a19323e0c05e"},
@@ -14337,7 +14337,7 @@
   {
     "_id": {"$oid": "54f82a99cf36a19323e0c05f"},
     "created": {"$date": 1425549977225},
-    "updated": {"$date": 1427450739528},
+    "updated": {"$date": 1428565624310},
     "number": "Act-347",
     "source": "youpers",
     "defaultfrequency": "week",
@@ -14348,11 +14348,11 @@
     "qualityFactor": 5,
     "picture": "https://hc-fileuploads-test.s3.amazonaws.com/5505b979addd396d7960e066.jpg",
     "author": {"$oid": "52d4f515fac246174c000006"},
-    "textI18n": {"de": "Aus dem Bewegungsprotokoll ergibt sich eine durchschnittliche Be&shy;we&shy;gungs&shy;men&shy;ge.\n\nZur Energiebilanz gehören deine Be&shy;we&shy;gungs&shy;menge, deine auf&shy;ge&shy;nom&shy;me&shy;nen Kalorien und dein sich allenfalls geändertes Kör&shy;per&shy;ge&shy;wicht und Wohl&shy;be&shy;fin&shy;den. Eine negative Energiebilanz führt zu einer Gewichtsreduktion!\n\nÜberleg dir, wie du deine Be&shy;we&shy;gungs&shy;menge allenfalls erhöhen kannst und wie sich das auf deine körperliche Fit&shy;ness und Gesundheit auswirkt.\n\nMehr Informationen dazu findest du bei <a href='https://www.dge.de/wissenschaft/weitere-publikationen/fachinformationen/essenshaeufigkeit-und-gewichtsregulation-bei-erwachsenen/' target='_blank'>DGE</a> oder <a href='http://www.sge-ssn.ch/media/medialibrary/pdf/100-ernaehrungsthemen/20-abnehmen_gewichthalten/TABULA-Artikel/Bewegung_und_Sport_zum_Abnehmen.pdf' target='_blank'>SGE.</a>"},
+    "textI18n": {"de": "Aus dem Bewegungsprotokoll ergibt sich eine durchschnittliche Be&shy;we&shy;gungs&shy;men&shy;ge.\n\nZur Energiebilanz gehören deine Be&shy;we&shy;gungs&shy;menge, deine auf&shy;ge&shy;nom&shy;me&shy;nen Kalorien und dein sich allenfalls geändertes Kör&shy;per&shy;ge&shy;wicht und Wohl&shy;be&shy;fin&shy;den. Eine negative Energiebilanz führt zu einer Gewichtsreduktion!\n\nÜberleg dir, wie du deine Be&shy;we&shy;gungs&shy;menge allenfalls erhöhen kannst und wie sich das auf deine körperliche Fit&shy;ness und Gesundheit auswirkt.\n\nMehr Informationen dazu findest du bei der <a href='http://gesundheitsfoerderung.ch/bevoelkerung/produkte-und-dienstleistungen/ernaehrung-und-bewegung/rechner-energieverbrauch.html' target='_blank'>Gesundheitsförderung Schweiz</a> oder <a href='https://www.dge.de/wissenschaft/weitere-publikationen/fachinformationen/essenshaeufigkeit-und-gewichtsregulation-bei-erwachsenen/' target='_blank'>DGE</a> oder <a href='http://www.sge-ssn.ch/media/medialibrary/pdf/100-ernaehrungsthemen/20-abnehmen_gewichthalten/TABULA-Artikel/Bewegung_und_Sport_zum_Abnehmen.pdf' target='_blank'>SGE.</a>"},
     "descriptionI18n": {"de": "Mache einmal pro Woche eine Aus&shy;wer&shy;tung deines Be&shy;we&shy;gungs&shy;pro&shy;to&shy;kolls, mit dem du deine Energiebilanz analysierst."},
     "titleI18n": {"de": "Analyse Energiebilanz"},
     "topics": [{"$oid": "53b416fba43aac62a2debda3"}],
-    "__v": 4
+    "__v": 5
   },
   {
     "_id": {"$oid": "54f8307bcf36a19323e0c060"},
@@ -14617,7 +14617,7 @@
   {
     "_id": {"$oid": "54f837468e7a489f23d3bafe"},
     "created": {"$date": 1425553222623},
-    "updated": {"$date": 1427463732476},
+    "updated": {"$date": 1428565127821},
     "number": "Act-362",
     "source": "youpers",
     "defaultfrequency": "week",
@@ -14628,11 +14628,11 @@
     "qualityFactor": 5,
     "picture": "https://hc-fileuploads-test.s3.amazonaws.com/5505bba4addd396d7960e070.jpg",
     "author": {"$oid": "52d4f515fac246174c000006"},
-    "textI18n": {"de": "Eine Möglichkeit eines **Geh-Tests** könnte so aussehen:  \nbei normalem, gutem Fitness-Zustand braucht ein Erwachsener plus/minus eine Viertelstunde, um mit zügigem Walken (nicht Joggen) 2 Kilometer weit zu gehen.\n\nEine andere Möglichkeit besteht darin, auf einer Sportbahn 5 Minuten lang zü&shy;gig zu gehen und zu messen, wie weit man dabei kommt.\n\nDies kann man wöchentliche oder alle 2 Wochen wiederholen, um den Fort&shy;schritt zu messen. Das motiviert!\n\nMehr Informationen findest du bei <a href='http://www.hepa.ch/internet/hepa/de/home/dokumentation/dokumente.parsys.54443.downloadList.99652.DownloadFile.tmp/fitundzwaegbl2008de.pdf' target='_blank'>hepa</a> oder <a href='http://www.sporttests.ch' target='_blank'>hier.</a>"},
+    "textI18n": {"de": "Eine Möglichkeit eines **Geh-Tests** könnte so aussehen:  \nbei normalem, gutem Fitness-Zustand braucht ein Erwachsener plus/minus eine Viertelstunde, um mit zügigem Walken (nicht Joggen) 2 Kilometer weit zu gehen.\n\nEine andere Möglichkeit besteht darin, auf einer Sportbahn 5 Minuten lang zü&shy;gig zu gehen und zu messen, wie weit man dabei kommt.\n\nDies kann man wöchentliche oder alle 2 Wochen wiederholen, um den Fort&shy;schritt zu messen. Das motiviert!\n\nMehr Informationen findest du bei <a href='http://www.hepa.ch/internet/hepa/de/home/dokumentation/dokumente.parsys.54443.downloadList.99652.DownloadFile.tmp/fitundzwaegbl2008de.pdf#page=52' target='_blank'>hepa</a> oder <a href='http://www.sporttests.ch' target='_blank'>hier.</a>"},
     "descriptionI18n": {"de": "Mache dir deine individuellen Fort&shy;schritte zur Art und Menge an Be&shy;we&shy;gung bewusst, indem du wöchentlich deinen Fortschritt misst und z.B. Geh-Tests machst."},
     "titleI18n": {"de": "Fortschritt messen"},
     "topics": [{"$oid": "53b416fba43aac62a2debda3"}],
-    "__v": 3
+    "__v": 6
   },
   {
     "_id": {"$oid": "54f83787cf36a19323e0c068"},
@@ -14677,7 +14677,7 @@
   {
     "_id": {"$oid": "54f83844cf36a19323e0c06a"},
     "created": {"$date": 1425553476493},
-    "updated": {"$date": 1428510323945},
+    "updated": {"$date": 1428565226235},
     "number": "Act-365",
     "source": "youpers",
     "defaultfrequency": "week",
@@ -14688,11 +14688,11 @@
     "qualityFactor": 5,
     "picture": "https://hc-fileuploads-test.s3.amazonaws.com/5505bbe2addd396d7960e072.jpg",
     "author": {"$oid": "52d4f515fac246174c000006"},
-    "textI18n": {"de": "Nur wenn etwas Spass macht und gut tut, auch emotional, kann Freude für Bewegung geweckt werden.\n\nIst es nicht so, dass man nur die Dinge im Leben mag, die auch Spass ma&shy;chen?\n\nProbiere neue Bewegungsübungen aus und versuche, sie in dein Pro&shy;gramm zu integrieren.\n\nÜbung macht den Meister!\n\nMehr Informationen und Bewegungs&shy;übungen findest du im <a href='http://www.fid-gesundheitswissen.de/bilder/newsletter_files/File/ebooks/bewegung.pdf' target='_blank'>Informations&shy;portal Gesundheitswissen</a> oder in der <a href='https://www.uni-ulm.de/fileadmin/website_uni_ulm/iui.gesfuermit/Bewegungs%C3%BCbungen.pdf' target='_blank'>Sport- und Rehabilitationsmedizin."},
+    "textI18n": {"de": "Nur wenn etwas Spass macht und gut tut, auch emotional, kann Freude für Bewegung geweckt werden.\n\nIst es nicht so, dass man nur die Dinge im Leben mag, die auch Spass ma&shy;chen?\n\nProbiere neue Bewegungsübungen aus und versuche, sie in dein Pro&shy;gramm zu integrieren.\n\nÜbung macht den Meister!\n\nMehr Informationen und Bewegungs&shy;übungen findest du bei <a href='http://www.hepa.ch/internet/hepa/de/home/dokumentation/dokumente.parsys.54443.downloadList.99652.DownloadFile.tmp/fitundzwaegbl2008de.pdf' target='_blank'>hepa</a>, im <a href='http://www.fid-gesundheitswissen.de/bilder/newsletter_files/File/ebooks/bewegung.pdf' target='_blank'>Informations&shy;portal Gesundheitswissen</a> oder bei der <a href='https://www.uni-ulm.de/fileadmin/website_uni_ulm/iui.gesfuermit/Bewegungs%C3%BCbungen.pdf' target='_blank'>Sport- und Re&shy;ha&shy;bi&shy;li&shy;ta&shy;ti&shy;ons&shy;me&shy;di&shy;zin der Uni Ulm."},
     "descriptionI18n": {"de": "Nimm jede Woche eine neue Be&shy;we&shy;gungs&shy;übung in dein Programm hinzu und fördere so Abwechslung und Mo&shy;ti&shy;vation."},
     "titleI18n": {"de": "Neue Bewegungsübung"},
     "topics": [{"$oid": "53b416fba43aac62a2debda3"}],
-    "__v": 4
+    "__v": 7
   },
   {
     "_id": {"$oid": "54f838a4cf36a19323e0c06b"},
@@ -14897,7 +14897,7 @@
   {
     "_id": {"$oid": "550059a58e7a489f23d3bb0e"},
     "created": {"$date": 1426086309190},
-    "updated": {"$date": 1427702878142},
+    "updated": {"$date": 1428661896884},
     "number": "Act-376",
     "source": "youpers",
     "defaultfrequency": "day",
@@ -14909,10 +14909,10 @@
     "picture": "https://hc-fileuploads-test.s3.amazonaws.com/5505bd068e21d16779c38e92.jpg",
     "author": {"$oid": "52d4f515fac246174c000006"},
     "textI18n": {"de": "Generell sollten mehrere kleine anstatt wenige grosse Mahlzeiten am Tag kon&shy;su&shy;miert werden. Werden Mahl&shy;zei&shy;ten in grossen Mengen auf&shy;ge&shy;nom&shy;men, fällt der **Blutzuckerspiegel** da&shy;zwi&shy;schen je&shy;weils zu stark ab und eine konstante Versorgung des Körpers mit Nähr&shy;stof&shy;fen kann nicht ge&shy;währ&shy;leis&shy;tet werden.\n\nDa der Nährstoffbedarf in der ersten Tageshälfte am grössten ist, sollten in dieser Zeit besonders die Koh&shy;len&shy;hy&shy;drat&shy;quellen genutzt werden, während Abends eher Proteinquellen auf dem Plan stehen sollten, da zu viel Kohlen&shy;hydrate zudem Abends schnell als Kör&shy;per&shy;fett eingelagert werden."},
-    "descriptionI18n": {"de": "Beginne gleich heute damit und pla&shy;ne für dich, zur Verbesserung deiner körperlichen Fitness, deine wenigen grossen Mahl&shy;zeiten auf mehrere Kleine aufzuteilen."},
+    "descriptionI18n": {"de": "Beginne gleich heute damit und pla&shy;ne für dich, zur Verbesserung deiner körperlichen Fitness und Ernährung, deine wenigen grossen Mahl&shy;zeiten auf mehrere Kleine aufzuteilen."},
     "titleI18n": {"de": "Verteilte Mahlzeiten"},
     "topics": [{"$oid": "53b416fba43aac62a2debda3"}],
-    "__v": 3
+    "__v": 4
   },
   {
     "_id": {"$oid": "55005a608e7a489f23d3bb0f"},
@@ -15213,5 +15213,85 @@
     "titleI18n": {"de": "Ausruhen"},
     "topics": [{"$oid": "53b416fba43aac62a2debda3"}],
     "__v": 3
+  },
+  {
+    "_id": {"$oid": "55263cb8b2d1b8de4f1ff6e3"},
+    "created": {"$date": 1428569272563},
+    "updated": {"$date": 1428594614218},
+    "number": "Act-392",
+    "source": "youpers",
+    "defaultfrequency": "week",
+    "defaultexecutiontype": "group",
+    "defaultduration": 60,
+    "defaultStartTime": {"$date": 1428591600000},
+    "recWeights": [],
+    "qualityFactor": 5,
+    "picture": "https://hc-fileuploads-test.s3.amazonaws.com/55269faeb2d1b8de4f1ff77d.jpg",
+    "author": {"$oid": "52d4f515fac246174c000006"},
+    "descriptionI18n": {"de": "Suche dir eine Spielpartnerin oder einen Spielpartner und ge&shy;he 1 Mal pro Woche zum Tennis&shy;spie&shy;len und trainiere so deine Ausdauer."},
+    "titleI18n": {"de": "Tennis spielen"},
+    "topics": [{"$oid": "53b416fba43aac62a2debda3"}],
+    "__v": 3,
+    "textI18n": {"de": "Tennis wird von zwei (**Einzel**) oder vier Spielern (**Doppel**) gespielt. Auch kön&shy;nen Frauen und Männer in einem Dop&shy;pel spielen (**Mixed**).\n\nTrainiert werden sowohl Schnelligkeit und Beweglichkeit als auch die Beinarbeit und Ausdauer.\n\nFrüher galt dieser Sport als elitär, hat heute aber als Breitensport eine he&shy;r&shy;aus&shy;ra&shy;gen&shy;de Bedeutung er&shy;langt. Seit 1988 ist Tennis wieder Bestandteil der olympischen Sommerspiele."}
+  },
+  {
+    "_id": {"$oid": "55264337b2d1b8de4f1ff6e4"},
+    "created": {"$date": 1428570935271},
+    "updated": {"$date": 1428594638665},
+    "number": "Act-393",
+    "source": "youpers",
+    "defaultfrequency": "week",
+    "defaultexecutiontype": "group",
+    "defaultduration": 60,
+    "defaultStartTime": {"$date": 1428595200000},
+    "recWeights": [],
+    "qualityFactor": 5,
+    "picture": "https://hc-fileuploads-test.s3.amazonaws.com/55269fc8b2d1b8de4f1ff77e.jpg",
+    "author": {"$oid": "52d4f515fac246174c000006"},
+    "textI18n": {"de": "Squash (**squash (engl.)** = zu&shy;sam&shy;men&shy;drü&shy;cken, zerquetschen) und Bad&shy;min&shy;ton sind ra&shy;san&shy;te Rückschlag-Spiele, die mit zwei Spielern (**Einzel**) oder auch mit vier Spielern (**Doppel**) ge&shy;spielt werden.\n\nBeim Squash werden spezielle Squash&shy;bälle und Squashschläger verwendet, während beim Bad&shy;min&shy;ton mit Feder&shy;ball (**Shut&shy;tle&shy;cock (engl.)**) und Bad&shy;min&shy;ton&shy;schlä&shy;ger gespielt wird.\n\nZiel der Spiele ist es, den (Feder)Ball so zu schlagen, dass der Gegner ihn nicht mehr erreichen kann.\n\nTrainiert werden sowohl Schnelligkeit und Beweglichkeit als auch die Bein&shy;ar&shy;beit und Ausdauer."},
+    "descriptionI18n": {"de": "Steigere deine Motivation, dich zu be&shy;we&shy;gen und trainiere deine Re&shy;ak&shy;ti&shy;ons&shy;ge&shy;schwin&shy;dig&shy;keit, indem du 1 Mal pro Woche Squash oder Badminton spielst."},
+    "titleI18n": {"de": "Squash oder Badminton"},
+    "topics": [{"$oid": "53b416fba43aac62a2debda3"}],
+    "__v": 3
+  },
+  {
+    "_id": {"$oid": "55264649b2d1b8de4f1ff6e5"},
+    "created": {"$date": 1428571721185},
+    "updated": {"$date": 1428594656463},
+    "number": "Act-394",
+    "source": "youpers",
+    "defaultfrequency": "week",
+    "defaultexecutiontype": "group",
+    "defaultduration": 60,
+    "defaultStartTime": {"$date": 1428595200000},
+    "recWeights": [],
+    "qualityFactor": 5,
+    "picture": "https://hc-fileuploads-test.s3.amazonaws.com/55269fdcb2d1b8de4f1ff77f.jpg",
+    "author": {"$oid": "52d4f515fac246174c000006"},
+    "textI18n": {"de": "Volleyball und Basketball sind Mann&shy;schafts&shy;sport&shy;arten mit 6 bzw. 5 Feld&shy;spielern und fixen Regeln.\n\nTrainiert werden sowohl die Be&shy;weg&shy;lich&shy;keit und Reaktionszeit als auch die Beinarbeit und Ausdauer. Spielfluss entsteht durch Positionierung der Spieler und Weiterleiten des Balles.\n\nIm Sommer kann man im Sand auch **Beach-Volleyball** oder **Beach-Basket&shy;ball** spielen."},
+    "descriptionI18n": {"de": "Kräftige deine Rumpf-, Schulter-, Arm- und Beinmuskulatur, indem du mit anderen 1 Mal wöchentlich Vol&shy;ley&shy;ball- oder Basketball spielst oder ein Spiel oder Turnier organisierst."},
+    "titleI18n": {"de": "Volleyball oder Basketball"},
+    "topics": [{"$oid": "53b416fba43aac62a2debda3"}],
+    "__v": 3
+  },
+  {
+    "_id": {"$oid": "55264a5eb2d1b8de4f1ff6e6"},
+    "created": {"$date": 1428572766812},
+    "updated": {"$date": 1428594682022},
+    "number": "Act-395",
+    "source": "youpers",
+    "defaultfrequency": "week",
+    "defaultexecutiontype": "group",
+    "defaultduration": 60,
+    "defaultStartTime": {"$date": 1428595200000},
+    "recWeights": [],
+    "qualityFactor": 5,
+    "picture": "https://hc-fileuploads-test.s3.amazonaws.com/55269ff1b2d1b8de4f1ff780.jpg",
+    "author": {"$oid": "52d4f515fac246174c000006"},
+    "descriptionI18n": {"de": "Trainiere deine Ausdauer und Ko&shy;or&shy;di&shy;na&shy;ti&shy;on, indem du 1 Mal wöchentlich alleine oder in der Gruppe zum In&shy;line&shy;ska&shy;ten gehst."},
+    "titleI18n": {"de": "Inlineskating"},
+    "topics": [{"$oid": "53b416fba43aac62a2debda3"}],
+    "__v": 3,
+    "textI18n": {"de": "Inlineskating ist eine Art der Fort&shy;be&shy;we&shy;gung unter Verwendung des Schlitt&shy;schuh&shy;schritts und sowohl eine Sport&shy;art als auch eine Möglichkeit zur Fort&shy;be&shy;we&shy;gung als Verkehrsteilnehmer.\n\nDabei werden Inlineskates (oder Roll&shy;schuhe) verwendet, bei denen die Rol&shy;len in einer Reihe (engl. in-line) an&shy;ge&shy;ord&shy;net sind, und nicht, wie bei klas&shy;si&shy;schen Rollschuhen, paarweise neben&shy;ei&shy;n&shy;an&shy;der.\n\nDer Sport wird üblicherweise auf glat&shy;ten Oberflächen wie Strassen, as&shy;phal&shy;tier&shy;ten Wegen, Gehwegen oder spe&shy;zi&shy;el&shy;len Plätzen ausgeübt und ist seit Be&shy;ginn der 1990er Jahre eine ver&shy;breitete Trendsportart in der ganzen Welt."}
   }
 ]

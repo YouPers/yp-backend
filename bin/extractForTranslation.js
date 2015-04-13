@@ -21,7 +21,8 @@ program
 
 mongoose
     .model('Idea')
-    .find({topics: mongoose.Types.ObjectId('53b416cfa43aac62a2debda1')})
+    .find({topics: mongoose.Types.ObjectId('53b416fba43aac62a2debda3')})  // topic Fitness
+    .and({topics: {$ne: mongoose.Types.ObjectId('53b416cfa43aac62a2debda1')}})   // not topic Stress
     .select('_id textI18n descriptionI18n titleI18n')
     .exec(function(err, ideas) {
         console.log(JSON.stringify(ideas, null, 2));

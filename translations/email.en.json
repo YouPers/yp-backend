@@ -27,10 +27,10 @@
     "linkText": "SHOW INVITATION"
   },
   "OrganizationAdminInvite": {
-    "subject": "HealthCampaign: Invitation to become Organization Administrator from __inviting.fullname__",
+    "subject": "HealthCampaign: Invitation to become Service Manager from __inviting.fullname__",
     "salutation": "Hello __invited.firstname__",
     "salutationAnonymous": "Hello!",
-    "text": "__inviting.fullname__ has invited you to become organization administrator for __organization.name__.<br/><br/>To accept this invitation please click on this link:<br/>",
+    "text": "__inviting.fullname__ has invited you to become Service Manager for __organization.name__.<br/><br/>To accept this invitation please click on this link:<br/>",
     "linkText": "SHOW INVITATION"
   },
   "passwordReset": {

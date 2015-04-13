@@ -9,7 +9,7 @@
     "campaignLeadsHeader": "Deine Kampagnenleiter:",
     "linkText": "ZUR KAMPAGNE",
     "subject": "__campaign.organization.name__ Kampagne __campaign.title__: Persönliche Einladung",
-    "text": "Liebe Mitarbeiterin, lieber Mitarbeiter<br><br>__campaign.organization.name__ lädt Dich ein, an der betrieblichen Gesundheitskampagne zum Thema __campaign.topic.shortDescription__  teilzunehmen. Wir führen diese gemeinsam mit unserem Partner YOUPERS durch."
+    "text": "Liebe Mitarbeiterin, lieber Mitarbeiter<br><br>__campaign.organization.name__ lädt dich ein, an der betrieblichen Gesundheitskampagne zum Thema __campaign.topic.shortDescription__ teilzunehmen. Diese webbasierte Gesundheitskampagne ist ein Service der YOUPERS AG, dem Schweizer Softwareunternehmen für digitale Gesundheitslösungen."
   },
   "ActivityInvitation": {
     "subject": "HealthCampaign: Einladung für eine Gruppen-Aktivität vom __inviting.fullname__",
@@ -23,14 +23,14 @@
     "welcomeHeader": "Willkommen als Kampagnenleiter",
     "salutation": "Hallo __invited.firstname__",
     "salutationAnonymous": "Hallo!",
-    "text": "__inviting.fullname__ hat Dich eingeladen, Kampagnenleiter der __campaign.title__ HealthCampaign zu werden.",
+    "text": "__inviting.fullname__ hat dich eingeladen, Kampagnenleiter der __campaign.title__ HealthCampaign bei __campaign.organization.name__ zu werden. Diese webbasierte Gesundheitskampagne ist ein Service der YOUPERS AG, dem Schweizer Softwareunternehmen für digitale Gesundheitslösungen.",
     "linkText": "EINLADUNG ANZEIGEN"
   },
   "OrganizationAdminInvite": {
-    "subject": "HealthCampaign: Einladung zum Organisations-Administrator von __inviting.fullname__",
+    "subject": "HealthCampaign: Einladung zum Service-Manager von __inviting.fullname__",
     "salutation": "Hallo __invited.firstname__",
     "salutationAnonymous": "Hallo!",
-    "text": "__inviting.fullname__ hat Dich eingeladen, Organisations-Administrator für __organization.name__ zu werden.<br/><br/>",
+    "text": "__inviting.fullname__ hat dich eingeladen, Service-Manager für __organization.name__ zu werden.<br/><br/>",
     "linkText": "EINLADUNG ANZEIGEN"
   },
   "passwordReset": {

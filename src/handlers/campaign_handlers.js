@@ -240,7 +240,7 @@ function createNewCampaignLeadUsers(campaign, req, done) {
             campaignLead.roles = ['individual', 'campaignlead'];
 
             var user = new User(campaignLead);
-            user.save(function (err, savedUser) {
+            user.save(req, function (err, savedUser) {
                 if (err) {
                     return cb(err);
                 }

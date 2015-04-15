@@ -6,7 +6,7 @@ var config = require('../config/config'),
     linkTokenSeparator = config.linkTokenEncryption.separator,
     emailSender = require('ypbackendlib').emailSender(config, process.cwd() + '/' + config.email.templatesDir);
 
-var defaultLocals = function (i18n) {
+function _defaultLocals (i18n) {
 
     var localMoment = function(date) {
         require('./moment-business').addBusinessMethods(moment);
@@ -24,7 +24,23 @@ var defaultLocals = function (i18n) {
         imgServer: config.webclientUrl,
         logo: config.webclientUrl + '/assets/img/avatar_coach_blue_60.png'
     };
-};
+}
+
+function _formatActivityDateString(activity, i18n) {
+
+    var localMoment = function localMoment(date) {
+        return moment(date).lang(i18n.lng()).tz('Europe/Zurich');
+    };
+    var frequency = activity.frequency;
+    var weekday = localMoment(activity.start).format("dddd") + (frequency === 'week' ? 's' : '');
+    var date = localMoment(activity.start).format("D.M.") +
+    frequency === 'once' ? '' :
+        localMoment(activity.lastEventEnd).format("D.M.YYYY");
+
+    var time = localMoment(activity.start).format('HH:mm') + ' - ' + localMoment(activity.end).format('HH:mm');
+
+    return weekday + '<br/>' + time + '<br/>' + date;
+}
 
 var sendCalInvite = function (toUser, type, iCalString, activity, i18n, reason) {
     // default method is request
@@ -61,25 +77,12 @@ var sendCalInvite = function (toUser, type, iCalString, activity, i18n, reason) 
         link: urlComposer.icalUrl(activity.id, type, toUser.id),
         linkText: i18n.t('email:iCalMail.' + type + '.linkText')
     };
-    _.defaults(locals, defaultLocals(i18n));
+    _.defaults(locals, _defaultLocals(i18n));
     emailSender.sendEmail(fromDefault, toUser.email, subject, 'calendarEventMail', locals, mailExtensions);
 
 };
 
 var sendActivityInvite = function sendActivityInvite(email, invitingUser, activity, invitedUser, invitationId, i18n) {
-
-    var localMoment = function localMoment(date) {
-        return moment(date).lang(i18n.lng()).tz('Europe/Zurich');
-    };
-    var frequency = activity.frequency;
-    var weekday = localMoment(activity.start).format("dddd") + (frequency === 'week' ? 's' : '');
-    var date = localMoment(activity.start).format("D.M.") +
-        frequency === 'once' ? '' :
-        localMoment(activity.lastEventEnd).format("D.M.YYYY");
-
-    var time = localMoment(activity.start).format('HH:mm') + ' - ' + localMoment(activity.end).format('HH:mm');
-
-    var eventDate = weekday + '<br/>' + time + '<br/>' + date;
 
     var subject = i18n.t("email:ActivityInvitation.subject", {inviting: invitingUser.toJSON(), activity: activity.toJSON()});
     var locals = {
@@ -89,10 +92,27 @@ var sendActivityInvite = function sendActivityInvite(email, invitingUser, activi
         linkText: i18n.t('email:ActivityInvitation.linkText'),
         title: activity.idea.title,
         activity: activity,
-        eventDate: eventDate,
+        eventDate: _formatActivityDateString(activity),
         image: urlComposer.ideaImageUrl(activity.idea)
     };
-    _.defaults(locals, defaultLocals(i18n));
+    _.defaults(locals, _defaultLocals(i18n));
+    emailSender.sendEmail(fromDefault, email, subject, 'activityInviteMail', locals);
+};
+
+var sendActivityUpdate = function sendActivityUpdate(email, activity, user, i18n) {
+
+    var subject = i18n.t("email:ActivityUpdate.subject");
+    var locals = {
+        salutation: i18n.t('email:ActivityUpdate.salutation' + (user ? '': 'Anonymous'), {recipient: user ? user.toJSON() : {}}),
+        text: i18n.t('email:ActivityUpdate.text'),
+        link: urlComposer.activityUrl(activity.campaign, activity.idea.id, activity.id),
+        linkText: i18n.t('email:ActivityUpdate.linkText'),
+        title: activity.idea.title,
+        activity: activity,
+        eventDate: _formatActivityDateString(activity, i18n),
+        image: urlComposer.ideaImageUrl(activity.idea)
+    };
+    _.defaults(locals, _defaultLocals(i18n));
     emailSender.sendEmail(fromDefault, email, subject, 'activityInviteMail', locals);
 };
 
@@ -122,7 +142,7 @@ var sendCampaignLeadInvite = function sendCampaignLeadInvite(email, invitingUser
         duration: duration,
         image: urlComposer.campaignImageUrl(campaign.topic.picture)
     };
-    _.defaults(locals, defaultLocals(i18n));
+    _.defaults(locals, _defaultLocals(i18n));
     emailSender.sendEmail(fromDefault, email, subject, 'campaignLeadInviteMail', locals);
 };
 
@@ -144,7 +164,7 @@ var sendCampaignParticipantInvite = function sendCampaignParticipantInvite(email
         campaignLeadsHeader: i18n.t('email:CampaignParticipantInvite.campaignLeadsHeader')
 
     };
-    _.defaults(locals, defaultLocals(i18n));
+    _.defaults(locals, _defaultLocals(i18n));
     emailSender.sendEmail(fromDefault, email, subject, 'campaignParticipantInviteMail', locals);
 };
 
@@ -158,7 +178,7 @@ var sendOrganizationAdminInvite = function sendOrganizationAdminInvite(email, in
         salutation: i18n.t('email:OrganizationAdminInvite.salutation' + invitedUser ? '': 'Anonymous', {invited: invitedUser ? invitedUser.toJSON() : {firstname: ''}}),
         text: i18n.t('email:OrganizationAdminInvite.text', {inviting: invitingUser.toJSON(), organization: organization.toJSON()})
     };
-    _.defaults(locals, defaultLocals(i18n));
+    _.defaults(locals, _defaultLocals(i18n));
     emailSender.sendEmail(fromDefault, email, subject, 'genericYouPersMail', locals);
 };
 
@@ -168,7 +188,7 @@ var getDailyEventSummaryLocals = function getDailyEventSummaryLocals(locals, i18
         salutation: i18n.t('email:dailySummary.salutation', locals)
 
 
-    }, defaultLocals(i18n));
+    }, _defaultLocals(i18n));
     _.extend(mailLocals, locals);
 
     return mailLocals;
@@ -205,6 +225,7 @@ module.exports = {
     decryptLinkToken: emailSender.decryptLinkToken,
     sendCalInvite: sendCalInvite,
     sendActivityInvite: sendActivityInvite,
+    sendActivityUpdate: sendActivityUpdate,
     sendCampaignLeadInvite: sendCampaignLeadInvite,
     sendCampaignParticipantInvite: sendCampaignParticipantInvite,
     sendOrganizationAdminInvite: sendOrganizationAdminInvite,

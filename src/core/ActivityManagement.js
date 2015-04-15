@@ -397,8 +397,8 @@ actMgr.putChangedActivity = function putActivity(idToUpdate, sentActivity, user,
 
     Activity
         .findById(idToUpdate)
-        .populate('owner joiningUsers', '+profile +email')
         .populate('idea')
+        .populate('owner joiningUsers', '+profile +email')
         .exec(function (err, loadedActivity) {
             if (err) {
                 return error.handleError(err, cb);

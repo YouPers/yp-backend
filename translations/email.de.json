@@ -19,10 +19,10 @@
     "linkText": "EINLADUNG ANZEIGEN"
   },
   "ActivityUpdate": {
-    "subject": "HealthCampaign: Aktivitätstermin verschoben",
+    "subject": "HealthCampaign: Terminanpassung",
     "salutation": "Hallo __recipient.firstname__",
     "salutationAnonymous": "Hallo!",
-    "text": "Die Termine der folgenden Äktivität wurden geändert",
+    "text": "Der Termin der folgenden Äktivität wurde angepasst",
     "linkText": "AKTIVITÄT ANZEIGEN"
   },
   "CampaignLeadInvite": {

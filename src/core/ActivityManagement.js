@@ -416,6 +416,7 @@ actMgr.putChangedActivity = function putActivity(idToUpdate, sentActivity, user,
             }
 
             var timeOrFrequencyChanged = _timeOrFrequencyChanged(loadedActivity, sentActivity);
+            var locationChanged = loadedActivity.location !== sentActivity.location;
 
             // we do not allow to update the owner of and the joiningUsers array directly with a put.
             delete sentActivity.owner;
@@ -472,10 +473,12 @@ actMgr.putChangedActivity = function putActivity(idToUpdate, sentActivity, user,
                     function (done) {
                         async.series([
                             _deleteFutureEventsForAllUsers,
-                            _createFutureEventsForAllUsers,
-                            _sendActivityUpdates
+                            _createFutureEventsForAllUsers
                         ], done);
                     });
+            }
+            if(timeOrFrequencyChanged || locationChanged) {
+                parallelTasks.push(_sendActivityUpdates);
             }
 
             function finalCb(err) {
@@ -549,6 +552,12 @@ actMgr.deleteActivity = function deleteActivity(idToDelete, requestingUser, reas
             function _sendCalendarCancelMessages(done) {
                 _sendIcalMessages(activity, joiner, reason, 'cancel', i18n, done);
             }
+            function _sendActivityDeletedMessages(done) {
+                async.forEach(activity.joiningUsers, function (user, cb) {
+                    email.sendActivityDeleted(user.email, activity, user, i18n);
+                    return cb();
+                }, done);
+            }
 
             function _deleteActivity(done) {
 
@@ -580,6 +589,7 @@ actMgr.deleteActivity = function deleteActivity(idToDelete, requestingUser, reas
 
             return async.parallel([
                     _sendCalendarCancelMessages,
+                    _sendActivityDeletedMessages,
                     _deleteEvents,
                     _deleteActivity
                 ],

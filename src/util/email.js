@@ -92,7 +92,7 @@ var sendActivityInvite = function sendActivityInvite(email, invitingUser, activi
         linkText: i18n.t('email:ActivityInvitation.linkText'),
         title: activity.idea.title,
         activity: activity,
-        eventDate: _formatActivityDateString(activity),
+        eventDate: _formatActivityDateString(activity, i18n),
         image: urlComposer.ideaImageUrl(activity.idea)
     };
     _.defaults(locals, _defaultLocals(i18n));
@@ -107,6 +107,23 @@ var sendActivityUpdate = function sendActivityUpdate(email, activity, user, i18n
         text: i18n.t('email:ActivityUpdate.text'),
         link: urlComposer.activityUrl(activity.campaign, activity.idea.id, activity.id),
         linkText: i18n.t('email:ActivityUpdate.linkText'),
+        title: activity.idea.title,
+        activity: activity,
+        eventDate: _formatActivityDateString(activity, i18n),
+        image: urlComposer.ideaImageUrl(activity.idea)
+    };
+    _.defaults(locals, _defaultLocals(i18n));
+    emailSender.sendEmail(fromDefault, email, subject, 'activityInviteMail', locals);
+};
+
+var sendActivityDeleted = function sendActivityDeleted(email, activity, user, i18n) {
+
+    var subject = i18n.t("email:ActivityDeleted.subject");
+    var locals = {
+        salutation: i18n.t('email:ActivityDeleted.salutation' + (user ? '': 'Anonymous'), {recipient: user ? user.toJSON() : {}}),
+        text: i18n.t('email:ActivityDeleted.text'),
+        link: urlComposer.homeUrl(),
+        linkText: i18n.t('email:ActivityDeleted.linkText'),
         title: activity.idea.title,
         activity: activity,
         eventDate: _formatActivityDateString(activity, i18n),
@@ -226,6 +243,7 @@ module.exports = {
     sendCalInvite: sendCalInvite,
     sendActivityInvite: sendActivityInvite,
     sendActivityUpdate: sendActivityUpdate,
+    sendActivityDeleted: sendActivityDeleted,
     sendCampaignLeadInvite: sendCampaignLeadInvite,
     sendCampaignParticipantInvite: sendCampaignParticipantInvite,
     sendOrganizationAdminInvite: sendOrganizationAdminInvite,

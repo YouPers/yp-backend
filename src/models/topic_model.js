@@ -28,4 +28,8 @@ var TopicSchema = common.newSchema({
     templateCampaignOffers: [ TemplateCampaignOfferSchema ]
 });
 
+TopicSchema.methods.toJsonConfig = {
+    hide: ['templateCampaignOffers']
+};
+
 module.exports = mongoose.model('Topic', TopicSchema);

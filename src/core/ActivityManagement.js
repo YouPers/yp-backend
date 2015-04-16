@@ -415,9 +415,13 @@ actMgr.putChangedActivity = function putActivity(idToUpdate, sentActivity, user,
                 }));
             }
 
+            var timeOrFrequencyChanged = _timeOrFrequencyChanged(loadedActivity, sentActivity);
+            var locationChanged = loadedActivity.location !== sentActivity.location;
+
             // we do not allow to update the owner of and the joiningUsers array directly with a put.
             delete sentActivity.owner;
             delete sentActivity.joiningUsers;
+            delete sentActivity.idea;
 
             loadedActivity.set(sentActivity);
 
@@ -431,9 +435,9 @@ actMgr.putChangedActivity = function putActivity(idToUpdate, sentActivity, user,
                     return false;
                 }
                 // otherwise compare the relevant fields
-                return ((sentAct.start !== loadedAct.start) ||
-                (sentAct.end !== loadedAct.end) ||
-                (sentAct.frequency !== loadedAct.frequency) || !_.isEqual(sentAct.recurrence, loadedAct.recurrence));
+                return (!moment(sentAct.start).isSame(loadedAct.start) ||
+                !moment(sentAct.end).isSame(loadedAct.end) ||
+                (sentAct.frequency !== loadedAct.frequency) || !_.isEqual(sentAct.recurrence, loadedAct.get('recurrence')));
             }
 
 
@@ -455,9 +459,16 @@ actMgr.putChangedActivity = function putActivity(idToUpdate, sentActivity, user,
                 }, done);
             }
 
+            function _sendActivityUpdates(done) {
+                async.forEach(loadedActivity.joiningUsers, function (user, cb) {
+                    email.sendActivityUpdate(user.email, loadedActivity, user, i18n);
+                    return cb();
+                }, done);
+            }
+
             var parallelTasks = [_saveActivity, _sendCalendarUpdates];
 
-            if (_timeOrFrequencyChanged(loadedActivity, sentActivity)) {
+            if (timeOrFrequencyChanged) {
                 parallelTasks.push(
                     function (done) {
                         async.series([
@@ -465,6 +476,9 @@ actMgr.putChangedActivity = function putActivity(idToUpdate, sentActivity, user,
                             _createFutureEventsForAllUsers
                         ], done);
                     });
+            }
+            if(timeOrFrequencyChanged || locationChanged) {
+                parallelTasks.push(_sendActivityUpdates);
             }
 
             function finalCb(err) {
@@ -538,6 +552,12 @@ actMgr.deleteActivity = function deleteActivity(idToDelete, requestingUser, reas
             function _sendCalendarCancelMessages(done) {
                 _sendIcalMessages(activity, joiner, reason, 'cancel', i18n, done);
             }
+            function _sendActivityDeletedMessages(done) {
+                async.forEach(activity.joiningUsers, function (user, cb) {
+                    email.sendActivityDeleted(user.email, activity, user, i18n);
+                    return cb();
+                }, done);
+            }
 
             function _deleteActivity(done) {
 
@@ -569,6 +589,7 @@ actMgr.deleteActivity = function deleteActivity(idToDelete, requestingUser, reas
 
             return async.parallel([
                     _sendCalendarCancelMessages,
+                    _sendActivityDeletedMessages,
                     _deleteEvents,
                     _deleteActivity
                 ],

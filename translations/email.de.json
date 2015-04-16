@@ -18,6 +18,20 @@
     "text": "__inviting.fullname__ hat dich zu einer Aktivität eingeladen.",
     "linkText": "EINLADUNG ANZEIGEN"
   },
+  "ActivityUpdate": {
+    "subject": "HealthCampaign: Terminanpassung",
+    "salutation": "Hallo __recipient.firstname__",
+    "salutationAnonymous": "Hallo!",
+    "text": "Der Termin der folgenden Aktivität wurde angepasst",
+    "linkText": "AKTIVITÄT ANZEIGEN"
+  },
+  "ActivityDeleted": {
+    "subject": "HealthCampaign: Aktivität abgesagt",
+    "salutation": "Hallo __recipient.firstname__",
+    "salutationAnonymous": "Hallo!",
+    "text": "Die folgende Aktivität wurde vom Organisator abgesagt",
+    "linkText": "ÜBERSICHT ANZEIGEN"
+  },
   "CampaignLeadInvite": {
     "subject": "HealthCampaign: Einladung von __inviting.fullname__ zum Kampagnenleiter",
     "welcomeHeader": "Willkommen als Kampagnenleiter",

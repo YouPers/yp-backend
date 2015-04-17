@@ -49,8 +49,15 @@ beforeEach(function (done) {
                     campaign: mongoose.Types.ObjectId('527916a82079aa8704000006'),
                     password: "yp"
                 }).save(function (err, savedUser2) {
-                        user2 = savedUser2;
-                        return done(err);
+
+                        UserModel.findById(savedUser2._id).select('+profile +campaign')
+                            .populate('profile campaign').exec(function (err, loadedUser2) {
+                                if (err) {
+                                    return done(err);
+                                }
+                                user2 = loadedUser2;
+                                return done(err);
+                            });
                     });
             });
         });
@@ -229,9 +236,9 @@ describe('scoring data loading module', function () {
         var ideaId = '54ca2fc88c0832450f0e1aaf';
         mongoose.model('Idea').findById(ideaId).exec(function (err, idea) {
             var myEvent = EventMgr.defaultEvent(idea, user2, user.campaign);
-                myEvent.start = moment().subtract(1, 'hour').toDate();
-                myEvent.end = moment().add(1,'hour').toDate();
-                myEvent.save(function (er, savedEvent) {
+            myEvent.start = moment().subtract(1, 'hour').toDate();
+            myEvent.end = moment().add(1, 'hour').toDate();
+            myEvent.save(function (er, savedEvent) {
                 if (err) {
                     return done(err);
                 }
@@ -254,7 +261,7 @@ describe('scoring data loading module', function () {
         mongoose.model('Idea').findById(ideaId).exec(function (err, idea) {
             var myEvent = EventMgr.defaultEvent(idea, user2, user.campaign);
             myEvent.start = moment().subtract(2, 'hour').toDate();
-            myEvent.end = moment().subtract(1,'hour').toDate();
+            myEvent.end = moment().subtract(1, 'hour').toDate();
             myEvent.save(function (er, savedEvent) {
                 if (err) {
                     return done(err);

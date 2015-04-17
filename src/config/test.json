@@ -1,7 +1,7 @@
 {
     "log": {
         "name": "Main",
-        "stdout": "info"
+        "stdout": "error"
     },
     "email": {
       "enabled": "disabled"

@@ -12,7 +12,7 @@ frisby.globalSetup({ // globalSetup is for ALL requests
 });
 
 // set the startDate in the future and ensure that it is a Wednesday
-var startDate = moment().add(5, 'd').day(4).toDate();
+var startDate = moment().add(12, 'd').day(4).toDate();
 var endDate = moment(startDate).add(1, 'h').toDate();
 
 

@@ -52,7 +52,7 @@ beforeEach(function (done) {
 
                         UserModel.findById(savedUser2._id).select('+profile +campaign')
                             .populate('profile campaign').exec(function (err, loadedUser2) {
-                                if (err) {
+                                if (err || !loadedUser.profile) {
                                     return done(err);
                                 }
                                 user2 = loadedUser2;
@@ -224,7 +224,11 @@ describe('scoring data loading module', function () {
                     }
                     Inspiration.loadScoringData(user, function (err, result) {
                         expect(result.userData.invitationCountByIdea[ideaId]).toEqual(1);
-                        return _deleteObjs([savedEvent, inv], done);
+                        // need to wait with deletion for async invitaiton sending in the server to happen,
+                        // will crash otherwise if users are deleted too early
+                        setTimeout(function() {
+                            return _deleteObjs([savedEvent, inv], done);
+                        }, 200);
                     });
                 });
             });
@@ -248,7 +252,10 @@ describe('scoring data loading module', function () {
                     }
                     Inspiration.loadScoringData(user, function (err, result) {
                         expect(result.userData.invitationCountByIdea[ideaId]).toBeUndefined();
-                        return _deleteObjs([savedEvent, inv], done);
+                        setTimeout(function() {
+                            return _deleteObjs([savedEvent, inv], done);
+                        }, 200);
+
                     });
                 });
             });
@@ -272,7 +279,10 @@ describe('scoring data loading module', function () {
                     }
                     Inspiration.loadScoringData(user, function (err, result) {
                         expect(result.userData.invitationCountByIdea[ideaId]).toBeUndefined();
-                        return _deleteObjs([savedEvent, inv], done);
+                        setTimeout(function() {
+                            return _deleteObjs([savedEvent, inv], done);
+                        }, 200);
+
                     });
                 });
             });
@@ -414,7 +424,9 @@ describe('inspirations recommender module', function () {
                                 insp.idea.id === ideaId;
                         })).toBeDefined();
 
-                        return _deleteObjs(insps, done);
+                        setTimeout(function() {
+                            return _deleteObjs(insps, done);
+                        }, 200);
                     });
                 });
             });
@@ -453,7 +465,11 @@ describe('inspirations recommender module', function () {
                                         insp.idea.id === ideaId;
                                 });
                                 expect(myInv2).toBeUndefined();
-                                return _deleteObjs(insps, done);
+                                // need to wait with deletion for async invitaiton sending in the server to happen,
+                                // will crash otherwise if users are deleted too early
+                                setTimeout(function() {
+                                    return _deleteObjs(insps, done);
+                                }, 200);
 
                             });
                         });
@@ -494,7 +510,11 @@ describe('inspirations recommender module', function () {
                                         insp.idea.toString() === ideaId;
                                 });
                                 expect(myInv2).toBeUndefined();
-                                return _deleteObjs(insps, done);
+                                // need to wait with deletion for async invitaiton sending in the server to happen,
+                                // will crash otherwise if users are deleted too early
+                                setTimeout(function() {
+                                    return _deleteObjs(insps, done);
+                                }, 200);
 
                             });
                         });

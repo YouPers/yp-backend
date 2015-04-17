@@ -18,6 +18,20 @@
     "text": "__inviting.fullname__ has invited you to participate in a group activity",
     "linkText": "SHOW INVITATION"
   },
+  "ActivityUpdate": {
+    "subject": null,
+    "salutation": null,
+    "salutationAnonymous": null,
+    "text": null,
+    "linkText": null
+  },
+  "ActivityDeleted": {
+    "subject": null,
+    "salutation": null,
+    "salutationAnonymous": null,
+    "text": null,
+    "linkText": null
+  },
   "CampaignLeadInvite": {
     "subject": "HealthCampaign: Invitation from __inviting.fullname__ to become campaign leader",
     "welcomeHeader": "Welcome as campaign leader",

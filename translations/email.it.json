@@ -18,6 +18,20 @@
     "text": null,
     "linkText": null
   },
+  "ActivityUpdate": {
+    "subject": null,
+    "salutation": null,
+    "salutationAnonymous": null,
+    "text": null,
+    "linkText": null
+  },
+  "ActivityDeleted": {
+    "subject": null,
+    "salutation": null,
+    "salutationAnonymous": null,
+    "text": null,
+    "linkText": null
+  },
   "CampaignLeadInvite": {
     "subject": null,
     "welcomeHeader": null,

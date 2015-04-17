@@ -45,7 +45,6 @@ consts.newUserInNewCampaignApi(
             .post(URL + '/validate', masterPlan)
             .auth(user.username, 'yp')
             .expectStatus(200)
-            .inspectJSON()
             .afterJSON(function (results) {
                 expect(results.length).toEqual(6);
                 expect(_.filter(results, 'conflictingEvent').length).toEqual(0);

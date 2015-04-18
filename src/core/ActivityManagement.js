@@ -553,10 +553,12 @@ actMgr.deleteActivity = function deleteActivity(idToDelete, requestingUser, reas
                 _sendIcalMessages(activity, joiner, reason, 'cancel', i18n, done);
             }
             function _sendActivityDeletedMessages(done) {
-                async.forEach(activity.joiningUsers, function (user, cb) {
-                    email.sendActivityDeleted(user.email, activity, user, i18n);
-                    return cb();
-                }, done);
+                if(owner) {
+                    async.forEach(activity.joiningUsers, function (user, cb) {
+                        email.sendActivityDeleted(user.email, activity, user, i18n);
+                        return cb();
+                    }, done);
+                }
             }
 
             function _deleteActivity(done) {

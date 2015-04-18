@@ -558,6 +558,8 @@ actMgr.deleteActivity = function deleteActivity(idToDelete, requestingUser, reas
                         email.sendActivityDeleted(user.email, activity, user, i18n);
                         return cb();
                     }, done);
+                } else {
+                    done();
                 }
             }
 

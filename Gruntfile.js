@@ -33,15 +33,10 @@ module.exports = function (grunt) {
             }
         },
         jasmine_node: {
-            specNameMatcher: "spec" // load only specs containing specNameMatcher
-        },
-        concurrent: {
-            dev: {
-                tasks: ['nodemon', 'jasmine_node'],
-                options: {
-                    logConcurrentOutput: true
-                }
-            }
+            options: {
+                forceExit: true
+            },
+            all: ['spec/j']
         },
         nodemon: {
             dev: {

@@ -22,14 +22,14 @@
     "subject": "HealthCampaign: Terminanpassung",
     "salutation": "Hallo __recipient.firstname__",
     "salutationAnonymous": "Hallo!",
-    "text": "Der Termin der folgenden Aktivität wurde angepasst",
+    "text": "Der Termin der folgenden Aktivität wurde durch <strong>__owner.fullname__</strong> angepasst",
     "linkText": "AKTIVITÄT ANZEIGEN"
   },
   "ActivityDeleted": {
     "subject": "HealthCampaign: Aktivität abgesagt",
     "salutation": "Hallo __recipient.firstname__",
     "salutationAnonymous": "Hallo!",
-    "text": "Die folgende Aktivität wurde vom Organisator abgesagt",
+    "text": "Die folgende Aktivität wurde von <strong>__owner.fullname__</strong> abgesagt",
     "linkText": "ÜBERSICHT ANZEIGEN"
   },
   "CampaignLeadInvite": {

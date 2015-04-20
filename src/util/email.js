@@ -104,7 +104,7 @@ var sendActivityUpdate = function sendActivityUpdate(email, activity, user, i18n
     var subject = i18n.t("email:ActivityUpdate.subject");
     var locals = {
         salutation: i18n.t('email:ActivityUpdate.salutation' + (user ? '': 'Anonymous'), {recipient: user ? user.toJSON() : {}}),
-        text: i18n.t('email:ActivityUpdate.text'),
+        text: i18n.t('email:ActivityUpdate.text', { owner: activity.owner.toJSON() }),
         link: urlComposer.activityUrl(activity.campaign, activity.idea.id, activity.id),
         linkText: i18n.t('email:ActivityUpdate.linkText'),
         title: activity.idea.title,
@@ -121,7 +121,7 @@ var sendActivityDeleted = function sendActivityDeleted(email, activity, user, i1
     var subject = i18n.t("email:ActivityDeleted.subject");
     var locals = {
         salutation: i18n.t('email:ActivityDeleted.salutation' + (user ? '': 'Anonymous'), {recipient: user ? user.toJSON() : {}}),
-        text: i18n.t('email:ActivityDeleted.text'),
+        text: i18n.t('email:ActivityDeleted.text', { owner: activity.owner.toJSON() }),
         link: urlComposer.homeUrl(),
         linkText: i18n.t('email:ActivityDeleted.linkText'),
         title: activity.idea.title,

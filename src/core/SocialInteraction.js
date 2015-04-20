@@ -415,6 +415,13 @@ SocialInteraction.dismissSocialInteractionById = function dismissSocialInteracti
             }
         });
 
+        // we are using model.findOneAndUpdate here, which is executed directly in mongodb, so mongoose
+        // plugins are skipped: relevant for this model are the created and updated timestamps
+        // so we need to set those values manually.
+        // we are assuming incorrectly, that this is always a new document and overwrite the 'created' ts
+        // this is not correct, but close enough for all known use cases and saves a query before the write.
+        document.created =  document.updated = new Date();
+
         // Model.update does not return the updated SID -> findOneAndUpdate
         SocialInteractionDismissedModel.findOneAndUpdate({
             user: userId,

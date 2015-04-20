@@ -44,6 +44,7 @@
         },
         "status": "active",
         "title": "Vitaparcours",
+        "location": "im Wald",
         "updated": {
             "$date": 1424963568606
         }

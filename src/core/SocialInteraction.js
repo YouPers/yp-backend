@@ -403,7 +403,6 @@ SocialInteraction.dismissSocialInteractionById = function dismissSocialInteracti
         var userId = (user._id ? user._id : user);
 
         var document = _.extend(documentTemplate || {}, {
-            expiresAt: socialInteraction.publishTo,
             user: userId,
             socialInteraction: socialInteraction.id
         });

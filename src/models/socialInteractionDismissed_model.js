@@ -14,12 +14,7 @@ var mongoose = require('ypbackendlib').mongoose,
 var SocialInteractionDismissedSchema = common.newSchema({
     user: {type: ObjectId, ref: 'User', required: true},
     socialInteraction: {type: ObjectId, ref: 'SocialInteraction', required: true},
-    reason: {type: String, enum: enums.dismissalReason },
-
-    // this (the expires property) creates a mongo TTL-Index, that automatically drops a document
-    // whenever the expiresAt is smaller then NOW
-    // see mongo TTL Indexes for more information
-    expiresAt: { type: Date, expires: 0 }
+    reason: {type: String, enum: enums.dismissalReason }
 
 });
 

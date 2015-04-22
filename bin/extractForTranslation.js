@@ -20,21 +20,27 @@ program
     .parse(process.argv);
 
 mongoose
-    .model('Idea')
-    .find({topics: mongoose.Types.ObjectId('53b416fba43aac62a2debda3')})  // topic Fitness
-    .and({topics: {$ne: mongoose.Types.ObjectId('53b416cfa43aac62a2debda1')}})   // not topic Stress
-    .select('_id textI18n descriptionI18n titleI18n')
+    .model('AssessmentQuestion')
+    .find()  // topic Fitness
+    //.find({topics: mongoose.Types.ObjectId('53b416cfa43aac62a2debda1')})  // topic Fitness
+    // .and({topics: {$ne: mongoose.Types.ObjectId('53b416cfa43aac62a2debda1')}})   // not topic Stress
+    //.select('_id exptextI18n maxtextI18n titleI18n')
+    .select('_id exptextI18n maxtextI18n midtextI18n midtextexampleI18n mintextI18n mintextexampleI18n titleI18n maxtextexampleI18n')
     .exec(function(err, ideas) {
+        if (err) {
+            console.log(JSON.stringify(err));
+            return;
+        }
         console.log(JSON.stringify(ideas, null, 2));
         console.error('wrote objects:' + ideas.length);
-        var wordsTotal = _.reduce(ideas, function(sum, idea) {return sum + idea.textI18n.de.split(' ').length + idea.titleI18n.de.split(' ').length + idea.descriptionI18n.de.split(' ').length;}, 0);
-        var wordsAvgTitel = _.reduce(ideas, function(sum, idea) {return sum + idea.titleI18n.de.split(' ').length;}, 0) / ideas.length;
-        var wordsAvgDescription = _.reduce(ideas, function(sum, idea) {return sum + idea.descriptionI18n.de.split(' ').length;}, 0) / ideas.length;
-        var wordsAvgText = _.reduce(ideas, function(sum, idea) {return sum + idea.textI18n.de.split(' ').length;}, 0) / ideas.length;
-        console.error('words to translate: ' + wordsTotal);
-        console.error('words in titel Avg: ' + wordsAvgTitel);
-        console.error('words in Description Avg: ' + wordsAvgDescription);
-        console.error('words in Text Avg: ' + wordsAvgText);
+        //var wordsTotal = _.reduce(ideas, function(sum, idea) {return sum + idea.text.split(' ').length + idea.title.split(' ').length + idea.description.split(' ').length;}, 0);
+        //var wordsAvgTitel = _.reduce(ideas, function(sum, idea) {return sum + idea.title.split(' ').length;}, 0) / ideas.length;
+        //var wordsAvgDescription = _.reduce(ideas, function(sum, idea) {return sum + idea.description.split(' ').length;}, 0) / ideas.length;
+        //var wordsAvgText = _.reduce(ideas, function(sum, idea) {return sum + idea.text.split(' ').length;}, 0) / ideas.length;
+        //console.error('words to translate: ' + wordsTotal);
+        //console.error('words in titel Avg: ' + wordsAvgTitel);
+        //console.error('words in Description Avg: ' + wordsAvgDescription);
+        //console.error('words in Text Avg: ' + wordsAvgText);
         mongoose.disconnect();
     });
 

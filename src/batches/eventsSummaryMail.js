@@ -303,7 +303,7 @@ var feeder = function (callback) {
     var log = this.log;
     var now = moment();
 
-    log.debug("Finding all users (excl. roles [campaignlead, productadmin], with dailyUserMail=true, and a currently active campaign today: " + now);
+    log.debug("Finding all users (excl. roles [productadmin], with dailyUserMail=true, and a currently active campaign today: " + now);
 
     mongoose.model('Campaign').find({
         start: { $lt: now.toDate() },
@@ -314,7 +314,7 @@ var feeder = function (callback) {
         }
         mongoose.model('User').find({
             campaign: { $in: _.map(campaigns, '_id') },
-            roles: { $nin: ['campaignlead', 'productadmin'] }
+            roles: { $nin: ['productadmin'] }
         }).select('+roles').exec(callback);
     });
 

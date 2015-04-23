@@ -1,6 +1,7 @@
 var frisby = require('frisby');
 var port = process.env.PORT || 8000;
 var URL = 'http://localhost:'+ port;
+var consts = require('./testconsts');
 
 
 frisby.globalSetup({ // globalSetup is for ALL requests
@@ -54,29 +55,33 @@ frisby.create('Idea: post a new idea as a campaign lead of another campaign')
 
     .toss();
 
-frisby.create('Idea: post a new idea as a campaign lead with a valid campaign id')
-    .post(URL + '/ideas', {
-        "title": "Test Campaign Idea",
-        "text": "New Test Campaign Idea Text",
-        "campaign": "527916a82079aa8704000006",
-        "number": "UnitTest"
-    })
-    .auth('test_campaignlead', 'yp')
-    .expectStatus(201)
-    .afterJSON(function (newIdea) {
+consts.newUserInNewCampaignApi(function(err, user, campaign, cleanupFn) {
+    frisby.create('Idea: post a new idea as a campaign lead with a valid campaign id')
+        .post(URL + '/ideas', {
+            "title": "Test Campaign Idea",
+            "text": "New Test Campaign Idea Text",
+            "campaign": campaign.id,
+            "number": "UnitTest"
+        })
+        .auth(user.username, 'yp')
+        .expectStatus(201)
+        .afterJSON(function (newIdea) {
 
-        expect(newIdea.number).toEqual("UnitTest");
-        expect(newIdea.source).toEqual("campaign");
+            expect(newIdea.number).toEqual("UnitTest");
+            expect(newIdea.source).toEqual("campaign");
+            cleanupFn();
 
-        frisby.create('Idea: delete the created campaign lead idea again')
-            .delete(URL + '/ideas/' + newIdea.id)
-            .auth('test_sysadm', 'yp')
-            .expectStatus(200)
+            frisby.create('Idea: delete the created campaign lead idea again')
+                .delete(URL + '/ideas/' + newIdea.id)
+                .auth('test_sysadm', 'yp')
+                .expectStatus(200)
 
-            .toss();
+                .toss();
 
-    })
-    .toss();
+        })
+        .toss();
+
+});
 
 frisby.create('Idea: GET all activites')
     .get(URL + '/ideas')

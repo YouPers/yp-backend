@@ -17,368 +17,368 @@
         "templateCampaignOffers": [
             {
                 "created": {"$date": 1428397190943},
-                "updated": {"$date": 1428508808386},
+                "updated": {"$date": 1429190246599},
                 "week": 0,
                 "weekday": "MO",
                 "type": "Recommendation",
                 "idea": {"$oid": "5278c6adcdeab69a25000041"},
-                "_id": {"$oid": "552550882c5d580c2a1bf876"}
+                "_id": {"$oid": "552fb666b13a0aa144bce3d7"}
             },
             {
                 "created": {"$date": 1428397190944},
-                "updated": {"$date": 1428508808386},
+                "updated": {"$date": 1429190246599},
                 "week": 4,
                 "weekday": "MO",
                 "type": "Recommendation",
                 "idea": {"$oid": "5278c6adcdeab69a250000a0"},
-                "_id": {"$oid": "552550882c5d580c2a1bf875"}
+                "_id": {"$oid": "552fb666b13a0aa144bce3d6"}
             },
             {
                 "created": {"$date": 1428397190944},
-                "updated": {"$date": 1428508808386},
-                "week": 0,
+                "updated": {"$date": 1429190246600},
+                "week": 1,
                 "weekday": "WE",
                 "type": "Invitation",
                 "idea": {"$oid": "5278c6adcdeab69a2500001c"},
-                "_id": {"$oid": "552550882c5d580c2a1bf874"}
+                "_id": {"$oid": "552fb666b13a0aa144bce3d5"}
             },
             {
                 "created": {"$date": 1428397190944},
-                "updated": {"$date": 1428508808386},
+                "updated": {"$date": 1429190246600},
                 "week": 0,
                 "weekday": "TH",
                 "type": "Recommendation",
                 "idea": {"$oid": "5278c6adcdeab69a25000047"},
-                "_id": {"$oid": "552550882c5d580c2a1bf873"}
+                "_id": {"$oid": "552fb666b13a0aa144bce3d4"}
             },
             {
                 "created": {"$date": 1428397190944},
-                "updated": {"$date": 1428508808386},
+                "updated": {"$date": 1429190246600},
                 "week": 0,
                 "weekday": "TH",
                 "type": "Recommendation",
                 "idea": {"$oid": "5332a3290f9b32255d24897d"},
-                "_id": {"$oid": "552550882c5d580c2a1bf872"}
+                "_id": {"$oid": "552fb666b13a0aa144bce3d3"}
             },
             {
                 "created": {"$date": 1428397190944},
-                "updated": {"$date": 1428508808387},
+                "updated": {"$date": 1429190246600},
                 "week": 0,
                 "weekday": "FR",
                 "type": "Recommendation",
                 "idea": {"$oid": "5278c6aecdeab69a250000bc"},
-                "_id": {"$oid": "552550882c5d580c2a1bf871"}
+                "_id": {"$oid": "552fb666b13a0aa144bce3d2"}
             },
             {
                 "created": {"$date": 1428397190944},
-                "updated": {"$date": 1428508808387},
+                "updated": {"$date": 1429190246600},
                 "week": 0,
                 "weekday": "FR",
                 "type": "Recommendation",
                 "idea": {"$oid": "5278c6adcdeab69a2500008d"},
-                "_id": {"$oid": "552550882c5d580c2a1bf870"}
+                "_id": {"$oid": "552fb666b13a0aa144bce3d1"}
             },
             {
                 "created": {"$date": 1428397190944},
-                "updated": {"$date": 1428508808387},
+                "updated": {"$date": 1429190246600},
                 "week": 1,
                 "weekday": "MO",
                 "type": "Recommendation",
                 "idea": {"$oid": "53329bf20f9b32255d2488d7"},
-                "_id": {"$oid": "552550882c5d580c2a1bf86f"}
+                "_id": {"$oid": "552fb666b13a0aa144bce3d0"}
             },
             {
                 "created": {"$date": 1428397190945},
-                "updated": {"$date": 1428508808387},
+                "updated": {"$date": 1429190246600},
                 "week": 1,
                 "weekday": "TU",
                 "type": "Recommendation",
                 "idea": {"$oid": "5278c6adcdeab69a2500006d"},
-                "_id": {"$oid": "552550882c5d580c2a1bf86e"}
+                "_id": {"$oid": "552fb666b13a0aa144bce3cf"}
             },
             {
                 "created": {"$date": 1428397190945},
-                "updated": {"$date": 1428508808387},
+                "updated": {"$date": 1429190246600},
                 "week": 4,
                 "weekday": "TU",
                 "type": "Recommendation",
                 "idea": {"$oid": "5278c6adcdeab69a25000032"},
-                "_id": {"$oid": "552550882c5d580c2a1bf86d"}
+                "_id": {"$oid": "552fb666b13a0aa144bce3ce"}
             },
             {
                 "created": {"$date": 1428397190945},
-                "updated": {"$date": 1428508808387},
-                "week": 1,
+                "updated": {"$date": 1429190246601},
+                "week": 0,
                 "weekday": "WE",
                 "type": "Invitation",
                 "idea": {"$oid": "5278c6adcdeab69a25000046"},
-                "_id": {"$oid": "552550882c5d580c2a1bf86c"}
+                "_id": {"$oid": "552fb666b13a0aa144bce3cd"}
             },
             {
                 "created": {"$date": 1428397190945},
-                "updated": {"$date": 1428508808387},
+                "updated": {"$date": 1429190246601},
                 "week": 1,
                 "weekday": "TH",
                 "type": "Recommendation",
                 "idea": {"$oid": "5278c6adcdeab69a25000076"},
-                "_id": {"$oid": "552550882c5d580c2a1bf86b"}
+                "_id": {"$oid": "552fb666b13a0aa144bce3cc"}
             },
             {
                 "created": {"$date": 1428397190945},
-                "updated": {"$date": 1428508808387},
+                "updated": {"$date": 1429190246601},
                 "week": 4,
                 "weekday": "WE",
                 "type": "Recommendation",
                 "idea": {"$oid": "5278c6adcdeab69a250000af"},
-                "_id": {"$oid": "552550882c5d580c2a1bf86a"}
+                "_id": {"$oid": "552fb666b13a0aa144bce3cb"}
             },
             {
                 "created": {"$date": 1428397190945},
-                "updated": {"$date": 1428508808388},
+                "updated": {"$date": 1429190246601},
                 "week": 4,
                 "weekday": "TH",
                 "type": "Recommendation",
                 "idea": {"$oid": "5278c6adcdeab69a2500004b"},
-                "_id": {"$oid": "552550882c5d580c2a1bf869"}
+                "_id": {"$oid": "552fb666b13a0aa144bce3ca"}
             },
             {
                 "created": {"$date": 1428397190946},
-                "updated": {"$date": 1428508808388},
+                "updated": {"$date": 1429190246601},
                 "week": 1,
                 "weekday": "FR",
                 "type": "Recommendation",
                 "idea": {"$oid": "5278c6adcdeab69a25000084"},
-                "_id": {"$oid": "552550882c5d580c2a1bf868"}
+                "_id": {"$oid": "552fb666b13a0aa144bce3c9"}
             },
             {
                 "created": {"$date": 1428397190946},
-                "updated": {"$date": 1428508808388},
+                "updated": {"$date": 1429190246601},
                 "week": 4,
                 "weekday": "TH",
                 "type": "Recommendation",
                 "idea": {"$oid": "5278c6aecdeab69a250000bd"},
-                "_id": {"$oid": "552550882c5d580c2a1bf867"}
+                "_id": {"$oid": "552fb666b13a0aa144bce3c8"}
             },
             {
                 "created": {"$date": 1428397190946},
-                "updated": {"$date": 1428508808388},
+                "updated": {"$date": 1429190246601},
                 "week": 4,
                 "weekday": "FR",
                 "type": "Recommendation",
                 "idea": {"$oid": "5278c6adcdeab69a2500009e"},
-                "_id": {"$oid": "552550882c5d580c2a1bf866"}
+                "_id": {"$oid": "552fb666b13a0aa144bce3c7"}
             },
             {
                 "created": {"$date": 1428397190946},
-                "updated": {"$date": 1428508808388},
+                "updated": {"$date": 1429190246601},
                 "week": 2,
                 "weekday": "WE",
                 "type": "Recommendation",
                 "idea": {"$oid": "5278c6adcdeab69a2500001e"},
-                "_id": {"$oid": "552550882c5d580c2a1bf865"}
+                "_id": {"$oid": "552fb666b13a0aa144bce3c6"}
             },
             {
                 "created": {"$date": 1428397190946},
-                "updated": {"$date": 1428508808388},
+                "updated": {"$date": 1429190246601},
                 "week": 2,
                 "weekday": "WE",
                 "type": "Invitation",
                 "idea": {"$oid": "5278c6adcdeab69a25000042"},
-                "_id": {"$oid": "552550882c5d580c2a1bf864"}
+                "_id": {"$oid": "552fb666b13a0aa144bce3c5"}
             },
             {
                 "created": {"$date": 1428397190946},
-                "updated": {"$date": 1428508808388},
+                "updated": {"$date": 1429190246601},
                 "week": 4,
                 "weekday": "FR",
                 "type": "Recommendation",
                 "idea": {"$oid": "5332a2080f9b32255d248961"},
-                "_id": {"$oid": "552550882c5d580c2a1bf863"}
+                "_id": {"$oid": "552fb666b13a0aa144bce3c4"}
             },
             {
                 "created": {"$date": 1428397190946},
-                "updated": {"$date": 1428508808388},
+                "updated": {"$date": 1429190246602},
                 "week": 2,
                 "weekday": "TH",
                 "type": "Recommendation",
                 "idea": {"$oid": "5278c6adcdeab69a2500007f"},
-                "_id": {"$oid": "552550882c5d580c2a1bf862"}
+                "_id": {"$oid": "552fb666b13a0aa144bce3c3"}
             },
             {
                 "created": {"$date": 1428397190947},
-                "updated": {"$date": 1428508808388},
+                "updated": {"$date": 1429190246602},
                 "week": 2,
                 "weekday": "FR",
                 "type": "Recommendation",
                 "idea": {"$oid": "529f2ce6e6d37b8808000a33"},
-                "_id": {"$oid": "552550882c5d580c2a1bf861"}
+                "_id": {"$oid": "552fb666b13a0aa144bce3c2"}
             },
             {
                 "created": {"$date": 1428397190947},
-                "updated": {"$date": 1428508808389},
+                "updated": {"$date": 1429190246602},
                 "week": 2,
                 "weekday": "FR",
                 "type": "Recommendation",
                 "idea": {"$oid": "5278c6adcdeab69a2500007b"},
-                "_id": {"$oid": "552550882c5d580c2a1bf860"}
+                "_id": {"$oid": "552fb666b13a0aa144bce3c1"}
             },
             {
                 "created": {"$date": 1428397190947},
-                "updated": {"$date": 1428508808389},
+                "updated": {"$date": 1429190246602},
                 "week": 3,
                 "weekday": "MO",
                 "type": "Recommendation",
                 "idea": {"$oid": "5278c6adcdeab69a2500009b"},
-                "_id": {"$oid": "552550882c5d580c2a1bf85f"}
+                "_id": {"$oid": "552fb666b13a0aa144bce3c0"}
             },
             {
                 "created": {"$date": 1428397190947},
-                "updated": {"$date": 1428508808389},
+                "updated": {"$date": 1429190246602},
                 "week": 3,
                 "weekday": "TU",
                 "type": "Recommendation",
                 "idea": {"$oid": "5278c6adcdeab69a25000045"},
-                "_id": {"$oid": "552550882c5d580c2a1bf85e"}
+                "_id": {"$oid": "552fb666b13a0aa144bce3bf"}
             },
             {
                 "created": {"$date": 1428397190947},
-                "updated": {"$date": 1428508808389},
+                "updated": {"$date": 1429190246602},
                 "week": 3,
                 "weekday": "WE",
                 "type": "Recommendation",
                 "idea": {"$oid": "529f27d5e6d37b88080009e0"},
-                "_id": {"$oid": "552550882c5d580c2a1bf85d"}
+                "_id": {"$oid": "552fb666b13a0aa144bce3be"}
             },
             {
                 "created": {"$date": 1428397190947},
-                "updated": {"$date": 1428508808389},
+                "updated": {"$date": 1429190246602},
                 "week": 3,
                 "weekday": "WE",
                 "type": "Invitation",
                 "idea": {"$oid": "5332a89e0f9b32255d248ae0"},
-                "_id": {"$oid": "552550882c5d580c2a1bf85c"}
+                "_id": {"$oid": "552fb666b13a0aa144bce3bd"}
             },
             {
                 "created": {"$date": 1428397190947},
-                "updated": {"$date": 1428508808389},
+                "updated": {"$date": 1429190246602},
                 "week": 3,
                 "weekday": "TH",
                 "type": "Recommendation",
                 "idea": {"$oid": "5278c6adcdeab69a25000085"},
-                "_id": {"$oid": "552550882c5d580c2a1bf85b"}
+                "_id": {"$oid": "552fb666b13a0aa144bce3bc"}
             },
             {
                 "created": {"$date": 1428397190947},
-                "updated": {"$date": 1428508808389},
+                "updated": {"$date": 1429190246602},
                 "week": 3,
                 "weekday": "TH",
                 "type": "Recommendation",
                 "idea": {"$oid": "5278c6adcdeab69a2500004d"},
-                "_id": {"$oid": "552550882c5d580c2a1bf85a"}
+                "_id": {"$oid": "552fb666b13a0aa144bce3bb"}
             },
             {
                 "created": {"$date": 1428397190947},
-                "updated": {"$date": 1428508808389},
+                "updated": {"$date": 1429190246602},
                 "week": 3,
                 "weekday": "FR",
                 "type": "Recommendation",
                 "idea": {"$oid": "5278c6adcdeab69a25000040"},
-                "_id": {"$oid": "552550882c5d580c2a1bf859"}
+                "_id": {"$oid": "552fb666b13a0aa144bce3ba"}
             },
             {
                 "created": {"$date": 1428397190947},
-                "updated": {"$date": 1428508808390},
+                "updated": {"$date": 1429190246603},
                 "idea": {"$oid": "5278c6adcdeab69a25000048"},
                 "type": "Recommendation",
                 "week": 0,
                 "weekday": "WE",
-                "_id": {"$oid": "552550882c5d580c2a1bf858"}
+                "_id": {"$oid": "552fb666b13a0aa144bce3b9"}
             },
             {
                 "created": {"$date": 1428397464333},
-                "updated": {"$date": 1428508808390},
+                "updated": {"$date": 1429190246603},
                 "idea": {"$oid": "5278c6adcdeab69a25000050"},
                 "type": "Recommendation",
                 "week": 1,
                 "weekday": "WE",
-                "_id": {"$oid": "552550882c5d580c2a1bf857"}
+                "_id": {"$oid": "552fb666b13a0aa144bce3b8"}
             },
             {
                 "created": {"$date": 1428397543195},
-                "updated": {"$date": 1428508808390},
+                "updated": {"$date": 1429190246603},
                 "idea": {"$oid": "5278c6adcdeab69a25000061"},
                 "type": "Recommendation",
                 "week": 1,
                 "weekday": "TH",
-                "_id": {"$oid": "552550882c5d580c2a1bf856"}
+                "_id": {"$oid": "552fb666b13a0aa144bce3b7"}
             },
             {
                 "created": {"$date": 1428397707303},
-                "updated": {"$date": 1428508808390},
+                "updated": {"$date": 1429190246603},
                 "idea": {"$oid": "5332ad1a0f9b32255d248c44"},
                 "type": "Recommendation",
                 "week": 1,
                 "weekday": "FR",
-                "_id": {"$oid": "552550882c5d580c2a1bf855"}
+                "_id": {"$oid": "552fb666b13a0aa144bce3b6"}
             },
             {
                 "created": {"$date": 1428397763193},
-                "updated": {"$date": 1428508808390},
+                "updated": {"$date": 1429190246603},
                 "idea": {"$oid": "5278c6aecdeab69a250000bb"},
                 "type": "Recommendation",
                 "week": 2,
                 "weekday": "MO",
-                "_id": {"$oid": "552550882c5d580c2a1bf854"}
+                "_id": {"$oid": "552fb666b13a0aa144bce3b5"}
             },
             {
                 "created": {"$date": 1428398359940},
-                "updated": {"$date": 1428508808390},
+                "updated": {"$date": 1429190246603},
                 "idea": {"$oid": "5278c6adcdeab69a2500005c"},
                 "type": "Recommendation",
                 "week": 2,
                 "weekday": "TU",
-                "_id": {"$oid": "552550882c5d580c2a1bf853"}
+                "_id": {"$oid": "552fb666b13a0aa144bce3b4"}
             },
             {
                 "created": {"$date": 1428398448051},
-                "updated": {"$date": 1428508808390},
+                "updated": {"$date": 1429190246603},
                 "idea": {"$oid": "5278c6adcdeab69a2500006a"},
                 "type": "Invitation",
                 "week": 4,
                 "weekday": "WE",
-                "_id": {"$oid": "552550882c5d580c2a1bf852"}
+                "_id": {"$oid": "552fb666b13a0aa144bce3b3"}
             },
             {
                 "created": {"$date": 1428398948316},
-                "updated": {"$date": 1428508808390},
+                "updated": {"$date": 1429190246603},
                 "idea": {"$oid": "5278c6adcdeab69a2500006b"},
                 "type": "Recommendation",
                 "week": 2,
                 "weekday": "TH",
-                "_id": {"$oid": "552550882c5d580c2a1bf851"}
+                "_id": {"$oid": "552fb666b13a0aa144bce3b2"}
             },
             {
                 "created": {"$date": 1428474996801},
-                "updated": {"$date": 1428508808390},
+                "updated": {"$date": 1429190246603},
                 "idea": {"$oid": "5278c6adcdeab69a2500006e"},
                 "type": "Recommendation",
                 "week": 0,
                 "weekday": "TU",
-                "_id": {"$oid": "552550882c5d580c2a1bf850"}
+                "_id": {"$oid": "552fb666b13a0aa144bce3b1"}
             },
             {
                 "created": {"$date": 1428475197521},
-                "updated": {"$date": 1428508808391},
+                "updated": {"$date": 1429190246603},
                 "idea": {"$oid": "5278c6adcdeab69a25000078"},
                 "type": "Recommendation",
                 "week": 3,
                 "weekday": "FR",
-                "_id": {"$oid": "552550882c5d580c2a1bf84f"}
+                "_id": {"$oid": "552fb666b13a0aa144bce3b0"}
             }
         ],
         "created": {"$date": 1428397190991},
-        "updated": {"$date": 1428508808447},
-        "__v": 27
+        "updated": {"$date": 1429190246652},
+        "__v": 29
     },
     {
         "_id": {"$oid": "53b416fba43aac62a2debda2"},
@@ -410,7 +410,381 @@
             "en": "Exercise at work and in everyday life is healthy and has a positive effect on the physical fitness. Balance, stress resistance, shared experiences with colleagues or active recreation in nature are appreciated effects of regular exercise.<br>More information can be found at <a href='http://www.hepa.ch' target='_blank'>hepa</a>.",
             "fr": "Faire de l'exercice au travail et dans la vie de tous les jours est sain et contribue à une bonne condition physique. Équilibre de vie, résilience au stress, activités entre amis ou loisirs dans la nature font partie des bienfaits de faire de l'exercice régulièrement.<br>Plus d'informations peuvent être trouvées <a href='http://www.hepa.ch/internet/hepa/fr/home.html' target='_blank'>ici</a>"
         },
-        "picture": "/assets/img/topic/fitness.jpg"
+        "picture": "/assets/img/topic/fitness.jpg",
+        "created": {"$date": 1429171222713},
+        "templateCampaignOffers": [
+            {
+                "created": {"$date": 1429171222702},
+                "updated": {"$date": 1429181863125},
+                "idea": {"$oid": "5278c6adcdeab69a25000048"},
+                "type": "Invitation",
+                "week": 2,
+                "weekday": "WE",
+                "_id": {"$oid": "552f95a62283f09e44b25b92"}
+            },
+            {
+                "created": {"$date": 1429171336175},
+                "updated": {"$date": 1429181863125},
+                "idea": {"$oid": "54f815d9cf36a19323e0c04d"},
+                "type": "Invitation",
+                "week": 1,
+                "weekday": "WE",
+                "_id": {"$oid": "552f95a62283f09e44b25b91"}
+            },
+            {
+                "created": {"$date": 1429171394590},
+                "updated": {"$date": 1429181863125},
+                "idea": {"$oid": "54f57dcf608f3f3d095243b0"},
+                "type": "Invitation",
+                "week": 0,
+                "weekday": "WE",
+                "_id": {"$oid": "552f95a62283f09e44b25b90"}
+            },
+            {
+                "created": {"$date": 1429171466831},
+                "updated": {"$date": 1429181863126},
+                "idea": {"$oid": "53ff32d38bda22af0b73bbf1"},
+                "type": "Invitation",
+                "week": 3,
+                "weekday": "WE",
+                "_id": {"$oid": "552f95a62283f09e44b25b8f"}
+            },
+            {
+                "created": {"$date": 1429171645836},
+                "updated": {"$date": 1429181863126},
+                "idea": {"$oid": "54f81ce0cf36a19323e0c055"},
+                "type": "Invitation",
+                "week": 4,
+                "weekday": "WE",
+                "_id": {"$oid": "552f95a62283f09e44b25b8e"}
+            },
+            {
+                "created": {"$date": 1429173384711},
+                "updated": {"$date": 1429181863126},
+                "idea": {"$oid": "54f584ec608f3f3d095243b5"},
+                "type": "Recommendation",
+                "week": 0,
+                "weekday": "TU",
+                "_id": {"$oid": "552f95a62283f09e44b25b8d"}
+            },
+            {
+                "created": {"$date": 1429173491885},
+                "updated": {"$date": 1429181863126},
+                "idea": {"$oid": "54f82a00cf36a19323e0c05e"},
+                "type": "Recommendation",
+                "week": 0,
+                "weekday": "WE",
+                "_id": {"$oid": "552f95a62283f09e44b25b8c"}
+            },
+            {
+                "created": {"$date": 1429173526722},
+                "updated": {"$date": 1429181863126},
+                "idea": {"$oid": "54f839078e7a489f23d3baff"},
+                "type": "Recommendation",
+                "week": 0,
+                "weekday": "TH",
+                "_id": {"$oid": "552f95a62283f09e44b25b8b"}
+            },
+            {
+                "created": {"$date": 1429173576050},
+                "updated": {"$date": 1429181863126},
+                "idea": {"$oid": "54f6bb5f608f3f3d095243c8"},
+                "type": "Recommendation",
+                "week": 0,
+                "weekday": "TH",
+                "_id": {"$oid": "552f95a62283f09e44b25b8a"}
+            },
+            {
+                "created": {"$date": 1429173662839},
+                "updated": {"$date": 1429181863126},
+                "idea": {"$oid": "54f83787cf36a19323e0c068"},
+                "type": "Recommendation",
+                "week": 3,
+                "weekday": "MO",
+                "_id": {"$oid": "552f95a62283f09e44b25b89"}
+            },
+            {
+                "created": {"$date": 1429173820349},
+                "updated": {"$date": 1429181863126},
+                "idea": {"$oid": "54f57e20608f3f3d095243b1"},
+                "type": "Recommendation",
+                "week": 0,
+                "weekday": "MO",
+                "_id": {"$oid": "552f95a62283f09e44b25b88"}
+            },
+            {
+                "created": {"$date": 1429173947284},
+                "updated": {"$date": 1429181863126},
+                "idea": {"$oid": "54f81f54cf36a19323e0c058"},
+                "type": "Recommendation",
+                "week": 0,
+                "weekday": "FR",
+                "_id": {"$oid": "552f95a62283f09e44b25b87"}
+            },
+            {
+                "created": {"$date": 1429173983468},
+                "updated": {"$date": 1429181863126},
+                "idea": {"$oid": "54f833fe8e7a489f23d3bafc"},
+                "type": "Recommendation",
+                "week": 1,
+                "weekday": "TU",
+                "_id": {"$oid": "552f95a62283f09e44b25b86"}
+            },
+            {
+                "created": {"$date": 1429174031192},
+                "updated": {"$date": 1429181863127},
+                "idea": {"$oid": "54f83247cf36a19323e0c064"},
+                "type": "Recommendation",
+                "week": 1,
+                "weekday": "WE",
+                "_id": {"$oid": "552f95a62283f09e44b25b85"}
+            },
+            {
+                "created": {"$date": 1429174149735},
+                "updated": {"$date": 1429181863127},
+                "idea": {"$oid": "54f8169acf36a19323e0c04f"},
+                "type": "Recommendation",
+                "week": 1,
+                "weekday": "TH",
+                "_id": {"$oid": "552f95a62283f09e44b25b84"}
+            },
+            {
+                "created": {"$date": 1429174209567},
+                "updated": {"$date": 1429181863127},
+                "idea": {"$oid": "550058f7cf36a19323e0c076"},
+                "type": "Recommendation",
+                "week": 1,
+                "weekday": "FR",
+                "_id": {"$oid": "552f95a62283f09e44b25b83"}
+            },
+            {
+                "created": {"$date": 1429174253704},
+                "updated": {"$date": 1429181863127},
+                "idea": {"$oid": "550151bfcf36a19323e0c082"},
+                "type": "Recommendation",
+                "week": 1,
+                "weekday": "TH",
+                "_id": {"$oid": "552f95a62283f09e44b25b82"}
+            },
+            {
+                "created": {"$date": 1429174303536},
+                "updated": {"$date": 1429181863127},
+                "idea": {"$oid": "54f820a7cf36a19323e0c05b"},
+                "type": "Recommendation",
+                "week": 1,
+                "weekday": "FR",
+                "_id": {"$oid": "552f95a62283f09e44b25b81"}
+            },
+            {
+                "created": {"$date": 1429174813992},
+                "updated": {"$date": 1429181863127},
+                "idea": {"$oid": "55014e438e7a489f23d3bb11"},
+                "type": "Recommendation",
+                "week": 2,
+                "weekday": "MO",
+                "_id": {"$oid": "552f95a62283f09e44b25b80"}
+            },
+            {
+                "created": {"$date": 1429174858111},
+                "updated": {"$date": 1429181863127},
+                "idea": {"$oid": "54f81b93cf36a19323e0c052"},
+                "type": "Recommendation",
+                "week": 2,
+                "weekday": "TU",
+                "_id": {"$oid": "552f95a62283f09e44b25b7f"}
+            },
+            {
+                "created": {"$date": 1429174913919},
+                "updated": {"$date": 1429181863127},
+                "idea": {"$oid": "55005a608e7a489f23d3bb0f"},
+                "type": "Recommendation",
+                "week": 3,
+                "weekday": "WE",
+                "_id": {"$oid": "552f95a62283f09e44b25b7e"}
+            },
+            {
+                "created": {"$date": 1429175061594},
+                "updated": {"$date": 1429181863128},
+                "idea": {"$oid": "54f5913f608f3f3d095243c5"},
+                "type": "Recommendation",
+                "week": 3,
+                "weekday": "TU",
+                "_id": {"$oid": "552f95a62283f09e44b25b7d"}
+            },
+            {
+                "created": {"$date": 1429175127892},
+                "updated": {"$date": 1429181863128},
+                "idea": {"$oid": "54f832e1cf36a19323e0c065"},
+                "type": "Recommendation",
+                "week": 2,
+                "weekday": "WE",
+                "_id": {"$oid": "552f95a62283f09e44b25b7c"}
+            },
+            {
+                "created": {"$date": 1429175223693},
+                "updated": {"$date": 1429181863128},
+                "idea": {"$oid": "54f837e5cf36a19323e0c069"},
+                "type": "Recommendation",
+                "week": 2,
+                "weekday": "TH",
+                "_id": {"$oid": "552f95a62283f09e44b25b7b"}
+            },
+            {
+                "created": {"$date": 1429175268465},
+                "updated": {"$date": 1429181863128},
+                "idea": {"$oid": "55014c68cf36a19323e0c07a"},
+                "type": "Recommendation",
+                "week": 2,
+                "weekday": "TH",
+                "_id": {"$oid": "552f95a62283f09e44b25b7a"}
+            },
+            {
+                "created": {"$date": 1429175302196},
+                "updated": {"$date": 1429181863128},
+                "idea": {"$oid": "54f83968cf36a19323e0c06c"},
+                "type": "Recommendation",
+                "week": 2,
+                "weekday": "FR",
+                "_id": {"$oid": "552f95a62283f09e44b25b79"}
+            },
+            {
+                "created": {"$date": 1429175343382},
+                "updated": {"$date": 1429181863128},
+                "idea": {"$oid": "54f836f48e7a489f23d3bafd"},
+                "type": "Recommendation",
+                "week": 2,
+                "weekday": "FR",
+                "_id": {"$oid": "552f95a62283f09e44b25b78"}
+            },
+            {
+                "created": {"$date": 1429175550928},
+                "updated": {"$date": 1429181863128},
+                "idea": {"$oid": "54f5858d608f3f3d095243b7"},
+                "type": "Recommendation",
+                "week": 3,
+                "weekday": "TH",
+                "_id": {"$oid": "552f95a62283f09e44b25b77"}
+            },
+            {
+                "created": {"$date": 1429175698201},
+                "updated": {"$date": 1429181863129},
+                "idea": {"$oid": "54f58120608f3f3d095243b2"},
+                "type": "Recommendation",
+                "week": 1,
+                "weekday": "MO",
+                "_id": {"$oid": "552f95a62283f09e44b25b76"}
+            },
+            {
+                "created": {"$date": 1429175799591},
+                "updated": {"$date": 1429181863129},
+                "idea": {"$oid": "53ff2f5e470a1cae0b0e23e6"},
+                "type": "Recommendation",
+                "week": 4,
+                "weekday": "FR",
+                "_id": {"$oid": "552f95a62283f09e44b25b75"}
+            },
+            {
+                "created": {"$date": 1429175850756},
+                "updated": {"$date": 1429181863129},
+                "idea": {"$oid": "54f833388e7a489f23d3bafb"},
+                "type": "Recommendation",
+                "week": 3,
+                "weekday": "FR",
+                "_id": {"$oid": "552f95a62283f09e44b25b74"}
+            },
+            {
+                "created": {"$date": 1429175911229},
+                "updated": {"$date": 1429181863129},
+                "idea": {"$oid": "54f5842a608f3f3d095243b4"},
+                "type": "Recommendation",
+                "week": 4,
+                "weekday": "MO",
+                "_id": {"$oid": "552f95a62283f09e44b25b73"}
+            },
+            {
+                "created": {"$date": 1429175967291},
+                "updated": {"$date": 1429181863129},
+                "idea": {"$oid": "54f57a4f608f3f3d095243aa"},
+                "type": "Recommendation",
+                "week": 4,
+                "weekday": "TU",
+                "_id": {"$oid": "552f95a62283f09e44b25b72"}
+            },
+            {
+                "created": {"$date": 1429176018127},
+                "updated": {"$date": 1429181863129},
+                "idea": {"$oid": "54f57aea608f3f3d095243ab"},
+                "type": "Recommendation",
+                "week": 4,
+                "weekday": "FR",
+                "_id": {"$oid": "552f95a62283f09e44b25b71"}
+            },
+            {
+                "created": {"$date": 1429176049016},
+                "updated": {"$date": 1429181863129},
+                "idea": {"$oid": "54f837468e7a489f23d3bafe"},
+                "type": "Recommendation",
+                "week": 4,
+                "weekday": "WE",
+                "_id": {"$oid": "552f95a62283f09e44b25b70"}
+            },
+            {
+                "created": {"$date": 1429176166571},
+                "updated": {"$date": 1429181863129},
+                "idea": {"$oid": "5278c6adcdeab69a2500007e"},
+                "type": "Recommendation",
+                "week": 3,
+                "weekday": "FR",
+                "_id": {"$oid": "552f95a62283f09e44b25b6f"}
+            },
+            {
+                "created": {"$date": 1429176253693},
+                "updated": {"$date": 1429181863129},
+                "idea": {"$oid": "5278c6adcdeab69a250000a8"},
+                "type": "Recommendation",
+                "week": 4,
+                "weekday": "TH",
+                "_id": {"$oid": "552f95a62283f09e44b25b6e"}
+            },
+            {
+                "created": {"$date": 1429176287765},
+                "updated": {"$date": 1429181863129},
+                "idea": {"$oid": "54f6bbb73a0e763f094b2746"},
+                "type": "Recommendation",
+                "week": 4,
+                "weekday": "TH",
+                "_id": {"$oid": "552f95a62283f09e44b25b6d"}
+            },
+            {
+                "created": {"$date": 1429178757915},
+                "updated": {"$date": 1429181863129},
+                "idea": {"$oid": "5278c6adcdeab69a2500006c"},
+                "type": "Recommendation",
+                "week": 3,
+                "weekday": "FR",
+                "_id": {"$oid": "552f95a62283f09e44b25b6c"}
+            },
+            {
+                "created": {"$date": 1429181658760},
+                "updated": {"$date": 1429181863130},
+                "idea": {"$oid": "54f58de7608f3f3d095243c2"},
+                "type": "Recommendation",
+                "week": 3,
+                "weekday": "TH",
+                "_id": {"$oid": "552f95a62283f09e44b25b6b"}
+            },
+            {
+                "created": {"$date": 1429181863130},
+                "updated": {"$date": 1429181863130},
+                "idea": {"$oid": "55014ef1cf36a19323e0c07d"},
+                "type": "Recommendation",
+                "week": 0,
+                "weekday": "FR",
+                "_id": {"$oid": "552f95a62283f09e44b25b6a"}
+            }
+        ],
+        "updated": {"$date": 1429181863196},
+        "__v": 54
     },
     {
         "_id": {"$oid": "53b416fba43aac62a2debda4"},

@@ -1,7 +1,6 @@
 var mongoose = require('ypbackendlib').mongoose,
     Idea = mongoose.model('Idea'),
     ActivityManagement = require('../core/ActivityManagement'),
-    Campaign = mongoose.model('Campaign'),
     _ = require('lodash'),
     auth = require('ypbackendlib').auth,
     error = require('ypbackendlib').error,
@@ -21,37 +20,18 @@ function _checkIdeaWritePermission(sentIdea, user, cb) {
         // requesting user is a product admin
         return cb();
 
-    } else if (_.contains(user.roles, auth.roles.orgadmin) || _.contains(user.roles, auth.roles.campaignlead)) {
+    } else {
         // requesting user is a campaignlead or orgadmin
         if (!sentIdea.campaign) {
-            return cb(new error.MissingParameterError('expected idea to have a campaign id', { required: 'campaign id' }));
+            return cb(new error.MissingParameterError('expected idea to have a campaign id', {required: 'campaign id'}));
         }
 
-        Campaign.findById(sentIdea.campaign).exec(function (err, campaign) {
-            if (err) {
-                return error.handleError(err, cb);
-            }
+        if (!user.campaign || user.campaign.id !== sentIdea.campaign) {
+            return cb(new error.NotAuthorizedError('you may not post an idea for another campaign, only your own.', {ownCampaign: user.campaign, ideaCampaing: sentIdea.campaign}));
+        }
 
-            if (!campaign) {
-                return cb(new error.ResourceNotFoundError('Campaign not found.', { id: sentIdea.campaign }));
-            }
-
-            // check whether the posting user is a campaignLead of the campaign
-            if (!_.contains(campaign.campaignLeads.toString(), user.id)) {
-                return cb(new error.NotAuthorizedError('The user is not a campaignlead of this campaign.', {
-                    userId: user.id,
-                    campaignId: campaign.id
-                }));
-            }
-            sentIdea.source = "campaign";
-            // everything is fine -->
-            return cb();
-        });
-
-
-    } else {
-        return cb(new error.NotAuthorizedError('POST of object only allowed if author is an org admin, campaign lead or productAdmin',
-            { user: user.id}));
+        sentIdea.source = "campaign";
+        return cb();
     }
 }
 
@@ -79,7 +59,7 @@ function postIdea(req, res, next) {
     // only to be checked for POST because in PUT it is allowed to update an idea that has been authored by
     // somebody else.
     if (sentIdea.author && (req.user.id !== sentIdea.author)) {
-        return next(new error.NotAuthorizedError({ author: sentIdea.author, user: req.user.id}));
+        return next(new error.NotAuthorizedError({author: sentIdea.author, user: req.user.id}));
     }
 
 
@@ -121,7 +101,7 @@ function putIdea(req, res, next) {
                 return error.handleError(err, next);
             }
             if (!reloadedIdea) {
-                return next(new error.ResourceNotFoundError({ id: sentIdea.id}));
+                return next(new error.ResourceNotFoundError({id: sentIdea.id}));
             }
 
             reloadedIdea.$locale = req.locale;
@@ -141,10 +121,12 @@ function getAllIdeas(baseUrl, Model) {
         var finder = '';
 
         if (req.params.campaign) {
-            finder = {$or: [
-                {campaign: null},
-                {campaign: req.params.campaign}
-            ]};
+            finder = {
+                $or: [
+                    {campaign: null},
+                    {campaign: req.params.campaign}
+                ]
+            };
         } else {
             finder = {campaign: null};
         }

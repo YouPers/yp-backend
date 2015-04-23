@@ -28,7 +28,7 @@ module.exports = {
 
         // type of the targeted space for a social interaction
         targetSpace: "user activity campaign system email".split(' '),
-        authorType: "user campaignLead productAdmin coach".split(' '),
+        authorType: "user campaignLead productAdmin coach expert".split(' '),
         dismissalReason: "activityScheduled activityJoined denied campaignleadAccepted orgadminAccepted".split(' '),
         actionType: "assessment focus".split(' ')
 };

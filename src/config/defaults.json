@@ -48,7 +48,8 @@
         },
         "tracking": {
             "enabled": "disabled"
-        }
+        },
+        "subjectSuffix": ""
     },
     "accessTokenSecret": "knfad*ç%&/(&/sdkjfnaklsdnfASDFAS2341",
     "oauth": {

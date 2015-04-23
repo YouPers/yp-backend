@@ -6,12 +6,9 @@ var handlerUtils = require('ypbackendlib').handlerUtils,
     User = mongoose.model('User'),
     Organization = mongoose.model('Organization'),
     Campaign = mongoose.model('Campaign'),
-    Invitation = mongoose.model('Invitation'),
     Recommendation = mongoose.model('Recommendation'),
     PaymentCode = mongoose.model('PaymentCode'),
     Topic = mongoose.model('Topic'),
-    Idea = mongoose.model('Idea'),
-    ActivityManagement = require('../core/ActivityManagement'),
     crypto = require('crypto'),
     async = require('async'),
     email = require('../util/email'),
@@ -20,6 +17,8 @@ var handlerUtils = require('ypbackendlib').handlerUtils,
     generic = require('ypbackendlib').handlers,
     config = require('../config/config'),
     restify = require('restify');
+
+var HEALTH_EXPERT_USER_ID = '53348c27996c80a534319bdb';
 
 var getCampaign = function (id, cb) {
 
@@ -283,8 +282,11 @@ function createTemplateCampaignOffers(campaign, user, req, cb) {
             cb(err);
         }
 
-        User.findById(user._id || user).select('+profile +email').populate('profile').exec(function (err, user) {
-            async.each(topic.templateCampaignOffers, function (offer, done) {
+        User.findById(HEALTH_EXPERT_USER_ID).select('+profile +email').populate('profile').exec(function (err, healthExpertUser) {
+
+            var recommendations = _.filter(topic.templateCampaignOffers, 'type', 'Recommendation');
+
+            async.each(recommendations, function (offer, done) {
 
                 var day = moment(campaign.start).tz('Europe/Zurich').add(offer.week, 'weeks').day(offer.weekday);
 
@@ -297,76 +299,28 @@ function createTemplateCampaignOffers(campaign, user, req, cb) {
                     return done();
                 }
 
-                if (offer.type === 'Recommendation') {
+                var recommendation = new Recommendation({
+                    idea: offer.idea,
 
-                    var recommendation = new Recommendation({
-                        idea: offer.idea,
+                    author: healthExpertUser,
+                    authorType: 'expert',
 
-                        author: user,
-                        authorType: 'campaignLead',
+                    targetSpaces: [{
+                        type: 'campaign',
+                        targetId: campaign._id
+                    }],
 
-                        targetSpaces: [{
-                            type: 'campaign',
-                            targetId: campaign._id
-                        }],
+                    publishFrom: startOfDay.toDate(),
+                    publishTo: endOfDay.toDate(),
+                    __t: "Recommendation"
+                });
 
-                        publishFrom: startOfDay.toDate(),
-                        publishTo: endOfDay.toDate(),
-                        __t: "Recommendation"
-                    });
-
-                    recommendation.save(function (err, saved) {
-                        if (err) {
-                            done(err);
-                        }
-                        done();
-                    });
-
-                } else if (offer.type === 'Invitation') {
-
-                    Idea.findById(offer.idea, function (err, idea) {
-                        if (err) {
-                            done(err);
-                        }
-
-                        var defaultActivity = ActivityManagement.defaultActivity(idea, user, campaign._id, day);
-                        ActivityManagement.saveNewActivity(defaultActivity, user, req.i18n,
-                            function (err, saved) {
-
-                                var publishFrom = moment(saved.start).subtract(2, 'days').tz('Europe/Zurich').startOf('day').toDate();
-                                if (moment(publishFrom).isBefore(moment(campaign.start))) {
-                                    publishFrom = campaign.start;
-                                }
-                                var publishTo = saved.start;
-
-                                var invitation = new Invitation({
-                                    activity: saved._id,
-                                    idea: idea._id,
-                                    author: user,
-                                    authorType: 'campaignLead',
-
-                                    targetSpaces: [{
-                                        type: 'campaign',
-                                        targetId: campaign._id
-                                    }],
-
-                                    publishFrom: publishFrom,
-                                    publishTo: publishTo,
-                                    __t: "Invitation"
-                                });
-
-                                invitation.save(function (err, saved) {
-                                    if (err) {
-                                        done(err);
-                                    }
-                                    done();
-                                });
-                            });
-                    });
-
-                } else {
-                    return done('unsupported templateCampaignOffer.type: ' + offer.type);
-                }
+                recommendation.save(function (err, saved) {
+                    if (err) {
+                        done(err);
+                    }
+                    done();
+                });
 
             }, function (err) {
                 if (err) {

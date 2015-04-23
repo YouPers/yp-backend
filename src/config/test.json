@@ -6,5 +6,6 @@
     "email": {
       "enabled": "disabled"
     },
-    "paymentCodeChecking": "disabled"
+    "paymentCodeChecking": "disabled",
+    "subjectSuffix": " (from circle-ci automated build)"
 }

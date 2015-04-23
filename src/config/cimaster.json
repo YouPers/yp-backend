@@ -1,3 +1,6 @@
 {
-  "paymentCodeChecking": "disabled"
+  "paymentCodeChecking": "disabled",
+  "email": {
+    "subjectSuffix": " (from hc-ci)"
+  }
 }

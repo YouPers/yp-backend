@@ -124,7 +124,7 @@
       "header": "News zu deiner Kampagnenteilnahme",
       "newCampaignMessages": "Mitteilungen deines Kampagnenleiters",
       "newCampaignOffers": "Neue Empfehlungen und persönliche Einladungen für dich",
-      "newCommentsOnParticipatedActivities": "Es gibt __newCommentsOnParticipatedActivities__ neue Kommentare zu Aktivitäten, an denen du teilnimmst.\n"
+      "newCommentsOnParticipatedActivities": "Es gibt neue Kommentare zu Aktivitäten, an denen du teilnimmst.\n"
     },
     "subject": "HealthCampaign \"__user.campaign.title__\" - Daily Mail",
     "time": "Zeit:"

@@ -37,7 +37,7 @@
     "welcomeHeader": "Willkommen als Kampagnenleiter",
     "salutation": "Hallo __invited.firstname__",
     "salutationAnonymous": "Hallo!",
-    "text": "__inviting.fullname__ hat dich eingeladen, Kampagnenleiter der __campaign.title__ HealthCampaign bei __campaign.organization.name__ zu werden. Diese webbasierte Gesundheitskampagne ist ein Service der YOUPERS AG, dem Schweizer Softwareunternehmen für digitale Gesundheitslösungen.",
+    "text": "__inviting.fullname__ hat dich eingeladen, Kampagnenleiter der __campaign.title__ HealthCampaign bei __organization.name__ zu werden. Diese webbasierte Gesundheitskampagne ist ein Service der YOUPERS AG, dem Schweizer Softwareunternehmen für digitale Gesundheitslösungen.",
     "linkText": "EINLADUNG ANZEIGEN"
   },
   "OrganizationAdminInvite": {
@@ -124,7 +124,7 @@
       "header": "News zu deiner Kampagnenteilnahme",
       "newCampaignMessages": "Mitteilungen deines Kampagnenleiters",
       "newCampaignOffers": "Neue Empfehlungen und persönliche Einladungen für dich",
-      "newCommentsOnParticipatedActivities": "Es gibt __newCommentsOnParticipatedActivities__ neue Kommentare zu Aktivitäten, an denen du teilnimmst.\n"
+      "newCommentsOnParticipatedActivities": "Es gibt neue Kommentare zu Aktivitäten, an denen du teilnimmst.\n"
     },
     "subject": "HealthCampaign \"__user.campaign.title__\" - Daily Mail",
     "time": "Zeit:"

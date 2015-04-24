@@ -14,7 +14,7 @@
     "dumpenabled": "enabled"
   },
   "email": {
-    "enabled": "enabled",
+    "enabled": "disabled",
     "subjectSuffix": " (from local-developer machine)"
   },
   "paymentCodeChecking": "disabled",

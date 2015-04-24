@@ -37,7 +37,7 @@
     "welcomeHeader": "Willkommen als Kampagnenleiter",
     "salutation": "Hallo __invited.firstname__",
     "salutationAnonymous": "Hallo!",
-    "text": "__inviting.fullname__ hat dich eingeladen, Kampagnenleiter der __campaign.title__ HealthCampaign bei __campaign.organization.name__ zu werden. Diese webbasierte Gesundheitskampagne ist ein Service der YOUPERS AG, dem Schweizer Softwareunternehmen für digitale Gesundheitslösungen.",
+    "text": "__inviting.fullname__ hat dich eingeladen, Kampagnenleiter der __campaign.title__ HealthCampaign bei __organization.name__ zu werden. Diese webbasierte Gesundheitskampagne ist ein Service der YOUPERS AG, dem Schweizer Softwareunternehmen für digitale Gesundheitslösungen.",
     "linkText": "EINLADUNG ANZEIGEN"
   },
   "OrganizationAdminInvite": {

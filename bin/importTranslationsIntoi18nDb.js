@@ -34,10 +34,12 @@ _.forEach(transObjs, function(transObj) {
         _.forEach(_.keys(transObj), function (prop) {
             if (prop !== 'id') {
                 console.log('property: ' + prop);
-                _.forEach(_.keys(transObj[prop]), function (locale) {
-                    idea[prop][locale] = transObj[prop][locale];
-                    idea.save();
-                });
+                    idea[prop+'I18n']['en'] = transObj[prop];
+                    idea.save(function(err) {
+                        if (err) {
+                            console.log(JSON.stringify(err));
+                        }
+                    });
             }
         });
     });

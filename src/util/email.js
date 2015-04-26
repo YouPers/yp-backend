@@ -90,7 +90,7 @@ var sendActivityInvite = function sendActivityInvite(email, invitingUser, activi
         text: i18n.t('email:ActivityInvitation.text', {inviting: invitingUser.toJSON(), activity: activity.toJSON()}),
         link: urlComposer.activityInviteUrl(invitationId),
         linkText: i18n.t('email:ActivityInvitation.linkText'),
-        title: activity.idea.title,
+        title: activity.title,
         activity: activity,
         eventDate: _formatActivityDateString(activity, i18n),
         image: urlComposer.ideaImageUrl(activity.idea)

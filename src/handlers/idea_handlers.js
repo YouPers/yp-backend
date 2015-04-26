@@ -127,7 +127,10 @@ function getAllIdeas(baseUrl, Model) {
                     {campaign: req.params.campaign}
                 ]
             };
+        } else if (req.params.filter && req.params.filter.id) {
+            // if we have a filter for concrete idea-id we allow to get all ideas regardless of campaign attribute
         } else {
+            // do not deliver ideas from foreign campaigns.
             finder = {campaign: null};
         }
 

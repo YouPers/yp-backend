@@ -77,10 +77,13 @@ mongoose.model('Invitation').on('add', function (invitation) {
             // get author
             User.findById(invitation.author).exec(function (err, author) {
 
-                var userQuery = { $or: [
-                    { _id: { $in: userIds} },
-                    { campaign: { $in: campaignIds } }
-                ]};
+                var userQuery = {
+                    $or: [
+                        { _id: { $in: userIds} },
+                        { campaign: { $in: campaignIds } },
+                    ],
+                    _id: { $ne: author._id }
+                };
 
                 // get all targeted users
                 User.find(userQuery).select('+email').exec(function (err, users) {

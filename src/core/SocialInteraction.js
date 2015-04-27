@@ -287,15 +287,18 @@ SocialInteraction.removeDismissals = function (refDoc, user, cb) {
 
 };
 
-SocialInteraction.deleteSocialInteractions = function (refDoc, cb) {
+SocialInteraction.deleteSocialInteractions = function (doc, cb) {
 
     var finder =
     {$or: [
         {refDocs: {$elemMatch: {
-            docId: refDoc._id || refDoc
+            docId: doc._id || doc
         }}},
-        {activity: refDoc._id || refDoc},
-        {idea: refDoc._id || refDoc}
+        {targetSpaces: {$elemMatch: {
+            targetId: doc._id || doc
+        }}},
+        {activity: doc._id || doc},
+        {idea: doc._id || doc}
     ]};
 
 

@@ -69,13 +69,21 @@ mongoose.model('Invitation').on('add', function (invitation) {
             }
 
             var userIds = _.map(_.filter(invitation.targetSpaces, 'type', 'user'), 'targetId');
+            var campaignIds = _.map(_.filter(invitation.targetSpaces, 'type', 'campaign'), 'targetId');
 
             log.debug('Invitation:add - userIds', userIds);
+            log.debug('Invitation:add - campaignIds', campaignIds);
 
             // get author
             User.findById(invitation.author).exec(function (err, author) {
+
+                var userQuery = { $or: [
+                    { _id: { $in: userIds} },
+                    { campaign: { $in: campaignIds } }
+                ]};
+
                 // get all targeted users
-                User.find({ _id: { $in: userIds}}).select('+email').exec(function (err, users) {
+                User.find(userQuery).select('+email').exec(function (err, users) {
                     _.each(users, function (user) {
                         log.debug('Invitation:add - sendActivityInvite', user.email);
                         email.sendActivityInvite(user.email, author, activity, user, invitation._id, i18n);

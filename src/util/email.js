@@ -199,37 +199,32 @@ var sendOrganizationAdminInvite = function sendOrganizationAdminInvite(email, in
     emailSender.sendEmail(fromDefault, email, subject, 'genericYouPersMail', locals);
 };
 
-var getDailyEventSummaryLocals = function getDailyEventSummaryLocals(locals, i18n) {
+var getStandardMailLocals = function getStandardMailLocals(mailType, locals, i18n) {
     var mailLocals = _.defaults({
-
-        salutation: i18n.t('email:dailySummary.salutation', locals)
-
-
+        mailType: mailType,
+        subject: i18n.t("email:" + mailType + ".subject", locals)
     }, _defaultLocals(i18n));
     _.extend(mailLocals, locals);
-
     return mailLocals;
 };
 
 /**
- * sends a dailyPlannedEventsSummary Email.
+ * sends a standard email
+ * @param mailType - the type of the mail, specifies the template and localization used to customize the mail
  * @param toAddress - the address to send the email to
- * @param events - an array of activities, that have in their events property NOT an array events but only ONE event
- *                that is to be mentioned in the summary mail.
+ * @param locals - collection of data for populating the email
  * @param user - a user object with a populated profile.
  * @param i18n - an i18n object to be used to translate the email content
  */
-var sendDailyEventSummary = function sendDailyEventSummary(toAddress, locals, user, i18n) {
-    var subject = i18n.t("email:dailySummary.subject", locals);
+var sendStandardMail = function sendDailyEventSummary(mailType, toAddress, locals, user, i18n) {
 
-    var mailLocals = getDailyEventSummaryLocals(locals, i18n);
+    var mailLocals = getStandardMailLocals(mailType, locals, i18n);
     _.extend(mailLocals, locals);
-
     var mailExtensions = {};
-    if(config.email.bcc && config.email.bcc.dailyEventsSummary) {
-        mailExtensions.bcc = config.email.bcc.dailyEventsSummary;
+    if(config.email.bcc && config.email.bcc[mailType]) {
+        mailExtensions.bcc = config.email.bcc[mailType];
     }
-    emailSender.sendEmail(fromDefault, toAddress, subject, 'dailyEventsSummary', mailLocals, mailExtensions);
+    emailSender.sendEmail(fromDefault, toAddress, locals.subject, mailType, mailLocals, mailExtensions);
 };
 
 var close = function close() {
@@ -247,7 +242,8 @@ module.exports = {
     sendCampaignLeadInvite: sendCampaignLeadInvite,
     sendCampaignParticipantInvite: sendCampaignParticipantInvite,
     sendOrganizationAdminInvite: sendOrganizationAdminInvite,
-    sendDailyEventSummary: sendDailyEventSummary,
-    getDailyEventSummaryLocals: getDailyEventSummaryLocals,
+
+    sendStandardMail: sendStandardMail,
+    getStandardMailLocals: getStandardMailLocals,
     renderEmailTemplate: emailSender.renderEmailTemplate
 };

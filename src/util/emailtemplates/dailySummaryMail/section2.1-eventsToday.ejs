@@ -57,12 +57,12 @@
 
                                         <br>
 
-                                        <%= t('email:dailySummary.time') %>
+                                        <%= t('email:dailySummaryMail.time') %>
                                         <%= moment(eventsToday[i].start).format('HH:mm') %>
 
                                         <br>
 
-                                        <%= eventsToday[i].activity.location ? t('email:dailySummary.location') : '' %>
+                                        <%= eventsToday[i].activity.location ? t('email:dailySummaryMail.location') : '' %>
                                         <%- eventsToday[i].activity.location %>
                                     </div>
 

@@ -44,7 +44,7 @@
         "fromString": "HealthCampaign <dontreply@youpers.com>",
         "templatesDir": "src/util/emailtemplates",
         "bcc": {
-            "dailyEventsSummary": "ypunittest1+bbc@gmail.com"
+            "dailySummary": "ypunittest1+bbc@gmail.com"
         },
         "tracking": {
             "enabled": "disabled"

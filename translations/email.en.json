@@ -79,7 +79,7 @@
       "linkText": "REMOVE FROM CALENDAR"
     }
   },
-  "dailySummary": {
+  "dailySummaryMail": {
     "campaignLink": "To campaign",
     "campaignOfferPrefix": {
       "Invitation": "invites you",

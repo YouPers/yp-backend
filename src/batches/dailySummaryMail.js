@@ -6,10 +6,13 @@ var mongoose = require('ypbackendlib').mongoose,
     batch = require('ypbackendlib').batch,
     config = require('../config/config');
 
+var mailType = 'dailySummaryMail';
+
+
 /*
  *  gather locals for daily summary mail
  */
-var getSummaryMailLocals = function getSummaryMailLocals(user, lastSentMailDate, currentDate, callback) {
+var getMailLocals = function getMailLocals(user, lastSentMailDate, currentDate, callback) {
 
     var locals = {
         user: user.toJSON(),
@@ -205,16 +208,16 @@ var getSummaryMailLocals = function getSummaryMailLocals(user, lastSentMailDate,
 
 };
 
-var renderSummaryMail = function (user, lastSentMailDate, currentDate, req, callback) {
+var renderMail = function (user, lastSentMailDate, currentDate, req, callback) {
 
-    getSummaryMailLocals(user, lastSentMailDate, currentDate, function (err, locals) {
+    getMailLocals(user, lastSentMailDate, currentDate, function (err, locals) {
         if(err) {
             return callback(err);
         }
 
-        var mailLocals = email.getDailyEventSummaryLocals(locals, req.i18n);
+        var mailLocals = email.getStandardMailLocals(mailType, locals, req.i18n);
         req.log.debug(mailLocals, "using these Locals for dailySummary");
-        email.renderEmailTemplate('dailyEventsSummary', mailLocals, callback);
+        email.renderEmailTemplate(mailType, mailLocals, callback);
     });
 };
 
@@ -227,7 +230,7 @@ var renderSummaryMail = function (user, lastSentMailDate, currentDate, req, call
  * @param done
  * @param context
  */
-var sendSummaryMail = function sendSummaryMail(user, lastSentMailDate, currentDate, done, context) {
+var sendMail = function sendMail(user, lastSentMailDate, currentDate, done, context) {
     var log = (context && context.log) || this.log;
     var i18n = (context && context.i18n) || this.i18n;
 
@@ -276,13 +279,13 @@ var sendSummaryMail = function sendSummaryMail(user, lastSentMailDate, currentDa
             }
 
 
-            getSummaryMailLocals(user, lastSentMailDate.toDate(), currentDate.toDate(), function (err, locals) {
+            getMailLocals(user, lastSentMailDate.toDate(), currentDate.toDate(), function (err, locals) {
 
                 i18n.setLng(user.profile.language || 'de');
 
                 log.info('sending DailySummary Mail to email: ' + user.email);
 
-                email.sendDailyEventSummary.apply(this, [user.email, locals, user, i18n]);
+                email.sendStandardMail.apply(this, [mailType, user.email, locals, user, i18n]);
 
                 mongoose.model('User').update({ _id: user._id },
                     {
@@ -321,7 +324,7 @@ var feeder = function (callback) {
 };
 
 var worker = function (owner, done) {
-    return sendSummaryMail.apply(this, [owner, this.lastSentMailDate, this.currentDate, done]);
+    return sendMail.apply(this, [owner, this.lastSentMailDate, this.currentDate, done]);
 };
 
 var run = function run() {
@@ -334,6 +337,6 @@ var run = function run() {
 module.exports = {
     run: run,
     feeder: feeder,
-    sendSummaryMail: sendSummaryMail,
-    renderSummaryMail: renderSummaryMail
+    sendMail: sendMail,
+    renderMail: renderMail
 };

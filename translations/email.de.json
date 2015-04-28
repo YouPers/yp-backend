@@ -79,7 +79,7 @@
       "linkText": "AUS KALENDER ENTFERNEN"
     }
   },
-  "dailySummary": {
+  "dailySummaryMail": {
     "campaignLink": "Zur Kampagne",
     "campaignOfferPrefix": {
       "Invitation": "lädt dich ein",
@@ -128,5 +128,8 @@
     },
     "subject": "HealthCampaign \"__user.campaign.title__\" - Daily Mail",
     "time": "Zeit:"
+  },
+  "campaignLeadSummaryMail": {
+
   }
 }

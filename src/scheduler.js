@@ -1,4 +1,5 @@
 var eventsSummaryMail = require('./batches/eventsSummaryMail'),
+    campaignLeadSummaryMail = require('./batches/campaignLeadSummaryMail'),
     config = require('./config/config'),
     scheduler = require('ypbackendlib').scheduler,
     logger = require('ypbackendlib').log(config);
@@ -28,8 +29,19 @@ var jobs = [
         onTick: eventsSummaryMail.run,
         start: true,
         context: {
-            timeFrameToFindEvents: 24 * 60 * 60 * 1000,
-            concurrency: 2
+            // TODO: verify if these properties are deprecated, no occurrences found in our code nor in the cron module
+            //timeFrameToFindEvents: 24 * 60 * 60 * 1000,
+            //concurrency: 2
+        }
+    },
+    {
+        name: 'WeeklyCampaignLeadSummary',
+        description: 'sends a weekly email to campaign leads',
+        cronTime: '00 15 10 * * *', // equals daily 12:15 in UTC+2 (CET with daylight saving time)
+        onTick: campaignLeadSummaryMail.run,
+        start: true,
+        context: {
+
         }
     }
 ];

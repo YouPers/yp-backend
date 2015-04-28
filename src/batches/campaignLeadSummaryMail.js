@@ -17,7 +17,8 @@ var getMailLocals = function getMailLocals(user, currentDate, callback) {
 
     var locals = {
         user: user.toJSON(),
-        currentDate: currentDate
+        currentDate: currentDate,
+        campaignId: user.campaign._id.toString()
     };
 
     var storeLocals = function (localKey, done) {

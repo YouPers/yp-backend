@@ -6,6 +6,12 @@ var config = require('../config/config'),
 function homeUrl() {
     return webclientUrl;
 }
+function dcmHomeUrl(campaignId) {
+    return webclientUrl + "/#/dcm/campaign/" + campaignId + '/home';
+}
+function dcmMessagesUrl(campaignId) {
+    return dcmHomeUrl(campaignId) + '?section=messages';
+}
 function activityUrl(campaignId, ideaId, activityId, soiId, actionType) {
     if (actionType === 'assessment') {
         return webclientUrl + "/#/campaign/" + campaignId + '/check';
@@ -44,6 +50,8 @@ function profileUrl () {
 
 module.exports = {
     homeUrl: homeUrl,
+    dcmHomeUrl: dcmHomeUrl,
+    dcmMessagesUrl: dcmMessagesUrl,
     activityUrl: activityUrl,
     activityInviteUrl: activityInviteUrl,
     campaignLeadInviteAndResetPasswordUrl: campaignLeadInviteAndResetPasswordUrl,

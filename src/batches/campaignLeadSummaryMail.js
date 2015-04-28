@@ -1,7 +1,6 @@
 var mongoose = require('ypbackendlib').mongoose,
     moment = require('moment-timezone'),
     _ = require('lodash'),
-    async = require('async'),
     email = require('../util/email'),
     batch = require('ypbackendlib').batch,
     config = require('../config/config');
@@ -15,42 +14,39 @@ var mailType = 'campaignLeadSummaryMail';
  */
 var getMailLocals = function getMailLocals(user, currentDate, callback) {
 
+    var campaign = user.campaign;
     var locals = {
         user: user.toJSON(),
         currentDate: currentDate,
-        campaignId: user.campaign._id.toString()
+        campaignId: campaign.id
     };
 
-    var storeLocals = function (localKey, done) {
-        return function (err, result) {
-            if(err) { return err; }
-            locals[localKey] = result.toJSON ? result.toJSON() : result;
-            if(_.isArray(result)) {
-                locals[localKey + 'Count'] = result.length;
-                for(var i=0;i<result.length; i++) {
-                    result[i] = result[i].toJSON ? result[i].toJSON() : result[i];
-                }
-            }
-            done(err, result);
-        };
-    };
-
-    // TODO: use proper timezone of the user here
-    var startOfDay = moment(currentDate).tz('Europe/Zurich').startOf('day').toDate();
-    var endOfDay = moment(currentDate).tz('Europe/Zurich').endOf('day').toDate();
-
-
-    var tasks = [];
-
-
-    async.parallel(tasks, function (err) {
+    mongoose.model('Topic').findById(campaign.topic).exec(function (err, topic) {
         if(err) {
             return callback(err);
         }
+        var week = _ordinalNumber(campaign.start, currentDate);
 
-        callback(err, locals);
+        if(week === false) {
+            return callback(err, locals);
+        }
+
+        var templateOffer = _.find(topic.templateCampaignOffers, function (offer) {
+            return offer.week === week && offer.type === 'Invitation';
+        });
+
+        if(!templateOffer) {
+            return callback(err, locals);
+        }
+        mongoose.model('Idea').findById(templateOffer.idea, function (err, idea) {
+            if(err) {
+                return callback(err);
+            }
+            locals.campaignInvitationIdea = idea;
+            callback(err, locals);
+        });
+
     });
-
 
 };
 
@@ -164,7 +160,7 @@ var sendMail = function sendMail(user, currentDate, done, context) {
 function _ordinalNumber(startDate, now) {
     var offset = 1; // offset from startDate (second day of campaign)
     var every = 5; // every n-th day from the start after adding the offset
-    var daysSinceStart = moment(startDate).businessAdd(offset).businessDiff(moment(now));
+    var daysSinceStart = moment(now).businessDiff(moment(startDate).businessAdd(offset));
     return daysSinceStart % every === 0 ? daysSinceStart / every : false;
 }
 

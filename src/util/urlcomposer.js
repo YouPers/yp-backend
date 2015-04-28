@@ -6,12 +6,23 @@ var config = require('../config/config'),
 function homeUrl() {
     return webclientUrl;
 }
+
+function dcmBaseUrl(campaignId) {
+    return webclientUrl + "/#/dcm/campaign/" + campaignId;
+}
 function dcmHomeUrl(campaignId) {
-    return webclientUrl + "/#/dcm/campaign/" + campaignId + '/home';
+    return dcmBaseUrl(campaignId) + '/home';
 }
 function dcmMessagesUrl(campaignId) {
     return dcmHomeUrl(campaignId) + '?section=messages';
 }
+function dcmBrowseIdeas(campaignId, executionType) {
+    return dcmBaseUrl(campaignId) + '/ideas' + (executionType ? '?type=' + executionType : '');
+}
+function dcmCreateIdea(campaignId) {
+    return dcmBaseUrl(campaignId) + '/ideas/';
+}
+
 function activityUrl(campaignId, ideaId, activityId, soiId, actionType) {
     if (actionType === 'assessment') {
         return webclientUrl + "/#/campaign/" + campaignId + '/check';
@@ -47,11 +58,16 @@ function icalUrl(activityId, type, userId) {
 function profileUrl () {
     return webclientUrl + "/#/profile?settings";
 }
+function prefixRelativeImageUrl(url) {
+    return url.indexOf('/') === 0 ? (homeUrl() + url) : url;
+}
 
 module.exports = {
     homeUrl: homeUrl,
     dcmHomeUrl: dcmHomeUrl,
     dcmMessagesUrl: dcmMessagesUrl,
+    dcmBrowseIdeas: dcmBrowseIdeas,
+    dcmCreateIdea: dcmCreateIdea,
     activityUrl: activityUrl,
     activityInviteUrl: activityInviteUrl,
     campaignLeadInviteAndResetPasswordUrl: campaignLeadInviteAndResetPasswordUrl,
@@ -60,5 +76,6 @@ module.exports = {
     ideaImageUrl: ideaImageUrl,
     campaignImageUrl: campaignImageUrl,
     profileUrl: profileUrl,
+    prefixRelativeImageUrl: prefixRelativeImageUrl,
     icalUrl: icalUrl
 };

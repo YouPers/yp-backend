@@ -131,6 +131,16 @@
   },
   "campaignLeadSummaryMail": {
     "subject": "HealthCampaign \"__user.campaign.title__\" - Weekly Campaign Mail",
+    "executionType": {
+      "group": "in der Gruppe",
+      "self": "selber"
+    },
+    "frequency": {
+      "day": "täglich",
+      "month": "monatlich",
+      "once": "einmalig",
+      "week": "wöchentlich"
+    },
     "section1": {
       "header": "Kampagnenverlauf",
       "text": "Verfolge den Verlauf deiner Kampagne",
@@ -142,8 +152,14 @@
       "link": "Zu den Nachrichten"
     },
     "section3": {
-      "header": "Einladungen",
-      "text": "Lade die Kampagnenteilnehmer zu einem Event ein"
+      "header": "Einladung",
+      "text": "Lade die Kampagnenteilnehmer zu einem Event ein",
+      "browseIdeas": "Aktivität in Bibliothek suchen"
+    },
+    "section4": {
+      "header": "Empfehlung",
+      "text": "Empfehle den Kampagnenteilnehmern eine Kampagnenaktivität. Empfehle den Teilnehmern wenn möglich ein bereits bestehendes Gesundheitsförderungsangebot deines Betriebes",
+      "createIdea": "Eigene Aktivität erstellen"
     }
   }
 }

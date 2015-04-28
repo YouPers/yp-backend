@@ -204,7 +204,7 @@ var getStandardMailLocals = function getStandardMailLocals(mailType, locals, i18
         mailType: mailType,
         subject: i18n.t("email:" + mailType + ".subject", locals),
         translate: function (key) {
-            return i18n.t("email:" + mailType + "." + key, locals)
+            return i18n.t("email:" + mailType + "." + key, locals);
         }
     }, _defaultLocals(i18n));
     _.extend(mailLocals, locals);

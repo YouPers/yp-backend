@@ -2,6 +2,7 @@
 
 <%- translate('section3.text') %>
 
+<% if(locals.campaignInvitationIdea) { %>
 <table border="0" cellpadding="0" cellspacing="0" width="49%" class="mcnBoxedTextBlock" align="left">
     <tbody class="mcnBoxedTextBlockOuter">
     <tr>
@@ -15,6 +16,62 @@
                         <table border="0" cellpadding="18" cellspacing="0" class="mcnTextContentContainer" width="100%" style="border:1px double #DEDEDE;border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
                             <tbody><tr>
                                 <td valign="top" class="mcnTextContent" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;color: #606060;font-family: Helvetica;font-size: 15px;line-height: 150%;text-align: left;">
+
+                                    <img align="none" height="59" src="<%= urlComposer.prefixRelativeImageUrl(user.avatar) %>" style="width: 60px;height: 59px;margin: 0px;border: 0;outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;" width="60">
+
+                                    <%= user.fullname %>
+                                    <br>
+                                    <br>
+
+
+                                    <a href="<%= urlComposer.activityUrl(campaignId, campaignInvitationIdea.id, '', '') %>" target="_blank" style="word-wrap: break-word;color: #03a9f4;font-weight: normal;text-decoration: none;">
+                                        <img align="none"height="200" src="<%- campaignInvitationIdea.picture %>"
+                                             style="width: 225px;height: 150px;margin: 0px;border: 0;outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;" width="300">
+                                    </a>
+
+                                    <br>
+
+                                    <a href="<%= urlComposer.activityUrl(campaignId, campaignInvitationIdea.id, '', '') %>" target="_blank" style="word-wrap: break-word;color: #03a9f4;font-weight: normal;text-decoration: none;">
+                                        <%= campaignInvitationIdea.title %>
+                                    </a>
+                                    <br>
+
+                                    <%= translate('frequency.' + campaignInvitationIdea.defaultfrequency) %>,
+                                    <%= translate('executionType.' + campaignInvitationIdea.defaultexecutiontype) %>
+
+                                </td>
+                            </tr>
+                            </tbody></table>
+                    </td>
+                </tr>
+                </tbody></table>
+
+
+
+        </td>
+    </tr>
+    </tbody>
+</table>
+<% } %>
+
+
+<table border="0" cellpadding="0" cellspacing="0" width="49%" class="mcnBoxedTextBlock" align="left">
+    <tbody class="mcnBoxedTextBlockOuter">
+    <tr>
+        <td valign="top" class="mcnBoxedTextBlockInner" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
+
+            <table align="left" border="0" cellpadding="0" cellspacing="0" width="282" class="mcnBoxedTextContentContainer" style="border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
+                <tbody><tr>
+
+                    <td class="mcnBoxedTextContentColumn" style="padding-top: 9px;padding-left: 18px;padding-bottom: 9px;padding-right: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
+
+                        <table border="0" cellpadding="18" cellspacing="0" class="mcnTextContentContainer" width="100%" style="border:1px double #DEDEDE;border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
+                            <tbody><tr>
+                                <td valign="top" class="mcnTextContent" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;color: #606060;font-family: Helvetica;font-size: 15px;line-height: 150%;text-align: left;">
+
+                                    <a href="<%= urlComposer.dcmBrowseIdeas(campaignId, 'group') %>" target="_blank" style="word-wrap: break-word;color: #03a9f4;font-weight: normal;text-decoration: none;">
+                                        <%= translate('section3.browseIdeas') %>
+                                    </a>
 
                                 </td>
                             </tr>

@@ -130,6 +130,7 @@
     "time": "Zeit:"
   },
   "campaignLeadSummaryMail": {
+    "subject": "HealthCampaign \"__user.campaign.title__\" - Weekly Campaign Mail",
     "section1": {
       "header": "Kampagnenverlauf",
       "text": "Verfolge den Verlauf deiner Kampagne",

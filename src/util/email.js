@@ -227,7 +227,7 @@ var sendStandardMail = function sendDailyEventSummary(mailType, toAddress, local
     if(config.email.bcc && config.email.bcc[mailType]) {
         mailExtensions.bcc = config.email.bcc[mailType];
     }
-    emailSender.sendEmail(fromDefault, toAddress, locals.subject, mailType, mailLocals, mailExtensions);
+    emailSender.sendEmail(fromDefault, toAddress, mailLocals.subject, mailType, mailLocals, mailExtensions);
 };
 
 var close = function close() {

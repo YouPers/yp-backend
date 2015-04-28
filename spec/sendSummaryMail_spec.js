@@ -4,7 +4,7 @@ describe('Send Summary Email', function() {
     var log = ypbackendlib.log(config);
     var mongoose = ypbackendlib.mongoose,
         moment = require('moment'),
-        mailBatch = require('../src/batches/eventsSummaryMail'),
+        mailBatch = require('../src/batches/dailySummaryMail'),
         _ = require('lodash');
 
 

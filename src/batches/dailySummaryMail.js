@@ -98,15 +98,14 @@ var getMailLocals = function getMailLocals(user, lastSentMailDate, currentDate, 
             }).sort({ publishFrom: 1 }).populate('author activity idea').exec(storeLocals('newCampaignActivityInvitations', done));
         },
 
-        // newCampaignRecommendations
+        // newRecommendations
         function (done) {
             mongoose.model('Recommendation').find({
                 _id: { $nin: dismissedSocialInteractions },
-                authorType: 'campaignLead',
                 targetSpaces: { $elemMatch: { targetId: user.campaign }},
                 publishFrom: { $gt: lastSentMailDate, $lt: currentDate },
                 publishTo: { $gt: currentDate }
-            }).sort({ publishFrom: 1 }).populate('author idea').exec(storeLocals('newCampaignRecommendations', done));
+            }).sort({ publishFrom: 1 }).populate('author idea').exec(storeLocals('newRecommendations', done));
         },
 
         // newPersonalInvitations
@@ -161,16 +160,6 @@ var getMailLocals = function getMailLocals(user, lastSentMailDate, currentDate, 
                 targetSpaces: {$elemMatch: {targetId: user.campaign}},
                 created: {$gt: lastSentMailDate}
             }).sort({ created: 1 }).populate('author activity idea').exec(storeLocals('newPublicInvitations', done));
-        },
-
-        // newCoachRecommendations
-        function (done) {
-            mongoose.model('Recommendation').find({
-                _id: {$nin: dismissedSocialInteractions},
-                authorType: 'coach',
-                targetSpaces: { $elemMatch: { targetId: user.id }},
-                created: {$gt: lastSentMailDate}
-            }).sort({ created: 1 }).populate('author idea').exec(storeLocals('newCoachRecommendations', done));
         }
     ];
 
@@ -195,10 +184,9 @@ var getMailLocals = function getMailLocals(user, lastSentMailDate, currentDate, 
 
                 locals.campaignOffers = [].concat(
                     locals.newCampaignActivityInvitations,
-                    locals.newCampaignRecommendations,
                     locals.newPersonalInvitations,
                     locals.newPublicInvitations,
-                    locals.newCoachRecommendations
+                    locals.newRecommendations
                 );
                 callback(err, locals);
             });

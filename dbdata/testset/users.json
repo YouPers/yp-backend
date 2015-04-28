@@ -288,7 +288,7 @@
         "campaign": {
             "$oid": "527916a82079aa8704000006"
         },
-        "avatar": "/assets/img/YouPersAvatar.png",
+        "avatar": "/assets/img/default_avatar_woman.png",
         "email": "ypunittest1+campaignlead@gmail.com",
         "emailValidatedFlag": true,
         "firstname": "Test",

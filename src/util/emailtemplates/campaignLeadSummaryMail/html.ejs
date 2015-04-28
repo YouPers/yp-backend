@@ -49,11 +49,9 @@
 
 
 
-                                        <h3>
-
-                                            TEST
-
-                                        </h3>
+                                        <%- include('../partials/section.ejs', { header: translate('section1.header'), transclude: '../campaignLeadSummaryMail/section1-stats.ejs' }) %>
+                                        <%- include('../partials/section.ejs', { header: translate('section2.header'), transclude: '../campaignLeadSummaryMail/section2-messages.ejs' }) %>
+                                        <%- include('../partials/section.ejs', { header: translate('section3.header'), transclude: '../campaignLeadSummaryMail/section3-invitations.ejs' }) %>
 
 
 

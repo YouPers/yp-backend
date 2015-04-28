@@ -130,6 +130,19 @@
     "time": "Zeit:"
   },
   "campaignLeadSummaryMail": {
-
+    "section1": {
+      "header": "Kampagnenverlauf",
+      "text": "Verfolge den Verlauf deiner Kampagne",
+      "link": "Zum Kampagnenverlauf"
+    },
+    "section2": {
+      "header": "Nachrichten",
+      "text": "Motiviere die Teilnehmer mit einer Nachricht aktiv an der Kampagne teilzunehmen",
+      "link": "Zu den Nachrichten"
+    },
+    "section3": {
+      "header": "Einladungen",
+      "text": "Lade die Kampagnenteilnehmer zu einem Event ein"
+    }
   }
 }

@@ -1,4 +1,4 @@
-var eventsSummaryMail = require('./batches/eventsSummaryMail'),
+var dailySummaryMail = require('./batches/dailySummaryMail'),
     campaignLeadSummaryMail = require('./batches/campaignLeadSummaryMail'),
     config = require('./config/config'),
     scheduler = require('ypbackendlib').scheduler,
@@ -26,12 +26,10 @@ var jobs = [
         name: 'DailyEventSummary',
         description: 'sends a daily email to users who had events with end dates in the specified time range',
         cronTime: '00 15 05 * * *',
-        onTick: eventsSummaryMail.run,
+        onTick: dailySummaryMail.run,
         start: true,
         context: {
-            // TODO: verify if these properties are deprecated, no occurrences found in our code nor in the cron module
-            //timeFrameToFindEvents: 24 * 60 * 60 * 1000,
-            //concurrency: 2
+            concurrency: 2
         }
     },
     {
@@ -41,7 +39,7 @@ var jobs = [
         onTick: campaignLeadSummaryMail.run,
         start: true,
         context: {
-
+            concurrency: 2
         }
     }
 ];

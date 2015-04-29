@@ -105,7 +105,7 @@ var sendMail = function sendMail(user, currentDate, done, context) {
 
 
             // check if weeklyCampaignLeadMail is enabled in the user's profile
-            if(!user.profile.prefs.email.weeklyCampaignLeadMail) {
+            if(user.profile.prefs.email.weeklyCampaignLeadMail === false) {
                 log.debug({emailprefs: user.profile.prefs.email, weeklyClMail: user.profile.prefs.email.weeklyCampaignLeadMail}, 'WeeklyCampaignLeadSummary not sent, disabled in profile: ' + user.email);
                 return done();
             }

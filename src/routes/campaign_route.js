@@ -154,8 +154,7 @@ module.exports = function (swagger) {
             params: [swagger.pathParam("id", "ID of the user to be deleted", "string")],
             "errorResponses": [swagger.errors.invalid('id'), swagger.errors.notFound("campaign")],
             "nickname": "deleteCampaign",
-            accessLevel: 'al_campaignlead'
-
+            accessLevel: 'al_orgadmin'
         },
         action: campaignHandlers.deleteByIdFn(baseUrl, Campaign)
     });

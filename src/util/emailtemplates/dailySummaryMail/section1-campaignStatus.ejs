@@ -8,23 +8,23 @@ campaign last day, last day of campaign, check this first because this is the mo
 
 <% if (moment(user.campaign.end).businessDiff(moment()) < 2) { %>
 
-<p><%- t('email:dailySummary.section1.4.content', locals) %></p>
+<p><%- t('email:dailySummaryMail.section1.4.content', locals) %></p>
 
 <!-- campaign last week, monday, last week -->
 <% } else if (moment(user.campaign.end).day(1).isSame(moment(), 'day')) { %>
-<p><%- t('email:dailySummary.section1.3.content', locals) %></p>
+<p><%- t('email:dailySummaryMail.section1.3.content', locals) %></p>
 
 <!-- campaign start, monday, 2nd week -->
 <% } else if  (moment(user.campaign.start).day(1).add(1, 'weeks').isSame(moment(), 'day') ) { %>
-    <p><%- t('email:dailySummary.section1.1.content', locals) %></p>
+    <p><%- t('email:dailySummaryMail.section1.1.content', locals) %></p>
 
 <!-- campaign mid term, monday, midTermWeek week -->
 <% } else if (moment(user.campaign.start).day(1).add(midTermWeek, 'weeks').isSame(moment(), 'day')) { %>
-    <p><%- t('email:dailySummary.section1.2.content', locals) %></p>
+    <p><%- t('email:dailySummaryMail.section1.2.content', locals) %></p>
 
 <% } else { %>
 
-<%- t('email:dailySummary.section1.default', locals) %>
+<%- t('email:dailySummaryMail.section1.default', locals) %>
 
 <% } %>
 
@@ -33,7 +33,7 @@ campaign last day, last day of campaign, check this first because this is the mo
 
 <a href="<%= urlComposer.homeUrl() %>" style="line-height: 20.7999992370605px;word-wrap: break-word; color: #03a9f4;font-weight: normal;text-decoration: none;" target="_blank">
 
-    <%- t('email:dailySummary.campaignLink') %>
+    <%- t('email:dailySummaryMail.campaignLink') %>
 
 </a>
 

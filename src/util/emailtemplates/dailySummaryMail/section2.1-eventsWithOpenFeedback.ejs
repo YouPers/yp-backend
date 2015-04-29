@@ -40,14 +40,14 @@
                                         <br>
 
                                         <span style="line-height:20.7999992370605px">
-                                            <%= t('email:dailySummary.time') %>
+                                            <%= t('email:dailySummaryMail.time') %>
                                         </span>
 
                                         <%= moment(eventsWithOpenFeedback[i].start).format('LLLL') %>
 
                                         <br>
 
-                                        <%= eventsWithOpenFeedback[i].activity.location ? t('email:dailySummary.location') : '' %>
+                                        <%= eventsWithOpenFeedback[i].activity.location ? t('email:dailySummaryMail.location') : '' %>
                                         <%- eventsWithOpenFeedback[i].activity.location %>
 
 

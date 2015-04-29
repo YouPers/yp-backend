@@ -12,7 +12,7 @@
 
                         <p style="text-align: left;margin: 1em 0;padding: 0;color: #606060;font-family: Helvetica;font-size: 15px;line-height: 150%;"><span style="font-size:16px">
 
-                                                                        <%= t('email:dailySummary.section3.newCampaignOffers') %>
+                                                                        <%= t('email:dailySummaryMail.section3.newCampaignOffers') %>
 
 
                                                                     </span></p>
@@ -49,7 +49,7 @@
                                     <br>
                                     <br>
 
-                                    <%= t('email:dailySummary.campaignOfferPrefix.' + campaignOffers[i].__t) %>
+                                    <%= t('email:dailySummaryMail.campaignOfferPrefix.' + campaignOffers[i].__t) %>
                                     <br>
                                     <br>
 
@@ -67,8 +67,8 @@
 
                                     <% if(campaignOffers[i].__t == 'Recommendation') { %>
 
-                                    <%= t('email:dailySummary.frequency.' + campaignOffers[i].idea.defaultfrequency) %>,
-                                    <%= t('email:dailySummary.executionType.' + campaignOffers[i].idea.defaultexecutiontype) %>
+                                    <%= t('email:dailySummaryMail.frequency.' + campaignOffers[i].idea.defaultfrequency) %>,
+                                    <%= t('email:dailySummaryMail.executionType.' + campaignOffers[i].idea.defaultexecutiontype) %>
 
                                     <% } else { %>
 
@@ -115,11 +115,11 @@
 
                                     <img align="none" height="60" src="<%= urlComposer.homeUrl() + '/assets/img/avatar_coach_blue_60.png' %>" style="line-height: 20.7999992370605px;width: 60px;height: 60px;margin: 0px;border: 0;outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;" width="60">
 
-                        <%= t('email:dailySummary.coach') %>
+                        <%= t('email:dailySummaryMail.coach') %>
 
                         <br>
                         <br>
-                        <%= t('email:dailySummary.campaignOfferPrefix.Recommendation') %>
+                        <%= t('email:dailySummaryMail.campaignOfferPrefix.Recommendation') %>
                         <br>
                         <br>
                         <a href="<%= urlComposer.homeUrl() %>" target="_blank" style="word-wrap: break-word;color: #03a9f4;font-weight: normal;text-decoration: none;">
@@ -128,7 +128,7 @@
 
                         <br>
 
-                        <%- t('email:dailySummary.coachRecommendationFindOut', { link: urlComposer.homeUrl() }) %>
+                        <%- t('email:dailySummaryMail.coachRecommendationFindOut', { link: urlComposer.homeUrl() }) %>
 
 
                     </td>

@@ -160,8 +160,15 @@ var sendMail = function sendMail(user, currentDate, done, context) {
 function _ordinalNumber(startDate, now) {
     var offset = 1; // offset from startDate (second day of campaign)
     var every = 5; // every n-th day from the start after adding the offset
-    var daysSinceStart = moment(now).businessDiff(moment(startDate).businessAdd(offset));
-    return daysSinceStart % every === 0 ? daysSinceStart / every : false;
+
+    // this returns the days since start as "fractional days: e.g. 0.7 days"
+    var daysSinceStartFraction = moment(now).businessDiff(moment(startDate).businessAdd(offset));
+
+    // we want to consider "full days only"
+    var daysSinceStart = Math.floor(daysSinceStartFraction);
+
+    var result =  daysSinceStart % every === 0 ? daysSinceStart / every : false;
+    return result;
 }
 
 var feeder = function (callback) {

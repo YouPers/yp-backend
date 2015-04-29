@@ -101,7 +101,7 @@ var sendMail = function sendMail(user, currentDate, done, context) {
             }
 
             // if no currentDate is provided, use now
-            currentDate = currentDate ? moment(currentDate) : moment();
+            currentDate = currentDate ? moment(currentDate).tz('Europe/Zurich') : moment().tz('Europe/Zurich');
 
 
             // check if weeklyCampaignLeadMail is enabled in the user's profile
@@ -161,12 +161,9 @@ function _ordinalNumber(startDate, now) {
     var offset = 1; // offset from startDate (second day of campaign)
     var every = 5; // every n-th day from the start after adding the offset
 
-    // this returns the days since start as "fractional days: e.g. 0.7 days"
-    var daysSinceStartFraction = moment(now).businessDiff(moment(startDate).businessAdd(offset));
+    var daysSinceStartFraction = moment(now).tz('Europe/Zurich').businessDiff(moment(startDate).tz('Europe/Zurich').businessAdd(offset));
 
-    // we want to consider "full days only"
     var daysSinceStart = Math.floor(daysSinceStartFraction);
-
     var result =  daysSinceStart % every === 0 ? daysSinceStart / every : false;
     return result;
 }

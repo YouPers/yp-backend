@@ -92,6 +92,7 @@ var getMailLocals = function getMailLocals(user, lastSentMailDate, currentDate, 
             mongoose.model('Invitation').find({
                 _id: { $nin: dismissedSocialInteractions },
                 authorType: 'campaignLead',
+                activity: {$nin: locals.activities},
                 targetSpaces: { $elemMatch: { targetId: user.campaign }},
                 publishFrom: { $gt: lastSentMailDate, $lt: currentDate },
                 publishTo: { $gt: currentDate }

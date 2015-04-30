@@ -30,11 +30,16 @@ function activityUrl(campaignId, ideaId, activityId, soiId, actionType) {
         return webclientUrl + "/#/campaign/" + campaignId + '/idea/'+ideaId+ '/activity/' + activityId + '/socialInteraction/' + (soiId || '');
     }
 }
+
+function dcmActivityUrl(campaignId, ideaId, activityId, soiId) {
+        return webclientUrl + "/#/dcm/campaign/" + campaignId +'/idea/'+ideaId+ '/activity/' + activityId + '/socialInteraction/' + (soiId || '');
+}
+
 function activityInviteUrl(invitationId) {
     return webclientUrl + "/#/invite/" + invitationId;
 }
 function campaignLeadInviteAndResetPasswordUrl(campaignId, invitingUserId, invitedUserId, username, token) {
-    return webclientUrl + "/#/campaigns/" + campaignId + '/campaignLeadResetPassword' +
+    return webclientUrl + "/#/dcm/campaign/" + campaignId + '/campaignLeadResetPassword' +
         '?invitingUserId=' + invitingUserId +
         '&invitedUserId=' + invitedUserId +
         '&username=' + encodeURIComponent(username) +
@@ -72,6 +77,7 @@ module.exports = {
     dcmBrowseIdeas: dcmBrowseIdeas,
     dcmCreateIdea: dcmCreateIdea,
     activityUrl: activityUrl,
+    dcmActivityUrl: dcmActivityUrl,
     activityInviteUrl: activityInviteUrl,
     campaignLeadInviteAndResetPasswordUrl: campaignLeadInviteAndResetPasswordUrl,
     campaignWelcomeUrl: campaignWelcomeUrl,

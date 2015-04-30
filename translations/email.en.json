@@ -6,10 +6,10 @@
     "configureEmailSettings": "Change email settings"
   },
   "CampaignParticipantInvite": {
-    "campaignLeadsHeader": "Your campaign leads:",
-    "linkText": "SHOW CAMPAIGN",
-    "subject": null,
-    "text": null
+    "campaignLeadsHeader": "Your Campaign Leader(s):",
+    "linkText": "TO CAMPAIGN",
+    "subject": "__campaign.organization.name__ Campaign __campaign.title__: Personal Invitation",
+    "text": "Dear colleague, dear employee <br><br> __campaign.organization.name__ invites you to participate in the corporate health campaign on __campaign.topic.shortDescription__. This web-based health campaign is a service from YOUPERS, a Swiss software company for digital health solutions."
   },
   "ActivityInvitation": {
     "subject": "HealthCampaign: Invitation to join activity from __inviting.fullname__",
@@ -19,18 +19,18 @@
     "linkText": "SHOW INVITATION"
   },
   "ActivityUpdate": {
-    "subject": null,
-    "salutation": null,
-    "salutationAnonymous": null,
-    "text": null,
-    "linkText": null
+    "subject": "HealthCampaign: Scheduling",
+    "salutation": "Hello __recipient.firstname__",
+    "salutationAnonymous": "Hello!",
+    "text": "The following activity was planned by <strong>__owner.fullname__</strong>",
+    "linkText": "SHOW ACTIVITY"
   },
   "ActivityDeleted": {
-    "subject": null,
-    "salutation": null,
-    "salutationAnonymous": null,
-    "text": null,
-    "linkText": null
+    "subject": "HealthCampaign: Activity cancelled",
+    "salutation": "Hello __recipient.firstname__",
+    "salutationAnonymous": "Hello!",
+    "text": "The following activity was cancelled by <strong>__owner.fullname__</strong>",
+    "linkText": "SHOW OVERVIEW"
   },
   "CampaignLeadInvite": {
     "subject": "HealthCampaign: Invitation from __inviting.fullname__ to become campaign leader",
@@ -78,6 +78,39 @@
       "text": "The calendar entry for activity <strong>__activity.title__</strong> has been canceled. You can use the link below to update your calendar.<br/><br/>If you do not want to receive emails like this in the future, you can disable it in your <a href='__profileLink__'>profile</a>.",
       "linkText": "REMOVE FROM CALENDAR"
     }
+  },
+  "campaignLeadSummaryMail": {
+    "executionType": {
+      "group": null,
+      "self": null
+    },
+    "frequency": {
+      "day": null,
+      "month": null,
+      "once": null,
+      "week": null
+    },
+    "section1": {
+      "header": null,
+      "link": null,
+      "text": null
+    },
+    "section2": {
+      "header": null,
+      "link": null,
+      "text": null
+    },
+    "section3": {
+      "browseIdeas": null,
+      "header": null,
+      "text": null
+    },
+    "section4": {
+      "createIdea": null,
+      "header": null,
+      "text": null
+    },
+    "subject": null
   },
   "dailySummaryMail": {
     "campaignLink": "To campaign",

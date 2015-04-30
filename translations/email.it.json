@@ -79,6 +79,39 @@
       "linkText": null
     }
   },
+  "campaignLeadSummaryMail": {
+    "executionType": {
+      "group": null,
+      "self": null
+    },
+    "frequency": {
+      "day": null,
+      "month": null,
+      "once": null,
+      "week": null
+    },
+    "section1": {
+      "header": null,
+      "link": null,
+      "text": null
+    },
+    "section2": {
+      "header": null,
+      "link": null,
+      "text": null
+    },
+    "section3": {
+      "browseIdeas": null,
+      "header": null,
+      "text": null
+    },
+    "section4": {
+      "createIdea": null,
+      "header": null,
+      "text": null
+    },
+    "subject": null
+  },
   "dailySummaryMail": {
     "campaignLink": null,
     "campaignOfferPrefix": {

@@ -79,6 +79,39 @@
       "linkText": "AUS KALENDER ENTFERNEN"
     }
   },
+  "campaignLeadSummaryMail": {
+    "executionType": {
+      "group": "in der Gruppe",
+      "self": "selber"
+    },
+    "frequency": {
+      "day": "täglich",
+      "month": "monatlich",
+      "once": "einmalig",
+      "week": "wöchentlich"
+    },
+    "section1": {
+      "header": "Kampagnenverlauf",
+      "link": "Zum Kampagnenverlauf",
+      "text": "Hallo __recipient.firstname__<br><br>\nDies ist dein wöchentliches Email zu deiner betrieblichen Gesundheitskampagne zum Thema __campaign.title__."
+    },
+    "section2": {
+      "header": "Nachrichten",
+      "link": "Zu den Nachrichten",
+      "text": "Motiviere die Teilnehmer bei Bedarf mit einer Kampagnenleiter-Nachricht, aktiv an der Kampagne teilzunehmen."
+    },
+    "section3": {
+      "browseIdeas": "Aktivität in Bibliothek suchen",
+      "header": "Einladung",
+      "text": "Ich empfehle dir, die Kampagnenteilnehmer mindestens einmal pro Woche zu einem Kampagnenevent einzuladen."
+    },
+    "section4": {
+      "createIdea": "Eigene Aktivität erstellen",
+      "header": "Empfehlung",
+      "text": "Empfehle den Kampagnenteilnehmern mindestens einmal pro Woche eine Aktivität (zum Beispiel ein bereits bestehendes Gesundheitsförderungsangebot deines Betriebes)."
+    },
+    "subject": "HealthCampaign \"__user.campaign.title__\" - Weekly Mail für Kampagnenleiter"
+  },
   "dailySummaryMail": {
     "campaignLink": "Zur Kampagne",
     "campaignOfferPrefix": {
@@ -128,38 +161,5 @@
     },
     "subject": "HealthCampaign \"__user.campaign.title__\" - Daily Mail",
     "time": "Zeit:"
-  },
-  "campaignLeadSummaryMail": {
-    "subject": "HealthCampaign \"__user.campaign.title__\" - Weekly Campaign Mail",
-    "executionType": {
-      "group": "in der Gruppe",
-      "self": "selber"
-    },
-    "frequency": {
-      "day": "täglich",
-      "month": "monatlich",
-      "once": "einmalig",
-      "week": "wöchentlich"
-    },
-    "section1": {
-      "header": "Kampagnenverlauf",
-      "text": "Verfolge den Verlauf deiner Kampagne",
-      "link": "Zum Kampagnenverlauf"
-    },
-    "section2": {
-      "header": "Nachrichten",
-      "text": "Motiviere die Teilnehmer mit einer Nachricht aktiv an der Kampagne teilzunehmen",
-      "link": "Zu den Nachrichten"
-    },
-    "section3": {
-      "header": "Einladung",
-      "text": "Lade die Kampagnenteilnehmer zu einem Event ein",
-      "browseIdeas": "Aktivität in Bibliothek suchen"
-    },
-    "section4": {
-      "header": "Empfehlung",
-      "text": "Empfehle den Kampagnenteilnehmern eine Kampagnenaktivität. Empfehle den Teilnehmern wenn möglich ein bereits bestehendes Gesundheitsförderungsangebot deines Betriebes",
-      "createIdea": "Eigene Aktivität erstellen"
-    }
   }
 }

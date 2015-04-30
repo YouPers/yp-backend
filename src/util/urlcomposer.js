@@ -62,7 +62,7 @@ function prefixRelativeImageUrl(url) {
     return url.indexOf('/') === 0 ? (homeUrl() + url) : url;
 }
 function assetUrl(fileName) {
-    return homeUrl() + '/assets/img/' + fileName
+    return homeUrl() + '/assets/img/' + fileName;
 }
 
 module.exports = {

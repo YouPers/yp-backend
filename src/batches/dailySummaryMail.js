@@ -82,8 +82,8 @@ var getMailLocals = function getMailLocals(user, lastSentMailDate, currentDate, 
                 _id: { $nin: dismissedSocialInteractions },
                 authorType: 'campaignLead',
                 targetSpaces: { $elemMatch: { targetId: user.campaign }},
-                publishFrom: { $gt: lastSentMailDate, $lt: currentDate },
-                publishTo: { $gt: currentDate }
+                publishFrom: { $gte: lastSentMailDate, $lte: currentDate },
+                publishTo: { $gte: currentDate }
             }).sort({ publishFrom: 1 }).populate('author').exec(storeLocals('newCampaignMessages', done));
         },
 
@@ -94,8 +94,8 @@ var getMailLocals = function getMailLocals(user, lastSentMailDate, currentDate, 
                 authorType: 'campaignLead',
                 activity: {$nin: locals.activities},
                 targetSpaces: { $elemMatch: { targetId: user.campaign }},
-                publishFrom: { $gt: lastSentMailDate, $lt: currentDate },
-                publishTo: { $gt: currentDate }
+                publishFrom: { $gte: lastSentMailDate, $lte: currentDate },
+                publishTo: { $gte: currentDate }
             }).sort({ publishFrom: 1 }).populate('author activity idea').exec(storeLocals('newCampaignActivityInvitations', done));
         },
 
@@ -104,8 +104,8 @@ var getMailLocals = function getMailLocals(user, lastSentMailDate, currentDate, 
             mongoose.model('Recommendation').find({
                 _id: { $nin: dismissedSocialInteractions },
                 targetSpaces: { $elemMatch: { targetId: user.campaign }},
-                publishFrom: { $gt: lastSentMailDate, $lt: currentDate },
-                publishTo: { $gt: currentDate }
+                publishFrom: { $gte: lastSentMailDate, $lte: currentDate },
+                publishTo: { $gte: currentDate }
             }).sort({ publishFrom: 1 }).populate('author idea').exec(storeLocals('newRecommendations', done));
         },
 
@@ -118,8 +118,8 @@ var getMailLocals = function getMailLocals(user, lastSentMailDate, currentDate, 
                     activity: { $in: activityIds},
                     authorType: 'user',
                     targetSpaces: { $elemMatch: { targetId: user.id }},
-                    publishFrom: { $gt: lastSentMailDate, $lt: currentDate },
-                    publishTo: { $gt: currentDate }
+                    publishFrom: { $gte: lastSentMailDate, $lte: currentDate },
+                    publishTo: { $gte: currentDate }
                 }).sort({ publishFrom: 1 }).populate('author activity idea').exec(storeLocals('newPersonalInvitations', done));
             });
 
@@ -147,7 +147,7 @@ var getMailLocals = function getMailLocals(user, lastSentMailDate, currentDate, 
                             }
                         }
                     },
-                    created: {$gt: lastSentMailDate}
+                    created: {$gte: lastSentMailDate}
                 }).exec(storeLocals('newCommentsOnParticipatedActivities', done));
             });
         },
@@ -159,7 +159,7 @@ var getMailLocals = function getMailLocals(user, lastSentMailDate, currentDate, 
                 activity: {$nin: locals.activities},
                 authorType: 'user',
                 targetSpaces: {$elemMatch: {targetId: user.campaign}},
-                created: {$gt: lastSentMailDate}
+                created: {$gte: lastSentMailDate}
             }).sort({ created: 1 }).populate('author activity idea').exec(storeLocals('newPublicInvitations', done));
         }
     ];
@@ -249,9 +249,11 @@ var sendMail = function sendMail(user, lastSentMailDate, currentDate, done, cont
             }
 
             // if no lastSentMailDate is provided, use the date the last mail was sent stored at the user, or the start of the campaign
-            lastSentMailDate = lastSentMailDate ? lastSentMailDate : moment(user.lastSummaryMail) || moment(user.campaign.start);
+            if (!lastSentMailDate) {
+                var lastDate = user.lastSummaryMail || user.campaign.start;
+                lastSentMailDate = moment(lastDate);
+            }
             currentDate = currentDate ? moment(currentDate) : moment();
-
 
             // check if dailyUserMail is enabled in the user's profile
             if(!user.profile.prefs.email.dailyUserMail) {

@@ -61,6 +61,9 @@ function profileUrl () {
 function prefixRelativeImageUrl(url) {
     return url.indexOf('/') === 0 ? (homeUrl() + url) : url;
 }
+function assetUrl(fileName) {
+    return homeUrl() + '/assets/img/' + fileName
+}
 
 module.exports = {
     homeUrl: homeUrl,
@@ -77,5 +80,6 @@ module.exports = {
     campaignImageUrl: campaignImageUrl,
     profileUrl: profileUrl,
     prefixRelativeImageUrl: prefixRelativeImageUrl,
+    assetUrl: assetUrl,
     icalUrl: icalUrl
 };

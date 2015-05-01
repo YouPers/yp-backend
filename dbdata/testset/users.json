@@ -98,30 +98,6 @@
     {
         "__v": 0,
         "_id": {
-            "$oid": "525fb247101e3300000010ee"
-        },
-        "avatar": "assets/img/KTLU.jpeg",
-        "email": "webmaster@youpers.com",
-        "emailValidatedFlag": true,
-        "firstname": "System",
-        "fullname": "System Administrator",
-        "hashed_password": "a54966212958eb146139a6e1dd16044ca33dc8b9",
-        "lastname": "Administrator",
-        "profile": {
-            "$oid": "533d4045a771f4000092f31a"
-        },
-        "roles": [
-            "systemadmin"
-        ],
-        "tempPasswordFlag": false,
-        "username": "sysadm",
-        "created": {
-            "$date": 1407770509621
-        }
-    },
-    {
-        "__v": 0,
-        "_id": {
             "$oid": "528b227bf70daafada000006"
         },
         "avatar": "assets/img/KTLU.jpeg",
@@ -366,7 +342,7 @@
         "email": "helmut.kneer@youpers.com",
         "emailValidatedFlag": true,
         "firstname": "Helmut",
-        "fullname": "Helmut Kneer",
+        "fullname": "Helmut Kneeeeer",
         "hashed_password": "92d7dab7a83f16b203d6e26f5dab88d1a04404f9",
         "lastname": "Kneer",
         "profile": {
@@ -380,58 +356,6 @@
         "created": {
             "$date": 1407770509621
         }
-    },
-    {
-        "__v": 0,
-        "_id": {
-            "$oid": "53348c27996c80a534319bda"
-        },
-        "avatar": "/assets/img/avatar_coach_blue.svg",
-        "email": "digitalcoach@youpers.com",
-        "emailValidatedFlag": true,
-        "firstname": "Digital",
-        "fullname": "Digital Coach",
-        "hashed_password": "5106764862fe0a566950e9ceac3cf48f032f8d14",
-        "lastname": "Coach",
-        "profile": {
-            "$oid": "533d4045a771f4000092f31b"
-        },
-        "roles": [
-            "individual"
-        ],
-        "tempPasswordFlag": false,
-        "username": "digitalcoach",
-        "created": {
-            "$date": 1407770509621
-        }
-    },
-    {
-      "__v": 1,
-      "_id": {
-        "$oid": "53348c27996c80a534319bdb"
-      },
-      "avatar": "/assets/img/health_expert.jpg",
-      "created": {
-        "$date": 1407770509621
-      },
-      "email": "healthexpert@youpers.com",
-      "emailValidatedFlag": true,
-      "emails": [],
-      "firstname": "Helmut",
-      "fullname": "Helmut Kneer, YouPers",
-      "hashed_password": "bcrypt:$2a$08$60tArzxa7JLCF35lVMMIMeU9w.sZRSkjliggbi3bfUoyVg6f1An72",
-      "lastname": "Kneer",
-      "photos": [],
-      "profile": {
-        "$oid": "533d4045a771f4000092f31b"
-      },
-      "roles": [
-        "individual"
-      ],
-      "tempPasswordFlag": false,
-      "updated": {
-        "$date": 1429695948621
-      },
-      "username": "digitalcoach"
     }
+
 ]

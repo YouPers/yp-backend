@@ -276,39 +276,40 @@ var sendMail = function sendMail(user, lastSentMailDate, currentDate, done, cont
 
                 log.info('sending DailySummary Mail to email: ' + user.email);
 
-                try {
-                    email.sendStandardMail.apply(this, [mailType, user.email, locals, user, i18n]);
+                    email.sendStandardMail.apply(this, [mailType, user.email, locals, user, i18n, function(err, result) {
 
-                    mongoose.model('User').update({ _id: user._id },
-                        {
-                            $set: {
-                                lastSummaryMail: currentDate.toDate()
-                            }
-                        }, function (err) {
-                            if(err) {
+                        if (err) {
+                            // we encoutered an unexpected error when trying to send a specific email to a specific user:
+                            // - we check for the error and try to determine whether it is a specific error that only
+                            //   affects this user (e.g. a data problem rendering the email), if it only affects this
+                            //   user we do not signal done(err) but remember the failed user
+                            // - if we do not know the error, we stop processing
+                            log.err({errCode: err.code, errMessage: err.message, cause: err.cause}, "caught uncaught error in email sending");
+                            if (err.code === 'MailRenderingError') {
+                                // we log the error
+                                log.error({err: err, username: user.email, mailType: mailType}, "could NOT send Daily mail for one user");
+
+                                // TODO: Add functionality to the batch framework to signal a "recoverable, one task only" error" that does not stop the processing.
+                                //
+                                return done(null);
+                            } else {
                                 return done(err);
                             }
-                            return done();
-                        });
-                } catch (err) {
-                    // we encoutered an unexpected error when trying to send a specific email to a specific user:
-                    // - we check for the error and try to determine whether it is a specific error that only
-                    //   affects this user (e.g. a data problem rendering the email), if it only affects this
-                    //   user we do not signal done(err) but remember the failed user
-                    // - if we do not know the error, we stop processing
-                    log.err({errCode: err.code, errMessage: err.message, cause: err.cause}, "caught uncaught error in email sending");
-                    if (err.code === 'MailRenderingError') {
-                        // we log the error
-                        log.error({err: err, username: user.email, mailType: mailType}, "could NOT send Daily mail for one user");
+                        }
 
-                        // TODO: Add functionality to the batch framework to signal a "recoverable, one task only" error" that does not stop the processing.
-                        //
-                        return done();
-                    } else {
-                        throw err;
-                    }
-                }
+                        mongoose.model('User').update({ _id: user._id },
+                            {
+                                $set: {
+                                    lastSummaryMail: currentDate.toDate()
+                                }
+                            }, function (err) {
+                                if(err) {
+                                    return done(err);
+                                }
+                                return done();
+                            });
 
+                    }]);
 
             });
         });

@@ -219,7 +219,7 @@ var getStandardMailLocals = function getStandardMailLocals(mailType, locals, i18
  * @param user - a user object with a populated profile.
  * @param i18n - an i18n object to be used to translate the email content
  */
-var sendStandardMail = function sendDailyEventSummary(mailType, toAddress, locals, user, i18n) {
+var sendStandardMail = function sendDailyEventSummary(mailType, toAddress, locals, user, i18n, cb) {
 
     var mailLocals = getStandardMailLocals(mailType, locals, i18n);
     _.extend(mailLocals, locals);
@@ -227,7 +227,7 @@ var sendStandardMail = function sendDailyEventSummary(mailType, toAddress, local
     if(config.email.bcc && config.email.bcc[mailType]) {
         mailExtensions.bcc = config.email.bcc[mailType];
     }
-    emailSender.sendEmail(fromDefault, toAddress, mailLocals.subject, mailType, mailLocals, mailExtensions);
+    emailSender.sendEmail(fromDefault, toAddress, mailLocals.subject, mailType, mailLocals, mailExtensions, cb);
 };
 
 var close = function close() {

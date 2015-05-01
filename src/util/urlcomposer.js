@@ -39,7 +39,7 @@ function activityInviteUrl(invitationId) {
     return webclientUrl + "/#/invite/" + invitationId;
 }
 function campaignLeadInviteAndResetPasswordUrl(campaignId, invitingUserId, invitedUserId, username, token) {
-    return webclientUrl + "/#/dcm/campaign/" + campaignId + '/campaignLeadResetPassword' +
+    return webclientUrl + "/#/campaigns/" + campaignId + '/campaignLeadResetPassword' +
         '?invitingUserId=' + invitingUserId +
         '&invitedUserId=' + invitedUserId +
         '&username=' + encodeURIComponent(username) +

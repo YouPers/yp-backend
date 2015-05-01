@@ -123,19 +123,13 @@ var sendMail = function sendMail(user, currentDate, done, context) {
 
                 log.info('sending WeeklyCampaignLeadSummary Mail to email: ' + user.email);
 
-                email.sendStandardMail.apply(this, [mailType, user.email, locals, user, i18n]);
-
-                mongoose.model('User').update({ _id: user._id },
-                    {
-                        $set: {
-                            lastSummaryMail: currentDate.toDate()
-                        }
-                    }, function (err) {
-                    if(err) {
-                        return done(err);
+                email.sendStandardMail.apply(this, [mailType, user.email, locals, user, i18n, function(err, result) {
+                    if (err) {
+                        log.error({err: err, username: user.email}, "error generating mail for: " + user.email);
                     }
                     return done();
-                });
+                }]);
+
             });
         });
 };

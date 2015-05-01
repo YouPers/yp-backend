@@ -93,7 +93,7 @@
     "section1": {
       "header": "Kampagnenverlauf",
       "link": "Zum Kampagnenverlauf",
-      "text": "Hallo __recipient.firstname__<br><br>\nDies ist dein wöchentliches Email zu deiner betrieblichen Gesundheitskampagne zum Thema __campaign.title__."
+      "text": "Hallo __user.firstname__<br><br>\nDies ist dein wöchentliches Email zu deiner betrieblichen Gesundheitskampagne zum Thema __user.campaign.title__."
     },
     "section2": {
       "header": "Nachrichten",

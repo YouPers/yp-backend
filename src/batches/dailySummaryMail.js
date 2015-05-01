@@ -296,6 +296,7 @@ var sendMail = function sendMail(user, lastSentMailDate, currentDate, done, cont
                     //   affects this user (e.g. a data problem rendering the email), if it only affects this
                     //   user we do not signal done(err) but remember the failed user
                     // - if we do not know the error, we stop processing
+                    log.err({errCode: err.code, errMessage: err.message, cause: err.cause}, "caught uncaught error in email sending");
                     if (err.code === 'MailRenderingError') {
                         // we log the error
                         log.error({err: err, username: user.email, mailType: mailType}, "could NOT send Daily mail for one user");

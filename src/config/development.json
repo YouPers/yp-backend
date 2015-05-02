@@ -18,5 +18,5 @@
     "subjectSuffix": " (from local-developer machine)"
   },
   "paymentCodeChecking": "disabled",
-  "db_database": "hc-ci"
+  "db_database": "test_database"
 }

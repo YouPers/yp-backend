@@ -154,7 +154,8 @@ module.exports = function (swagger) {
             params: [swagger.pathParam("id", "ID of the user to be deleted", "string")],
             "errorResponses": [swagger.errors.invalid('id'), swagger.errors.notFound("campaign")],
             "nickname": "deleteCampaign",
-            accessLevel: 'al_orgadmin'
+            accessLevel: 'al_campaignlead'      // actually, should only be allowed for orgadmin, but we need it for the special "edit campaign date use case WL-2060"
+
         },
         action: campaignHandlers.deleteByIdFn(baseUrl, Campaign)
     });

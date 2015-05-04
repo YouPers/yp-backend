@@ -90,10 +90,11 @@
       "once": "einmalig",
       "week": "wöchentlich"
     },
+    "salutation": "Hallo __user.firstname__<br><br>\nDies ist dein wöchentliches Email zu deiner betrieblichen Gesundheitskampagne zum Thema __user.campaign.title__.",
     "section1": {
       "header": "Kampagnenverlauf",
       "link": "Zum Kampagnenverlauf",
-      "text": "Hallo __user.firstname__<br><br>\nDies ist dein wöchentliches Email zu deiner betrieblichen Gesundheitskampagne zum Thema __user.campaign.title__."
+      "text": "Ich empfehle dir, täglich den Verlauf deiner Kampagne zu verfolgen"
     },
     "section2": {
       "header": "Nachrichten",

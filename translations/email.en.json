@@ -9,7 +9,7 @@
     "campaignLeadsHeader": "Your Campaign Leader(s):",
     "linkText": "TO CAMPAIGN",
     "subject": "__campaign.organization.name__ Campaign __campaign.title__: Personal Invitation",
-    "text": "Dear colleague, dear employee <br><br> __campaign.organization.name__ invites you to participate in the corporate health campaign on __campaign.topic.shortDescription__. This web-based health campaign is a service from YOUPERS, a Swiss software company for digital health solutions."
+    "text": "Dear colleague, dear employee <br><br> __campaign.organization.name__ invites you to participate in the company-based health campaign on __campaign.topic.shortDescription__. This web-based health campaign is a service from YOUPERS, a Swiss software company for digital health solutions."
   },
   "ActivityInvitation": {
     "subject": "HealthCampaign: Invitation to join activity from __inviting.fullname__",
@@ -37,7 +37,7 @@
     "welcomeHeader": "Welcome as campaign leader",
     "salutation": "Hello __invited.firstname__",
     "salutationAnonymous": "Hello!",
-    "text": "__inviting.fullname__ has invited you to become campaign leader for the YOUPERS __campaign.title__ HealthCampaign.",
+    "text": "__inviting.fullname__ has invited you to become a Campaign Leader for the __campaign.title__ HealthCampaign at __organization.name__. This web-based HealthCampaign is a service from YOUPERS, the Swiss software company for digital health solutions.",
     "linkText": "SHOW INVITATION"
   },
   "OrganizationAdminInvite": {
@@ -63,7 +63,7 @@
     "new": {
       "subject": "New Calendar-Entry for: __activity.title__",
       "salutation": "Hello __user.firstname__",
-      "text": "Congratulations! By scheduling <strong>__activity.title__</strong> you have already accomplished an important step!<br/><br/>You can add the events for this activity to your calendar with the link below.<br/><br/>If you do not want to receive emails like this in the future, you can disable it in your <a href='__profileLink__'>profile</a>.",
+      "text": "Congratulations! By planning <strong>__activity.title__</strong> you have already accomplished an important step!<br/><br/>You can add the events for this activity to your calendar with the link below.<br/><br/>If you do not want to receive emails like this in the future, you can disable it in your <a href='__profileLink__'>profile</a>.",
       "linkText": "ADD TO CALENDAR"
     },
     "update": {
@@ -81,36 +81,36 @@
   },
   "campaignLeadSummaryMail": {
     "executionType": {
-      "group": null,
-      "self": null
+      "group": "as a group",
+      "self": "alone"
     },
     "frequency": {
-      "day": null,
-      "month": null,
-      "once": null,
-      "week": null
+      "day": "daily",
+      "month": "monthly",
+      "once": "once",
+      "week": "weekly"
     },
     "section1": {
-      "header": null,
-      "link": null,
-      "text": null
+      "header": "Campaign progress",
+      "link": "To Progress of Campaign",
+      "text": "Hello __user.firstname__ <br><br> \nThis is your weekly email to your company-based health campaign on __user.campaign.title__ ."
     },
     "section2": {
-      "header": null,
-      "link": null,
-      "text": null
+      "header": "Messages",
+      "link": "To Messages",
+      "text": "If needed, motivate the participants to take active part in the campaign by sending them a Campaign Leader message."
     },
     "section3": {
-      "browseIdeas": null,
-      "header": null,
-      "text": null
+      "browseIdeas": "Find an activity in the library",
+      "header": "Invitation",
+      "text": "I recommend you to invite the campaign participants to a campaign event at least once a week."
     },
     "section4": {
-      "createIdea": null,
-      "header": null,
-      "text": null
+      "createIdea": "Create an activity",
+      "header": "Recommendation",
+      "text": "Recommend an activity to the campaign participants at least once a week (for example, an already existing health promoting activity of your company)."
     },
-    "subject": null
+    "subject": "HealthCampaign \" __user.campaign.title__ \" - Weekly Mail for the Campaign Leader"
   },
   "dailySummaryMail": {
     "campaignLink": "To campaign",
@@ -121,7 +121,7 @@
     "coach": "Digital Coach",
     "coachRecommendationFindOut": "Check on the <a href='__link__'>main page",
     "executionType": {
-      "group": "in the group",
+      "group": "as a group",
       "self": "alone"
     },
     "frequency": {
@@ -133,22 +133,22 @@
     "location": "Location:",
     "section1": {
       "1": {
-        "content": "Hello __user.firstname__<br/><br/>This is the daily summary with all there is to know about your participation in the in-house health campaign on __user.campaign.title__.<br/><br/>In case you have not executed the short self-assessment (about 10 minutes), I recommend you do it now <strong>at the beginning of the second campaign week</ strong>, so that I can provide every day a suitable activity card under \"Offered Activities\" for you.<br/><br/>You find the self-assessment card on the campaign main page under \"Running Activities\", if you have not executed or completed it. Click on the map to go to the self-assessment page."
+        "content": "Hello __user.firstname__<br/><br/>This is the daily summary with all there is to know about your participation in the company-based health campaign on __user.campaign.title__.<br/><br/>In case you have not executed the short self-assessment (about 10 minutes), I recommend you do it now <strong>at the beginning of the second campaign week</ strong>, so that I can provide every day a suitable activity card under \"Activity Offer\" for you.<br/><br/>You find the self-assessment card on the campaign main page under \"Running Activities\", if you have not executed or completed it. Click on the map to go to the self-assessment page."
       },
       "2": {
-        "content": "Hello __user.firstname__<br/><br/>This is the daily summary with all there is to know about your participation in the in-house health campaign on __user.campaign.title__.<br/><br/>Look at the activity recommendations from the campaign leader and from me to schedule other activities for <strong>the second half of the campaign</strong>.<br/><br/>Schedule a group activity for example and invite other campaign participants to participate in your group activity."
+        "content": "Hello __user.firstname__<br/><br/>This is the daily summary with all there is to know about your participation in the company-based health campaign on __user.campaign.title__.<br/><br/>Look at the activity recommendations from the campaign leader and from me to schedule other activities for <strong>the second half of the campaign</strong>.<br/><br/>Schedule a group activity for example and invite other campaign participants to participate in your group activity."
       },
       "3": {
-        "content": "Hello __user.firstname__<br/><br/>This is the daily summary with all there is to know about your participation in the in-house health campaign on __user.campaign.title__.<br/><br/>Carry out health activities in the group is more fun! Therefore, look at the activity recommendations of the campaign leader and the campaign participants and take the opportunity yet to participate in an offered group activity in <strong>the last campaign week</strong>."
+        "content": "Hello __user.firstname__<br/><br/>This is the daily summary with all there is to know about your participation in the company-based health campaign on __user.campaign.title__.<br/><br/>Carry out health activities in the group is more fun! Therefore, look at the activity recommendations of the campaign leader and the campaign participants and take the opportunity yet to participate in an offered group activity in <strong>the last campaign week</strong>."
       },
       "4": {
-        "content": "Hello __user.firstname__<br/><br/>Today is already <strong>the last day of the campaign!</strong> Thank you very much for participating in the in-house health campaign on __user.campaign.title__.<br/><br/>Once again, go to the campaign page today and have a look at your personal campaign results. And yet use the opportunity to give us feedback in a short online survey. Thank you very much!"
+        "content": "Hello __user.firstname__<br/><br/>Today is already <strong>the last day of the campaign!</strong> Thank you very much for participating in the company-based health campaign on __user.campaign.title__.<br/><br/>Once again, go to the campaign page today and have a look at your personal campaign results. And yet use the opportunity to give us feedback in a short online survey. Thank you very much!"
       },
-      "default": "Hello __user.firstname__<br/><br/>This is the daily summary with all there is to know about your participation in the in-house health campaign on __user.campaign.title__."
+      "default": "Hello __user.firstname__<br/><br/>This is the daily summary with all there is to know about your participation in the company-based health campaign on __user.campaign.title__."
     },
     "section2": {
       "eventsToday": "Your activities for today",
-      "eventsWithOpenFeedback": "Past activities without feedback on your part",
+      "eventsWithOpenFeedback": "Past activities without your feedback",
       "header": "Today",
       "noEventsToday": "You have no activities scheduled for today. Have a look at the new recommendations and invitations."
     },

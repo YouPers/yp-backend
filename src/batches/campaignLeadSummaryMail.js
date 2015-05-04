@@ -155,6 +155,11 @@ function _ordinalNumber(startDate, now) {
     var offset = 1; // offset from startDate (second day of campaign)
     var every = 5; // every n-th day from the start after adding the offset
 
+    // shortcut for today = [Saturday|Sunday] we never send mails on Saturday/Sunday
+    if (moment(now).tz('Europe/Zurich').isoWeekday() === 6 || moment(now).tz('Europe/Zurich').isoWeekday() === 7) {
+        return false;
+    }
+
     var daysSinceStartFraction = moment(now).tz('Europe/Zurich').businessDiff(moment(startDate).tz('Europe/Zurich').businessAdd(offset));
 
     var daysSinceStart = Math.floor(daysSinceStartFraction);
@@ -197,5 +202,6 @@ module.exports = {
     run: run,
     feeder: feeder,
     sendMail: sendMail,
-    renderMail: renderMail
+    renderMail: renderMail,
+    sendOfferToday: _ordinalNumber
 };

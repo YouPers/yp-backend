@@ -95,19 +95,20 @@ describe('Send Summary Email', function () {
         });
 
         it("should work for a campaign started on Sunday", function () {
+            // we expect the mail to be sent on Tuesday
             var startDate = moment().startOf('day').isoWeekday(6).add(1, 'week');
             var monday1215 = moment(startDate).hour(10).minute(15).add(1, 'day');
 
-            expect(mailBatch.sendOfferToday(startDate.toDate(), monday1215.toDate())).toBe(0);
+            expect(mailBatch.sendOfferToday(startDate.toDate(), monday1215.toDate())).toBe(false);
             expect(mailBatch.sendOfferToday(startDate.toDate(), moment(monday1215).subtract(1, 'day').toDate())).toBe(false);
-            expect(mailBatch.sendOfferToday(startDate.toDate(), moment(monday1215).add(1, 'day').toDate())).toBe(false);
+            expect(mailBatch.sendOfferToday(startDate.toDate(), moment(monday1215).add(1, 'day').toDate())).toBe(0);
             expect(mailBatch.sendOfferToday(startDate.toDate(), moment(monday1215).add(2, 'day').toDate())).toBe(false);
             expect(mailBatch.sendOfferToday(startDate.toDate(), moment(monday1215).add(3, 'day').toDate())).toBe(false);
             expect(mailBatch.sendOfferToday(startDate.toDate(), moment(monday1215).add(4, 'day').toDate())).toBe(false);
             expect(mailBatch.sendOfferToday(startDate.toDate(), moment(monday1215).add(5, 'day').toDate())).toBe(false);
             expect(mailBatch.sendOfferToday(startDate.toDate(), moment(monday1215).add(6, 'day').toDate())).toBe(false);
-            expect(mailBatch.sendOfferToday(startDate.toDate(), moment(monday1215).add(7, 'day').toDate())).toBe(0);
-            expect(mailBatch.sendOfferToday(startDate.toDate(), moment(monday1215).add(8, 'day').toDate())).toBe(false);
+            expect(mailBatch.sendOfferToday(startDate.toDate(), moment(monday1215).add(7, 'day').toDate())).toBe(false);
+            expect(mailBatch.sendOfferToday(startDate.toDate(), moment(monday1215).add(8, 'day').toDate())).toBe(1);
             expect(mailBatch.sendOfferToday(startDate.toDate(), moment(monday1215).add(9, 'day').toDate())).toBe(false);
             expect(mailBatch.sendOfferToday(startDate.toDate(), moment(monday1215).add(10, 'day').toDate())).toBe(false);
         });

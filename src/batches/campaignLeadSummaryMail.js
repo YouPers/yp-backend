@@ -197,5 +197,6 @@ module.exports = {
     run: run,
     feeder: feeder,
     sendMail: sendMail,
-    renderMail: renderMail
+    renderMail: renderMail,
+    sendOfferToday: _ordinalNumber
 };

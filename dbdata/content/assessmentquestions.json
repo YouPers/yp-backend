@@ -52,8 +52,8 @@
     },
     "type": "leftSided",
     "created": {"$date": 1426497633090},
-    "maxtextexampleI18n": {"de": ""},
-    "maxtextresultI18n": {"de": ""},
+    "maxtextexampleI18n": {"de": "ZZZ_MISSING TRANSLATION"},
+    "maxtextresultI18n": {"de": "ZZZ_MISSING TRANSLATION"},
     "updated": {"$date": 1426522623630}
   },
   {
@@ -243,8 +243,8 @@
     },
     "type": "leftSided",
     "created": {"$date": 1426497632995},
-    "maxtextexampleI18n": {"de": ""},
-    "maxtextresultI18n": {"de": ""},
+    "maxtextexampleI18n": {"de": "ZZZ_MISSING TRANSLATION"},
+    "maxtextresultI18n": {"de": "ZZZ_MISSING TRANSLATION"},
     "updated": {"$date": 1426522623541}
   },
   {
@@ -300,8 +300,8 @@
     },
     "type": "leftSided",
     "created": {"$date": 1426497633056},
-    "maxtextexampleI18n": {"de": ""},
-    "maxtextresultI18n": {"de": ""},
+    "maxtextexampleI18n": {"de": "ZZZ_MISSING TRANSLATION"},
+    "maxtextresultI18n": {"de": "ZZZ_MISSING TRANSLATION"},
     "updated": {"$date": 1426522623458}
   },
   {
@@ -357,8 +357,8 @@
     },
     "type": "leftSided",
     "created": {"$date": 1426497633020},
-    "maxtextexampleI18n": {"de": ""},
-    "maxtextresultI18n": {"de": ""},
+    "maxtextexampleI18n": {"de": "ZZZ_MISSING TRANSLATION"},
+    "maxtextresultI18n": {"de": "ZZZ_MISSING TRANSLATION"},
     "updated": {"$date": 1426521409387}
   },
   {
@@ -816,8 +816,8 @@
     },
     "type": "leftSided",
     "created": {"$date": 1426497632782},
-    "maxtextexampleI18n": {"de": ""},
-    "maxtextresultI18n": {"de": ""},
+    "maxtextexampleI18n": {"de": "ZZZ_MISSING TRANSLATION"},
+    "maxtextresultI18n": {"de": "ZZZ_MISSING TRANSLATION"},
     "updated": {"$date": 1426520180770}
   },
   {
@@ -873,8 +873,8 @@
     },
     "type": "leftSided",
     "created": {"$date": 1426497632692},
-    "maxtextexampleI18n": {"de": ""},
-    "maxtextresultI18n": {"de": ""},
+    "maxtextexampleI18n": {"de": "ZZZ_MISSING TRANSLATION"},
+    "maxtextresultI18n": {"de": "ZZZ_MISSING TRANSLATION"},
     "updated": {"$date": 1426520180868}
   },
   {
@@ -997,8 +997,8 @@
     },
     "type": "leftSided",
     "created": {"$date": 1426497632601},
-    "maxtextexampleI18n": {"de": ""},
-    "maxtextresultI18n": {"de": ""},
+    "maxtextexampleI18n": {"de": "ZZZ_MISSING TRANSLATION"},
+    "maxtextresultI18n": {"de": "ZZZ_MISSING TRANSLATION"},
     "updated": {"$date": 1426520180742}
   },
   {
@@ -1389,8 +1389,8 @@
     },
     "type": "leftSided",
     "created": {"$date": 1426497632355},
-    "maxtextexampleI18n": {"de": ""},
-    "maxtextresultI18n": {"de": ""},
+    "maxtextexampleI18n": {"de": "ZZZ_MISSING TRANSLATION"},
+    "maxtextresultI18n": {"de": "ZZZ_MISSING TRANSLATION"},
     "updated": {"$date": 1426516858978}
   },
   {
@@ -1688,14 +1688,14 @@
     "created": {"$date": 1407770509657},
     "exptextI18n": {"de": "Bei diesem Kriterium beurteilst du, ob und wieviel Getreideprodukte, Kartoffeln und Hülsenfrüchte du zu dir nimmst."},
     "maxtextI18n": {"de": "Zu viel"},
-    "maxtextexampleI18n": {"de": "Ich esse täglich mehr als 4 Portionen Getreideprodukte, Kartoffeln oder Hülsenfrüchte, vor allem esse ich viel Gipfeli, Zopfbrot oder Müsli mit Cornflakes.\n\nEine Portion entspricht:  \n75-125 g (Vollkorn-)Brot / Teig oder  \n45-75 g Müsli / Getreideflocken / Mehl / Teigwaren / Reis / Mais oder  \n180-300 g (roh) Kartoffeln oder  \n60-100 g (Trockengewicht) Hülsenfrüchte."},
+    "maxtextexampleI18n": {"de": "Ich esse täglich mehr als 4 Portionen Getreideprodukte, Kartoffeln oder Hülsenfrüchte, vor allem esse ich viel Gipfeli, Zopfbrot oder Cornflakes.\n\nEine Portion entspricht:  \n75-125 g (Vollkorn-)Brot / Teig oder  \n45-75 g Müsli / Getreideflocken / Mehl / Teigwaren / Reis / Mais oder  \n180-300 g (roh) Kartoffeln oder  \n60-100 g (Trockengewicht) Hülsenfrüchte."},
     "midtextI18n": {"de": "Genügend"},
     "midtextexampleI18n": {"de": "Ich esse täglich 3-4 Portionen Getreideprodukte, Kartoffeln oder Hülsenfrüchte."},
     "mintextI18n": {"de": "Zu wenig"},
     "mintextexampleI18n": {"de": "Ich esse wenig Getreideprodukte, Kartoffeln oder Hülsenfrüchte."},
     "titleI18n": {"de": "Getreideprodukte, Kartoffeln und Hülsenfrüchte"},
     "type": "twoSided",
-    "updated": {"$date": 1430407428072},
+    "updated": {"$date": 1430726073617},
     "maxtextresultI18n": {"de": ""},
     "mintextresultI18n": {"de": ""}
   },
@@ -1715,7 +1715,7 @@
     "titleI18n": {"de": "Frühstück"},
     "type": "leftSided",
     "updated": {"$date": 1429178562856},
-    "maxtextresultI18n": {"de": ""},
+    "maxtextresultI18n": {"de": "ZZZ_MISSING TRANSLATION"},
     "mintextresultI18n": {"de": ""}
   },
   {
@@ -1734,7 +1734,7 @@
     "titleI18n": {"de": "Mittagessen"},
     "type": "leftSided",
     "updated": {"$date": 1429178969118},
-    "maxtextresultI18n": {"de": ""},
+    "maxtextresultI18n": {"de": "ZZZ_MISSING TRANSLATION"},
     "mintextresultI18n": {"de": ""}
   },
   {
@@ -1772,7 +1772,7 @@
     "titleI18n": {"de": "Gemüse und Salat"},
     "type": "leftSided",
     "updated": {"$date": 1430138747017},
-    "maxtextresultI18n": {"de": ""},
+    "maxtextresultI18n": {"de": "ZZZ_MISSING TRANSLATION"},
     "mintextresultI18n": {"de": ""}
   },
   {
@@ -1810,7 +1810,7 @@
     "titleI18n": {"de": "Ausgewogenheit"},
     "type": "leftSided",
     "updated": {"$date": 1430139145209},
-    "maxtextresultI18n": {"de": ""},
+    "maxtextresultI18n": {"de": "ZZZ_MISSING TRANSLATION"},
     "mintextresultI18n": {"de": ""}
   },
   {
@@ -1830,7 +1830,7 @@
     "type": "rightSided",
     "updated": {"$date": 1430139218173},
     "maxtextresultI18n": {"de": ""},
-    "mintextresultI18n": {"de": ""}
+    "mintextresultI18n": {"de": "ZZZ_MISSING TRANSLATION"}
   },
   {
     "_id": {"$oid": "53e8df8d3cca9d19333e73da"},
@@ -1849,7 +1849,7 @@
     "type": "rightSided",
     "updated": {"$date": 1430407200777},
     "maxtextresultI18n": {"de": ""},
-    "mintextresultI18n": {"de": ""}
+    "mintextresultI18n": {"de": "ZZZ_MISSING TRANSLATION"}
   },
   {
     "_id": {"$oid": "53e8df8d3cca9d19333e73db"},
@@ -1868,7 +1868,7 @@
     "type": "rightSided",
     "updated": {"$date": 1429796021105},
     "maxtextresultI18n": {"de": ""},
-    "mintextresultI18n": {"de": ""}
+    "mintextresultI18n": {"de": "ZZZ_MISSING TRANSLATION"}
   },
   {
     "_id": {"$oid": "53e8df8d3cca9d19333e73dd"},
@@ -1886,7 +1886,7 @@
     "titleI18n": {"de": "Energiebilanz"},
     "type": "leftSided",
     "updated": {"$date": 1430139145346},
-    "maxtextresultI18n": {"de": ""},
+    "maxtextresultI18n": {"de": "ZZZ_MISSING TRANSLATION"},
     "mintextresultI18n": {"de": ""}
   },
   {
@@ -1905,7 +1905,7 @@
     "titleI18n": {"de": "Ambiente"},
     "type": "leftSided",
     "updated": {"$date": 1430139392589},
-    "maxtextresultI18n": {"de": ""},
+    "maxtextresultI18n": {"de": "ZZZ_MISSING TRANSLATION"},
     "mintextresultI18n": {"de": ""}
   },
   {
@@ -1924,7 +1924,7 @@
     "titleI18n": {"de": "Motivation"},
     "type": "leftSided",
     "updated": {"$date": 1429180778067},
-    "maxtextresultI18n": {"de": ""},
+    "maxtextresultI18n": {"de": "ZZZ_MISSING TRANSLATION"},
     "mintextresultI18n": {"de": ""}
   },
   {
@@ -1943,7 +1943,7 @@
     "titleI18n": {"de": "Trinken"},
     "type": "leftSided",
     "updated": {"$date": 1429187214810},
-    "maxtextresultI18n": {"de": ""},
+    "maxtextresultI18n": {"de": "ZZZ_MISSING TRANSLATION"},
     "mintextresultI18n": {"de": ""}
   },
   {
@@ -1962,7 +1962,7 @@
     "titleI18n": {"de": "Alltagsbewegung"},
     "type": "leftSided",
     "updated": {"$date": 1425981107700},
-    "maxtextresultI18n": {"de": ""},
+    "maxtextresultI18n": {"de": "ZZZ_MISSING TRANSLATION"},
     "mintextresultI18n": {"de": ""}
   },
   {
@@ -1981,7 +1981,7 @@
     "titleI18n": {"de": "Sportliche Bewegung (Sport)"},
     "type": "leftSided",
     "updated": {"$date": 1425981107826},
-    "maxtextresultI18n": {"de": ""},
+    "maxtextresultI18n": {"de": "ZZZ_MISSING TRANSLATION"},
     "mintextresultI18n": {"de": ""}
   },
   {
@@ -2000,7 +2000,7 @@
     "titleI18n": {"de": "Kräftigende Alltagsbewegung"},
     "type": "leftSided",
     "updated": {"$date": 1428506249767},
-    "maxtextresultI18n": {"de": ""},
+    "maxtextresultI18n": {"de": "ZZZ_MISSING TRANSLATION"},
     "mintextresultI18n": {"de": ""}
   },
   {
@@ -2019,7 +2019,7 @@
     "titleI18n": {"de": "Sportliches Krafttraining"},
     "type": "leftSided",
     "updated": {"$date": 1428506249798},
-    "maxtextresultI18n": {"de": ""},
+    "maxtextresultI18n": {"de": "ZZZ_MISSING TRANSLATION"},
     "mintextresultI18n": {"de": ""}
   },
   {
@@ -2038,7 +2038,7 @@
     "titleI18n": {"de": "Ausdauernde Alltagsbewegung"},
     "type": "leftSided",
     "updated": {"$date": 1428506492548},
-    "maxtextresultI18n": {"de": ""},
+    "maxtextresultI18n": {"de": "ZZZ_MISSING TRANSLATION"},
     "mintextresultI18n": {"de": ""}
   },
   {
@@ -2057,7 +2057,7 @@
     "titleI18n": {"de": "Sportliches Ausdauertraining"},
     "type": "leftSided",
     "updated": {"$date": 1428506492569},
-    "maxtextresultI18n": {"de": ""},
+    "maxtextresultI18n": {"de": "ZZZ_MISSING TRANSLATION"},
     "mintextresultI18n": {"de": ""}
   },
   {
@@ -2076,7 +2076,7 @@
     "titleI18n": {"de": "Energiebilanz"},
     "type": "leftSided",
     "updated": {"$date": 1428505806446},
-    "maxtextresultI18n": {"de": ""},
+    "maxtextresultI18n": {"de": "ZZZ_MISSING TRANSLATION"},
     "mintextresultI18n": {"de": ""}
   },
   {
@@ -2095,7 +2095,7 @@
     "titleI18n": {"de": "Zeit für Bewegung"},
     "type": "leftSided",
     "updated": {"$date": 1428507527158},
-    "maxtextresultI18n": {"de": ""},
+    "maxtextresultI18n": {"de": "ZZZ_MISSING TRANSLATION"},
     "mintextresultI18n": {"de": ""}
   },
   {
@@ -2114,7 +2114,7 @@
     "titleI18n": {"de": "Motivation"},
     "type": "leftSided",
     "updated": {"$date": 1428507619849},
-    "maxtextresultI18n": {"de": ""},
+    "maxtextresultI18n": {"de": "ZZZ_MISSING TRANSLATION"},
     "mintextresultI18n": {"de": ""}
   },
   {
@@ -2872,9 +2872,9 @@
     "mintextI18n": {"de": "Unzureichend"},
     "titleI18n": {"de": "Zwischenmahlzeiten"},
     "__v": 0,
-    "maxtextI18n": {"de": ""},
-    "maxtextexampleI18n": {"de": ""},
-    "maxtextresultI18n": {"de": ""},
+    "maxtextI18n": {"de": "ZZZ_MISSING TRANSLATION"},
+    "maxtextexampleI18n": {"de": "ZZZ_MISSING TRANSLATION"},
+    "maxtextresultI18n": {"de": "ZZZ_MISSING TRANSLATION"},
     "midtextexampleI18n": {"de": "Ich esse während meiner Znüni- oder Nachmittagspause ein leeres Vollkornbrötchen, Obst, Joghurt oder eine Handvoll ungesalzene Nüsse und trinke ein Glas Wasser dazu."},
     "mintextexampleI18n": {"de": "Ich esse und trinke oft nichts in der Pause, aber ab und zu habe ich einen mitgebrachten Schokoriegel als Pausensnack mit dabei."},
     "mintextresultI18n": {"de": ""}
@@ -2912,8 +2912,8 @@
     "mintextI18n": {"de": "Ungenügend"},
     "titleI18n": {"de": "Zeit für Essen"},
     "__v": 0,
-    "maxtextI18n": {"de": ""},
-    "maxtextexampleI18n": {"de": ""},
+    "maxtextI18n": {"de": "ZZZ_MISSING TRANSLATION"},
+    "maxtextexampleI18n": {"de": "ZZZ_MISSING TRANSLATION"},
     "maxtextresultI18n": {"de": ""},
     "mintextresultI18n": {"de": ""}
   }

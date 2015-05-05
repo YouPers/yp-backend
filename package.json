@@ -11,7 +11,7 @@
     "dependencies": {
         "ypbackendlib": "git+ssh://git@github.com:YouPers/backendlib.git#v1.14.0",
         "restify": "3.0.x",
-        "lodash": "3.7.x",
+        "lodash": "3.8.x",
         "lodash-deep": "1.6.x",
         "passport": "0.2.x",
         "icalendar": "git+https://github.com/YouPers/node-icalendar.git",
@@ -19,7 +19,7 @@
         "moment-timezone": "~0.3.x",
         "async": "~0.9.x",
         "shortid": "~2.2.x",
-        "coupon-code": "~0.3.x",
+        "coupon-code": "~0.4.x",
         "newrelic": "*",
         "nodetime": "*",
         "mongoose-eventify": "0.0.x",

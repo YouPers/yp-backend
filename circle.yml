@@ -9,6 +9,7 @@ deployment:
     branch: uat
     commands:
     - ssh youpers@hc-uat.youpers.com 'bash -s' < bin/deploy.sh uat hc-uat
+    - ssh youpers@hc-content.youpers.com 'bash -s' < bin/deploy.sh uat hc-content
   ci:
     branch: master
     commands:

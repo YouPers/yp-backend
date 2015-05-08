@@ -1,8 +1,4 @@
 {
-  "paymentCodeChecking": "disabled",
-  "email": {
-    "subjectSuffix": " (from hc-ci)"
-  },
   "batch": {
     "resultRecipients": ["youpers.operator@gmail.com", "stefan.mueller@youpers.com"]
   }

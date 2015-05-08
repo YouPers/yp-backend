@@ -94,7 +94,10 @@
             "bucketName": "hc-fileuploads-test"
         }
     },
-    "paymentCodeChecking": "enabled"
+    "paymentCodeChecking": "enabled",
+    "batch": {
+        "resultRecipients": ["youpers.operator@gmail.com"]
+    }
 
 }
 

@@ -107,13 +107,13 @@ var sendMail = function sendMail(user, currentDate, done, context) {
             // check if weeklyCampaignLeadMail is enabled in the user's profile
             if(user.profile.prefs.email.weeklyCampaignLeadMail === false) {
                 log.debug({emailprefs: user.profile.prefs.email, weeklyClMail: user.profile.prefs.email.weeklyCampaignLeadMail}, 'WeeklyCampaignLeadSummary not sent, disabled in profile: ' + user.email);
-                return done();
+                return done(null, 'Email NOT sent, disabled in user profile');
             }
 
             // check if the weekly recurrence is met
             if(_ordinalNumber(user.campaign.start, currentDate) === false) {
                 log.debug('WeeklyCampaignLeadSummary not sent, weekly recurrence not met: ' + user.email + 'campaign.start: ' + user.campaign.start);
-                return done();
+                return done(null, 'Email NOT sent, weekly schedule not matching today, campaign.start: ' + user.campaign.start);
             }
 
 
@@ -127,7 +127,7 @@ var sendMail = function sendMail(user, currentDate, done, context) {
                     if (err) {
                         log.error({err: err, username: user.email}, "error generating mail for: " + user.email);
                     }
-                    return done();
+                    return done(null, 'Email Sent to: ' + user.email);
                 }]);
 
             });

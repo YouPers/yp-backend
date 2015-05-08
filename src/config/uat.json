@@ -1,5 +1,8 @@
 {
   "email": {
     "subjectSuffix": " (from hc-uat)"
+  },
+  "batch": {
+    "resultRecipients": ["youpers.operator@gmail.com", "stefan.mueller@youpers.com"]
   }
 }

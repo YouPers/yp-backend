@@ -23,11 +23,13 @@ var getMailLocals = function getMailLocals(user, lastSentMailDate, currentDate, 
 
     var storeLocals = function (localKey, done) {
         return function (err, result) {
-            if(err) { return err; }
+            if (err) {
+                return err;
+            }
             locals[localKey] = result.toJSON ? result.toJSON() : result;
-            if(_.isArray(result)) {
+            if (_.isArray(result)) {
                 locals[localKey + 'Count'] = result.length;
-                for(var i=0;i<result.length; i++) {
+                for (var i = 0; i < result.length; i++) {
                     result[i] = result[i].toJSON ? result[i].toJSON() : result[i];
                 }
             }
@@ -60,8 +62,8 @@ var getMailLocals = function getMailLocals(user, lastSentMailDate, currentDate, 
             mongoose.model('ActivityEvent').find({
                 owner: user._id || user,
                 campaign: user.campaign,
-                start: { $gt: startOfDay, $lt: endOfDay }
-            }).sort({ start: 1 }).populate('activity').populate('idea').exec(storeLocals('eventsToday', done));
+                start: {$gt: startOfDay, $lt: endOfDay}
+            }).sort({start: 1}).populate('activity').populate('idea').exec(storeLocals('eventsToday', done));
         },
 
         // eventsWithOpenFeedback
@@ -70,8 +72,8 @@ var getMailLocals = function getMailLocals(user, lastSentMailDate, currentDate, 
                 owner: user._id || user,
                 campaign: user.campaign,
                 status: 'open',
-                end: { $lt: moment() }
-            }).sort({ start: 1 }).populate('activity').populate('idea').exec(storeLocals('eventsWithOpenFeedback', done));
+                end: {$lt: moment()}
+            }).sort({start: 1}).populate('activity').populate('idea').exec(storeLocals('eventsWithOpenFeedback', done));
         },
 
         // section 3
@@ -79,48 +81,48 @@ var getMailLocals = function getMailLocals(user, lastSentMailDate, currentDate, 
         // newCampaignMessages
         function (done) {
             mongoose.model('Message').find({
-                _id: { $nin: dismissedSocialInteractions },
+                _id: {$nin: dismissedSocialInteractions},
                 authorType: 'campaignLead',
-                targetSpaces: { $elemMatch: { targetId: user.campaign }},
-                publishFrom: { $gte: lastSentMailDate, $lte: currentDate },
-                publishTo: { $gte: currentDate }
-            }).sort({ publishFrom: 1 }).populate('author').exec(storeLocals('newCampaignMessages', done));
+                targetSpaces: {$elemMatch: {targetId: user.campaign}},
+                publishFrom: {$gte: lastSentMailDate, $lte: currentDate},
+                publishTo: {$gte: currentDate}
+            }).sort({publishFrom: 1}).populate('author').exec(storeLocals('newCampaignMessages', done));
         },
 
         // newCampaignActivityInvitations
         function (done) {
             mongoose.model('Invitation').find({
-                _id: { $nin: dismissedSocialInteractions },
+                _id: {$nin: dismissedSocialInteractions},
                 authorType: 'campaignLead',
                 activity: {$nin: locals.activities},
-                targetSpaces: { $elemMatch: { targetId: user.campaign }},
-                publishFrom: { $gte: lastSentMailDate, $lte: currentDate },
-                publishTo: { $gte: currentDate }
-            }).sort({ publishFrom: 1 }).populate('author activity idea').exec(storeLocals('newCampaignActivityInvitations', done));
+                targetSpaces: {$elemMatch: {targetId: user.campaign}},
+                publishFrom: {$gte: lastSentMailDate, $lte: currentDate},
+                publishTo: {$gte: currentDate}
+            }).sort({publishFrom: 1}).populate('author activity idea').exec(storeLocals('newCampaignActivityInvitations', done));
         },
 
         // newRecommendations
         function (done) {
             mongoose.model('Recommendation').find({
-                _id: { $nin: dismissedSocialInteractions },
-                targetSpaces: { $elemMatch: { targetId: user.campaign }},
-                publishFrom: { $gte: lastSentMailDate, $lte: currentDate },
-                publishTo: { $gte: currentDate }
-            }).sort({ publishFrom: 1 }).populate('author idea').exec(storeLocals('newRecommendations', done));
+                _id: {$nin: dismissedSocialInteractions},
+                targetSpaces: {$elemMatch: {targetId: user.campaign}},
+                publishFrom: {$gte: lastSentMailDate, $lte: currentDate},
+                publishTo: {$gte: currentDate}
+            }).sort({publishFrom: 1}).populate('author idea').exec(storeLocals('newRecommendations', done));
         },
 
         // newPersonalInvitations
         function (done) {
-            mongoose.model('Activity').find({ campaign: user.campaign }, { _id: 1 }).exec(function (err, activities) {
+            mongoose.model('Activity').find({campaign: user.campaign}, {_id: 1}).exec(function (err, activities) {
                 var activityIds = _.map(activities, '_id');
                 mongoose.model('Invitation').find({
-                    _id: { $nin: dismissedSocialInteractions },
-                    activity: { $in: activityIds},
+                    _id: {$nin: dismissedSocialInteractions},
+                    activity: {$in: activityIds},
                     authorType: 'user',
-                    targetSpaces: { $elemMatch: { targetId: user.id }},
-                    publishFrom: { $gte: lastSentMailDate, $lte: currentDate },
-                    publishTo: { $gte: currentDate }
-                }).sort({ publishFrom: 1 }).populate('author activity idea').exec(storeLocals('newPersonalInvitations', done));
+                    targetSpaces: {$elemMatch: {targetId: user.id}},
+                    publishFrom: {$gte: lastSentMailDate, $lte: currentDate},
+                    publishTo: {$gte: currentDate}
+                }).sort({publishFrom: 1}).populate('author activity idea').exec(storeLocals('newPersonalInvitations', done));
             });
 
         },
@@ -133,12 +135,12 @@ var getMailLocals = function getMailLocals(user, lastSentMailDate, currentDate, 
                     {owner: user},
                     {joiningUsers: user}
                 ]
-            }, { _id: 1 }).exec(function (err, activities) {
+            }, {_id: 1}).exec(function (err, activities) {
                 var activityIds = _.map(activities, '_id');
 
                 mongoose.model('Message').count({
                     _id: {$nin: dismissedSocialInteractions},
-                    author: { $ne: user },
+                    author: {$ne: user},
                     authorType: 'user',
                     targetSpaces: {
                         $elemMatch: {
@@ -160,7 +162,7 @@ var getMailLocals = function getMailLocals(user, lastSentMailDate, currentDate, 
                 authorType: 'user',
                 targetSpaces: {$elemMatch: {targetId: user.campaign}},
                 created: {$gte: lastSentMailDate}
-            }).sort({ created: 1 }).populate('author activity idea').exec(storeLocals('newPublicInvitations', done));
+            }).sort({created: 1}).populate('author activity idea').exec(storeLocals('newPublicInvitations', done));
         }
     ];
 
@@ -170,8 +172,8 @@ var getMailLocals = function getMailLocals(user, lastSentMailDate, currentDate, 
         mongoose.model('Activity').find({
             campaign: user.campaign,
             $or: [
-                { owner: user._id },
-                { joiningUsers: user._id }
+                {owner: user._id},
+                {joiningUsers: user._id}
             ]
         }).select('_id').exec(function (err, ids) {
 
@@ -179,7 +181,7 @@ var getMailLocals = function getMailLocals(user, lastSentMailDate, currentDate, 
             locals.personalActivities = ids.length;
 
             async.parallel(tasks, function (err) {
-                if(err) {
+                if (err) {
                     return callback(err);
                 }
 
@@ -200,7 +202,7 @@ var getMailLocals = function getMailLocals(user, lastSentMailDate, currentDate, 
 var renderMail = function (user, lastSentMailDate, currentDate, req, callback) {
 
     getMailLocals(user, lastSentMailDate, currentDate, function (err, locals) {
-        if(err) {
+        if (err) {
             return callback(err);
         }
 
@@ -212,8 +214,7 @@ var renderMail = function (user, lastSentMailDate, currentDate, req, callback) {
 
 /**
  * worker function that sends a DailySummaryMail for one specific user.
- * @param user an object with a "_id" property containing the id of the user for which to send an email.
- *             can be a full user object or just an object with this "_id" property.
+ * @param user full user object, with populated profile and campaing
  * @param lastSentMailDate
  * @param currentDate
  * @param done
@@ -222,96 +223,64 @@ var renderMail = function (user, lastSentMailDate, currentDate, req, callback) {
 var sendMail = function sendMail(user, lastSentMailDate, currentDate, done, context) {
     var log = (context && context.log) || this.log;
     var i18n = (context && context.i18n) || this.i18n;
-
+    if (!user || !user.profile || !user.profile._id || !user.campaign || !user.campaign._id || !user.email) {
+        throw new Error('batch worker need a user with populated profile and campaign');
+    }
     if (!log || !i18n) {
         throw new Error('missing log and i18n: must be present either in "this" or in the passed context object');
     }
-    if (user._id) {
-        user = user._id;
+    log.info('preparing Summary Mail for user: ' + user.email);
+
+    // if no lastSentMailDate is provided, use the date the last mail was sent stored at the user, or the start of the campaign
+    if (!lastSentMailDate) {
+        var lastDate = user.lastSummaryMail || user.campaign.start;
+        lastSentMailDate = moment(lastDate);
     }
-    user = user instanceof mongoose.Types.ObjectId ? user : new mongoose.Types.ObjectId(user);
+    currentDate = currentDate ? moment(currentDate) : moment();
+
+    // check if dailyUserMail is enabled in the user's profile
+    if (!user.profile.prefs.email.dailyUserMail) {
+        log.debug('DailySummary not sent, disabled in profile: ' + user.email);
+        return done(null, 'DailySummary not sent, disabled in profile');
+    }
+
+    // check defaultWorkWeek in the user's profile
+    var weekDay = currentDate.format('dd').toUpperCase(); // MO, TU, WE, ..
+    var defaultWorkWeek = user.profile.prefs.defaultWorkWeek || ['MO', 'TU', 'WE', 'TH', 'FR'];
+    if (!_.contains(defaultWorkWeek, weekDay)) {
+        log.debug('DailySummary not sent, defaultWorkWeek from the user does not contain today: ' + weekDay + ', defaultWorkWeek: ' + user.profile.prefs.defaultWorkWeek + ', email: ' + user.email);
+        return done(null, 'DailySummary not sent, defaultWorkWeek from the user does not contain today: ' + weekDay + ', defaultWorkWeek: ' + user.profile.prefs.defaultWorkWeek);
+    }
 
 
-    log.info('preparing Summary Mail for user: ' + user);
+    getMailLocals(user, lastSentMailDate.toDate(), currentDate.toDate(), function (err, locals) {
 
-    mongoose.model('User')
-        .findById(user)
-        .select('+email +profile +campaign +username')
-        .populate('profile campaign')
-        .exec(function (err, user) {
+        i18n.setLng(user.profile.language || 'de');
+
+        log.info('sending DailySummary Mail to email: ' + user.email);
+
+        email.sendStandardMail.apply(this, [mailType, user.email, locals, user, i18n, function (err, result) {
+
             if (err) {
-                log.error({error: err}, 'error loading user');
-                return done(err);
-            }
-            if (!user) {
-                log.error({error: err}, 'User not found');
                 return done(err);
             }
 
-            // if no lastSentMailDate is provided, use the date the last mail was sent stored at the user, or the start of the campaign
-            if (!lastSentMailDate) {
-                var lastDate = user.lastSummaryMail || user.campaign.start;
-                lastSentMailDate = moment(lastDate);
-            }
-            currentDate = currentDate ? moment(currentDate) : moment();
+            mongoose.model('User').update({_id: user._id},
+                {
+                    $set: {
+                        lastSummaryMail: currentDate.toDate()
+                    }
+                }, function (err) {
+                    if (err) {
+                        return done(err);
+                    }
+                    return done(null, 'Mail sent to: ' + user.email);
+                });
 
-            // check if dailyUserMail is enabled in the user's profile
-            if(!user.profile.prefs.email.dailyUserMail) {
-                log.debug('DailySummary not sent, disabled in profile: ' + user.email);
-                return done();
-            }
+        }]);
 
-            // check defaultWorkWeek in the user's profile
-            var weekDay = currentDate.format('dd').toUpperCase(); // MO, TU, WE, ..
-            var defaultWorkWeek = user.profile.prefs.defaultWorkWeek || ['MO', 'TU', 'WE', 'TH' , 'FR'];
-            if(!_.contains(defaultWorkWeek, weekDay)){
-                log.debug('DailySummary not sent, defaultWorkWeek from the user does not contain today: ' + weekDay + ', defaultWorkWeek: ' + user.profile.prefs.defaultWorkWeek + ', email: ' + user.email);
-                return done();
-            }
+    });
 
-
-            getMailLocals(user, lastSentMailDate.toDate(), currentDate.toDate(), function (err, locals) {
-
-                i18n.setLng(user.profile.language || 'de');
-
-                log.info('sending DailySummary Mail to email: ' + user.email);
-
-                    email.sendStandardMail.apply(this, [mailType, user.email, locals, user, i18n, function(err, result) {
-
-                        if (err) {
-                            // we encoutered an unexpected error when trying to send a specific email to a specific user:
-                            // - we check for the error and try to determine whether it is a specific error that only
-                            //   affects this user (e.g. a data problem rendering the email), if it only affects this
-                            //   user we do not signal done(err) but remember the failed user
-                            // - if we do not know the error, we stop processing
-                            if (err.code === 'MailRenderingError') {
-                                // we log the error
-                                log.error({err: err, username: user.email, mailType: mailType}, "could NOT send Daily mail for one user");
-
-                                // TODO: Add functionality to the batch framework to signal a "recoverable, one task only" error" that does not stop the processing.
-                                //
-                                return done(null);
-                            } else {
-                                return done(err);
-                            }
-                        }
-
-                        mongoose.model('User').update({ _id: user._id },
-                            {
-                                $set: {
-                                    lastSummaryMail: currentDate.toDate()
-                                }
-                            }, function (err) {
-                                if(err) {
-                                    return done(err);
-                                }
-                                return done();
-                            });
-
-                    }]);
-
-            });
-        });
 };
 
 var feeder = function (callback) {
@@ -321,16 +290,19 @@ var feeder = function (callback) {
     log.debug("Finding all users (excl. roles [productadmin], with dailyUserMail=true, and a currently active campaign today: " + now);
 
     mongoose.model('Campaign').find({
-        start: { $lt: now.toDate() },
-        end: { $gt: now.toDate() }
-    }, { _id: 1 }).exec(function (err, campaigns) {
-        if(err) {
+        start: {$lt: now.toDate()},
+        end: {$gt: now.toDate()}
+    }, {_id: 1}).exec(function (err, campaigns) {
+        if (err) {
             return callback(err);
         }
         mongoose.model('User').find({
-            campaign: { $in: _.map(campaigns, '_id') },
-            roles: { $nin: ['productadmin'] }
-        }).select('+roles').exec(callback);
+            campaign: {$in: _.map(campaigns, '_id')},
+            roles: {$nin: ['productadmin']}
+        })
+            .select('+email +profile +campaign +username +roles')
+            .populate('profile campaign')
+            .exec(callback);
     });
 
 };

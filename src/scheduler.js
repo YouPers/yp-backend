@@ -25,7 +25,7 @@ var jobs = [
     {
         name: 'DailyEventSummary',
         description: 'sends a daily email to users who had events with end dates in the specified time range',
-        cronTime: '00 * * * * *',
+        cronTime: '00 15 05 * * *',
         onTick: dailySummaryMail.run,
         start: true,
         context: {
@@ -35,7 +35,7 @@ var jobs = [
     {
         name: 'WeeklyCampaignLeadSummary',
         description: 'sends a weekly email to campaign leads',
-        cronTime: '30 * * * * *', // equals daily 12:15 in UTC+2 (CET with daylight saving time)
+        cronTime: '00 15 10 * * *', // equals daily 12:15 in UTC+2 (CET with daylight saving time)
         onTick: campaignLeadSummaryMail.run,
         start: true,
         context: {

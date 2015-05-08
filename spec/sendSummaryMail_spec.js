@@ -22,11 +22,12 @@ describe('Send Summary Email', function () {
                     log.error(err);
                     return done(err);
                 }
-                mailBatch.sendMail(user, moment().subtract(1, 'd'), moment().add(1, 'd'), function (err) {
+                mailBatch.sendMail(user, moment().subtract(1, 'd'), moment().add(1, 'd'), function (err, result) {
                     if (err) {
                         log.error(err);
                     }
                     expect(err).toBe(null);
+                    expect(result).toBeDefined();
                     return done();
                 }, {log: log, i18n: ypbackendlib.i18n.initialize()});
             });

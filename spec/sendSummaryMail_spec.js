@@ -23,11 +23,10 @@ describe('Send Summary Email', function () {
                     return done(err);
                 }
                 mailBatch.sendMail(user, moment().subtract(1, 'd'), moment().add(1, 'd'), function (err) {
-                    console.log('okokok2');
                     if (err) {
                         log.error(err);
                     }
-                    expect(err).toBeUndefined();
+                    expect(err).toBe(null);
                     return done();
                 }, {log: log, i18n: ypbackendlib.i18n.initialize()});
             });

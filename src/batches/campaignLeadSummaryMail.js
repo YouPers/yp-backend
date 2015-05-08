@@ -22,12 +22,12 @@ var getMailLocals = function getMailLocals(user, currentDate, callback) {
     };
 
     mongoose.model('Topic').findById(campaign.topic).exec(function (err, topic) {
-        if(err) {
+        if (err) {
             return callback(err);
         }
         var week = _ordinalNumber(campaign.start, currentDate);
 
-        if(week === false) {
+        if (week === false) {
             return callback(err, locals);
         }
 
@@ -35,11 +35,11 @@ var getMailLocals = function getMailLocals(user, currentDate, callback) {
             return offer.week === week && offer.type === 'Invitation';
         });
 
-        if(!templateOffer) {
+        if (!templateOffer) {
             return callback(err, locals);
         }
         mongoose.model('Idea').findById(templateOffer.idea, function (err, idea) {
-            if(err) {
+            if (err) {
                 return callback(err);
             }
             locals.campaignInvitationIdea = idea;
@@ -53,7 +53,7 @@ var getMailLocals = function getMailLocals(user, currentDate, callback) {
 var renderMail = function renderMail(user, currentDate, req, callback) {
 
     getMailLocals(user, currentDate, function (err, locals) {
-        if(err) {
+        if (err) {
             return callback(err);
         }
 
@@ -78,60 +78,43 @@ var sendMail = function sendMail(user, currentDate, done, context) {
     if (!log || !i18n) {
         throw new Error('missing log and i18n: must be present either in "this" or in the passed context object');
     }
-    if (user._id) {
-        user = user._id;
+
+    log.info('preparing Summary Mail for user: ' + user.email);
+
+    // if no currentDate is provided, use now
+    currentDate = currentDate ? moment(currentDate).tz('Europe/Zurich') : moment().tz('Europe/Zurich');
+
+
+    // check if weeklyCampaignLeadMail is enabled in the user's profile
+    if (user.profile.prefs.email.weeklyCampaignLeadMail === false) {
+        log.debug({
+            emailprefs: user.profile.prefs.email,
+            weeklyClMail: user.profile.prefs.email.weeklyCampaignLeadMail
+        }, 'WeeklyCampaignLeadSummary not sent, disabled in profile: ' + user.email);
+        return done(null, 'Email NOT sent, disabled in user profile');
     }
-    user = user instanceof mongoose.Types.ObjectId ? user : new mongoose.Types.ObjectId(user);
+
+    // check if the weekly recurrence is met
+    if (_ordinalNumber(user.campaign.start, currentDate) === false) {
+        log.debug('WeeklyCampaignLeadSummary not sent, weekly recurrence not met: ' + user.email + 'campaign.start: ' + user.campaign.start);
+        return done(null, 'Email NOT sent, weekly schedule not matching today, campaign.start: ' + user.campaign.start);
+    }
 
 
-    log.info('preparing Summary Mail for user: ' + user);
+    getMailLocals(user, currentDate.toDate(), function (err, locals) {
 
-    mongoose.model('User')
-        .findById(user)
-        .select('+email +profile +campaign +username')
-        .populate('profile campaign')
-        .exec(function (err, user) {
+        i18n.setLng(user.profile.language || 'de');
+
+        log.info('sending WeeklyCampaignLeadSummary Mail to email: ' + user.email);
+
+        email.sendStandardMail.apply(this, [mailType, user.email, locals, user, i18n, function (err, result) {
             if (err) {
-                log.error({error: err}, 'error loading user');
-                return done(err);
+                log.error({err: err, username: user.email}, "error generating mail for: " + user.email);
             }
-            if (!user) {
-                log.error({error: err}, 'User not found');
-                return done(err);
-            }
+            return done(null, 'Email Sent to: ' + user.email);
+        }]);
 
-            // if no currentDate is provided, use now
-            currentDate = currentDate ? moment(currentDate).tz('Europe/Zurich') : moment().tz('Europe/Zurich');
-
-
-            // check if weeklyCampaignLeadMail is enabled in the user's profile
-            if(user.profile.prefs.email.weeklyCampaignLeadMail === false) {
-                log.debug({emailprefs: user.profile.prefs.email, weeklyClMail: user.profile.prefs.email.weeklyCampaignLeadMail}, 'WeeklyCampaignLeadSummary not sent, disabled in profile: ' + user.email);
-                return done(null, 'Email NOT sent, disabled in user profile');
-            }
-
-            // check if the weekly recurrence is met
-            if(_ordinalNumber(user.campaign.start, currentDate) === false) {
-                log.debug('WeeklyCampaignLeadSummary not sent, weekly recurrence not met: ' + user.email + 'campaign.start: ' + user.campaign.start);
-                return done(null, 'Email NOT sent, weekly schedule not matching today, campaign.start: ' + user.campaign.start);
-            }
-
-
-            getMailLocals(user, currentDate.toDate(), function (err, locals) {
-
-                i18n.setLng(user.profile.language || 'de');
-
-                log.info('sending WeeklyCampaignLeadSummary Mail to email: ' + user.email);
-
-                email.sendStandardMail.apply(this, [mailType, user.email, locals, user, i18n, function(err, result) {
-                    if (err) {
-                        log.error({err: err, username: user.email}, "error generating mail for: " + user.email);
-                    }
-                    return done(null, 'Email Sent to: ' + user.email);
-                }]);
-
-            });
-        });
+    });
 };
 
 
@@ -163,7 +146,7 @@ function _ordinalNumber(startDate, now) {
     var daysSinceStartFraction = moment(now).tz('Europe/Zurich').businessDiff(moment(startDate).tz('Europe/Zurich').businessAdd(offset));
 
     var daysSinceStart = Math.floor(daysSinceStartFraction);
-    var result =  daysSinceStart % every === 0 ? daysSinceStart / every : false;
+    var result = daysSinceStart % every === 0 ? daysSinceStart / every : false;
     return result;
 }
 
@@ -174,15 +157,19 @@ var feeder = function (callback) {
     log.debug("Finding all campaign leads with a currently active campaign today: " + now);
 
     mongoose.model('Campaign').find({
-        start: { $lt: now.toDate() },
-        end: { $gt: now.toDate() }
-    }, { campaignLeads: 1 }).populate('campaignLeads').exec(function (err, campaigns) {
-        if(err) {
+        start: {$lt: now.toDate()},
+        end: {$gt: now.toDate()}
+    }, {campaignLeads: 1}).populate('campaignLeads').exec(function (err, campaigns) {
+        if (err) {
             return callback(err);
         }
         // flatten array of mapped campaign lead arrays
         var campaignLeads = _.flatten(_.map(campaigns, 'campaignLeads'));
-        mongoose.model('User').find({ _id: { $in: campaignLeads } }).exec(callback);
+        mongoose.model('User')
+            .find({_id: {$in: campaignLeads}})
+            .select('+profile +campaign +username +email')
+            .populate('profile campaign')
+            .exec(callback);
     });
 
 };

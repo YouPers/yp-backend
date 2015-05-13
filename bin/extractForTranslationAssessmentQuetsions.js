@@ -20,19 +20,16 @@ program
     .parse(process.argv);
 
 mongoose
-    .model('AssessmentQuestion')
-    .find()  // topic Fitness
-    //.find({topics: mongoose.Types.ObjectId('53b416cfa43aac62a2debda1')})  // topic Fitness
-    // .and({topics: {$ne: mongoose.Types.ObjectId('53b416cfa43aac62a2debda1')}})   // not topic Stress
-    //.select('_id exptextI18n maxtextI18n titleI18n')
-    .select('_id exptextI18n maxtextI18n midtextI18n midtextexampleI18n mintextI18n mintextexampleI18n titleI18n maxtextexampleI18n')
-    .exec(function(err, ideas) {
+    .model('Assessment')
+    .find({topic: mongoose.Types.ObjectId('53b416fba43aac62a2debda3')})
+    .populate('questions', '_id exptextI18n maxtextI18n midtextI18n midtextexampleI18n mintextI18n mintextexampleI18n titleI18n maxtextexampleI18n')
+    .exec(function(err, ass) {
         if (err) {
             console.log(JSON.stringify(err));
             return;
         }
-        console.log(JSON.stringify(ideas, null, 2));
-        console.error('wrote objects:' + ideas.length);
+        console.log(JSON.stringify(ass[0].questions, null, 2));
+        console.error('wrote objects:' + ass[0].questions.length);
         //var wordsTotal = _.reduce(ideas, function(sum, idea) {return sum + idea.text.split(' ').length + idea.title.split(' ').length + idea.description.split(' ').length;}, 0);
         //var wordsAvgTitel = _.reduce(ideas, function(sum, idea) {return sum + idea.title.split(' ').length;}, 0) / ideas.length;
         //var wordsAvgDescription = _.reduce(ideas, function(sum, idea) {return sum + idea.description.split(' ').length;}, 0) / ideas.length;
@@ -43,4 +40,3 @@ mongoose
         //console.error('words in Text Avg: ' + wordsAvgText);
         mongoose.disconnect();
     });
-

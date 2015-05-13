@@ -22,13 +22,13 @@ frisby.create('GET ideas with filter option returning several results')
     .toss();
 
 frisby.create('GET ideas with two ANDed options')
-    .get(URL + '/ideas?filter[source]=youpers&filter[number]=Act-17')
+    .get(URL + '/ideas?filter[source]=youpers&filter[number]=Act-01')
     .expectStatus(200)
-    .expectJSONLength(11)
+    .expectJSONLength(10)
     .toss();
 
 frisby.create('GET ideas with < option')
-    .get(URL + '/ideas?filter[number]=<Act-09')
+    .get(URL + '/ideas?filter[number]=<Act-009')
     .expectStatus(200)
     .expectJSONLength(5)
     .afterJSON(function (ideas) {
@@ -36,7 +36,7 @@ frisby.create('GET ideas with < option')
     .toss();
 
 frisby.create('GET ideas with to << options')
-    .get(URL + '/ideas?filter[number]=<<Act-09')
+    .get(URL + '/ideas?filter[number]=<<Act-009')
     .expectStatus(200)
     .expectJSONLength(4)
     .afterJSON(function (ideas) {

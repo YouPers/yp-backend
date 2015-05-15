@@ -9,7 +9,7 @@
         "npm": ">=1.3.11"
     },
     "dependencies": {
-        "ypbackendlib": "git+ssh://git@github.com:YouPers/backendlib.git#v1.15.1",
+        "ypbackendlib": "git+ssh://git@github.com:YouPers/backendlib.git#v1.15.2",
         "restify": "3.0.x",
         "lodash": "3.8.x",
         "lodash-deep": "1.6.x",

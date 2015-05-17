@@ -41,14 +41,25 @@ var jobs = [
         }
     },
     {
-        name: 'BrokenLinkChecker',
+        name: 'BrokenLinkCheckerDB',
         description: 'checks for and reports broken links in the db content and the WTI translations',
-        cronTime: '00 00 10 * * *', // equals daily 12:15 in UTC+2 (CET with daylight saving time)
-        onTick: require('./batches/brokenLinkChecker').run,
+        cronTime: '00 00 10 * * *',
+        onTick: require('./batches/brokenLinkCheckerDB').run,
         start: true,
         environments: ['hc-content'],
         context: {
-            concurrency: 2
+            concurrency: 5
+        }
+    },
+    {
+        name: 'BrokenLinkCheckerWTI',
+        description: 'checks for and reports broken links in the db content and the WTI translations',
+        cronTime: '00 00 10 * * *',
+        onTick: require('./batches/brokenLinkCheckerWTI').run,
+        start: true,
+        environments: ['hc-content'],
+        context: {
+            concurrency: 5
         }
     }
 ];

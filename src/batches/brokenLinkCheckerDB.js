@@ -17,9 +17,37 @@ var fieldNames = {
 };
 
 // this pattern should be sufficient, but the perfect regular expression for a URL is a science in itself
-var urlPattern = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/;
+var urlPattern = /https?:\/\/([-a-zA-Z0-9@:%._\+~#=]{2,256}\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b[-a-zA-Z0-9@:%_\+.~#?&//=]*/;
 var languages = ['de', 'en'];
 
+function checkLink(link, cb) {
+
+    var log = this.log;
+
+    log.info('checking link ' + link);
+    var parsedUrl = url.parse(link);
+    var reported = false;
+    var req = http.request({
+
+        //  HEAD instead of GET, no need to download the response data, but some links return a 405 with HEAD
+        // TODO: retry with GET for 405 Bad Methods
+        method: 'HEAD',
+        host: parsedUrl.host,
+        path: parsedUrl.path
+    }, function (res) {
+        reported = true;
+        cb(null, { status: res.statusCode, link: link, headers: res.headers });
+    });
+
+    req.on('error', function (e) {
+        if(!reported) {
+            log.error('unexpected error ' + e.message);
+            cb(null, { status: e.message, link: link });
+        }
+    });
+
+    req.end();
+}
 
 /**
  * worker function
@@ -44,6 +72,8 @@ var checkLinks = function checkLinks(workItem, done, context) {
 
     _.each(fieldNames[modelName], function (fieldName) {
         return _.each(languages, function (language) {
+
+            // TODO: use .exec instead of .match in order to distinguish between matches and capture groups, needed to support multiple matches per workItem
             var match = workItem[fieldName+'I18n'][language].match(urlPattern);
             if(match) {
                 links.push(match[0]);
@@ -51,32 +81,7 @@ var checkLinks = function checkLinks(workItem, done, context) {
         });
     });
 
-    async.map(_.uniq(links), function (link, cb) {
-
-        log.info('checking link ' + link);
-        var parsedUrl = url.parse(link);
-        var reported = false;
-        var req = http.request({
-
-            // TODO: // better would be HEAD instead of GET, no need to download the response data, but some links return a 405 with HEAD
-            method: 'HEAD',
-            host: parsedUrl.host,
-            path: parsedUrl.path
-        }, function (res) {
-            reported = true;
-            cb(null, { status: res.statusCode, link: link, headers: res.headers });
-        });
-
-        req.on('error', function (e) {
-            if(!reported) {
-                log.error('unexpected error ' + e.message);
-                cb(null, { status: e.message, link: link });
-            }
-        });
-
-        req.end();
-
-    }, function (err, results) {
+    async.map(_.uniq(links), checkLink.bind(this), function (err, results) {
 
 
         if(err) {
@@ -137,7 +142,7 @@ var feeder = function (callback) {
         return {$or: or};
     }
 
-    var limit = 50;
+    var limit = 0; // 0 = disabled, only set for testing
     async.parallel([
         function (cb) {
             Idea.find(createQuery(fieldNames.Idea)).limit(limit).exec(cb); },
@@ -163,5 +168,7 @@ var run = function run() {
 
 module.exports = {
     run: run,
-    feeder: feeder
+    feeder: feeder,
+    urlPattern: urlPattern,
+    checkLink: checkLink
 };

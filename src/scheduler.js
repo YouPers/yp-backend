@@ -1,6 +1,4 @@
-var dailySummaryMail = require('./batches/dailySummaryMail'),
-    campaignLeadSummaryMail = require('./batches/campaignLeadSummaryMail'),
-    config = require('./config/config'),
+var config = require('./config/config'),
     scheduler = require('ypbackendlib').scheduler,
     logger = require('ypbackendlib').log(config);
 
@@ -26,7 +24,7 @@ var jobs = [
         name: 'DailyEventSummary',
         description: 'sends a daily email to users who had events with end dates in the specified time range',
         cronTime: '00 15 05 * * *',
-        onTick: dailySummaryMail.run,
+        onTick: require('./batches/dailySummaryMail').run,
         start: true,
         context: {
             concurrency: 2
@@ -36,8 +34,19 @@ var jobs = [
         name: 'WeeklyCampaignLeadSummary',
         description: 'sends a weekly email to campaign leads',
         cronTime: '00 15 10 * * *', // equals daily 12:15 in UTC+2 (CET with daylight saving time)
-        onTick: campaignLeadSummaryMail.run,
+        onTick: require('./batches/campaignLeadSummaryMail').run,
         start: true,
+        context: {
+            concurrency: 2
+        }
+    },
+    {
+        name: 'BrokenLinkChecker',
+        description: 'checks for and reports broken links in the db content and the WTI translations',
+        cronTime: '00 00 10 * * *', // equals daily 12:15 in UTC+2 (CET with daylight saving time)
+        onTick: require('./batches/brokenLinkChecker').run,
+        start: true,
+        environments: ['hc-content'],
         context: {
             concurrency: 2
         }

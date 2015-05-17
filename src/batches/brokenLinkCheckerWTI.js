@@ -1,7 +1,4 @@
-var mongoose = require('ypbackendlib').mongoose,
-    http = require('http'),
-    url = require('url'),
-    async = require('async'),
+var async = require('async'),
     _ = require('lodash'),
     batch = require('ypbackendlib').batch,
     config = require('../config/config'),
@@ -9,9 +6,8 @@ var mongoose = require('ypbackendlib').mongoose,
 
 var brokenLinkCheckerDB = require('./brokenLinkCheckerDB');
 var urlPattern = brokenLinkCheckerDB.urlPattern;
-var languages = ['de', 'en'];
 
-var wtiProjectId = '8233-eWL';
+//var wtiProjectId = '8233-eWL';
 var wtiApiUrl = 'https://webtranslateit.com/';
 var wtiProjectKey = '8lfoHUymg_X8XETa_uLaHg';
 

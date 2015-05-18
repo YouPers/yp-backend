@@ -11,7 +11,7 @@
             }
         ],
         "end": {
-            "$date": 1431727199999
+            "$date": 1441727199999
         },
         "location": "Zug",
         "organization": {

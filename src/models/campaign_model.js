@@ -24,7 +24,6 @@ var CampaignSchema = common.newSchema({
     campaignLeads: [
         {type: ObjectId, ref: 'User'}
     ],
-    newCampaignLeads: [ mongoose.model('User').schema ],
     avatar: {type: String},
     participantSurveyCollectorId: { type: String, trim: true},
     participantSurveyUrl: { type: String, trim: true},

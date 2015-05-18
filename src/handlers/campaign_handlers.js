@@ -105,6 +105,8 @@ var postCampaign = function (baseUrl) {
         } else if (!paymentCode && config.paymentCodeChecking === 'disabled') {
             paymentCode = {code: "testcode"};
         }
+        var newCampaignLeads = req.body.newCampaignLeads;
+
         var sentCampaign = new Campaign(req.body);
 
         _validateCampaign(sentCampaign, req.user, "POST", function (err) {
@@ -132,7 +134,7 @@ var postCampaign = function (baseUrl) {
                 // use campaignId from request parameters if defined
                 sentCampaign._id = new mongoose.Types.ObjectId(req.params.campaignId || undefined);
 
-                createNewCampaignLeadUsers(sentCampaign, req, function (err) {
+                createNewCampaignLeadUsers(sentCampaign, newCampaignLeads, req, function (err) {
                     if (err) {
                         return error.handleError(err, next);
                     }
@@ -224,9 +226,9 @@ var postCampaign = function (baseUrl) {
     };
 };
 
-function createNewCampaignLeadUsers(campaign, req, done) {
+function createNewCampaignLeadUsers(campaign, newCampaignLeads, req, done) {
 
-    async.each(campaign.newCampaignLeads, function (campaignLead, cb) {
+    async.each(newCampaignLeads, function (campaignLead, cb) {
 
         // random password
         crypto.randomBytes(16, function (err, random) {

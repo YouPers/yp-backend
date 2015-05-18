@@ -105,7 +105,7 @@ var postCampaign = function (baseUrl) {
         } else if (!paymentCode && config.paymentCodeChecking === 'disabled') {
             paymentCode = {code: "testcode"};
         }
-        var newCampaignLeads = req.body.newCampaignLeads;
+        var newCampaignLeads = req.body.newCampaignLeads || [];
 
         var sentCampaign = new Campaign(req.body);
 

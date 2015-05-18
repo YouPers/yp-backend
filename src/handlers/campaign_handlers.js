@@ -430,7 +430,7 @@ function putCampaign(req, res, next) {
             if (err) {
                 return error.handleError(err, next);
             }
-            createNewCampaignLeadUsers(reloadedCampaign, req, function (err) {
+            createNewCampaignLeadUsers(reloadedCampaign, req.body.newCampaignLeads || [], req, function (err) {
                 if (err) {
                     return error.handleError(err, next);
                 }

@@ -23,6 +23,16 @@ function dcmCreateIdea(campaignId) {
     return dcmBaseUrl(campaignId) + '/ideas/';
 }
 
+function adminBaseUrl() {
+    return webclientUrl + '/#/admin';
+}
+function adminEditIdea(ideaId) {
+    return adminBaseUrl() + '/ideas/' + ideaId + '/admin';
+}
+function adminEditAssessments() {
+    return adminBaseUrl() + '/assessments';
+}
+
 function activityUrl(campaignId, ideaId, activityId, soiId, actionType) {
     if (actionType === 'assessment') {
         return webclientUrl + "/#/campaign/" + campaignId + '/check';
@@ -76,6 +86,8 @@ module.exports = {
     dcmMessagesUrl: dcmMessagesUrl,
     dcmBrowseIdeas: dcmBrowseIdeas,
     dcmCreateIdea: dcmCreateIdea,
+    adminEditIdea: adminEditIdea,
+    adminEditAssessments: adminEditAssessments,
     activityUrl: activityUrl,
     dcmActivityUrl: dcmActivityUrl,
     activityInviteUrl: activityInviteUrl,

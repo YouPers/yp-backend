@@ -27,16 +27,25 @@ function checkLink(link, cb) {
     log.info('checking link ' + link);
     var parsedUrl = url.parse(link);
     var reported = false;
-    var req = http.request({
 
-        //  HEAD instead of GET, no need to download the response data, but some links return a 405 with HEAD
-        // TODO: retry with GET for 405 Bad Methods
+    var options = {
+        //  HEAD instead of GET, no need to download the response data
         method: 'HEAD',
         host: parsedUrl.host,
         path: parsedUrl.path
-    }, function (res) {
-        reported = true;
-        cb(null, { status: res.statusCode, link: link, headers: res.headers });
+    };
+    var req = http.request(options, function (res) {
+        // retry with GET for 405 Bad Methods
+        if(res.statusCode === 405) {
+            options.method = 'GET';
+            var req = http.request(options, function (res) {
+                cb(null, { status: res.statusCode, link: link, headers: res.headers });
+            });
+            req.end();
+        } else {
+            reported = true;
+            cb(null, { status: res.statusCode, link: link, headers: res.headers });
+        }
     });
 
     req.on('error', function (e) {

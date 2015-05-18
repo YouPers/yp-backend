@@ -42,7 +42,7 @@ var jobs = [
     },
     {
         name: 'BrokenLinkCheckerDB',
-        description: 'checks for and reports broken links in the db content and the WTI translations',
+        description: 'checks for and reports broken links in the db content',
         cronTime: '00 00 10 * * *',
         onTick: require('./batches/brokenLinkCheckerDB').run,
         start: true,
@@ -53,7 +53,7 @@ var jobs = [
     },
     {
         name: 'BrokenLinkCheckerWTI',
-        description: 'checks for and reports broken links in the db content and the WTI translations',
+        description: 'checks for and reports broken links in the WTI translations',
         cronTime: '00 00 10 * * *',
         onTick: require('./batches/brokenLinkCheckerWTI').run,
         start: true,

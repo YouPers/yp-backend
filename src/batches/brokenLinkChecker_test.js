@@ -1,2 +1,2 @@
 require('../util/database').initializeDb();
-require('../batches/brokenLinkCheckerDB').run();
+require('../batches/brokenLinkCheckerWTI').run();

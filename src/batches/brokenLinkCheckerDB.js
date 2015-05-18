@@ -17,7 +17,7 @@ var fieldNames = {
 };
 
 // this pattern should be sufficient, but the perfect regular expression for a URL is a science in itself
-var urlPattern = /https?:\/\/([-a-zA-Z0-9@:%._\+~#=]{2,256}\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b[-a-zA-Z0-9@:%_\+.~#?&//=]*/;
+var urlPattern = 'https?:\\/\\/([-a-zA-Z0-9@:%._\\+~#=]{2,256}\\.)?[-a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,6}\\b[-a-zA-Z0-9@:%_\\+.~#?&//=]*';
 var languages = ['de', 'en'];
 
 function checkLink(link, cb) {
@@ -73,9 +73,12 @@ var checkLinks = function checkLinks(workItem, done, context) {
     _.each(fieldNames[modelName], function (fieldName) {
         return _.each(languages, function (language) {
 
-            // TODO: use .exec instead of .match in order to distinguish between matches and capture groups, needed to support multiple matches per workItem
-            var match = workItem[fieldName+'I18n'][language].match(urlPattern);
-            if(match) {
+            var value = workItem[fieldName+'I18n'][language],
+                regex = new RegExp(urlPattern, 'g'),
+                match;
+
+            // find all links in this value
+            while((match = regex.exec(value)) !== null) {
                 links.push(match[0]);
             }
         });
@@ -135,7 +138,7 @@ var feeder = function (callback) {
         _.each(fieldNames, function (fieldName) {
             _.each(languages, function (language) {
                 var query = {};
-                query[fieldName + 'I18n' + '.' + language] = urlPattern;
+                query[fieldName + 'I18n' + '.' + language] = { $regex: new RegExp(urlPattern) };
                 or.push(query);
             });
         });

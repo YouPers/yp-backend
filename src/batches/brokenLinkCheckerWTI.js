@@ -95,14 +95,20 @@ var feeder = function (callback) {
                             getTranslations(value, key);
                         } else if(typeof value === 'string') {
 
-                            // TODO: use .exec instead of .match in order to distinguish between matches and capture groups, needed to support multiple matches per workItem
-                            var match = value.match(urlPattern);
+                            var regex = new RegExp(urlPattern, 'g'),
+                                links = [],
+                                match;
 
-                            if(match) {
+                            // find all links in this value
+                            while((match = regex.exec(value)) !== null) {
+                                links.push(match[0]);
+                            }
+
+                            if(links.length > 0) {
                                 // store
                                 workItems.push({
                                     workItemId: path + '.' + key,
-                                    links: [match[0]]
+                                    links: links
                                 });
                             }
 

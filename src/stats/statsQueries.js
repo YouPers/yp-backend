@@ -455,7 +455,7 @@ var queries = {
             },
             {
                 $group: {
-                    _id: '$allCampaign.campaign',
+                    _id: '$allCampaigns.campaign',
                     usersTotal: {$sum: 1}
                 }
             },
@@ -534,7 +534,7 @@ var queries = {
             },
             {
                 $group: {
-                    _id: '$allCampaign.campaign',
+                    _id: '$allCampaigns.campaign',
                     usersTotal: {$sum: 1}
                 }
             },

@@ -17,8 +17,8 @@ module.exports = {
         campaign: {type: ObjectId, ref: 'Campaign', select: false},
         allCampaigns: [
             {
-                campaign: {type: ObjectId, ref: 'Campaign', select: false, required: true},
-                joined: {type: Date, required: true}
+                campaign: {type: ObjectId, ref: 'Campaign', select: false},
+                joined: {type: Date}
             }
         ]
     },

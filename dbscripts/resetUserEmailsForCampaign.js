@@ -1,0 +1,1 @@
+db.users.find({campaign: ObjectId("55471048b82660ef1a396be8")}).snapshot().forEach(function(doc) { print(doc.email); if (doc.email.indexOf('+') !== -1) {doc.email = doc.email.replace(/\+(.*)@/, '+$1_fitness@');} else {doc.email = doc.email.replace(/@/, '+fitness@');}; print(doc.email);db.users.save(doc)});

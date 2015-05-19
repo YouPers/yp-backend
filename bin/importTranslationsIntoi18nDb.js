@@ -8,7 +8,6 @@ var _ = require('lodash');
 var mongoose = require('ypbackendlib').mongoose;
 
 require('../src/util/database').initializeDb();
-var Idea = mongoose.model('Idea');
 
 program
     .version('0.0.1')
@@ -25,17 +24,24 @@ console.log('found translated objs: ' + transObjs.length);
 
 _.forEach(transObjs, function(transObj) {
     var id = transObj.id;
-    Idea.findById(id).exec(function (err, idea) {
+    if (!id) {
+        console.log("invalid translation Object found: " + JSON.stringify(transObj));
+    }
+    mongoose.model('Idea').findById(id).exec(function (err, dbObject) {
         if (err) {
             console.log(err);
             process.exit(1);
         }
-        console.log('processing id: ' + idea.id);
+        if (!dbObject) {
+            console.log('Cannot import transObj, no db obj found: ' + JSON.stringify(transObj));
+            process.exit(1);
+        }
+        console.log('processing id: '+ id + ' found ' + (dbObject && dbObject.id));
         _.forEach(_.keys(transObj), function (prop) {
             if (prop !== 'id') {
                 console.log('property: ' + prop);
-                    idea[prop+'I18n']['en'] = transObj[prop];
-                    idea.save(function(err) {
+                    dbObject[prop+'I18n']['fr'] = transObj[prop];
+                    dbObject.save(function(err) {
                         if (err) {
                             console.log(JSON.stringify(err));
                         }

@@ -2,9 +2,6 @@ var mongoose = require('ypbackendlib').mongoose,
     http = require('http'),
     url = require('url'),
     async = require('async'),
-    Idea = mongoose.model('Idea'),
-    Topic = mongoose.model('Topic'),
-    AssessmentQuestion = mongoose.model('AssessmentQuestion'),
     _ = require('lodash'),
     batch = require('ypbackendlib').batch,
     config = require('../config/config'),
@@ -155,6 +152,11 @@ var feeder = function (callback) {
     }
 
     var limit = 0; // 0 = disabled, only set for testing
+
+    var Idea = mongoose.model('Idea'),
+        Topic = mongoose.model('Topic'),
+        AssessmentQuestion = mongoose.model('AssessmentQuestion');
+
     async.parallel([
         function (cb) {
             Idea.find(createQuery(fieldNames.Idea)).limit(limit).exec(cb); },

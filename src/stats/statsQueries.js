@@ -467,7 +467,15 @@ var queries = {
                 }
             }],
         transformers: function (objs, options, cb) {
-            var nrOfCampaigns = objs.length - 1; // -1 because of the "null" value (users without campaign)
+
+            var containsNullCampaign = _.any(objs, function(obj) {
+                return _.isNull(obj.campaign) || _.isUndefined(obj.campaign);
+            });
+
+            var nrOfCampaigns =  objs.length;
+            if (containsNullCampaign) {
+                nrOfCampaigns--;
+            }
             var myCampaignId = options.scopeId;
 
             var totalNrOfUsers = _.reduce(objs, function (sum, obj) {

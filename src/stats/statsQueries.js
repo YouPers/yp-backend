@@ -131,14 +131,17 @@ var queries = {
                 }
             },
             {$unwind: '$nfa'},
-                {$group: {
+            {
+                $group: {
                     _id: '$nfa.category',
                     avg: {$avg: '$nfa.value'}
-                }},
-            {$project: {
-                _id: 0,
-                category: '$_id',
-                avg: 1
+                }
+            },
+            {
+                $project: {
+                    _id: 0,
+                    category: '$_id',
+                    avg: 1
                 }
             }
         ]
@@ -181,7 +184,7 @@ var queries = {
                     },
                     neg: {
                         $cond: [
-                            {$and: [{$lt: ['$newestAnswer.answer', 0]}, {$gt: ['$newestAnswer.answer', -51]} ]},
+                            {$and: [{$lt: ['$newestAnswer.answer', 0]}, {$gt: ['$newestAnswer.answer', -51]}]},
                             1,
                             0
                         ]
@@ -350,24 +353,28 @@ var queries = {
     eventsPlanned: {
         modelName: 'ActivityEvent',
         stages: [
-            {$group: {
-                _id: {
-                    owner: '$owner',
-                    idea: '$idea'
-                },
-                count: {$sum: 1}
+            {
+                $group: {
+                    _id: {
+                        owner: '$owner',
+                        idea: '$idea'
+                    },
+                    count: {$sum: 1}
 
 
-            }},
-            {$group: {
-                _id: '$_id.idea',
-                plannedCount: {
-                    $sum: '$count'
-                },
-                byUsersCount: {
-                    $sum: 1
                 }
-            }},
+            },
+            {
+                $group: {
+                    _id: '$_id.idea',
+                    plannedCount: {
+                        $sum: '$count'
+                    },
+                    byUsersCount: {
+                        $sum: 1
+                    }
+                }
+            },
             {$sort: {plannedCount: -1}}
         ],
         transformers: transformers.replaceIds('Idea')
@@ -444,8 +451,11 @@ var queries = {
         ignoreScope: true,
         stages: [
             {
+                $unwind: "$allCampaigns"
+            },
+            {
                 $group: {
-                    _id: '$campaign',
+                    _id: '$allCampaigns.campaign',
                     usersTotal: {$sum: 1}
                 }
             },
@@ -456,11 +466,19 @@ var queries = {
                     _id: 0
                 }
             }],
-        transformers: function(objs, options, cb) {
-            var nrOfCampaigns = objs.length - 1; // -1 because of the "null" value (users without campaign)
+        transformers: function (objs, options, cb) {
+
+            var containsNullCampaign = _.any(objs, function(obj) {
+                return _.isNull(obj.campaign) || _.isUndefined(obj.campaign);
+            });
+
+            var nrOfCampaigns =  objs.length;
+            if (containsNullCampaign) {
+                nrOfCampaigns--;
+            }
             var myCampaignId = options.scopeId;
 
-            var totalNrOfUsers = _.reduce(objs, function(sum, obj) {
+            var totalNrOfUsers = _.reduce(objs, function (sum, obj) {
                 if (obj.campaign) {
                     return sum + obj.usersTotal;
                 } else {
@@ -470,7 +488,7 @@ var queries = {
             }, 0);
 
             if (myCampaignId) {
-                var myCampaignTotal = _.find(objs, function(obj) {
+                var myCampaignTotal = _.find(objs, function (obj) {
                     return obj.campaign && obj.campaign.equals(myCampaignId);
                 });
 
@@ -479,7 +497,7 @@ var queries = {
                     usersAvg: totalNrOfUsers / nrOfCampaigns
                 }, options);
             } else {
-                return cb(null,{
+                return cb(null, {
                     count: totalNrOfUsers
                 }, options);
             }
@@ -487,15 +505,19 @@ var queries = {
     },
     newUsersPerDay: {
         modelName: 'User',
-        stages: [{
-            $project: {
-                date: {
-                    year: {$year: '$created'},
-                    month: {$month: '$created'},
-                    day: {$dayOfMonth: '$created'}
+        stages: [
+            {
+                $unwind: "$allCampaigns"
+            },
+            {
+                $project: {
+                    date: {
+                        year: {$year: '$allCampaigns.joined'},
+                        month: {$month: '$allCampaigns.joined'},
+                        day: {$dayOfMonth: '$allCampaigns.joined'}
+                    }
                 }
-            }
-        },
+            },
             {
                 $group: {
                     _id: '$date',
@@ -516,8 +538,11 @@ var queries = {
         ignoreScope: true,
         stages: [
             {
+                $unwind: "$allCampaigns"
+            },
+            {
                 $group: {
-                    _id: '$campaign',
+                    _id: '$allCampaigns.campaign',
                     usersTotal: {$sum: 1}
                 }
             },

@@ -1,364 +1,388 @@
 [
-    {
-        "__v": 0,
-        "_id": {
-            "$oid": "525fb247101e330000000005"
-        },
-        "avatar": "assets/img/RBLU.jpeg",
-        "email": "reto@blunschi.ch",
-        "emailValidatedFlag": true,
-        "firstname": "Reto",
-        "fullname": "Reto Blunschi",
-        "hashed_password": "cc92b76ae74392ba23606345757ad5514715ed4a",
-        "lastname": "Blunschi",
-        "profile": {
-            "$oid": "5303721a4dba580000000025"
-        },
-        "roles": [
-            "individual"
-        ],
-        "tempPasswordFlag": false,
-        "username": "reto",
-        "created": {
-            "$date": 1407770509621
-        }
+  {
+    "__v": 0,
+    "_id": {
+      "$oid": "525fb247101e330000000005"
     },
-    {
-        "__v": 0,
-        "_id": {
-            "$oid": "525fb247101e330000000006"
-        },
-        "avatar": "assets/img/IRIG.jpeg",
-        "email": "ivan@rigamonti.me",
-        "emailValidatedFlag": true,
-        "firstname": "Ivan",
-        "fullname": "Ivan Rigamonti",
-        "hashed_password": "8f7e90c4a6f292e73bba8d4b83f335cbde0c61a2",
-        "lastname": "Rigamonti",
-        "profile": {
-            "$oid": "5303721a4dba580000000026"
-        },
-        "roles": [
-            "individual"
-        ],
-        "tempPasswordFlag": false,
-        "username": "ivan777",
-        "created": {
-            "$date": 1407770509621
-        }
+    "avatar": "assets/img/RBLU.jpeg",
+    "email": "reto@blunschi.ch",
+    "emailValidatedFlag": true,
+    "firstname": "Reto",
+    "fullname": "Reto Blunschi",
+    "hashed_password": "cc92b76ae74392ba23606345757ad5514715ed4a",
+    "lastname": "Blunschi",
+    "profile": {
+      "$oid": "5303721a4dba580000000025"
     },
-    {
-        "__v": 0,
-        "_id": {
-            "$oid": "525fb247101e330000000007"
-        },
-        "avatar": "assets/img/UBAU.jpeg",
-        "email": "urs@baumeler.com",
-        "emailValidatedFlag": true,
-        "firstname": "Urs",
-        "fullname": "Urs Baumeler",
-        "hashed_password": "5c50a547afa365a64cf6a0bbd364ef02ee3799a6",
-        "lastname": "Baumeler",
-        "profile": {
-            "$oid": "5303721a4dba580000000028"
-        },
-        "roles": [
-            "individual"
-        ],
-        "tempPasswordFlag": false,
-        "username": "urs",
-        "created": {
-            "$date": 1407770509621
-        }
-    },
-    {
-        "__v": 0,
-        "_id": {
-            "$oid": "525fb247101e330000000008"
-        },
-        "avatar": "assets/img/SMUE.jpeg",
-        "email": "stefan.mueller@romus.ch",
-        "emailValidatedFlag": true,
-        "firstname": "Stefan",
-        "fullname": "Stefan M\u00fcller",
-        "hashed_password": "f1426d87c07eb64837334f685a620c37ead36601",
-        "lastname": "M\u00fcller",
-        "profile": {
-            "$oid": "5303721a4dba580000000029"
-        },
-        "roles": [
-            "productadmin"
-        ],
-        "tempPasswordFlag": false,
-        "username": "stefan",
-        "created": {
-            "$date": 1407770509621
-        }
-    },
-    {
-        "__v": 0,
-        "_id": {
-            "$oid": "528b227bf70daafada000006"
-        },
-        "avatar": "assets/img/KTLU.jpeg",
-        "email": "martin.degen@lu.ch",
-        "emailValidatedFlag": true,
-        "firstname": "Martin",
-        "fullname": "Martin Degen",
-        "hashed_password": "0dbdc9ed07507f4c13723beea08b9844d0320900",
-        "lastname": "Degen",
-        "profile": {
-            "$oid": "5303721a4dba580000000024"
-        },
-        "roles": [
-            "productadmin"
-        ],
-        "tempPasswordFlag": false,
-        "username": "martin",
-        "created": {
-            "$date": 1407770509621
-        }
-    },
-    {
-        "__v": 1,
-        "_id": {
-            "$oid": "52a97f1650fca98c29000006"
-        },
-        "avatar": "/assets/img/default_avatar_woman.png",
-        "campaign": {
-            "$oid": "527916a82079aa8704000007"
-        },
-        "created": {
-            "$date": 1407770582291
-        },
-        "email": "ypunittest1+individual1@gmail.com",
-        "emailValidatedFlag": true,
-        "emails": [],
-        "firstname": "Test",
-        "fullname": "Test Individual 1",
-        "hashed_password": "e743e3b15009853c8447923c6334ad8af4b19945",
-        "lastname": "Individual 1",
-        "photos": [],
-        "profile": {
-            "$oid": "5303721a4dba580000000016"
-        },
-        "roles": [
-            "individual"
-        ],
-        "tempPasswordFlag": false,
-        "updated": {
-            "$date": 1407770582291
-        },
-        "username": "test_ind1",
-        "created": {
-            "$date": 1407770509621
-        }
-    },
-    {
-        "__v": 0,
-        "_id": {
-            "$oid": "52a97f1650fca98c29000007"
-        },
-        "avatar": "/assets/img/default_avatar_man.png",
-        "email": "ypunittest1+individual2@gmail.com",
-        "emailValidatedFlag": true,
-        "firstname": "Test",
-        "fullname": "Test Individual 2",
-        "hashed_password": "6024007bc505bcb13801c73b2ad6278920134a05",
-        "lastname": "Individual 2",
-        "profile": {
-            "$oid": "5303721a4dba580000000017"
-        },
-        "roles": [
-            "individual"
-        ],
-        "tempPasswordFlag": false,
-        "username": "test_ind2",
-        "campaign": {
-          "$oid": "527916a82079aa8704000006"
-        },
-        "created": {
-            "$date": 1407770509621
-        }
-    },
-    {
-        "__v": 0,
-        "_id": {
-            "$oid": "52a97f1650fca98c29000008"
-        },
-        "avatar": "/assets/img/default_avatar_man.png",
-        "email": "ypunittest1+productadmin@gmail.com",
-        "emailValidatedFlag": true,
-        "firstname": "Test",
-        "fullname": "Test ProductAdmin",
-        "hashed_password": "24d07d5338ecd9c107cdafb08ec83a821dce6a91",
-        "lastname": "ProductAdmin",
-        "profile": {
-            "$oid": "5303721a4dba580000000019"
-        },
-        "roles": [
-            "individual",
-            "productadmin"
-        ],
-        "tempPasswordFlag": false,
-        "username": "test_prodadm",
-        "created": {
-            "$date": 1407770509621
-        }
-    },
-    {
-        "__v": 0,
-        "_id": {
-            "$oid": "52a97f1650fca98c29000009"
-        },
-        "avatar": "/assets/img/default_avatar_woman.png",
-        "email": "ypunittest1+systemadmin@gmail.com",
-        "emailValidatedFlag": true,
-        "firstname": "Test",
-        "fullname": "Test SystemAdmin",
-        "hashed_password": "5927c69aae50a31e0af67fda41dc0a2cbe23125c",
-        "lastname": "SystemAdmin",
-        "profile": {
-            "$oid": "5303721a4dba580000000020"
-        },
-        "roles": [
-            "systemadmin"
-        ],
-        "tempPasswordFlag": false,
-        "username": "test_sysadm",
-        "created": {
-            "$date": 1407770509621
-        }
-    },
-    {
-        "__v": 0,
-        "_id": {
-            "$oid": "52a97f1650fca98c2900000a"
-        },
-        "campaign": {
-            "$oid": "527916a82079aa8704000006"
-        },
-        "avatar": "/assets/img/YouPersAvatar.png",
-        "email": "ypunittest1+orgadmin@gmail.com",
-        "emailValidatedFlag": true,
-        "firstname": "Test",
-        "fullname": "Test OrgAdmin",
-        "hashed_password": "27cda6e3a674d8e474ede20146d253de82f41ac4",
-        "lastname": "OrgAdmin",
-        "profile": {
-            "$oid": "5303721a4dba580000000021"
-        },
-        "roles": [
-            "orgadmin",
-            "campaignlead",
-            "individual"
-        ],
-        "tempPasswordFlag": false,
-        "username": "test_orgadm",
-        "created": {
-            "$date": 1407770509621
-        }
-    },
-    {
-        "__v": 0,
-        "_id": {
-            "$oid": "52a97f1650fca98c2900000b"
-        },
-        "campaign": {
-            "$oid": "527916a82079aa8704000006"
-        },
-        "avatar": "/assets/img/default_avatar_woman.png",
-        "email": "ypunittest1+campaignlead@gmail.com",
-        "emailValidatedFlag": true,
-        "firstname": "Test",
-        "fullname": "Test CampaignLead",
-        "hashed_password": "b173214d9a839a24502ad42a1eda2f8f062238b2",
-        "lastname": "CampaignLead",
-        "profile": {
-            "$oid": "5303721a4dba580000000022"
-        },
-        "roles": [
-            "campaignlead",
-            "individual"
-        ],
-        "tempPasswordFlag": false,
-        "username": "test_campaignlead",
-        "created": {
-            "$date": 1407770509621
-        }
-    },
-    {
-        "__v": 0,
-        "_id": {
-            "$oid": "52a97f1650fca98c2900000c"
-        },
-        "avatar": "/assets/img/default_avatar_woman.png",
-        "email": "ypunittest1+campaignlead2@gmail.com",
-        "emailValidatedFlag": true,
-        "firstname": "Test",
-        "fullname": "Test CampaignLead 2",
-        "hashed_password": "d0c83cd33689a8bf6c91b0cb7b1594e5f09456dc",
-        "lastname": "CampaignLead 2",
-        "profile": {
-            "$oid": "5303721a4dba580000000023"
-        },
-        "roles": [
-            "campaignlead",
-            "individual"
-        ],
-        "tempPasswordFlag": false,
-        "username": "test_campaignlead2",
-        "created": {
-            "$date": 1407770509621
-        }
-    },
-    {
-        "__v": 0,
-        "_id": {
-            "$oid": "52a97f1650fca98c29000055"
-        },
-        "avatar": "/assets/img/default_avatar_woman.png",
-        "email": "ypunittest1+individual3@gmail.com",
-        "emailValidatedFlag": true,
-        "firstname": "Test",
-        "fullname": "Test Individual 3",
-        "hashed_password": "b5cfc711e9cc780c50a8e05e3b52f88ceccda08e",
-        "lastname": "Individual 3",
-        "profile": {
-            "$oid": "5303721a4dba580000000018"
-        },
-        "roles": [
-            "individual"
-        ],
-        "tempPasswordFlag": false,
-        "username": "test_ind3",
-        "created": {
-            "$date": 1407770509621
-        }
-    },
-    {
-        "__v": 0,
-        "_id": {
-            "$oid": "52d4f515fac246174c000006"
-        },
-        "avatar": "/assets/img/default_avatar_man.png",
-        "email": "helmut.kneer@youpers.com",
-        "emailValidatedFlag": true,
-        "firstname": "Helmut",
-        "fullname": "Helmut Kneeeeer",
-        "hashed_password": "92d7dab7a83f16b203d6e26f5dab88d1a04404f9",
-        "lastname": "Kneer",
-        "profile": {
-            "$oid": "5303721a4dba580000000030"
-        },
-        "roles": [
-            "productadmin"
-        ],
-        "tempPasswordFlag": false,
-        "username": "helmut",
-        "created": {
-            "$date": 1407770509621
-        }
+    "roles": [
+      "individual"
+    ],
+    "tempPasswordFlag": false,
+    "username": "reto",
+    "created": {
+      "$date": 1407770509621
     }
-
+  }, {
+  "__v": 0,
+  "_id": {
+    "$oid": "525fb247101e330000000006"
+  },
+  "avatar": "assets/img/IRIG.jpeg",
+  "email": "ivan@rigamonti.me",
+  "emailValidatedFlag": true,
+  "firstname": "Ivan",
+  "fullname": "Ivan Rigamonti",
+  "hashed_password": "8f7e90c4a6f292e73bba8d4b83f335cbde0c61a2",
+  "lastname": "Rigamonti",
+  "profile": {
+    "$oid": "5303721a4dba580000000026"
+  },
+  "roles": [
+    "individual"
+  ],
+  "tempPasswordFlag": false,
+  "username": "ivan777",
+  "created": {
+    "$date": 1407770509621
+  }
+}, {
+  "__v": 0,
+  "_id": {
+    "$oid": "525fb247101e330000000007"
+  },
+  "avatar": "assets/img/UBAU.jpeg",
+  "email": "urs@baumeler.com",
+  "emailValidatedFlag": true,
+  "firstname": "Urs",
+  "fullname": "Urs Baumeler",
+  "hashed_password": "5c50a547afa365a64cf6a0bbd364ef02ee3799a6",
+  "lastname": "Baumeler",
+  "profile": {
+    "$oid": "5303721a4dba580000000028"
+  },
+  "roles": [
+    "individual"
+  ],
+  "tempPasswordFlag": false,
+  "username": "urs",
+  "created": {
+    "$date": 1407770509621
+  }
+}, {
+  "__v": 0,
+  "_id": {
+    "$oid": "525fb247101e330000000008"
+  },
+  "avatar": "assets/img/SMUE.jpeg",
+  "email": "stefan.mueller@romus.ch",
+  "emailValidatedFlag": true,
+  "firstname": "Stefan",
+  "fullname": "Stefan M\u00fcller",
+  "hashed_password": "f1426d87c07eb64837334f685a620c37ead36601",
+  "lastname": "M\u00fcller",
+  "profile": {
+    "$oid": "5303721a4dba580000000029"
+  },
+  "roles": [
+    "productadmin"
+  ],
+  "tempPasswordFlag": false,
+  "username": "stefan",
+  "created": {
+    "$date": 1407770509621
+  }
+}, {
+  "__v": 0,
+  "_id": {
+    "$oid": "528b227bf70daafada000006"
+  },
+  "avatar": "assets/img/KTLU.jpeg",
+  "email": "martin.degen@lu.ch",
+  "emailValidatedFlag": true,
+  "firstname": "Martin",
+  "fullname": "Martin Degen",
+  "hashed_password": "0dbdc9ed07507f4c13723beea08b9844d0320900",
+  "lastname": "Degen",
+  "profile": {
+    "$oid": "5303721a4dba580000000024"
+  },
+  "roles": [
+    "productadmin"
+  ],
+  "tempPasswordFlag": false,
+  "username": "martin",
+  "created": {
+    "$date": 1407770509621
+  }
+}, {
+  "__v": 1,
+  "_id": {
+    "$oid": "52a97f1650fca98c29000006"
+  },
+  "avatar": "/assets/img/default_avatar_woman.png",
+  "campaign": {
+    "$oid": "527916a82079aa8704000007"
+  },
+  "allCampaigns": [
+    {
+      "campaign": {
+        "$oid": "527916a82079aa8704000007"
+      },
+      "joined": {
+        "$date": 1407770509621
+      }
+    }
+  ],
+  "created": {
+    "$date": 1407770582291
+  },
+  "email": "ypunittest1+individual1@gmail.com",
+  "emailValidatedFlag": true,
+  "emails": [],
+  "firstname": "Test",
+  "fullname": "Test Individual 1",
+  "hashed_password": "e743e3b15009853c8447923c6334ad8af4b19945",
+  "lastname": "Individual 1",
+  "photos": [],
+  "profile": {
+    "$oid": "5303721a4dba580000000016"
+  },
+  "roles": [
+    "individual"
+  ],
+  "tempPasswordFlag": false,
+  "updated": {
+    "$date": 1407770582291
+  },
+  "username": "test_ind1",
+  "created": {
+    "$date": 1407770509621
+  }
+}, {
+  "__v": 0,
+  "_id": {
+    "$oid": "52a97f1650fca98c29000007"
+  },
+  "avatar": "/assets/img/default_avatar_man.png",
+  "email": "ypunittest1+individual2@gmail.com",
+  "emailValidatedFlag": true,
+  "firstname": "Test",
+  "fullname": "Test Individual 2",
+  "hashed_password": "6024007bc505bcb13801c73b2ad6278920134a05",
+  "lastname": "Individual 2",
+  "profile": {
+    "$oid": "5303721a4dba580000000017"
+  },
+  "roles": [
+    "individual"
+  ],
+  "tempPasswordFlag": false,
+  "username": "test_ind2",
+  "campaign": {
+    "$oid": "527916a82079aa8704000006"
+  },
+  "allCampaigns": [
+    {
+      "campaign": {
+        "$oid": "527916a82079aa8704000006"
+      },
+      "joined": {
+        "$date": 1407770509621
+      }
+    }
+  ],
+  "created": {
+    "$date": 1407770509621
+  }
+}, {
+  "__v": 0,
+  "_id": {
+    "$oid": "52a97f1650fca98c29000008"
+  },
+  "avatar": "/assets/img/default_avatar_man.png",
+  "email": "ypunittest1+productadmin@gmail.com",
+  "emailValidatedFlag": true,
+  "firstname": "Test",
+  "fullname": "Test ProductAdmin",
+  "hashed_password": "24d07d5338ecd9c107cdafb08ec83a821dce6a91",
+  "lastname": "ProductAdmin",
+  "profile": {
+    "$oid": "5303721a4dba580000000019"
+  },
+  "roles": [
+    "individual", "productadmin"
+  ],
+  "tempPasswordFlag": false,
+  "username": "test_prodadm",
+  "created": {
+    "$date": 1407770509621
+  }
+}, {
+  "__v": 0,
+  "_id": {
+    "$oid": "52a97f1650fca98c29000009"
+  },
+  "avatar": "/assets/img/default_avatar_woman.png",
+  "email": "ypunittest1+systemadmin@gmail.com",
+  "emailValidatedFlag": true,
+  "firstname": "Test",
+  "fullname": "Test SystemAdmin",
+  "hashed_password": "5927c69aae50a31e0af67fda41dc0a2cbe23125c",
+  "lastname": "SystemAdmin",
+  "profile": {
+    "$oid": "5303721a4dba580000000020"
+  },
+  "roles": [
+    "systemadmin"
+  ],
+  "tempPasswordFlag": false,
+  "username": "test_sysadm",
+  "created": {
+    "$date": 1407770509621
+  }
+}, {
+  "__v": 0,
+  "_id": {
+    "$oid": "52a97f1650fca98c2900000a"
+  },
+  "campaign": {
+    "$oid": "527916a82079aa8704000006"
+  },
+  "allCampaigns": [
+    {
+      "campaign": {
+        "$oid": "527916a82079aa8704000006"
+      },
+      "joined": {
+        "$date": 1407770509621
+      }
+    }
+  ],
+  "avatar": "/assets/img/YouPersAvatar.png",
+  "email": "ypunittest1+orgadmin@gmail.com",
+  "emailValidatedFlag": true,
+  "firstname": "Test",
+  "fullname": "Test OrgAdmin",
+  "hashed_password": "27cda6e3a674d8e474ede20146d253de82f41ac4",
+  "lastname": "OrgAdmin",
+  "profile": {
+    "$oid": "5303721a4dba580000000021"
+  },
+  "roles": [
+    "orgadmin", "campaignlead", "individual"
+  ],
+  "tempPasswordFlag": false,
+  "username": "test_orgadm",
+  "created": {
+    "$date": 1407770509621
+  }
+}, {
+  "__v": 0,
+  "_id": {
+    "$oid": "52a97f1650fca98c2900000b"
+  },
+  "campaign": {
+    "$oid": "527916a82079aa8704000007"
+  },
+  "allCampaigns": [
+    {
+      "_id": {
+        "$oid": "52a97f1650fca98c290aaaaa"
+      },
+      "campaign": {
+        "$oid": "527916a82079aa8704000007"
+      },
+      "joined": {
+        "$date": 1407770509621
+      }
+    }
+  ],
+  "avatar": "/assets/img/default_avatar_woman.png",
+  "email": "ypunittest1+campaignlead@gmail.com",
+  "emailValidatedFlag": true,
+  "firstname": "Test",
+  "fullname": "Test CampaignLead",
+  "hashed_password": "b173214d9a839a24502ad42a1eda2f8f062238b2",
+  "lastname": "CampaignLead",
+  "profile": {
+    "$oid": "5303721a4dba580000000022"
+  },
+  "roles": [
+    "campaignlead", "individual"
+  ],
+  "tempPasswordFlag": false,
+  "username": "test_campaignlead",
+  "created": {
+    "$date": 1407770509621
+  }
+}, {
+  "__v": 0,
+  "_id": {
+    "$oid": "52a97f1650fca98c2900000c"
+  },
+  "avatar": "/assets/img/default_avatar_woman.png",
+  "email": "ypunittest1+campaignlead2@gmail.com",
+  "emailValidatedFlag": true,
+  "firstname": "Test",
+  "fullname": "Test CampaignLead 2",
+  "hashed_password": "d0c83cd33689a8bf6c91b0cb7b1594e5f09456dc",
+  "lastname": "CampaignLead 2",
+  "profile": {
+    "$oid": "5303721a4dba580000000023"
+  },
+  "roles": [
+    "campaignlead", "individual"
+  ],
+  "tempPasswordFlag": false,
+  "username": "test_campaignlead2",
+  "created": {
+    "$date": 1407770509621
+  }
+}, {
+  "__v": 0,
+  "_id": {
+    "$oid": "52a97f1650fca98c29000055"
+  },
+  "avatar": "/assets/img/default_avatar_woman.png",
+  "email": "ypunittest1+individual3@gmail.com",
+  "emailValidatedFlag": true,
+  "firstname": "Test",
+  "fullname": "Test Individual 3",
+  "hashed_password": "b5cfc711e9cc780c50a8e05e3b52f88ceccda08e",
+  "lastname": "Individual 3",
+  "profile": {
+    "$oid": "5303721a4dba580000000018"
+  },
+  "roles": [
+    "individual"
+  ],
+  "tempPasswordFlag": false,
+  "username": "test_ind3",
+  "created": {
+    "$date": 1407770509621
+  }
+}, {
+  "__v": 0,
+  "_id": {
+    "$oid": "52d4f515fac246174c000006"
+  },
+  "avatar": "/assets/img/default_avatar_man.png",
+  "email": "helmut.kneer@youpers.com",
+  "emailValidatedFlag": true,
+  "firstname": "Helmut",
+  "fullname": "Helmut Kneeeeer",
+  "hashed_password": "92d7dab7a83f16b203d6e26f5dab88d1a04404f9",
+  "lastname": "Kneer",
+  "profile": {
+    "$oid": "5303721a4dba580000000030"
+  },
+  "roles": [
+    "productadmin"
+  ],
+  "tempPasswordFlag": false,
+  "username": "helmut",
+  "created": {
+    "$date": 1407770509621
+  }
+}
 ]

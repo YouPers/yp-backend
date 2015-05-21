@@ -296,7 +296,10 @@ actMgr.defaultActivity = function (idea, user, campaignId, startDateParam) {
         campaignId = user.campaign._id || user.campaign;
     }
 
-    var start = startDateParam ? moment(startDateParam).tz('Europe/Zurich') : moment().add(1, 'd').tz('Europe/Zurich');
+    var start = startDateParam ? moment(startDateParam).tz('Europe/Zurich') :
+        moment().businessAdd(
+            idea.defaultexecutiontype === 'self' ? 1 : 3 // next day for self, in 3 business days for group activities
+            ).tz('Europe/Zurich');
 
     // check if the organizer is working on this day by checking the default work days in his calendar, if not push
     // back by one day and repeat

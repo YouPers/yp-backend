@@ -1,0 +1,5 @@
+{
+  "surveyMonkey": {
+    "thankYouMessage": "Thank you for completing the survey! <br><br><h2> <a href='__homeurl__'>Back to HealthCampaign</a> </h2>"
+  }
+}

@@ -2,7 +2,7 @@
   "new": {
     "summary": "__activity.title__ - HealthCampaign",
     "description": "HealthCampaign Activity: __activity.title__, \n\n__activity.text__, \n\n__link__",
-    "htmlDescription": "<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 3.2//EN'>\n<HTML><head></head><body>HealthCampaign activity: __activity.title__<br><br>__activity.text__<br><br><a href='__link__'>__link__</a></body></HTML>"
+    "htmlDescription": "<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 3.2//EN'>\n<HTML><head></head><body><br>HealthCampaign</br> activity: __activity.title__<br><br>__activity.text__<br><br><a href='__link__'>__link__</a></body></HTML>"
   },
   "update": {
     "summary": "__activity.title__ - HealthCampaign",

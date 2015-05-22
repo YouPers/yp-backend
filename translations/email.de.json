@@ -12,7 +12,7 @@
     "text": "Liebe Mitarbeiterin, lieber Mitarbeiter<br><br>__campaign.organization.name__ lädt dich ein, an der betrieblichen Gesundheitskampagne zum Thema __campaign.topic.shortDescription__ teilzunehmen. Diese webbasierte Gesundheitskampagne ist ein Service der YOUPERS AG, dem Schweizer Softwareunternehmen für digitale Gesundheitslösungen."
   },
   "ActivityInvitation": {
-    "subject": "HealthCampaign: Einladung für eine Gruppen-Aktivität vom __inviting.fullname__",
+    "subject": "HealthCampaign: Einladung für eine Gruppen-Aktivität von __inviting.fullname__",
     "salutation": "Hallo __invited.firstname__",
     "salutationAnonymous": "Hallo!",
     "text": "__inviting.fullname__ hat dich zu einer Aktivität eingeladen.",

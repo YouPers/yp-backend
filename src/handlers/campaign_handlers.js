@@ -16,7 +16,8 @@ var handlerUtils = require('ypbackendlib').handlerUtils,
     moment = require('moment-timezone'),
     generic = require('ypbackendlib').handlers,
     config = require('../config/config'),
-    restify = require('restify');
+    restify = require('restify'),
+    urlcomposer = require('../util/urlcomposer');
 
 var HEALTH_EXPERT_USER_ID = '53348c27996c80a534319bdb';
 
@@ -356,7 +357,8 @@ function addSurveyCollectors(campaign, req, cb) {
             survey_id: config.surveyMonkey.dcmSurveyId[req.locale],
             collector: {
                 type: 'weblink',
-                name: org.name + '/ ' + campaign.participants + '/' + campaign.location
+                name: org.name + '/ ' + campaign.participants + '/' + campaign.location,
+                thank_you_message: "Vielen Dank, dass Sie die Umfrage abgeschlossen haben! <br><br><h2><a href='"+ urlcomposer.homeUrl() +"'>Zurück zur HealthCampaign</a></h2>"
             }
         };
 

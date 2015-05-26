@@ -1,6 +1,5 @@
 var mongoose = require('ypbackendlib').mongoose,
     request = require('request'),
-    url = require('url'),
     async = require('async'),
     _ = require('lodash'),
     batch = require('ypbackendlib').batch,

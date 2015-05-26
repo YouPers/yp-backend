@@ -21,7 +21,7 @@ function checkLink(link, cb) {
 
     var log = this.log;
 
-    log.info('checking link ' + link);
+    log.debug('checking link ' + link);
     var parsedUrl = url.parse(link);
     var reported = false;
 
@@ -29,17 +29,22 @@ function checkLink(link, cb) {
         //  HEAD instead of GET, no need to download the response data
         method: 'HEAD',
         host: parsedUrl.host,
-        path: parsedUrl.path
+        path: parsedUrl.path,
+        agent: false
     };
+    var start = new Date();
     var req = http.request(options, function (res) {
         // retry with GET for 405 Bad Methods
         if(res.statusCode === 405) {
+            log.debug('retry with GET: ' + link);
             options.method = 'GET';
-            var req = http.request(options, function (res) {
-                cb(null, { status: res.statusCode, link: link, headers: res.headers });
+            var req2 = http.request(options, function (res2) {
+                log.debug({code: res2.statusCode, duration: new Date () - start}, 'got result: ' + link);
+                cb(null, { status: res2.statusCode, link: link, headers: res.headers });
             });
-            req.end();
+            req2.end();
         } else {
+            log.debug({code: res.statusCode, duration: new Date () - start}, 'got result: ' + link);
             reported = true;
             cb(null, { status: res.statusCode, link: link, headers: res.headers });
         }
@@ -72,7 +77,7 @@ var checkLinks = function checkLinks(workItem, done, context) {
 
     var modelName = workItem.constructor.modelName;
 
-    log.info('checking links for workItem ' + modelName + ':' + workItem.id);
+    log.debug('checking links for workItem ' + modelName + ':' + workItem.id);
 
     var links = [];
 
@@ -99,7 +104,7 @@ var checkLinks = function checkLinks(workItem, done, context) {
 
         var brokenLinks = _.filter(results, function (result) {
             return typeof result.status !== 'number' ||
-                result.status >= 400 && result.status <= 499 ;
+                result.status < 200 || result.status >=300 ;
         });
 
         var editLink;

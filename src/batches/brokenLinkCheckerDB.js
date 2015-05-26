@@ -1,5 +1,5 @@
 var mongoose = require('ypbackendlib').mongoose,
-    http = require('http'),
+    request = require('request'),
     url = require('url'),
     async = require('async'),
     _ = require('lodash'),
@@ -21,43 +21,30 @@ function checkLink(link, cb) {
 
     var log = this.log;
 
-    log.debug('checking link ' + link);
-    var parsedUrl = url.parse(link);
-    var reported = false;
-
-    var options = {
-        //  HEAD instead of GET, no need to download the response data
-        method: 'HEAD',
-        host: parsedUrl.host,
-        path: parsedUrl.path,
-        agent: false
-    };
+    log.debug({ link: link }, 'checking link');
     var start = new Date();
-    var req = http.request(options, function (res) {
-        // retry with GET for 405 Bad Methods
-        if(res.statusCode === 405) {
-            log.debug('retry with GET: ' + link);
-            options.method = 'GET';
-            var req2 = http.request(options, function (res2) {
-                log.debug({code: res2.statusCode, duration: new Date () - start}, 'got result: ' + link);
-                cb(null, { status: res2.statusCode, link: link, headers: res.headers });
+
+    request.head(link, function (err, res, body) {
+
+
+        if(err || res.statusCode === 405) {
+
+            request.get(link, function (err, res, body) {
+                if(err) {
+                    log.error(err, 'error while checking link');
+                    return cb(null, { status: err.toString(), link: link, headers: res.headers });
+                }
+
+                log.debug({code: res.statusCode, duration: new Date () - start}, 'got result: ' + link);
+                return cb(null, { status: res.statusCode, link: link, headers: res.headers });
             });
-            req2.end();
+
         } else {
             log.debug({code: res.statusCode, duration: new Date () - start}, 'got result: ' + link);
-            reported = true;
-            cb(null, { status: res.statusCode, link: link, headers: res.headers });
+            return cb(null, { status: res.statusCode, link: link, headers: res.headers });
         }
     });
 
-    req.on('error', function (e) {
-        if(!reported) {
-            log.error('unexpected error ' + e.message);
-            cb(null, { status: e.message, link: link });
-        }
-    });
-
-    req.end();
 }
 
 /**
@@ -102,6 +89,7 @@ var checkLinks = function checkLinks(workItem, done, context) {
             return done(err);
         }
 
+        // broken links are a non 2xx response status
         var brokenLinks = _.filter(results, function (result) {
             return typeof result.status !== 'number' ||
                 result.status < 200 || result.status >=300 ;

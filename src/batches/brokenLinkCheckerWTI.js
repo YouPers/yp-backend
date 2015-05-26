@@ -41,9 +41,10 @@ var checkLinks = function checkLinks(workItem, done, context) {
             return done(err);
         }
 
+        // broken links are a non 2xx response status
         var brokenLinks = _.filter(results, function (result) {
             return typeof result.status !== 'number' ||
-                result.status >= 400 && result.status <= 499 ;
+                result.status < 200 || result.status >=300 ;
         });
 
 

@@ -27,7 +27,8 @@ _.forEach(transObjs, function(transObj) {
     if (!id) {
         console.log("invalid translation Object found: " + JSON.stringify(transObj));
     }
-    mongoose.model('Idea').findById(id).exec(function (err, dbObject) {
+    mongoose.model('AssessmentQuestion').findById(id).exec(function (err, dbObject) {
+//    mongoose.model('Idea').findById(id).exec(function (err, dbObject) {
         if (err) {
             console.log(err);
             process.exit(1);

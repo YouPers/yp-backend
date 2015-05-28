@@ -1,5 +1,5 @@
 {
     "surveyMonkey": {
-        "thankYouMessage": "Vielen Dank, dass Sie die Umfrage abgeschlossen haben! <br><br><h2><a href='__homeurl__'>Zurück zur HealthCampaign</a></h2>"
+        "thankYouMessage": "Vielen Dank, dass Sie die Umfrage abgeschlossen haben. Klicken Sie auf den Link <a href='__homeurl__'>Zurück zur HealthCampaign</a> um wieder auf die Hautseite zu gelangen. <br><br><h2><a href='__homeurl__'>Zurück zur HealthCampaign</a></h2>"
     }
 }

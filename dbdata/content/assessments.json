@@ -1,216 +1,371 @@
 [
-    {
-        "_id": {"$oid": "525faf0ac558d40000000005"},
-        "__v": 0,
-        "idea": {"$oid": "5278c6accdeab69a25000008"},
-        "impactQuestionI18n": {
-            "de": "Beeinträchtigt das deine Stresssituation?",
-            "en": "Does this stress you out?"
-        },
-        "impactQuestionLeftI18n": {
-            "de": "kaum",
-            "en": "hardly"
-        },
-        "impactQuestionRightI18n": {
-            "de": "sehr",
-            "en": "highly"
-        },
-        "nameI18n": {
-            "de": "Beurteile Deinen Stresslevel",
-            "en": "Assess your personal Stress Factors"
-        },
-        "questions": [
-            {"$oid": "5278c51a6166f2de240000dd"},
-            {"$oid": "5278c51a6166f2de240000dc"},
-            {"$oid": "5278c51a6166f2de240000db"},
-            {"$oid": "5278c51a6166f2de240000da"},
-            {"$oid": "5278c51a6166f2de240000d9"},
-            {"$oid": "5278c51a6166f2de240000d8"},
-            {"$oid": "5278c51a6166f2de240000d7"},
-            {"$oid": "5278c51a6166f2de240000d6"},
-            {"$oid": "5278c51a6166f2de240000d5"},
-            {"$oid": "5278c51a6166f2de240000d4"},
-            {"$oid": "5278c51a6166f2de240000d3"},
-            {"$oid": "5278c51a6166f2de240000d1"},
-            {"$oid": "5278c51a6166f2de240000d0"},
-            {"$oid": "5278c51a6166f2de240000cf"},
-            {"$oid": "5278c51a6166f2de240000ce"},
-            {"$oid": "5278c51a6166f2de240000cc"},
-            {"$oid": "5278c51a6166f2de240000cb"},
-            {"$oid": "5278c51a6166f2de240000ca"},
-            {"$oid": "5278c51a6166f2de240000c9"},
-            {"$oid": "5278c51a6166f2de240000c8"},
-            {"$oid": "5278c51a6166f2de240000c6"},
-            {"$oid": "5278c51a6166f2de240000c5"},
-            {"$oid": "5278c51a6166f2de240000c4"},
-            {"$oid": "5278c51a6166f2de240000c3"},
-            {"$oid": "5278c51a6166f2de240000c2"},
-            {"$oid": "5278c51a6166f2de240000c1"}
-        ],
-        "topic": {"$oid": "53b416cfa43aac62a2debda1"},
-        "created": {"$date": 1426497633543},
-        "updated": {"$date": 1426497633543}
+  {
+    "_id": {
+      "$oid": "525faf0ac558d40000000005"
     },
-    {
-        "_id": {"$oid": "53e8df8d3cca9d19333e73cf"},
-        "__v": 12,
-        "created": {"$date": 1407770509613},
-        "idea": {"$oid": "53eb49fbdb1c97b45c6af27d"},
-        "impactQuestionI18n": {
-            "de": "Beeinträchtigt das dein Wohlbefinden?",
-            "en": "Does this have an impact on you?"
-        },
-        "impactQuestionLeftI18n": {
-            "de": "kaum",
-            "en": "hardly"
-        },
-        "impactQuestionRightI18n": {
-            "de": "sehr",
-            "en": "highly"
-        },
-        "nameI18n": {"de": "Beurteile Deine Ernährung"},
-        "questions": [
-            {"$oid": "53e8df8d3cca9d19333e73d3"},
-            {"$oid": "53e8df8d3cca9d19333e73d4"},
-            {"$oid": "53e8df8d3cca9d19333e73d5"},
-            {"$oid": "55279408f020c6655cfd83f0"},
-            {"$oid": "53e8df8d3cca9d19333e73d1"},
-            {"$oid": "53e8df8d3cca9d19333e73d2"},
-            {"$oid": "53e8df8d3cca9d19333e73d6"},
-            {"$oid": "53e8df8d3cca9d19333e73d7"},
-            {"$oid": "53e8df8d3cca9d19333e73d8"},
-            {"$oid": "53e8df8d3cca9d19333e73dd"},
-            {"$oid": "53e8df8d3cca9d19333e73e1"},
-            {"$oid": "53e8df8d3cca9d19333e73d9"},
-            {"$oid": "53e8df8d3cca9d19333e73da"},
-            {"$oid": "552cc32e2e6eaa216683dedb"},
-            {"$oid": "53e8df8d3cca9d19333e73db"},
-            {"$oid": "53e8df8d3cca9d19333e73df"},
-            {"$oid": "53e8df8d3cca9d19333e73e0"},
-            {"$oid": "552cc5f6bc2e9a236637669f"}
-        ],
-        "topic": {"$oid": "53b416fba43aac62a2debda2"},
-        "updated": {"$date": 1429187582725}
+    "__v": 0,
+    "idea": {
+      "$oid": "5278c6accdeab69a25000008"
     },
-    {
-        "_id": {"$oid": "53e8df8d3cca9d19333e73d0"},
-        "__v": 20,
-        "created": {"$date": 1407770509621},
-        "idea": {"$oid": "54086c9247f4424d460606b4"},
-        "impactQuestionI18n": {
-            "de": "Beeinträchtigt das dein Wohlbefinden?",
-            "en": "Does this have an impact on you?"
-        },
-        "impactQuestionLeftI18n": {
-            "de": "kaum",
-            "en": "hardly"
-        },
-        "impactQuestionRightI18n": {
-            "de": "sehr",
-            "en": "highly"
-        },
-        "nameI18n": {"de": "Beurteile Deine Fitness"},
-        "questions": [
-            {"$oid": "53e8df8d3cca9d19333e73e2"},
-            {"$oid": "53e8df8d3cca9d19333e73e3"},
-            {"$oid": "54febc638e7a489f23d3bb09"},
-            {"$oid": "54febd708e7a489f23d3bb0a"},
-            {"$oid": "54fec4e98e7a489f23d3bb0b"},
-            {"$oid": "53e8df8d3cca9d19333e73eb"},
-            {"$oid": "53e8df8d3cca9d19333e73e4"},
-            {"$oid": "53e8df8d3cca9d19333e73e5"},
-            {"$oid": "53e8df8d3cca9d19333e73e6"},
-            {"$oid": "53e8df8d3cca9d19333e73e7"},
-            {"$oid": "54fec403cf36a19323e0c072"},
-            {"$oid": "54fec24fcf36a19323e0c071"},
-            {"$oid": "54fec606cf36a19323e0c073"},
-            {"$oid": "53e8df8d3cca9d19333e73ec"},
-            {"$oid": "53e8df8d3cca9d19333e73ed"}
-        ],
-        "topic": {"$oid": "53b416fba43aac62a2debda3"},
-        "updated": {"$date": 1427382256487}
+    "impactQuestionI18n": {
+      "de": "Beeinträchtigt das deine Stresssituation?",
+      "en": "Does this stress you out?"
     },
-    {
-        "_id": {"$oid": "5450c0be3e71cc15a0f7eb74"},
-        "__v": 1,
-        "created": {"$date": 1414578366676},
-        "idea": {"$oid": "54086d1847f4424d460606b5"},
-        "nameI18n": {"de": "Beurteile Deine Gesundheit bei der Arbeit"},
-        "impactQuestionI18n": {
-            "de": "Beeinträchtigt das dein Wohlbefinden?",
-            "en": "Does this have an impact on you?"
-        },
-        "impactQuestionLeftI18n": {
-            "de": "kaum",
-            "en": "hardly"
-        },
-        "impactQuestionRightI18n": {
-            "de": "sehr",
-            "en": "highly"
-        },
-        "questions": [
-            {"$oid": "5450c0be3e71cc15a0f7eb76"},
-            {"$oid": "5450c0be3e71cc15a0f7eb77"},
-            {"$oid": "5450c0be3e71cc15a0f7eb78"},
-            {"$oid": "5450c0be3e71cc15a0f7eb79"},
-            {"$oid": "5450c0be3e71cc15a0f7eb7a"},
-            {"$oid": "5450c0be3e71cc15a0f7eb7b"},
-            {"$oid": "5450c0be3e71cc15a0f7eb7c"},
-            {"$oid": "5450c0be3e71cc15a0f7eb7d"},
-            {"$oid": "5450c0be3e71cc15a0f7eb7e"},
-            {"$oid": "5450c0be3e71cc15a0f7eb7f"},
-            {"$oid": "5450c0be3e71cc15a0f7eb80"},
-            {"$oid": "5450c0be3e71cc15a0f7eb81"},
-            {"$oid": "5450c0be3e71cc15a0f7eb82"}
-        ],
-        "topic": {"$oid": "53b416fba43aac62a2debda4"},
-        "updated": {"$date": 1414578367121}
+    "impactQuestionLeftI18n": {
+      "de": "kaum",
+      "en": "hardly"
     },
-    {
-        "_id": {"$oid": "5450c0be3e71cc15a0f7eb75"},
-        "__v": 1,
-        "created": {"$date": 1414578366680},
-        "idea": {"$oid": "54086d9a47f4424d460606b6"},
-        "nameI18n": {"de": "Beurteile Deine Sicherheit bei der Arbeit"},
-        "impactQuestionI18n": {
-            "de": "Gefährdet das deine Sicherheit?",
-            "en": "Does this have an impact on you?"
-        },
-        "impactQuestionLeftI18n": {
-            "de": "kaum",
-            "en": "hardly"
-        },
-        "impactQuestionRightI18n": {
-            "de": "sehr",
-            "en": "highly"
-        },
-        "questions": [
-            {"$oid": "5450c0be3e71cc15a0f7eb83"},
-            {"$oid": "5450c0be3e71cc15a0f7eb84"},
-            {"$oid": "5450c0be3e71cc15a0f7eb85"},
-            {"$oid": "5450c0be3e71cc15a0f7eb86"},
-            {"$oid": "5450c0be3e71cc15a0f7eb87"},
-            {"$oid": "5450c0be3e71cc15a0f7eb88"},
-            {"$oid": "5450c0be3e71cc15a0f7eb89"},
-            {"$oid": "5450c0be3e71cc15a0f7eb8a"},
-            {"$oid": "5450c0be3e71cc15a0f7eb8b"},
-            {"$oid": "5450c0be3e71cc15a0f7eb8c"},
-            {"$oid": "5450c0be3e71cc15a0f7eb8d"},
-            {"$oid": "5450c0be3e71cc15a0f7eb8e"},
-            {"$oid": "5450c0be3e71cc15a0f7eb8f"},
-            {"$oid": "5450c0be3e71cc15a0f7eb90"},
-            {"$oid": "5450c0be3e71cc15a0f7eb91"},
-            {"$oid": "5450c0bf3e71cc15a0f7eb92"},
-            {"$oid": "5450c0bf3e71cc15a0f7eb93"},
-            {"$oid": "5450c0bf3e71cc15a0f7eb94"},
-            {"$oid": "5450c0bf3e71cc15a0f7eb95"},
-            {"$oid": "5450c0bf3e71cc15a0f7eb96"},
-            {"$oid": "5450c0bf3e71cc15a0f7eb97"},
-            {"$oid": "5450c0bf3e71cc15a0f7eb98"},
-            {"$oid": "5450c0bf3e71cc15a0f7eb99"},
-            {"$oid": "5450c0bf3e71cc15a0f7eb9a"}
-        ],
-        "topic": {"$oid": "53b416fba43aac62a2debda5"},
-        "updated": {"$date": 1414578367131}
+    "impactQuestionRightI18n": {
+      "de": "sehr",
+      "en": "highly"
+    },
+    "nameI18n": {
+      "de": "Beurteile Deinen Stresslevel",
+      "en": "Assess your personal Stress Factors"
+    },
+    "questions": [
+      {
+        "$oid": "5278c51a6166f2de240000dd"
+      }, {
+        "$oid": "5278c51a6166f2de240000dc"
+      }, {
+        "$oid": "5278c51a6166f2de240000db"
+      }, {
+        "$oid": "5278c51a6166f2de240000da"
+      }, {
+        "$oid": "5278c51a6166f2de240000d9"
+      }, {
+        "$oid": "5278c51a6166f2de240000d8"
+      }, {
+        "$oid": "5278c51a6166f2de240000d7"
+      }, {
+        "$oid": "5278c51a6166f2de240000d6"
+      }, {
+        "$oid": "5278c51a6166f2de240000d5"
+      }, {
+        "$oid": "5278c51a6166f2de240000d4"
+      }, {
+        "$oid": "5278c51a6166f2de240000d3"
+      }, {
+        "$oid": "5278c51a6166f2de240000d1"
+      }, {
+        "$oid": "5278c51a6166f2de240000d0"
+      }, {
+        "$oid": "5278c51a6166f2de240000cf"
+      }, {
+        "$oid": "5278c51a6166f2de240000ce"
+      }, {
+        "$oid": "5278c51a6166f2de240000cc"
+      }, {
+        "$oid": "5278c51a6166f2de240000cb"
+      }, {
+        "$oid": "5278c51a6166f2de240000ca"
+      }, {
+        "$oid": "5278c51a6166f2de240000c9"
+      }, {
+        "$oid": "5278c51a6166f2de240000c8"
+      }, {
+        "$oid": "5278c51a6166f2de240000c6"
+      }, {
+        "$oid": "5278c51a6166f2de240000c5"
+      }, {
+        "$oid": "5278c51a6166f2de240000c4"
+      }, {
+        "$oid": "5278c51a6166f2de240000c3"
+      }, {
+        "$oid": "5278c51a6166f2de240000c2"
+      }, {
+        "$oid": "5278c51a6166f2de240000c1"
+      }
+    ],
+    "topic": {
+      "$oid": "53b416cfa43aac62a2debda1"
+    },
+    "created": {
+      "$date": 1426497633543
+    },
+    "updated": {
+      "$date": 1426497633543
     }
+  }, {
+  "_id": {
+    "$oid": "53e8df8d3cca9d19333e73cf"
+  },
+  "__v": 12,
+  "created": {
+    "$date": 1407770509613
+  },
+  "idea": {
+    "$oid": "53eb49fbdb1c97b45c6af27d"
+  },
+  "impactQuestionI18n": {
+    "de": "Beeinträchtigt das dein Wohlbefinden?",
+    "en": "Does this have an impact on you?"
+  },
+  "impactQuestionLeftI18n": {
+    "de": "kaum",
+    "en": "hardly"
+  },
+  "impactQuestionRightI18n": {
+    "de": "sehr",
+    "en": "highly"
+  },
+  "nameI18n": {
+    "de": "Beurteile Deine Ernährung"
+  },
+  "questions": [
+    {
+      "$oid": "53e8df8d3cca9d19333e73d3"
+    }, {
+      "$oid": "53e8df8d3cca9d19333e73d4"
+    }, {
+      "$oid": "53e8df8d3cca9d19333e73d5"
+    }, {
+      "$oid": "55279408f020c6655cfd83f0"
+    }, {
+      "$oid": "53e8df8d3cca9d19333e73d1"
+    }, {
+      "$oid": "53e8df8d3cca9d19333e73d2"
+    }, {
+      "$oid": "53e8df8d3cca9d19333e73d6"
+    }, {
+      "$oid": "53e8df8d3cca9d19333e73d7"
+    }, {
+      "$oid": "53e8df8d3cca9d19333e73d8"
+    }, {
+      "$oid": "53e8df8d3cca9d19333e73dd"
+    }, {
+      "$oid": "53e8df8d3cca9d19333e73e1"
+    }, {
+      "$oid": "53e8df8d3cca9d19333e73d9"
+    }, {
+      "$oid": "53e8df8d3cca9d19333e73da"
+    }, {
+      "$oid": "552cc32e2e6eaa216683dedb"
+    }, {
+      "$oid": "53e8df8d3cca9d19333e73db"
+    }, {
+      "$oid": "53e8df8d3cca9d19333e73df"
+    }, {
+      "$oid": "53e8df8d3cca9d19333e73e0"
+    }, {
+      "$oid": "552cc5f6bc2e9a236637669f"
+    }
+  ],
+  "topic": {
+    "$oid": "53b416fba43aac62a2debda2"
+  },
+  "updated": {
+    "$date": 1429187582725
+  }
+}, {
+  "_id": {
+    "$oid": "53e8df8d3cca9d19333e73d0"
+  },
+  "__v": 20,
+  "created": {
+    "$date": 1407770509621
+  },
+  "idea": {
+    "$oid": "54086c9247f4424d460606b4"
+  },
+  "impactQuestionI18n": {
+    "de": "Beeinträchtigt das dein Wohlbefinden?",
+    "en": "Does this have an impact on you?"
+  },
+  "impactQuestionLeftI18n": {
+    "de": "kaum",
+    "en": "hardly"
+  },
+  "impactQuestionRightI18n": {
+    "de": "sehr",
+    "en": "highly"
+  },
+  "nameI18n": {
+    "de": "Beurteile Deine Fitness"
+  },
+  "questions": [
+    {
+      "$oid": "53e8df8d3cca9d19333e73e2"
+    }, {
+      "$oid": "53e8df8d3cca9d19333e73e3"
+    }, {
+      "$oid": "54febc638e7a489f23d3bb09"
+    }, {
+      "$oid": "54febd708e7a489f23d3bb0a"
+    }, {
+      "$oid": "54fec4e98e7a489f23d3bb0b"
+    }, {
+      "$oid": "53e8df8d3cca9d19333e73eb"
+    }, {
+      "$oid": "53e8df8d3cca9d19333e73e4"
+    }, {
+      "$oid": "53e8df8d3cca9d19333e73e5"
+    }, {
+      "$oid": "53e8df8d3cca9d19333e73e6"
+    }, {
+      "$oid": "53e8df8d3cca9d19333e73e7"
+    }, {
+      "$oid": "54fec403cf36a19323e0c072"
+    }, {
+      "$oid": "54fec24fcf36a19323e0c071"
+    }, {
+      "$oid": "54fec606cf36a19323e0c073"
+    }, {
+      "$oid": "53e8df8d3cca9d19333e73ec"
+    }, {
+      "$oid": "53e8df8d3cca9d19333e73ed"
+    }
+  ],
+  "topic": {
+    "$oid": "53b416fba43aac62a2debda3"
+  },
+  "updated": {
+    "$date": 1427382256487
+  }
+}, {
+  "_id": {
+    "$oid": "5450c0be3e71cc15a0f7eb74"
+  },
+  "__v": 1,
+  "created": {
+    "$date": 1414578366676
+  },
+  "idea": {
+    "$oid": "54086d1847f4424d460606b5"
+  },
+  "nameI18n": {
+    "de": "Beurteile Deine Gesundheit bei der Arbeit"
+  },
+  "impactQuestionI18n": {
+    "de": "Beeinträchtigt das dein Wohlbefinden?",
+    "en": "Does this have an impact on you?"
+  },
+  "impactQuestionLeftI18n": {
+    "de": "kaum",
+    "en": "hardly"
+  },
+  "impactQuestionRightI18n": {
+    "de": "sehr",
+    "en": "highly"
+  },
+  "questions": [
+    {
+      "$oid": "5450c0be3e71cc15a0f7eb76"
+    }, {
+      "$oid": "5450c0be3e71cc15a0f7eb77"
+    }, {
+      "$oid": "5450c0be3e71cc15a0f7eb78"
+    }, {
+      "$oid": "5450c0be3e71cc15a0f7eb79"
+    }, {
+      "$oid": "5450c0be3e71cc15a0f7eb7a"
+    }, {
+      "$oid": "5450c0be3e71cc15a0f7eb7b"
+    }, {
+      "$oid": "5450c0be3e71cc15a0f7eb7c"
+    }, {
+      "$oid": "5450c0be3e71cc15a0f7eb7d"
+    }, {
+      "$oid": "5450c0be3e71cc15a0f7eb7e"
+    }, {
+      "$oid": "5450c0be3e71cc15a0f7eb7f"
+    }, {
+      "$oid": "5450c0be3e71cc15a0f7eb80"
+    }, {
+      "$oid": "5450c0be3e71cc15a0f7eb81"
+    }, {
+      "$oid": "5450c0be3e71cc15a0f7eb82"
+    }
+  ],
+  "topic": {
+    "$oid": "53b416fba43aac62a2debda4"
+  },
+  "updated": {
+    "$date": 1414578367121
+  }
+}, {
+  "_id": {
+    "$oid": "5450c0be3e71cc15a0f7eb75"
+  },
+  "__v": 1,
+  "created": {
+    "$date": 1414578366680
+  },
+  "idea": {
+    "$oid": "54086d9a47f4424d460606b6"
+  },
+  "nameI18n": {
+    "de": "Beurteile Deine Sicherheit bei der Arbeit"
+  },
+  "impactQuestionI18n": {
+    "de": "Gefährdet das deine Sicherheit?",
+    "en": "Does this have an impact on you?"
+  },
+  "impactQuestionLeftI18n": {
+    "de": "kaum",
+    "en": "hardly"
+  },
+  "impactQuestionRightI18n": {
+    "de": "sehr",
+    "en": "highly"
+  },
+  "questions": [
+    {
+      "$oid": "5450c0be3e71cc15a0f7eb83"
+    }, {
+      "$oid": "5450c0be3e71cc15a0f7eb84"
+    }, {
+      "$oid": "5450c0be3e71cc15a0f7eb85"
+    }, {
+      "$oid": "5450c0be3e71cc15a0f7eb86"
+    }, {
+      "$oid": "5450c0be3e71cc15a0f7eb87"
+    }, {
+      "$oid": "5450c0be3e71cc15a0f7eb88"
+    }, {
+      "$oid": "5450c0be3e71cc15a0f7eb89"
+    }, {
+      "$oid": "5450c0be3e71cc15a0f7eb8a"
+    }, {
+      "$oid": "5450c0be3e71cc15a0f7eb8b"
+    }, {
+      "$oid": "5450c0be3e71cc15a0f7eb8c"
+    }, {
+      "$oid": "5450c0be3e71cc15a0f7eb8d"
+    }, {
+      "$oid": "5450c0be3e71cc15a0f7eb8e"
+    }, {
+      "$oid": "5450c0be3e71cc15a0f7eb8f"
+    }, {
+      "$oid": "5450c0be3e71cc15a0f7eb90"
+    }, {
+      "$oid": "5450c0be3e71cc15a0f7eb91"
+    }, {
+      "$oid": "5450c0bf3e71cc15a0f7eb92"
+    }, {
+      "$oid": "5450c0bf3e71cc15a0f7eb93"
+    }, {
+      "$oid": "5450c0bf3e71cc15a0f7eb94"
+    }, {
+      "$oid": "5450c0bf3e71cc15a0f7eb95"
+    }, {
+      "$oid": "5450c0bf3e71cc15a0f7eb96"
+    }, {
+      "$oid": "5450c0bf3e71cc15a0f7eb97"
+    }, {
+      "$oid": "5450c0bf3e71cc15a0f7eb98"
+    }, {
+      "$oid": "5450c0bf3e71cc15a0f7eb99"
+    }, {
+      "$oid": "5450c0bf3e71cc15a0f7eb9a"
+    }
+  ],
+  "topic": {
+    "$oid": "53b416fba43aac62a2debda5"
+  },
+  "updated": {
+    "$date": 1414578367131
+  }
+}
 ]

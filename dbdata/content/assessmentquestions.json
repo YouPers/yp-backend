@@ -2310,13 +2310,13 @@
     },
     "type": "rightSided",
     "updated": {
-      "$date": 1430407200777
+      "$date": 1433152579696
     },
     "maxtextresultI18n": {
       "de": ""
     },
     "mintextresultI18n": {
-      "de": "ZZZ_MISSING TRANSLATION"
+      "de": ""
     }
   },
   {
@@ -2357,13 +2357,13 @@
     },
     "type": "rightSided",
     "updated": {
-      "$date": 1429796021105
+      "$date": 1433152579771
     },
     "maxtextresultI18n": {
       "de": ""
     },
     "mintextresultI18n": {
-      "de": "ZZZ_MISSING TRANSLATION"
+      "de": ""
     }
   },
   {
@@ -2451,10 +2451,10 @@
     },
     "type": "leftSided",
     "updated": {
-      "$date": 1430139392589
+      "$date": 1433152579803
     },
     "maxtextresultI18n": {
-      "de": "ZZZ_MISSING TRANSLATION"
+      "de": ""
     },
     "mintextresultI18n": {
       "de": ""
@@ -2498,10 +2498,10 @@
     },
     "type": "leftSided",
     "updated": {
-      "$date": 1429180778067
+      "$date": 1433152579740
     },
     "maxtextresultI18n": {
-      "de": "ZZZ_MISSING TRANSLATION"
+      "de": ""
     },
     "mintextresultI18n": {
       "de": ""
@@ -2545,10 +2545,10 @@
     },
     "type": "leftSided",
     "updated": {
-      "$date": 1429187214810
+      "$date": 1433152579601
     },
     "maxtextresultI18n": {
-      "de": "ZZZ_MISSING TRANSLATION"
+      "de": ""
     },
     "mintextresultI18n": {
       "de": ""
@@ -4874,7 +4874,7 @@
       "$date": 1428657160843
     },
     "updated": {
-      "$date": 1429179473736
+      "$date": 1433152579480
     },
     "assessment": {
       "$oid": "53e8df8d3cca9d19333e73cf"
@@ -4895,10 +4895,10 @@
     },
     "__v": 0,
     "maxtextI18n": {
-      "de": "ZZZ_MISSING TRANSLATION"
+      "de": ""
     },
     "maxtextexampleI18n": {
-      "de": "ZZZ_MISSING TRANSLATION"
+      "de": ""
     },
     "maxtextresultI18n": {
       "de": "ZZZ_MISSING TRANSLATION"
@@ -4921,7 +4921,7 @@
       "$date": 1428996910787
     },
     "updated": {
-      "$date": 1429622496142
+      "$date": 1433152579710
     },
     "assessment": {
       "$oid": "53e8df8d3cca9d19333e73cf"
@@ -4931,9 +4931,6 @@
       "de": "Bei diesem Kriterium beurteilst du, wieviel Fettiges du zu dir nimmst."
     },
     "midtextI18n": {
-      "de": "Optimal"
-    },
-    "mintextI18n": {
       "de": "Optimal"
     },
     "titleI18n": {
@@ -4954,10 +4951,10 @@
       "de": "Ich esse maximal 2-3 Esslöffel (20-30 g) Pflanzenöl und 10g Butter/Margarine und 1 Handvoll (20-30 g) ungesalzene Nüsse/Samen/Kerne pro Tag."
     },
     "mintextexampleI18n": {
-      "de": "Ich esse..."
+      "de": ""
     },
     "mintextresultI18n": {
-      "de": "Ich esse..."
+      "de": ""
     }
   },
   {
@@ -4968,7 +4965,7 @@
       "$date": 1428997622087
     },
     "updated": {
-      "$date": 1431336259381
+      "$date": 1433152579780
     },
     "assessment": {
       "$oid": "53e8df8d3cca9d19333e73cf"
@@ -4995,10 +4992,10 @@
     },
     "__v": 0,
     "maxtextI18n": {
-      "de": "ZZZ_MISSING TRANSLATION"
+      "de": ""
     },
     "maxtextexampleI18n": {
-      "de": "ZZZ_MISSING TRANSLATION"
+      "de": ""
     },
     "maxtextresultI18n": {
       "de": ""

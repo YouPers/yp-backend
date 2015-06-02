@@ -45,8 +45,10 @@ var ActivitySchema = common.newSchema({
 
 ActivitySchema.methods = {
 
-    toJsonConfig: {
-        include: ['deleteStatus', 'editStatus', 'rrule']
+    toJsonConfig: function () {
+        return {
+            include: ['deleteStatus', 'editStatus', 'rrule']
+        };
     }
 
 };

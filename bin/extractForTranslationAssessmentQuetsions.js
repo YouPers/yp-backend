@@ -21,7 +21,7 @@ program
 
 mongoose
     .model('Assessment')
-    .find({topic: mongoose.Types.ObjectId('53b416fba43aac62a2debda3')})
+    .find({topic: mongoose.Types.ObjectId('53b416fba43aac62a2debda2')})
     .populate('questions', '_id exptextI18n maxtextI18n midtextI18n midtextexampleI18n mintextI18n mintextexampleI18n titleI18n maxtextexampleI18n')
     .exec(function(err, ass) {
         if (err) {

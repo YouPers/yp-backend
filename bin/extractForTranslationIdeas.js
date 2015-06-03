@@ -21,8 +21,9 @@ program
 
 mongoose
     .model('Idea')
-    .find({topics: mongoose.Types.ObjectId('53b416fba43aac62a2debda3')})  // topic Fitness
+    .find({topics: mongoose.Types.ObjectId('53b416fba43aac62a2debda2')})  // topic Nutrition
     .and({topics: {$ne: mongoose.Types.ObjectId('53b416cfa43aac62a2debda1')}})   // not topic Stress
+    .and({topics: {$ne: mongoose.Types.ObjectId('53b416fba43aac62a2debda3')}})   // not topic Stress
     .select('_id titleI18n descriptionI18n textI18n')
     .exec(function(err, ideas) {
         if (err) {

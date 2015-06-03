@@ -68,6 +68,14 @@
         "url": "https://youpers.atlassian.net",
         "project": "WL"
     },
+    "healthCampaignBlog": {
+        "username": "YOUPERS Coach",
+        "password": "DriveYourHealth",
+        "url": "http://healthcampaign.youpers.com",
+        "basePath": "/wp-json/posts",
+        "basePathMedia": "/wp-json/media",
+        "blogLanguages": ["de","en"]
+    },
     "push": {
         "googlePushApiKey": "AIzaSyCoegQXKQRJC0-dR4PZfKNLKbuL_qQhRrs"
     },

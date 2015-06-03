@@ -1,52 +1,53 @@
 {
-    "name": "yp-ewl-server",
-    "description": "The YouPers Plattform Server using restify, mongoose and mongoDB",
-    "version": "0.0.1",
-    "private": false,
-    "author": "Reto Blunschi",
-    "engines": {
-        "node": ">=0.10.20",
-        "npm": ">=1.3.11"
-    },
-    "dependencies": {
-        "ypbackendlib": "git+ssh://git@github.com:YouPers/backendlib.git#v1.16.2",
-        "restify": "3.0.x",
-        "lodash": "3.8.x",
-        "lodash-deep": "1.6.x",
-        "passport": "0.2.x",
-        "icalendar": "git+https://github.com/YouPers/node-icalendar.git",
-        "moment": "~2.10.x",
-        "moment-timezone": "~0.3.x",
-        "async": "~0.9.x",
-        "shortid": "~2.2.x",
-        "coupon-code": "~0.4.x",
-        "newrelic": "*",
-        "nodetime": "*",
-        "mongoose-eventify": "0.0.x",
-        "nconf": "~0.7.x"
-    },
-    "devDependencies": {
-        "grunt-contrib-jshint": "~0.11.x",
-        "grunt-contrib-watch": "~0.6.x",
-        "grunt-jasmine-node": "0.3.x",
-        "grunt": "0.4.x",
-        "frisby": "*",
-        "request": "~2.x",
-        "grunt-nodemon": "~0.4.x",
-        "grunt-concurrent": "~1.0.x",
-        "grunt-wait": "~0.1.x",
-        "grunt-express-server": "~0.5.x",
-        "grunt-curl": "~2.2.x",
-        "node-rest-client": "~1.5.x",
-        "commander": "~2.8.x",
-        "request-json": "*"
-    },
-    "scripts": {
-        "test": "grunt test",
-        "start": "node app.js"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/YouPers/yp-backend.git"
-    }
+  "name": "yp-ewl-server",
+  "description": "The YouPers Plattform Server using restify, mongoose and mongoDB",
+  "version": "0.0.1",
+  "private": false,
+  "author": "Reto Blunschi",
+  "engines": {
+    "node": ">=0.10.20",
+    "npm": ">=1.3.11"
+  },
+  "dependencies": {
+    "async": "~0.9.x",
+    "coupon-code": "~0.4.x",
+    "icalendar": "git+https://github.com/YouPers/node-icalendar.git",
+    "lodash": "3.8.x",
+    "lodash-deep": "1.6.x",
+    "marked": "^0.3.3",
+    "moment": "~2.10.x",
+    "moment-timezone": "~0.3.x",
+    "mongoose-eventify": "0.0.x",
+    "nconf": "~0.7.x",
+    "newrelic": "*",
+    "nodetime": "*",
+    "passport": "0.2.x",
+    "restify": "3.0.x",
+    "shortid": "~2.2.x",
+    "ypbackendlib": "git+ssh://git@github.com:YouPers/backendlib.git#v1.16.2"
+  },
+  "devDependencies": {
+    "grunt-contrib-jshint": "~0.11.x",
+    "grunt-contrib-watch": "~0.6.x",
+    "grunt-jasmine-node": "0.3.x",
+    "grunt": "0.4.x",
+    "frisby": "*",
+    "request": "~2.x",
+    "grunt-nodemon": "~0.4.x",
+    "grunt-concurrent": "~1.0.x",
+    "grunt-wait": "~0.1.x",
+    "grunt-express-server": "~0.5.x",
+    "grunt-curl": "~2.2.x",
+    "node-rest-client": "~1.5.x",
+    "commander": "~2.8.x",
+    "request-json": "*"
+  },
+  "scripts": {
+    "test": "grunt test",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/YouPers/yp-backend.git"
+  }
 }

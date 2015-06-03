@@ -289,10 +289,7 @@ SocialInteraction.removeDismissals = function (refDoc, user, cb) {
                 user: user._id
             }
         ).remove(function (err) {
-                if (err) {
-                    return cb(err);
-                }
-
+                return cb(err);
             });
     });
 

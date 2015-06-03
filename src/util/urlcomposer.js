@@ -13,6 +13,9 @@ function dcmBaseUrl(campaignId) {
 function dcmHomeUrl(campaignId) {
     return dcmBaseUrl(campaignId) + '/home';
 }
+function dhcHomeUrl(campaignId) {
+    return webclientUrl + "/#/campaign/" + campaignId;
+}
 function dcmMessagesUrl(campaignId) {
     return dcmHomeUrl(campaignId) + '?section=messages';
 }
@@ -82,6 +85,7 @@ function assetUrl(fileName) {
 
 module.exports = {
     homeUrl: homeUrl,
+    dhcHomeUrl: dhcHomeUrl,
     dcmHomeUrl: dcmHomeUrl,
     dcmMessagesUrl: dcmMessagesUrl,
     dcmBrowseIdeas: dcmBrowseIdeas,

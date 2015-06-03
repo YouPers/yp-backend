@@ -13,7 +13,7 @@ var fieldNames = {
 };
 
 // this pattern should be sufficient, but the perfect regular expression for a URL is a science in itself
-var urlPattern = 'https?:\\/\\/([-a-zA-Z0-9@:%._\\+~#=]{2,256}\\.)?[-a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,6}\\b[-a-zA-Z0-9@:%_\\+.~#?&//=]*';
+var urlPattern = 'https?:\\/\\/([-a-zA-Z0-9@:%._\\+~#=]{2,256}\\.)?[-a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,6}\\b[-a-zA-Z0-9@:%_\\+.,~#?&//=]*';
 var languages = ['de', 'en'];
 
 function checkLink(link, cb) {

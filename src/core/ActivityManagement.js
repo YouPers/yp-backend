@@ -115,7 +115,13 @@ actMgr.on('activity:activityDeleted', function (activity) {
 });
 
 actMgr.on('activity:participationCancelled', function (activity, user) {
-    SocialInteraction.removeDismissals(activity, user, _handleError);
+    SocialInteraction.removeDismissals(activity, user, function (err) {
+        if(err) {
+            return _handleError(err);
+        }
+        SocialInteraction.dismissInvitations(activity, user, {reason: 'denied'}, _handleError);
+    });
+
 });
 
 actMgr.on('activity:activityUpdated', function (updatedActivity) {

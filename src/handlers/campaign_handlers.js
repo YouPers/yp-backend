@@ -358,7 +358,7 @@ function addSurveyCollectors(campaign, req, cb) {
             collector: {
                 type: 'weblink',
                 name: org.name + '/ ' + campaign.participants + '/' + campaign.location,
-                thank_you_message: req.i18n.t('general:surveyMonkey.thankYouMessage', {homeUrl: urlComposer.homeUrl()})
+                thank_you_message: req.i18n.t('general:surveyMonkey.thankYouMessage', {homeurl: urlComposer.homeUrl()})
             }
         };
 

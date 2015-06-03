@@ -31,7 +31,7 @@ module.exports = {
                 // if the user has a campaign set that is not yet in allCampaigns, add it to allCampaigns
                 var usersCampaign = this.campaign;
                 if (usersCampaign && !_.any(this.allCampaigns, function (allCampaignsObj) {
-                        return (usersCampaign && (usersCampaign.id || usersCampaign.toString())) === allCampaignsObj.campaign.toString();
+                        return usersCampaign && usersCampaign.toString() === allCampaignsObj.campaign.toString();
                     })) {
                     this.allCampaigns.push({
                             campaign: usersCampaign._id || usersCampaign,

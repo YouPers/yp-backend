@@ -31,8 +31,8 @@ consts.newUserInNewCampaignApi(
 
                 author: consts.users.test_campaignlead.id,
                 authorType: 'campaignLead',
-                publishFrom: moment(),
-                publishTo: moment().add(1, 'hours'),
+                publishFrom: moment().toDate(),
+                publishTo: moment().add(1, 'hours').toDate(),
                 idea: consts.groupIdea.id
             })
             .auth(consts.users.test_campaignlead.username, 'yp')
@@ -70,8 +70,8 @@ consts.newUserInNewCampaignApi(
 
                                 author: consts.users.test_campaignlead.id,
                                 authorType: 'campaignLead',
-                                publishFrom: moment(),
-                                publishTo: moment().add(1, 'hours'),
+                                publishFrom: moment().toDate(),
+                                publishTo: moment().add(1, 'hours').toDate(),
                                 activity: newPlan.id,
                                 idea: newPlan.idea
                             })

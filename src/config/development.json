@@ -1,7 +1,7 @@
 {
   "log": {
     "name": "Main",
-    "stdout": "info"
+    "stdout": "debug"
   ,"streams": [
       {
         "path": "logs/server.log",
@@ -9,6 +9,7 @@
       }
     ]
   },
+  "longjohn": "enabled",
   "dbdump": {
     "restoreenabled": "enabled",
     "dumpenabled": "enabled"

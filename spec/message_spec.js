@@ -37,8 +37,8 @@ consts.newUserInNewCampaignApi(
                     text: 'Have a look at our awesome new campaign!',
                     refDocs: [{ docId: campaign.id, model: 'Campaign'}],
 
-                    publishFrom: moment(),
-                    publishTo: moment().add(1, 'minutes')
+                    publishFrom: moment().toDate(),
+                    publishTo: moment().add(1, 'minutes').toDate()
                 };
 
                 frisby.create('Message: post message to user')
@@ -120,8 +120,8 @@ consts.newUserInNewCampaignApi(
                             text: 'Welcome to our terrific campaign!',
                             refDocs: [{ docId: campaign.id, model: 'Campaign'}],
 
-                            publishFrom: moment(),
-                            publishTo: moment().add(1, 'minutes')
+                            publishFrom: moment().toDate(),
+                            publishTo: moment().add(1, 'minutes').toDate()
 
                         };
 

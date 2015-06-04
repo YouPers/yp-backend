@@ -178,7 +178,7 @@ consts.newUserInNewCampaignApi(
                                                                                 .toss();
                                                                         }, function (err) {
                                                                             // if any of the file processing produced an error, err would equal that error
-                                                                            expect(err).toBeUndefined();
+                                                                            expect(err).toEqual(null);
 
                                                                             frisby.create('Recommendations: remove AssessmentResults')
                                                                                 .delete(URL + '/assessments/525faf0ac558d40000000005/results')

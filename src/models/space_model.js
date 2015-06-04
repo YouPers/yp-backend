@@ -13,7 +13,7 @@ var mongoose = require('ypbackendlib').mongoose,
  */
 var SpaceSchema = common.newSchema({
 
-    type: { type: String, enum: enums.targetSpace, required: true },
+    type: {type: String, enum: enums.targetSpace, required: true},
     targetId: {type: ObjectId},
     targetValue: {type: String}
 });
@@ -24,15 +24,17 @@ SpaceSchema.methods = {
         'campaign': 'Campaign',
         'activity': 'Activity'
     },
-    toJsonConfig: {
-        include: ['user']
+    toJsonConfig: function () {
+        return {
+            include: ['user']
+        };
     }
 };
 
 
 SpaceSchema.virtual('targetModel')
     .get(function targetModel() {
-       return this.typeToModelMap[this.type];
+        return this.typeToModelMap[this.type];
     });
 
 module.exports = mongoose.model('Space', SpaceSchema);

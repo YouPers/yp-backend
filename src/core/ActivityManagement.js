@@ -633,7 +633,7 @@ actMgr.postJoinActivityFn = function (actIdToJoin, joiningUser, i18n, cb) {
             return cb(new error.InvalidArgumentError('this user has already joined this activity', {user: joiningUser, activity: masterActivity}));
         }
 
-        Activity.findByIdAndUpdate(actIdToJoin, { $push: { joiningUsers: joiningUser._id } }, function (err, updated) {
+        Activity.findByIdAndUpdate(actIdToJoin, { $push: { joiningUsers: joiningUser._id } }, {new: true}, function (err, updated) {
             if (err) {
                 return error.handleError(err, cb);
             }

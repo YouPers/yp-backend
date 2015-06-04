@@ -38,8 +38,8 @@ consts.newUserInNewCampaignApi(
                         ],
 
                         author: consts.users.test_campaignlead.id,
-                        publishFrom: moment(),
-                        publishTo: moment().add(1, 'hours'),
+                        publishFrom: moment().toDate(),
+                        publishTo: moment().add(1, 'hours').toDate(),
                         authorType: 'campaignLead',
                         refDocs: [
                             { docId: consts.aloneIdea.id, model: 'Idea'}

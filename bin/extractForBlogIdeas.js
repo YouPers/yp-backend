@@ -8,7 +8,9 @@ var program = require('commander'),
     mongoose = require('ypbackendlib').mongoose,
     restify = require("restify"),
     marked = require('marked'),
-    async = require('async');
+    async = require('async'),
+    path = require('path'),
+    temp = require('temp').track();
 
 marked.setOptions({
     renderer: new marked.Renderer(),
@@ -73,7 +75,11 @@ async.each (languages, function(language, blogForLanguageProcessed) {
 
     var imageURL;
 
+    var tempDirPath;
+
     var imageFileName;
+
+    var tempImageFileName;
 
     var imageFileStream;
 
@@ -215,6 +221,22 @@ async.each (languages, function(language, blogForLanguageProcessed) {
                     });
 
             },
+            function(temporaryDirectoryCreated) {
+
+                // create a temporary directory to store image file to be downloaded from AWS and uploaded to WordPress
+
+                processingStep++;
+
+                temp.mkdir('imageDirectory', function(err, dirPath) {
+                    tempDirPath = dirPath;
+
+                    console.log (formatLog(language, processingStep) + 'Temporary directory created: %s', tempDirPath);
+                    console.log(' ');
+
+                    temporaryDirectoryCreated();
+                });
+
+            },
             function(imageFileDownLoaded) {
 
                 // get remote image to be used as featured image
@@ -224,7 +246,12 @@ async.each (languages, function(language, blogForLanguageProcessed) {
                 console.log (formatLog(language, processingStep) + 'Image to download: ' + imageURL);
                 console.log(' ');
 
-                imageFileStream = fs.createWriteStream(imageFileName);
+                tempImageFileName = path.join(tempDirPath, imageFileName);
+
+                console.log (formatLog(language, processingStep) + 'Temporary file name: ' + tempImageFileName);
+                console.log(' ');
+
+                imageFileStream = fs.createWriteStream(tempImageFileName);
 
                 https.get(imageURL, function(response) {
                     response.pipe(imageFileStream);
@@ -236,7 +263,7 @@ async.each (languages, function(language, blogForLanguageProcessed) {
                         imageFileStream.close(imageFileDownLoaded());  // close() is async, call cb after close completes.
                     });
                 }).on('error', function(err) { // Handle errors
-                    fs.unlink(imageFileName); // Delete the file async. (But we don't check the result)
+                    fs.unlink(tempImageFileName); // Delete the file async. (But we don't check the result)
                     console.log(formatLog(language, processingStep) + 'Image could not be downloaded: ' + imageURL + ' Error: ' +err.message);
                     console.log(' ');
                     imageFileDownLoaded(err);
@@ -264,14 +291,16 @@ async.each (languages, function(language, blogForLanguageProcessed) {
 
                     pictureID = returnedBody.ID;
 
-                    fs.unlink(imageFileName, function (err) {
+                    fs.unlink(tempImageFileName, function (err) {
                         if (err) {
-                            console.log(formatLog(language, processingStep) + 'Delete of temporary image file failed: ' + imageFileName);
+                            console.log(formatLog(language, processingStep) + 'Delete of temporary image file failed: ' + tempImageFileName);
                             console.log('');
                         }
-                        console.log(formatLog(language, processingStep) + 'Temporary image file deleted: ' + imageFileName);
+                        console.log(formatLog(language, processingStep) + 'Temporary image file deleted: ' + tempImageFileName);
                         console.log('');
+
                         imageFileUploaded();
+
                     });
 
 
@@ -280,7 +309,7 @@ async.each (languages, function(language, blogForLanguageProcessed) {
                 var form = r.form();
                 form.append('name', 'file');
                 form.append('filename', imageFileName);
-                form.append('file', fs.createReadStream(imageFileName));
+                form.append('file', fs.createReadStream(tempImageFileName));
 
 
             }, function (blogPostCreated) {

@@ -58,6 +58,7 @@ consts.newUserInNewCampaignApi(
                                 expect(recs.length).toEqual(1);
                                 expect(recs[0].targetSpaces[0].type).toEqual('campaign');
                                 expect(recs[0].targetSpaces[0].targetId).toEqual(campaign.id);
+                                expect(recs[0].idea).toBeDefined();
 
                                 frisby.create('Recommendations: get recs as campaignlead for administration')
                                     .get(URL + '/recommendations?targetId='+ campaign.id + '&authorType=campaignLead&authored=true')

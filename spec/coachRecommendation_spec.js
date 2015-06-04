@@ -56,6 +56,7 @@ describe('CoachRecommendation Module', function () {
             expect(recs.length).toBeLessThan(6);
             expect(recs[0].score >= recs[1].score).toBe(true);
             expect(recs[1].score >= recs[2].score).toBe(true);
+            expect(recs[0].idea).toBeDefined();
             return done();
         });
 

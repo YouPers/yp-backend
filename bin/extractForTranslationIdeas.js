@@ -13,8 +13,8 @@ require('../src/util/database').initializeDb();
 program
     .version('0.0.1')
     .usage('')
-//    .option('-p, --peppers', 'Add peppers')
-//    .option('-P, --pineapple', 'Add pineapple')
+    // .option('-p, --peppers', 'Add peppers')
+    //  .option('-P, --pineapple', 'Add pineapple')
     //  .option('-b, --bbq', 'Add bbq sauce')
     //    .option('-c, --cheese [type]', 'Add the specified type of cheese [marble]', 'marble')
     .parse(process.argv);

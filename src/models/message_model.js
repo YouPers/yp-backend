@@ -3,6 +3,8 @@
  */
 var mongoose = require('ypbackendlib').mongoose,
     common = require('ypbackendlib').commmonModels,
+    Schema = mongoose.Schema,
+    ObjectId = Schema.ObjectId,
     SocialInteraction = mongoose.model('SocialInteraction'),
     AbstractSocialInteractionSchema = require('./socialInteraction_schema');
 
@@ -13,7 +15,8 @@ var mongoose = require('ypbackendlib').mongoose,
 var MessageSchema = common.newSchema({
 
     language: { type: String, trim: true},
-    important: { type: Boolean, default: false }
+    important: { type: Boolean, default: false },
+    activity: {type: ObjectId, ref: 'Activity', required: false}
 
 }, undefined, AbstractSocialInteractionSchema);
 

@@ -600,7 +600,7 @@ var deleteByIdFn = function deleteByIdFn(baseUrl, Model) {
                 return user.equals(req.user._id);
             });
 
-            var isOrgAdmin = _.find(campaign.organization.administrators, function(adm) {
+            var isOrgAdmin = _.find(campaign.organization.administrators, function (adm) {
                 return adm.equals(req.user._id);
             });
 
@@ -608,8 +608,12 @@ var deleteByIdFn = function deleteByIdFn(baseUrl, Model) {
                 return next(new error.NotAuthorizedError('Not authorized to delete this campaign, must have role campaignlead or sysadmin.'));
             }
 
-            // check whether there are users in the campaign
-            mongoose.model('User').find({campaign: campaign._id}).count(function (err, count) {
+
+            // check whether there are users in the campaign (excl. unconfirmed campaign leads)
+            mongoose.model('User').find({
+                campaign: campaign._id,
+                emailValidatedFlag: true
+            }).count(function (err, count) {
                 if (err) {
                     return error.handleError(err, next);
                 }
@@ -618,27 +622,40 @@ var deleteByIdFn = function deleteByIdFn(baseUrl, Model) {
                     return next(new error.NotAuthorizedError('Cannot delete this campaign, ' + count + ' users have already joined.'));
                 }
 
-                campaign.remove(function (err) {
 
-                    // update the paymentcode if there is one that belonged to this campaign:
-                    PaymentCode.find({campaign: req.params.id}).exec(function (err, codes) {
-                        if (err) {
-                            error.handleError(err, next);
-                        }
-                        if (codes && codes.length >0) {
-                            codes[0].campaign = undefined;
-                            codes[0].save(function (err, saved) {
-                                res.send({code: codes[0].code});
+                // remove unconfirmed campaign leads
+                mongoose.model('User').remove({
+                    campaign: campaign._id,
+                    tempPasswordFlag: true,
+                    emailValidatedFlag: false
+                }).exec(function (err, removed) {
+                    if (err) {
+                        return error.handleError(err, next);
+                    }
+
+                    campaign.remove(function (err) {
+
+                        // update the paymentcode if there is one that belonged to this campaign:
+                        PaymentCode.find({campaign: req.params.id}).exec(function (err, codes) {
+                            if (err) {
+                                error.handleError(err, next);
+                            }
+                            if (codes && codes.length > 0) {
+                                codes[0].campaign = undefined;
+                                codes[0].save(function (err, saved) {
+                                    res.send({code: codes[0].code});
+                                    return next();
+                                });
+                            } else {
+                                res.send(200);
                                 return next();
-                            });
-                        } else {
-                            res.send(200);
-                            return next();
-                        }
+                            }
+                        });
                     });
                 });
-            });
 
+
+            });
         });
     };
 };

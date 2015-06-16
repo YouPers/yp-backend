@@ -19,16 +19,13 @@ var consts = require('./testconsts');
 var user;
 
 beforeEach(function (done) {
-    console.log("beforeEach executed");
     mongoose.model('User').findById(consts.users.test_ind1.id).select('+profile +campaign').populate('profile campaign').exec(function (err, myUser) {
-        console.log("beforeEach executed: cb");
         if (err) {
             throw(err);
         }
         if (!myUser) {
             throw new Error("user not found");
         }
-        console.log("beforeEach executed: user found");
 
         user = myUser;
         return done();

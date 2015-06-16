@@ -20,6 +20,7 @@ var error = require('ypbackendlib').error;
 var email = require('../util/email');
 var auth = require('ypbackendlib').auth;
 
+require('../util/moment-business').addBusinessMethods(moment);
 
 var DEFAULT_WORK_WEEK = ['MO', 'TU', 'WE', 'TH', 'FR'];
 

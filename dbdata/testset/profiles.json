@@ -13,6 +13,15 @@
         "owner": {
             "$oid": "52a97f1650fca98c29000006"
         },
+        "devices": [
+            {
+                "_id": "557ae4338d27c28d0fc49293",
+                "deviceType": "android",
+                "model": "GT-I9505",
+                "osVersion": "4.4",
+                "token": "APA91bEToAWaX0kU2hOBGGhsybpu2NWhFHDHPIMF9sNlleA8JNRYUeMG5KXOSx1VgKjX3cf_tEDKL5jcJ6y8wuGrRHRSxHfO5W7DYf1JipZeB2xcNpZeYfPFdG95_dHftK8DP6y8wNCb"
+            }
+        ],
         "prefs": {
             "calendarNotification": "900",
             "defaultWorkWeek": [

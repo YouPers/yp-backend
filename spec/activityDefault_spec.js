@@ -18,21 +18,23 @@ var consts = require('./testconsts');
 
 var user;
 
-beforeEach(function (done) {
-    mongoose.model('User').findById(consts.users.test_ind1.id).select('+profile +campaign').populate('profile campaign').exec(function (err, myUser) {
-        if (err) {
-            throw(err);
-        }
-        if (!myUser) {
-            throw new Error("user not found");
-        }
 
-        user = myUser;
-        return done();
-    });
-});
 
 describe('ActivityManagement Module: ', function () {
+
+    beforeEach(function (done) {
+        mongoose.model('User').findById(consts.users.test_ind1.id).select('+profile +campaign').populate('profile campaign').exec(function (err, myUser) {
+            if (err) {
+                throw(err);
+            }
+            if (!myUser) {
+                throw new Error("user not found");
+            }
+
+            user = myUser;
+            return done();
+        });
+    });
 
     describe('DefaultActivityMethod', function () {
 
@@ -43,7 +45,6 @@ describe('ActivityManagement Module: ', function () {
                     return done(err);
                 }
                 var act = actMgr.defaultActivity(idea, user, user.campaign.id);
-                log.error(act);
                 expect(act).toBeDefined();
                 return done();
 

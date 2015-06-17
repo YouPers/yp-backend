@@ -56,6 +56,7 @@ var formatLog = function(language, step) {
 var formatHTML = function (key, value) {
     if (typeof value === "string") {
         value = value.replace('<br>', ' '); // needed to replace any line breaks in titles
+        value = value.replace('&quot;', '"'); // needed, as auto posting to Twitter and Facebook would display the code instead of the special character
         value = value.replace(/(?:\r\n|\r|\n)/g, '<br />'); // replace newlines with line breaks
     }
     return value;
@@ -125,14 +126,19 @@ async.each (languages, function(language, blogForLanguageProcessed) {
 
                         client.get(basePath + '/' + foundPostID + '/meta', function (err, req, res, obj) {
 
+                            //console.log (formatLog(language, processingStep) + 'Meta Data of %d: %s', nOfFoundPosts, JSON.stringify(obj));
+                            //console.log ('');
+
                             counter++;
 
                             var filteredMeta = obj.filter(function oidEntry(el) {
-                                return el.key === 'oid';
+                                return el.key === 'yp_idea_oid';
                             });
 
-                            if (filteredMeta[0].value) {
-                                ideasOID.push({ "_id": filteredMeta[0].value});
+                            if (filteredMeta.length > 0) {
+                                if (filteredMeta[0].value) {
+                                    ideasOID.push({ "_id": filteredMeta[0].value});
+                                }
                             }
 
                             if (counter < nOfFoundPosts) {
@@ -381,8 +387,8 @@ async.each (languages, function(language, blogForLanguageProcessed) {
                     key: "qode_title-image",
                     value: "http://healthcampaign.youpers.com/wp-content/uploads/2015/04/HealthCampaignHeader2003.jpg"
                 });
-                metaData.push({key: "oid", value: ideaToPost._id});
-                metaData.push({key: "oid_updated", value: ideaToPost.updated});
+                metaData.push({key: "yp_idea_oid", value: ideaToPost._id});
+                metaData.push({key: "yp_idea_oid_updated", value: ideaToPost.updated});
                 metaData.push({key: "yp_thumbnail_ID", value: pictureID});
 
                 // topics associated with idea will be used as WordPress blog categories

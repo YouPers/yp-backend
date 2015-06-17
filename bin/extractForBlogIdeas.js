@@ -286,11 +286,16 @@ async.each (languages, function(language, blogForLanguageProcessed) {
                     password = config.healthCampaignBlog.password,
                     url = 'http://' + username + ':' + password + '@healthcampaign.youpers.com/wp-json/media';
 
+                console.log(formatLog(language, processingStep) + 'url: ' + url);
+                console.log('');
+
                 var r = request.post(url, function (err, httpResponse, body) {
                     if (err) {
                         return console.error(language + ' - Image upload failed:', err);
                     }
                     console.log(formatLog(language, processingStep) + 'Image upload successful');
+                    console.log('');
+                    console.log(formatLog(language, processingStep) + 'Body: ' + JSON.stringify(body));
                     console.log('');
 
                     returnedBody = JSON.parse(body);

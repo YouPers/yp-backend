@@ -14,7 +14,7 @@ function dcmHomeUrl(campaignId) {
     return dcmBaseUrl(campaignId) + '/home';
 }
 function dhcHomeUrl(campaignId) {
-    return webclientUrl + "/#/campaign/" + campaignId;
+    return webclientUrl + "/#/campaign/" + campaignId + '/game/';
 }
 function dcmMessagesUrl(campaignId) {
     return dcmHomeUrl(campaignId) + '?section=messages';

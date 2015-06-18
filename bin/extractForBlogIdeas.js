@@ -159,7 +159,7 @@ async.each (languages, function(language, blogForLanguageProcessed) {
 
                                 // we call the callback function to state that this subtask is completed
 
-                                foundPostScanned();
+                                //foundPostScanned();
                                 allPostedIdeasFound();
 
                             }
@@ -424,7 +424,7 @@ async.each (languages, function(language, blogForLanguageProcessed) {
 
                         if (counter < metaData.length) {
                         } else {
-                            blogPostMetaDataItemCreated();
+                            //blogPostMetaDataItemCreated();
                             blogPostMetaDataCreated();
                         }
 

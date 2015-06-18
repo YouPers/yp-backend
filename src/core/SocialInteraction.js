@@ -431,7 +431,7 @@ SocialInteraction.dismissSocialInteractionById = function dismissSocialInteracti
         SocialInteractionDismissedModel.findOneAndUpdate({
             user: userId,
             socialInteraction: socialInteraction.id
-        }, document, {upsert: true}, function (err, saved) {
+        }, document, {upsert: true, new: true}, function (err, saved) {
             if (err) {
                 return cb(err); // duplicate key errors will not occur anymore, because of the upsert option
             } else {

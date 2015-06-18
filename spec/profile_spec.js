@@ -35,10 +35,10 @@ var userProfile = {
     "language": "it",
     "prefs": {
         "defaultWorkWeek": ['MO', 'TU', 'WE', 'TH', 'FR'],
-        "firstDayOfWeek": "Monday",
+        "firstDayOfWeek": "MO",
         "timezone": "+01:00",
-        "starredIdeas": [{timestamp: new Date().toISOString(), idea: "5278c6adcdeab69a25000054"}],
-        "rejectedIdeas": [{timestamp: new Date().toISOString(), idea: "5278c6adcdeab69a25000090"}],
+        "starredIdeas": [{timestamp: new Date(), idea: "5278c6adcdeab69a25000054"}],
+        "rejectedIdeas": [{timestamp: new Date(), idea: "5278c6adcdeab69a25000090"}],
         "rejectedActivities": []
     }
 };

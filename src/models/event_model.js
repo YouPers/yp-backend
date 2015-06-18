@@ -33,7 +33,7 @@ var EventSchema = common.newSchema({
     frequency: {type: String, enum: enums.eventFrequency},
     minParticipants: {type: Number, required: false},
     maxParticipants: {type: Number, required: false},
-    loc:  {type: [Number], index: '2d'},
+    loc: {type: [Number], index: '2d'},
     recurrence: {
         'endby': {
             type: {type: String, enum: enums.eventRecurrenceEndByType},
@@ -42,7 +42,7 @@ var EventSchema = common.newSchema({
         },
         byday: [String],
         every: {type: Number},
-        exceptions: [ Date]
+        exceptions: [Date]
     }
 });
 
@@ -55,8 +55,10 @@ var EventSchema = common.newSchema({
 
 EventSchema.methods = {
 
-    toJsonConfig: {
-        include: ['deleteStatus', 'editStatus', 'inviteOthers']
+    toJsonConfig: function () {
+        return {
+            include: ['deleteStatus', 'editStatus', 'inviteOthers']
+        };
     }
 
 };
@@ -83,7 +85,7 @@ EventSchema.virtual('deleteStatus')
         var eventsInThePastExist = moment(occurrences[0]).add(duration, 'ms').isBefore(now);
 
         // check if there are any occurences in the past, checking whether the last one is already passed is enough!
-        var eventsInTheFutureExist = moment(occurrences[occurrences.length -1]).add(duration, 'ms').isAfter(now);
+        var eventsInTheFutureExist = moment(occurrences[occurrences.length - 1]).add(duration, 'ms').isAfter(now);
 
         if (eventsInThePastExist && eventsInTheFutureExist) {
             return EventSchema.statics.eventOnlyFutureEventsDeletable;
@@ -104,7 +106,7 @@ EventSchema.virtual('editStatus')
         var now = moment();
 
         // check if there are any occurences in the past, checking whether the last one is already passed is enough!
-        var eventsInTheFutureExist = moment(occurrences[occurrences.length -1]).add(duration, 'ms').isAfter(now);
+        var eventsInTheFutureExist = moment(occurrences[occurrences.length - 1]).add(duration, 'ms').isAfter(now);
 
         // event cannot be edited if all occurences are in the past
         if (!eventsInTheFutureExist) {
@@ -136,7 +138,7 @@ EventSchema.pre('save', function (next) {
 });
 
 
-EventSchema.pre('init', function(next, data) {
+EventSchema.pre('init', function (next, data) {
     // check whether this event is shared to others and set the flag if yes
     mongoose.model('Invitation')
         .find({event: data._id, targetSpaces: {$elemMatch: {type: 'campaign'}}})

@@ -24,8 +24,11 @@ SpaceSchema.methods = {
         'campaign': 'Campaign',
         'event': 'Event'
     },
-    toJsonConfig: {
-        include: ['user']
+    toJsonConfig: function () {
+        return {
+            include: ['user']
+        };
+
     }
 };
 

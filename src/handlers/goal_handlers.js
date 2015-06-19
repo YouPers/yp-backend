@@ -1,11 +1,11 @@
 var mongoose = require('ypbackendlib').mongoose,
-    Event = mongoose.model('Event'),
     Occurence = mongoose.model('Occurence'),
     Goal = mongoose.model('Goal'),
     generic = require('ypbackendlib').handlers,
     error = require('ypbackendlib').error,
     _ = require('lodash'),
-    moment = require('moment-timezone');
+    moment = require('moment-timezone'),
+    auth = require('ypbackendlib').auth;
 
 
 function _attachStats(goals, cb) {
@@ -48,9 +48,9 @@ function _attachStats(goals, cb) {
 
 function _hasMatchingCategory(goal, occ) {
     return _(goal.categories)
-                .map('key')
-                .intersection(occ.idea.categories)
-                .first();
+        .map('key')
+        .intersection(occ.idea.categories)
+        .first();
 }
 
 
@@ -76,7 +76,7 @@ function getGoalById(req, res, next) {
     }
 
     var op = generic.addStandardQueryOptions(req, dbQuery, Goal);
-    op.exec(function(err, goals) {
+    op.exec(function (err, goals) {
         if (!err && req.params.stats) {
             return _attachStats(goals, generic.sendListCb(req, res, next));
         } else {
@@ -100,8 +100,8 @@ function getGoals(req, res, next) {
         dbQuery.populate('categories');
     }
 
-    var op = generic.addStandardQueryOptions(req, dbQuery, Event);
-    op.exec(function(err, goals) {
+    var op = generic.addStandardQueryOptions(req, dbQuery, Goal);
+    op.exec(function (err, goals) {
         if (!err && req.params.stats) {
             return _attachStats(goals, generic.sendListCb(req, res, next));
         } else {
@@ -111,8 +111,59 @@ function getGoals(req, res, next) {
 
 }
 
+function deleteGoalById(req, res, next) {
+    var objId;
+    try {
+        objId = new mongoose.Types.ObjectId(req.params.id);
+    } catch (err) {
+        return next(new error.InvalidArgumentError({id: req.params.id}));
+    }
+    // instead of using Model.remove directly, findOne in combination with obj.remove
+    // is used in order to trigger
+    // - schema.pre('remove', ... or
+    // - schema.pre('remove', ...
+    // see user_model.js for an example
+
+    var finder = {_id: objId};
+    if (!req.user || !req.user.id) {
+        return next(new error.NotAuthorizedError('Authentication required for this object'));
+    } else if (!auth.checkAccess(req.user, 'al_systemadmin')) {
+        finder.owner = req.user.id;
+    } else {
+        // user is systemadmin, he may delete all
+    }
+
+    Goal.findOne(req.params.id).exec(function (err, goal) {
+        if (err) {
+            return error.handleError(err, next);
+        }
+        if (!goal) {
+            req.log.error(finder);
+            return next(new error.ResourceNotFoundError());
+        }
+        if (req.params.realdelete) {
+            goal.remove(function (err) {
+                if (err) {
+                    return next(err);
+                }
+                res.send(200);
+                return next();
+            });
+        } else {
+            goal.end = new Date();
+            goal.save(function(err, saved) {
+                if (err) {
+                    return next(err);
+                }
+                res.send(200);
+                return next();
+            });
+        }
+    });
+}
 
 module.exports = {
     getGoalById: getGoalById,
-    getGoals: getGoals
+    getGoals: getGoals,
+    deleteGoalById: deleteGoalById
 };

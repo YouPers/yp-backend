@@ -56,7 +56,7 @@ module.exports = function (swagger) {
                 {
                     paramType: "query",
                     name: "stats",
-                    description: "boolean flag to include the stats for this goal into the result",
+                    description: "boolean flag to include the stats for this goal into the result, will add properties: 'thisPeriod' and 'lastPeriod' to the goal objects",
                     dataType: "boolean",
                     required: false
                 },
@@ -71,6 +71,36 @@ module.exports = function (swagger) {
         action: goalHandlers.getGoals
     });
 
-    routes.addGenericRoutes(swagger, mongoose.model('Goal'), baseUrl, {GET: false, GETall: false});
+    swagger.addOperation({
+        spec: {
+            description: "Operations about Goals",
+            path: baseUrlWithId,
+            notes: "DELETEs a goal by id, is not actually deleting the goal, but marking as ended by stetting goal.end = now(), use the realdelete=true queryparam to really delete a goal",
+            summary: "marks the goal as deleted by setting an end date",
+            params: [
+                {
+                    paramType: "path",
+                    name: "id",
+                    description: "the id of the event to fetch ",
+                    dataType: "string",
+                    required: true
+                },
+                {
+                    paramType: "query",
+                    name: "realdelete",
+                    description: "boolean flag to indicate that the goal should be deleted from the database",
+                    dataType: "boolean",
+                    required: false
+                }
+            ],
+            method: "DELETE",
+            nickname: "deleteGoal",
+            accessLevel: 'al_individual',
+            beforeCallbacks: []
+        },
+        action: goalHandlers.deleteGoalById
+    });
+
+    routes.addGenericRoutes(swagger, mongoose.model('Goal'), baseUrl, {GET: false, GETall: false, DELETE: false});
 
 };

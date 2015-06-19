@@ -5,7 +5,6 @@ var mongoose = require('ypbackendlib').mongoose,
     generic = require('ypbackendlib').handlers,
     error = require('ypbackendlib').error,
     _ = require('lodash'),
-    handlerUtils = require('ypbackendlib').handlerUtils,
     moment = require('moment-timezone');
 
 

@@ -4,7 +4,8 @@
 var mongoose = require('ypbackendlib').mongoose,
     Schema = mongoose.Schema,
     ObjectId = Schema.ObjectId,
-    common = require('ypbackendlib').commmonModels;
+    common = require('ypbackendlib').commmonModels,
+    moment = require('moment-timezone');
 
 /**
  * Goal Schema
@@ -17,7 +18,7 @@ var GoalSchema = common.newSchema({
     timesCount: {type: Number, default: 1},
     timeFrame: {type: String, default: 'week'},
     start: {type: Date, default: Date.now},
-    end: {type: Date}
+    end: {type: Date, default: moment("9999-12-31")}
 });
 
 GoalSchema.plugin(require('mongoose-eventify'));

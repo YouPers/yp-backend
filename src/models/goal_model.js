@@ -14,11 +14,17 @@ var GoalSchema = common.newSchema({
     owner: {type: ObjectId, ref: 'User', required: true},
     title: {type: String},
     categories: [{type: ObjectId, ref: "Category"}],
-    timesCount: {type: Number},
+    timesCount: {type: Number, default: 1},
     timeFrame: {type: String, default: 'week'}
 });
 
 GoalSchema.plugin(require('mongoose-eventify'));
+
+GoalSchema.methods.toJsonConfig = function() {
+    return {
+        include: ['thisPeriodCount', 'lastPeriodCount']
+    };
+}
 
 GoalSchema.statics.getFieldDescriptions = function () {
     return {

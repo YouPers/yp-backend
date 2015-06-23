@@ -24,7 +24,7 @@ var EventSchema = common.newSchema({
     number: {type: String},
     location: {type: String},
     executionType: {type: String, enum: enums.executiontype},
-    status: {type: String, enum: enums.EventStatus},
+    status: {type: String, enum: enums.EventStatus, required: true, default: 'active'},
     campaign: {type: ObjectId, ref: 'Campaign'},
     deletionReason: {type: String},
     start: {type: Date, required: true},

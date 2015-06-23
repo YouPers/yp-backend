@@ -14,6 +14,8 @@ var calendar = require('../util/calendar'),
     async = require('async'),
     handlerUtils = require('ypbackendlib').handlerUtils;
 
+var EARTH_RADIUS_IN_M = 6378137;
+
 function getInvitationStatus(req, res, next) {
     SocialInteraction.getInvitationStatus(req.params.id, generic.sendListCb(req, res, next));
 }
@@ -700,6 +702,47 @@ function getAll(req, res, next) {
 
 }
 
+
+function getPublicEvents(req, res, next) {
+
+    if (!req.user || !req.user.id) {
+        return next(new error.NotAuthorizedError('Authentication required for this object'));
+    }
+    var location = req.params.location || req.user.profile.homeAddress.location;
+
+    if (!location || !_.isArray(location) || location.length !== 2) {
+        return next(new error.InvalidParameterError('location is required as array of Number, either as parameter or in user.profile.homeAddress.location'));
+    }
+
+    // first we load events within 50km radius that are scheduled in future
+    var query = {
+        start: {$gt: new Date()},
+        status: 'active'
+    };
+
+    var options = {
+        query: query,
+        limit: 50,  // get max 50 events
+        spherical: true,
+        distanceMultiplier: EARTH_RADIUS_IN_M,  // earth radius in meters,
+        maxDistance: 50000 / EARTH_RADIUS_IN_M  // max 50 kilometers distance
+    };
+
+    Event.geoNear(location, options, function(err, results, stats) {
+        if (err) {
+            return next(err);
+        }
+
+        // we need to filter out the "non-public" events
+
+        var filtered = _.filter(results, function(result) {
+            // inviteOthers is added upon serializing, so we call toObject()
+            return result.obj.toObject().inviteOthers;
+        });
+        return generic.sendListCb(req, res, next)(err, filtered);
+    });
+}
+
 function getIcal(req, res, next) {
     if (!req.params.id) {
         return next(new error.MissingParameterError({ required: 'id' }));
@@ -748,5 +791,6 @@ module.exports = {
     validateEvent: validateEvent,
     getEventLookAheadCounters: getEventLookAheadCounters,
     getIcal: getIcal,
-    getAll: getAll
+    getAll: getAll,
+    getPublicEvents: getPublicEvents
 };

@@ -14,6 +14,8 @@ var calendar = require('../util/calendar'),
     async = require('async'),
     handlerUtils = require('ypbackendlib').handlerUtils;
 
+var EARTH_RADIUS_IN_M = 6378137;
+
 function getInvitationStatus(req, res, next) {
     SocialInteraction.getInvitationStatus(req.params.id, generic.sendListCb(req, res, next));
 }
@@ -722,8 +724,8 @@ function getPublicEvents(req, res, next) {
         query: query,
         limit: 50,  // get max 50 events
         spherical: true,
-        distanceMultiplier: 6378137,  // earth radius in meters,
-        maxDistance: 50000 / 6378137  // max 50 kilometers distance
+        distanceMultiplier: EARTH_RADIUS_IN_M,  // earth radius in meters,
+        maxDistance: 50000 / EARTH_RADIUS_IN_M  // max 50 kilometers distance
     };
 
     Event.geoNear(location, options, function(err, results, stats) {
@@ -733,7 +735,11 @@ function getPublicEvents(req, res, next) {
 
         // we need to filter out the "non-public" events
 
-        return generic.sendListCb(req, res, next)(err, results);
+        var filtered = _.filter(results, function(result) {
+            // inviteOthers is added upon serializing, so we call toObject()
+            return result.obj.toObject().inviteOthers;
+        });
+        return generic.sendListCb(req, res, next)(err, filtered);
     });
 }
 

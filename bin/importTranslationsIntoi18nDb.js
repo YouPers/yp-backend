@@ -19,6 +19,7 @@ program
     .parse(process.argv);
 
 var transObjs = require(program.args[0]);
+var locale = 'en';
 
 console.log('found translated objs: ' + transObjs.length);
 
@@ -27,8 +28,8 @@ _.forEach(transObjs, function(transObj) {
     if (!id) {
         console.log("invalid translation Object found: " + JSON.stringify(transObj));
     }
-    mongoose.model('AssessmentQuestion').findById(id).exec(function (err, dbObject) {
-//    mongoose.model('Idea').findById(id).exec(function (err, dbObject) {
+//    mongoose.model('AssessmentQuestion').findById(id).exec(function (err, dbObject) {
+    mongoose.model('Idea').findById(id).exec(function (err, dbObject) {
         if (err) {
             console.log(err);
             process.exit(1);
@@ -40,8 +41,8 @@ _.forEach(transObjs, function(transObj) {
         console.log('processing id: '+ id + ' found ' + (dbObject && dbObject.id));
         _.forEach(_.keys(transObj), function (prop) {
             if (prop !== 'id') {
-                console.log('property: ' + prop);
-                    dbObject[prop+'I18n']['fr'] = transObj[prop];
+                console.log('property: ' + prop + ' locale: '+locale +' value: ' + transObj[prop]);
+                    dbObject[prop+'I18n'][locale] = transObj[prop];
                     dbObject.save(function(err) {
                         if (err) {
                             console.log(JSON.stringify(err));

@@ -117,6 +117,26 @@ module.exports = function (swagger) {
     swagger.addOperation({
         spec: {
             description: "Operations about Events",
+            path: baseUrl + '/public',
+            notes: "public Events that may be joined by the current user, ordered by distance from either the " +
+            "user's profile homeAddress or the parameter location, limited to 100 points, default max radius is 50km",
+            summary: "returns public events the user may join including the distance.",
+            method: "GET",
+            params: [generic.params.limit,
+                generic.params.filter,
+                generic.params.populate,
+                generic.params.populatedeep],
+            "responseClass": "Array[Event]",
+            "nickname": "getEvents",
+            accessLevel: 'al_individual',
+            beforeCallbacks: []
+        },
+        action: handlers.getPublicEvents
+    });
+
+    swagger.addOperation({
+        spec: {
+            description: "Operations about Events",
             path: baseUrlWithId,
             notes: "Returns an event by Id, only returns the event if the current user is the owner of the event",
             summary: "Returns an event by Id",
@@ -139,6 +159,8 @@ module.exports = function (swagger) {
         },
         action: generic.getByIdFn(baseUrl, Model)
     });
+
+
 
     swagger.addOperation({
         spec: {

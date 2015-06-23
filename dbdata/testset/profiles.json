@@ -30,6 +30,10 @@
             "rejectedActivities": [],
             "rejectedActivityPlans": [],
             "starredActivities": []
+        },
+        "homeAddress": {
+            "location": [8.5, 47.1],
+            "city": "Zug"
         }
     },
     {
@@ -60,7 +64,12 @@
             "rejectedActivities": [],
             "rejectedActivityPlans": [],
             "starredActivities": []
+        },
+        "homeAddress": {
+            "location": [8.5, 47.1],
+            "city": "Zug"
         }
+
     },
     {
         "__v": 0,
@@ -94,7 +103,12 @@
             "rejectedActivities": [],
             "rejectedActivityPlans": [],
             "starredActivities": []
+        },
+        "homeAddress": {
+            "location": [8.5, 47.1],
+            "city": "Zug"
         }
+
     },
     {
         "__v": 0,
@@ -125,7 +139,12 @@
             "rejectedActivities": [],
             "rejectedActivityPlans": [],
             "starredActivities": []
+        },
+        "homeAddress": {
+            "location": [8.5, 47.1],
+            "city": "Zug"
         }
+
     },
     {
         "__v": 0,
@@ -155,6 +174,10 @@
             "rejectedActivities": [],
             "rejectedActivityPlans": [],
             "starredActivities": []
+        },
+        "homeAddress": {
+            "location": [8.5, 47.1],
+            "city": "Zug"
         }
     },
     {
@@ -186,7 +209,12 @@
             "rejectedActivities": [],
             "rejectedActivityPlans": [],
             "starredActivities": []
+        },
+        "homeAddress": {
+            "location": [8.5, 47.1],
+            "city": "Zug"
         }
+
     },
     {
         "__v": 0,
@@ -216,7 +244,12 @@
             "rejectedActivities": [],
             "rejectedActivityPlans": [],
             "starredActivities": []
+        },
+        "homeAddress": {
+            "location": [8.5, 47.1],
+            "city": "Zug"
         }
+
     },
     {
         "__v": 0,
@@ -246,7 +279,12 @@
             "rejectedActivities": [],
             "rejectedActivityPlans": [],
             "starredActivities": []
+        },
+        "homeAddress": {
+            "location": [8.5, 47.1],
+            "city": "Zug"
         }
+
     },
     {
         "__v": 0,
@@ -276,7 +314,12 @@
             "rejectedActivities": [],
             "rejectedActivityPlans": [],
             "starredActivities": []
+        },
+        "homeAddress": {
+            "location": [8.5, 47.1],
+            "city": "Zug"
         }
+
     },
     {
         "__v": 0,
@@ -306,7 +349,12 @@
             "rejectedActivities": [],
             "rejectedActivityPlans": [],
             "starredActivities": []
+        },
+        "homeAddress": {
+            "location": [8.5, 47.1],
+            "city": "Zug"
         }
+
     },
     {
         "__v": 0,
@@ -336,7 +384,12 @@
             "rejectedActivities": [],
             "rejectedActivityPlans": [],
             "starredActivities": []
+        },
+        "homeAddress": {
+            "location": [8.5, 47.1],
+            "city": "Zug"
         }
+
     },
     {
         "__v": 0,
@@ -366,6 +419,10 @@
             "rejectedActivities": [],
             "rejectedActivityPlans": [],
             "starredActivities": []
+        },
+        "homeAddress": {
+            "location": [8.5, 47.1],
+            "city": "Zug"
         }
     },
     {
@@ -396,6 +453,10 @@
             "rejectedActivities": [],
             "rejectedActivityPlans": [],
             "starredActivities": []
+        },
+        "homeAddress": {
+            "location": [8.5, 47.1],
+            "city": "Zug"
         }
     },
     {
@@ -426,6 +487,10 @@
             "rejectedActivities": [],
             "rejectedActivityPlans": [],
             "starredActivities": []
+        },
+        "homeAddress": {
+            "location": [8.5, 47.1],
+            "city": "Zug"
         }
     },
     {
@@ -456,7 +521,11 @@
             "rejectedActivities": [],
             "rejectedActivityPlans": [],
             "starredActivities": []
-        }
+        },
+        "homeAddress": {
+          "location": [8.5, 47.1],
+          "city": "Zug"
+         }
     },
     {
         "__v": 0,
@@ -489,7 +558,11 @@
         },
         "timestamp": {
             "$date": 1396523077461
-        }
+        },
+      "homeAddress": {
+        "location": [8.5, 47.1],
+        "city": "Zug"
+      }
     },
     {
         "__v": 0,
@@ -522,7 +595,12 @@
         },
         "timestamp": {
             "$date": 1396523077464
-        }
+        },
+      "homeAddress": {
+        "location": [8.5, 47.1],
+        "city": "Zug"
+      }
+
     },
     {
         "__v": 0,
@@ -561,7 +639,12 @@
         "selectedCategories": [],
         "updated": {
             "$date": 1425669570903
-        }
+        },
+      "homeAddress": {
+        "location": [8.5, 47.1],
+        "city": "Zug"
+      }
+
     },
     {
         "__v": 0,
@@ -600,7 +683,12 @@
         "selectedCategories": [],
         "updated": {
             "$date": 1425669613165
-        }
+        },
+      "homeAddress": {
+        "location": [8.5, 47.1],
+        "city": "Zug"
+      }
+
     },
     {
         "__v": 0,
@@ -639,6 +727,10 @@
         "selectedCategories": [],
         "updated": {
             "$date": 1425669679496
-        }
+        },
+      "homeAddress": {
+        "location": [8.5, 47.1],
+        "city": "Zug"
+      }
     }
 ]

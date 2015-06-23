@@ -41,7 +41,8 @@ consts.newUserInNewCampaignApi(function (err, user, campaign, cleanupFn) {
                     "campaign": campaign.id,
                     "start": startDate,
                     "end": endDate,
-                    "inviteOthers": true
+                    "inviteOthers": true,
+                    "status": "active"
                 })
                 .auth(user.username, 'yp')
                 .expectStatus(201)

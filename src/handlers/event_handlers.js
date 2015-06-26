@@ -711,7 +711,7 @@ function getPublicEvents(req, res, next) {
     var location = req.params.location || req.user.profile.homeAddress.location;
 
     if (!location || !_.isArray(location) || location.length !== 2) {
-        return next(new error.InvalidParameterError('location is required as array of Number, either as parameter or in user.profile.homeAddress.location'));
+        return next(new error.InvalidArgumentError('location is required as array of Number, either as parameter or in user.profile.homeAddress.location'));
     }
 
     // first we load events within 50km radius that are scheduled in future

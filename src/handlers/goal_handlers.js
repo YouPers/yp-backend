@@ -133,7 +133,7 @@ function deleteGoalById(req, res, next) {
         // user is systemadmin, he may delete all
     }
 
-    Goal.findOne(req.params.id).exec(function (err, goal) {
+    Goal.findOne(finder).exec(function (err, goal) {
         if (err) {
             return error.handleError(err, next);
         }

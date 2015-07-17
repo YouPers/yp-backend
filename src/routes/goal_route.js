@@ -81,7 +81,7 @@ module.exports = function (swagger) {
                 {
                     paramType: "path",
                     name: "id",
-                    description: "the id of the event to fetch ",
+                    description: "the id of the goal to delete",
                     dataType: "string",
                     required: true
                 },

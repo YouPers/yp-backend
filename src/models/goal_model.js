@@ -14,7 +14,7 @@ var mongoose = require('ypbackendlib').mongoose,
 var GoalSchema = common.newSchema({
     owner: {type: ObjectId, ref: 'User', required: true},
     title: {type: String},
-    categories: [{type: ObjectId, ref: "Category"}],
+    categories: [String],
     timesCount: {type: Number, default: 1},
     timeFrame: {type: String, default: 'week'},
     start: {type: Date, default: Date.now},

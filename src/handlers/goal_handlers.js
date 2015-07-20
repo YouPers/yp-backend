@@ -15,8 +15,8 @@ function _attachStats(goals, cb) {
         return cb(null, goals);
     }
 
-    if (!goalsArray[0].categories || goalsArray[0].categories.length < 1 || !goalsArray[0].categories[0]._id) {
-        return cb(new Error("each goal must have at least one populated category"));
+    if (!goalsArray[0].categories || goalsArray[0].categories.length < 1) {
+        return cb(new Error("each goal must have at least one category"));
     }
 
     // load the user's occurences

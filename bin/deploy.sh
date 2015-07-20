@@ -6,4 +6,5 @@ cd /home/youpers/$2-backend
 git pull origin $1
 export NODE_ENV=$2
 npm update
+npm install ypbackendlib
 pm2 startOrRestart processes.json

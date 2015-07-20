@@ -48,7 +48,6 @@ function _attachStats(goals, cb) {
 
 function _hasMatchingCategory(goal, occ) {
     return _(goal.categories)
-        .map('key')
         .intersection(occ.idea.categories)
         .first();
 }
@@ -71,9 +70,6 @@ function getGoalById(req, res, next) {
     }
 
     var dbQuery = Goal.findById(req.params.id);
-    if (req.params.stats) {
-        dbQuery.populate('categories');
-    }
 
     var op = generic.addStandardQueryOptions(req, dbQuery, Goal);
     op.exec(function (err, goals) {

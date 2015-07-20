@@ -92,9 +92,6 @@ function getGoals(req, res, next) {
     };
 
     var dbQuery = Goal.find(finder);
-    if (req.params.stats) {
-        dbQuery.populate('categories');
-    }
 
     var op = generic.addStandardQueryOptions(req, dbQuery, Goal);
     op.exec(function (err, goals) {

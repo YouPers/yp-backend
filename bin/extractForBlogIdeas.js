@@ -437,6 +437,7 @@ async.each (languages, function(language, blogForLanguageProcessed) {
         function(err) {
             if (err) {
                 console.log ('Something went wrong!');
+                console.log (err.message);
                 console.log('');
                 return;
             }

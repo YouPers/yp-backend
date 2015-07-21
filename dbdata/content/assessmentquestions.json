@@ -1862,32 +1862,48 @@
       "$date": 1407770509652
     },
     "exptextI18n": {
-      "de": "Bei diesem Kriterium beurteilst du, ob und wieviel Milchprodukte und Fleisch, Fisch, Eier, Tofu oder Quorn du zu dir nimmst."
+      "de": "Bei diesem Kriterium beurteilst du, ob und wieviel Milchprodukte und Fleisch, Fisch, Eier, Tofu oder Quorn du zu dir nimmst.",
+      "fr": "Ce critère te permet d'évaluer si et combien de produits laitiers et de viande, de poisson, d'œufs, de tofu ou de Quorn tu manges.",
+      "en": "With this criterion, you judge whether and how much dairy products and meat, fish, eggs, tofu or Quorn you eat."
     },
     "maxtextI18n": {
-      "de": "Zu viel"
+      "de": "Zu viel",
+      "fr": "Trop",
+      "en": "Too much"
     },
     "maxtextexampleI18n": {
-      "de": "Ich esse täglich mehr als 3 Portionen Milchprodukte und 1 Portion Fleisch, Fisch, Eier, Tofu oder Quorn.\n\n1 Portion Milchprodukte entspricht:  \n2 dl Milch oder  \n150–200 g Joghurt / Quark / Hüttenkäse / andere Milchprodukte oder  \n30 g Halbhart- / Hartkäse oder  \n60 g Weichkäse\n\n1 Portion Fleisch, Fisch, Tofu, Quorn entspricht:  \n100–120 g (Frischgewicht) Fleisch / Geflügel / Fisch / Tofu / Seitan / Quorn"
+      "de": "Ich esse täglich mehr als 3 Portionen Milchprodukte und 1 Portion Fleisch, Fisch, Eier, Tofu oder Quorn.\n\n1 Portion Milchprodukte entspricht:  \n2 dl Milch oder  \n150–200 g Joghurt / Quark / Hüttenkäse / andere Milchprodukte oder  \n30 g Halbhart- / Hartkäse oder  \n60 g Weichkäse\n\n1 Portion Fleisch, Fisch, Tofu, Quorn entspricht:  \n100–120 g (Frischgewicht) Fleisch / Geflügel / Fisch / Tofu / Seitan / Quorn",
+      "fr": "Je mange tous les jours plus de 3 portions de produits laitiers et une portion de viande, de poisson, d'œufs, de tofu ou de Quorn.\n\n1 portion de produits laitiers correspond à :  \n2 dl de lait ou \n150 à 200 g de yogourt / maquée / fromage blanc / autres produits laitiers ou \n30 g de fromage à pâte dure / semi-dure ou \n60 g de fromage à pâte molle\n\n1 portion de viande, de poisson, de tofu, de Quorn correspond à :  \n100 à 120 g (poids frais) de viande / volaille / poisson / tofu / seitan / Quorn",
+      "en": "Every day I eat more than 3 servings of dairy products and 1 serving of meat, fish, eggs, tofu or Quorn.\n\n1 serving of dairy products corresponds to:  \n2 dl of milk or \n150-200 g of yogurt / cheese curds / cottage cheese / other dairy products \n30 g of semi-hard / hard cheese or \n60 g of soft cheese \n\n1 serving of meat, fish, tofu, Quorn corresponds to:  \n100-120 g of (fresh weight) meat / poultry / fish / tofu / seitan (wheat gluten) / Quorn"
     },
     "midtextI18n": {
-      "de": "Genügend"
+      "de": "Genügend",
+      "fr": "Suffisamment",
+      "en": "Sufficient"
     },
     "midtextexampleI18n": {
-      "de": "Ich esse abwechslungsweise täglich 3 Portionen Milchprodukte und zusätzlich 1 Portion Fleisch, Fisch, Tofu, Quorn oder 2-3 Eier."
+      "de": "Ich esse abwechslungsweise täglich 3 Portionen Milchprodukte und zusätzlich 1 Portion Fleisch, Fisch, Tofu, Quorn oder 2-3 Eier.",
+      "fr": "Je mange en alternance chaque jour 3 portions de produits laitiers et aussi 1 portion de viande, de poisson, de tofu, de Quorn ou bien 2 ou 3 œufs.",
+      "en": "I eat either 3 servings of dairy products per day and 1 additional serving of meat, fish, tofu, Quorn or 2-3 eggs."
     },
     "mintextI18n": {
-      "de": "Zu wenig"
+      "de": "Zu wenig",
+      "fr": "Trop peu",
+      "en": "Too little"
     },
     "mintextexampleI18n": {
-      "de": "Ich esse wenig bis keine Milchprodukte und Fleisch, Fisch, Eier, Tofu oder Quorn."
+      "de": "Ich esse wenig bis keine Milchprodukte und Fleisch, Fisch, Eier, Tofu oder Quorn.",
+      "fr": "Je ne mange quasiment pas de produits laitiers ni de viande, de poisson, d'œufs, de tofu ou de Quorn.",
+      "en": "I do not eat enough or no dairy products and meat, fish, eggs, tofu or Quorn."
     },
     "titleI18n": {
-      "de": "Milchprodukte, Fleisch, Fisch, Eier, Tofu und Quorn"
+      "de": "Milchprodukte, Fleisch, Fisch, Eier, Tofu und Quorn",
+      "fr": "Les produits laitiers, la viande, le poisson, les œufs, le tofu et le Quorn",
+      "en": "Dairy products, meat, fish, eggs, tofu and Quorn"
     },
     "type": "twoSided",
     "updated": {
-      "$date": 1431332409096
+      "$date": 1435047237636
     },
     "maxtextresultI18n": {
       "de": ""
@@ -1909,32 +1925,48 @@
       "$date": 1407770509657
     },
     "exptextI18n": {
-      "de": "Bei diesem Kriterium beurteilst du, ob und wieviel Getreideprodukte, Kartoffeln und Hülsenfrüchte du zu dir nimmst."
+      "de": "Bei diesem Kriterium beurteilst du, ob und wieviel Getreideprodukte, Kartoffeln und Hülsenfrüchte du zu dir nimmst.",
+      "fr": "Ce critère te permet d'évaluer si et combien de produits céréaliers, de pommes de terre et légumes tu manges.",
+      "en": "With this criterion, you judge whether and how many grain products, potatoes and legumes you eat."
     },
     "maxtextI18n": {
-      "de": "Zu viel"
+      "de": "Zu viel",
+      "fr": "Trop",
+      "en": "Too much"
     },
     "maxtextexampleI18n": {
-      "de": "Ich esse täglich mehr als 4 Portionen Getreideprodukte, Kartoffeln oder Hülsenfrüchte, vor allem esse ich viel Gipfeli, Zopfbrot oder Cornflakes.\n\nEine Portion entspricht:  \n75-125 g (Vollkorn-)Brot / Teig oder  \n45-75 g Müsli / Getreideflocken / Mehl / Teigwaren / Reis / Mais oder  \n180-300 g (roh) Kartoffeln oder  \n60-100 g (Trockengewicht) Hülsenfrüchte."
+      "de": "Ich esse täglich mehr als 4 Portionen Getreideprodukte, Kartoffeln oder Hülsenfrüchte, vor allem esse ich viel Gipfeli, Zopfbrot oder Cornflakes.\n\nEine Portion entspricht:  \n75-125 g (Vollkorn-)Brot / Teig oder  \n45-75 g Müsli / Getreideflocken / Mehl / Teigwaren / Reis / Mais oder  \n180-300 g (roh) Kartoffeln oder  \n60-100 g (Trockengewicht) Hülsenfrüchte.",
+      "fr": "Je mange tous les jours plus de 4 portions de produits céréaliers, de pommes de terre ou de légumineuses, surtout je mange beaucoup de croissants, de viennoiseries ou de cornflakes.\n\nUne portion correspond à :  \n75 à 125 g de pain (complet) / pâtes ou \n45 à 75 g de muesli / flocons de céréales / farine / pâtes / riz / maïs ou \n180 à 300 g  de pommes de terre (crues) ou \n60 à 100 g (poids sec) de légumineuses.",
+      "en": "Every day, I eat more than 4 servings of grain products, potatoes or legumes. In particular, I eat a lot of croissants, Zopf bread or cornflakes\n\nOne serving equals:  \n75-125 g of (whole-grain) bread / dough or \n 45-75 g of granola / cereal / flour / pasta / rice / corn or \n180-300 g of (raw) potatoes or \n60-100 g of (dry weight) legumes."
     },
     "midtextI18n": {
-      "de": "Genügend"
+      "de": "Genügend",
+      "fr": "Suffisamment",
+      "en": "Sufficient"
     },
     "midtextexampleI18n": {
-      "de": "Ich esse täglich 3-4 Portionen Getreideprodukte, Kartoffeln oder Hülsenfrüchte."
+      "de": "Ich esse täglich 3-4 Portionen Getreideprodukte, Kartoffeln oder Hülsenfrüchte.",
+      "fr": "Je mange tous les jours 3 à 4 portions de produits céréaliers, de pommes de terre ou de légumineuses.",
+      "en": "Every day, I eat 3-4 servings of grain products, potatoes or legumes."
     },
     "mintextI18n": {
-      "de": "Zu wenig"
+      "de": "Zu wenig",
+      "fr": "Trop peu",
+      "en": "Too little"
     },
     "mintextexampleI18n": {
-      "de": "Ich esse wenig Getreideprodukte, Kartoffeln oder Hülsenfrüchte."
+      "de": "Ich esse wenig Getreideprodukte, Kartoffeln oder Hülsenfrüchte.",
+      "fr": "Je mange peu de produits céréaliers, de pommes de terre ou de légumineuses.",
+      "en": "I eat too few grain products, potatoes or legumes."
     },
     "titleI18n": {
-      "de": "Getreideprodukte, Kartoffeln und Hülsenfrüchte"
+      "de": "Getreideprodukte, Kartoffeln und Hülsenfrüchte",
+      "fr": "Produits céréaliers, pommes de terre et légumineuses",
+      "en": "Grain products, potatoes and legumes"
     },
     "type": "twoSided",
     "updated": {
-      "$date": 1430726073617
+      "$date": 1435047237533
     },
     "maxtextresultI18n": {
       "de": ""
@@ -1956,7 +1988,9 @@
       "$date": 1407770509667
     },
     "exptextI18n": {
-      "de": "Bei diesem Kriterium beurteilst du, ob du dich bereits zum Frühstück gesund ernährst und somit optimal in den Tag startest."
+      "de": "Bei diesem Kriterium beurteilst du, ob du dich bereits zum Frühstück gesund ernährst und somit optimal in den Tag startest.",
+      "fr": "Ce critère te permet d'évaluer si tu te nourris sainement pour le petit déjeuner et si tu commences ainsi ta journée de manière optimale.",
+      "en": "With this criterion, you judge whether you already eat healthily for breakfast and therefore start off the day in the best possible way."
     },
     "maxtextI18n": {
       "de": ""
@@ -1965,23 +1999,33 @@
       "de": ""
     },
     "midtextI18n": {
-      "de": "Optimal"
+      "de": "Optimal",
+      "fr": "Optimal",
+      "en": "Ideal"
     },
     "midtextexampleI18n": {
-      "de": "Ich esse jeden Morgen in Ruhe etwas Gesundes zum Frühstück und trinke dazu Kaffee, Milch oder Orangensaft."
+      "de": "Ich esse jeden Morgen in Ruhe etwas Gesundes zum Frühstück und trinke dazu Kaffee, Milch oder Orangensaft.",
+      "fr": "Je mange chaque matin quelque chose de sain pour le petit déjeuner et je bois du café, du lait ou du jus d'orange.",
+      "en": "I calmly eat something healthy for breakfast every morning and drink coffee, milk or orange juice with it."
     },
     "mintextI18n": {
-      "de": "Unzureichend"
+      "de": "Unzureichend",
+      "fr": "Insuffisant",
+      "en": "Inadequate"
     },
     "mintextexampleI18n": {
-      "de": "Ich kann zum Frühstück noch nichts essen und trinken bzw. esse nur schnell etwas ohne auf die Gesundheit zu achten und gehe meistens nüchtern aus dem Haus und arbeite mit leerem Magen bis zum Mittag."
+      "de": "Ich kann zum Frühstück noch nichts essen und trinken bzw. esse nur schnell etwas ohne auf die Gesundheit zu achten und gehe meistens nüchtern aus dem Haus und arbeite mit leerem Magen bis zum Mittag.",
+      "fr": "Je ne peux rien manger ou boire pour le petit déjeuner ou je n'avale que quelque chose de rapide, sans prendre soin de ma santé et et je sors la plupart du temps de la maison à jeun et je travaille avec l'estomac vide jusqu'à midi.",
+      "en": "It is too early for me to eat or drink anything for breakfast or I only eat something quickly without paying attention to nutritional information and usually leave the house without eating anything and work on an empty stomach until noon."
     },
     "titleI18n": {
-      "de": "Frühstück"
+      "de": "Frühstück",
+      "fr": "Petit déjeuner",
+      "en": "Breakfast"
     },
     "type": "leftSided",
     "updated": {
-      "$date": 1429178562856
+      "$date": 1435047237532
     },
     "maxtextresultI18n": {
       "de": "ZZZ_MISSING TRANSLATION"
@@ -2003,7 +2047,9 @@
       "$date": 1407770509675
     },
     "exptextI18n": {
-      "de": "Bei diesem Kriterium beurteilst du, ob du dir zum Mittagessen Zeit nimmst und etwas Gesundes isst, was dir auch gut tut."
+      "de": "Bei diesem Kriterium beurteilst du, ob du dir zum Mittagessen Zeit nimmst und etwas Gesundes isst, was dir auch gut tut.",
+      "fr": "Ce critère te permet d'évaluer si tu prends le temps de déjeuner en mangeant quelque chose de sain qui te fait également du bien.",
+      "en": "With this criterion, you judge whether you take your time for lunch and eat something healthy, which is also good for you."
     },
     "maxtextI18n": {
       "de": ""
@@ -2012,23 +2058,33 @@
       "de": ""
     },
     "midtextI18n": {
-      "de": "Optimal"
+      "de": "Optimal",
+      "fr": "Optimal",
+      "en": "Ideal"
     },
     "midtextexampleI18n": {
-      "de": "Das Mittagessen ist meine Hauptmahlzeit, in der ich mir zum Essen Zeit nehme (mehr als 30 Minuten) und etwas Gesundes esse und trinke."
+      "de": "Das Mittagessen ist meine Hauptmahlzeit, in der ich mir zum Essen Zeit nehme (mehr als 30 Minuten) und etwas Gesundes esse und trinke.",
+      "fr": "Le déjeuner est mon repas principal, je prends donc le temps d'apprécier mon repas (plus de 30 minutes) et de manger et de boire quelque chose de sain.",
+      "en": "Lunch is my main meal when I take my time (more than 30 minutes) and eat and drink something healthy."
     },
     "mintextI18n": {
-      "de": "Unzureichend"
+      "de": "Unzureichend",
+      "fr": "Insuffisant",
+      "en": "Inadequate"
     },
     "mintextexampleI18n": {
-      "de": "Die Mittagspause halte ich in der Regel sehr kurz bzw. ich habe nicht viel Zeit zum Mittagessen (weniger als 30 Minuten), weshalb ich höchstens einen Snack esse."
+      "de": "Die Mittagspause halte ich in der Regel sehr kurz bzw. ich habe nicht viel Zeit zum Mittagessen (weniger als 30 Minuten), weshalb ich höchstens einen Snack esse.",
+      "fr": "En général, ma pause déjeuner est de courte durée et je n'ai pas beaucoup de temps pour le déjeuner (moins de 30 minutes),  c'est pourquoi je me contente d'une collation.",
+      "en": "I usually keep my lunch breaks very short or I do not have much time for lunch (less than 30 minutes), so I eat a snack at most."
     },
     "titleI18n": {
-      "de": "Mittagessen"
+      "de": "Mittagessen",
+      "fr": "Déjeuner",
+      "en": "Lunch"
     },
     "type": "leftSided",
     "updated": {
-      "$date": 1429178969118
+      "$date": 1435047237527
     },
     "maxtextresultI18n": {
       "de": "ZZZ_MISSING TRANSLATION"
@@ -2050,7 +2106,9 @@
       "$date": 1407770509684
     },
     "exptextI18n": {
-      "de": "Bei diesem Kriterium beurteilst du, ob du dich mit deinem Abendessen gut ernährst und somit den Tag gesund beendest."
+      "de": "Bei diesem Kriterium beurteilst du, ob du dich mit deinem Abendessen gut ernährst und somit den Tag gesund beendest.",
+      "fr": "Ce critère te permet d'évaluer si tu te nourris bien lors de ton dîner pour terminer la journée en bonne santé.",
+      "en": "With this criterion, you judge whether you eat something healthy for your dinner and therefore finish the day on a healthy note."
     },
     "maxtextI18n": {
       "de": ""
@@ -2059,23 +2117,33 @@
       "de": ""
     },
     "midtextI18n": {
-      "de": "Optimal"
+      "de": "Optimal",
+      "fr": "Optimal",
+      "en": "Ideal"
     },
     "midtextexampleI18n": {
-      "de": "Ich esse am Abend etwas Leichtes und gut Verdauliches (viel Gemüse und Salat)."
+      "de": "Ich esse am Abend etwas Leichtes und gut Verdauliches (viel Gemüse und Salat).",
+      "fr": "Je mange le soir quelque chose de léger et de digeste (beaucoup de légumes et salades).",
+      "en": "In the evening, I eat something light and easily digestible (lots of vegetables and salad)."
     },
     "mintextI18n": {
-      "de": "Unzureichend"
+      "de": "Unzureichend",
+      "fr": "Insuffisant",
+      "en": "Inadequate"
     },
     "mintextexampleI18n": {
-      "de": "Das Abendessen ist meine Hauptmahlzeit, bei der ich in der Regel zu viel von dem esse, was mir schmeckt, ohne auf die Gesundheit zu achten."
+      "de": "Das Abendessen ist meine Hauptmahlzeit, bei der ich in der Regel zu viel von dem esse, was mir schmeckt, ohne auf die Gesundheit zu achten.",
+      "fr": "Le dîner est mon repas principal, au cours duquel je mange généralement trop, et ce qui me plaît, sans me soucier de ma santé.",
+      "en": "Dinner is my main meal when I usually eat too much of what I like, without paying attention to my health."
     },
     "titleI18n": {
-      "de": "Abendessen"
+      "de": "Abendessen",
+      "fr": "Dîner",
+      "en": "Dinner"
     },
     "type": "leftSided",
     "updated": {
-      "$date": 1430137902050
+      "$date": 1435047237456
     },
     "maxtextresultI18n": {
       "de": ""
@@ -2097,7 +2165,9 @@
       "$date": 1407770509700
     },
     "exptextI18n": {
-      "de": "Bei diesem Kriterium beurteilst du, ob und wieviel Gemüse und Salat du zu dir nimmst."
+      "de": "Bei diesem Kriterium beurteilst du, ob und wieviel Gemüse und Salat du zu dir nimmst.",
+      "fr": "Ce critère te permet d'évaluer si et combien de légumes et de salades tu manges.",
+      "en": "With this criterion, you judge whether and how many vegetables and salad you eat."
     },
     "maxtextI18n": {
       "de": ""
@@ -2106,23 +2176,33 @@
       "de": ""
     },
     "midtextI18n": {
-      "de": "Genügend"
+      "de": "Genügend",
+      "fr": "Suffisamment",
+      "en": "Sufficient"
     },
     "midtextexampleI18n": {
-      "de": "Ich esse täglich 3 Portionen Gemüse oder Salat in verschiedenen Farben (roh, gekocht, getrocknet oder Saft).\n\nEine Portion entspricht: 120 g Salat / Gemüsesuppe / Gemüsebeilage oder ein Glas (2 dl) Gemüsesaft."
+      "de": "Ich esse täglich 3 Portionen Gemüse oder Salat in verschiedenen Farben (roh, gekocht, getrocknet oder Saft).\n\nEine Portion entspricht: 120 g Salat / Gemüsesuppe / Gemüsebeilage oder ein Glas (2 dl) Gemüsesaft.",
+      "fr": "Je mange chaque jour 3 portions de légumes ou de salade de différentes couleurs (crus, cuits, séchés ou en jus).\n\nUne portion correspond à : 120 g de salade / soupe aux légumes / plat d'accompagnement de légumes ou un verre (2 dl) de jus de légumes.",
+      "en": "Every day, I eat 3 servings of vegetables or salad in different colors (raw, cooked, dried or juice).\n\nOne serving equals: 120 g of salad / vegetable soup / vegetable side dish or a glass (2 dl) of vegetable juice."
     },
     "mintextI18n": {
-      "de": "Zu wenig"
+      "de": "Zu wenig",
+      "fr": "Trop peu",
+      "en": "Too little"
     },
     "mintextexampleI18n": {
-      "de": "Ich esse wenig bis kein Gemüse oder Salat."
+      "de": "Ich esse wenig bis kein Gemüse oder Salat.",
+      "fr": "Je mange peu ou pas du tout de légumes ou de salade.",
+      "en": "I eat little or no vegetables or salad."
     },
     "titleI18n": {
-      "de": "Gemüse und Salat"
+      "de": "Gemüse und Salat",
+      "fr": "Légumes et salades",
+      "en": "Vegetables and salad"
     },
     "type": "leftSided",
     "updated": {
-      "$date": 1430138747017
+      "$date": 1435047237528
     },
     "maxtextresultI18n": {
       "de": "ZZZ_MISSING TRANSLATION"
@@ -2144,32 +2224,48 @@
       "$date": 1407770509725
     },
     "exptextI18n": {
-      "de": "Bei diesem Kriterium beurteilst du, ob und wieviel Obst, Früchte und Beeren du zu dir nimmst."
+      "de": "Bei diesem Kriterium beurteilst du, ob und wieviel Obst, Früchte und Beeren du zu dir nimmst.",
+      "fr": "Ce critère te permet d'évaluer si et combien de fruits, et de fruits des bois tu manges.",
+      "en": "With this criterion, you judge whether and how much fruit and berries you eat."
     },
     "maxtextI18n": {
-      "de": "Zu viel"
+      "de": "Zu viel",
+      "fr": "Trop",
+      "en": "Too much"
     },
     "maxtextexampleI18n": {
-      "de": "Ich esse täglich mehr als 2 Portionen Obst, Früchte oder Beeren."
+      "de": "Ich esse täglich mehr als 2 Portionen Obst, Früchte oder Beeren.",
+      "fr": "Je mange tous les jours plus de 2 portions de fruits, ou de fruits des bois",
+      "en": "Every day, I eat more than 2 servings of fruit or berries."
     },
     "midtextI18n": {
-      "de": "Genügend"
+      "de": "Genügend",
+      "fr": "Suffisamment",
+      "en": "Sufficient"
     },
     "midtextexampleI18n": {
-      "de": "Ich esse täglich 2 Portionen (2 Stück oder 2 Handvoll) Obst, Früchte oder Beeren in verschiedenen Farben."
+      "de": "Ich esse täglich 2 Portionen (2 Stück oder 2 Handvoll) Obst, Früchte oder Beeren in verschiedenen Farben.",
+      "fr": "Je mange tous les jours 2 portions (2 pièces ou 2 poignées) de fruits, ou de fruits des bois de différentes couleurs.",
+      "en": "Every day, I eat 2 servings (2 pieces or 2 handfuls) of fruit or berries in different colors."
     },
     "mintextI18n": {
-      "de": "Zu wenig"
+      "de": "Zu wenig",
+      "fr": "Trop peu",
+      "en": "Too little"
     },
     "mintextexampleI18n": {
-      "de": "Ich esse wenig bis kein Obst, Früchte oder Beeren."
+      "de": "Ich esse wenig bis kein Obst, Früchte oder Beeren.",
+      "fr": "Je mange peu ou pas de tout de fruits, ou de fruits des bois",
+      "en": "I eat little or no fruit or berries."
     },
     "titleI18n": {
-      "de": "Obst, Früchte und Beeren"
+      "de": "Obst, Früchte und Beeren",
+      "fr": "Fruits et fruits des bois",
+      "en": "Fruits and berries"
     },
     "type": "twoSided",
     "updated": {
-      "$date": 1429189426507
+      "$date": 1435047237523
     },
     "maxtextresultI18n": {
       "de": ""
@@ -2191,7 +2287,9 @@
       "$date": 1407770509731
     },
     "exptextI18n": {
-      "de": "Bei diesem Kriterium beurteilst du, wie ausgewogen, abwechslungsreich und verträglich deine Ernährung ist."
+      "de": "Bei diesem Kriterium beurteilst du, wie ausgewogen, abwechslungsreich und verträglich deine Ernährung ist.",
+      "fr": "Ce critère te permet d'évaluer dans quelle mesure ton régime alimentaire est équilibré, varié et digeste.",
+      "en": "With this criterion, you judge how balanced, varied and digestible your diet is."
     },
     "maxtextI18n": {
       "de": ""
@@ -2200,23 +2298,33 @@
       "de": ""
     },
     "midtextI18n": {
-      "de": "Optimal"
+      "de": "Optimal",
+      "fr": "Optimal",
+      "en": "Ideal"
     },
     "midtextexampleI18n": {
-      "de": "Ich ernähre mich sehr ausgewogen und abwechslungsreich (mit Fleisch, Fisch, Eiern, Tofu, Gemüse und Salat, Getreide- und Milchprodukten, Kartoffeln und Hülsenfrüchte) und verwende anstatt tierischer Fette lieber etwas Pflanzenöl und esse, vor allem am Abend, leichte und gut verdauliche Sachen."
+      "de": "Ich ernähre mich sehr ausgewogen und abwechslungsreich (mit Fleisch, Fisch, Eiern, Tofu, Gemüse und Salat, Getreide- und Milchprodukten, Kartoffeln und Hülsenfrüchte) und verwende anstatt tierischer Fette lieber etwas Pflanzenöl und esse, vor allem am Abend, leichte und gut verdauliche Sachen.",
+      "fr": "Je mange très équilibré et varié (viande, poisson, œufs, tofu, légumes et salade, céréales et produits laitiers, pommes de terre et légumineuses) et je consomme volontiers un peu d'huile végétale à la place de graisses animales, et je mange, surtout le soir, des aliments légers et faciles à digérer.",
+      "en": "I eat very balanced and varied meals (with meat, fish, eggs, tofu, vegetables and salad, grain and dairy products, potatoes and legumes) and prefer to use a little vegetable oil instead of animal fats and eat light and easily digestible things, especially at night."
     },
     "mintextI18n": {
-      "de": "Ungenügend"
+      "de": "Ungenügend",
+      "fr": "Insuffisant",
+      "en": "Inadequate"
     },
     "mintextexampleI18n": {
-      "de": "Ich esse wenig bis kein Gemüse, immer dasselbe und im allgemeinen ziemlich fettige Mahlzeiten, die mir lange Zeit im Magen liegen."
+      "de": "Ich esse wenig bis kein Gemüse, immer dasselbe und im allgemeinen ziemlich fettige Mahlzeiten, die mir lange Zeit im Magen liegen.",
+      "fr": "Je mange peu ou pas de légumes, toujours les mêmes et généralement des repas assez gras qui me restent longtemps sur l'estomac.",
+      "en": "I eat little to no vegetables, always the same and generally pretty fatty meals that stay in my stomach for a long time."
     },
     "titleI18n": {
-      "de": "Ausgewogenheit"
+      "de": "Ausgewogenheit",
+      "fr": "Équilibre",
+      "en": "Balance"
     },
     "type": "leftSided",
     "updated": {
-      "$date": 1430139145209
+      "$date": 1435047237536
     },
     "maxtextresultI18n": {
       "de": "ZZZ_MISSING TRANSLATION"
@@ -2238,19 +2346,29 @@
       "$date": 1407770509756
     },
     "exptextI18n": {
-      "de": "Bei diesem Kriterium beurteilst du, wieviel Süsses du zu dir nimmst."
+      "de": "Bei diesem Kriterium beurteilst du, wieviel Süsses du zu dir nimmst.",
+      "fr": "Ce critère te permet d'évaluer combien de sucreries tu manges.",
+      "en": "With this criterion, you judge how much candy you eat."
     },
     "maxtextI18n": {
-      "de": "Zu viel"
+      "de": "Zu viel",
+      "fr": "Excessives",
+      "en": "Too much"
     },
     "maxtextexampleI18n": {
-      "de": "Ich esse über den Tag verteilt grössere Mengen an Schokolade, Kuchen oder anderen Süssigkeiten bzw. trinke in der Regel auch Süssgetränke (Cola, Eistee, Red Bull, etc.)."
+      "de": "Ich esse über den Tag verteilt grössere Mengen an Schokolade, Kuchen oder anderen Süssigkeiten bzw. trinke in der Regel auch Süssgetränke (Cola, Eistee, Red Bull, etc.).",
+      "fr": "Je mange pendant toute la journée de grandes quantités de chocolat, gâteaux ou autres sucreries et je bois en général des boissons non alcoolisées (coca-cola, thé glacé, Red Bull, etc.).",
+      "en": "I eat large amounts of chocolate, cake or other sweets during the day and also usually drink soft drinks (cola, iced tea, Red Bull etc.)."
     },
     "midtextI18n": {
-      "de": "Optimal"
+      "de": "Optimal",
+      "fr": "Optimales",
+      "en": "Ideal"
     },
     "midtextexampleI18n": {
-      "de": "Ich esse maximal eine kleine Süssigkeit pro Tag und trinke wenig bis keine Süssgetränke, sondern stattdessen lieber Wasser oder ab und zu mal eine Fruchtsaftschorle, wenn ich durstig bin."
+      "de": "Ich esse maximal eine kleine Süssigkeit pro Tag und trinke wenig bis keine Süssgetränke, sondern stattdessen lieber Wasser oder ab und zu mal eine Fruchtsaftschorle, wenn ich durstig bin.",
+      "fr": "Je mange tout au plus une petite douceur par jour et je bois peu ou pas de boissons gazeuses, car je préfère l'eau ou de temps en temps un jus de fruits panaché avec de l'eau gazeuse quand j'ai soif.",
+      "en": "I eat a maximum of one small piece of candy per day and drink little to no soft drinks but instead prefer water or, from time to time, a fruit juice spritzer when I am thirsty."
     },
     "mintextI18n": {
       "de": ""
@@ -2259,11 +2377,13 @@
       "de": ""
     },
     "titleI18n": {
-      "de": "Süsses"
+      "de": "Süsses",
+      "fr": "Sucreries",
+      "en": "Sweet food"
     },
     "type": "rightSided",
     "updated": {
-      "$date": 1430139218173
+      "$date": 1435047237529
     },
     "maxtextresultI18n": {
       "de": ""
@@ -2285,19 +2405,29 @@
       "$date": 1407770509767
     },
     "exptextI18n": {
-      "de": "Bei diesem Kriterium beurteilst du, wieviel salzige Knabbereien du zu dir nimmst."
+      "de": "Bei diesem Kriterium beurteilst du, wieviel salzige Knabbereien du zu dir nimmst.",
+      "fr": "Ce critère te permet d'évaluer combien de collations salées tu manges.",
+      "en": "With this criterion, you judge how many salty snacks you eat."
     },
     "maxtextI18n": {
-      "de": "Zu viel"
+      "de": "Zu viel",
+      "fr": "Excessifs",
+      "en": "Too much"
     },
     "maxtextexampleI18n": {
-      "de": "Ich esse über den Tag verteilt mehr als eine Handvoll salziger Knabbereien (Chips, Nüssli, etc.)."
+      "de": "Ich esse über den Tag verteilt mehr als eine Handvoll salziger Knabbereien (Chips, Nüssli, etc.).",
+      "fr": "Je mange pendant la journée plus d'une poignée d'en-cas salés (chips, noix, etc.).",
+      "en": "During the day, I eat more than one handful of salty snacks (chips, nuts etc.)."
     },
     "midtextI18n": {
-      "de": "Optimal"
+      "de": "Optimal",
+      "fr": "Optimaux",
+      "en": "Ideal"
     },
     "midtextexampleI18n": {
-      "de": "Ich esse maximal 1 Handvoll (30 g) salziger Knabbereien (Chips, Nüssli, Apérogebäck, etc.) pro Tag."
+      "de": "Ich esse maximal 1 Handvoll (30 g) salziger Knabbereien (Chips, Nüssli, Apérogebäck, etc.) pro Tag.",
+      "fr": "Je ne mange pas plus de 1 poignée (30 g) d'en-cas salés (chips, noix, amuse-gueule apéritif, etc.) par jour.",
+      "en": "I eat no more than 1 handful (30 g) of salty snacks (chips, nuts, nibbles etc.) per day."
     },
     "mintextI18n": {
       "de": ""
@@ -2306,11 +2436,13 @@
       "de": ""
     },
     "titleI18n": {
-      "de": "Salziges"
+      "de": "Salziges",
+      "fr": "Aliments salés",
+      "en": "Salty"
     },
     "type": "rightSided",
     "updated": {
-      "$date": 1433152579696
+      "$date": 1435047237525
     },
     "maxtextresultI18n": {
       "de": ""
@@ -2332,19 +2464,29 @@
       "$date": 1407770509784
     },
     "exptextI18n": {
-      "de": "Bei diesem Kriterieum beurteilst du, wieviel Alkohol du zu dir nimmst."
+      "de": "Bei diesem Kriterieum beurteilst du, wieviel Alkohol du zu dir nimmst.",
+      "fr": "Ce critère te permet de juger la quantité d'alcool que tu ingères.",
+      "en": "With this criterion, you judge how much alcohol you ingest."
     },
     "maxtextI18n": {
-      "de": "Zu viel"
+      "de": "Zu viel",
+      "fr": "Excessif",
+      "en": "Too much"
     },
     "maxtextexampleI18n": {
-      "de": "Ich trinke jeden Tag mehr als 1 Flasche Bier (500 ml), 1 Glas Wein (1 dl) oder auch Hochprozentiges."
+      "de": "Ich trinke jeden Tag mehr als 1 Flasche Bier (500 ml), 1 Glas Wein (1 dl) oder auch Hochprozentiges.",
+      "fr": "Je bois chaque jour plus de 1 bouteille de bière (500 ml), 1 verre de vin (1 dl) ou même de l'alcool fort.",
+      "en": "Every day I drink more than 1 bottle of beer (500 ml), 1 glass of wine (1 dl) or some hard liquor."
     },
     "midtextI18n": {
-      "de": "Optimal"
+      "de": "Optimal",
+      "fr": "Optimal",
+      "en": "Ideal"
     },
     "midtextexampleI18n": {
-      "de": "Ich trinke pro Tag wenig bis kein Alkohol, vielleicht ab und zu mal eine Flasche Bier (500 ml) oder ein Glas Rotwein (1 dl)."
+      "de": "Ich trinke pro Tag wenig bis kein Alkohol, vielleicht ab und zu mal eine Flasche Bier (500 ml) oder ein Glas Rotwein (1 dl).",
+      "fr": "Je bois par jour peu ou pas d'alcool, peut-être de temps à autre une bouteille de bière (500 ml) ou un verre de vin rouge (1 dl).",
+      "en": "I drink little to no alcohol per day. Perhaps from time to time I drink a bottle of beer (500 ml) or a glass of red wine (1 dl)."
     },
     "mintextI18n": {
       "de": ""
@@ -2353,11 +2495,13 @@
       "de": ""
     },
     "titleI18n": {
-      "de": "Alkohol"
+      "de": "Alkohol",
+      "fr": "Alcool",
+      "en": "Alcohol"
     },
     "type": "rightSided",
     "updated": {
-      "$date": 1433152579771
+      "$date": 1435047237637
     },
     "maxtextresultI18n": {
       "de": ""
@@ -2379,7 +2523,9 @@
       "$date": 1407770509800
     },
     "exptextI18n": {
-      "de": "Bei diesem Kriterium beurteilst du das Verhältnis zwischen deinem Energieverbrauch durch Bewegung und deiner Energiezufuhr durch Essen."
+      "de": "Bei diesem Kriterium beurteilst du das Verhältnis zwischen deinem Energieverbrauch durch Bewegung und deiner Energiezufuhr durch Essen.",
+      "fr": "Ce critère te permet d'évaluer la relation entre ta consommation d'énergie grâce à l'exercice et ton apport en énergie par la nourriture.",
+      "en": "With this criterion, you judge the relationship between your energy consumption due to exercise and your energy intake from eating."
     },
     "maxtextI18n": {
       "de": ""
@@ -2388,23 +2534,33 @@
       "de": ""
     },
     "midtextI18n": {
-      "de": "Optimal"
+      "de": "Optimal",
+      "fr": "Optimal",
+      "en": "Ideal"
     },
     "midtextexampleI18n": {
-      "de": "Ich bewege mich regelmässig und gerne bei der Arbeit und betreibe auch privat viel Sport und ernähre mich ausgewogen, weshalb ich mein Idealgewicht halten kann."
+      "de": "Ich bewege mich regelmässig und gerne bei der Arbeit und betreibe auch privat viel Sport und ernähre mich ausgewogen, weshalb ich mein Idealgewicht halten kann.",
+      "fr": "Je fais de l'exercice régulièrement et avec plaisir au travail et je fais également du sport dans ma vie privée, ma nourriture est équilibrée et c'est pourquoi je peux garder mon poids idéal.",
+      "en": "I like to move regularly at work and also exercise a lot in my private time. I eat balanced meals, which is why I can keep my ideal weight."
     },
     "mintextI18n": {
-      "de": "Ungenügend"
+      "de": "Ungenügend",
+      "fr": "Insuffisant",
+      "en": "Inadequate"
     },
     "mintextexampleI18n": {
-      "de": "Ich habe einen Sitzjob und bewege mich bei der Arbeit wenig bis nie, und ich mache auch sonst keinen Sport, und ich ernähre mich zudem nicht sehr ausgewogen, weshalb ich nicht mein Idealgewicht habe."
+      "de": "Ich habe einen Sitzjob und bewege mich bei der Arbeit wenig bis nie, und ich mache auch sonst keinen Sport, und ich ernähre mich zudem nicht sehr ausgewogen, weshalb ich nicht mein Idealgewicht habe.",
+      "fr": "J'ai un emploi sédentaire et je bouge très peu voire pas du tout au travail, je ne fais pas de sport non plus et je ne me nourris pas de façon très équilibrée, c'est pourquoi je ne pèse pas mon poids idéal.",
+      "en": "I have a job where I sit down and I move rarely or not at all at work. I also do not exercise and I do not eat in a very well-balanced way, which is why I am not at my ideal weight."
     },
     "titleI18n": {
-      "de": "Energiebilanz"
+      "de": "Energiebilanz",
+      "fr": "Bilan énergétique",
+      "en": "Energy balance"
     },
     "type": "leftSided",
     "updated": {
-      "$date": 1430139145346
+      "$date": 1435047237636
     },
     "maxtextresultI18n": {
       "de": "ZZZ_MISSING TRANSLATION"
@@ -2426,7 +2582,9 @@
       "$date": 1407770509817
     },
     "exptextI18n": {
-      "de": "Bei diesem Kriterium beurteilst du deine Möglichkeiten, gesundes Essen genussvoll mit lieben Kollegen in einem netten Ambiente zu dir zu nehmen."
+      "de": "Bei diesem Kriterium beurteilst du deine Möglichkeiten, gesundes Essen genussvoll mit lieben Kollegen in einem netten Ambiente zu dir zu nehmen.",
+      "fr": "Ce critère te permet d'évaluer tes options pour une nourriture saine et agréable avec des collègues sympas dans une ambiance joyeuse.",
+      "en": "With this criterion, you judge your options of eating healthy food enjoyably with friendly co-workers in a nice ambience."
     },
     "maxtextI18n": {
       "de": ""
@@ -2435,23 +2593,33 @@
       "de": ""
     },
     "midtextI18n": {
-      "de": "Optimal"
+      "de": "Optimal",
+      "fr": "Optimale",
+      "en": "Ideal"
     },
     "midtextexampleI18n": {
-      "de": "Ich esse mehrheitlich in Gesellschaft mit Anderen in angenehmer Atmosphäre."
+      "de": "Ich esse mehrheitlich in Gesellschaft mit Anderen in angenehmer Atmosphäre.",
+      "fr": "Je mange la plupart du temps en compagnie d'autres personnes dans une ambiance agréable.",
+      "en": "I mostly eat in the company of others and in a pleasant atmosphere."
     },
     "mintextI18n": {
-      "de": "Ungenügend"
+      "de": "Ungenügend",
+      "fr": "Insuffisante",
+      "en": "Inadequate"
     },
     "mintextexampleI18n": {
-      "de": "Ich kaufe oft Sandwiches für unterwegs und esse meistens alleine ohne spezielles Ambiente."
+      "de": "Ich kaufe oft Sandwiches für unterwegs und esse meistens alleine ohne spezielles Ambiente.",
+      "fr": "J'achète souvent des sandwiches sur le pouce et mange la plupart du temps seul, sans ambiance particulière.",
+      "en": "I often buy sandwiches for on the go and usually eat alone without special ambience."
     },
     "titleI18n": {
-      "de": "Ambiente"
+      "de": "Ambiente",
+      "fr": "Ambiance",
+      "en": "Ambience"
     },
     "type": "leftSided",
     "updated": {
-      "$date": 1433152579803
+      "$date": 1435047237535
     },
     "maxtextresultI18n": {
       "de": ""
@@ -2473,7 +2641,9 @@
       "$date": 1407770509835
     },
     "exptextI18n": {
-      "de": "Bei diesem Kriterium beurteilst du deine persönliche Motivation, dein Ernährungsverhalten gesund zu gestalten."
+      "de": "Bei diesem Kriterium beurteilst du deine persönliche Motivation, dein Ernährungsverhalten gesund zu gestalten.",
+      "fr": "Ce critère te permet d'évaluer ta motivation personnelle d'avoir des habitudes alimentaires saines.",
+      "en": "With this criterion, you judge your personal motivation to make your eating habits healthy."
     },
     "maxtextI18n": {
       "de": ""
@@ -2482,23 +2652,33 @@
       "de": ""
     },
     "midtextI18n": {
-      "de": "Optimal"
+      "de": "Optimal",
+      "fr": "Optimale",
+      "en": "Ideal"
     },
     "midtextexampleI18n": {
-      "de": "Ich achte auf meine Ernährung und ernähre mich in der Regel ausgewogen und gesund und möchte das auch beibehalten."
+      "de": "Ich achte auf meine Ernährung und ernähre mich in der Regel ausgewogen und gesund und möchte das auch beibehalten.",
+      "fr": "Je fais attention à mon alimentation et je me nourris normalement de manière équilibrée, je suis en bonne santé et je souhaite préserver mon état.",
+      "en": "I pay attention to my diet and normally eat balanced and healthy meals and want to maintain this as well."
     },
     "mintextI18n": {
-      "de": "Ungenügend"
+      "de": "Ungenügend",
+      "fr": "Insuffisante",
+      "en": "Inadequate"
     },
     "mintextexampleI18n": {
-      "de": "Ich achte nicht gross auf meine Ernährung und sollte mich gesünder ernähren, aber ich habe keine Motivation, etwas an meinen Ernährungsgewohnheiten zu ändern."
+      "de": "Ich achte nicht gross auf meine Ernährung und sollte mich gesünder ernähren, aber ich habe keine Motivation, etwas an meinen Ernährungsgewohnheiten zu ändern.",
+      "fr": "Je ne fais pas très attention à mon alimentation et je devrais manger plus sainement, mais je n'ai pas la motivation de faire quelque chose pour changer mes habitudes alimentaires.",
+      "en": "I do not pay great attention to my diet and I should eat more healthily but I have no motivation to do anything to change my eating habits."
     },
     "titleI18n": {
-      "de": "Motivation"
+      "de": "Motivation",
+      "fr": "Motivation",
+      "en": "Motivation"
     },
     "type": "leftSided",
     "updated": {
-      "$date": 1433152579740
+      "$date": 1435047237531
     },
     "maxtextresultI18n": {
       "de": ""
@@ -2520,7 +2700,9 @@
       "$date": 1407770509858
     },
     "exptextI18n": {
-      "de": "Zu einer gesunden Ernährung gehört auch genug zu trinken, weshalb du bei diesem Kriterium beurteilst, ob du durch dein Trinkverhalten einen gesunden Ernährungsstil unterstützt und du bereit bist, die empfohlene Menge von mindestens 1-2 Litern Wasser pro Tag zu trinken."
+      "de": "Zu einer gesunden Ernährung gehört auch genug zu trinken, weshalb du bei diesem Kriterium beurteilst, ob du durch dein Trinkverhalten einen gesunden Ernährungsstil unterstützt und du bereit bist, die empfohlene Menge von mindestens 1-2 Litern Wasser pro Tag zu trinken.",
+      "fr": "Une alimentation saine signifie boire beaucoup, c'est pourquoi ce critère te permet d'évaluer si tu contribues par tes habitudes de consommation à un régime alimentaire sain et si tu es prêt à boire la quantité recommandée d'au moins 1 à 2 litres d'eau par jour.",
+      "en": "A healthy diet also includes drinking enough fluids, which is why you use this criterion to judge whether you support a healthy nutritional style with your drinking habits and whether you are ready to drink the recommended amount of at least 1-2 liters of water per day."
     },
     "maxtextI18n": {
       "de": ""
@@ -2529,23 +2711,33 @@
       "de": ""
     },
     "midtextI18n": {
-      "de": "Optimal"
+      "de": "Optimal",
+      "fr": "Optimale",
+      "en": "Ideal"
     },
     "midtextexampleI18n": {
-      "de": "Ich trinke regelmässig und viel und es ist für mich kein Problem, die empfohlene Menge von 1-2 Litern Wasser pro Tag zu trinken."
+      "de": "Ich trinke regelmässig und viel und es ist für mich kein Problem, die empfohlene Menge von 1-2 Litern Wasser pro Tag zu trinken.",
+      "fr": "Je bois régulièrement et beaucoup et il je n'ai aucun problème pour boire la quantité recommandée de 1 à 2 litres d'eau par jour.",
+      "en": "I drink regularly and a lot and it is not difficult for me to drink the recommended amount of 1-2 liters of water per day."
     },
     "mintextI18n": {
-      "de": "Ungenügend"
+      "de": "Ungenügend",
+      "fr": "Insuffisante",
+      "en": "Inadequate"
     },
     "mintextexampleI18n": {
-      "de": "Ich trinke sehr wenig und zu oft gesüsste bzw. alkoholische Getränke, und es fällt mir schwer, die empfohlenen 1-2 Litern Wasser pro Tag zu trinken."
+      "de": "Ich trinke sehr wenig und zu oft gesüsste bzw. alkoholische Getränke, und es fällt mir schwer, die empfohlenen 1-2 Litern Wasser pro Tag zu trinken.",
+      "fr": "Je bois très peu et souvent des boissons sucrées ou alcoolisées, et je trouve qu'il est difficile de boire les 1 à 2 litres d'eau par jour recommandés.",
+      "en": "I drink very little and often drink sweetened or alcoholic drinks. I find it hard to drink the recommended 1-2 liters of water per day."
     },
     "titleI18n": {
-      "de": "Trinken"
+      "de": "Trinken",
+      "fr": "Boisson",
+      "en": "Drinking"
     },
     "type": "leftSided",
     "updated": {
-      "$date": 1433152579601
+      "$date": 1435047237534
     },
     "maxtextresultI18n": {
       "de": ""
@@ -2568,7 +2760,7 @@
     },
     "exptextI18n": {
       "de": "Bei diesem Kriterium beurteilst du, ob du dich im Alltag genügend bewegst.",
-      "fr": "Ce critère vous permet d'évaluer si vous faites assez d'exercice dans votre vie quotidienne."
+      "fr": "Ce critère te permet d'évaluer si tu fais assez d'exercice dans ta vie quotidienne."
     },
     "maxtextI18n": {
       "de": ""
@@ -2598,7 +2790,7 @@
     },
     "type": "leftSided",
     "updated": {
-      "$date": 1432653923264
+      "$date": 1435047170955
     },
     "maxtextresultI18n": {
       "de": "ZZZ_MISSING TRANSLATION"
@@ -2621,7 +2813,7 @@
     },
     "exptextI18n": {
       "de": "Bei diesem Kriterium beurteilst du, ob du genügend sportliche Aktivitäten ausübst.",
-      "fr": "Ce critère vous permet d'évaluer si vous faites suffisamment d'activité sportive dans votre vie quotidienne."
+      "fr": "Ce critère te permet d'évaluer si tu fais suffisamment d'activité sportive dans ta vie quotidienne."
     },
     "maxtextI18n": {
       "de": ""
@@ -2651,7 +2843,7 @@
     },
     "type": "leftSided",
     "updated": {
-      "$date": 1432653923334
+      "$date": 1435047171014
     },
     "maxtextresultI18n": {
       "de": "ZZZ_MISSING TRANSLATION"
@@ -2674,7 +2866,7 @@
     },
     "exptextI18n": {
       "de": "Bei diesem Kriterium beurteilst du, ob und wieviel kräftigende Bewegungsübungen du in deinem Alltag machst (z.B. Liegestützen zu Hause oder Kniebeugen am Arbeitsplatz).",
-      "fr": "Ce critère vous permet d'évaluer si et combien exercices de musculation vous faites dans votre vie quotidienne (par exemple des pompes à la maison ou des flexion de jambes au travail)."
+      "fr": "Ce critère te permet d'évaluer si et combien exercices de musculation tu fais dans ta vie quotidienne (par exemple des pompes à la maison ou des flexion de jambes au travail)."
     },
     "maxtextI18n": {
       "de": ""
@@ -2688,7 +2880,7 @@
     },
     "midtextexampleI18n": {
       "de": "Ich mache regelmässig kräftigende Bewegungsübungen, z.B. Kniebeugen an der Haltestelle oder bewusstes Treppensteigen.",
-      "fr": "Je fais régulièrement des exercices de musculation, par exemple des flexions de jambes à l'arrêt de bus ou monter les escaliers en toute conscience."
+      "fr": "Je fais régulièrement des exercices de musculation, par exemple des flexions de jambes à l'arrêt de bus ou monter exprès les escaliers."
     },
     "mintextI18n": {
       "de": "Unzureichend",
@@ -2704,7 +2896,7 @@
     },
     "type": "leftSided",
     "updated": {
-      "$date": 1432653923352
+      "$date": 1435047171015
     },
     "maxtextresultI18n": {
       "de": "ZZZ_MISSING TRANSLATION"
@@ -2727,7 +2919,7 @@
     },
     "exptextI18n": {
       "de": "Bei diesem Kriterium beurteilst du, ob und wieviel sportliches Muskeltraining du im Fitness-Center machst.",
-      "fr": "Ce critère vous permet d'évaluer si et dans quelle mesure vous faites un entraînement musculaire sportif dans un centre de remise en forme."
+      "fr": "Ce critère te permet d'évaluer si et dans quelle mesure tu fais un entraînement musculaire sportif dans un centre de remise en forme."
     },
     "maxtextI18n": {
       "de": ""
@@ -2757,7 +2949,7 @@
     },
     "type": "leftSided",
     "updated": {
-      "$date": 1432653923415
+      "$date": 1435047171022
     },
     "maxtextresultI18n": {
       "de": "ZZZ_MISSING TRANSLATION"
@@ -2780,7 +2972,7 @@
     },
     "exptextI18n": {
       "de": "Bei diesem Kriterium beurteilst du, ob und wieviel ausdauernde Bewegungsübungen du im Alltag machst (z.B. zu Fuss einkaufen, Mittags- oder Abendspaziergang).",
-      "fr": "Ce critère vous permet d'évaluer si et dans quelle mesure vous vous avez une activité physique constante dans votre vie quotidienne (par exemple aller faire les courses à pied, faire une promenade au déjeuner ou en soirée)."
+      "fr": "Ce critère te permet d'évaluer si et dans quelle mesure tu as une activité physique constante dans votre vie quotidienne (par exemple aller faire les courses à pied, faire une promenade au déjeuner ou en soirée)."
     },
     "maxtextI18n": {
       "de": ""
@@ -2810,7 +3002,7 @@
     },
     "type": "leftSided",
     "updated": {
-      "$date": 1432653923479
+      "$date": 1435047171019
     },
     "maxtextresultI18n": {
       "de": "ZZZ_MISSING TRANSLATION"
@@ -2833,7 +3025,7 @@
     },
     "exptextI18n": {
       "de": "Bei diesem Kriterium beurteilst du, ob und wieviel sportliches Ausdauertraining du machst (auch unter Zuhilfenahme von Geräten wie Walking-Stöcke, Inline-Skates, Rennvelo, etc.).",
-      "fr": "Ce critère vous permet d'évaluer si et dans quelle mesure vous faites un entraînement d'endurance sportif (même avec l'aide d'équipements tels que des bâtons de marche, des patins à roues alignées, un vélo de course, etc.)."
+      "fr": "Ce critère te permet d'évaluer si et dans quelle mesure tu fais un entraînement d'endurance sportif (même avec l'aide d'équipements tels que des bâtons de marche, des patins à roues alignées, un vélo de course, etc.)."
     },
     "maxtextI18n": {
       "de": ""
@@ -2863,7 +3055,7 @@
     },
     "type": "leftSided",
     "updated": {
-      "$date": 1432653923636
+      "$date": 1435047171116
     },
     "maxtextresultI18n": {
       "de": "ZZZ_MISSING TRANSLATION"
@@ -2886,7 +3078,7 @@
     },
     "exptextI18n": {
       "de": "Bei diesem Kriterium beurteilst du das Verhältnis zwischen deinem Energieverbrauch durch Bewegung und deiner Energiezufuhr durch Essen.",
-      "fr": "Ce critère vous permet d'évaluer la relation entre votre consommation d'énergie grâce à l'exercice et votre apport d'énergie par la nourriture."
+      "fr": "Ce critère te permet d'évaluer la relation entre ta consommation d'énergie grâce à l'exercice et ton apport d'énergie par la nourriture."
     },
     "maxtextI18n": {
       "de": ""
@@ -2908,7 +3100,7 @@
     },
     "mintextexampleI18n": {
       "de": "Ich habe einen Sitzjob und bewege mich bei der Arbeit wenig bis nie, und ich mache auch sonst keinen Sport oder ernähre mich ausgewogen, weshalb ich nicht mein Idealgewicht habe.",
-      "fr": "J'ai un emploi sédentaire et je bouge très peu au travail, je ne fais pas de sport non plus et je ne nourris pas de façon équilibrée, c'est pourquoi je ne pèse pas mon poids idéal."
+      "fr": "J'ai un emploi sédentaire et je bouge très peu au travail, je ne fais pas de sport non plus et je ne me nourris pas de façon équilibrée, c'est pourquoi je ne pèse pas mon poids idéal."
     },
     "titleI18n": {
       "de": "Energiebilanz",
@@ -2916,7 +3108,7 @@
     },
     "type": "leftSided",
     "updated": {
-      "$date": 1432653923289
+      "$date": 1435047171011
     },
     "maxtextresultI18n": {
       "de": "ZZZ_MISSING TRANSLATION"
@@ -2939,7 +3131,7 @@
     },
     "exptextI18n": {
       "de": "Bei diesem Kriterium beurteilst du, ob du dir bewusst Zeit nimmst, um dich jeden Tag zu bewegen.",
-      "fr": "Ce critère vous d'évaluer si vous prenez du temps exprès  pour faire de l'exercice chaque jour."
+      "fr": "Ce critère te permet d'évaluer si tu prends du temps exprès pour faire de l'exercice chaque jour."
     },
     "maxtextI18n": {
       "de": ""
@@ -2969,7 +3161,7 @@
     },
     "type": "leftSided",
     "updated": {
-      "$date": 1432653923500
+      "$date": 1435047171019
     },
     "maxtextresultI18n": {
       "de": "ZZZ_MISSING TRANSLATION"
@@ -2992,7 +3184,7 @@
     },
     "exptextI18n": {
       "de": "Bei diesem Kriterium beurteilst du deine persönliche Einschätzung und Motivation, an deiner körperlichen Fitness etwas zu ändern und sie zu verbessern.",
-      "fr": "Ce critère vous permet d'évaluer votre appréciation et votre motivation personnelles pour changer et améliorer votre forme physique."
+      "fr": "Ce critère te permet d'évaluer ton appréciation et ta motivation personnelles pour changer et améliorer ta forme physique."
     },
     "maxtextI18n": {
       "de": ""
@@ -3022,7 +3214,7 @@
     },
     "type": "leftSided",
     "updated": {
-      "$date": 1432653923663
+      "$date": 1435047171117
     },
     "maxtextresultI18n": {
       "de": "ZZZ_MISSING TRANSLATION"
@@ -4556,7 +4748,7 @@
       "$date": 1425980515246
     },
     "updated": {
-      "$date": 1432653923384
+      "$date": 1435047171020
     },
     "assessment": {
       "$oid": "53e8df8d3cca9d19333e73d0"
@@ -4565,7 +4757,7 @@
     "category": "exercise",
     "exptextI18n": {
       "de": "Bei diesem Kriterium beurteilst du, ob du dich sicher und koordiniert bewegen kannst.",
-      "fr": "Ce critère vous permet d'évaluer si vous pouvez faire de l'exercice en toute sécurité et avec coordination."
+      "fr": "Ce critère te permet d'évaluer si tu peux faire de l'exercice en toute sécurité et avec coordination."
     },
     "midtextexampleI18n": {
       "de": "Ich trainiere regelmässig auch meine Koordination und mein Gleichgewicht, wenn ich mich sportlich bewege.",
@@ -4609,7 +4801,7 @@
       "$date": 1425980784801
     },
     "updated": {
-      "$date": 1432653923457
+      "$date": 1435047171018
     },
     "assessment": {
       "$oid": "53e8df8d3cca9d19333e73d0"
@@ -4618,7 +4810,7 @@
     "category": "exercise",
     "exptextI18n": {
       "de": "Bei diesem Kriterium beurteilst du, wie es um die Beweglichkeit deiner Gelenke steht.",
-      "fr": "Ce critère vous permet d'évaluer l'agilité de vos articulations."
+      "fr": "Ce critère te permet d'évaluer l'agilité de tes articulations."
     },
     "midtextexampleI18n": {
       "de": "Ich trainiere regelmässig auch meine Beweglichkeit, wenn ich mich sportlich bewege.",
@@ -4630,7 +4822,7 @@
     },
     "mintextexampleI18n": {
       "de": "Ich bin total unbeweglich und habe auch durch mein Körpergewicht grosse Probleme, meine Schuhe zu binden.",
-      "fr": "Je suis totalement immobile et j'ai également de gros problèmes  pour lacer mes chaussures à cause de mon poids."
+      "fr": "Je suis totalement immobile et j'ai également de gros problèmes pour lacer mes chaussures à cause de mon poids."
     },
     "mintextI18n": {
       "de": "Ungenügend",
@@ -4662,7 +4854,7 @@
       "$date": 1425982031877
     },
     "updated": {
-      "$date": 1432653923368
+      "$date": 1435047171017
     },
     "assessment": {
       "$oid": "53e8df8d3cca9d19333e73d0"
@@ -4671,7 +4863,7 @@
     "category": "nutritionAndRecovery",
     "exptextI18n": {
       "de": "Für eine gute Fitness ist es wichtig, genügend zu trinken, weshalb du bei diesem Kriterium beurteilst, ob dein Trinkverhalten deine körperliche Fitness unterstützt und du zusätzlich zur empfohlenen Menge von 1.5 Litern Wasser/Tag bereit bist, bei starkem Schwitzen im Sommer oder beim Sport sogar noch mehr zu trinken.",
-      "fr": "Pour une bonne santé, il est important de boire suffisamment, c'est pourquoi ce critère vous permettre d'évaluer si votre consommation  de liquide est suffisante pour assurer votre forme physique et si vous buvez plus que la quantité recommandée de 1,5 litre d'eau par jour en cas de transpiration abondante, en été ou en faisant du sport."
+      "fr": "Pour une bonne santé, il est important de boire suffisamment, c'est pourquoi ce critère te permet d'évaluer si ta consommation de liquide est suffisante pour assurer ta forme physique et si tu bois plus que la quantité recommandée de 1,5 litre d'eau par jour en cas de transpiration abondante, en été ou en faisant du sport."
     },
     "midtextexampleI18n": {
       "de": "Ich trinke allgemein genügend (ca. 1.5 Liter Wasser/Tag), und wenn ich im Sommer oder beim Sport stark schwitze, trinke ich zusätzlich ca. 1 Liter extra pro Stunde.",
@@ -4679,7 +4871,7 @@
     },
     "mintextexampleI18n": {
       "de": "Ich trinke allgemein sehr wenig (weniger als 1.5 Liter Wasser/Tag) und selbst wenn ich im Sommer stark schwitze, schaffe ich es nie, ca. 1 Liter extra pro Stunde zu trinken.",
-      "fr": "Je bois généralement très peu (moins de 1,5 litre d'eau / jour)  et même si je transpire fortement l'été, je ne parviens jamais à boire environ 1 litre supplémentaire par heure."
+      "fr": "Je bois généralement très peu (moins de 1,5 litre d'eau / jour) et même si je transpire fortement l'été, je ne parviens jamais à boire environ 1 litre supplémentaire par heure."
     },
     "mintextI18n": {
       "de": "Ungenügend",
@@ -4715,7 +4907,7 @@
       "$date": 1425982467640
     },
     "updated": {
-      "$date": 1432653923318
+      "$date": 1435047171013
     },
     "assessment": {
       "$oid": "53e8df8d3cca9d19333e73d0"
@@ -4724,7 +4916,7 @@
     "category": "nutritionAndRecovery",
     "exptextI18n": {
       "de": "Für eine gute Fitness ist auch eine gesunde Ernährung von grosser Bedeutung, weshalb du bei diesem Kriterium beurteilst, ob dein Ernährungsverhalten förderlich ist zur Verbesserung deiner körperlichen Fitness.",
-      "fr": "Pour une bonne santé, un régime alimentaire sain est lui aussi d'une grande importance, c'est pourquoi vous allez évaluer par ce critère si votre comportement nutritionnel est propice à l'amélioration de votre forme physique."
+      "fr": "Pour une bonne santé, un régime alimentaire sain est lui aussi d'une grande importance, c'est pourquoi tu vas évaluer par ce critère si ton comportement nutritionnel est propice à l'amélioration de ta forme physique."
     },
     "midtextexampleI18n": {
       "de": "Ich esse regelmässig Früchte und Gemüse und vermeide den Konsum von zu viel süssem, salzigem und fetthaltigem Essen.",
@@ -4768,7 +4960,7 @@
       "$date": 1425982697843
     },
     "updated": {
-      "$date": 1432653923615
+      "$date": 1435047171116
     },
     "assessment": {
       "$oid": "53e8df8d3cca9d19333e73d0"
@@ -4777,7 +4969,7 @@
     "category": "exercise",
     "exptextI18n": {
       "de": "Bei diesem Kriterium beurteilst du, wie genau und strukturiert du bei der Planung, Vorbereitung und Durchführung deiner Bewegungsübungen oder deines Trainings vorgehst.",
-      "fr": "Ce critère vous permet d'évaluer dans quelle mesure la planification, la préparation et l'exécution de vos exercices ou de votre entraînement est précise et structurée."
+      "fr": "Ce critère te permet d'évaluer dans quelle mesure la planification, la préparation et l'exécution de tes exercices ou de ton entraînement est précise et structurée."
     },
     "midtextexampleI18n": {
       "de": "Ich plane die Termine für meine Bewegungsübungen und weiss genau, welche Art von Übungen ich wann und wie durchführe.",
@@ -4821,7 +5013,7 @@
       "$date": 1425982982775
     },
     "updated": {
-      "$date": 1432653923436
+      "$date": 1435047171023
     },
     "assessment": {
       "$oid": "53e8df8d3cca9d19333e73d0"
@@ -4830,7 +5022,7 @@
     "category": "nutritionAndRecovery",
     "exptextI18n": {
       "de": "Erholung ist ein wichtiger Faktor bei der Verbesserung der Fitness, weshalb du bei diesem Kriterium beurteilst, wie sehr du dich nach intensiver Bewegung erholst.",
-      "fr": "La récupération est un facteur important pour améliorer la mise en forme, c'est pourquoi ce critère vous permet d'évaluer comment vous récupérez après un exercice intense."
+      "fr": "La récupération est un facteur important pour améliorer la mise en forme, c'est pourquoi ce critère te permet d'évaluer comment tu récupères après un exercice intense."
     },
     "midtextexampleI18n": {
       "de": "Ich plane meine Pausen zur Bewegung vorher schon ein und erhole mich nach erfolgter Bewegung entsprechend lange.",
@@ -4874,7 +5066,7 @@
       "$date": 1428657160843
     },
     "updated": {
-      "$date": 1433152579480
+      "$date": 1435047237536
     },
     "assessment": {
       "$oid": "53e8df8d3cca9d19333e73cf"
@@ -4882,16 +5074,24 @@
     "type": "leftSided",
     "category": "time",
     "exptextI18n": {
-      "de": "Bei diesem Kriterium beurteilst du, ob du dich während des Tages mit gesunden Zwischenmahlzeiten ernährst, um z.B. das \"Elf-Uhr-Loch\" oder die \"Nachmittags-Müdigkeit\" gesund zu überbrücken."
+      "de": "Bei diesem Kriterium beurteilst du, ob du dich während des Tages mit gesunden Zwischenmahlzeiten ernährst, um z.B. das \"Elf-Uhr-Loch\" oder die \"Nachmittags-Müdigkeit\" gesund zu überbrücken.",
+      "fr": "Ce critère te permet d'évaluer si tu te nourris de collations saines pendant la journée, par exemple, pour combler le \"creux de 11 heures\" ou pour surmonter le \"coup de barre de l'après-midi \" d'une manière saine.",
+      "en": "With this criterion, you judge whether you eat healthy snacks during the day to, for example, healthily get through the \"11 am slump\" or the \"afternoon fatigue\"."
     },
     "midtextI18n": {
-      "de": "Optimal"
+      "de": "Optimal",
+      "fr": "Optimales",
+      "en": "Ideal"
     },
     "mintextI18n": {
-      "de": "Unzureichend"
+      "de": "Unzureichend",
+      "fr": "Insuffisantes",
+      "en": "Inadequate"
     },
     "titleI18n": {
-      "de": "Zwischenmahlzeiten"
+      "de": "Zwischenmahlzeiten",
+      "fr": "Collations",
+      "en": "Snacks"
     },
     "__v": 0,
     "maxtextI18n": {
@@ -4904,10 +5104,14 @@
       "de": "ZZZ_MISSING TRANSLATION"
     },
     "midtextexampleI18n": {
-      "de": "Ich esse während meiner Znüni- oder Nachmittagspause ein leeres Vollkornbrötchen, Obst, Joghurt oder eine Handvoll ungesalzene Nüsse und trinke ein Glas Wasser dazu."
+      "de": "Ich esse während meiner Znüni- oder Nachmittagspause ein leeres Vollkornbrötchen, Obst, Joghurt oder eine Handvoll ungesalzene Nüsse und trinke ein Glas Wasser dazu.",
+      "fr": "Je mange pendant ma pause du matin ou de l'après-midi un petit pain complet vide, des fruits, du yogourt ou une poignée de noix non salées et je bois un verre d'eau.",
+      "en": "During my mid-morning or afternoon break, I eat a plain whole-grain roll, fruit, yogurt or a handful of unsalted nuts and drink a glass of water with it."
     },
     "mintextexampleI18n": {
-      "de": "Ich esse und trinke oft nichts in der Pause, aber ab und zu habe ich einen mitgebrachten Schokoriegel als Pausensnack mit dabei."
+      "de": "Ich esse und trinke oft nichts in der Pause, aber ab und zu habe ich einen mitgebrachten Schokoriegel als Pausensnack mit dabei.",
+      "fr": "Bien souvent je ne mange et je ne bois rien pendant la pause, mais j'apporte de temps en temps une barre chocolatée comme collation.",
+      "en": "I often do not eat or drink anything during a break but now and then I have a chocolate bar that I bring with me as a snack."
     },
     "mintextresultI18n": {
       "de": ""
@@ -4921,34 +5125,49 @@
       "$date": 1428996910787
     },
     "updated": {
-      "$date": 1433152579710
+      "$date": 1435047237537
     },
     "assessment": {
       "$oid": "53e8df8d3cca9d19333e73cf"
     },
     "type": "rightSided",
     "exptextI18n": {
-      "de": "Bei diesem Kriterium beurteilst du, wieviel Fettiges du zu dir nimmst."
+      "de": "Bei diesem Kriterium beurteilst du, wieviel Fettiges du zu dir nimmst.",
+      "fr": "Ce critère te permet d'évaluer combien de graisses tu manges.",
+      "en": "With this criterion, you judge how much fatty food you eat."
     },
     "midtextI18n": {
-      "de": "Optimal"
+      "de": "Optimal",
+      "fr": "Optimales",
+      "en": "Ideal"
+    },
+    "mintextI18n": {
+      "de": ""
     },
     "titleI18n": {
-      "de": "Fettiges"
+      "de": "Fettiges",
+      "fr": "Graisses",
+      "en": "Fatty"
     },
     "__v": 0,
     "category": "badHabbits",
     "maxtextI18n": {
-      "de": "Zu viel"
+      "de": "Zu viel",
+      "fr": "Excessives",
+      "en": "Too much"
     },
     "maxtextexampleI18n": {
-      "de": "Ich esse über den Tag verteilt grössere Mengen Fettiges (wie Pomme Chips, Nüssli, Glace, Schokolade, etc.)."
+      "de": "Ich esse über den Tag verteilt grössere Mengen Fettiges (wie Pomme Chips, Nüssli, Glace, Schokolade, etc.).",
+      "fr": "Je mange pendant la journée d'assez grandes quantités de graisses (comme les chips, les noix, la crème glacée, le chocolat, etc.).",
+      "en": "During the day, I eat large quantities of fatty foods, such as French fries, chips, nuts, ice cream, chocolate etc."
     },
     "maxtextresultI18n": {
       "de": ""
     },
     "midtextexampleI18n": {
-      "de": "Ich esse maximal 2-3 Esslöffel (20-30 g) Pflanzenöl und 10g Butter/Margarine und 1 Handvoll (20-30 g) ungesalzene Nüsse/Samen/Kerne pro Tag."
+      "de": "Ich esse maximal 2-3 Esslöffel (20-30 g) Pflanzenöl und 10g Butter/Margarine und 1 Handvoll (20-30 g) ungesalzene Nüsse/Samen/Kerne pro Tag.",
+      "fr": "Je mange un maximum de 2 à 3 cuillères à soupe (20 à 30 g) d'huile végétale et 10 g de beurre / margarine et 1 poignée (20 à 30 g) de noix / semences / graines par jour.",
+      "en": "I eat a maximum of 2-3 tablespoons (20-30 g) of vegetable oil, 10 g of butter / margarine and 1 handful (20-30 g) of unsalted nuts / seeds / seeds per day."
     },
     "mintextexampleI18n": {
       "de": ""
@@ -4965,7 +5184,7 @@
       "$date": 1428997622087
     },
     "updated": {
-      "$date": 1433152579780
+      "$date": 1435047237526
     },
     "assessment": {
       "$oid": "53e8df8d3cca9d19333e73cf"
@@ -4973,22 +5192,34 @@
     "type": "leftSided",
     "category": "attitudeAndAdaptability",
     "exptextI18n": {
-      "de": "Bei diesem Kriterium beurteilst du, ob du dir die Zeiten für gesundes Essen und Trinken einplanst und dir auch bewusst Zeit nimmst, um dich gesund zu ernähren."
+      "de": "Bei diesem Kriterium beurteilst du, ob du dir die Zeiten für gesundes Essen und Trinken einplanst und dir auch bewusst Zeit nimmst, um dich gesund zu ernähren.",
+      "fr": "Ce critère te permet d'évaluer si tu prends le temps d'avoir une alimentation saine en nourriture comme en boisson, et si tu prends expressément le temps de bien te nourrir.",
+      "en": "With this criterion, you judge whether you plan time for healthy eating and drinking and whether you consciously take time to eat healthily."
     },
     "midtextexampleI18n": {
-      "de": "Ich nehme mir genügend Zeit, meine Mahlzeiten zu planen und über den Tag zu verteilen und auch gesund zu essen und zu trinken."
+      "de": "Ich nehme mir genügend Zeit, meine Mahlzeiten zu planen und über den Tag zu verteilen und auch gesund zu essen und zu trinken.",
+      "fr": "Je prends le temps de planifier mes repas et de les répartir dans le courant de la journée, et aussi de manger et de boire sainement.",
+      "en": "I take enough time to plan my meals, to spread them throughout the day and also to eat and drink healthily."
     },
     "midtextI18n": {
-      "de": "Optimal"
+      "de": "Optimal",
+      "fr": "Optimal",
+      "en": "Ideal"
     },
     "mintextexampleI18n": {
-      "de": "Ich habe oft keine Zeit, um in Ruhe zu essen und zu trinken."
+      "de": "Ich habe oft keine Zeit, um in Ruhe zu essen und zu trinken.",
+      "fr": "Je n'ai pas souvent le temps de manger et de boire en paix.",
+      "en": "I often do not have time to eat and drink in peace."
     },
     "mintextI18n": {
-      "de": "Ungenügend"
+      "de": "Ungenügend",
+      "fr": "Insuffisant",
+      "en": "Inadequate"
     },
     "titleI18n": {
-      "de": "Zeit für Ernährung"
+      "de": "Zeit für Ernährung",
+      "fr": "Du temps pour se nourrir",
+      "en": "Time for food"
     },
     "__v": 0,
     "maxtextI18n": {

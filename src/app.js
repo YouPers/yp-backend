@@ -10,14 +10,6 @@ if (config.NEW_RELIC_ENABLED === "enabled") {
     require('newrelic');
 }
 
-if (config.NODE_TIME_ENABLED === "enabled" && config.NODE_TIME_KEY) {
-    console.log("Enabling Nodetime: " + config.NODE_TIME_ENABLED);
-    require('nodetime').profile({
-        accountKey: config.NODE_TIME_KEY,
-        appName: 'yp-backend '+ config.NODE_ENV
-    });
-}
-
 // Modules
 var ypbackendlib = require('ypbackendlib');
 

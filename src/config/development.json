@@ -9,7 +9,7 @@
       }
     ]
   },
-  "longjohn": "enabled",
+  "longjohn": "disabled",
   "dbdump": {
     "restoreenabled": "enabled",
     "dumpenabled": "enabled"

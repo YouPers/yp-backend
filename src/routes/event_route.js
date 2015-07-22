@@ -157,7 +157,7 @@ module.exports = function (swagger) {
             accessLevel: 'al_individual',
             beforeCallbacks: []
         },
-        action: generic.getByIdFn(baseUrl, Model)
+        action: generic.getByIdFn(baseUrl, Model, true)
     });
 
 

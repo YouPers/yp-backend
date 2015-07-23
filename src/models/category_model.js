@@ -11,7 +11,7 @@ var mongoose = require('ypbackendlib').mongoose,
  * @type {Schema}
  */
 var CategorySchema = common.newSchema({
-    name: {type: String, i18n: true},
+    title: {type: String, i18n: true},
     key: {type: String, required: true},
     goalTitleTemplate: {type: String, i18n: true},
     topic: {type: ObjectId, ref: 'Topic'}

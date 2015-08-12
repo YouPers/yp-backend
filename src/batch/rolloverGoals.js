@@ -21,7 +21,7 @@ var worker = function (goal, done) {
     var oldEnd = goal.end;
     log.debug({goal: goal, newStart: newStart, newEnd: newEnd, oldEnd: oldEnd}, "goal to rollover found, ");
     // finalize this goal
-    goal.end = moment().endOf('week').toDate();
+    goal.end = moment("9999-12-31");
     goal.save();
     var Goal = mongoose.model('Goal');
     var newGoal = new Goal({

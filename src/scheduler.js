@@ -20,7 +20,16 @@ var config = require('./config/config'),
 // for more complex scheduling see syntax here: http://en.wikipedia.org/wiki/Cron
 //
 var jobs = [
-
+    {
+        name: 'RolloverGoals',
+        description: 'rolls over all goals with an end date in the future to the next week, su night',
+        cronTime: '00 00 21 * * 7',
+        onTick: require('./batch/rolloverGoals').run,
+        start: true,
+        context: {
+            concurrency: 1
+        }
+    }
 ];
 
 /**

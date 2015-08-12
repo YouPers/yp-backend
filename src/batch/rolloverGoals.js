@@ -9,7 +9,7 @@ var feeder = function (callback) {
     var now = new Date();
     mongoose.model('Goal').find(
         {
-            $and: [{end: {$gt: now}}, {start: {$lt: now}}]
+            $and: [{end: {$gt: now}}, {end: {$gt: moment().endOf('week').toDate()}}, {start: {$lt: now}}]
         }
     ).exec(callback);
 };
@@ -18,7 +18,8 @@ var worker = function (goal, done) {
     var log = this.log;
     var newStart = moment().add(1, 'week').startOf('week').toDate();
     var newEnd = moment().add(1, 'week').endOf('week').toDate();
-    log.debug({goal: goal, newStart: newStart, newEnd: newEnd}, "goal to rollover found, ");
+    var oldEnd = goal.end;
+    log.debug({goal: goal, newStart: newStart, newEnd: newEnd, oldEnd: oldEnd}, "goal to rollover found, ");
     // finalize this goal
     goal.end = moment().endOf('week').toDate();
     goal.save();
@@ -32,7 +33,9 @@ var worker = function (goal, done) {
             start: newStart,
             end: newEnd
         });
-    newGoal.save(done);
+    newGoal.save(function(err, savedGoal) {
+        return done(err, {msg: "rolled over goal", id: savedGoal.id, oldStart: goal.start, newStart: savedGoal.start, oldEnd: oldEnd, newEnd: savedGoal.end});
+    });
 };
 
 var run = function run() {

@@ -38,8 +38,6 @@ function _attachStats(goals, cb) {
                 goal.lastPeriodCount = _.filter(occurences, function (occ) {
                     return _hasMatchingCategory(goal, occ) && _hasMatchingDate(goal, occ, -1);
                 }).length;
-
-
             });
 
             return cb(null, goals);
@@ -56,7 +54,7 @@ function _hasMatchingCategory(goal, occ) {
 function _hasMatchingDate(goal, occ, period) {
     period = period ? period : 0;
 
-    var periodMoment = moment().add(period, goal.timeFrame);
+    var periodMoment = moment(goal.start).add(period, goal.timeFrame);
     return moment(occ.start).isSame(periodMoment, goal.timeFrame);
 }
 

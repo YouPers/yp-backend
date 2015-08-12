@@ -1,26 +1,38 @@
 var mongoose = require('ypbackendlib').mongoose,
     batch = require('ypbackendlib').batch,
-    config = require('../config/config');
+    config = require('../config/config'),
+    moment = require('moment');
 
 var feeder = function (callback) {
     var log = this.log;
     log.debug("Finding all goals that need to be rolled over");
+    var now = new Date();
     mongoose.model('Goal').find(
-       // TODO: query {}
+        {
+            $and: [{end: {$gt: now}}, {end: {$lt:  moment().add(1, 'week').startOf('week').toDate()}}]
+        }
     ).exec(callback);
 };
 
 var worker = function (goal, done) {
     var log = this.log;
-    log.debug({goal: goal}, "goal to rollover found");
+    var newStart = moment().add(1, 'week').startOf('week').toDate();
+    var newEnd = moment().add(1, 'week').endOf('week').toDate();
+    log.debug({goal: goal, newStart: newStart, newEnd: newEnd}, "goal to rollover found, ");
     // finalize this goal
-    // TODO: goal.....
-    goal.save(done);
-
-    //
-    // TODO: create another goal
-
-
+    goal.end = moment().endOf('week').toDate();
+    goal.save();
+    var Goal = mongoose.model('Goal');
+    var newGoal = new Goal({
+            owner: goal.owner,
+            title: goal.title,
+            categories: goal.categories,
+            timesCount: goal.timesCount,
+            timeFrame: goal.timeFrame,
+            start: newStart,
+            end: newEnd
+        });
+    newGoal.save(done);
 };
 
 var run = function run() {

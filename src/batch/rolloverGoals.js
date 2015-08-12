@@ -5,11 +5,11 @@ var mongoose = require('ypbackendlib').mongoose,
 
 var feeder = function (callback) {
     var log = this.log;
-    log.debug("Finding all goals that need to be rolled over");
+    log.debug("Finding all currently running goals that need to be rolled over");
     var now = new Date();
     mongoose.model('Goal').find(
         {
-            $and: [{end: {$gt: now}}, {end: {$lt:  moment().add(1, 'week').startOf('week').toDate()}}]
+            $and: [{end: {$gt: now}}, {start: {$lt: now}}]
         }
     ).exec(callback);
 };

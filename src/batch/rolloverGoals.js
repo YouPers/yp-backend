@@ -16,25 +16,44 @@ var feeder = function (callback) {
 
 var worker = function (goal, done) {
     var log = this.log;
-    var newStart = moment().add(1, 'week').startOf('week').toDate();
-    var newEnd = moment().add(1, 'week').endOf('week').toDate();
-    var oldEnd = goal.end;
-    log.debug({goal: goal, newStart: newStart, newEnd: newEnd, oldEnd: oldEnd}, "goal to rollover found, ");
+
+    var terminatedGoalStart = goal.start;
+    var terminatedGoalEndBefore = goal.end;
+    var terminatedGoalEndAfter = moment().endOf('week').toDate();
+
+    log.debug({
+        goal: goal,
+        terminatedGoalStart: terminatedGoalStart,
+        terminatedGoalEndBefore: terminatedGoalEndBefore,
+        terminatedGoalEndAfter: terminatedGoalEndAfter
+    }, "goal to rollover found.");
+
     // finalize this goal
-    goal.end = moment("9999-12-31");
+    goal.end = terminatedGoalEndAfter;
     goal.save();
+
+    // create a new Goal, start = beginning of next week, end = end of Time
     var Goal = mongoose.model('Goal');
+
     var newGoal = new Goal({
             owner: goal.owner,
             title: goal.title,
             categories: goal.categories,
             timesCount: goal.timesCount,
             timeFrame: goal.timeFrame,
-            start: newStart,
-            end: newEnd
+            start: moment().add(1, 'week').startOf('week').toDate(),
+            end: moment("9999-12-31").toDate()
         });
-    newGoal.save(function(err, savedGoal) {
-        return done(err, {msg: "rolled over goal", id: savedGoal.id, oldStart: goal.start, newStart: savedGoal.start, oldEnd: oldEnd, newEnd: savedGoal.end});
+
+    newGoal.save(function(err, savedNewGoal) {
+        return done(err, {msg: "rolled over goal",
+            id: savedNewGoal.id,
+            cats: savedNewGoal.categories,
+            terminatedGoalStart: terminatedGoalStart,
+            terminatedGoalEndBefore: terminatedGoalEndBefore,
+            terminatedGoalEndAfter: terminatedGoalEndAfter,
+            newGoalStart: savedNewGoal.start,
+            newGoalEnd: savedNewGoal.end});
     });
 };
 

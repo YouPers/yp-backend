@@ -29,6 +29,7 @@ mongoose.model('User').on('add', function (user) {
             log.debug({result: result, body: body}, "Saved new user to predIo");
         }
     });
+
 });
 
 

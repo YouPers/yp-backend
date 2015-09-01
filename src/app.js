@@ -33,6 +33,8 @@ require('./stats/statsQueries');
 // setup our routes
 swaggerServer.addRoutes(__dirname + '/routes');
 
+// enable prediction IO data collection
+require('./recommender/predio');
 
 var port = config.port;
 swaggerServer.getRestifyServer().listen(port);

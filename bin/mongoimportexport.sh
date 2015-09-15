@@ -60,8 +60,8 @@ fi
  
 DB="$1"
 if [ -z "$HOST" ]; then
-    CONN="localhost:27017/$DB"
-    HOST="localhost:27017"
+    CONN="127.0.0.1:27017/$DB"
+    HOST="127.0.0.1:27017"
 else
     CONN="$HOST/$DB"
 fi

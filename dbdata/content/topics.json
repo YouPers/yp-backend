@@ -6,11 +6,13 @@
         "name": "Food",
         "shortDescriptionI18n": {
             "de": "Ernährung",
-            "en": "Nutrition"
+            "en": "Nutrition",
+            "nl": "Voedingsmiddel"
         },
         "textI18n": {
             "de": "Food-Long text not available",
-            "en": "Food-Long text not available"
+            "en": "Food-Long text not available",
+            "nl": "Voeding-Lange tekst niet beschikbaar"
         },
         "picture": "/assets/img/topic/food.jpg"
     },
@@ -21,11 +23,13 @@
         "name": "Activity",
         "shortDescriptionI18n": {
             "de": "Mentale und Physische Aktivität",
-            "en": "Mental and Physical Activity"
+            "en": "Mental and Physical Activity",
+            "nl": "Mentale en Fysieke Activiteit"
         },
         "textI18n": {
             "de": "Aktivität-Long text not available",
-            "en": "Activity-Long text not available"
+            "en": "Activity-Long text not available",
+            "nl": "Activiteit-Lange tekst niet beschikbaar"
         },
         "picture": "/assets/img/topic/activity.jpg"
     },
@@ -36,11 +40,13 @@
         "name": "Social",
         "shortDescriptionI18n": {
             "de": "Soziale Kontakte",
-            "en": "Social"
+            "en": "Social",
+            "nl": "Sociaal"
         },
         "textI18n": {
             "de": "Social-Long Text not available",
-            "en": "Social-Long Text not available"
+            "en": "Social-Long Text not available",
+            "nl": "Sociaal-Lange tekst niet beschikbaar"
         },
         "picture": "/assets/img/topic/fitness.jpg"
     }

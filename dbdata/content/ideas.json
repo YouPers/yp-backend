@@ -16,14 +16,16 @@
         "defaultfrequency": "once",
         "descriptionI18n": {
             "de": "Bereiten Sie mit Freunden ein gesundes Essen.",
-            "en": "Prepare a Healthy meal with friends"
+            "en": "Prepare a Healthy meal with friends",
+            "nl": "Bereid een gezonde maaltijd met vrienden"
         },
         "number": "INS-1",
         "picture": "https://insp-content-assets.s3.amazonaws.com/Act-129-fotolia-17589641_XS.jpg",
         "qualityFactor": 7,
         "titleI18n": {
             "de": "Gesundes Essen",
-            "en": "Healthy Diet"
+            "en": "Healthy Diet",
+            "nl": "Gezond Dieet"
         },
         "topics": [
             {
@@ -54,14 +56,16 @@
         "defaultfrequency": "once",
         "descriptionI18n": {
             "de": "Treffen Sie sich mit Freunden zum Schwimmen.",
-            "en": "Meet with friends to go swimming"
+            "en": "Meet with friends to go swimming",
+            "nl": "Spreek af met vrienden om te gaan zwemmen"
         },
         "number": "INS-52",
         "picture": "https://insp-content-assets.s3.amazonaws.com/No-licence-52.jpg",
         "qualityFactor": 5,
         "titleI18n": {
             "de": "Schwimmen",
-            "en": "Swimming"
+            "en": "Swimming",
+            "nl": "Zwemmen"
         },
         "topics": [
             {
@@ -93,14 +97,16 @@
         "defaultfrequency": "once",
         "descriptionI18n": {
             "de": "Geniessen Sie Fussball mit Freunden",
-            "en": "Enjoy watching soccer with friends"
+            "en": "Enjoy watching soccer with friends",
+            "nl": "Voetbal kijken met vrienden"
         },
         "number": "INS-2",
         "picture": "https://insp-content-assets.s3.amazonaws.com/Act-326_123RF_16292983_s.jpg",
         "qualityFactor": 5,
         "titleI18n": {
             "de": "TV-Fussball-Abend",
-            "en": "TV-Soccer-Night"
+            "en": "TV-Soccer-Night",
+            "nl": "TV-voetbalavond"
         },
         "topics": [
             {
@@ -129,14 +135,16 @@
         "defaultfrequency": "once",
         "descriptionI18n": {
             "de": "Laden Sie Freunde ein und schauen Sie einen Film.",
-            "en": "Invite friends to watch a movie"
+            "en": "Invite friends to watch a movie",
+            "nl": "Nodig vrienden uit om een film te kijken"
         },
         "number": "INS-3",
         "picture": "https://insp-content-assets.s3.amazonaws.com/Act-101-123RF-13962383_s.jpg",
         "qualityFactor": 5,
         "titleI18n": {
             "de": "Heimkino",
-            "en": "Home Cinema"
+            "en": "Home Cinema",
+            "nl": "Home Cinema"
         },
         "topics": [
             {
@@ -168,14 +176,16 @@
         "defaultfrequency": "once",
         "descriptionI18n": {
             "de": "Schauen Sie sich mit Freunden einen Film im Kino an.",
-            "en": "Watch a movie at the cinema"
+            "en": "Watch a movie at the cinema",
+            "nl": "Kijk een film in de cinema"
         },
         "number": "INS-4",
         "picture": "https://insp-content-assets.s3.amazonaws.com/Act-101-123RF-13962383_s.jpg",
         "qualityFactor": 5,
         "titleI18n": {
             "de": "Kino",
-            "en": "Cinema"
+            "en": "Cinema",
+            "nl": "Cinema"
         },
         "topics": [
             {
@@ -203,14 +213,16 @@
         "defaultfrequency": "once",
         "descriptionI18n": {
             "de": "Besuchen Sie mit Freunden eine Ausstellung.",
-            "en": "Visit an exhibition of a famous artist"
+            "en": "Visit an exhibition of a famous artist",
+            "nl": "Bezoek een tentoonstelling van een beroemde artiest"
         },
         "number": "INS-5",
         "picture": "https://insp-content-assets.s3.amazonaws.com/Act-150-fotolia-38772043_XS.jpg",
         "qualityFactor": 5,
         "titleI18n": {
             "de": "Kunstgalerie",
-            "en": "Art Gallery"
+            "en": "Art Gallery",
+            "nl": "Kunstgalerij"
         },
         "topics": [
             {
@@ -238,14 +250,16 @@
         "defaultfrequency": "once",
         "descriptionI18n": {
             "de": "Besuchen Sie mit Freunden eine Oper.",
-            "en": "Visit an opera with friends"
+            "en": "Visit an opera with friends",
+            "nl": "Bezoek de opera met vrienden"
         },
         "number": "INS-6",
         "picture": "https://insp-content-assets.s3.amazonaws.com/Act-208-123RF-7796348.jpg",
         "qualityFactor": 5,
         "titleI18n": {
             "de": "Oper",
-            "en": "Opera"
+            "en": "Opera",
+            "nl": "Opera"
         },
         "topics": [
             {
@@ -273,14 +287,16 @@
         "defaultfrequency": "once",
         "descriptionI18n": {
             "de": "Besuchen Sie mit Freunden ein klassisches Konzert.",
-            "en": "Visit a classical concert with friends"
+            "en": "Visit a classical concert with friends",
+            "nl": "Bezoek een klassiek concert met vrienden"
         },
         "number": "INS-7",
         "picture": "https://insp-content-assets.s3.amazonaws.com/Act-208-123RF-7796348.jpg",
         "qualityFactor": 5,
         "titleI18n": {
             "de": "Klassische Musik",
-            "en": "Classical Music"
+            "en": "Classical Music",
+            "nl": "Klassieke Muziek"
         },
         "topics": [
             {
@@ -308,14 +324,16 @@
         "defaultfrequency": "once",
         "descriptionI18n": {
             "de": "Machen Sie mit Freunden einen Ausflug ins Blaue.",
-            "en": "Make a spontaneous trip with friends"
+            "en": "Make a spontaneous trip with friends",
+            "nl": "Doe een spontaan reisje met vrienden"
         },
         "number": "INS-8",
         "picture": "https://insp-content-assets.s3.amazonaws.com/Act-089-123RF-24433598_s.jpg",
         "qualityFactor": 5,
         "titleI18n": {
             "de": "Ausflug",
-            "en": "Excursion"
+            "en": "Excursion",
+            "nl": "Excursie"
         },
         "topics": [
             {
@@ -347,14 +365,16 @@
         "defaultfrequency": "once",
         "descriptionI18n": {
             "de": "Treffen Sie Freunde zum Kaffee & Kuchen.",
-            "en": "Meet friends for coffee and cookies"
+            "en": "Meet friends for coffee and cookies",
+            "nl": "Spreek met je vrienden af voor koffie en koekjes"
         },
         "number": "INS-9",
         "picture": "https://insp-content-assets.s3.amazonaws.com/Act-147-fotolia-29463209_XS.jpg",
         "qualityFactor": 3,
         "titleI18n": {
             "de": "Kaffee und Kuchen",
-            "en": "Coffee & Cookies"
+            "en": "Coffee & Cookies",
+            "nl": "Koffie & Koekjes"
         },
         "topics": [
             {
@@ -385,14 +405,16 @@
         "defaultfrequency": "once",
         "descriptionI18n": {
             "de": "Gehen Sie mit Freunden zum Wandern.",
-            "en": "Go hiking with friends"
+            "en": "Go hiking with friends",
+            "nl": "Ga wandelen met vrienden"
         },
         "number": "INS-10",
         "picture": "https://insp-content-assets.s3.amazonaws.com/Act-121-123RF-8232129_s.jpg",
         "qualityFactor": 5,
         "titleI18n": {
             "de": "Wandern",
-            "en": "Hiking"
+            "en": "Hiking",
+            "nl": "Wandelen"
         },
         "topics": [
             {
@@ -423,14 +445,16 @@
         "defaultfrequency": "once",
         "descriptionI18n": {
             "de": "Machen Sie mit Freunden einen Spaziergang.",
-            "en": "Take a walk with friends"
+            "en": "Take a walk with friends",
+            "nl": "Doe een wandeling met vrienden"
         },
         "number": "INS-11",
         "picture": "https://insp-content-assets.s3.amazonaws.com/Act-065-fotolia-39765463_XS.jpg",
         "qualityFactor": 5,
         "titleI18n": {
             "de": "Stadtspaziergang",
-            "en": "City Stroll"
+            "en": "City Stroll",
+            "nl": "Stadswandeling"
         },
         "topics": [
             {
@@ -462,14 +486,16 @@
         "defaultfrequency": "once",
         "descriptionI18n": {
             "de": "Laden Sie Freunde zum Nachtessen ein.",
-            "en": "Invite friends for dinner"
+            "en": "Invite friends for dinner",
+            "nl": "Nodig vrienden uit voor het avondeten"
         },
         "number": "INS-12",
         "picture": "https://insp-content-assets.s3.amazonaws.com/Act-254-123RF-11190585_s.jpg",
         "qualityFactor": 5,
         "titleI18n": {
             "de": "Nachtessen",
-            "en": "Dinner"
+            "en": "Dinner",
+            "nl": "Avondeten"
         },
         "topics": [
             {
@@ -500,14 +526,16 @@
         "defaultfrequency": "once",
         "descriptionI18n": {
             "de": "Veranstalten Sie mit Freunden einen Jass-Abend.",
-            "en": "Organize an evening of card games for friends"
+            "en": "Organize an evening of card games for friends",
+            "nl": "Organiseer een kaartspel avond voor vrienden"
         },
         "number": "INS-13",
         "picture": "https://insp-content-assets.s3.amazonaws.com/Act-076-123RF-13202946_s.jpg",
         "qualityFactor": 8,
         "titleI18n": {
             "de": "Jassen",
-            "en": "Card Game"
+            "en": "Card Game",
+            "nl": "Kaartspel"
         },
         "topics": [
             {
@@ -539,14 +567,16 @@
         "defaultfrequency": "once",
         "descriptionI18n": {
             "de": "Nehmen Sie an einem Sprachkurs teil.",
-            "en": "Take part in language learning course"
+            "en": "Take part in language learning course",
+            "nl": "Doe mee aan een talencursus"
         },
         "number": "INS-14",
         "picture": "https://insp-content-assets.s3.amazonaws.com/Act-013-123RF-24447320_s.jpg",
         "qualityFactor": 5,
         "titleI18n": {
             "de": "Sprachkurs",
-            "en": "Language Course"
+            "en": "Language Course",
+            "nl": "Talencursus"
         },
         "topics": [
             {
@@ -575,15 +605,17 @@
         "defaultexecutiontype": "self",
         "defaultfrequency": "once",
         "descriptionI18n": {
-            "de": "Trainieren Sie Ihren K\u00f6rper, um in Bewegung zu bleiben.",
-            "en": "Participate in a fitness training course"
+            "de": "Trainieren Sie Ihren Körper, um in Bewegung zu bleiben.",
+            "en": "Participate in a fitness training course",
+            "nl": "Neem deel aan een fitness cursus."
         },
         "number": "INS-15",
         "picture": "https://insp-content-assets.s3.amazonaws.com/Act-123-fotolia-54516748_XS.jpg",
         "qualityFactor": 5,
         "titleI18n": {
-            "de": "Ganzk\u00f6rper-Fitnesstraining",
-            "en": "Fitness Training"
+            "de": "Ganzkörper-Fitnesstraining",
+            "en": "Fitness Training",
+            "nl": "Fitness Training"
         },
         "topics": [
             {
@@ -609,15 +641,17 @@
         "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "descriptionI18n": {
-            "de": "Machen Sie regelm\u00e4ssig Nordic-Walking.",
-            "en": "Go Nordic Walking regularly"
+            "de": "Machen Sie regelmässig Nordic-Walking.",
+            "en": "Go Nordic Walking regularly",
+            "nl": "Ga regelmatig Nordic Walken"
         },
         "number": "INS-16",
         "picture": "https://insp-content-assets.s3.amazonaws.com/Act-270-123RF-11529823_s.jpg",
         "qualityFactor": 9,
         "titleI18n": {
             "de": "Nordic-Walking",
-            "en": "Nordic Walking"
+            "en": "Nordic Walking",
+            "nl": "Nordic Walken"
         },
         "topics": [
             {
@@ -646,14 +680,16 @@
         "defaultfrequency": "once",
         "descriptionI18n": {
             "de": "Besuche mit Freunden einen Volkstanzkurs.",
-            "en": "Learn a folk dance with friends"
+            "en": "Learn a folk dance with friends",
+            "nl": "Leer een volksdans met vrienden"
         },
         "number": "INS-17",
         "picture": "https://insp-content-assets.s3.amazonaws.com/Act-105-fotolia-57474054_XS.jpg",
         "qualityFactor": 5,
         "titleI18n": {
             "de": "Volkstanzkurs",
-            "en": "Folk Dance"
+            "en": "Folk Dance",
+            "nl": "Volksdans"
         },
         "topics": [
             {
@@ -685,14 +721,16 @@
         "defaultfrequency": "once",
         "descriptionI18n": {
             "de": "Frischen Sie Ihre Tanzschritte wieder auf.",
-            "en": "Take part in a dance class with a partner"
+            "en": "Take part in a dance class with a partner",
+            "nl": "Doe een dansles met een partner"
         },
         "number": "INS-18",
         "picture": "https://insp-content-assets.s3.amazonaws.com/Act-105-fotolia-57474054_XS.jpg",
         "qualityFactor": 5,
         "titleI18n": {
             "de": "Standardtanzkurs",
-            "en": "Standard Dance"
+            "en": "Standard Dance",
+            "nl": "Standaard Dans"
         },
         "topics": [
             {
@@ -724,14 +762,16 @@
         "defaultfrequency": "once",
         "descriptionI18n": {
             "de": "Gehen Sie mit Freunden ins Turnen.",
-            "en": "Join a gymnastics group with friends"
+            "en": "Join a gymnastics group with friends",
+            "nl": "Word lid van een gymnastiek groep met vrienden"
         },
         "number": "INS-19",
         "picture": "https://insp-content-assets.s3.amazonaws.com/Act-111-fotolia-54569177_XS.jpg",
         "qualityFactor": 5,
         "titleI18n": {
             "de": "Gymnastik",
-            "en": "Gymnastics"
+            "en": "Gymnastics",
+            "nl": "Gymnastiek"
         },
         "topics": [
             {
@@ -761,15 +801,17 @@
         "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "descriptionI18n": {
-            "de": "Machen Sie regelm\u00e4ssiges Training zur Musik.",
-            "en": "Exercise regularly with cultural"
+            "de": "Machen Sie regelmässiges Training zur Musik.",
+            "en": "Exercise regularly with cultural",
+            "nl": "Oefen regelmatig met inspirerende muziek "
         },
         "number": "INS-20",
         "picture": "https://insp-content-assets.s3.amazonaws.com/Act-184-fotolia-63133004_XS.jpg",
         "qualityFactor": 5,
         "titleI18n": {
             "de": "Musik und Bewegung",
-            "en": "Music & Exercise"
+            "en": "Music & Exercise",
+            "nl": "Muziek & Oefening"
         },
         "topics": [
             {
@@ -797,15 +839,17 @@
         "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "descriptionI18n": {
-            "de": "Machen Sie regelm\u00e4ssig kreatives Tanzen.",
-            "en": "Go creative dancing regularly"
+            "de": "Machen Sie regelmässig kreatives Tanzen.",
+            "en": "Go creative dancing regularly",
+            "nl": "Ga regelmatig creatief dansen"
         },
         "number": "INS-21",
         "picture": "https://insp-content-assets.s3.amazonaws.com/Act-099-123RF-9765614_s.jpg",
         "qualityFactor": 5,
         "titleI18n": {
             "de": "Kreatives Tanzen",
-            "en": "Creative Dance"
+            "en": "Creative Dance",
+            "nl": "Creatief Dansen"
         },
         "topics": [
             {
@@ -833,14 +877,16 @@
         "defaultfrequency": "once",
         "descriptionI18n": {
             "de": "Machen Sie Yoga als ganzheitliches Training.",
-            "en": "Practice yoga as a workout for relaxation"
+            "en": "Practice yoga as a workout for relaxation",
+            "nl": "Oefen yoga als ontspanningstraining"
         },
         "number": "INS-22",
         "picture": "https://insp-content-assets.s3.amazonaws.com/Act-083-123RF-9108666_s.jpg",
         "qualityFactor": 5,
         "titleI18n": {
             "de": "Yoga",
-            "en": "Yoga"
+            "en": "Yoga",
+            "nl": "Yoga"
         },
         "topics": [
             {
@@ -867,15 +913,17 @@
         "defaultexecutiontype": "self",
         "defaultfrequency": "once",
         "descriptionI18n": {
-            "de": "Gehen Sie ins Pilates-Training und st\u00e4rken Sie Ihre Muskulatur.",
-            "en": "Practice Pilates to strengthen your muscles"
+            "de": "Gehen Sie ins Pilates-Training und stärken Sie Ihre Muskulatur.",
+            "en": "Practice Pilates to strengthen your muscles",
+            "nl": "Oefen Pilates om je spieren te verstevigen"
         },
         "number": "INS-23",
         "picture": "https://insp-content-assets.s3.amazonaws.com/Act-184-fotolia-63133004_XS.jpg",
         "qualityFactor": 5,
         "titleI18n": {
             "de": "Pilates",
-            "en": "Pilates"
+            "en": "Pilates",
+            "nl": "Pilates"
         },
         "topics": [
             {
@@ -903,14 +951,16 @@
         "defaultfrequency": "once",
         "descriptionI18n": {
             "de": "Machen Sie Tai Chi oder Qi Gong zur Meditation und Gesundheit.",
-            "en": "Do Tai Chi or Qi Gong for maintaining health"
+            "en": "Do Tai Chi or Qi Gong for maintaining health",
+            "nl": "Doe Tai Chi of Qi Gong om je gezondheid te onderhouden"
         },
         "number": "INS-24",
         "picture": "https://insp-content-assets.s3.amazonaws.com/Act-269-Fotolia-51330801_XS.jpg",
         "qualityFactor": 5,
         "titleI18n": {
             "de": "Tai Chi - Qi Gong",
-            "en": "Tai Chi - Qi Gong"
+            "en": "Tai Chi - Qi Gong",
+            "nl": "Tai Chi - Qi Gong"
         },
         "topics": [
             {
@@ -937,14 +987,16 @@
         "defaultfrequency": "once",
         "descriptionI18n": {
             "de": "Trainieren Sie Ihre Gehirnleistung mit Memory und Sudoku.",
-            "en": "Train your brain with Memory or Sudoku"
+            "en": "Train your brain with Memory or Sudoku",
+            "nl": "Oefen je hersenen met Memory of Sudoku"
         },
         "number": "INS-25",
         "picture": "https://insp-content-assets.s3.amazonaws.com/Act-325_123RF_13765416_s.jpg",
         "qualityFactor": 5,
         "titleI18n": {
             "de": "Denk-Fitness",
-            "en": "Mind Training"
+            "en": "Mind Training",
+            "nl": "Mind Training"
         },
         "topics": [
             {
@@ -971,15 +1023,17 @@
         "defaultexecutiontype": "self",
         "defaultfrequency": "once",
         "descriptionI18n": {
-            "de": "Trainieren Sie regelm\u00e4ssig nach der Feldenkrais-Methode.",
-            "en": "Work out regularly according to Feldenkrais"
+            "de": "Trainieren Sie regelmässig nach der Feldenkrais-Methode.",
+            "en": "Work out regularly according to Feldenkrais",
+            "nl": "Train regelmatig volgens Feldenkrais"
         },
         "number": "INS-26",
         "picture": "https://insp-content-assets.s3.amazonaws.com/Act-168-fotolia-55593971_XS.jpg",
         "qualityFactor": 5,
         "titleI18n": {
             "de": "Feldenkrais",
-            "en": "Feldenkrais"
+            "en": "Feldenkrais",
+            "nl": "Feldenkrais"
         },
         "topics": [
             {
@@ -1007,14 +1061,16 @@
         "defaultfrequency": "once",
         "descriptionI18n": {
             "de": "Lernen Sie, besser mit dem Computer umzugehen.",
-            "en": "Improve your computer skills"
+            "en": "Improve your computer skills",
+            "nl": "Verbeter je computervaardigheden"
         },
         "number": "INS-27",
         "picture": "https://insp-content-assets.s3.amazonaws.com/Act-021-123RF-11010571_s.jpg",
         "qualityFactor": 5,
         "titleI18n": {
             "de": "Computerkurs",
-            "en": "Computer Course"
+            "en": "Computer Course",
+            "nl": "Computercursus"
         },
         "topics": [
             {
@@ -1043,15 +1099,17 @@
         "defaultexecutiontype": "self",
         "defaultfrequency": "once",
         "descriptionI18n": {
-            "de": "Seien Sie kreativ und \u00fcben Sie sich im Gestalten.",
-            "en": "Be creative and express yourself"
+            "de": "Seien Sie kreativ und üben Sie sich im Gestalten.",
+            "en": "Be creative and express yourself",
+            "nl": "Wees creatief en druk jezelf uit"
         },
         "number": "INS-28",
         "picture": "https://insp-content-assets.s3.amazonaws.com/Act-150-fotolia-38772043_XS.jpg",
         "qualityFactor": 5,
         "titleI18n": {
             "de": "Zeichnen und Malen",
-            "en": "Draw and Paint"
+            "en": "Draw and Paint",
+            "nl": "Teken en Verf"
         },
         "topics": [
             {
@@ -1079,15 +1137,17 @@
         "defaultexecutiontype": "self",
         "defaultfrequency": "once",
         "descriptionI18n": {
-            "de": "Besuchen Sie einen Kurs und dr\u00fccken Sich sich bildlich aus.",
-            "en": "Attend an art course to improve your skills"
+            "de": "Besuchen Sie einen Kurs und drücken Sich sich bildlich aus.",
+            "en": "Attend an art course to improve your skills",
+            "nl": "Volg een kunstopleiding om je vaardigheden te verbeteren"
         },
         "number": "INS-29",
         "picture": "https://insp-content-assets.s3.amazonaws.com/Act-150-fotolia-38772043_XS.jpg",
         "qualityFactor": 5,
         "titleI18n": {
             "de": "Malkurs",
-            "en": "Painting Course"
+            "en": "Painting Course",
+            "nl": "Schildercursus"
         },
         "topics": [
             {
@@ -1118,14 +1178,16 @@
         "defaultfrequency": "once",
         "descriptionI18n": {
             "de": "Lernen Sie Ihr Smartphone besser einzusetzen.",
-            "en": "Take a course to get familiar with your phone"
+            "en": "Take a course to get familiar with your phone",
+            "nl": "Volg een opleiding om vertrouwd te raken met je telefoon"
         },
         "number": "INS-30",
         "picture": "https://insp-content-assets.s3.amazonaws.com/Act-122-123RF-17421718_s.jpg",
         "qualityFactor": 5,
         "titleI18n": {
             "de": "Smartphone",
-            "en": "Smartphone"
+            "en": "Smartphone",
+            "nl": "Smartphone"
         },
         "topics": [
             {
@@ -1156,15 +1218,17 @@
         "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "descriptionI18n": {
-            "de": "Belegen Sie einen Kurs und kn\u00fcpfen dort neue Kontakte.",
-            "en": "Take a cooking class to make new friends"
+            "de": "Belegen Sie einen Kurs und knüpfen dort neue Kontakte.",
+            "en": "Take a cooking class to make new friends",
+            "nl": "Volg een kookles om nieuwe vrienden te maken"
         },
         "number": "INS-31",
         "picture": "https://insp-content-assets.s3.amazonaws.com/Act-236-fotolia-52952267_XS.jpg",
         "qualityFactor": 5,
         "titleI18n": {
             "de": "Kochen",
-            "en": "Cooking"
+            "en": "Cooking",
+            "nl": "Koken"
         },
         "topics": [
             {
@@ -1197,14 +1261,16 @@
         "defaultfrequency": "once",
         "descriptionI18n": {
             "de": "Lernen Sie Ihr Tablet besser kennen",
-            "en": "Take an tablet handling course"
+            "en": "Take an tablet handling course",
+            "nl": "Volg een cursus om met je tablet te leren omgaan"
         },
         "number": "INS-32",
         "picture": "https://insp-content-assets.s3.amazonaws.com/Act-122-123RF-17421718_s.jpg",
         "qualityFactor": 5,
         "titleI18n": {
             "de": "Tablet",
-            "en": "iPad"
+            "en": "iPad",
+            "nl": "iPad"
         },
         "topics": [
             {
@@ -1230,15 +1296,17 @@
         "defaultexecutiontype": "self",
         "defaultfrequency": "once",
         "descriptionI18n": {
-            "de": "Machen Sie regelm\u00e4ssig Autogenes Training zur Entspannung.",
-            "en": "Practice Autogenic Training for relaxation"
+            "de": "Machen Sie regelmässig Autogenes Training zur Entspannung.",
+            "en": "Practice Autogenic Training for relaxation",
+            "nl": "Oefen Autogene Training voor ontspanning"
         },
         "number": "INS-33",
         "picture": "https://insp-content-assets.s3.amazonaws.com/Act-018-fotolia-27336210_XS.jpg",
         "qualityFactor": 5,
         "titleI18n": {
             "de": "Autogenes Training",
-            "en": "Autogenic Training"
+            "en": "Autogenic Training",
+            "nl": "Autogene Training"
         },
         "topics": [
             {
@@ -1265,14 +1333,16 @@
         "defaultfrequency": "once",
         "descriptionI18n": {
             "de": "Lassen Sie sich massieren und geniessen Sie die Entspannung.",
-            "en": "Enjoy a relaxing massage"
+            "en": "Enjoy a relaxing massage",
+            "nl": "Geniet van een relaxerende massage"
         },
         "number": "INS-34",
         "picture": "https://insp-content-assets.s3.amazonaws.com/Act-082-fotolia-63176422_XS.jpg",
         "qualityFactor": 5,
         "titleI18n": {
             "de": "Massage",
-            "en": "Massage"
+            "en": "Massage",
+            "nl": "Massage"
         },
         "topics": [
             {
@@ -1299,14 +1369,16 @@
         "defaultfrequency": "once",
         "descriptionI18n": {
             "de": "Leisten Sie sich Entspannung und machen ein Wellness Weekend.",
-            "en": "Organize a wellness weekend"
+            "en": "Organize a wellness weekend",
+            "nl": "Organiseer een welness weekend"
         },
         "number": "INS-35",
         "picture": "https://insp-content-assets.s3.amazonaws.com/Act-087-fotolia-57235991_XS.jpg",
         "qualityFactor": 5,
         "titleI18n": {
             "de": "Wellness",
-            "en": "Wellness"
+            "en": "Wellness",
+            "nl": "Wellness"
         },
         "topics": [
             {
@@ -1332,15 +1404,17 @@
         "defaultexecutiontype": "self",
         "defaultfrequency": "once",
         "descriptionI18n": {
-            "de": "Erledigen Sie f\u00fcr eine hilfsbed\u00fcrftige Person den Einkauf.",
-            "en": "Provide shopping help for a needy person"
+            "de": "Erledigen Sie für eine hilfsbedürftige Person den Einkauf.",
+            "en": "Provide shopping help for a needy person",
+            "nl": "Zorg voor hulp bij het winkelen aan een hulpbehoevend persoon"
         },
         "number": "INS-36",
         "picture": "https://insp-content-assets.s3.amazonaws.com/Act-274-fotolia-69948594_XS.jpg",
         "qualityFactor": 5,
         "titleI18n": {
             "de": "Einkaufshilfe",
-            "en": "Shopping Help"
+            "en": "Shopping Help",
+            "nl": "Hulp bij het winkelen"
         },
         "topics": [
             {
@@ -1367,14 +1441,16 @@
         "defaultfrequency": "once",
         "descriptionI18n": {
             "de": "Betreuen Sie einen Nachmittag lang eine alleinstehende Person.",
-            "en": "Provide voluntary help for a person at home"
+            "en": "Provide voluntary help for a person at home",
+            "nl": "Bied vrijwillige hulp aan voor een hulpbehoevende thuis"
         },
         "number": "INS-37",
         "picture": "https://insp-content-assets.s3.amazonaws.com/Act-210-123RF-14597497_s.jpg",
         "qualityFactor": 5,
         "titleI18n": {
             "de": "Betreuungshilfe",
-            "en": "Support Help"
+            "en": "Support Help",
+            "nl": "Steun en hulp"
         },
         "topics": [
             {
@@ -1401,14 +1477,16 @@
         "defaultfrequency": "once",
         "descriptionI18n": {
             "de": "Betreuen Sie einen Nachmittag lang Nachbarskinder.",
-            "en": "Look after children for an afternoon"
+            "en": "Look after children for an afternoon",
+            "nl": "Zorg een namiddag voor kinderen"
         },
         "number": "INS-38",
         "picture": "https://insp-content-assets.s3.amazonaws.com/Act-202-123RF-5395796_s.jpg",
         "qualityFactor": 5,
         "titleI18n": {
-            "de": "Kinderh\u00fcten",
-            "en": "Babysitting"
+            "de": "Kinderhüten",
+            "en": "Babysitting",
+            "nl": "Babysitten"
         },
         "topics": [
             {
@@ -1435,14 +1513,16 @@
         "defaultfrequency": "once",
         "descriptionI18n": {
             "de": "Begleiten Sie eine Person zu einem wichtigen Termin.",
-            "en": "Accompany a person to an important event"
+            "en": "Accompany a person to an important event",
+            "nl": "Vergezel iemand naar een belangirjk evenement"
         },
         "number": "INS-39",
         "picture": "https://insp-content-assets.s3.amazonaws.com/Act-210-123RF-14597497_s.jpg",
         "qualityFactor": 5,
         "titleI18n": {
             "de": "Begleithilfe",
-            "en": "Attendance Help"
+            "en": "Attendance Help",
+            "nl": "Hulp bij aanwezig zijn"
         },
         "topics": [
             {
@@ -1470,15 +1550,17 @@
         "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "descriptionI18n": {
-            "de": "Tauchen Sie in die Geschichten ferner L\u00e4nder ein.",
-            "en": "Attend a seminar of a travelogue"
+            "de": "Tauchen Sie in die Geschichten ferner Länder ein.",
+            "en": "Attend a seminar of a travelogue",
+            "nl": "Volg een seminarie of een reisverslag"
         },
         "number": "INS-40",
         "picture": "https://insp-content-assets.s3.amazonaws.com/Act-097-fotolia-49397052_XS.jpg",
         "qualityFactor": 5,
         "titleI18n": {
-            "de": "Reisepr\u00e4sentation",
-            "en": "Travel Seminar"
+            "de": "Reisepräsentation",
+            "en": "Travel Seminar",
+            "nl": "Reisverslag"
         },
         "topics": [
             {
@@ -1506,15 +1588,17 @@
         "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "descriptionI18n": {
-            "de": "Nehmen Sie an einer F\u00fchrung teil.",
-            "en": "Take a guided tour of Parliamental buildings"
+            "de": "Nehmen Sie an einer Führung teil.",
+            "en": "Take a guided tour of Parliamental buildings",
+            "nl": "Neem een rondleiding in de Parlementaire gebouwen"
         },
         "number": "INS-41",
         "picture": "https://insp-content-assets.s3.amazonaws.com/bundeshaus.jpg",
         "qualityFactor": 5,
         "titleI18n": {
-            "de": "Bundeshausf\u00fchrung",
-            "en": "Governmental Tour"
+            "de": "Bundeshausführung",
+            "en": "Governmental Tour",
+            "nl": "Rondleiding in een overheidsgebouw"
         },
         "topics": [
             {
@@ -1541,14 +1625,16 @@
         "defaultfrequency": "once",
         "descriptionI18n": {
             "de": "Besuchen Sie eine Person im Spital und bereiten ihr so eine Freude.",
-            "en": "Visit someone in hospital"
+            "en": "Visit someone in hospital",
+            "nl": "Bezoek iemand in het ziekenhuis"
         },
         "number": "INS-42",
         "picture": "https://insp-content-assets.s3.amazonaws.com/Act-187-fotolia-50296476_XS.jpg",
         "qualityFactor": 5,
         "titleI18n": {
             "de": "Spitalbesuch",
-            "en": "Hospital Visit"
+            "en": "Hospital Visit",
+            "nl": "Ziekenhuisbezoek"
         },
         "topics": [
             {
@@ -1575,14 +1661,16 @@
         "defaultfrequency": "once",
         "descriptionI18n": {
             "de": "Leisten Sie jemanden Gesellschaft.",
-            "en": "Visit nursing home to keep someone company"
+            "en": "Visit nursing home to keep someone company",
+            "nl": "Bezoek een verpleefhuis om iemand gezelschap te houden"
         },
         "number": "INS-43",
         "picture": "https://insp-content-assets.s3.amazonaws.com/Act-220-123RF-17222171_s.jpg",
         "qualityFactor": 5,
         "titleI18n": {
             "de": "Pflegeheimbesuch",
-            "en": "Nursing Home Visit"
+            "en": "Nursing Home Visit",
+            "nl": "Bezoek aan het Verpleeghuis"
         },
         "topics": [
             {
@@ -1609,15 +1697,17 @@
         "defaultexecutiontype": "self",
         "defaultfrequency": "once",
         "descriptionI18n": {
-            "de": "Besuchen Sie Verwandte, die Sie schon l\u00e4nger nicht mehr gesehen haben.",
-            "en": "Visit relatives you have not seen for a while"
+            "de": "Besuchen Sie Verwandte, die Sie schon länger nicht mehr gesehen haben.",
+            "en": "Visit relatives you have not seen for a while",
+            "nl": "Bezoek familie die je een tijdje niet hebt gezien"
         },
         "number": "INS-44",
         "picture": "https://insp-content-assets.s3.amazonaws.com/Act-137-123RF-7475933_s.jpg",
         "qualityFactor": 5,
         "titleI18n": {
             "de": "Verwandtenbesuch",
-            "en": "Relatives Visit"
+            "en": "Relatives Visit",
+            "nl": "Familiebezoek"
         },
         "topics": [
             {
@@ -1646,14 +1736,16 @@
         "defaultfrequency": "once",
         "descriptionI18n": {
             "de": "Gehen Sie mit Freunden zum Kegeln oder Bowling.",
-            "en": "Go bowling with friends"
+            "en": "Go bowling with friends",
+            "nl": "Ga bowlen met vrienden"
         },
         "number": "INS-45",
         "picture": "https://insp-content-assets.s3.amazonaws.com/No-licence-45.jpg",
         "qualityFactor": 5,
         "titleI18n": {
             "de": "Kegeln",
-            "en": "Bowling"
+            "en": "Bowling",
+            "nl": "Bowlen"
         },
         "topics": [
             {
@@ -1683,15 +1775,17 @@
         "defaultexecutiontype": "group",
         "defaultfrequency": "once",
         "descriptionI18n": {
-            "de": "Nehmen Sie an einer F\u00fchrung durch eine K\u00e4serei teil.",
-            "en": "Participate in a tour of a cheese factory"
+            "de": "Nehmen Sie an einer Führung durch eine Käserei teil.",
+            "en": "Participate in a tour of a cheese factory",
+            "nl": "Doe een rondleiding in een kaasfabriek"
         },
         "number": "INS-46",
         "picture": "https://insp-content-assets.s3.amazonaws.com/No-licence-46.jpg",
         "qualityFactor": 5,
         "titleI18n": {
-            "de": "Molkereif\u00fchrung",
-            "en": "Dairy Tour"
+            "de": "Molkereiführung",
+            "en": "Dairy Tour",
+            "nl": "Rondleiding in een melkveebedrijf"
         },
         "topics": [
             {
@@ -1717,15 +1811,17 @@
         "defaultexecutiontype": "self",
         "defaultfrequency": "once",
         "descriptionI18n": {
-            "de": "Gehen Sie regelm\u00e4ssig in die Sauna zur Entspannung.",
-            "en": "Make regular trips to the sauna to relax"
+            "de": "Gehen Sie regelmässig in die Sauna zur Entspannung.",
+            "en": "Make regular trips to the sauna to relax",
+            "nl": "Doe regelmatige bezoekjes aan de sauna om te relaxeren"
         },
         "number": "INS-47",
         "picture": "https://insp-content-assets.s3.amazonaws.com/No-licence-47.jpg",
         "qualityFactor": 5,
         "titleI18n": {
             "de": "Sauna",
-            "en": "Sauna"
+            "en": "Sauna",
+            "nl": "Sauna"
         },
         "topics": [
             {
@@ -1752,15 +1848,17 @@
         "defaultexecutiontype": "self",
         "defaultfrequency": "once",
         "descriptionI18n": {
-            "de": "Machen Sie regelm\u00e4ssiges R\u00fcckentraining.",
-            "en": "Practice regular back training"
+            "de": "Machen Sie regelmässiges Rückentraining.",
+            "en": "Practice regular back training",
+            "nl": "Doe regelmatig Rugtraining"
         },
         "number": "INS-48",
         "picture": "https://insp-content-assets.s3.amazonaws.com/No-licence-48.jpg",
         "qualityFactor": 5,
         "titleI18n": {
-            "de": "R\u00fcckentraining",
-            "en": "Back Training"
+            "de": "Rückentraining",
+            "en": "Back Training",
+            "nl": "Rugtraining"
         },
         "topics": [
             {
@@ -1788,14 +1886,16 @@
         "defaultfrequency": "once",
         "descriptionI18n": {
             "de": "Treffen Sie sich mit Freunden zum Schachspielen.",
-            "en": "Gather with friends to play chess"
+            "en": "Gather with friends to play chess",
+            "nl": "Ontmoet vrienden om te schaken"
         },
         "number": "INS-49",
         "picture": "https://insp-content-assets.s3.amazonaws.com/No-licence-49.jpg",
         "qualityFactor": 5,
         "titleI18n": {
             "de": "Schachspiel",
-            "en": "Chess Game"
+            "en": "Chess Game",
+            "nl": "Schaakspel"
         },
         "topics": [
             {
@@ -1826,14 +1926,16 @@
         "defaultfrequency": "once",
         "descriptionI18n": {
             "de": "Gehen Sie ins Wasserfitness-Training.",
-            "en": "Attend water fitness training"
+            "en": "Attend water fitness training",
+            "nl": "Neem deel aan Aqua-aerobics"
         },
         "number": "INS-50",
         "picture": "https://insp-content-assets.s3.amazonaws.com/No-licence-50.jpg",
         "qualityFactor": 4,
         "titleI18n": {
             "de": "Wasser-Fitness",
-            "en": "Water Fitness"
+            "en": "Water Fitness",
+            "nl": "Aqua-aerobics"
         },
         "topics": [
             {
@@ -1860,15 +1962,17 @@
         "defaultexecutiontype": "self",
         "defaultfrequency": "once",
         "descriptionI18n": {
-            "de": "Machen Sie regelm\u00e4ssig Wassergymnastik.",
-            "en": "Practice water gymnastics regularly"
+            "de": "Machen Sie regelmässig Wassergymnastik.",
+            "en": "Practice water gymnastics regularly",
+            "nl": "Oefen regelmatig Watergymnastiek"
         },
         "number": "INS-51",
         "picture": "https://insp-content-assets.s3.amazonaws.com/No-licence-51.jpg",
         "qualityFactor": 5,
         "titleI18n": {
             "de": "Wassergymnastik",
-            "en": "Water Gymnastics"
+            "en": "Water Gymnastics",
+            "nl": "Watergymnastiek"
         },
         "topics": [
             {

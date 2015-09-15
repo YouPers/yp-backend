@@ -5,7 +5,8 @@ var mongoose = require('ypbackendlib').mongoose,
     common = require('ypbackendlib').commmonModels,
     ObjectId = mongoose.Schema.ObjectId,
     auth = require('ypbackendlib').auth,
-    enums = require('./enums');
+    enums = require('./enums'),
+    config = require('../config/config');
 
 /**
  * Idea Schema
@@ -28,7 +29,7 @@ var IdeaSchema = common.newSchema({
     picture: {type: String},
     action: { type: String, enum: enums.actionType },
     categories: [{type: String}]
-});
+}, null, null, config);
 
 IdeaSchema.statics.adminAttrsSelector =  '+recWeights +qualityFactor';
 

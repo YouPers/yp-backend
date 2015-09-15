@@ -1,6 +1,8 @@
 var mongoose = require('ypbackendlib').mongoose,
     Model = mongoose.model('Topic'),
-    generic = require('ypbackendlib').handlers;
+    generic = require('ypbackendlib').handlers,
+    config = require('../config/config');
+
 
 module.exports = function (swagger) {
 
@@ -21,7 +23,7 @@ module.exports = function (swagger) {
             "nickname": "getTopicById",
             accessLevel: 'al_individual'
         },
-        action: generic.getByIdFn(baseUrl, Model)
+        action: generic.getByIdFn(baseUrl, Model, null, config)
     });
 
     swagger.addOperation({
@@ -41,7 +43,7 @@ module.exports = function (swagger) {
             "nickname": "getTopics",
             accessLevel: 'al_individual'
         },
-        action: generic.getAllFn(baseUrl, Model)
+        action: generic.getAllFn(baseUrl, Model, null, config)
     });
 
     swagger.addOperation({

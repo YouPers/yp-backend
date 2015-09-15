@@ -130,7 +130,7 @@ function putIdea(req, res, next) {
 }
 
 
-function getAllIdeas(baseUrl, Model) {
+function getAllIdeas(baseUrl, Model, fromAllOwners, config) {
     return function (req, res, next) {
         var finder = '';
 
@@ -149,7 +149,7 @@ function getAllIdeas(baseUrl, Model) {
             dbQuery.and({topics: req.params.topic});
         }
 
-        generic.addStandardQueryOptions(req, dbQuery, Model)
+        generic.addStandardQueryOptions(req, dbQuery, Model, config)
             .exec(generic.sendListCb(req, res, next));
     };
 }

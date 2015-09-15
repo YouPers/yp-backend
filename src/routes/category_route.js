@@ -5,9 +5,11 @@
 
 var mongoose = require('ypbackendlib').mongoose,
 //    genericHandlers = require('ypbackendlib').handlers,
-    routes = require('ypbackendlib').routes;
+    routes = require('ypbackendlib').routes,
+    config = require('../config/config');
+
 
 
 module.exports = function (swagger) {
-    routes.addGenericRoutes(swagger, mongoose.model('Category'), '/categories');
+    routes.addGenericRoutes(swagger, mongoose.model('Category'), '/categories', null, config);
 };

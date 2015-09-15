@@ -84,7 +84,7 @@
     },
     "i18n": {
         "fallbackLng": "en",
-        "supportedLngs": ["de", "en", "nl"]
+        "supportedLngs": ["de", "nl", "en"]
     }
 }
 

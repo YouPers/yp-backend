@@ -6,7 +6,8 @@
 var mongoose = require('ypbackendlib').mongoose,
     Idea = mongoose.model('Idea'),
     generic = require('ypbackendlib').handlers,
-    handlers = require('../handlers/idea_handlers');
+    handlers = require('../handlers/idea_handlers'),
+    config = require('../config/config');
 
 module.exports = function (swagger) {
 
@@ -28,7 +29,7 @@ module.exports = function (swagger) {
             accessLevel: 'al_all',
             beforeCallbacks: []
         },
-        action: generic.getByIdFn(baseUrl, Idea)
+        action: generic.getByIdFn(baseUrl, Idea, null, config)
 
     });
 
@@ -70,7 +71,7 @@ module.exports = function (swagger) {
             accessLevel: 'al_all',
             beforeCallbacks: []
         },
-        action: handlers.getAllIdeas(baseUrl, Idea)
+        action: handlers.getAllIdeas(baseUrl, Idea, null, config)
     });
 
 

@@ -135,7 +135,7 @@ consts.newUserInNewCampaignApi(
                         { docId: campaign.id, model: 'Campaign'}
                     ],
 
-                    language: 'de',
+                    language: 'en',
 
                     publishFrom: moment().toDate(),
                     publishTo: moment().add(1, 'minutes').toDate()
@@ -143,19 +143,19 @@ consts.newUserInNewCampaignApi(
                 };
 
 
-                frisby.create('Message: post "de" message')
+                frisby.create('Message: post "en" message')
                     .post(URL + '/messages', message)
                     .auth(consts.users.test_prodadm.username, 'yp')
                     .expectStatus(201)
                     .afterJSON(function (message) {
 
-                        frisby.create('Message: get "de" message with no language set in user profile')
+                        frisby.create('Message: get "en" message with no language set in user profile')
                             .get(URL + '/socialInteractions')
                             .auth(user.username, 'yp')
                             .expectStatus(200)
                             .afterJSON(function (socialInteractions) {
                                 expect(socialInteractions.length).toEqual(1);
-                                expect(socialInteractions[0].language).toEqual('de');
+                                expect(socialInteractions[0].language).toEqual('en');
 
                                 var profile = {
                                     prefs: {
@@ -179,28 +179,28 @@ consts.newUserInNewCampaignApi(
                                     .expectStatus(200)
                                     .afterJSON(function (updatedProfile) {
 
-                                        frisby.create('Message: no german message for french user')
+                                        frisby.create('Message: no english message for french user')
                                             .get(URL + '/socialInteractions')
                                             .auth(user.username, 'yp')
                                             .expectStatus(200)
                                             .afterJSON(function (socialInteractions) {
                                                 expect(socialInteractions.length).toEqual(0);
 
-                                                profile.language = 'de';
+                                                profile.language = 'en';
 
-                                                frisby.create('Message: set profile language to "de"')
+                                                frisby.create('Message: set profile language to "en"')
                                                     .put(URL + '/profiles/' + user.profile, profile)
                                                     .auth(user.username, 'yp')
                                                     .expectStatus(200)
                                                     .afterJSON(function (updatedProfile) {
 
-                                                        frisby.create('Message: get german message as german user')
+                                                        frisby.create('Message: get english message as english user')
                                                             .get(URL + '/socialInteractions')
                                                             .auth(user.username, 'yp')
                                                             .expectStatus(200)
                                                             .afterJSON(function (socialInteractions) {
                                                                 expect(socialInteractions.length).toEqual(1);
-                                                                expect(socialInteractions[0].language).toEqual('de');
+                                                                expect(socialInteractions[0].language).toEqual('en');
 
                                                                 frisby.create('Message: delete the message as author')
                                                                     .delete(URL + '/socialInteractions/' + message.id)

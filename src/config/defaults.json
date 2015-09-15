@@ -97,7 +97,12 @@
     "paymentCodeChecking": "enabled",
     "batch": {
         "resultRecipients": ["youpers.operator@gmail.com"]
+    },
+    "i18n": {
+        "fallbackLng": "en",
+        "supportedLngs": ["de", "en", "fr"]
     }
+
 
 }
 

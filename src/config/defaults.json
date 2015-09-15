@@ -81,6 +81,10 @@
     "predio": {
         "URL": "http://insp-rec.youpers.com:7070/",
         "accessKey": "3SWcO02WrQhCmzXmK9EAog5pViMRUHz8R4kxqCp1is7aIVJYoWPeyMiX2wm6qnY4"
+    },
+    "i18n": {
+        "fallbackLng": "en",
+        "supportedLngs": ["de", "en", "nl"]
     }
 }
 

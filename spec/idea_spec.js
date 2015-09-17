@@ -95,7 +95,7 @@ frisby.create('Idea: GET all activites')
 
         // Use data from previous result in next test
         frisby.create('Idea: Get single Idea')
-            .get(URL + '/ideas/' + ideas[0].id)
+            .get(URL + '/ideas/' + ideas[3].id)
             .expectStatus(200)
             .expectJSON({
                 id: String,

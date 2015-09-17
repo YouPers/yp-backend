@@ -99,7 +99,7 @@
         "resultRecipients": ["youpers.operator@gmail.com"]
     },
     "i18n": {
-        "fallbackLng": "en",
+        "fallbackLng": "de",
         "supportedLngs": ["de", "en", "fr"]
     }
 

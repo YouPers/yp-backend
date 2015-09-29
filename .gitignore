@@ -3,3 +3,4 @@ node_modules
 dist/api-docs
 atlassian-ide-plugin.xml
 logs/
+processes.json

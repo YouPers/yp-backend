@@ -287,7 +287,7 @@ function getInspirations(user, queryOptions, locale, finalDone) {
                 });
 
                 if (recs.length > 1) {
-                   log.error({idea: ideaToRec.id, foundRecs: recs}, 'found more than 1 existing rec for this idea: ' );
+                   log.error({idea: ideaToRec._id.toString(), foundRecs: recs.length}, 'found more than 1 existing rec for this idea: ' );
                 }
                 var rec;
 

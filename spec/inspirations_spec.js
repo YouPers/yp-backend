@@ -4,7 +4,7 @@ var lib = require('ypbackendlib'),
     _ = require('lodash'),
     async = require('async'),
     moment = require('moment'),
-    i18n = lib.i18n.initialize(),
+    i18n = lib.i18n().initialize(),
     user, user2, profile;
 
 db.initializeDb();

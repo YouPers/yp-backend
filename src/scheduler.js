@@ -23,7 +23,7 @@ var jobs = [
     {
         name: 'RolloverGoals',
         description: 'rolls over all goals with an end date in the future to the next week, su night',
-        cronTime: '00 00 21 * * 7',
+        cronTime: '00 00 21 * * 0',
         onTick: require('./batch/rolloverGoals').run,
         start: true,
         context: {

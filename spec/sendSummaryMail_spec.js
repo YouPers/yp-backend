@@ -29,7 +29,7 @@ describe('Send Summary Email', function () {
                     expect(err).toBe(null);
                     expect(result).toBeDefined();
                     return done();
-                }, {log: log, i18n: ypbackendlib.i18n.initialize()});
+                }, {log: log, i18n: ypbackendlib.i18n(config).initialize()});
             });
     });
 

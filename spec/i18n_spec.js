@@ -23,7 +23,7 @@ frisby.create('i18n: GET all ideas, no language given, check default')
 
         // Use data from previous result in next test
         frisby.create('i18n: Get one idea, no language given, check default')
-            .get(URL + '/ideas/' + ideas[0].id)
+            .get(URL + '/ideas/' + ideas[50].id)
             .expectStatus(200)
             .expectJSONTypes({
                 id: String,
@@ -46,7 +46,7 @@ frisby.create('i18n: GET all ideas, no language given, check default')
                         expect(updatedIdea.title).not.toEqual(initialTitleDe);
 
                         frisby.create('i18n: Get idea, "en" language given')
-                            .get(URL + '/ideas/' + ideas[0].id)
+                            .get(URL + '/ideas/' + ideas[50].id)
                             .addHeader('yp-language', 'en')
                             .expectStatus(200)
                             .expectJSON({
@@ -78,4 +78,58 @@ frisby.create('i18n: GET all ideas, no language given, check default')
     })
     .toss();
 
+
+frisby.create('i18n: GET all ideas, en specified')
+    .get(URL + '/ideas')
+    .addHeader('yp-language', 'en')
+    .expectStatus(200)
+
+    .expectHeader('yp-language', 'en')
+    .afterJSON(function (ideas) {
+
+        // Use data from previous result in next test
+        frisby.create('i18n: Get one idea, no language given, check default 2')
+            .get(URL + '/ideas/' + ideas[50].id)
+            .expectStatus(200)
+            .addHeader('yp-language', 'en')
+            .expectJSONTypes({
+                id: String,
+                title: String
+            })
+            .expectHeader('yp-language', 'en')
+            .afterJSON(function (idea) {
+                expect(idea.title).toBeDefined();
+
+            })
+            .toss();
+    })
+    .toss();
+
+frisby.create('i18n: GET all ideas, unknown locale specified')
+    .get(URL + '/ideas')
+    .addHeader('yp-language', 'gg')
+    .expectStatus(200)
+    .expectJSONTypes('*', {
+        id: String,
+        title: String
+    })
+    .expectHeader('yp-language', 'de')
+    .afterJSON(function (ideas) {
+
+        // Use data from previous result in next test
+        frisby.create('i18n: Get one idea, no language given, check default')
+            .get(URL + '/ideas/' + ideas[3].id)
+            .expectStatus(200)
+            .addHeader('yp-language', 'gg')
+            .expectJSONTypes({
+                id: String,
+                title: String
+            })
+            .expectHeader('yp-language', 'de')
+            .afterJSON(function (idea) {
+                expect(idea.title).toBeDefined();
+            })
+            .toss();
+    })
+    .toss();
 

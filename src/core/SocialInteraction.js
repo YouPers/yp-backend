@@ -14,7 +14,7 @@ var EventEmitter = require('events').EventEmitter,
     _ = require('lodash'),
     async = require('async'),
     moment = require('moment'),
-    i18n = require('ypbackendlib').i18n.initialize(),
+    i18n = require('ypbackendlib').i18n(config).initialize(),
     generic = require('ypbackendlib').handlers;
 
 

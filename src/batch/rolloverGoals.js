@@ -19,7 +19,7 @@ var worker = function (goal, done) {
 
     var terminatedGoalStart = goal.start;
     var terminatedGoalEndBefore = goal.end;
-    var terminatedGoalEndAfter = moment().endOf('week').toDate();
+    var terminatedGoalEndAfter = moment().isoWeekday(7).endOf('day').toDate();
 
     log.debug({
         goal: goal,
@@ -41,7 +41,7 @@ var worker = function (goal, done) {
             categories: goal.categories,
             timesCount: goal.timesCount,
             timeFrame: goal.timeFrame,
-            start: moment().add(1, 'week').startOf('week').toDate(),
+            start: moment().add(1, 'week').isoWeekday(1).toDate(),
             end: moment("9999-12-31").toDate()
         });
 

@@ -1,6 +1,6 @@
 machine:
   node:
-    version: v4.1.0
+    version: 2.1.6
 database:
   post:
    - bin/resettestdb.sh

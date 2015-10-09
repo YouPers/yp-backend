@@ -717,7 +717,8 @@ function getPublicEvents(req, res, next) {
     // first we load events within 50km radius that are scheduled in future
     var query = {
         start: {$gt: new Date()},
-        status: 'active'
+        status: 'active',
+        owner: {$ne: req.user._id}
     };
 
     var options = {

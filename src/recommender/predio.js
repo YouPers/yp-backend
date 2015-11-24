@@ -40,7 +40,7 @@ SocialInteraction.on('socialInteraction:dismissed', function (user, socialIntera
         entityId: user.id,
         eventTime: moment().toISOString()
     };
-    log.debug({user: user.id, idea: socialInteraction.idea, reason: socialInteractionDismissed.reason, data: data.toObject()}, "adding an rating event to predio");
+    log.debug({user: user.id, idea: socialInteraction.idea, reason: socialInteractionDismissed.reason, data: data}, "adding a rating event to predio");
 
 
     // TODO: add a rating event to predio

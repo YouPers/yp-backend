@@ -34,6 +34,24 @@ mongoose.model('User').on('add', function (user) {
 
 
 SocialInteraction.on('socialInteraction:dismissed', function (user, socialInteraction, socialInteractionDismissed) {
+    if (socialInteractionDismissed.reason === 'eventScheduled') {
+        // user scheduled this idea himself, so he seems to really like it
+    } else if (socialInteractionDismissed.reason === 'eventJoined') {
+        // user joined an invitation to this idea, so he seems to  like it
+
+    } else if (socialInteractionDismissed.reason === 'maxReached') {
+        // SocialInteraction was dismissed because event is full - this does not say anything about like/dislike
+
+    } else if (socialInteractionDismissed.reason === 'manuallyDismissed') {
+        // user manually dismissed the socialinteraction, so he did not like it -> low score.
+
+    } else if (socialInteractionDismissed.reason) {
+        // we have an unknown reason:
+        log.info({reason: socialInteractionDismissed.reason}, 'unknown dismissal reason encountered');
+    } else {
+        log.info({reason: socialInteractionDismissed.toObject()}, 'emtpy dismissal reason encountered');
+    }
+
     var data = {
         event: "$set",
         entityType: "user",

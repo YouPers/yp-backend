@@ -56,7 +56,7 @@ function _postRating(user, socialInteraction, rating) {
         "entityType": "user",
         "entityId": user.id,
         "targetEntityType": "idea",
-        "targetEntityId": socialInteraction.idea.id || socialInteraction.idea.toString(),
+        "targetEntityId": socialInteraction.idea && (socialInteraction.idea.id || socialInteraction.idea.toString()),
         "properties": {
             "rating": rating
         },

@@ -836,8 +836,6 @@ function getEventStats(req, res, next) {
             }
         };
 
-        req.log.debug({events: events}, "my events");
-
         _.each(events, function (event, index) {
 
             var start = moment(event.start);

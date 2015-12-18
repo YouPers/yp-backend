@@ -12,9 +12,16 @@ var calendar = require('../util/calendar'),
     _ = require('lodash'),
     email = require('../util/email'),
     async = require('async'),
-    handlerUtils = require('ypbackendlib').handlerUtils;
+    handlerUtils = require('ypbackendlib').handlerUtils,
+    moment = require('moment-timezone');
 
 var EARTH_RADIUS_IN_M = 6378137;
+
+var TOPIC_MAP = {
+    "53b416cfa43aac62a2debda1": "Food",
+    "53b416fba43aac62a2debda2": "Activity",
+    "53b416fba43aac62a2debda3": "Social"
+};
 
 function getInvitationStatus(req, res, next) {
     SocialInteraction.getInvitationStatus(req.params.id, generic.sendListCb(req, res, next));
@@ -24,7 +31,7 @@ function getEventLookAheadCounters(req, res, next) {
 
 
     if (!req.params || !req.params.id) {
-        return next(new error.MissingParameterError({ required: 'id' }));
+        return next(new error.MissingParameterError({required: 'id'}));
     }
 //
 //    if(!req.params.since) {
@@ -39,11 +46,11 @@ function getEventLookAheadCounters(req, res, next) {
         var finder = {
             __t: 'Message',
             targetSpaces: {
-                $elemMatch: { targetId: req.params.id }
+                $elemMatch: {targetId: req.params.id}
             }
         };
 
-        if(lastAccessSince) {
+        if (lastAccessSince) {
             finder.created = {
                 $gt: lastAccessSince
             };
@@ -71,11 +78,11 @@ function getEventLookAheadCounters(req, res, next) {
             }
 
             var finder = {
-                socialInteraction: { $in: _.map(invitations, '_id') },
+                socialInteraction: {$in: _.map(invitations, '_id')},
                 reason: 'eventJoined'
             };
 
-            if(lastAccessSince) {
+            if (lastAccessSince) {
                 finder.created = {
                     $gt: lastAccessSince
                 };
@@ -113,10 +120,10 @@ function validateEvent(req, res, next) {
 
     // check required Attributes
     if (!sentEvent.start) {
-        return next(new error.MissingParameterError({ required: 'start' }));
+        return next(new error.MissingParameterError({required: 'start'}));
     }
     if (!sentEvent.end) {
-        return next(new error.MissingParameterError({ required: 'end' }));
+        return next(new error.MissingParameterError({required: 'end'}));
     }
 
     if (!sentEvent.recurrence.byday) {
@@ -182,16 +189,16 @@ function validateEvent(req, res, next) {
         // load all activities for the conflicting occurences to populate them
         var conflictingEvents = _.compact(_.map(validationResult, 'conflictingEvent'));
         var conflictingOccurences = _.map(conflictingEvents, 'event');
-        Event.find({ _id: { $in: conflictingOccurences }}, function (err, events) {
-            if(err) {
+        Event.find({_id: {$in: conflictingOccurences}}, function (err, events) {
+            if (err) {
                 return error.handleError(err, next);
             }
-            var eventsById = _.indexBy(events, function(event) {
+            var eventsById = _.indexBy(events, function (event) {
                 return event._id.toString();
             });
 
-            _.each(validationResult, function(result) {
-                if(result.conflictingEvent) {
+            _.each(validationResult, function (result) {
+                if (result.conflictingEvent) {
                     var conflictingEventResult = eventsById[result.conflictingEvent.event.toString()];
                     result.conflictingEvent.event = conflictingEventResult;
                 }
@@ -239,14 +246,14 @@ function postNewEvent(req, res, next) {
     // check required Attributes
 
     if (!sentEvent.start) {
-        return next(new error.MissingParameterError({ required: 'start' }));
+        return next(new error.MissingParameterError({required: 'start'}));
     }
     if (!sentEvent.end) {
-        return next(new error.MissingParameterError({ required: 'end' }));
+        return next(new error.MissingParameterError({required: 'end'}));
     }
 
     if (!sentEvent.idea) {
-        return next(new error.MissingParameterError('"idea" is a required attribute', { required: 'idea' }));
+        return next(new error.MissingParameterError('"idea" is a required attribute', {required: 'idea'}));
     }
 
     if (sentEvent.joiningUsers && sentEvent.joiningUsers.length > 0) {
@@ -301,10 +308,13 @@ function postNewEvent(req, res, next) {
             actMgr.emit('event:eventCreated', savedEvent, req.user);
 
             // if needed we generate the personal invitations
-            if (usersToInvite && usersToInvite.length >0) {
+            if (usersToInvite && usersToInvite.length > 0) {
                 SocialInteraction.createNewPersonalInvitation(req.user, savedEvent, usersToInvite, function (err, savedInv) {
                     if (err) {
-                        req.log.error({err: err, inv: savedInv && savedInv.toObject()}, "Error in async task, event_handlers.js:307");
+                        req.log.error({
+                            err: err,
+                            inv: savedInv && savedInv.toObject()
+                        }, "Error in async task, event_handlers.js:307");
                     }
                 });
             }
@@ -313,7 +323,10 @@ function postNewEvent(req, res, next) {
             if (inviteOthers) {
                 SocialInteraction.createNewPublicInvitation(req.user, savedEvent, function (err, savedInv) {
                     if (err) {
-                        req.log.error({err: err, inv: savedInv.toObject()}, "Error in async task, event_handlers.js:316");
+                        req.log.error({
+                            err: err,
+                            inv: savedInv.toObject()
+                        }, "Error in async task, event_handlers.js:316");
                     }
                 });
                 // set the inviteOthers Flag manually again: because we wrote the public invitation async it was not in the DB
@@ -345,7 +358,10 @@ function _saveNewEvent(event, req, cb) {
         }
 
         if (!foundIdea) {
-            return cb(new error.InvalidArgumentError('referenced idea not found', { required: 'idea', idea: event.idea }));
+            return cb(new error.InvalidArgumentError('referenced idea not found', {
+                required: 'idea',
+                idea: event.idea
+            }));
         }
 
         if (!event.title) {
@@ -389,7 +405,7 @@ function _saveNewEvent(event, req, cb) {
 function postJoinEventFn(req, res, next) {
 
     if (!req.params || !req.params.id) {
-        return next(new error.MissingParameterError({ required: 'id' }));
+        return next(new error.MissingParameterError({required: 'id'}));
     }
 
     Event.findById(req.params.id).populate({path: 'owner', select: '+email'}).exec(function (err, masterEvent) {
@@ -397,10 +413,13 @@ function postJoinEventFn(req, res, next) {
             return error.handleError(err, next);
         }
 
-        if (_.any(masterEvent.joiningUsers, function(joinerObjId) {
-            return joinerObjId.equals(req.user._id);
-        })) {
-            return next(new error.InvalidArgumentError('this user has already joined this event', {user: req.user, event: masterEvent}));
+        if (_.any(masterEvent.joiningUsers, function (joinerObjId) {
+                return joinerObjId.equals(req.user._id);
+            })) {
+            return next(new error.InvalidArgumentError('this user has already joined this event', {
+                user: req.user,
+                event: masterEvent
+            }));
         }
 
         masterEvent.joiningUsers.push(req.user.id);
@@ -424,10 +443,10 @@ function postJoinEventFn(req, res, next) {
 
 function postEventInvite(req, res, next) {
     if (!req.params || !req.params.id || req.params.id === 'undefined') {
-        return next(new error.MissingParameterError({ required: 'id' }));
+        return next(new error.MissingParameterError({required: 'id'}));
     }
     if (!req.body || !req.body.email) {
-        return next(new error.MissingParameterError({ required: 'email' }));
+        return next(new error.MissingParameterError({required: 'email'}));
     }
 
     // split up the email field, in case we got more than one mail
@@ -444,8 +463,7 @@ function postEventInvite(req, res, next) {
         emails = [req.body.email];
     }
 
-    var locals = {
-    };
+    var locals = {};
     async.series([
         // first load Event
         function (done) {
@@ -554,10 +572,10 @@ function _deleteOccurences(event, joiner, fromDate, done) {
 
 function deleteEvent(req, res, next) {
     if (!req.params || !req.params.id) {
-        return next(new error.MissingParameterError({ required: 'id' }));
+        return next(new error.MissingParameterError({required: 'id'}));
     }
 
-    actMgr.deleteEvent(req.params.id, req.user, req.id, function(err) {
+    actMgr.deleteEvent(req.params.id, req.user, req.id, function (err) {
         if (err) {
             return error.handleError(err, next);
         }
@@ -587,7 +605,7 @@ function putEvent(req, res, next) {
             }
 
             if (!loadedEvent) {
-                return next(new error.ResourceNotFoundError('Event not found.', { id: sentEvent.id }));
+                return next(new error.ResourceNotFoundError('Event not found.', {id: sentEvent.id}));
             }
 
             // check to see if received event is editable
@@ -609,16 +627,15 @@ function putEvent(req, res, next) {
                 loadedEvent.save(done);
             }
 
-            function _eventsNeedUpdate (loadedAct, sentAct) {
+            function _eventsNeedUpdate(loadedAct, sentAct) {
                 if (!sentAct.start && !sentAct.end && !sentAct.frequency && !sentAct.recurrence) {
                     // nothing relevant for the events sent, so return false;
                     return false;
                 }
                 // otherwise compare the relevant fields
                 return ((sentAct.start !== loadedAct.start) ||
-                    (sentAct.end !== loadedAct.end) ||
-                    (sentAct.frequency !== loadedAct.frequency) ||
-                    !_.isEqual(sentAct.recurrence, loadedAct.recurrence));
+                (sentAct.end !== loadedAct.end) ||
+                (sentAct.frequency !== loadedAct.frequency) || !_.isEqual(sentAct.recurrence, loadedAct.recurrence));
             }
 
             function _deleteEventsInFuture(done) {
@@ -688,10 +705,12 @@ function getAll(req, res, next) {
     if (!req.user || !req.user.id) {
         return next(new error.NotAuthorizedError('Authentication required for this object'));
     }
-    var finder = { $or: [
-        { owner: req.user.id },
-        { joiningUsers: req.user.id }
-    ]};
+    var finder = {
+        $or: [
+            {owner: req.user.id},
+            {joiningUsers: req.user.id}
+        ]
+    };
 
     var dbQuery = Event.find(finder);
 
@@ -729,14 +748,14 @@ function getPublicEvents(req, res, next) {
         maxDistance: 50000 / EARTH_RADIUS_IN_M  // max 50 kilometers distance
     };
 
-    Event.geoNear(location, options, function(err, results, stats) {
+    Event.geoNear(location, options, function (err, results, stats) {
         if (err) {
             return next(err);
         }
 
         // we need to filter out the "non-public" events
 
-        var filtered = _.filter(results, function(result) {
+        var filtered = _.filter(results, function (result) {
             // inviteOthers is added upon serializing, so we call toObject()
             return result.obj.toObject().inviteOthers;
         });
@@ -746,13 +765,13 @@ function getPublicEvents(req, res, next) {
 
 function getIcal(req, res, next) {
     if (!req.params.id) {
-        return next(new error.MissingParameterError({ required: 'id' }));
+        return next(new error.MissingParameterError({required: 'id'}));
     }
     if (!req.params.user) {
-        return next(new error.MissingParameterError({ required: 'user' }));
+        return next(new error.MissingParameterError({required: 'user'}));
     }
     if (!req.params.type) {
-        return next(new error.MissingParameterError({ required: 'type' }));
+        return next(new error.MissingParameterError({required: 'type'}));
     }
     Event
         .findById(req.params.id)
@@ -781,6 +800,66 @@ function getIcal(req, res, next) {
         });
 }
 
+function getEventStats(req, res, next) {
+    if (!req.user || !req.user.id) {
+        return next(new error.NotAuthorizedError('Authentication required for this object'));
+    }
+    var finder = {
+        $or: [
+            {owner: req.user.id},
+            {joiningUsers: req.user.id}
+        ]
+    };
+
+    var dbQuery = Event.find(finder);
+
+    dbQuery.where({status: {$ne: 'deleted'}});
+    dbQuery.populate('idea');
+    var op = generic.addStandardQueryOptions(req, dbQuery, Event);
+    op.exec(function (err, events) {
+        if (err) {
+            return error.handleError(err, next);
+        }
+
+        var answer = {
+            "Food": {
+                "today": 0,
+                "week": 0
+            },
+            "Activity": {
+                "today": 0,
+                "week": 0
+            },
+            "Social": {
+                "today": 0,
+                "week": 0
+            }
+        };
+
+        req.log.debug({events: events}, "my events");
+
+        _.each(events, function (event, index) {
+
+            var start = moment(event.start);
+            if (moment().isSame(start, 'day')) {
+                _.each(event.idea.topics, function (topic) {
+                    answer[TOPIC_MAP[topic.toString()]].today++;
+                });
+            }
+            if (moment().isSame(start, 'week')) {
+                _.each(event.idea.topics, function (topic) {
+                    answer[TOPIC_MAP[topic.toString()]].week++;
+                });
+            }
+        });
+
+        res.send(201, answer);
+        return next();
+
+    });
+}
+
+
 
 module.exports = {
     postNewEvent: postNewEvent,
@@ -793,5 +872,6 @@ module.exports = {
     getEventLookAheadCounters: getEventLookAheadCounters,
     getIcal: getIcal,
     getAll: getAll,
-    getPublicEvents: getPublicEvents
+    getPublicEvents: getPublicEvents,
+    getEventStats: getEventStats
 };

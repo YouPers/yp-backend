@@ -137,6 +137,20 @@ module.exports = function (swagger) {
     swagger.addOperation({
         spec: {
             description: "Operations about Events",
+            path: baseUrl + '/stats',
+            notes: "gets stats about planned events for this user, grouped by topic",
+            method: "GET",
+            params: [],
+            "nickname": "getEventStats",
+            accessLevel: 'al_individual',
+            beforeCallbacks: []
+        },
+        action: handlers.getEventStats
+    });
+
+    swagger.addOperation({
+        spec: {
+            description: "Operations about Events",
             path: baseUrlWithId,
             notes: "Returns an event by Id, only returns the event if the current user is the owner of the event",
             summary: "Returns an event by Id",

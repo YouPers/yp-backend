@@ -118,7 +118,7 @@ var deleteByIdFn = function (baseUrl, Model) {
 
             // TODO: add check for Model
 
-            var reason = req.params.reason || 'manuallyDismissed';
+            var reason = req.params.reason || 'denied';
 
             SocialInteraction.dismissSocialInteractionById(req.params.id, req.user, { reason: reason }, function(err, socialInteraction) {
                 if(err) {

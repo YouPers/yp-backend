@@ -1,5 +1,5 @@
 node_modules
-.idea
+/.idea
 dist/api-docs
 atlassian-ide-plugin.xml
 logs/

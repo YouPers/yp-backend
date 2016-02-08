@@ -37,7 +37,7 @@ SocialInteraction.on('socialInteraction:dismissed', function (user, socialIntera
     } else if (socialInteractionDismissed.reason === 'maxReached') {
         // SocialInteraction was dismissed because event is full - this does not say anything about like/dislike
 
-    } else if (socialInteractionDismissed.reason === 'manuallyDismissed') {
+    } else if (socialInteractionDismissed.reason === 'denied') {
         // user manually dismissed the socialinteraction, so he did not like it -> low score.
         _postRating(user, socialInteraction, 1);
 

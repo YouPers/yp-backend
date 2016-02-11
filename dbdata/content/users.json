@@ -1,0 +1,27 @@
+[
+  {
+    "__v": 0,
+    "_id": {
+      "$oid": "525fb247101e3300000010ee"
+    },
+    "avatar": "https://insp-ci.youpers.com/assets/img/default_avatar_man.png",
+    "email": "webmaster@youpers.com",
+    "emailValidatedFlag": true,
+    "firstname": "System",
+    "fullname": "System Administrator",
+    "hashed_password": "a54966212958eb146139a6e1dd16044ca33dc8b9",
+    "lastname": "Administrator",
+    "profile": {
+      "$oid": "525fb247101e330000001aaa"
+    },
+    "roles": [
+      "systemadmin"
+    ],
+    "tempPasswordFlag": false,
+    "username": "sysadm",
+    "nickname": "sysadm",
+    "created": {
+      "$date": 1407770509621
+    }
+  }
+]

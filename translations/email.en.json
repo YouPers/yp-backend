@@ -3,7 +3,7 @@
     "default": {
         "notDisplayedCorrectly": "Is this mail not displaying correctly?",
         "notDisplayedCorrectlyLink": "View this email in your browser",
-        "header": "HealthCampaign"
+        "header": "INSPIRATION"
     },
 
     "CampaignParticipantInvite": {
@@ -34,13 +34,13 @@
         "linkText": "SHOW INVITATION"
     },
     "passwordReset": {
-        "subject": "YOUPERS: Password reset requested",
+        "subject": "INSPIRATION: Password reset requested",
         "salutation": "Hello __user.firstname__!",
         "text": "It's easy to change your password! Simply click on the link below and follow the instructions.<br/><br/>Thank you!<br/><br/>Your YOUPERS Team",
         "linkText": "CHANGE YOUR PASSWORD"
     },
     "emailVerification": {
-        "subject": "YOUPERS: Please verify your email address",
+        "subject": "INSPIRATION: Please verify your email address",
         "salutation": "Hello __user.firstname__!",
         "text": "Thank you for your registration!<br/><br/>You have entered __user.email__ as your contact email address. We want to be sure that this email address belongs to you. Simply click the link below to verify your email address and to sign in.<br/><br/>Thank you!<br/><br/>Your YOUPERS Team",
         "linkText": "VERIFY YOUR EMAIL ADDRESS"

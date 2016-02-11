@@ -2,7 +2,7 @@
     "default": {
         "notDisplayedCorrectly": "Wird diese Email nicht richtig angezeigt?",
         "notDisplayedCorrectlyLink": "Im Browser anzeigen",
-        "header": "HealthCampaign"
+        "header": "INSPIRATION"
     },
 
     "CampaignParticipantInvite": {
@@ -33,7 +33,7 @@
         "linkText": "EINLADUNG ANZEIGEN"
     },
     "passwordReset": {
-        "subject": "YOUPERS: Zurücksetzen des Passworts",
+        "subject": "INSPIRATION: Zurücksetzen des Passworts",
         "salutation": "Hallo __user.firstname__",
         "text": "Um dein Passwort zu ändern, klicke auf den untenstehenend Link und folge den Anweisungen.<br/><br/>Vielen Dank<br/><br/>Dein YOUPERS Team",
         "linkText": "PASSWORT ÄNDERN"

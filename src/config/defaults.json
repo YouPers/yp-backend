@@ -39,7 +39,7 @@
         "passwordResetUrl": "/#/password_reset/"
     },
     "email": {
-        "enabled": "disabled",
+        "enabled": "enabled",
         "fromString": "INSPIRATION <dontreply@youpers.com>",
         "templatesDir": "src/util/emailtemplates",
         "tracking": {
@@ -80,7 +80,7 @@
     },
     "predio": {
         "URL": "http://insp-rec.youpers.com:7070/",
-        "accessKey": "3SWcO02WrQhCmzXmK9EAog5pViMRUHz8R4kxqCp1is7aIVJYoWPeyMiX2wm6qnY4"
+        "accessKey": "q1oBUhUN7vJjDz39y33XSp3VttvyNYPC7nKim2okcWFyGIaKSQYR4kBd0Wfu4Wp0"
     },
     "i18n": {
         "fallbackLng": "en",

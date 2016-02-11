@@ -51,14 +51,14 @@ SocialInteraction.on('socialInteraction:dismissed', function (user, socialIntera
 
 
 function _postRating(user, socialInteraction, rating) {
+    log.info({soc: socialInteraction}, "logging socialInteraction");
     var data = {
-        "event": "rate",
+        "event": "purchase",
         "entityType": "user",
         "entityId": user.id,
-        "targetEntityType": "idea",
-        "targetEntityId": socialInteraction.idea && (socialInteraction.idea.id || socialInteraction.idea.toString()),
+        "targetEntityType": "item",
+        "targetEntityId": socialInteraction.idea, 
         "properties": {
-            "rating": rating
         },
         "eventTime": moment().toISOString()
     };

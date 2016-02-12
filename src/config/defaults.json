@@ -45,7 +45,8 @@
         "tracking": {
           "enabled": "disabled"
         },
-        "emailConfirmation": "disabled"
+        "emailConfirmation": "disabled",
+        "eventInvite": "disabled"
     },
     "accessTokenSecret": "knfad*ç%&/(&/sdkjfnaklsdnfASDFAS2341",
     "oauth": {

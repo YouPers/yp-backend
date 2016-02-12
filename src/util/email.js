@@ -92,7 +92,10 @@ var sendEventInvite = function sendEventInvite(email, invitingUser, event, invit
         image: urlComposer.ideaImageUrl(event.idea.number)
     };
     _.defaults(locals, defaultLocals(i18n));
-    emailSender.sendEmail(fromDefault, email, subject, 'eventInviteMail', locals);
+    // send verificationEmail
+    if(config.email.eventInvite !== 'disabled') {
+        emailSender.sendEmail(fromDefault, email, subject, 'eventInviteMail', locals);
+    }
 };
 
 var getDailyEventSummaryLocals = function getDailyEventSummaryLocals(locals, i18n) {

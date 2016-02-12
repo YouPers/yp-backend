@@ -44,7 +44,8 @@
         "templatesDir": "src/util/emailtemplates",
         "tracking": {
           "enabled": "disabled"
-        }
+        },
+        "emailConfirmation": "disabled"
     },
     "accessTokenSecret": "knfad*ç%&/(&/sdkjfnaklsdnfASDFAS2341",
     "oauth": {

@@ -149,13 +149,12 @@ consts.newUserInNewCampaignApi(
                     .expectStatus(201)
                     .afterJSON(function (message) {
 
-                        frisby.create('Message: get "en" message with no language set in user profile')
+                        frisby.create('Message: get "de" message with no language set in user profile')
                             .get(URL + '/socialInteractions')
                             .auth(user.username, 'yp')
                             .expectStatus(200)
                             .afterJSON(function (socialInteractions) {
-                                expect(socialInteractions.length).toEqual(1);
-                                expect(socialInteractions[0].language).toEqual('en');
+                                expect(socialInteractions.length).toEqual(0);
 
                                 var profile = {
                                     prefs: {

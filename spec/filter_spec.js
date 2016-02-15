@@ -58,3 +58,53 @@ frisby.create('GET ideas with to << options')
     .afterJSON(function (ideas) {
     })
     .toss();
+
+frisby.create('GET ideas with date')
+    .get(URL + '/ideas?filter[created]=>1970-01-01')
+    .expectStatus(200)
+    .expectJSONLength(100)
+    .afterJSON(function (ideas) {
+    })
+    .toss();
+
+frisby.create('GET ideas with date')
+    .get(URL + '/ideas?filter[created]=<1970-01-01')
+    .expectStatus(200)
+    .expectJSONLength(0)
+    .afterJSON(function (ideas) {
+    })
+    .toss();
+
+frisby.create('GET ideas with date')
+    .get(URL + '/ideas?filter[created]=>1970-01-01&filter[created]=<2020-01-01')
+    .expectStatus(200)
+    .expectJSONLength(100)
+    .afterJSON(function (ideas) {
+    })
+    .toss();
+
+frisby.create('GET ideas with date')
+    .get(URL + '/ideas?filter[created]=>2070-01-01&filter[created]=<2020-01-01')
+    .expectStatus(200)
+    .expectJSONLength(0)
+    .afterJSON(function (ideas) {
+    })
+    .toss();
+
+
+frisby.create('GET ideas with date')
+    .get(URL + '/ideas?filter[created]=>1970-01-01&filter[created]=<1020-01-01')
+    .expectStatus(200)
+    .expectJSONLength(0)
+    .afterJSON(function (ideas) {
+    })
+    .toss();
+
+
+frisby.create('GET ideas with date ')
+    .get(URL + '/ideas?filter[%2Bcreated]=>1970-01-01&filter[%2Bcreated]=<2020-01-01')
+    .expectStatus(200)
+    .expectJSONLength(100)
+    .afterJSON(function (ideas) {
+    })
+    .toss();

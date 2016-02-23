@@ -28,18 +28,18 @@ mongoose.model('User').on('add', function (user) {
 SocialInteraction.on('socialInteraction:dismissed', function (user, socialInteraction, socialInteractionDismissed) {
     if (socialInteractionDismissed.reason === 'eventScheduled') {
         // user scheduled this idea himself, so he seems to really like it
-        _postRating(user, socialInteraction, 10);
+        _postRating(user, socialInteraction, "purchase");
 
     } else if (socialInteractionDismissed.reason === 'eventJoined') {
         // user joined an invitation to this idea, so he seems to  like it
-        _postRating(user, socialInteraction, 8);
+        _postRating(user, socialInteraction, "purchase");
 
     } else if (socialInteractionDismissed.reason === 'maxReached') {
         // SocialInteraction was dismissed because event is full - this does not say anything about like/dislike
 
     } else if (socialInteractionDismissed.reason === 'denied') {
         // user manually dismissed the socialinteraction, so he did not like it -> low score.
-        _postRating(user, socialInteraction, 1);
+        _postRating(user, socialInteraction, "view");
 
     } else if (socialInteractionDismissed.reason) {
         // we have an unknown reason:
@@ -53,7 +53,7 @@ SocialInteraction.on('socialInteraction:dismissed', function (user, socialIntera
 function _postRating(user, socialInteraction, rating) {
     log.info({soc: socialInteraction}, "logging socialInteraction");
     var data = {
-        "event": "purchase",
+        "event": rating,
         "entityType": "user",
         "entityId": user.id,
         "targetEntityType": "item",

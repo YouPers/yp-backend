@@ -3,4 +3,5 @@ node_modules
 dist/api-docs
 atlassian-ide-plugin.xml
 logs/
+yp-ewl-server.iml
 processes.json
